@@ -54,4 +54,14 @@ public final class AnnotationBoard {
     public List<Comment> allComments() {
         return commentsByScope.values().stream().flatMap(List::stream).toList();
     }
+
+    /**
+     * Every stored private note, across every scope. Unlike {@link #allComments()},
+     * this is explicitly opt-in for any consumer that assembles a shareable
+     * artifact (e.g. the Review Context, epic #6 #44) — private notes must never
+     * be included by default.
+     */
+    public List<PrivateNote> allPrivateNotes() {
+        return notesByScope.values().stream().flatMap(List::stream).toList();
+    }
 }
