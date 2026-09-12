@@ -1,6 +1,7 @@
 package com.athena.reviewui;
 
 import com.athena.semantic.Change;
+import com.athena.semantic.ChangeIdentity;
 
 import java.util.Objects;
 
@@ -8,7 +9,10 @@ import java.util.Objects;
  * Where a comment or private note attaches: a specific line, a symbol, a
  * whole Change, or the review overall (epic #5 §21). Modeled as a value
  * type (not a bare enum) since line scope carries a file+line, and Change
- * scope carries the Change itself.
+ * scope carries the Change's stable {@link ChangeIdentity} — not the
+ * {@link Change} instance itself, which has no equals/hashCode and would
+ * make an annotation unreachable the moment the engine recomputes the same
+ * conceptual Change into a new instance (e.g. after a force-push).
  */
 public final class AnnotationScope {
 
@@ -18,14 +22,14 @@ public final class AnnotationScope {
     private final String filePath;
     private final int line;
     private final String symbolDescription;
-    private final Change change;
+    private final ChangeIdentity changeIdentity;
 
-    private AnnotationScope(Kind kind, String filePath, int line, String symbolDescription, Change change) {
+    private AnnotationScope(Kind kind, String filePath, int line, String symbolDescription, ChangeIdentity changeIdentity) {
         this.kind = kind;
         this.filePath = filePath;
         this.line = line;
         this.symbolDescription = symbolDescription;
-        this.change = change;
+        this.changeIdentity = changeIdentity;
     }
 
     public static AnnotationScope line(String filePath, int line) {
@@ -49,7 +53,7 @@ public final class AnnotationScope {
 
     public static AnnotationScope change(Change change) {
         Objects.requireNonNull(change, "change");
-        return new AnnotationScope(Kind.CHANGE, null, 0, null, change);
+        return new AnnotationScope(Kind.CHANGE, null, 0, null, ChangeIdentity.of(change));
     }
 
     public static AnnotationScope review() {
@@ -63,12 +67,12 @@ public final class AnnotationScope {
         return kind == other.kind && line == other.line
                 && Objects.equals(filePath, other.filePath)
                 && Objects.equals(symbolDescription, other.symbolDescription)
-                && Objects.equals(change, other.change);
+                && Objects.equals(changeIdentity, other.changeIdentity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(kind, filePath, line, symbolDescription, change);
+        return Objects.hash(kind, filePath, line, symbolDescription, changeIdentity);
     }
 
     @Override
@@ -76,7 +80,7 @@ public final class AnnotationScope {
         return switch (kind) {
             case LINE -> filePath + ":" + line;
             case SYMBOL -> symbolDescription;
-            case CHANGE -> "Change[" + change.title() + "]";
+            case CHANGE -> "Change[" + changeIdentity + "]";
             case REVIEW -> "review";
         };
     }
