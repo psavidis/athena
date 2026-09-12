@@ -28,4 +28,4 @@ Feature: AI findings review (independent accept/dismiss)
     Given the reviewer has two AI findings, one about the rename Change and one with no related Change
     And the rename Change's review state is "Reviewed"
     When the reviewer accepts the finding about the rename Change
-    Then the rename Change's review state is still "Reviewed"
+    Then the rename Change's underlying review state remains "Reviewed"

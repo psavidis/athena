@@ -14,6 +14,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -57,7 +58,10 @@ public class ClaudeAiProvider implements AiProvider {
         appendChangeList(prompt, "Flagged as a concern", reviewContext.concernChanges());
         prompt.append("Coverage: ").append(reviewContext.coverageSummary()).append("\n\n");
         prompt.append("Respond with only a JSON array of findings, each an object with an \"id\" and a ")
-                .append("\"description\" field. Respond with an empty array if there is nothing to add.");
+                .append("\"description\" field. When a finding is about one specific Change listed above, ")
+                .append("also include a \"relatedChangeTitle\" field containing that Change's exact quoted ")
+                .append("title from above, verbatim — omit this field for a general finding not tied to one ")
+                .append("Change. Respond with an empty array if there is nothing to add.");
         return prompt.toString();
     }
 
@@ -67,7 +71,9 @@ public class ClaudeAiProvider implements AiProvider {
         }
         prompt.append(label).append(":\n");
         for (Change change : changes) {
-            prompt.append("- ").append(change).append('\n');
+            prompt.append("- \"").append(change.title()).append("\" (")
+                    .append(change.occurrenceCount()).append(" occurrences, ")
+                    .append(change.exceptionCount()).append(" exceptions)\n");
         }
         prompt.append('\n');
     }
@@ -120,7 +126,10 @@ public class ClaudeAiProvider implements AiProvider {
         }
         for (JsonNode findingNode : findingsArray) {
             String id = findingNode.hasNonNull("id") ? findingNode.path("id").asText() : UUID.randomUUID().toString();
-            findings.add(new AiFinding(id, findingNode.path("description").asText()));
+            Optional<String> relatedChangeTitle = findingNode.hasNonNull("relatedChangeTitle")
+                    ? Optional.of(findingNode.path("relatedChangeTitle").asText())
+                    : Optional.empty();
+            findings.add(new AiFinding(id, findingNode.path("description").asText(), relatedChangeTitle));
         }
         return findings;
     }
