@@ -37,11 +37,19 @@ public final class AiFindingsBoard {
     }
 
     public void accept(String findingId) {
-        dispositions.put(findingId, AiFindingDisposition.ACCEPTED);
+        dispositions.put(requireKnownFinding(findingId), AiFindingDisposition.ACCEPTED);
     }
 
     public void dismiss(String findingId) {
-        dispositions.put(findingId, AiFindingDisposition.DISMISSED);
+        dispositions.put(requireKnownFinding(findingId), AiFindingDisposition.DISMISSED);
+    }
+
+    private String requireKnownFinding(String findingId) {
+        boolean known = findings.stream().anyMatch(finding -> finding.id().equals(findingId));
+        if (!known) {
+            throw new IllegalArgumentException("No such finding: " + findingId);
+        }
+        return findingId;
     }
 
     public AiFindingDisposition dispositionOf(String findingId) {
@@ -55,6 +63,15 @@ public final class AiFindingsBoard {
                 .toList();
     }
 
+    /**
+     * Matches by exact {@link Change#title()} string equality against Claude's own echoed-back
+     * text (see {@link ClaudeAiProvider}) — the only reference a finding carries. Two Changes
+     * sharing an identical title (e.g. the same rename pattern occurring independently in two
+     * unrelated files) would resolve to whichever {@code findFirst()} happens to return, which
+     * could point a finding at the wrong Change rather than at none. Accepted as an MVP
+     * limitation: correctly disambiguating this would need a finding to carry a more precise
+     * reference than free-text title matching, which this ticket's scope doesn't require.
+     */
     private Optional<ChangeDetailView> jumpTargetFor(AiFinding finding) {
         return finding.relatedChangeTitle()
                 .flatMap(title -> changes.stream().filter(change -> change.title().equals(title)).findFirst())
