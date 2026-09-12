@@ -22,6 +22,9 @@ public class FakeGitHubTransport implements GitHubTransport {
     private final Map<Key, PullRequestDetail> pullRequestDetails = new HashMap<>();
     private final Map<Key, List<Commit>> pullRequestCommits = new HashMap<>();
     private final Map<Key, List<ChangedFile>> pullRequestChangedFiles = new HashMap<>();
+    private final Map<Key, List<ReviewComment>> pullRequestReviewComments = new HashMap<>();
+    private final Map<Key, List<Review>> pullRequestReviews = new HashMap<>();
+    private final Map<String, String> repositoryPermissions = new HashMap<>();
 
     public void acceptToken(String token, String username) {
         tokenToUsername.put(token, username);
@@ -55,6 +58,20 @@ public class FakeGitHubTransport implements GitHubTransport {
     public void addChangedFile(String repositoryFullName, int number, String path, String status, String diff) {
         pullRequestChangedFiles.computeIfAbsent(new Key(repositoryFullName, number), k -> new ArrayList<>())
                 .add(new ChangedFile(path, status, Optional.ofNullable(diff)));
+    }
+
+    public void addReviewComment(String repositoryFullName, int number, String author, String body, String path) {
+        pullRequestReviewComments.computeIfAbsent(new Key(repositoryFullName, number), k -> new ArrayList<>())
+                .add(new ReviewComment(author, body, path));
+    }
+
+    public void addReview(String repositoryFullName, int number, String reviewer, String state) {
+        pullRequestReviews.computeIfAbsent(new Key(repositoryFullName, number), k -> new ArrayList<>())
+                .add(new Review(reviewer, state));
+    }
+
+    public void setPermission(String repositoryFullName, String level) {
+        repositoryPermissions.put(repositoryFullName, level);
     }
 
     @Override
@@ -109,6 +126,28 @@ public class FakeGitHubTransport implements GitHubTransport {
     public List<ChangedFile> fetchChangedFiles(String token, String repositoryFullName, int number) {
         requireValidToken(token);
         return pullRequestChangedFiles.getOrDefault(new Key(repositoryFullName, number), List.of());
+    }
+
+    @Override
+    public List<ReviewComment> fetchReviewComments(String token, String repositoryFullName, int number) {
+        requireValidToken(token);
+        return pullRequestReviewComments.getOrDefault(new Key(repositoryFullName, number), List.of());
+    }
+
+    @Override
+    public List<Review> fetchReviews(String token, String repositoryFullName, int number) {
+        requireValidToken(token);
+        return pullRequestReviews.getOrDefault(new Key(repositoryFullName, number), List.of());
+    }
+
+    @Override
+    public String fetchRepositoryPermission(String token, String repositoryFullName) {
+        requireValidToken(token);
+        String level = repositoryPermissions.get(repositoryFullName);
+        if (level == null) {
+            throw new GitHubResourceNotFoundException("No permission recorded for " + repositoryFullName);
+        }
+        return level;
     }
 
     private void requireValidToken(String token) {
