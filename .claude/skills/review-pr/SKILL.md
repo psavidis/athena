@@ -20,6 +20,13 @@ closing out the ticket on the board.
 - Merging is the last step of this skill, not a separate one — except
   under the "approval-gated" autonomy mode below, where this skill stops
   short of merging.
+- **Reviewing is never its own ticket.** The act of reviewing a PR is
+  carried out entirely as comments on that PR (line comments, the summary
+  comment, the verdict) — never by opening a new ticket to represent "review
+  this" as a task. If a review finding is significant enough that it needs
+  to outlive the PR (a follow-up the engineer isn't fixing now, a concern
+  that should block the ticket from being considered fully done), say so as
+  a comment on the ticket itself (see step 7) — not a new ticket.
 
 ## Reference: project board
 
@@ -91,7 +98,13 @@ gh project item-edit --id <ITEM_ID> --project-id PVT_kwHOBB9O8s4BjQ9M \
 
 5. **Merge — autonomy-dependent.**
    - **Default / fully autonomous mode:** proceed to merge yourself (see
-     step 6).
+     step 6) — do not stop to ask the user for a merge go-ahead on a PR
+     that has already passed review here with no blocking findings. If the
+     harness's own auto-mode classifier denies the merge/approval action
+     itself (a session-level safety control, distinct from this skill's
+     autonomy modes), that is not this skill's approval-gated mode — report
+     the denial and what's blocked rather than silently downgrading to
+     approval-gated behavior.
    - **Approval-gated autonomous mode** (user said you can work
      autonomously but merging needs their approval): do not merge. Instead:
      - Add label `status:pending-approval` to the PR and the ticket.
