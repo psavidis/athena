@@ -7,20 +7,30 @@ description: Break a feature down into GitHub tickets (issues) sized for individ
 
 ## Purpose
 
-Turn a feature request (from the user, a spec, or a design doc) into a set
-of GitHub issues small enough for one engineer to pick up and finish in a
-single PR each.
+Turn a feature request into a set of GitHub issues small enough for one
+engineer to pick up and finish in a single PR each. The feature request
+is usually an **epic ticket** produced by `spec-to-epic` (its `### Scope
+Boundary` and `### Success Criteria` are the input), but can also be a
+feature described directly by the user without going through an epic
+first.
 
 ## Role boundary
 
 - This skill only creates/edits tickets. It never writes implementation
   code and never opens a PR.
 - It does not implement, review, or merge anything.
+- If the input is an epic, decompose within its `### Scope Boundary` —
+  don't silently pull in the fuller `### Vision` if it's broader than the
+  boundary the epic committed to. If the epic has unresolved
+  `### Open Questions`, resolve them with the user before decomposing,
+  don't guess.
 
 ## Process
 
-1. Understand the feature: read whatever spec/context exists (e.g.
-   `docs/specs/`), and clarify scope with the user if it's ambiguous.
+1. Understand the feature: if working from an epic, read the epic issue
+   in full (Vision, Scope Boundary, Success Criteria, Open Questions); if
+   working from a raw request, read whatever spec/context exists (e.g.
+   `docs/specs/`). Clarify scope with the user if it's ambiguous.
 2. Break the feature into the smallest independently-shippable pieces of
    work. Prefer several small tickets over one large one — each ticket
    should be completable in one PR.
@@ -47,6 +57,11 @@ single PR each.
 7. Add each created issue to the project board and leave its Status at the
    board's initial "not started" column (e.g. Backlog/Ready) — this skill
    never advances a ticket past that point.
+8. If decomposing an epic, append each child ticket to the epic's
+   `### Child Tickets` section (`gh issue edit <epic-N> --body-file ...`)
+   — this doesn't happen automatically from mentioning the epic number in
+   a child ticket's `### Links`, the same way a PR doesn't auto-attach to
+   its ticket (see `engineer-ticket` for the equivalent PR-side step).
 
 ## Sizing guidance
 

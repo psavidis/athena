@@ -1,9 +1,14 @@
 # Athena — ticket workflow
 
-This project uses a ticket-driven workflow with four roles, each backed by
+This project uses a ticket-driven workflow with five roles, each backed by
 a skill under `.claude/skills/`:
 
-- **Planner** (`plan-feature`) — breaks a feature into tickets using
+- **Spec-to-epic** (`spec-to-epic`) — reads a spec under `docs/specs/`
+  (anywhere from a vague product vision to a concrete requirement) and
+  translates the not-yet-ticketed parts of it into epic tickets
+  (`type:epic`, `epic_request.md` template).
+- **Planner** (`plan-feature`) — breaks an epic (or a directly-described
+  feature) into implementation-sized tickets using
   `.github/ISSUE_TEMPLATE/`.
 - **Engineer** (`engineer-ticket`) — claims a ticket, implements it,
   invokes QA, opens a PR.
@@ -12,6 +17,11 @@ a skill under `.claude/skills/`:
 - **Reviewer** (`review-pr`) — reviews the PR, approves, squash-merges,
   cleans up branches, closes the ticket.
 
+Pipeline order: `spec-to-epic` → `plan-feature` → `engineer-ticket` (+
+`qa-ticket`) → `review-pr`. Each stage stops at its own boundary and does
+not auto-chain into the next — a human (or a separate instruction)
+triggers each stage.
+
 Read the relevant `SKILL.md` before acting in that role — this file is the
 overview, the skills carry the actual step-by-step process and command
 reference (board IDs, label names, etc.).
@@ -19,7 +29,7 @@ reference (board IDs, label names, etc.).
 ## Lifecycle at a glance
 
 ```
-todo → in-progress → in-review → (pending-approval, gated mode only) → done
+(spec) → epic → todo → in-progress → in-review → (pending-approval, gated mode only) → done
 ```
 
 | State            | Signal                                             |
@@ -50,8 +60,10 @@ field/option IDs.
   for when to omit `(scope)`.
 - PR body fields (Context, Why, High-Level Changes, Testing, Risks /
   Follow-ups) are all optional — include only what earns its place. Every
-  PR must include `Related-to: #<ticket>` so the PR shows up on the
-  ticket automatically.
+  PR must include `Related-to: #<ticket>` for a clickable cross-reference,
+  but that alone does not attach the PR to the ticket — the engineer must
+  also add the PR link to the ticket's own `### Pull Requests` section
+  (see `engineer-ticket`).
 
 ## Assignment rules
 
