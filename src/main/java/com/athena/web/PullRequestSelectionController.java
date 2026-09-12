@@ -7,6 +7,7 @@ import com.athena.github.GitHubTransport;
 import com.athena.github.HttpGitHubTransport;
 import com.athena.github.ImportedPullRequest;
 import com.athena.github.PullRequestImporter;
+import com.athena.semantic.ReviewStateStore;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,7 +58,7 @@ public class PullRequestSelectionController {
         try {
             Path baseRoot = GitRevisionCheckout.checkout(repositoryUrl, pr.baseRevision(), workDir, gitEnvironment);
             Path headRoot = GitRevisionCheckout.checkout(repositoryUrl, pr.headRevision(), workDir, gitEnvironment);
-            session.select(new WebSession.SelectedPullRequest(pr, workDir, baseRoot, headRoot));
+            session.select(new WebSession.SelectedPullRequest(pr, workDir, baseRoot, headRoot, new ReviewStateStore()));
             return pr;
         } catch (RuntimeException e) {
             TempDirectories.deleteRecursively(workDir);

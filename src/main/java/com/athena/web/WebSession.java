@@ -2,6 +2,7 @@ package com.athena.web;
 
 import com.athena.git.TempDirectories;
 import com.athena.github.ImportedPullRequest;
+import com.athena.semantic.ReviewStateStore;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -42,6 +43,7 @@ public class WebSession {
         return Optional.ofNullable(selectedPullRequest);
     }
 
-    public record SelectedPullRequest(ImportedPullRequest pullRequest, Path workDir, Path baseRoot, Path headRoot) {
+    public record SelectedPullRequest(ImportedPullRequest pullRequest, Path workDir, Path baseRoot, Path headRoot,
+                                       ReviewStateStore reviewStateStore) {
     }
 }
