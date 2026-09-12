@@ -33,6 +33,12 @@ Feature: Structural and mechanical change detection
     When the semantic engine detects transformations between the revisions
     Then a "CHANGE_METHOD_SIGNATURE" transformation is detected involving "Greeter#greet"
 
+  Scenario: A changed record component list is detected as a signature change
+    Given a base revision where record "Money" has components "int amount"
+    And a head revision where record "Money" has components "int amount, String currency"
+    When the semantic engine detects transformations between the revisions
+    Then a "CHANGE_METHOD_SIGNATURE" transformation is detected involving "Money"
+
   Scenario: An extracted method is detected
     Given a base revision where class "Greeter" has a method "greet" with an inline fragment
     And a head revision where that fragment has been extracted into a new method "buildGreeting" called from "greet"

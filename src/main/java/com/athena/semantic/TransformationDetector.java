@@ -6,6 +6,7 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
+import com.github.javaparser.ast.body.RecordDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
 
 import java.io.IOException;
@@ -13,8 +14,10 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -137,7 +140,57 @@ public final class TransformationDetector {
         //    identically across every file that referenced the old identifier.
         results.addAll(detectMechanicalReplacements(baseRoot, headRoot));
 
+        // 7. Record signature change: a same-named record's component (canonical constructor)
+        //    list differs between revisions. Handled separately from steps 1-5 above, which
+        //    match by MethodDeclaration and don't see a record's component list at all — and
+        //    deliberately not fed through the rename/move matching either, since a record here
+        //    keeps its own name; matching by name alone is simpler and correct, unlike the
+        //    method rename/move detectors' "same body, different name/enclosing type" heuristic.
+        results.addAll(detectRecordSignatureChanges(baseRoot, headRoot));
+
         return results;
+    }
+
+    private List<DetectedTransformation> detectRecordSignatureChanges(Path baseRoot, Path headRoot) {
+        Map<String, RecordInfo> baseRecords = recordInfos(baseRoot);
+        Map<String, RecordInfo> headRecords = recordInfos(headRoot);
+
+        List<DetectedTransformation> results = new ArrayList<>();
+        for (Map.Entry<String, RecordInfo> entry : baseRecords.entrySet()) {
+            RecordInfo base = entry.getValue();
+            RecordInfo head = headRecords.get(entry.getKey());
+            if (head != null && !base.componentTypes.equals(head.componentTypes)) {
+                results.add(DetectedTransformation.of(TransformationKind.CHANGE_METHOD_SIGNATURE,
+                        List.of(entry.getKey() + "#<init>"), List.of(base.file, head.file)));
+            }
+        }
+        return results;
+    }
+
+    private Map<String, RecordInfo> recordInfos(Path root) {
+        Map<String, RecordInfo> infos = new LinkedHashMap<>();
+        for (Path file : javaFiles(root)) {
+            String relativePath = root.relativize(file).toString();
+            CompilationUnit cu;
+            try {
+                StaticJavaParser.setConfiguration(new ParserConfiguration()
+                        .setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_17));
+                cu = StaticJavaParser.parse(file);
+            } catch (IOException | RuntimeException e) {
+                continue;
+            }
+            for (TypeDeclaration<?> type : cu.getTypes()) {
+                if (type instanceof RecordDeclaration record) {
+                    List<String> componentTypes = record.getParameters().stream()
+                            .map(Parameter::getTypeAsString).toList();
+                    infos.put(type.getNameAsString(), new RecordInfo(componentTypes, relativePath));
+                }
+            }
+        }
+        return infos;
+    }
+
+    private record RecordInfo(List<String> componentTypes, String file) {
     }
 
     private List<DetectedTransformation> detectMechanicalReplacements(Path baseRoot, Path headRoot) {
