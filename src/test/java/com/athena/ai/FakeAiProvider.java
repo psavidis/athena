@@ -4,6 +4,7 @@ import com.athena.reviewcontext.ReviewContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Fake implementation of AiProvider standing in for real network calls to
@@ -15,7 +16,7 @@ public class FakeAiProvider implements AiProvider {
     private final List<AiFinding> findingsToReturn = new ArrayList<>();
 
     public void willReturnFinding(String id, String description) {
-        findingsToReturn.add(new AiFinding(id, description));
+        findingsToReturn.add(new AiFinding(id, description, Optional.empty()));
     }
 
     @Override
