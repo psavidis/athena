@@ -2,6 +2,7 @@ package com.athena.web;
 
 import com.athena.git.GitAskpass;
 import com.athena.git.GitRevisionCheckout;
+import com.athena.git.TempDirectories;
 import com.athena.github.GitHubTransport;
 import com.athena.github.HttpGitHubTransport;
 import com.athena.github.ImportedPullRequest;
@@ -53,10 +54,14 @@ public class PullRequestSelectionController {
         } catch (IOException e) {
             throw new UncheckedIOException("Could not create a working directory", e);
         }
-        Path baseRoot = GitRevisionCheckout.checkout(repositoryUrl, pr.baseRevision(), workDir, gitEnvironment);
-        Path headRoot = GitRevisionCheckout.checkout(repositoryUrl, pr.headRevision(), workDir, gitEnvironment);
-
-        session.select(new WebSession.SelectedPullRequest(pr, workDir, baseRoot, headRoot));
-        return pr;
+        try {
+            Path baseRoot = GitRevisionCheckout.checkout(repositoryUrl, pr.baseRevision(), workDir, gitEnvironment);
+            Path headRoot = GitRevisionCheckout.checkout(repositoryUrl, pr.headRevision(), workDir, gitEnvironment);
+            session.select(new WebSession.SelectedPullRequest(pr, workDir, baseRoot, headRoot));
+            return pr;
+        } catch (RuntimeException e) {
+            TempDirectories.deleteRecursively(workDir);
+            throw e;
+        }
     }
 }
