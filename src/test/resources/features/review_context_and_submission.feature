@@ -32,6 +32,21 @@ Feature: Review Context artifact assembly and pre-submission summary
     When the reviewer assembles the Review Context
     Then the Review Context's coverage summary reports exactly 1 Change reviewed out of the total detected
 
+  Scenario: A Change is reported as mechanical, not also as reviewed, once marked mechanical
+    Given a PR titled "Move authentication to Account" with a rename Change and a mechanical replacement Change
+    And the reviewer has reviewed the mechanical replacement Change for the review context
+    And the reviewer has marked the mechanical replacement Change as mechanical
+    When the reviewer assembles the Review Context
+    Then the Review Context's mechanical Changes include the mechanical replacement Change
+    And the Review Context's reviewed Changes do not include the mechanical replacement Change
+
+  Scenario: A skipped Change is reported under skipped, not reviewed
+    Given a PR titled "Move authentication to Account" with a rename Change and a mechanical replacement Change
+    And the reviewer has skipped the rename Change for the review context
+    When the reviewer assembles the Review Context
+    Then the Review Context's skipped Changes include the rename Change
+    And the Review Context's reviewed Changes do not include the rename Change
+
   Scenario: The pre-submission summary shows reviewed, mechanical, concerns, and comment count
     Given a PR titled "Move authentication to Account" with a rename Change and a mechanical replacement Change
     And the reviewer has reviewed the rename Change for the review context
@@ -41,6 +56,18 @@ Feature: Review Context artifact assembly and pre-submission summary
     Then the summary lists the rename Change as reviewed
     And the summary lists the mechanical replacement Change as classified mechanical
     And the summary reports 1 comment
+
+  Scenario: A review with no open concerns previews as Approve
+    Given a PR titled "Move authentication to Account" with a rename Change and a mechanical replacement Change
+    And the reviewer has reviewed the rename Change for the review context
+    When the reviewer opens the pre-submission summary
+    Then the summary previews the GitHub action "Approve"
+
+  Scenario: A review with an open concern previews as Request changes
+    Given a PR titled "Move authentication to Account" with a rename Change and a mechanical replacement Change
+    And the reviewer has flagged the rename Change as a concern for the review context
+    When the reviewer opens the pre-submission summary
+    Then the summary previews the GitHub action "Request changes"
 
   Scenario: Submission requires explicit confirmation
     Given a PR titled "Move authentication to Account" with a rename Change and a mechanical replacement Change

@@ -49,13 +49,34 @@ public final class ReviewContext {
         this.coverageSummary = coverageSummary;
     }
 
+    /** Assembles the artifact with private notes excluded — the safe default. */
     public static ReviewContext assemble(String prTitle, List<Change> changes, ReviewStateStore store,
-                                          AnnotationBoard board, boolean includePrivateNotes) {
-        List<Change> reviewed = changes.stream().filter(c -> store.stateOf(c) == ReviewState.REVIEWED).toList();
-        List<Change> skipped = changes.stream().filter(c -> store.stateOf(c) == ReviewState.SKIPPED).toList();
+                                          AnnotationBoard board) {
+        return assemble(prTitle, changes, store, board, List.of());
+    }
+
+    /**
+     * Assembles the artifact with private notes explicitly included — named distinctly from
+     * {@link #assemble(String, List, ReviewStateStore, AnnotationBoard)} (rather than a bare
+     * boolean flag) so a caller can't silently opt into the privacy-sensitive branch by
+     * copy-pasting a call site without noticing which one they picked.
+     */
+    public static ReviewContext assembleIncludingPrivateNotes(String prTitle, List<Change> changes,
+                                                                ReviewStateStore store, AnnotationBoard board) {
+        return assemble(prTitle, changes, store, board, board.allPrivateNotes());
+    }
+
+    private static ReviewContext assemble(String prTitle, List<Change> changes, ReviewStateStore store,
+                                           AnnotationBoard board, List<PrivateNote> privateNotes) {
+        // Mechanical classification is reported as its own bucket, mutually exclusive with the
+        // review-state buckets below — a Change already marked mechanical is not also listed as
+        // reviewed/skipped/concern, matching §32's own example (Reviewed and Classified mechanical
+        // are presented as separate, non-overlapping lists).
         List<Change> mechanical = changes.stream().filter(store::isMechanical).toList();
-        List<Change> concerns = changes.stream().filter(c -> store.stateOf(c) == ReviewState.CONCERN).toList();
-        List<PrivateNote> privateNotes = includePrivateNotes ? board.allPrivateNotes() : List.of();
+        List<Change> nonMechanical = changes.stream().filter(c -> !store.isMechanical(c)).toList();
+        List<Change> reviewed = nonMechanical.stream().filter(c -> store.stateOf(c) == ReviewState.REVIEWED).toList();
+        List<Change> skipped = nonMechanical.stream().filter(c -> store.stateOf(c) == ReviewState.SKIPPED).toList();
+        List<Change> concerns = nonMechanical.stream().filter(c -> store.stateOf(c) == ReviewState.CONCERN).toList();
         String coverageSummary = ReviewCoverageReport.summary(changes, store);
 
         return new ReviewContext(prTitle, reviewed, skipped, mechanical, concerns,

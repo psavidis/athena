@@ -41,9 +41,16 @@ public final class ReviewStateStore {
         return markedMechanical.contains(ChangeIdentity.of(change));
     }
 
-    /** Whether this Change counts as "accounted for" in review coverage. */
+    /**
+     * Whether this Change counts as "accounted for" in review coverage. A Change flagged
+     * {@link ReviewState#CONCERN} counts — the reviewer inspected it and formed a judgment,
+     * even a negative one; coverage measures "did a human look at this," not "is every
+     * concern resolved" (that distinction stays visible separately, e.g. via a Review
+     * Context's own concern list).
+     */
     boolean isAccountedFor(Change change) {
         ReviewState state = stateOf(change);
-        return state == ReviewState.REVIEWED || state == ReviewState.SKIPPED || isMechanical(change);
+        return state == ReviewState.REVIEWED || state == ReviewState.SKIPPED
+                || state == ReviewState.CONCERN || isMechanical(change);
     }
 }

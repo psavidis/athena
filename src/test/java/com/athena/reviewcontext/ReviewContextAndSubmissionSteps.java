@@ -2,6 +2,7 @@ package com.athena.reviewcontext;
 
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.reviewui.AnnotationScope;
+import com.athena.reviewui.JavaFixtureSupport;
 import com.athena.semantic.Change;
 import com.athena.semantic.ChangeGrouper;
 import com.athena.semantic.DetectedTransformation;
@@ -16,7 +17,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -47,38 +47,15 @@ public class ReviewContextAndSubmissionSteps {
 
     @After
     public void cleanUpTempRoots() throws IOException {
-        deleteRecursively(baseRoot);
-        deleteRecursively(headRoot);
+        JavaFixtureSupport.deleteRecursively(baseRoot);
+        JavaFixtureSupport.deleteRecursively(headRoot);
     }
 
     @Given("a PR titled {string} with a rename Change and a mechanical replacement Change")
     public void a_pr_titled_with_a_rename_and_mechanical_change(String title) {
         prTitle = title;
-        write(baseRoot, "Greeter", "public class Greeter {\n"
-                + "    public String greet() {\n"
-                + "        return \"hi\";\n"
-                + "    }\n"
-                + "}\n");
-        write(headRoot, "Greeter", "public class Greeter {\n"
-                + "    public String salute() {\n"
-                + "        return \"hi\";\n"
-                + "    }\n"
-                + "}\n");
-        for (int i = 0; i < 3; i++) {
-            String refClass = "Ref" + i;
-            write(baseRoot, refClass, "public class " + refClass + " {\n"
-                    + "    public Foo make() {\n"
-                    + "        return new Foo();\n"
-                    + "    }\n"
-                    + "}\n");
-            write(headRoot, refClass, "public class " + refClass + " {\n"
-                    + "    public Bar make() {\n"
-                    + "        return new Bar();\n"
-                    + "    }\n"
-                    + "}\n");
-        }
-        write(baseRoot, "Foo", "public class Foo {\n}\n");
-        write(headRoot, "Bar", "public class Bar {\n}\n");
+        JavaFixtureSupport.writeRenameFixture(baseRoot, headRoot);
+        JavaFixtureSupport.writeMechanicalReplacementFixture(baseRoot, headRoot);
 
         List<DetectedTransformation> transformations = new TransformationDetector().detect(baseRoot, headRoot);
         changes = new ChangeGrouper().group(transformations);
@@ -102,6 +79,21 @@ public class ReviewContextAndSubmissionSteps {
         store.markMechanical(mechanicalChange);
     }
 
+    @Given("the reviewer has reviewed the mechanical replacement Change for the review context")
+    public void the_reviewer_has_reviewed_the_mechanical_change() {
+        store.setState(mechanicalChange, ReviewState.REVIEWED);
+    }
+
+    @Given("the reviewer has skipped the rename Change for the review context")
+    public void the_reviewer_has_skipped_the_rename_change() {
+        store.setState(renameChange, ReviewState.SKIPPED);
+    }
+
+    @Given("the reviewer has flagged the rename Change as a concern for the review context")
+    public void the_reviewer_has_flagged_the_rename_change_as_a_concern() {
+        store.setState(renameChange, ReviewState.CONCERN);
+    }
+
     @Given("a review-context comment {string} attached to the rename Change")
     public void a_review_context_comment_attached_to_the_rename_change(String text) {
         board.addComment(AnnotationScope.change(renameChange), text);
@@ -114,17 +106,17 @@ public class ReviewContextAndSubmissionSteps {
 
     @When("the reviewer assembles the Review Context")
     public void the_reviewer_assembles_the_review_context() {
-        reviewContext = ReviewContext.assemble(prTitle, changes, store, board, false);
+        reviewContext = ReviewContext.assemble(prTitle, changes, store, board);
     }
 
     @When("the reviewer assembles the Review Context including private notes")
     public void the_reviewer_assembles_the_review_context_including_private_notes() {
-        reviewContext = ReviewContext.assemble(prTitle, changes, store, board, true);
+        reviewContext = ReviewContext.assembleIncludingPrivateNotes(prTitle, changes, store, board);
     }
 
     @When("the reviewer opens the pre-submission summary")
     public void the_reviewer_opens_the_pre_submission_summary() {
-        reviewContext = ReviewContext.assemble(prTitle, changes, store, board, false);
+        reviewContext = ReviewContext.assemble(prTitle, changes, store, board);
         summary = PreSubmissionSummary.of(reviewContext);
     }
 
@@ -149,6 +141,21 @@ public class ReviewContextAndSubmissionSteps {
     @Then("the Review Context's mechanical Changes include the mechanical replacement Change")
     public void the_review_contexts_mechanical_changes_include_the_mechanical_change() {
         assertThat(reviewContext.mechanicalChanges()).contains(mechanicalChange);
+    }
+
+    @Then("the Review Context's reviewed Changes do not include the mechanical replacement Change")
+    public void the_review_contexts_reviewed_changes_do_not_include_the_mechanical_change() {
+        assertThat(reviewContext.reviewedChanges()).doesNotContain(mechanicalChange);
+    }
+
+    @Then("the Review Context's skipped Changes include the rename Change")
+    public void the_review_contexts_skipped_changes_include_the_rename_change() {
+        assertThat(reviewContext.skippedChanges()).contains(renameChange);
+    }
+
+    @Then("the Review Context's reviewed Changes do not include the rename Change")
+    public void the_review_contexts_reviewed_changes_do_not_include_the_rename_change() {
+        assertThat(reviewContext.reviewedChanges()).doesNotContain(renameChange);
     }
 
     @Then("the Review Context's comments include {string}")
@@ -186,6 +193,14 @@ public class ReviewContextAndSubmissionSteps {
         assertThat(summary.commentCount()).isEqualTo(expectedCount);
     }
 
+    @Then("the summary previews the GitHub action {string}")
+    public void the_summary_previews_the_github_action(String expectedAction) {
+        PreSubmissionSummary.GitHubAction expected = expectedAction.equals("Approve")
+                ? PreSubmissionSummary.GitHubAction.APPROVE
+                : PreSubmissionSummary.GitHubAction.REQUEST_CHANGES;
+        assertThat(summary.gitHubAction()).isEqualTo(expected);
+    }
+
     @Then("the submission is not sent")
     public void the_submission_is_not_sent() {
         assertThat(submissionSent).isFalse();
@@ -196,24 +211,4 @@ public class ReviewContextAndSubmissionSteps {
         assertThat(submissionSent).isTrue();
     }
 
-    private void write(Path root, String className, String content) {
-        try {
-            Files.writeString(root.resolve(className + ".java"), content);
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        }
-    }
-
-    private void deleteRecursively(Path root) throws IOException {
-        if (!Files.exists(root)) return;
-        try (var walk = Files.walk(root)) {
-            walk.sorted((a, b) -> b.compareTo(a)).forEach(p -> {
-                try {
-                    Files.delete(p);
-                } catch (IOException e) {
-                    throw new UncheckedIOException(e);
-                }
-            });
-        }
-    }
 }
