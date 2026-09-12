@@ -33,8 +33,13 @@ final class GitRevisionCheckout {
         } catch (IOException e) {
             throw new GitCheckoutException("Could not create a temp directory under " + parentDir, e);
         }
-        run(parentDir, environment, "git", "clone", "--quiet", repositoryUrl, dir.toString());
-        run(dir, environment, "git", "checkout", "--quiet", revision);
+        try {
+            run(parentDir, environment, "git", "clone", "--quiet", repositoryUrl, dir.toString());
+            run(dir, environment, "git", "checkout", "--quiet", revision);
+        } catch (RuntimeException e) {
+            TempDirectories.deleteRecursively(dir);
+            throw e;
+        }
         return dir;
     }
 

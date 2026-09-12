@@ -33,15 +33,21 @@ public final class PrReviewSummary {
      */
     public static String buildFor(String repositoryUrl, Path workDir, Map<String, String> gitEnvironment,
                                    ImportedPullRequest pr) {
-        Path baseRoot = GitRevisionCheckout.checkout(repositoryUrl, pr.baseRevision(), workDir, gitEnvironment);
-        Path headRoot = GitRevisionCheckout.checkout(repositoryUrl, pr.headRevision(), workDir, gitEnvironment);
+        Path baseRoot = null;
+        Path headRoot = null;
         try {
+            baseRoot = GitRevisionCheckout.checkout(repositoryUrl, pr.baseRevision(), workDir, gitEnvironment);
+            headRoot = GitRevisionCheckout.checkout(repositoryUrl, pr.headRevision(), workDir, gitEnvironment);
             List<DetectedTransformation> transformations = new TransformationDetector().detect(baseRoot, headRoot);
             List<Change> changes = new ChangeGrouper().group(transformations);
             return format(pr.title(), changes);
         } finally {
-            TempDirectories.deleteRecursively(baseRoot);
-            TempDirectories.deleteRecursively(headRoot);
+            if (baseRoot != null) {
+                TempDirectories.deleteRecursively(baseRoot);
+            }
+            if (headRoot != null) {
+                TempDirectories.deleteRecursively(headRoot);
+            }
         }
     }
 

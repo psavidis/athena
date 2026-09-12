@@ -21,6 +21,11 @@ Feature: Runnable CLI: review a real PR end-to-end
     When the reviewer runs the PR review summary
     Then no checkout directories are left behind
 
+  Scenario: A failed checkout leaves no directories behind either
+    Given a PR whose head revision does not exist in its repository
+    When the reviewer runs the PR review summary and it fails
+    Then no checkout directories are left behind
+
   Scenario: The GitHub credential helper answers git's authentication prompts without exposing the token on any command line
     Given a GitHub Personal Access Token "ghp_example_token_value"
     When the git credential helper environment is built for that token

@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PrReviewSummarySteps {
 
@@ -87,9 +88,25 @@ public class PrReviewSummarySteps {
         importedPr = buildImportedPullRequest(baseSha, headSha);
     }
 
+    @Given("a PR whose head revision does not exist in its repository")
+    public void a_pr_whose_head_revision_does_not_exist() throws IOException, InterruptedException {
+        initRepo();
+        writeFile("Greeter.java", "public class Greeter {\n}\n");
+        String baseSha = commit("Add Greeter");
+        String noSuchSha = "0000000000000000000000000000000000dead";
+
+        importedPr = buildImportedPullRequest(baseSha, noSuchSha);
+    }
+
     @When("the reviewer runs the PR review summary")
     public void the_reviewer_runs_the_pr_review_summary() {
         summary = PrReviewSummary.buildFor(repoDir.toString(), workDir, Map.of(), importedPr);
+    }
+
+    @When("the reviewer runs the PR review summary and it fails")
+    public void the_reviewer_runs_the_pr_review_summary_and_it_fails() {
+        assertThatThrownBy(() -> PrReviewSummary.buildFor(repoDir.toString(), workDir, Map.of(), importedPr))
+                .isInstanceOf(GitCheckoutException.class);
     }
 
     @Then("the summary includes the PR's title")
