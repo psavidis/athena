@@ -72,4 +72,15 @@ class AthenaWebApplicationTests {
 
         assertThat(response.statusCode()).isEqualTo(401);
     }
+
+    @Test
+    void requestingTheChangeMapWithoutConnectingIsRejected() throws Exception {
+        URI uri = URI.create("http://" + app.getHost() + ":" + app.getMappedPort(8080) + "/api/review/change-map");
+        HttpRequest request = HttpRequest.newBuilder(uri).GET().build();
+
+        HttpResponse<String> response = HttpClient.newHttpClient()
+                .send(request, HttpResponse.BodyHandlers.ofString());
+
+        assertThat(response.statusCode()).isEqualTo(401);
+    }
 }

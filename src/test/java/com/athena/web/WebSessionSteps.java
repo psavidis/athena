@@ -2,6 +2,7 @@ package com.athena.web;
 
 import com.athena.git.TempDirectories;
 import com.athena.github.ImportedPullRequest;
+import com.athena.semantic.ReviewStateStore;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -41,7 +42,7 @@ public class WebSessionSteps {
         Path baseRoot = Files.createTempDirectory(firstWorkDir, "base-");
         Path headRoot = Files.createTempDirectory(firstWorkDir, "head-");
         ImportedPullRequest firstPr = new ImportedPullRequest(1, "First PR", "author", "base1", "head1", List.of(), List.of());
-        session.select(new WebSession.SelectedPullRequest(firstPr, firstWorkDir, baseRoot, headRoot));
+        session.select(new WebSession.SelectedPullRequest(firstPr, firstWorkDir, baseRoot, headRoot, new ReviewStateStore()));
     }
 
     @When("the reviewer selects a different PR")
@@ -49,7 +50,7 @@ public class WebSessionSteps {
         Path baseRoot = Files.createTempDirectory(secondWorkDir, "base-");
         Path headRoot = Files.createTempDirectory(secondWorkDir, "head-");
         ImportedPullRequest secondPr = new ImportedPullRequest(2, "Second PR", "author", "base2", "head2", List.of(), List.of());
-        session.select(new WebSession.SelectedPullRequest(secondPr, secondWorkDir, baseRoot, headRoot));
+        session.select(new WebSession.SelectedPullRequest(secondPr, secondWorkDir, baseRoot, headRoot, new ReviewStateStore()));
     }
 
     @Then("the previous PR's checkout directories no longer exist")
