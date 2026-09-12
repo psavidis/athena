@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { connect, listOpenPullRequests, listRepositories, selectPullRequest } from './api'
 import type { ImportedPullRequest } from './api'
+import ChangeMapPage from './ChangeMapPage'
 
 export default function App() {
   const [connected, setConnected] = useState(false)
@@ -12,7 +13,16 @@ export default function App() {
     return <ConnectStep onConnected={() => setConnected(true)} />
   }
   if (selectedPr) {
-    return <SelectedPrStep pullRequest={selectedPr} />
+    return (
+      <ChangeMapPage
+        onNotConnected={() => {
+          setConnected(false)
+          setSelectedRepo(null)
+          setSelectedPr(null)
+        }}
+        onNoPullRequestSelected={() => setSelectedPr(null)}
+      />
+    )
   }
   if (selectedRepo) {
     return (
@@ -148,30 +158,6 @@ function PullRequestStep({
       {mutation.isError && (
         <p className="mt-3 text-sm text-red-600">{(mutation.error as Error).message}</p>
       )}
-    </Shell>
-  )
-}
-
-function SelectedPrStep({ pullRequest }: { pullRequest: ImportedPullRequest }) {
-  return (
-    <Shell title={`#${pullRequest.number} ${pullRequest.title}`}>
-      <dl className="space-y-1 text-sm text-neutral-700">
-        <div>
-          <dt className="inline font-medium">Author: </dt>
-          <dd className="inline">{pullRequest.author}</dd>
-        </div>
-        <div>
-          <dt className="inline font-medium">Base: </dt>
-          <dd className="inline font-mono">{pullRequest.baseRevision}</dd>
-        </div>
-        <div>
-          <dt className="inline font-medium">Head: </dt>
-          <dd className="inline font-mono">{pullRequest.headRevision}</dd>
-        </div>
-      </dl>
-      <p className="mt-6 text-sm text-neutral-500">
-        Base and head revisions are checked out and ready for the Change Map (next up).
-      </p>
     </Shell>
   )
 }
