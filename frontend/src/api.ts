@@ -59,6 +59,22 @@ export interface Annotations {
   privateNotes: string[]
 }
 
+export type GitHubAction = 'APPROVE' | 'REQUEST_CHANGES'
+
+export interface PreSubmissionSummary {
+  reviewedChangeTitles: string[]
+  mechanicalChangeTitles: string[]
+  concernChangeTitles: string[]
+  commentCount: number
+  gitHubAction: GitHubAction
+}
+
+export interface Submission {
+  fullySynced: boolean
+  syncedCommentCount: number
+  failedCommentCount: number
+}
+
 export class NotConnectedError extends Error {}
 
 export class NoPullRequestSelectedError extends Error {}
@@ -66,6 +82,8 @@ export class NoPullRequestSelectedError extends Error {}
 export class ChangeNotFoundError extends Error {}
 
 export class BlankAnnotationError extends Error {}
+
+export class ReviewAlreadySubmittedError extends Error {}
 
 async function asJson<T>(response: Response): Promise<T> {
   if (!response.ok) {
@@ -166,4 +184,43 @@ export async function addComment(scope: AnnotationScope, text: string): Promise<
 
 export async function addPrivateNote(scope: AnnotationScope, text: string): Promise<Annotations> {
   return postAnnotation('/api/review/private-notes', scope, text)
+}
+
+export async function setReviewState(changeKey: string, state: ReviewState): Promise<void> {
+  const response = await fetch(`/api/review/changes/${encodeURIComponent(changeKey)}/review-state`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ state }),
+  })
+  if (response.status === 404) {
+    throw new ChangeNotFoundError()
+  }
+  if (!response.ok) {
+    throw new Error(`Request failed: ${response.status}`)
+  }
+}
+
+export async function getPreSubmissionSummary(): Promise<PreSubmissionSummary> {
+  const response = await fetch('/api/review/pre-submission-summary')
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  return asJson(response)
+}
+
+export async function submitReview(): Promise<Submission> {
+  const response = await fetch('/api/review/submit', { method: 'POST' })
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  if (response.status === 422) {
+    throw new ReviewAlreadySubmittedError()
+  }
+  return asJson(response)
 }

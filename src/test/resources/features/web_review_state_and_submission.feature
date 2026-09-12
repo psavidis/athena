@@ -23,29 +23,29 @@ Feature: Web review state, pre-submission summary & GitHub submission
     And the reviewer has requested the Change Map
     And the reviewer has set the rename Change's review state to "REVIEWED"
     And the reviewer has posted the comment "Looks fine" scoped to the rename Change
-    When the reviewer requests the pre-submission summary
+    When the reviewer requests the pre-submission summary via the API
     Then the summary lists the rename Change among the reviewed Changes
     And the summary shows a comment count of 1
-    And the summary previews the GitHub action "APPROVE"
+    And the API summary previews the GitHub action "APPROVE"
 
   Scenario: An open concern previews a request-changes submission
     Given the reviewer is connected to GitHub
     And the reviewer has selected a PR whose base and head revisions differ by a rename
     And the reviewer has requested the Change Map
     And the reviewer has set the rename Change's review state to "CONCERN"
-    When the reviewer requests the pre-submission summary
+    When the reviewer requests the pre-submission summary via the API
     Then the summary lists the rename Change among the concern Changes
-    And the summary previews the GitHub action "REQUEST_CHANGES"
+    And the API summary previews the GitHub action "REQUEST_CHANGES"
 
   Scenario: Requesting the pre-submission summary without connecting to GitHub fails
     Given the reviewer has not connected to GitHub
-    When the reviewer requests the pre-submission summary
+    When the reviewer requests the pre-submission summary via the API
     Then the request is rejected as unauthorized
 
   Scenario: Requesting the pre-submission summary before selecting a PR fails
     Given the reviewer is connected to GitHub
     But the reviewer has not selected a PR
-    When the reviewer requests the pre-submission summary
+    When the reviewer requests the pre-submission summary via the API
     Then the request is rejected because no PR is selected
 
   Scenario: Confirmed submission syncs comments and the review decision to GitHub
@@ -55,7 +55,7 @@ Feature: Web review state, pre-submission summary & GitHub submission
     And the reviewer has requested the Change Map
     And the reviewer has set the rename Change's review state to "REVIEWED"
     And the reviewer has posted the comment "Nice cleanup" scoped to the rename Change
-    When the reviewer confirms and submits the review
+    When the reviewer confirms and submits the review via the API
     Then GitHub shows the posted comment "Nice cleanup"
     And GitHub shows a posted "APPROVE" review
     And the submission response reports success
@@ -66,7 +66,7 @@ Feature: Web review state, pre-submission summary & GitHub submission
     And GitHub sync is enabled for that Pull Request
     And the reviewer has requested the Change Map
     And the reviewer has set the rename Change's review state to "CONCERN"
-    When the reviewer confirms and submits the review
+    When the reviewer confirms and submits the review via the API
     Then GitHub shows a posted "REQUEST_CHANGES" review
 
   Scenario: Submitting without confirmation never reaches GitHub
@@ -75,7 +75,7 @@ Feature: Web review state, pre-submission summary & GitHub submission
     And GitHub sync is enabled for that Pull Request
     And the reviewer has requested the Change Map
     And the reviewer has posted the comment "Draft thought" scoped to the rename Change
-    When the reviewer requests the pre-submission summary
+    When the reviewer requests the pre-submission summary via the API
     Then GitHub shows no posted comments
     And GitHub shows no posted reviews
 
@@ -85,16 +85,16 @@ Feature: Web review state, pre-submission summary & GitHub submission
     And GitHub sync is enabled for that Pull Request
     And the reviewer has requested the Change Map
     And the reviewer has posted the private note "Ask the author" scoped to the rename Change
-    When the reviewer confirms and submits the review
+    When the reviewer confirms and submits the review via the API
     Then GitHub shows no posted comments
 
   Scenario: Submitting without connecting to GitHub fails
     Given the reviewer has not connected to GitHub
-    When the reviewer confirms and submits the review
+    When the reviewer confirms and submits the review via the API
     Then the request is rejected as unauthorized
 
   Scenario: Submitting before selecting a PR fails
     Given the reviewer is connected to GitHub
     But the reviewer has not selected a PR
-    When the reviewer confirms and submits the review
+    When the reviewer confirms and submits the review via the API
     Then the request is rejected because no PR is selected

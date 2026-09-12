@@ -2,6 +2,7 @@ package com.athena.web;
 
 import com.athena.git.TempDirectories;
 import com.athena.github.ImportedPullRequest;
+import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.ReviewStateStore;
 import org.springframework.stereotype.Component;
@@ -44,7 +45,8 @@ public class WebSession {
         return Optional.ofNullable(selectedPullRequest);
     }
 
-    public record SelectedPullRequest(ImportedPullRequest pullRequest, Path workDir, Path baseRoot, Path headRoot,
-                                       ReviewStateStore reviewStateStore, AnnotationBoard annotationBoard) {
+    public record SelectedPullRequest(ImportedPullRequest pullRequest, String repositoryFullName, Path workDir,
+                                       Path baseRoot, Path headRoot, ReviewStateStore reviewStateStore,
+                                       AnnotationBoard annotationBoard, ReviewSubmission reviewSubmission) {
     }
 }
