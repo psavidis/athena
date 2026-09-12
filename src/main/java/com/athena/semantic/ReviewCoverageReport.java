@@ -44,4 +44,13 @@ public final class ReviewCoverageReport {
     public static List<Change> unreviewedChanges(List<Change> changes, ReviewStateStore store) {
         return changes.stream().filter(change -> !store.isAccountedFor(change)).toList();
     }
+
+    /**
+     * A human-readable "N of M meaningful Changes reviewed" summary across every category,
+     * so callers display this exact wording rather than each reconstructing it themselves.
+     */
+    public static String summary(List<Change> changes, ReviewStateStore store) {
+        int reviewedCount = changes.size() - unreviewedChanges(changes, store).size();
+        return reviewedCount + " of " + changes.size() + " meaningful Changes reviewed";
+    }
 }
