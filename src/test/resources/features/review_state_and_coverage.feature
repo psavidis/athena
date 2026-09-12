@@ -35,11 +35,14 @@ Feature: Per-Change review state and semantic review coverage
   Scenario: Unreviewed Changes can be listed
     Given a Change representing a rename with review state "Reviewed"
     And a Change representing a move with review state "Unseen"
-    And a Change representing an extraction with review state "Concern"
     When the reviewer asks which meaningful Changes are unreviewed
     Then the unreviewed list includes the move Change
-    And the unreviewed list includes the extraction Change
     And the unreviewed list does not include the rename Change
+
+  Scenario: A Change flagged as a concern counts toward coverage — the reviewer inspected it
+    Given a Change representing an extraction with review state "Concern"
+    When the reviewer asks which meaningful Changes are unreviewed
+    Then the unreviewed list does not include the extraction Change
 
   Scenario: A Change marked mechanical counts toward coverage without individual inspection
     Given a Change representing a mechanical replacement marked mechanical

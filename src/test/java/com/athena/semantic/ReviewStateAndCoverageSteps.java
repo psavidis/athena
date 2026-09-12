@@ -123,6 +123,11 @@ public class ReviewStateAndCoverageSteps {
         assertThat(unreviewed).doesNotContain(renameChange);
     }
 
+    @Then("the unreviewed list does not include the extraction Change")
+    public void the_unreviewed_list_does_not_include_the_extraction_change() {
+        assertThat(unreviewed).doesNotContain(extractionChange);
+    }
+
     private Change renameChange(int occurrences) {
         DetectedTransformation t = occurrences == 1
                 ? DetectedTransformation.of(TransformationKind.RENAME_SYMBOL, List.of("Foo#m", "Bar#m"), List.of())
