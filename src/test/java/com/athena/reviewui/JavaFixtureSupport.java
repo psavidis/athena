@@ -19,7 +19,9 @@ public final class JavaFixtureSupport {
 
     public static void write(Path root, String className, String content) {
         try {
-            Files.writeString(root.resolve(className + ".java"), content);
+            Path file = root.resolve(className + ".java");
+            Files.createDirectories(file.getParent());
+            Files.writeString(file, content);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
