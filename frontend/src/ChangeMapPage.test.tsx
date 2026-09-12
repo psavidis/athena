@@ -14,16 +14,18 @@ function renderChangeMapPage() {
   const onNotConnected = vi.fn()
   const onNoPullRequestSelected = vi.fn()
   const onSelectChange = vi.fn()
+  const onOpenPreSubmissionSummary = vi.fn()
   render(
     <QueryClientProvider client={queryClient}>
       <ChangeMapPage
         onNotConnected={onNotConnected}
         onNoPullRequestSelected={onNoPullRequestSelected}
         onSelectChange={onSelectChange}
+        onOpenPreSubmissionSummary={onOpenPreSubmissionSummary}
       />
     </QueryClientProvider>,
   )
-  return { onNotConnected, onNoPullRequestSelected, onSelectChange }
+  return { onNotConnected, onNoPullRequestSelected, onSelectChange, onOpenPreSubmissionSummary }
 }
 
 function mockChangeMap(body: ChangeMap) {
@@ -112,6 +114,47 @@ describe('Change Map & PR Understanding View rendering', () => {
     expect(onSelectChange).toHaveBeenCalledWith('test-change-key')
   })
 
+  it("sets a Change's review state and shows the updated state", async () => {
+    // Traces review_state_and_submission_frontend_rendering.feature:
+    // "A reviewer sets a Change's review state from the Change Map"
+    const change: ChangeMap['changes'][number] = {
+      id: 0,
+      changeKey: 'test-change-key',
+      description: 'Rename greet to salute',
+      category: 'BEHAVIORAL',
+      reviewState: 'UNSEEN',
+      occurrenceCount: 1,
+      exceptionCount: 0,
+    }
+    mockChangeMap({
+      prTitle: 'Move authentication to Account',
+      categoryCounts: { BEHAVIORAL: 1, STRUCTURAL: 0, MECHANICAL: 0, UNKNOWN: 0 },
+      changes: [change],
+    })
+    let patchedState: string | null = null
+    server.use(
+      http.patch('/api/review/changes/test-change-key/review-state', async ({ request }) => {
+        const body = (await request.json()) as { state: string }
+        patchedState = body.state
+        return new HttpResponse(null, { status: 200 })
+      }),
+    )
+
+    renderChangeMapPage()
+    const user = userEvent.setup()
+
+    const select = await screen.findByLabelText('Review state for Rename greet to salute')
+    mockChangeMap({
+      prTitle: 'Move authentication to Account',
+      categoryCounts: { BEHAVIORAL: 1, STRUCTURAL: 0, MECHANICAL: 0, UNKNOWN: 0 },
+      changes: [{ ...change, reviewState: 'REVIEWED' }],
+    })
+    await user.selectOptions(select, 'Reviewed')
+
+    expect(patchedState).toBe('REVIEWED')
+    expect(await screen.findByText('Reviewed')).toBeVisible()
+  })
+
   it('renders an all-zero summary and no Changes for an empty Change Map', async () => {
     // Given the reviewer has selected a PR titled "No-op PR" with no detected Changes
     mockChangeMap({
@@ -134,6 +177,21 @@ describe('Change Map & PR Understanding View rendering', () => {
 
     // And the Change Map lists no Changes
     expect(screen.getByText('No Changes detected.')).toBeVisible()
+  })
+
+  it('clicking "Review summary" calls onOpenPreSubmissionSummary', async () => {
+    mockChangeMap({
+      prTitle: 'Move authentication to Account',
+      categoryCounts: { BEHAVIORAL: 0, STRUCTURAL: 0, MECHANICAL: 0, UNKNOWN: 0 },
+      changes: [],
+    })
+
+    const { onOpenPreSubmissionSummary } = renderChangeMapPage()
+    const user = userEvent.setup()
+
+    await user.click(await screen.findByRole('button', { name: 'Review summary' }))
+
+    expect(onOpenPreSubmissionSummary).toHaveBeenCalled()
   })
 
   it('routes back to the connect step when the reviewer is not connected to GitHub', async () => {

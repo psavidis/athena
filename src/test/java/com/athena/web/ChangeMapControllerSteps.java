@@ -3,6 +3,7 @@ package com.athena.web;
 import com.athena.git.GitRevisionCheckout;
 import com.athena.git.TempDirectories;
 import com.athena.github.ImportedPullRequest;
+import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.ChangeCategory;
 import com.athena.semantic.ReviewStateStore;
@@ -30,6 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ChangeMapControllerSteps {
 
     private static final String PR_TITLE = "Move authentication to Account";
+    private static final String REPOSITORY_FULL_NAME = "acme/widgets";
 
     private final WebSession session = new WebSession();
     private final ChangeMapController changeMapController = new ChangeMapController(session);
@@ -86,7 +88,8 @@ public class ChangeMapControllerSteps {
         Path baseRoot = GitRevisionCheckout.checkout(repoDir.toString(), baseSha, workDir, Map.of());
         Path headRoot = GitRevisionCheckout.checkout(repoDir.toString(), headSha, workDir, Map.of());
         session.select(new WebSession.SelectedPullRequest(
-                pr, workDir, baseRoot, headRoot, new ReviewStateStore(), new AnnotationBoard()));
+                pr, REPOSITORY_FULL_NAME, workDir, baseRoot, headRoot, new ReviewStateStore(), new AnnotationBoard(),
+                new ReviewSubmission()));
     }
 
     @Given("the reviewer has not selected a PR")
@@ -261,6 +264,20 @@ public class ChangeMapControllerSteps {
 
     private AnnotationScopeRequest changeScope(String changeKey) {
         return new AnnotationScopeRequest(AnnotationScopeRequest.ScopeType.CHANGE, null, null, null, changeKey);
+    }
+
+    /** Exposed so other step classes sharing this fixture (ticket #76) can act on the same session/rename Change. */
+    WebSession session() {
+        return session;
+    }
+
+    String renameChangeKey() {
+        return renameChangeKey;
+    }
+
+    /** Lets another step class record a failure so the shared "request is rejected..." Then steps above see it. */
+    void recordFailure(ResponseStatusException e) {
+        failure = e;
     }
 
     private void initRepo() throws IOException, InterruptedException {

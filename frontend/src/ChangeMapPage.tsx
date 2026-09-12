@@ -1,10 +1,12 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
   getChangeMap,
+  setReviewState,
   NoPullRequestSelectedError,
   NotConnectedError,
   type ChangeCategory,
   type ChangeMapEntry,
+  type ReviewState,
 } from './api'
 
 const CATEGORY_LABELS: Record<ChangeCategory, string> = {
@@ -26,15 +28,23 @@ export default function ChangeMapPage({
   onNotConnected,
   onNoPullRequestSelected,
   onSelectChange,
+  onOpenPreSubmissionSummary,
 }: {
   onNotConnected: () => void
   onNoPullRequestSelected: () => void
   onSelectChange: (changeKey: string) => void
+  onOpenPreSubmissionSummary: () => void
 }) {
+  const queryClient = useQueryClient()
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['change-map'],
     queryFn: getChangeMap,
     retry: false,
+  })
+
+  const reviewStateMutation = useMutation({
+    mutationFn: ({ changeKey, state }: { changeKey: string; state: ReviewState }) => setReviewState(changeKey, state),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['change-map'] }),
   })
 
   if (isError) {
@@ -55,8 +65,20 @@ export default function ChangeMapPage({
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-12">
-      <PrUnderstandingSummary prTitle={data.prTitle} categoryCounts={data.categoryCounts} />
-      <ChangeMapList changes={data.changes} onSelectChange={onSelectChange} />
+      <div className="mb-6 flex items-start justify-between">
+        <PrUnderstandingSummary prTitle={data.prTitle} categoryCounts={data.categoryCounts} />
+        <button
+          className="rounded bg-neutral-900 px-3 py-1.5 text-sm text-white"
+          onClick={onOpenPreSubmissionSummary}
+        >
+          Review summary
+        </button>
+      </div>
+      <ChangeMapList
+        changes={data.changes}
+        onSelectChange={onSelectChange}
+        onSetReviewState={(changeKey, state) => reviewStateMutation.mutate({ changeKey, state })}
+      />
     </div>
   )
 }
@@ -86,9 +108,11 @@ function PrUnderstandingSummary({
 function ChangeMapList({
   changes,
   onSelectChange,
+  onSetReviewState,
 }: {
   changes: ChangeMapEntry[]
   onSelectChange: (changeKey: string) => void
+  onSetReviewState: (changeKey: string, state: ReviewState) => void
 }) {
   if (changes.length === 0) {
     return <p className="text-neutral-500">No Changes detected.</p>
@@ -97,19 +121,27 @@ function ChangeMapList({
   return (
     <ul className="divide-y divide-neutral-200 rounded border border-neutral-200">
       {changes.map((change) => (
-        <li key={change.id}>
-          <button
-            className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-neutral-100"
-            onClick={() => onSelectChange(change.changeKey)}
-          >
-            <div>
-              <p className="text-neutral-900">{change.description}</p>
-              <p className="text-sm text-neutral-500">{CATEGORY_LABELS[change.category]}</p>
-            </div>
-            <span className="rounded-full bg-neutral-100 px-3 py-1 text-sm text-neutral-600">
-              {REVIEW_STATE_LABELS[change.reviewState]}
-            </span>
+        <li key={change.id} className="flex items-center justify-between px-4 py-3 hover:bg-neutral-100">
+          <button className="flex-1 text-left" onClick={() => onSelectChange(change.changeKey)}>
+            <p className="text-neutral-900">{change.description}</p>
+            <p className="text-sm text-neutral-500">{CATEGORY_LABELS[change.category]}</p>
           </button>
+          <label className="sr-only" htmlFor={`review-state-${change.id}`}>
+            Review state for {change.description}
+          </label>
+          <select
+            id={`review-state-${change.id}`}
+            className="rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1 text-sm text-neutral-600"
+            value={change.reviewState}
+            onClick={(e) => e.stopPropagation()}
+            onChange={(e) => onSetReviewState(change.changeKey, e.target.value as ReviewState)}
+          >
+            {(Object.keys(REVIEW_STATE_LABELS) as ReviewState[]).map((state) => (
+              <option key={state} value={state}>
+                {REVIEW_STATE_LABELS[state]}
+              </option>
+            ))}
+          </select>
         </li>
       ))}
     </ul>
