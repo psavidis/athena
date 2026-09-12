@@ -119,4 +119,14 @@ public interface GitHubTransport {
      *         Request doesn't exist or isn't accessible
      */
     void postLineComment(String token, String repositoryFullName, int number, String body, String path, int line);
+
+    /**
+     * Submits a review decision to a Pull Request.
+     *
+     * @param event GitHub's review event: "APPROVE" or "REQUEST_CHANGES"
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     * @throws GitHubResourceNotFoundException if the repository or Pull
+     *         Request doesn't exist or isn't accessible
+     */
+    void postReview(String token, String repositoryFullName, int number, String event, String body);
 }

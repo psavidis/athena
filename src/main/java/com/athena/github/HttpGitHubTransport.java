@@ -152,6 +152,16 @@ public class HttpGitHubTransport implements GitHubTransport {
                 repositoryFullName + "#" + number);
     }
 
+    @Override
+    public void postReview(String token, String repositoryFullName, int number, String event, String body) {
+        ObjectMapper mapper = new ObjectMapper();
+        var payload = mapper.createObjectNode()
+                .put("body", body)
+                .put("event", event);
+        post(token, "/repos/" + repositoryFullName + "/pulls/" + number + "/reviews", payload.toString(),
+                repositoryFullName + "#" + number);
+    }
+
     private JsonNode get(String token, String path, String resourceDescriptionForNotFound) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(API_BASE + path))
