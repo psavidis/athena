@@ -82,6 +82,20 @@ public class GracefulDegradationSteps {
                 + "    public void m( { still not valid java\n");
     }
 
+    @Given("a base and head revision with two files, both of which fail to parse")
+    public void two_files_both_fail_to_parse() {
+        writeRaw(baseRoot, "BrokenOne.java", "public class BrokenOne {\n"
+                + "    public void m() { }\n"
+                + "}\n");
+        writeRaw(headRoot, "BrokenOne.java", "public class BrokenOne {\n"
+                + "    public void m( { not valid java\n");
+        writeRaw(baseRoot, "BrokenTwo.java", "public class BrokenTwo {\n"
+                + "    public void n() { }\n"
+                + "}\n");
+        writeRaw(headRoot, "BrokenTwo.java", "public class BrokenTwo {\n"
+                + "    public void n( { also not valid java\n");
+    }
+
     @When("the engine analyzes the revision pair")
     public void the_engine_analyzes_the_revision_pair() {
         result = new PrAnalyzer().analyze(baseRoot, headRoot);

@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -36,33 +37,44 @@ public final class PrAnalyzer {
 
         Map<String, String> rawDiffsByFile = new LinkedHashMap<>();
         List<SymbolAwareDiffEntry> degradedEntries = new ArrayList<>();
-        Set<String> parseableOnBothSides = new LinkedHashSet<>();
+        boolean anyParseable = false;
 
         for (String relativePath : relativePaths) {
-            String baseText = readIfExists(baseRoot.resolve(relativePath));
-            String headText = readIfExists(headRoot.resolve(relativePath));
-            rawDiffsByFile.put(relativePath, unifiedDiff(relativePath, baseText, headText));
+            Optional<String> baseText = readIfExists(baseRoot.resolve(relativePath));
+            Optional<String> headText = readIfExists(headRoot.resolve(relativePath));
+            rawDiffsByFile.put(relativePath,
+                    unifiedDiff(relativePath, baseText.orElse(""), headText.orElse("")));
 
-            ParseResult baseParse = baseText.isEmpty() ? null : parser.parse(baseText);
-            ParseResult headParse = headText.isEmpty() ? null : parser.parse(headText);
-            boolean baseOk = baseParse == null || baseParse.isSuccessful();
-            boolean headOk = headParse == null || headParse.isSuccessful();
+            Optional<ParseResult> baseParse = baseText.map(parser::parse);
+            Optional<ParseResult> headParse = headText.map(parser::parse);
+            boolean baseOk = baseParse.map(ParseResult::isSuccessful).orElse(true);
+            boolean headOk = headParse.map(ParseResult::isSuccessful).orElse(true);
 
             if (baseOk && headOk) {
-                parseableOnBothSides.add(relativePath);
+                anyParseable = true;
             } else {
-                String reason = !headOk ? headParse.errorMessage() : baseParse.errorMessage();
-                degradedEntries.add(new SymbolAwareDiffEntry(relativePath, reason));
+                degradedEntries.add(new SymbolAwareDiffEntry(relativePath,
+                        degradationReason(baseParse, baseOk, headParse, headOk)));
             }
         }
 
-        List<Change> changes = parseableOnBothSides.isEmpty()
-                ? List.of()
-                : detectChanges(baseRoot, headRoot);
+        List<Change> changes = anyParseable ? detectChanges(baseRoot, headRoot) : List.of();
 
         AnalysisStatus status = status(relativePaths.size(), degradedEntries.size());
 
         return new AnalysisResult(status, changes, degradedEntries, rawDiffsByFile);
+    }
+
+    private String degradationReason(Optional<ParseResult> baseParse, boolean baseOk,
+                                      Optional<ParseResult> headParse, boolean headOk) {
+        List<String> reasons = new ArrayList<>();
+        if (!baseOk) {
+            reasons.add("base: " + baseParse.orElseThrow().errorMessage());
+        }
+        if (!headOk) {
+            reasons.add("head: " + headParse.orElseThrow().errorMessage());
+        }
+        return String.join("; ", reasons);
     }
 
     private AnalysisStatus status(int totalFiles, int degradedCount) {
@@ -91,24 +103,28 @@ public final class PrAnalyzer {
         if (!Files.exists(root)) {
             return Set.of();
         }
+        // A walk failure (permission error, symlink loop, concurrent deletion) must not
+        // crash the whole analysis — it degrades to "this root contributed no files"
+        // rather than violating the graceful-degradation guarantee this class exists for.
         try (Stream<Path> walk = Files.walk(root)) {
             return walk.filter(p -> p.toString().endsWith(".java"))
                     .filter(Files::isRegularFile)
                     .map(p -> root.relativize(p).toString())
                     .collect(java.util.stream.Collectors.toCollection(LinkedHashSet::new));
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
+        } catch (IOException | UncheckedIOException e) {
+            return Set.of();
         }
     }
 
-    private String readIfExists(Path file) {
+    /** Empty when the file doesn't exist in this revision at all; present (possibly blank) otherwise. */
+    private Optional<String> readIfExists(Path file) {
         if (!Files.exists(file)) {
-            return "";
+            return Optional.empty();
         }
         try {
-            return Files.readString(file);
+            return Optional.of(Files.readString(file));
         } catch (IOException e) {
-            throw new UncheckedIOException(e);
+            return Optional.empty();
         }
     }
 

@@ -28,6 +28,11 @@ Feature: Graceful degradation fallback chain
     And the analysis reports no detected Changes
     And the raw textual diff is still available
 
+  Scenario: A revision pair with multiple files, all unparseable, is still Analysis failed rather than Partially analyzed
+    Given a base and head revision with two files, both of which fail to parse
+    When the engine analyzes the revision pair
+    Then the analysis status is "Analysis failed"
+
   Scenario: The raw diff remains accessible regardless of analysis status
     Given a base and head revision where every file fails to parse
     When the engine analyzes the revision pair

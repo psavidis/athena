@@ -1,5 +1,7 @@
 package com.athena.semantic;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +24,7 @@ public final class AnalysisResult {
         this.status = status;
         this.changes = List.copyOf(changes);
         this.symbolAwareDiffEntries = List.copyOf(symbolAwareDiffEntries);
-        this.rawDiffsByFile = Map.copyOf(rawDiffsByFile);
+        this.rawDiffsByFile = Collections.unmodifiableMap(new LinkedHashMap<>(rawDiffsByFile));
     }
 
     public AnalysisStatus status() {
