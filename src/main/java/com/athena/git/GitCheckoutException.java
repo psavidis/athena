@@ -1,4 +1,4 @@
-package com.athena.cli;
+package com.athena.git;
 
 /**
  * Raised when checking out a git revision fails — the repository/revision

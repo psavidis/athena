@@ -1,5 +1,7 @@
 package com.athena.cli;
 
+import com.athena.git.GitAskpass;
+import com.athena.git.TempDirectories;
 import com.athena.github.GitHubTransport;
 import com.athena.github.HttpGitHubTransport;
 import com.athena.github.ImportedPullRequest;

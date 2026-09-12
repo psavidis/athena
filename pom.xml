@@ -128,6 +128,10 @@
         <version>3.13.0</version>
         <configuration>
           <release>21</release>
+          <!-- Lets Spring MVC resolve @PathVariable/@RequestParam by reflection without every
+               one needing an explicit name (ticket #73: without this, e.g. @PathVariable String
+               owner throws IllegalArgumentException at request time, not compile time). -->
+          <parameters>true</parameters>
         </configuration>
       </plugin>
       <plugin>

@@ -1,4 +1,4 @@
-package com.athena.cli;
+package com.athena.git;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,7 +12,8 @@ import java.util.Map;
  * neither GitHub's REST API nor a bundled JGit dependency is available
  * (ticket #65). Has no knowledge of GitHub or authentication: it works
  * against any git remote a caller's {@code environment} can authenticate
- * against, including a plain local repository path (as tests use).
+ * against, including a plain local repository path (as tests use). Shared
+ * between {@code com.athena.cli} and {@code com.athena.web} (ticket #73).
  *
  * <p>Fetches the exact revision directly (shallow, depth 1) rather than
  * cloning the whole repository and checking out a revision from within
@@ -22,7 +23,7 @@ import java.util.Map;
  * now unreachable from any branch — would be missing, even though GitHub
  * still serves that exact commit object when asked for it directly.
  */
-final class GitRevisionCheckout {
+public final class GitRevisionCheckout {
 
     private GitRevisionCheckout() {
     }
@@ -34,7 +35,7 @@ final class GitRevisionCheckout {
      * @param environment extra environment variables for the `git` subprocess (e.g. a
      *                     {@code GIT_ASKPASS} credential helper); empty when none are needed
      */
-    static Path checkout(String repositoryUrl, String revision, Path parentDir, Map<String, String> environment) {
+    public static Path checkout(String repositoryUrl, String revision, Path parentDir, Map<String, String> environment) {
         Path dir;
         try {
             dir = Files.createTempDirectory(parentDir, "athena-checkout-");
