@@ -25,6 +25,43 @@ final class JavaFixtureSupport {
         }
     }
 
+    /** Writes a Greeter#greet -> Greeter#salute method rename fixture into both roots. */
+    static void writeRenameFixture(Path baseRoot, Path headRoot) {
+        write(baseRoot, "Greeter", "public class Greeter {\n"
+                + "    public String greet() {\n"
+                + "        return \"hi\";\n"
+                + "    }\n"
+                + "}\n");
+        write(headRoot, "Greeter", "public class Greeter {\n"
+                + "    public String salute() {\n"
+                + "        return \"hi\";\n"
+                + "    }\n"
+                + "}\n");
+    }
+
+    /**
+     * Writes a mechanical-replacement fixture (identifier Foo -> Bar referenced consistently
+     * across 3 files) into both roots, matching StructuralChangeDetectionSteps' own
+     * mechanical-replacement scenario shape.
+     */
+    static void writeMechanicalReplacementFixture(Path baseRoot, Path headRoot) {
+        for (int i = 0; i < 3; i++) {
+            String refClass = "Ref" + i;
+            write(baseRoot, refClass, "public class " + refClass + " {\n"
+                    + "    public Foo make() {\n"
+                    + "        return new Foo();\n"
+                    + "    }\n"
+                    + "}\n");
+            write(headRoot, refClass, "public class " + refClass + " {\n"
+                    + "    public Bar make() {\n"
+                    + "        return new Bar();\n"
+                    + "    }\n"
+                    + "}\n");
+        }
+        write(baseRoot, "Foo", "public class Foo {\n}\n");
+        write(headRoot, "Bar", "public class Bar {\n}\n");
+    }
+
     static void deleteRecursively(Path root) throws IOException {
         if (!Files.exists(root)) return;
         try (var walk = Files.walk(root)) {

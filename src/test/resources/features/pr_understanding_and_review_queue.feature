@@ -26,5 +26,7 @@ Feature: PR Understanding View and Review Queue
   Scenario: An empty PR produces an empty understanding view and queue, not an error
     Given a PR titled "No-op PR" with no detected Changes
     When the reviewer opens the PR Understanding View
+    And the reviewer opens the Review Queue
     Then the view shows the PR title "No-op PR"
-    And the view shows at least 0 Structural Change
+    And the view shows exactly 0 Changes in every category
+    And the Review Queue is empty

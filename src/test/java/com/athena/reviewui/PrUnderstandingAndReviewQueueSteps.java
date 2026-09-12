@@ -45,8 +45,8 @@ public class PrUnderstandingAndReviewQueueSteps {
     @Given("a PR titled {string} with a rename Change, a mechanical replacement Change, and a formatting-only Change")
     public void a_pr_with_rename_mechanical_and_formatting_changes(String title) {
         prTitle = title;
-        writeRenameFixture();
-        writeMechanicalReplacementFixture();
+        JavaFixtureSupport.writeRenameFixture(baseRoot, headRoot);
+        JavaFixtureSupport.writeMechanicalReplacementFixture(baseRoot, headRoot);
 
         // Formatting-only: same structure, different whitespace.
         write(baseRoot, "Farewell", "public class Farewell {\n"
@@ -65,40 +65,9 @@ public class PrUnderstandingAndReviewQueueSteps {
 
     @Given("a PR with a mechanical replacement Change and a rename Change")
     public void a_pr_with_mechanical_and_rename_changes() {
-        writeRenameFixture();
-        writeMechanicalReplacementFixture();
+        JavaFixtureSupport.writeRenameFixture(baseRoot, headRoot);
+        JavaFixtureSupport.writeMechanicalReplacementFixture(baseRoot, headRoot);
         changes = detectChanges();
-    }
-
-    private void writeRenameFixture() {
-        write(baseRoot, "Greeter", "public class Greeter {\n"
-                + "    public String greet() {\n"
-                + "        return \"hi\";\n"
-                + "    }\n"
-                + "}\n");
-        write(headRoot, "Greeter", "public class Greeter {\n"
-                + "    public String salute() {\n"
-                + "        return \"hi\";\n"
-                + "    }\n"
-                + "}\n");
-    }
-
-    private void writeMechanicalReplacementFixture() {
-        for (int i = 0; i < 3; i++) {
-            String refClass = "Ref" + i;
-            write(baseRoot, refClass, "public class " + refClass + " {\n"
-                    + "    public Foo make() {\n"
-                    + "        return new Foo();\n"
-                    + "    }\n"
-                    + "}\n");
-            write(headRoot, refClass, "public class " + refClass + " {\n"
-                    + "    public Bar make() {\n"
-                    + "        return new Bar();\n"
-                    + "    }\n"
-                    + "}\n");
-        }
-        write(baseRoot, "Foo", "public class Foo {\n}\n");
-        write(headRoot, "Bar", "public class Bar {\n}\n");
     }
 
     @Given("a PR titled {string} with no detected Changes")
@@ -141,6 +110,18 @@ public class PrUnderstandingAndReviewQueueSteps {
     @Then("the view shows at least {int} Mechanical Changes")
     public void the_view_shows_at_least_n_mechanical_changes(int minimumCount) {
         assertThat(understandingView.countFor(ChangeCategory.MECHANICAL)).isGreaterThanOrEqualTo(minimumCount);
+    }
+
+    @Then("the view shows exactly {int} Changes in every category")
+    public void the_view_shows_exactly_n_changes_in_every_category(int expectedCount) {
+        for (ChangeCategory category : ChangeCategory.values()) {
+            assertThat(understandingView.countFor(category)).isEqualTo(expectedCount);
+        }
+    }
+
+    @Then("the Review Queue is empty")
+    public void the_review_queue_is_empty() {
+        assertThat(reviewQueue.orderedChanges()).isEmpty();
     }
 
     @Then("the queue lists the rename Change before the mechanical replacement Change")

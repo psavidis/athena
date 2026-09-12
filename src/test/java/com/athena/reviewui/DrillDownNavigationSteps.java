@@ -12,7 +12,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -58,25 +57,7 @@ public class DrillDownNavigationSteps {
 
     @Given("a Change representing a mechanical replacement")
     public void a_change_representing_a_mechanical_replacement() {
-        // A genuine mechanical replacement (not a rename): the identifier "Foo" is
-        // referenced across files and replaced consistently with "Bar" everywhere,
-        // matching StructuralChangeDetectionSteps' own mechanical-replacement fixture.
-        for (int i = 0; i < 3; i++) {
-            String refClass = "Ref" + i;
-            write(baseRoot, refClass, "public class " + refClass + " {\n"
-                    + "    public Foo make() {\n"
-                    + "        return new Foo();\n"
-                    + "    }\n"
-                    + "}\n");
-            write(headRoot, refClass, "public class " + refClass + " {\n"
-                    + "    public Bar make() {\n"
-                    + "        return new Bar();\n"
-                    + "    }\n"
-                    + "}\n");
-        }
-        write(baseRoot, "Foo", "public class Foo {\n}\n");
-        write(headRoot, "Bar", "public class Bar {\n}\n");
-
+        JavaFixtureSupport.writeMechanicalReplacementFixture(baseRoot, headRoot);
         theChange = detectFirstChangeOfKind(TransformationKind.MECHANICAL_REPLACEMENT);
         allChanges = List.of(theChange);
     }
