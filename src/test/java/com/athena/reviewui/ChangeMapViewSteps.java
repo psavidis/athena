@@ -38,8 +38,8 @@ public class ChangeMapViewSteps {
 
     @After
     public void cleanUpTempRoots() throws IOException {
-        deleteRecursively(baseRoot);
-        deleteRecursively(headRoot);
+        JavaFixtureSupport.deleteRecursively(baseRoot);
+        JavaFixtureSupport.deleteRecursively(headRoot);
     }
 
     @Given("a PR with a rename Change and a mechanical replacement Change")
@@ -149,23 +149,6 @@ public class ChangeMapViewSteps {
     }
 
     private void write(Path root, String className, String content) {
-        try {
-            Files.writeString(root.resolve(className + ".java"), content);
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        }
-    }
-
-    private void deleteRecursively(Path root) throws IOException {
-        if (!Files.exists(root)) return;
-        try (var walk = Files.walk(root)) {
-            walk.sorted((a, b) -> b.compareTo(a)).forEach(p -> {
-                try {
-                    Files.delete(p);
-                } catch (IOException e) {
-                    throw new UncheckedIOException(e);
-                }
-            });
-        }
+        JavaFixtureSupport.write(root, className, content);
     }
 }

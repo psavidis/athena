@@ -4,6 +4,7 @@ import com.athena.semantic.Change;
 import com.athena.semantic.ChangeGrouper;
 import com.athena.semantic.DetectedTransformation;
 import com.athena.semantic.TransformationDetector;
+import com.athena.semantic.TransformationKind;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -36,8 +37,8 @@ public class DrillDownNavigationSteps {
 
     @After
     public void cleanUpTempRoots() throws IOException {
-        deleteRecursively(baseRoot);
-        deleteRecursively(headRoot);
+        JavaFixtureSupport.deleteRecursively(baseRoot);
+        JavaFixtureSupport.deleteRecursively(headRoot);
     }
 
     @Given("a Change representing a rename between two symbols")
@@ -57,8 +58,26 @@ public class DrillDownNavigationSteps {
 
     @Given("a Change representing a mechanical replacement")
     public void a_change_representing_a_mechanical_replacement() {
-        writeRenameFixture("Greeter", "greet", "salute");
-        theChange = detectFirstChange();
+        // A genuine mechanical replacement (not a rename): the identifier "Foo" is
+        // referenced across files and replaced consistently with "Bar" everywhere,
+        // matching StructuralChangeDetectionSteps' own mechanical-replacement fixture.
+        for (int i = 0; i < 3; i++) {
+            String refClass = "Ref" + i;
+            write(baseRoot, refClass, "public class " + refClass + " {\n"
+                    + "    public Foo make() {\n"
+                    + "        return new Foo();\n"
+                    + "    }\n"
+                    + "}\n");
+            write(headRoot, refClass, "public class " + refClass + " {\n"
+                    + "    public Bar make() {\n"
+                    + "        return new Bar();\n"
+                    + "    }\n"
+                    + "}\n");
+        }
+        write(baseRoot, "Foo", "public class Foo {\n}\n");
+        write(headRoot, "Bar", "public class Bar {\n}\n");
+
+        theChange = detectFirstChangeOfKind(TransformationKind.MECHANICAL_REPLACEMENT);
         allChanges = List.of(theChange);
     }
 
@@ -124,27 +143,18 @@ public class DrillDownNavigationSteps {
 
     private Change detectFirstChange() {
         List<DetectedTransformation> transformations = new TransformationDetector().detect(baseRoot, headRoot);
-        return new ChangeGrouper().group(transformations).get(0);
+        return new ChangeGrouper().group(transformations).stream().findFirst().orElseThrow();
+    }
+
+    private Change detectFirstChangeOfKind(TransformationKind kind) {
+        List<DetectedTransformation> transformations = new TransformationDetector().detect(baseRoot, headRoot);
+        return new ChangeGrouper().group(transformations).stream()
+                .filter(change -> change.kind() == kind)
+                .findFirst()
+                .orElseThrow();
     }
 
     private void write(Path root, String className, String content) {
-        try {
-            Files.writeString(root.resolve(className + ".java"), content);
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        }
-    }
-
-    private void deleteRecursively(Path root) throws IOException {
-        if (!Files.exists(root)) return;
-        try (var walk = Files.walk(root)) {
-            walk.sorted((a, b) -> b.compareTo(a)).forEach(p -> {
-                try {
-                    Files.delete(p);
-                } catch (IOException e) {
-                    throw new UncheckedIOException(e);
-                }
-            });
-        }
+        JavaFixtureSupport.write(root, className, content);
     }
 }

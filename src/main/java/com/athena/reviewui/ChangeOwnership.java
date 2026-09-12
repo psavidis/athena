@@ -16,10 +16,25 @@ public final class ChangeOwnership {
     private ChangeOwnership() {
     }
 
-    /** The Change (if any) among {@code changes} whose evidence touches {@code filePath}. */
-    public static Optional<Change> findOwningChange(List<Change> changes, String filePath) {
+    /**
+     * The Changes among {@code changes} whose evidence touches {@code filePath} — a file can
+     * legitimately be evidence for more than one Change (e.g. two independent edits to
+     * different symbols in the same file), so this returns every owner rather than picking
+     * one arbitrarily.
+     */
+    public static List<Change> findOwningChanges(List<Change> changes, String filePath) {
         return changes.stream()
                 .filter(change -> ChangeEvidence.of(change).files().contains(filePath))
-                .findFirst();
+                .toList();
+    }
+
+    /**
+     * The single Change owning {@code filePath}, when exactly one exists. Empty if no Change
+     * touches the file; if more than one does, callers needing that ambiguity resolved should
+     * use {@link #findOwningChanges} directly rather than have one silently picked here.
+     */
+    public static Optional<Change> findOwningChange(List<Change> changes, String filePath) {
+        List<Change> owners = findOwningChanges(changes, filePath);
+        return owners.size() == 1 ? Optional.of(owners.get(0)) : Optional.empty();
     }
 }
