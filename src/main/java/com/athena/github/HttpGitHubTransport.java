@@ -129,6 +129,29 @@ public class HttpGitHubTransport implements GitHubTransport {
         return body.path("permission").asText();
     }
 
+    @Override
+    public void postGeneralComment(String token, String repositoryFullName, int number, String body) {
+        ObjectMapper mapper = new ObjectMapper();
+        var payload = mapper.createObjectNode().put("body", body);
+        post(token, "/repos/" + repositoryFullName + "/issues/" + number + "/comments", payload.toString(),
+                repositoryFullName + "#" + number);
+    }
+
+    @Override
+    public void postLineComment(String token, String repositoryFullName, int number, String body, String path,
+                                 int line) {
+        PullRequestDetail detail = fetchPullRequestDetail(token, repositoryFullName, number);
+        ObjectMapper mapper = new ObjectMapper();
+        var payload = mapper.createObjectNode()
+                .put("body", body)
+                .put("commit_id", detail.headRevision())
+                .put("path", path)
+                .put("line", line)
+                .put("side", "RIGHT");
+        post(token, "/repos/" + repositoryFullName + "/pulls/" + number + "/comments", payload.toString(),
+                repositoryFullName + "#" + number);
+    }
+
     private JsonNode get(String token, String path, String resourceDescriptionForNotFound) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(API_BASE + path))
@@ -138,16 +161,36 @@ public class HttpGitHubTransport implements GitHubTransport {
                 .GET()
                 .build();
 
-        HttpResponse<String> response;
+        HttpResponse<String> response = send(request);
+        return parseBody(response, resourceDescriptionForNotFound, path);
+    }
+
+    private void post(String token, String path, String jsonBody, String resourceDescriptionForNotFound) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(API_BASE + path))
+                .header("Authorization", "Bearer " + token)
+                .header("Accept", "application/vnd.github+json")
+                .header("X-GitHub-Api-Version", "2022-11-28")
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+
+        HttpResponse<String> response = send(request);
+        parseBody(response, resourceDescriptionForNotFound, path);
+    }
+
+    private HttpResponse<String> send(HttpRequest request) {
         try {
-            response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
             if (e instanceof InterruptedException) {
                 Thread.currentThread().interrupt();
             }
             throw new GitHubAuthenticationException("Failed to reach GitHub: " + e.getMessage(), e);
         }
+    }
 
+    private JsonNode parseBody(HttpResponse<String> response, String resourceDescriptionForNotFound, String path) {
         if (response.statusCode() == 401) {
             throw new GitHubAuthenticationException("Bad credentials");
         }
@@ -157,11 +200,14 @@ public class HttpGitHubTransport implements GitHubTransport {
                             ? "Not found: " + resourceDescriptionForNotFound
                             : "Not found: " + path);
         }
-        if (response.statusCode() != 200) {
+        if (response.statusCode() < 200 || response.statusCode() >= 300) {
             throw new GitHubAuthenticationException(
                     "GitHub returned unexpected status " + response.statusCode());
         }
 
+        if (response.body() == null || response.body().isBlank()) {
+            return json.nullNode();
+        }
         try {
             return json.readTree(response.body());
         } catch (IOException e) {

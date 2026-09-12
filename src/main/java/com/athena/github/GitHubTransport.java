@@ -100,4 +100,23 @@ public interface GitHubTransport {
      *         exist or isn't accessible
      */
     String fetchRepositoryPermission(String token, String repositoryFullName);
+
+    /**
+     * Posts a general (PR-scoped) comment to a Pull Request.
+     *
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     * @throws GitHubResourceNotFoundException if the repository or Pull
+     *         Request doesn't exist or isn't accessible
+     */
+    void postGeneralComment(String token, String repositoryFullName, int number, String body);
+
+    /**
+     * Posts a line-scoped review comment to a Pull Request, anchored to the
+     * given file and line at the PR's current head revision.
+     *
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     * @throws GitHubResourceNotFoundException if the repository or Pull
+     *         Request doesn't exist or isn't accessible
+     */
+    void postLineComment(String token, String repositoryFullName, int number, String body, String path, int line);
 }
