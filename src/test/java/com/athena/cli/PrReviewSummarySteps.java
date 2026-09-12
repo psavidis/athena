@@ -88,6 +88,33 @@ public class PrReviewSummarySteps {
         importedPr = buildImportedPullRequest(baseSha, headSha);
     }
 
+    @Given("a PR whose head revision is only reachable as a dangling commit because its branch was deleted")
+    public void a_pr_whose_head_revision_is_a_dangling_commit() throws IOException, InterruptedException {
+        initRepo();
+        run(repoDir, "git", "checkout", "--quiet", "-b", "trunk");
+        writeFile("Greeter.java", "public class Greeter {\n"
+                + "    public String greet() {\n"
+                + "        return \"hi\";\n"
+                + "    }\n"
+                + "}\n");
+        String baseSha = commit("Add Greeter");
+
+        run(repoDir, "git", "checkout", "--quiet", "-b", "feature");
+        writeFile("Greeter.java", "public class Greeter {\n"
+                + "    public String salute() {\n"
+                + "        return \"hi\";\n"
+                + "    }\n"
+                + "}\n");
+        String headSha = commit("Rename greet to salute");
+
+        // Simulates the real-world case this ticket exists for: a PR merged via squash, its
+        // source branch deleted, leaving the head commit unreachable from any branch/tag.
+        run(repoDir, "git", "checkout", "--quiet", "trunk");
+        run(repoDir, "git", "branch", "-D", "feature");
+
+        importedPr = buildImportedPullRequest(baseSha, headSha);
+    }
+
     @Given("a PR whose head revision does not exist in its repository")
     public void a_pr_whose_head_revision_does_not_exist() throws IOException, InterruptedException {
         initRepo();
