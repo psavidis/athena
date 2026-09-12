@@ -3,6 +3,7 @@ package com.athena.web;
 import com.athena.git.GitRevisionCheckout;
 import com.athena.git.TempDirectories;
 import com.athena.github.ImportedPullRequest;
+import com.athena.semantic.ChangeCategory;
 import com.athena.semantic.ReviewStateStore;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -106,7 +107,7 @@ public class ChangeMapControllerSteps {
 
     @Then("the Change Map's category counts show {int} Change under {string}")
     public void the_change_maps_category_counts_show_a_change_under(int expectedCount, String category) {
-        assertThat(response.categoryCounts().get(com.athena.semantic.ChangeCategory.valueOf(category)))
+        assertThat(response.categoryCounts().get(ChangeCategory.valueOf(category)))
                 .isEqualTo(expectedCount);
     }
 
