@@ -1,5 +1,7 @@
 # UI-First Experience
 
+<!-- epic: #71 (UI-First Experience: Spring Boot + Web UI) — covers this whole document -->
+
 ## Context
 
 `product-specification.md` §38–43 already describe the desired UI/UX
