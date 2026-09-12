@@ -25,6 +25,7 @@ export type ReviewState = 'UNSEEN' | 'UNDERSTANDING' | 'REVIEWED' | 'CONCERN' | 
 
 export interface ChangeMapEntry {
   id: number
+  changeKey: string
   description: string
   category: ChangeCategory
   reviewState: ReviewState
@@ -38,9 +39,33 @@ export interface ChangeMap {
   changes: ChangeMapEntry[]
 }
 
+export interface ChangeDetail {
+  changeKey: string
+  category: ChangeCategory
+  description: string
+  symbols: string[]
+  files: string[]
+  diff: string
+}
+
+export type AnnotationScope =
+  | { type: 'LINE'; filePath: string; line: number }
+  | { type: 'SYMBOL'; symbolDescription: string }
+  | { type: 'CHANGE'; changeKey: string }
+  | { type: 'REVIEW' }
+
+export interface Annotations {
+  comments: string[]
+  privateNotes: string[]
+}
+
 export class NotConnectedError extends Error {}
 
 export class NoPullRequestSelectedError extends Error {}
+
+export class ChangeNotFoundError extends Error {}
+
+export class BlankAnnotationError extends Error {}
 
 async function asJson<T>(response: Response): Promise<T> {
   if (!response.ok) {
@@ -88,4 +113,57 @@ export async function getChangeMap(): Promise<ChangeMap> {
     throw new NoPullRequestSelectedError()
   }
   return asJson(response)
+}
+
+export async function getChangeDetail(changeKey: string): Promise<ChangeDetail> {
+  const response = await fetch(`/api/review/changes/${encodeURIComponent(changeKey)}`)
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  if (response.status === 404) {
+    throw new ChangeNotFoundError()
+  }
+  return asJson(response)
+}
+
+async function postAnnotation(path: string, scope: AnnotationScope, text: string): Promise<Annotations> {
+  const response = await fetch(path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ scope: toScopeRequest(scope), text }),
+  })
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  if (response.status === 400) {
+    throw new BlankAnnotationError()
+  }
+  return asJson(response)
+}
+
+function toScopeRequest(scope: AnnotationScope) {
+  switch (scope.type) {
+    case 'LINE':
+      return { type: 'LINE', filePath: scope.filePath, line: scope.line }
+    case 'SYMBOL':
+      return { type: 'SYMBOL', symbolDescription: scope.symbolDescription }
+    case 'CHANGE':
+      return { type: 'CHANGE', changeKey: scope.changeKey }
+    case 'REVIEW':
+      return { type: 'REVIEW' }
+  }
+}
+
+export async function addComment(scope: AnnotationScope, text: string): Promise<Annotations> {
+  return postAnnotation('/api/review/comments', scope, text)
+}
+
+export async function addPrivateNote(scope: AnnotationScope, text: string): Promise<Annotations> {
+  return postAnnotation('/api/review/private-notes', scope, text)
 }

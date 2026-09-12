@@ -3,16 +3,21 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { connect, listOpenPullRequests, listRepositories, selectPullRequest } from './api'
 import type { ImportedPullRequest } from './api'
 import ChangeMapPage from './ChangeMapPage'
+import ChangeDetailPage from './ChangeDetailPage'
 
 export default function App() {
   const [connected, setConnected] = useState(false)
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null)
   const [selectedPr, setSelectedPr] = useState<ImportedPullRequest | null>(null)
+  const [selectedChangeKey, setSelectedChangeKey] = useState<string | null>(null)
 
   if (!connected) {
     return <ConnectStep onConnected={() => setConnected(true)} />
   }
   if (selectedPr) {
+    if (selectedChangeKey) {
+      return <ChangeDetailPage changeKey={selectedChangeKey} onBack={() => setSelectedChangeKey(null)} />
+    }
     return (
       <ChangeMapPage
         onNotConnected={() => {
@@ -21,6 +26,7 @@ export default function App() {
           setSelectedPr(null)
         }}
         onNoPullRequestSelected={() => setSelectedPr(null)}
+        onSelectChange={setSelectedChangeKey}
       />
     )
   }

@@ -25,9 +25,11 @@ const REVIEW_STATE_LABELS: Record<ChangeMapEntry['reviewState'], string> = {
 export default function ChangeMapPage({
   onNotConnected,
   onNoPullRequestSelected,
+  onSelectChange,
 }: {
   onNotConnected: () => void
   onNoPullRequestSelected: () => void
+  onSelectChange: (changeKey: string) => void
 }) {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['change-map'],
@@ -54,7 +56,7 @@ export default function ChangeMapPage({
   return (
     <div className="mx-auto max-w-2xl px-4 py-12">
       <PrUnderstandingSummary prTitle={data.prTitle} categoryCounts={data.categoryCounts} />
-      <ChangeMapList changes={data.changes} />
+      <ChangeMapList changes={data.changes} onSelectChange={onSelectChange} />
     </div>
   )
 }
@@ -81,7 +83,13 @@ function PrUnderstandingSummary({
   )
 }
 
-function ChangeMapList({ changes }: { changes: ChangeMapEntry[] }) {
+function ChangeMapList({
+  changes,
+  onSelectChange,
+}: {
+  changes: ChangeMapEntry[]
+  onSelectChange: (changeKey: string) => void
+}) {
   if (changes.length === 0) {
     return <p className="text-neutral-500">No Changes detected.</p>
   }
@@ -89,14 +97,19 @@ function ChangeMapList({ changes }: { changes: ChangeMapEntry[] }) {
   return (
     <ul className="divide-y divide-neutral-200 rounded border border-neutral-200">
       {changes.map((change) => (
-        <li key={change.id} className="flex items-center justify-between px-4 py-3">
-          <div>
-            <p className="text-neutral-900">{change.description}</p>
-            <p className="text-sm text-neutral-500">{CATEGORY_LABELS[change.category]}</p>
-          </div>
-          <span className="rounded-full bg-neutral-100 px-3 py-1 text-sm text-neutral-600">
-            {REVIEW_STATE_LABELS[change.reviewState]}
-          </span>
+        <li key={change.id}>
+          <button
+            className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-neutral-100"
+            onClick={() => onSelectChange(change.changeKey)}
+          >
+            <div>
+              <p className="text-neutral-900">{change.description}</p>
+              <p className="text-sm text-neutral-500">{CATEGORY_LABELS[change.category]}</p>
+            </div>
+            <span className="rounded-full bg-neutral-100 px-3 py-1 text-sm text-neutral-600">
+              {REVIEW_STATE_LABELS[change.reviewState]}
+            </span>
+          </button>
         </li>
       ))}
     </ul>

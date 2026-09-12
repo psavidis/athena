@@ -64,8 +64,9 @@ public class ChangeMapController {
         List<ChangeEntryResponse> entries = new ArrayList<>(viewEntries.size());
         for (int i = 0; i < viewEntries.size(); i++) {
             ChangeMapEntry entry = viewEntries.get(i);
-            entries.add(new ChangeEntryResponse(i, entry.description(), entry.category(), entry.reviewState(),
-                    entry.change().occurrenceCount(), entry.change().exceptionCount()));
+            entries.add(new ChangeEntryResponse(i, ChangeKey.encode(entry.change()), entry.description(),
+                    entry.category(), entry.reviewState(), entry.change().occurrenceCount(),
+                    entry.change().exceptionCount()));
         }
         return entries;
     }
