@@ -5,21 +5,42 @@ meaningful **Changes** — rename, move, extract, mechanical replacement,
 signature change, and so on — instead of leaving a reviewer to
 reconstruct that meaning from raw diff hunks.
 
-## Status: MVP, library-first, one CLI entry point
+## Status: MVP, library-first, one CLI entry point, an early web UI taking shape
 
 Most of Athena today is a tested domain library — GitHub import, the
 semantic detection engine, and view-model classes for review UI, review
-context, and AI-assisted findings. There is **no web or IDE UI yet**; the
-`reviewui`/`reviewcontext`/`ai` packages are consumed only by the test
-suite so far.
+context, and AI-assisted findings.
 
-The one runnable, end-to-end thing that exists is a read-only CLI
-(`com.athena.cli.Main`): point it at a real PR and it prints a plain-text
-summary of the Changes it detects. That's it — no review state, no
-comments, nothing synced back to GitHub. It exists to prove the pipeline
-actually works against real PRs, not as the product's eventual interface.
+A **web UI** (Spring Boot REST API + a React/TypeScript/Vite/Tailwind
+frontend, epic #71) is under active development and is meant to become
+the primary way to use Athena. So far it covers connecting a GitHub
+token and picking a repository/PR (ticket #73) — the rest of the review
+loop (Change Map, drill-down, comments, review state, AI analysis) isn't
+wired up yet.
+
+There's also a read-only CLI (`com.athena.cli.Main`): point it at a real
+PR and it prints a plain-text summary of the Changes it detects. It
+exists to prove the pipeline works against real PRs and remains a
+minimal secondary interface, not the product's eventual one.
 
 ## Try it
+
+### Web UI
+
+Requires Java 21, Maven, Node/npm, `git` on your `PATH`.
+
+```bash
+# Backend (from the repo root)
+mvn spring-boot:run
+
+# Frontend (in another terminal)
+cd frontend && npm install && npm run dev
+```
+
+Open the URL Vite prints (typically `http://localhost:5173`) and connect
+with a GitHub Personal Access Token.
+
+### CLI
 
 Requires Java 21, Maven, `git` on your `PATH`, and a GitHub token with
 read access to the target repo.
@@ -56,13 +77,16 @@ boundaries).
 | `com.athena.reviewui`       | Review UI view-models (Change Map, drill-down, search) — not yet rendered anywhere |
 | `com.athena.reviewcontext`  | Assembling a reviewer's session into a Review Context artifact + continuity across revisions |
 | `com.athena.ai`             | Optional post-review AI analysis: context boundary, provider abstraction, findings review |
-| `com.athena.cli`            | The one executable entry point — see "Try it" above |
+| `com.athena.git`            | Shared git-checkout utilities (shells out to `git`), used by both the CLI and the web backend |
+| `com.athena.cli`            | The read-only CLI entry point — see "Try it" above |
+| `com.athena` / `com.athena.web` | The Spring Boot web UI backend (REST API only, no server-rendered HTML) — see "Try it" above |
+| `frontend/`                 | The React/TypeScript/Vite/Tailwind/TanStack Query web frontend — see `frontend/README.md` |
 
 ## Known limitations right now
 
 - Java only — other languages in a PR are silently ignored.
-- Read-only — no review state, comments, or GitHub sync from the CLI.
-- No UI beyond the CLI's plain-text output.
+- Read-only everywhere — no review state, comments, or GitHub sync yet, from either the CLI or the web UI.
+- The web UI only covers connect → pick repository → pick PR so far; no Change Map, drill-down, comments, review state, or AI analysis wired up yet.
 - A record's component list changing is detected; a whole record type
   being added/removed, or a type being *renamed*, is not yet.
 - No pagination/performance handling for very large PRs.

@@ -1,4 +1,4 @@
-package com.athena.cli;
+package com.athena.git;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -8,12 +8,12 @@ import java.util.Comparator;
 import java.util.stream.Stream;
 
 /** Recursive temp-directory cleanup, shared by every checkout this package creates. */
-final class TempDirectories {
+public final class TempDirectories {
 
     private TempDirectories() {
     }
 
-    static void deleteRecursively(Path root) {
+    public static void deleteRecursively(Path root) {
         if (!Files.exists(root)) {
             return;
         }

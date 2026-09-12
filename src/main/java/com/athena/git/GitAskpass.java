@@ -1,4 +1,4 @@
-package com.athena.cli;
+package com.athena.git;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,7 +16,7 @@ import java.util.Map;
  * credential prompts by reading an environment variable, which isn't
  * visible in argv.
  */
-final class GitAskpass {
+public final class GitAskpass {
 
     private static final String TOKEN_ENV_VAR = "ATHENA_GIT_TOKEN";
 
@@ -24,7 +24,7 @@ final class GitAskpass {
     }
 
     /** Environment variables to pass to the `git` subprocess to authenticate as {@code token}. */
-    static Map<String, String> environmentFor(String token) {
+    public static Map<String, String> environmentFor(String token) {
         Path script;
         try {
             script = Files.createTempFile("athena-askpass-", ".sh");
