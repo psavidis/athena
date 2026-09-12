@@ -20,9 +20,49 @@
     <assertj.version>3.26.3</assertj.version>
     <jackson.version>2.17.2</jackson.version>
     <javaparser.version>3.26.2</javaparser.version>
+    <spring-boot.version>3.3.4</spring-boot.version>
+    <testcontainers.version>1.21.4</testcontainers.version>
   </properties>
 
+  <!--
+    Imported via dependencyManagement (not spring-boot-starter-parent), so the
+    existing standalone POM structure, pinned dependency versions, and plugin
+    config stay exactly as they are — Spring Boot is additive here, not a
+    takeover of the build (ticket #72).
+  -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
+    <!-- Web UI application layer (epic #71) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <!-- Blackbox Spring Boot integration testing via Docker (CODE_STYLE.md F.6) -->
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+
     <!-- JSON parsing for GitHub API responses -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -94,6 +134,12 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.5</version>
+      </plugin>
+      <!-- Enables `mvn spring-boot:run` for the web UI (com.athena.web.AthenaWebApplication) -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
       </plugin>
     </plugins>
   </build>
