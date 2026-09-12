@@ -18,9 +18,17 @@
     <junit.platform.version>1.10.2</junit.platform.version>
     <junit.jupiter.version>5.10.2</junit.jupiter.version>
     <assertj.version>3.26.3</assertj.version>
+    <javaparser.version>3.26.2</javaparser.version>
   </properties>
 
   <dependencies>
+    <!-- JavaParser: AST parsing + symbol resolution for the Semantic Change Engine (epic #4) -->
+    <dependency>
+      <groupId>com.github.javaparser</groupId>
+      <artifactId>javaparser-symbol-solver-core</artifactId>
+      <version>${javaparser.version}</version>
+    </dependency>
+
     <!-- Cucumber -->
     <dependency>
       <groupId>io.cucumber</groupId>
