@@ -1,27 +1,27 @@
 package com.athena.github;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Production {@link GitHubTransport} backed by the real GitHub REST API
- * (https://api.github.com), using the JDK's built-in HttpClient.
+ * (https://api.github.com), using the JDK's built-in HttpClient and Jackson
+ * for JSON parsing.
  */
 public class HttpGitHubTransport implements GitHubTransport {
 
     private static final String API_BASE = "https://api.github.com";
 
-    // Minimal extraction of "login" from the JSON response body, avoiding a
-    // full JSON library dependency for this one field. Revisit once more
-    // endpoints need richer parsing (see #10/#11).
-    private static final Pattern LOGIN_PATTERN = Pattern.compile("\"login\"\\s*:\\s*\"([^\"]+)\"");
-
     private final HttpClient httpClient;
+    private final ObjectMapper json = new ObjectMapper();
 
     public HttpGitHubTransport(HttpClient httpClient) {
         this.httpClient = httpClient;
@@ -29,8 +29,39 @@ public class HttpGitHubTransport implements GitHubTransport {
 
     @Override
     public AuthenticatedUser fetchAuthenticatedUser(String token) {
+        JsonNode body = get(token, "/user", null);
+        return new AuthenticatedUser(body.path("login").asText());
+    }
+
+    @Override
+    public List<Repository> fetchAccessibleRepositories(String token) {
+        JsonNode body = get(token, "/user/repos", null);
+        List<Repository> repositories = new ArrayList<>();
+        for (JsonNode repo : body) {
+            repositories.add(new Repository(repo.path("full_name").asText()));
+        }
+        return repositories;
+    }
+
+    @Override
+    public List<PullRequestSummary> fetchOpenPullRequests(String token, String repositoryFullName) {
+        JsonNode body = get(token, "/repos/" + repositoryFullName + "/pulls?state=open", repositoryFullName);
+        List<PullRequestSummary> pullRequests = new ArrayList<>();
+        for (JsonNode pr : body) {
+            pullRequests.add(new PullRequestSummary(pr.path("number").asInt(), pr.path("title").asText()));
+        }
+        return pullRequests;
+    }
+
+    @Override
+    public PullRequestSummary fetchPullRequest(String token, String repositoryFullName, int number) {
+        JsonNode body = get(token, "/repos/" + repositoryFullName + "/pulls/" + number, repositoryFullName);
+        return new PullRequestSummary(body.path("number").asInt(), body.path("title").asText());
+    }
+
+    private JsonNode get(String token, String path, String resourceDescriptionForNotFound) {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(API_BASE + "/user"))
+                .uri(URI.create(API_BASE + path))
                 .header("Authorization", "Bearer " + token)
                 .header("Accept", "application/vnd.github+json")
                 .header("X-GitHub-Api-Version", "2022-11-28")
@@ -50,15 +81,21 @@ public class HttpGitHubTransport implements GitHubTransport {
         if (response.statusCode() == 401) {
             throw new GitHubAuthenticationException("Bad credentials");
         }
+        if (response.statusCode() == 404) {
+            throw new GitHubResourceNotFoundException(
+                    resourceDescriptionForNotFound != null
+                            ? "Not found: " + resourceDescriptionForNotFound
+                            : "Not found: " + path);
+        }
         if (response.statusCode() != 200) {
             throw new GitHubAuthenticationException(
                     "GitHub returned unexpected status " + response.statusCode());
         }
 
-        Matcher matcher = LOGIN_PATTERN.matcher(response.body());
-        if (!matcher.find()) {
-            throw new GitHubAuthenticationException("Could not parse authenticated user from GitHub response");
+        try {
+            return json.readTree(response.body());
+        } catch (IOException e) {
+            throw new GitHubAuthenticationException("Could not parse GitHub response: " + e.getMessage(), e);
         }
-        return new AuthenticatedUser(matcher.group(1));
     }
 }
