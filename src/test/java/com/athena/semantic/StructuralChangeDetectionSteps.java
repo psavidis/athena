@@ -68,6 +68,11 @@ public class StructuralChangeDetectionSteps {
                 + "}\n");
     }
 
+    @Given("a base revision where record {string} has components {string}")
+    public void base_revision_record_has_components(String recordName, String components) {
+        write(baseRoot, recordName, "public record " + recordName + "(" + components + ") {\n}\n");
+    }
+
     @Given("a base revision where class {string} has a method {string} with an inline fragment")
     public void base_class_has_method_with_inline_fragment(String className, String methodName) {
         write(baseRoot, className, "public class " + className + " {\n"
@@ -151,6 +156,11 @@ public class StructuralChangeDetectionSteps {
                 + "        return \"greeting\" + arg;\n"
                 + "    }\n"
                 + "}\n");
+    }
+
+    @Given("a head revision where record {string} has components {string}")
+    public void head_revision_record_has_components(String recordName, String components) {
+        write(headRoot, recordName, "public record " + recordName + "(" + components + ") {\n}\n");
     }
 
     @Given("a head revision where that fragment has been extracted into a new method {string} called from {string}")
