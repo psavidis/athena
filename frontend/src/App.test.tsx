@@ -80,4 +80,47 @@ describe('App routing', () => {
 
     expect(await screen.findByText('Open PRs — octocat/hello-world')).toBeVisible()
   })
+
+  it('opens a Change detail view from the Change Map and back again', async () => {
+    server.use(
+      http.get('/api/review/change-map', () =>
+        HttpResponse.json({
+          prTitle: 'Move authentication to Account',
+          categoryCounts: { BEHAVIORAL: 1, STRUCTURAL: 0, MECHANICAL: 0, UNKNOWN: 0 },
+          changes: [
+            {
+              id: 0,
+              changeKey: 'test-change-key',
+              description: 'Rename greet to salute',
+              category: 'BEHAVIORAL',
+              reviewState: 'UNSEEN',
+              occurrenceCount: 1,
+              exceptionCount: 0,
+            },
+          ],
+        }),
+      ),
+      http.get('/api/review/changes/test-change-key', () =>
+        HttpResponse.json({
+          changeKey: 'test-change-key',
+          category: 'BEHAVIORAL',
+          description: 'Rename greet to salute',
+          symbols: ['Greeter#greet'],
+          files: ['Greeter.java'],
+          diff: '',
+        }),
+      ),
+    )
+
+    await connectSelectRepoAndPr()
+    const user = userEvent.setup()
+
+    await user.click(await screen.findByText('Rename greet to salute'))
+
+    expect(await screen.findByText('Greeter#greet')).toBeVisible()
+
+    await user.click(screen.getByText('← Back to Change Map'))
+
+    expect(await screen.findByRole('heading', { name: 'Move authentication to Account' })).toBeVisible()
+  })
 })
