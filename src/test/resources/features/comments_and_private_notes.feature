@@ -37,3 +37,8 @@ Feature: Comments and private notes at line, symbol, Change, and review scope
     Then the Change's comments include "Nice cleanup"
     And the Change's private notes include "Double-check with the author"
     And the Change's comments do not include "Double-check with the author"
+
+  Scenario: A blank comment is rejected
+    Given a reviewer viewing a Change
+    When the reviewer attempts to add a blank comment at that Change
+    Then the attempt is rejected as invalid

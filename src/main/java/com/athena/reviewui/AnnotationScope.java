@@ -29,14 +29,26 @@ public final class AnnotationScope {
     }
 
     public static AnnotationScope line(String filePath, int line) {
+        Objects.requireNonNull(filePath, "filePath");
+        if (filePath.isBlank()) {
+            throw new IllegalArgumentException("filePath must not be blank");
+        }
+        if (line <= 0) {
+            throw new IllegalArgumentException("line must be positive: " + line);
+        }
         return new AnnotationScope(Kind.LINE, filePath, line, null, null);
     }
 
     public static AnnotationScope symbol(String symbolDescription) {
+        Objects.requireNonNull(symbolDescription, "symbolDescription");
+        if (symbolDescription.isBlank()) {
+            throw new IllegalArgumentException("symbolDescription must not be blank");
+        }
         return new AnnotationScope(Kind.SYMBOL, null, 0, symbolDescription, null);
     }
 
     public static AnnotationScope change(Change change) {
+        Objects.requireNonNull(change, "change");
         return new AnnotationScope(Kind.CHANGE, null, 0, null, change);
     }
 

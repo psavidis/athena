@@ -25,6 +25,7 @@ public class CommentsAndPrivateNotesSteps {
     private Path headRoot;
     private AnnotationScope currentScope;
     private Change theChange;
+    private RuntimeException rejection;
 
     @Before
     public void createTempRoots() throws IOException {
@@ -94,5 +95,20 @@ public class CommentsAndPrivateNotesSteps {
     @Then("the Change's comments do not include {string}")
     public void the_changes_comments_do_not_include(String text) {
         assertThat(board.commentsAt(currentScope)).extracting(Comment::text).doesNotContain(text);
+    }
+
+    @When("the reviewer attempts to add a blank comment at that Change")
+    public void the_reviewer_attempts_to_add_a_blank_comment() {
+        try {
+            board.addComment(currentScope, "   ");
+            rejection = null;
+        } catch (RuntimeException e) {
+            rejection = e;
+        }
+    }
+
+    @Then("the attempt is rejected as invalid")
+    public void the_attempt_is_rejected_as_invalid() {
+        assertThat(rejection).isInstanceOf(IllegalArgumentException.class);
     }
 }
