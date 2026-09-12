@@ -79,6 +79,7 @@ Report to the user:
 - how they relate to each other (sequencing/dependencies)
 - anything you deliberately left out of scope
 
-Do not start implementation. Do not assign tickets to anyone — assignment
-happens when an engineer picks up the work (see the `engineer-ticket`
-skill).
+Do not start implementation. Do not write Use Cases or Gherkin scenarios
+— that's `spec-writer`'s job, next in the pipeline. Do not assign tickets
+to anyone — assignment happens when `spec-writer`/`engineer-ticket` picks
+up the work.

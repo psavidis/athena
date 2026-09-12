@@ -1,20 +1,39 @@
 ---
 name: engineer-ticket
-description: Implement a GitHub ticket end to end - claim it, implement, verify with QA, and open a PR linked back to the ticket.
+description: Implement a GitHub ticket end to end - claim it, ensure Gherkin/tests exist and are red, implement until green, and open a PR linked back to the ticket.
 ---
 
 # Engineer Ticket
 
 ## Purpose
 
-Take one ticket from "ready" to "in review": implement it, verify it, and
-open a PR that a reviewer can act on without needing to ask questions.
+Take one feature ticket from "ready" to "in review": ensure it has
+committed Gherkin scenarios and tests (delegating to `spec-writer` /
+`qa-ticket` if they haven't run yet), implement against those tests until
+green, and open a PR that a reviewer can act on without needing to ask
+questions.
+
+## Where this sits in the pipeline
+
+```
+spec-to-epic → plan-feature → spec-writer → qa-ticket → engineer-ticket → review-pr
+                                (Gherkin)     (tests,      (implementation
+                                               written red)  to green)
+```
+
+This is outside-in TDD: the tests define the implementation, not the
+other way around. Do not write production code before a failing test
+exists for it.
 
 ## Role boundary
 
 - Work only on the current ticket. Do not expand scope, refactor unrelated
   code, or bundle a second ticket into the same PR.
 - Follow existing architecture and conventions.
+- Never make an implementation choice to satisfy a whitebox
+  mock/expectation instead of real behavior — if a test's mocking looks
+  unjustified per `qa-ticket`'s Detroit-school rules, fix the test's
+  approach (or flag it), don't code around it.
 - This skill does not review or merge — it stops once the PR is open and
   linked.
 
@@ -48,20 +67,31 @@ If a ticket isn't on the board yet, add it first:
    - Create a branch for the work (naming: short, kebab-case, ideally
      including the ticket number, e.g. `142-refresh-token-before-expiry`).
 
-2. **Implement.**
+2. **Ensure Gherkin and tests exist.**
+   - Check whether this ticket already has committed `.feature` files and
+     a `### Use Cases` section. If not, invoke `spec-writer` inline
+     (no subagent spawn) first.
+   - Check whether step definitions/tests already exist for those
+     scenarios. If not, invoke `qa-ticket` inline next. Expect the suite
+     to be red at this point — that's the correct starting state, not a
+     problem to fix before implementing.
+   - If both already exist (e.g. re-entering this ticket after an earlier
+     session), skip straight to implementing.
+
+3. **Implement to green.**
    - Inspect the relevant code before writing anything.
-   - Make the minimal, targeted changes the ticket's acceptance
-     criteria/functional requirements call for.
+   - Make the minimal, targeted changes needed to turn the ticket's tests
+     green — don't implement beyond what the tests + acceptance criteria
+     actually require.
+   - Run the suite yourself directly as you go; do not re-invoke
+     `qa-ticket` to check progress — that skill is for test *design*, not
+     for rechecking a fix. Re-invoke it only if implementation reveals a
+     use case the tests don't cover yet.
+   - Do not proceed to opening the PR with a red suite (except
+     pre-existing, unrelated failures already flagged by `qa-ticket`).
    - Keep commits on the branch as small logical steps if useful — they
      get squashed on merge, so intermediate commit hygiene matters less
      than final review clarity, but a reviewable history still helps.
-
-3. **Verify with QA.**
-   - Invoke the `qa-ticket` skill in the same session (no subagent spawn)
-     to add/update tests and run the suite.
-   - If QA reports failures, fix them yourself and re-run the suite
-     directly — do not re-invoke `qa-ticket` just to recheck a fix.
-   - Do not proceed to opening the PR with a red suite.
 
 4. **Open the PR.**
    - Push the branch and open the PR with `gh pr create`. The repo's
@@ -95,7 +125,8 @@ Report:
 
 - ticket number and branch name
 - files changed
-- QA result (from step 3)
+- test result (from step 2/3 — what was red at the start, confirmation
+  it's green now)
 - PR URL
 - any remaining concerns worth flagging to the reviewer that didn't belong
   in the PR's Risks/Follow-ups section

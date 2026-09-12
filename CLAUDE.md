@@ -1,35 +1,59 @@
 # Athena — ticket workflow
 
-This project uses a ticket-driven workflow with five roles, each backed by
+This project uses a ticket-driven workflow with six roles, each backed by
 a skill under `.claude/skills/`:
 
 - **Spec-to-epic** (`spec-to-epic`) — reads a spec under `docs/specs/`
   (anywhere from a vague product vision to a concrete requirement) and
   translates the not-yet-ticketed parts of it into epic tickets
-  (`type:epic`, `epic_request.md` template).
-- **Planner** (`plan-feature`) — breaks an epic (or a directly-described
-  feature) into implementation-sized tickets using
-  `.github/ISSUE_TEMPLATE/`.
-- **Engineer** (`engineer-ticket`) — claims a ticket, implements it,
-  invokes QA, opens a PR.
-- **QA** (`qa-ticket`) — writes/runs tests for a ticket's implementation,
-  reports pass/fail. Invoked by the engineer inline (no subagent spawn).
+  (`type:epic`, `epic_request.md` template). An Epic corresponds to a
+  business **Capability** in the DDD sense — a high-level business
+  function the product serves (e.g. "GitHub Integration," "Semantic
+  Change Engine").
+- **Planner** (`plan-feature`) — breaks an epic/Capability (or a
+  directly-described feature) into implementation-sized Feature tickets
+  using `.github/ISSUE_TEMPLATE/`.
+- **Spec writer** (`spec-writer`) — turns a Feature ticket's intent into
+  black-box **Use Cases**, each expressed as a committed Gherkin
+  `.feature` file. No test or implementation code yet.
+- **QA** (`qa-ticket`) — writes step definitions + Detroit-school tests
+  against those `.feature` files and runs them. Expected to be **red**
+  at this point — implementation doesn't exist yet. Invoked inline by
+  the engineer (no subagent spawn).
+- **Engineer** (`engineer-ticket`) — claims the ticket, ensures
+  `spec-writer`/`qa-ticket` have run, implements until the suite is
+  green, opens a PR.
 - **Reviewer** (`review-pr`) — reviews the PR, approves, squash-merges,
   cleans up branches, closes the ticket.
 
-Pipeline order: `spec-to-epic` → `plan-feature` → `engineer-ticket` (+
-`qa-ticket`) → `review-pr`. Each stage stops at its own boundary and does
-not auto-chain into the next — a human (or a separate instruction)
-triggers each stage.
+Pipeline order: `spec-to-epic` (Capability) → `plan-feature` (Feature) →
+`spec-writer` (Use Cases/Gherkin) → `qa-ticket` (tests, written red) →
+`engineer-ticket` (implementation, to green) → `review-pr`. This is
+outside-in TDD: tests define the implementation, never the reverse. Each
+stage stops at its own boundary; `spec-writer` and `qa-ticket` run inline
+within `engineer-ticket`'s session rather than as separate hand-offs
+requiring a human to manually trigger each one (see `engineer-ticket`
+step 2).
 
 Read the relevant `SKILL.md` before acting in that role — this file is the
 overview, the skills carry the actual step-by-step process and command
 reference (board IDs, label names, etc.).
 
+## Testing philosophy
+
+Detroit school (classicist) by default: test through the public
+API/behavior, use real collaborators, verify state/outcomes — not
+interactions. Whitebox/mockist testing is the exception, justified only
+at a genuine external boundary a test can't or shouldn't cross for real
+(network calls to an external API, a non-deterministic clock/random
+source, expensive/unavailable I/O). An internal class in this codebase is
+never mocked just for isolation — see `qa-ticket` for the full rule and
+the one-line-comment requirement at every mock site.
+
 ## Lifecycle at a glance
 
 ```
-(spec) → epic → todo → in-progress → in-review → (pending-approval, gated mode only) → done
+(spec) → epic/Capability → Feature ticket → Use Cases/Gherkin (red) → in-progress (implementing to green) → in-review → (pending-approval, gated mode only) → done
 ```
 
 | State            | Signal                                             |
