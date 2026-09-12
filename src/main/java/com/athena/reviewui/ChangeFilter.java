@@ -7,6 +7,8 @@ import com.athena.semantic.ReviewState;
 import com.athena.semantic.ReviewStateStore;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 /**
  * Filters the Change Map by the MVP-prioritized dimensions (epic #5 §43):
@@ -20,16 +22,29 @@ public final class ChangeFilter {
     }
 
     public static List<Change> byCategory(List<Change> changes, ChangeCategory category) {
+        Objects.requireNonNull(changes, "changes");
+        Objects.requireNonNull(category, "category");
         return changes.stream().filter(change -> ChangeCategory.of(change.kind()) == category).toList();
     }
 
     public static List<Change> byReviewState(List<Change> changes, ReviewStateStore store, ReviewState state) {
+        Objects.requireNonNull(changes, "changes");
+        Objects.requireNonNull(store, "store");
+        Objects.requireNonNull(state, "state");
         return changes.stream().filter(change -> store.stateOf(change) == state).toList();
     }
 
+    /** Case-insensitive substring match, matching {@link ChangeSearch}'s symbol-matching behavior. */
     public static List<Change> bySymbol(List<Change> changes, String symbolDescription) {
+        Objects.requireNonNull(changes, "changes");
+        Objects.requireNonNull(symbolDescription, "symbolDescription");
+        if (symbolDescription.isBlank()) {
+            throw new IllegalArgumentException("symbolDescription must not be blank");
+        }
+        String needle = symbolDescription.toLowerCase(Locale.ROOT);
         return changes.stream()
-                .filter(change -> ChangeEvidence.of(change).symbols().contains(symbolDescription))
+                .filter(change -> ChangeEvidence.of(change).symbols().stream()
+                        .anyMatch(symbol -> symbol.toLowerCase(Locale.ROOT).contains(needle)))
                 .toList();
     }
 }

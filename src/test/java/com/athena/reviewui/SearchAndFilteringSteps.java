@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -66,6 +67,24 @@ public class SearchAndFilteringSteps {
         board.addComment(AnnotationScope.change(renameChange), text);
     }
 
+    @When("the same PR is re-analyzed, producing new Change instances for the same transformations")
+    public void the_same_pr_is_re_analyzed() {
+        // A fresh detect+group run produces new Change objects for the same underlying
+        // transformations (e.g. what happens after a force-push) — the old renameChange
+        // reference the comment was attached to is now stale, but AnnotationScope keys
+        // on ChangeIdentity (symbol-set + transformation-shape), not object identity,
+        // so the comment must still be found via the newly-detected equivalent Change.
+        changes = detectChanges();
+        renameChange = changes.stream()
+                .filter(change -> change.kind() == TransformationKind.RENAME_SYMBOL)
+                .findFirst()
+                .orElseThrow();
+        mechanicalChange = changes.stream()
+                .filter(change -> change.kind() == TransformationKind.MECHANICAL_REPLACEMENT)
+                .findFirst()
+                .orElseThrow();
+    }
+
     @Given("the reviewer has reviewed the rename Change in the search fixture")
     public void the_reviewer_has_reviewed_the_rename_change() {
         store.setState(renameChange, ReviewState.REVIEWED);
@@ -78,12 +97,12 @@ public class SearchAndFilteringSteps {
 
     @When("the reviewer filters by category {string}")
     public void the_reviewer_filters_by_category(String category) {
-        filteredResults = ChangeFilter.byCategory(changes, ChangeCategory.valueOf(category.toUpperCase()));
+        filteredResults = ChangeFilter.byCategory(changes, ChangeCategory.valueOf(category.toUpperCase(Locale.ROOT)));
     }
 
     @When("the reviewer filters by review state {string}")
     public void the_reviewer_filters_by_review_state(String state) {
-        filteredResults = ChangeFilter.byReviewState(changes, store, ReviewState.valueOf(state.toUpperCase()));
+        filteredResults = ChangeFilter.byReviewState(changes, store, ReviewState.valueOf(state.toUpperCase(Locale.ROOT)));
     }
 
     @When("the reviewer filters by symbol {string}")

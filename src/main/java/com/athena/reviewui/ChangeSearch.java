@@ -5,6 +5,8 @@ import com.athena.semantic.ChangeEvidence;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 /**
  * Searches Changes by text across the MVP-prioritized subset (epic #5
@@ -18,6 +20,12 @@ public final class ChangeSearch {
     }
 
     public static List<Change> search(List<Change> changes, AnnotationBoard board, String query) {
+        Objects.requireNonNull(changes, "changes");
+        Objects.requireNonNull(board, "board");
+        Objects.requireNonNull(query, "query");
+        if (query.isBlank()) {
+            throw new IllegalArgumentException("query must not be blank");
+        }
         String needle = query.toLowerCase(Locale.ROOT);
         return changes.stream()
                 .filter(change -> matches(change, board, needle))
@@ -25,17 +33,15 @@ public final class ChangeSearch {
     }
 
     private static boolean matches(Change change, AnnotationBoard board, String needle) {
-        if (change.title().toLowerCase(Locale.ROOT).contains(needle)) {
-            return true;
-        }
         ChangeEvidence evidence = ChangeEvidence.of(change);
-        if (evidence.files().stream().anyMatch(file -> file.toLowerCase(Locale.ROOT).contains(needle))) {
-            return true;
-        }
-        if (evidence.symbols().stream().anyMatch(symbol -> symbol.toLowerCase(Locale.ROOT).contains(needle))) {
-            return true;
-        }
-        return board.commentsAt(AnnotationScope.change(change)).stream()
-                .anyMatch(comment -> comment.text().toLowerCase(Locale.ROOT).contains(needle));
+        List<Comment> comments = board.commentsAt(AnnotationScope.change(change));
+        return Stream.concat(
+                Stream.concat(Stream.of(change.title()), evidence.files().stream()),
+                Stream.concat(evidence.symbols().stream(), comments.stream().map(Comment::text))
+        ).anyMatch(field -> containsIgnoreCase(field, needle));
+    }
+
+    private static boolean containsIgnoreCase(String field, String lowercaseNeedle) {
+        return field.toLowerCase(Locale.ROOT).contains(lowercaseNeedle);
     }
 }

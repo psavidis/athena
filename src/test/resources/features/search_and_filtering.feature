@@ -31,6 +31,13 @@ Feature: Search and filtering (MVP subset)
     When the reviewer searches for "nonexistent-term-xyz"
     Then the search results are empty
 
+  Scenario: A comment remains findable after the Change is recomputed into a new instance
+    Given a searchable PR with a rename Change and a mechanical replacement Change
+    And a comment "Please double check this rename" attached to the rename Change
+    When the same PR is re-analyzed, producing new Change instances for the same transformations
+    And the reviewer searches for "double check"
+    Then the search results include the rename Change
+
   Scenario: Filtering by category narrows the Change Map to that category
     Given a searchable PR with a rename Change and a mechanical replacement Change
     When the reviewer filters by category "Structural"
