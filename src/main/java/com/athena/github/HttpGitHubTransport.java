@@ -95,6 +95,40 @@ public class HttpGitHubTransport implements GitHubTransport {
         return files;
     }
 
+    @Override
+    public List<ReviewComment> fetchReviewComments(String token, String repositoryFullName, int number) {
+        JsonNode body = get(token, "/repos/" + repositoryFullName + "/pulls/" + number + "/comments", repositoryFullName);
+        List<ReviewComment> comments = new ArrayList<>();
+        for (JsonNode comment : body) {
+            comments.add(new ReviewComment(
+                    comment.path("user").path("login").asText(),
+                    comment.path("body").asText(),
+                    comment.path("path").asText()));
+        }
+        return comments;
+    }
+
+    @Override
+    public List<Review> fetchReviews(String token, String repositoryFullName, int number) {
+        JsonNode body = get(token, "/repos/" + repositoryFullName + "/pulls/" + number + "/reviews", repositoryFullName);
+        List<Review> reviews = new ArrayList<>();
+        for (JsonNode review : body) {
+            reviews.add(new Review(
+                    review.path("user").path("login").asText(),
+                    review.path("state").asText()));
+        }
+        return reviews;
+    }
+
+    @Override
+    public String fetchRepositoryPermission(String token, String repositoryFullName) {
+        AuthenticatedUser user = fetchAuthenticatedUser(token);
+        JsonNode body = get(token,
+                "/repos/" + repositoryFullName + "/collaborators/" + user.username() + "/permission",
+                repositoryFullName);
+        return body.path("permission").asText();
+    }
+
     private JsonNode get(String token, String path, String resourceDescriptionForNotFound) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(API_BASE + path))
