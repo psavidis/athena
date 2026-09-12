@@ -28,8 +28,13 @@ public class FakeGitHubTransport implements GitHubTransport {
     private final Map<Key, Boolean> commentSyncEnabled = new HashMap<>();
     private final Map<Key, List<String>> postedGeneralComments = new HashMap<>();
     private final Map<Key, List<PostedLineComment>> postedLineComments = new HashMap<>();
+    private final Map<Key, Boolean> reviewSyncEnabled = new HashMap<>();
+    private final Map<Key, List<PostedReview>> postedReviews = new HashMap<>();
 
     public record PostedLineComment(String body, String path, int line) {
+    }
+
+    public record PostedReview(String event, String body) {
     }
 
     public void acceptToken(String token, String username) {
@@ -90,6 +95,14 @@ public class FakeGitHubTransport implements GitHubTransport {
 
     public List<PostedLineComment> postedLineComments(String repositoryFullName, int number) {
         return postedLineComments.getOrDefault(new Key(repositoryFullName, number), List.of());
+    }
+
+    public void enableReviewSync(String repositoryFullName, int number) {
+        reviewSyncEnabled.put(new Key(repositoryFullName, number), true);
+    }
+
+    public List<PostedReview> postedReviews(String repositoryFullName, int number) {
+        return postedReviews.getOrDefault(new Key(repositoryFullName, number), List.of());
     }
 
     @Override
@@ -183,6 +196,17 @@ public class FakeGitHubTransport implements GitHubTransport {
         requireSyncEnabled(repositoryFullName, number);
         postedLineComments.computeIfAbsent(new Key(repositoryFullName, number), k -> new ArrayList<>())
                 .add(new PostedLineComment(body, path, line));
+    }
+
+    @Override
+    public void postReview(String token, String repositoryFullName, int number, String event, String body) {
+        requireValidToken(token);
+        if (!reviewSyncEnabled.getOrDefault(new Key(repositoryFullName, number), false)) {
+            throw new GitHubResourceNotFoundException(
+                    "Pull request " + number + " not found in " + repositoryFullName);
+        }
+        postedReviews.computeIfAbsent(new Key(repositoryFullName, number), k -> new ArrayList<>())
+                .add(new PostedReview(event, body));
     }
 
     private void requireSyncEnabled(String repositoryFullName, int number) {
