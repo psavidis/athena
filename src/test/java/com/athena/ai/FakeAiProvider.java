@@ -14,13 +14,24 @@ import java.util.Optional;
 public class FakeAiProvider implements AiProvider {
 
     private final List<AiFinding> findingsToReturn = new ArrayList<>();
+    private ReviewContext lastAnalyzedReviewContext;
 
     public void willReturnFinding(String id, String description) {
         findingsToReturn.add(new AiFinding(id, description, Optional.empty()));
     }
 
+    public void willReturnFinding(String id, String description, String relatedChangeTitle) {
+        findingsToReturn.add(new AiFinding(id, description, Optional.of(relatedChangeTitle)));
+    }
+
+    /** The ReviewContext this fake actually received on its last {@link #analyze} call. */
+    public ReviewContext lastAnalyzedReviewContext() {
+        return lastAnalyzedReviewContext;
+    }
+
     @Override
     public List<AiFinding> analyze(ReviewContext reviewContext) {
+        lastAnalyzedReviewContext = reviewContext;
         return List.copyOf(findingsToReturn);
     }
 }
