@@ -43,4 +43,15 @@ public final class AnnotationBoard {
     public List<PrivateNote> privateNotesAt(AnnotationScope scope) {
         return List.copyOf(notesByScope.getOrDefault(scope, List.of()));
     }
+
+    /**
+     * Every stored comment, across every scope. This method's return type is the
+     * structural guarantee behind the GitHub-sync-exclusion rule (epic #6 §22): it
+     * is impossible for a caller to obtain a {@link PrivateNote} through this
+     * method, so a sync path built only on {@code allComments()} cannot leak one
+     * even by accident — there is no private-note-shaped data reachable from here.
+     */
+    public List<Comment> allComments() {
+        return commentsByScope.values().stream().flatMap(List::stream).toList();
+    }
 }

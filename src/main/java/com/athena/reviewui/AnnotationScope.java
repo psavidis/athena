@@ -4,6 +4,7 @@ import com.athena.semantic.Change;
 import com.athena.semantic.ChangeIdentity;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Where a comment or private note attaches: a specific line, a symbol, a
@@ -58,6 +59,15 @@ public final class AnnotationScope {
 
     public static AnnotationScope review() {
         return new AnnotationScope(Kind.REVIEW, null, 0, null, null);
+    }
+
+    /** This scope's file+line, if it is a line scope. Empty for every other scope kind. */
+    public Optional<LineLocation> lineLocation() {
+        return kind == Kind.LINE ? Optional.of(new LineLocation(filePath, line)) : Optional.empty();
+    }
+
+    /** A line scope's file path and 1-based line number. */
+    public record LineLocation(String filePath, int line) {
     }
 
     @Override
