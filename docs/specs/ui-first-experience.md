@@ -37,16 +37,26 @@ replaced or deprecated by this spec.
 
 - A Spring Boot backend module wrapping the existing `com.athena.github`,
   `com.athena.semantic`, `com.athena.reviewui`, `com.athena.reviewcontext`,
-  and `com.athena.ai` packages behind HTTP endpoints (REST, or server-
-  rendered — an implementation decision for `plan-feature` to size, not
-  fixed here).
-- A minimal web frontend covering the core loop: connect with a GitHub
+  and `com.athena.ai` packages, exposed as a **pure JSON REST API** — no
+  server-side HTML rendering. It exists only to put the domain library on
+  the network; all presentation lives in the frontend.
+- A separate **React + TypeScript** frontend (its own project/toolchain:
+  `Vite` build, `Tailwind CSS` for styling, `Framer Motion` for animation,
+  `TanStack Query` for talking to the backend, a code/diff-highlighting
+  library such as Shiki), covering the core loop: connect with a GitHub
   token → pick repo + PR → see the Change Map / PR Understanding View →
   drill down into a Change (Symbol/File/Diff/Line) → attach comments/
   private notes → set review state → submit the review. Optionally
   trigger AI analysis and evaluate findings.
-- Following `visual-design-philosophy.md`'s principles, but at MVP
-  simplicity — not full production visual polish on the first pass.
+- The user explicitly wants this **rich**: polished visuals, strong
+  typography, and — as a later addition, not required for the first
+  ticket that renders anything — animation that visualizes relationships
+  between Changes (e.g. where a moved symbol came from). This is why a
+  full frontend framework was chosen over server-rendered HTML: the
+  ambition needs a real rendering/animation engine, not page reloads.
+- Following `visual-design-philosophy.md`'s principles throughout —
+  calm, intent-first hierarchy, progressive disclosure — expressed via
+  this stack, not scaled back to fit a simpler one.
 
 **Explicitly out of scope for this spec:**
 
@@ -79,10 +89,12 @@ replaced or deprecated by this spec.
 
 ## Open Questions
 
-None blocking — the technology choice (Spring Boot + web frontend) and
-the phasing (terminal/`gh`-style experience deferred) were confirmed
-directly with the user. REST vs. server-rendered frontend, and exact
-endpoint/page shapes, are ordinary `plan-feature` decomposition
+None blocking — all confirmed directly with the user: the technology
+choice (Spring Boot REST API + React/TypeScript/Vite/Tailwind/Framer
+Motion/TanStack Query frontend), the phasing (terminal/`gh`-style
+experience deferred), and the frontend framework decision itself (a rich,
+animatable UI needs a real frontend framework, not server-rendered HTML).
+Exact endpoint/page shapes remain ordinary `plan-feature` decomposition
 decisions, not spec ambiguities.
 
 ## Links

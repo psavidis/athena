@@ -396,6 +396,26 @@ Soft assertions might be useful when asserting on:
 	- REST Endpoints
 	- Domain Services & Objects that won't change
 
+## 6. Spring Boot Integration Tests
+
+- **No whitebox Spring Boot tests.** Never use `@SpringBootTest` (any web
+  environment mode) to start an in-process application context for an
+  integration test — that's testing the JVM's wiring of the context, not
+  the thing that actually ships.
+- Package the application into its real Docker image and test **that** —
+  black-box, over the network, the same artifact a user would run.
+- Use **Testcontainers** to build and start that image
+  (`ImageFromDockerfile`/`GenericContainer`), not Maven build-lifecycle
+  wiring (no Failsafe phase, no `package`-then-`integration-test`
+  ordering) — this is a direct application of Section F.2's own banned-
+  practice rule against configuring the build lifecycle to run tests;
+  Testcontainers is exactly the alternative that rule already points to.
+- The test class stays a plain `*Test`/`*Tests` class runnable under the
+  normal `mvn test`/Surefire pass alongside everything else — it isn't a
+  separate suite or phase.
+- Assert over the real network boundary (a real HTTP client hitting the
+  container's mapped port), never by reaching into the container's JVM.
+
 # References
 
 - **Books**
