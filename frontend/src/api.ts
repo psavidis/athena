@@ -19,6 +19,29 @@ export interface ImportedPullRequest {
   headRevision: string
 }
 
+export type ChangeCategory = 'BEHAVIORAL' | 'STRUCTURAL' | 'MECHANICAL' | 'UNKNOWN'
+
+export type ReviewState = 'UNSEEN' | 'UNDERSTANDING' | 'REVIEWED' | 'CONCERN' | 'SKIPPED'
+
+export interface ChangeMapEntry {
+  id: number
+  description: string
+  category: ChangeCategory
+  reviewState: ReviewState
+  occurrenceCount: number
+  exceptionCount: number
+}
+
+export interface ChangeMap {
+  prTitle: string
+  categoryCounts: Record<ChangeCategory, number>
+  changes: ChangeMapEntry[]
+}
+
+export class NotConnectedError extends Error {}
+
+export class NoPullRequestSelectedError extends Error {}
+
 async function asJson<T>(response: Response): Promise<T> {
   if (!response.ok) {
     throw new Error(`Request failed: ${response.status}`)
@@ -54,4 +77,15 @@ export async function selectPullRequest(
   return asJson(
     await fetch(`/api/repositories/${repositoryFullName}/pulls/${number}/select`, { method: 'POST' }),
   )
+}
+
+export async function getChangeMap(): Promise<ChangeMap> {
+  const response = await fetch('/api/review/change-map')
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  return asJson(response)
 }
