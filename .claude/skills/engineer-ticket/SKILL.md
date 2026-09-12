@@ -73,10 +73,16 @@ If a ticket isn't on the board yet, add it first:
      — see the template header for the type table and scope rules. This
      title is what becomes the squash-merge commit title, so get it right
      here.
-   - Body must include `Related-to: #<ticket-number>` — this is what
-     links the PR into the ticket's own Development/Pull-Requests section
-     automatically.
+   - Body must include `Related-to: #<ticket-number>` — this makes the PR
+     number a clickable cross-reference back to the ticket. It does
+     **not** auto-populate GitHub's Development sidebar or the board's
+     "Linked pull requests" field (only close-keywords like `Closes #N`
+     do that, and this workflow doesn't want auto-close on merge).
    - Assign the PR to yourself.
+   - Append the PR's URL to the ticket's own `### Pull Requests` section
+     in the issue body (`gh issue edit <N> --body-file <updated-body>`)
+     — this is the actual "attach the PR to the ticket" step; it does not
+     happen automatically from `Related-to:` alone.
 
 5. **Hand off for review.**
    - Move the ticket's board Status to **In review**.

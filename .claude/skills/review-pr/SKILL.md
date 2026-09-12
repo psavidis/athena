@@ -49,27 +49,42 @@ gh project item-edit --id <ITEM_ID> --project-id PVT_kwHOBB9O8s4BjQ9M \
      code look fine."
    - Post comments on specific lines where you have a concrete point —
      a bug, a missed edge case, a simplification, a convention violation.
-     Use `gh pr review --comment` / inline review comments via the API,
-     not a single flat comment for line-specific feedback.
+     Use the REST API directly for line comments (each call auto-submits
+     as its own `COMMENTED` review — that's fine, it doesn't block
+     anything):
+     `gh api repos/<owner>/<repo>/pulls/<N>/comments -f body="..." \
+       -f commit_id="$(gh pr view <N> --json headRefOid --jq .headRefOid)" \
+       -f path="<file>" -F line=<N> -f side="RIGHT"`
+     Don't use a single flat top-level comment for line-specific feedback.
    - Do not post a line comment for purely stylistic nitpicks that don't
      affect correctness or clarity, unless they violate an established
      convention.
 
 3. **Summarize for the human.**
    - However many line comments you posted, add one top-level review
-     summary comment that a human can read in a few seconds: what you
-     checked, what you found (grouped, not restated line by line), and
-     your overall verdict.
+     summary comment (`gh pr comment`) that a human can read in a few
+     seconds: what you checked, what you found (grouped, not restated
+     line by line), and a final verdict line — `**Verdict: APPROVED**` or
+     `**Verdict: REQUEST CHANGES**` — since this stands in for the native
+     GitHub review state per step 4.
    - If there are zero findings, the summary can be short — say so
      plainly rather than padding it.
 
 4. **Decide: request changes, or approve.**
-   - If there are correctness-affecting findings, submit the review as
-     "Request changes" (`gh pr review --request-changes`) and stop here.
-     Do not merge. Wait for the engineer to push updates, then re-review
-     from step 2.
-   - If there's nothing blocking, submit as "Approve"
-     (`gh pr review --approve`).
+   - GitHub refuses to let an account approve/request-changes on its own
+     PR (`gh pr review --approve` errors with "Can not approve your own
+     pull request"). Since engineer and reviewer both act as the same
+     authenticated account in this setup, use `gh pr comment` instead of
+     `gh pr review` and state the verdict in text — fold this into the
+     summary comment in step 3 rather than posting it separately (see the
+     verdict line in that comment's template). If a genuinely separate
+     reviewer account/bot is ever wired up, switch back to
+     `gh pr review --approve` / `--request-changes` for a real GitHub
+     review state.
+   - If there are correctness-affecting findings, state "Request changes"
+     in the summary comment and stop here. Do not merge. Wait for the
+     engineer to push updates, then re-review from step 2.
+   - If there's nothing blocking, state "Approved" in the summary comment.
 
 5. **Merge — autonomy-dependent.**
    - **Default / fully autonomous mode:** proceed to merge yourself (see
