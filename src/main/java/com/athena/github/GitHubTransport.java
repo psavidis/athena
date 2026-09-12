@@ -43,4 +43,33 @@ public interface GitHubTransport {
      *         Request doesn't exist or isn't accessible
      */
     PullRequestSummary fetchPullRequest(String token, String repositoryFullName, int number);
+
+    /**
+     * Fetches a Pull Request's core metadata (title, author, base/head
+     * revisions).
+     *
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     * @throws GitHubResourceNotFoundException if the repository or Pull
+     *         Request doesn't exist or isn't accessible
+     */
+    PullRequestDetail fetchPullRequestDetail(String token, String repositoryFullName, int number);
+
+    /**
+     * Fetches a Pull Request's commits.
+     *
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     * @throws GitHubResourceNotFoundException if the repository or Pull
+     *         Request doesn't exist or isn't accessible
+     */
+    List<Commit> fetchCommits(String token, String repositoryFullName, int number);
+
+    /**
+     * Fetches a Pull Request's changed files, including each file's status
+     * and textual diff (when GitHub provides one).
+     *
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     * @throws GitHubResourceNotFoundException if the repository or Pull
+     *         Request doesn't exist or isn't accessible
+     */
+    List<ChangedFile> fetchChangedFiles(String token, String repositoryFullName, int number);
 }

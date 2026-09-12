@@ -10,6 +10,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Production {@link GitHubTransport} backed by the real GitHub REST API
@@ -57,6 +58,41 @@ public class HttpGitHubTransport implements GitHubTransport {
     public PullRequestSummary fetchPullRequest(String token, String repositoryFullName, int number) {
         JsonNode body = get(token, "/repos/" + repositoryFullName + "/pulls/" + number, repositoryFullName);
         return new PullRequestSummary(body.path("number").asInt(), body.path("title").asText());
+    }
+
+    @Override
+    public PullRequestDetail fetchPullRequestDetail(String token, String repositoryFullName, int number) {
+        JsonNode body = get(token, "/repos/" + repositoryFullName + "/pulls/" + number, repositoryFullName);
+        return new PullRequestDetail(
+                body.path("number").asInt(),
+                body.path("title").asText(),
+                body.path("user").path("login").asText(),
+                body.path("base").path("sha").asText(),
+                body.path("head").path("sha").asText());
+    }
+
+    @Override
+    public List<Commit> fetchCommits(String token, String repositoryFullName, int number) {
+        JsonNode body = get(token, "/repos/" + repositoryFullName + "/pulls/" + number + "/commits", repositoryFullName);
+        List<Commit> commits = new ArrayList<>();
+        for (JsonNode commit : body) {
+            commits.add(new Commit(
+                    commit.path("sha").asText(),
+                    commit.path("commit").path("message").asText()));
+        }
+        return commits;
+    }
+
+    @Override
+    public List<ChangedFile> fetchChangedFiles(String token, String repositoryFullName, int number) {
+        JsonNode body = get(token, "/repos/" + repositoryFullName + "/pulls/" + number + "/files", repositoryFullName);
+        List<ChangedFile> files = new ArrayList<>();
+        for (JsonNode file : body) {
+            JsonNode patchNode = file.path("patch");
+            Optional<String> diff = patchNode.isMissingNode() ? Optional.empty() : Optional.of(patchNode.asText());
+            files.add(new ChangedFile(file.path("filename").asText(), file.path("status").asText(), diff));
+        }
+        return files;
     }
 
     private JsonNode get(String token, String path, String resourceDescriptionForNotFound) {
