@@ -110,7 +110,7 @@ public class ClaudeAiProvider implements AiProvider {
     }
 
     private List<AiFinding> parseFindings(JsonNode responseBody) {
-        String text = responseBody.path("content").path(0).path("text").asText("[]");
+        String text = stripCodeFence(responseBody.path("content").path(0).path("text").asText("[]"));
         List<AiFinding> findings = new ArrayList<>();
         JsonNode findingsArray;
         try {
@@ -123,5 +123,21 @@ public class ClaudeAiProvider implements AiProvider {
             findings.add(new AiFinding(id, findingNode.path("description").asText()));
         }
         return findings;
+    }
+
+    /**
+     * Claude often wraps a requested JSON answer in a markdown code fence (```json ... ```)
+     * despite being asked for "only" the JSON — strip one if present before parsing, rather than
+     * failing the whole analysis over formatting Claude didn't strictly follow.
+     */
+    private static String stripCodeFence(String text) {
+        String trimmed = text.strip();
+        if (!trimmed.startsWith("```")) {
+            return trimmed;
+        }
+        int firstNewline = trimmed.indexOf('\n');
+        String afterOpeningFence = firstNewline >= 0 ? trimmed.substring(firstNewline + 1) : "";
+        int closingFence = afterOpeningFence.lastIndexOf("```");
+        return (closingFence >= 0 ? afterOpeningFence.substring(0, closingFence) : afterOpeningFence).strip();
     }
 }
