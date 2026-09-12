@@ -13,6 +13,14 @@ import java.util.Map;
  * (ticket #65). Has no knowledge of GitHub or authentication: it works
  * against any git remote a caller's {@code environment} can authenticate
  * against, including a plain local repository path (as tests use).
+ *
+ * <p>Fetches the exact revision directly (shallow, depth 1) rather than
+ * cloning the whole repository and checking out a revision from within
+ * it. This matters for a real PR whose source branch has since been
+ * deleted (the common case once a PR is squash-merged): a plain clone
+ * only fetches reachable branches, so the PR's original head commit —
+ * now unreachable from any branch — would be missing, even though GitHub
+ * still serves that exact commit object when asked for it directly.
  */
 final class GitRevisionCheckout {
 
@@ -20,8 +28,8 @@ final class GitRevisionCheckout {
     }
 
     /**
-     * Clones {@code repositoryUrl} and checks out {@code revision} into a fresh temp directory
-     * under {@code parentDir}.
+     * Fetches {@code revision} from {@code repositoryUrl} and checks it out into a fresh temp
+     * directory under {@code parentDir}.
      *
      * @param environment extra environment variables for the `git` subprocess (e.g. a
      *                     {@code GIT_ASKPASS} credential helper); empty when none are needed
@@ -34,8 +42,9 @@ final class GitRevisionCheckout {
             throw new GitCheckoutException("Could not create a temp directory under " + parentDir, e);
         }
         try {
-            run(parentDir, environment, "git", "clone", "--quiet", repositoryUrl, dir.toString());
-            run(dir, environment, "git", "checkout", "--quiet", revision);
+            run(dir, environment, "git", "init", "--quiet");
+            run(dir, environment, "git", "fetch", "--quiet", "--depth", "1", repositoryUrl, revision);
+            run(dir, environment, "git", "checkout", "--quiet", "FETCH_HEAD");
         } catch (RuntimeException e) {
             TempDirectories.deleteRecursively(dir);
             throw e;

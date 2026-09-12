@@ -21,6 +21,11 @@ Feature: Runnable CLI: review a real PR end-to-end
     When the reviewer runs the PR review summary
     Then no checkout directories are left behind
 
+  Scenario: A revision only reachable as a dangling commit (its branch deleted after merge) still checks out
+    Given a PR whose head revision is only reachable as a dangling commit because its branch was deleted
+    When the reviewer runs the PR review summary
+    Then the summary lists the rename Change under category "STRUCTURAL"
+
   Scenario: A failed checkout leaves no directories behind either
     Given a PR whose head revision does not exist in its repository
     When the reviewer runs the PR review summary and it fails
