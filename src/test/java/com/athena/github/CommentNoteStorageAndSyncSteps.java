@@ -1,6 +1,7 @@
 package com.athena.github;
 
 import com.athena.reviewcontext.ReviewAnnotationSync;
+import com.athena.reviewcontext.ReviewAnnotationSyncResult;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.reviewui.AnnotationScope;
 import io.cucumber.java.en.Given;
@@ -16,6 +17,7 @@ public class CommentNoteStorageAndSyncSteps {
 
     private String repositoryFullName;
     private int pullRequestNumber;
+    private ReviewAnnotationSyncResult syncResult;
 
     public CommentNoteStorageAndSyncSteps(GitHubTestContext context) {
         this.context = context;
@@ -48,7 +50,7 @@ public class CommentNoteStorageAndSyncSteps {
     @When("the stored comments are synced to the pull request")
     public void the_stored_comments_are_synced_to_the_pull_request() {
         CommentSyncer syncer = new CommentSyncer(context.token, context.transport);
-        new ReviewAnnotationSync(syncer).syncComments(board, repositoryFullName, pullRequestNumber);
+        syncResult = new ReviewAnnotationSync(syncer).syncComments(board, repositoryFullName, pullRequestNumber);
     }
 
     @Then("the pull request has a synced general comment {string}")
@@ -75,5 +77,11 @@ public class CommentNoteStorageAndSyncSteps {
     @Then("the pull request has no synced general comments")
     public void the_pull_request_has_no_synced_general_comments() {
         assertThat(context.transport.postedGeneralComments(repositoryFullName, pullRequestNumber)).isEmpty();
+    }
+
+    @Then("the sync result reports every comment synced successfully")
+    public void the_sync_result_reports_every_comment_synced_successfully() {
+        assertThat(syncResult.isFullySuccessful()).isTrue();
+        assertThat(syncResult.failed()).isEmpty();
     }
 }

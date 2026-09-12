@@ -10,6 +10,7 @@ Feature: Comment and private-note storage with GitHub-sync exclusion
     And a comment "Overall this looks good" at review scope
     When the stored comments are synced to the pull request
     Then the pull request has a synced general comment "Overall this looks good"
+    And the sync result reports every comment synced successfully
 
   Scenario: A comment at line scope syncs to GitHub as a line comment
     Given annotation sync targets repository "octocat/hello-world" pull request 42, which accepts synced comments
