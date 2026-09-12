@@ -1,6 +1,7 @@
 package com.athena.reviewui;
 
 import com.athena.semantic.Change;
+import com.athena.semantic.ChangeCategory;
 import com.athena.semantic.ChangeGrouper;
 import com.athena.semantic.DetectedTransformation;
 import com.athena.semantic.ReviewCoverageReport;
@@ -18,6 +19,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -84,9 +87,7 @@ public class ReviewStateAndCompletionSteps {
 
     @When("the reviewer requests the review coverage summary")
     public void the_reviewer_requests_the_review_coverage_summary() {
-        List<Change> unreviewed = ReviewCoverageReport.unreviewedChanges(changes, store);
-        int reviewedCount = changes.size() - unreviewed.size();
-        coverageSummary = reviewedCount + " of " + changes.size() + " meaningful Changes reviewed";
+        coverageSummary = ReviewCoverageReport.summary(changes, store);
     }
 
     @When("the reviewer attempts to finish the review without confirming")
@@ -112,6 +113,18 @@ public class ReviewStateAndCompletionSteps {
     @Then("the summary reports exactly {int} Change reviewed out of the total detected")
     public void the_summary_reports_exactly_n_reviewed_out_of_total(int reviewedCount) {
         assertThat(coverageSummary).isEqualTo(reviewedCount + " of " + changes.size() + " meaningful Changes reviewed");
+    }
+
+    @Then("the review coverage is {int} percent")
+    public void the_review_coverage_is_n_percent(int expectedPercent) {
+        ReviewCoverageReport report = ReviewCoverageReport.of(changes, store);
+        for (ChangeCategory category : presentCategories()) {
+            assertThat(report.percentReviewed(category)).isEqualTo(expectedPercent);
+        }
+    }
+
+    private Set<ChangeCategory> presentCategories() {
+        return changes.stream().map(change -> ChangeCategory.of(change.kind())).collect(Collectors.toSet());
     }
 
     @Then("the review is not marked complete")

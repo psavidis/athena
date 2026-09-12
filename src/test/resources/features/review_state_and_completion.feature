@@ -19,6 +19,7 @@ Feature: Per-Change review state display and explicit review completion
   Scenario: Completing a review requires explicit confirmation even when every Change is reviewed
     Given a reviewable PR with a rename Change
     And the reviewer has reviewed every Change
+    Then the review coverage is 100 percent
     When the reviewer attempts to finish the review without confirming
     Then the review is not marked complete
 
@@ -30,5 +31,6 @@ Feature: Per-Change review state display and explicit review completion
 
   Scenario: Reaching full coverage does not itself complete the review
     Given a reviewable PR with a rename Change
-    When the reviewer transitions that Change to "Reviewed"
-    Then the review is not marked complete
+    And the reviewer has reviewed every Change
+    Then the review coverage is 100 percent
+    And the review is not marked complete
