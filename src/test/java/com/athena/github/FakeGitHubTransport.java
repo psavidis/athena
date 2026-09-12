@@ -25,6 +25,12 @@ public class FakeGitHubTransport implements GitHubTransport {
     private final Map<Key, List<ReviewComment>> pullRequestReviewComments = new HashMap<>();
     private final Map<Key, List<Review>> pullRequestReviews = new HashMap<>();
     private final Map<String, String> repositoryPermissions = new HashMap<>();
+    private final Map<Key, Boolean> commentSyncEnabled = new HashMap<>();
+    private final Map<Key, List<String>> postedGeneralComments = new HashMap<>();
+    private final Map<Key, List<PostedLineComment>> postedLineComments = new HashMap<>();
+
+    public record PostedLineComment(String body, String path, int line) {
+    }
 
     public void acceptToken(String token, String username) {
         tokenToUsername.put(token, username);
@@ -72,6 +78,18 @@ public class FakeGitHubTransport implements GitHubTransport {
 
     public void setPermission(String repositoryFullName, String level) {
         repositoryPermissions.put(repositoryFullName, level);
+    }
+
+    public void enableCommentSync(String repositoryFullName, int number) {
+        commentSyncEnabled.put(new Key(repositoryFullName, number), true);
+    }
+
+    public List<String> postedGeneralComments(String repositoryFullName, int number) {
+        return postedGeneralComments.getOrDefault(new Key(repositoryFullName, number), List.of());
+    }
+
+    public List<PostedLineComment> postedLineComments(String repositoryFullName, int number) {
+        return postedLineComments.getOrDefault(new Key(repositoryFullName, number), List.of());
     }
 
     @Override
@@ -148,6 +166,30 @@ public class FakeGitHubTransport implements GitHubTransport {
             throw new GitHubResourceNotFoundException("No permission recorded for " + repositoryFullName);
         }
         return level;
+    }
+
+    @Override
+    public void postGeneralComment(String token, String repositoryFullName, int number, String body) {
+        requireValidToken(token);
+        requireSyncEnabled(repositoryFullName, number);
+        postedGeneralComments.computeIfAbsent(new Key(repositoryFullName, number), k -> new ArrayList<>())
+                .add(body);
+    }
+
+    @Override
+    public void postLineComment(String token, String repositoryFullName, int number, String body, String path,
+                                 int line) {
+        requireValidToken(token);
+        requireSyncEnabled(repositoryFullName, number);
+        postedLineComments.computeIfAbsent(new Key(repositoryFullName, number), k -> new ArrayList<>())
+                .add(new PostedLineComment(body, path, line));
+    }
+
+    private void requireSyncEnabled(String repositoryFullName, int number) {
+        if (!commentSyncEnabled.getOrDefault(new Key(repositoryFullName, number), false)) {
+            throw new GitHubResourceNotFoundException(
+                    "Pull request " + number + " not found in " + repositoryFullName);
+        }
     }
 
     private void requireValidToken(String token) {
