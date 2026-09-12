@@ -14,7 +14,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -48,7 +47,7 @@ public class ChangeMapViewSteps {
         // mechanical replacement (the identifier Widget -> Gadget, referenced
         // only in field declarations so no method-level detector fires on
         // these files) applied consistently across the other files.
-        writeRenameFixture();
+        JavaFixtureSupport.writeRenameFixture(baseRoot, headRoot);
 
         write(baseRoot, "Holder", "public class Holder {\n"
                 + "    private Widget widget;\n"
@@ -62,12 +61,12 @@ public class ChangeMapViewSteps {
 
     @Given("a PR with a newly-produced rename Change")
     public void a_pr_with_a_newly_produced_rename_change() {
-        writeRenameFixture();
+        JavaFixtureSupport.writeRenameFixture(baseRoot, headRoot);
     }
 
     @Given("a PR with a rename Change")
     public void a_pr_with_a_rename_change() {
-        writeRenameFixture();
+        JavaFixtureSupport.writeRenameFixture(baseRoot, headRoot);
     }
 
     @Given("the reviewer has marked that Change as {string}")
@@ -125,19 +124,6 @@ public class ChangeMapViewSteps {
                 .findFirst()
                 .orElseThrow();
         assertThat(renameEntry.reviewState()).isEqualTo(ReviewState.valueOf(expectedState.toUpperCase()));
-    }
-
-    private void writeRenameFixture() {
-        write(baseRoot, "Greeter", "public class Greeter {\n"
-                + "    public String greet() {\n"
-                + "        return \"hi\";\n"
-                + "    }\n"
-                + "}\n");
-        write(headRoot, "Greeter", "public class Greeter {\n"
-                + "    public String salute() {\n"
-                + "        return \"hi\";\n"
-                + "    }\n"
-                + "}\n");
     }
 
     private Change detectRenameChange() {
