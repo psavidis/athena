@@ -1,5 +1,6 @@
 package com.athena.web;
 
+import com.athena.ai.AiFindingsBoard;
 import com.athena.git.TempDirectories;
 import com.athena.github.ImportedPullRequest;
 import com.athena.reviewcontext.ReviewSubmission;
@@ -24,6 +25,7 @@ public class WebSession {
 
     private String gitHubToken;
     private SelectedPullRequest selectedPullRequest;
+    private AiFindingsBoard aiFindingsBoard;
 
     public void connect(String token) {
         this.gitHubToken = token;
@@ -39,10 +41,20 @@ public class WebSession {
             TempDirectories.deleteRecursively(this.selectedPullRequest.workDir());
         }
         this.selectedPullRequest = newSelection;
+        this.aiFindingsBoard = null;
     }
 
     public Optional<SelectedPullRequest> selectedPullRequest() {
         return Optional.ofNullable(selectedPullRequest);
+    }
+
+    /** Set once AI analysis has been triggered for the current selection (ticket #77). */
+    public void setAiFindingsBoard(AiFindingsBoard board) {
+        this.aiFindingsBoard = board;
+    }
+
+    public Optional<AiFindingsBoard> aiFindingsBoard() {
+        return Optional.ofNullable(aiFindingsBoard);
     }
 
     public record SelectedPullRequest(ImportedPullRequest pullRequest, String repositoryFullName, Path workDir,

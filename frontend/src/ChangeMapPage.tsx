@@ -29,11 +29,13 @@ export default function ChangeMapPage({
   onNoPullRequestSelected,
   onSelectChange,
   onOpenPreSubmissionSummary,
+  onOpenAiAnalysis,
 }: {
   onNotConnected: () => void
   onNoPullRequestSelected: () => void
   onSelectChange: (changeKey: string) => void
   onOpenPreSubmissionSummary: () => void
+  onOpenAiAnalysis: () => void
 }) {
   const queryClient = useQueryClient()
   const { data, isLoading, isError, error } = useQuery({
@@ -67,12 +69,20 @@ export default function ChangeMapPage({
     <div className="mx-auto max-w-2xl px-4 py-12">
       <div className="mb-6 flex items-start justify-between">
         <PrUnderstandingSummary prTitle={data.prTitle} categoryCounts={data.categoryCounts} />
-        <button
-          className="rounded bg-neutral-900 px-3 py-1.5 text-sm text-white"
-          onClick={onOpenPreSubmissionSummary}
-        >
-          Review summary
-        </button>
+        <div className="flex gap-2">
+          <button
+            className="rounded border border-neutral-300 px-3 py-1.5 text-sm text-neutral-700 hover:bg-neutral-100"
+            onClick={onOpenAiAnalysis}
+          >
+            AI analysis
+          </button>
+          <button
+            className="rounded bg-neutral-900 px-3 py-1.5 text-sm text-white"
+            onClick={onOpenPreSubmissionSummary}
+          >
+            Review summary
+          </button>
+        </div>
       </div>
       <ChangeMapList
         changes={data.changes}

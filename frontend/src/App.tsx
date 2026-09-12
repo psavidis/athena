@@ -5,6 +5,7 @@ import type { ImportedPullRequest } from './api'
 import ChangeMapPage from './ChangeMapPage'
 import ChangeDetailPage from './ChangeDetailPage'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
+import AiAnalysisPage from './AiAnalysisPage'
 
 export default function App() {
   const [connected, setConnected] = useState(false)
@@ -12,16 +13,28 @@ export default function App() {
   const [selectedPr, setSelectedPr] = useState<ImportedPullRequest | null>(null)
   const [selectedChangeKey, setSelectedChangeKey] = useState<string | null>(null)
   const [showingSummary, setShowingSummary] = useState(false)
+  const [showingAiAnalysis, setShowingAiAnalysis] = useState(false)
 
   if (!connected) {
     return <ConnectStep onConnected={() => setConnected(true)} />
   }
   if (selectedPr) {
+    if (selectedChangeKey) {
+      return <ChangeDetailPage changeKey={selectedChangeKey} onBack={() => setSelectedChangeKey(null)} />
+    }
     if (showingSummary) {
       return <PreSubmissionSummaryPage onBack={() => setShowingSummary(false)} />
     }
-    if (selectedChangeKey) {
-      return <ChangeDetailPage changeKey={selectedChangeKey} onBack={() => setSelectedChangeKey(null)} />
+    if (showingAiAnalysis) {
+      return (
+        <AiAnalysisPage
+          onBack={() => setShowingAiAnalysis(false)}
+          onSelectChange={(changeKey) => {
+            setShowingAiAnalysis(false)
+            setSelectedChangeKey(changeKey)
+          }}
+        />
+      )
     }
     return (
       <ChangeMapPage
@@ -33,6 +46,7 @@ export default function App() {
         onNoPullRequestSelected={() => setSelectedPr(null)}
         onSelectChange={setSelectedChangeKey}
         onOpenPreSubmissionSummary={() => setShowingSummary(true)}
+        onOpenAiAnalysis={() => setShowingAiAnalysis(true)}
       />
     )
   }

@@ -15,6 +15,7 @@ function renderChangeMapPage() {
   const onNoPullRequestSelected = vi.fn()
   const onSelectChange = vi.fn()
   const onOpenPreSubmissionSummary = vi.fn()
+  const onOpenAiAnalysis = vi.fn()
   render(
     <QueryClientProvider client={queryClient}>
       <ChangeMapPage
@@ -22,10 +23,11 @@ function renderChangeMapPage() {
         onNoPullRequestSelected={onNoPullRequestSelected}
         onSelectChange={onSelectChange}
         onOpenPreSubmissionSummary={onOpenPreSubmissionSummary}
+        onOpenAiAnalysis={onOpenAiAnalysis}
       />
     </QueryClientProvider>,
   )
-  return { onNotConnected, onNoPullRequestSelected, onSelectChange, onOpenPreSubmissionSummary }
+  return { onNotConnected, onNoPullRequestSelected, onSelectChange, onOpenPreSubmissionSummary, onOpenAiAnalysis }
 }
 
 function mockChangeMap(body: ChangeMap) {
@@ -192,6 +194,21 @@ describe('Change Map & PR Understanding View rendering', () => {
     await user.click(await screen.findByRole('button', { name: 'Review summary' }))
 
     expect(onOpenPreSubmissionSummary).toHaveBeenCalled()
+  })
+
+  it('clicking "AI analysis" calls onOpenAiAnalysis', async () => {
+    mockChangeMap({
+      prTitle: 'Move authentication to Account',
+      categoryCounts: { BEHAVIORAL: 0, STRUCTURAL: 0, MECHANICAL: 0, UNKNOWN: 0 },
+      changes: [],
+    })
+
+    const { onOpenAiAnalysis } = renderChangeMapPage()
+    const user = userEvent.setup()
+
+    await user.click(await screen.findByRole('button', { name: 'AI analysis' }))
+
+    expect(onOpenAiAnalysis).toHaveBeenCalled()
   })
 
   it('routes back to the connect step when the reviewer is not connected to GitHub', async () => {
