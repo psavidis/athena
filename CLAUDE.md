@@ -50,6 +50,17 @@ source, expensive/unavailable I/O). An internal class in this codebase is
 never mocked just for isolation — see `qa-ticket` for the full rule and
 the one-line-comment requirement at every mock site.
 
+## Code style
+
+`CODE_STYLE.md` is the sole style guide for code in this repo — design
+principles (immutability, nullability, exception strategy, nesting depth,
+object-creation patterns, DTO categorization) and test design (much of it
+the same Detroit-school philosophy above, in more detail). `engineer-ticket`
+and `qa-ticket` must follow it. There is no second style guide and no
+auto-formatter wired into the build — for pure mechanics it doesn't cover
+(indentation, brace placement, import ordering), use ordinary Java
+convention and judgment rather than a rigid tool.
+
 ## Lifecycle at a glance
 
 ```

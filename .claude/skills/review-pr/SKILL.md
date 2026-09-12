@@ -58,7 +58,10 @@ gh project item-edit --id <ITEM_ID> --project-id PVT_kwHOBB9O8s4BjQ9M \
      Don't use a single flat top-level comment for line-specific feedback.
    - Do not post a line comment for purely stylistic nitpicks that don't
      affect correctness or clarity, unless they violate an established
-     convention.
+     convention — a `CODE_STYLE.md` violation (e.g. a mutable field where
+     immutability applies, a null return instead of `Optional`/empty
+     collection, unjustified whitebox mocking) does count as a real
+     finding, not a nitpick.
 
 3. **Summarize for the human.**
    - However many line comments you posted, add one top-level review

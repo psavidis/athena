@@ -42,6 +42,10 @@ spec-to-epic → plan-feature → spec-writer → qa-ticket → engineer-ticket 
   clock, not a mocked collaborator).
 - Every whitebox mock/stub used must have a one-line comment at the mock
   site naming which boundary justifies it. No comment, no mock.
+- `CODE_STYLE.md` (repo root) Section F (Test Design) governs test
+  structure in detail — AssertJ over JUnit assertions, domain assertion
+  objects, fluent builders/factories for setup, no loops in assertions,
+  no build-lifecycle test configuration. Follow it.
 
 ## Role boundary
 

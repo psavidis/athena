@@ -29,7 +29,13 @@ exists for it.
 
 - Work only on the current ticket. Do not expand scope, refactor unrelated
   code, or bundle a second ticket into the same PR.
-- Follow existing architecture and conventions.
+- Follow existing architecture and conventions, and follow
+  `CODE_STYLE.md` (repo root) — the sole style guide for this codebase.
+  It covers design (immutability, nullability, exception strategy,
+  nesting depth, object-creation patterns, DTO categorization) and test
+  design. There is no second style guide and no auto-formatter in the
+  build — for pure mechanics it doesn't address, use ordinary Java
+  convention and judgment, not a rigid tool.
 - Never make an implementation choice to satisfy a whitebox
   mock/expectation instead of real behavior — if a test's mocking looks
   unjustified per `qa-ticket`'s Detroit-school rules, fix the test's
