@@ -7,7 +7,7 @@ Feature: Sync review decision to GitHub
     And repository "octocat/Hello-World" pull request 42 accepts synced reviews
     When Athena syncs an approval "Looks great" to pull request 42 in repository "octocat/Hello-World"
     Then the review sync succeeds
-    And GitHub shows an "APPROVE" review "Looks great" on pull request 42
+    And GitHub shows a "APPROVE" review "Looks great" on pull request 42
 
   Scenario: Syncing a request for changes
     Given a valid GitHub Personal Access Token
