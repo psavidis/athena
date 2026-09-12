@@ -1,23 +1,29 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { http, HttpResponse } from 'msw'
 import { describe, expect, it, vi } from 'vitest'
 import ChangeMapPage from './ChangeMapPage'
 import type { ChangeMap } from './api'
 import { server } from './test/server'
 
-// Traces src/test/resources/features/change_map_frontend_rendering.feature
+// Traces frontend/src/test/resources/features/change_map_frontend_rendering.feature
 
 function renderChangeMapPage() {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
   const onNotConnected = vi.fn()
   const onNoPullRequestSelected = vi.fn()
+  const onSelectChange = vi.fn()
   render(
     <QueryClientProvider client={queryClient}>
-      <ChangeMapPage onNotConnected={onNotConnected} onNoPullRequestSelected={onNoPullRequestSelected} />
+      <ChangeMapPage
+        onNotConnected={onNotConnected}
+        onNoPullRequestSelected={onNoPullRequestSelected}
+        onSelectChange={onSelectChange}
+      />
     </QueryClientProvider>,
   )
-  return { onNotConnected, onNoPullRequestSelected }
+  return { onNotConnected, onNoPullRequestSelected, onSelectChange }
 }
 
 function mockChangeMap(body: ChangeMap) {
@@ -56,6 +62,7 @@ describe('Change Map & PR Understanding View rendering', () => {
       changes: [
         {
           id: 0,
+          changeKey: 'test-change-key',
           description: 'Rename greet to salute',
           category: 'BEHAVIORAL',
           reviewState: 'UNSEEN',
@@ -78,6 +85,31 @@ describe('Change Map & PR Understanding View rendering', () => {
 
     // And that Change is shown with review state Unseen
     expect(changeItem).toHaveTextContent('Unseen')
+  })
+
+  it('clicking a Change calls onSelectChange with its changeKey', async () => {
+    mockChangeMap({
+      prTitle: 'Move authentication to Account',
+      categoryCounts: { BEHAVIORAL: 1, STRUCTURAL: 0, MECHANICAL: 0, UNKNOWN: 0 },
+      changes: [
+        {
+          id: 0,
+          changeKey: 'test-change-key',
+          description: 'Rename greet to salute',
+          category: 'BEHAVIORAL',
+          reviewState: 'UNSEEN',
+          occurrenceCount: 1,
+          exceptionCount: 0,
+        },
+      ],
+    })
+
+    const { onSelectChange } = renderChangeMapPage()
+    const user = userEvent.setup()
+
+    await user.click(await screen.findByText('Rename greet to salute'))
+
+    expect(onSelectChange).toHaveBeenCalledWith('test-change-key')
   })
 
   it('renders an all-zero summary and no Changes for an empty Change Map', async () => {
