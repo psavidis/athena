@@ -75,6 +75,22 @@ export interface Submission {
   failedCommentCount: number
 }
 
+export interface AiContextBoundary {
+  includedChangeTitles: string[]
+  excludedUnreviewedChangeTitles: string[]
+  excludedGeneratedChangeTitles: string[]
+  privateNotesExcluded: boolean
+}
+
+export type AiFindingDisposition = 'PENDING' | 'ACCEPTED' | 'DISMISSED'
+
+export interface AiFinding {
+  id: string
+  description: string
+  disposition: AiFindingDisposition
+  jumpTargetChangeKey: string | null
+}
+
 export class NotConnectedError extends Error {}
 
 export class NoPullRequestSelectedError extends Error {}
@@ -84,6 +100,10 @@ export class ChangeNotFoundError extends Error {}
 export class BlankAnnotationError extends Error {}
 
 export class ReviewAlreadySubmittedError extends Error {}
+
+export class FindingNotFoundError extends Error {}
+
+export class NoAnalysisTriggeredError extends Error {}
 
 async function asJson<T>(response: Response): Promise<T> {
   if (!response.ok) {
@@ -223,4 +243,53 @@ export async function submitReview(): Promise<Submission> {
     throw new ReviewAlreadySubmittedError()
   }
   return asJson(response)
+}
+
+export async function getAiContextBoundary(): Promise<AiContextBoundary> {
+  const response = await fetch('/api/review/ai-context-boundary')
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  return asJson(response)
+}
+
+export async function triggerAiAnalysis(): Promise<AiFinding[]> {
+  const response = await fetch('/api/review/ai-analysis', { method: 'POST' })
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  return asJson(response)
+}
+
+async function evaluateFinding(findingId: string, action: 'accept' | 'dismiss'): Promise<AiFinding[]> {
+  const response = await fetch(`/api/review/ai-findings/${encodeURIComponent(findingId)}/${action}`, {
+    method: 'POST',
+  })
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 404) {
+    throw new FindingNotFoundError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  if (response.status === 422) {
+    throw new NoAnalysisTriggeredError()
+  }
+  return asJson(response)
+}
+
+export async function acceptFinding(findingId: string): Promise<AiFinding[]> {
+  return evaluateFinding(findingId, 'accept')
+}
+
+export async function dismissFinding(findingId: string): Promise<AiFinding[]> {
+  return evaluateFinding(findingId, 'dismiss')
 }

@@ -41,6 +41,7 @@ public class ChangeMapControllerSteps {
     private Path workDir;
     private ChangeMapResponse response;
     private String renameChangeKey;
+    private String renameChangeTitle;
     private ChangeDetailResponse detailResponse;
     private AnnotationsResponse annotationsResponse;
     private ResponseStatusException failure;
@@ -100,11 +101,12 @@ public class ChangeMapControllerSteps {
     @Given("the reviewer has requested the Change Map")
     public void the_reviewer_has_requested_the_change_map() {
         ChangeMapResponse changeMap = changeMapController.changeMap();
-        renameChangeKey = changeMap.changes().stream()
+        ChangeEntryResponse renameEntry = changeMap.changes().stream()
                 .filter(entry -> entry.description().contains("Rename"))
                 .findFirst()
-                .orElseThrow()
-                .changeKey();
+                .orElseThrow();
+        renameChangeKey = renameEntry.changeKey();
+        renameChangeTitle = renameEntry.description();
     }
 
     @When("the reviewer requests the Change Map")
@@ -190,6 +192,18 @@ public class ChangeMapControllerSteps {
         assertThat(failure.getStatusCode().value()).isEqualTo(404);
     }
 
+    @Then("the request is rejected because the finding was not found")
+    public void the_request_is_rejected_because_the_finding_was_not_found() {
+        assertThat(failure).isNotNull();
+        assertThat(failure.getStatusCode().value()).isEqualTo(404);
+    }
+
+    @Then("the request is rejected because no analysis has been triggered yet")
+    public void the_request_is_rejected_because_no_analysis_has_been_triggered_yet() {
+        assertThat(failure).isNotNull();
+        assertThat(failure.getStatusCode().value()).isEqualTo(422);
+    }
+
     @When("the reviewer posts the comment {string} scoped to the rename Change")
     public void the_reviewer_posts_a_comment_scoped_to_the_rename_change(String text) {
         annotationsResponse = detailController.addComment(new AddAnnotationRequest(changeScope(renameChangeKey), text));
@@ -273,6 +287,10 @@ public class ChangeMapControllerSteps {
 
     String renameChangeKey() {
         return renameChangeKey;
+    }
+
+    String renameChangeTitle() {
+        return renameChangeTitle;
     }
 
     /** Lets another step class record a failure so the shared "request is rejected..." Then steps above see it. */
