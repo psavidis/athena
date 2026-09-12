@@ -12,7 +12,7 @@ public enum ChangeCategory {
     BEHAVIORAL,
     UNKNOWN;
 
-    static ChangeCategory of(TransformationKind kind) {
+    public static ChangeCategory of(TransformationKind kind) {
         return switch (kind) {
             case MECHANICAL_REPLACEMENT, FORMATTING_ONLY -> MECHANICAL;
             case RENAME_SYMBOL, MOVE_SYMBOL, ADD_SYMBOL, REMOVE_SYMBOL,
