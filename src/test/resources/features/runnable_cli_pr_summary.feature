@@ -20,3 +20,9 @@ Feature: Runnable CLI: review a real PR end-to-end
     Given a PR whose base and head revisions are real git commits differing by a rename
     When the reviewer runs the PR review summary
     Then no checkout directories are left behind
+
+  Scenario: The GitHub credential helper answers git's authentication prompts without exposing the token on any command line
+    Given a GitHub Personal Access Token "ghp_example_token_value"
+    When the git credential helper environment is built for that token
+    Then invoking the helper script with a Username prompt answers "x-access-token"
+    And invoking the helper script with a Password prompt answers the token

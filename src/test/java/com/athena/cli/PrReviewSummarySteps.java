@@ -25,6 +25,8 @@ public class PrReviewSummarySteps {
     private Path workDir;
     private ImportedPullRequest importedPr;
     private String summary;
+    private String token;
+    private Map<String, String> credentialHelperEnvironment;
 
     @Before
     public void createTempRoots() throws IOException {
@@ -109,7 +111,7 @@ public class PrReviewSummarySteps {
     @Then("the summary lists the mechanical replacement Change under category {string}")
     public void the_summary_lists_the_mechanical_change_under_category(String category) {
         assertThat(summary).contains(category + ":");
-        assertThat(summary).contains("Mechanical replacement");
+        assertThat(summary).contains("Rename Foo -> Bar");
     }
 
     @Then("no checkout directories are left behind")
@@ -117,6 +119,35 @@ public class PrReviewSummarySteps {
         try (var entries = Files.list(workDir)) {
             assertThat(entries).isEmpty();
         }
+    }
+
+    @Given("a GitHub Personal Access Token {string}")
+    public void a_github_personal_access_token(String tokenValue) {
+        token = tokenValue;
+    }
+
+    @When("the git credential helper environment is built for that token")
+    public void the_git_credential_helper_environment_is_built() {
+        credentialHelperEnvironment = GitAskpass.environmentFor(token);
+    }
+
+    @Then("invoking the helper script with a Username prompt answers {string}")
+    public void invoking_the_helper_script_with_a_username_prompt_answers(String expected) throws IOException, InterruptedException {
+        assertThat(runAskpassScript("Username for 'https://github.com': ")).isEqualTo(expected);
+    }
+
+    @Then("invoking the helper script with a Password prompt answers the token")
+    public void invoking_the_helper_script_with_a_password_prompt_answers_the_token() throws IOException, InterruptedException {
+        assertThat(runAskpassScript("Password for 'https://x-access-token@github.com': ")).isEqualTo(token);
+    }
+
+    private String runAskpassScript(String prompt) throws IOException, InterruptedException {
+        ProcessBuilder builder = new ProcessBuilder(credentialHelperEnvironment.get("GIT_ASKPASS"), prompt);
+        builder.environment().putAll(credentialHelperEnvironment);
+        Process process = builder.start();
+        String output = new String(process.getInputStream().readAllBytes());
+        process.waitFor();
+        return output.strip();
     }
 
     private void initRepo() throws IOException, InterruptedException {
