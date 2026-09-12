@@ -1,7 +1,6 @@
 package com.athena.reviewui;
 
 import com.athena.semantic.Change;
-import com.athena.semantic.ChangeCategory;
 import com.athena.semantic.ChangeGrouper;
 import com.athena.semantic.DetectedTransformation;
 import com.athena.semantic.ReviewState;
@@ -45,20 +44,11 @@ public class ChangeMapViewSteps {
 
     @Given("a PR with a rename Change and a mechanical replacement Change")
     public void a_pr_with_a_rename_and_mechanical_change() {
-        // A method rename (Greeter#greet -> Greeter#salute) in one file, plus an
-        // unrelated mechanical replacement (the identifier Widget -> Gadget,
-        // referenced only in field declarations so no method-level detector
-        // fires on these files) applied consistently across the other files.
-        write(baseRoot, "Greeter", "public class Greeter {\n"
-                + "    public String greet() {\n"
-                + "        return \"hi\";\n"
-                + "    }\n"
-                + "}\n");
-        write(headRoot, "Greeter", "public class Greeter {\n"
-                + "    public String salute() {\n"
-                + "        return \"hi\";\n"
-                + "    }\n"
-                + "}\n");
+        // A method rename (Greeter#greet -> Greeter#salute), plus an unrelated
+        // mechanical replacement (the identifier Widget -> Gadget, referenced
+        // only in field declarations so no method-level detector fires on
+        // these files) applied consistently across the other files.
+        writeRenameFixture();
 
         write(baseRoot, "Holder", "public class Holder {\n"
                 + "    private Widget widget;\n"
@@ -127,9 +117,11 @@ public class ChangeMapViewSteps {
         // The rename fixture also satisfies the mechanical-replacement detector's own
         // whole-identifier-substitution rule (a single consistent method-name swap in
         // one file looks like both a rename and a mechanical replacement to the two
-        // independent detectors) — both are legitimately detected; assert on the rename.
+        // independent detectors) — both are legitimately detected; assert on the rename
+        // specifically, by TransformationKind rather than the coarser ChangeCategory
+        // (multiple kinds can share a category, which would make this ambiguous).
         ChangeMapEntry renameEntry = view.entries().stream()
-                .filter(entry -> entry.category() == ChangeCategory.STRUCTURAL)
+                .filter(entry -> entry.change().kind() == TransformationKind.RENAME_SYMBOL)
                 .findFirst()
                 .orElseThrow();
         assertThat(renameEntry.reviewState()).isEqualTo(ReviewState.valueOf(expectedState.toUpperCase()));
