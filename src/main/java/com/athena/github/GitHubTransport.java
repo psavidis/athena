@@ -72,4 +72,32 @@ public interface GitHubTransport {
      *         Request doesn't exist or isn't accessible
      */
     List<ChangedFile> fetchChangedFiles(String token, String repositoryFullName, int number);
+
+    /**
+     * Fetches a Pull Request's existing review comments.
+     *
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     * @throws GitHubResourceNotFoundException if the repository or Pull
+     *         Request doesn't exist or isn't accessible
+     */
+    List<ReviewComment> fetchReviewComments(String token, String repositoryFullName, int number);
+
+    /**
+     * Fetches a Pull Request's reviews (per-reviewer state).
+     *
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     * @throws GitHubResourceNotFoundException if the repository or Pull
+     *         Request doesn't exist or isn't accessible
+     */
+    List<Review> fetchReviews(String token, String repositoryFullName, int number);
+
+    /**
+     * Fetches the authenticated user's permission level on a repository
+     * (e.g. "read", "write", "admin").
+     *
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     * @throws GitHubResourceNotFoundException if the repository doesn't
+     *         exist or isn't accessible
+     */
+    String fetchRepositoryPermission(String token, String repositoryFullName);
 }
