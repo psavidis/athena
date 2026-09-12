@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: com.github.javaparser:javaparser-core:3.26.2" type="java-imported" external-system-id="Maven">
+    <properties groupId="com.github.javaparser" artifactId="javaparser-core" version="3.26.2" baseVersion="3.26.2" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/javaparser/javaparser-core/3.26.2/javaparser-core-3.26.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/javaparser/javaparser-core/3.26.2/javaparser-core-3.26.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/javaparser/javaparser-core/3.26.2/javaparser-core-3.26.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
