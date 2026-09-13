@@ -36,6 +36,12 @@ public final class Taxonomy {
             }
             byId.put(concept.id(), concept);
         }
+        for (TaxonomyConcept concept : concepts) {
+            if (concept.parentId().isPresent() && !byId.containsKey(concept.parentId().get())) {
+                throw new IllegalArgumentException("Concept " + concept.id() + " in " + dimension
+                        + " taxonomy declares unknown parentId \"" + concept.parentId().get() + "\"");
+            }
+        }
         return new Taxonomy(dimension, byId);
     }
 

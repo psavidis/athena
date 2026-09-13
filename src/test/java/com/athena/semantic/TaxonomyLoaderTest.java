@@ -68,4 +68,23 @@ class TaxonomyLoaderTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("dup");
     }
+
+    @Test
+    void rejectsAConceptWhoseParentIdDoesNotResolveWithinTheSameTaxonomy() {
+        List<TaxonomyConcept> concepts = List.of(
+                TaxonomyConcept.of("child", SemanticDimension.INTENT, "Child", "",
+                        java.util.Optional.of("does-not-exist")));
+
+        assertThat(org.assertj.core.api.Assertions.catchThrowable(() -> Taxonomy.of(SemanticDimension.INTENT, concepts)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("does-not-exist");
+    }
+
+    @Test
+    void everySeededTaxonomyJsonFileHasNoDanglingParentIdReferences() {
+        // Regression guard for the hand-authored JSON files under src/main/resources/taxonomy —
+        // Taxonomy.of already fails fast on a dangling parentId, so simply loading every
+        // dimension here proves none of the seeded files has one.
+        assertThat(org.assertj.core.api.Assertions.catchThrowable(loader::loadAll)).isNull();
+    }
 }
