@@ -84,6 +84,62 @@ class PrAnalyzerSemanticProfileTest {
     }
 
     @Test
+    void endToEndFieldRemovedAndReplacedByAConstructorParameterIsClassifiedAsDependencyInjection() {
+        // One of the two shapes PatternTaxonomyClassifier.classifyDependencyInjection
+        // recognizes: the field declaration is deleted outright (a different type here, since
+        // a same-name-same-type field is matched as "the same field" and never reported as
+        // REMOVE_FIELD) and the constructor picks up a same-named parameter.
+        write(baseRoot, "UserService", "public class UserService {\n"
+                + "    private OldRepository userRepository;\n"
+                + "    public UserService() {\n"
+                + "    }\n"
+                + "}\n");
+        write(headRoot, "UserService", "public class UserService {\n"
+                + "    private final UserRepository userRepository;\n"
+                + "    public UserService(UserRepository userRepository) {\n"
+                + "        this.userRepository = userRepository;\n"
+                + "    }\n"
+                + "}\n");
+
+        AnalysisResult result = new PrAnalyzer().analyze(baseRoot, headRoot);
+
+        Change addedParameterChange = result.changes().stream()
+                .filter(c -> c.kind() == TransformationKind.ADD_CONSTRUCTOR_PARAMETER)
+                .findFirst().orElseThrow();
+        SemanticProfile profile = result.semanticProfileFor(addedParameterChange);
+
+        assertThat(profile.classifications(SemanticDimension.PATTERN))
+                .extracting(c -> c.concept().id()).containsExactly("dependency-injection");
+    }
+
+    @Test
+    void endToEndAutowiredFieldDroppedInFavorOfAConstructorParameterIsClassifiedAsDependencyInjection() {
+        // The ticket's literal example and the common real-world shape: the field stays
+        // declared (same name, same type) but loses @Autowired, and a constructor appears
+        // that assigns a same-named parameter to it.
+        write(baseRoot, "UserService", "public class UserService {\n"
+                + "    @Autowired\n"
+                + "    private UserRepository userRepository;\n"
+                + "}\n");
+        write(headRoot, "UserService", "public class UserService {\n"
+                + "    private final UserRepository userRepository;\n"
+                + "    public UserService(UserRepository userRepository) {\n"
+                + "        this.userRepository = userRepository;\n"
+                + "    }\n"
+                + "}\n");
+
+        AnalysisResult result = new PrAnalyzer().analyze(baseRoot, headRoot);
+
+        Change addedParameterChange = result.changes().stream()
+                .filter(c -> c.kind() == TransformationKind.ADD_CONSTRUCTOR_PARAMETER)
+                .findFirst().orElseThrow();
+        SemanticProfile profile = result.semanticProfileFor(addedParameterChange);
+
+        assertThat(profile.classifications(SemanticDimension.PATTERN))
+                .extracting(c -> c.concept().id()).containsExactly("dependency-injection");
+    }
+
+    @Test
     void semanticProfileForAnUnknownChangeReturnsAnEmptyProfileRatherThanThrowing() {
         AnalysisResult result = new PrAnalyzer().analyze(baseRoot, headRoot);
         Change foreign = new ChangeGrouper().group(java.util.List.of(

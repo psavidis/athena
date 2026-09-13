@@ -73,7 +73,10 @@ public final class PrAnalyzer {
         }
 
         List<Change> changes = anyParseable ? detectChanges(baseRoot, headRoot) : List.of();
-        List<SemanticProfile> semanticProfiles = changes.stream().map(this::classify).toList();
+        Map<Change, SemanticClassification> dependencyInjectionMatches = patternClassifier.classifyDependencyInjection(changes);
+        List<SemanticProfile> semanticProfiles = changes.stream()
+                .map(change -> classify(change, dependencyInjectionMatches.get(change)))
+                .toList();
 
         AnalysisStatus status = status(relativePaths.size(), degradedEntries.size());
 
@@ -88,13 +91,19 @@ public final class PrAnalyzer {
      * have taxonomies but no classifier yet — neither is reliably inferable from a diff alone
      * without guessing, so a Change simply carries no classification along those dimensions
      * rather than a guessed or placeholder one.
+     *
+     * @param dependencyInjectionMatch this Change's dependency-injection Pattern
+     *        classification, precomputed once across the whole Change set by
+     *        {@link PatternTaxonomyClassifier#classifyDependencyInjection} — the only
+     *        classification here that needs more than this one Change to decide.
      */
-    private SemanticProfile classify(Change change) {
+    private SemanticProfile classify(Change change, SemanticClassification dependencyInjectionMatch) {
         SemanticProfile profile = SemanticProfile.empty(change);
         profile = withClassification(profile, SemanticDimension.STRUCTURAL, structuralClassifier.classify(change));
         profile = withClassification(profile, SemanticDimension.RESPONSIBILITY, responsibilityClassifier.classify(change));
         profile = withClassification(profile, SemanticDimension.ARCHITECTURE, architectureClassifier.classify(change));
         profile = withClassification(profile, SemanticDimension.PATTERN, patternClassifier.classify(change));
+        profile = withClassification(profile, SemanticDimension.PATTERN, Optional.ofNullable(dependencyInjectionMatch));
         profile = withClassification(profile, SemanticDimension.FRAMEWORK, frameworkClassifier.classify(change));
         return profile;
     }

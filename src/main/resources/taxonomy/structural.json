@@ -6,5 +6,7 @@
   {"id": "change-signature", "name": "Change Signature", "description": "A method's parameter list and/or return type changed."},
   {"id": "extract-method", "name": "Extract Method", "description": "A fragment of an existing method's body was pulled out into a new method."},
   {"id": "mechanical-replacement", "name": "Mechanical Replacement", "description": "A whole-identifier textual substitution applied identically everywhere it was referenced."},
-  {"id": "formatting-only", "name": "Formatting Only", "description": "Only whitespace/formatting changed; the parsed structure is identical."}
+  {"id": "formatting-only", "name": "Formatting Only", "description": "Only whitespace/formatting changed; the parsed structure is identical."},
+  {"id": "add-constructor-parameter", "name": "Add Constructor Parameter", "description": "A constructor gained a parameter that it assigns straight to a same-named field."},
+  {"id": "change-field-annotations", "name": "Change Field Annotations", "description": "A field kept its name and declared type but the set of annotations on it changed."}
 ]
