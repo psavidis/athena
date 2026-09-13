@@ -1,5 +1,7 @@
 # Athena
 
+![Athena](athena.jpeg)
+
 Athena analyzes a GitHub Pull Request's Java diff and groups it into
 meaningful **Changes** — rename, move, extract, mechanical replacement,
 signature change, and so on — instead of leaving a reviewer to
