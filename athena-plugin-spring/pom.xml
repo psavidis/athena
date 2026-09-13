@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.athena</groupId>
+    <artifactId>athena-parent</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>athena-plugin-spring</artifactId>
+  <packaging>jar</packaging>
+
+  <!--
+    The first FrameworkPlugin implementation: Spring/JPA/Jackson/JUnit annotation
+    conventions, recognized in already-analyzed code (this module does NOT need
+    to run inside a Spring context itself — no Spring dependency here, only
+    athena-app's runtime classpath cares about Spring). Discovered by athena-app
+    at runtime through java.util.ServiceLoader (see
+     src/main/resources/META-INF/services).
+  -->
+  <dependencies>
+    <dependency>
+      <groupId>com.athena</groupId>
+      <artifactId>athena-core</artifactId>
+    </dependency>
+  </dependencies>
+</project>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.athena</groupId>
+    <artifactId>athena-parent</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>athena-app</artifactId>
+  <packaging>jar</packaging>
+
+  <!--
+    The Spring Boot web UI + CLI. Depends on athena-core (SPI + domain model)
+    and bundles athena-plugin-java / athena-plugin-spring on its runtime
+    classpath so java.util.ServiceLoader can discover them at startup — but
+    athena-app's own code only ever imports athena-core types, never plugin
+    internals (see PluginRegistry), so adding a future plugin module never
+    requires a change here beyond this dependency list.
+  -->
+  <dependencies>
+    <dependency>
+      <groupId>com.athena</groupId>
+      <artifactId>athena-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.athena</groupId>
+      <artifactId>athena-plugin-java</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.athena</groupId>
+      <artifactId>athena-plugin-spring</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!-- Web UI application layer (epic #71) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <!-- Blackbox Spring Boot integration testing via Docker (CODE_STYLE.md F.6) -->
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- JSON parsing for GitHub API responses -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+
+    <!-- Architecture tests enforcing the plugin SPI's module conventions — this is the
+         one module that can see athena-core and every plugin module's classes together
+         (see com.athena.architecture tests). -->
+    <dependency>
+      <groupId>com.tngtech.archunit</groupId>
+      <artifactId>archunit-junit5</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Enables `mvn spring-boot:run` for the web UI (com.athena.AthenaWebApplication) -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

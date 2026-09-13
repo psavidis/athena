@@ -5,9 +5,26 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.athena</groupId>
-  <artifactId>athena</artifactId>
+  <artifactId>athena-parent</artifactId>
   <version>0.1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
+
+  <!--
+    Multi-module split (plugin architecture for the semantic engine): athena-core
+    carries the language/framework-agnostic SPI and domain model; athena-plugin-java
+    and athena-plugin-spring are the first LanguagePlugin/FrameworkPlugin
+    implementations, each a ServiceLoader-discovered jar with no compile-time
+    dependency from athena-core back onto them; athena-app is the Spring Boot
+    web UI + CLI, which bundles the plugin jars on its runtime classpath. A future
+    language (e.g. JavaScript) or framework (e.g. Quarkus) is a new sibling module,
+    never a change to athena-core or athena-app.
+  -->
+  <modules>
+    <module>athena-core</module>
+    <module>athena-plugin-java</module>
+    <module>athena-plugin-spring</module>
+    <module>athena-app</module>
+  </modules>
 
   <properties>
     <maven.compiler.source>21</maven.compiler.source>
@@ -22,13 +39,15 @@
     <javaparser.version>3.26.2</javaparser.version>
     <spring-boot.version>3.3.4</spring-boot.version>
     <testcontainers.version>1.21.4</testcontainers.version>
+    <archunit.version>1.4.2</archunit.version>
   </properties>
 
   <!--
     Imported via dependencyManagement (not spring-boot-starter-parent), so the
     existing standalone POM structure, pinned dependency versions, and plugin
     config stay exactly as they are — Spring Boot is additive here, not a
-    takeover of the build (ticket #72).
+    takeover of the build (ticket #72). Only athena-app actually depends on
+    Spring; athena-core/athena-plugin-java/athena-plugin-spring never do.
   -->
   <dependencyManagement>
     <dependencies>
@@ -39,111 +58,167 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
+      <dependency>
+        <groupId>com.athena</groupId>
+        <artifactId>athena-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.athena</groupId>
+        <artifactId>athena-plugin-java</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.athena</groupId>
+        <artifactId>athena-plugin-spring</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.javaparser</groupId>
+        <artifactId>javaparser-symbol-solver-core</artifactId>
+        <version>${javaparser.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>testcontainers</artifactId>
+        <version>${testcontainers.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${testcontainers.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-java</artifactId>
+        <version>${cucumber.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-junit-platform-engine</artifactId>
+        <version>${cucumber.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-picocontainer</artifactId>
+        <version>${cucumber.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-suite</artifactId>
+        <version>${junit.platform.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${junit.jupiter.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>${assertj.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- Architecture tests enforcing the plugin SPI's module conventions (see
+           athena-app's com.athena.architecture tests and athena-core's own). -->
+      <dependency>
+        <groupId>com.tngtech.archunit</groupId>
+        <artifactId>archunit-junit5</artifactId>
+        <version>${archunit.version}</version>
+        <scope>test</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
+  <!-- Every module gets these without redeclaring them: JUnit 5 + AssertJ + Cucumber
+       for Detroit-school testing (CODE_STYLE.md F), consistent across all four modules. -->
   <dependencies>
-    <!-- Web UI application layer (epic #71) -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-
-    <!-- Blackbox Spring Boot integration testing via Docker (CODE_STYLE.md F.6) -->
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>testcontainers</artifactId>
-      <version>${testcontainers.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>${testcontainers.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- JSON parsing for GitHub API responses -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
-
-    <!-- JavaParser: AST parsing + symbol resolution for the Semantic Change Engine (epic #4) -->
-    <dependency>
-      <groupId>com.github.javaparser</groupId>
-      <artifactId>javaparser-symbol-solver-core</artifactId>
-      <version>${javaparser.version}</version>
-    </dependency>
-
-    <!-- Cucumber -->
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-java</artifactId>
-      <version>${cucumber.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-junit-platform-engine</artifactId>
-      <version>${cucumber.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-picocontainer</artifactId>
-      <version>${cucumber.version}</version>
       <scope>test</scope>
     </dependency>
-
-    <!-- JUnit 5 platform -->
     <dependency>
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-suite</artifactId>
-      <version>${junit.platform.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
-
-    <!-- Assertions -->
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
-      <version>${assertj.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.13.0</version>
+          <configuration>
+            <release>21</release>
+            <!-- Lets Spring MVC resolve @PathVariable/@RequestParam by reflection without every
+                 one needing an explicit name (ticket #73: without this, e.g. @PathVariable String
+                 owner throws IllegalArgumentException at request time, not compile time). -->
+            <parameters>true</parameters>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.2.5</version>
+        </plugin>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.13.0</version>
-        <configuration>
-          <release>21</release>
-          <!-- Lets Spring MVC resolve @PathVariable/@RequestParam by reflection without every
-               one needing an explicit name (ticket #73: without this, e.g. @PathVariable String
-               owner throws IllegalArgumentException at request time, not compile time). -->
-          <parameters>true</parameters>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.2.5</version>
-      </plugin>
-      <!-- Enables `mvn spring-boot:run` for the web UI (com.athena.web.AthenaWebApplication) -->
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${spring-boot.version}</version>
       </plugin>
     </plugins>
   </build>

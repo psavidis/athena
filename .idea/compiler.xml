@@ -6,8 +6,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="athena" />
+        <module name="athena-app" />
+        <module name="athena-plugin-java" />
+        <module name="athena-core" />
+        <module name="athena-plugin-spring" />
       </profile>
     </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="athena" options="-parameters" />
+      <module name="athena-app" options="-parameters" />
+      <module name="athena-core" options="-parameters" />
+      <module name="athena-plugin-java" options="-parameters" />
+      <module name="athena-plugin-spring" options="-parameters" />
+    </option>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="athena" options="-parameters" />
+    </option>
   </component>
 </project>
