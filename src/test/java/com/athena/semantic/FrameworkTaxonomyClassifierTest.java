@@ -60,6 +60,17 @@ class FrameworkTaxonomyClassifierTest {
     }
 
     @Test
+    void doesNotClassifyWhenOnlyTheAnnotationsArgumentsChanged() {
+        Change change = changeWithDiff(TransformationKind.CHANGE_METHOD_SIGNATURE, List.of("UserService#save"),
+                "@Transactional(readOnly = true)\npublic void save() { }\n",
+                "@Transactional\npublic void save() { }\n");
+
+        Optional<SemanticClassification> classification = classifier.classify(change);
+
+        assertThat(classification).isEmpty();
+    }
+
+    @Test
     void leavesAChangeWithNoRecognizedAnnotationUnclassified() {
         Change change = changeWithDiff(TransformationKind.ADD_SYMBOL, List.of("Greeter#greet"),
                 "",

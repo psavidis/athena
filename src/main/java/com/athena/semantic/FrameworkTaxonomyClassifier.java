@@ -49,17 +49,27 @@ public final class FrameworkTaxonomyClassifier {
     }
 
     private Optional<String> newlyAddedAnnotationConceptId(String diffText) {
-        for (String line : diffText.split("\n")) {
+        List<String> lines = List.of(diffText.split("\n"));
+        for (String line : lines) {
             if (!line.startsWith("+")) {
                 continue;
             }
             for (Map.Entry<String, String> entry : ANNOTATION_TO_CONCEPT_ID.entrySet()) {
-                if (line.contains(entry.getKey())) {
+                if (line.contains(entry.getKey()) && !removedLineAlsoContains(lines, entry.getKey())) {
                     return Optional.of(entry.getValue());
                 }
             }
         }
         return Optional.empty();
+    }
+
+    /**
+     * True if the annotation also appears on a {@code -}-prefixed line — meaning it was
+     * already present before the change (its arguments may have changed, or it moved to a
+     * different line), so a matching {@code +}-line doesn't mean the annotation is new.
+     */
+    private boolean removedLineAlsoContains(List<String> lines, String annotationName) {
+        return lines.stream().anyMatch(line -> line.startsWith("-") && line.contains(annotationName));
     }
 
     private static Map<String, String> annotationToConceptId() {
