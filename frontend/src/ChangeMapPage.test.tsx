@@ -7,7 +7,7 @@ import ChangeMapPage from './ChangeMapPage'
 import type { ChangeMap, ModuleNarrative } from './api'
 import { server } from './test/server'
 
-// Traces frontend/src/test/resources/features/change_map_frontend_rendering.feature
+// Traces frontend/src/test/resources/features/ui_first_experience/change_map_frontend_rendering.feature
 
 // A sane default so any test that doesn't care about module narratives
 // doesn't need to mock /api/review/modules itself — tests that do care call

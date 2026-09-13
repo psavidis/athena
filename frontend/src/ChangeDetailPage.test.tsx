@@ -7,7 +7,7 @@ import ChangeDetailPage from './ChangeDetailPage'
 import type { ChangeDetail } from './api'
 import { server } from './test/server'
 
-// Traces frontend/src/test/resources/features/change_drilldown_frontend_rendering.feature
+// Traces frontend/src/test/resources/features/ui_first_experience/change_drilldown_frontend_rendering.feature
 
 function renderChangeDetailPage(changeKey = 'test-change-key') {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })

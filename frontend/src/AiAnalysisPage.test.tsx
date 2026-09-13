@@ -6,7 +6,7 @@ import { describe, expect, it, vi } from 'vitest'
 import AiAnalysisPage from './AiAnalysisPage'
 import { server } from './test/server'
 
-// Traces frontend/src/test/resources/features/ai_analysis_frontend_rendering.feature
+// Traces frontend/src/test/resources/features/ui_first_experience/ai_analysis_frontend_rendering.feature
 
 function renderAiAnalysisPage() {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })

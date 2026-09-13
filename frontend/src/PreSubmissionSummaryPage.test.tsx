@@ -6,7 +6,7 @@ import { describe, expect, it, vi } from 'vitest'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
 import { server } from './test/server'
 
-// Traces frontend/src/test/resources/features/review_state_and_submission_frontend_rendering.feature
+// Traces frontend/src/test/resources/features/ui_first_experience/review_state_and_submission_frontend_rendering.feature
 
 function renderSummaryPage() {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
