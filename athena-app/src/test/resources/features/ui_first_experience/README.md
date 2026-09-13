@@ -31,5 +31,6 @@ the API boundary, one on the rendering side.
 
 - `change_map_frontend_rendering.feature` — Change Map & PR Understanding View rendering
 - `change_drilldown_frontend_rendering.feature` — Change drill-down, comments & private notes rendering
+- `semantic_change_explorer_frontend_rendering.feature` — Semantic Change Explorer shell: spine navigation, Change Story, evidence panel
 - `ai_analysis_frontend_rendering.feature` — AI analysis trigger & findings review rendering
 - `review_state_and_submission_frontend_rendering.feature` — review state, pre-submission summary & submission rendering
