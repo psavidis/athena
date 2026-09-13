@@ -148,6 +148,21 @@ class PrAnalyzerSemanticProfileTest {
     }
 
     @Test
+    void aNewlyAddedCheckoutClassIsClassifiedAlongTheFeatureDimension() {
+        write(headRoot, "CheckoutService", "public class CheckoutService {\n}\n");
+
+        AnalysisResult result = newPrAnalyzer().analyze(baseRoot, headRoot);
+
+        Change addChange = result.changes().stream()
+                .filter(c -> c.kind() == TransformationKind.ADD_CLASS)
+                .findFirst().orElseThrow();
+        SemanticProfile profile = result.semanticProfileFor(addChange);
+
+        assertThat(profile.classifications(SemanticDimension.FEATURE))
+                .extracting(c -> c.concept().id()).containsExactly("order-management-checkout");
+    }
+
+    @Test
     void semanticProfileForAnUnknownChangeReturnsAnEmptyProfileRatherThanThrowing() {
         AnalysisResult result = newPrAnalyzer().analyze(baseRoot, headRoot);
         Change foreign = new ChangeGrouper().group(java.util.List.of(
