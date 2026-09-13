@@ -32,7 +32,9 @@ public enum ChangeCategory {
         return switch (kind) {
             case MECHANICAL_REPLACEMENT, FORMATTING_ONLY -> MECHANICAL;
             case RENAME_SYMBOL, MOVE_SYMBOL, ADD_SYMBOL, REMOVE_SYMBOL,
-                 CHANGE_METHOD_SIGNATURE, EXTRACT_METHOD -> STRUCTURAL;
+                 CHANGE_METHOD_SIGNATURE, EXTRACT_METHOD,
+                 RENAME_CLASS, MOVE_CLASS, ADD_CLASS, REMOVE_CLASS,
+                 RENAME_FIELD, MOVE_FIELD, ADD_FIELD, REMOVE_FIELD -> STRUCTURAL;
         };
     }
 }

@@ -4,10 +4,12 @@ import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.RecordDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
+import com.github.javaparser.ast.body.VariableDeclarator;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -19,6 +21,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Stream;
 
 /**
@@ -45,10 +48,28 @@ public final class TransformationDetector {
         // method-vs-record extraction from an already-parsed CompilationUnit is cheap).
         ParsedRoot baseParsed = parseRoot(baseRoot);
         ParsedRoot headParsed = parseRoot(headRoot);
-        List<MethodInfo> baseMethods = baseParsed.methods();
-        List<MethodInfo> headMethods = headParsed.methods();
 
         List<DetectedTransformation> results = new ArrayList<>();
+
+        // 0. Class rename/move/add/remove, detected before any member-level matching. A
+        // renamed/moved class is matched by an EXACT member-signature-set match (no fuzzy
+        // matching, same policy as everywhere else in this detector) — so if the class's
+        // members changed in the same revision, it won't be recognized as the "same" class
+        // and instead reads as one class removed + one added, same as any other exact-match
+        // detector here when its match condition isn't met.
+        ClassMatchResult classMatch = detectClassChanges(baseParsed.classes(), headParsed.classes());
+        results.addAll(classMatch.transformations());
+
+        // Once a class is known to be the "same" class under a rename/move (its member set
+        // matched exactly), its members are excluded from the flat method/field matching
+        // below — they didn't independently change, so they'd otherwise show up as a
+        // confusing pile of REMOVE+ADD (or MOVE_SYMBOL) rows on top of the one RENAME_CLASS/
+        // MOVE_CLASS Change that already explains what happened to them.
+        List<MethodInfo> baseMethods = baseParsed.methods().stream()
+                .filter(m -> !classMatch.excludedBaseTypes().contains(m.enclosingType)).toList();
+        List<MethodInfo> headMethods = headParsed.methods().stream()
+                .filter(m -> !classMatch.excludedHeadTypes().contains(m.enclosingType)).toList();
+
         Set<MethodInfo> matchedBase = new LinkedHashSet<>();
         Set<MethodInfo> matchedHead = new LinkedHashSet<>();
 
@@ -184,7 +205,107 @@ public final class TransformationDetector {
         //    method rename/move detectors' "same body, different name/enclosing type" heuristic.
         results.addAll(detectRecordSignatureChanges(baseParsed.records(), headParsed.records()));
 
+        // 8. Field rename/move/add/remove — same shape as the method detection above (steps
+        // 1-3, 5), minus signature-change/extract/formatting concepts a field doesn't have.
+        // A field's "body" equivalent for rename/move matching is its declared type: same
+        // enclosing type + different name + same type is a rename; different enclosing type
+        // + same name + same type is a move. A same-name field whose type also changed isn't
+        // fuzzy-matched into either shape — same no-confidence-score policy as the rest of
+        // this detector — so it's currently left unclassified rather than reported as some
+        // kind of "change field type" (not in this detector's covered kind set).
+        List<FieldInfo> baseFields = baseParsed.fields().stream()
+                .filter(f -> !classMatch.excludedBaseTypes().contains(f.enclosingType)).toList();
+        List<FieldInfo> headFields = headParsed.fields().stream()
+                .filter(f -> !classMatch.excludedHeadTypes().contains(f.enclosingType)).toList();
+        results.addAll(detectFieldChanges(baseFields, headFields));
+
         return results;
+    }
+
+    private List<DetectedTransformation> detectFieldChanges(List<FieldInfo> baseFields, List<FieldInfo> headFields) {
+        List<DetectedTransformation> results = new ArrayList<>();
+        Set<FieldInfo> matchedBase = new LinkedHashSet<>();
+        Set<FieldInfo> matchedHead = new LinkedHashSet<>();
+
+        Map<FieldKey, List<FieldInfo>> headByKey = new LinkedHashMap<>();
+        for (FieldInfo f : headFields) {
+            headByKey.computeIfAbsent(new FieldKey(f.enclosingType, f.name), k -> new ArrayList<>()).add(f);
+        }
+
+        // 1. Exact match: same enclosing type + same name. Unchanged if the type also
+        // matches; a same-name field whose type changed is deliberately left unclassified
+        // (see detect()'s step 8 comment).
+        for (FieldInfo base : baseFields) {
+            List<FieldInfo> candidates = headByKey.get(new FieldKey(base.enclosingType, base.name));
+            FieldInfo head = candidates == null ? null : candidates.stream()
+                    .filter(h -> !matchedHead.contains(h)).findFirst().orElse(null);
+            if (head == null) continue;
+            matchedBase.add(base);
+            matchedHead.add(head);
+            // No structural change to report for a field beyond rename/move/add/remove — a
+            // field's declaration text changing (e.g. initializer) with the same name+type
+            // is behavioral, not structural, and out of this detector's scope.
+        }
+
+        List<FieldInfo> unmatchedBase = baseFields.stream().filter(f -> !matchedBase.contains(f)).toList();
+        List<FieldInfo> unmatchedHead = headFields.stream().filter(f -> !matchedHead.contains(f)).toList();
+
+        // 2 & 3. Rename/move: matched by declared type equality, mirroring the method
+        // rename/move detector's "same body" match key.
+        Set<FieldInfo> stillUnmatchedBase = new LinkedHashSet<>(unmatchedBase);
+        Set<FieldInfo> stillUnmatchedHead = new LinkedHashSet<>(unmatchedHead);
+        Map<String, List<FieldInfo>> unmatchedHeadByType = new LinkedHashMap<>();
+        for (FieldInfo f : stillUnmatchedHead) {
+            unmatchedHeadByType.computeIfAbsent(f.type, k -> new ArrayList<>()).add(f);
+        }
+
+        for (FieldInfo base : unmatchedBase) {
+            if (!stillUnmatchedBase.contains(base)) continue;
+            List<FieldInfo> candidates = unmatchedHeadByType.get(base.type);
+            if (candidates == null) continue;
+
+            FieldInfo renameMatch = null;
+            FieldInfo moveMatch = null;
+            for (FieldInfo head : candidates) {
+                if (!stillUnmatchedHead.contains(head)) continue;
+                if (base.enclosingType.equals(head.enclosingType) && !base.name.equals(head.name)) {
+                    renameMatch = head;
+                    break;
+                }
+                if (moveMatch == null && !base.enclosingType.equals(head.enclosingType) && base.name.equals(head.name)) {
+                    moveMatch = head;
+                }
+            }
+
+            if (renameMatch != null) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.RENAME_FIELD,
+                        List.of(base.description(), renameMatch.description()), List.of(base.file, renameMatch.file),
+                        base.rawDeclaration, renameMatch.rawDeclaration));
+                stillUnmatchedBase.remove(base);
+                stillUnmatchedHead.remove(renameMatch);
+            } else if (moveMatch != null) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.MOVE_FIELD,
+                        List.of(base.description(), moveMatch.description()), List.of(base.file, moveMatch.file),
+                        base.rawDeclaration, moveMatch.rawDeclaration));
+                stillUnmatchedBase.remove(base);
+                stillUnmatchedHead.remove(moveMatch);
+            }
+        }
+
+        // 5 (no step 4 - no field equivalent of extract-method). Remaining fields -> removed/added.
+        for (FieldInfo base : stillUnmatchedBase) {
+            results.add(DetectedTransformation.withDiff(TransformationKind.REMOVE_FIELD,
+                    List.of(base.description()), List.of(base.file), base.rawDeclaration, ""));
+        }
+        for (FieldInfo head : stillUnmatchedHead) {
+            results.add(DetectedTransformation.withDiff(TransformationKind.ADD_FIELD,
+                    List.of(head.description()), List.of(head.file), "", head.rawDeclaration));
+        }
+
+        return results;
+    }
+
+    private record FieldKey(String enclosingType, String name) {
     }
 
     private Map<MethodKey, List<MethodInfo>> indexByKey(List<MethodInfo> methods) {
@@ -215,6 +336,108 @@ public final class TransformationDetector {
     }
 
     private record MethodKey(String enclosingType, String name) {
+    }
+
+    private record FileAndName(String file, String simpleName) {
+    }
+
+    /**
+     * Class-level rename/move/add/remove, matched the same way method rename/move is:
+     * an exact-equality "body" key — here, the class's member-signature-set — decides
+     * whether a same-file-different-name pair is a rename, a same-name-different-file
+     * pair is a move, or neither (in which case both sides fall through as an ordinary
+     * add+remove, exactly like an unmatched method would).
+     */
+    private ClassMatchResult detectClassChanges(List<ClassInfo> baseClasses, List<ClassInfo> headClasses) {
+        List<DetectedTransformation> results = new ArrayList<>();
+        Set<String> excludedBaseTypes = new LinkedHashSet<>();
+        Set<String> excludedHeadTypes = new LinkedHashSet<>();
+        Set<ClassInfo> matchedBase = new LinkedHashSet<>();
+        Set<ClassInfo> matchedHead = new LinkedHashSet<>();
+
+        // 1. Exact match: same file + same simple name -> unchanged or formatting-only.
+        // (A class matched here is NOT excluded from member-level matching below — its
+        // members may still have individually changed, which is exactly what the flat
+        // method/field detection is for.)
+        Map<FileAndName, ClassInfo> headByFileAndName = new LinkedHashMap<>();
+        for (ClassInfo c : headClasses) {
+            headByFileAndName.put(new FileAndName(c.file, c.simpleName), c);
+        }
+        for (ClassInfo base : baseClasses) {
+            ClassInfo head = headByFileAndName.get(new FileAndName(base.file, base.simpleName));
+            if (head == null) continue;
+            matchedBase.add(base);
+            matchedHead.add(head);
+            if (!base.headerText.equals(head.headerText) && base.memberSignatures.equals(head.memberSignatures)
+                    && normalize(base.headerText).equals(normalize(head.headerText))) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.FORMATTING_ONLY,
+                        List.of(base.simpleName), List.of(base.file, head.file), base.headerText, head.headerText));
+            }
+        }
+
+        List<ClassInfo> unmatchedBase = baseClasses.stream().filter(c -> !matchedBase.contains(c)).toList();
+        List<ClassInfo> unmatchedHead = headClasses.stream().filter(c -> !matchedHead.contains(c)).toList();
+
+        // 2 & 3. Rename/move: matched by memberSignatures equality (this class's "body").
+        Set<ClassInfo> stillUnmatchedBase = new LinkedHashSet<>(unmatchedBase);
+        Set<ClassInfo> stillUnmatchedHead = new LinkedHashSet<>(unmatchedHead);
+        Map<Set<String>, List<ClassInfo>> unmatchedHeadByMembers = new LinkedHashMap<>();
+        for (ClassInfo c : stillUnmatchedHead) {
+            unmatchedHeadByMembers.computeIfAbsent(c.memberSignatures, k -> new ArrayList<>()).add(c);
+        }
+
+        for (ClassInfo base : unmatchedBase) {
+            if (!stillUnmatchedBase.contains(base)) continue;
+            List<ClassInfo> candidates = unmatchedHeadByMembers.get(base.memberSignatures);
+            if (candidates == null || base.memberSignatures.isEmpty()) continue;
+
+            ClassInfo renameMatch = null;
+            ClassInfo moveMatch = null;
+            for (ClassInfo head : candidates) {
+                if (!stillUnmatchedHead.contains(head)) continue;
+                if (base.file.equals(head.file) && !base.simpleName.equals(head.simpleName)) {
+                    renameMatch = head;
+                    break;
+                }
+                if (moveMatch == null && !base.file.equals(head.file) && base.simpleName.equals(head.simpleName)) {
+                    moveMatch = head;
+                }
+            }
+
+            if (renameMatch != null) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.RENAME_CLASS,
+                        List.of(base.simpleName, renameMatch.simpleName), List.of(base.file, renameMatch.file),
+                        base.headerText, renameMatch.headerText));
+                stillUnmatchedBase.remove(base);
+                stillUnmatchedHead.remove(renameMatch);
+                excludedBaseTypes.add(base.simpleName);
+                excludedHeadTypes.add(renameMatch.simpleName);
+            } else if (moveMatch != null) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.MOVE_CLASS,
+                        List.of(base.simpleName, moveMatch.simpleName), List.of(base.file, moveMatch.file),
+                        base.headerText, moveMatch.headerText));
+                stillUnmatchedBase.remove(base);
+                stillUnmatchedHead.remove(moveMatch);
+                excludedBaseTypes.add(base.simpleName);
+                excludedHeadTypes.add(moveMatch.simpleName);
+            }
+        }
+
+        // 5 (no step 4 - no class equivalent of extract-method here). Remaining -> removed/added.
+        for (ClassInfo base : stillUnmatchedBase) {
+            results.add(DetectedTransformation.withDiff(TransformationKind.REMOVE_CLASS,
+                    List.of(base.simpleName), List.of(base.file), base.headerText, ""));
+        }
+        for (ClassInfo head : stillUnmatchedHead) {
+            results.add(DetectedTransformation.withDiff(TransformationKind.ADD_CLASS,
+                    List.of(head.simpleName), List.of(head.file), "", head.headerText));
+        }
+
+        return new ClassMatchResult(results, excludedBaseTypes, excludedHeadTypes);
+    }
+
+    private record ClassMatchResult(List<DetectedTransformation> transformations, Set<String> excludedBaseTypes,
+                                     Set<String> excludedHeadTypes) {
     }
 
     private List<DetectedTransformation> detectRecordSignatureChanges(Map<String, RecordInfo> baseRecords,
@@ -416,6 +639,8 @@ public final class TransformationDetector {
      */
     private ParsedRoot parseRoot(Path root) {
         List<MethodInfo> methods = new ArrayList<>();
+        List<FieldInfo> fields = new ArrayList<>();
+        List<ClassInfo> classes = new ArrayList<>();
         Map<String, RecordInfo> records = new LinkedHashMap<>();
         for (Path file : javaFiles(root)) {
             String relativePath = root.relativize(file).toString();
@@ -430,6 +655,7 @@ public final class TransformationDetector {
                 continue;
             }
             for (TypeDeclaration<?> type : cu.getTypes()) {
+                Set<String> memberSignatures = new TreeSet<>();
                 for (MethodDeclaration method : type.getMethods()) {
                     // Two different textual views, both from *original source text* (via
                     // Range), not JavaParser's re-printed toString() (which normalizes
@@ -452,6 +678,20 @@ public final class TransformationDetector {
                             paramTypes, method.getTypeAsString(),
                             wholeDeclarationText, normalize(wholeDeclarationText),
                             normalize(bodyOnlyText), relativePath));
+                    memberSignatures.add("method:" + method.getNameAsString() + "(" + String.join(",", paramTypes) + "):"
+                            + method.getTypeAsString());
+                }
+                for (FieldDeclaration field : type.getMembers().stream()
+                        .filter(FieldDeclaration.class::isInstance).map(FieldDeclaration.class::cast).toList()) {
+                    String rawDeclaration = field.getRange()
+                            .map(range -> sourceSlice(sourceLines, range))
+                            .orElse(field.toString());
+                    for (VariableDeclarator variable : field.getVariables()) {
+                        String typeAsString = variable.getType().asString();
+                        fields.add(new FieldInfo(type.getNameAsString(), variable.getNameAsString(), typeAsString,
+                                rawDeclaration, relativePath));
+                        memberSignatures.add("field:" + variable.getNameAsString() + ":" + typeAsString);
+                    }
                 }
                 if (type instanceof RecordDeclaration record) {
                     List<String> componentTypes = record.getParameters().stream()
@@ -461,13 +701,35 @@ public final class TransformationDetector {
                                     .map(p -> p.getTypeAsString() + " " + p.getNameAsString()).toList())
                             + ")";
                     records.put(type.getNameAsString(), new RecordInfo(componentTypes, relativePath, headerText));
+                } else {
+                    String headerText = type.getRange().map(range -> sourceSlice(sourceLines, range))
+                            .orElse(type.toString());
+                    classes.add(new ClassInfo(type.getNameAsString(), relativePath, memberSignatures, headerText));
                 }
             }
         }
-        return new ParsedRoot(methods, records);
+        return new ParsedRoot(methods, fields, classes, records);
     }
 
-    private record ParsedRoot(List<MethodInfo> methods, Map<String, RecordInfo> records) {
+    private record ParsedRoot(List<MethodInfo> methods, List<FieldInfo> fields, List<ClassInfo> classes,
+                               Map<String, RecordInfo> records) {
+    }
+
+    /**
+     * A non-record type's identity for rename/move matching: {@code memberSignatures}
+     * (every method's name+param-types+return-type, every field's name+type, order-
+     * independent via TreeSet) plays the same role {@code normalizedBody} plays for a
+     * method — the "did the substance stay the same" signal that lets a rename/move be
+     * told apart from an unrelated add+remove pair. {@code headerText} is the type's own
+     * full source text (used for the class-level diff and formatting-only detection).
+     */
+    private record ClassInfo(String simpleName, String file, Set<String> memberSignatures, String headerText) {
+    }
+
+    private record FieldInfo(String enclosingType, String name, String type, String rawDeclaration, String file) {
+        String description() {
+            return enclosingType + "#" + name;
+        }
     }
 
     private String sourceSlice(List<String> lines, com.github.javaparser.Range range) {

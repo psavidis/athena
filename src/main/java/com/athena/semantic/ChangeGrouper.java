@@ -78,6 +78,14 @@ public final class ChangeGrouper {
             case REMOVE_SYMBOL -> "Remove " + key.involvedDescriptions.get(0);
             case CHANGE_METHOD_SIGNATURE -> "Change signature of " + key.involvedDescriptions.get(0);
             case FORMATTING_ONLY -> "Formatting: " + key.involvedDescriptions.get(0);
+            case RENAME_CLASS -> "Rename class " + arrowJoin(key.involvedDescriptions);
+            case MOVE_CLASS -> "Move class " + arrowJoin(key.involvedDescriptions);
+            case ADD_CLASS -> "Add class " + key.involvedDescriptions.get(0);
+            case REMOVE_CLASS -> "Remove class " + key.involvedDescriptions.get(0);
+            case RENAME_FIELD -> "Rename field " + arrowJoin(key.involvedDescriptions);
+            case MOVE_FIELD -> "Move field " + arrowJoin(key.involvedDescriptions);
+            case ADD_FIELD -> "Add field " + key.involvedDescriptions.get(0);
+            case REMOVE_FIELD -> "Remove field " + key.involvedDescriptions.get(0);
         };
     }
 

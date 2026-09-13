@@ -12,6 +12,14 @@ const KIND_LABELS: Record<TransformationKind, string> = {
   EXTRACT_METHOD: 'Extract method',
   MECHANICAL_REPLACEMENT: 'Mechanical rename',
   FORMATTING_ONLY: 'Formatting',
+  RENAME_CLASS: 'Rename class',
+  MOVE_CLASS: 'Move class',
+  ADD_CLASS: 'Add class',
+  REMOVE_CLASS: 'Remove class',
+  RENAME_FIELD: 'Rename field',
+  MOVE_FIELD: 'Move field',
+  ADD_FIELD: 'Add field',
+  REMOVE_FIELD: 'Remove field',
 }
 
 const CATEGORY_LABELS = {

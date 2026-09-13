@@ -114,7 +114,119 @@ public class StructuralChangeDetectionSteps {
                 + "}\n");
     }
 
+    @Given("a base revision where class {string} has a method {string} and a field {string}")
+    public void base_class_has_method_and_field(String className, String methodName, String fieldName) {
+        write(baseRoot, className, "public class " + className + " {\n"
+                + "    private String " + fieldName + ";\n"
+                + "    public String " + methodName + "() {\n"
+                + "        return \"greeting\";\n"
+                + "    }\n"
+                + "}\n");
+    }
+
+    @Given("a base revision where class {string} has a method {string} and a field {string} in file {string}")
+    public void base_class_has_method_and_field_in_file(String className, String methodName, String fieldName, String file) {
+        writeFile(baseRoot, file, "public class " + className + " {\n"
+                + "    private String " + fieldName + ";\n"
+                + "    public String " + methodName + "() {\n"
+                + "        return \"greeting\";\n"
+                + "    }\n"
+                + "}\n");
+    }
+
+    @Given("a base revision with no class {string}")
+    public void base_revision_with_no_class(String className) {
+        write(baseRoot, "Placeholder", "public class Placeholder {\n}\n");
+    }
+
+    @Given("a base revision where class {string} has a field {string} of type {string}")
+    public void base_class_has_field_of_type(String className, String fieldName, String type) {
+        write(baseRoot, className, "public class " + className + " {\n"
+                + "    private " + type + " " + fieldName + ";\n"
+                + "}\n");
+    }
+
+    @Given("a base revision where class {string} has a field {string} of type {string} and class {string} is empty")
+    public void base_class_has_field_and_other_class_empty(String classA, String fieldName, String type, String classB) {
+        write(baseRoot, classA, "public class " + classA + " {\n"
+                + "    private " + type + " " + fieldName + ";\n"
+                + "}\n");
+        write(baseRoot, classB, "public class " + classB + " {\n}\n");
+    }
+
+    @Given("a base revision where class {string} has no field {string}")
+    public void base_class_has_no_field(String className, String fieldName) {
+        write(baseRoot, className, "public class " + className + " {\n}\n");
+    }
+
     // ---- head revision setups ----
+
+    @Given("a head revision where the same file instead declares class {string} with the same method and field")
+    public void head_same_file_declares_renamed_class(String newClassName) {
+        // Same physical file (Greeter.java) as the base revision, but declaring a
+        // differently-named class inside it — that's what "renamed, same file" means
+        // for the detector's file+simpleName match key. Real IDE/git renames keep the
+        // filename in sync with the class name too, but the detector matches by AST
+        // content, not filename, so this fixture only needs the two to diverge here to
+        // exercise the "same file, different class name" match condition directly.
+        writeFile(headRoot, "Greeter.java", "public class " + newClassName + " {\n"
+                + "    private String prefix;\n"
+                + "    public String greet() {\n"
+                + "        return \"greeting\";\n"
+                + "    }\n"
+                + "}\n");
+    }
+
+    @Given("a head revision where the same class has been moved to file {string} unchanged")
+    public void head_class_moved_to_file(String newFile) {
+        writeFile(headRoot, newFile, "public class Greeter {\n"
+                + "    private String prefix;\n"
+                + "    public String greet() {\n"
+                + "        return \"greeting\";\n"
+                + "    }\n"
+                + "}\n");
+    }
+
+    @Given("a head revision where class {string} has a method {string}")
+    public void head_revision_class_has_method(String className, String methodName) {
+        write(headRoot, className, "public class " + className + " {\n"
+                + "    public String " + methodName + "() {\n"
+                + "        return \"bye\";\n"
+                + "    }\n"
+                + "}\n");
+    }
+
+    @Given("a head revision with no class {string}")
+    public void head_revision_with_no_class(String className) {
+        write(headRoot, "Placeholder", "public class Placeholder {\n}\n");
+    }
+
+    @Given("a head revision where class {string} has a field {string} of type {string} instead")
+    public void head_class_has_renamed_field(String className, String fieldName, String type) {
+        write(headRoot, className, "public class " + className + " {\n"
+                + "    private " + type + " " + fieldName + ";\n"
+                + "}\n");
+    }
+
+    @Given("a head revision where class {string} has a field {string} of type {string} and class {string} is empty")
+    public void head_class_has_field_and_other_empty(String classWithField, String fieldName, String type, String emptyClass) {
+        write(headRoot, classWithField, "public class " + classWithField + " {\n"
+                + "    private " + type + " " + fieldName + ";\n"
+                + "}\n");
+        write(headRoot, emptyClass, "public class " + emptyClass + " {\n}\n");
+    }
+
+    @Given("a head revision where class {string} has an additional field {string} of type {string}")
+    public void head_class_has_additional_field(String className, String fieldName, String type) {
+        write(headRoot, className, "public class " + className + " {\n"
+                + "    private " + type + " " + fieldName + ";\n"
+                + "}\n");
+    }
+
+    @Given("a head revision where class {string} no longer has the field {string}")
+    public void head_class_no_longer_has_field(String className, String fieldName) {
+        write(headRoot, className, "public class " + className + " {\n}\n");
+    }
 
     @Given("a head revision where class {string} has a method {string} with the same body")
     public void head_class_has_renamed_method(String className, String methodName) {
@@ -289,6 +401,16 @@ public class StructuralChangeDetectionSteps {
     private void write(Path root, String className, String contents) {
         try {
             Files.writeString(root.resolve(className + ".java"), contents);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    private void writeFile(Path root, String relativePath, String contents) {
+        try {
+            Path target = root.resolve(relativePath);
+            Files.createDirectories(target.getParent());
+            Files.writeString(target, contents);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }

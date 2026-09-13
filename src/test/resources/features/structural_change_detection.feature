@@ -68,3 +68,58 @@ Feature: Structural and mechanical change detection
     And a head revision where class "Greeter" has a method "greet" taking a "String" parameter
     When the semantic engine detects transformations between the revisions
     Then the "CHANGE_METHOD_SIGNATURE" transformation involving "Greeter#greet" has a diff showing removed text "greet()" and added text "greet(String arg)"
+
+  Scenario: A renamed class is detected as a class rename
+    Given a base revision where class "Greeter" has a method "greet" and a field "prefix"
+    And a head revision where the same file instead declares class "Salutation" with the same method and field
+    When the semantic engine detects transformations between the revisions
+    Then a "RENAME_CLASS" transformation is detected involving "Greeter" and "Salutation"
+
+  Scenario: A renamed class's unchanged members are not separately reported
+    Given a base revision where class "Greeter" has a method "greet" and a field "prefix"
+    And a head revision where the same file instead declares class "Salutation" with the same method and field
+    When the semantic engine detects transformations between the revisions
+    Then no structural transformation is detected involving "Greeter#greet"
+    And no structural transformation is detected involving "Salutation#greet"
+
+  Scenario: A moved class is detected as a class move
+    Given a base revision where class "Greeter" has a method "greet" and a field "prefix" in file "Greeter.java"
+    And a head revision where the same class has been moved to file "text/Greeter.java" unchanged
+    When the semantic engine detects transformations between the revisions
+    Then a "MOVE_CLASS" transformation is detected involving "Greeter"
+
+  Scenario: An added class is detected as a class add
+    Given a base revision with no class "Farewell"
+    And a head revision where class "Farewell" has a method "sayBye"
+    When the semantic engine detects transformations between the revisions
+    Then an "ADD_CLASS" transformation is detected involving "Farewell"
+
+  Scenario: A removed class is detected as a class remove
+    Given a base revision where class "Obsolete" has a method "run"
+    And a head revision with no class "Obsolete"
+    When the semantic engine detects transformations between the revisions
+    Then a "REMOVE_CLASS" transformation is detected involving "Obsolete"
+
+  Scenario: A renamed field is detected as a field rename
+    Given a base revision where class "Account" has a field "balance" of type "int"
+    And a head revision where class "Account" has a field "currentBalance" of type "int" instead
+    When the semantic engine detects transformations between the revisions
+    Then a "RENAME_FIELD" transformation is detected involving "Account#balance" and "Account#currentBalance"
+
+  Scenario: A moved field is detected as a field move
+    Given a base revision where class "Account" has a field "balance" of type "int" and class "Wallet" is empty
+    And a head revision where class "Wallet" has a field "balance" of type "int" and class "Account" is empty
+    When the semantic engine detects transformations between the revisions
+    Then a "MOVE_FIELD" transformation is detected involving "Account#balance" and "Wallet#balance"
+
+  Scenario: An added field is detected as a field add
+    Given a base revision where class "Account" has no field "balance"
+    And a head revision where class "Account" has an additional field "balance" of type "int"
+    When the semantic engine detects transformations between the revisions
+    Then an "ADD_FIELD" transformation is detected involving "Account#balance"
+
+  Scenario: A removed field is detected as a field remove
+    Given a base revision where class "Account" has a field "balance" of type "int"
+    And a head revision where class "Account" no longer has the field "balance"
+    When the semantic engine detects transformations between the revisions
+    Then a "REMOVE_FIELD" transformation is detected involving "Account#balance"
