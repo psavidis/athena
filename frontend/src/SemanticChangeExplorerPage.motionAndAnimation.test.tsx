@@ -210,7 +210,8 @@ describe('Semantic Change Explorer — purposeful motion and animation pass', ()
     await selectLevel('Capability')
 
     // When the reviewer selects the "Add User" capability
-    await userEvent.setup().click(screen.getByRole('button', { name: /Add User/ }))
+    const capabilities = screen.getByRole('list', { name: 'Capabilities' })
+    await userEvent.setup().click(within(capabilities).getByRole('button', { name: /Add User/ }))
 
     // Then the "Register User" flow is shown highlighted
     expect(screen.getByRole('group', { name: 'Register User' })).toHaveAttribute('aria-current', 'true')
@@ -241,7 +242,7 @@ describe('Semantic Change Explorer — purposeful motion and animation pass', ()
     // Then the Capability classification transitions to a subdued appearance rather than disappearing immediately
     const capabilityGroup = screen.getByRole('group', { name: 'Add User' })
     expect(capabilityGroup).toBeVisible()
-    expect(capabilityGroup.className).toContain('transition-opacity')
+    expect(capabilityGroup.className).toMatch(/transition-\[?opacity/)
     expect(capabilityGroup.className).toContain('opacity-40')
   })
 

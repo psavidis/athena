@@ -62,6 +62,12 @@ export default function SemanticChangeExplorerPage({
   // was on before entering, without Guided Review's own navigation
   // disturbing it.
   const [guidedReviewChapterIndex, setGuidedReviewChapterIndex] = useState<number | undefined>(undefined)
+  // The concept name the reviewer is currently hovering, if any (ticket
+  // #101: "hovering a semantic element subtly pulses its supporting
+  // evidence"). Purely transient UI feedback — unrelated to selection, so
+  // it never affects selectedConceptName/selectedGlobalEntry and clears on
+  // mouse-out rather than needing an explicit "unselect" action.
+  const [hoveredConceptName, setHoveredConceptName] = useState<string | undefined>(undefined)
 
   if (isError) {
     return <ErrorState message="Could not load this Change's Semantic Profile." />
@@ -106,18 +112,29 @@ export default function SemanticChangeExplorerPage({
             entries={entries}
             onSelectSupporting={selectSupportingStructuralChange}
             onSelectConcept={selectGlobalConcept}
+            onHoverConcept={setHoveredConceptName}
           />
         )
       case 'FRAMEWORK':
         return <FrameworkLevel entries={entries} />
       case 'RESPONSIBILITY':
         return (
-          <CapabilityLevel entries={entries} selectedConceptName={selectedConceptName} onSelect={setSelectedConceptName} />
+          <CapabilityLevel
+            entries={entries}
+            selectedConceptName={selectedConceptName}
+            onSelect={(conceptName) => {
+              setSelectedConceptName(conceptName)
+              const entry = entries.find((e) => e.conceptName === conceptName)
+              if (entry) {
+                setSelectedGlobalEntry(entry)
+              }
+            }}
+          />
         )
       case 'FEATURE':
         return <FlowLevel entries={entries} />
       case 'ARCHITECTURE':
-        return <ArchitectureLevel entries={entries} />
+        return <ArchitectureLevel entries={entries} onSelectConcept={selectGlobalConcept} />
       case 'INTENT':
         return <IntentLevel entries={entries} />
       default:
@@ -160,12 +177,21 @@ export default function SemanticChangeExplorerPage({
 
         <div className="grid gap-6 lg:grid-cols-[14rem_1fr_1fr]">
           <Spine current={currentDimension} onSelect={selectLevel} />
-          {renderLevel(currentDimension)}
+          {/* Keyed on currentDimension so switching levels replays the rise-in
+              animation (ticket #101: "moving between semantic levels
+              transitions the same change into its new representation ...
+              rather than reading as a new page load"), instead of a silent,
+              instant swap — while keeping the spine/evidence panel around it
+              stable, so the reviewer's place in the Explorer isn't disturbed. */}
+          <div key={currentDimension} className="animate-rise-in">
+            {renderLevel(currentDimension)}
+          </div>
           <EvidencePanel
             label={currentLabel}
             entries={entriesForEvidencePanel}
             selectedConceptName={selectedConceptName}
             highlightedEntries={highlightedEntries}
+            hoveredConceptName={hoveredConceptName}
           />
         </div>
       </div>
@@ -345,11 +371,13 @@ function EvidencePanel({
   entries,
   selectedConceptName,
   highlightedEntries,
+  hoveredConceptName,
 }: {
   label: string
   entries: SemanticDimensionEntry[]
   selectedConceptName: string | undefined
   highlightedEntries: Set<SemanticDimensionEntry>
+  hoveredConceptName?: string
 }) {
   const withEvidence = entries.filter((entry) => entry.evidence.length > 0)
   const crossHighlighting = highlightedEntries.size > 0
@@ -362,16 +390,19 @@ function EvidencePanel({
             const isSelected = entry.conceptName === selectedConceptName
             const isCrossHighlighted = highlightedEntries.has(entry)
             const isSubdued = crossHighlighting && !isCrossHighlighted
+            const isHoverEmphasized = entry.conceptName === hoveredConceptName
             return (
               <div
                 key={entry.dimension + ':' + entry.conceptName}
                 role="group"
                 aria-label={entry.conceptName}
                 aria-current={isSelected || isCrossHighlighted ? 'true' : undefined}
+                data-hover-emphasized={isHoverEmphasized ? 'true' : undefined}
                 className={
-                  'space-y-3 rounded-xl transition-opacity ' +
+                  'space-y-3 rounded-xl transition-[opacity,box-shadow] duration-200 ' +
                   (isSelected || isCrossHighlighted ? 'ring-2 ring-accent ring-offset-2' : '') +
-                  (isSubdued ? ' opacity-40' : '')
+                  (isSubdued ? ' opacity-40' : '') +
+                  (isHoverEmphasized ? ' ring-2 ring-accent/60' : '')
                 }
               >
                 {entry.evidence.map((diff, i) => (

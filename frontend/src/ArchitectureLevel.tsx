@@ -9,8 +9,20 @@ import { Card, SectionLabel } from './ui'
  * classification"), not a full always-present stack of every recognized
  * role, since {@code ArchitectureTaxonomyClassifier} only ever produces a
  * classification for the role(s) a Change actually touches.
+ *
+ * Each role is also individually selectable (ticket #101: "selecting an
+ * architectural role highlights its connected components"), reporting the
+ * selected entry via {@code onSelectConcept} so the Explorer can drive its
+ * usual shared-evidence cross-highlighting — the same mechanism connecting
+ * Pattern to Framework (ticket #99 §10).
  */
-export default function ArchitectureLevel({ entries }: { entries: SemanticDimensionEntry[] }) {
+export default function ArchitectureLevel({
+  entries,
+  onSelectConcept,
+}: {
+  entries: SemanticDimensionEntry[]
+  onSelectConcept?: (entry: SemanticDimensionEntry) => void
+}) {
   return (
     <section>
       <SectionLabel>Architecture</SectionLabel>
@@ -27,7 +39,17 @@ export default function ArchitectureLevel({ entries }: { entries: SemanticDimens
               className="rounded-xl border border-ink-900 bg-paper-raised p-3"
             >
               <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-ink-900">{entry.conceptName}</span>
+                {onSelectConcept ? (
+                  <button
+                    type="button"
+                    onClick={() => onSelectConcept(entry)}
+                    className="rounded text-sm font-medium text-ink-900 underline decoration-accent/40 decoration-2 underline-offset-4 hover:bg-accent-soft"
+                  >
+                    {entry.conceptName}
+                  </button>
+                ) : (
+                  <span className="text-sm font-medium text-ink-900">{entry.conceptName}</span>
+                )}
                 <span className="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-800">
                   Inferred · {entry.confidencePercent}%
                 </span>
