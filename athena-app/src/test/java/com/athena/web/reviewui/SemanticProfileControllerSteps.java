@@ -108,7 +108,7 @@ public class SemanticProfileControllerSteps {
         }
     }
 
-    @Then("the Semantic Profile includes a {string} entry for the {string} concept")
+    @Then("the Semantic Profile includes a(n) {string} entry for the {string} concept")
     public void the_semantic_profile_includes_an_entry_for_the_concept(String dimensionLabel, String conceptName) {
         SemanticDimension dimension = SemanticDimension.valueOf(dimensionLabel.toUpperCase(Locale.ROOT));
         matchedEntry = response.dimensions().stream()

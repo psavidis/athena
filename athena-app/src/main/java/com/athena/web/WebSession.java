@@ -5,9 +5,11 @@ import com.athena.git.TempDirectories;
 import com.athena.github.ImportedPullRequest;
 import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewui.AnnotationBoard;
+import com.athena.semantic.AnalysisResult;
 import com.athena.semantic.Change;
 import com.athena.semantic.PrAnalyzer;
 import com.athena.semantic.ReviewStateStore;
+import com.athena.semantic.SemanticProfile;
 import com.athena.web.github.GitHubConnectController;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
@@ -90,13 +92,14 @@ public class WebSession {
         // test fixtures) unchanged; a selection is only ever usable once WebSession owns it anyway.
         private PrAnalyzer prAnalyzer;
 
-        // Detecting Changes means parsing every source file in both trees via whichever
-        // LanguagePlugin(s) PrAnalyzer has registered — expensive enough that recomputing it on
-        // every controller call for one selected PR (as every read of a Change used to do) made
-        // ordinary navigation clicks noticeably slow on a real-sized repository. Computed once,
-        // lazily, and reused for the rest of this PR's selection: base/head are immutable
-        // checkouts, so the result never changes while this selection is current.
-        private List<Change> cachedChanges;
+        // Detecting Changes (and their SemanticProfiles, ticket #94) means parsing every source
+        // file in both trees via whichever LanguagePlugin(s) PrAnalyzer has registered —
+        // expensive enough that recomputing it on every controller call for one selected PR (as
+        // every read of a Change used to do) made ordinary navigation clicks noticeably slow on
+        // a real-sized repository. Computed once, lazily, and reused for the rest of this PR's
+        // selection: base/head are immutable checkouts, so the result never changes while this
+        // selection is current.
+        private AnalysisResult cachedAnalysis;
 
         // AI-generated module narratives are billed, real network calls — computed on demand
         // (never eagerly for every module) and cached per module name for the rest of this
@@ -153,11 +156,20 @@ public class WebSession {
         }
 
         /** The Changes detected between this selection's base and head — computed once, then cached. */
-        public synchronized List<Change> changes() {
-            if (cachedChanges == null) {
-                cachedChanges = prAnalyzer.analyze(baseRoot, headRoot).changes();
+        public List<Change> changes() {
+            return analysisResult().changes();
+        }
+
+        /** This Change's Semantic Profile (ticket #94), from the same cached analysis as {@link #changes()}. */
+        public SemanticProfile semanticProfileFor(Change change) {
+            return analysisResult().semanticProfileFor(change);
+        }
+
+        private synchronized AnalysisResult analysisResult() {
+            if (cachedAnalysis == null) {
+                cachedAnalysis = prAnalyzer.analyze(baseRoot, headRoot);
             }
-            return cachedChanges;
+            return cachedAnalysis;
         }
 
         /** The cached narrative for a module, computing it via {@code generator} on first request. */
