@@ -7,9 +7,8 @@ import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.Change;
 import com.athena.semantic.PrAnalyzer;
-import com.athena.plugin.java.TransformationDetector; // TEMP VIOLATION
 import com.athena.semantic.ReviewStateStore;
-import com.athena.web.controller.GitHubConnectController;
+import com.athena.web.github.GitHubConnectController;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -47,7 +46,6 @@ public class WebSession {
 
     public void connect(String token) {
         this.gitHubToken = token;
-        TransformationDetector unused = new TransformationDetector(); // TEMP VIOLATION USE
     }
 
     public Optional<String> gitHubToken() {
