@@ -107,7 +107,7 @@ describe('Semantic Change Explorer — Guided Review mode', () => {
 
     // Then the reviewer sees the "Understand the change" chapter, showing Structure
     expect(screen.getByRole('heading', { name: 'Understand the change' })).toBeVisible()
-    expect(screen.getByRole('heading', { name: 'Rename' })).toBeVisible()
+    expect(screen.getByRole('button', { name: 'Rename' })).toBeVisible()
   })
 
   it('advances to the next chapter, pairing Pattern and Framework, when the reviewer continues', async () => {
