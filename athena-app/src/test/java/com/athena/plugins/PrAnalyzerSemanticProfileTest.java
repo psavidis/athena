@@ -148,6 +148,35 @@ class PrAnalyzerSemanticProfileTest {
     }
 
     @Test
+    void endToEndAutowiredFieldDroppedInFavorOfAConstructorParameterIsClassifiedAsFrameworkMechanismTransition() {
+        // Ticket #97's literal example: the same real-world shape as the Pattern-level
+        // dependency-injection correlation above, but asserting the FRAMEWORK dimension's
+        // "spring-field-to-constructor-injection" classification and its before/after evidence
+        // split — the two dimensions are independently derived from the same underlying Changes.
+        write(baseRoot, "UserService", "public class UserService {\n"
+                + "    @Autowired\n"
+                + "    private UserRepository userRepository;\n"
+                + "}\n");
+        write(headRoot, "UserService", "public class UserService {\n"
+                + "    private final UserRepository userRepository;\n"
+                + "    public UserService(UserRepository userRepository) {\n"
+                + "        this.userRepository = userRepository;\n"
+                + "    }\n"
+                + "}\n");
+
+        AnalysisResult result = newPrAnalyzer().analyze(baseRoot, headRoot);
+
+        Change addedParameterChange = result.changes().stream()
+                .filter(c -> c.kind() == TransformationKind.ADD_CONSTRUCTOR_PARAMETER)
+                .findFirst().orElseThrow();
+        SemanticProfile profile = result.semanticProfileFor(addedParameterChange);
+
+        assertThat(profile.classifications(SemanticDimension.FRAMEWORK))
+                .extracting(c -> c.concept().id()).containsExactly("spring-field-to-constructor-injection");
+        assertThat(profile.classifications(SemanticDimension.FRAMEWORK).get(0).beforeEvidenceCount()).isEqualTo(1);
+    }
+
+    @Test
     void aNewlyAddedCheckoutClassIsClassifiedAlongTheFeatureDimension() {
         write(headRoot, "CheckoutService", "public class CheckoutService {\n}\n");
 

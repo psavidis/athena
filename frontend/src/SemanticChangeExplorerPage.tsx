@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getSemanticProfile, type SemanticDimension, type SemanticDimensionEntry } from './api'
+import CapabilityLevel from './CapabilityLevel'
+import FrameworkLevel from './FrameworkLevel'
 import PatternLevel from './PatternLevel'
 import StructureLevel from './StructureLevel'
 import { BackLink, Card, DiffView, ErrorState, LoadingState, SectionLabel } from './ui'
@@ -35,10 +37,11 @@ export default function SemanticChangeExplorerPage({
     retry: false,
   })
   const [currentDimension, setCurrentDimension] = useState<SemanticDimension>('STRUCTURAL')
-  // Which entry of the current level is highlighted (ticket #96): a Structure
-  // chip the reviewer clicked directly, or the Structure chip a Pattern's
-  // "supported by" link sent them to. Cleared on any other level change —
-  // it's only meaningful while looking at the Structure level.
+  // Which entry of the current level is highlighted: a Structure chip the
+  // reviewer clicked directly, or the Structure chip a Pattern's "supported
+  // by" link sent them to (ticket #96); or a Capability card the reviewer
+  // clicked, to show its evidence (ticket #97). Cleared on any other level
+  // change — it's only meaningful while looking at Structure or Capability.
   const [selectedConceptName, setSelectedConceptName] = useState<string | undefined>(undefined)
 
   if (isError) {
@@ -78,6 +81,14 @@ export default function SemanticChangeExplorerPage({
             />
           ) : currentDimension === 'PATTERN' ? (
             <PatternLevel entries={entriesForCurrentDimension} onSelectSupporting={selectSupportingStructuralChange} />
+          ) : currentDimension === 'FRAMEWORK' ? (
+            <FrameworkLevel entries={entriesForCurrentDimension} />
+          ) : currentDimension === 'RESPONSIBILITY' ? (
+            <CapabilityLevel
+              entries={entriesForCurrentDimension}
+              selectedConceptName={selectedConceptName}
+              onSelect={setSelectedConceptName}
+            />
           ) : (
             <CenterStage label={currentLabel} entry={entriesForCurrentDimension[0]} />
           )}

@@ -90,8 +90,9 @@ public final class PrAnalyzer {
 
         List<Change> changes = anyParseable ? detectChanges(baseRoot, headRoot) : List.of();
         Map<Change, SemanticClassification> dependencyInjectionMatches = patternClassifier.classifyDependencyInjection(changes);
+        Map<Change, SemanticClassification> frameworkCorrelationMatches = classifyFrameworkCorrelated(changes);
         List<SemanticProfile> semanticProfiles = changes.stream()
-                .map(change -> classify(change, dependencyInjectionMatches.get(change)))
+                .map(change -> classify(change, dependencyInjectionMatches.get(change), frameworkCorrelationMatches.get(change)))
                 .toList();
 
         AnalysisStatus status = status(relativePaths.size(), degradedEntries.size());
@@ -109,10 +110,14 @@ public final class PrAnalyzer {
      *
      * @param dependencyInjectionMatch this Change's dependency-injection Pattern
      *        classification, precomputed once across the whole Change set by
-     *        {@link PatternTaxonomyClassifier#classifyDependencyInjection} — the only
-     *        classification here that needs more than this one Change to decide.
+     *        {@link PatternTaxonomyClassifier#classifyDependencyInjection} — one of two
+     *        classifications here that need more than this one Change to decide.
+     * @param frameworkCorrelationMatch this Change's correlated Framework classification
+     *        (e.g. Spring field-to-constructor injection), precomputed once across the
+     *        whole Change set by {@link FrameworkPlugin#classifyCorrelated} — the other.
      */
-    private SemanticProfile classify(Change change, SemanticClassification dependencyInjectionMatch) {
+    private SemanticProfile classify(Change change, SemanticClassification dependencyInjectionMatch,
+                                      SemanticClassification frameworkCorrelationMatch) {
         SemanticProfile profile = SemanticProfile.empty(change);
         profile = withClassification(profile, SemanticDimension.STRUCTURAL, structuralClassifier.classify(change));
         profile = withClassification(profile, SemanticDimension.RESPONSIBILITY, responsibilityClassifier.classify(change));
@@ -120,11 +125,21 @@ public final class PrAnalyzer {
         profile = withClassification(profile, SemanticDimension.PATTERN, patternClassifier.classify(change));
         profile = withClassification(profile, SemanticDimension.PATTERN, Optional.ofNullable(dependencyInjectionMatch));
         profile = withClassification(profile, SemanticDimension.FEATURE, flowClassifier.classify(change));
-        profile = withClassification(profile, SemanticDimension.FRAMEWORK, classifyFramework(change));
+        profile = withClassification(profile, SemanticDimension.FRAMEWORK,
+                Optional.ofNullable(frameworkCorrelationMatch).or(() -> classifyFramework(change)));
         for (SemanticClassification intentClassification : intentClassifier.classify(profile)) {
             profile = profile.with(SemanticDimension.INTENT, intentClassification);
         }
         return profile;
+    }
+
+    /** Every registered FrameworkPlugin's correlated (cross-Change) classifications, merged. */
+    private Map<Change, SemanticClassification> classifyFrameworkCorrelated(List<Change> changes) {
+        Map<Change, SemanticClassification> merged = new LinkedHashMap<>();
+        for (FrameworkPlugin frameworkPlugin : frameworkPlugins) {
+            merged.putAll(frameworkPlugin.classifyCorrelated(changes, frameworkTaxonomy));
+        }
+        return merged;
     }
 
     /** The first registered FrameworkPlugin that recognizes this Change, if any. */

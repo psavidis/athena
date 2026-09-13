@@ -23,6 +23,13 @@ Feature: Semantic Profile API
     And that entry is marked Inferred with a confidence below 100%
     And that entry includes supporting evidence
 
+  Scenario: The Capability (Responsibility) entry is marked Inferred, not Observed
+    Given the reviewer is connected to GitHub
+    And the reviewer has selected a PR whose head revision adds a class named "UserController"
+    When the reviewer requests the Semantic Profile for the newly-added Change
+    Then the Semantic Profile includes a "Responsibility" entry for the "Add Capability" concept
+    And that entry is marked Inferred with a confidence below 100%
+
   Scenario: A Pattern entry names the structural changes that support it
     Given the reviewer is connected to GitHub
     And the reviewer has selected a PR whose head revision adds a class named "UserBuilder"

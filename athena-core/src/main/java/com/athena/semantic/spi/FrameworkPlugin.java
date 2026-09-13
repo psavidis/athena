@@ -4,6 +4,8 @@ import com.athena.semantic.Change;
 import com.athena.semantic.SemanticClassification;
 import com.athena.semantic.Taxonomy;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -32,4 +34,17 @@ public interface FrameworkPlugin {
 
     /** Classifies {@code change} along the FRAMEWORK dimension, if this framework recognizes it. */
     Optional<SemanticClassification> classify(Change change, Taxonomy frameworkTaxonomy);
+
+    /**
+     * Classifies FRAMEWORK-dimension mechanism transitions that need more than one
+     * Change to recognize (e.g. Spring's field-to-constructor injection: no single
+     * Change's diff carries both the removed field annotation and the added
+     * constructor parameter — ticket #97 §"Framework level"). Default empty for a
+     * framework plugin with no such correlated classification.
+     *
+     * @return classifications keyed by whichever Change in {@code changes} they apply to
+     */
+    default Map<Change, SemanticClassification> classifyCorrelated(List<Change> changes, Taxonomy frameworkTaxonomy) {
+        return Map.of();
+    }
 }

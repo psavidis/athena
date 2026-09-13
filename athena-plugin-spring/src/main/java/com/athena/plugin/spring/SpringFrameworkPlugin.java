@@ -5,6 +5,8 @@ import com.athena.semantic.SemanticClassification;
 import com.athena.semantic.Taxonomy;
 import com.athena.semantic.spi.FrameworkPlugin;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -32,5 +34,10 @@ public final class SpringFrameworkPlugin implements FrameworkPlugin {
     @Override
     public Optional<SemanticClassification> classify(Change change, Taxonomy frameworkTaxonomy) {
         return classifier.classify(change, frameworkTaxonomy);
+    }
+
+    @Override
+    public Map<Change, SemanticClassification> classifyCorrelated(List<Change> changes, Taxonomy frameworkTaxonomy) {
+        return classifier.classifySpringFieldToConstructorInjection(changes, frameworkTaxonomy);
     }
 }
