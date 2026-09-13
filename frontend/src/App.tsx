@@ -4,15 +4,26 @@ import { getGitHubConnectUrl, getGitHubStatus, listOpenPullRequests, listReposit
 import type { ImportedPullRequest } from './api'
 import ChangeMapPage from './ChangeMapPage'
 import ChangeDetailPage from './ChangeDetailPage'
+import SemanticChangeExplorerPage from './SemanticChangeExplorerPage'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
 import AiAnalysisPage from './AiAnalysisPage'
-import { BackLink, Card, ErrorState, LoadingState, PageHeading, PageShell, PrimaryButton } from './ui'
+import { BackLink, Card, ErrorState, LoadingState, PageHeading, PageShell, PrimaryButton, SecondaryButton } from './ui'
+
+type ChangeViewMode = 'diff' | 'explorer'
 
 export default function App() {
   const [connected, setConnected] = useState<boolean | null>(null)
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null)
   const [selectedPr, setSelectedPr] = useState<ImportedPullRequest | null>(null)
   const [selectedChangeKey, setSelectedChangeKey] = useState<string | null>(null)
+  // Which of the two reachable views a selected Change is shown in (ticket
+  // #100): the traditional flat diff, or the Semantic Change Explorer.
+  // #91 replaces the *primary* experience, not the diff itself — the diff
+  // remains reachable as the underlying evidence (#91 §1). Reset whenever
+  // a different Change is selected, not preserved as some global
+  // preference, since the ticket only asks that switching mode not lose
+  // the selected PR/Change.
+  const [changeViewMode, setChangeViewMode] = useState<ChangeViewMode>('diff')
   const [showingSummary, setShowingSummary] = useState(false)
   const [showingAiAnalysis, setShowingAiAnalysis] = useState(false)
 
@@ -30,7 +41,20 @@ export default function App() {
   }
   if (selectedPr) {
     if (selectedChangeKey) {
-      return <ChangeDetailPage changeKey={selectedChangeKey} onBack={() => setSelectedChangeKey(null)} />
+      const onBack = () => {
+        setSelectedChangeKey(null)
+        setChangeViewMode('diff')
+      }
+      return (
+        <div>
+          <ChangeViewModeToggle mode={changeViewMode} onChange={setChangeViewMode} />
+          {changeViewMode === 'diff' ? (
+            <ChangeDetailPage changeKey={selectedChangeKey} onBack={onBack} />
+          ) : (
+            <SemanticChangeExplorerPage changeKey={selectedChangeKey} onBack={onBack} />
+          )}
+        </div>
+      )
     }
     if (showingSummary) {
       return <PreSubmissionSummaryPage onBack={() => setShowingSummary(false)} />
@@ -70,6 +94,29 @@ export default function App() {
     )
   }
   return <RepositoryStep onSelected={setSelectedRepo} />
+}
+
+/**
+ * The top-bar Diff view / Semantic Explorer mode switch (ticket #100), kept
+ * reachable alongside a selected Change so a reviewer can move between the
+ * two without losing which Change/PR they're looking at (ticket #91 §1).
+ */
+function ChangeViewModeToggle({
+  mode,
+  onChange,
+}: {
+  mode: ChangeViewMode
+  onChange: (mode: ChangeViewMode) => void
+}) {
+  return (
+    <div className="mx-auto flex max-w-6xl justify-end gap-2 px-6 pt-6 sm:px-10">
+      {mode === 'diff' ? (
+        <SecondaryButton onClick={() => onChange('explorer')}>Semantic Explorer</SecondaryButton>
+      ) : (
+        <SecondaryButton onClick={() => onChange('diff')}>Diff view</SecondaryButton>
+      )}
+    </div>
+  )
 }
 
 function ConnectStep() {

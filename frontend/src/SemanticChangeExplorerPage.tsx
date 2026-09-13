@@ -5,10 +5,11 @@ import ArchitectureLevel from './ArchitectureLevel'
 import CapabilityLevel from './CapabilityLevel'
 import FlowLevel from './FlowLevel'
 import FrameworkLevel from './FrameworkLevel'
+import { GUIDED_REVIEW_CHAPTERS } from './guidedReviewChapters'
 import IntentLevel from './IntentLevel'
 import PatternLevel from './PatternLevel'
 import StructureLevel from './StructureLevel'
-import { BackLink, Card, DiffView, ErrorState, LoadingState, SectionLabel } from './ui'
+import { BackLink, Card, DiffView, ErrorState, LoadingState, PrimaryButton, SecondaryButton, SectionLabel } from './ui'
 
 /**
  * The seven-level semantic spine (ticket #91 §2/§12), in Structure → Intent
@@ -54,6 +55,13 @@ export default function SemanticChangeExplorerPage({
   // clicking a Change Story term keeps its cross-highlight active even
   // after switching levels.
   const [selectedGlobalEntry, setSelectedGlobalEntry] = useState<SemanticDimensionEntry | undefined>(undefined)
+  // Guided Review (ticket #100 / #91 §14): undefined means the reviewer is
+  // in the normal spine-driven Explorer; a chapter index means they're
+  // walking GUIDED_REVIEW_CHAPTERS instead. Kept separate from
+  // currentDimension so exiting can restore exactly the level the reviewer
+  // was on before entering, without Guided Review's own navigation
+  // disturbing it.
+  const [guidedReviewChapterIndex, setGuidedReviewChapterIndex] = useState<number | undefined>(undefined)
 
   if (isError) {
     return <ErrorState message="Could not load this Change's Semantic Profile." />
@@ -61,6 +69,8 @@ export default function SemanticChangeExplorerPage({
   if (isLoading || !data) {
     return <LoadingState />
   }
+
+  const dimensions = data.dimensions
 
   function selectLevel(dimension: SemanticDimension) {
     setCurrentDimension(dimension)
@@ -78,60 +88,163 @@ export default function SemanticChangeExplorerPage({
     setSelectedGlobalEntry(entry)
   }
 
-  const entriesForCurrentDimension = data.dimensions.filter((entry) => entry.dimension === currentDimension)
+  function entriesForDimension(dimension: SemanticDimension) {
+    return dimensions.filter((entry) => entry.dimension === dimension)
+  }
+
+  function renderLevel(dimension: SemanticDimension) {
+    const entries = entriesForDimension(dimension)
+    const label = LEVELS.find((level) => level.dimension === dimension)!.label
+    switch (dimension) {
+      case 'STRUCTURAL':
+        return (
+          <StructureLevel entries={entries} selectedConceptName={selectedConceptName} onSelect={setSelectedConceptName} />
+        )
+      case 'PATTERN':
+        return (
+          <PatternLevel
+            entries={entries}
+            onSelectSupporting={selectSupportingStructuralChange}
+            onSelectConcept={selectGlobalConcept}
+          />
+        )
+      case 'FRAMEWORK':
+        return <FrameworkLevel entries={entries} />
+      case 'RESPONSIBILITY':
+        return (
+          <CapabilityLevel entries={entries} selectedConceptName={selectedConceptName} onSelect={setSelectedConceptName} />
+        )
+      case 'FEATURE':
+        return <FlowLevel entries={entries} />
+      case 'ARCHITECTURE':
+        return <ArchitectureLevel entries={entries} />
+      case 'INTENT':
+        return <IntentLevel entries={entries} />
+      default:
+        return <CenterStage label={label} entry={entries[0]} />
+    }
+  }
+
+  if (guidedReviewChapterIndex !== undefined) {
+    return (
+      <GuidedReviewChapterView
+        chapterIndex={guidedReviewChapterIndex}
+        onBack={() => setGuidedReviewChapterIndex((index) => index! - 1)}
+        onContinue={() => setGuidedReviewChapterIndex((index) => index! + 1)}
+        onExit={() => setGuidedReviewChapterIndex(undefined)}
+        renderLevel={renderLevel}
+        allDimensions={dimensions}
+      />
+    )
+  }
+
+  const entriesForCurrentDimension = entriesForDimension(currentDimension)
   const currentLabel = LEVELS.find((level) => level.dimension === currentDimension)!.label
-  const highlightedEntries = entriesSharingEvidence(data.dimensions, selectedGlobalEntry)
+  const highlightedEntries = entriesSharingEvidence(dimensions, selectedGlobalEntry)
   // The evidence panel shows the current level's own entries; while a
   // cross-highlight is active (ticket #99 §10), it shows every classified
   // entry across every dimension instead — connected ones highlighted,
   // everything else visually subdued rather than removed, per #91 §10's
   // closing rule ("unrelated content is visually subdued, not removed").
-  const entriesForEvidencePanel = highlightedEntries.size > 0 ? data.dimensions : entriesForCurrentDimension
+  const entriesForEvidencePanel = highlightedEntries.size > 0 ? dimensions : entriesForCurrentDimension
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-10 sm:px-10 sm:py-14">
       <div className="animate-rise-in">
-        <BackLink onClick={onBack}>← Back to Change Map</BackLink>
+        <div className="mb-2 flex items-center justify-between">
+          <BackLink onClick={onBack}>← Back to Change Map</BackLink>
+          <SecondaryButton onClick={() => setGuidedReviewChapterIndex(0)}>Start guided review</SecondaryButton>
+        </div>
 
-        <ChangeStory dimensions={data.dimensions} onSelect={selectLevel} onSelectConcept={selectGlobalConcept} />
+        <ChangeStory dimensions={dimensions} onSelect={selectLevel} onSelectConcept={selectGlobalConcept} />
 
         <div className="grid gap-6 lg:grid-cols-[14rem_1fr_1fr]">
           <Spine current={currentDimension} onSelect={selectLevel} />
-          {currentDimension === 'STRUCTURAL' ? (
-            <StructureLevel
-              entries={entriesForCurrentDimension}
-              selectedConceptName={selectedConceptName}
-              onSelect={setSelectedConceptName}
-            />
-          ) : currentDimension === 'PATTERN' ? (
-            <PatternLevel
-              entries={entriesForCurrentDimension}
-              onSelectSupporting={selectSupportingStructuralChange}
-              onSelectConcept={selectGlobalConcept}
-            />
-          ) : currentDimension === 'FRAMEWORK' ? (
-            <FrameworkLevel entries={entriesForCurrentDimension} />
-          ) : currentDimension === 'RESPONSIBILITY' ? (
-            <CapabilityLevel
-              entries={entriesForCurrentDimension}
-              selectedConceptName={selectedConceptName}
-              onSelect={setSelectedConceptName}
-            />
-          ) : currentDimension === 'FEATURE' ? (
-            <FlowLevel entries={entriesForCurrentDimension} />
-          ) : currentDimension === 'ARCHITECTURE' ? (
-            <ArchitectureLevel entries={entriesForCurrentDimension} />
-          ) : currentDimension === 'INTENT' ? (
-            <IntentLevel entries={entriesForCurrentDimension} />
-          ) : (
-            <CenterStage label={currentLabel} entry={entriesForCurrentDimension[0]} />
-          )}
+          {renderLevel(currentDimension)}
           <EvidencePanel
             label={currentLabel}
             entries={entriesForEvidencePanel}
             selectedConceptName={selectedConceptName}
             highlightedEntries={highlightedEntries}
           />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * The Guided Review chapter view (ticket #100 / #91 §14): walks
+ * GUIDED_REVIEW_CHAPTERS in order, rendering each chapter's dimension(s)
+ * side by side via the same per-level components the spine-driven Explorer
+ * uses. The final "Inspect the evidence" chapter has no dimensions of its
+ * own — it shows every classified entry's evidence instead, since it is
+ * the change's raw evidence rather than another semantic level.
+ */
+function GuidedReviewChapterView({
+  chapterIndex,
+  onBack,
+  onContinue,
+  onExit,
+  renderLevel,
+  allDimensions,
+}: {
+  chapterIndex: number
+  onBack: () => void
+  onContinue: () => void
+  onExit: () => void
+  renderLevel: (dimension: SemanticDimension) => React.ReactNode
+  allDimensions: SemanticDimensionEntry[]
+}) {
+  const chapter = GUIDED_REVIEW_CHAPTERS[chapterIndex]
+  const isFirst = chapterIndex === 0
+  const isLast = chapterIndex === GUIDED_REVIEW_CHAPTERS.length - 1
+
+  return (
+    <div className="mx-auto max-w-6xl px-6 py-10 sm:px-10 sm:py-14">
+      <div className="animate-rise-in">
+        <div className="mb-2 flex items-center justify-between">
+          <SectionLabel>Chapter {chapterIndex + 1} of {GUIDED_REVIEW_CHAPTERS.length}</SectionLabel>
+          <SecondaryButton onClick={onExit}>Exit guided review</SecondaryButton>
+        </div>
+
+        <h1 className="mb-6 text-2xl font-semibold tracking-tight text-ink-900">{chapter.title}</h1>
+
+        <nav aria-label="Guided review chapters" className="mb-8">
+          <ol className="flex flex-wrap gap-2">
+            {GUIDED_REVIEW_CHAPTERS.map((c, i) => (
+              <li
+                key={c.title}
+                aria-current={i === chapterIndex ? 'true' : undefined}
+                className={
+                  'rounded-full px-3 py-1 text-xs font-medium ' +
+                  (i === chapterIndex ? 'bg-ink-900 text-white' : i < chapterIndex ? 'bg-ink-200 text-ink-700' : 'bg-ink-100 text-ink-500')
+                }
+              >
+                {c.title}
+              </li>
+            ))}
+          </ol>
+        </nav>
+
+        {chapter.dimensions.length > 0 ? (
+          <div className={'grid gap-6 ' + (chapter.dimensions.length > 1 ? 'lg:grid-cols-2' : 'lg:max-w-3xl')}>
+            {chapter.dimensions.map((dimension) => (
+              <div key={dimension}>{renderLevel(dimension)}</div>
+            ))}
+          </div>
+        ) : (
+          <EvidencePanel
+            label="the Change"
+            entries={allDimensions}
+            selectedConceptName={undefined}
+            highlightedEntries={new Set()}
+          />
+        )}
+
+        <div className="mt-8 flex justify-between">
+          {!isFirst ? <SecondaryButton onClick={onBack}>Back</SecondaryButton> : <span />}
+          {!isLast && <PrimaryButton onClick={onContinue}>Continue</PrimaryButton>}
         </div>
       </div>
     </div>
