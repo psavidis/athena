@@ -22,6 +22,7 @@ the API boundary, one on the rendering side.
 - `web_session_pr_selection.feature` — authenticating and selecting a repo/PR over HTTP
 - `web_change_map.feature` — Change Map & PR Understanding View API
 - `web_change_drilldown_and_annotations.feature` — Change drill-down, comments & private notes API
+- `web_semantic_profile.feature` — Semantic Profile API (all seven dimensions, confidence, evidence)
 - `web_ai_analysis_and_findings.feature` — AI analysis trigger & findings review API
 - `web_review_state_and_submission.feature` — review state, pre-submission summary & GitHub submission API
 - `web_module_narratives.feature` — module-level "what changed and why" narratives API
