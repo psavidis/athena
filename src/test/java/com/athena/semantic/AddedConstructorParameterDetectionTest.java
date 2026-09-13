@@ -89,6 +89,44 @@ class AddedConstructorParameterDetectionTest {
         assertThat(transformations).noneMatch(t -> t.kind() == TransformationKind.ADD_CONSTRUCTOR_PARAMETER);
     }
 
+    @Test
+    void doesNotDetectAParameterThatWasAlreadyPresentInADifferentBaseOverload() {
+        // Base declares two constructors; the parameter in question ("repository") already
+        // exists on the OTHER overload, not the one head's new overload most resembles.
+        write(baseRoot, "UserService", "public class UserService {\n"
+                + "    private final UserRepository repository;\n"
+                + "    public UserService() {\n"
+                + "        this.repository = null;\n"
+                + "    }\n"
+                + "    public UserService(UserRepository repository) {\n"
+                + "        this.repository = repository;\n"
+                + "    }\n"
+                + "}\n");
+        write(headRoot, "UserService", "public class UserService {\n"
+                + "    private final UserRepository repository;\n"
+                + "    private final Logger log;\n"
+                + "    public UserService() {\n"
+                + "        this.repository = null;\n"
+                + "        this.log = null;\n"
+                + "    }\n"
+                + "    public UserService(UserRepository repository) {\n"
+                + "        this.repository = repository;\n"
+                + "        this.log = null;\n"
+                + "    }\n"
+                + "    public UserService(UserRepository repository, Logger log) {\n"
+                + "        this.repository = repository;\n"
+                + "        this.log = log;\n"
+                + "    }\n"
+                + "}\n");
+
+        List<DetectedTransformation> transformations = new TransformationDetector().detect(baseRoot, headRoot);
+
+        assertThat(transformations)
+                .filteredOn(t -> t.kind() == TransformationKind.ADD_CONSTRUCTOR_PARAMETER)
+                .extracting(DetectedTransformation::involvedDescriptions)
+                .containsExactly(List.of("UserService#log"));
+    }
+
     private void write(Path root, String simpleName, String content) {
         try {
             Files.writeString(root.resolve(simpleName + ".java"), content);

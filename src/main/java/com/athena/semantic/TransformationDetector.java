@@ -17,6 +17,7 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -236,14 +237,22 @@ public final class TransformationDetector {
     private List<DetectedTransformation> detectAddedConstructorParameters(List<ConstructorInfo> baseConstructors,
                                                                             List<ConstructorInfo> headConstructors) {
         List<DetectedTransformation> results = new ArrayList<>();
-        Map<String, ConstructorInfo> baseByEnclosingType = new LinkedHashMap<>();
+        // A class can declare more than one constructor (overloads); a parameter counts as
+        // "already present in base" if ANY of the class's base constructors already had it —
+        // keying by enclosing type alone (one ConstructorInfo per class) would silently drop
+        // every base overload but one and produce false positives for a parameter that was
+        // genuinely already present in a different base overload.
+        Map<String, Set<String>> baseParameterNamesByEnclosingType = new LinkedHashMap<>();
+        Map<String, ConstructorInfo> representativeBaseByEnclosingType = new LinkedHashMap<>();
         for (ConstructorInfo c : baseConstructors) {
-            baseByEnclosingType.put(c.enclosingType, c);
+            baseParameterNamesByEnclosingType.computeIfAbsent(c.enclosingType, k -> new HashSet<>())
+                    .addAll(c.parameterNames);
+            representativeBaseByEnclosingType.putIfAbsent(c.enclosingType, c);
         }
 
         for (ConstructorInfo head : headConstructors) {
-            ConstructorInfo base = baseByEnclosingType.get(head.enclosingType);
-            Set<String> baseParameterNames = base == null ? Set.of() : Set.copyOf(base.parameterNames);
+            Set<String> baseParameterNames = baseParameterNamesByEnclosingType.getOrDefault(head.enclosingType, Set.of());
+            ConstructorInfo representativeBase = representativeBaseByEnclosingType.get(head.enclosingType);
             for (String parameterName : head.parameterNames) {
                 if (!baseParameterNames.contains(parameterName) && head.assignedFieldNames.contains(parameterName)) {
                     // Description format deliberately matches FieldInfo#description()'s
@@ -251,8 +260,8 @@ public final class TransformationDetector {
                     // PatternTaxonomyClassifier can correlate this against a REMOVE_FIELD
                     // transformation for the same name by simple string equality.
                     results.add(DetectedTransformation.withDiff(TransformationKind.ADD_CONSTRUCTOR_PARAMETER,
-                            List.of(head.enclosingType + "#" + parameterName),
-                            List.of(head.file), base == null ? "" : base.rawDeclaration, head.rawDeclaration));
+                            List.of(head.enclosingType + "#" + parameterName), List.of(head.file),
+                            representativeBase == null ? "" : representativeBase.rawDeclaration, head.rawDeclaration));
                 }
             }
         }
