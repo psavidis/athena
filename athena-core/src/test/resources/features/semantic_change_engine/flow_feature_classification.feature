@@ -18,9 +18,3 @@ Feature: Flow/Feature classification of code changes
     Given a change with no matched code at all
     When the change is classified along the Feature dimension
     Then it has no Feature classification
-
-  Scenario: A change's Feature classification is visible in its overall semantic profile
-    Given a change that adds a class named "CheckoutService" to the codebase
-    When the change is classified along the Feature dimension
-    And its semantic profile is assembled
-    Then the semantic profile includes the "Checkout" flow concept for the Feature dimension

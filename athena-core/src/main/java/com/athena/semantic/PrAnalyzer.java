@@ -44,6 +44,7 @@ public final class PrAnalyzer {
     private final ResponsibilityTaxonomyClassifier responsibilityClassifier;
     private final ArchitectureTaxonomyClassifier architectureClassifier;
     private final PatternTaxonomyClassifier patternClassifier;
+    private final FlowTaxonomyClassifier flowClassifier;
     private final Taxonomy frameworkTaxonomy;
 
     public PrAnalyzer(List<LanguagePlugin> languagePlugins, List<FrameworkPlugin> frameworkPlugins) {
@@ -54,6 +55,7 @@ public final class PrAnalyzer {
         responsibilityClassifier = new ResponsibilityTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.RESPONSIBILITY));
         architectureClassifier = new ArchitectureTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.ARCHITECTURE));
         patternClassifier = new PatternTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.PATTERN));
+        flowClassifier = new FlowTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.FEATURE));
         frameworkTaxonomy = taxonomyLoader.load(SemanticDimension.FRAMEWORK);
     }
 
@@ -97,12 +99,12 @@ public final class PrAnalyzer {
 
     /**
      * Classifies one Change along whichever semantic dimensions have a classifier today
-     * (ticket #86): structural, responsibility, and — for a newly-added/renamed class only
-     * — architecture, pattern, and framework (all three read a class's own name/annotations,
-     * which only a class actually taking on that identity speaks to). Feature/flow and intent
-     * have taxonomies but no classifier yet — neither is reliably inferable from a diff alone
-     * without guessing, so a Change simply carries no classification along those dimensions
-     * rather than a guessed or placeholder one.
+     * (ticket #86): structural, responsibility, feature/flow (ticket #92), and — for a
+     * newly-added/renamed class only — architecture, pattern, and framework (all three read
+     * a class's own name/annotations, which only a class actually taking on that identity
+     * speaks to). Intent has a taxonomy but no classifier yet — it isn't reliably inferable
+     * from a diff alone without guessing, so a Change simply carries no classification along
+     * that dimension rather than a guessed or placeholder one.
      *
      * @param dependencyInjectionMatch this Change's dependency-injection Pattern
      *        classification, precomputed once across the whole Change set by
@@ -116,6 +118,7 @@ public final class PrAnalyzer {
         profile = withClassification(profile, SemanticDimension.ARCHITECTURE, architectureClassifier.classify(change));
         profile = withClassification(profile, SemanticDimension.PATTERN, patternClassifier.classify(change));
         profile = withClassification(profile, SemanticDimension.PATTERN, Optional.ofNullable(dependencyInjectionMatch));
+        profile = withClassification(profile, SemanticDimension.FEATURE, flowClassifier.classify(change));
         profile = withClassification(profile, SemanticDimension.FRAMEWORK, classifyFramework(change));
         return profile;
     }
