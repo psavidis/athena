@@ -27,6 +27,21 @@ class IntentTaxonomyClassifierTest {
     }
 
     @Test
+    void deduplicatesEvidenceWhenTheCorrelatingClassificationsShareTheSameUnderlyingTransformations() {
+        // The realistic case: every existing classifier passes a Change's own
+        // matchedOccurrences() verbatim as evidence, so a Pattern and a Framework
+        // classification derived from the same Change carry the exact same evidence list.
+        Change change = anyChange();
+        SemanticProfile profile = SemanticProfile.empty(change)
+                .with(SemanticDimension.PATTERN, SemanticClassification.of(dependencyInjectionConcept(), change.matchedOccurrences()))
+                .with(SemanticDimension.FRAMEWORK, SemanticClassification.of(fieldToConstructorInjectionConcept(), change.matchedOccurrences()));
+
+        List<SemanticClassification> classifications = classifier.classify(profile);
+
+        assertThat(classifications.get(0).evidence()).containsExactlyElementsOf(change.matchedOccurrences());
+    }
+
+    @Test
     void theInferredClassificationsEvidenceIsTheUnionOfTheCorrelatingClassificationsEvidence() {
         DetectedTransformation patternEvidence = DetectedTransformation.of(
                 TransformationKind.ADD_CONSTRUCTOR_PARAMETER, List.of("UserService#<init>"), List.of());

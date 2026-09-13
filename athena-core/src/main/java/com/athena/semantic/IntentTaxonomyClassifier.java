@@ -1,8 +1,10 @@
 package com.athena.semantic;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Classifies a {@link Change} along the {@link SemanticDimension#INTENT}
@@ -55,12 +57,22 @@ public final class IntentTaxonomyClassifier {
                 .findFirst();
     }
 
+    /**
+     * The correlating classifications' evidence, deduplicated: every existing classifier
+     * passes a Change's own {@code matchedOccurrences()} verbatim as its evidence, so two
+     * classifications derived from the same Change typically share the exact same
+     * {@link DetectedTransformation} instances — a plain concatenation would show a reviewer
+     * each one twice under #91's "Show evidence" affordance. A {@link LinkedHashSet} is
+     * enough to dedupe here (no need for {@code DetectedTransformation} to define its own
+     * equals/hashCode) since these are literally the same object references, and it keeps
+     * first-seen order so the primary correlation's evidence still leads.
+     */
     private List<DetectedTransformation> mergedEvidence(SemanticClassification... correlating) {
-        List<DetectedTransformation> merged = new ArrayList<>();
+        Set<DetectedTransformation> merged = new LinkedHashSet<>();
         for (SemanticClassification classification : correlating) {
             merged.addAll(classification.evidence());
         }
-        return merged;
+        return new ArrayList<>(merged);
     }
 
     private List<SemanticClassification> rankedClassifications(List<String> conceptIdsRankedPrimaryFirst,

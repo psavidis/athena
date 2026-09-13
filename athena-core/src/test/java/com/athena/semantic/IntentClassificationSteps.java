@@ -66,7 +66,7 @@ public class IntentClassificationSteps {
         List<DetectedTransformation> frameworkEvidence = profile.classifications(SemanticDimension.FRAMEWORK).get(0).evidence();
 
         assertThat(classifications.get(0).evidence())
-                .containsExactlyInAnyOrderElementsOf(concat(patternEvidence, frameworkEvidence));
+                .containsExactlyInAnyOrderElementsOf(union(patternEvidence, frameworkEvidence));
     }
 
     @Then("it has no Intent classification")
@@ -88,9 +88,9 @@ public class IntentClassificationSteps {
                         "No " + dimension + " concept named \"" + conceptName + "\""));
     }
 
-    private List<DetectedTransformation> concat(List<DetectedTransformation> a, List<DetectedTransformation> b) {
-        List<DetectedTransformation> merged = new java.util.ArrayList<>(a);
+    private List<DetectedTransformation> union(List<DetectedTransformation> a, List<DetectedTransformation> b) {
+        java.util.Set<DetectedTransformation> merged = new java.util.LinkedHashSet<>(a);
         merged.addAll(b);
-        return merged;
+        return new java.util.ArrayList<>(merged);
     }
 }
