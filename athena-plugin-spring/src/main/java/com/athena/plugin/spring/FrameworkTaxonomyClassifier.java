@@ -5,6 +5,7 @@ import com.athena.semantic.DetectedTransformation;
 import com.athena.semantic.SemanticClassification;
 import com.athena.semantic.SemanticDimension;
 import com.athena.semantic.Taxonomy;
+import com.athena.semantic.TaxonomyConcept;
 import com.athena.semantic.TransformationKind;
 
 import java.util.ArrayList;
@@ -91,7 +92,7 @@ public final class FrameworkTaxonomyClassifier {
             throw new IllegalArgumentException("Expected a FRAMEWORK taxonomy, got " + frameworkTaxonomy.dimension());
         }
         Map<Change, SemanticClassification> classifications = new HashMap<>();
-        Optional<com.athena.semantic.TaxonomyConcept> concept = frameworkTaxonomy.find("spring-field-to-constructor-injection");
+        Optional<TaxonomyConcept> concept = frameworkTaxonomy.find("spring-field-to-constructor-injection");
         if (concept.isEmpty()) {
             return classifications;
         }
