@@ -275,3 +275,35 @@ export function ErrorState({ message }: { message: string }) {
     </PageShell>
   )
 }
+
+/** Renders a unified diff with added/removed lines colored distinctly — the one diff-rendering
+ * treatment reused everywhere a diff is shown (`ChangeDetailPage`, the Semantic Change Explorer's
+ * evidence panel), rather than each page building its own. */
+export function DiffView({ diff }: { diff: string }) {
+  if (!diff) {
+    return (
+      <Card className="overflow-hidden bg-ink-900">
+        <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed text-ink-100">
+          No diff recorded for this Change.
+        </pre>
+      </Card>
+    )
+  }
+
+  return (
+    <Card className="overflow-hidden bg-ink-900">
+      <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed">
+        {diff.split('\n').map((line, i) => {
+          const isAdded = line.startsWith('+')
+          const isRemoved = line.startsWith('-')
+          const color = isAdded ? 'text-emerald-400' : isRemoved ? 'text-red-400' : 'text-ink-400'
+          return (
+            <div key={i} className={color}>
+              {line || ' '}
+            </div>
+          )
+        })}
+      </pre>
+    </Card>
+  )
+}
