@@ -1,0 +1,12 @@
+[
+  {"id": "spring-field-to-constructor-injection", "name": "Spring: Field to Constructor Injection", "description": "A Spring-managed dependency moved from an @Autowired field to a constructor parameter."},
+  {"id": "spring-component", "name": "Spring: @Component", "description": "A type registered as a generic Spring-managed bean."},
+  {"id": "spring-service", "name": "Spring: @Service", "description": "A type registered as a Spring-managed application service bean."},
+  {"id": "spring-repository", "name": "Spring: @Repository", "description": "A type registered as a Spring-managed persistence/repository bean."},
+  {"id": "spring-configuration", "name": "Spring: Configuration/Beans", "description": "A @Configuration class or @Bean method defining Spring-managed wiring."},
+  {"id": "spring-transaction-management", "name": "Spring: Transaction Management", "description": "A method or class annotated to participate in Spring-managed transactions."},
+  {"id": "jpa-entity-relationship", "name": "JPA: Entity Relationship", "description": "A JPA relationship mapping (@OneToMany, @ManyToOne, etc.) between entities."},
+  {"id": "jpa-fetch-cascade", "name": "JPA: Fetch/Cascade Configuration", "description": "Fetch strategy (eager/lazy) or cascade behavior configured on a JPA relationship."},
+  {"id": "jackson-serialization", "name": "Jackson: Serialization/Deserialization", "description": "Jackson annotations or configuration controlling JSON (de)serialization."},
+  {"id": "junit-lifecycle", "name": "JUnit: Lifecycle/Extensions", "description": "JUnit lifecycle annotations or extensions controlling test setup/teardown."}
+]

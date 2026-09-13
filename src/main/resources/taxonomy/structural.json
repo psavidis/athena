@@ -1,0 +1,10 @@
+[
+  {"id": "rename", "name": "Rename", "description": "A symbol (class, method, or field) kept its behavior but changed name."},
+  {"id": "move", "name": "Move", "description": "A symbol kept its behavior and name but changed its enclosing type/location."},
+  {"id": "add", "name": "Add", "description": "A new symbol was introduced with no prior counterpart."},
+  {"id": "remove", "name": "Remove", "description": "An existing symbol was deleted with no successor."},
+  {"id": "change-signature", "name": "Change Signature", "description": "A method's parameter list and/or return type changed."},
+  {"id": "extract-method", "name": "Extract Method", "description": "A fragment of an existing method's body was pulled out into a new method."},
+  {"id": "mechanical-replacement", "name": "Mechanical Replacement", "description": "A whole-identifier textual substitution applied identically everywhere it was referenced."},
+  {"id": "formatting-only", "name": "Formatting Only", "description": "Only whitespace/formatting changed; the parsed structure is identical."}
+]

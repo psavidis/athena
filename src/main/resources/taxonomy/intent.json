@@ -1,0 +1,16 @@
+[
+  {"id": "enable-feature", "name": "Enable Feature", "description": "The change makes a new product-facing capability possible."},
+  {"id": "fix-defect", "name": "Fix Defect", "description": "The change corrects incorrect behavior."},
+  {"id": "improve-maintainability", "name": "Improve Maintainability", "description": "The change makes future changes easier without altering behavior."},
+  {"id": "reduce-coupling", "name": "Reduce Coupling", "description": "The change lowers how much one part of the system depends on another's internals."},
+  {"id": "improve-testability", "name": "Improve Testability", "description": "The change makes the code easier to exercise and verify in tests."},
+  {"id": "improve-extensibility", "name": "Improve Extensibility", "description": "The change makes it easier to add new variants/behavior later."},
+  {"id": "improve-performance", "name": "Improve Performance", "description": "The change reduces resource usage or latency."},
+  {"id": "improve-security", "name": "Improve Security", "description": "The change closes a vulnerability or strengthens a security control."},
+  {"id": "support-new-requirement", "name": "Support New Requirement", "description": "The change adapts existing code to satisfy a new requirement."},
+  {"id": "remove-technical-debt", "name": "Remove Technical Debt", "description": "The change cleans up a known shortcut or accumulated cost from prior work."},
+  {"id": "prepare-for-future-change", "name": "Prepare for Future Change", "description": "The change lays groundwork for an anticipated future change."},
+  {"id": "enforce-architectural-boundary", "name": "Enforce Architectural Boundary", "description": "The change tightens or restores an intended architectural separation."},
+  {"id": "migrate-technology", "name": "Migrate Technology", "description": "The change replaces one technology/library/framework usage with another."},
+  {"id": "improve-reliability", "name": "Improve Reliability", "description": "The change makes the system more resilient to failure conditions."}
+]

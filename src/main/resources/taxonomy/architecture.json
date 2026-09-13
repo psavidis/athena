@@ -1,0 +1,16 @@
+[
+  {"id": "domain", "name": "Domain", "description": "Core business concepts and rules, independent of any technical delivery mechanism."},
+  {"id": "entity", "name": "Entity", "parentId": "domain", "description": "A domain object defined by identity that persists across state changes."},
+  {"id": "value-object", "name": "Value Object", "parentId": "domain", "description": "A domain object defined by its attribute values rather than identity."},
+  {"id": "domain-service", "name": "Domain Service", "parentId": "domain", "description": "Domain logic that doesn't naturally belong to a single entity or value object."},
+  {"id": "domain-event", "name": "Domain Event", "parentId": "domain", "description": "A record of something meaningful that happened in the domain."},
+  {"id": "application", "name": "Application", "description": "Orchestration of domain logic to fulfill a specific use case."},
+  {"id": "use-case", "name": "Use Case", "parentId": "application", "description": "A single application-level operation invoked from outside the domain."},
+  {"id": "application-service", "name": "Application Service", "parentId": "application", "description": "A type that orchestrates domain objects to carry out a use case."},
+  {"id": "inbound-port", "name": "Inbound Port", "description": "An interface through which the outside world drives the application."},
+  {"id": "outbound-port", "name": "Outbound Port", "description": "An interface through which the application reaches an external system."},
+  {"id": "driving-adapter", "name": "Driving Adapter", "description": "An adapter that invokes the application through an inbound port."},
+  {"id": "driven-adapter", "name": "Driven Adapter", "description": "An adapter that implements an outbound port to reach an external system."},
+  {"id": "inbound-adapter", "name": "Inbound Adapter", "description": "An adapter on the inbound side of the application boundary."},
+  {"id": "outbound-adapter", "name": "Outbound Adapter", "description": "An adapter on the outbound side of the application boundary."}
+]
