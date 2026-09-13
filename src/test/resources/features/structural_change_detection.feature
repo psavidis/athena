@@ -62,3 +62,9 @@ Feature: Structural and mechanical change detection
     And a head revision where "greet" instead calls "formatB()" with no other structural change
     When the semantic engine detects transformations between the revisions
     Then no structural transformation is detected involving "Greeter#greet"
+
+  Scenario: A changed method signature preserves its underlying diff
+    Given a base revision where class "Greeter" has a method "greet" taking no parameters
+    And a head revision where class "Greeter" has a method "greet" taking a "String" parameter
+    When the semantic engine detects transformations between the revisions
+    Then the "CHANGE_METHOD_SIGNATURE" transformation involving "Greeter#greet" has a diff showing removed text "greet()" and added text "greet(String arg)"

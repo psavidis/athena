@@ -7,5 +7,5 @@ import java.util.Map;
 
 /** The Change Map + PR Understanding View, serialized for the frontend (ticket #74). */
 public record ChangeMapResponse(String prTitle, Map<ChangeCategory, Integer> categoryCounts,
-                                 List<ChangeEntryResponse> changes) {
+                                 List<ChangeEntryResponse> changes, List<ClassGroupResponse> classGroups) {
 }

@@ -39,74 +39,98 @@ import java.util.stream.Stream;
 public final class TransformationDetector {
 
     public List<DetectedTransformation> detect(Path baseRoot, Path headRoot) {
-        List<MethodInfo> baseMethods = methodInfos(baseRoot);
-        List<MethodInfo> headMethods = methodInfos(headRoot);
+        // One parse pass per root, not two — methodInfos and recordInfos used to each
+        // independently call StaticJavaParser.parse() over every file, so every root's
+        // source tree was parsed twice for no reason (parsing is the expensive part; the
+        // method-vs-record extraction from an already-parsed CompilationUnit is cheap).
+        ParsedRoot baseParsed = parseRoot(baseRoot);
+        ParsedRoot headParsed = parseRoot(headRoot);
+        List<MethodInfo> baseMethods = baseParsed.methods();
+        List<MethodInfo> headMethods = headParsed.methods();
 
         List<DetectedTransformation> results = new ArrayList<>();
         Set<MethodInfo> matchedBase = new LinkedHashSet<>();
         Set<MethodInfo> matchedHead = new LinkedHashSet<>();
 
+        // Indexed by (enclosingType, name) so step 1 and step 4's caller lookups are O(1)
+        // per method instead of scanning every head/base method — the dominant cost on a
+        // real multi-module repo's method count (see detect()'s own class doc: no fuzzy
+        // matching, so every match key here is exact equality, which is exactly what a
+        // Map supports without giving up any matching precision).
+        Map<MethodKey, List<MethodInfo>> headByKey = indexByKey(headMethods);
+        Map<MethodKey, List<MethodInfo>> baseByKey = indexByKey(baseMethods);
+
         // 1. Exact match: same enclosing type + same name -> unchanged, changed signature,
         //    formatting-only, or "no structural transformation" (e.g. only a call target changed).
         for (MethodInfo base : baseMethods) {
-            for (MethodInfo head : headMethods) {
-                if (matchedHead.contains(head)) continue;
-                if (!base.enclosingType.equals(head.enclosingType) || !base.name.equals(head.name)) continue;
+            MethodInfo head = firstUnmatched(headByKey.get(new MethodKey(base.enclosingType, base.name)), matchedHead);
+            if (head == null) continue;
 
-                matchedBase.add(base);
-                matchedHead.add(head);
+            matchedBase.add(base);
+            matchedHead.add(head);
 
-                if (base.parameterTypes.equals(head.parameterTypes) && base.returnType.equals(head.returnType)) {
-                    if (base.normalizedWholeDeclaration.equals(head.normalizedWholeDeclaration)) {
-                        if (!base.rawWholeDeclaration.equals(head.rawWholeDeclaration)) {
-                            results.add(DetectedTransformation.of(TransformationKind.FORMATTING_ONLY,
-                                    List.of(base.description()), List.of(base.file, head.file)));
-                        }
-                        // else: truly identical, nothing to report.
+            if (base.parameterTypes.equals(head.parameterTypes) && base.returnType.equals(head.returnType)) {
+                if (base.normalizedWholeDeclaration.equals(head.normalizedWholeDeclaration)) {
+                    if (!base.rawWholeDeclaration.equals(head.rawWholeDeclaration)) {
+                        results.add(DetectedTransformation.withDiff(TransformationKind.FORMATTING_ONLY,
+                                List.of(base.description()), List.of(base.file, head.file),
+                                base.rawWholeDeclaration, head.rawWholeDeclaration));
                     }
-                    // else: body differs but signature is the same and structure isn't AST-equal —
-                    // out of scope for this detector (behavioral changes are ticket #18; a changed
-                    // method call with no other structural change is deliberately left unclassified).
-                } else {
-                    results.add(DetectedTransformation.of(TransformationKind.CHANGE_METHOD_SIGNATURE,
-                            List.of(base.description()), List.of(base.file, head.file)));
+                    // else: truly identical, nothing to report.
                 }
-                break;
+                // else: body differs but signature is the same and structure isn't AST-equal —
+                // out of scope for this detector (behavioral changes are ticket #18; a changed
+                // method call with no other structural change is deliberately left unclassified).
+            } else {
+                results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_METHOD_SIGNATURE,
+                        List.of(base.description()), List.of(base.file, head.file),
+                        base.rawWholeDeclaration, head.rawWholeDeclaration));
             }
         }
 
         List<MethodInfo> unmatchedBase = baseMethods.stream().filter(m -> !matchedBase.contains(m)).toList();
         List<MethodInfo> unmatchedHead = headMethods.stream().filter(m -> !matchedHead.contains(m)).toList();
 
-        // 2. Rename: same enclosing type, same normalized body, different name.
-        List<MethodInfo> stillUnmatchedBase = new ArrayList<>(unmatchedBase);
-        List<MethodInfo> stillUnmatchedHead = new ArrayList<>(unmatchedHead);
-        for (MethodInfo base : new ArrayList<>(stillUnmatchedBase)) {
-            for (MethodInfo head : new ArrayList<>(stillUnmatchedHead)) {
-                if (base.enclosingType.equals(head.enclosingType)
-                        && !base.name.equals(head.name)
-                        && base.normalizedBody.equals(head.normalizedBody)) {
-                    results.add(DetectedTransformation.of(TransformationKind.RENAME_SYMBOL,
-                            List.of(base.description(), head.description()), List.of(base.file, head.file)));
-                    stillUnmatchedBase.remove(base);
-                    stillUnmatchedHead.remove(head);
+        // 2 & 3. Rename/move: matched by normalizedBody equality, so index the still-unmatched
+        // head methods by that body once, then look each still-unmatched base method up in O(1)
+        // instead of scanning linearly. Same-enclosing-type+different-name is a rename; different-
+        // enclosing-type+same-name is a move — both share this index, checked in that priority
+        // order per base method (renames are more common, and a body can't match both shapes at
+        // once for a given base/head pair since a method has exactly one name and one enclosing type).
+        Set<MethodInfo> stillUnmatchedBase = new LinkedHashSet<>(unmatchedBase);
+        Set<MethodInfo> stillUnmatchedHead = new LinkedHashSet<>(unmatchedHead);
+        Map<String, List<MethodInfo>> unmatchedHeadByBody = indexByBody(stillUnmatchedHead);
+
+        for (MethodInfo base : unmatchedBase) {
+            if (!stillUnmatchedBase.contains(base)) continue;
+            List<MethodInfo> candidates = unmatchedHeadByBody.get(base.normalizedBody);
+            if (candidates == null) continue;
+
+            MethodInfo renameMatch = null;
+            MethodInfo moveMatch = null;
+            for (MethodInfo head : candidates) {
+                if (!stillUnmatchedHead.contains(head)) continue;
+                if (base.enclosingType.equals(head.enclosingType) && !base.name.equals(head.name)) {
+                    renameMatch = head;
                     break;
+                }
+                if (moveMatch == null && !base.enclosingType.equals(head.enclosingType) && base.name.equals(head.name)) {
+                    moveMatch = head;
                 }
             }
-        }
 
-        // 3. Move: same name, same normalized body, different enclosing type.
-        for (MethodInfo base : new ArrayList<>(stillUnmatchedBase)) {
-            for (MethodInfo head : new ArrayList<>(stillUnmatchedHead)) {
-                if (!base.enclosingType.equals(head.enclosingType)
-                        && base.name.equals(head.name)
-                        && base.normalizedBody.equals(head.normalizedBody)) {
-                    results.add(DetectedTransformation.of(TransformationKind.MOVE_SYMBOL,
-                            List.of(base.description(), head.description()), List.of(base.file, head.file)));
-                    stillUnmatchedBase.remove(base);
-                    stillUnmatchedHead.remove(head);
-                    break;
-                }
+            if (renameMatch != null) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.RENAME_SYMBOL,
+                        List.of(base.description(), renameMatch.description()), List.of(base.file, renameMatch.file),
+                        base.rawWholeDeclaration, renameMatch.rawWholeDeclaration));
+                stillUnmatchedBase.remove(base);
+                stillUnmatchedHead.remove(renameMatch);
+            } else if (moveMatch != null) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.MOVE_SYMBOL,
+                        List.of(base.description(), moveMatch.description()), List.of(base.file, moveMatch.file),
+                        base.rawWholeDeclaration, moveMatch.rawWholeDeclaration));
+                stillUnmatchedBase.remove(base);
+                stillUnmatchedHead.remove(moveMatch);
             }
         }
 
@@ -116,10 +140,20 @@ public final class TransformationDetector {
         for (MethodInfo head : new ArrayList<>(stillUnmatchedHead)) {
             for (MethodInfo callerHead : headMethods) {
                 if (callerHead.name.equals(head.name)) continue;
-                if (callsMethod(callerHead.normalizedBody, head.name) && baseHasInlineEquivalent(baseMethods, callerHead, head)) {
-                    results.add(DetectedTransformation.of(TransformationKind.EXTRACT_METHOD,
+                if (callsMethod(callerHead.normalizedBody, head.name) && baseHasInlineEquivalent(baseByKey, callerHead, head)) {
+                    MethodInfo callerBase = firstUnmatched(
+                            baseByKey.get(new MethodKey(callerHead.enclosingType, callerHead.name)), Set.of());
+                    // Two methods' before/after concatenated with a blank-line separator, rather
+                    // than combining two already-computed diffs: UnifiedDiff.of is a line-based
+                    // LCS, so this still produces a correct combined diff, and keeps the actual
+                    // diffing itself lazy (computed on first request, not here).
+                    String callerBeforeText = callerBase == null ? "" : callerBase.rawWholeDeclaration;
+                    String combinedBefore = callerBeforeText.isBlank() ? ""
+                            : callerBeforeText + "\n\n";
+                    String combinedAfter = callerHead.rawWholeDeclaration + "\n\n" + head.rawWholeDeclaration;
+                    results.add(DetectedTransformation.withDiff(TransformationKind.EXTRACT_METHOD,
                             List.of(callerHead.description(), head.description()),
-                            List.of(callerHead.file, head.file)));
+                            List.of(callerHead.file, head.file), combinedBefore, combinedAfter));
                     stillUnmatchedHead.remove(head);
                     break;
                 }
@@ -128,12 +162,14 @@ public final class TransformationDetector {
 
         // 5. Remaining unmatched base methods -> removed; remaining unmatched head methods -> added.
         for (MethodInfo base : stillUnmatchedBase) {
-            results.add(DetectedTransformation.of(TransformationKind.REMOVE_SYMBOL,
-                    List.of(base.description()), List.of(base.file)));
+            results.add(DetectedTransformation.withDiff(TransformationKind.REMOVE_SYMBOL,
+                    List.of(base.description()), List.of(base.file),
+                    base.rawWholeDeclaration, ""));
         }
         for (MethodInfo head : stillUnmatchedHead) {
-            results.add(DetectedTransformation.of(TransformationKind.ADD_SYMBOL,
-                    List.of(head.description()), List.of(head.file)));
+            results.add(DetectedTransformation.withDiff(TransformationKind.ADD_SYMBOL,
+                    List.of(head.description()), List.of(head.file),
+                    "", head.rawWholeDeclaration));
         }
 
         // 6. Mechanical replacement: a whole-identifier textual substitution applied
@@ -146,51 +182,57 @@ public final class TransformationDetector {
         //    deliberately not fed through the rename/move matching either, since a record here
         //    keeps its own name; matching by name alone is simpler and correct, unlike the
         //    method rename/move detectors' "same body, different name/enclosing type" heuristic.
-        results.addAll(detectRecordSignatureChanges(baseRoot, headRoot));
+        results.addAll(detectRecordSignatureChanges(baseParsed.records(), headParsed.records()));
 
         return results;
     }
 
-    private List<DetectedTransformation> detectRecordSignatureChanges(Path baseRoot, Path headRoot) {
-        Map<String, RecordInfo> baseRecords = recordInfos(baseRoot);
-        Map<String, RecordInfo> headRecords = recordInfos(headRoot);
+    private Map<MethodKey, List<MethodInfo>> indexByKey(List<MethodInfo> methods) {
+        Map<MethodKey, List<MethodInfo>> index = new LinkedHashMap<>();
+        for (MethodInfo m : methods) {
+            index.computeIfAbsent(new MethodKey(m.enclosingType, m.name), k -> new ArrayList<>()).add(m);
+        }
+        return index;
+    }
 
+    private Map<String, List<MethodInfo>> indexByBody(Set<MethodInfo> methods) {
+        Map<String, List<MethodInfo>> index = new LinkedHashMap<>();
+        for (MethodInfo m : methods) {
+            index.computeIfAbsent(m.normalizedBody, k -> new ArrayList<>()).add(m);
+        }
+        return index;
+    }
+
+    /** The first candidate (in original order) not already in {@code excluded}, or null. */
+    private MethodInfo firstUnmatched(List<MethodInfo> candidates, Set<MethodInfo> excluded) {
+        if (candidates == null) return null;
+        for (MethodInfo candidate : candidates) {
+            if (!excluded.contains(candidate)) {
+                return candidate;
+            }
+        }
+        return null;
+    }
+
+    private record MethodKey(String enclosingType, String name) {
+    }
+
+    private List<DetectedTransformation> detectRecordSignatureChanges(Map<String, RecordInfo> baseRecords,
+                                                                        Map<String, RecordInfo> headRecords) {
         List<DetectedTransformation> results = new ArrayList<>();
         for (Map.Entry<String, RecordInfo> entry : baseRecords.entrySet()) {
             RecordInfo base = entry.getValue();
             RecordInfo head = headRecords.get(entry.getKey());
             if (head != null && !base.componentTypes.equals(head.componentTypes)) {
-                results.add(DetectedTransformation.of(TransformationKind.CHANGE_METHOD_SIGNATURE,
-                        List.of(entry.getKey() + "#<init>"), List.of(base.file, head.file)));
+                results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_METHOD_SIGNATURE,
+                        List.of(entry.getKey() + "#<init>"), List.of(base.file, head.file),
+                        base.headerText, head.headerText));
             }
         }
         return results;
     }
 
-    private Map<String, RecordInfo> recordInfos(Path root) {
-        Map<String, RecordInfo> infos = new LinkedHashMap<>();
-        for (Path file : javaFiles(root)) {
-            String relativePath = root.relativize(file).toString();
-            CompilationUnit cu;
-            try {
-                StaticJavaParser.setConfiguration(new ParserConfiguration()
-                        .setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_17));
-                cu = StaticJavaParser.parse(file);
-            } catch (IOException | RuntimeException e) {
-                continue;
-            }
-            for (TypeDeclaration<?> type : cu.getTypes()) {
-                if (type instanceof RecordDeclaration record) {
-                    List<String> componentTypes = record.getParameters().stream()
-                            .map(Parameter::getTypeAsString).toList();
-                    infos.put(type.getNameAsString(), new RecordInfo(componentTypes, relativePath));
-                }
-            }
-        }
-        return infos;
-    }
-
-    private record RecordInfo(List<String> componentTypes, String file) {
+    private record RecordInfo(List<String> componentTypes, String file, String headerText) {
     }
 
     private List<DetectedTransformation> detectMechanicalReplacements(Path baseRoot, Path headRoot) {
@@ -207,10 +249,21 @@ public final class TransformationDetector {
             return replacements;
         }
 
+        // Read every common file's text exactly once, from disk, up front — the loop below
+        // previously re-read (and, worse, re-scanned in full) every file once per candidate
+        // identifier, which on a real repo with hundreds of identifiers and files meant
+        // effectively re-reading the whole tree hundreds of times over.
+        Map<String, String> baseTextByFile = new LinkedHashMap<>();
+        Map<String, String> headTextByFile = new LinkedHashMap<>();
+        for (String rel : commonRelativePaths) {
+            baseTextByFile.put(rel, readFile(baseRoot.resolve(rel)));
+            headTextByFile.put(rel, readFile(headRoot.resolve(rel)));
+        }
+
         // Candidate identifiers: every simple name used in the base files.
         Set<String> candidateIdentifiers = new LinkedHashSet<>();
-        for (String rel : commonRelativePaths) {
-            candidateIdentifiers.addAll(extractIdentifiers(readFile(baseRoot.resolve(rel))));
+        for (String baseText : baseTextByFile.values()) {
+            candidateIdentifiers.addAll(extractIdentifiers(baseText));
         }
 
         for (String oldIdentifier : candidateIdentifiers) {
@@ -219,8 +272,8 @@ public final class TransformationDetector {
             boolean consistent = true;
 
             for (String rel : commonRelativePaths) {
-                String baseText = readFile(baseRoot.resolve(rel));
-                String headText = readFile(headRoot.resolve(rel));
+                String baseText = baseTextByFile.get(rel);
+                String headText = headTextByFile.get(rel);
                 if (!containsWholeIdentifier(baseText, oldIdentifier)) {
                     continue;
                 }
@@ -329,14 +382,15 @@ public final class TransformationDetector {
         return body.contains(methodName + "(");
     }
 
-    private boolean baseHasInlineEquivalent(List<MethodInfo> baseMethods, MethodInfo callerHead, MethodInfo extractedHead) {
+    private boolean baseHasInlineEquivalent(Map<MethodKey, List<MethodInfo>> baseByKey, MethodInfo callerHead,
+                                             MethodInfo extractedHead) {
         // The base version of the calling method (same enclosing type + name) must exist
         // and its body, once the extracted fragment's statements are considered, should
         // contain the same normalized statements the extracted method now holds.
-        return baseMethods.stream().anyMatch(baseMethod ->
-                baseMethod.enclosingType.equals(callerHead.enclosingType)
-                        && baseMethod.name.equals(callerHead.name)
-                        && containsNormalizedFragment(baseMethod.normalizedBody, extractedHead.normalizedBody));
+        List<MethodInfo> candidates = baseByKey.get(new MethodKey(callerHead.enclosingType, callerHead.name));
+        if (candidates == null) return false;
+        return candidates.stream()
+                .anyMatch(baseMethod -> containsNormalizedFragment(baseMethod.normalizedBody, extractedHead.normalizedBody));
     }
 
     private boolean containsNormalizedFragment(String haystack, String fragment) {
@@ -352,8 +406,17 @@ public final class TransformationDetector {
         return s;
     }
 
-    private List<MethodInfo> methodInfos(Path root) {
-        List<MethodInfo> infos = new ArrayList<>();
+    /**
+     * Parses every file under {@code root} exactly once and extracts both
+     * {@link MethodInfo}s and {@link RecordInfo}s from the same
+     * {@link CompilationUnit} — methodInfos and recordInfos used to each
+     * independently re-parse every file, doubling the tree's parse cost
+     * (parsing dominates; extracting two different views from an
+     * already-parsed AST is cheap).
+     */
+    private ParsedRoot parseRoot(Path root) {
+        List<MethodInfo> methods = new ArrayList<>();
+        Map<String, RecordInfo> records = new LinkedHashMap<>();
         for (Path file : javaFiles(root)) {
             String relativePath = root.relativize(file).toString();
             CompilationUnit cu;
@@ -385,14 +448,26 @@ public final class TransformationDetector {
                             .orElse(method.getBody().map(Node::toString).orElse(""));
                     List<String> paramTypes = method.getParameters().stream()
                             .map(Parameter::getTypeAsString).toList();
-                    infos.add(new MethodInfo(type.getNameAsString(), method.getNameAsString(),
+                    methods.add(new MethodInfo(type.getNameAsString(), method.getNameAsString(),
                             paramTypes, method.getTypeAsString(),
                             wholeDeclarationText, normalize(wholeDeclarationText),
                             normalize(bodyOnlyText), relativePath));
                 }
+                if (type instanceof RecordDeclaration record) {
+                    List<String> componentTypes = record.getParameters().stream()
+                            .map(Parameter::getTypeAsString).toList();
+                    String headerText = "record " + record.getNameAsString() + "("
+                            + String.join(", ", record.getParameters().stream()
+                                    .map(p -> p.getTypeAsString() + " " + p.getNameAsString()).toList())
+                            + ")";
+                    records.put(type.getNameAsString(), new RecordInfo(componentTypes, relativePath, headerText));
+                }
             }
         }
-        return infos;
+        return new ParsedRoot(methods, records);
+    }
+
+    private record ParsedRoot(List<MethodInfo> methods, Map<String, RecordInfo> records) {
     }
 
     private String sourceSlice(List<String> lines, com.github.javaparser.Range range) {

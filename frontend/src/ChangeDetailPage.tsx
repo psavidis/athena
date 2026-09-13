@@ -1,6 +1,25 @@
 import { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { addComment, addPrivateNote, getChangeDetail } from './api'
+import { addComment, addPrivateNote, getChangeDetail, type TransformationKind } from './api'
+import { BackLink, Card, ErrorState, LoadingState, PageShell, PrimaryButton, SectionLabel } from './ui'
+
+const KIND_LABELS: Record<TransformationKind, string> = {
+  RENAME_SYMBOL: 'Rename',
+  MOVE_SYMBOL: 'Move',
+  ADD_SYMBOL: 'Add',
+  REMOVE_SYMBOL: 'Remove',
+  CHANGE_METHOD_SIGNATURE: 'Signature change',
+  EXTRACT_METHOD: 'Extract method',
+  MECHANICAL_REPLACEMENT: 'Mechanical rename',
+  FORMATTING_ONLY: 'Formatting',
+}
+
+const CATEGORY_LABELS = {
+  BEHAVIORAL: 'Behavioral',
+  STRUCTURAL: 'Structural',
+  MECHANICAL: 'Mechanical',
+  UNKNOWN: 'Unknown',
+} as const
 
 export default function ChangeDetailPage({ changeKey, onBack }: { changeKey: string; onBack: () => void }) {
   const { data, isLoading, isError } = useQuery({
@@ -24,42 +43,51 @@ export default function ChangeDetailPage({ changeKey, onBack }: { changeKey: str
   })
 
   if (isError) {
-    return <p className="mx-auto max-w-2xl px-4 py-12 text-red-600">Could not load this Change.</p>
+    return <ErrorState message="Could not load this Change." />
   }
 
   if (isLoading || !data) {
-    return <p className="mx-auto max-w-2xl px-4 py-12 text-neutral-500">Loading…</p>
+    return <LoadingState />
   }
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-12">
-      <button className="mb-4 text-sm text-neutral-500 hover:underline" onClick={onBack}>
-        ← Back to Change Map
-      </button>
+    <PageShell wide>
+      <BackLink onClick={onBack}>← Back to Change Map</BackLink>
 
-      <h1 className="mb-1 text-2xl font-semibold text-neutral-900">{data.description}</h1>
-      <p className="mb-6 text-sm text-neutral-500">{data.category}</p>
+      <div className="mb-8">
+        <p className="mb-1.5 text-xs font-medium tracking-wide text-ink-500 uppercase">Change</p>
+        <h1 className="mb-1.5 text-2xl font-semibold text-ink-900">{data.description}</h1>
+        <p className="text-sm text-ink-500">
+          <span>{KIND_LABELS[data.kind]}</span>
+          <span className="mx-1.5 text-ink-300">·</span>
+          <span>{CATEGORY_LABELS[data.category]}</span>
+        </p>
+      </div>
 
-      <Section title="Symbols">
-        <ul className="text-sm text-neutral-700">
-          {data.symbols.map((symbol) => (
-            <li key={symbol}>{symbol}</li>
-          ))}
-        </ul>
-      </Section>
+      <div className="mb-8 grid gap-6 sm:grid-cols-2">
+        <Section title="Impact — Symbols">
+          <ul className="space-y-1 text-sm text-ink-700">
+            {data.symbols.map((symbol) => (
+              <li key={symbol} className="font-mono text-xs text-ink-700">
+                {symbol}
+              </li>
+            ))}
+          </ul>
+        </Section>
 
-      <Section title="Files">
-        <ul className="text-sm text-neutral-700">
-          {data.files.map((file) => (
-            <li key={file}>{file}</li>
-          ))}
-        </ul>
-      </Section>
+        <Section title="Impact — Files">
+          <ul className="space-y-1 text-sm text-ink-700">
+            {data.files.map((file) => (
+              <li key={file} className="font-mono text-xs text-ink-700">
+                {file}
+              </li>
+            ))}
+          </ul>
+        </Section>
+      </div>
 
       <Section title="Diff">
-        <pre className="overflow-x-auto rounded bg-neutral-900 p-3 text-xs text-neutral-100">
-          {data.diff || 'No diff recorded for this Change.'}
-        </pre>
+        <DiffView diff={data.diff} />
       </Section>
 
       <AnnotationForm
@@ -80,14 +108,43 @@ export default function ChangeDetailPage({ changeKey, onBack }: { changeKey: str
         variant="private"
       />
       <AnnotationList items={privateNotes} variant="private" />
-    </div>
+    </PageShell>
+  )
+}
+
+function DiffView({ diff }: { diff: string }) {
+  if (!diff) {
+    return (
+      <Card className="overflow-hidden bg-ink-900">
+        <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed text-ink-100">
+          No diff recorded for this Change.
+        </pre>
+      </Card>
+    )
+  }
+
+  return (
+    <Card className="overflow-hidden bg-ink-900">
+      <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed">
+        {diff.split('\n').map((line, i) => {
+          const isAdded = line.startsWith('+')
+          const isRemoved = line.startsWith('-')
+          const color = isAdded ? 'text-emerald-400' : isRemoved ? 'text-red-400' : 'text-ink-400'
+          return (
+            <div key={i} className={color}>
+              {line || ' '}
+            </div>
+          )
+        })}
+      </pre>
+    </Card>
   )
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-6">
-      <h2 className="mb-2 text-sm font-medium text-neutral-500">{title}</h2>
+      <SectionLabel>{title}</SectionLabel>
       {children}
     </section>
   )
@@ -124,7 +181,7 @@ function AnnotationForm({
         setText('')
       }}
     >
-      <label htmlFor={inputId} className="text-sm text-neutral-600">
+      <label htmlFor={inputId} className="text-sm text-ink-700">
         {label}
       </label>
       <textarea
@@ -132,20 +189,17 @@ function AnnotationForm({
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder={placeholder}
+        rows={2}
         className={
-          'rounded border px-3 py-2 text-sm focus:outline-none ' +
+          'rounded-lg border px-3 py-2 text-sm focus:outline-none ' +
           (variant === 'private'
             ? 'border-amber-300 bg-amber-50 focus:border-amber-500'
-            : 'border-neutral-300 focus:border-neutral-500')
+            : 'border-ink-200 focus:border-accent')
         }
       />
-      <button
-        type="submit"
-        disabled={isPending || isBlank}
-        className="self-start rounded bg-neutral-900 px-3 py-1.5 text-sm text-white disabled:opacity-40"
-      >
+      <PrimaryButton type="submit" disabled={isPending || isBlank} className="self-start">
         {isPending ? 'Submitting…' : 'Submit'}
-      </button>
+      </PrimaryButton>
       {error && <p className="text-sm text-red-600">Could not submit — please try again.</p>}
     </form>
   )
@@ -161,8 +215,8 @@ function AnnotationList({ items, variant = 'comment' }: { items: string[]; varia
         <li
           key={i}
           className={
-            'rounded px-3 py-2 text-sm ' +
-            (variant === 'private' ? 'border border-amber-300 bg-amber-50 text-amber-900' : 'bg-neutral-100 text-neutral-700')
+            'animate-rise-in rounded-lg px-3 py-2 text-sm ' +
+            (variant === 'private' ? 'border border-amber-300 bg-amber-50 text-amber-900' : 'bg-ink-100 text-ink-700')
           }
         >
           {item}

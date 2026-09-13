@@ -3,6 +3,7 @@ package com.athena.reviewui;
 import com.athena.semantic.Change;
 import com.athena.semantic.ChangeCategory;
 import com.athena.semantic.ChangeEvidence;
+import com.athena.semantic.TransformationKind;
 
 import java.util.Set;
 
@@ -14,26 +15,36 @@ import java.util.Set;
  *
  * <p>Evidence is sourced from {@link ChangeEvidence}, which is available
  * regardless of the Change's category — classification never gates access
- * to the underlying diff (§10, §44).
+ * to the underlying diff (§10, §44). {@code kind} is the specific detected
+ * transformation, distinct from the coarser {@code category} several kinds
+ * can share (e.g. rename/move/add/remove/signature-change are all STRUCTURAL).
  */
 public final class ChangeDetailView {
 
     private final ChangeCategory category;
+    private final TransformationKind kind;
     private final String description;
     private final ChangeEvidence evidence;
 
-    private ChangeDetailView(ChangeCategory category, String description, ChangeEvidence evidence) {
+    private ChangeDetailView(ChangeCategory category, TransformationKind kind, String description,
+                              ChangeEvidence evidence) {
         this.category = category;
+        this.kind = kind;
         this.description = description;
         this.evidence = evidence;
     }
 
     public static ChangeDetailView of(Change change) {
-        return new ChangeDetailView(ChangeCategory.of(change.kind()), change.title(), ChangeEvidence.of(change));
+        return new ChangeDetailView(ChangeCategory.of(change.kind()), change.kind(), change.title(),
+                ChangeEvidence.of(change));
     }
 
     public ChangeCategory category() {
         return category;
+    }
+
+    public TransformationKind kind() {
+        return kind;
     }
 
     public String description() {

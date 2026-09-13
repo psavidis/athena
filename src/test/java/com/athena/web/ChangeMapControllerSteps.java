@@ -138,6 +138,15 @@ public class ChangeMapControllerSteps {
                 .isEqualTo(expectedCount);
     }
 
+    @Then("the Change Map response includes a class group for {string} containing the rename Change")
+    public void the_change_map_response_includes_a_class_group_containing_the_rename_change(String enclosingType) {
+        assertThat(response.classGroups())
+                .anySatisfy(group -> {
+                    assertThat(group.enclosingType()).isEqualTo(enclosingType);
+                    assertThat(group.entries()).anySatisfy(entry -> assertThat(entry.description()).contains("Rename"));
+                });
+    }
+
     @When("the reviewer requests the detail view of the rename Change")
     public void the_reviewer_requests_the_detail_view_of_the_rename_change() {
         requestDetailView(renameChangeKey);

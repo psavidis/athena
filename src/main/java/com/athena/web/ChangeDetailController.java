@@ -6,9 +6,6 @@ import com.athena.reviewui.ChangeDetailView;
 import com.athena.reviewui.Comment;
 import com.athena.reviewui.PrivateNote;
 import com.athena.semantic.Change;
-import com.athena.semantic.ChangeGrouper;
-import com.athena.semantic.DetectedTransformation;
-import com.athena.semantic.TransformationDetector;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,17 +36,17 @@ public class ChangeDetailController {
     @GetMapping("/api/review/changes/{changeKey}")
     public ChangeDetailResponse changeDetail(@PathVariable String changeKey) {
         WebSession.SelectedPullRequest selection = requireSelection();
-        Change change = requireChange(changeKey, detectChanges(selection));
+        Change change = requireChange(changeKey, selection.changes());
 
         ChangeDetailView view = ChangeDetailView.of(change);
-        return new ChangeDetailResponse(changeKey, view.category(), view.description(), view.symbols(), view.files(),
-                view.textualDiff());
+        return new ChangeDetailResponse(changeKey, view.category(), view.kind(), view.description(), view.symbols(),
+                view.files(), view.textualDiff());
     }
 
     @PostMapping("/api/review/comments")
     public AnnotationsResponse addComment(@RequestBody AddAnnotationRequest request) {
         WebSession.SelectedPullRequest selection = requireSelection();
-        AnnotationScope scope = request.scope().toScope(detectChanges(selection));
+        AnnotationScope scope = request.scope().toScope(selection.changes());
         addAnnotation(selection, scope, request.text(), true);
         return annotationsAt(selection, scope);
     }
@@ -57,7 +54,7 @@ public class ChangeDetailController {
     @PostMapping("/api/review/private-notes")
     public AnnotationsResponse addPrivateNote(@RequestBody AddAnnotationRequest request) {
         WebSession.SelectedPullRequest selection = requireSelection();
-        AnnotationScope scope = request.scope().toScope(detectChanges(selection));
+        AnnotationScope scope = request.scope().toScope(selection.changes());
         addAnnotation(selection, scope, request.text(), false);
         return annotationsAt(selection, scope);
     }
@@ -87,12 +84,6 @@ public class ChangeDetailController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not connected to GitHub"));
         return session.selectedPullRequest()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT, "No PR selected"));
-    }
-
-    private List<Change> detectChanges(WebSession.SelectedPullRequest selection) {
-        List<DetectedTransformation> transformations =
-                new TransformationDetector().detect(selection.baseRoot(), selection.headRoot());
-        return new ChangeGrouper().group(transformations);
     }
 
     private Change requireChange(String changeKey, List<Change> changes) {

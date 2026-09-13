@@ -52,6 +52,25 @@ public final class Change {
         return exceptions.size();
     }
 
+    /**
+     * The enclosing type this Change is primarily filed under, for grouping
+     * many Changes that touch the same class into one row instead of one
+     * per member (epic #5 §14 follow-up: a reviewer seeing "DeviceConfiguration
+     * — 3 changes" instead of three disconnected rows). Derived from the
+     * first matched occurrence's first involved symbol description
+     * ("EnclosingType#member" or a bare type name for a record), which is
+     * always the transformation's base/"from" side. Empty if this Change
+     * has no matched occurrences to derive one from.
+     */
+    public String enclosingType() {
+        if (matchedOccurrences.isEmpty() || matchedOccurrences.get(0).involvedDescriptions().isEmpty()) {
+            return "";
+        }
+        String description = matchedOccurrences.get(0).involvedDescriptions().get(0);
+        int separator = description.indexOf('#');
+        return separator < 0 ? description : description.substring(0, separator);
+    }
+
     @Override
     public String toString() {
         return title + " (" + occurrenceCount() + " occurrences, " + exceptionCount() + " exceptions)";

@@ -129,8 +129,11 @@ public class ChangeIdentitySteps {
     }
 
     private Change renameChangeWithDiff(String oldSymbol, String newSymbol, String file, String diff) {
+        // withDiff now takes raw before/after text and computes the diff lazily on first
+        // request (see DetectedTransformation) — any non-equal pair produces a non-blank
+        // diff, which is all this scenario actually asserts (line 122: isNotBlank()).
         DetectedTransformation t = DetectedTransformation.withDiff(TransformationKind.RENAME_SYMBOL,
-                List.of(oldSymbol, newSymbol), List.of(file), diff);
+                List.of(oldSymbol, newSymbol), List.of(file), diff, "");
         return new ChangeGrouper().group(List.of(t)).get(0);
     }
 

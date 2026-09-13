@@ -27,6 +27,7 @@ function mockChangeDetail(body: ChangeDetail) {
 const RENAME_DETAIL: ChangeDetail = {
   changeKey: 'test-change-key',
   category: 'BEHAVIORAL',
+  kind: 'RENAME_SYMBOL',
   description: 'Rename greet to salute',
   symbols: ['Greeter#greet', 'Greeter#salute'],
   files: ['Greeter.java'],
@@ -43,7 +44,7 @@ describe('Change detail view rendering', () => {
     // Then the detail view shows the description "Rename greet to salute"
     expect(await screen.findByText('Rename greet to salute')).toBeVisible()
     // And the detail view shows the Change's category
-    expect(screen.getByText('BEHAVIORAL')).toBeVisible()
+    expect(screen.getByText('Behavioral')).toBeVisible()
     // And the detail view lists the involved symbols
     expect(screen.getByText('Greeter#greet')).toBeVisible()
     expect(screen.getByText('Greeter#salute')).toBeVisible()
@@ -51,6 +52,28 @@ describe('Change detail view rendering', () => {
     expect(screen.getByText('Greeter.java')).toBeVisible()
     // And the detail view shows the underlying diff
     expect(screen.getByText(/salute\(\)/)).toBeVisible()
+  })
+
+  it('visually distinguishes added and removed diff lines', async () => {
+    // Given the reviewer is viewing a Change with a recorded diff
+    mockChangeDetail(RENAME_DETAIL)
+    renderChangeDetailPage()
+    await screen.findByText('Rename greet to salute')
+
+    // Then removed lines and added lines are styled differently from each other
+    const removedLine = screen.getByText('- greet()')
+    const addedLine = screen.getByText('+ salute()')
+    expect(removedLine.className).not.toEqual(addedLine.className)
+  })
+
+  it('shows a fallback message when no diff was recorded', async () => {
+    // Given a Change with no recorded diff
+    mockChangeDetail({ ...RENAME_DETAIL, diff: '' })
+    renderChangeDetailPage()
+    await screen.findByText('Rename greet to salute')
+
+    // Then the diff panel explains none is available, instead of showing nothing
+    expect(screen.getByText('No diff recorded for this Change.')).toBeVisible()
   })
 
   it('lets the reviewer attach a comment', async () => {

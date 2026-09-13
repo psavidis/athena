@@ -2,12 +2,20 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { http, HttpResponse } from 'msw'
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import ChangeMapPage from './ChangeMapPage'
-import type { ChangeMap } from './api'
+import type { ChangeMap, ModuleNarrative } from './api'
 import { server } from './test/server'
 
 // Traces frontend/src/test/resources/features/change_map_frontend_rendering.feature
+
+// A sane default so any test that doesn't care about module narratives
+// doesn't need to mock /api/review/modules itself — tests that do care call
+// mockModules(...) again afterward, which overrides this one (msw uses the
+// most-recently-registered matching handler).
+beforeEach(() => {
+  mockModules([])
+})
 
 function renderChangeMapPage() {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
@@ -34,6 +42,14 @@ function mockChangeMap(body: ChangeMap) {
   server.use(http.get('/api/review/change-map', () => HttpResponse.json(body)))
 }
 
+function mockModules(modules: ModuleNarrative[]) {
+  server.use(http.get('/api/review/modules', () => HttpResponse.json(modules)))
+}
+
+function mockModuleNarrative(moduleName: string, narrative: ModuleNarrative) {
+  server.use(http.get(`/api/review/modules/${encodeURIComponent(moduleName)}/narrative`, () => HttpResponse.json(narrative)))
+}
+
 describe('Change Map & PR Understanding View rendering', () => {
   it('shows the PR Understanding summary with the PR title and a count per category', async () => {
     // Given the reviewer has selected a PR titled "Move authentication to Account"
@@ -42,6 +58,7 @@ describe('Change Map & PR Understanding View rendering', () => {
       prTitle: 'Move authentication to Account',
       categoryCounts: { BEHAVIORAL: 2, STRUCTURAL: 1, MECHANICAL: 3, UNKNOWN: 0 },
       changes: [],
+      classGroups: [],
     })
 
     // When the reviewer views the Change Map page
@@ -69,11 +86,13 @@ describe('Change Map & PR Understanding View rendering', () => {
           changeKey: 'test-change-key',
           description: 'Rename greet to salute',
           category: 'BEHAVIORAL',
+          kind: 'RENAME_SYMBOL',
           reviewState: 'UNSEEN',
           occurrenceCount: 1,
           exceptionCount: 0,
         },
       ],
+      classGroups: [],
     })
 
     // When the reviewer views the Change Map page
@@ -101,11 +120,13 @@ describe('Change Map & PR Understanding View rendering', () => {
           changeKey: 'test-change-key',
           description: 'Rename greet to salute',
           category: 'BEHAVIORAL',
+          kind: 'RENAME_SYMBOL',
           reviewState: 'UNSEEN',
           occurrenceCount: 1,
           exceptionCount: 0,
         },
       ],
+      classGroups: [],
     })
 
     const { onSelectChange } = renderChangeMapPage()
@@ -124,6 +145,7 @@ describe('Change Map & PR Understanding View rendering', () => {
       changeKey: 'test-change-key',
       description: 'Rename greet to salute',
       category: 'BEHAVIORAL',
+      kind: 'RENAME_SYMBOL',
       reviewState: 'UNSEEN',
       occurrenceCount: 1,
       exceptionCount: 0,
@@ -132,6 +154,7 @@ describe('Change Map & PR Understanding View rendering', () => {
       prTitle: 'Move authentication to Account',
       categoryCounts: { BEHAVIORAL: 1, STRUCTURAL: 0, MECHANICAL: 0, UNKNOWN: 0 },
       changes: [change],
+      classGroups: [],
     })
     let patchedState: string | null = null
     server.use(
@@ -150,6 +173,7 @@ describe('Change Map & PR Understanding View rendering', () => {
       prTitle: 'Move authentication to Account',
       categoryCounts: { BEHAVIORAL: 1, STRUCTURAL: 0, MECHANICAL: 0, UNKNOWN: 0 },
       changes: [{ ...change, reviewState: 'REVIEWED' }],
+      classGroups: [],
     })
     await user.selectOptions(select, 'Reviewed')
 
@@ -163,6 +187,7 @@ describe('Change Map & PR Understanding View rendering', () => {
       prTitle: 'No-op PR',
       categoryCounts: { BEHAVIORAL: 0, STRUCTURAL: 0, MECHANICAL: 0, UNKNOWN: 0 },
       changes: [],
+      classGroups: [],
     })
 
     // When the reviewer views the Change Map page
@@ -181,11 +206,125 @@ describe('Change Map & PR Understanding View rendering', () => {
     expect(screen.getByText('No Changes detected.')).toBeVisible()
   })
 
+  it('collapses multiple Changes on the same class into one expandable group', async () => {
+    // Given a Change Map where two Structural Changes both belong to DeviceConfiguration
+    const entryA = {
+      id: 0,
+      changeKey: 'key-a',
+      description: 'Change signature of DeviceConfiguration#deviceApplicationService',
+      category: 'STRUCTURAL' as const,
+      kind: 'CHANGE_METHOD_SIGNATURE' as const,
+      reviewState: 'UNSEEN' as const,
+      occurrenceCount: 1,
+      exceptionCount: 0,
+    }
+    const entryB = {
+      ...entryA,
+      id: 1,
+      changeKey: 'key-b',
+      description: 'Change signature of DeviceConfiguration#deviceUseCases',
+    }
+    mockChangeMap({
+      prTitle: 'Crowdness live',
+      categoryCounts: { BEHAVIORAL: 0, STRUCTURAL: 2, MECHANICAL: 0, UNKNOWN: 0 },
+      changes: [entryA, entryB],
+      classGroups: [{ enclosingType: 'DeviceConfiguration', entries: [entryA, entryB] }],
+    })
+
+    // When the reviewer views the Change Map page
+    renderChangeMapPage()
+
+    // Then the two Changes are collapsed under one "DeviceConfiguration" group row
+    // instead of appearing as two disconnected entries
+    const groupRow = await screen.findByRole('button', { name: /DeviceConfiguration/ })
+    expect(groupRow).toBeVisible()
+    expect(screen.queryByText(/deviceApplicationService/)).not.toBeInTheDocument()
+
+    // When the reviewer expands the group
+    const user = userEvent.setup()
+    await user.click(groupRow)
+
+    // Then both underlying Changes become visible
+    expect((await screen.findAllByText(/deviceApplicationService/)).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/deviceUseCases/).length).toBeGreaterThan(0)
+  })
+
+  it('shows a "What changed and why" section when the PR spans multiple modules', async () => {
+    // Given a PR whose Change Map spans two modules
+    mockChangeMap({
+      prTitle: 'Crowdness live',
+      categoryCounts: { BEHAVIORAL: 0, STRUCTURAL: 1, MECHANICAL: 0, UNKNOWN: 0 },
+      changes: [],
+      classGroups: [],
+    })
+    mockModules([
+      { moduleName: 'crowdness-live', changeKeys: ['key-a'], narrative: null },
+      { moduleName: 'crowdness-ingestion', changeKeys: ['key-b'], narrative: null },
+    ])
+
+    // When the reviewer views the Change Map page
+    renderChangeMapPage()
+
+    // Then a "What changed and why" section lists both modules
+    expect(await screen.findByText('What changed and why')).toBeVisible()
+    expect(screen.getByText('crowdness-live')).toBeVisible()
+    expect(screen.getByText('crowdness-ingestion')).toBeVisible()
+  })
+
+  it('does not show the "What changed and why" section for a single-module PR', async () => {
+    // Given a PR whose Change Map spans only one module
+    mockChangeMap({
+      prTitle: 'Move authentication to Account',
+      categoryCounts: { BEHAVIORAL: 0, STRUCTURAL: 0, MECHANICAL: 0, UNKNOWN: 0 },
+      changes: [],
+      classGroups: [],
+    })
+    mockModules([{ moduleName: 'athena', changeKeys: ['key-a'], narrative: null }])
+
+    // When the reviewer views the Change Map page
+    renderChangeMapPage()
+    await screen.findByText('Move authentication to Account')
+
+    // Then no "What changed and why" section is shown
+    expect(screen.queryByText('What changed and why')).not.toBeInTheDocument()
+  })
+
+  it('lets the reviewer request and see a module narrative', async () => {
+    // Given a PR spanning two modules, with an AI provider configured
+    server.use(http.get('/api/ai/status', () => HttpResponse.json({ configured: true })))
+    mockChangeMap({
+      prTitle: 'Crowdness live',
+      categoryCounts: { BEHAVIORAL: 0, STRUCTURAL: 1, MECHANICAL: 0, UNKNOWN: 0 },
+      changes: [],
+      classGroups: [],
+    })
+    mockModules([
+      { moduleName: 'crowdness-live', changeKeys: ['key-a'], narrative: null },
+      { moduleName: 'crowdness-ingestion', changeKeys: ['key-b'], narrative: null },
+    ])
+    mockModuleNarrative('crowdness-live', {
+      moduleName: 'crowdness-live',
+      changeKeys: ['key-a'],
+      narrative: 'Adds real-time occupancy tracking per zone.',
+    })
+
+    // When the reviewer views the Change Map page and asks for the narrative
+    renderChangeMapPage()
+    await screen.findByText('crowdness-live')
+    const user = userEvent.setup()
+    const explainButtons = await screen.findAllByRole('button', { name: 'Explain' })
+    await user.click(explainButtons[0])
+
+    // Then the narrative text appears
+    expect(await screen.findByText('Adds real-time occupancy tracking per zone.')).toBeVisible()
+  })
+
   it('clicking "Review summary" calls onOpenPreSubmissionSummary', async () => {
     mockChangeMap({
       prTitle: 'Move authentication to Account',
       categoryCounts: { BEHAVIORAL: 0, STRUCTURAL: 0, MECHANICAL: 0, UNKNOWN: 0 },
       changes: [],
+      classGroups: [],
     })
 
     const { onOpenPreSubmissionSummary } = renderChangeMapPage()
@@ -201,6 +340,7 @@ describe('Change Map & PR Understanding View rendering', () => {
       prTitle: 'Move authentication to Account',
       categoryCounts: { BEHAVIORAL: 0, STRUCTURAL: 0, MECHANICAL: 0, UNKNOWN: 0 },
       changes: [],
+      classGroups: [],
     })
 
     const { onOpenAiAnalysis } = renderChangeMapPage()

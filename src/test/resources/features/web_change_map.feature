@@ -10,6 +10,7 @@ Feature: Web Change Map & PR Understanding View
     Then the Change Map response includes the PR's title
     And the Change Map lists the rename Change under category "STRUCTURAL"
     And the Change Map's category counts show 1 Change under "STRUCTURAL"
+    And the Change Map response includes a class group for "Greeter" containing the rename Change
 
   Scenario: Requesting the Change Map without connecting to GitHub fails
     Given the reviewer has not connected to GitHub

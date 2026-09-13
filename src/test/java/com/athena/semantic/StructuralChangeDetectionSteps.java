@@ -265,6 +265,17 @@ public class StructuralChangeDetectionSteps {
                 .noneMatch(t -> t.involvedDescriptions().stream().anyMatch(d -> d.contains(symbol)));
     }
 
+    @Then("the {string} transformation involving {string} has a diff showing removed text {string} and added text {string}")
+    public void the_transformation_has_a_diff_showing(String kind, String symbol, String removedText, String addedText) {
+        TransformationKind expectedKind = TransformationKind.valueOf(kind);
+        DetectedTransformation transformation = transformations.stream()
+                .filter(t -> t.kind() == expectedKind && t.involvedDescriptions().stream().anyMatch(d -> d.contains(symbol)))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("No " + kind + " transformation found involving " + symbol));
+        assertThat(transformation.diffText().lines().anyMatch(l -> l.startsWith("-") && l.contains(removedText))).isTrue();
+        assertThat(transformation.diffText().lines().anyMatch(l -> l.startsWith("+") && l.contains(addedText))).isTrue();
+    }
+
     // ---- helpers ----
 
     private long countBaseRefFiles() {

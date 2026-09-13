@@ -1,6 +1,8 @@
-// Thin fetch wrappers over the backend REST API (ticket #73). No token is ever
-// stored here — it's submitted once via connect() and held server-side in the
-// session from then on; every other call just relies on the session cookie.
+// Thin fetch wrappers over the backend REST API. GitHub access is via a GitHub
+// App installation (see GitHubConnectController): the frontend never sees a
+// token — it asks the backend for a URL to redirect the browser to, and GitHub
+// hands the installation result back to backend callbacks. Every other call
+// just relies on the session cookie.
 
 export interface Repository {
   fullName: string
@@ -21,6 +23,16 @@ export interface ImportedPullRequest {
 
 export type ChangeCategory = 'BEHAVIORAL' | 'STRUCTURAL' | 'MECHANICAL' | 'UNKNOWN'
 
+export type TransformationKind =
+  | 'RENAME_SYMBOL'
+  | 'MOVE_SYMBOL'
+  | 'ADD_SYMBOL'
+  | 'REMOVE_SYMBOL'
+  | 'CHANGE_METHOD_SIGNATURE'
+  | 'EXTRACT_METHOD'
+  | 'MECHANICAL_REPLACEMENT'
+  | 'FORMATTING_ONLY'
+
 export type ReviewState = 'UNSEEN' | 'UNDERSTANDING' | 'REVIEWED' | 'CONCERN' | 'SKIPPED'
 
 export interface ChangeMapEntry {
@@ -28,20 +40,28 @@ export interface ChangeMapEntry {
   changeKey: string
   description: string
   category: ChangeCategory
+  kind: TransformationKind
   reviewState: ReviewState
   occurrenceCount: number
   exceptionCount: number
+}
+
+export interface ClassGroup {
+  enclosingType: string
+  entries: ChangeMapEntry[]
 }
 
 export interface ChangeMap {
   prTitle: string
   categoryCounts: Record<ChangeCategory, number>
   changes: ChangeMapEntry[]
+  classGroups: ClassGroup[]
 }
 
 export interface ChangeDetail {
   changeKey: string
   category: ChangeCategory
+  kind: TransformationKind
   description: string
   symbols: string[]
   files: string[]
@@ -105,6 +125,8 @@ export class FindingNotFoundError extends Error {}
 
 export class NoAnalysisTriggeredError extends Error {}
 
+export class AiAnalysisNotConfiguredError extends Error {}
+
 async function asJson<T>(response: Response): Promise<T> {
   if (!response.ok) {
     throw new Error(`Request failed: ${response.status}`)
@@ -112,15 +134,35 @@ async function asJson<T>(response: Response): Promise<T> {
   return response.json() as Promise<T>
 }
 
-export async function connect(token: string): Promise<{ authenticatedUsername: string }> {
-  const response = await fetch('/api/connect', {
+export interface GitHubStatus {
+  connected: boolean
+  accountLogin: string | null
+}
+
+export async function getGitHubStatus(): Promise<GitHubStatus> {
+  return asJson(await fetch('/api/github/status'))
+}
+
+export async function getGitHubConnectUrl(): Promise<{ url: string }> {
+  return asJson(await fetch('/api/github/connect-url'))
+}
+
+export interface AiStatus {
+  configured: boolean
+}
+
+export async function getAiStatus(): Promise<AiStatus> {
+  return asJson(await fetch('/api/ai/status'))
+}
+
+export async function connectAi(apiKey: string): Promise<AiStatus> {
+  const response = await fetch('/api/ai/connect', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ token }),
+    body: JSON.stringify({ apiKey }),
   })
   if (!response.ok) {
-    const body = (await response.json()) as { error?: string }
-    throw new Error(body.error ?? `Could not connect (${response.status})`)
+    throw new Error(`Could not save the key (${response.status})`)
   }
   return response.json()
 }
@@ -140,6 +182,37 @@ export async function selectPullRequest(
   return asJson(
     await fetch(`/api/repositories/${repositoryFullName}/pulls/${number}/select`, { method: 'POST' }),
   )
+}
+
+export interface ModuleNarrative {
+  moduleName: string
+  changeKeys: string[]
+  narrative: string | null
+}
+
+export async function getModules(): Promise<ModuleNarrative[]> {
+  const response = await fetch('/api/review/modules')
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  return asJson(response)
+}
+
+export async function getModuleNarrative(moduleName: string): Promise<ModuleNarrative> {
+  const response = await fetch(`/api/review/modules/${encodeURIComponent(moduleName)}/narrative`)
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  if (response.status === 503) {
+    throw new Error('AI analysis is not configured')
+  }
+  return asJson(response)
 }
 
 export async function getChangeMap(): Promise<ChangeMap> {
@@ -263,6 +336,9 @@ export async function triggerAiAnalysis(): Promise<AiFinding[]> {
   }
   if (response.status === 409) {
     throw new NoPullRequestSelectedError()
+  }
+  if (response.status === 503) {
+    throw new AiAnalysisNotConfiguredError()
   }
   return asJson(response)
 }

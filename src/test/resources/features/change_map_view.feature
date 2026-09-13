@@ -27,3 +27,9 @@ Feature: Change Map as default navigation entry point
     Given a PR with no detected Changes
     When the reviewer opens the Change Map
     Then the Change Map lists 0 entries
+
+  Scenario: Multiple Changes on the same class are grouped into one class group
+    Given a PR where class "DeviceConfiguration" has two methods with changed signatures, and an unrelated rename elsewhere
+    When the reviewer opens the Change Map
+    Then the Change Map has a class group for "DeviceConfiguration" containing 2 entries
+    And the Change Map has a class group for "Greeter" containing 1 entry

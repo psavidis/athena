@@ -84,6 +84,27 @@ public class ChangeMapViewSteps {
         write(headRoot, "Untouched", "public class Untouched {\n}\n");
     }
 
+    @Given("a PR where class {string} has two methods with changed signatures, and an unrelated rename elsewhere")
+    public void a_pr_with_two_signature_changes_on_one_class_and_an_unrelated_rename(String className) {
+        write(baseRoot, className, "public class " + className + " {\n"
+                + "    public String deviceApplicationService() {\n"
+                + "        return \"a\";\n"
+                + "    }\n"
+                + "    public String deviceUseCases() {\n"
+                + "        return \"b\";\n"
+                + "    }\n"
+                + "}\n");
+        write(headRoot, className, "public class " + className + " {\n"
+                + "    public String deviceApplicationService(String zone) {\n"
+                + "        return \"a\" + zone;\n"
+                + "    }\n"
+                + "    public String deviceUseCases(String zone) {\n"
+                + "        return \"b\" + zone;\n"
+                + "    }\n"
+                + "}\n");
+        JavaFixtureSupport.writeRenameFixture(baseRoot, headRoot);
+    }
+
     @When("the reviewer opens the Change Map")
     public void the_reviewer_opens_the_change_map() {
         List<DetectedTransformation> transformations = new TransformationDetector().detect(baseRoot, headRoot);
@@ -109,6 +130,19 @@ public class ChangeMapViewSteps {
     @Then("an entry shows its current review state")
     public void an_entry_shows_its_current_review_state() {
         assertThat(view.entries()).allSatisfy(entry -> assertThat(entry.reviewState()).isNotNull());
+    }
+
+    @Then("the Change Map has a class group for {string} containing {int} entries")
+    public void the_change_map_has_a_class_group_containing_n_entries(String enclosingType, int expectedCount) {
+        assertThat(view.classGroups())
+                .filteredOn(group -> group.enclosingType().equals(enclosingType))
+                .singleElement()
+                .satisfies(group -> assertThat(group.entries()).hasSize(expectedCount));
+    }
+
+    @Then("the Change Map has a class group for {string} containing {int} entry")
+    public void the_change_map_has_a_class_group_containing_n_entry(String enclosingType, int expectedCount) {
+        the_change_map_has_a_class_group_containing_n_entries(enclosingType, expectedCount);
     }
 
     @Then("the entry for that Change shows review state {string}")

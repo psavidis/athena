@@ -2,27 +2,27 @@ package com.athena.web;
 
 import com.athena.reviewui.ChangeMapEntry;
 import com.athena.reviewui.ChangeMapView;
+import com.athena.reviewui.ClassGroup;
 import com.athena.reviewui.PrUnderstandingView;
 import com.athena.semantic.Change;
 import com.athena.semantic.ChangeCategory;
-import com.athena.semantic.ChangeGrouper;
-import com.athena.semantic.DetectedTransformation;
-import com.athena.semantic.TransformationDetector;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Runs semantic detection against the selected PR's checked-out revisions
- * and serves the Change Map + PR Understanding View (ticket #74). Reuses
- * {@link TransformationDetector}, {@link ChangeGrouper}, {@link ChangeMapView}
- * and {@link PrUnderstandingView} unmodified.
+ * Serves the Change Map + PR Understanding View for the selected PR's
+ * checked-out revisions (ticket #74), reusing {@link ChangeMapView} and
+ * {@link PrUnderstandingView} unmodified. Semantic detection itself is run
+ * once per selection and cached on {@link WebSession.SelectedPullRequest},
+ * not repeated here.
  */
 @RestController
 public class ChangeMapController {
@@ -40,15 +40,17 @@ public class ChangeMapController {
         WebSession.SelectedPullRequest selection = session.selectedPullRequest()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT, "No PR selected"));
 
-        List<DetectedTransformation> transformations =
-                new TransformationDetector().detect(selection.baseRoot(), selection.headRoot());
-        List<Change> changes = new ChangeGrouper().group(transformations);
+        List<Change> changes = selection.changes();
 
         ChangeMapView changeMapView = ChangeMapView.of(changes, selection.reviewStateStore());
         PrUnderstandingView understandingView =
                 PrUnderstandingView.of(selection.pullRequest().title(), changes);
 
-        return new ChangeMapResponse(understandingView.prTitle(), categoryCounts(understandingView), entries(changeMapView));
+        Map<ChangeMapEntry, ChangeEntryResponse> byEntry = entryResponsesByEntry(changeMapView);
+        List<ChangeEntryResponse> flatEntries = changeMapView.entries().stream().map(byEntry::get).toList();
+        List<ClassGroupResponse> classGroups = classGroups(changeMapView, byEntry);
+
+        return new ChangeMapResponse(understandingView.prTitle(), categoryCounts(understandingView), flatEntries, classGroups);
     }
 
     private static Map<ChangeCategory, Integer> categoryCounts(PrUnderstandingView understandingView) {
@@ -59,15 +61,32 @@ public class ChangeMapController {
         return counts;
     }
 
-    private static List<ChangeEntryResponse> entries(ChangeMapView changeMapView) {
+    /**
+     * Builds each entry's response, keyed by the source {@link ChangeMapEntry}
+     * (identity-safe — two distinct entries are never the same object) so
+     * both the flat list and {@link #classGroups} can reuse the same response
+     * objects instead of re-deriving them. The map's own iteration order is
+     * irrelevant — callers re-derive order from {@link ChangeMapView} itself.
+     */
+    private static Map<ChangeMapEntry, ChangeEntryResponse> entryResponsesByEntry(ChangeMapView changeMapView) {
         List<ChangeMapEntry> viewEntries = changeMapView.entries();
-        List<ChangeEntryResponse> entries = new ArrayList<>(viewEntries.size());
+        Map<ChangeMapEntry, ChangeEntryResponse> byEntry = new IdentityHashMap<>(viewEntries.size());
         for (int i = 0; i < viewEntries.size(); i++) {
             ChangeMapEntry entry = viewEntries.get(i);
-            entries.add(new ChangeEntryResponse(i, ChangeKey.encode(entry.change()), entry.description(),
-                    entry.category(), entry.reviewState(), entry.change().occurrenceCount(),
+            byEntry.put(entry, new ChangeEntryResponse(i, ChangeKey.encode(entry.change()), entry.description(),
+                    entry.category(), entry.change().kind(), entry.reviewState(), entry.change().occurrenceCount(),
                     entry.change().exceptionCount()));
         }
-        return entries;
+        return byEntry;
+    }
+
+    private static List<ClassGroupResponse> classGroups(ChangeMapView changeMapView,
+                                                          Map<ChangeMapEntry, ChangeEntryResponse> byEntry) {
+        List<ClassGroupResponse> groups = new ArrayList<>();
+        for (ClassGroup group : changeMapView.classGroups()) {
+            List<ChangeEntryResponse> entries = group.entries().stream().map(byEntry::get).toList();
+            groups.add(new ClassGroupResponse(group.enclosingType(), entries));
+        }
+        return groups;
     }
 }
