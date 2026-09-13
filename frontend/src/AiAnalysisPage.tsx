@@ -49,7 +49,7 @@ export default function AiAnalysisPage({
   }
 
   return (
-    <PageShell>
+    <PageShell narrow>
       <BackLink onClick={onBack}>← Back to Change Map</BackLink>
 
       <div className="mb-8">

@@ -1,5 +1,5 @@
 import type { SemanticDimensionEntry } from './api'
-import { Card, SectionLabel } from './ui'
+import { Card, LevelConfidenceChip, SectionLabel } from './ui'
 
 /**
  * The Structure level's chip grid (ticket #96 §"Structure level"): one
@@ -35,14 +35,14 @@ export default function StructureLevel({
                 className={
                   'rounded-full border px-3 py-1.5 text-sm font-medium transition-colors ' +
                   (entry.conceptName === selectedConceptName
-                    ? 'border-ink-900 bg-ink-900 text-white'
-                    : 'border-ink-200 bg-paper-raised text-ink-700 hover:border-ink-300 hover:bg-ink-100')
+                    ? 'border-lv-structure bg-lv-structure text-white'
+                    : 'border-ink-200 bg-paper-raised text-ink-700 hover:border-lv-structure/40 hover:bg-lv-structure-soft')
                 }
               >
                 {entry.conceptName}
               </button>
-              <span className="ml-2 inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-800">
-                {entry.inferred ? 'Inferred' : 'Observed'} · {entry.confidencePercent}%
+              <span className="ml-2 inline-block align-middle">
+                <LevelConfidenceChip dimension="STRUCTURAL" inferred={entry.inferred} confidencePercent={entry.confidencePercent} />
               </span>
             </li>
           ))}

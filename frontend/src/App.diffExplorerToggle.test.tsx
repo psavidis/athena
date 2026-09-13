@@ -37,7 +37,7 @@ async function connectSelectPrAndChange() {
     http.get('/api/review/change-map', () =>
       HttpResponse.json({
         prTitle: 'Move authentication to Account',
-        categoryCounts: { BEHAVIORAL: 1, STRUCTURAL: 0, MECHANICAL: 0, UNKNOWN: 0 },
+        categoryCounts: {},
         changes: [
           {
             id: 0,
@@ -50,8 +50,11 @@ async function connectSelectPrAndChange() {
             exceptionCount: 0,
           },
         ],
+        classGroups: [],
       }),
     ),
+    http.get('/api/review/modules', () => HttpResponse.json([])),
+    http.get('/api/review/semantic-profile', () => HttpResponse.json({ dimensions: [] })),
     http.get('/api/review/changes/test-change-key', () =>
       HttpResponse.json({
         changeKey: 'test-change-key',
@@ -71,7 +74,14 @@ async function connectSelectPrAndChange() {
 
   await user.click(await screen.findByRole('button', { name: 'octocat/hello-world' }))
   await user.click(await screen.findByRole('button', { name: /#1.*Move authentication to Account/ }))
-  await user.click(await screen.findByText('Rename greet to salute'))
+
+  // Lands on the whole-PR Explorer — drill into the one Change via the flat
+  // list in the evidence panel, then open Diff view for it, reaching this
+  // helper's "viewing the diff view for a Change" starting state.
+  await user.click(await screen.findByText(/Show all 1 Change/))
+  await user.click(screen.getByText('Rename greet to salute'))
+  await user.click(await screen.findByText('Diff view'))
+  await screen.findByText('Greeter#greet')
 
   return user
 }
@@ -80,7 +90,7 @@ describe('Diff view / Semantic Explorer toggle', () => {
   it('switches from the diff view to the Semantic Explorer for the same Change', async () => {
     // Given the reviewer is viewing the diff view for a Change
     const user = await connectSelectPrAndChange()
-    expect(await screen.findByText('Greeter#greet')).toBeVisible()
+    expect(screen.getByText('Greeter#greet')).toBeVisible()
 
     // When the reviewer switches to the Semantic Explorer
     await user.click(screen.getByRole('button', { name: 'Semantic Explorer' }))
@@ -102,7 +112,7 @@ describe('Diff view / Semantic Explorer toggle', () => {
     expect(await screen.findByText('Greeter#greet')).toBeVisible()
   })
 
-  it('does not lose the selected pull request when switching modes', async () => {
+  it("does not lose the selected pull request's Change when switching modes", async () => {
     // Given the reviewer has selected a pull request and is viewing the diff view for one of its Changes
     const user = await connectSelectPrAndChange()
 
@@ -110,10 +120,8 @@ describe('Diff view / Semantic Explorer toggle', () => {
     await user.click(screen.getByRole('button', { name: 'Semantic Explorer' }))
     await screen.findByRole('navigation', { name: 'Semantic levels' })
     await user.click(screen.getByRole('button', { name: 'Diff view' }))
-    await screen.findByText('Greeter#greet')
 
-    // Then the reviewer is still viewing that same pull request: going back reaches its Change Map
-    await user.click(screen.getByText('← Back to Change Map'))
-    expect(await screen.findByRole('heading', { name: 'Move authentication to Account' })).toBeVisible()
+    // Then the reviewer is still viewing that same pull request's Change
+    expect(await screen.findByText('Greeter#greet')).toBeVisible()
   })
 })

@@ -61,4 +61,4 @@ Feature: Semantic Change Explorer — Guided Review mode and Diff/Explorer toggl
   Scenario: Switching modes does not lose the selected pull request
     Given the reviewer has selected a pull request and is viewing the diff view for one of its Changes
     When the reviewer switches to the Semantic Explorer and back to the diff view
-    Then the reviewer is still viewing that same pull request
+    Then the reviewer is still viewing that same pull request's Change

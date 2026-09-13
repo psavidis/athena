@@ -2,6 +2,8 @@ package com.athena.web.reviewui;
 
 import com.athena.semantic.Change;
 import com.athena.semantic.DetectedTransformation;
+import com.athena.semantic.ModuleGroup;
+import com.athena.semantic.ModuleGrouper;
 import com.athena.semantic.SemanticClassification;
 import com.athena.semantic.SemanticDimension;
 import com.athena.semantic.SemanticProfile;
@@ -68,13 +70,49 @@ public class SemanticProfileController {
     public SemanticProfileResponse semanticProfile(@PathVariable String changeKey) {
         WebSession.SelectedPullRequest selection = requireSelection();
         Change change = requireChange(changeKey, selection.changes());
+        return toResponse(List.of(selection.semanticProfileFor(change)));
+    }
 
-        SemanticProfile profile = selection.semanticProfileFor(change);
+    /**
+     * The Semantic Change Explorer aggregated across every Change in one module
+     * (ticket #122's follow-up: the Explorer is the primary view for a module,
+     * not a per-Change drill-down reached only after a flat change list). Simply
+     * concatenates each Change's own entries per dimension — a module's Structure
+     * level, say, is the union of every Change's structural entries, in the same
+     * shape the frontend already groups single-Change entries in, so no new
+     * response type or frontend grouping logic is needed for this to render.
+     */
+    @GetMapping("/api/review/modules/{moduleName}/semantic-profile")
+    public SemanticProfileResponse moduleSemanticProfile(@PathVariable String moduleName) {
+        WebSession.SelectedPullRequest selection = requireSelection();
+        ModuleGroup group = requireModule(moduleName, selection.changes());
+        List<SemanticProfile> profiles = group.changes().stream().map(selection::semanticProfileFor).toList();
+        return toResponse(profiles);
+    }
+
+    /**
+     * The Semantic Change Explorer aggregated across every Change in the whole
+     * selected PR — the Explorer's landing scope the instant a PR is opened,
+     * matching the approved mockup (#91's reference design): there is no
+     * separate category/change-list screen in it, the Explorer itself is the
+     * first thing a reviewer sees. Same merge as {@link #moduleSemanticProfile}
+     * one level up: every Change in the PR instead of one module's.
+     */
+    @GetMapping("/api/review/semantic-profile")
+    public SemanticProfileResponse pullRequestSemanticProfile() {
+        WebSession.SelectedPullRequest selection = requireSelection();
+        List<SemanticProfile> profiles = selection.changes().stream().map(selection::semanticProfileFor).toList();
+        return toResponse(profiles);
+    }
+
+    private SemanticProfileResponse toResponse(List<SemanticProfile> profiles) {
         List<SemanticDimensionEntryResponse> entries = new ArrayList<>();
         for (SemanticDimension dimension : SemanticDimension.values()) {
-            List<SemanticClassification> classifications = profile.classifications(dimension);
-            for (int rank = 0; rank < classifications.size(); rank++) {
-                entries.add(toEntry(dimension, classifications.get(rank), rank));
+            for (SemanticProfile profile : profiles) {
+                List<SemanticClassification> classifications = profile.classifications(dimension);
+                for (int rank = 0; rank < classifications.size(); rank++) {
+                    entries.add(toEntry(dimension, classifications.get(rank), rank));
+                }
             }
         }
         return new SemanticProfileResponse(entries);
@@ -112,5 +150,12 @@ public class SemanticProfileController {
     private Change requireChange(String changeKey, List<Change> changes) {
         return ChangeKey.resolve(changeKey, changes)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Change not found"));
+    }
+
+    private ModuleGroup requireModule(String moduleName, List<Change> changes) {
+        return new ModuleGrouper().group(changes).stream()
+                .filter(group -> group.moduleName().equals(moduleName))
+                .findFirst()
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Module not found"));
     }
 }

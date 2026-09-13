@@ -10,14 +10,35 @@ import { server } from './test/server'
 // Traces frontend/src/test/resources/features/ui_first_experience/semantic_change_explorer_motion_and_animation.feature
 
 function renderExplorer(changeKey = 'test-change-key') {
+  server.use(
+    http.get('/api/review/change-map', () =>
+      HttpResponse.json({ prTitle: 'Test PR', categoryCounts: {}, changes: [], classGroups: [] }),
+    ),
+    http.get('/api/review/modules', () => HttpResponse.json([])),
+  )
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
-  const onBack = vi.fn()
+  const onScopeChange = vi.fn()
+  const onExitPr = vi.fn()
+  const onOpenDiffView = vi.fn()
+  const onOpenAiAnalysis = vi.fn()
+  const onOpenSummary = vi.fn()
+  const onNotConnected = vi.fn()
+  const onNoPullRequestSelected = vi.fn()
   render(
     <QueryClientProvider client={queryClient}>
-      <SemanticChangeExplorerPage changeKey={changeKey} onBack={onBack} />
+      <SemanticChangeExplorerPage
+        scope={{ kind: 'change', changeKey }}
+        onScopeChange={onScopeChange}
+        onExitPr={onExitPr}
+        onOpenDiffView={onOpenDiffView}
+        onOpenAiAnalysis={onOpenAiAnalysis}
+        onOpenSummary={onOpenSummary}
+        onNotConnected={onNotConnected}
+        onNoPullRequestSelected={onNoPullRequestSelected}
+      />
     </QueryClientProvider>,
   )
-  return { onBack }
+  return { onScopeChange, onExitPr, onOpenDiffView, onOpenAiAnalysis, onOpenSummary, onNotConnected, onNoPullRequestSelected }
 }
 
 function mockSemanticProfile(changeKey: string, profile: SemanticProfile) {
