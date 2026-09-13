@@ -82,9 +82,9 @@ public class AiContextBoundarySteps {
         writeGeneratedFileChangeFixture(baseRoot, headRoot);
         List<Change> changes = detect();
 
-        renameChange = findByKind(changes, TransformationKind.RENAME_SYMBOL);
-        generatedChange = changes.stream()
-                .filter(change -> change != renameChange)
+        generatedChange = findByFileTouched(changes, "generated/GeneratedThing.java");
+        renameChange = changes.stream()
+                .filter(change -> change != generatedChange)
                 .findFirst()
                 .orElseThrow();
         store.setState(renameChange, ReviewState.REVIEWED);
@@ -164,6 +164,15 @@ public class AiContextBoundarySteps {
 
     private Change findByKind(List<Change> changes, TransformationKind kind) {
         return changes.stream().filter(change -> change.kind() == kind).findFirst().orElseThrow();
+    }
+
+    private Change findByFileTouched(List<Change> changes, String filePath) {
+        return changes.stream()
+                .filter(change -> change.matchedOccurrences().stream()
+                        .flatMap(occurrence -> occurrence.filesTouched().stream())
+                        .anyMatch(filePath::equals))
+                .findFirst()
+                .orElseThrow();
     }
 
     private void writeMoveFixture(Path baseRoot, Path headRoot) {
