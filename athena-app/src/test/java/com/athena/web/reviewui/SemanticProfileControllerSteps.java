@@ -135,6 +135,11 @@ public class SemanticProfileControllerSteps {
         assertThat(matchedEntry.evidence()).isNotEmpty();
     }
 
+    @Then("that entry lists {string} as a supporting structural change")
+    public void that_entry_lists_as_a_supporting_structural_change(String conceptName) {
+        assertThat(matchedEntry.supportingConceptNames()).contains(conceptName);
+    }
+
     @Then("the Semantic Profile has no {string} entry")
     public void the_semantic_profile_has_no_entry(String dimensionLabel) {
         SemanticDimension dimension = SemanticDimension.valueOf(dimensionLabel.toUpperCase(Locale.ROOT));
