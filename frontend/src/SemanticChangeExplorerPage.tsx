@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getSemanticProfile, type SemanticDimension, type SemanticDimensionEntry } from './api'
+import ArchitectureLevel from './ArchitectureLevel'
 import CapabilityLevel from './CapabilityLevel'
+import FlowLevel from './FlowLevel'
 import FrameworkLevel from './FrameworkLevel'
 import PatternLevel from './PatternLevel'
 import StructureLevel from './StructureLevel'
@@ -89,6 +91,10 @@ export default function SemanticChangeExplorerPage({
               selectedConceptName={selectedConceptName}
               onSelect={setSelectedConceptName}
             />
+          ) : currentDimension === 'FEATURE' ? (
+            <FlowLevel entries={entriesForCurrentDimension} />
+          ) : currentDimension === 'ARCHITECTURE' ? (
+            <ArchitectureLevel entries={entriesForCurrentDimension} />
           ) : (
             <CenterStage label={currentLabel} entry={entriesForCurrentDimension[0]} />
           )}
