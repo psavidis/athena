@@ -67,6 +67,23 @@ class PrAnalyzerSemanticProfileTest {
     }
 
     @Test
+    void aNewlyAddedControllerClassIsClassifiedAlongMultipleCoexistingDimensions() {
+        write(headRoot, "UserController", "public class UserController {\n}\n");
+
+        AnalysisResult result = new PrAnalyzer().analyze(baseRoot, headRoot);
+
+        Change addChange = result.changes().stream()
+                .filter(c -> c.kind() == TransformationKind.ADD_CLASS)
+                .findFirst().orElseThrow();
+        SemanticProfile profile = result.semanticProfileFor(addChange);
+
+        assertThat(profile.classifications(SemanticDimension.RESPONSIBILITY))
+                .extracting(c -> c.concept().id()).containsExactly("add-capability");
+        assertThat(profile.classifications(SemanticDimension.ARCHITECTURE))
+                .extracting(c -> c.concept().id()).containsExactly("driving-adapter");
+    }
+
+    @Test
     void semanticProfileForAnUnknownChangeReturnsAnEmptyProfileRatherThanThrowing() {
         AnalysisResult result = new PrAnalyzer().analyze(baseRoot, headRoot);
         Change foreign = new ChangeGrouper().group(java.util.List.of(
