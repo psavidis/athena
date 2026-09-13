@@ -33,6 +33,7 @@ const RENAME_ONLY: SemanticProfile = {
       inferred: false,
       confidencePercent: 100,
       evidence: ['- greet()\n+ salute()'],
+      supportingConceptNames: [],
     },
   ],
 }
@@ -47,6 +48,7 @@ const WITH_PATTERN_AND_INTENT: SemanticProfile = {
       inferred: true,
       confidencePercent: 70,
       evidence: ['- private UserRepository userRepository;\n+ private final UserRepository userRepository;'],
+      supportingConceptNames: [],
     },
     {
       dimension: 'INTENT',
@@ -55,6 +57,7 @@ const WITH_PATTERN_AND_INTENT: SemanticProfile = {
       inferred: true,
       confidencePercent: 70,
       evidence: ['- private UserRepository userRepository;\n+ private final UserRepository userRepository;'],
+      supportingConceptNames: [],
     },
   ],
 }

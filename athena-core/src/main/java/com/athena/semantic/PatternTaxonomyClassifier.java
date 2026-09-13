@@ -1,11 +1,11 @@
 package com.athena.semantic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Classifies a {@link Change} along the {@link SemanticDimension#PATTERN}
@@ -27,12 +27,14 @@ import java.util.Set;
 public final class PatternTaxonomyClassifier {
 
     private final Taxonomy patternTaxonomy;
+    private final StructuralTaxonomyClassifier structuralClassifier;
 
-    public PatternTaxonomyClassifier(Taxonomy patternTaxonomy) {
+    public PatternTaxonomyClassifier(Taxonomy patternTaxonomy, StructuralTaxonomyClassifier structuralClassifier) {
         if (patternTaxonomy.dimension() != SemanticDimension.PATTERN) {
             throw new IllegalArgumentException("Expected a PATTERN taxonomy, got " + patternTaxonomy.dimension());
         }
         this.patternTaxonomy = patternTaxonomy;
+        this.structuralClassifier = structuralClassifier;
     }
 
     public Optional<SemanticClassification> classify(Change change) {
@@ -45,7 +47,15 @@ public final class PatternTaxonomyClassifier {
         String simpleName = lastSegment(change.matchedOccurrences().get(0).involvedDescriptions());
         return conceptIdFor(simpleName)
                 .flatMap(patternTaxonomy::find)
-                .map(concept -> SemanticClassification.of(concept, List.copyOf(change.matchedOccurrences())));
+                .map(concept -> SemanticClassification.of(concept, List.copyOf(change.matchedOccurrences()),
+                        structuralConceptNamesOf(change)));
+    }
+
+    /** The structural concept name(s) {@code change} itself carries (ticket #96's "supported by" list). */
+    private List<String> structuralConceptNamesOf(Change change) {
+        return structuralClassifier.classify(change)
+                .map(classification -> List.of(classification.concept().name()))
+                .orElse(List.of());
     }
 
     private static final List<String> INJECTION_ANNOTATIONS = List.of("@Autowired", "@Inject", "@Resource");
@@ -82,13 +92,13 @@ public final class PatternTaxonomyClassifier {
             return classifications;
         }
 
-        Set<String> removedFieldDescriptions = new HashSet<>();
-        Set<String> droppedInjectionAnnotationDescriptions = new HashSet<>();
+        Map<String, Change> correlatingChangesByDescription = new HashMap<>();
         for (Change change : changes) {
-            if (change.kind() == TransformationKind.REMOVE_FIELD) {
-                removedFieldDescriptions.addAll(descriptionsOf(change));
-            } else if (change.kind() == TransformationKind.CHANGE_FIELD_ANNOTATIONS && droppedInjectionAnnotation(change)) {
-                droppedInjectionAnnotationDescriptions.addAll(descriptionsOf(change));
+            if (change.kind() == TransformationKind.REMOVE_FIELD
+                    || (change.kind() == TransformationKind.CHANGE_FIELD_ANNOTATIONS && droppedInjectionAnnotation(change))) {
+                for (String description : descriptionsOf(change)) {
+                    correlatingChangesByDescription.put(description, change);
+                }
             }
         }
 
@@ -96,11 +106,16 @@ public final class PatternTaxonomyClassifier {
             if (change.kind() != TransformationKind.ADD_CONSTRUCTOR_PARAMETER) {
                 continue;
             }
-            boolean correlates = descriptionsOf(change).stream()
-                    .anyMatch(d -> removedFieldDescriptions.contains(d) || droppedInjectionAnnotationDescriptions.contains(d));
-            if (correlates) {
-                classifications.put(change, SemanticClassification.of(diConcept.get(), List.copyOf(change.matchedOccurrences())));
-            }
+            Optional<Change> correlatingChange = descriptionsOf(change).stream()
+                    .map(correlatingChangesByDescription::get)
+                    .filter(Objects::nonNull)
+                    .findFirst();
+            correlatingChange.ifPresent(correlate -> {
+                List<String> supportingConceptNames = new ArrayList<>(structuralConceptNamesOf(change));
+                supportingConceptNames.addAll(structuralConceptNamesOf(correlate));
+                classifications.put(change, SemanticClassification.of(diConcept.get(),
+                        List.copyOf(change.matchedOccurrences()), supportingConceptNames));
+            });
         }
         return classifications;
     }

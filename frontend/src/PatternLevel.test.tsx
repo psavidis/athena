@@ -79,7 +79,7 @@ describe('PatternLevel', () => {
       />,
     )
 
-    expect(screen.getAllByRole('heading').map((heading) => heading.textContent)).toEqual([
+    expect(screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual([
       'Dependency Injection',
       'Factory',
     ])
@@ -89,6 +89,6 @@ describe('PatternLevel', () => {
     render(<PatternLevel entries={[]} onSelectSupporting={vi.fn()} />)
 
     expect(screen.getByText('No Pattern classification for this Change yet.')).toBeVisible()
-    expect(screen.queryByRole('heading')).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { level: 3 })).not.toBeInTheDocument()
   })
 })

@@ -257,7 +257,7 @@ describe('Semantic Change Explorer — Structure and Pattern level views', () =>
     await selectLevel('Pattern')
 
     // Then the center stage shows a hero card for "Dependency Injection" and a hero card for "Factory"
-    expect(screen.getAllByRole('heading').map((heading) => heading.textContent)).toEqual([
+    expect(screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual([
       'Dependency Injection',
       'Factory',
     ])
