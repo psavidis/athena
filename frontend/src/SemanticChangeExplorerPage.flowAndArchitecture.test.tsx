@@ -14,7 +14,7 @@ function renderExplorer(changeKey = 'test-change-key') {
   const onBack = vi.fn()
   render(
     <QueryClientProvider client={queryClient}>
-      <SemanticChangeExplorerPage changeKey={changeKey} onBack={onBack} />
+      <SemanticChangeExplorerPage scope={{ kind: 'change', changeKey }} onBack={onBack} />
     </QueryClientProvider>,
   )
   return { onBack }

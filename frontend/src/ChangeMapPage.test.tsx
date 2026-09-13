@@ -22,6 +22,7 @@ function renderChangeMapPage() {
   const onNotConnected = vi.fn()
   const onNoPullRequestSelected = vi.fn()
   const onSelectChange = vi.fn()
+  const onSelectModule = vi.fn()
   const onOpenPreSubmissionSummary = vi.fn()
   const onOpenAiAnalysis = vi.fn()
   render(
@@ -30,12 +31,20 @@ function renderChangeMapPage() {
         onNotConnected={onNotConnected}
         onNoPullRequestSelected={onNoPullRequestSelected}
         onSelectChange={onSelectChange}
+        onSelectModule={onSelectModule}
         onOpenPreSubmissionSummary={onOpenPreSubmissionSummary}
         onOpenAiAnalysis={onOpenAiAnalysis}
       />
     </QueryClientProvider>,
   )
-  return { onNotConnected, onNoPullRequestSelected, onSelectChange, onOpenPreSubmissionSummary, onOpenAiAnalysis }
+  return {
+    onNotConnected,
+    onNoPullRequestSelected,
+    onSelectChange,
+    onSelectModule,
+    onOpenPreSubmissionSummary,
+    onOpenAiAnalysis,
+  }
 }
 
 function mockChangeMap(body: ChangeMap) {

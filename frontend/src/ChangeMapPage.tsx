@@ -64,12 +64,14 @@ export default function ChangeMapPage({
   onNotConnected,
   onNoPullRequestSelected,
   onSelectChange,
+  onSelectModule,
   onOpenPreSubmissionSummary,
   onOpenAiAnalysis,
 }: {
   onNotConnected: () => void
   onNoPullRequestSelected: () => void
   onSelectChange: (changeKey: string) => void
+  onSelectModule: (moduleName: string) => void
   onOpenPreSubmissionSummary: () => void
   onOpenAiAnalysis: () => void
 }) {
@@ -142,6 +144,7 @@ export default function ChangeMapPage({
         changes={data.changes}
         aiConfigured={aiStatus?.configured === true}
         onSelectChange={onSelectChange}
+        onSelectModule={onSelectModule}
       />
       <ChangeMapGroups
         changes={data.changes}
@@ -208,10 +211,12 @@ function ModuleNarrativesSection({
   changes,
   aiConfigured,
   onSelectChange,
+  onSelectModule,
 }: {
   changes: ChangeMapEntry[]
   aiConfigured: boolean
   onSelectChange: (changeKey: string) => void
+  onSelectModule: (moduleName: string) => void
 }) {
   const { data: modules } = useQuery({
     queryKey: ['modules'],
@@ -238,6 +243,7 @@ function ModuleNarrativesSection({
             descriptionByKey={descriptionByKey}
             aiConfigured={aiConfigured}
             onSelectChange={onSelectChange}
+            onSelectModule={onSelectModule}
           />
         ))}
       </div>
@@ -250,11 +256,13 @@ function ModuleNarrativeCard({
   descriptionByKey,
   aiConfigured,
   onSelectChange,
+  onSelectModule,
 }: {
   module: ModuleNarrative
   descriptionByKey: Map<string, string>
   aiConfigured: boolean
   onSelectChange: (changeKey: string) => void
+  onSelectModule: (moduleName: string) => void
 }) {
   const [expanded, setExpanded] = useState(false)
   const narrativeQuery = useQuery({
@@ -286,15 +294,14 @@ function ModuleNarrativeCard({
             <p className="mt-1.5 text-sm text-ink-400">No narrative generated yet.</p>
           )}
         </div>
-        {!narrative && aiConfigured && (
-          <SecondaryButton
-            onClick={() => narrativeQuery.refetch()}
-            disabled={narrativeQuery.isFetching}
-            className="shrink-0"
-          >
-            {narrativeQuery.isFetching ? 'Explaining…' : 'Explain'}
-          </SecondaryButton>
-        )}
+        <div className="flex shrink-0 gap-2">
+          {!narrative && aiConfigured && (
+            <SecondaryButton onClick={() => narrativeQuery.refetch()} disabled={narrativeQuery.isFetching}>
+              {narrativeQuery.isFetching ? 'Explaining…' : 'Explain'}
+            </SecondaryButton>
+          )}
+          <PrimaryButton onClick={() => onSelectModule(module.moduleName)}>Explore</PrimaryButton>
+        </div>
       </div>
       <button
         type="button"
@@ -302,6 +309,7 @@ function ModuleNarrativeCard({
         onClick={() => setExpanded((e) => !e)}
       >
         {expanded ? 'Hide' : 'Show'} the {module.changeKeys.length} Change{module.changeKeys.length === 1 ? '' : 's'} in this module
+        (flat list)
       </button>
       {expanded && (
         <ul className="mt-2 space-y-1 border-t border-ink-100 pt-2">

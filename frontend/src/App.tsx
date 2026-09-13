@@ -16,13 +16,22 @@ export default function App() {
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null)
   const [selectedPr, setSelectedPr] = useState<ImportedPullRequest | null>(null)
   const [selectedChangeKey, setSelectedChangeKey] = useState<string | null>(null)
+  // The module-scoped Semantic Change Explorer (ticket #122's follow-up):
+  // selecting a module from the Change Map's module list opens the Explorer
+  // directly, aggregated across every Change in that module, instead of
+  // requiring a reviewer to expand the module's flat change list and pick
+  // one Change first. Mutually exclusive with selectedChangeKey — opening
+  // one clears the other, since they're two different Explorer scopes, not
+  // states that stack.
+  const [selectedModuleName, setSelectedModuleName] = useState<string | null>(null)
   // Which of the two reachable views a selected Change is shown in (ticket
   // #100): the traditional flat diff, or the Semantic Change Explorer.
   // #91 replaces the *primary* experience, not the diff itself — the diff
   // remains reachable as the underlying evidence (#91 §1). Reset whenever
   // a different Change is selected, not preserved as some global
   // preference, since the ticket only asks that switching mode not lose
-  // the selected PR/Change.
+  // the selected PR/Change. Not applicable to a module-scoped Explorer
+  // (selectedModuleName): a module has no single diff to toggle to.
   const [changeViewMode, setChangeViewMode] = useState<ChangeViewMode>('diff')
   const [showingSummary, setShowingSummary] = useState(false)
   const [showingAiAnalysis, setShowingAiAnalysis] = useState(false)
@@ -41,6 +50,14 @@ export default function App() {
       return <ConnectStep />
     }
     if (selectedPr) {
+      if (selectedModuleName) {
+        return (
+          <SemanticChangeExplorerPage
+            scope={{ kind: 'module', moduleName: selectedModuleName }}
+            onBack={() => setSelectedModuleName(null)}
+          />
+        )
+      }
       if (selectedChangeKey) {
         const onBack = () => {
           setSelectedChangeKey(null)
@@ -52,7 +69,7 @@ export default function App() {
             {changeViewMode === 'diff' ? (
               <ChangeDetailPage changeKey={selectedChangeKey} onBack={onBack} />
             ) : (
-              <SemanticChangeExplorerPage changeKey={selectedChangeKey} onBack={onBack} />
+              <SemanticChangeExplorerPage scope={{ kind: 'change', changeKey: selectedChangeKey }} onBack={onBack} />
             )}
           </div>
         )
@@ -80,6 +97,7 @@ export default function App() {
           }}
           onNoPullRequestSelected={() => setSelectedPr(null)}
           onSelectChange={setSelectedChangeKey}
+          onSelectModule={setSelectedModuleName}
           onOpenPreSubmissionSummary={() => setShowingSummary(true)}
           onOpenAiAnalysis={() => setShowingAiAnalysis(true)}
         />

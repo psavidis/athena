@@ -13,7 +13,7 @@ function renderExplorer(changeKey = 'test-change-key') {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
   render(
     <QueryClientProvider client={queryClient}>
-      <SemanticChangeExplorerPage changeKey={changeKey} onBack={() => {}} />
+      <SemanticChangeExplorerPage scope={{ kind: 'change', changeKey }} onBack={() => {}} />
     </QueryClientProvider>,
   )
 }

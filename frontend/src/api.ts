@@ -285,6 +285,22 @@ export async function getSemanticProfile(changeKey: string): Promise<SemanticPro
   return asJson(response)
 }
 
+/** The Semantic Change Explorer aggregated across every Change in one module, so the
+ * Explorer can be the primary view for a module instead of a per-Change drill-down. */
+export async function getModuleSemanticProfile(moduleName: string): Promise<SemanticProfile> {
+  const response = await fetch(`/api/review/modules/${encodeURIComponent(moduleName)}/semantic-profile`)
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  if (response.status === 404) {
+    throw new ChangeNotFoundError()
+  }
+  return asJson(response)
+}
+
 async function postAnnotation(path: string, scope: AnnotationScope, text: string): Promise<Annotations> {
   const response = await fetch(path, {
     method: 'POST',

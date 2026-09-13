@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getSemanticProfile, type SemanticDimension, type SemanticDimensionEntry } from './api'
+import { getModuleSemanticProfile, getSemanticProfile, type SemanticDimension, type SemanticDimensionEntry } from './api'
 import ArchitectureLevel from './ArchitectureLevel'
 import CapabilityLevel from './CapabilityLevel'
 import FlowLevel from './FlowLevel'
@@ -28,16 +28,26 @@ const LEVELS: { label: string; dimension: SemanticDimension }[] = [
   { label: 'Intent', dimension: 'INTENT' },
 ]
 
+/**
+ * What the Explorer is showing: either one Change (the original per-Change
+ * drill-down, reached from the flat change list) or a whole module,
+ * aggregated across every Change it contains (ticket #122's follow-up: the
+ * Explorer is the primary view reached straight from the Change Map's
+ * module list, not a screen a reviewer only reaches after picking one of
+ * potentially hundreds of individual Changes first).
+ */
+export type SemanticChangeExplorerScope = { kind: 'change'; changeKey: string } | { kind: 'module'; moduleName: string }
+
 export default function SemanticChangeExplorerPage({
-  changeKey,
+  scope,
   onBack,
 }: {
-  changeKey: string
+  scope: SemanticChangeExplorerScope
   onBack: () => void
 }) {
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['semantic-profile', changeKey],
-    queryFn: () => getSemanticProfile(changeKey),
+    queryKey: ['semantic-profile', scope],
+    queryFn: () => (scope.kind === 'change' ? getSemanticProfile(scope.changeKey) : getModuleSemanticProfile(scope.moduleName)),
     retry: false,
   })
   const [currentDimension, setCurrentDimension] = useState<SemanticDimension>('STRUCTURAL')
