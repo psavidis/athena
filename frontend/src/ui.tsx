@@ -211,13 +211,18 @@ export function Card({
   children,
   className = '',
   as: Tag = 'div',
+  onClick,
 }: {
   children: React.ReactNode
   className?: string
   as?: 'div' | 'ul'
+  onClick?: () => void
 }) {
   return (
-    <Tag className={`rounded-xl border border-ink-200 bg-paper-raised shadow-[0_1px_2px_rgba(28,26,23,0.04)] ${className}`}>
+    <Tag
+      className={`rounded-xl border border-ink-200 bg-paper-raised shadow-[0_1px_2px_rgba(28,26,23,0.04)] ${className}`}
+      onClick={onClick}
+    >
       {children}
     </Tag>
   )

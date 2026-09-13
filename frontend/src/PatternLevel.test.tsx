@@ -91,4 +91,33 @@ describe('PatternLevel', () => {
     expect(screen.getByText('No Pattern classification for this Change yet.')).toBeVisible()
     expect(screen.queryByRole('heading', { level: 3 })).not.toBeInTheDocument()
   })
+
+  it('calls onSelectConcept with the clicked card\'s entry when provided (ticket #99)', async () => {
+    const onSelectConcept = vi.fn()
+    const diEntry = entry('Dependency Injection')
+    render(<PatternLevel entries={[diEntry]} onSelectSupporting={vi.fn()} onSelectConcept={onSelectConcept} />)
+    const user = userEvent.setup()
+
+    await user.click(screen.getByRole('heading', { name: 'Dependency Injection' }))
+
+    expect(onSelectConcept).toHaveBeenCalledWith(diEntry)
+  })
+
+  it('clicking a supporting structural change does not also trigger onSelectConcept', async () => {
+    const onSelectConcept = vi.fn()
+    const onSelectSupporting = vi.fn()
+    render(
+      <PatternLevel
+        entries={[entry('Dependency Injection', { supportingConceptNames: ['Add Constructor Parameter'] })]}
+        onSelectSupporting={onSelectSupporting}
+        onSelectConcept={onSelectConcept}
+      />,
+    )
+    const user = userEvent.setup()
+
+    await user.click(screen.getByRole('button', { name: 'Add Constructor Parameter' }))
+
+    expect(onSelectSupporting).toHaveBeenCalledWith('Add Constructor Parameter')
+    expect(onSelectConcept).not.toHaveBeenCalled()
+  })
 })

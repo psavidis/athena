@@ -33,10 +33,15 @@ import java.util.Set;
  * kind-to-capability mapping, or Intent's cross-dimension correlation) are
  * explicitly heuristic — ticket #97 §"Capability level" calls out Capability
  * specifically as Inferred with a confidence percentage, not Observed.
- * Confidence for an Inferred entry is a flat placeholder — no scoring model
- * exists yet (out of scope per #91's "do not implement a complete autonomous
- * semantic/intent inference engine") — while Observed is always 100%, per
- * #91 §9's own example ("Structural: Observed · 100%").
+ * Confidence for an Inferred entry is a flat-per-rank placeholder — no
+ * scoring model exists yet (out of scope per #91's "do not implement a
+ * complete autonomous semantic/intent inference engine") — while Observed
+ * is always 100%, per #91 §9's own example ("Structural: Observed · 100%").
+ * A dimension with more than one classification (today, only Intent's
+ * primary-plus-alternatives — {@link com.athena.semantic.IntentTaxonomyClassifier}
+ * already returns them ranked primary-first) degrades confidence per rank so
+ * an alternative reading never reads as equally certain as the primary
+ * (ticket #99's "Intent never reads as more certain than it is").
  */
 @RestController
 public class SemanticProfileController {
@@ -44,6 +49,8 @@ public class SemanticProfileController {
     private static final Set<SemanticDimension> OBSERVED_DIMENSIONS =
             EnumSet.of(SemanticDimension.STRUCTURAL);
     private static final int INFERRED_CONFIDENCE_PERCENT = 70;
+    private static final int CONFIDENCE_STEP_DOWN_PER_RANK = 20;
+    private static final int MINIMUM_CONFIDENCE_PERCENT = 10;
 
     private final WebSession session;
 
@@ -59,20 +66,27 @@ public class SemanticProfileController {
         SemanticProfile profile = selection.semanticProfileFor(change);
         List<SemanticDimensionEntryResponse> entries = new ArrayList<>();
         for (SemanticDimension dimension : SemanticDimension.values()) {
-            for (SemanticClassification classification : profile.classifications(dimension)) {
-                entries.add(toEntry(dimension, classification));
+            List<SemanticClassification> classifications = profile.classifications(dimension);
+            for (int rank = 0; rank < classifications.size(); rank++) {
+                entries.add(toEntry(dimension, classifications.get(rank), rank));
             }
         }
         return new SemanticProfileResponse(entries);
     }
 
-    private SemanticDimensionEntryResponse toEntry(SemanticDimension dimension, SemanticClassification classification) {
+    private SemanticDimensionEntryResponse toEntry(SemanticDimension dimension, SemanticClassification classification,
+                                                     int rank) {
         boolean inferred = !OBSERVED_DIMENSIONS.contains(dimension);
-        int confidencePercent = inferred ? INFERRED_CONFIDENCE_PERCENT : 100;
+        int confidencePercent = inferred ? confidenceForRank(rank) : 100;
         List<String> evidence = classification.evidence().stream().map(DetectedTransformation::diffText).toList();
         return new SemanticDimensionEntryResponse(dimension, classification.concept().name(),
                 classification.concept().description(), inferred, confidencePercent, evidence,
                 classification.supportingConceptNames(), classification.beforeEvidenceCount());
+    }
+
+    /** The primary (rank 0) classification keeps the flat Inferred confidence; each alternative ranks lower. */
+    private int confidenceForRank(int rank) {
+        return Math.max(MINIMUM_CONFIDENCE_PERCENT, INFERRED_CONFIDENCE_PERCENT - rank * CONFIDENCE_STEP_DOWN_PER_RANK);
     }
 
     private WebSession.SelectedPullRequest requireSelection() {
