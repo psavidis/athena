@@ -1,6 +1,6 @@
 # Athena
 
-![Athena](athena.jpeg)
+![Athena logo](athena-logo.png)
 
 Athena analyzes a GitHub Pull Request's Java diff and groups it into
 meaningful **Changes** — rename, move, extract, mechanical replacement,
@@ -114,6 +114,10 @@ modules above).
 - [`CODE_STYLE.md`](CODE_STYLE.md) — the one style guide (design + testing)
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — how to propose and submit a change
 - [`docs/specs/product-specification.md`](docs/specs/product-specification.md) — the product spec this was built from
+
+## Artwork
+
+![Athena](athena.jpeg)
 
 ---
 

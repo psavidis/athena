@@ -33,67 +33,90 @@ export default function App() {
       .catch(() => setConnected(false))
   }, [])
 
-  if (connected === null) {
-    return null
-  }
-  if (!connected) {
-    return <ConnectStep />
-  }
-  if (selectedPr) {
-    if (selectedChangeKey) {
-      const onBack = () => {
-        setSelectedChangeKey(null)
-        setChangeViewMode('diff')
+  function renderContent() {
+    if (connected === null) {
+      return null
+    }
+    if (!connected) {
+      return <ConnectStep />
+    }
+    if (selectedPr) {
+      if (selectedChangeKey) {
+        const onBack = () => {
+          setSelectedChangeKey(null)
+          setChangeViewMode('diff')
+        }
+        return (
+          <div>
+            <ChangeViewModeToggle mode={changeViewMode} onChange={setChangeViewMode} />
+            {changeViewMode === 'diff' ? (
+              <ChangeDetailPage changeKey={selectedChangeKey} onBack={onBack} />
+            ) : (
+              <SemanticChangeExplorerPage changeKey={selectedChangeKey} onBack={onBack} />
+            )}
+          </div>
+        )
+      }
+      if (showingSummary) {
+        return <PreSubmissionSummaryPage onBack={() => setShowingSummary(false)} />
+      }
+      if (showingAiAnalysis) {
+        return (
+          <AiAnalysisPage
+            onBack={() => setShowingAiAnalysis(false)}
+            onSelectChange={(changeKey) => {
+              setShowingAiAnalysis(false)
+              setSelectedChangeKey(changeKey)
+            }}
+          />
+        )
       }
       return (
-        <div>
-          <ChangeViewModeToggle mode={changeViewMode} onChange={setChangeViewMode} />
-          {changeViewMode === 'diff' ? (
-            <ChangeDetailPage changeKey={selectedChangeKey} onBack={onBack} />
-          ) : (
-            <SemanticChangeExplorerPage changeKey={selectedChangeKey} onBack={onBack} />
-          )}
-        </div>
-      )
-    }
-    if (showingSummary) {
-      return <PreSubmissionSummaryPage onBack={() => setShowingSummary(false)} />
-    }
-    if (showingAiAnalysis) {
-      return (
-        <AiAnalysisPage
-          onBack={() => setShowingAiAnalysis(false)}
-          onSelectChange={(changeKey) => {
-            setShowingAiAnalysis(false)
-            setSelectedChangeKey(changeKey)
+        <ChangeMapPage
+          onNotConnected={() => {
+            setConnected(false)
+            setSelectedRepo(null)
+            setSelectedPr(null)
           }}
+          onNoPullRequestSelected={() => setSelectedPr(null)}
+          onSelectChange={setSelectedChangeKey}
+          onOpenPreSubmissionSummary={() => setShowingSummary(true)}
+          onOpenAiAnalysis={() => setShowingAiAnalysis(true)}
         />
       )
     }
-    return (
-      <ChangeMapPage
-        onNotConnected={() => {
-          setConnected(false)
-          setSelectedRepo(null)
-          setSelectedPr(null)
-        }}
-        onNoPullRequestSelected={() => setSelectedPr(null)}
-        onSelectChange={setSelectedChangeKey}
-        onOpenPreSubmissionSummary={() => setShowingSummary(true)}
-        onOpenAiAnalysis={() => setShowingAiAnalysis(true)}
-      />
-    )
+    if (selectedRepo) {
+      return (
+        <PullRequestStep
+          repositoryFullName={selectedRepo}
+          onBack={() => setSelectedRepo(null)}
+          onSelected={setSelectedPr}
+        />
+      )
+    }
+    return <RepositoryStep onSelected={setSelectedRepo} />
   }
-  if (selectedRepo) {
-    return (
-      <PullRequestStep
-        repositoryFullName={selectedRepo}
-        onBack={() => setSelectedRepo(null)}
-        onSelected={setSelectedPr}
-      />
-    )
-  }
-  return <RepositoryStep onSelected={setSelectedRepo} />
+
+  return (
+    <div>
+      <AppHeader />
+      {renderContent()}
+    </div>
+  )
+}
+
+/**
+ * The Athena logo, shown once at the top of every page (ticket #109) so
+ * the product has a consistent, recognizable identity instead of a
+ * generic, unbranded shell.
+ */
+function AppHeader() {
+  return (
+    <header className="mx-auto flex max-w-6xl items-center gap-2 px-6 pt-6 sm:px-10">
+      <img src="/athena-logo.png" alt="Athena" className="h-8 w-8 rounded-full" />
+      <span className="text-sm font-semibold tracking-wide text-ink-900">Athena</span>
+    </header>
+  )
 }
 
 /**
