@@ -79,9 +79,32 @@ body {
   animation: pop-in 0.32s var(--ease-calm) both;
 }
 
+/*
+  The structural changes supporting a Pattern converging into it (ticket
+  #101 / #91 §15) — a smaller, quicker rise than .animate-rise-in so a
+  handful of small elements read as clustering into the pattern above them,
+  not as another page section arriving. Callers stagger siblings with an
+  inline animation-delay.
+*/
+@keyframes cluster-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-cluster-in {
+  animation: cluster-in 0.18s var(--ease-calm) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-rise-in,
-  .animate-pop-in {
+  .animate-pop-in,
+  .animate-cluster-in {
     animation: none;
   }
 }

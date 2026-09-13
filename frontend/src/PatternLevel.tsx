@@ -8,15 +8,22 @@ import { Card, SectionLabel } from './ui'
  * back to the Structure level. Selecting a card itself (ticket #99 §10)
  * drives cross-highlighting of any other classification sharing its
  * evidence.
+ *
+ * The supporting structural changes are wrapped in a "structural cluster"
+ * group (ticket #101 §15/#91 §15) that animates in with a slight rise, so
+ * entering the Pattern level reads as those small structural elements
+ * converging into the named pattern rather than a static list appearing.
  */
 export default function PatternLevel({
   entries,
   onSelectSupporting,
   onSelectConcept,
+  onHoverConcept,
 }: {
   entries: SemanticDimensionEntry[]
   onSelectSupporting: (conceptName: string) => void
   onSelectConcept?: (entry: SemanticDimensionEntry) => void
+  onHoverConcept?: (conceptName: string | undefined) => void
 }) {
   return (
     <section>
@@ -46,29 +53,37 @@ export default function PatternLevel({
               }
             >
               <div className="mb-2 flex items-center gap-2">
-                <h3 className="text-lg font-semibold text-ink-900">{entry.conceptName}</h3>
+                <h3
+                  className="text-lg font-semibold text-ink-900"
+                  onMouseEnter={onHoverConcept ? () => onHoverConcept(entry.conceptName) : undefined}
+                  onMouseLeave={onHoverConcept ? () => onHoverConcept(undefined) : undefined}
+                >
+                  {entry.conceptName}
+                </h3>
                 <span className="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-800">
                   {entry.inferred ? 'Inferred' : 'Observed'} · {entry.confidencePercent}%
                 </span>
               </div>
               <p className="text-sm text-ink-700">{entry.conceptDescription}</p>
               {entry.supportingConceptNames.length > 0 && (
-                <ul aria-label={`${entry.conceptName} supporting structural changes`} className="mt-3 space-y-1">
-                  {entry.supportingConceptNames.map((conceptName) => (
-                    <li key={conceptName}>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          onSelectSupporting(conceptName)
-                        }}
-                        className="rounded px-1 text-sm text-accent underline decoration-accent/40 decoration-2 underline-offset-4 hover:bg-accent-soft"
-                      >
-                        {conceptName}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+                <div role="group" aria-label={`${entry.conceptName} structural cluster`}>
+                  <ul aria-label={`${entry.conceptName} supporting structural changes`} className="mt-3 space-y-1">
+                    {entry.supportingConceptNames.map((conceptName, i) => (
+                      <li key={conceptName} className="animate-cluster-in" style={{ animationDelay: `${i * 40}ms` }}>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            onSelectSupporting(conceptName)
+                          }}
+                          className="rounded px-1 text-sm text-accent underline decoration-accent/40 decoration-2 underline-offset-4 hover:bg-accent-soft"
+                        >
+                          {conceptName}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </Card>
           ))}
