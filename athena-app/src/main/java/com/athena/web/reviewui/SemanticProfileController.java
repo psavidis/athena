@@ -90,6 +90,21 @@ public class SemanticProfileController {
         return toResponse(profiles);
     }
 
+    /**
+     * The Semantic Change Explorer aggregated across every Change in the whole
+     * selected PR — the Explorer's landing scope the instant a PR is opened,
+     * matching the approved mockup (#91's reference design): there is no
+     * separate category/change-list screen in it, the Explorer itself is the
+     * first thing a reviewer sees. Same merge as {@link #moduleSemanticProfile}
+     * one level up: every Change in the PR instead of one module's.
+     */
+    @GetMapping("/api/review/semantic-profile")
+    public SemanticProfileResponse pullRequestSemanticProfile() {
+        WebSession.SelectedPullRequest selection = requireSelection();
+        List<SemanticProfile> profiles = selection.changes().stream().map(selection::semanticProfileFor).toList();
+        return toResponse(profiles);
+    }
+
     private SemanticProfileResponse toResponse(List<SemanticProfile> profiles) {
         List<SemanticDimensionEntryResponse> entries = new ArrayList<>();
         for (SemanticDimension dimension : SemanticDimension.values()) {

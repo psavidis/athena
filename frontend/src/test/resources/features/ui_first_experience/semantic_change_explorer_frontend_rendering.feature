@@ -37,7 +37,7 @@ Feature: Semantic Change Explorer rendering (frontend)
     When the reviewer selects the Flow level on the spine
     Then the center stage shows that the Flow level has no classification for this Change
 
-  Scenario: The reviewer can navigate back to the Change Map from the Semantic Change Explorer
+  Scenario: The reviewer can exit the PR from the Semantic Change Explorer
     Given the reviewer is viewing the Semantic Change Explorer for a Change
-    When the reviewer navigates back
-    Then the reviewer sees the Change Map again
+    When the reviewer clicks the Athena wordmark
+    Then the reviewer leaves the PR

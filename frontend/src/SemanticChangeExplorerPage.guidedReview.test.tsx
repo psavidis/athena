@@ -10,10 +10,25 @@ import { server } from './test/server'
 // Traces frontend/src/test/resources/features/ui_first_experience/semantic_change_explorer_guided_review_and_mode_toggle.feature
 
 function renderExplorer(changeKey = 'test-change-key') {
+  server.use(
+    http.get('/api/review/change-map', () =>
+      HttpResponse.json({ prTitle: 'Test PR', categoryCounts: {}, changes: [], classGroups: [] }),
+    ),
+    http.get('/api/review/modules', () => HttpResponse.json([])),
+  )
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
   render(
     <QueryClientProvider client={queryClient}>
-      <SemanticChangeExplorerPage scope={{ kind: 'change', changeKey }} onBack={() => {}} />
+      <SemanticChangeExplorerPage
+        scope={{ kind: 'change', changeKey }}
+        onScopeChange={() => {}}
+        onExitPr={() => {}}
+        onOpenDiffView={() => {}}
+        onOpenAiAnalysis={() => {}}
+        onOpenSummary={() => {}}
+        onNotConnected={() => {}}
+        onNoPullRequestSelected={() => {}}
+      />
     </QueryClientProvider>,
   )
 }

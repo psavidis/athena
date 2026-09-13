@@ -10,14 +10,35 @@ import { server } from './test/server'
 // Traces frontend/src/test/resources/features/ui_first_experience/semantic_change_explorer_frontend_rendering.feature
 
 function renderExplorer(changeKey = 'test-change-key') {
+  server.use(
+    http.get('/api/review/change-map', () =>
+      HttpResponse.json({ prTitle: 'Test PR', categoryCounts: {}, changes: [], classGroups: [] }),
+    ),
+    http.get('/api/review/modules', () => HttpResponse.json([])),
+  )
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
-  const onBack = vi.fn()
+  const onScopeChange = vi.fn()
+  const onExitPr = vi.fn()
+  const onOpenDiffView = vi.fn()
+  const onOpenAiAnalysis = vi.fn()
+  const onOpenSummary = vi.fn()
+  const onNotConnected = vi.fn()
+  const onNoPullRequestSelected = vi.fn()
   render(
     <QueryClientProvider client={queryClient}>
-      <SemanticChangeExplorerPage scope={{ kind: 'change', changeKey }} onBack={onBack} />
+      <SemanticChangeExplorerPage
+        scope={{ kind: 'change', changeKey }}
+        onScopeChange={onScopeChange}
+        onExitPr={onExitPr}
+        onOpenDiffView={onOpenDiffView}
+        onOpenAiAnalysis={onOpenAiAnalysis}
+        onOpenSummary={onOpenSummary}
+        onNotConnected={onNotConnected}
+        onNoPullRequestSelected={onNoPullRequestSelected}
+      />
     </QueryClientProvider>,
   )
-  return { onBack }
+  return { onScopeChange, onExitPr, onOpenDiffView, onOpenAiAnalysis, onOpenSummary, onNotConnected, onNoPullRequestSelected }
 }
 
 function mockSemanticProfile(changeKey: string, profile: SemanticProfile) {
@@ -81,7 +102,7 @@ describe('Semantic Change Explorer rendering', () => {
   it('updates the center stage when a spine level is selected, without leaving the Explorer', async () => {
     // Given ... a Change whose Pattern level is classified as "Dependency Injection"
     mockSemanticProfile('test-change-key', WITH_PATTERN_AND_INTENT)
-    const { onBack } = renderExplorer()
+    const { onScopeChange, onExitPr } = renderExplorer()
     await screen.findByText('Rename')
     const user = userEvent.setup()
 
@@ -95,7 +116,8 @@ describe('Semantic Change Explorer rendering', () => {
     // And the Pattern level is indicated as the current level
     expect(screen.getByRole('button', { name: 'Pattern' })).toHaveAttribute('aria-current', 'true')
     // And the reviewer is still viewing the Semantic Change Explorer
-    expect(onBack).not.toHaveBeenCalled()
+    expect(onScopeChange).not.toHaveBeenCalled()
+    expect(onExitPr).not.toHaveBeenCalled()
   })
 
   it("reflects the Change's actual classifications in the Change Story sentence", async () => {
@@ -148,17 +170,17 @@ describe('Semantic Change Explorer rendering', () => {
     expect(screen.getByText('No Flow classification for this Change yet.')).toBeVisible()
   })
 
-  it('navigates back to the Change Map', async () => {
+  it('exits the PR via the Athena wordmark', async () => {
     // Given the reviewer is viewing the Semantic Change Explorer for a Change
     mockSemanticProfile('test-change-key', RENAME_ONLY)
-    const { onBack } = renderExplorer()
+    const { onExitPr } = renderExplorer()
     await screen.findByText('Rename')
     const user = userEvent.setup()
 
-    // When the reviewer navigates back
-    await user.click(screen.getByText('← Back to Change Map'))
+    // When the reviewer clicks the Athena wordmark
+    await user.click(screen.getByRole('button', { name: 'Athena' }))
 
-    // Then the reviewer sees the Change Map again
-    expect(onBack).toHaveBeenCalled()
+    // Then the reviewer leaves the PR
+    expect(onExitPr).toHaveBeenCalled()
   })
 })

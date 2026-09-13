@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { addComment, addPrivateNote, getChangeDetail, type TransformationKind } from './api'
-import { BackLink, DiffView, ErrorState, LoadingState, PageShell, PrimaryButton, SectionLabel } from './ui'
+import { DiffView, ErrorState, LoadingState, PageShell, PrimaryButton, SecondaryButton, SectionLabel } from './ui'
 
 const KIND_LABELS: Record<TransformationKind, string> = {
   RENAME_SYMBOL: 'Rename',
@@ -29,6 +29,8 @@ const CATEGORY_LABELS = {
   UNKNOWN: 'Unknown',
 } as const
 
+/** `onBack` returns to the Semantic Change Explorer for this same Change (ticket #91's
+ * mode toggle) — never to the retired Change Map. */
 export default function ChangeDetailPage({ changeKey, onBack }: { changeKey: string; onBack: () => void }) {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['change-detail', changeKey],
@@ -60,7 +62,9 @@ export default function ChangeDetailPage({ changeKey, onBack }: { changeKey: str
 
   return (
     <PageShell>
-      <BackLink onClick={onBack}>← Back to Change Map</BackLink>
+      <div className="mb-2 flex justify-end">
+        <SecondaryButton onClick={onBack}>Semantic Explorer</SecondaryButton>
+      </div>
 
       <div className="mb-8">
         <p className="mb-1.5 text-xs font-medium tracking-wide text-ink-500 uppercase">Change</p>

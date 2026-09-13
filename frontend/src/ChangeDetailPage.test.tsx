@@ -130,17 +130,17 @@ describe('Change detail view rendering', () => {
     expect(screen.getByLabelText('Add a comment').closest('form')?.querySelector('button')).toBeDisabled()
   })
 
-  it('navigates back to the Change Map', async () => {
+  it('returns to the Semantic Change Explorer for the same Change', async () => {
     // Given the reviewer is viewing a Change's detail view
     mockChangeDetail(RENAME_DETAIL)
     const { onBack } = renderChangeDetailPage()
     await screen.findByText('Rename greet to salute')
     const user = userEvent.setup()
 
-    // When the reviewer navigates back
-    await user.click(screen.getByText('← Back to Change Map'))
+    // When the reviewer switches to the Semantic Explorer
+    await user.click(screen.getByRole('button', { name: 'Semantic Explorer' }))
 
-    // Then the reviewer sees the Change Map again
+    // Then the reviewer returns to the Explorer for that same Change
     expect(onBack).toHaveBeenCalled()
   })
 })

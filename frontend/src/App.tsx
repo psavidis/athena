@@ -2,37 +2,28 @@ import { useEffect, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { getGitHubConnectUrl, getGitHubStatus, listOpenPullRequests, listRepositories, selectPullRequest } from './api'
 import type { ImportedPullRequest } from './api'
-import ChangeMapPage from './ChangeMapPage'
 import ChangeDetailPage from './ChangeDetailPage'
-import SemanticChangeExplorerPage from './SemanticChangeExplorerPage'
+import SemanticChangeExplorerPage, { type SemanticChangeExplorerScope } from './SemanticChangeExplorerPage'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
 import AiAnalysisPage from './AiAnalysisPage'
-import { BackLink, Card, ErrorState, LoadingState, PageHeading, PageShell, PrimaryButton, SecondaryButton } from './ui'
-
-type ChangeViewMode = 'diff' | 'explorer'
+import { BackLink, Card, ErrorState, LoadingState, PageHeading, PageShell, PrimaryButton } from './ui'
 
 export default function App() {
   const [connected, setConnected] = useState<boolean | null>(null)
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null)
   const [selectedPr, setSelectedPr] = useState<ImportedPullRequest | null>(null)
-  const [selectedChangeKey, setSelectedChangeKey] = useState<string | null>(null)
-  // The module-scoped Semantic Change Explorer (ticket #122's follow-up):
-  // selecting a module from the Change Map's module list opens the Explorer
-  // directly, aggregated across every Change in that module, instead of
-  // requiring a reviewer to expand the module's flat change list and pick
-  // one Change first. Mutually exclusive with selectedChangeKey — opening
-  // one clears the other, since they're two different Explorer scopes, not
-  // states that stack.
-  const [selectedModuleName, setSelectedModuleName] = useState<string | null>(null)
-  // Which of the two reachable views a selected Change is shown in (ticket
-  // #100): the traditional flat diff, or the Semantic Change Explorer.
-  // #91 replaces the *primary* experience, not the diff itself — the diff
-  // remains reachable as the underlying evidence (#91 §1). Reset whenever
-  // a different Change is selected, not preserved as some global
-  // preference, since the ticket only asks that switching mode not lose
-  // the selected PR/Change. Not applicable to a module-scoped Explorer
-  // (selectedModuleName): a module has no single diff to toggle to.
-  const [changeViewMode, setChangeViewMode] = useState<ChangeViewMode>('diff')
+  // The Semantic Change Explorer is the landing view for a PR the instant
+  // it's selected — ticket #91's approved mockup has no separate
+  // category/change-list screen before it. Defaults to the whole PR,
+  // aggregated across every Change; narrowing to a module or drilling into
+  // one Change replaces this scope rather than navigating to a new screen
+  // (see SemanticChangeExplorerPage's own scope-kind doc comment).
+  const [explorerScope, setExplorerScope] = useState<SemanticChangeExplorerScope>({ kind: 'pr' })
+  // The Diff view overlay (ticket #100 / #91's topbar mode toggle): only
+  // reachable while explorerScope is a single Change, and only ever shows
+  // that Change's raw diff — exiting it returns to the Explorer on the same
+  // scope, not to some separate "previous screen."
+  const [diffViewChangeKey, setDiffViewChangeKey] = useState<string | null>(null)
   const [showingSummary, setShowingSummary] = useState(false)
   const [showingAiAnalysis, setShowingAiAnalysis] = useState(false)
 
@@ -42,6 +33,19 @@ export default function App() {
       .catch(() => setConnected(false))
   }, [])
 
+  function selectPr(pr: ImportedPullRequest) {
+    setSelectedPr(pr)
+    setExplorerScope({ kind: 'pr' })
+  }
+
+  function exitPr() {
+    setSelectedPr(null)
+    setExplorerScope({ kind: 'pr' })
+    setDiffViewChangeKey(null)
+    setShowingSummary(false)
+    setShowingAiAnalysis(false)
+  }
+
   function renderContent() {
     if (connected === null) {
       return null
@@ -50,29 +54,8 @@ export default function App() {
       return <ConnectStep />
     }
     if (selectedPr) {
-      if (selectedModuleName) {
-        return (
-          <SemanticChangeExplorerPage
-            scope={{ kind: 'module', moduleName: selectedModuleName }}
-            onBack={() => setSelectedModuleName(null)}
-          />
-        )
-      }
-      if (selectedChangeKey) {
-        const onBack = () => {
-          setSelectedChangeKey(null)
-          setChangeViewMode('diff')
-        }
-        return (
-          <div>
-            <ChangeViewModeToggle mode={changeViewMode} onChange={setChangeViewMode} />
-            {changeViewMode === 'diff' ? (
-              <ChangeDetailPage changeKey={selectedChangeKey} onBack={onBack} />
-            ) : (
-              <SemanticChangeExplorerPage scope={{ kind: 'change', changeKey: selectedChangeKey }} onBack={onBack} />
-            )}
-          </div>
-        )
+      if (diffViewChangeKey) {
+        return <ChangeDetailPage changeKey={diffViewChangeKey} onBack={() => setDiffViewChangeKey(null)} />
       }
       if (showingSummary) {
         return <PreSubmissionSummaryPage onBack={() => setShowingSummary(false)} />
@@ -83,33 +66,31 @@ export default function App() {
             onBack={() => setShowingAiAnalysis(false)}
             onSelectChange={(changeKey) => {
               setShowingAiAnalysis(false)
-              setSelectedChangeKey(changeKey)
+              setExplorerScope({ kind: 'change', changeKey })
             }}
           />
         )
       }
       return (
-        <ChangeMapPage
+        <SemanticChangeExplorerPage
+          scope={explorerScope}
+          onScopeChange={setExplorerScope}
+          onExitPr={exitPr}
+          onOpenDiffView={setDiffViewChangeKey}
+          onOpenAiAnalysis={() => setShowingAiAnalysis(true)}
+          onOpenSummary={() => setShowingSummary(true)}
           onNotConnected={() => {
             setConnected(false)
             setSelectedRepo(null)
             setSelectedPr(null)
           }}
           onNoPullRequestSelected={() => setSelectedPr(null)}
-          onSelectChange={setSelectedChangeKey}
-          onSelectModule={setSelectedModuleName}
-          onOpenPreSubmissionSummary={() => setShowingSummary(true)}
-          onOpenAiAnalysis={() => setShowingAiAnalysis(true)}
         />
       )
     }
     if (selectedRepo) {
       return (
-        <PullRequestStep
-          repositoryFullName={selectedRepo}
-          onBack={() => setSelectedRepo(null)}
-          onSelected={setSelectedPr}
-        />
+        <PullRequestStep repositoryFullName={selectedRepo} onBack={() => setSelectedRepo(null)} onSelected={selectPr} />
       )
     }
     return <RepositoryStep onSelected={setSelectedRepo} />
@@ -117,18 +98,18 @@ export default function App() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <AppHeader />
+      {!selectedPr && <AppHeader />}
       <div className="flex-1">{renderContent()}</div>
     </div>
   )
 }
 
 /**
- * The Athena logo, shown once at the top of every page (ticket #109) so
- * the product has a consistent, recognizable identity instead of a
- * generic, unbranded shell. Full-width, bordered like the approved mockup's
- * `.topbar` (ticket #91's reference design) — no centered max-width column,
- * since nothing below it is centered either (see PageShell).
+ * The Athena logo, shown at the top of every pre-PR page (ticket #109) so
+ * the product has a consistent, recognizable identity before a PR is open.
+ * Once a PR is selected, SemanticChangeExplorerPage's own topbar (matching
+ * ticket #91's approved mockup) replaces this — there's exactly one top bar
+ * on screen at a time, never both stacked.
  */
 function AppHeader() {
   return (
@@ -136,29 +117,6 @@ function AppHeader() {
       <img src="/athena-logo.png" alt="Athena" className="h-8 w-8 rounded-full" />
       <span className="font-display text-base font-medium tracking-tight text-ink-900">Athena</span>
     </header>
-  )
-}
-
-/**
- * The top-bar Diff view / Semantic Explorer mode switch (ticket #100), kept
- * reachable alongside a selected Change so a reviewer can move between the
- * two without losing which Change/PR they're looking at (ticket #91 §1).
- */
-function ChangeViewModeToggle({
-  mode,
-  onChange,
-}: {
-  mode: ChangeViewMode
-  onChange: (mode: ChangeViewMode) => void
-}) {
-  return (
-    <div className="flex justify-end gap-2 px-6 pt-6 sm:px-10">
-      {mode === 'diff' ? (
-        <SecondaryButton onClick={() => onChange('explorer')}>Semantic Explorer</SecondaryButton>
-      ) : (
-        <SecondaryButton onClick={() => onChange('diff')}>Diff view</SecondaryButton>
-      )}
-    </div>
   )
 }
 
