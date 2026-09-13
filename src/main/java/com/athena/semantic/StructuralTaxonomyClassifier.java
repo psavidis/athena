@@ -40,6 +40,8 @@ public final class StructuralTaxonomyClassifier {
             case EXTRACT_METHOD -> "extract-method";
             case MECHANICAL_REPLACEMENT -> "mechanical-replacement";
             case FORMATTING_ONLY -> "formatting-only";
+            case ADD_CONSTRUCTOR_PARAMETER -> "add-constructor-parameter";
+            case CHANGE_FIELD_ANNOTATIONS -> "change-field-annotations";
         };
     }
 

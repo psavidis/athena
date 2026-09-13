@@ -4,6 +4,7 @@ import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
@@ -219,6 +220,42 @@ public final class TransformationDetector {
                 .filter(f -> !classMatch.excludedHeadTypes().contains(f.enclosingType)).toList();
         results.addAll(detectFieldChanges(baseFields, headFields));
 
+        // 9. Constructor parameter added and assigned to a same-named field — the structural
+        // half of "field injection -> constructor injection" (ticket #86's dependency-injection
+        // pattern example). Matched by enclosing type + parameter name + parameter type against
+        // the head constructor only (no rename/move matching needed here, unlike methods/fields:
+        // a constructor has no name of its own to rename, so "added" is the only shape that
+        // matters). Whether this actually correlates with a REMOVE_FIELD Change for the same
+        // name/type is decided later by PatternTaxonomyClassifier, which sees the full Change
+        // set this detector's single pass through one class's constructors can't.
+        results.addAll(detectAddedConstructorParameters(baseParsed.constructors(), headParsed.constructors()));
+
+        return results;
+    }
+
+    private List<DetectedTransformation> detectAddedConstructorParameters(List<ConstructorInfo> baseConstructors,
+                                                                            List<ConstructorInfo> headConstructors) {
+        List<DetectedTransformation> results = new ArrayList<>();
+        Map<String, ConstructorInfo> baseByEnclosingType = new LinkedHashMap<>();
+        for (ConstructorInfo c : baseConstructors) {
+            baseByEnclosingType.put(c.enclosingType, c);
+        }
+
+        for (ConstructorInfo head : headConstructors) {
+            ConstructorInfo base = baseByEnclosingType.get(head.enclosingType);
+            Set<String> baseParameterNames = base == null ? Set.of() : Set.copyOf(base.parameterNames);
+            for (String parameterName : head.parameterNames) {
+                if (!baseParameterNames.contains(parameterName) && head.assignedFieldNames.contains(parameterName)) {
+                    // Description format deliberately matches FieldInfo#description()'s
+                    // "EnclosingType#name" exactly (parameterType kept out of it) so
+                    // PatternTaxonomyClassifier can correlate this against a REMOVE_FIELD
+                    // transformation for the same name by simple string equality.
+                    results.add(DetectedTransformation.withDiff(TransformationKind.ADD_CONSTRUCTOR_PARAMETER,
+                            List.of(head.enclosingType + "#" + parameterName),
+                            List.of(head.file), base == null ? "" : base.rawDeclaration, head.rawDeclaration));
+                }
+            }
+        }
         return results;
     }
 
@@ -232,19 +269,29 @@ public final class TransformationDetector {
             headByKey.computeIfAbsent(new FieldKey(f.enclosingType, f.name), k -> new ArrayList<>()).add(f);
         }
 
-        // 1. Exact match: same enclosing type + same name. Unchanged if the type also
-        // matches; a same-name field whose type changed is deliberately left unclassified
-        // (see detect()'s step 8 comment).
+        // 1. Exact match: same enclosing type + same name + same declared type — this is
+        // what makes it genuinely "the same field" rather than an unrelated field that
+        // happens to reuse the name (a same-name field whose type also changed falls through
+        // to steps 2/3/5 below like any other unmatched pair, same policy as methods: no
+        // fuzzy match across two differing dimensions at once).
         for (FieldInfo base : baseFields) {
             List<FieldInfo> candidates = headByKey.get(new FieldKey(base.enclosingType, base.name));
             FieldInfo head = candidates == null ? null : candidates.stream()
-                    .filter(h -> !matchedHead.contains(h)).findFirst().orElse(null);
+                    .filter(h -> !matchedHead.contains(h) && h.type.equals(base.type)).findFirst().orElse(null);
             if (head == null) continue;
             matchedBase.add(base);
             matchedHead.add(head);
-            // No structural change to report for a field beyond rename/move/add/remove — a
-            // field's declaration text changing (e.g. initializer) with the same name+type
-            // is behavioral, not structural, and out of this detector's scope.
+            // The field itself (name + declared type) is unchanged, but its annotations may
+            // have changed — e.g. @Autowired removed as part of moving to constructor
+            // injection (ticket #86's dependency-injection example). That's the one
+            // declaration-level fact this detector does report for an otherwise-matched
+            // field; anything else about the declaration text (initializer, modifiers) stays
+            // out of scope as behavioral, not structural.
+            if (!base.annotationNames.equals(head.annotationNames)) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_FIELD_ANNOTATIONS,
+                        List.of(base.description()), List.of(base.file, head.file),
+                        base.rawDeclaration, head.rawDeclaration));
+            }
         }
 
         List<FieldInfo> unmatchedBase = baseFields.stream().filter(f -> !matchedBase.contains(f)).toList();
@@ -641,6 +688,7 @@ public final class TransformationDetector {
         List<MethodInfo> methods = new ArrayList<>();
         List<FieldInfo> fields = new ArrayList<>();
         List<ClassInfo> classes = new ArrayList<>();
+        List<ConstructorInfo> constructors = new ArrayList<>();
         Map<String, RecordInfo> records = new LinkedHashMap<>();
         for (Path file : javaFiles(root)) {
             String relativePath = root.relativize(file).toString();
@@ -686,12 +734,32 @@ public final class TransformationDetector {
                     String rawDeclaration = field.getRange()
                             .map(range -> sourceSlice(sourceLines, range))
                             .orElse(field.toString());
+                    Set<String> annotationNames = field.getAnnotations().stream()
+                            .map(a -> a.getName().getIdentifier())
+                            .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
                     for (VariableDeclarator variable : field.getVariables()) {
                         String typeAsString = variable.getType().asString();
                         fields.add(new FieldInfo(type.getNameAsString(), variable.getNameAsString(), typeAsString,
-                                rawDeclaration, relativePath));
+                                annotationNames, rawDeclaration, relativePath));
                         memberSignatures.add("field:" + variable.getNameAsString() + ":" + typeAsString);
                     }
+                }
+                for (ConstructorDeclaration constructor : type.getConstructors()) {
+                    String rawDeclaration = constructor.getRange()
+                            .map(range -> sourceSlice(sourceLines, range))
+                            .orElse(constructor.toString());
+                    String bodyText = constructor.getBody().getRange()
+                            .map(range -> sourceSlice(sourceLines, range))
+                            .orElse(constructor.getBody().toString());
+                    List<String> paramTypes = constructor.getParameters().stream()
+                            .map(Parameter::getTypeAsString).toList();
+                    List<String> paramNames = constructor.getParameters().stream()
+                            .map(Parameter::getNameAsString).toList();
+                    Set<String> assignedFieldNames = paramNames.stream()
+                            .filter(name -> assignsParameterToSameNamedField(bodyText, name))
+                            .collect(java.util.stream.Collectors.toCollection(LinkedHashSet::new));
+                    constructors.add(new ConstructorInfo(type.getNameAsString(), paramTypes, paramNames,
+                            assignedFieldNames, rawDeclaration, relativePath));
                 }
                 if (type instanceof RecordDeclaration record) {
                     List<String> componentTypes = record.getParameters().stream()
@@ -708,11 +776,34 @@ public final class TransformationDetector {
                 }
             }
         }
-        return new ParsedRoot(methods, fields, classes, records);
+        return new ParsedRoot(methods, fields, classes, constructors, records);
+    }
+
+    /**
+     * True if {@code body} contains an assignment of the form
+     * {@code this.<name> = <name>} (whitespace-insensitive around the {@code =}) — the
+     * canonical "constructor-injected field" shape. A text check rather than a full AST
+     * walk of assignment statements, consistent with this detector's existing lightweight
+     * checks for similar structural questions (see {@link #callsMethod}).
+     */
+    private boolean assignsParameterToSameNamedField(String body, String parameterName) {
+        String normalizedBody = body.replaceAll("\\s+", "");
+        return normalizedBody.contains("this." + parameterName + "=" + parameterName + ";");
     }
 
     private record ParsedRoot(List<MethodInfo> methods, List<FieldInfo> fields, List<ClassInfo> classes,
-                               Map<String, RecordInfo> records) {
+                               List<ConstructorInfo> constructors, Map<String, RecordInfo> records) {
+    }
+
+    /**
+     * A constructor's shape for detecting "field injection -> constructor injection"
+     * (ticket #86): which parameters it declares, and which of those it assigns straight
+     * to a same-named field in its body ({@code assignedFieldNames} is the subset of
+     * {@code parameterNames} that do — the structural signal a constructor actually stores
+     * that parameter as field state, not just uses it transiently).
+     */
+    private record ConstructorInfo(String enclosingType, List<String> parameterTypes, List<String> parameterNames,
+                                    Set<String> assignedFieldNames, String rawDeclaration, String file) {
     }
 
     /**
@@ -726,7 +817,8 @@ public final class TransformationDetector {
     private record ClassInfo(String simpleName, String file, Set<String> memberSignatures, String headerText) {
     }
 
-    private record FieldInfo(String enclosingType, String name, String type, String rawDeclaration, String file) {
+    private record FieldInfo(String enclosingType, String name, String type, Set<String> annotationNames,
+                              String rawDeclaration, String file) {
         String description() {
             return enclosingType + "#" + name;
         }

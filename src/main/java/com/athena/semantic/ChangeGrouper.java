@@ -86,6 +86,8 @@ public final class ChangeGrouper {
             case MOVE_FIELD -> "Move field " + arrowJoin(key.involvedDescriptions);
             case ADD_FIELD -> "Add field " + key.involvedDescriptions.get(0);
             case REMOVE_FIELD -> "Remove field " + key.involvedDescriptions.get(0);
+            case ADD_CONSTRUCTOR_PARAMETER -> "Add constructor parameter " + key.involvedDescriptions.get(0);
+            case CHANGE_FIELD_ANNOTATIONS -> "Change annotations on field " + key.involvedDescriptions.get(0);
         };
     }
 

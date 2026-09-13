@@ -33,9 +33,10 @@ public final class ResponsibilityTaxonomyClassifier {
             case ADD_CLASS, ADD_SYMBOL, ADD_FIELD -> Optional.of("add-capability");
             case REMOVE_CLASS, REMOVE_SYMBOL, REMOVE_FIELD -> Optional.of("remove-capability");
             case MOVE_CLASS, MOVE_SYMBOL, MOVE_FIELD -> Optional.of("move-responsibility");
-            case CHANGE_METHOD_SIGNATURE -> Optional.of("change-api-responsibility");
+            case CHANGE_METHOD_SIGNATURE, ADD_CONSTRUCTOR_PARAMETER -> Optional.of("change-api-responsibility");
             case EXTRACT_METHOD -> Optional.of("split-responsibility");
-            case RENAME_SYMBOL, RENAME_CLASS, RENAME_FIELD, MECHANICAL_REPLACEMENT, FORMATTING_ONLY -> Optional.empty();
+            case RENAME_SYMBOL, RENAME_CLASS, RENAME_FIELD, MECHANICAL_REPLACEMENT, FORMATTING_ONLY,
+                 CHANGE_FIELD_ANNOTATIONS -> Optional.empty();
         };
     }
 
