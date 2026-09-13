@@ -31,8 +31,20 @@ import java.util.stream.Stream;
 public final class PrAnalyzer {
 
     private final JavaSourceParser parser = new JavaSourceParser();
-    private final StructuralTaxonomyClassifier structuralClassifier =
-            new StructuralTaxonomyClassifier(new TaxonomyLoader().load(SemanticDimension.STRUCTURAL));
+    private final StructuralTaxonomyClassifier structuralClassifier;
+    private final ResponsibilityTaxonomyClassifier responsibilityClassifier;
+    private final ArchitectureTaxonomyClassifier architectureClassifier;
+    private final PatternTaxonomyClassifier patternClassifier;
+    private final FrameworkTaxonomyClassifier frameworkClassifier;
+
+    public PrAnalyzer() {
+        TaxonomyLoader taxonomyLoader = new TaxonomyLoader();
+        structuralClassifier = new StructuralTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.STRUCTURAL));
+        responsibilityClassifier = new ResponsibilityTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.RESPONSIBILITY));
+        architectureClassifier = new ArchitectureTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.ARCHITECTURE));
+        patternClassifier = new PatternTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.PATTERN));
+        frameworkClassifier = new FrameworkTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.FRAMEWORK));
+    }
 
     public AnalysisResult analyze(Path baseRoot, Path headRoot) {
         Set<String> relativePaths = allRelativeJavaPaths(baseRoot, headRoot);
@@ -70,18 +82,26 @@ public final class PrAnalyzer {
 
     /**
      * Classifies one Change along whichever semantic dimensions have a classifier today
-     * (ticket #86) — currently structural only; other dimensions (pattern, framework,
-     * responsibility, feature, architecture, intent) have taxonomies but no classifier yet,
-     * so a Change simply carries no classification along those dimensions rather than a
-     * guessed or placeholder one.
+     * (ticket #86): structural, responsibility, and — for a newly-added/renamed class only
+     * — architecture, pattern, and framework (all three read a class's own name/annotations,
+     * which only a class actually taking on that identity speaks to). Feature/flow and intent
+     * have taxonomies but no classifier yet — neither is reliably inferable from a diff alone
+     * without guessing, so a Change simply carries no classification along those dimensions
+     * rather than a guessed or placeholder one.
      */
     private SemanticProfile classify(Change change) {
         SemanticProfile profile = SemanticProfile.empty(change);
-        Optional<SemanticClassification> structural = structuralClassifier.classify(change);
-        if (structural.isPresent()) {
-            profile = profile.with(SemanticDimension.STRUCTURAL, structural.get());
-        }
+        profile = withClassification(profile, SemanticDimension.STRUCTURAL, structuralClassifier.classify(change));
+        profile = withClassification(profile, SemanticDimension.RESPONSIBILITY, responsibilityClassifier.classify(change));
+        profile = withClassification(profile, SemanticDimension.ARCHITECTURE, architectureClassifier.classify(change));
+        profile = withClassification(profile, SemanticDimension.PATTERN, patternClassifier.classify(change));
+        profile = withClassification(profile, SemanticDimension.FRAMEWORK, frameworkClassifier.classify(change));
         return profile;
+    }
+
+    private SemanticProfile withClassification(SemanticProfile profile, SemanticDimension dimension,
+                                                Optional<SemanticClassification> classification) {
+        return classification.isPresent() ? profile.with(dimension, classification.get()) : profile;
     }
 
     private String degradationReason(Optional<ParseResult> baseParse, boolean baseOk,
