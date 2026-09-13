@@ -70,7 +70,7 @@ public final class PrAnalyzer {
 
     /**
      * Classifies one Change along whichever semantic dimensions have a classifier today
-     * (ticket #86/#88) — currently structural only; other dimensions (pattern, framework,
+     * (ticket #86) — currently structural only; other dimensions (pattern, framework,
      * responsibility, feature, architecture, intent) have taxonomies but no classifier yet,
      * so a Change simply carries no classification along those dimensions rather than a
      * guessed or placeholder one.

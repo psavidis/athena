@@ -13,7 +13,7 @@ import java.util.Map;
  * textual diff — always available regardless of status (§44).
  *
  * <p>Each {@link Change} also carries a {@link SemanticProfile} (ticket
- * #86/#88) — one per Change, in the same order as {@link #changes()} —
+ * #86) — one per Change, in the same order as {@link #changes()} —
  * classifying it along whichever semantic dimensions a classifier exists
  * for today. A Change with no classifier support yet simply carries an
  * {@link SemanticProfile#empty(Change) empty} profile, never a missing one.

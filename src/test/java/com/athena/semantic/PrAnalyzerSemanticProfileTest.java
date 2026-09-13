@@ -40,9 +40,8 @@ class PrAnalyzerSemanticProfileTest {
         AnalysisResult result = new PrAnalyzer().analyze(baseRoot, headRoot);
 
         assertThat(result.semanticProfiles()).hasSameSizeAs(result.changes());
-        for (int i = 0; i < result.changes().size(); i++) {
-            assertThat(result.semanticProfiles().get(i).change()).isSameAs(result.changes().get(i));
-        }
+        assertThat(result.semanticProfiles()).extracting(SemanticProfile::change)
+                .containsExactlyElementsOf(result.changes());
     }
 
     @Test
