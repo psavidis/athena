@@ -66,6 +66,21 @@ export interface ChangeMap {
   classGroups: ClassGroup[]
 }
 
+export type SemanticDimension = 'STRUCTURAL' | 'PATTERN' | 'FRAMEWORK' | 'RESPONSIBILITY' | 'FEATURE' | 'ARCHITECTURE' | 'INTENT'
+
+export interface SemanticDimensionEntry {
+  dimension: SemanticDimension
+  conceptName: string
+  conceptDescription: string
+  inferred: boolean
+  confidencePercent: number
+  evidence: string[]
+}
+
+export interface SemanticProfile {
+  dimensions: SemanticDimensionEntry[]
+}
+
 export interface ChangeDetail {
   changeKey: string
   category: ChangeCategory
@@ -236,6 +251,20 @@ export async function getChangeMap(): Promise<ChangeMap> {
 
 export async function getChangeDetail(changeKey: string): Promise<ChangeDetail> {
   const response = await fetch(`/api/review/changes/${encodeURIComponent(changeKey)}`)
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  if (response.status === 404) {
+    throw new ChangeNotFoundError()
+  }
+  return asJson(response)
+}
+
+export async function getSemanticProfile(changeKey: string): Promise<SemanticProfile> {
+  const response = await fetch(`/api/review/change-map/${encodeURIComponent(changeKey)}/semantic-profile`)
   if (response.status === 401) {
     throw new NotConnectedError()
   }

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { addComment, addPrivateNote, getChangeDetail, type TransformationKind } from './api'
-import { BackLink, Card, ErrorState, LoadingState, PageShell, PrimaryButton, SectionLabel } from './ui'
+import { BackLink, DiffView, ErrorState, LoadingState, PageShell, PrimaryButton, SectionLabel } from './ui'
 
 const KIND_LABELS: Record<TransformationKind, string> = {
   RENAME_SYMBOL: 'Rename',
@@ -117,35 +117,6 @@ export default function ChangeDetailPage({ changeKey, onBack }: { changeKey: str
       />
       <AnnotationList items={privateNotes} variant="private" />
     </PageShell>
-  )
-}
-
-function DiffView({ diff }: { diff: string }) {
-  if (!diff) {
-    return (
-      <Card className="overflow-hidden bg-ink-900">
-        <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed text-ink-100">
-          No diff recorded for this Change.
-        </pre>
-      </Card>
-    )
-  }
-
-  return (
-    <Card className="overflow-hidden bg-ink-900">
-      <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed">
-        {diff.split('\n').map((line, i) => {
-          const isAdded = line.startsWith('+')
-          const isRemoved = line.startsWith('-')
-          const color = isAdded ? 'text-emerald-400' : isRemoved ? 'text-red-400' : 'text-ink-400'
-          return (
-            <div key={i} className={color}>
-              {line || ' '}
-            </div>
-          )
-        })}
-      </pre>
-    </Card>
   )
 }
 
