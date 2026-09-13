@@ -122,7 +122,7 @@ describe('Semantic Change Explorer rendering', () => {
     // Then the Pattern level is indicated as the current level
     expect(screen.getByRole('button', { name: 'Pattern' })).toHaveAttribute('aria-current', 'true')
     // And the evidence panel shows the evidence supporting that classification
-    expect(screen.getByText(/private final UserRepository/)).toBeVisible()
+    expect(screen.getAllByText(/private final UserRepository/).length).toBeGreaterThan(0)
   })
 
   it('shows the underlying diff in the evidence panel for the current level', async () => {

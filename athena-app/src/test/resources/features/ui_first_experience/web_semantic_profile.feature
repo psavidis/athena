@@ -30,6 +30,13 @@ Feature: Semantic Profile API
     Then the Semantic Profile includes a "Responsibility" entry for the "Add Capability" concept
     And that entry is marked Inferred with a confidence below 100%
 
+  Scenario: An Intent alternative reading is shown at a lower confidence than the primary
+    Given the reviewer is connected to GitHub
+    And the reviewer has selected a PR whose head revision drops an Autowired field in favor of a constructor parameter on "UserService"
+    When the reviewer requests the Semantic Profile for the newly-added Change
+    Then the Semantic Profile includes both an "Intent" entry for "Reduce Coupling" and one for "Improve Maintainability"
+    And the "Reduce Coupling" entry's confidence is higher than the "Improve Maintainability" entry's confidence
+
   Scenario: A Pattern entry names the structural changes that support it
     Given the reviewer is connected to GitHub
     And the reviewer has selected a PR whose head revision adds a class named "UserBuilder"

@@ -5,6 +5,7 @@ import ArchitectureLevel from './ArchitectureLevel'
 import CapabilityLevel from './CapabilityLevel'
 import FlowLevel from './FlowLevel'
 import FrameworkLevel from './FrameworkLevel'
+import IntentLevel from './IntentLevel'
 import PatternLevel from './PatternLevel'
 import StructureLevel from './StructureLevel'
 import { BackLink, Card, DiffView, ErrorState, LoadingState, SectionLabel } from './ui'
@@ -45,6 +46,14 @@ export default function SemanticChangeExplorerPage({
   // clicked, to show its evidence (ticket #97). Cleared on any other level
   // change — it's only meaningful while looking at Structure or Capability.
   const [selectedConceptName, setSelectedConceptName] = useState<string | undefined>(undefined)
+  // The globally-selected concept driving cross-highlighting (ticket #99
+  // §10): any classified concept, on any level, that the reviewer clicked
+  // — a Change Story bracketed term, or (in a level's own selection
+  // mechanism) whichever concept it reports as selected. Independent of
+  // selectedConceptName/currentDimension: it survives a level change so
+  // clicking a Change Story term keeps its cross-highlight active even
+  // after switching levels.
+  const [selectedGlobalEntry, setSelectedGlobalEntry] = useState<SemanticDimensionEntry | undefined>(undefined)
 
   if (isError) {
     return <ErrorState message="Could not load this Change's Semantic Profile." />
@@ -63,15 +72,28 @@ export default function SemanticChangeExplorerPage({
     setSelectedConceptName(conceptName)
   }
 
+  function selectGlobalConcept(entry: SemanticDimensionEntry) {
+    setCurrentDimension(entry.dimension)
+    setSelectedConceptName(undefined)
+    setSelectedGlobalEntry(entry)
+  }
+
   const entriesForCurrentDimension = data.dimensions.filter((entry) => entry.dimension === currentDimension)
   const currentLabel = LEVELS.find((level) => level.dimension === currentDimension)!.label
+  const highlightedEntries = entriesSharingEvidence(data.dimensions, selectedGlobalEntry)
+  // The evidence panel shows the current level's own entries; while a
+  // cross-highlight is active (ticket #99 §10), it shows every classified
+  // entry across every dimension instead — connected ones highlighted,
+  // everything else visually subdued rather than removed, per #91 §10's
+  // closing rule ("unrelated content is visually subdued, not removed").
+  const entriesForEvidencePanel = highlightedEntries.size > 0 ? data.dimensions : entriesForCurrentDimension
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-10 sm:px-10 sm:py-14">
       <div className="animate-rise-in">
         <BackLink onClick={onBack}>← Back to Change Map</BackLink>
 
-        <ChangeStory dimensions={data.dimensions} onSelect={selectLevel} />
+        <ChangeStory dimensions={data.dimensions} onSelect={selectLevel} onSelectConcept={selectGlobalConcept} />
 
         <div className="grid gap-6 lg:grid-cols-[14rem_1fr_1fr]">
           <Spine current={currentDimension} onSelect={selectLevel} />
@@ -82,7 +104,11 @@ export default function SemanticChangeExplorerPage({
               onSelect={setSelectedConceptName}
             />
           ) : currentDimension === 'PATTERN' ? (
-            <PatternLevel entries={entriesForCurrentDimension} onSelectSupporting={selectSupportingStructuralChange} />
+            <PatternLevel
+              entries={entriesForCurrentDimension}
+              onSelectSupporting={selectSupportingStructuralChange}
+              onSelectConcept={selectGlobalConcept}
+            />
           ) : currentDimension === 'FRAMEWORK' ? (
             <FrameworkLevel entries={entriesForCurrentDimension} />
           ) : currentDimension === 'RESPONSIBILITY' ? (
@@ -95,13 +121,44 @@ export default function SemanticChangeExplorerPage({
             <FlowLevel entries={entriesForCurrentDimension} />
           ) : currentDimension === 'ARCHITECTURE' ? (
             <ArchitectureLevel entries={entriesForCurrentDimension} />
+          ) : currentDimension === 'INTENT' ? (
+            <IntentLevel entries={entriesForCurrentDimension} />
           ) : (
             <CenterStage label={currentLabel} entry={entriesForCurrentDimension[0]} />
           )}
-          <EvidencePanel label={currentLabel} entries={entriesForCurrentDimension} selectedConceptName={selectedConceptName} />
+          <EvidencePanel
+            label={currentLabel}
+            entries={entriesForEvidencePanel}
+            selectedConceptName={selectedConceptName}
+            highlightedEntries={highlightedEntries}
+          />
         </div>
       </div>
     </div>
+  )
+}
+
+/**
+ * Every classification (across all seven dimensions) that shares at least
+ * one piece of evidence with {@code selected} — the real, derivable signal
+ * cross-highlighting is built on (ticket #99 §10's "driven by the existing
+ * evidence/matched-occurrence data ... not a new relationship model"):
+ * every classifier passes a Change's own diff evidence verbatim, so two
+ * classifications on different dimensions of the same Change genuinely
+ * share evidence text when they're both derived from it. Always includes
+ * {@code selected} itself. Empty (no highlighting active) when nothing is
+ * selected.
+ */
+function entriesSharingEvidence(
+  allEntries: SemanticDimensionEntry[],
+  selected: SemanticDimensionEntry | undefined,
+): Set<SemanticDimensionEntry> {
+  if (!selected) {
+    return new Set()
+  }
+  const selectedEvidence = new Set(selected.evidence)
+  return new Set(
+    allEntries.filter((entry) => entry === selected || entry.evidence.some((diff) => selectedEvidence.has(diff))),
   )
 }
 
@@ -174,33 +231,42 @@ function EvidencePanel({
   label,
   entries,
   selectedConceptName,
+  highlightedEntries,
 }: {
   label: string
   entries: SemanticDimensionEntry[]
   selectedConceptName: string | undefined
+  highlightedEntries: Set<SemanticDimensionEntry>
 }) {
   const withEvidence = entries.filter((entry) => entry.evidence.length > 0)
+  const crossHighlighting = highlightedEntries.size > 0
   return (
     <section>
       <SectionLabel>Evidence</SectionLabel>
       {withEvidence.length > 0 ? (
         <div className="space-y-3">
-          {withEvidence.map((entry) => (
-            <div
-              key={entry.conceptName}
-              role="group"
-              aria-label={entry.conceptName}
-              aria-current={entry.conceptName === selectedConceptName ? 'true' : undefined}
-              className={
-                'space-y-3 rounded-xl ' +
-                (entry.conceptName === selectedConceptName ? 'ring-2 ring-accent ring-offset-2' : '')
-              }
-            >
-              {entry.evidence.map((diff, i) => (
-                <DiffView key={i} diff={diff} />
-              ))}
-            </div>
-          ))}
+          {withEvidence.map((entry) => {
+            const isSelected = entry.conceptName === selectedConceptName
+            const isCrossHighlighted = highlightedEntries.has(entry)
+            const isSubdued = crossHighlighting && !isCrossHighlighted
+            return (
+              <div
+                key={entry.dimension + ':' + entry.conceptName}
+                role="group"
+                aria-label={entry.conceptName}
+                aria-current={isSelected || isCrossHighlighted ? 'true' : undefined}
+                className={
+                  'space-y-3 rounded-xl transition-opacity ' +
+                  (isSelected || isCrossHighlighted ? 'ring-2 ring-accent ring-offset-2' : '') +
+                  (isSubdued ? ' opacity-40' : '')
+                }
+              >
+                {entry.evidence.map((diff, i) => (
+                  <DiffView key={i} diff={diff} />
+                ))}
+              </div>
+            )
+          })}
         </div>
       ) : (
         <p className="text-sm text-ink-500">No evidence available for the {label} level.</p>
@@ -215,14 +281,19 @@ function EvidencePanel({
  * the Change's real classifications — not the fully-templated narrative
  * prose from #91's own example (which needs data this Semantic Profile
  * doesn't carry, like the enclosing type name), so classified concepts are
- * joined plainly, in spine order.
+ * joined plainly, in spine order. Clicking a bracketed term also drives
+ * cross-highlighting (ticket #99 §10): {@code onSelectConcept} carries the
+ * actual entry, not just its dimension, so the Explorer can highlight every
+ * other classification sharing its evidence.
  */
 function ChangeStory({
   dimensions,
   onSelect,
+  onSelectConcept,
 }: {
   dimensions: SemanticDimensionEntry[]
   onSelect: (dimension: SemanticDimension) => void
+  onSelectConcept: (entry: SemanticDimensionEntry) => void
 }) {
   const byDimension = new Map(dimensions.map((entry) => [entry.dimension, entry]))
   // Structure is the raw evidence layer ("the diff is the evidence"), not part of the
@@ -242,7 +313,10 @@ function ChangeStory({
           {i > 0 && <span className="text-ink-300"> → </span>}
           <button
             type="button"
-            onClick={() => onSelect(entry.dimension)}
+            onClick={() => {
+              onSelect(entry.dimension)
+              onSelectConcept(entry)
+            }}
             className="rounded px-0.5 underline decoration-accent/40 decoration-2 underline-offset-4 transition-colors hover:bg-accent-soft hover:text-accent"
           >
             {entry.conceptName}

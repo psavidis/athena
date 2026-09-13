@@ -80,6 +80,32 @@ public class SemanticProfileControllerSteps {
         newlyAddedChangeKey = ChangeKey.encode(change);
     }
 
+    @Given("the reviewer has selected a PR whose head revision drops an Autowired field in favor of a constructor parameter on {string}")
+    public void the_reviewer_has_selected_a_pr_whose_head_revision_drops_an_autowired_field(String simpleName)
+            throws IOException {
+        Files.writeString(baseRoot.resolve(simpleName + ".java"), "public class " + simpleName + " {\n"
+                + "    @Autowired\n"
+                + "    private UserRepository userRepository;\n"
+                + "}\n");
+        Files.writeString(headRoot.resolve(simpleName + ".java"), "public class " + simpleName + " {\n"
+                + "    private final UserRepository userRepository;\n"
+                + "    public " + simpleName + "(UserRepository userRepository) {\n"
+                + "        this.userRepository = userRepository;\n"
+                + "    }\n"
+                + "}\n");
+
+        ImportedPullRequest pr = new ImportedPullRequest(1, "Inject " + simpleName + "'s repository", "author",
+                "base", "head", List.of(), List.of());
+        sharedSteps.session().select(new WebSession.SelectedPullRequest(
+                pr, "acme/widgets", workDir, baseRoot, headRoot, new ReviewStateStore(), new AnnotationBoard(),
+                new ReviewSubmission()));
+
+        Change change = sharedSteps.session().selectedPullRequest().orElseThrow().changes().stream()
+                .filter(c -> c.kind() == com.athena.semantic.TransformationKind.ADD_CONSTRUCTOR_PARAMETER)
+                .findFirst().orElseThrow();
+        newlyAddedChangeKey = ChangeKey.encode(change);
+    }
+
     @When("the reviewer requests the Semantic Profile for the rename Change")
     public void the_reviewer_requests_the_semantic_profile_for_the_rename_change() {
         requestSemanticProfile(sharedSteps.renameChangeKey());
@@ -138,6 +164,31 @@ public class SemanticProfileControllerSteps {
     @Then("that entry lists {string} as a supporting structural change")
     public void that_entry_lists_as_a_supporting_structural_change(String conceptName) {
         assertThat(matchedEntry.supportingConceptNames()).contains(conceptName);
+    }
+
+    @Then("the Semantic Profile includes both an {string} entry for {string} and one for {string}")
+    public void the_semantic_profile_includes_both_entries(String dimensionLabel, String firstConceptName, String secondConceptName) {
+        SemanticDimension dimension = SemanticDimension.valueOf(dimensionLabel.toUpperCase(Locale.ROOT));
+        List<String> conceptNames = response.dimensions().stream()
+                .filter(entry -> entry.dimension() == dimension)
+                .map(SemanticDimensionEntryResponse::conceptName)
+                .toList();
+        assertThat(conceptNames).containsExactly(firstConceptName, secondConceptName);
+    }
+
+    @Then("the {string} entry's confidence is higher than the {string} entry's confidence")
+    public void the_entrys_confidence_is_higher_than_the_entrys_confidence(String higherConceptName, String lowerConceptName) {
+        int higherConfidence = confidenceOf(higherConceptName);
+        int lowerConfidence = confidenceOf(lowerConceptName);
+        assertThat(higherConfidence).isGreaterThan(lowerConfidence);
+    }
+
+    private int confidenceOf(String conceptName) {
+        return response.dimensions().stream()
+                .filter(entry -> entry.conceptName().equals(conceptName))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("No entry for concept " + conceptName))
+                .confidencePercent();
     }
 
     @Then("the Semantic Profile has no {string} entry")
