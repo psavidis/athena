@@ -27,12 +27,12 @@ class AthenaWebApplicationTests {
     @Container
     static final GenericContainer<?> app = new GenericContainer<>(
             new ImageFromDockerfile().withDockerfile(Path.of(System.getProperty("user.dir"), "Dockerfile")))
-            .withExposedPorts(8080)
+            .withExposedPorts(7332)
             .waitingFor(Wait.forHttp("/health"));
 
     @Test
     void healthEndpointRespondsOk() throws Exception {
-        URI uri = URI.create("http://" + app.getHost() + ":" + app.getMappedPort(8080) + "/health");
+        URI uri = URI.create("http://" + app.getHost() + ":" + app.getMappedPort(7332) + "/health");
         HttpRequest request = HttpRequest.newBuilder(uri).GET().build();
 
         HttpResponse<String> response = HttpClient.newHttpClient()
@@ -42,29 +42,28 @@ class AthenaWebApplicationTests {
         assertThat(response.body()).isEqualTo("OK");
     }
 
-    // The two scenarios below deliberately cover only the auth-failure path: an invalid token
-    // still crosses the real network to GitHub's real API and fails deterministically, no secret
-    // needed. The success path (a valid token, real repos/PRs) would require provisioning a real
-    // GitHub token as a CI secret — out of this ticket's scope; manually verified end to end this
-    // session instead (see the PR description).
+    // GitHub App installation is now the connect mechanism (replacing the earlier Personal
+    // Access Token entry): a fresh container has no App registered yet, so /api/github/status
+    // deterministically reports "not connected" with no GitHub network call and no secret needed.
+    // The full installation flow (App manifest creation, install, callbacks) requires a real
+    // browser round-trip through github.com and was manually verified end to end instead (see
+    // the PR description).
 
     @Test
-    void connectingWithAnInvalidTokenIsRejected() throws Exception {
-        URI uri = URI.create("http://" + app.getHost() + ":" + app.getMappedPort(8080) + "/api/connect");
-        HttpRequest request = HttpRequest.newBuilder(uri)
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString("{\"token\":\"not-a-real-token\"}"))
-                .build();
+    void aFreshContainerReportsGitHubNotConnected() throws Exception {
+        URI uri = URI.create("http://" + app.getHost() + ":" + app.getMappedPort(7332) + "/api/github/status");
+        HttpRequest request = HttpRequest.newBuilder(uri).GET().build();
 
         HttpResponse<String> response = HttpClient.newHttpClient()
                 .send(request, HttpResponse.BodyHandlers.ofString());
 
-        assertThat(response.statusCode()).isEqualTo(401);
+        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.body()).contains("\"connected\":false");
     }
 
     @Test
     void listingRepositoriesWithoutConnectingIsRejected() throws Exception {
-        URI uri = URI.create("http://" + app.getHost() + ":" + app.getMappedPort(8080) + "/api/repositories");
+        URI uri = URI.create("http://" + app.getHost() + ":" + app.getMappedPort(7332) + "/api/repositories");
         HttpRequest request = HttpRequest.newBuilder(uri).GET().build();
 
         HttpResponse<String> response = HttpClient.newHttpClient()
@@ -75,7 +74,7 @@ class AthenaWebApplicationTests {
 
     @Test
     void requestingTheChangeMapWithoutConnectingIsRejected() throws Exception {
-        URI uri = URI.create("http://" + app.getHost() + ":" + app.getMappedPort(8080) + "/api/review/change-map");
+        URI uri = URI.create("http://" + app.getHost() + ":" + app.getMappedPort(7332) + "/api/review/change-map");
         HttpRequest request = HttpRequest.newBuilder(uri).GET().build();
 
         HttpResponse<String> response = HttpClient.newHttpClient()

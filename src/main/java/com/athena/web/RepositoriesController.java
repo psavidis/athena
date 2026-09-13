@@ -9,7 +9,14 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-/** Lists the repositories accessible to the connected GitHub account (ticket #73). */
+/**
+ * Lists the repositories accessible to the connected GitHub App
+ * installation. The web UI connects via a GitHub App installation (see
+ * {@link com.athena.web.GitHubAccess}), so the session always holds an
+ * installation access token here — {@code GET /installation/repositories}
+ * is the endpoint GitHub requires for that token type
+ * ({@code GET /user/repos} rejects it with 403).
+ */
 @RestController
 public class RepositoriesController {
 
@@ -23,6 +30,6 @@ public class RepositoriesController {
     public List<Repository> repositories() {
         String token = session.gitHubToken()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not connected to GitHub"));
-        return new GitHubRepositoryBrowser(token).listAccessibleRepositories();
+        return new GitHubRepositoryBrowser(token).listInstallationRepositories();
     }
 }

@@ -9,9 +9,6 @@ import com.athena.reviewcontext.ReviewAnnotationSync;
 import com.athena.reviewcontext.ReviewAnnotationSyncResult;
 import com.athena.reviewcontext.ReviewContext;
 import com.athena.semantic.Change;
-import com.athena.semantic.ChangeGrouper;
-import com.athena.semantic.DetectedTransformation;
-import com.athena.semantic.TransformationDetector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,7 +51,7 @@ public class ReviewSubmissionController {
     @PatchMapping("/api/review/changes/{changeKey}/review-state")
     public void setReviewState(@PathVariable String changeKey, @RequestBody SetReviewStateRequest request) {
         WebSession.SelectedPullRequest selection = requireSelection();
-        Change change = requireChange(changeKey, detectChanges(selection));
+        Change change = requireChange(changeKey, selection.changes());
         selection.reviewStateStore().setState(change, request.state());
     }
 
@@ -94,8 +91,7 @@ public class ReviewSubmissionController {
     }
 
     private ReviewContext reviewContext(WebSession.SelectedPullRequest selection) {
-        List<Change> changes = detectChanges(selection);
-        return ReviewContext.assemble(selection.pullRequest().title(), changes, selection.reviewStateStore(),
+        return ReviewContext.assemble(selection.pullRequest().title(), selection.changes(), selection.reviewStateStore(),
                 selection.annotationBoard());
     }
 
@@ -104,12 +100,6 @@ public class ReviewSubmissionController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not connected to GitHub"));
         return session.selectedPullRequest()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT, "No PR selected"));
-    }
-
-    private List<Change> detectChanges(WebSession.SelectedPullRequest selection) {
-        List<DetectedTransformation> transformations =
-                new TransformationDetector().detect(selection.baseRoot(), selection.headRoot());
-        return new ChangeGrouper().group(transformations);
     }
 
     private Change requireChange(String changeKey, List<Change> changes) {

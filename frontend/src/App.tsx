@@ -1,22 +1,32 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { connect, listOpenPullRequests, listRepositories, selectPullRequest } from './api'
+import { getGitHubConnectUrl, getGitHubStatus, listOpenPullRequests, listRepositories, selectPullRequest } from './api'
 import type { ImportedPullRequest } from './api'
 import ChangeMapPage from './ChangeMapPage'
 import ChangeDetailPage from './ChangeDetailPage'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
 import AiAnalysisPage from './AiAnalysisPage'
+import { BackLink, Card, ErrorState, LoadingState, PageHeading, PageShell, PrimaryButton } from './ui'
 
 export default function App() {
-  const [connected, setConnected] = useState(false)
+  const [connected, setConnected] = useState<boolean | null>(null)
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null)
   const [selectedPr, setSelectedPr] = useState<ImportedPullRequest | null>(null)
   const [selectedChangeKey, setSelectedChangeKey] = useState<string | null>(null)
   const [showingSummary, setShowingSummary] = useState(false)
   const [showingAiAnalysis, setShowingAiAnalysis] = useState(false)
 
+  useEffect(() => {
+    getGitHubStatus()
+      .then((status) => setConnected(status.connected))
+      .catch(() => setConnected(false))
+  }, [])
+
+  if (connected === null) {
+    return null
+  }
   if (!connected) {
-    return <ConnectStep onConnected={() => setConnected(true)} />
+    return <ConnectStep />
   }
   if (selectedPr) {
     if (selectedChangeKey) {
@@ -62,55 +72,29 @@ export default function App() {
   return <RepositoryStep onSelected={setSelectedRepo} />
 }
 
-function Shell({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div className="mx-auto max-w-2xl px-4 py-12">
-      <h1 className="mb-6 text-2xl font-semibold text-neutral-900">{title}</h1>
-      {children}
-    </div>
-  )
-}
-
-function ConnectStep({ onConnected }: { onConnected: () => void }) {
-  const [token, setToken] = useState('')
+function ConnectStep() {
   const mutation = useMutation({
-    mutationFn: connect,
-    onSuccess: onConnected,
+    mutationFn: getGitHubConnectUrl,
+    onSuccess: ({ url }) => {
+      window.location.href = url
+    },
   })
 
   return (
-    <Shell title="Connect to GitHub">
-      <form
-        className="flex flex-col gap-3"
-        onSubmit={(e) => {
-          e.preventDefault()
-          mutation.mutate(token)
-        }}
-      >
-        <label className="text-sm text-neutral-600" htmlFor="token">
-          Personal Access Token
-        </label>
-        <input
-          id="token"
-          type="password"
-          autoComplete="off"
-          value={token}
-          onChange={(e) => setToken(e.target.value)}
-          className="rounded border border-neutral-300 px-3 py-2 focus:border-neutral-500 focus:outline-none"
-          placeholder="ghp_..."
-        />
-        <button
-          type="submit"
-          disabled={mutation.isPending || token.length === 0}
-          className="rounded bg-neutral-900 px-4 py-2 text-white disabled:opacity-40"
-        >
-          {mutation.isPending ? 'Connecting…' : 'Connect'}
-        </button>
-        {mutation.isError && (
-          <p className="text-sm text-red-600">{(mutation.error as Error).message}</p>
-        )}
-      </form>
-    </Shell>
+    <PageShell>
+      <PageHeading eyebrow="Step 1 of 3" title="Connect to GitHub" />
+      <p className="mb-6 max-w-md text-sm leading-relaxed text-ink-700">
+        Athena reviews Pull Requests by installing a GitHub App on the account or organization that
+        owns the repositories you want to review. You'll pick exactly which repositories to grant
+        access to on GitHub.
+      </p>
+      <PrimaryButton disabled={mutation.isPending} onClick={() => mutation.mutate()}>
+        {mutation.isPending ? 'Redirecting…' : 'Connect GitHub'}
+      </PrimaryButton>
+      {mutation.isError && (
+        <p className="mt-3 text-sm text-red-600">{(mutation.error as Error).message}</p>
+      )}
+    </PageShell>
   )
 }
 
@@ -120,23 +104,28 @@ function RepositoryStep({ onSelected }: { onSelected: (repositoryFullName: strin
     queryFn: listRepositories,
   })
 
+  if (isError) {
+    return <ErrorState message="Could not load repositories." />
+  }
+  if (isLoading) {
+    return <LoadingState />
+  }
+
   return (
-    <Shell title="Select a repository">
-      {isLoading && <p className="text-neutral-500">Loading…</p>}
-      {isError && <p className="text-red-600">Could not load repositories.</p>}
-      <ul className="divide-y divide-neutral-200 rounded border border-neutral-200">
+    <PageShell>
+      <PageHeading eyebrow="Step 2 of 3" title="Select a repository" />
+      <Card className="divide-y divide-ink-200 overflow-hidden">
         {data?.map((repo) => (
-          <li key={repo.fullName}>
-            <button
-              className="w-full px-4 py-2 text-left hover:bg-neutral-100"
-              onClick={() => onSelected(repo.fullName)}
-            >
-              {repo.fullName}
-            </button>
-          </li>
+          <button
+            key={repo.fullName}
+            className="block w-full px-4 py-3 text-left text-sm text-ink-900 transition-colors hover:bg-ink-100"
+            onClick={() => onSelected(repo.fullName)}
+          >
+            {repo.fullName}
+          </button>
         ))}
-      </ul>
-    </Shell>
+      </Card>
+    </PageShell>
   )
 }
 
@@ -161,29 +150,29 @@ function PullRequestStep({
   })
 
   return (
-    <Shell title={`Open PRs — ${repositoryFullName}`}>
-      <button className="mb-4 text-sm text-neutral-500 hover:underline" onClick={onBack}>
-        ← Back to repositories
-      </button>
-      {isLoading && <p className="text-neutral-500">Loading…</p>}
-      {isError && <p className="text-red-600">Could not load pull requests.</p>}
-      {data?.length === 0 && <p className="text-neutral-500">No open pull requests.</p>}
-      <ul className="divide-y divide-neutral-200 rounded border border-neutral-200">
-        {data?.map((pr) => (
-          <li key={pr.number}>
+    <PageShell>
+      <BackLink onClick={onBack}>← Back to repositories</BackLink>
+      <PageHeading eyebrow="Step 3 of 3" title={`Open PRs — ${repositoryFullName}`} />
+      {isError && <p className="text-sm text-red-600">Could not load pull requests.</p>}
+      {isLoading && <LoadingState />}
+      {data?.length === 0 && <p className="text-sm text-ink-500">No open pull requests.</p>}
+      {data && data.length > 0 && (
+        <Card className="divide-y divide-ink-200 overflow-hidden">
+          {data.map((pr) => (
             <button
-              className="w-full px-4 py-2 text-left hover:bg-neutral-100 disabled:opacity-40"
+              key={pr.number}
+              className="block w-full px-4 py-3 text-left text-sm text-ink-900 transition-colors hover:bg-ink-100 disabled:cursor-not-allowed disabled:opacity-40"
               disabled={mutation.isPending}
               onClick={() => mutation.mutate(pr.number)}
             >
-              #{pr.number} {pr.title}
+              <span className="text-ink-500">#{pr.number}</span> {pr.title}
             </button>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </Card>
+      )}
       {mutation.isError && (
         <p className="mt-3 text-sm text-red-600">{(mutation.error as Error).message}</p>
       )}
-    </Shell>
+    </PageShell>
   )
 }

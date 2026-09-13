@@ -27,12 +27,26 @@ public class GitHubRepositoryBrowser {
     }
 
     /**
-     * Lists the repositories accessible to the authenticated account.
+     * Lists the repositories accessible to the authenticated (user, e.g.
+     * PAT) account.
      *
      * @throws GitHubAuthenticationException if the token is invalid/rejected
      */
     public List<Repository> listAccessibleRepositories() {
         return transport.fetchAccessibleRepositories(token);
+    }
+
+    /**
+     * Lists the repositories this token's GitHub App installation can
+     * access. Use this instead of {@link #listAccessibleRepositories()}
+     * when the held token is a GitHub App installation access token (see
+     * {@link GitHubAppClient}) rather than a user/PAT token — GitHub
+     * requires a different endpoint for each.
+     *
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     */
+    public List<Repository> listInstallationRepositories() {
+        return transport.fetchInstallationRepositories(token);
     }
 
     /**

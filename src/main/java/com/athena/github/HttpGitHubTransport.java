@@ -45,6 +45,16 @@ public class HttpGitHubTransport implements GitHubTransport {
     }
 
     @Override
+    public List<Repository> fetchInstallationRepositories(String installationToken) {
+        JsonNode body = get(installationToken, "/installation/repositories", null);
+        List<Repository> repositories = new ArrayList<>();
+        for (JsonNode repo : body.path("repositories")) {
+            repositories.add(new Repository(repo.path("full_name").asText()));
+        }
+        return repositories;
+    }
+
+    @Override
     public List<PullRequestSummary> fetchOpenPullRequests(String token, String repositoryFullName) {
         JsonNode body = get(token, "/repos/" + repositoryFullName + "/pulls?state=open", repositoryFullName);
         List<PullRequestSummary> pullRequests = new ArrayList<>();

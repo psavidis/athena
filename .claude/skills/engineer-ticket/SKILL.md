@@ -75,12 +75,18 @@ If a ticket isn't on the board yet, add it first:
 
 2. **Ensure Gherkin and tests exist.**
    - Check whether this ticket already has committed `.feature` files and
-     a `### Use Cases` section. If not, invoke `spec-writer` inline
-     (no subagent spawn) first.
+     a `### Use Cases` section. If not, this ticket isn't ready for
+     autonomous work — `spec-writer` is a ticket-creation role the user
+     runs manually on demand (see CLAUDE.md's "Ticket-creation vs.
+     autonomous-work boundary"), not something to invoke here. Stop and
+     report that the ticket lacks committed Gherkin; do not invoke
+     `spec-writer` yourself.
    - Check whether step definitions/tests already exist for those
-     scenarios. If not, invoke `qa-ticket` inline next. Expect the suite
-     to be red at this point — that's the correct starting state, not a
-     problem to fix before implementing.
+     scenarios. If not, invoke `qa-ticket` inline next (this is test
+     authoring against already-committed Gherkin, not ticket creation, so
+     it's in scope here). Expect the suite to be red at this point —
+     that's the correct starting state, not a problem to fix before
+     implementing.
    - If both already exist (e.g. re-entering this ticket after an earlier
      session), skip straight to implementing.
 
@@ -125,6 +131,18 @@ If a ticket isn't on the board yet, add it first:
    - Do not set a review label — the linked, open PR *is* the "in review"
      signal on the ticket itself; the board Status is the visible tracker.
 
+6. **Continue into review, inline.**
+   - Per CLAUDE.md's autonomy modes, if the session is in **fully
+     autonomous** or **approval-gated** mode, invoke `review-pr` inline
+     now (no subagent spawn — forking this produced unreliable/empty
+     results) on the PR just opened, in the same session. `review-pr`
+     owns its own approval-gated stop condition (label + assign to user
+     without merging); this skill doesn't need to duplicate that check —
+     just hand off.
+   - In default/interactive mode (no autonomy instruction given), stop
+     here instead and report — the user reviews manually or asks for
+     `review-pr` separately.
+
 ## Before finishing
 
 Report:
@@ -134,8 +152,10 @@ Report:
 - test result (from step 2/3 — what was red at the start, confirmation
   it's green now)
 - PR URL
-- any remaining concerns worth flagging to the reviewer that didn't belong
-  in the PR's Risks/Follow-ups section
+- if step 6 ran `review-pr` inline: its outcome too (merged/closed, or
+  approval-gated hand-off) — otherwise, note that review is the next
+  manual step
 
-Do not merge. Do not close the ticket. That's the reviewer's job
-(`review-pr` skill).
+This skill itself does not merge or close the ticket directly — that
+happens via `review-pr` (step 6 above when autonomy allows it, otherwise
+invoked separately later).

@@ -20,11 +20,22 @@ public interface GitHubTransport {
 
     /**
      * Fetches the repositories accessible to the account identified by the
-     * given token.
+     * given (user, e.g. PAT) token.
      *
      * @throws GitHubAuthenticationException if the token is invalid/rejected
      */
     List<Repository> fetchAccessibleRepositories(String token);
+
+    /**
+     * Fetches the repositories a GitHub App installation access token can
+     * access. Distinct from {@link #fetchAccessibleRepositories}: GitHub
+     * App installation tokens authenticate as the installation, not as a
+     * user, so they must use {@code GET /installation/repositories} —
+     * {@code GET /user/repos} rejects them with 403.
+     *
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     */
+    List<Repository> fetchInstallationRepositories(String installationToken);
 
     /**
      * Fetches the open Pull Requests for the given repository.

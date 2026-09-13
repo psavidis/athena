@@ -37,8 +37,8 @@ mvn spring-boot:run
 cd frontend && npm install && npm run dev
 ```
 
-Open the URL Vite prints (typically `http://localhost:5173`) and connect
-with a GitHub Personal Access Token.
+Open `http://localhost:7331` and connect with a GitHub Personal Access
+Token. (The backend API runs on `http://localhost:7332`.)
 
 ### CLI
 

@@ -8,5 +8,5 @@ RUN mvn -q -DskipTests package spring-boot:repackage
 
 FROM eclipse-temurin:21-jre
 COPY --from=build /app/target/athena-*.jar /app/app.jar
-EXPOSE 8080
+EXPOSE 7332
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

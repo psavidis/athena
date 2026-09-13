@@ -21,7 +21,7 @@ function renderApp() {
 
 async function connectSelectRepoAndPr() {
   server.use(
-    http.post('/api/connect', () => HttpResponse.json({ authenticatedUsername: 'octocat' })),
+    http.get('/api/github/status', () => HttpResponse.json({ connected: true, accountLogin: 'octocat' })),
     http.get('/api/repositories', () => HttpResponse.json([{ fullName: 'octocat/hello-world' }])),
     http.get('/api/repositories/octocat/hello-world/pulls', () =>
       HttpResponse.json([{ number: 1, title: 'Move authentication to Account' }]),
@@ -40,12 +40,9 @@ async function connectSelectRepoAndPr() {
   renderApp()
   const user = userEvent.setup()
 
-  await user.type(screen.getByLabelText('Personal Access Token'), 'ghp_test')
-  await user.click(screen.getByRole('button', { name: 'Connect' }))
-
   await user.click(await screen.findByRole('button', { name: 'octocat/hello-world' }))
 
-  await user.click(await screen.findByRole('button', { name: '#1 Move authentication to Account' }))
+  await user.click(await screen.findByRole('button', { name: /#1.*Move authentication to Account/ }))
 }
 
 describe('App routing', () => {
@@ -93,6 +90,7 @@ describe('App routing', () => {
               changeKey: 'test-change-key',
               description: 'Rename greet to salute',
               category: 'BEHAVIORAL',
+              kind: 'RENAME_SYMBOL',
               reviewState: 'UNSEEN',
               occurrenceCount: 1,
               exceptionCount: 0,
@@ -104,6 +102,7 @@ describe('App routing', () => {
         HttpResponse.json({
           changeKey: 'test-change-key',
           category: 'BEHAVIORAL',
+          kind: 'RENAME_SYMBOL',
           description: 'Rename greet to salute',
           symbols: ['Greeter#greet'],
           files: ['Greeter.java'],

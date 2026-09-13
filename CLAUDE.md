@@ -39,6 +39,22 @@ Read the relevant `SKILL.md` before acting in that role — this file is the
 overview, the skills carry the actual step-by-step process and command
 reference (board IDs, label names, etc.).
 
+## Ticket-creation vs. autonomous-work boundary
+
+`spec-to-epic`, `plan-feature`, and `spec-writer` are **ticket-creation**
+roles. The user invokes these manually, on demand, to populate the
+backlog — never invoke them yourself as part of autonomous ticket work,
+and never chain into them from `engineer-ticket`/`review-pr`.
+
+Autonomous work (per the Autonomy modes below) starts at `engineer-ticket`
+against tickets that already exist and carry committed Gherkin, and ends
+at `review-pr`. `engineer-ticket` may still inline-invoke `qa-ticket` if
+tests haven't been written yet for an existing ticket's Gherkin — that's
+test authoring against already-created scenarios, not ticket creation —
+but if a ticket lacks committed Gherkin entirely (i.e. `spec-writer`
+hasn't run), that means the ticket isn't actually ready: stop and tell the
+user, rather than invoking `spec-writer` yourself.
+
 ## Testing philosophy
 
 Detroit school (classicist) by default: test through the public

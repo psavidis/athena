@@ -121,6 +121,12 @@ public class FakeGitHubTransport implements GitHubTransport {
     }
 
     @Override
+    public List<Repository> fetchInstallationRepositories(String installationToken) {
+        requireValidToken(installationToken);
+        return tokenToRepositories.getOrDefault(installationToken, List.of());
+    }
+
+    @Override
     public List<PullRequestSummary> fetchOpenPullRequests(String token, String repositoryFullName) {
         requireValidToken(token);
         return repoToOpenPulls.getOrDefault(repositoryFullName, List.of());

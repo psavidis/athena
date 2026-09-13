@@ -11,9 +11,9 @@ npm install
 npm run dev
 ```
 
-The dev server proxies `/api/*` to `http://localhost:8080` (see
-`vite.config.ts`), so start the backend first (`mvn spring-boot:run` from
-the repo root).
+The dev server runs on `http://localhost:7331` and proxies `/api/*` to
+`http://localhost:7332` (see `vite.config.ts`), so start the backend
+first (`mvn spring-boot:run` from the repo root).
 
 ## Status
 
