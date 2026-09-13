@@ -27,20 +27,22 @@ import java.util.Set;
  * <p>Whether a dimension's classifications are Observed or Inferred isn't
  * modeled anywhere yet (no classifier records this itself): {@link
  * #OBSERVED_DIMENSIONS} hardcodes it here from each classifier's own
- * documented behavior — {@code StructuralTaxonomyClassifier} and {@code
- * ResponsibilityTaxonomyClassifier} are direct, deterministic readings of a
- * transformation's kind, while the rest (naming-convention correlation, or
- * Intent's cross-dimension correlation) are explicitly heuristic. Confidence
- * for an Inferred entry is a flat placeholder — no scoring model exists yet
- * (out of scope per #91's "do not implement a complete autonomous semantic/
- * intent inference engine") — while Observed is always 100%, per #91 §9's
- * own example ("Structural: Observed · 100%").
+ * documented behavior — {@code StructuralTaxonomyClassifier} is a direct,
+ * deterministic reading of a transformation's kind, while the rest
+ * (naming-convention correlation, {@code ResponsibilityTaxonomyClassifier}'s
+ * kind-to-capability mapping, or Intent's cross-dimension correlation) are
+ * explicitly heuristic — ticket #97 §"Capability level" calls out Capability
+ * specifically as Inferred with a confidence percentage, not Observed.
+ * Confidence for an Inferred entry is a flat placeholder — no scoring model
+ * exists yet (out of scope per #91's "do not implement a complete autonomous
+ * semantic/intent inference engine") — while Observed is always 100%, per
+ * #91 §9's own example ("Structural: Observed · 100%").
  */
 @RestController
 public class SemanticProfileController {
 
     private static final Set<SemanticDimension> OBSERVED_DIMENSIONS =
-            EnumSet.of(SemanticDimension.STRUCTURAL, SemanticDimension.RESPONSIBILITY);
+            EnumSet.of(SemanticDimension.STRUCTURAL);
     private static final int INFERRED_CONFIDENCE_PERCENT = 70;
 
     private final WebSession session;
@@ -70,7 +72,7 @@ public class SemanticProfileController {
         List<String> evidence = classification.evidence().stream().map(DetectedTransformation::diffText).toList();
         return new SemanticDimensionEntryResponse(dimension, classification.concept().name(),
                 classification.concept().description(), inferred, confidencePercent, evidence,
-                classification.supportingConceptNames());
+                classification.supportingConceptNames(), classification.beforeEvidenceCount());
     }
 
     private WebSession.SelectedPullRequest requireSelection() {

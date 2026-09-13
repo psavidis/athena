@@ -11,6 +11,7 @@ import com.athena.semantic.TransformationKind;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -85,6 +86,82 @@ class FrameworkTaxonomyClassifierTest {
                 "public String greet() { return \"hi\"; }\n");
 
         assertThat(classifier.classify(change, frameworkTaxonomy)).isEmpty();
+    }
+
+    @Test
+    void correlatesADroppedAutowiredFieldWithAnAddedConstructorParameterAsFieldToConstructorInjection() {
+        Change droppedAutowired = changeWithDiff(TransformationKind.CHANGE_FIELD_ANNOTATIONS, "UserService#userRepository",
+                "@Autowired\nprivate UserRepository userRepository;\n",
+                "private UserRepository userRepository;\n");
+        Change addedParameter = changeWithDiff(TransformationKind.ADD_CONSTRUCTOR_PARAMETER, "UserService#userRepository",
+                "public UserService() { }\n",
+                "public UserService(UserRepository userRepository) { this.userRepository = userRepository; }\n");
+
+        Map<Change, SemanticClassification> matches =
+                classifier.classifySpringFieldToConstructorInjection(List.of(droppedAutowired, addedParameter), frameworkTaxonomy);
+
+        assertThat(matches).containsOnlyKeys(addedParameter);
+        assertThat(matches.get(addedParameter).concept().id()).isEqualTo("spring-field-to-constructor-injection");
+    }
+
+    @Test
+    void ordersTheCorrelatedEvidenceBeforeThenAfter() {
+        Change droppedAutowired = changeWithDiff(TransformationKind.CHANGE_FIELD_ANNOTATIONS, "UserService#userRepository",
+                "@Autowired\nprivate UserRepository userRepository;\n",
+                "private UserRepository userRepository;\n");
+        Change addedParameter = changeWithDiff(TransformationKind.ADD_CONSTRUCTOR_PARAMETER, "UserService#userRepository",
+                "public UserService() { }\n",
+                "public UserService(UserRepository userRepository) { this.userRepository = userRepository; }\n");
+
+        Map<Change, SemanticClassification> matches =
+                classifier.classifySpringFieldToConstructorInjection(List.of(droppedAutowired, addedParameter), frameworkTaxonomy);
+
+        SemanticClassification classification = matches.get(addedParameter);
+        assertThat(classification.evidence()).hasSize(2);
+        assertThat(classification.evidence().get(0)).isSameAs(droppedAutowired.matchedOccurrences().get(0));
+        assertThat(classification.evidence().get(1)).isSameAs(addedParameter.matchedOccurrences().get(0));
+    }
+
+    @Test
+    void doesNotCorrelateAnAddedConstructorParameterWithNoMatchingFieldChange() {
+        Change addedParameter = changeWithDiff(TransformationKind.ADD_CONSTRUCTOR_PARAMETER, "UserService#userRepository",
+                "public UserService() { }\n",
+                "public UserService(UserRepository userRepository) { this.userRepository = userRepository; }\n");
+
+        Map<Change, SemanticClassification> matches =
+                classifier.classifySpringFieldToConstructorInjection(List.of(addedParameter), frameworkTaxonomy);
+
+        assertThat(matches).isEmpty();
+    }
+
+    @Test
+    void doesNotCorrelateAFieldAnnotationChangeThatIsNotAnInjectionAnnotation() {
+        Change droppedDeprecated = changeWithDiff(TransformationKind.CHANGE_FIELD_ANNOTATIONS, "UserService#userRepository",
+                "@Deprecated\nprivate UserRepository userRepository;\n",
+                "private UserRepository userRepository;\n");
+        Change addedParameter = changeWithDiff(TransformationKind.ADD_CONSTRUCTOR_PARAMETER, "UserService#userRepository",
+                "public UserService() { }\n",
+                "public UserService(UserRepository userRepository) { this.userRepository = userRepository; }\n");
+
+        Map<Change, SemanticClassification> matches =
+                classifier.classifySpringFieldToConstructorInjection(List.of(droppedDeprecated, addedParameter), frameworkTaxonomy);
+
+        assertThat(matches).isEmpty();
+    }
+
+    @Test
+    void doesNotCorrelateAFieldChangeFromADifferentEnclosingType() {
+        Change droppedAutowired = changeWithDiff(TransformationKind.CHANGE_FIELD_ANNOTATIONS, "OtherService#userRepository",
+                "@Autowired\nprivate UserRepository userRepository;\n",
+                "private UserRepository userRepository;\n");
+        Change addedParameter = changeWithDiff(TransformationKind.ADD_CONSTRUCTOR_PARAMETER, "UserService#userRepository",
+                "public UserService() { }\n",
+                "public UserService(UserRepository userRepository) { this.userRepository = userRepository; }\n");
+
+        Map<Change, SemanticClassification> matches =
+                classifier.classifySpringFieldToConstructorInjection(List.of(droppedAutowired, addedParameter), frameworkTaxonomy);
+
+        assertThat(matches).isEmpty();
     }
 
     private Change changeWithDiff(TransformationKind kind, String involved, String beforeText, String afterText) {

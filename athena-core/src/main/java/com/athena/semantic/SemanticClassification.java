@@ -16,12 +16,14 @@ public final class SemanticClassification {
     private final TaxonomyConcept concept;
     private final List<DetectedTransformation> evidence;
     private final List<String> supportingConceptNames;
+    private final int beforeEvidenceCount;
 
     private SemanticClassification(TaxonomyConcept concept, List<DetectedTransformation> evidence,
-                                    List<String> supportingConceptNames) {
+                                    List<String> supportingConceptNames, int beforeEvidenceCount) {
         this.concept = concept;
         this.evidence = List.copyOf(evidence);
         this.supportingConceptNames = List.copyOf(supportingConceptNames);
+        this.beforeEvidenceCount = beforeEvidenceCount;
     }
 
     public static SemanticClassification of(TaxonomyConcept concept, List<DetectedTransformation> evidence) {
@@ -37,10 +39,24 @@ public final class SemanticClassification {
      */
     public static SemanticClassification of(TaxonomyConcept concept, List<DetectedTransformation> evidence,
                                              List<String> supportingConceptNames) {
+        return of(concept, evidence, supportingConceptNames, 0);
+    }
+
+    /**
+     * @param beforeEvidenceCount for a classification representing a mechanism transition
+     *        (ticket #97, e.g. Spring field-to-constructor injection), how many of {@code
+     *        evidence}'s leading entries are the "before" mechanism — the rest are "after".
+     *        Zero for every classification that isn't a transition.
+     */
+    public static SemanticClassification of(TaxonomyConcept concept, List<DetectedTransformation> evidence,
+                                             List<String> supportingConceptNames, int beforeEvidenceCount) {
         Objects.requireNonNull(concept, "concept");
         Objects.requireNonNull(evidence, "evidence");
         Objects.requireNonNull(supportingConceptNames, "supportingConceptNames");
-        return new SemanticClassification(concept, evidence, supportingConceptNames);
+        if (beforeEvidenceCount < 0 || beforeEvidenceCount > evidence.size()) {
+            throw new IllegalArgumentException("beforeEvidenceCount must be between 0 and evidence.size()");
+        }
+        return new SemanticClassification(concept, evidence, supportingConceptNames, beforeEvidenceCount);
     }
 
     public TaxonomyConcept concept() {
@@ -55,6 +71,11 @@ public final class SemanticClassification {
     /** The concept names of other classifications this one is built from/supported by, if any. */
     public List<String> supportingConceptNames() {
         return supportingConceptNames;
+    }
+
+    /** How many of {@link #evidence()}'s leading entries are the "before" half of a mechanism transition (ticket #97); zero if none. */
+    public int beforeEvidenceCount() {
+        return beforeEvidenceCount;
     }
 
     @Override

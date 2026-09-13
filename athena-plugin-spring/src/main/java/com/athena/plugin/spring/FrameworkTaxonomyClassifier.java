@@ -5,10 +5,14 @@ import com.athena.semantic.DetectedTransformation;
 import com.athena.semantic.SemanticClassification;
 import com.athena.semantic.SemanticDimension;
 import com.athena.semantic.Taxonomy;
+import com.athena.semantic.TransformationKind;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -52,6 +56,85 @@ public final class FrameworkTaxonomyClassifier {
             }
         }
         return Optional.empty();
+    }
+
+    private static final List<String> INJECTION_ANNOTATIONS = List.of("@Autowired", "@Inject", "@Resource");
+
+    /**
+     * Correlates an {@code ADD_CONSTRUCTOR_PARAMETER} Change with a {@code
+     * CHANGE_FIELD_ANNOTATIONS} Change (same name, same enclosing type) whose diff
+     * drops an injection annotation ({@code @Autowired}/{@code @Inject}/{@code
+     * @Resource}) — the "field injection -> constructor injection" mechanism
+     * transition (ticket #97 §"Framework level"). Mirrors {@link
+     * com.athena.semantic.PatternTaxonomyClassifier#classifyDependencyInjection}'s
+     * correlation shape, but for the FRAMEWORK dimension's literal before/after
+     * mechanism rather than the PATTERN dimension's "supported by" list: no single
+     * Change's diff carries both the removed field annotation and the added
+     * constructor parameter, since {@link com.athena.semantic.ChangeGrouper} always
+     * puts different {@link TransformationKind}s in different Changes.
+     *
+     * <p>Unlike {@link #classify}, a field removed outright (as opposed to just
+     * losing its injection annotation) is deliberately not matched here — only the
+     * annotation-drop shape reads unambiguously as "this field became
+     * constructor-injected" rather than "this field was deleted for some other
+     * reason".
+     *
+     * @return a classification for each {@code ADD_CONSTRUCTOR_PARAMETER} Change that
+     *         correlates, keyed by that Change; its evidence lists the correlating
+     *         (before) Change's matched occurrences first, then the added-parameter
+     *         (after) Change's own — the literal before/after mechanism snippets a
+     *         reviewer sees, in order
+     */
+    public Map<Change, SemanticClassification> classifySpringFieldToConstructorInjection(List<Change> changes,
+                                                                                           Taxonomy frameworkTaxonomy) {
+        if (frameworkTaxonomy.dimension() != SemanticDimension.FRAMEWORK) {
+            throw new IllegalArgumentException("Expected a FRAMEWORK taxonomy, got " + frameworkTaxonomy.dimension());
+        }
+        Map<Change, SemanticClassification> classifications = new HashMap<>();
+        Optional<com.athena.semantic.TaxonomyConcept> concept = frameworkTaxonomy.find("spring-field-to-constructor-injection");
+        if (concept.isEmpty()) {
+            return classifications;
+        }
+
+        Map<String, Change> droppedInjectionChangesByDescription = new HashMap<>();
+        for (Change change : changes) {
+            if (change.kind() == TransformationKind.CHANGE_FIELD_ANNOTATIONS && droppedInjectionAnnotation(change)) {
+                for (String description : descriptionsOf(change)) {
+                    droppedInjectionChangesByDescription.put(description, change);
+                }
+            }
+        }
+
+        for (Change change : changes) {
+            if (change.kind() != TransformationKind.ADD_CONSTRUCTOR_PARAMETER) {
+                continue;
+            }
+            Optional<Change> correlatingChange = descriptionsOf(change).stream()
+                    .map(droppedInjectionChangesByDescription::get)
+                    .filter(Objects::nonNull)
+                    .findFirst();
+            correlatingChange.ifPresent(correlate -> {
+                List<DetectedTransformation> evidence = new ArrayList<>(correlate.matchedOccurrences());
+                int beforeEvidenceCount = evidence.size();
+                evidence.addAll(change.matchedOccurrences());
+                classifications.put(change,
+                        SemanticClassification.of(concept.get(), evidence, List.of(), beforeEvidenceCount));
+            });
+        }
+        return classifications;
+    }
+
+    private boolean droppedInjectionAnnotation(Change change) {
+        return change.matchedOccurrences().stream().anyMatch(t -> {
+            List<String> removedLines = t.diffText().lines().filter(line -> line.startsWith("-")).toList();
+            return INJECTION_ANNOTATIONS.stream().anyMatch(annotation -> removedLines.stream().anyMatch(line -> line.contains(annotation)));
+        });
+    }
+
+    private List<String> descriptionsOf(Change change) {
+        return change.matchedOccurrences().stream()
+                .flatMap(t -> t.involvedDescriptions().stream())
+                .toList();
     }
 
     private Optional<String> newlyAddedAnnotationConceptId(String diffText) {

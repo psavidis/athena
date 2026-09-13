@@ -76,6 +76,13 @@ export interface SemanticDimensionEntry {
   confidencePercent: number
   evidence: string[]
   supportingConceptNames: string[]
+  /**
+   * For a Framework classification representing a mechanism transition (ticket #97,
+   * e.g. Spring field-to-constructor injection): how many of `evidence`'s leading
+   * entries are the "before" mechanism's diff text — the rest are "after". Absent/zero
+   * for every classification that isn't a transition.
+   */
+  beforeEvidenceCount?: number
 }
 
 export interface SemanticProfile {
