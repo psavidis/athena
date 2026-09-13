@@ -1,4 +1,4 @@
-package com.athena.web;
+package com.athena.web.controller;
 
 import com.athena.git.GitAskpass;
 import com.athena.git.GitRevisionCheckout;
@@ -10,6 +10,7 @@ import com.athena.github.PullRequestImporter;
 import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.ReviewStateStore;
+import com.athena.web.WebSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

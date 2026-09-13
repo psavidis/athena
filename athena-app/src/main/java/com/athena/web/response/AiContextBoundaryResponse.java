@@ -1,4 +1,4 @@
-package com.athena.web;
+package com.athena.web.response;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.athena.web;
+package com.athena.web.controller;
 
 import com.athena.reviewui.ChangeMapEntry;
 import com.athena.reviewui.ChangeMapView;
@@ -6,6 +6,11 @@ import com.athena.reviewui.ClassGroup;
 import com.athena.reviewui.PrUnderstandingView;
 import com.athena.semantic.Change;
 import com.athena.semantic.ChangeCategory;
+import com.athena.web.ChangeKey;
+import com.athena.web.WebSession;
+import com.athena.web.response.ChangeEntryResponse;
+import com.athena.web.response.ChangeMapResponse;
+import com.athena.web.response.ClassGroupResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,4 +1,4 @@
-package com.athena.web;
+package com.athena.web.request;
 
 import com.athena.semantic.ReviewState;
 

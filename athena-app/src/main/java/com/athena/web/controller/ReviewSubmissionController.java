@@ -1,4 +1,4 @@
-package com.athena.web;
+package com.athena.web.controller;
 
 import com.athena.github.CommentSyncer;
 import com.athena.github.GitHubTransport;
@@ -9,6 +9,11 @@ import com.athena.reviewcontext.ReviewAnnotationSync;
 import com.athena.reviewcontext.ReviewAnnotationSyncResult;
 import com.athena.reviewcontext.ReviewContext;
 import com.athena.semantic.Change;
+import com.athena.web.ChangeKey;
+import com.athena.web.request.SetReviewStateRequest;
+import com.athena.web.WebSession;
+import com.athena.web.response.PreSubmissionSummaryResponse;
+import com.athena.web.response.SubmissionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

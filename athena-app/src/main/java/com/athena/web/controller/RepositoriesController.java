@@ -1,7 +1,8 @@
-package com.athena.web;
+package com.athena.web.controller;
 
 import com.athena.github.GitHubRepositoryBrowser;
 import com.athena.github.Repository;
+import com.athena.web.WebSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

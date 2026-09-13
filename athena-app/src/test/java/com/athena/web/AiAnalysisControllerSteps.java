@@ -1,6 +1,9 @@
 package com.athena.web;
 
 import com.athena.ai.FakeAiProvider;
+import com.athena.web.controller.AiAnalysisController;
+import com.athena.web.response.AiContextBoundaryResponse;
+import com.athena.web.response.AiFindingResponse;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

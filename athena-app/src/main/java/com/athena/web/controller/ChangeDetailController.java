@@ -1,4 +1,4 @@
-package com.athena.web;
+package com.athena.web.controller;
 
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.reviewui.AnnotationScope;
@@ -6,6 +6,11 @@ import com.athena.reviewui.ChangeDetailView;
 import com.athena.reviewui.Comment;
 import com.athena.reviewui.PrivateNote;
 import com.athena.semantic.Change;
+import com.athena.web.ChangeKey;
+import com.athena.web.WebSession;
+import com.athena.web.request.AddAnnotationRequest;
+import com.athena.web.response.AnnotationsResponse;
+import com.athena.web.response.ChangeDetailResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

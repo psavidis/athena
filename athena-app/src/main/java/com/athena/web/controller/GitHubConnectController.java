@@ -1,6 +1,8 @@
-package com.athena.web;
+package com.athena.web.controller;
 
 import com.athena.github.GitHubAppClient;
+import com.athena.web.GitHubAccess;
+import com.athena.web.WebSession;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

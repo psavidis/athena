@@ -1,9 +1,10 @@
 package com.athena.web;
 
 import com.athena.ai.FakeModuleNarrativeProvider;
+import com.athena.web.controller.ModuleNarrativeController;
+import com.athena.web.response.ModuleNarrativeResponse;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.But;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.web.server.ResponseStatusException;

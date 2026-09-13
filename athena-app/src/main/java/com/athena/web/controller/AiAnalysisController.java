@@ -1,4 +1,4 @@
-package com.athena.web;
+package com.athena.web.controller;
 
 import com.athena.ai.AiAnalysisOrchestrator;
 import com.athena.ai.AiContextBoundary;
@@ -10,6 +10,10 @@ import com.athena.ai.ClaudeAiProvider;
 import com.athena.ai.ClaudeCliProvider;
 import com.athena.reviewui.ChangeDetailView;
 import com.athena.semantic.Change;
+import com.athena.web.*;
+import com.athena.web.response.AiContextBoundaryResponse;
+import com.athena.web.response.AiFindingResponse;
+import com.athena.web.response.AiStatusResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

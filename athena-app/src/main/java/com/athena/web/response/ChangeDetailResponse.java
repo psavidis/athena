@@ -1,4 +1,4 @@
-package com.athena.web;
+package com.athena.web.response;
 
 import com.athena.semantic.ChangeCategory;
 import com.athena.semantic.TransformationKind;

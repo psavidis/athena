@@ -1,4 +1,4 @@
-package com.athena.web;
+package com.athena.web.controller;
 
 import com.athena.ai.AiKeyStore;
 import com.athena.ai.ClaudeCliModuleNarrativeProvider;
@@ -6,6 +6,9 @@ import com.athena.ai.ClaudeModuleNarrativeProvider;
 import com.athena.ai.ModuleNarrativeProvider;
 import com.athena.semantic.ModuleGroup;
 import com.athena.semantic.ModuleGrouper;
+import com.athena.web.ChangeKey;
+import com.athena.web.WebSession;
+import com.athena.web.response.ModuleNarrativeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

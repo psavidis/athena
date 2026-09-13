@@ -1,7 +1,8 @@
-package com.athena.web;
+package com.athena.web.request;
 
 import com.athena.reviewui.AnnotationScope;
 import com.athena.semantic.Change;
+import com.athena.web.ChangeKey;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
