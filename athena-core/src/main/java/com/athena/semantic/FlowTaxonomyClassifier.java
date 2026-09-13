@@ -10,12 +10,20 @@ import java.util.Optional;
  * {@link ResponsibilityTaxonomyClassifier}'s direct {@link TransformationKind}
  * mapping, Flow/Feature concepts (ticket #86's {@code feature.json}) are
  * product-specific, not generic vocabulary, so this correlates a Change's
- * own involved symbol names against each flow concept's name instead of
- * switching on the transformation kind — the same "an add/rename actually
- * takes on the name" signal {@link ArchitectureTaxonomyClassifier}/
+ * involved type name against each flow concept's name instead of switching
+ * on the transformation kind — the same "an add/rename actually takes on
+ * the name" signal {@link ArchitectureTaxonomyClassifier}/
  * {@link PatternTaxonomyClassifier} use, but not restricted to those two
  * kinds, since a flow concept can plausibly correlate with any kind of
- * change to a symbol already carrying its name.
+ * change to a type already carrying its name.
+ *
+ * <p>Only the enclosing type's own simple name is checked — never a member
+ * name — for the same reason {@code ArchitectureTaxonomyClassifier}/
+ * {@code PatternTaxonomyClassifier} restrict themselves to a type actually
+ * taking on a name: a member name merely containing a concept's name (e.g.
+ * a {@code loginReminder} field on an unrelated class) says nothing about
+ * which flow the change belongs to, and would otherwise be a forced/guessed
+ * mapping.
  *
  * <p>Only leaf concepts (those declaring a {@code parentId}) are eligible —
  * a taxonomy's top-level capability entries (e.g. {@code order-management})
@@ -38,20 +46,30 @@ public final class FlowTaxonomyClassifier {
         if (change.matchedOccurrences().isEmpty()) {
             return Optional.empty();
         }
-        List<String> involvedDescriptions = change.matchedOccurrences().get(0).involvedDescriptions();
-        return correlatingConcept(involvedDescriptions)
+        String enclosingTypeName = enclosingTypeName(change.matchedOccurrences().get(0).involvedDescriptions());
+        return correlatingConcept(enclosingTypeName)
                 .map(concept -> SemanticClassification.of(concept, List.copyOf(change.matchedOccurrences())));
     }
 
-    private Optional<TaxonomyConcept> correlatingConcept(List<String> involvedDescriptions) {
+    /**
+     * The simple name of the type a transformation's most current description names —
+     * the last involved description (the "to" side of a rename, matching
+     * {@code ArchitectureTaxonomyClassifier}'s convention of classifying a rename into a
+     * convention as well as a fresh add), stripped of any {@code #member} suffix.
+     */
+    private String enclosingTypeName(List<String> involvedDescriptions) {
+        String lastDescription = involvedDescriptions.get(involvedDescriptions.size() - 1);
+        int separator = lastDescription.indexOf('#');
+        return separator < 0 ? lastDescription : lastDescription.substring(0, separator);
+    }
+
+    private Optional<TaxonomyConcept> correlatingConcept(String enclosingTypeName) {
+        String normalizedTypeName = normalize(enclosingTypeName);
         for (TaxonomyConcept concept : featureTaxonomy.concepts()) {
             if (concept.parentId().isEmpty()) {
                 continue;
             }
-            String normalizedConceptName = normalize(concept.name());
-            boolean correlates = involvedDescriptions.stream()
-                    .anyMatch(description -> normalize(description).contains(normalizedConceptName));
-            if (correlates) {
+            if (normalizedTypeName.contains(normalize(concept.name()))) {
                 return Optional.of(concept);
             }
         }

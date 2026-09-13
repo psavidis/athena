@@ -47,6 +47,13 @@ class FlowTaxonomyClassifierTest {
     }
 
     @Test
+    void doesNotClassifyOnAMemberNameCoincidenceInsideAnUnrelatedType() {
+        Change renamedField = changeOf(TransformationKind.RENAME_FIELD, "UserSettings#oldFlag", "UserSettings#loginReminder");
+
+        assertThat(classifier.classify(renamedField)).isEmpty();
+    }
+
+    @Test
     void leavesAChangeWithNoMatchedOccurrencesUnclassified() {
         Change withNoMatchedOccurrences = new Change("Untitled", TransformationKind.ADD_CLASS, List.of(), List.of());
 
