@@ -256,15 +256,23 @@ export function StateBadge({ state }: { state: ReviewState }) {
   )
 }
 
+/**
+ * The page body below {@link AppHeader in App.tsx}: full-width, matching the
+ * Semantic Change Explorer's own edge-to-edge layout (ticket #91's approved
+ * mockup has no centered, narrow-card chrome anywhere — that includes the
+ * repo/PR picker, not just the Explorer). `narrow` opts a page back into a
+ * readable measure for prose-heavy content (e.g. the pre-submission summary)
+ * without reintroducing a fixed page-wide max-width for every page.
+ */
 export function PageShell({
   children,
-  wide = false,
+  narrow = false,
 }: {
   children: React.ReactNode
-  wide?: boolean
+  narrow?: boolean
 }) {
   return (
-    <div className={`mx-auto px-6 py-10 sm:px-10 sm:py-14 ${wide ? 'max-w-4xl' : 'max-w-2xl'}`}>
+    <div className={`px-6 py-10 sm:px-10 sm:py-14 ${narrow ? 'mx-auto max-w-2xl' : ''}`}>
       <div className="animate-rise-in">{children}</div>
     </div>
   )

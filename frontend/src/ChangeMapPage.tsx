@@ -109,7 +109,7 @@ export default function ChangeMapPage({
   }
 
   return (
-    <PageShell wide>
+    <PageShell>
       <div className="mb-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
         <PrUnderstandingSummary prTitle={data.prTitle} categoryCounts={data.categoryCounts} />
         <div className="flex flex-col items-end gap-2">

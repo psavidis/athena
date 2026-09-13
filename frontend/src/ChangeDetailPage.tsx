@@ -59,7 +59,7 @@ export default function ChangeDetailPage({ changeKey, onBack }: { changeKey: str
   }
 
   return (
-    <PageShell wide>
+    <PageShell>
       <BackLink onClick={onBack}>← Back to Change Map</BackLink>
 
       <div className="mb-8">

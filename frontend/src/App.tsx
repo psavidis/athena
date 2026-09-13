@@ -116,9 +116,9 @@ export default function App() {
   }
 
   return (
-    <div>
+    <div className="flex min-h-screen flex-col">
       <AppHeader />
-      {renderContent()}
+      <div className="flex-1">{renderContent()}</div>
     </div>
   )
 }
@@ -126,13 +126,15 @@ export default function App() {
 /**
  * The Athena logo, shown once at the top of every page (ticket #109) so
  * the product has a consistent, recognizable identity instead of a
- * generic, unbranded shell.
+ * generic, unbranded shell. Full-width, bordered like the approved mockup's
+ * `.topbar` (ticket #91's reference design) — no centered max-width column,
+ * since nothing below it is centered either (see PageShell).
  */
 function AppHeader() {
   return (
-    <header className="mx-auto flex max-w-6xl items-center gap-2 px-6 pt-6 sm:px-10">
+    <header className="flex items-center gap-2 border-b border-ink-200 bg-paper-raised px-6 py-3.5 sm:px-10">
       <img src="/athena-logo.png" alt="Athena" className="h-8 w-8 rounded-full" />
-      <span className="text-sm font-semibold tracking-wide text-ink-900">Athena</span>
+      <span className="font-display text-base font-medium tracking-tight text-ink-900">Athena</span>
     </header>
   )
 }
@@ -150,7 +152,7 @@ function ChangeViewModeToggle({
   onChange: (mode: ChangeViewMode) => void
 }) {
   return (
-    <div className="mx-auto flex max-w-6xl justify-end gap-2 px-6 pt-6 sm:px-10">
+    <div className="flex justify-end gap-2 px-6 pt-6 sm:px-10">
       {mode === 'diff' ? (
         <SecondaryButton onClick={() => onChange('explorer')}>Semantic Explorer</SecondaryButton>
       ) : (
@@ -170,18 +172,20 @@ function ConnectStep() {
 
   return (
     <PageShell>
-      <PageHeading eyebrow="Step 1 of 3" title="Connect to GitHub" />
-      <p className="mb-6 max-w-md text-sm leading-relaxed text-ink-700">
-        Athena reviews Pull Requests by installing a GitHub App on the account or organization that
-        owns the repositories you want to review. You'll pick exactly which repositories to grant
-        access to on GitHub.
-      </p>
-      <PrimaryButton disabled={mutation.isPending} onClick={() => mutation.mutate()}>
-        {mutation.isPending ? 'Redirecting…' : 'Connect GitHub'}
-      </PrimaryButton>
-      {mutation.isError && (
-        <p className="mt-3 text-sm text-red-600">{(mutation.error as Error).message}</p>
-      )}
+      <div className="max-w-md">
+        <PageHeading eyebrow="Step 1 of 3" title="Connect to GitHub" />
+        <p className="mb-6 text-sm leading-relaxed text-ink-700">
+          Athena reviews Pull Requests by installing a GitHub App on the account or organization that
+          owns the repositories you want to review. You'll pick exactly which repositories to grant
+          access to on GitHub.
+        </p>
+        <PrimaryButton disabled={mutation.isPending} onClick={() => mutation.mutate()}>
+          {mutation.isPending ? 'Redirecting…' : 'Connect GitHub'}
+        </PrimaryButton>
+        {mutation.isError && (
+          <p className="mt-3 text-sm text-red-600">{(mutation.error as Error).message}</p>
+        )}
+      </div>
     </PageShell>
   )
 }
@@ -201,18 +205,20 @@ function RepositoryStep({ onSelected }: { onSelected: (repositoryFullName: strin
 
   return (
     <PageShell>
-      <PageHeading eyebrow="Step 2 of 3" title="Select a repository" />
-      <Card className="divide-y divide-ink-200 overflow-hidden">
-        {data?.map((repo) => (
-          <button
-            key={repo.fullName}
-            className="block w-full px-4 py-3 text-left text-sm text-ink-900 transition-colors hover:bg-ink-100"
-            onClick={() => onSelected(repo.fullName)}
-          >
-            {repo.fullName}
-          </button>
-        ))}
-      </Card>
+      <div className="max-w-xl">
+        <PageHeading eyebrow="Step 2 of 3" title="Select a repository" />
+        <Card className="divide-y divide-ink-200 overflow-hidden">
+          {data?.map((repo) => (
+            <button
+              key={repo.fullName}
+              className="block w-full px-4 py-3 text-left text-sm text-ink-900 transition-colors hover:bg-ink-100"
+              onClick={() => onSelected(repo.fullName)}
+            >
+              {repo.fullName}
+            </button>
+          ))}
+        </Card>
+      </div>
     </PageShell>
   )
 }
@@ -239,28 +245,30 @@ function PullRequestStep({
 
   return (
     <PageShell>
-      <BackLink onClick={onBack}>← Back to repositories</BackLink>
-      <PageHeading eyebrow="Step 3 of 3" title={`Open PRs — ${repositoryFullName}`} />
-      {isError && <p className="text-sm text-red-600">Could not load pull requests.</p>}
-      {isLoading && <LoadingState />}
-      {data?.length === 0 && <p className="text-sm text-ink-500">No open pull requests.</p>}
-      {data && data.length > 0 && (
-        <Card className="divide-y divide-ink-200 overflow-hidden">
-          {data.map((pr) => (
-            <button
-              key={pr.number}
-              className="block w-full px-4 py-3 text-left text-sm text-ink-900 transition-colors hover:bg-ink-100 disabled:cursor-not-allowed disabled:opacity-40"
-              disabled={mutation.isPending}
-              onClick={() => mutation.mutate(pr.number)}
-            >
-              <span className="text-ink-500">#{pr.number}</span> {pr.title}
-            </button>
-          ))}
-        </Card>
-      )}
-      {mutation.isError && (
-        <p className="mt-3 text-sm text-red-600">{(mutation.error as Error).message}</p>
-      )}
+      <div className="max-w-xl">
+        <BackLink onClick={onBack}>← Back to repositories</BackLink>
+        <PageHeading eyebrow="Step 3 of 3" title={`Open PRs — ${repositoryFullName}`} />
+        {isError && <p className="text-sm text-red-600">Could not load pull requests.</p>}
+        {isLoading && <LoadingState />}
+        {data?.length === 0 && <p className="text-sm text-ink-500">No open pull requests.</p>}
+        {data && data.length > 0 && (
+          <Card className="divide-y divide-ink-200 overflow-hidden">
+            {data.map((pr) => (
+              <button
+                key={pr.number}
+                className="block w-full px-4 py-3 text-left text-sm text-ink-900 transition-colors hover:bg-ink-100 disabled:cursor-not-allowed disabled:opacity-40"
+                disabled={mutation.isPending}
+                onClick={() => mutation.mutate(pr.number)}
+              >
+                <span className="text-ink-500">#{pr.number}</span> {pr.title}
+              </button>
+            ))}
+          </Card>
+        )}
+        {mutation.isError && (
+          <p className="mt-3 text-sm text-red-600">{(mutation.error as Error).message}</p>
+        )}
+      </div>
     </PageShell>
   )
 }

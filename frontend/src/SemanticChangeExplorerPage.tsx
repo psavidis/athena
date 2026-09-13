@@ -176,7 +176,7 @@ export default function SemanticChangeExplorerPage({
   const entriesForEvidencePanel = highlightedEntries.size > 0 ? dimensions : entriesForCurrentDimension
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-10 sm:px-10 sm:py-14">
+    <div className="px-6 py-10 sm:px-10 sm:py-14">
       <div className="animate-rise-in">
         <div className="mb-2 flex items-center justify-between">
           <BackLink onClick={onBack}>← Back to Change Map</BackLink>
@@ -185,7 +185,7 @@ export default function SemanticChangeExplorerPage({
 
         <ChangeStory dimensions={dimensions} onSelect={selectLevel} onSelectConcept={selectGlobalConcept} />
 
-        <div className="grid gap-6 lg:grid-cols-[14rem_1fr_1fr]">
+        <div className="grid gap-6 lg:grid-cols-[14rem_minmax(0,1fr)_24rem]">
           <Spine current={currentDimension} onSelect={selectLevel} />
           {/* Keyed on currentDimension so switching levels replays the rise-in
               animation (ticket #101: "moving between semantic levels
@@ -237,7 +237,7 @@ function GuidedReviewChapterView({
   const isLast = chapterIndex === GUIDED_REVIEW_CHAPTERS.length - 1
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-10 sm:px-10 sm:py-14">
+    <div className="px-6 py-10 sm:px-10 sm:py-14">
       <div className="animate-rise-in">
         <div className="mb-2 flex items-center justify-between">
           <SectionLabel>Chapter {chapterIndex + 1} of {GUIDED_REVIEW_CHAPTERS.length}</SectionLabel>

@@ -28,7 +28,7 @@ export default function PreSubmissionSummaryPage({ onBack }: { onBack: () => voi
 
   if (submitMutation.isSuccess) {
     return (
-      <PageShell>
+      <PageShell narrow>
         <Card className="px-6 py-8 text-center">
           <p className="mb-4 text-sm text-ink-900">Your review was submitted to GitHub.</p>
           <BackLink onClick={onBack}>← Back to Change Map</BackLink>
@@ -38,7 +38,7 @@ export default function PreSubmissionSummaryPage({ onBack }: { onBack: () => voi
   }
 
   return (
-    <PageShell>
+    <PageShell narrow>
       <BackLink onClick={onBack}>← Back to Change Map</BackLink>
 
       <div className="mb-8">
