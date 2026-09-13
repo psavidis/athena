@@ -9,7 +9,7 @@ import { GUIDED_REVIEW_CHAPTERS } from './guidedReviewChapters'
 import IntentLevel from './IntentLevel'
 import PatternLevel from './PatternLevel'
 import StructureLevel from './StructureLevel'
-import { BackLink, Card, DiffView, ErrorState, LoadingState, PrimaryButton, SecondaryButton, SectionLabel } from './ui'
+import { BackLink, Card, DiffView, ErrorState, LEVEL_META, LoadingState, PrimaryButton, SecondaryButton, SectionLabel } from './ui'
 
 /**
  * The seven-level semantic spine (ticket #91 §2/§12), in Structure → Intent
@@ -237,19 +237,30 @@ function GuidedReviewChapterView({
         <h1 className="mb-6 text-2xl font-semibold tracking-tight text-ink-900">{chapter.title}</h1>
 
         <nav aria-label="Guided review chapters" className="mb-8">
-          <ol className="flex flex-wrap gap-2">
-            {GUIDED_REVIEW_CHAPTERS.map((c, i) => (
-              <li
-                key={c.title}
-                aria-current={i === chapterIndex ? 'true' : undefined}
-                className={
-                  'rounded-full px-3 py-1 text-xs font-medium ' +
-                  (i === chapterIndex ? 'bg-ink-900 text-white' : i < chapterIndex ? 'bg-ink-200 text-ink-700' : 'bg-ink-100 text-ink-500')
-                }
-              >
-                {c.title}
-              </li>
-            ))}
+          <ol className="flex flex-wrap items-center gap-2">
+            {GUIDED_REVIEW_CHAPTERS.map((c, i) => {
+              const primaryDimension = c.dimensions[0]
+              const meta = primaryDimension ? LEVEL_META[primaryDimension] : undefined
+              const isCurrent = i === chapterIndex
+              return (
+                <span key={c.title} className="flex items-center gap-2">
+                  {i > 0 && <span className="h-px w-3 bg-ink-200" aria-hidden="true" />}
+                  <li
+                    aria-current={isCurrent ? 'true' : undefined}
+                    className={
+                      'rounded-full px-3 py-1 text-xs font-medium ' +
+                      (isCurrent && meta
+                        ? `${meta.soft} ${meta.text}`
+                        : i < chapterIndex
+                          ? 'bg-ink-200 text-ink-700'
+                          : 'bg-ink-100 text-ink-500')
+                    }
+                  >
+                    {c.title}
+                  </li>
+                </span>
+              )
+            })}
           </ol>
         </nav>
 
@@ -312,21 +323,28 @@ function Spine({
     <nav aria-label="Semantic levels">
       <SectionLabel>Semantic Spine</SectionLabel>
       <ul className="space-y-1">
-        {LEVELS.map((level) => (
-          <li key={level.dimension}>
-            <button
-              type="button"
-              aria-current={level.dimension === current ? 'true' : undefined}
-              onClick={() => onSelect(level.dimension)}
-              className={
-                'w-full rounded-lg px-3 py-2 text-left text-sm font-medium transition-colors ' +
-                (level.dimension === current ? 'bg-ink-900 text-white' : 'text-ink-700 hover:bg-ink-100')
-              }
-            >
-              {level.label}
-            </button>
-          </li>
-        ))}
+        {LEVELS.map((level) => {
+          const meta = LEVEL_META[level.dimension]
+          const isCurrent = level.dimension === current
+          return (
+            <li key={level.dimension}>
+              <button
+                type="button"
+                aria-current={isCurrent ? 'true' : undefined}
+                onClick={() => onSelect(level.dimension)}
+                className={
+                  'flex w-full items-center gap-2.5 rounded-lg border px-3 py-2 text-left text-sm font-medium transition-colors ' +
+                  (isCurrent
+                    ? `border-transparent ${meta.soft} ${meta.text}`
+                    : 'border-transparent text-ink-700 hover:bg-ink-100')
+                }
+              >
+                <span aria-hidden="true" className={`h-2 w-2 shrink-0 rounded-full ${isCurrent ? 'bg-current' : meta.dot}`} />
+                {level.label}
+              </button>
+            </li>
+          )
+        })}
       </ul>
     </nav>
   )
@@ -391,6 +409,7 @@ function EvidencePanel({
             const isCrossHighlighted = highlightedEntries.has(entry)
             const isSubdued = crossHighlighting && !isCrossHighlighted
             const isHoverEmphasized = entry.conceptName === hoveredConceptName
+            const meta = LEVEL_META[entry.dimension]
             return (
               <div
                 key={entry.dimension + ':' + entry.conceptName}
@@ -405,6 +424,10 @@ function EvidencePanel({
                   (isHoverEmphasized ? ' ring-2 ring-accent/60' : '')
                 }
               >
+                <p className={`rounded-lg px-3 py-2 text-xs leading-relaxed text-ink-700 ${meta.soft}`}>
+                  <span className={`font-semibold ${meta.text}`}>Why this counts as evidence:</span> the diff below is what{' '}
+                  {entry.conceptName} was classified from.
+                </p>
                 {entry.evidence.map((diff, i) => (
                   <DiffView key={i} diff={diff} />
                 ))}
@@ -451,22 +474,28 @@ function ChangeStory({
   }
 
   return (
-    <p className="mb-8 font-serif text-2xl leading-relaxed text-ink-900">
-      {ordered.map((entry, i) => (
-        <span key={entry.dimension}>
-          {i > 0 && <span className="text-ink-300"> → </span>}
-          <button
-            type="button"
-            onClick={() => {
-              onSelect(entry.dimension)
-              onSelectConcept(entry)
-            }}
-            className="rounded px-0.5 underline decoration-accent/40 decoration-2 underline-offset-4 transition-colors hover:bg-accent-soft hover:text-accent"
-          >
-            {entry.conceptName}
-          </button>
-        </span>
-      ))}
-    </p>
+    <div className="mb-8">
+      <p className="mb-2 text-xs font-semibold tracking-wide text-ink-500 uppercase">The change, in one sentence</p>
+      <p className="font-display text-2xl leading-relaxed font-medium text-ink-900">
+        {ordered.map((entry, i) => {
+          const meta = LEVEL_META[entry.dimension]
+          return (
+            <span key={entry.dimension}>
+              {i > 0 && <span className="text-ink-300"> → </span>}
+              <button
+                type="button"
+                onClick={() => {
+                  onSelect(entry.dimension)
+                  onSelectConcept(entry)
+                }}
+                className={`rounded px-0.5 italic underline decoration-current/40 decoration-2 underline-offset-4 transition-colors ${meta.text} ${meta.hoverSoft}`}
+              >
+                {entry.conceptName}
+              </button>
+            </span>
+          )
+        })}
+      </p>
+    </div>
   )
 }

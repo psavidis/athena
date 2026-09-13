@@ -1,5 +1,5 @@
 import type { SemanticDimensionEntry } from './api'
-import { Card, SectionLabel } from './ui'
+import { Card, LevelConfidenceChip, SectionLabel } from './ui'
 
 /**
  * The Architecture level's layered roles stack (ticket #98
@@ -36,23 +36,21 @@ export default function ArchitectureLevel({
             <li
               key={entry.conceptName}
               aria-current="true"
-              className="rounded-xl border border-ink-900 bg-paper-raised p-3"
+              className="rounded-xl border border-lv-architecture bg-lv-architecture-soft p-3"
             >
               <div className="flex items-center gap-2">
                 {onSelectConcept ? (
                   <button
                     type="button"
                     onClick={() => onSelectConcept(entry)}
-                    className="rounded text-sm font-medium text-ink-900 underline decoration-accent/40 decoration-2 underline-offset-4 hover:bg-accent-soft"
+                    className="rounded text-sm font-medium text-lv-architecture underline decoration-lv-architecture/40 decoration-2 underline-offset-4 hover:bg-lv-architecture-soft"
                   >
                     {entry.conceptName}
                   </button>
                 ) : (
-                  <span className="text-sm font-medium text-ink-900">{entry.conceptName}</span>
+                  <span className="text-sm font-medium text-lv-architecture">{entry.conceptName}</span>
                 )}
-                <span className="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-800">
-                  Inferred · {entry.confidencePercent}%
-                </span>
+                <LevelConfidenceChip dimension="ARCHITECTURE" inferred={true} confidencePercent={entry.confidencePercent} />
               </div>
               <p className="mt-1 text-xs text-ink-700">{entry.conceptDescription}</p>
             </li>

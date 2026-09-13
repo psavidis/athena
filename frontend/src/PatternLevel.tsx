@@ -1,5 +1,5 @@
 import type { SemanticDimensionEntry } from './api'
-import { Card, SectionLabel } from './ui'
+import { Card, LevelConfidenceChip, SectionLabel } from './ui'
 
 /**
  * The Pattern level's hero card(s) (ticket #96 §"Pattern level"): the
@@ -37,7 +37,7 @@ export default function PatternLevel({
           {entries.map((entry) => (
             <Card
               key={entry.conceptName}
-              className={'p-5' + (onSelectConcept ? ' cursor-pointer' : '')}
+              className={'border-l-4 border-l-lv-pattern p-5' + (onSelectConcept ? ' cursor-pointer' : '')}
               onClick={onSelectConcept ? () => onSelectConcept(entry) : undefined}
               role={onSelectConcept ? 'button' : undefined}
               tabIndex={onSelectConcept ? 0 : undefined}
@@ -60,9 +60,7 @@ export default function PatternLevel({
                 >
                   {entry.conceptName}
                 </h3>
-                <span className="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-800">
-                  {entry.inferred ? 'Inferred' : 'Observed'} · {entry.confidencePercent}%
-                </span>
+                <LevelConfidenceChip dimension="PATTERN" inferred={entry.inferred} confidencePercent={entry.confidencePercent} />
               </div>
               <p className="text-sm text-ink-700">{entry.conceptDescription}</p>
               {entry.supportingConceptNames.length > 0 && (

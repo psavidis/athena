@@ -1,5 +1,5 @@
 import type { SemanticDimensionEntry } from './api'
-import { Card, SectionLabel } from './ui'
+import { Card, LevelConfidenceChip, SectionLabel } from './ui'
 
 /**
  * The Capability level's linked cards grid (ticket #97 §"Capability level"):
@@ -35,15 +35,13 @@ export default function CapabilityLevel({
                 className={
                   'w-full rounded-xl border p-4 text-left transition-colors ' +
                   (entry.conceptName === selectedConceptName
-                    ? 'border-ink-900 bg-paper-raised'
-                    : 'border-ink-200 bg-paper-raised hover:border-ink-300')
+                    ? 'border-lv-capability bg-lv-capability-soft'
+                    : 'border-ink-200 bg-paper-raised hover:border-lv-capability/40')
                 }
               >
                 <div className="mb-1 flex items-center gap-2">
                   <h3 className="text-base font-semibold text-ink-900">{entry.conceptName}</h3>
-                  <span className="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-800">
-                    Inferred · {entry.confidencePercent}%
-                  </span>
+                  <LevelConfidenceChip dimension="RESPONSIBILITY" inferred={true} confidencePercent={entry.confidencePercent} />
                 </div>
                 <p className="text-sm text-ink-700">{entry.conceptDescription}</p>
               </button>

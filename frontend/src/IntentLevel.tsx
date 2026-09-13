@@ -1,5 +1,5 @@
 import type { SemanticDimensionEntry } from './api'
-import { Card, SectionLabel } from './ui'
+import { Card, LevelConfidenceChip, SectionLabel } from './ui'
 
 /**
  * The Intent level's "Why?" panel (ticket #99 §"Intent level"): the
@@ -22,13 +22,11 @@ export default function IntentLevel({ entries }: { entries: SemanticDimensionEnt
         </Card>
       ) : (
         <div className="space-y-4">
-          <Card className="p-5">
+          <Card className="border-l-4 border-l-lv-intent p-5">
             <p className="mb-1 text-xs font-medium uppercase tracking-wide text-ink-500">Why?</p>
             <div className="mb-2 flex items-center gap-2">
-              <h3 className="text-lg font-semibold text-ink-900">{primary.conceptName}</h3>
-              <span className="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-800">
-                Inferred · {primary.confidencePercent}%
-              </span>
+              <h3 className="font-display text-xl font-semibold text-lv-intent">{primary.conceptName}</h3>
+              <LevelConfidenceChip dimension="INTENT" inferred={true} confidencePercent={primary.confidencePercent} />
             </div>
             <p className="mb-3 text-sm text-ink-700">{primary.conceptDescription}</p>
             {primary.evidence.length > 0 && (

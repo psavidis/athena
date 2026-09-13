@@ -1,5 +1,5 @@
 import type { SemanticDimensionEntry } from './api'
-import { Card, DiffView, SectionLabel } from './ui'
+import { Card, DiffView, LevelConfidenceChip, SectionLabel } from './ui'
 
 /**
  * The Framework level's mechanism panel (ticket #97 §"Framework level"): the
@@ -19,12 +19,10 @@ export default function FrameworkLevel({ entries }: { entries: SemanticDimension
       ) : (
         <div className="space-y-4">
           {entries.map((entry) => (
-            <Card key={entry.conceptName} className="p-5">
+            <Card key={entry.conceptName} className="border-l-4 border-l-lv-framework p-5">
               <div className="mb-2 flex items-center gap-2">
                 <h3 className="text-lg font-semibold text-ink-900">{entry.conceptName}</h3>
-                <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-800">
-                  Observed · {entry.confidencePercent}%
-                </span>
+                <LevelConfidenceChip dimension="FRAMEWORK" inferred={false} confidencePercent={entry.confidencePercent} />
               </div>
               <p className="mb-3 text-sm text-ink-700">{entry.conceptDescription}</p>
               {(entry.beforeEvidenceCount ?? 0) > 0 ? (

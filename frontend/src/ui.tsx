@@ -1,7 +1,7 @@
 // Shared visual primitives implementing docs/specs/visual-design-philosophy.md:
 // a calm, precise visual language reused across every page so review states,
 // hierarchy, and motion read consistently no matter where the reviewer is.
-import type { ChangeCategory, ReviewState } from './api'
+import type { ChangeCategory, ReviewState, SemanticDimension } from './api'
 
 // One hue + glyph per Change category (index.css defines the underlying
 // colors), reused for section headers, count chips, and card accents so a
@@ -99,6 +99,90 @@ export const CATEGORY_META: Record<
       </svg>
     ),
   },
+}
+
+// One hue per Semantic Change Explorer spine level (index.css defines the
+// underlying --color-lv-* tokens), reused for the spine nav dot, confidence
+// chips, and level headers so a level is recognizable by color the same way
+// a CATEGORY_META entry makes a Change category recognizable — cool
+// (Structure) to warm (Intent), evidence to meaning (ticket #91 §2, #122).
+export const LEVEL_META: Record<
+  SemanticDimension,
+  { text: string; dot: string; soft: string; hoverSoft: string; ring: string }
+> = {
+  STRUCTURAL: {
+    text: 'text-lv-structure',
+    dot: 'bg-lv-structure',
+    soft: 'bg-lv-structure-soft',
+    hoverSoft: 'hover:bg-lv-structure-soft',
+    ring: 'ring-lv-structure/20',
+  },
+  PATTERN: {
+    text: 'text-lv-pattern',
+    dot: 'bg-lv-pattern',
+    soft: 'bg-lv-pattern-soft',
+    hoverSoft: 'hover:bg-lv-pattern-soft',
+    ring: 'ring-lv-pattern/20',
+  },
+  FRAMEWORK: {
+    text: 'text-lv-framework',
+    dot: 'bg-lv-framework',
+    soft: 'bg-lv-framework-soft',
+    hoverSoft: 'hover:bg-lv-framework-soft',
+    ring: 'ring-lv-framework/20',
+  },
+  RESPONSIBILITY: {
+    text: 'text-lv-capability',
+    dot: 'bg-lv-capability',
+    soft: 'bg-lv-capability-soft',
+    hoverSoft: 'hover:bg-lv-capability-soft',
+    ring: 'ring-lv-capability/20',
+  },
+  FEATURE: {
+    text: 'text-lv-flow',
+    dot: 'bg-lv-flow',
+    soft: 'bg-lv-flow-soft',
+    hoverSoft: 'hover:bg-lv-flow-soft',
+    ring: 'ring-lv-flow/20',
+  },
+  ARCHITECTURE: {
+    text: 'text-lv-architecture',
+    dot: 'bg-lv-architecture',
+    soft: 'bg-lv-architecture-soft',
+    hoverSoft: 'hover:bg-lv-architecture-soft',
+    ring: 'ring-lv-architecture/20',
+  },
+  INTENT: {
+    text: 'text-lv-intent',
+    dot: 'bg-lv-intent',
+    soft: 'bg-lv-intent-soft',
+    hoverSoft: 'hover:bg-lv-intent-soft',
+    ring: 'ring-lv-intent/20',
+  },
+}
+
+/** A level's confidence chip (Observed, or Inferred · NN%), colored by its spine level
+ * rather than a fixed emerald/amber pair, so the color itself carries which level this is. */
+export function LevelConfidenceChip({
+  dimension,
+  inferred,
+  confidencePercent,
+}: {
+  dimension: SemanticDimension
+  inferred: boolean
+  confidencePercent: number
+}) {
+  const meta = LEVEL_META[dimension]
+  return (
+    <span className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium ${meta.soft} ${meta.text}`}>
+      {inferred && (
+        <span className="h-1 w-6 overflow-hidden rounded-full bg-black/10">
+          <span className="block h-full rounded-full bg-current" style={{ width: `${confidencePercent}%` }} />
+        </span>
+      )}
+      {inferred ? 'Inferred' : 'Observed'} · {confidencePercent}%
+    </span>
+  )
 }
 
 export function CategoryIcon({ category, className = 'h-4 w-4' }: { category: ChangeCategory; className?: string }) {
