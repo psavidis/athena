@@ -1,14 +1,20 @@
+/// <reference types="node" />
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 
 // Traces frontend/src/test/resources/features/ui_first_experience/visual_identity.feature
 // These scenarios are about static repo assets (the favicon file, the
 // README) rather than rendered UI, so they check the files directly
-// instead of rendering a component.
+// instead of rendering a component. This is the only test file in the
+// suite that needs Node's fs/crypto — a triple-slash reference brings in
+// @types/node (already a devDependency, for vite.config.ts) for just this
+// file rather than adding "node" to the whole app's tsconfig types, which
+// would leak Node globals into browser-facing app code.
 
-const REPO_ROOT = resolve(__dirname, '../../..')
+const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..')
 
 // The generic, non-Athena placeholder favicon this ticket replaces (an
 // abstract Vite-style mark, not the Athena emblem). Content can't be

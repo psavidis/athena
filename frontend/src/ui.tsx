@@ -274,7 +274,7 @@ export function SectionLabel({ children }: { children: React.ReactNode }) {
 export function LoadingState({ label = 'Loading…' }: { label?: string }) {
   return (
     <PageShell>
-      <div className="flex items-center gap-2 text-sm text-ink-500">
+      <div role="status" aria-label="Loading" className="flex items-center gap-2 text-sm text-ink-500">
         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ink-300" />
         {label}
       </div>
