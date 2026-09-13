@@ -9,6 +9,7 @@ Feature: Semantic Profile API
   Scenario: Reviewer requests the Semantic Profile for a Change with a deterministic classification
     Given the reviewer is connected to GitHub
     And the reviewer has selected a PR whose base and head revisions differ by a rename
+    And the reviewer has requested the Change Map
     When the reviewer requests the Semantic Profile for the rename Change
     Then the Semantic Profile includes a "Structural" entry for the "Rename" concept
     And that entry is marked Observed with 100% confidence
@@ -25,6 +26,7 @@ Feature: Semantic Profile API
   Scenario: A dimension the Change has no classification for is absent from its Semantic Profile
     Given the reviewer is connected to GitHub
     And the reviewer has selected a PR whose base and head revisions differ by a rename
+    And the reviewer has requested the Change Map
     When the reviewer requests the Semantic Profile for the rename Change
     Then the Semantic Profile has no "Pattern" entry
 
@@ -43,4 +45,4 @@ Feature: Semantic Profile API
     Given the reviewer is connected to GitHub
     And the reviewer has selected a PR whose base and head revisions differ by a rename
     When the reviewer requests the Semantic Profile for an unknown Change
-    Then the request is rejected as not found
+    Then the request is rejected because the Change was not found
