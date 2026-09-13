@@ -54,10 +54,7 @@ public class SearchAndFilteringSteps {
                 .filter(change -> change.kind() == TransformationKind.RENAME_SYMBOL)
                 .findFirst()
                 .orElseThrow();
-        mechanicalChange = changes.stream()
-                .filter(change -> change.kind() == TransformationKind.MECHANICAL_REPLACEMENT)
-                .findFirst()
-                .orElseThrow();
+        mechanicalChange = mechanicalReplacementChange(changes);
     }
 
     @Given("a comment {string} attached to the rename Change")
@@ -77,10 +74,7 @@ public class SearchAndFilteringSteps {
                 .filter(change -> change.kind() == TransformationKind.RENAME_SYMBOL)
                 .findFirst()
                 .orElseThrow();
-        mechanicalChange = changes.stream()
-                .filter(change -> change.kind() == TransformationKind.MECHANICAL_REPLACEMENT)
-                .findFirst()
-                .orElseThrow();
+        mechanicalChange = mechanicalReplacementChange(changes);
     }
 
     @Given("the reviewer has reviewed the rename Change in the search fixture")
@@ -135,5 +129,23 @@ public class SearchAndFilteringSteps {
 
     private List<Change> detectChanges() {
         return TestChanges.detect(baseRoot, headRoot);
+    }
+
+    /**
+     * writeRenameFixture's own method rename incidentally also satisfies the mechanical-
+     * replacement detector's whole-identifier-consistently-substituted heuristic (see
+     * ChangeMapViewSteps' own note on this), producing a second MECHANICAL_REPLACEMENT
+     * Change ("greet -> salute") alongside writeMechanicalReplacementFixture's genuine one
+     * ("Foo -> Bar", spanning 3 reference files). This scenario needs the latter — an
+     * unrelated Change whose description doesn't textually overlap the rename's — so pick
+     * the one with more than one occurrence rather than the first MECHANICAL_REPLACEMENT
+     * found, which the incidental single-occurrence duplicate would otherwise satisfy.
+     */
+    private Change mechanicalReplacementChange(List<Change> changes) {
+        return changes.stream()
+                .filter(change -> change.kind() == TransformationKind.MECHANICAL_REPLACEMENT)
+                .filter(change -> change.occurrenceCount() > 1)
+                .findFirst()
+                .orElseThrow();
     }
 }
