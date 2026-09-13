@@ -31,6 +31,8 @@ import java.util.stream.Stream;
 public final class PrAnalyzer {
 
     private final JavaSourceParser parser = new JavaSourceParser();
+    private final StructuralTaxonomyClassifier structuralClassifier =
+            new StructuralTaxonomyClassifier(new TaxonomyLoader().load(SemanticDimension.STRUCTURAL));
 
     public AnalysisResult analyze(Path baseRoot, Path headRoot) {
         Set<String> relativePaths = allRelativeJavaPaths(baseRoot, headRoot);
@@ -59,10 +61,27 @@ public final class PrAnalyzer {
         }
 
         List<Change> changes = anyParseable ? detectChanges(baseRoot, headRoot) : List.of();
+        List<SemanticProfile> semanticProfiles = changes.stream().map(this::classify).toList();
 
         AnalysisStatus status = status(relativePaths.size(), degradedEntries.size());
 
-        return new AnalysisResult(status, changes, degradedEntries, rawDiffsByFile);
+        return new AnalysisResult(status, changes, semanticProfiles, degradedEntries, rawDiffsByFile);
+    }
+
+    /**
+     * Classifies one Change along whichever semantic dimensions have a classifier today
+     * (ticket #86/#88) — currently structural only; other dimensions (pattern, framework,
+     * responsibility, feature, architecture, intent) have taxonomies but no classifier yet,
+     * so a Change simply carries no classification along those dimensions rather than a
+     * guessed or placeholder one.
+     */
+    private SemanticProfile classify(Change change) {
+        SemanticProfile profile = SemanticProfile.empty(change);
+        Optional<SemanticClassification> structural = structuralClassifier.classify(change);
+        if (structural.isPresent()) {
+            profile = profile.with(SemanticDimension.STRUCTURAL, structural.get());
+        }
+        return profile;
     }
 
     private String degradationReason(Optional<ParseResult> baseParse, boolean baseOk,
