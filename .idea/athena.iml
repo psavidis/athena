@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$" dumb="true">
+      <sourceFolder url="file://$MODULE_DIR$/athena-app/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/athena-app/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/athena-app/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/athena-app/src/test/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/athena-plugin-spring/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/athena-plugin-spring/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/athena-plugin-spring/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/athena-plugin-spring/src/test/resources" type="java-test-resource" />
+    </content>
+  </component>
+</module>
