@@ -1,0 +1,10 @@
+[
+  {"id": "user-management", "name": "User Management", "description": "The product capability covering user account lifecycle."},
+  {"id": "user-management-add-user", "name": "Add User", "parentId": "user-management", "description": "The flow for creating a new user account."},
+  {"id": "order-management", "name": "Order Management", "description": "The product capability covering order lifecycle."},
+  {"id": "order-management-checkout", "name": "Checkout", "parentId": "order-management", "description": "The flow for completing an order purchase."},
+  {"id": "payment", "name": "Payment", "description": "The product capability covering payment processing."},
+  {"id": "payment-process-payment", "name": "Process Payment", "parentId": "payment", "description": "The flow for charging and confirming a payment."},
+  {"id": "authentication", "name": "Authentication", "description": "The product capability covering identity verification."},
+  {"id": "authentication-login", "name": "Login", "parentId": "authentication", "description": "The flow for authenticating an existing user."}
+]

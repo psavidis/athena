@@ -1,0 +1,14 @@
+[
+  {"id": "add-capability", "name": "Add Capability", "description": "A new business-meaningful capability was introduced."},
+  {"id": "remove-capability", "name": "Remove Capability", "description": "An existing business-meaningful capability was removed."},
+  {"id": "modify-capability", "name": "Modify Capability", "description": "An existing capability's behavior changed without being added or removed."},
+  {"id": "move-responsibility", "name": "Move Responsibility", "description": "A responsibility moved from one type/module to another."},
+  {"id": "split-responsibility", "name": "Split Responsibility", "description": "One type/module's responsibility was divided across multiple types/modules."},
+  {"id": "merge-responsibility", "name": "Merge Responsibility", "description": "Multiple types'/modules' responsibilities were consolidated into one."},
+  {"id": "introduce-abstraction", "name": "Introduce Abstraction", "description": "A new interface or abstract type was introduced above existing implementation(s)."},
+  {"id": "remove-abstraction", "name": "Remove Abstraction", "description": "An interface or abstract type was collapsed back into a concrete implementation."},
+  {"id": "change-collaboration", "name": "Change Collaboration", "description": "Which types collaborate, or how, changed without changing what either does alone."},
+  {"id": "change-state-management", "name": "Change State Management", "description": "How state is held or mutated changed (e.g. mutable to immutable, in-memory to persisted)."},
+  {"id": "change-data-ownership", "name": "Change Data Ownership", "description": "Which type/module is authoritative for a piece of data changed."},
+  {"id": "change-api-responsibility", "name": "Change API Responsibility", "description": "What a public API is responsible for doing changed."}
+]
