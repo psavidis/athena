@@ -118,7 +118,7 @@ cleanup() {
 }
 trap cleanup EXIT INT TERM HUP
 
-mvn -q spring-boot:run &
+(cd athena-app && mvn -q spring-boot:run) &
 pids+=($!)
 
 (cd frontend && npm run dev) &
