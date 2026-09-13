@@ -33,7 +33,7 @@ Requires Java 21, Maven, Node/npm, `git` on your `PATH`.
 
 ```bash
 # Backend (from the repo root)
-mvn spring-boot:run
+mvn spring-boot:run -pl athena-app
 
 # Frontend (in another terminal)
 cd frontend && npm install && npm run dev
@@ -49,10 +49,10 @@ read access to the target repo.
 
 ```bash
 # Build once (rebuild the classpath file if dependencies change)
-mvn -q compile dependency:build-classpath -Dmdep.outputFile=/tmp/athena-cp.txt
+mvn -q -pl athena-app -am compile dependency:build-classpath -Dmdep.outputFile=/tmp/athena-cp.txt
 
 # Run against any real PR
-GITHUB_TOKEN=$(gh auth token) java -cp "target/classes:$(cat /tmp/athena-cp.txt)" \
+GITHUB_TOKEN=$(gh auth token) java -cp "athena-app/target/classes:$(cat /tmp/athena-cp.txt)" \
   com.athena.cli.Main <owner/repo> <pr-number>
 ```
 
@@ -65,28 +65,43 @@ command-line argument.
 mvn test
 ```
 
-Tests are Cucumber (`.feature` files under `src/test/resources/features/`)
-plus their Java step definitions — see `CODE_STYLE.md` for the testing
-philosophy (Detroit-school/classicist; mocks only at genuine external
-boundaries).
+Tests are Cucumber (`.feature` files under each module's own
+`src/test/resources/features/`) plus their Java step definitions — see
+`CODE_STYLE.md` for the testing philosophy (Detroit-school/classicist;
+mocks only at genuine external boundaries).
 
-## Package layout
+## Module layout
 
-| Package                    | What it's for                                                             |
-|-----------------------------|----------------------------------------------------------------------------|
-| `com.athena.github`         | Importing a PR's metadata/diff from GitHub, and syncing comments/decisions back |
-| `com.athena.semantic`       | The detection engine: parses Java, detects transformations, groups them into Changes |
-| `com.athena.reviewui`       | Review UI view-models (Change Map, drill-down, search) — not yet rendered anywhere |
-| `com.athena.reviewcontext`  | Assembling a reviewer's session into a Review Context artifact + continuity across revisions |
-| `com.athena.ai`             | Optional post-review AI analysis: context boundary, provider abstraction, findings review |
-| `com.athena.git`            | Shared git-checkout utilities (shells out to `git`), used by both the CLI and the web backend |
-| `com.athena.cli`            | The read-only CLI entry point — see "Try it" above |
-| `com.athena` / `com.athena.web` | The Spring Boot web UI backend (REST API only, no server-rendered HTML) — see "Try it" above |
-| `frontend/`                 | The React/TypeScript/Vite/Tailwind/TanStack Query web frontend — see `frontend/README.md` |
+The detection engine is a plugin architecture: `athena-core` defines a
+`LanguagePlugin`/`FrameworkPlugin` SPI (`com.athena.semantic.spi`,
+discovered via `java.util.ServiceLoader`) and owns the language-agnostic
+domain model; each language or framework is a separate module implementing
+that SPI, with no compile-time dependency back from core. Java
+(`athena-plugin-java`, via JavaParser) and Spring/JPA/Jackson/JUnit
+(`athena-plugin-spring`) are the first implementations — adding a new
+language or framework is a new sibling module, not a change to core or the
+app.
+
+| Module                | What it's for                                                                 |
+|------------------------|--------------------------------------------------------------------------------|
+| `athena-core`          | The `LanguagePlugin`/`FrameworkPlugin` SPI, the language-agnostic domain model (`Change`, `Taxonomy`, `ReviewState`, ...), and `PrAnalyzer`'s orchestration — no JavaParser or Spring dependency |
+| `athena-plugin-java`   | The Java `LanguagePlugin`: parses Java via JavaParser, detects transformations (rename/move/extract/...), builds the symbol model |
+| `athena-plugin-spring` | The Spring `FrameworkPlugin`: recognizes Spring/JPA/Jackson/JUnit annotation conventions for the FRAMEWORK classification dimension |
+| `athena-app`           | The Spring Boot web UI backend + CLI entry point; bundles the plugin jars on its runtime classpath — see "Try it" above |
+| `frontend/`            | The React/TypeScript/Vite/Tailwind/TanStack Query web frontend — see `frontend/README.md` |
+
+Within `athena-app`, packages are organized the same way as before:
+`com.athena.github` (GitHub import/sync), `com.athena.reviewui` (review UI
+view-models), `com.athena.reviewcontext` (Review Context assembly +
+continuity), `com.athena.ai` (optional post-review AI analysis),
+`com.athena.git` (shared git-checkout utilities), `com.athena.cli` (the CLI
+entry point), `com.athena` / `com.athena.web` (the Spring Boot backend),
+and `com.athena.plugins` (`ServiceLoader` discovery wiring for the plugin
+modules above).
 
 ## Known limitations right now
 
-- Java only — other languages in a PR are silently ignored.
+- Java is the only `LanguagePlugin` implemented so far — other languages in a PR are silently ignored until a matching plugin module exists.
 - Read-only everywhere — no review state, comments, or GitHub sync yet, from either the CLI or the web UI.
 - The web UI only covers connect → pick repository → pick PR so far; no Change Map, drill-down, comments, review state, or AI analysis wired up yet.
 - A record's component list changing is detected; a whole record type
