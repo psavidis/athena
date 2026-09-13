@@ -15,16 +15,32 @@ public final class SemanticClassification {
 
     private final TaxonomyConcept concept;
     private final List<DetectedTransformation> evidence;
+    private final List<String> supportingConceptNames;
 
-    private SemanticClassification(TaxonomyConcept concept, List<DetectedTransformation> evidence) {
+    private SemanticClassification(TaxonomyConcept concept, List<DetectedTransformation> evidence,
+                                    List<String> supportingConceptNames) {
         this.concept = concept;
         this.evidence = List.copyOf(evidence);
+        this.supportingConceptNames = List.copyOf(supportingConceptNames);
     }
 
     public static SemanticClassification of(TaxonomyConcept concept, List<DetectedTransformation> evidence) {
+        return of(concept, evidence, List.of());
+    }
+
+    /**
+     * @param supportingConceptNames the concept names of other classifications (typically this
+     *        same Change's own {@link SemanticDimension#STRUCTURAL} entry, and — for a
+     *        multi-Change correlation like Dependency Injection — the Change it correlated
+     *        with) that a reviewer can follow to see what this classification is built from
+     *        (ticket #96).
+     */
+    public static SemanticClassification of(TaxonomyConcept concept, List<DetectedTransformation> evidence,
+                                             List<String> supportingConceptNames) {
         Objects.requireNonNull(concept, "concept");
         Objects.requireNonNull(evidence, "evidence");
-        return new SemanticClassification(concept, evidence);
+        Objects.requireNonNull(supportingConceptNames, "supportingConceptNames");
+        return new SemanticClassification(concept, evidence, supportingConceptNames);
     }
 
     public TaxonomyConcept concept() {
@@ -34,6 +50,11 @@ public final class SemanticClassification {
     /** The detected transformations this classification was derived from. */
     public List<DetectedTransformation> evidence() {
         return evidence;
+    }
+
+    /** The concept names of other classifications this one is built from/supported by, if any. */
+    public List<String> supportingConceptNames() {
+        return supportingConceptNames;
     }
 
     @Override

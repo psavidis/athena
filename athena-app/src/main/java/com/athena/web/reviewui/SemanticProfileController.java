@@ -69,7 +69,8 @@ public class SemanticProfileController {
         int confidencePercent = inferred ? INFERRED_CONFIDENCE_PERCENT : 100;
         List<String> evidence = classification.evidence().stream().map(DetectedTransformation::diffText).toList();
         return new SemanticDimensionEntryResponse(dimension, classification.concept().name(),
-                classification.concept().description(), inferred, confidencePercent, evidence);
+                classification.concept().description(), inferred, confidencePercent, evidence,
+                classification.supportingConceptNames());
     }
 
     private WebSession.SelectedPullRequest requireSelection() {

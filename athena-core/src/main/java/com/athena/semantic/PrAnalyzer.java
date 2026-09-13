@@ -55,7 +55,7 @@ public final class PrAnalyzer {
         structuralClassifier = new StructuralTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.STRUCTURAL));
         responsibilityClassifier = new ResponsibilityTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.RESPONSIBILITY));
         architectureClassifier = new ArchitectureTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.ARCHITECTURE));
-        patternClassifier = new PatternTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.PATTERN));
+        patternClassifier = new PatternTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.PATTERN), structuralClassifier);
         flowClassifier = new FlowTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.FEATURE));
         intentClassifier = new IntentTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.INTENT));
         frameworkTaxonomy = taxonomyLoader.load(SemanticDimension.FRAMEWORK);

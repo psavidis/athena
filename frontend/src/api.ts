@@ -75,6 +75,7 @@ export interface SemanticDimensionEntry {
   inferred: boolean
   confidencePercent: number
   evidence: string[]
+  supportingConceptNames: string[]
 }
 
 export interface SemanticProfile {

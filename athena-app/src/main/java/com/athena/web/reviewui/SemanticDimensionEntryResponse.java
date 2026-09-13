@@ -16,5 +16,5 @@ import java.util.List;
  */
 public record SemanticDimensionEntryResponse(SemanticDimension dimension, String conceptName,
                                               String conceptDescription, boolean inferred, int confidencePercent,
-                                              List<String> evidence) {
+                                              List<String> evidence, List<String> supportingConceptNames) {
 }

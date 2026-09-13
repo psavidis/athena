@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getSemanticProfile, type SemanticDimension, type SemanticDimensionEntry } from './api'
+import PatternLevel from './PatternLevel'
+import StructureLevel from './StructureLevel'
 import { BackLink, Card, DiffView, ErrorState, LoadingState, SectionLabel } from './ui'
 
 /**
@@ -33,6 +35,11 @@ export default function SemanticChangeExplorerPage({
     retry: false,
   })
   const [currentDimension, setCurrentDimension] = useState<SemanticDimension>('STRUCTURAL')
+  // Which entry of the current level is highlighted (ticket #96): a Structure
+  // chip the reviewer clicked directly, or the Structure chip a Pattern's
+  // "supported by" link sent them to. Cleared on any other level change —
+  // it's only meaningful while looking at the Structure level.
+  const [selectedConceptName, setSelectedConceptName] = useState<string | undefined>(undefined)
 
   if (isError) {
     return <ErrorState message="Could not load this Change's Semantic Profile." />
@@ -41,13 +48,17 @@ export default function SemanticChangeExplorerPage({
     return <LoadingState />
   }
 
-  // This ticket's job is the shell's mechanics — spine, Change Story, evidence
-  // wiring — not each level's own visualization (separate tickets fill those
-  // in), so a level with a classification renders a minimal generic view of
-  // it here, and one without renders a plain empty state rather than
-  // fabricating content (mirrors SemanticProfile's own "absent means
-  // unclassified" rule).
-  const currentEntry = data.dimensions.find((entry) => entry.dimension === currentDimension)
+  function selectLevel(dimension: SemanticDimension) {
+    setCurrentDimension(dimension)
+    setSelectedConceptName(undefined)
+  }
+
+  function selectSupportingStructuralChange(conceptName: string) {
+    setCurrentDimension('STRUCTURAL')
+    setSelectedConceptName(conceptName)
+  }
+
+  const entriesForCurrentDimension = data.dimensions.filter((entry) => entry.dimension === currentDimension)
   const currentLabel = LEVELS.find((level) => level.dimension === currentDimension)!.label
 
   return (
@@ -55,12 +66,22 @@ export default function SemanticChangeExplorerPage({
       <div className="animate-rise-in">
         <BackLink onClick={onBack}>← Back to Change Map</BackLink>
 
-        <ChangeStory dimensions={data.dimensions} onSelect={setCurrentDimension} />
+        <ChangeStory dimensions={data.dimensions} onSelect={selectLevel} />
 
         <div className="grid gap-6 lg:grid-cols-[14rem_1fr_1fr]">
-          <Spine current={currentDimension} onSelect={setCurrentDimension} />
-          <CenterStage label={currentLabel} entry={currentEntry} />
-          <EvidencePanel label={currentLabel} entry={currentEntry} />
+          <Spine current={currentDimension} onSelect={selectLevel} />
+          {currentDimension === 'STRUCTURAL' ? (
+            <StructureLevel
+              entries={entriesForCurrentDimension}
+              selectedConceptName={selectedConceptName}
+              onSelect={setSelectedConceptName}
+            />
+          ) : currentDimension === 'PATTERN' ? (
+            <PatternLevel entries={entriesForCurrentDimension} onSelectSupporting={selectSupportingStructuralChange} />
+          ) : (
+            <CenterStage label={currentLabel} entry={entriesForCurrentDimension[0]} />
+          )}
+          <EvidencePanel label={currentLabel} entries={entriesForCurrentDimension} selectedConceptName={selectedConceptName} />
         </div>
       </div>
     </div>
@@ -132,14 +153,36 @@ function ConfidenceChip({ entry }: { entry: SemanticDimensionEntry }) {
   )
 }
 
-function EvidencePanel({ label, entry }: { label: string; entry: SemanticDimensionEntry | undefined }) {
+function EvidencePanel({
+  label,
+  entries,
+  selectedConceptName,
+}: {
+  label: string
+  entries: SemanticDimensionEntry[]
+  selectedConceptName: string | undefined
+}) {
+  const withEvidence = entries.filter((entry) => entry.evidence.length > 0)
   return (
     <section>
       <SectionLabel>Evidence</SectionLabel>
-      {entry && entry.evidence.length > 0 ? (
+      {withEvidence.length > 0 ? (
         <div className="space-y-3">
-          {entry.evidence.map((diff, i) => (
-            <DiffView key={i} diff={diff} />
+          {withEvidence.map((entry) => (
+            <div
+              key={entry.conceptName}
+              role="group"
+              aria-label={entry.conceptName}
+              aria-current={entry.conceptName === selectedConceptName ? 'true' : undefined}
+              className={
+                'space-y-3 rounded-xl ' +
+                (entry.conceptName === selectedConceptName ? 'ring-2 ring-accent ring-offset-2' : '')
+              }
+            >
+              {entry.evidence.map((diff, i) => (
+                <DiffView key={i} diff={diff} />
+              ))}
+            </div>
           ))}
         </div>
       ) : (

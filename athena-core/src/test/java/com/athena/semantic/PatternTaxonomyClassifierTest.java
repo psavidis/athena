@@ -11,7 +11,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PatternTaxonomyClassifierTest {
 
     private final PatternTaxonomyClassifier classifier =
-            new PatternTaxonomyClassifier(new TaxonomyLoader().load(SemanticDimension.PATTERN));
+            new PatternTaxonomyClassifier(new TaxonomyLoader().load(SemanticDimension.PATTERN),
+                    new StructuralTaxonomyClassifier(new TaxonomyLoader().load(SemanticDimension.STRUCTURAL)));
 
     @Test
     void classifiesANewlyAddedBuilderAsBuilder() {
@@ -52,6 +53,14 @@ class PatternTaxonomyClassifierTest {
     }
 
     @Test
+    void namesItsOwnStructuralChangeAsSupportForANamingConventionPattern() {
+        // Ticket #96: a Pattern entry lists the structural change(s) that support it, so a
+        // reviewer can trace "Builder" back to the "Add" structural chip it came from.
+        assertThat(classifier.classify(addClass("UserBuilder")).get().supportingConceptNames())
+                .containsExactly("Add");
+    }
+
+    @Test
     void correlatesARemovedFieldWithAnAddedConstructorParameterOfTheSameNameAsDependencyInjection() {
         Change removedField = changeOf(TransformationKind.REMOVE_FIELD, "UserService#userRepository");
         Change addedParameter = changeOf(TransformationKind.ADD_CONSTRUCTOR_PARAMETER, "UserService#userRepository");
@@ -61,6 +70,20 @@ class PatternTaxonomyClassifierTest {
 
         assertThat(matches).containsOnlyKeys(addedParameter);
         assertThat(matches.get(addedParameter).concept().id()).isEqualTo("dependency-injection");
+    }
+
+    @Test
+    void namesTheAddedParameterAndTheRemovedFieldAsSupportForDependencyInjection() {
+        // Ticket #96: the DI Pattern entry's "supported by" list must name both halves of the
+        // correlation — the Change's own structural change and the one it correlated with.
+        Change removedField = changeOf(TransformationKind.REMOVE_FIELD, "UserService#userRepository");
+        Change addedParameter = changeOf(TransformationKind.ADD_CONSTRUCTOR_PARAMETER, "UserService#userRepository");
+
+        Map<Change, SemanticClassification> matches =
+                classifier.classifyDependencyInjection(List.of(removedField, addedParameter));
+
+        assertThat(matches.get(addedParameter).supportingConceptNames())
+                .containsExactly("Add Constructor Parameter", "Remove");
     }
 
     @Test
@@ -95,6 +118,20 @@ class PatternTaxonomyClassifierTest {
 
         assertThat(matches).containsOnlyKeys(addedParameter);
         assertThat(matches.get(addedParameter).concept().id()).isEqualTo("dependency-injection");
+    }
+
+    @Test
+    void namesTheAddedParameterAndTheChangedFieldAnnotationsAsSupportForDependencyInjection() {
+        Change droppedAutowired = changeWithDiff(TransformationKind.CHANGE_FIELD_ANNOTATIONS, "UserService#userRepository",
+                "@Autowired\nprivate UserRepository userRepository;\n",
+                "private UserRepository userRepository;\n");
+        Change addedParameter = changeOf(TransformationKind.ADD_CONSTRUCTOR_PARAMETER, "UserService#userRepository");
+
+        Map<Change, SemanticClassification> matches =
+                classifier.classifyDependencyInjection(List.of(droppedAutowired, addedParameter));
+
+        assertThat(matches.get(addedParameter).supportingConceptNames())
+                .containsExactly("Add Constructor Parameter", "Change Field Annotations");
     }
 
     @Test
