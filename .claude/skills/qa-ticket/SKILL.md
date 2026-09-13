@@ -1,6 +1,6 @@
 ---
 name: qa-ticket
-description: Turn a feature ticket's committed Gherkin scenarios into step definitions and Detroit-school tests, run them (red is expected pre-implementation), and report. Invoked by the engineer before implementing.
+description: Turn a feature ticket's committed Gherkin scenarios into step definitions plus dedicated unit tests for the classes/methods the ticket introduces, run them (red is expected pre-implementation), and report. Invoked by the engineer before implementing.
 ---
 
 # QA Ticket
@@ -8,9 +8,14 @@ description: Turn a feature ticket's committed Gherkin scenarios into step defin
 ## Purpose
 
 Turn the `.feature` files `spec-writer` committed for this ticket into
-executable tests: step definitions wired to the Gherkin scenarios, plus
-whatever supporting unit tests round out coverage the scenarios don't
-reach directly. Run them and report the result. This is the "tester"
+executable tests: step definitions wired to the Gherkin scenarios, **and**
+dedicated Detroit-school unit tests for the production classes/methods
+the ticket introduces. These two layers are complementary, not
+alternatives — Gherkin coverage of a use case never excuses skipping a
+unit test for the class that implements it, and a unit test never
+excuses skipping the black-box scenario. Both are a standing part of
+every ticket's suite, not something added only when the other layer
+leaves a gap. Run them and report the result. This is the "tester"
 role in the ticket workflow, and it runs **before** implementation, not
 after — these tests are meant to fail first (red), then `engineer-ticket`
 implements until they pass (green). That's the point: the tests define
@@ -50,8 +55,8 @@ spec-to-epic → plan-feature → spec-writer → qa-ticket → engineer-ticket 
 ## Role boundary
 
 - QA never edits implementation/production code. It writes/updates test
-  code (step definitions + supporting tests) only, and reports what it
-  finds.
+  code (step definitions + dedicated unit tests) only, and reports what
+  it finds.
 - QA runs once per ticket's test-design pass. If the suite is red (the
   normal, expected state before `engineer-ticket` has implemented
   anything), that is not a failure to fix — report it as the starting
@@ -75,10 +80,14 @@ spec-to-epic → plan-feature → spec-writer → qa-ticket → engineer-ticket 
    not-yet-existing internals invented for convenience. It is expected
    and correct for these to not compile or fail until `engineer-ticket`
    builds the corresponding implementation.
-4. Add supporting unit tests for anything the Gherkin scenarios don't
-   reach directly but the ticket's acceptance criteria still require
-   (e.g. a pure-function edge case awkward to phrase as a user-facing
-   scenario) — same Detroit-school rules apply.
+4. Write dedicated unit tests for the new production classes/methods this
+   ticket introduces (e.g. a `FooClassifier` gets a `FooClassifierTest`
+   exercising its public API directly), even where a Gherkin scenario
+   already exercises the same code path end-to-end — same Detroit-school
+   rules apply. This is required for every ticket, not conditional on the
+   Gherkin scenarios leaving a gap; where they do leave a gap (e.g. a
+   pure-function edge case awkward to phrase as a user-facing scenario),
+   cover it here too.
 5. Run the full relevant test suite (not just this ticket's new tests) to
    see the actual starting state — some failures are pre-existing/
    unrelated, some are this ticket's tests correctly failing pre-
@@ -89,7 +98,8 @@ spec-to-epic → plan-feature → spec-writer → qa-ticket → engineer-ticket 
 
 Report:
 
-- test/step-definition files added or changed
+- test files added or changed (step definitions and unit tests, listed
+  separately)
 - full command used to run the suite
 - results, split into: (a) this ticket's new tests — expected to fail
   pre-implementation, list them; (b) anything else failing that isn't

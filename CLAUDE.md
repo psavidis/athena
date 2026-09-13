@@ -16,8 +16,9 @@ a skill under `.claude/skills/`:
 - **Spec writer** (`spec-writer`) — turns a Feature ticket's intent into
   black-box **Use Cases**, each expressed as a committed Gherkin
   `.feature` file. No test or implementation code yet.
-- **QA** (`qa-ticket`) — writes step definitions + Detroit-school tests
-  against those `.feature` files and runs them. Expected to be **red**
+- **QA** (`qa-ticket`) — writes step definitions against those `.feature`
+  files **and** dedicated Detroit-school unit tests for the classes/
+  methods the ticket introduces, then runs them. Expected to be **red**
   at this point — implementation doesn't exist yet. Invoked inline by
   the engineer (no subagent spawn).
 - **Engineer** (`engineer-ticket`) — claims the ticket, ensures
@@ -65,6 +66,13 @@ at a genuine external boundary a test can't or shouldn't cross for real
 source, expensive/unavailable I/O). An internal class in this codebase is
 never mocked just for isolation — see `qa-ticket` for the full rule and
 the one-line-comment requirement at every mock site.
+
+Every ticket's suite pairs two layers, and neither substitutes for the
+other: Gherkin/Cucumber scenarios exercising the feature black-box
+through its public entry point, **and** dedicated unit tests against the
+production classes/methods the ticket introduces. Covering a use case in
+Gherkin does not excuse skipping a unit test for the class that
+implements it — see `qa-ticket` step 4.
 
 ## Code style
 
