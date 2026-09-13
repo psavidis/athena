@@ -251,7 +251,7 @@ function EvidencePanel({
             const isSubdued = crossHighlighting && !isCrossHighlighted
             return (
               <div
-                key={entry.conceptName}
+                key={entry.dimension + ':' + entry.conceptName}
                 role="group"
                 aria-label={entry.conceptName}
                 aria-current={isSelected || isCrossHighlighted ? 'true' : undefined}

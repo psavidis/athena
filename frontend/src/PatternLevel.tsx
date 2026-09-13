@@ -32,6 +32,18 @@ export default function PatternLevel({
               key={entry.conceptName}
               className={'p-5' + (onSelectConcept ? ' cursor-pointer' : '')}
               onClick={onSelectConcept ? () => onSelectConcept(entry) : undefined}
+              role={onSelectConcept ? 'button' : undefined}
+              tabIndex={onSelectConcept ? 0 : undefined}
+              onKeyDown={
+                onSelectConcept
+                  ? (e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault()
+                        onSelectConcept(entry)
+                      }
+                    }
+                  : undefined
+              }
             >
               <div className="mb-2 flex items-center gap-2">
                 <h3 className="text-lg font-semibold text-ink-900">{entry.conceptName}</h3>
