@@ -45,6 +45,7 @@ public final class PrAnalyzer {
     private final ArchitectureTaxonomyClassifier architectureClassifier;
     private final PatternTaxonomyClassifier patternClassifier;
     private final FlowTaxonomyClassifier flowClassifier;
+    private final IntentTaxonomyClassifier intentClassifier;
     private final Taxonomy frameworkTaxonomy;
 
     public PrAnalyzer(List<LanguagePlugin> languagePlugins, List<FrameworkPlugin> frameworkPlugins) {
@@ -56,6 +57,7 @@ public final class PrAnalyzer {
         architectureClassifier = new ArchitectureTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.ARCHITECTURE));
         patternClassifier = new PatternTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.PATTERN));
         flowClassifier = new FlowTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.FEATURE));
+        intentClassifier = new IntentTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.INTENT));
         frameworkTaxonomy = taxonomyLoader.load(SemanticDimension.FRAMEWORK);
     }
 
@@ -102,9 +104,8 @@ public final class PrAnalyzer {
      * (ticket #86): structural, responsibility, feature/flow (ticket #92), and — for a
      * newly-added/renamed class only — architecture, pattern, and framework (all three read
      * a class's own name/annotations, which only a class actually taking on that identity
-     * speaks to). Intent has a taxonomy but no classifier yet — it isn't reliably inferable
-     * from a diff alone without guessing, so a Change simply carries no classification along
-     * that dimension rather than a guessed or placeholder one.
+     * speaks to). Intent (ticket #93) is classified last, since it correlates against this
+     * same Change's other already-assembled dimension classifications rather than the diff.
      *
      * @param dependencyInjectionMatch this Change's dependency-injection Pattern
      *        classification, precomputed once across the whole Change set by
@@ -120,6 +121,9 @@ public final class PrAnalyzer {
         profile = withClassification(profile, SemanticDimension.PATTERN, Optional.ofNullable(dependencyInjectionMatch));
         profile = withClassification(profile, SemanticDimension.FEATURE, flowClassifier.classify(change));
         profile = withClassification(profile, SemanticDimension.FRAMEWORK, classifyFramework(change));
+        for (SemanticClassification intentClassification : intentClassifier.classify(profile)) {
+            profile = profile.with(SemanticDimension.INTENT, intentClassification);
+        }
         return profile;
     }
 
