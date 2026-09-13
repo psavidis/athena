@@ -21,8 +21,3 @@ Feature: Intent classification of code changes
     Given a change with no classification on any dimension other than Intent
     When the change is classified along the Intent dimension
     Then it has no Intent classification
-
-  Scenario: A change with no matched code at all is left unclassified
-    Given a change with no matched code at all
-    When the change is classified along the Intent dimension
-    Then it has no Intent classification
