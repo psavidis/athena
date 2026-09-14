@@ -92,6 +92,27 @@ public final class ExternalFinding {
         return providerSpecificMetadata;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ExternalFinding other)) return false;
+        return providerId.equals(other.providerId)
+                && language.equals(other.language)
+                && ruleId.equals(other.ruleId)
+                && Objects.equals(ruleName, other.ruleName)
+                && severity == other.severity
+                && message.equals(other.message)
+                && location.equals(other.location)
+                && relatedLocations.equals(other.relatedLocations)
+                && providerSpecificMetadata.equals(other.providerSpecificMetadata);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(providerId, language, ruleId, ruleName, severity, message, location, relatedLocations,
+                providerSpecificMetadata);
+    }
+
     /** Builds an {@link ExternalFinding}, per CODE_STYLE.md's builder guidance for a type with several optional fields. */
     public static final class Builder {
         private final String providerId;

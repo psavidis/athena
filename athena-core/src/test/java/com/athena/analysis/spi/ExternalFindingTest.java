@@ -66,4 +66,29 @@ class ExternalFindingTest {
                 ExternalFinding.builder("sonarjava", "java", "S1234", ExternalFindingSeverity.HIGH, "  ", LOCATION))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void twoSeparatelyBuiltFindingsWithTheSameFieldsAreEqual() {
+        ExternalFinding first = ExternalFinding
+                .builder("sonarjava", "java", "S1234", ExternalFindingSeverity.HIGH, "message", LOCATION)
+                .build();
+        ExternalFinding second = ExternalFinding
+                .builder("sonarjava", "java", "S1234", ExternalFindingSeverity.HIGH, "message", LOCATION)
+                .build();
+
+        assertThat(first).isEqualTo(second);
+        assertThat(first).hasSameHashCodeAs(second);
+    }
+
+    @Test
+    void findingsWithDifferentRuleIdsAreNotEqual() {
+        ExternalFinding first = ExternalFinding
+                .builder("sonarjava", "java", "S1234", ExternalFindingSeverity.HIGH, "message", LOCATION)
+                .build();
+        ExternalFinding second = ExternalFinding
+                .builder("sonarjava", "java", "S9999", ExternalFindingSeverity.HIGH, "message", LOCATION)
+                .build();
+
+        assertThat(first).isNotEqualTo(second);
+    }
 }
