@@ -59,12 +59,12 @@ describe('App routing', () => {
     expect(await screen.findByRole('application', { name: 'Semantic Canvas territory map' })).toBeVisible()
   })
 
-  it('routes back to the connect step when the Canvas reports not connected', async () => {
+  it('routes back to the not-connected prompt when the Canvas reports not connected', async () => {
     server.use(http.get('/api/review/topology', () => new HttpResponse(null, { status: 401 })))
 
     await connectSelectRepoAndPr()
 
-    expect(await screen.findByText('Connect to GitHub')).toBeVisible()
+    expect(await screen.findByText('Not connected to GitHub')).toBeVisible()
   })
 
   it('routes back to PR selection when the Canvas reports no PR selected', async () => {

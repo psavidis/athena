@@ -50,6 +50,19 @@ public class GitHubAccess implements CurrentReviewer {
     }
 
     /**
+     * The URL to GitHub's own per-installation "Configure access" settings
+     * page (ticket #113/#145) — where a user adds/removes repository access
+     * for the installed App. Athena links out here rather than implementing
+     * its own add/remove-access UI, since access itself is the installation's
+     * own scope. Null when nothing is connected yet (nothing to configure).
+     */
+    public String connectedInstallationConfigureUrl() {
+        return appClient.installation()
+                .map(installation -> "https://github.com/settings/installations/" + installation.installationId())
+                .orElse(null);
+    }
+
+    /**
      * {@link CurrentReviewer#login()}: the connected account's login, or a
      * placeholder when nothing is connected — reachable in practice only if a
      * comment is somehow posted with no PR selected, since selecting a PR
