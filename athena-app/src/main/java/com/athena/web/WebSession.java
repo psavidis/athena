@@ -5,7 +5,6 @@ import com.athena.git.TempDirectories;
 import com.athena.repository.ImportedPullRequest;
 import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewui.AnnotationBoard;
-import com.athena.semantic.AnalysisResult;
 import com.athena.semantic.Change;
 import com.athena.semantic.PrAnalyzer;
 import com.athena.semantic.ReviewStateStore;
@@ -16,9 +15,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 /**
@@ -40,6 +37,7 @@ public class WebSession {
     private final PrAnalyzer prAnalyzer;
     private String gitHubToken;
     private SelectedPullRequest selectedPullRequest;
+    private Diff selectedDiff;
     private AiFindingsBoard aiFindingsBoard;
 
     public WebSession(PrAnalyzer prAnalyzer) {
@@ -54,18 +52,57 @@ public class WebSession {
         return Optional.ofNullable(gitHubToken);
     }
 
-    /** Replaces any previously-selected PR, cleaning up its checkout directories first. */
+    /** Replaces any previously-selected PR, cleaning up its checkout directories first —
+     * also clears a standalone {@link #selectDiff selected Diff}, since a session holds
+     * only one current selection at a time (ticket #111/#152). */
     public void select(SelectedPullRequest newSelection) {
         if (this.selectedPullRequest != null) {
             TempDirectories.deleteRecursively(this.selectedPullRequest.workDir());
         }
-        newSelection.usePrAnalyzer(prAnalyzer);
+        if (this.selectedDiff != null) {
+            TempDirectories.deleteRecursively(this.selectedDiff.workDir());
+            this.selectedDiff = null;
+        }
+        newSelection.diff.usePrAnalyzer(prAnalyzer);
         this.selectedPullRequest = newSelection;
         this.aiFindingsBoard = null;
     }
 
     public Optional<SelectedPullRequest> selectedPullRequest() {
         return Optional.ofNullable(selectedPullRequest);
+    }
+
+    /** Replaces any previously-selected standalone Diff (ticket #111/#152) — a local
+     * comparison with no PR/GitHub context. Also clears a selected PR Review, for the
+     * same one-selection-at-a-time reason {@link #select} clears this. */
+    public void selectDiff(Diff newDiff) {
+        if (this.selectedDiff != null) {
+            TempDirectories.deleteRecursively(this.selectedDiff.workDir());
+        }
+        if (this.selectedPullRequest != null) {
+            TempDirectories.deleteRecursively(this.selectedPullRequest.workDir());
+            this.selectedPullRequest = null;
+        }
+        newDiff.usePrAnalyzer(prAnalyzer);
+        this.selectedDiff = newDiff;
+        this.aiFindingsBoard = null;
+    }
+
+    public Optional<Diff> selectedDiff() {
+        return Optional.ofNullable(selectedDiff);
+    }
+
+    /**
+     * Clears the selected Diff without deleting its checkout directory
+     * (ticket #111/#152) — for a caller that has already decided to
+     * delete that directory itself (e.g. {@code DiffSelectionController}
+     * unwinding a Diff whose own analysis failed after selection) and
+     * must not leave the session referencing a directory about to be
+     * removed out from under it. Ordinary replacement/deselection goes
+     * through {@link #selectDiff} instead, which does own that cleanup.
+     */
+    public void clearSelectedDiff() {
+        this.selectedDiff = null;
     }
 
     /** Set once AI analysis has been triggered for the current selection (ticket #77). */
@@ -77,46 +114,31 @@ public class WebSession {
         return Optional.ofNullable(aiFindingsBoard);
     }
 
+    /**
+     * A PR Review (ticket #111/#152): a {@link Diff} plus the GitHub-specific
+     * context that turns it into one — the imported PR's own metadata and
+     * repository. Delegates every Diff-shaped method to its {@link Diff}
+     * rather than duplicating fields, so this class's own public API (every
+     * controller across the web layer reads it) stays unchanged by the
+     * Diff/PR-context split — "PR Review is Diff + Review + PR context,"
+     * per the epic's own framing, expressed here as composition.
+     */
     public static final class SelectedPullRequest {
         private final ImportedPullRequest pullRequest;
         private final String repositoryFullName;
-        private final Path workDir;
-        private final Path baseRoot;
-        private final Path headRoot;
-        private final ReviewStateStore reviewStateStore;
-        private final AnnotationBoard annotationBoard;
-        private final ReviewSubmission reviewSubmission;
-
-        // Set by WebSession#select right after construction, rather than threaded through the
-        // constructor — keeps this type's own public constructor (and its three call sites, plus
-        // test fixtures) unchanged; a selection is only ever usable once WebSession owns it anyway.
-        private PrAnalyzer prAnalyzer;
-
-        // Detecting Changes (and their SemanticProfiles, ticket #94) means parsing every source
-        // file in both trees via whichever LanguagePlugin(s) PrAnalyzer has registered —
-        // expensive enough that recomputing it on every controller call for one selected PR (as
-        // every read of a Change used to do) made ordinary navigation clicks noticeably slow on
-        // a real-sized repository. Computed once, lazily, and reused for the rest of this PR's
-        // selection: base/head are immutable checkouts, so the result never changes while this
-        // selection is current.
-        private AnalysisResult cachedAnalysis;
-
-        // AI-generated module narratives are billed, real network calls — computed on demand
-        // (never eagerly for every module) and cached per module name for the rest of this
-        // selection, so re-opening the same module's narrative doesn't re-call the provider.
-        private final Map<String, String> cachedModuleNarratives = new ConcurrentHashMap<>();
+        private final Diff diff;
 
         public SelectedPullRequest(ImportedPullRequest pullRequest, String repositoryFullName, Path workDir,
                                     Path baseRoot, Path headRoot, ReviewStateStore reviewStateStore,
                                     AnnotationBoard annotationBoard, ReviewSubmission reviewSubmission) {
+            this(pullRequest, repositoryFullName,
+                    new Diff(workDir, baseRoot, headRoot, reviewStateStore, annotationBoard, reviewSubmission));
+        }
+
+        public SelectedPullRequest(ImportedPullRequest pullRequest, String repositoryFullName, Diff diff) {
             this.pullRequest = pullRequest;
             this.repositoryFullName = repositoryFullName;
-            this.workDir = workDir;
-            this.baseRoot = baseRoot;
-            this.headRoot = headRoot;
-            this.reviewStateStore = reviewStateStore;
-            this.annotationBoard = annotationBoard;
-            this.reviewSubmission = reviewSubmission;
+            this.diff = diff;
         }
 
         public ImportedPullRequest pullRequest() {
@@ -127,54 +149,47 @@ public class WebSession {
             return repositoryFullName;
         }
 
+        public Diff diff() {
+            return diff;
+        }
+
         public Path workDir() {
-            return workDir;
+            return diff.workDir();
         }
 
         public Path baseRoot() {
-            return baseRoot;
+            return diff.baseRoot();
         }
 
         public Path headRoot() {
-            return headRoot;
+            return diff.headRoot();
         }
 
         public ReviewStateStore reviewStateStore() {
-            return reviewStateStore;
+            return diff.reviewStateStore();
         }
 
         public AnnotationBoard annotationBoard() {
-            return annotationBoard;
+            return diff.annotationBoard();
         }
 
         public ReviewSubmission reviewSubmission() {
-            return reviewSubmission;
-        }
-
-        void usePrAnalyzer(PrAnalyzer prAnalyzer) {
-            this.prAnalyzer = prAnalyzer;
+            return diff.reviewSubmission();
         }
 
         /** The Changes detected between this selection's base and head — computed once, then cached. */
         public List<Change> changes() {
-            return analysisResult().changes();
+            return diff.changes();
         }
 
         /** This Change's Semantic Profile (ticket #94), from the same cached analysis as {@link #changes()}. */
         public SemanticProfile semanticProfileFor(Change change) {
-            return analysisResult().semanticProfileFor(change);
-        }
-
-        private synchronized AnalysisResult analysisResult() {
-            if (cachedAnalysis == null) {
-                cachedAnalysis = prAnalyzer.analyze(baseRoot, headRoot);
-            }
-            return cachedAnalysis;
+            return diff.semanticProfileFor(change);
         }
 
         /** The cached narrative for a module, computing it via {@code generator} on first request. */
         public String moduleNarrative(String moduleName, Function<String, String> generator) {
-            return cachedModuleNarratives.computeIfAbsent(moduleName, generator);
+            return diff.moduleNarrative(moduleName, generator);
         }
     }
 }
