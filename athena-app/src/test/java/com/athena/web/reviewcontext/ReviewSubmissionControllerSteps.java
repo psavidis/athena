@@ -84,7 +84,7 @@ public class ReviewSubmissionControllerSteps {
     @Given("the reviewer has posted the comment {string} scoped to the rename Change")
     public void the_reviewer_has_posted_a_comment_scoped_to_the_rename_change(String text) {
         changeMapSteps.session().selectedPullRequest().orElseThrow().annotationBoard()
-                .addComment(AnnotationScope.change(resolveRenameChange()), text);
+                .addComment(AnnotationScope.change(resolveRenameChange()), "reviewer", text);
     }
 
     @Given("the reviewer has posted the private note {string} scoped to the rename Change")

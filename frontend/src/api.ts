@@ -483,3 +483,86 @@ export async function acceptFinding(findingId: string): Promise<AiFinding[]> {
 export async function dismissFinding(findingId: string): Promise<AiFinding[]> {
   return evaluateFinding(findingId, 'dismiss')
 }
+
+/**
+ * A comment on a Semantic Canvas item — a territory or a node inside one
+ * (ticket #134). `itemId` identifies the item using the canvas's own id
+ * scheme (see SemanticCanvasPage.tsx's canvasItemId helper) and is opaque
+ * to the backend, which stores it as a new AnnotationScope kind.
+ */
+export interface CanvasComment {
+  id: string
+  author: string
+  postedAt: string
+  text: string
+}
+
+function canvasCommentsUrl(itemId: string): string {
+  return `/api/review/canvas-items/${encodeURIComponent(itemId)}/comments`
+}
+
+export async function getCanvasComments(itemId: string): Promise<CanvasComment[]> {
+  const response = await fetch(canvasCommentsUrl(itemId))
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  return asJson(response)
+}
+
+/** Every canvas item with at least one comment, mapped to its comment count. */
+export async function getCanvasCommentCounts(): Promise<Record<string, number>> {
+  const response = await fetch('/api/review/canvas-items/comment-counts')
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  return asJson(response)
+}
+
+export async function addCanvasComment(itemId: string, text: string): Promise<CanvasComment[]> {
+  const response = await fetch(canvasCommentsUrl(itemId), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text }),
+  })
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  if (response.status === 400) {
+    throw new BlankAnnotationError()
+  }
+  return asJson(response)
+}
+
+export async function editCanvasComment(itemId: string, commentId: string, text: string): Promise<CanvasComment[]> {
+  const response = await fetch(`${canvasCommentsUrl(itemId)}/${encodeURIComponent(commentId)}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text }),
+  })
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 400) {
+    throw new BlankAnnotationError()
+  }
+  return asJson(response)
+}
+
+export async function deleteCanvasComment(itemId: string, commentId: string): Promise<CanvasComment[]> {
+  const response = await fetch(`${canvasCommentsUrl(itemId)}/${encodeURIComponent(commentId)}`, {
+    method: 'DELETE',
+  })
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  return asJson(response)
+}

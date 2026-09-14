@@ -63,12 +63,12 @@ public class CommentsAndPrivateNotesSteps {
     @When("the reviewer adds the comment {string} at that symbol")
     @When("the reviewer adds the comment {string} at that Change")
     public void the_reviewer_adds_the_comment_at_current_scope(String text) {
-        board.addComment(currentScope, text);
+        board.addComment(currentScope, "reviewer", text);
     }
 
     @When("the reviewer adds the comment {string} at review scope")
     public void the_reviewer_adds_the_comment_at_review_scope(String text) {
-        board.addComment(currentScope, text);
+        board.addComment(currentScope, "reviewer", text);
     }
 
     @When("the reviewer adds the private note {string} at that Change")
@@ -97,7 +97,7 @@ public class CommentsAndPrivateNotesSteps {
     @When("the reviewer attempts to add a blank comment at that Change")
     public void the_reviewer_attempts_to_add_a_blank_comment() {
         try {
-            board.addComment(currentScope, "   ");
+            board.addComment(currentScope, "reviewer", "   ");
             rejection = null;
         } catch (RuntimeException e) {
             rejection = e;
