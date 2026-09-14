@@ -1,11 +1,11 @@
-package com.athena.github;
+package com.athena.repository;
 
 import java.util.List;
 
 /**
  * The full imported content of a Pull Request: metadata, base/head
  * revisions, commits, and changed files (each with status and, where
- * available, its textual diff).
+ * available, its textual diff). Provider-independent.
  */
 public record ImportedPullRequest(
         int number,

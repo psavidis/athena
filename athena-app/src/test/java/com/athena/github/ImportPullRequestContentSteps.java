@@ -1,5 +1,7 @@
 package com.athena.github;
 
+import com.athena.repository.ChangedFile;
+import com.athena.repository.ImportedPullRequest;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

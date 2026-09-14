@@ -3,10 +3,9 @@ package com.athena.web.github;
 import com.athena.git.GitAskpass;
 import com.athena.git.GitRevisionCheckout;
 import com.athena.git.TempDirectories;
-import com.athena.github.GitHubTransport;
-import com.athena.github.HttpGitHubTransport;
-import com.athena.github.ImportedPullRequest;
-import com.athena.github.PullRequestImporter;
+import com.athena.github.GitHubRepositoryProvider;
+import com.athena.repository.ImportedPullRequest;
+import com.athena.repository.RepositoryProvider;
 import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.ReviewStateStore;
@@ -19,10 +18,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import java.net.http.HttpClient;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.Duration;
 import java.util.Map;
 
 /**
@@ -45,9 +42,8 @@ public class PullRequestSelectionController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not connected to GitHub"));
 
         String repositoryFullName = owner + "/" + repo;
-        GitHubTransport transport = new HttpGitHubTransport(
-                HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build());
-        ImportedPullRequest pr = new PullRequestImporter(token, transport).importPullRequest(repositoryFullName, number);
+        RepositoryProvider provider = new GitHubRepositoryProvider(token);
+        ImportedPullRequest pr = provider.importPullRequest(repositoryFullName, number);
 
         String repositoryUrl = "https://github.com/" + repositoryFullName + ".git";
         Map<String, String> gitEnvironment = GitAskpass.environmentFor(token);

@@ -2,7 +2,7 @@ package com.athena.web.reviewui;
 
 import com.athena.git.GitRevisionCheckout;
 import com.athena.git.TempDirectories;
-import com.athena.github.ImportedPullRequest;
+import com.athena.repository.ImportedPullRequest;
 import com.athena.plugins.PluginRegistry;
 import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewui.AnnotationBoard;
