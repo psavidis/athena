@@ -35,3 +35,7 @@ module owns the step definitions that implement them:
   classpath, which only `athena-app` has. `local_diff_without_github.feature`
   (ticket #111/#152) lives here too, for the same reason, plus needing
   the web layer's `WebSession`/`DiffSelectionController`.
+  `canvas_for_a_standalone_diff.feature` (ticket #111/#153) exercises the
+  Semantic Canvas's web-layer controllers (territory map, semantic
+  profile, Change detail, canvas comments) against a selected standalone
+  Diff rather than a selected PR Review.
