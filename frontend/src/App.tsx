@@ -1,23 +1,13 @@
 import { useEffect, useState } from 'react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { createDiff, getGitHubStatus, listOpenPullRequests, listRepositories, selectPullRequest } from './api'
-import type { ImportedPullRequest } from './api'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { createDiff, getGitHubStatus, selectPullRequest } from './api'
+import type { ImportedPullRequest, PullRequestSummary } from './api'
 import ChangeDetailPage from './ChangeDetailPage'
 import SemanticCanvasPage from './SemanticCanvasPage'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
 import AiAnalysisPage from './AiAnalysisPage'
 import GitHubAccessPage from './GitHubAccessPage'
-import {
-  AthenaTopBar,
-  BackLink,
-  Card,
-  ErrorState,
-  LoadingState,
-  PageHeading,
-  PageShell,
-  PrimaryButton,
-  SecondaryButton,
-} from './ui'
+import { AthenaTopBar, BackLink, PageHeading, PageShell, PrimaryButton, RepoPrPicker, SecondaryButton } from './ui'
 
 export default function App() {
   const [connected, setConnected] = useState<boolean | null>(null)
@@ -47,9 +37,37 @@ export default function App() {
       .catch(() => setConnected(false))
   }, [])
 
-  function selectPr(pr: ImportedPullRequest) {
-    setSelectedPr(pr)
+  const queryClient = useQueryClient()
+  const selectPrMutation = useMutation({
+    mutationFn: (pr: PullRequestSummary) => selectPullRequest(selectedRepo!, pr.number),
+    onSuccess: setSelectedPr,
+    onSettled: () => queryClient.invalidateQueries({ queryKey: ['pulls', selectedRepo] }),
+  })
+
+  function selectRepo(repositoryFullName: string) {
+    setSelectedRepo(repositoryFullName)
+    setSelectedPr(null)
   }
+
+  // The repo/PR picker (ticket #128 follow-up) lives in the top bar on every
+  // main-product screen instead of gating the app behind standalone
+  // "Select a repository" / "Open PRs" screens — switching what you're
+  // reviewing never has to leave the product surface.
+  const picker = connected ? (
+    <RepoPrPicker
+      selectedRepo={selectedRepo}
+      selectedPr={selectedPr}
+      onSelectRepo={selectRepo}
+      onSelectPr={(pr) => selectPrMutation.mutate(pr)}
+    />
+  ) : undefined
+
+  // SemanticCanvasPage renders its own AthenaTopBar (it needs to add its
+  // review-mode/comments controls, and the picker, to the bar) — everywhere
+  // else App renders the one shared bar. Without this check the two would
+  // stack when a PR/Diff is active.
+  const showingSemanticCanvas =
+    diffActive || (selectedPr !== null && !diffViewChangeKey && !showingSummary && !showingAiAnalysis)
 
   function renderContent() {
     if (connected === null) {
@@ -73,6 +91,7 @@ export default function App() {
       return (
         <SemanticCanvasPage
           pullRequest={null}
+          picker={picker}
           onNotConnected={() => {
             setConnected(false)
             setDiffActive(false)
@@ -110,6 +129,7 @@ export default function App() {
       return (
         <SemanticCanvasPage
           pullRequest={selectedPr}
+          picker={picker}
           onNotConnected={() => {
             setConnected(false)
             setSelectedRepo(null)
@@ -119,23 +139,25 @@ export default function App() {
         />
       )
     }
-    if (selectedRepo) {
-      return (
-        <PullRequestStep repositoryFullName={selectedRepo} onBack={() => setSelectedRepo(null)} onSelected={selectPr} />
-      )
-    }
     return (
-      <RepositoryStep
-        onSelected={setSelectedRepo}
+      <EmptyCanvasShell
+        picker={picker}
         onOpenGitHubAccess={() => setShowingGitHubAccess(true)}
         onStartDiff={() => setShowingDiffEntryPoint(true)}
       />
     )
   }
 
+  // Every screen owns its own AthenaTopBar now (the Semantic Canvas, the
+  // EmptyCanvasShell) except this one, where GitHub isn't connected yet and
+  // there's no picker to show — a bare shared bar keeps the brand chrome
+  // present even here.
+  const showingBareTopBar =
+    !showingGitHubAccess && !showingDiffEntryPoint && !showingSemanticCanvas && connected === false
+
   return (
     <div className="flex min-h-screen flex-col">
-      {!selectedPr && !diffActive && !showingGitHubAccess && <AthenaTopBar />}
+      {showingBareTopBar && <AthenaTopBar />}
       <div className="flex-1">{renderContent()}</div>
     </div>
   )
@@ -157,116 +179,59 @@ function NotConnectedPrompt({
   onStartDiff: () => void
 }) {
   return (
-    <PageShell>
-      <div className="max-w-md">
-        <PageHeading title="Not connected to GitHub" />
-        <p className="mb-6 text-sm leading-relaxed text-ink-700">
-          Athena needs a GitHub connection to browse repositories and Pull Requests.
-        </p>
-        <div className="flex flex-wrap gap-2.5">
-          <PrimaryButton onClick={onOpenGitHubAccess}>Go to GitHub Access</PrimaryButton>
-          <SecondaryButton onClick={onStartDiff}>Start a Diff</SecondaryButton>
-        </div>
+    <div className="flex flex-col items-center justify-center gap-6 px-6 py-24 text-center">
+      <h1 className="text-2xl font-semibold text-ink-900">Not connected to GitHub</h1>
+      <p className="max-w-md text-sm leading-relaxed text-ink-700">
+        Athena needs a GitHub connection to browse repositories and Pull Requests.
+      </p>
+      <div className="flex flex-wrap justify-center gap-2.5">
+        <PrimaryButton onClick={onOpenGitHubAccess}>Go to GitHub Access</PrimaryButton>
+        <SecondaryButton onClick={onStartDiff}>Start a Diff</SecondaryButton>
       </div>
-    </PageShell>
+    </div>
   )
 }
 
-function RepositoryStep({
-  onSelected,
+/**
+ * The main product screen shown once GitHub is connected but no repository/
+ * PR has been picked yet from the top-bar {@link RepoPrPicker} (ticket #128
+ * follow-up) — the same canvas-shell chrome the Semantic Canvas itself uses
+ * once a PR loads, so picking a PR feels like activating content already on
+ * screen rather than navigating to a different app. Previously this state
+ * was a separate "Select a repository" screen entirely.
+ */
+function EmptyCanvasShell({
+  picker,
   onOpenGitHubAccess,
   onStartDiff,
 }: {
-  onSelected: (repositoryFullName: string) => void
+  picker: React.ReactNode
   onOpenGitHubAccess: () => void
   onStartDiff: () => void
 }) {
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ['repositories'],
-    queryFn: listRepositories,
-  })
-
   return (
-    <PageShell>
-      <div className="max-w-xl">
-        <div className="flex items-start justify-between gap-4">
-          <PageHeading title="Select a repository" />
-          <div className="flex flex-shrink-0 items-center gap-4">
-            <button type="button" onClick={onStartDiff} className="text-sm text-accent hover:underline">
+    <div className="flex h-screen w-full flex-col overflow-hidden bg-canvas-paper text-canvas-ink">
+      <AthenaTopBar
+        picker={picker}
+        right={
+          <>
+            <button type="button" onClick={onStartDiff} className="text-xs text-canvas-gold-deep hover:underline">
               Start a Diff
             </button>
-            <button type="button" onClick={onOpenGitHubAccess} className="text-sm text-accent hover:underline">
+            <button type="button" onClick={onOpenGitHubAccess} className="text-xs text-canvas-gold-deep hover:underline">
               GitHub Access
             </button>
-          </div>
-        </div>
-        {isError && <ErrorState message="Could not load repositories." />}
-        {isLoading && <LoadingState />}
-        {data && (
-          <Card className="divide-y divide-ink-200 overflow-hidden">
-            {data.map((repo) => (
-              <button
-                key={repo.fullName}
-                className="block w-full px-4 py-3 text-left text-sm text-ink-900 transition-colors hover:bg-ink-100"
-                onClick={() => onSelected(repo.fullName)}
-              >
-                {repo.fullName}
-              </button>
-            ))}
-          </Card>
-        )}
+          </>
+        }
+      />
+      <div
+        className="relative flex flex-1 items-center justify-center bg-[radial-gradient(var(--color-canvas-dot)_1.2px,transparent_1.2px)] bg-[length:26px_26px]"
+      >
+        <p className="text-sm font-medium tracking-wide text-canvas-ink-faint">
+          Select a repository and Pull Request above to open the Semantic Canvas.
+        </p>
       </div>
-    </PageShell>
-  )
-}
-
-function PullRequestStep({
-  repositoryFullName,
-  onBack,
-  onSelected,
-}: {
-  repositoryFullName: string
-  onBack: () => void
-  onSelected: (pr: ImportedPullRequest) => void
-}) {
-  const queryClient = useQueryClient()
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ['pulls', repositoryFullName],
-    queryFn: () => listOpenPullRequests(repositoryFullName),
-  })
-  const mutation = useMutation({
-    mutationFn: (number: number) => selectPullRequest(repositoryFullName, number),
-    onSuccess: onSelected,
-    onSettled: () => queryClient.invalidateQueries({ queryKey: ['pulls', repositoryFullName] }),
-  })
-
-  return (
-    <PageShell>
-      <div className="max-w-xl">
-        <BackLink onClick={onBack}>← Back to repositories</BackLink>
-        <PageHeading eyebrow="Step 3 of 3" title={`Open PRs — ${repositoryFullName}`} />
-        {isError && <p className="text-sm text-red-600">Could not load pull requests.</p>}
-        {isLoading && <LoadingState />}
-        {data?.length === 0 && <p className="text-sm text-ink-500">No open pull requests.</p>}
-        {data && data.length > 0 && (
-          <Card className="divide-y divide-ink-200 overflow-hidden">
-            {data.map((pr) => (
-              <button
-                key={pr.number}
-                className="block w-full px-4 py-3 text-left text-sm text-ink-900 transition-colors hover:bg-ink-100 disabled:cursor-not-allowed disabled:opacity-40"
-                disabled={mutation.isPending}
-                onClick={() => mutation.mutate(pr.number)}
-              >
-                <span className="text-ink-500">#{pr.number}</span> {pr.title}
-              </button>
-            ))}
-          </Card>
-        )}
-        {mutation.isError && (
-          <p className="mt-3 text-sm text-red-600">{(mutation.error as Error).message}</p>
-        )}
-      </div>
-    </PageShell>
+    </div>
   )
 }
 

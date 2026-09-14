@@ -1,7 +1,10 @@
 // Shared visual primitives implementing docs/specs/visual-design-philosophy.md:
 // a calm, precise visual language reused across every page so review states,
 // hierarchy, and motion read consistently no matter where the reviewer is.
-import type { ChangeCategory, ReviewState, SemanticDimension } from './api'
+import { useEffect, useRef, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { listOpenPullRequests, listRepositories } from './api'
+import type { ChangeCategory, PullRequestSummary, ReviewState, SemanticDimension } from './api'
 
 // One hue + glyph per Change category (index.css defines the underlying
 // colors), reused for section headers, count chips, and card accents so a
@@ -268,26 +271,242 @@ export function StateBadge({ state }: { state: ReviewState }) {
  * can never drift apart again. `right` holds page-specific controls (the
  * canvas's review-mode select; nothing, on the pre-PR screens).
  */
-export function AthenaTopBar({
-  prChip,
-  right,
-}: {
-  prChip?: React.ReactNode
-  right?: React.ReactNode
-}) {
+/**
+ * The emblem + "ATHENA" wordmark, reacting together to the pointer so the
+ * brand reads as watching the viewer rather than a static image: the
+ * medallion tilts in 3D toward the cursor (a real head-turn, since the
+ * artwork is one flat image with no separate eye layer to move), and the
+ * gold wordmark brightens/shimmers in step so both pieces feel like one
+ * living reaction instead of the image alone doing something.
+ */
+function WatchingEmblem({ prChip }: { prChip?: React.ReactNode }) {
+  const wrapRef = useRef<HTMLDivElement>(null)
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0, glowX: 50, glowY: 50 })
+  const [active, setActive] = useState(false)
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = wrapRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const px = (e.clientX - rect.left) / rect.width // 0..1
+    const py = (e.clientY - rect.top) / rect.height // 0..1
+    const maxDeg = 14
+    setTilt({
+      rx: (0.5 - py) * maxDeg,
+      ry: (px - 0.5) * maxDeg,
+      glowX: px * 100,
+      glowY: py * 100,
+    })
+  }
+
   return (
-    <header className="flex flex-wrap items-center justify-between gap-3.5 border-b border-canvas-line bg-canvas-paper-raised px-5 py-2">
-      <div className="flex min-w-0 items-center gap-3">
+    <div className="flex min-w-0 items-center gap-3">
+      <div
+        ref={wrapRef}
+        onMouseEnter={() => setActive(true)}
+        onMouseMove={handleMove}
+        onMouseLeave={() => {
+          setActive(false)
+          setTilt({ rx: 0, ry: 0, glowX: 50, glowY: 50 })
+        }}
+        style={{ perspective: '600px' }}
+        className="flex-shrink-0"
+      >
         <img
           src="/athena-logo.png"
           alt="Athena"
-          className="h-[46px] w-[46px] flex-shrink-0 rounded-full shadow-[0_0_0_2px_var(--color-canvas-gold),var(--shadow-canvas)]"
+          className="h-11 w-11 rounded-full transition-transform duration-200 ease-out"
+          style={{
+            transform: `scale(${active ? 1.08 : 1}) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
+            boxShadow: active
+              ? `0 0 32px 10px var(--color-canvas-gold-glow), 0 0 0 2px var(--color-canvas-gold)`
+              : '0 0 0 0 transparent',
+            transitionProperty: 'transform, box-shadow',
+          }}
         />
-        <span className="whitespace-nowrap font-display text-lg font-semibold tracking-tight text-canvas-ink">Athena</span>
-        {prChip}
+      </div>
+      <span
+        className="whitespace-nowrap font-display text-lg font-bold tracking-[0.12em] bg-clip-text text-transparent transition-all duration-200 ease-out"
+        style={{
+          backgroundImage: active
+            ? 'linear-gradient(180deg, #fff3d0 0%, #f3dfa0 25%, #cf9f3f 55%, #8a6420 85%, #b6862e 100%)'
+            : 'linear-gradient(180deg, #f3dfa0 0%, #cf9f3f 35%, #8a6420 70%, #b6862e 100%)',
+          textShadow: active ? '0 0 18px rgba(169, 129, 47, 0.45)' : '0 0 0 transparent',
+          transform: active ? 'translateX(2px)' : 'translateX(0)',
+        }}
+      >
+        ATHENA
+      </span>
+      {prChip}
+    </div>
+  )
+}
+
+export function AthenaTopBar({
+  prChip,
+  picker,
+  right,
+}: {
+  prChip?: React.ReactNode
+  picker?: React.ReactNode
+  right?: React.ReactNode
+}) {
+  return (
+    <header className="flex flex-wrap items-center justify-between gap-3.5 border-b border-canvas-line bg-canvas-paper-raised px-4 py-2">
+      <div className="flex min-w-0 flex-1 items-center gap-4">
+        <WatchingEmblem prChip={prChip} />
+        {picker}
       </div>
       {right && <div className="flex items-center gap-2.5">{right}</div>}
     </header>
+  )
+}
+
+/**
+ * A single dropdown trigger + popover list — the shared shape behind both
+ * steps of {@link RepoPrPicker} (repository, then PR), so the two chained
+ * dropdowns look and behave identically rather than one being bespoke.
+ * Closes on outside click/Escape; the trigger shows `label` and opens
+ * `options` below it on click.
+ */
+function TopBarDropdown({
+  label,
+  placeholder,
+  disabled,
+  loading,
+  error,
+  options,
+  onSelect,
+  minWidth = 'min-w-[11rem]',
+}: {
+  label: string
+  placeholder: string
+  disabled?: boolean
+  loading?: boolean
+  error?: boolean
+  options: { key: string; label: string }[]
+  onSelect: (key: string) => void
+  minWidth?: string
+}) {
+  const [open, setOpen] = useState(false)
+  const rootRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+    function onOutside(e: MouseEvent) {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    function onEscape(e: KeyboardEvent) {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('mousedown', onOutside)
+    document.addEventListener('keydown', onEscape)
+    return () => {
+      document.removeEventListener('mousedown', onOutside)
+      document.removeEventListener('keydown', onEscape)
+    }
+  }, [open])
+
+  return (
+    <div ref={rootRef} className="relative">
+      <button
+        type="button"
+        disabled={disabled}
+        onClick={() => setOpen((current) => !current)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        className={`flex items-center gap-1.5 rounded-lg border border-canvas-line-strong bg-canvas-paper px-2.5 py-1.5 text-xs text-canvas-ink transition-colors hover:border-canvas-gold disabled:cursor-not-allowed disabled:opacity-50 ${minWidth}`}
+      >
+        <span className={`truncate ${label ? '' : 'text-canvas-ink-faint'}`}>{label || placeholder}</span>
+        <svg viewBox="0 0 12 8" className="ml-auto h-2.5 w-2.5 shrink-0 text-canvas-ink-faint" fill="none" aria-hidden="true">
+          <path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+      {open && (
+        <div
+          role="listbox"
+          className="absolute left-0 top-[calc(100%+4px)] z-20 max-h-72 w-64 overflow-y-auto rounded-lg border border-canvas-line-strong bg-canvas-paper-raised py-1 shadow-lg"
+        >
+          {loading && <p className="px-3 py-2 text-xs text-canvas-ink-faint">Loading…</p>}
+          {error && <p className="px-3 py-2 text-xs text-red-600">Could not load.</p>}
+          {!loading && !error && options.length === 0 && (
+            <p className="px-3 py-2 text-xs text-canvas-ink-faint">None found.</p>
+          )}
+          {!loading &&
+            !error &&
+            options.map((option) => (
+              <button
+                key={option.key}
+                type="button"
+                role="option"
+                onClick={() => {
+                  onSelect(option.key)
+                  setOpen(false)
+                }}
+                className="block w-full truncate px-3 py-1.5 text-left text-xs text-canvas-ink hover:bg-canvas-gold-soft"
+              >
+                {option.label}
+              </button>
+            ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/**
+ * The repository/PR selector, integrated into {@link AthenaTopBar} (rather
+ * than the standalone "Select a repository" / "Open PRs" screens App.tsx
+ * used to show before landing on the Semantic Canvas) so switching what
+ * you're reviewing never leaves the main product surface. Two chained
+ * dropdowns: choosing a repository loads and enables its PR dropdown.
+ */
+export function RepoPrPicker({
+  selectedRepo,
+  selectedPr,
+  onSelectRepo,
+  onSelectPr,
+}: {
+  selectedRepo: string | null
+  selectedPr: PullRequestSummary | null
+  onSelectRepo: (repositoryFullName: string) => void
+  onSelectPr: (pr: PullRequestSummary) => void
+}) {
+  const reposQuery = useQuery({ queryKey: ['repositories'], queryFn: listRepositories })
+  const pullsQuery = useQuery({
+    queryKey: ['pulls', selectedRepo],
+    queryFn: () => listOpenPullRequests(selectedRepo!),
+    enabled: selectedRepo !== null,
+  })
+
+  return (
+    <div className="flex min-w-0 items-center gap-2">
+      <TopBarDropdown
+        label={selectedRepo ?? ''}
+        placeholder="Select a repository…"
+        loading={reposQuery.isLoading}
+        error={reposQuery.isError}
+        options={(reposQuery.data ?? []).map((repo) => ({ key: repo.fullName, label: repo.fullName }))}
+        onSelect={onSelectRepo}
+        minWidth="min-w-[13rem]"
+      />
+      <span className="text-canvas-ink-faint">/</span>
+      <TopBarDropdown
+        label={selectedPr ? `#${selectedPr.number} ${selectedPr.title}` : ''}
+        placeholder="Select a PR…"
+        disabled={!selectedRepo}
+        loading={pullsQuery.isLoading}
+        error={pullsQuery.isError}
+        options={(pullsQuery.data ?? []).map((pr) => ({ key: String(pr.number), label: `#${pr.number} ${pr.title}` }))}
+        onSelect={(key) => {
+          const pr = pullsQuery.data?.find((p) => String(p.number) === key)
+          if (pr) onSelectPr(pr)
+        }}
+        minWidth="min-w-[16rem]"
+      />
+    </div>
   )
 }
 
@@ -418,6 +637,52 @@ export function LoadingState({ label = 'Loading…' }: { label?: string }) {
         {label}
       </div>
     </PageShell>
+  )
+}
+
+/**
+ * The full-screen loading take-over for the app's three big waits —
+ * fetching repositories, fetching a repository's open PRs, and loading a
+ * selected PR into the Semantic Canvas — replacing the small dot-based
+ * {@link LoadingState} at exactly those spots so the wait reads as part of
+ * Athena's identity rather than a generic spinner. The medallion video
+ * already animates itself (a chromatic-aberration "activating" pulse baked
+ * into its frames) against a solid black square; clipped to a circle here
+ * so only the round medallion shows, floating on the ambient gold aura
+ * rather than sitting in a visible dark card. autoPlay+muted+loop+
+ * playsInline is what lets a <video> autoplay at all in most browsers
+ * (notably iOS Safari, which refuses autoplay on anything with sound).
+ */
+export function FullScreenLoader({ label = 'Loading…' }: { label?: string }) {
+  return (
+    <div
+      role="status"
+      aria-label={label}
+      className="flex min-h-[70vh] flex-col items-center justify-center gap-6 px-6 py-16 text-center"
+    >
+      <div className="relative flex h-64 w-64 items-center justify-center sm:h-80 sm:w-80">
+        <div
+          className="animate-loader-glow absolute inset-0 rounded-full blur-2xl"
+          style={{
+            background:
+              'radial-gradient(circle, var(--color-accent-soft) 0%, var(--color-canvas-gold-glow) 55%, transparent 75%)',
+          }}
+          aria-hidden="true"
+        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+          className="animate-loader-medallion-in relative h-full w-full rounded-full object-cover drop-shadow-[0_18px_40px_rgba(42,38,32,0.18)]"
+        >
+          <source src="/athena-loading.webm" type="video/webm" />
+          <source src="/athena-loading.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <p className="text-sm font-medium tracking-wide text-ink-500">{label}</p>
+    </div>
   )
 }
 

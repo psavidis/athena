@@ -139,11 +139,19 @@ open_browser_when_ready() {
             kill -0 "$pid" 2>/dev/null || return
         done
         if port_up "$BACKEND_PORT" && port_up "$FRONTEND_PORT"; then
-            echo "Both servers ready — opening http://localhost:$FRONTEND_PORT"
+            # athena.localhost (see README "Optional: athena.localhost") is a
+            # Caddy reverse proxy in front of $FRONTEND_PORT, not a separate
+            # server — if Caddy isn't running, fall back to the plain
+            # localhost:$FRONTEND_PORT URL so this still works with no setup.
+            local url="http://localhost:$FRONTEND_PORT"
+            if command -v nc >/dev/null 2>&1 && nc -z localhost 80 >/dev/null 2>&1; then
+                url="http://athena.localhost"
+            fi
+            echo "Both servers ready — opening $url"
             if command -v open >/dev/null 2>&1; then
-                open "http://localhost:$FRONTEND_PORT"
+                open "$url"
             elif command -v xdg-open >/dev/null 2>&1; then
-                xdg-open "http://localhost:$FRONTEND_PORT"
+                xdg-open "$url"
             fi
             return
         fi

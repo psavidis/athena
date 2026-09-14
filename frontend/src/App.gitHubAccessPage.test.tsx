@@ -116,6 +116,7 @@ describe('GitHub Access page', () => {
 
     await user.click(screen.getByRole('button', { name: '← Back' }))
 
-    expect(await screen.findByText('octocat/hello-world')).toBeVisible()
+    await user.click(await screen.findByRole('button', { name: 'Select a repository…' }))
+    expect(await screen.findByRole('option', { name: 'octocat/hello-world' })).toBeVisible()
   })
 })

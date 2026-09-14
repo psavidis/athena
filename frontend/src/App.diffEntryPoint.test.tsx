@@ -29,10 +29,12 @@ describe('Diff entry point', () => {
 
     // When the user opens the main page
     renderApp()
+    const user = userEvent.setup()
 
     // Then the main page shows a way to start a Diff and still shows the GitHub repository picker
     expect(await screen.findByRole('button', { name: /Start a Diff/ })).toBeVisible()
-    expect(await screen.findByText('octocat/hello-world')).toBeVisible()
+    await user.click(await screen.findByRole('button', { name: 'Select a repository…' }))
+    expect(await screen.findByRole('option', { name: 'octocat/hello-world' })).toBeVisible()
   })
 
   it('shows a way to start a Diff when the user is not connected to GitHub', async () => {

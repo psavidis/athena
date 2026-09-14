@@ -42,6 +42,33 @@ cd frontend && npm install && npm run dev
 Open `http://localhost:7331` and connect with a GitHub Personal Access
 Token. (The backend API runs on `http://localhost:7332`.)
 
+#### Optional: `athena.localhost` instead of a bare port
+
+Local dev machines here also route Athena through
+`http://athena.localhost/` (no port to remember) via a shared
+[Caddy](https://caddyserver.com) reverse proxy running on port 80, alongside
+other local apps under their own `*.localhost` names (e.g.
+`poiesis.localhost`). This is machine-level dev environment config, not
+part of the repo:
+
+- `*.localhost` hostnames always resolve to `127.0.0.1` per RFC 6761 — no
+  `/etc/hosts` edit needed, and no ambiguity with a real domain or with
+  `.local`'s mDNS/Bonjour reservation.
+- Install Caddy once via Homebrew: `brew install caddy`.
+- Caddy listens on port 80 and reverse-proxies by hostname to each app's
+  real dev-server port — `athena.localhost` → `localhost:7331`,
+  `poiesis.localhost` → `localhost:8000`, and so on — configured in
+  `~/.config/caddy/Caddyfile` (symlinked from Homebrew's default
+  `/opt/homebrew/etc/Caddyfile` so `brew services` manages it as one
+  `launchd` daemon: `sudo brew services start caddy`).
+- To add another app, append a block to that Caddyfile
+  (`name.localhost { reverse_proxy localhost:PORT }`) and reload with
+  `sudo caddy reload --config /opt/homebrew/etc/Caddyfile` — no restart
+  needed.
+
+This is purely a convenience layer over the `localhost:7331` URL above;
+either works identically.
+
 ### CLI
 
 Requires Java 21, Maven, `git` on your `PATH`, and a GitHub token with

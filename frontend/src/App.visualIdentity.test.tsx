@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { http, HttpResponse } from 'msw'
 import { describe, expect, it } from 'vitest'
 import App from './App'
@@ -26,7 +27,7 @@ describe('Athena visual identity', () => {
     expect(await screen.findByRole('img', { name: 'Athena' })).toBeVisible()
   })
 
-  it('shows the unified loading indicator while data is loading, on every page', async () => {
+  it('shows the unified loading indicator while the repository picker is loading', async () => {
     // Given a user triggers an action that loads data
     server.use(
       http.get('/api/github/status', () => HttpResponse.json({ connected: true, accountLogin: 'octocat' })),
@@ -36,9 +37,12 @@ describe('Athena visual identity', () => {
       ),
     )
     renderApp()
+    const user = userEvent.setup()
 
-    // When the data has not finished loading yet
-    // Then the user sees Athena's unified loading indicator
-    expect(await screen.findByRole('status', { name: 'Loading' })).toBeVisible()
+    // When the user opens the repository picker before its data has loaded
+    await user.click(await screen.findByRole('button', { name: 'Select a repository…' }))
+
+    // Then the user sees Athena's unified loading indicator inside the picker
+    expect(await screen.findByText('Loading…')).toBeVisible()
   })
 })

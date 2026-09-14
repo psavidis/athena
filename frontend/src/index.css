@@ -208,13 +208,51 @@ body {
   animation: canvas-node-appear 0.4s var(--ease-calm) backwards;
 }
 
+/* Full-screen loading overlay (ticket #128 follow-up): the Athena medallion
+   GIF's own crackle animation is the motion, so this only breathes an
+   ambient gold aura behind it and lets the medallion rise into place —
+   distinct from the small-panel .animate-pop-in so a full-page take-over
+   reads as more ceremonial than an inline card appearing. */
+@keyframes loader-glow-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+.animate-loader-glow {
+  animation: loader-glow-breathe 2.6s var(--ease-calm) infinite;
+}
+
+@keyframes loader-medallion-in {
+  from {
+    opacity: 0;
+    transform: scale(0.88) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-loader-medallion-in {
+  animation: loader-medallion-in 0.5s var(--ease-calm) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-rise-in,
   .animate-pop-in,
   .animate-cluster-in,
   .animate-flow-dash,
   .animate-canvas-territory-pulse,
-  .animate-canvas-node-appear {
+  .animate-canvas-node-appear,
+  .animate-loader-glow,
+  .animate-loader-medallion-in {
     animation: none;
   }
 }

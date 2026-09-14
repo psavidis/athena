@@ -45,9 +45,14 @@ async function connectSelectRepoAndPr() {
   renderApp()
   const user = userEvent.setup()
 
-  await user.click(await screen.findByRole('button', { name: 'octocat/hello-world' }))
+  // The repo/PR picker (ticket #128 follow-up) lives as two chained
+  // dropdowns in the top bar rather than standalone screens — open each and
+  // choose the option it lists.
+  await user.click(await screen.findByRole('button', { name: 'Select a repository…' }))
+  await user.click(await screen.findByRole('option', { name: 'octocat/hello-world' }))
 
-  await user.click(await screen.findByRole('button', { name: /#1.*Move authentication to Account/ }))
+  await user.click(await screen.findByRole('button', { name: 'Select a PR…' }))
+  await user.click(await screen.findByRole('option', { name: /#1.*Move authentication to Account/ }))
 }
 
 describe('App routing', () => {
@@ -67,11 +72,13 @@ describe('App routing', () => {
     expect(await screen.findByText('Not connected to GitHub')).toBeVisible()
   })
 
-  it('routes back to PR selection when the Canvas reports no PR selected', async () => {
+  it('routes back to the empty canvas shell when the Canvas reports no PR selected', async () => {
     server.use(http.get('/api/review/topology', () => new HttpResponse(null, { status: 409 })))
 
     await connectSelectRepoAndPr()
 
-    expect(await screen.findByText('Open PRs — octocat/hello-world')).toBeVisible()
+    expect(
+      await screen.findByText('Select a repository and Pull Request above to open the Semantic Canvas.'),
+    ).toBeVisible()
   })
 })

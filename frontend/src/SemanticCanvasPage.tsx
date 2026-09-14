@@ -10,7 +10,7 @@ import {
   type ModuleTerritory,
   type ModuleTopology,
 } from './api'
-import { AthenaTopBar, ErrorState, LoadingState } from './ui'
+import { AthenaTopBar, ErrorState, FullScreenLoader } from './ui'
 import ZoomAltitudeRail, { populatedStops, type AltitudeStop } from './ZoomAltitudeRail'
 import ZoomAltitudeContent, { type NodeSelection } from './ZoomAltitudeContent'
 import DetailDrawer, { type DrawerSelection } from './DetailDrawer'
@@ -121,10 +121,15 @@ const STATUS_META: Record<ModuleTerritory['status'], { className: string }> = {
 
 export default function SemanticCanvasPage({
   pullRequest,
+  picker,
   onNotConnected,
   onNoPullRequestSelected,
 }: {
   pullRequest: ImportedPullRequest | null
+  // The repo/PR switcher (ticket #128 follow-up), owned by App.tsx and
+  // rendered into this page's own top bar so it stays present while
+  // reviewing, not just on a screen that comes before the Canvas.
+  picker?: React.ReactNode
   onNotConnected: () => void
   onNoPullRequestSelected: () => void
 }) {
@@ -263,10 +268,20 @@ export default function SemanticCanvasPage({
       onNoPullRequestSelected()
       return null
     }
-    return <ErrorState message="Could not load the Semantic Canvas." />
+    return (
+      <div className="flex h-screen w-full flex-col overflow-hidden bg-canvas-paper text-canvas-ink">
+        <CanvasIdentityBar pullRequest={pullRequest} picker={picker} />
+        <ErrorState message="Could not load the Semantic Canvas." />
+      </div>
+    )
   }
   if (isLoading || !data) {
-    return <LoadingState />
+    return (
+      <div className="flex h-screen w-full flex-col overflow-hidden bg-canvas-paper text-canvas-ink">
+        <CanvasIdentityBar pullRequest={pullRequest} picker={picker} />
+        <FullScreenLoader label="Loading the Semantic Canvas…" />
+      </div>
+    )
   }
   // Narrowed once here so functions declared below (closures TypeScript can't
   // narrow `data` through) can reference a value it knows is always defined.
@@ -421,6 +436,7 @@ export default function SemanticCanvasPage({
     <div className="flex h-screen w-full flex-col overflow-hidden bg-canvas-paper text-canvas-ink" data-testid="semantic-canvas">
       <CanvasTopBar
         pullRequest={pullRequest}
+        picker={picker}
         reviewMode={reviewMode}
         onSelectReviewMode={setReviewMode}
         totalCommentCount={totalCommentCount}
@@ -599,6 +615,39 @@ export default function SemanticCanvasPage({
 }
 
 /**
+ * The PR-identity chip shown in the top bar's gold pill — shared by {@link
+ * CanvasTopBar} and {@link CanvasIdentityBar} so the loading/error states
+ * (which have no review-mode/comment controls to show yet) still render the
+ * exact same chip as the fully-loaded canvas, instead of a bare bar.
+ */
+function prChipFor(pullRequest: ImportedPullRequest | null) {
+  return (
+    pullRequest && (
+      <span className="inline-flex min-w-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-canvas-gold-soft py-1 pl-2.5 pr-3 text-xs text-canvas-ink-soft">
+        <span className="font-mono font-semibold text-canvas-gold-deep">#{pullRequest.number}</span>
+        <span className="overflow-hidden text-ellipsis">{pullRequest.title}</span>
+      </span>
+    )
+  )
+}
+
+/**
+ * The bar shown while the canvas is loading or has failed to load (ticket
+ * #128 follow-up): logo + PR chip only, no review-mode/comments controls
+ * since there's no data yet for them to act on — kept distinct from
+ * {@link CanvasTopBar} rather than passing it dummy handlers.
+ */
+function CanvasIdentityBar({
+  pullRequest,
+  picker,
+}: {
+  pullRequest: ImportedPullRequest | null
+  picker?: React.ReactNode
+}) {
+  return <AthenaTopBar prChip={prChipFor(pullRequest)} picker={picker} />
+}
+
+/**
  * The top bar (ticket #128's approved prototype): the shared {@link
  * AthenaTopBar} plus this screen's own PR chip and Contextual/File-First
  * mode select — previously missing entirely; the mode toggle floated as an
@@ -607,6 +656,7 @@ export default function SemanticCanvasPage({
  */
 function CanvasTopBar({
   pullRequest,
+  picker,
   reviewMode,
   onSelectReviewMode,
   totalCommentCount,
@@ -614,6 +664,7 @@ function CanvasTopBar({
   onToggleCommentedOnly,
 }: {
   pullRequest: ImportedPullRequest | null
+  picker?: React.ReactNode
   reviewMode: 'CONTEXTUAL' | 'FILE_FIRST'
   onSelectReviewMode: (mode: 'CONTEXTUAL' | 'FILE_FIRST') => void
   totalCommentCount: number
@@ -622,14 +673,8 @@ function CanvasTopBar({
 }) {
   return (
     <AthenaTopBar
-      prChip={
-        pullRequest && (
-          <span className="inline-flex min-w-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-canvas-gold-soft py-1 pl-2.5 pr-3 text-xs text-canvas-ink-soft">
-            <span className="font-mono font-semibold text-canvas-gold-deep">#{pullRequest.number}</span>
-            <span className="overflow-hidden text-ellipsis">{pullRequest.title}</span>
-          </span>
-        )
-      }
+      prChip={prChipFor(pullRequest)}
+      picker={picker}
       right={
         <>
           <button
