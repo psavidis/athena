@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * not one per session — whereas {@link WebSession} is per-browser-session.
  */
 @Component
-public class GitHubAccess {
+public class GitHubAccess implements CurrentReviewer {
 
     private final GitHubAppClient appClient;
 
@@ -47,5 +47,17 @@ public class GitHubAccess {
 
     public String connectedAccountLogin() {
         return appClient.installation().map(GitHubAppInstallationRecord::accountLogin).orElse(null);
+    }
+
+    /**
+     * {@link CurrentReviewer#login()}: the connected account's login, or a
+     * placeholder when nothing is connected — reachable in practice only if a
+     * comment is somehow posted with no PR selected, since selecting a PR
+     * already requires a connection.
+     */
+    @Override
+    public String login() {
+        String accountLogin = connectedAccountLogin();
+        return accountLogin != null ? accountLogin : "reviewer";
     }
 }

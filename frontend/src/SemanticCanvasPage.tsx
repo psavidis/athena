@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useQueries, useQuery } from '@tanstack/react-query'
 import {
+  getCanvasCommentCounts,
   getModuleSemanticProfile,
   getModuleTopology,
   NoPullRequestSelectedError,
@@ -14,6 +15,7 @@ import ZoomAltitudeRail, { populatedStops, type AltitudeStop } from './ZoomAltit
 import ZoomAltitudeContent, { type NodeSelection } from './ZoomAltitudeContent'
 import DetailDrawer, { type DrawerSelection } from './DetailDrawer'
 import FileFirstMode, { type FileRow } from './FileFirstMode'
+import { conceptItemId, fileItemId, territoryItemId } from './canvasItemId'
 
 /**
  * The Semantic Canvas (tickets #129/#130): replaces the Semantic Change
@@ -138,6 +140,11 @@ export default function SemanticCanvasPage({
   const [instantTransition, setInstantTransition] = useState(false)
   const [drawerSelection, setDrawerSelection] = useState<DrawerSelection | undefined>(undefined)
   const [reviewMode, setReviewMode] = useState<'CONTEXTUAL' | 'FILE_FIRST'>('CONTEXTUAL')
+  // "Show only commented" (ticket #134): dims every canvas item with no
+  // comments rather than hiding them — spatial context (where an
+  // uncommented item sits relative to a commented one) matters even while
+  // scanning for comments.
+  const [showCommentedOnly, setShowCommentedOnly] = useState(false)
   // "Explain this" (ticket #132) wants Structure specifically, not just
   // whichever stop happens to be first-populated — set right before diving
   // in, consumed once by the landing effect below, then cleared.
@@ -158,6 +165,17 @@ export default function SemanticCanvasPage({
     enabled: focusedTerritory !== undefined,
     retry: false,
   })
+
+  // Comment counts per canvas item (ticket #134), for the topbar total and
+  // pin badges — fetched once for the whole PR rather than per item, the
+  // same "one call covers every item" shape as contextFiles below.
+  const { data: commentCounts } = useQuery({
+    queryKey: ['canvas-comment-counts'],
+    queryFn: getCanvasCommentCounts,
+    enabled: data !== undefined,
+    retry: false,
+  })
+  const totalCommentCount = commentCounts ? Object.values(commentCounts).reduce((sum, n) => sum + n, 0) : 0
 
   // File-First's "Has context" filter (ticket #132) needs to know which files
   // have a matching canvas node across the WHOLE PR, not just the focused
@@ -342,7 +360,11 @@ export default function SemanticCanvasPage({
     const targetScale = selection.kind === 'file' ? MAX_SCALE : Math.min(MAX_SCALE, INITIAL_CAMERA.scale + 0.6)
     setCamera((current) => ({ ...current, scale: clampScale(targetScale) }))
     if (selection.kind === 'concept') {
-      setDrawerSelection({ kind: 'concept', entry: selection.entry })
+      setDrawerSelection({
+        kind: 'concept',
+        entry: selection.entry,
+        itemId: conceptItemId(focusedTerritory!, selection.entry.conceptName),
+      })
     } else {
       const territory = topology.territories.find((t) => t.moduleName === focusedTerritory)
       setDrawerSelection({
@@ -350,6 +372,7 @@ export default function SemanticCanvasPage({
         fileName: selection.fileName,
         fromConceptName: selection.owningEntry.conceptName,
         changeKeys: territory?.changeKeys ?? [],
+        itemId: fileItemId(focusedTerritory!, selection.fileName),
       })
     }
   }
@@ -366,6 +389,12 @@ export default function SemanticCanvasPage({
     setDrawerSelection({ kind: 'overview' })
   }
 
+  // Opens a canvas item's comment thread (ticket #134) — clicking a pin
+  // badge, or the drawer's own Comment affordance for an item with none yet.
+  function openCommentsDrawer(itemId: string, itemLabel: string) {
+    setDrawerSelection({ kind: 'comments', itemId, itemLabel })
+  }
+
   // File-First's click-to-diff (ticket #132): opens the same shared detail
   // drawer File-node content the canvas itself uses — no second diff surface.
   function openFileFromFileFirst(row: FileRow) {
@@ -374,6 +403,7 @@ export default function SemanticCanvasPage({
       fileName: row.fileName,
       fromConceptName: row.moduleName,
       changeKeys: [row.changeKey],
+      itemId: fileItemId(row.moduleName, row.fileName),
     })
   }
 
@@ -389,7 +419,14 @@ export default function SemanticCanvasPage({
 
   return (
     <div className="flex h-screen w-full flex-col overflow-hidden bg-canvas-paper text-canvas-ink" data-testid="semantic-canvas">
-      <CanvasTopBar pullRequest={pullRequest} reviewMode={reviewMode} onSelectReviewMode={setReviewMode} />
+      <CanvasTopBar
+        pullRequest={pullRequest}
+        reviewMode={reviewMode}
+        onSelectReviewMode={setReviewMode}
+        totalCommentCount={totalCommentCount}
+        showCommentedOnly={showCommentedOnly}
+        onToggleCommentedOnly={() => setShowCommentedOnly((current) => !current)}
+      />
       <div className="flex min-h-0 flex-1">
         {reviewMode === 'CONTEXTUAL' && (
           <CanvasSidebar
@@ -472,7 +509,10 @@ export default function SemanticCanvasPage({
                     box={box}
                     focused={focusedTerritory === box.territory.moduleName}
                     dependencies={topology.dependencies}
+                    commentCount={commentCounts?.[territoryItemId(box.territory.moduleName)] ?? 0}
+                    dimmed={showCommentedOnly && !commentCounts?.[territoryItemId(box.territory.moduleName)]}
                     onClick={() => diveInto(box)}
+                    onOpenComments={() => openCommentsDrawer(territoryItemId(box.territory.moduleName), box.territory.moduleName)}
                   />
                 ))}
               </div>
@@ -539,6 +579,10 @@ export default function SemanticCanvasPage({
               profile={territoryProfile}
               showLayerBadges={showLayerBadges}
               onSelectNode={selectNode}
+              moduleName={focusedTerritory}
+              commentCounts={commentCounts ?? {}}
+              showCommentedOnly={showCommentedOnly}
+              onOpenComments={openCommentsDrawer}
             />
           </div>
         </div>
@@ -548,6 +592,7 @@ export default function SemanticCanvasPage({
         topology={topology}
         onClose={() => setDrawerSelection(undefined)}
         onJumpToFile={jumpToFile}
+        onOpenComments={openCommentsDrawer}
       />
     </div>
   )
@@ -564,10 +609,16 @@ function CanvasTopBar({
   pullRequest,
   reviewMode,
   onSelectReviewMode,
+  totalCommentCount,
+  showCommentedOnly,
+  onToggleCommentedOnly,
 }: {
   pullRequest: ImportedPullRequest | null
   reviewMode: 'CONTEXTUAL' | 'FILE_FIRST'
   onSelectReviewMode: (mode: 'CONTEXTUAL' | 'FILE_FIRST') => void
+  totalCommentCount: number
+  showCommentedOnly: boolean
+  onToggleCommentedOnly: () => void
 }) {
   return (
     <AthenaTopBar
@@ -580,18 +631,33 @@ function CanvasTopBar({
         )
       }
       right={
-        <label className="flex items-center gap-1.5 text-xs text-canvas-ink-soft">
-          Review mode
-          <select
-            aria-label="Review mode"
-            value={reviewMode}
-            onChange={(e) => onSelectReviewMode(e.target.value as 'CONTEXTUAL' | 'FILE_FIRST')}
-            className="rounded-lg border border-canvas-line-strong bg-canvas-paper-raised px-2.5 py-1.5 text-xs text-canvas-ink"
+        <>
+          <button
+            type="button"
+            aria-pressed={showCommentedOnly}
+            title="Show only items with comments"
+            onClick={onToggleCommentedOnly}
+            className={`rounded-lg border px-3 py-1.5 text-xs font-semibold ${
+              showCommentedOnly
+                ? 'border-canvas-gold bg-canvas-gold-soft text-canvas-gold-deep'
+                : 'border-canvas-line-strong bg-canvas-paper-raised text-canvas-ink-soft hover:border-canvas-gold'
+            }`}
           >
-            <option value="CONTEXTUAL">Contextual</option>
-            <option value="FILE_FIRST">File-First</option>
-          </select>
-        </label>
+            {totalCommentCount} comment{totalCommentCount === 1 ? '' : 's'}
+          </button>
+          <label className="flex items-center gap-1.5 text-xs text-canvas-ink-soft">
+            Review mode
+            <select
+              aria-label="Review mode"
+              value={reviewMode}
+              onChange={(e) => onSelectReviewMode(e.target.value as 'CONTEXTUAL' | 'FILE_FIRST')}
+              className="rounded-lg border border-canvas-line-strong bg-canvas-paper-raised px-2.5 py-1.5 text-xs text-canvas-ink"
+            >
+              <option value="CONTEXTUAL">Contextual</option>
+              <option value="FILE_FIRST">File-First</option>
+            </select>
+          </label>
+        </>
       }
     />
   )
@@ -745,47 +811,71 @@ function TerritoryCard({
   box,
   focused,
   dependencies,
+  commentCount,
+  dimmed,
   onClick,
+  onOpenComments,
 }: {
   box: TerritoryBox
   focused: boolean
   dependencies: ModuleTopology['dependencies']
+  commentCount: number
+  dimmed: boolean
   onClick: () => void
+  onOpenComments: () => void
 }) {
   const { territory } = box
   const meta = STATUS_META[territory.status]
   return (
-    <button
-      type="button"
-      role="button"
-      aria-label={`${territory.moduleName} territory`}
-      data-testid="territory"
-      data-module-name={territory.moduleName}
-      data-status={territory.status}
-      aria-current={focused ? 'true' : undefined}
-      onClick={onClick}
-      className={`group absolute flex flex-col justify-between rounded-[20px] p-4 pb-3 text-left transition-[box-shadow,transform] hover:-translate-y-0.5 hover:shadow-[var(--shadow-canvas-lift)] ${meta.className}`}
+    <div
+      className={`absolute transition-opacity ${dimmed ? 'opacity-35' : ''}`}
       style={{ left: box.x, top: box.y, width: box.width, height: box.height }}
     >
-      {territory.status === 'NEW' && (
-        <div className="pointer-events-none absolute inset-0 rounded-[20px] animate-canvas-territory-pulse motion-reduce:animate-none" />
-      )}
-      <div>
-        <span className="mb-2 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-canvas-line-strong bg-canvas-paper px-2.5 py-1 text-[11px] font-semibold text-canvas-ink-soft">
-          {techStackIcon(territory.techStack)}
-          {territory.techStackLabel}
-        </span>
-        <div className="mb-1 flex items-center gap-2 font-display text-[15px] font-semibold leading-tight text-canvas-ink-soft">
-          <span
-            className="h-2.5 w-2.5 flex-shrink-0 rounded-full"
-            style={{ background: heatColor(territory.status) }}
-          />
-          <span>{territory.moduleName}</span>
+      <button
+        type="button"
+        role="button"
+        aria-label={`${territory.moduleName} territory`}
+        data-testid="territory"
+        data-module-name={territory.moduleName}
+        data-status={territory.status}
+        aria-current={focused ? 'true' : undefined}
+        onClick={onClick}
+        className={`group relative flex h-full w-full flex-col justify-between rounded-[20px] p-4 pb-3 text-left transition-[box-shadow,transform] hover:-translate-y-0.5 hover:shadow-[var(--shadow-canvas-lift)] ${meta.className}`}
+      >
+        {territory.status === 'NEW' && (
+          <div className="pointer-events-none absolute inset-0 rounded-[20px] animate-canvas-territory-pulse motion-reduce:animate-none" />
+        )}
+        <div>
+          <span className="mb-2 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-canvas-line-strong bg-canvas-paper px-2.5 py-1 text-[11px] font-semibold text-canvas-ink-soft">
+            {techStackIcon(territory.techStack)}
+            {territory.techStackLabel}
+          </span>
+          <div className="mb-1 flex items-center gap-2 font-display text-[15px] font-semibold leading-tight text-canvas-ink-soft">
+            <span
+              className="h-2.5 w-2.5 flex-shrink-0 rounded-full"
+              style={{ background: heatColor(territory.status) }}
+            />
+            <span>{territory.moduleName}</span>
+          </div>
+          <div className="font-mono text-[11px] text-canvas-ink-faint">{territory.statusSummary}</div>
         </div>
-        <div className="font-mono text-[11px] text-canvas-ink-faint">{territory.statusSummary}</div>
-      </div>
-      <RelatedTerritoryChips territoryId={territory.moduleName} dependencies={dependencies} />
-    </button>
+        <RelatedTerritoryChips territoryId={territory.moduleName} dependencies={dependencies} />
+      </button>
+      {commentCount > 0 && (
+        <button
+          type="button"
+          aria-label={`${commentCount} comment${commentCount === 1 ? '' : 's'} on ${territory.moduleName}`}
+          data-testid="comment-pin"
+          onClick={(e) => {
+            e.stopPropagation()
+            onOpenComments()
+          }}
+          className="absolute bottom-3 right-4 z-[3] flex items-center gap-1 rounded-full border border-canvas-gold bg-canvas-gold-soft px-2 py-0.5 text-[11px] font-bold text-canvas-gold-deep hover:shadow-[var(--shadow-canvas)]"
+        >
+          💬 {commentCount}
+        </button>
+      )}
+    </div>
   )
 }
 

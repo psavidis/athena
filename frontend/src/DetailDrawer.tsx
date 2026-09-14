@@ -1,5 +1,15 @@
-import { useQuery } from '@tanstack/react-query'
-import { getChangeDetail, type ModuleTopology, type SemanticDimensionEntry } from './api'
+import { useState } from 'react'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  addCanvasComment,
+  deleteCanvasComment,
+  editCanvasComment,
+  getCanvasComments,
+  getChangeDetail,
+  type CanvasComment,
+  type ModuleTopology,
+  type SemanticDimensionEntry,
+} from './api'
 import { DiffView, LoadingState } from './ui'
 
 /**
@@ -13,14 +23,16 @@ import { DiffView, LoadingState } from './ui'
  * rather than forked into a second gold-themed diff surface.
  */
 export type DrawerSelection =
-  | { kind: 'concept'; entry: SemanticDimensionEntry }
-  | { kind: 'file'; fileName: string; fromConceptName: string; changeKeys: string[] }
+  | { kind: 'concept'; entry: SemanticDimensionEntry; itemId: string }
+  | { kind: 'file'; fileName: string; fromConceptName: string; changeKeys: string[]; itemId: string }
   | { kind: 'overview' }
+  | { kind: 'comments'; itemId: string; itemLabel: string }
 
 const KIND_LABEL: Record<DrawerSelection['kind'], string> = {
   concept: 'Concept',
   file: 'File',
   overview: 'PR Overview',
+  comments: 'Comments',
 }
 
 export default function DetailDrawer({
@@ -28,17 +40,28 @@ export default function DetailDrawer({
   topology,
   onClose,
   onJumpToFile,
+  onOpenComments,
 }: {
   selection: DrawerSelection | undefined
   topology: ModuleTopology
   onClose: () => void
   onJumpToFile: (fileName: string) => void
+  /** Switches the drawer to this item's comment thread (ticket #134) — the header's
+   * own Comment affordance, always present for a concept/file selection (not only
+   * once it already has a pin), matching the approved prototype's drawer-comment-btn. */
+  onOpenComments: (itemId: string, itemLabel: string) => void
 }) {
   if (!selection) {
     return null
   }
   const title =
-    selection.kind === 'concept' ? selection.entry.conceptName : selection.kind === 'file' ? selection.fileName : 'Footprint'
+    selection.kind === 'concept'
+      ? selection.entry.conceptName
+      : selection.kind === 'file'
+        ? selection.fileName
+        : selection.kind === 'comments'
+          ? selection.itemLabel
+          : 'Footprint'
   return (
     <div
       role="dialog"
@@ -60,19 +83,31 @@ export default function DetailDrawer({
             {title}
           </span>
         </div>
-        <button
-          type="button"
-          aria-label="Close detail drawer"
-          className="flex-shrink-0 rounded-md p-1 text-canvas-ink-faint hover:bg-canvas-line hover:text-canvas-ink"
-          onClick={onClose}
-        >
-          ✕
-        </button>
+        <div className="flex flex-shrink-0 items-center gap-2">
+          {(selection.kind === 'concept' || selection.kind === 'file') && (
+            <button
+              type="button"
+              onClick={() => onOpenComments(selection.itemId, title)}
+              className="flex items-center gap-1 rounded-lg border border-canvas-gold bg-canvas-gold-soft px-2.5 py-1 text-xs font-semibold text-canvas-gold-deep hover:shadow-[var(--shadow-canvas)]"
+            >
+              💬 Comment
+            </button>
+          )}
+          <button
+            type="button"
+            aria-label="Close detail drawer"
+            className="rounded-md p-1 text-canvas-ink-faint hover:bg-canvas-line hover:text-canvas-ink"
+            onClick={onClose}
+          >
+            ✕
+          </button>
+        </div>
       </div>
       <div className="flex-1 overflow-auto px-5 pb-4.5">
         {selection.kind === 'concept' && <ConceptDrawerContent entry={selection.entry} onJumpToFile={onJumpToFile} />}
         {selection.kind === 'file' && <FileDrawerContent selection={selection} />}
         {selection.kind === 'overview' && <OverviewDrawerContent topology={topology} />}
+        {selection.kind === 'comments' && <CommentsDrawerContent itemId={selection.itemId} />}
       </div>
     </div>
   )
@@ -162,4 +197,181 @@ function OverviewDrawerContent({ topology }: { topology: ModuleTopology }) {
       ))}
     </div>
   )
+}
+
+/**
+ * A canvas item's comment thread (ticket #134): list with author/timestamp,
+ * inline edit (Save/Cancel) and delete for each comment, and a Post/Cancel
+ * editor for a new one. Athena connects one GitHub account per session (no
+ * multi-viewer auth), so every comment posted through this session carries
+ * that same author — there is no distinct "someone else's comment" case to
+ * hide Edit/Delete behind, unlike the prototype's simulated multi-author
+ * thread.
+ */
+function CommentsDrawerContent({ itemId }: { itemId: string }) {
+  const queryClient = useQueryClient()
+  const queryKey = ['canvas-comments', itemId]
+  const { data: comments, isLoading } = useQuery({
+    queryKey,
+    queryFn: () => getCanvasComments(itemId),
+    retry: false,
+  })
+  const [draft, setDraft] = useState('')
+  const [editingId, setEditingId] = useState<string | undefined>(undefined)
+  const [editDraft, setEditDraft] = useState('')
+
+  // Every mutation also invalidates the whole-PR comment-counts query (ticket
+  // #134): that query backs both the topbar total and every pin badge on the
+  // canvas, none of which share this drawer's own per-item query cache entry.
+  const invalidateCounts = () => queryClient.invalidateQueries({ queryKey: ['canvas-comment-counts'] })
+
+  const postMutation = useMutation({
+    mutationFn: (text: string) => addCanvasComment(itemId, text),
+    onSuccess: (updated) => {
+      queryClient.setQueryData(queryKey, updated)
+      invalidateCounts()
+      setDraft('')
+    },
+  })
+  const editMutation = useMutation({
+    mutationFn: ({ commentId, text }: { commentId: string; text: string }) => editCanvasComment(itemId, commentId, text),
+    onSuccess: (updated) => {
+      queryClient.setQueryData(queryKey, updated)
+      setEditingId(undefined)
+    },
+  })
+  const deleteMutation = useMutation({
+    mutationFn: (commentId: string) => deleteCanvasComment(itemId, commentId),
+    onSuccess: (updated) => {
+      queryClient.setQueryData(queryKey, updated)
+      invalidateCounts()
+    },
+  })
+
+  if (isLoading) {
+    return <LoadingState />
+  }
+
+  return (
+    <div className="flex flex-col gap-3.5">
+      {comments && comments.length === 0 && (
+        <p className="text-[13px] text-canvas-ink-faint">No comments yet on this item.</p>
+      )}
+      {comments && comments.length > 0 && (
+        <div className="flex flex-col gap-2.5">
+          {comments.map((comment) =>
+            editingId === comment.id ? (
+              <EditingCommentEntry
+                key={comment.id}
+                initialText={editDraft}
+                onChangeText={setEditDraft}
+                onCancel={() => setEditingId(undefined)}
+                onSave={() => editMutation.mutate({ commentId: comment.id, text: editDraft })}
+              />
+            ) : (
+              <CommentEntry
+                key={comment.id}
+                comment={comment}
+                onEdit={() => {
+                  setEditingId(comment.id)
+                  setEditDraft(comment.text)
+                }}
+                onDelete={() => deleteMutation.mutate(comment.id)}
+              />
+            ),
+          )}
+        </div>
+      )}
+      <div className="rounded-lg border border-canvas-line-strong bg-canvas-paper">
+        <textarea
+          aria-label="New comment"
+          placeholder="Leave a note here…"
+          value={draft}
+          onChange={(e) => setDraft(e.target.value)}
+          className="min-h-16 w-full resize-y border-none bg-transparent px-3.5 py-3 text-[13px] text-canvas-ink outline-none"
+        />
+        <div className="flex justify-end gap-2 border-t border-canvas-line px-3.5 py-2">
+          <button
+            type="button"
+            onClick={() => setDraft('')}
+            className="rounded-lg px-2.5 py-1.5 text-xs font-semibold text-canvas-ink-soft hover:bg-canvas-line"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            disabled={draft.trim().length === 0}
+            onClick={() => postMutation.mutate(draft)}
+            className="rounded-lg bg-canvas-gold-deep px-3 py-1.5 text-xs font-semibold text-canvas-paper-raised disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Post comment
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function CommentEntry({
+  comment,
+  onEdit,
+  onDelete,
+}: {
+  comment: CanvasComment
+  onEdit: () => void
+  onDelete: () => void
+}) {
+  return (
+    <div data-testid="comment-entry" className="rounded-lg border border-canvas-line bg-canvas-paper px-3 py-2.5">
+      <div className="mb-1 flex items-baseline gap-2">
+        <span className="text-xs font-semibold text-canvas-ink">{comment.author}</span>
+        <span className="text-[11px] text-canvas-ink-faint">{formatTimestamp(comment.postedAt)}</span>
+      </div>
+      <p className="mb-2 text-[13px] leading-relaxed text-canvas-ink-soft">{comment.text}</p>
+      <div className="flex gap-2">
+        <button type="button" onClick={onEdit} className="text-[11.5px] font-semibold text-canvas-ink-soft hover:text-canvas-gold-deep">
+          Edit
+        </button>
+        <button type="button" onClick={onDelete} className="text-[11.5px] font-semibold text-canvas-ink-soft hover:text-canvas-brick">
+          Delete
+        </button>
+      </div>
+    </div>
+  )
+}
+
+function EditingCommentEntry({
+  initialText,
+  onChangeText,
+  onCancel,
+  onSave,
+}: {
+  initialText: string
+  onChangeText: (text: string) => void
+  onCancel: () => void
+  onSave: () => void
+}) {
+  return (
+    <div className="rounded-lg border border-canvas-line-strong bg-canvas-paper px-3 py-2.5">
+      <textarea
+        aria-label="Edit comment"
+        value={initialText}
+        onChange={(e) => onChangeText(e.target.value)}
+        className="mb-2 min-h-14 w-full resize-y rounded-md border border-canvas-line bg-canvas-paper-raised px-2.5 py-2 text-[13px] text-canvas-ink outline-none"
+      />
+      <div className="flex justify-end gap-2">
+        <button type="button" onClick={onCancel} className="text-[11.5px] font-semibold text-canvas-ink-soft hover:text-canvas-ink">
+          Cancel
+        </button>
+        <button type="button" onClick={onSave} className="text-[11.5px] font-semibold text-canvas-gold-deep">
+          Save
+        </button>
+      </div>
+    </div>
+  )
+}
+
+function formatTimestamp(postedAt: string): string {
+  const date = new Date(postedAt)
+  return Number.isNaN(date.getTime()) ? postedAt : date.toLocaleString()
 }

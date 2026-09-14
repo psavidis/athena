@@ -1,9 +1,11 @@
 package com.athena.reviewui;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 /**
@@ -18,18 +20,46 @@ public final class AnnotationBoard {
     private final Map<AnnotationScope, List<Comment>> commentsByScope = new LinkedHashMap<>();
     private final Map<AnnotationScope, List<PrivateNote>> notesByScope = new LinkedHashMap<>();
 
-    public void addComment(AnnotationScope scope, String text) {
-        commentsByScope.computeIfAbsent(scope, s -> new ArrayList<>()).add(new Comment(scope, requireText(text)));
+    public void addComment(AnnotationScope scope, String author, String text) {
+        Comment comment = new Comment(scope, requireText(author, "author"), Instant.now(), requireText(text, "text"));
+        commentsByScope.computeIfAbsent(scope, s -> new ArrayList<>()).add(comment);
+    }
+
+    /**
+     * Replaces the comment's text in place (same id/scope/author/postedAt,
+     * ticket #134) — the comment is immutable, so this swaps in a new
+     * instance at the same list position rather than mutating it.
+     */
+    public void editComment(AnnotationScope scope, String commentId, String newText) {
+        List<Comment> comments = commentsByScope.getOrDefault(scope, List.of());
+        int index = indexOfComment(comments, commentId);
+        comments.set(index, comments.get(index).withText(requireText(newText, "text")));
+    }
+
+    /** Removes a comment by id (ticket #134). */
+    public void deleteComment(AnnotationScope scope, String commentId) {
+        List<Comment> comments = commentsByScope.getOrDefault(scope, List.of());
+        int index = indexOfComment(comments, commentId);
+        comments.remove(index);
+    }
+
+    private int indexOfComment(List<Comment> comments, String commentId) {
+        for (int i = 0; i < comments.size(); i++) {
+            if (comments.get(i).id().equals(commentId)) {
+                return i;
+            }
+        }
+        throw new NoSuchElementException("No comment with id " + commentId + " at this scope");
     }
 
     public void addPrivateNote(AnnotationScope scope, String text) {
-        notesByScope.computeIfAbsent(scope, s -> new ArrayList<>()).add(new PrivateNote(scope, requireText(text)));
+        notesByScope.computeIfAbsent(scope, s -> new ArrayList<>()).add(new PrivateNote(scope, requireText(text, "text")));
     }
 
-    private String requireText(String text) {
-        Objects.requireNonNull(text, "text");
+    private String requireText(String text, String fieldName) {
+        Objects.requireNonNull(text, fieldName);
         if (text.isBlank()) {
-            throw new IllegalArgumentException("text must not be blank");
+            throw new IllegalArgumentException(fieldName + " must not be blank");
         }
         return text;
     }

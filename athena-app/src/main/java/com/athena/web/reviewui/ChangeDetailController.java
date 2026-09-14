@@ -7,6 +7,7 @@ import com.athena.reviewui.Comment;
 import com.athena.reviewui.PrivateNote;
 import com.athena.semantic.Change;
 import com.athena.web.ChangeKey;
+import com.athena.web.CurrentReviewer;
 import com.athena.web.WebSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +31,11 @@ import java.util.List;
 public class ChangeDetailController {
 
     private final WebSession session;
+    private final CurrentReviewer currentReviewer;
 
-    public ChangeDetailController(WebSession session) {
+    public ChangeDetailController(WebSession session, CurrentReviewer currentReviewer) {
         this.session = session;
+        this.currentReviewer = currentReviewer;
     }
 
     @GetMapping("/api/review/changes/{changeKey}")
@@ -65,7 +68,7 @@ public class ChangeDetailController {
                                 boolean isComment) {
         try {
             if (isComment) {
-                selection.annotationBoard().addComment(scope, text);
+                selection.annotationBoard().addComment(scope, currentReviewer.login(), text);
             } else {
                 selection.annotationBoard().addPrivateNote(scope, text);
             }

@@ -34,12 +34,12 @@ public class CommentNoteStorageAndSyncSteps {
 
     @Given("a comment {string} at review scope")
     public void a_comment_at_review_scope(String text) {
-        board.addComment(AnnotationScope.review(), text);
+        board.addComment(AnnotationScope.review(), "reviewer", text);
     }
 
     @Given("a comment {string} at line {int} of file {string}")
     public void a_comment_at_line_of_file(String text, int line, String filePath) {
-        board.addComment(AnnotationScope.line(filePath, line), text);
+        board.addComment(AnnotationScope.line(filePath, line), "reviewer", text);
     }
 
     @Given("a private note {string} at review scope")

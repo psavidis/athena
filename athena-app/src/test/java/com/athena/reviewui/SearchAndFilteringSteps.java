@@ -59,7 +59,7 @@ public class SearchAndFilteringSteps {
 
     @Given("a comment {string} attached to the rename Change")
     public void a_comment_attached_to_the_rename_change(String text) {
-        board.addComment(AnnotationScope.change(renameChange), text);
+        board.addComment(AnnotationScope.change(renameChange), "reviewer", text);
     }
 
     @When("the same PR is re-analyzed, producing new Change instances for the same transformations")

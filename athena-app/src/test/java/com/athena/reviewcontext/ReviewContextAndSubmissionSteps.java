@@ -93,7 +93,7 @@ public class ReviewContextAndSubmissionSteps {
 
     @Given("a review-context comment {string} attached to the rename Change")
     public void a_review_context_comment_attached_to_the_rename_change(String text) {
-        board.addComment(AnnotationScope.change(renameChange), text);
+        board.addComment(AnnotationScope.change(renameChange), "reviewer", text);
     }
 
     @Given("a review-context private note {string} attached to the rename Change")

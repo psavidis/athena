@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { SemanticDimension, SemanticDimensionEntry, SemanticProfile } from './api'
 import type { AltitudeStop } from './ZoomAltitudeRail'
 import { entriesByStop } from './ZoomAltitudeRail'
+import { fileItemId } from './canvasItemId'
 
 /**
  * Content rendered at one zoom-altitude stop, inside a dived-into territory
@@ -88,11 +89,23 @@ export default function ZoomAltitudeContent({
   profile,
   showLayerBadges,
   onSelectNode,
+  moduleName,
+  commentCounts,
+  showCommentedOnly,
+  onOpenComments,
 }: {
   stop: AltitudeStop
   profile: SemanticProfile
   showLayerBadges: boolean
   onSelectNode: (selection: NodeSelection) => void
+  /** The owning territory's module name (ticket #134) — needed to build a file node's
+   * comment-target id, which is scoped by territory since a file name alone isn't
+   * globally unique. */
+  moduleName: string
+  /** Comment count per canvas item id, for file-node pin badges (ticket #134). */
+  commentCounts: Record<string, number>
+  showCommentedOnly: boolean
+  onOpenComments: (itemId: string, itemLabel: string) => void
 }) {
   const entries = entriesByStop(profile).get(stop) ?? []
   const groups = groupByDimension(entries)
@@ -135,6 +148,10 @@ export default function ZoomAltitudeContent({
         entries={selected.entries}
         showLayerBadges={showLayerBadges}
         onSelectNode={onSelectNode}
+        moduleName={moduleName}
+        commentCounts={commentCounts}
+        showCommentedOnly={showCommentedOnly}
+        onOpenComments={onOpenComments}
       />
     </div>
   )
@@ -145,14 +162,32 @@ function DimensionGroupContent({
   entries,
   showLayerBadges,
   onSelectNode,
+  moduleName,
+  commentCounts,
+  showCommentedOnly,
+  onOpenComments,
 }: {
   stop: AltitudeStop
   entries: SemanticDimensionEntry[]
   showLayerBadges: boolean
   onSelectNode: (selection: NodeSelection) => void
+  moduleName: string
+  commentCounts: Record<string, number>
+  showCommentedOnly: boolean
+  onOpenComments: (itemId: string, itemLabel: string) => void
 }) {
   if (stop === 'STRUCTURE') {
-    return <StructureContent entries={entries} showLayerBadges={showLayerBadges} onSelectNode={onSelectNode} />
+    return (
+      <StructureContent
+        entries={entries}
+        showLayerBadges={showLayerBadges}
+        onSelectNode={onSelectNode}
+        moduleName={moduleName}
+        commentCounts={commentCounts}
+        showCommentedOnly={showCommentedOnly}
+        onOpenComments={onOpenComments}
+      />
+    )
   }
   if (stop === 'ARCHITECTURE') {
     return <ArchitectureContent entries={entries} showLayerBadges={showLayerBadges} onSelectNode={onSelectNode} />
@@ -251,10 +286,18 @@ function StructureContent({
   entries,
   showLayerBadges,
   onSelectNode,
+  moduleName,
+  commentCounts,
+  showCommentedOnly,
+  onOpenComments,
 }: {
   entries: SemanticDimensionEntry[]
   showLayerBadges: boolean
   onSelectNode: (selection: NodeSelection) => void
+  moduleName: string
+  commentCounts: Record<string, number>
+  showCommentedOnly: boolean
+  onOpenComments: (itemId: string, itemLabel: string) => void
 }) {
   const fileOwner = new Map<string, SemanticDimensionEntry>()
   for (const entry of entries) {
@@ -271,23 +314,43 @@ function StructureContent({
 
   return (
     <div className="flex flex-wrap gap-2.5 px-6 pb-6">
-      {productionFiles.map((file, index) => (
-        <button
-          key={file}
-          type="button"
-          data-testid="file-node"
-          data-file-kind={isConfigFile(file) ? 'config' : 'production'}
-          className="animate-canvas-node-appear relative min-w-[160px] max-w-[220px] rounded-xl border-[1.5px] border-canvas-line-strong bg-canvas-paper-raised px-2.5 py-2 text-left shadow-[var(--shadow-canvas)] transition-[box-shadow,transform] hover:-translate-y-px hover:shadow-[var(--shadow-canvas-lift)] motion-reduce:animate-none"
-          style={staggerStyle(index)}
-          onClick={() => onSelectNode({ kind: 'file', fileName: file, owningEntry: fileOwner.get(file)! })}
-        >
-          {showLayerBadges && <DimensionBadge dimension="STRUCTURAL" />}
-          <span className="mb-1 flex items-center gap-1.5" aria-hidden="true" data-testid={isConfigFile(file) ? 'config-icon' : 'file-icon'}>
-            {isConfigFile(file) ? <GearIcon /> : <FileIcon />}
-          </span>
-          <span className="break-words font-mono text-[11.5px] font-medium text-canvas-ink">{file}</span>
-        </button>
-      ))}
+      {productionFiles.map((file, index) => {
+        const itemId = fileItemId(moduleName, file)
+        const commentCount = commentCounts[itemId] ?? 0
+        const dimmed = showCommentedOnly && commentCount === 0
+        return (
+          <div key={file} className={`relative transition-opacity ${dimmed ? 'opacity-35' : ''}`}>
+            <button
+              type="button"
+              data-testid="file-node"
+              data-file-kind={isConfigFile(file) ? 'config' : 'production'}
+              className="animate-canvas-node-appear relative min-w-[160px] max-w-[220px] rounded-xl border-[1.5px] border-canvas-line-strong bg-canvas-paper-raised px-2.5 py-2 text-left shadow-[var(--shadow-canvas)] transition-[box-shadow,transform] hover:-translate-y-px hover:shadow-[var(--shadow-canvas-lift)] motion-reduce:animate-none"
+              style={staggerStyle(index)}
+              onClick={() => onSelectNode({ kind: 'file', fileName: file, owningEntry: fileOwner.get(file)! })}
+            >
+              {showLayerBadges && <DimensionBadge dimension="STRUCTURAL" />}
+              <span className="mb-1 flex items-center gap-1.5" aria-hidden="true" data-testid={isConfigFile(file) ? 'config-icon' : 'file-icon'}>
+                {isConfigFile(file) ? <GearIcon /> : <FileIcon />}
+              </span>
+              <span className="break-words font-mono text-[11.5px] font-medium text-canvas-ink">{file}</span>
+            </button>
+            {commentCount > 0 && (
+              <button
+                type="button"
+                aria-label={`${commentCount} comment${commentCount === 1 ? '' : 's'} on ${file}`}
+                data-testid="comment-pin"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onOpenComments(itemId, file)
+                }}
+                className="absolute -right-1.5 -top-1.5 z-[3] flex items-center gap-0.5 rounded-full border border-canvas-gold bg-canvas-gold-soft px-1.5 py-0.5 text-[10px] font-bold text-canvas-gold-deep hover:shadow-[var(--shadow-canvas)]"
+              >
+                💬 {commentCount}
+              </button>
+            )}
+          </div>
+        )
+      })}
       {testFiles.length > 0 && (
         <div
           role="group"

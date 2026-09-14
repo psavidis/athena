@@ -10,6 +10,7 @@ import com.athena.semantic.ChangeCategory;
 import com.athena.semantic.PrAnalyzer;
 import com.athena.semantic.ReviewStateStore;
 import com.athena.web.ChangeKeyFixture;
+import com.athena.web.CurrentReviewer;
 import com.athena.web.WebSession;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -40,7 +41,7 @@ public class ChangeMapControllerSteps {
     private final WebSession session =
             new WebSession(new PrAnalyzer(PluginRegistry.languagePlugins(), PluginRegistry.frameworkPlugins()));
     private final ChangeMapController changeMapController = new ChangeMapController(session);
-    private final ChangeDetailController detailController = new ChangeDetailController(session);
+    private final ChangeDetailController detailController = new ChangeDetailController(session, () -> "reviewer");
 
     private Path repoDir;
     private Path workDir;
