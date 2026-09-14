@@ -19,7 +19,7 @@ function renderCanvas() {
   const onNoPullRequestSelected = vi.fn()
   render(
     <QueryClientProvider client={queryClient}>
-      <SemanticCanvasPage onNotConnected={onNotConnected} onNoPullRequestSelected={onNoPullRequestSelected} />
+      <SemanticCanvasPage pullRequest={null} onNotConnected={onNotConnected} onNoPullRequestSelected={onNoPullRequestSelected} />
     </QueryClientProvider>,
   )
   return { onNotConnected, onNoPullRequestSelected }

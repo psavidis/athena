@@ -5,6 +5,7 @@ import {
   getModuleTopology,
   NoPullRequestSelectedError,
   NotConnectedError,
+  type ImportedPullRequest,
   type ModuleTerritory,
   type ModuleTopology,
 } from './api'
@@ -49,10 +50,10 @@ interface TerritoryBox {
   height: number
 }
 
-const TERRITORY_WIDTH = 260
-const TERRITORY_HEIGHT = 160
-const TERRITORY_GAP_X = 340
-const TERRITORY_GAP_Y = 220
+const TERRITORY_WIDTH = 320
+const TERRITORY_HEIGHT = 170
+const TERRITORY_GAP_X = 380
+const TERRITORY_GAP_Y = 230
 const COLUMNS = 3
 
 function layoutTerritories(topology: ModuleTopology): TerritoryBox[] {
@@ -73,21 +74,28 @@ function prefersReducedMotion(): boolean {
   return typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true
 }
 
-// motion-reduce:animate-none (ticket #133): Tailwind's built-in reduced-motion
-// variant, so a NEW territory's ambient pulse collapses to its static end
-// state under prefers-reduced-motion without a JS media-query check here —
-// it also tracks a live OS-setting change mid-session, which a one-time JS
-// check at mount wouldn't.
-const STATUS_META: Record<ModuleTerritory['status'], { label: string; className: string }> = {
-  NEW: { label: 'New', className: 'border-2 border-accent bg-accent-soft animate-pulse motion-reduce:animate-none' },
-  TOUCHED: { label: 'Touched', className: 'border border-ink-300 bg-paper-raised' },
-  IDLE: { label: 'Idle', className: 'border border-dashed border-ink-200 bg-paper opacity-60' },
+// Matches the approved prototype's territory heat treatment: a solid gold
+// border + faint gold wash for a brand-new module, solid muted-green for a
+// touched one, and a dashed idle border — dashed is the DEFAULT territory
+// shape (per the prototype), not something reserved for idle alone.
+const STATUS_META: Record<ModuleTerritory['status'], { className: string }> = {
+  NEW: {
+    className:
+      'border-2 border-solid border-canvas-territory-new bg-[linear-gradient(180deg,rgba(199,154,62,0.09),rgba(199,154,62,0.02))]',
+  },
+  TOUCHED: {
+    className:
+      'border-2 border-solid border-canvas-territory-touched bg-[linear-gradient(180deg,rgba(139,154,115,0.08),rgba(139,154,115,0.02))]',
+  },
+  IDLE: { className: 'border-2 border-dashed border-canvas-territory-idle bg-canvas-paper-raised opacity-70' },
 }
 
 export default function SemanticCanvasPage({
+  pullRequest,
   onNotConnected,
   onNoPullRequestSelected,
 }: {
+  pullRequest: ImportedPullRequest | null
   onNotConnected: () => void
   onNoPullRequestSelected: () => void
 }) {
@@ -251,13 +259,18 @@ export default function SemanticCanvasPage({
   }
 
   function onPointerMove(e: React.PointerEvent) {
-    if (!dragState.current) {
+    const drag = dragState.current
+    if (!drag) {
       return
     }
     setInstantTransition(true)
-    const dx = e.clientX - dragState.current.startX
-    const dy = e.clientY - dragState.current.startY
-    setCamera((current) => ({ ...current, x: dragState.current!.cameraX + dx, y: dragState.current!.cameraY + dy }))
+    const dx = e.clientX - drag.startX
+    const dy = e.clientY - drag.startY
+    // Capture drag into a local const rather than re-reading dragState.current
+    // inside the updater: React may invoke a setState updater later/more than
+    // once (e.g. StrictMode's dev double-render), by which point a concurrent
+    // onPointerUp could have already nulled the ref out from under it.
+    setCamera((current) => ({ ...current, x: drag.cameraX + dx, y: drag.cameraY + dy }))
   }
 
   function onPointerUp() {
@@ -329,156 +342,157 @@ export default function SemanticCanvasPage({
   const byName = new Map(boxes.map((box) => [box.territory.moduleName, box]))
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-paper" data-testid="semantic-canvas">
-      <div role="group" aria-label="Review mode" className="absolute right-6 top-6 z-10 flex overflow-hidden rounded-full border border-ink-200 bg-paper-raised shadow-sm">
-        <button
-          type="button"
-          aria-pressed={reviewMode === 'CONTEXTUAL'}
-          className={`px-4 py-2 text-sm ${reviewMode === 'CONTEXTUAL' ? 'bg-accent-soft text-accent' : 'text-ink-700 hover:bg-ink-100'}`}
-          onClick={() => setReviewMode('CONTEXTUAL')}
-        >
-          Contextual
-        </button>
-        <button
-          type="button"
-          aria-pressed={reviewMode === 'FILE_FIRST'}
-          className={`px-4 py-2 text-sm ${reviewMode === 'FILE_FIRST' ? 'bg-accent-soft text-accent' : 'text-ink-700 hover:bg-ink-100'}`}
-          onClick={() => setReviewMode('FILE_FIRST')}
-        >
-          File-First
-        </button>
-      </div>
-      {reviewMode === 'FILE_FIRST' ? (
-        <FileFirstMode
-          topology={topology}
-          contextFiles={contextFiles}
-          onOpenFile={openFileFromFileFirst}
-          onExplainFile={explainFile}
-        />
-      ) : (
-      <>
-      <div
-        ref={containerRef}
-        role="application"
-        aria-label="Semantic Canvas territory map"
-        className="h-full w-full cursor-grab touch-none"
-        onWheel={onWheel}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerLeave={onPointerUp}
-      >
-        <div
-          className={instantTransition ? '' : 'transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]'}
-          style={{
-            transform: `translate(${camera.x}px, ${camera.y}px) scale(${camera.scale})`,
-            transformOrigin: '0 0',
-            position: 'relative',
-            width: 0,
-            height: 0,
-          }}
-        >
-          <svg className="pointer-events-none absolute left-0 top-0 overflow-visible" width={1} height={1}>
-            {topology.dependencies.map((dependency) => {
-              const from = byName.get(dependency.from)
-              const to = byName.get(dependency.to)
-              if (!from || !to) {
-                return null
-              }
-              // A rail touching the focused territory animates a flowing dash
-              // to read as "this connection is active" (ticket #133); an
-              // unrelated rail stays a plain static line.
-              const touchesSelection =
-                focusedTerritory !== undefined &&
-                (dependency.from === focusedTerritory || dependency.to === focusedTerritory)
-              return (
-                <line
-                  key={`${dependency.from}->${dependency.to}`}
-                  data-testid="dependency-rail"
-                  data-from={dependency.from}
-                  data-to={dependency.to}
-                  data-active={touchesSelection ? 'true' : undefined}
-                  x1={from.x + from.width / 2}
-                  y1={from.y + from.height / 2}
-                  x2={to.x + to.width / 2}
-                  y2={to.y + to.height / 2}
-                  stroke={touchesSelection ? 'var(--color-accent)' : 'var(--color-ink-300)'}
-                  strokeWidth={2}
-                  strokeDasharray={touchesSelection ? '6 6' : undefined}
-                  className={touchesSelection ? 'animate-flow-dash' : undefined}
-                />
-              )
-            })}
-          </svg>
-          {boxes.map((box) => (
-            <TerritoryCard
-              key={box.territory.moduleName}
-              box={box}
-              focused={focusedTerritory === box.territory.moduleName}
-              onClick={() => diveInto(box)}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="absolute bottom-6 right-6 flex gap-2">
-        <button
-          aria-label="Zoom in"
-          className="rounded-full border border-ink-200 bg-paper-raised px-3 py-2 text-sm shadow-sm hover:bg-ink-100"
-          onClick={() => zoomBy(ZOOM_STEP)}
-        >
-          +
-        </button>
-        <button
-          aria-label="Zoom out"
-          className="rounded-full border border-ink-200 bg-paper-raised px-3 py-2 text-sm shadow-sm hover:bg-ink-100"
-          onClick={() => zoomBy(-ZOOM_STEP)}
-        >
-          −
-        </button>
-        <button
-          aria-label="Reset view"
-          className="rounded-full border border-ink-200 bg-paper-raised px-3 py-2 text-sm shadow-sm hover:bg-ink-100"
-          onClick={resetCamera}
-        >
-          Reset
-        </button>
-        {focusedTerritory && territoryProfile && (
-          <button
-            aria-pressed={showLayerBadges}
-            className={`rounded-full border px-3 py-2 text-sm shadow-sm ${
-              showLayerBadges ? 'border-accent bg-accent-soft text-accent' : 'border-ink-200 bg-paper-raised hover:bg-ink-100'
-            }`}
-            onClick={() => setShowLayerBadges((current) => !current)}
+    <div className="flex h-screen w-full flex-col overflow-hidden bg-canvas-paper text-canvas-ink" data-testid="semantic-canvas">
+      <CanvasTopBar pullRequest={pullRequest} reviewMode={reviewMode} onSelectReviewMode={setReviewMode} />
+      <div className="flex min-h-0 flex-1">
+        {reviewMode === 'CONTEXTUAL' && (
+          <CanvasSidebar
+            hasFocusedTerritory={focusedTerritory !== undefined}
+            territoryProfile={territoryProfile}
+            currentStop={currentStop}
+            onSelectStop={selectStop}
+            onZoomOut={resetCamera}
+          />
+        )}
+        {reviewMode === 'FILE_FIRST' ? (
+          <FileFirstMode
+            topology={topology}
+            contextFiles={contextFiles}
+            onOpenFile={openFileFromFileFirst}
+            onExplainFile={explainFile}
+          />
+        ) : (
+          <div
+            className="relative flex-1 overflow-hidden bg-canvas-paper bg-[radial-gradient(var(--color-canvas-dot)_1.2px,transparent_1.2px)] bg-[length:26px_26px]"
           >
-            Semantic layers
-          </button>
+            <div
+              ref={containerRef}
+              role="application"
+              aria-label="Semantic Canvas territory map"
+              className="h-full w-full cursor-grab touch-none"
+              onWheel={onWheel}
+              onPointerDown={onPointerDown}
+              onPointerMove={onPointerMove}
+              onPointerUp={onPointerUp}
+              onPointerLeave={onPointerUp}
+            >
+              <div
+                className={instantTransition ? '' : 'transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]'}
+                style={{
+                  transform: `translate(${camera.x}px, ${camera.y}px) scale(${camera.scale})`,
+                  transformOrigin: '0 0',
+                  position: 'relative',
+                  width: 0,
+                  height: 0,
+                }}
+              >
+                <svg className="pointer-events-none absolute left-0 top-0 overflow-visible" width={1} height={1}>
+                  {topology.dependencies.map((dependency) => {
+                    const from = byName.get(dependency.from)
+                    const to = byName.get(dependency.to)
+                    if (!from || !to) {
+                      return null
+                    }
+                    // A rail touching the focused territory animates a flowing dash
+                    // to read as "this connection is active" (ticket #133); an
+                    // unrelated rail stays a plain static line.
+                    const touchesSelection =
+                      focusedTerritory !== undefined &&
+                      (dependency.from === focusedTerritory || dependency.to === focusedTerritory)
+                    return (
+                      <line
+                        key={`${dependency.from}->${dependency.to}`}
+                        data-testid="dependency-rail"
+                        data-from={dependency.from}
+                        data-to={dependency.to}
+                        data-active={touchesSelection ? 'true' : undefined}
+                        x1={from.x + from.width / 2}
+                        y1={from.y + from.height / 2}
+                        x2={to.x + to.width / 2}
+                        y2={to.y + to.height / 2}
+                        stroke={touchesSelection ? 'var(--color-canvas-gold)' : 'var(--color-canvas-line-strong)'}
+                        strokeWidth={touchesSelection ? 2.5 : 1.5}
+                        strokeDasharray={touchesSelection ? '6 6' : undefined}
+                        className={touchesSelection ? 'animate-flow-dash' : undefined}
+                      />
+                    )
+                  })}
+                </svg>
+                {boxes.map((box) => (
+                  <TerritoryCard
+                    key={box.territory.moduleName}
+                    box={box}
+                    focused={focusedTerritory === box.territory.moduleName}
+                    dependencies={topology.dependencies}
+                    onClick={() => diveInto(box)}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="absolute bottom-6 right-6 flex gap-2">
+              <button
+                aria-label="Zoom in"
+                className="rounded-full border border-canvas-line-strong bg-canvas-paper-raised px-3 py-2 text-sm text-canvas-ink-soft shadow-[var(--shadow-canvas)] hover:border-canvas-gold"
+                onClick={() => zoomBy(ZOOM_STEP)}
+              >
+                +
+              </button>
+              <button
+                aria-label="Zoom out"
+                className="rounded-full border border-canvas-line-strong bg-canvas-paper-raised px-3 py-2 text-sm text-canvas-ink-soft shadow-[var(--shadow-canvas)] hover:border-canvas-gold"
+                onClick={() => zoomBy(-ZOOM_STEP)}
+              >
+                −
+              </button>
+              <button
+                aria-label="Reset view"
+                className="rounded-full border border-canvas-line-strong bg-canvas-paper-raised px-3 py-2 text-sm text-canvas-ink-soft shadow-[var(--shadow-canvas)] hover:border-canvas-gold"
+                onClick={resetCamera}
+              >
+                Reset
+              </button>
+            </div>
+            {!focusedTerritory && (
+              <button
+                type="button"
+                aria-label="PR overview"
+                className="absolute left-1/2 top-6 max-w-[280px] -translate-x-1/2 rounded-2xl border border-canvas-gold bg-canvas-gold-soft px-5 py-4 text-center shadow-[var(--shadow-canvas)] hover:shadow-[var(--shadow-canvas-lift)]"
+                onClick={openOverviewDrawer}
+              >
+                <span className="block font-display text-base font-semibold leading-tight text-canvas-gold-deep">
+                  {topology.territories.length} module{topology.territories.length === 1 ? '' : 's'} touched
+                </span>
+              </button>
+            )}
+          </div>
         )}
       </div>
-      {!focusedTerritory && (
-        <button
-          type="button"
-          aria-label="PR overview"
-          className="absolute left-6 top-6 rounded-2xl border border-ink-200 bg-paper-raised px-4 py-3 text-left shadow-sm hover:bg-ink-100"
-          onClick={openOverviewDrawer}
-        >
-          <span className="block text-xs uppercase tracking-wide text-ink-500">This PR</span>
-          <span className="block font-display text-lg text-ink-900">{topology.territories.length} modules touched</span>
-        </button>
-      )}
-      {focusedTerritory && territoryProfile && (
-        <ZoomAltitudeRail profile={territoryProfile} currentStop={currentStop} onSelectStop={selectStop} />
-      )}
-      {focusedTerritory && territoryProfile && currentStop && (
-        <div className="absolute inset-x-0 bottom-0 top-24 overflow-auto">
-          <ZoomAltitudeContent
-            stop={currentStop}
-            profile={territoryProfile}
-            showLayerBadges={showLayerBadges}
-            onSelectNode={selectNode}
-          />
+      {reviewMode === 'CONTEXTUAL' && focusedTerritory && territoryProfile && currentStop && (
+        <div className="absolute inset-x-0 bottom-0 top-[63px] left-44 flex flex-col overflow-hidden border-t border-canvas-line bg-canvas-paper-raised">
+          <div className="flex items-center justify-between border-b border-canvas-line px-5 py-2.5">
+            <span className="font-display text-base font-semibold text-canvas-ink">{focusedTerritory}</span>
+            <button
+              type="button"
+              aria-pressed={showLayerBadges}
+              className={`rounded-lg border px-3 py-1.5 text-xs font-semibold ${
+                showLayerBadges
+                  ? 'border-canvas-gold bg-canvas-gold-soft text-canvas-gold-deep'
+                  : 'border-canvas-line-strong bg-canvas-paper-raised text-canvas-ink-soft hover:border-canvas-gold'
+              }`}
+              onClick={() => setShowLayerBadges((current) => !current)}
+            >
+              Semantic layers
+            </button>
+          </div>
+          <div className="flex-1 overflow-auto">
+            <ZoomAltitudeContent
+              stop={currentStop}
+              profile={territoryProfile}
+              showLayerBadges={showLayerBadges}
+              onSelectNode={selectNode}
+            />
+          </div>
         </div>
-      )}
-      </>
       )}
       <DetailDrawer
         selection={drawerSelection}
@@ -490,13 +504,112 @@ export default function SemanticCanvasPage({
   )
 }
 
+/**
+ * The top bar (ticket #128's approved prototype): logo/wordmark, PR chip,
+ * semantic-layers-context hint, and the Contextual/File-First mode select —
+ * previously missing entirely; the mode toggle floated as an unstyled pill
+ * with no logo, PR identity, or comments affordance anywhere on screen.
+ */
+function CanvasTopBar({
+  pullRequest,
+  reviewMode,
+  onSelectReviewMode,
+}: {
+  pullRequest: ImportedPullRequest | null
+  reviewMode: 'CONTEXTUAL' | 'FILE_FIRST'
+  onSelectReviewMode: (mode: 'CONTEXTUAL' | 'FILE_FIRST') => void
+}) {
+  return (
+    <header className="flex flex-wrap items-center justify-between gap-3.5 border-b border-canvas-line bg-canvas-paper-raised px-5 py-2">
+      <div className="flex min-w-0 items-center gap-3">
+        <img
+          src="/athena-logo.png"
+          alt="Athena"
+          className="h-[46px] w-[46px] flex-shrink-0 rounded-full shadow-[0_0_0_2px_var(--color-canvas-gold),var(--shadow-canvas)]"
+        />
+        <span className="whitespace-nowrap font-display text-lg font-semibold tracking-tight text-canvas-ink">Athena</span>
+        {pullRequest && (
+          <span className="inline-flex min-w-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-canvas-gold-soft py-1 pl-2.5 pr-3 text-xs text-canvas-ink-soft">
+            <span className="font-mono font-semibold text-canvas-gold-deep">#{pullRequest.number}</span>
+            <span className="overflow-hidden text-ellipsis">{pullRequest.title}</span>
+          </span>
+        )}
+      </div>
+      <div className="flex items-center gap-2.5">
+        <label className="flex items-center gap-1.5 text-xs text-canvas-ink-soft">
+          Review mode
+          <select
+            aria-label="Review mode"
+            value={reviewMode}
+            onChange={(e) => onSelectReviewMode(e.target.value as 'CONTEXTUAL' | 'FILE_FIRST')}
+            className="rounded-lg border border-canvas-line-strong bg-canvas-paper-raised px-2.5 py-1.5 text-xs text-canvas-ink"
+          >
+            <option value="CONTEXTUAL">Contextual</option>
+            <option value="FILE_FIRST">File-First</option>
+          </select>
+        </label>
+      </div>
+    </header>
+  )
+}
+
+/**
+ * The left sidebar (ticket #128's approved prototype): a plain nav stack
+ * plus, in Contextual mode with a territory focused, the zoom-altitude
+ * rail — previously there was no sidebar at all, and the altitude rail
+ * floated as an unstyled top-left box only while a territory was focused.
+ */
+function CanvasSidebar({
+  hasFocusedTerritory,
+  territoryProfile,
+  currentStop,
+  onSelectStop,
+  onZoomOut,
+}: {
+  hasFocusedTerritory: boolean
+  territoryProfile: Parameters<typeof ZoomAltitudeRail>[0]['profile'] | undefined
+  currentStop: AltitudeStop | undefined
+  onSelectStop: (stop: AltitudeStop) => void
+  onZoomOut: () => void
+}) {
+  return (
+    <nav className="flex w-44 flex-shrink-0 flex-col gap-0.5 border-r border-canvas-line bg-canvas-paper-raised p-2.5">
+      <button
+        type="button"
+        aria-current={!hasFocusedTerritory ? 'true' : undefined}
+        onClick={onZoomOut}
+        className={`w-full rounded-lg px-2.5 py-2 text-left text-sm ${
+          !hasFocusedTerritory ? 'bg-canvas-gold-soft font-semibold text-canvas-gold-deep' : 'text-canvas-ink-soft hover:bg-canvas-gold-soft hover:text-canvas-ink'
+        }`}
+      >
+        PR Overview
+      </button>
+      {hasFocusedTerritory && territoryProfile && (
+        <>
+          <div className="my-2 h-px bg-canvas-line" />
+          <ZoomAltitudeRail profile={territoryProfile} currentStop={currentStop} onSelectStop={onSelectStop} />
+          <button
+            type="button"
+            onClick={onZoomOut}
+            className="mt-2 flex items-center gap-1.5 rounded-lg border border-canvas-gold bg-canvas-gold-soft px-2.5 py-2 text-xs font-semibold text-canvas-gold-deep hover:shadow-[var(--shadow-canvas)]"
+          >
+            Zoom out
+          </button>
+        </>
+      )}
+    </nav>
+  )
+}
+
 function TerritoryCard({
   box,
   focused,
+  dependencies,
   onClick,
 }: {
   box: TerritoryBox
   focused: boolean
+  dependencies: ModuleTopology['dependencies']
   onClick: () => void
 }) {
   const { territory } = box
@@ -511,16 +624,90 @@ function TerritoryCard({
       data-status={territory.status}
       aria-current={focused ? 'true' : undefined}
       onClick={onClick}
-      className={`absolute flex flex-col justify-between rounded-2xl p-4 text-left shadow-sm transition-colors ${meta.className}`}
+      className={`group absolute flex flex-col justify-between rounded-[20px] p-4 pb-3 text-left transition-[box-shadow,transform] hover:-translate-y-0.5 hover:shadow-[var(--shadow-canvas-lift)] ${meta.className}`}
       style={{ left: box.x, top: box.y, width: box.width, height: box.height }}
     >
+      {territory.status === 'NEW' && (
+        <div className="pointer-events-none absolute inset-0 rounded-[20px] animate-canvas-territory-pulse motion-reduce:animate-none" />
+      )}
       <div>
-        <span className="rounded-full bg-ink-100 px-2 py-0.5 text-xs font-medium text-ink-700">
+        <span className="mb-2 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-canvas-line-strong bg-canvas-paper px-2.5 py-1 text-[11px] font-semibold text-canvas-ink-soft">
+          {techStackIcon(territory.techStack)}
           {territory.techStackLabel}
         </span>
-        <h3 className="mt-2 font-display text-lg text-ink-900">{territory.moduleName}</h3>
+        <div className="mb-1 flex items-center gap-2 font-display text-[15px] font-semibold leading-tight text-canvas-ink-soft">
+          <span
+            className="h-2.5 w-2.5 flex-shrink-0 rounded-full"
+            style={{ background: heatColor(territory.status) }}
+          />
+          <span>{territory.moduleName}</span>
+        </div>
+        <div className="font-mono text-[11px] text-canvas-ink-faint">{territory.statusSummary}</div>
       </div>
-      <p className="text-sm text-ink-500">{territory.statusSummary}</p>
+      <RelatedTerritoryChips territoryId={territory.moduleName} dependencies={dependencies} />
     </button>
+  )
+}
+
+function RelatedTerritoryChips({
+  territoryId,
+  dependencies,
+}: {
+  territoryId: string
+  dependencies: ModuleTopology['dependencies']
+}) {
+  const related = dependencies
+    .filter((d) => d.from === territoryId || d.to === territoryId)
+    .map((d) => (d.from === territoryId ? d.to : d.from))
+  if (related.length === 0) {
+    return null
+  }
+  return (
+    <div className="mt-auto flex flex-wrap gap-1.5 pt-3.5">
+      {related.map((name) => (
+        <span
+          key={name}
+          className="inline-flex items-center gap-1 rounded-full border border-canvas-line bg-canvas-paper px-2 py-0.5 text-[10.5px] text-canvas-ink-faint"
+        >
+          {name}
+        </span>
+      ))}
+    </div>
+  )
+}
+
+function heatColor(status: ModuleTerritory['status']): string {
+  if (status === 'NEW') return 'var(--color-canvas-territory-new)'
+  if (status === 'TOUCHED') return 'var(--color-canvas-territory-touched)'
+  return 'var(--color-canvas-territory-idle)'
+}
+
+function techStackIcon(techStack: ModuleTerritory['techStack']) {
+  if (techStack === 'SPRING_BOOT_JAVA') {
+    return (
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2a10 10 0 1 0 7.07 17.07" />
+        <path d="M12 2a10 10 0 0 1 7.07 17.07" />
+        <path d="M12 12 20 4" />
+        <path d="M15 3.5 20 4l.5 5" />
+      </svg>
+    )
+  }
+  if (techStack === 'REACT_TYPESCRIPT') {
+    return (
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none" />
+        <ellipse cx="12" cy="12" rx="10" ry="4.2" />
+        <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)" />
+        <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)" />
+      </svg>
+    )
+  }
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 3c-2 2-2 4 0 6s2 4 0 6" />
+      <path d="M14 3c-2 2-2 4 0 6s2 4 0 6" />
+      <path d="M5 19h14" />
+    </svg>
   )
 }

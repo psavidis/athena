@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,460;0,9..144,560;1,9..144,460&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,460;0,9..144,560;1,9..144,460&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
 
 /*
@@ -66,6 +66,30 @@
   --font-display: "Fraunces", ui-serif, Georgia, serif;
 
   --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Semantic Canvas gold/ivory palette (ticket #128's approved prototype,
+     https://claude.ai/code/artifact/9189bde4-a4f2-44a6-9033-3ed29407c525) —
+     namespaced canvas-* rather than reusing paper/ink so the rest of the app
+     (Change Map, PR selection) keeps its own neutral palette untouched. */
+  --color-canvas-paper: #faf6ec;
+  --color-canvas-paper-raised: #ffffff;
+  --color-canvas-ink: #2a2620;
+  --color-canvas-ink-soft: #6b5d45;
+  --color-canvas-ink-faint: #a0937a;
+  --color-canvas-line: #e3d9be;
+  --color-canvas-line-strong: #d0c29b;
+  --color-canvas-gold: #a9812f;
+  --color-canvas-gold-deep: #7a5c22;
+  --color-canvas-gold-soft: #f1e6c8;
+  --color-canvas-gold-glow: rgba(169, 129, 47, 0.18);
+  --color-canvas-brick: #a34b3d;
+  --color-canvas-brick-soft: #f5e5df;
+  --color-canvas-dot: #e6dab8;
+  --color-canvas-territory-new: #c79a3e;
+  --color-canvas-territory-touched: #8b9a73;
+  --color-canvas-territory-idle: #c4b896;
+  --shadow-canvas: 0 1px 2px rgba(42, 38, 32, 0.05), 0 10px 28px rgba(42, 38, 32, 0.08);
+  --shadow-canvas-lift: 0 4px 10px rgba(42, 38, 32, 0.08), 0 18px 40px rgba(42, 38, 32, 0.14);
 }
 
 body {
@@ -141,11 +165,48 @@ body {
   animation: flow-dash 0.8s linear infinite;
 }
 
+/* Semantic Canvas: a new-module territory's ambient pulse, matching the
+   approved prototype's ring-expansion (not a plain opacity pulse). */
+@keyframes canvas-territory-pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--color-canvas-gold-glow);
+  }
+  70% {
+    box-shadow: 0 0 0 22px rgba(169, 129, 47, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(169, 129, 47, 0);
+  }
+}
+
+.animate-canvas-territory-pulse {
+  animation: canvas-territory-pulse 3.2s ease-out infinite;
+}
+
+/* Semantic Canvas: a node's first appearance at a zoom-altitude stop,
+   matching the approved prototype's scale+rise-in. */
+@keyframes canvas-node-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-canvas-node-appear {
+  animation: canvas-node-appear 0.4s var(--ease-calm) backwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-rise-in,
   .animate-pop-in,
   .animate-cluster-in,
-  .animate-flow-dash {
+  .animate-flow-dash,
+  .animate-canvas-territory-pulse,
+  .animate-canvas-node-appear {
     animation: none;
   }
 }

@@ -21,7 +21,7 @@ function renderCanvas() {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
   render(
     <QueryClientProvider client={queryClient}>
-      <SemanticCanvasPage onNotConnected={vi.fn()} onNoPullRequestSelected={vi.fn()} />
+      <SemanticCanvasPage pullRequest={null} onNotConnected={vi.fn()} onNoPullRequestSelected={vi.fn()} />
     </QueryClientProvider>,
   )
 }
@@ -115,8 +115,8 @@ describe('Semantic Canvas — motion and animation pass', () => {
 
     const nodes = await screen.findAllByTestId('concept-node')
     expect(nodes).toHaveLength(2)
-    expect(nodes[0].className).toContain('animate-pop-in')
-    expect(nodes[1].className).toContain('animate-pop-in')
+    expect(nodes[0].className).toContain('animate-canvas-node-appear')
+    expect(nodes[1].className).toContain('animate-canvas-node-appear')
     const firstDelay = nodes[0].style.animationDelay
     const secondDelay = nodes[1].style.animationDelay
     expect(firstDelay).not.toBe(secondDelay)
@@ -128,7 +128,7 @@ describe('Semantic Canvas — motion and animation pass', () => {
 
     const newTerritory = await screen.findByRole('button', { name: 'crowdness-live territory' })
 
-    expect(newTerritory.className).toContain('animate-pulse')
+    expect(newTerritory.querySelector('.animate-canvas-territory-pulse')).not.toBeNull()
   })
 
   it('does not pulse a merely-touched territory', async () => {
@@ -137,7 +137,7 @@ describe('Semantic Canvas — motion and animation pass', () => {
 
     const touchedTerritory = await screen.findByRole('button', { name: 'crowdness-ingestion territory' })
 
-    expect(touchedTerritory.className).not.toContain('animate-pulse')
+    expect(touchedTerritory.querySelector('.animate-canvas-territory-pulse')).toBeNull()
   })
 
   it('animates a flowing dash on a connector touching the current selection', async () => {

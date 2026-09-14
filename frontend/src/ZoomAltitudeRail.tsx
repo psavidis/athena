@@ -36,6 +36,12 @@ export function populatedStops(profile: SemanticProfile): AltitudeStop[] {
   return ALTITUDE_STOPS.map((s) => s.stop).filter((stop) => byStop.has(stop))
 }
 
+/**
+ * The zoom-altitude ladder (ticket #128's approved prototype): an inline
+ * part of the left sidebar's own flow (not a floating box), each stop a
+ * ring connected to its neighbors by a vertical line — a literal "ladder"
+ * a reviewer climbs down from Intent toward Structure.
+ */
 export default function ZoomAltitudeRail({
   profile,
   currentStop,
@@ -49,29 +55,50 @@ export default function ZoomAltitudeRail({
   if (stops.length === 0) {
     return null
   }
+  const currentIndex = stops.findIndex((s) => s === currentStop)
   return (
-    <nav
-      aria-label="Zoom altitude · semantic spine"
-      className="absolute left-6 top-6 flex flex-col gap-1 rounded-2xl border border-ink-200 bg-paper-raised p-2 shadow-sm"
-    >
-      {stops.map((stop) => {
-        const meta = ALTITUDE_STOPS.find((s) => s.stop === stop)!
-        const isCurrent = stop === currentStop
-        return (
-          <button
-            key={stop}
-            type="button"
-            aria-current={isCurrent ? 'true' : undefined}
-            className={`rounded-xl px-3 py-2 text-left text-sm transition-colors ${
-              isCurrent ? 'bg-accent-soft text-accent' : 'text-ink-700 hover:bg-ink-100'
-            }`}
-            onClick={() => onSelectStop(stop)}
-          >
-            <span className="block font-medium">{meta.label}</span>
-            <span className="block text-xs text-ink-500">{meta.hint}</span>
-          </button>
-        )
-      })}
-    </nav>
+    <div className="px-1 pt-1">
+      <span className="mb-1.5 block px-1.5 text-[10px] font-semibold uppercase tracking-wide text-canvas-ink-faint">
+        Where you are
+      </span>
+      <nav aria-label="Zoom altitude · semantic spine" className="flex flex-col">
+        {stops.map((stop, index) => {
+          const meta = ALTITUDE_STOPS.find((s) => s.stop === stop)!
+          const isCurrent = stop === currentStop
+          const isPassed = currentIndex >= 0 && index < currentIndex
+          return (
+            <button
+              key={stop}
+              type="button"
+              aria-current={isCurrent ? 'true' : undefined}
+              className={`relative flex w-full items-center gap-2 rounded-lg px-1.5 py-1.5 text-left ${
+                isCurrent ? 'font-semibold text-canvas-gold-deep' : 'text-canvas-ink-faint hover:bg-canvas-gold-soft'
+              }`}
+              onClick={() => onSelectStop(stop)}
+            >
+              {index > 0 && (
+                <span className="absolute left-[13px] top-0 h-1/2 w-px bg-canvas-line" aria-hidden="true" />
+              )}
+              {index < stops.length - 1 && (
+                <span className="absolute left-[13px] top-1/2 h-1/2 w-px bg-canvas-line" aria-hidden="true" />
+              )}
+              <span
+                className={`relative z-[1] h-2 w-2 flex-shrink-0 rounded-full border-[1.5px] ${
+                  isCurrent
+                    ? 'border-canvas-gold bg-canvas-gold shadow-[0_0_0_3px_var(--color-canvas-gold-glow)]'
+                    : isPassed
+                      ? 'border-canvas-line-strong bg-canvas-line-strong'
+                      : 'border-canvas-line-strong bg-canvas-paper-raised'
+                }`}
+              />
+              <span className="flex flex-col leading-tight">
+                <span className="text-xs">{meta.label}</span>
+                <span className="text-[9.5px] font-normal text-canvas-ink-faint">{meta.hint}</span>
+              </span>
+            </button>
+          )
+        })}
+      </nav>
+    </div>
   )
 }

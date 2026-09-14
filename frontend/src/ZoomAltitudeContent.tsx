@@ -9,7 +9,8 @@ import { entriesByStop } from './ZoomAltitudeRail'
  * Explorer's per-level components consumed — the difference here is
  * spatial node placement instead of a card list, plus new content this
  * ticket introduces (Architecture layer boxes, test-suite aggregation,
- * config-file icons) that didn't exist in the old Explorer.
+ * config-file icons) that didn't exist in the old Explorer. Node styling
+ * matches the approved prototype's card system (ticket #128).
  *
  * REST-endpoint chips and client-adapter markers are NOT implemented here:
  * that needs new classifier-level detection (parsing e.g. @RestController/
@@ -30,11 +31,10 @@ function isConfigFile(path: string): boolean {
 }
 
 // Staggered node-appear (ticket #133): each node in a newly-revealed altitude
-// stop animates in .animate-pop-in (already defined for the old Explorer's
-// structural-cluster reveal, reused here) with an increasing delay, so the
-// stop reads as nodes converging in sequence rather than popping in at once.
-// .animate-pop-in's own `@media (prefers-reduced-motion: reduce)` rule
-// collapses this to no animation — no separate handling needed here.
+// stop animates in .animate-canvas-node-appear with an increasing delay, so
+// the stop reads as nodes converging in sequence rather than popping in at
+// once. Its own `@media (prefers-reduced-motion: reduce)` rule collapses
+// this to no animation — no separate handling needed here.
 const STAGGER_STEP_MS = 40
 
 function staggerStyle(index: number): React.CSSProperties {
@@ -67,7 +67,7 @@ export default function ZoomAltitudeContent({
     return <ArchitectureContent entries={entries} showLayerBadges={showLayerBadges} onSelectNode={onSelectNode} />
   }
   return (
-    <div role="region" aria-label={`${stop} altitude content`} className="flex flex-wrap gap-4 p-6">
+    <div role="region" aria-label={`${stop} altitude content`} className="flex flex-wrap gap-3 p-6">
       {entries.map((entry, index) => (
         <ConceptNode
           key={entry.conceptName}
@@ -78,6 +78,17 @@ export default function ZoomAltitudeContent({
         />
       ))}
     </div>
+  )
+}
+
+function DimensionBadge({ dimension }: { dimension: string }) {
+  return (
+    <span
+      data-testid="dimension-badge"
+      className="absolute right-1.5 top-1.5 z-[2] rounded bg-canvas-gold-soft px-1.5 py-0.5 text-[8.5px] font-bold uppercase tracking-wide text-canvas-gold-deep"
+    >
+      {dimension}
+    </span>
   )
 }
 
@@ -97,17 +108,18 @@ function ConceptNode({
       type="button"
       data-testid="concept-node"
       data-dimension={entry.dimension}
-      className="animate-pop-in min-w-[180px] rounded-xl border border-ink-200 bg-paper-raised p-4 text-left shadow-sm hover:bg-ink-100"
+      className="animate-canvas-node-appear relative min-w-[180px] max-w-[220px] overflow-hidden rounded-xl border-[1.5px] border-canvas-line-strong bg-canvas-paper-raised text-left shadow-[var(--shadow-canvas)] transition-[box-shadow,transform] hover:-translate-y-px hover:shadow-[var(--shadow-canvas-lift)] motion-reduce:animate-none"
       style={staggerStyle(index)}
       onClick={() => onSelectNode({ kind: 'concept', entry })}
     >
-      {showLayerBadges && (
-        <span data-testid="dimension-badge" className="mb-1 block text-[10px] uppercase tracking-wide text-ink-500">
-          {entry.dimension}
-        </span>
-      )}
-      <h4 className="font-medium text-ink-900">{entry.conceptName}</h4>
-      <p className="text-xs text-ink-500">{entry.conceptDescription}</p>
+      {showLayerBadges && <DimensionBadge dimension={entry.dimension} />}
+      <div className="border-b border-canvas-line bg-canvas-gold-soft px-2 py-1.5 font-display text-[12.5px] font-semibold uppercase tracking-wide text-canvas-gold-deep">
+        {entry.dimension}
+      </div>
+      <div className="px-3 py-2.5">
+        <h4 className="mb-1 font-display text-[14.5px] font-medium leading-tight text-canvas-ink">{entry.conceptName}</h4>
+        <p className="text-[11.5px] leading-snug text-canvas-ink-soft">{entry.conceptDescription}</p>
+      </div>
     </button>
   )
 }
@@ -123,15 +135,23 @@ function ArchitectureContent({
 }) {
   return (
     <div role="region" aria-label="Architecture altitude content" className="p-6">
-      <div data-testid="architecture-layer-shape" className="flex flex-col gap-3">
+      <div data-testid="architecture-layer-shape" className="flex flex-wrap gap-3">
         {entries.map((entry, index) => (
-          <ConceptNode
+          <button
             key={entry.conceptName}
-            entry={entry}
-            index={index}
-            showLayerBadges={showLayerBadges}
-            onSelectNode={onSelectNode}
-          />
+            type="button"
+            data-testid="concept-node"
+            data-dimension={entry.dimension}
+            className="animate-canvas-node-appear relative min-w-[150px] rounded-xl border-2 border-dashed border-canvas-line-strong bg-transparent px-3 py-2.5 text-left transition-colors hover:border-canvas-gold motion-reduce:animate-none"
+            style={staggerStyle(index)}
+            onClick={() => onSelectNode({ kind: 'concept', entry })}
+          >
+            {showLayerBadges && <DimensionBadge dimension={entry.dimension} />}
+            <div className="mb-1 text-[10.5px] font-semibold uppercase tracking-wide text-canvas-ink-faint">
+              {entry.conceptName}
+            </div>
+            <p className="text-[11px] leading-snug text-canvas-ink-faint">{entry.conceptDescription}</p>
+          </button>
         ))}
       </div>
     </div>
@@ -161,26 +181,22 @@ function StructureContent({
   const [testSuiteExpanded, setTestSuiteExpanded] = useState(false)
 
   return (
-    <div role="region" aria-label="Structure altitude content" className="flex flex-wrap gap-4 p-6">
+    <div role="region" aria-label="Structure altitude content" className="flex flex-wrap gap-2.5 p-6">
       {productionFiles.map((file, index) => (
         <button
           key={file}
           type="button"
           data-testid="file-node"
           data-file-kind={isConfigFile(file) ? 'config' : 'production'}
-          className="animate-pop-in min-w-[160px] rounded-xl border border-ink-200 bg-paper-raised p-4 text-left shadow-sm hover:bg-ink-100"
+          className="animate-canvas-node-appear relative min-w-[160px] max-w-[220px] rounded-xl border-[1.5px] border-canvas-line-strong bg-canvas-paper-raised px-2.5 py-2 text-left shadow-[var(--shadow-canvas)] transition-[box-shadow,transform] hover:-translate-y-px hover:shadow-[var(--shadow-canvas-lift)] motion-reduce:animate-none"
           style={staggerStyle(index)}
           onClick={() => onSelectNode({ kind: 'file', fileName: file, owningEntry: fileOwner.get(file)! })}
         >
-          {showLayerBadges && (
-            <span data-testid="dimension-badge" className="mb-1 block text-[10px] uppercase tracking-wide text-ink-500">
-              STRUCTURAL
-            </span>
-          )}
-          <span aria-hidden="true" data-testid={isConfigFile(file) ? 'config-icon' : 'file-icon'}>
-            {isConfigFile(file) ? '⚙' : '📄'}
+          {showLayerBadges && <DimensionBadge dimension="STRUCTURAL" />}
+          <span className="mb-1 flex items-center gap-1.5" aria-hidden="true" data-testid={isConfigFile(file) ? 'config-icon' : 'file-icon'}>
+            {isConfigFile(file) ? <GearIcon /> : <FileIcon />}
           </span>
-          <span className="ml-1 text-sm text-ink-900">{file}</span>
+          <span className="break-words font-mono text-[11.5px] font-medium text-canvas-ink">{file}</span>
         </button>
       ))}
       {testFiles.length > 0 && (
@@ -188,17 +204,18 @@ function StructureContent({
           role="group"
           aria-label="Test suite"
           data-testid="test-suite-node"
-          className="min-w-[160px] rounded-xl border border-dashed border-ink-300 bg-paper p-4"
+          className="min-w-[160px] max-w-[220px] rounded-xl border-2 border-dashed border-canvas-territory-idle bg-canvas-paper px-2.5 py-2"
         >
           <button
             type="button"
-            className="text-left text-sm font-medium text-ink-900"
+            className="flex items-center gap-1.5 text-left text-[12px] font-medium text-canvas-ink"
             onClick={() => setTestSuiteExpanded((current) => !current)}
           >
-            🧪 Test suite ({testFiles.length} files)
+            <FlaskIcon />
+            Test suite ({testFiles.length} files)
           </button>
           {testSuiteExpanded && (
-            <ul className="mt-2 space-y-1 text-xs text-ink-500">
+            <ul className="mt-2 space-y-1 font-mono text-[10.5px] text-canvas-ink-faint">
               {testFiles.map((file) => (
                 <li key={file}>{file}</li>
               ))}
@@ -207,5 +224,33 @@ function StructureContent({
         </div>
       )}
     </div>
+  )
+}
+
+function FileIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 text-canvas-ink-faint">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <path d="M14 2v6h6" />
+    </svg>
+  )
+}
+
+function GearIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 text-canvas-ink-faint">
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+    </svg>
+  )
+}
+
+function FlaskIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 text-canvas-territory-idle">
+      <path d="M9 3h6" />
+      <path d="M10 3v6l-5.5 9.5A1 1 0 0 0 5.36 20h13.28a1 1 0 0 0 .86-1.5L14 9V3" />
+      <path d="M7.5 15h9" />
+    </svg>
   )
 }
