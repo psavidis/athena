@@ -387,7 +387,7 @@ export function SecondaryButton({
     <button
       type="button"
       {...props}
-      className={`rounded-lg border border-ink-200 bg-paper-raised px-3 py-1.5 text-sm font-medium text-ink-700 transition-colors duration-150 hover:border-ink-300 hover:bg-ink-100 disabled:cursor-not-allowed disabled:opacity-40 ${props.className ?? ''}`}
+      className={`rounded-lg border border-ink-200 bg-paper-raised px-3 py-1.5 text-sm font-medium text-ink-700 transition-colors duration-150 hover:border-accent hover:bg-ink-100 disabled:cursor-not-allowed disabled:opacity-40 ${props.className ?? ''}`}
     >
       {children}
     </button>
@@ -398,11 +398,23 @@ export function SectionLabel({ children }: { children: React.ReactNode }) {
   return <h2 className="mb-3 text-xs font-semibold tracking-wide text-ink-500 uppercase">{children}</h2>
 }
 
+/**
+ * The unified loading indicator (ticket #109/PR #120), restyled to carry
+ * Athena's identity (ticket #123) instead of reading as an unbranded
+ * generic spinner: three accent-gold dots pulsing in a stagger, echoing
+ * the same calm-motion language as the rest of the app's own pop/rise
+ * animations rather than a plain single-dot pulse with no distinguishing
+ * character.
+ */
 export function LoadingState({ label = 'Loading…' }: { label?: string }) {
   return (
     <PageShell>
       <div role="status" aria-label="Loading" className="flex items-center gap-2 text-sm text-ink-500">
-        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ink-300" />
+        <span className="flex items-center gap-1">
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent [animation-delay:0ms]" />
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent [animation-delay:160ms]" />
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent [animation-delay:320ms]" />
+        </span>
         {label}
       </div>
     </PageShell>

@@ -18,8 +18,16 @@
   --color-ink-200: #e4dfd6;
   --color-ink-100: #efebe3;
 
-  --color-accent: #7c3aed;
-  --color-accent-soft: #f3ecfe;
+  /* Athena's identity accent (ticket #123): the warm gold sampled directly
+     from athena-logo.png's medallion (the laurel-leaf/helmet artwork
+     clusters in the #785838-#886840 range) and athena.jpeg's candlelit
+     armor — the same family as the Semantic Canvas's own --color-canvas-gold
+     (#a9812f), so the app reads as one identity rather than the canvas
+     alone looking "on-brand" against a violet rest-of-app. Was #7c3aed
+     (a generic violet with no connection to the actual artwork) before
+     this ticket; #109's closing PR explicitly deferred this grounding. */
+  --color-accent: #a9812f;
+  --color-accent-soft: #f1e6c8;
 
   /* One hue per Change category, used consistently for section headers,
      icons, count chips, and card accents on the Change Map. */
