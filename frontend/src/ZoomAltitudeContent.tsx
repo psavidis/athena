@@ -29,6 +29,12 @@ function isConfigFile(path: string): boolean {
   return CONFIG_FILE_PATTERN.test(path)
 }
 
+/** What was clicked, enough for the detail drawer (ticket #131) to render the right content
+ * without needing to re-derive it from just a bare node name. */
+export type NodeSelection =
+  | { kind: 'concept'; entry: SemanticDimensionEntry }
+  | { kind: 'file'; fileName: string; owningEntry: SemanticDimensionEntry }
+
 export default function ZoomAltitudeContent({
   stop,
   profile,
@@ -38,7 +44,7 @@ export default function ZoomAltitudeContent({
   stop: AltitudeStop
   profile: SemanticProfile
   showLayerBadges: boolean
-  onSelectNode: (nodeKind: 'concept' | 'file' | 'test-suite', name: string) => void
+  onSelectNode: (selection: NodeSelection) => void
 }) {
   const entries = entriesByStop(profile).get(stop) ?? []
 
@@ -64,7 +70,7 @@ function ConceptNode({
 }: {
   entry: SemanticDimensionEntry
   showLayerBadges: boolean
-  onSelectNode: (nodeKind: 'concept', name: string) => void
+  onSelectNode: (selection: NodeSelection) => void
 }) {
   return (
     <button
@@ -72,7 +78,7 @@ function ConceptNode({
       data-testid="concept-node"
       data-dimension={entry.dimension}
       className="min-w-[180px] rounded-xl border border-ink-200 bg-paper-raised p-4 text-left shadow-sm hover:bg-ink-100"
-      onClick={() => onSelectNode('concept', entry.conceptName)}
+      onClick={() => onSelectNode({ kind: 'concept', entry })}
     >
       {showLayerBadges && (
         <span data-testid="dimension-badge" className="mb-1 block text-[10px] uppercase tracking-wide text-ink-500">
@@ -92,7 +98,7 @@ function ArchitectureContent({
 }: {
   entries: SemanticDimensionEntry[]
   showLayerBadges: boolean
-  onSelectNode: (nodeKind: 'concept', name: string) => void
+  onSelectNode: (selection: NodeSelection) => void
 }) {
   return (
     <div role="region" aria-label="Architecture altitude content" className="p-6">
@@ -112,9 +118,17 @@ function StructureContent({
 }: {
   entries: SemanticDimensionEntry[]
   showLayerBadges: boolean
-  onSelectNode: (nodeKind: 'file' | 'test-suite', name: string) => void
+  onSelectNode: (selection: NodeSelection) => void
 }) {
-  const allFiles = Array.from(new Set(entries.flatMap((e) => e.filesTouched ?? [])))
+  const fileOwner = new Map<string, SemanticDimensionEntry>()
+  for (const entry of entries) {
+    for (const file of entry.filesTouched ?? []) {
+      if (!fileOwner.has(file)) {
+        fileOwner.set(file, entry)
+      }
+    }
+  }
+  const allFiles = Array.from(fileOwner.keys())
   const productionFiles = allFiles.filter((f) => !isTestFile(f))
   const testFiles = allFiles.filter(isTestFile)
   const [testSuiteExpanded, setTestSuiteExpanded] = useState(false)
@@ -128,7 +142,7 @@ function StructureContent({
           data-testid="file-node"
           data-file-kind={isConfigFile(file) ? 'config' : 'production'}
           className="min-w-[160px] rounded-xl border border-ink-200 bg-paper-raised p-4 text-left shadow-sm hover:bg-ink-100"
-          onClick={() => onSelectNode('file', file)}
+          onClick={() => onSelectNode({ kind: 'file', fileName: file, owningEntry: fileOwner.get(file)! })}
         >
           {showLayerBadges && (
             <span data-testid="dimension-badge" className="mb-1 block text-[10px] uppercase tracking-wide text-ink-500">
@@ -151,10 +165,7 @@ function StructureContent({
           <button
             type="button"
             className="text-left text-sm font-medium text-ink-900"
-            onClick={() => {
-              setTestSuiteExpanded((current) => !current)
-              onSelectNode('test-suite', 'Test suite')
-            }}
+            onClick={() => setTestSuiteExpanded((current) => !current)}
           >
             🧪 Test suite ({testFiles.length} files)
           </button>

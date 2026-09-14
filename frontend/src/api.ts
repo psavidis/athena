@@ -83,6 +83,10 @@ export interface SemanticDimensionEntry {
    * for every classification that isn't a transition.
    */
   beforeEvidenceCount?: number
+  /** The distinct files this classification's evidence touches (ticket #130: the
+   * Semantic Canvas's Structure altitude shows one node per file). Absent on any
+   * fixture/response that predates this field. */
+  filesTouched?: string[]
 }
 
 export interface SemanticProfile {

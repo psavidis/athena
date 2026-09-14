@@ -4,7 +4,6 @@ import { getGitHubConnectUrl, getGitHubStatus, listOpenPullRequests, listReposit
 import type { ImportedPullRequest } from './api'
 import ChangeDetailPage from './ChangeDetailPage'
 import SemanticCanvasPage from './SemanticCanvasPage'
-import type { SemanticChangeExplorerScope } from './SemanticChangeExplorerPage'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
 import AiAnalysisPage from './AiAnalysisPage'
 import { BackLink, Card, ErrorState, LoadingState, PageHeading, PageShell, PrimaryButton } from './ui'
@@ -13,17 +12,11 @@ export default function App() {
   const [connected, setConnected] = useState<boolean | null>(null)
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null)
   const [selectedPr, setSelectedPr] = useState<ImportedPullRequest | null>(null)
-  // The Semantic Change Explorer is the landing view for a PR the instant
-  // it's selected — ticket #91's approved mockup has no separate
-  // category/change-list screen before it. Defaults to the whole PR,
-  // aggregated across every Change; narrowing to a module or drilling into
-  // one Change replaces this scope rather than navigating to a new screen
-  // (see SemanticChangeExplorerPage's own scope-kind doc comment).
-  const [explorerScope, setExplorerScope] = useState<SemanticChangeExplorerScope>({ kind: 'pr' })
-  // The Diff view overlay (ticket #100 / #91's topbar mode toggle): only
-  // reachable while explorerScope is a single Change, and only ever shows
-  // that Change's raw diff — exiting it returns to the Explorer on the same
-  // scope, not to some separate "previous screen."
+  // The Semantic Canvas is the landing view for a PR the instant it's
+  // selected (ticket #129, replacing the retired Explorer's #91 landing
+  // behavior) — no separate category/change-list screen before it.
+  // The Diff view overlay (ticket #100): shows one Change's raw diff,
+  // reached from AI Analysis; exiting it returns to the Canvas.
   const [diffViewChangeKey, setDiffViewChangeKey] = useState<string | null>(null)
   const [showingSummary, setShowingSummary] = useState(false)
   const [showingAiAnalysis, setShowingAiAnalysis] = useState(false)
@@ -36,15 +29,6 @@ export default function App() {
 
   function selectPr(pr: ImportedPullRequest) {
     setSelectedPr(pr)
-    setExplorerScope({ kind: 'pr' })
-  }
-
-  function exitPr() {
-    setSelectedPr(null)
-    setExplorerScope({ kind: 'pr' })
-    setDiffViewChangeKey(null)
-    setShowingSummary(false)
-    setShowingAiAnalysis(false)
   }
 
   function renderContent() {
@@ -67,7 +51,7 @@ export default function App() {
             onBack={() => setShowingAiAnalysis(false)}
             onSelectChange={(changeKey) => {
               setShowingAiAnalysis(false)
-              setExplorerScope({ kind: 'change', changeKey })
+              setDiffViewChangeKey(changeKey)
             }}
           />
         )
