@@ -1,5 +1,7 @@
 package com.athena.semantic;
 
+import com.athena.analysis.spi.ExternalFinding;
+
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -17,6 +19,12 @@ import java.util.Map;
  * classifying it along whichever semantic dimensions a classifier exists
  * for today. A Change with no classifier support yet simply carries an
  * {@link SemanticProfile#empty(Change) empty} profile, never a missing one.
+ *
+ * <p>{@link ExternalFinding}s (ticket #114/#149), when any {@code
+ * ExternalAnalysisProvider} was configured, are carried here as
+ * independent evidence — never merged into or deriving a {@link
+ * SemanticProfile}. An analysis run with no providers configured carries
+ * an empty list, identical to this class's behavior before #149.
  */
 public final class AnalysisResult {
 
@@ -25,14 +33,17 @@ public final class AnalysisResult {
     private final List<SemanticProfile> semanticProfiles;
     private final List<SymbolAwareDiffEntry> symbolAwareDiffEntries;
     private final Map<String, String> rawDiffsByFile;
+    private final List<ExternalFinding> externalFindings;
 
     AnalysisResult(AnalysisStatus status, List<Change> changes, List<SemanticProfile> semanticProfiles,
-                   List<SymbolAwareDiffEntry> symbolAwareDiffEntries, Map<String, String> rawDiffsByFile) {
+                   List<SymbolAwareDiffEntry> symbolAwareDiffEntries, Map<String, String> rawDiffsByFile,
+                   List<ExternalFinding> externalFindings) {
         this.status = status;
         this.changes = List.copyOf(changes);
         this.semanticProfiles = List.copyOf(semanticProfiles);
         this.symbolAwareDiffEntries = List.copyOf(symbolAwareDiffEntries);
         this.rawDiffsByFile = Collections.unmodifiableMap(new LinkedHashMap<>(rawDiffsByFile));
+        this.externalFindings = List.copyOf(externalFindings);
     }
 
     public AnalysisStatus status() {
@@ -68,5 +79,22 @@ public final class AnalysisResult {
     /** The raw base/head diff for one file, regardless of analysis status. Empty if the file is unchanged/unknown. */
     public String rawDiffFor(String filePath) {
         return rawDiffsByFile.getOrDefault(filePath, "");
+    }
+
+    /**
+     * Every {@link ExternalFinding} from every configured provider that
+     * successfully ran (ticket #114/#149) — independent of, and never
+     * deriving, {@link #changes()}/{@link #semanticProfiles()}. Empty when
+     * no provider was configured, or every configured provider failed.
+     */
+    public List<ExternalFinding> externalFindings() {
+        return externalFindings;
+    }
+
+    /** This file's external findings only, from every provider that reported one here. */
+    public List<ExternalFinding> externalFindingsFor(String filePath) {
+        return externalFindings.stream()
+                .filter(finding -> finding.location().filePath().equals(filePath))
+                .toList();
     }
 }
