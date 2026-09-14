@@ -226,6 +226,29 @@ export async function selectPullRequest(
   )
 }
 
+export interface DiffResult {
+  changeCount: number
+}
+
+export class DiffCreationFailedError extends Error {}
+
+/** Compares two revisions of a local Git repository directly, no GitHub involved (ticket #111/#152/#153). */
+export async function createDiff(
+  repositoryPath: string,
+  baseRevision: string,
+  headRevision: string,
+): Promise<DiffResult> {
+  const response = await fetch('/api/diffs', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ repositoryPath, baseRevision, headRevision }),
+  })
+  if (!response.ok) {
+    throw new DiffCreationFailedError()
+  }
+  return response.json()
+}
+
 export interface ModuleNarrative {
   moduleName: string
   changeKeys: string[]

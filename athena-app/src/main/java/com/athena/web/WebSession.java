@@ -93,6 +93,20 @@ public class WebSession {
     }
 
     /**
+     * Whichever selection is current, as a {@link Diff} (ticket #111/#153): a standalone
+     * Diff directly, or a selected PR Review's own Diff half. Lets a controller that only
+     * ever needs Diff-shaped behavior (Change detection, a module's semantic profile,
+     * annotations) work the same way regardless of which kind of selection produced it,
+     * without needing to know about {@link SelectedPullRequest} at all.
+     */
+    public Optional<Diff> currentDiff() {
+        if (selectedDiff != null) {
+            return Optional.of(selectedDiff);
+        }
+        return selectedPullRequest().map(SelectedPullRequest::diff);
+    }
+
+    /**
      * Clears the selected Diff without deleting its checkout directory
      * (ticket #111/#152) — for a caller that has already decided to
      * delete that directory itself (e.g. {@code DiffSelectionController}

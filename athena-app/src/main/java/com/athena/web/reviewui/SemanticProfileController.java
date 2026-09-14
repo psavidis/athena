@@ -11,6 +11,7 @@ import com.athena.semantic.SemanticDimension;
 import com.athena.semantic.SemanticProfile;
 import com.athena.semantic.TaxonomyLoader;
 import com.athena.web.ChangeKey;
+import com.athena.web.Diff;
 import com.athena.web.WebSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,9 +74,9 @@ public class SemanticProfileController {
 
     @GetMapping("/api/review/change-map/{changeKey}/semantic-profile")
     public SemanticProfileResponse semanticProfile(@PathVariable String changeKey) {
-        WebSession.SelectedPullRequest selection = requireSelection();
-        Change change = requireChange(changeKey, selection.changes());
-        return toResponse(List.of(selection.semanticProfileFor(change)));
+        Diff diff = requireSelection();
+        Change change = requireChange(changeKey, diff.changes());
+        return toResponse(List.of(diff.semanticProfileFor(change)));
     }
 
     /**
@@ -91,9 +92,9 @@ public class SemanticProfileController {
      */
     @GetMapping("/api/review/modules/{moduleName}/semantic-profile")
     public SemanticProfileResponse moduleSemanticProfile(@PathVariable String moduleName) {
-        WebSession.SelectedPullRequest selection = requireSelection();
-        ModuleGroup group = requireModule(moduleName, selection.changes());
-        List<SemanticProfile> profiles = group.changes().stream().map(selection::semanticProfileFor).toList();
+        Diff diff = requireSelection();
+        ModuleGroup group = requireModule(moduleName, diff.changes());
+        List<SemanticProfile> profiles = group.changes().stream().map(diff::semanticProfileFor).toList();
         return toResponse(profiles);
     }
 
@@ -107,8 +108,8 @@ public class SemanticProfileController {
      */
     @GetMapping("/api/review/semantic-profile")
     public SemanticProfileResponse pullRequestSemanticProfile() {
-        WebSession.SelectedPullRequest selection = requireSelection();
-        List<SemanticProfile> profiles = selection.changes().stream().map(selection::semanticProfileFor).toList();
+        Diff diff = requireSelection();
+        List<SemanticProfile> profiles = diff.changes().stream().map(diff::semanticProfileFor).toList();
         return toResponse(profiles);
     }
 
@@ -186,11 +187,19 @@ public class SemanticProfileController {
         return Math.max(MINIMUM_CONFIDENCE_PERCENT, INFERRED_CONFIDENCE_PERCENT - rank * CONFIDENCE_STEP_DOWN_PER_RANK);
     }
 
-    private WebSession.SelectedPullRequest requireSelection() {
-        session.gitHubToken()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not connected to GitHub"));
-        return session.selectedPullRequest()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT, "No PR selected"));
+    /**
+     * A standalone Diff needs no GitHub connection at all (ticket #111/#153), so this only
+     * ever reports the GitHub-specific 401 when there is truly nothing usable selected AND
+     * no token — the same "not connected to GitHub" reviewers saw before this ticket for the
+     * PR-only flow. A session with a token but nothing selected still reports 409, unchanged.
+     */
+    private Diff requireSelection() {
+        return session.currentDiff().orElseThrow(() -> {
+            if (session.gitHubToken().isEmpty()) {
+                return new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not connected to GitHub");
+            }
+            return new ResponseStatusException(HttpStatus.CONFLICT, "No PR or Diff selected");
+        });
     }
 
     private Change requireChange(String changeKey, List<Change> changes) {

@@ -4,6 +4,7 @@ import com.athena.reviewui.AnnotationBoard;
 import com.athena.reviewui.AnnotationScope;
 import com.athena.reviewui.Comment;
 import com.athena.web.CurrentReviewer;
+import com.athena.web.Diff;
 import com.athena.web.WebSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -100,10 +101,18 @@ public class CanvasCommentController {
         return comments(itemId);
     }
 
-    private WebSession.SelectedPullRequest requireSelection() {
-        session.gitHubToken()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not connected to GitHub"));
-        return session.selectedPullRequest()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT, "No PR selected"));
+    /**
+     * A standalone Diff needs no GitHub connection at all (ticket #111/#153), so this only
+     * ever reports the GitHub-specific 401 when there is truly nothing usable selected AND
+     * no token — the same "not connected to GitHub" reviewers saw before this ticket for the
+     * PR-only flow. A session with a token but nothing selected still reports 409, unchanged.
+     */
+    private Diff requireSelection() {
+        return session.currentDiff().orElseThrow(() -> {
+            if (session.gitHubToken().isEmpty()) {
+                return new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not connected to GitHub");
+            }
+            return new ResponseStatusException(HttpStatus.CONFLICT, "No PR or Diff selected");
+        });
     }
 }
