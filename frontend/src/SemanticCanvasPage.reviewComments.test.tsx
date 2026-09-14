@@ -135,6 +135,29 @@ async function diveIntoLiveAndReachStructure() {
   return user
 }
 
+const CAPABILITY_PROFILE: SemanticProfile = {
+  dimensions: [
+    {
+      dimension: 'RESPONSIBILITY',
+      conceptName: 'Move Responsibility',
+      conceptDescription: 'Description',
+      inferred: true,
+      confidencePercent: 70,
+      evidence: [],
+      supportingConceptNames: [],
+    },
+  ],
+}
+
+async function diveIntoLiveAndReachCapabilityFlow() {
+  const user = userEvent.setup()
+  const territory = await screen.findByRole('button', { name: 'crowdness-live territory' })
+  await user.click(territory)
+  const rail = await screen.findByRole('navigation', { name: 'Zoom altitude · semantic spine' })
+  await user.click(within(rail).getByRole('button', { name: /Capability/ }))
+  return user
+}
+
 describe('Semantic Canvas — review comments', () => {
   it('shows a comment pin badge on a file node with comments', async () => {
     mockTopology(LIVE_TERRITORY)
@@ -237,6 +260,37 @@ describe('Semantic Canvas — review comments', () => {
 
     expect(within(drawer).queryByText('Only comment')).not.toBeInTheDocument()
     expect(screen.queryByTestId('comment-pin')).not.toBeInTheDocument()
+  })
+
+  it('shows a comment pin badge on a concept node with comments', async () => {
+    mockTopology(LIVE_TERRITORY)
+    mockModuleProfile('crowdness-live', CAPABILITY_PROFILE)
+    const fake = mockCanvasComments()
+    fake.seed('concept:crowdness-live:Move Responsibility', [
+      { id: 'c1', author: 'alex', postedAt: '2024-01-01T00:00:00Z', text: 'Why did this move?' },
+    ])
+    renderCanvas()
+    await diveIntoLiveAndReachCapabilityFlow()
+
+    const pin = await screen.findByTestId('comment-pin')
+    expect(pin).toHaveTextContent('1')
+  })
+
+  it('opens the comment thread for a concept node when its pin is clicked', async () => {
+    mockTopology(LIVE_TERRITORY)
+    mockModuleProfile('crowdness-live', CAPABILITY_PROFILE)
+    const fake = mockCanvasComments()
+    fake.seed('concept:crowdness-live:Move Responsibility', [
+      { id: 'c1', author: 'alex', postedAt: '2024-01-01T00:00:00Z', text: 'Why did this move?' },
+    ])
+    renderCanvas()
+    const user = await diveIntoLiveAndReachCapabilityFlow()
+
+    await user.click(await screen.findByTestId('comment-pin'))
+
+    const drawer = await screen.findByRole('dialog', { name: 'Detail drawer' })
+    expect(within(drawer).getByText('Why did this move?')).toBeVisible()
+    expect(within(drawer).getByText('alex')).toBeVisible()
   })
 
   it('shows the total comment count across the PR in the topbar', async () => {

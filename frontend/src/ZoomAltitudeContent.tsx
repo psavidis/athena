@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { SemanticDimension, SemanticDimensionEntry, SemanticProfile } from './api'
 import type { AltitudeStop } from './ZoomAltitudeRail'
 import { entriesByStop } from './ZoomAltitudeRail'
-import { fileItemId } from './canvasItemId'
+import { conceptItemId, fileItemId } from './canvasItemId'
 
 /**
  * Content rendered at one zoom-altitude stop, inside a dived-into territory
@@ -190,19 +190,36 @@ function DimensionGroupContent({
     )
   }
   if (stop === 'ARCHITECTURE') {
-    return <ArchitectureContent entries={entries} showLayerBadges={showLayerBadges} onSelectNode={onSelectNode} />
+    return (
+      <ArchitectureContent
+        entries={entries}
+        showLayerBadges={showLayerBadges}
+        onSelectNode={onSelectNode}
+        moduleName={moduleName}
+        commentCounts={commentCounts}
+        showCommentedOnly={showCommentedOnly}
+        onOpenComments={onOpenComments}
+      />
+    )
   }
   return (
     <div className="flex flex-wrap gap-3 px-6 pb-6">
-      {entries.map((entry, index) => (
-        <ConceptNode
-          key={entry.conceptName}
-          entry={entry}
-          index={index}
-          showLayerBadges={showLayerBadges}
-          onSelectNode={onSelectNode}
-        />
-      ))}
+      {entries.map((entry, index) => {
+        const itemId = conceptItemId(moduleName, entry.conceptName)
+        const commentCount = commentCounts[itemId] ?? 0
+        return (
+          <ConceptNode
+            key={entry.conceptName}
+            entry={entry}
+            index={index}
+            showLayerBadges={showLayerBadges}
+            onSelectNode={onSelectNode}
+            commentCount={commentCount}
+            dimmed={showCommentedOnly && commentCount === 0}
+            onOpenComments={() => onOpenComments(itemId, entry.conceptName)}
+          />
+        )
+      })}
     </div>
   )
 }
@@ -223,30 +240,53 @@ function ConceptNode({
   index,
   showLayerBadges,
   onSelectNode,
+  commentCount,
+  dimmed,
+  onOpenComments,
 }: {
   entry: SemanticDimensionEntry
   index: number
   showLayerBadges: boolean
   onSelectNode: (selection: NodeSelection) => void
+  /** Comment count for this node's pin badge (ticket #134 follow-up), 0 if none. */
+  commentCount: number
+  dimmed: boolean
+  onOpenComments: () => void
 }) {
   return (
-    <button
-      type="button"
-      data-testid="concept-node"
-      data-dimension={entry.dimension}
-      className="animate-canvas-node-appear relative min-w-[180px] max-w-[220px] overflow-hidden rounded-xl border-[1.5px] border-canvas-line-strong bg-canvas-paper-raised text-left shadow-[var(--shadow-canvas)] transition-[box-shadow,transform] hover:-translate-y-px hover:shadow-[var(--shadow-canvas-lift)] motion-reduce:animate-none"
-      style={staggerStyle(index)}
-      onClick={() => onSelectNode({ kind: 'concept', entry })}
-    >
-      {showLayerBadges && <DimensionBadge dimension={entry.dimension} />}
-      <div className="border-b border-canvas-line bg-canvas-gold-soft px-2 py-1.5 font-display text-[12.5px] font-semibold uppercase tracking-wide text-canvas-gold-deep">
-        {entry.dimension}
-      </div>
-      <div className="px-3 py-2.5">
-        <h4 className="mb-1 font-display text-[14.5px] font-medium leading-tight text-canvas-ink">{entry.conceptName}</h4>
-        <p className="text-[11.5px] leading-snug text-canvas-ink-soft">{entry.conceptDescription}</p>
-      </div>
-    </button>
+    <div className={`relative transition-opacity ${dimmed ? 'opacity-35' : ''}`}>
+      <button
+        type="button"
+        data-testid="concept-node"
+        data-dimension={entry.dimension}
+        className="animate-canvas-node-appear relative min-w-[180px] max-w-[220px] overflow-hidden rounded-xl border-[1.5px] border-canvas-line-strong bg-canvas-paper-raised text-left shadow-[var(--shadow-canvas)] transition-[box-shadow,transform] hover:-translate-y-px hover:shadow-[var(--shadow-canvas-lift)] motion-reduce:animate-none"
+        style={staggerStyle(index)}
+        onClick={() => onSelectNode({ kind: 'concept', entry })}
+      >
+        {showLayerBadges && <DimensionBadge dimension={entry.dimension} />}
+        <div className="border-b border-canvas-line bg-canvas-gold-soft px-2 py-1.5 font-display text-[12.5px] font-semibold uppercase tracking-wide text-canvas-gold-deep">
+          {entry.dimension}
+        </div>
+        <div className="px-3 py-2.5">
+          <h4 className="mb-1 font-display text-[14.5px] font-medium leading-tight text-canvas-ink">{entry.conceptName}</h4>
+          <p className="text-[11.5px] leading-snug text-canvas-ink-soft">{entry.conceptDescription}</p>
+        </div>
+      </button>
+      {commentCount > 0 && (
+        <button
+          type="button"
+          aria-label={`${commentCount} comment${commentCount === 1 ? '' : 's'} on ${entry.conceptName}`}
+          data-testid="comment-pin"
+          onClick={(e) => {
+            e.stopPropagation()
+            onOpenComments()
+          }}
+          className="absolute -right-1.5 -top-1.5 z-[3] flex items-center gap-0.5 rounded-full border border-canvas-gold bg-canvas-gold-soft px-1.5 py-0.5 text-[10px] font-bold text-canvas-gold-deep hover:shadow-[var(--shadow-canvas)]"
+        >
+          💬 {commentCount}
+        </button>
+      )}
+    </div>
   )
 }
 
@@ -254,30 +294,58 @@ function ArchitectureContent({
   entries,
   showLayerBadges,
   onSelectNode,
+  moduleName,
+  commentCounts,
+  showCommentedOnly,
+  onOpenComments,
 }: {
   entries: SemanticDimensionEntry[]
   showLayerBadges: boolean
   onSelectNode: (selection: NodeSelection) => void
+  moduleName: string
+  commentCounts: Record<string, number>
+  showCommentedOnly: boolean
+  onOpenComments: (itemId: string, itemLabel: string) => void
 }) {
   return (
     <div data-testid="architecture-layer-shape" className="flex flex-wrap gap-3 px-6 pb-6">
-      {entries.map((entry, index) => (
-        <button
-          key={entry.conceptName}
-          type="button"
-          data-testid="concept-node"
-          data-dimension={entry.dimension}
-          className="animate-canvas-node-appear relative min-w-[150px] rounded-xl border-2 border-dashed border-canvas-line-strong bg-transparent px-3 py-2.5 text-left transition-colors hover:border-canvas-gold motion-reduce:animate-none"
-          style={staggerStyle(index)}
-          onClick={() => onSelectNode({ kind: 'concept', entry })}
-        >
-          {showLayerBadges && <DimensionBadge dimension={entry.dimension} />}
-          <div className="mb-1 text-[10.5px] font-semibold uppercase tracking-wide text-canvas-ink-faint">
-            {entry.conceptName}
+      {entries.map((entry, index) => {
+        const itemId = conceptItemId(moduleName, entry.conceptName)
+        const commentCount = commentCounts[itemId] ?? 0
+        const dimmed = showCommentedOnly && commentCount === 0
+        return (
+          <div key={entry.conceptName} className={`relative transition-opacity ${dimmed ? 'opacity-35' : ''}`}>
+            <button
+              type="button"
+              data-testid="concept-node"
+              data-dimension={entry.dimension}
+              className="animate-canvas-node-appear relative min-w-[150px] rounded-xl border-2 border-dashed border-canvas-line-strong bg-transparent px-3 py-2.5 text-left transition-colors hover:border-canvas-gold motion-reduce:animate-none"
+              style={staggerStyle(index)}
+              onClick={() => onSelectNode({ kind: 'concept', entry })}
+            >
+              {showLayerBadges && <DimensionBadge dimension={entry.dimension} />}
+              <div className="mb-1 text-[10.5px] font-semibold uppercase tracking-wide text-canvas-ink-faint">
+                {entry.conceptName}
+              </div>
+              <p className="text-[11px] leading-snug text-canvas-ink-faint">{entry.conceptDescription}</p>
+            </button>
+            {commentCount > 0 && (
+              <button
+                type="button"
+                aria-label={`${commentCount} comment${commentCount === 1 ? '' : 's'} on ${entry.conceptName}`}
+                data-testid="comment-pin"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onOpenComments(itemId, entry.conceptName)
+                }}
+                className="absolute -right-1.5 -top-1.5 z-[3] flex items-center gap-0.5 rounded-full border border-canvas-gold bg-canvas-gold-soft px-1.5 py-0.5 text-[10px] font-bold text-canvas-gold-deep hover:shadow-[var(--shadow-canvas)]"
+              >
+                💬 {commentCount}
+              </button>
+            )}
           </div>
-          <p className="text-[11px] leading-snug text-canvas-ink-faint">{entry.conceptDescription}</p>
-        </button>
-      ))}
+        )
+      })}
     </div>
   )
 }
