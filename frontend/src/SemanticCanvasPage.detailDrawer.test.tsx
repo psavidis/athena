@@ -168,6 +168,33 @@ describe('Semantic Canvas — sliding detail drawer', () => {
     expect(drawer.querySelector('[data-testid="evidence-statement"]')).toHaveTextContent('Idempotent recovery')
   })
 
+  it('shows a "no diff recorded" fallback instead of rendering nothing when no matching Change is found', async () => {
+    mockTopology(TWO_TERRITORIES)
+    mockModuleProfile('crowdness-ingestion', {
+      dimensions: [
+        {
+          dimension: 'STRUCTURAL',
+          conceptName: 'Add ingestion check',
+          conceptDescription: 'Description',
+          inferred: false,
+          confidencePercent: 100,
+          evidence: [],
+          supportingConceptNames: [],
+          filesTouched: ['IngestionWorker.java'],
+        },
+      ],
+    })
+    renderCanvas()
+    const user = userEvent.setup()
+    const ingestionTerritory = await screen.findByRole('button', { name: 'crowdness-ingestion territory' })
+    await user.click(ingestionTerritory)
+
+    // crowdness-ingestion's changeKeys is empty in the fixture, so no Change can be found for the file.
+    await user.click(await screen.findByText('IngestionWorker.java'))
+
+    expect(await screen.findByText('No diff recorded for this Change.')).toBeVisible()
+  })
+
   it('shows a footprint summary instead of a diff for the PR-overview node', async () => {
     mockTopology(TWO_TERRITORIES)
     renderCanvas()

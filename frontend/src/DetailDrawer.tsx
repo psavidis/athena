@@ -108,7 +108,7 @@ function FileDrawerContent({
       </p>
       <div className="mt-4">
         {isLoading && <LoadingState />}
-        {data && <DiffView diff={data.diff} />}
+        {!isLoading && <DiffView diff={data?.diff ?? ''} />}
       </div>
     </div>
   )
