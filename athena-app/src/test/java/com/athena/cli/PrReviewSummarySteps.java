@@ -4,7 +4,7 @@ import com.athena.git.GitAskpass;
 import com.athena.git.GitCheckoutException;
 import com.athena.git.TempDirectories;
 import com.athena.github.FakeGitHubTransport;
-import com.athena.github.ImportedPullRequest;
+import com.athena.repository.ImportedPullRequest;
 import com.athena.github.PullRequestImporter;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;

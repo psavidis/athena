@@ -1,7 +1,8 @@
 package com.athena.web.github;
 
-import com.athena.github.GitHubRepositoryBrowser;
-import com.athena.github.PullRequestSummary;
+import com.athena.github.GitHubRepositoryProvider;
+import com.athena.repository.PullRequestSummary;
+import com.athena.repository.RepositoryProvider;
 import com.athena.web.WebSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class PullRequestsController {
     public List<PullRequestSummary> openPullRequests(@PathVariable String owner, @PathVariable String repo) {
         String token = session.gitHubToken()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not connected to GitHub"));
-        return new GitHubRepositoryBrowser(token).listOpenPullRequests(owner + "/" + repo);
+        RepositoryProvider provider = new GitHubRepositoryProvider(token);
+        return provider.openPullRequests(owner + "/" + repo);
     }
 }

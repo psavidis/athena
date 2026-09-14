@@ -3,7 +3,7 @@ package com.athena.cli;
 import com.athena.git.GitAskpass;
 import com.athena.git.GitRevisionCheckout;
 import com.athena.git.TempDirectories;
-import com.athena.github.ImportedPullRequest;
+import com.athena.repository.ImportedPullRequest;
 import com.athena.plugins.PluginRegistry;
 import com.athena.semantic.Change;
 import com.athena.semantic.ChangeCategory;

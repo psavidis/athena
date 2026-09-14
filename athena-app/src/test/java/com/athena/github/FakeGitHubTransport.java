@@ -1,5 +1,10 @@
 package com.athena.github;
 
+import com.athena.repository.ChangedFile;
+import com.athena.repository.Commit;
+import com.athena.repository.PullRequestSummary;
+import com.athena.repository.Repository;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

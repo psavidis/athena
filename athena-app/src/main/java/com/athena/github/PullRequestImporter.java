@@ -1,5 +1,7 @@
 package com.athena.github;
 
+import com.athena.repository.ImportedPullRequest;
+
 import java.net.http.HttpClient;
 import java.time.Duration;
 

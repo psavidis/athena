@@ -1,8 +1,8 @@
-package com.athena.github;
+package com.athena.repository;
 
 /**
  * A lightweight summary of a Pull Request — enough to list and select one,
- * before importing its full content (see the "Import PR metadata..." ticket).
+ * before importing its full content. Provider-independent.
  */
 public record PullRequestSummary(int number, String title) {
 }

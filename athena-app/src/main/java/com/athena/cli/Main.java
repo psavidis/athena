@@ -4,8 +4,8 @@ import com.athena.git.GitAskpass;
 import com.athena.git.TempDirectories;
 import com.athena.github.GitHubTransport;
 import com.athena.github.HttpGitHubTransport;
-import com.athena.github.ImportedPullRequest;
 import com.athena.github.PullRequestImporter;
+import com.athena.repository.ImportedPullRequest;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
