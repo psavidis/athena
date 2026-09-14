@@ -28,6 +28,12 @@ public final class ModuleTopologyBuilder {
 
     private static final Pattern MAVEN_ARTIFACT_ID =
             Pattern.compile("<artifactId>\\s*([\\w.-]+)\\s*</artifactId>");
+    // Captures a "dependencies"/"devDependencies" object's own body (non-greedy up to its
+    // closing brace) so package-name matching stays scoped to real dependency entries —
+    // matching every "key": "value" pair in the file would false-positive on an unrelated
+    // field (e.g. "main": "crowdness-common") that happens to equal another module's name.
+    private static final Pattern PACKAGE_JSON_DEPENDENCIES_BLOCK =
+            Pattern.compile("\"(?:dependencies|devDependencies)\"\\s*:\\s*\\{([^}]*)}");
     private static final Pattern PACKAGE_JSON_DEPENDENCY_NAME =
             Pattern.compile("\"([^\"]+)\"\\s*:\\s*\"[^\"]*\"");
 
@@ -136,11 +142,14 @@ public final class ModuleTopologyBuilder {
         Path packageJson = moduleDir.resolve("package.json");
         if (Files.isRegularFile(packageJson)) {
             String content = readQuietly(packageJson);
-            Matcher matcher = PACKAGE_JSON_DEPENDENCY_NAME.matcher(content);
-            while (matcher.find()) {
-                String depName = matcher.group(1);
-                if (allModuleNames.contains(depName) && !depName.equals(moduleName)) {
-                    found.add(depName);
+            Matcher blockMatcher = PACKAGE_JSON_DEPENDENCIES_BLOCK.matcher(content);
+            while (blockMatcher.find()) {
+                Matcher nameMatcher = PACKAGE_JSON_DEPENDENCY_NAME.matcher(blockMatcher.group(1));
+                while (nameMatcher.find()) {
+                    String depName = nameMatcher.group(1);
+                    if (allModuleNames.contains(depName) && !depName.equals(moduleName)) {
+                        found.add(depName);
+                    }
                 }
             }
         }

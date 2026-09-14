@@ -126,6 +126,25 @@ class ModuleTopologyBuilderTest {
         assertThat(territoryFor(topology, "crowdness-ui").techStack()).isEqualTo(TechStack.REACT_TYPESCRIPT);
     }
 
+    @Test
+    void doesNotTreatAnUnrelatedFieldThatMatchesAModuleNameAsARealDependency(
+            @TempDir Path base, @TempDir Path head) throws IOException {
+        Files.createDirectories(head.resolve("crowdness-common"));
+        Files.writeString(head.resolve("crowdness-common/package.json"), "{ \"name\": \"crowdness-common\" }");
+        Path moduleDir = head.resolve("crowdness-ui");
+        Files.createDirectories(moduleDir);
+        // "main" isn't a dependency field, but its value happens to equal another real
+        // module's name — this must not be read as crowdness-ui depending on it.
+        Files.writeString(moduleDir.resolve("package.json"),
+                "{ \"name\": \"crowdness-ui\", \"main\": \"crowdness-common\" }");
+        List<ModuleGroup> groups = groupsFor(moduleChange("crowdness-ui", "App.tsx"));
+
+        ModuleTopology topology = builder.build(groups, base, head);
+
+        assertThat(topology.dependencies()).isEmpty();
+        assertThat(topology.territories()).extracting(ModuleTerritory::moduleName).containsExactly("crowdness-ui");
+    }
+
     private List<ModuleGroup> groupsFor(DetectedTransformation... transformations) {
         List<Change> changes = new ChangeGrouper().group(List.of(transformations));
         return new ModuleGrouper().group(changes);
