@@ -292,7 +292,7 @@ export function AthenaTopBar({
 }
 
 /**
- * The page body below {@link AppHeader in App.tsx}: full-width, matching the
+ * The page body below {@link AthenaTopBar}: full-width, matching the
  * Semantic Change Explorer's own edge-to-edge layout (ticket #91's approved
  * mockup has no centered, narrow-card chrome anywhere — that includes the
  * repo/PR picker, not just the Explorer). `narrow` opts a page back into a
