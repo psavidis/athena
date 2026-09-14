@@ -57,4 +57,24 @@ public final class ModuleGrouper {
         int separator = filePath.indexOf('/');
         return separator > 0 ? filePath.substring(0, separator) : "(root)";
     }
+
+    /**
+     * The path segment immediately before {@code src/} (Maven/Gradle's own multi-module
+     * convention, each with its own {@code src/} root) — e.g.
+     * "crowdness-domain/crowdness-domain-connect/src/main/..." -> "crowdness-domain-connect".
+     * Finer-grained than {@link #moduleOf(String)}'s single leading segment, which only
+     * reaches the coarse top-level territory ("crowdness-domain") and can't tell apart two
+     * sub-modules nested inside it — the distinction {@link CapabilitySplitDetector} needs
+     * to recognize a move between them as crossing a real module boundary. Falls back to
+     * {@link #moduleOf(String)}'s rule when the path has no {@code src/} segment at all.
+     */
+    public static String buildModuleOf(String filePath) {
+        String[] segments = filePath.split("/");
+        for (int i = 0; i < segments.length; i++) {
+            if (segments[i].equals("src")) {
+                return i > 0 ? segments[i - 1] : "(root)";
+            }
+        }
+        return moduleOf(filePath);
+    }
 }

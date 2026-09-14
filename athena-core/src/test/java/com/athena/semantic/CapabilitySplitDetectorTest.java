@@ -71,6 +71,29 @@ class CapabilitySplitDetectorTest {
     }
 
     @Test
+    void foldsRepeatedMovesBetweenSubModulesNestedInsideTheSameTopLevelTerritory() {
+        // Both moves' before/after paths start with the same top-level segment
+        // ("crowdness-domain") but cross real sub-module boundaries beneath it —
+        // ModuleGrouper.buildModuleOf (the module = the directory owning its own
+        // src/ root) must tell these apart, or every such move stays a lone
+        // ungrouped card no matter how many recur (the bug this test guards).
+        SemanticProfile eventStoreMove = profileWithMove(
+                "crowdness-domain/crowdness-domain-connect/src/main/java/MeasurementEventStore.java",
+                "crowdness-domain/crowdness-domain-ingestion/src/main/java/MeasurementEventStore.java");
+        SemanticProfile dataMove = profileWithMove(
+                "crowdness-domain/crowdness-domain-connect/src/main/java/MeasurementData.java",
+                "crowdness-domain/crowdness-domain-ingestion/src/main/java/MeasurementData.java");
+
+        List<CapabilitySplitGroup> groups = detector.detect(List.of(eventStoreMove, dataMove));
+
+        assertThat(groups).hasSize(1);
+        CapabilitySplitGroup group = groups.get(0);
+        assertThat(group.sourceModule()).isEqualTo("crowdness-domain-connect");
+        assertThat(group.destinationModule()).isEqualTo("crowdness-domain-ingestion");
+        assertThat(group.moveCount()).isEqualTo(2);
+    }
+
+    @Test
     void ignoresNonMoveResponsibilityClassifications() {
         TaxonomyConcept addCapability = responsibilityTaxonomy.find("add-capability").orElseThrow();
         DetectedTransformation transformation = DetectedTransformation.of(

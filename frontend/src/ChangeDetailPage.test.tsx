@@ -63,7 +63,7 @@ describe('Change detail view rendering', () => {
     // Then removed lines and added lines are styled differently from each other
     const removedLine = screen.getByText('- greet()')
     const addedLine = screen.getByText('+ salute()')
-    expect(removedLine.className).not.toEqual(addedLine.className)
+    expect(removedLine.style.color).not.toEqual(addedLine.style.color)
   })
 
   it('shows a fallback message when no diff was recorded', async () => {

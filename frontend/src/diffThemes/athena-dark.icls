@@ -1,0 +1,24 @@
+<scheme name="athena dark" version="1" parent_scheme="Darcula">
+  <metaInfo>
+    <property name="ide">Athena</property>
+    <property name="description">IntelliJ's Darcula dark mode: the standard 2b2b2b/a9b7c6 base with Darcula's own string-green and console-error-red for added/removed lines.</property>
+  </metaInfo>
+  <attributes>
+    <option name="TEXT">
+      <value>
+        <option name="FOREGROUND" value="a9b7c6" />
+        <option name="BACKGROUND" value="2b2b2b" />
+      </value>
+    </option>
+    <option name="DIFF_INSERTED">
+      <value>
+        <option name="FOREGROUND" value="6a8759" />
+      </value>
+    </option>
+    <option name="DIFF_DELETED">
+      <value>
+        <option name="FOREGROUND" value="ff6b68" />
+      </value>
+    </option>
+  </attributes>
+</scheme>

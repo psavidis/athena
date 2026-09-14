@@ -268,7 +268,17 @@ function ConceptNode({
           {entry.dimension}
         </div>
         <div className="px-3 py-2.5">
-          <h4 className="mb-1 font-display text-[14.5px] font-medium leading-tight text-canvas-ink">{entry.conceptName}</h4>
+          <div className="mb-1 flex items-center gap-1.5">
+            <h4 className="font-display text-[14.5px] font-medium leading-tight text-canvas-ink">{entry.conceptName}</h4>
+            {!!entry.groupedMoveCount && entry.groupedMoveCount > 0 && (
+              <span
+                data-testid="grouped-count-badge"
+                className="shrink-0 rounded-full bg-canvas-gold-soft px-1.5 py-0.5 text-[10px] font-bold text-canvas-gold-deep"
+              >
+                {entry.groupedMoveCount}×
+              </span>
+            )}
+          </div>
           <p className="text-[11.5px] leading-snug text-canvas-ink-soft">{entry.conceptDescription}</p>
         </div>
       </button>

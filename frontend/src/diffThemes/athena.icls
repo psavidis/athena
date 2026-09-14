@@ -1,0 +1,24 @@
+<scheme name="athena" version="1" parent_scheme="Default">
+  <metaInfo>
+    <property name="ide">Athena</property>
+    <property name="description">Athena's light UI palette (index.css paper/ink tokens) applied to the diff viewer, so a reviewed file reads as part of the same calm, warm-paper product rather than a bolted-on dark code panel.</property>
+  </metaInfo>
+  <attributes>
+    <option name="TEXT">
+      <value>
+        <option name="FOREGROUND" value="1c1a17" />
+        <option name="BACKGROUND" value="faf9f7" />
+      </value>
+    </option>
+    <option name="DIFF_INSERTED">
+      <value>
+        <option name="FOREGROUND" value="236b43" />
+      </value>
+    </option>
+    <option name="DIFF_DELETED">
+      <value>
+        <option name="FOREGROUND" value="d1483f" />
+      </value>
+    </option>
+  </attributes>
+</scheme>

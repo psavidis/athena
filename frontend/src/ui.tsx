@@ -6,6 +6,8 @@ import { useQuery } from '@tanstack/react-query'
 import { listOpenPullRequests, listRepositories } from './api'
 import type { ChangeCategory, PullRequestSummary, ReviewState, SemanticDimension } from './api'
 import { pullRequestPath } from './shareUrl'
+import { defaultDiffViewerTheme, diffViewerThemes } from './diffViewerThemes'
+import { useDiffViewerThemePreference } from './diffViewerThemePreference'
 
 // One hue + glyph per Change category (index.css defines the underlying
 // colors), reused for section headers, count chips, and card accents so a
@@ -358,7 +360,10 @@ export function AthenaTopBar({
         <WatchingEmblem prChip={prChip} />
         {picker}
       </div>
-      {right && <div className="flex items-center gap-2.5">{right}</div>}
+      <div className="flex items-center gap-2.5">
+        {right}
+        <DiffViewerThemePicker />
+      </div>
     </header>
   )
 }
@@ -451,6 +456,90 @@ function TopBarDropdown({
                 {option.label}
               </button>
             ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/**
+ * A discreet control for the reviewer's diff-viewer theme (diffViewerThemes.ts),
+ * built into {@link AthenaTopBar} so it's always reachable without competing
+ * for attention with the repo/PR picker or review controls next to it — an
+ * icon-only trigger rather than a labeled dropdown like {@link TopBarDropdown}.
+ */
+function DiffViewerThemePicker() {
+  const [theme, setTheme] = useDiffViewerThemePreference()
+  const [open, setOpen] = useState(false)
+  const rootRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+    function onOutside(e: MouseEvent) {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    function onEscape(e: KeyboardEvent) {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('mousedown', onOutside)
+    document.addEventListener('keydown', onEscape)
+    return () => {
+      document.removeEventListener('mousedown', onOutside)
+      document.removeEventListener('keydown', onEscape)
+    }
+  }, [open])
+
+  return (
+    <div ref={rootRef} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((current) => !current)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        title="Diff viewer theme"
+        className="flex h-7 w-7 items-center justify-center rounded-lg border border-canvas-line-strong bg-canvas-paper text-canvas-ink-soft transition-colors hover:border-canvas-gold hover:text-canvas-ink"
+      >
+        <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" aria-hidden="true">
+          <path
+            d="M8 1.5a6.5 6.5 0 1 0 0 13 1.4 1.4 0 0 0 1-2.4 1.1 1.1 0 0 1 .8-1.9h1.3A2.9 2.9 0 0 0 14 7.3 6.5 6.5 0 0 0 8 1.5Z"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            strokeLinejoin="round"
+          />
+          <circle cx="5" cy="6" r="0.9" fill="currentColor" />
+          <circle cx="8" cy="4.3" r="0.9" fill="currentColor" />
+          <circle cx="4.6" cy="9.2" r="0.9" fill="currentColor" />
+        </svg>
+      </button>
+      {open && (
+        <div
+          role="listbox"
+          className="absolute right-0 top-[calc(100%+4px)] z-20 w-44 overflow-hidden rounded-lg border border-canvas-line-strong bg-canvas-paper-raised py-1 shadow-lg"
+        >
+          {Object.entries(diffViewerThemes).map(([key, value]) => (
+            <button
+              key={key}
+              type="button"
+              role="option"
+              aria-selected={theme === key}
+              onClick={() => {
+                setTheme(key)
+                setOpen(false)
+              }}
+              className={`flex w-full items-center gap-2 px-3 py-1.5 text-left text-xs hover:bg-canvas-gold-soft ${
+                theme === key ? 'text-canvas-gold-deep font-semibold' : 'text-canvas-ink'
+              }`}
+            >
+              <span
+                className="h-2.5 w-2.5 shrink-0 rounded-full border border-black/10"
+                style={{ backgroundColor: value.background }}
+                aria-hidden="true"
+              />
+              {value.name}
+            </button>
+          ))}
         </div>
       )}
     </div>
@@ -587,6 +676,7 @@ export function PageHeading({ eyebrow, title }: { eyebrow?: string; title: strin
 export function Card({
   children,
   className = '',
+  style,
   as: Tag = 'div',
   onClick,
   role,
@@ -595,6 +685,7 @@ export function Card({
 }: {
   children: React.ReactNode
   className?: string
+  style?: React.CSSProperties
   as?: 'div' | 'ul'
   onClick?: () => void
   role?: string
@@ -604,6 +695,7 @@ export function Card({
   return (
     <Tag
       className={`rounded-xl border border-ink-200 bg-paper-raised shadow-[0_1px_2px_rgba(28,26,23,0.04)] ${className}`}
+      style={style}
       onClick={onClick}
       role={role}
       tabIndex={tabIndex}
@@ -727,12 +819,19 @@ export function ErrorState({ message }: { message: string }) {
 
 /** Renders a unified diff with added/removed lines colored distinctly — the one diff-rendering
  * treatment reused everywhere a diff is shown (`ChangeDetailPage`, the Semantic Change Explorer's
- * evidence panel), rather than each page building its own. */
-export function DiffView({ diff }: { diff: string }) {
+ * evidence panel), rather than each page building its own. Colors come from a named theme in
+ * `diffViewerThemes.ts` — each backed by a standard IntelliJ .icls color scheme file under
+ * `diffThemes/` — so a new look is a new .icls file, not a DiffView change. Defaults to the
+ * reviewer's saved preference ({@link DiffViewerThemePicker}); pass `theme` to override it. */
+export function DiffView({ diff, theme }: { diff: string; theme?: string }) {
+  const [preferredTheme] = useDiffViewerThemePreference()
+  const t = diffViewerThemes[theme ?? preferredTheme] ?? diffViewerThemes[defaultDiffViewerTheme]
+  const cardStyle = { backgroundColor: t.background }
+
   if (!diff) {
     return (
-      <Card className="overflow-hidden bg-ink-900">
-        <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed text-ink-100">
+      <Card className="overflow-hidden" style={cardStyle}>
+        <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed" style={{ color: t.foreground }}>
           No diff recorded for this Change.
         </pre>
       </Card>
@@ -740,14 +839,14 @@ export function DiffView({ diff }: { diff: string }) {
   }
 
   return (
-    <Card className="overflow-hidden bg-ink-900">
+    <Card className="overflow-hidden" style={cardStyle}>
       <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed">
         {diff.split('\n').map((line, i) => {
           const isAdded = line.startsWith('+')
           const isRemoved = line.startsWith('-')
-          const color = isAdded ? 'text-emerald-400' : isRemoved ? 'text-red-400' : 'text-ink-400'
+          const color = isAdded ? t.diffInserted : isRemoved ? t.diffDeleted : t.foreground
           return (
-            <div key={i} className={color}>
+            <div key={i} style={{ color }}>
               {line || ' '}
             </div>
           )

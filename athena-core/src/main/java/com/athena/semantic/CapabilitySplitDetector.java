@@ -19,8 +19,13 @@ import java.util.Set;
  * <p>A move's source/destination module is read from its evidence: {@link
  * TransformationDetector} in {@code athena-plugin-java} always records a
  * {@code MOVE_*} transformation's {@link DetectedTransformation#filesTouched()}
- * as {@code [beforeFile, afterFile]}, so the leading path segment of each
- * gives the module on either side of the move.
+ * as {@code [beforeFile, afterFile]}, so {@link ModuleGrouper#buildModuleOf}
+ * applied to each gives the module on either side of the move — the
+ * finer-grained "module = the directory owning its own src/ root" reading,
+ * not {@link ModuleGrouper#moduleOf}'s coarse top-level territory, so a move
+ * between two sub-modules nested inside the same territory (e.g.
+ * crowdness-domain-connect to crowdness-domain-ingestion, both under
+ * crowdness-domain) is still recognized as crossing a module boundary.
  */
 public final class CapabilitySplitDetector {
 
@@ -93,8 +98,8 @@ public final class CapabilitySplitDetector {
         for (DetectedTransformation transformation : classification.evidence()) {
             List<String> files = transformation.filesTouched();
             if (files.size() >= 2) {
-                String sourceModule = ModuleGrouper.moduleOf(files.get(0));
-                String destinationModule = ModuleGrouper.moduleOf(files.get(1));
+                String sourceModule = ModuleGrouper.buildModuleOf(files.get(0));
+                String destinationModule = ModuleGrouper.buildModuleOf(files.get(1));
                 if (!sourceModule.equals(destinationModule)) {
                     return Optional.of(new ModulePair(sourceModule, destinationModule));
                 }

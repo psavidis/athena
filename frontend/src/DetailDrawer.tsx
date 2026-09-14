@@ -54,6 +54,31 @@ export default function DetailDrawer({
   if (!selection) {
     return null
   }
+  // Keyed on the selected item's identity (not just `selection.kind`) so
+  // switching to a *different* file/concept remounts the drawer body and
+  // re-applies the kind-based expand default below, instead of carrying
+  // forward whatever expand state the previous item was left in.
+  const selectionKey = selection.kind === 'concept' || selection.kind === 'file' ? selection.itemId : selection.kind
+  return <DetailDrawerBody key={selectionKey} selection={selection} topology={topology} onClose={onClose} onJumpToFile={onJumpToFile} onOpenComments={onOpenComments} />
+}
+
+function DetailDrawerBody({
+  selection,
+  topology,
+  onClose,
+  onJumpToFile,
+  onOpenComments,
+}: {
+  selection: DrawerSelection
+  topology: ModuleTopology
+  onClose: () => void
+  onJumpToFile: (fileName: string) => void
+  onOpenComments: (itemId: string, itemLabel: string) => void
+}) {
+  // Expand/collapse (workspace-layout follow-up): a file's diff is often too
+  // tall to read usefully inside the drawer's default strip, so a file
+  // selection starts expanded; other kinds start collapsed as before.
+  const [isExpanded, setIsExpanded] = useState(selection.kind === 'file')
   const title =
     selection.kind === 'concept'
       ? selection.entry.conceptName
@@ -66,7 +91,9 @@ export default function DetailDrawer({
     <div
       role="dialog"
       aria-label="Detail drawer"
-      className="absolute inset-x-0 bottom-0 z-30 flex max-h-[46%] flex-col rounded-t-2xl border-t border-canvas-line bg-canvas-paper-raised shadow-[0_-8px_24px_rgba(42,38,32,0.1)]"
+      className={`absolute inset-x-0 bottom-0 z-30 flex flex-col rounded-t-2xl border-t border-canvas-line bg-canvas-paper-raised shadow-[0_-8px_24px_rgba(42,38,32,0.1)] transition-[max-height] ${
+        isExpanded ? 'max-h-[88%]' : 'max-h-[46%]'
+      }`}
     >
       <div className="flex items-center justify-between gap-3 px-5 pb-2.5 pt-3.5">
         <div className="flex min-w-0 items-center gap-2.5">
@@ -93,6 +120,15 @@ export default function DetailDrawer({
               💬 Comment
             </button>
           )}
+          <button
+            type="button"
+            aria-label={isExpanded ? 'Collapse detail drawer' : 'Expand detail drawer'}
+            aria-pressed={isExpanded}
+            className="rounded-md p-1 text-canvas-ink-faint hover:bg-canvas-line hover:text-canvas-ink"
+            onClick={() => setIsExpanded((current) => !current)}
+          >
+            {isExpanded ? '⌄' : '⌃'}
+          </button>
           <button
             type="button"
             aria-label="Close detail drawer"

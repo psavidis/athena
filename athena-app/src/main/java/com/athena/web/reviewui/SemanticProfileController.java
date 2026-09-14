@@ -6,6 +6,8 @@ import com.athena.semantic.Change;
 import com.athena.semantic.DetectedTransformation;
 import com.athena.semantic.ModuleGroup;
 import com.athena.semantic.ModuleGrouper;
+import com.athena.semantic.RepeatedClassificationGroup;
+import com.athena.semantic.RepeatedClassificationGrouper;
 import com.athena.semantic.SemanticClassification;
 import com.athena.semantic.SemanticDimension;
 import com.athena.semantic.SemanticProfile;
@@ -25,6 +27,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Serves a Change's full Semantic Profile (ticket #94) so the Semantic Change
@@ -116,8 +119,11 @@ public class SemanticProfileController {
     private SemanticProfileResponse toResponse(List<SemanticProfile> profiles) {
         List<CapabilitySplitGroup> splitGroups = new CapabilitySplitDetector(
                 new TaxonomyLoader().load(SemanticDimension.RESPONSIBILITY)).detect(profiles);
-        Set<SemanticClassification> groupedAway = splitGroups.stream()
-                .flatMap(group -> group.mergedClassifications().stream())
+        List<RepeatedClassificationGroup> repeatedGroups =
+                new RepeatedClassificationGrouper().detect(profiles, SemanticDimension.RESPONSIBILITY);
+        Set<SemanticClassification> groupedAway = Stream.concat(
+                        splitGroups.stream().flatMap(group -> group.mergedClassifications().stream()),
+                        repeatedGroups.stream().flatMap(group -> group.mergedClassifications().stream()))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
 
         List<SemanticDimensionEntryResponse> entries = new ArrayList<>();
@@ -135,6 +141,9 @@ public class SemanticProfileController {
         }
         for (CapabilitySplitGroup group : splitGroups) {
             entries.add(toGroupEntry(group));
+        }
+        for (RepeatedClassificationGroup group : repeatedGroups) {
+            entries.add(toRepeatedGroupEntry(group));
         }
         return new SemanticProfileResponse(entries);
     }
@@ -173,6 +182,24 @@ public class SemanticProfileController {
         return new SemanticDimensionEntryResponse(SemanticDimension.RESPONSIBILITY, name, description,
                 true, confidenceFor(SemanticDimension.RESPONSIBILITY, 0), evidence,
                 classification.supportingConceptNames(), 0, filesTouched, group.moveCount());
+    }
+
+    /**
+     * A {@link RepeatedClassificationGroup} rendered as one Capability-level
+     * entry: the same concept name/description every folded classification
+     * already shared, plus the occurrence count so a reviewer sees "Add
+     * Capability, 17 changes" as one card instead of 17 identical cards.
+     */
+    private SemanticDimensionEntryResponse toRepeatedGroupEntry(RepeatedClassificationGroup group) {
+        SemanticClassification classification = group.classification();
+        List<String> evidence = classification.evidence().stream().map(DetectedTransformation::diffText).toList();
+        List<String> filesTouched = classification.evidence().stream()
+                .flatMap(occurrence -> occurrence.filesTouched().stream())
+                .distinct()
+                .toList();
+        return new SemanticDimensionEntryResponse(SemanticDimension.RESPONSIBILITY, classification.concept().name(),
+                classification.concept().description(), true, confidenceFor(SemanticDimension.RESPONSIBILITY, 0),
+                evidence, classification.supportingConceptNames(), 0, filesTouched, group.occurrenceCount());
     }
 
     /**

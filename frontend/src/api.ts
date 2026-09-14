@@ -87,10 +87,11 @@ export interface SemanticDimensionEntry {
    * Semantic Canvas's Structure altitude shows one node per file). Absent on any
    * fixture/response that predates this field. */
   filesTouched?: string[]
-  /** For a Capability-level `capability-extraction` entry, how many individual
-   * `move-responsibility` moves it folds together. Zero/absent for every other entry,
-   * including a lone move that didn't recur often enough between the same two modules
-   * to be recognized as a capability split. */
+  /** How many individual per-Change classifications this entry folds together: for a
+   * Capability-level `capability-extraction` entry, how many `move-responsibility` moves
+   * between the same two modules; for any other repeated Capability-level concept (e.g.
+   * `add-capability` recurring across several Changes), how many occurrences. Zero/absent
+   * for an entry that represents just one Change. */
   groupedMoveCount?: number
 }
 

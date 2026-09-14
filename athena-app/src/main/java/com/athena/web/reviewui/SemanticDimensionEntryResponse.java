@@ -24,11 +24,15 @@ import java.util.List;
  *        touches (ticket #130: the Semantic Canvas's Structure altitude
  *        shows one node per file, derived from this rather than re-deriving
  *        it from raw evidence text on the frontend).
- * @param groupedMoveCount for a Capability-level {@code capability-extraction} entry
- *        (see {@link com.athena.semantic.CapabilitySplitDetector}), how many individual
- *        {@code move-responsibility} classifications it folds together. Zero for every
- *        other entry, including a lone {@code move-responsibility} that didn't recur
- *        often enough with the same source/destination module to count as a split.
+ * @param groupedMoveCount how many individual per-Change classifications this entry
+ *        folds together, for the two ways a Capability-level entry can represent more
+ *        than one Change: a {@code capability-extraction} entry (see {@link
+ *        com.athena.semantic.CapabilitySplitDetector}) folding several {@code
+ *        move-responsibility} moves between the same two modules, or any other
+ *        RESPONSIBILITY concept (e.g. {@code add-capability}) recurring across several
+ *        Changes (see {@link com.athena.semantic.RepeatedClassificationGrouper}). Zero
+ *        for every entry that represents just one Change, including a lone occurrence
+ *        that didn't recur often enough to count as a group.
  */
 public record SemanticDimensionEntryResponse(SemanticDimension dimension, String conceptName,
                                               String conceptDescription, boolean inferred, int confidencePercent,
