@@ -49,7 +49,10 @@ public class GitHubConnectController {
         if (connected) {
             session.connect(gitHubAccess.currentAccessToken());
         }
-        return new GitHubStatusResponse(connected, connected ? gitHubAccess.connectedAccountLogin() : null);
+        return new GitHubStatusResponse(
+                connected,
+                connected ? gitHubAccess.connectedAccountLogin() : null,
+                connected ? gitHubAccess.connectedInstallationConfigureUrl() : null);
     }
 
     /**
@@ -108,6 +111,6 @@ public class GitHubConnectController {
     public record ConnectUrlResponse(String url) {
     }
 
-    public record GitHubStatusResponse(boolean connected, String accountLogin) {
+    public record GitHubStatusResponse(boolean connected, String accountLogin, String installationConfigureUrl) {
     }
 }

@@ -172,6 +172,8 @@ async function asJson<T>(response: Response): Promise<T> {
 export interface GitHubStatus {
   connected: boolean
   accountLogin: string | null
+  /** GitHub's own per-installation "Configure access" settings page (ticket #145) — null until connected. */
+  installationConfigureUrl: string | null
 }
 
 export async function getGitHubStatus(): Promise<GitHubStatus> {
