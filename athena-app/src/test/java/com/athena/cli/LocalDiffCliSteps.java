@@ -104,25 +104,25 @@ public class LocalDiffCliSteps {
                 .isInstanceOf(GitCheckoutException.class);
     }
 
-    @Then("the summary lists the rename Change under category {string}")
-    public void the_summary_lists_the_rename_change_under_category(String category) {
+    @Then("the local Diff summary lists the rename Change under category {string}")
+    public void the_local_diff_summary_lists_the_rename_change_under_category(String category) {
         assertThat(summary).contains(category + ":");
         assertThat(summary).contains("Rename");
     }
 
-    @Then("the summary reports the rename Change's occurrence and exception counts")
-    public void the_summary_reports_occurrence_and_exception_counts() {
+    @Then("the local Diff summary reports the rename Change's occurrence and exception counts")
+    public void the_local_diff_summary_reports_occurrence_and_exception_counts() {
         assertThat(summary).contains("1 occurrences, 0 exceptions");
     }
 
-    @Then("the summary lists the mechanical replacement Change under category {string}")
-    public void the_summary_lists_the_mechanical_change_under_category(String category) {
+    @Then("the local Diff summary lists the mechanical replacement Change under category {string}")
+    public void the_local_diff_summary_lists_the_mechanical_change_under_category(String category) {
         assertThat(summary).contains(category + ":");
         assertThat(summary).contains("Rename Foo -> Bar");
     }
 
-    @Then("no checkout directories are left behind")
-    public void no_checkout_directories_are_left_behind() throws IOException {
+    @Then("no local Diff checkout directories are left behind")
+    public void no_local_diff_checkout_directories_are_left_behind() throws IOException {
         try (var entries = Files.list(workDir)) {
             assertThat(entries).isEmpty();
         }

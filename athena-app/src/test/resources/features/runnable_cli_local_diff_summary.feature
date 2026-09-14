@@ -8,20 +8,20 @@ Feature: Runnable CLI: compare two local revisions, no GitHub
   Scenario: The summary reports the local Diff's Changes grouped by category
     Given a local repository whose base and head revisions are real git commits differing by a rename
     When the reviewer runs the local Diff summary
-    Then the summary lists the rename Change under category "STRUCTURAL"
-    And the summary reports the rename Change's occurrence and exception counts
+    Then the local Diff summary lists the rename Change under category "STRUCTURAL"
+    And the local Diff summary reports the rename Change's occurrence and exception counts
 
   Scenario: The summary reports a mechanical Change under its own category
     Given a local repository whose base and head revisions are real git commits differing by a mechanical replacement
     When the reviewer runs the local Diff summary
-    Then the summary lists the mechanical replacement Change under category "MECHANICAL"
+    Then the local Diff summary lists the mechanical replacement Change under category "MECHANICAL"
 
   Scenario: Checkout directories do not survive the run
     Given a local repository whose base and head revisions are real git commits differing by a rename
     When the reviewer runs the local Diff summary
-    Then no checkout directories are left behind
+    Then no local Diff checkout directories are left behind
 
   Scenario: A failed checkout leaves no directories behind either
     Given a local repository whose head revision does not exist
     When the reviewer runs the local Diff summary and it fails
-    Then no checkout directories are left behind
+    Then no local Diff checkout directories are left behind
