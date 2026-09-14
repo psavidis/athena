@@ -28,7 +28,8 @@ module owns the step definitions that implement them:
   Java-`LanguagePlugin`-specific: `java_parsing_foundation.feature`,
   `java_symbol_model.feature`, `structural_change_detection.feature`,
   `behavioral_change_detection.feature`
-- here (`athena-app`) — `graceful_degradation_fallback_chain.feature`:
-  exercises `PrAnalyzer` end to end through `PluginRegistry`-discovered
-  plugins, so it needs both `athena-core` and `athena-plugin-java` on the
+- here (`athena-app`) — `graceful_degradation_fallback_chain.feature`,
+  `external_findings_as_evidence.feature` (ticket #114/#149): both
+  exercise `PrAnalyzer` end to end through `PluginRegistry`-discovered
+  plugins, so they need both `athena-core` and `athena-plugin-java` on the
   classpath, which only `athena-app` has.

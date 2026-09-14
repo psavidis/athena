@@ -4,6 +4,9 @@ Feature: External findings as evidence for Athena's analysis
   SemanticProfile analysis — as independent evidence, never merged into or
   deriving Athena's own semantic classification, and isolated from each
   other so one provider's failure never takes down the rest of the run.
+  Exercises `PrAnalyzer` end to end through `PluginRegistry`-discovered
+  plugins (see semantic_change_engine/README.md), so it lives here rather
+  than in athena-core.
 
   Scenario: A configured provider's findings are available on the analysis result
     Given a provider "sonarjava" configured to report a finding on "Order.java"
