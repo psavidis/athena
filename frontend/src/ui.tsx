@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { listOpenPullRequests, listRepositories } from './api'
 import type { ChangeCategory, PullRequestSummary, ReviewState, SemanticDimension } from './api'
+import { pullRequestPath } from './shareUrl'
 
 // One hue + glyph per Change category (index.css defines the underlying
 // colors), reused for section headers, count chips, and card accents so a
@@ -506,7 +507,37 @@ export function RepoPrPicker({
         }}
         minWidth="min-w-[16rem]"
       />
+      {selectedRepo && selectedPr && (
+        <ShareLinkButton repositoryFullName={selectedRepo} number={selectedPr.number} />
+      )}
     </div>
+  )
+}
+
+/**
+ * Copies the current PR's shareable URL (`/repositories/:owner/:repo/pulls/:number`,
+ * see shareUrl.ts) to the clipboard — sending it to a teammate running Athena
+ * locally re-selects the same PR against their own GitHub session. Briefly
+ * confirms the copy inline rather than via a toast/alert.
+ */
+function ShareLinkButton({ repositoryFullName, number }: { repositoryFullName: string; number: number }) {
+  const [copied, setCopied] = useState(false)
+
+  async function copyLink() {
+    const url = `${window.location.origin}${pullRequestPath({ repositoryFullName, number })}`
+    await navigator.clipboard.writeText(url)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={copyLink}
+      className="shrink-0 rounded-lg border border-canvas-line-strong bg-canvas-paper px-2.5 py-1.5 text-xs text-canvas-ink transition-colors hover:border-canvas-gold"
+    >
+      {copied ? 'Copied!' : 'Share'}
+    </button>
   )
 }
 

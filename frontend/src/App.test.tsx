@@ -1,8 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { http, HttpResponse } from 'msw'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
 import { server } from './test/server'
 
@@ -10,6 +10,13 @@ import { server } from './test/server'
 // replacing the retired Semantic Change Explorer shell — there is no Change
 // Map screen to land on, and the Canvas's own 401/409 responses route back
 // to earlier steps the same way the Explorer's did.
+
+// Tests assert on and set window.location.pathname (the shareable-URL
+// feature) — reset it after every test so one test's URL doesn't leak into
+// the next, which shares the same jsdom window within this file.
+afterEach(() => {
+  window.history.replaceState(null, '', '/')
+})
 
 function renderApp() {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
@@ -21,7 +28,10 @@ function renderApp() {
 }
 
 function mockTopology() {
-  server.use(http.get('/api/review/topology', () => HttpResponse.json({ territories: [], dependencies: [] })))
+  server.use(
+    http.get('/api/review/topology', () => HttpResponse.json({ territories: [], dependencies: [] })),
+    http.get('/api/review/canvas-items/comment-counts', () => HttpResponse.json({})),
+  )
 }
 
 async function connectSelectRepoAndPr() {
@@ -60,6 +70,63 @@ describe('App routing', () => {
     mockTopology()
 
     await connectSelectRepoAndPr()
+
+    expect(await screen.findByRole('application', { name: 'Semantic Canvas territory map' })).toBeVisible()
+  })
+
+  it('keeps the browser URL in sync with the selected PR, as a shareable link', async () => {
+    mockTopology()
+
+    await connectSelectRepoAndPr()
+
+    await screen.findByRole('application', { name: 'Semantic Canvas territory map' })
+    expect(window.location.pathname).toBe('/repositories/octocat/hello-world/pulls/1')
+  })
+
+  it('copies the shareable URL for the selected PR to the clipboard on Share', async () => {
+    mockTopology()
+
+    await connectSelectRepoAndPr()
+
+    // navigator.clipboard is a genuine external boundary (a browser API, not
+    // an internal collaborator) — stubbing it here is the one mock in this
+    // suite, per CODE_STYLE.md's mocking rule. Stubbed after
+    // connectSelectRepoAndPr's userEvent.setup(), which installs its own
+    // clipboard backing and would otherwise overwrite this.
+    const writeText = vi.fn().mockResolvedValue(undefined)
+    Object.defineProperty(navigator, 'clipboard', {
+      value: { writeText },
+      configurable: true,
+      writable: true,
+    })
+
+    fireEvent.click(await screen.findByRole('button', { name: 'Share' }))
+
+    expect(writeText).toHaveBeenCalledWith(`${window.location.origin}/repositories/octocat/hello-world/pulls/1`)
+    expect(await screen.findByRole('button', { name: 'Copied!' })).toBeVisible()
+  })
+
+  it('auto-selects the PR named in the URL on load, so a shared link reconstructs the same state', async () => {
+    mockTopology()
+    server.use(
+      http.get('/api/github/status', () => HttpResponse.json({ connected: true, accountLogin: 'octocat' })),
+      http.get('/api/repositories', () => HttpResponse.json([{ fullName: 'octocat/hello-world' }])),
+      http.get('/api/repositories/octocat/hello-world/pulls', () =>
+        HttpResponse.json([{ number: 1, title: 'Move authentication to Account' }]),
+      ),
+      http.post('/api/repositories/octocat/hello-world/pulls/1/select', () =>
+        HttpResponse.json({
+          number: 1,
+          title: 'Move authentication to Account',
+          author: 'octocat',
+          baseRevision: 'abc123',
+          headRevision: 'def456',
+        }),
+      ),
+    )
+    window.history.replaceState(null, '', '/repositories/octocat/hello-world/pulls/1')
+
+    renderApp()
 
     expect(await screen.findByRole('application', { name: 'Semantic Canvas territory map' })).toBeVisible()
   })

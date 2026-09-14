@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createDiff, getGitHubStatus, selectPullRequest } from './api'
-import type { ImportedPullRequest, PullRequestSummary } from './api'
+import type { ImportedPullRequest } from './api'
 import ChangeDetailPage from './ChangeDetailPage'
 import SemanticCanvasPage from './SemanticCanvasPage'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
 import AiAnalysisPage from './AiAnalysisPage'
 import GitHubAccessPage from './GitHubAccessPage'
 import { AthenaTopBar, BackLink, PageHeading, PageShell, PrimaryButton, RepoPrPicker, SecondaryButton } from './ui'
+import { parsePullRequestPath, pullRequestPath } from './shareUrl'
 
 export default function App() {
   const [connected, setConnected] = useState<boolean | null>(null)
@@ -39,10 +40,34 @@ export default function App() {
 
   const queryClient = useQueryClient()
   const selectPrMutation = useMutation({
-    mutationFn: (pr: PullRequestSummary) => selectPullRequest(selectedRepo!, pr.number),
-    onSuccess: setSelectedPr,
+    mutationFn: (pr: { repositoryFullName: string; number: number }) =>
+      selectPullRequest(pr.repositoryFullName, pr.number),
+    onSuccess: (pr, variables) => {
+      setSelectedRepo(variables.repositoryFullName)
+      setSelectedPr(pr)
+    },
     onSettled: () => queryClient.invalidateQueries({ queryKey: ['pulls', selectedRepo] }),
   })
+  const { mutate: selectPr } = selectPrMutation
+
+  // A selected PR is addressable at /repositories/:owner/:repo/pulls/:number
+  // (see shareUrl.ts) so the current browser URL is always a working share
+  // link. On load, a shared link re-runs the same select flow the picker
+  // uses, against the opening user's own GitHub session — repo selection
+  // included, via the mutation's own onSuccess above.
+  useEffect(() => {
+    if (!connected) return
+    const route = parsePullRequestPath(window.location.pathname)
+    if (route) selectPr(route)
+  }, [connected, selectPr])
+
+  useEffect(() => {
+    if (!selectedRepo || !selectedPr) return
+    const path = pullRequestPath({ repositoryFullName: selectedRepo, number: selectedPr.number })
+    if (window.location.pathname !== path) {
+      window.history.replaceState(null, '', path)
+    }
+  }, [selectedRepo, selectedPr])
 
   function selectRepo(repositoryFullName: string) {
     setSelectedRepo(repositoryFullName)
@@ -58,7 +83,7 @@ export default function App() {
       selectedRepo={selectedRepo}
       selectedPr={selectedPr}
       onSelectRepo={selectRepo}
-      onSelectPr={(pr) => selectPrMutation.mutate(pr)}
+      onSelectPr={(pr) => selectPrMutation.mutate({ repositoryFullName: selectedRepo!, number: pr.number })}
     />
   ) : undefined
 
