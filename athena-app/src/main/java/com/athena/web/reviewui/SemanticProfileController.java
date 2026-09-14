@@ -123,9 +123,13 @@ public class SemanticProfileController {
         boolean inferred = !OBSERVED_DIMENSIONS.contains(dimension);
         int confidencePercent = inferred ? confidenceFor(dimension, rank) : 100;
         List<String> evidence = classification.evidence().stream().map(DetectedTransformation::diffText).toList();
+        List<String> filesTouched = classification.evidence().stream()
+                .flatMap(occurrence -> occurrence.filesTouched().stream())
+                .distinct()
+                .toList();
         return new SemanticDimensionEntryResponse(dimension, classification.concept().name(),
                 classification.concept().description(), inferred, confidencePercent, evidence,
-                classification.supportingConceptNames(), classification.beforeEvidenceCount());
+                classification.supportingConceptNames(), classification.beforeEvidenceCount(), filesTouched);
     }
 
     /**

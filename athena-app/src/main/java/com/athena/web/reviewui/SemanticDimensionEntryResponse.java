@@ -20,9 +20,13 @@ import java.util.List;
  *        "before" mechanism's diff text — the rest are "after". Zero for every
  *        classification that isn't a transition (i.e. all of {@code evidence}
  *        is simply "the current mechanism", no before/after split).
+ * @param filesTouched the distinct files this classification's evidence
+ *        touches (ticket #130: the Semantic Canvas's Structure altitude
+ *        shows one node per file, derived from this rather than re-deriving
+ *        it from raw evidence text on the frontend).
  */
 public record SemanticDimensionEntryResponse(SemanticDimension dimension, String conceptName,
                                               String conceptDescription, boolean inferred, int confidencePercent,
                                               List<String> evidence, List<String> supportingConceptNames,
-                                              int beforeEvidenceCount) {
+                                              int beforeEvidenceCount, List<String> filesTouched) {
 }

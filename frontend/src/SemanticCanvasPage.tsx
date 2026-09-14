@@ -10,7 +10,8 @@ import {
 } from './api'
 import { ErrorState, LoadingState } from './ui'
 import ZoomAltitudeRail, { populatedStops, type AltitudeStop } from './ZoomAltitudeRail'
-import ZoomAltitudeContent from './ZoomAltitudeContent'
+import ZoomAltitudeContent, { type NodeSelection } from './ZoomAltitudeContent'
+import DetailDrawer, { type DrawerSelection } from './DetailDrawer'
 
 /**
  * The Semantic Canvas (tickets #129/#130): replaces the Semantic Change
@@ -94,6 +95,7 @@ export default function SemanticCanvasPage({
   const [currentStop, setCurrentStop] = useState<AltitudeStop | undefined>(undefined)
   const [showLayerBadges, setShowLayerBadges] = useState(false)
   const [instantTransition, setInstantTransition] = useState(false)
+  const [drawerSelection, setDrawerSelection] = useState<DrawerSelection | undefined>(undefined)
   const dragState = useRef<{ startX: number; startY: number; cameraX: number; cameraY: number } | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -129,8 +131,11 @@ export default function SemanticCanvasPage({
   if (isLoading || !data) {
     return <LoadingState />
   }
+  // Narrowed once here so functions declared below (closures TypeScript can't
+  // narrow `data` through) can reference a value it knows is always defined.
+  const topology = data
 
-  const boxes = layoutTerritories(data)
+  const boxes = layoutTerritories(topology)
 
   function clampScale(scale: number): number {
     return Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale))
@@ -204,10 +209,36 @@ export default function SemanticCanvasPage({
   // view — each selection sets scale to a fixed target for its node kind
   // rather than adding a delta on top of the current scale, so clicking
   // several nodes in a row never stacks zoom beyond that kind's own cap.
-  function selectNode(nodeKind: 'concept' | 'file' | 'test-suite') {
+  // Also opens the detail drawer (ticket #131) with that node's content —
+  // opening it never itself touches camera state, so the reviewer's pan/
+  // zoom position survives the drawer opening independent of this zoom.
+  function selectNode(selection: NodeSelection) {
     setInstantTransition(false)
-    const targetScale = nodeKind === 'file' ? MAX_SCALE : Math.min(MAX_SCALE, INITIAL_CAMERA.scale + 0.6)
+    const targetScale = selection.kind === 'file' ? MAX_SCALE : Math.min(MAX_SCALE, INITIAL_CAMERA.scale + 0.6)
     setCamera((current) => ({ ...current, scale: clampScale(targetScale) }))
+    if (selection.kind === 'concept') {
+      setDrawerSelection({ kind: 'concept', entry: selection.entry })
+    } else {
+      const territory = topology.territories.find((t) => t.moduleName === focusedTerritory)
+      setDrawerSelection({
+        kind: 'file',
+        fileName: selection.fileName,
+        fromConceptName: selection.owningEntry.conceptName,
+        changeKeys: territory?.changeKeys ?? [],
+      })
+    }
+  }
+
+  // Jumping to a file from a concept's linked chip (ticket #131) moves the
+  // camera to the Structure altitude, where that file's own node lives —
+  // clears the drawer selection but never touches camera pan/zoom itself.
+  function jumpToFile() {
+    setDrawerSelection(undefined)
+    setCurrentStop('STRUCTURE')
+  }
+
+  function openOverviewDrawer() {
+    setDrawerSelection({ kind: 'overview' })
   }
 
   const byName = new Map(boxes.map((box) => [box.territory.moduleName, box]))
@@ -236,7 +267,7 @@ export default function SemanticCanvasPage({
           }}
         >
           <svg className="pointer-events-none absolute left-0 top-0 overflow-visible" width={1} height={1}>
-            {data.dependencies.map((dependency) => {
+            {topology.dependencies.map((dependency) => {
               const from = byName.get(dependency.from)
               const to = byName.get(dependency.to)
               if (!from || !to) {
@@ -302,6 +333,17 @@ export default function SemanticCanvasPage({
           </button>
         )}
       </div>
+      {!focusedTerritory && (
+        <button
+          type="button"
+          aria-label="PR overview"
+          className="absolute left-6 top-6 rounded-2xl border border-ink-200 bg-paper-raised px-4 py-3 text-left shadow-sm hover:bg-ink-100"
+          onClick={openOverviewDrawer}
+        >
+          <span className="block text-xs uppercase tracking-wide text-ink-500">This PR</span>
+          <span className="block font-display text-lg text-ink-900">{topology.territories.length} modules touched</span>
+        </button>
+      )}
       {focusedTerritory && territoryProfile && (
         <ZoomAltitudeRail profile={territoryProfile} currentStop={currentStop} onSelectStop={selectStop} />
       )}
@@ -315,6 +357,12 @@ export default function SemanticCanvasPage({
           />
         </div>
       )}
+      <DetailDrawer
+        selection={drawerSelection}
+        topology={topology}
+        onClose={() => setDrawerSelection(undefined)}
+        onJumpToFile={jumpToFile}
+      />
     </div>
   )
 }
