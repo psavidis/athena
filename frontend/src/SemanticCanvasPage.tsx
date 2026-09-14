@@ -73,8 +73,13 @@ function prefersReducedMotion(): boolean {
   return typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true
 }
 
+// motion-reduce:animate-none (ticket #133): Tailwind's built-in reduced-motion
+// variant, so a NEW territory's ambient pulse collapses to its static end
+// state under prefers-reduced-motion without a JS media-query check here —
+// it also tracks a live OS-setting change mid-session, which a one-time JS
+// check at mount wouldn't.
 const STATUS_META: Record<ModuleTerritory['status'], { label: string; className: string }> = {
-  NEW: { label: 'New', className: 'border-2 border-accent bg-accent-soft animate-pulse' },
+  NEW: { label: 'New', className: 'border-2 border-accent bg-accent-soft animate-pulse motion-reduce:animate-none' },
   TOUCHED: { label: 'Touched', className: 'border border-ink-300 bg-paper-raised' },
   IDLE: { label: 'Idle', className: 'border border-dashed border-ink-200 bg-paper opacity-60' },
 }
@@ -380,18 +385,27 @@ export default function SemanticCanvasPage({
               if (!from || !to) {
                 return null
               }
+              // A rail touching the focused territory animates a flowing dash
+              // to read as "this connection is active" (ticket #133); an
+              // unrelated rail stays a plain static line.
+              const touchesSelection =
+                focusedTerritory !== undefined &&
+                (dependency.from === focusedTerritory || dependency.to === focusedTerritory)
               return (
                 <line
                   key={`${dependency.from}->${dependency.to}`}
                   data-testid="dependency-rail"
                   data-from={dependency.from}
                   data-to={dependency.to}
+                  data-active={touchesSelection ? 'true' : undefined}
                   x1={from.x + from.width / 2}
                   y1={from.y + from.height / 2}
                   x2={to.x + to.width / 2}
                   y2={to.y + to.height / 2}
-                  stroke="var(--color-ink-300)"
+                  stroke={touchesSelection ? 'var(--color-accent)' : 'var(--color-ink-300)'}
                   strokeWidth={2}
+                  strokeDasharray={touchesSelection ? '6 6' : undefined}
+                  className={touchesSelection ? 'animate-flow-dash' : undefined}
                 />
               )
             })}

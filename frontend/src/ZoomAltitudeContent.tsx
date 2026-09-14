@@ -29,6 +29,18 @@ function isConfigFile(path: string): boolean {
   return CONFIG_FILE_PATTERN.test(path)
 }
 
+// Staggered node-appear (ticket #133): each node in a newly-revealed altitude
+// stop animates in .animate-pop-in (already defined for the old Explorer's
+// structural-cluster reveal, reused here) with an increasing delay, so the
+// stop reads as nodes converging in sequence rather than popping in at once.
+// .animate-pop-in's own `@media (prefers-reduced-motion: reduce)` rule
+// collapses this to no animation — no separate handling needed here.
+const STAGGER_STEP_MS = 40
+
+function staggerStyle(index: number): React.CSSProperties {
+  return { animationDelay: `${index * STAGGER_STEP_MS}ms` }
+}
+
 /** What was clicked, enough for the detail drawer (ticket #131) to render the right content
  * without needing to re-derive it from just a bare node name. */
 export type NodeSelection =
@@ -56,8 +68,14 @@ export default function ZoomAltitudeContent({
   }
   return (
     <div role="region" aria-label={`${stop} altitude content`} className="flex flex-wrap gap-4 p-6">
-      {entries.map((entry) => (
-        <ConceptNode key={entry.conceptName} entry={entry} showLayerBadges={showLayerBadges} onSelectNode={onSelectNode} />
+      {entries.map((entry, index) => (
+        <ConceptNode
+          key={entry.conceptName}
+          entry={entry}
+          index={index}
+          showLayerBadges={showLayerBadges}
+          onSelectNode={onSelectNode}
+        />
       ))}
     </div>
   )
@@ -65,10 +83,12 @@ export default function ZoomAltitudeContent({
 
 function ConceptNode({
   entry,
+  index,
   showLayerBadges,
   onSelectNode,
 }: {
   entry: SemanticDimensionEntry
+  index: number
   showLayerBadges: boolean
   onSelectNode: (selection: NodeSelection) => void
 }) {
@@ -77,7 +97,8 @@ function ConceptNode({
       type="button"
       data-testid="concept-node"
       data-dimension={entry.dimension}
-      className="min-w-[180px] rounded-xl border border-ink-200 bg-paper-raised p-4 text-left shadow-sm hover:bg-ink-100"
+      className="animate-pop-in min-w-[180px] rounded-xl border border-ink-200 bg-paper-raised p-4 text-left shadow-sm hover:bg-ink-100"
+      style={staggerStyle(index)}
       onClick={() => onSelectNode({ kind: 'concept', entry })}
     >
       {showLayerBadges && (
@@ -103,8 +124,14 @@ function ArchitectureContent({
   return (
     <div role="region" aria-label="Architecture altitude content" className="p-6">
       <div data-testid="architecture-layer-shape" className="flex flex-col gap-3">
-        {entries.map((entry) => (
-          <ConceptNode key={entry.conceptName} entry={entry} showLayerBadges={showLayerBadges} onSelectNode={onSelectNode} />
+        {entries.map((entry, index) => (
+          <ConceptNode
+            key={entry.conceptName}
+            entry={entry}
+            index={index}
+            showLayerBadges={showLayerBadges}
+            onSelectNode={onSelectNode}
+          />
         ))}
       </div>
     </div>
@@ -135,13 +162,14 @@ function StructureContent({
 
   return (
     <div role="region" aria-label="Structure altitude content" className="flex flex-wrap gap-4 p-6">
-      {productionFiles.map((file) => (
+      {productionFiles.map((file, index) => (
         <button
           key={file}
           type="button"
           data-testid="file-node"
           data-file-kind={isConfigFile(file) ? 'config' : 'production'}
-          className="min-w-[160px] rounded-xl border border-ink-200 bg-paper-raised p-4 text-left shadow-sm hover:bg-ink-100"
+          className="animate-pop-in min-w-[160px] rounded-xl border border-ink-200 bg-paper-raised p-4 text-left shadow-sm hover:bg-ink-100"
+          style={staggerStyle(index)}
           onClick={() => onSelectNode({ kind: 'file', fileName: file, owningEntry: fileOwner.get(file)! })}
         >
           {showLayerBadges && (

@@ -126,10 +126,26 @@ body {
   animation: cluster-in 0.18s var(--ease-calm) both;
 }
 
+/*
+  A dependency rail/connector touching the currently selected canvas item
+  (ticket #133): the dash pattern flows along the line to read as "this
+  connection is active," distinct from a static, unrelated connector.
+*/
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+.animate-flow-dash {
+  animation: flow-dash 0.8s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-rise-in,
   .animate-pop-in,
-  .animate-cluster-in {
+  .animate-cluster-in,
+  .animate-flow-dash {
     animation: none;
   }
 }
