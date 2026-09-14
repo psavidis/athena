@@ -6,7 +6,7 @@ import ChangeDetailPage from './ChangeDetailPage'
 import SemanticCanvasPage from './SemanticCanvasPage'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
 import AiAnalysisPage from './AiAnalysisPage'
-import { BackLink, Card, ErrorState, LoadingState, PageHeading, PageShell, PrimaryButton } from './ui'
+import { AthenaTopBar, BackLink, Card, ErrorState, LoadingState, PageHeading, PageShell, PrimaryButton } from './ui'
 
 export default function App() {
   const [connected, setConnected] = useState<boolean | null>(null)
@@ -78,25 +78,9 @@ export default function App() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      {!selectedPr && <AppHeader />}
+      {!selectedPr && <AthenaTopBar />}
       <div className="flex-1">{renderContent()}</div>
     </div>
-  )
-}
-
-/**
- * The Athena logo, shown at the top of every pre-PR page (ticket #109) so
- * the product has a consistent, recognizable identity before a PR is open.
- * Once a PR is selected, SemanticChangeExplorerPage's own topbar (matching
- * ticket #91's approved mockup) replaces this — there's exactly one top bar
- * on screen at a time, never both stacked.
- */
-function AppHeader() {
-  return (
-    <header className="flex items-center gap-2 border-b border-ink-200 bg-paper-raised px-6 py-3.5 sm:px-10">
-      <img src="/athena-logo.png" alt="Athena" className="h-8 w-8 rounded-full" />
-      <span className="font-display text-base font-medium tracking-tight text-ink-900">Athena</span>
-    </header>
   )
 }
 

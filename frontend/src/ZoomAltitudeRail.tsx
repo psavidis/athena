@@ -46,10 +46,15 @@ export default function ZoomAltitudeRail({
   profile,
   currentStop,
   onSelectStop,
+  nested = false,
 }: {
   profile: SemanticProfile
   currentStop: AltitudeStop | undefined
   onSelectStop: (stop: AltitudeStop) => void
+  /** Rendered beneath the sidebar's own "Where you are" heading (SemanticCanvasPage's
+   * WhereYouAreRail) as the next level of the same position ladder — suppresses this
+   * component's own duplicate heading rather than stacking two side by side. */
+  nested?: boolean
 }) {
   const stops = populatedStops(profile)
   if (stops.length === 0) {
@@ -57,10 +62,12 @@ export default function ZoomAltitudeRail({
   }
   const currentIndex = stops.findIndex((s) => s === currentStop)
   return (
-    <div className="px-1 pt-1">
-      <span className="mb-1.5 block px-1.5 text-[10px] font-semibold uppercase tracking-wide text-canvas-ink-faint">
-        Where you are
-      </span>
+    <div className={nested ? 'pl-3 pt-1' : 'px-1 pt-1'}>
+      {!nested && (
+        <span className="mb-1.5 block px-1.5 text-[10px] font-semibold uppercase tracking-wide text-canvas-ink-faint">
+          Where you are
+        </span>
+      )}
       <nav aria-label="Zoom altitude · semantic spine" className="flex flex-col">
         {stops.map((stop, index) => {
           const meta = ALTITUDE_STOPS.find((s) => s.stop === stop)!

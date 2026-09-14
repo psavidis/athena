@@ -257,7 +257,42 @@ export function StateBadge({ state }: { state: ReviewState }) {
 }
 
 /**
- * The page body below {@link AppHeader in App.tsx}: full-width, matching the
+ * The one top bar shown on every screen (ticket #128's approved prototype:
+ * a persistent brand bar, present from the very first repo-picker screen
+ * through the Semantic Canvas — never just on the canvas). Before this, the
+ * pre-PR screens (`App.tsx`'s `AppHeader`) used a smaller, unstyled logo
+ * with none of the prototype's gold-ring/Fraunces treatment, so it read as
+ * a different, lesser bar rather than the same persistent one — this is the
+ * single source of that styling, composed by both the pre-PR header and the
+ * canvas's own top bar (`CanvasTopBar` in SemanticCanvasPage.tsx) so they
+ * can never drift apart again. `right` holds page-specific controls (the
+ * canvas's review-mode select; nothing, on the pre-PR screens).
+ */
+export function AthenaTopBar({
+  prChip,
+  right,
+}: {
+  prChip?: React.ReactNode
+  right?: React.ReactNode
+}) {
+  return (
+    <header className="flex flex-wrap items-center justify-between gap-3.5 border-b border-canvas-line bg-canvas-paper-raised px-5 py-2">
+      <div className="flex min-w-0 items-center gap-3">
+        <img
+          src="/athena-logo.png"
+          alt="Athena"
+          className="h-[46px] w-[46px] flex-shrink-0 rounded-full shadow-[0_0_0_2px_var(--color-canvas-gold),var(--shadow-canvas)]"
+        />
+        <span className="whitespace-nowrap font-display text-lg font-semibold tracking-tight text-canvas-ink">Athena</span>
+        {prChip}
+      </div>
+      {right && <div className="flex items-center gap-2.5">{right}</div>}
+    </header>
+  )
+}
+
+/**
+ * The page body below {@link AthenaTopBar}: full-width, matching the
  * Semantic Change Explorer's own edge-to-edge layout (ticket #91's approved
  * mockup has no centered, narrow-card chrome anywhere — that includes the
  * repo/PR picker, not just the Explorer). `narrow` opts a page back into a

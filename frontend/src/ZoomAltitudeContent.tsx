@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { SemanticDimensionEntry, SemanticProfile } from './api'
+import type { SemanticDimension, SemanticDimensionEntry, SemanticProfile } from './api'
 import type { AltitudeStop } from './ZoomAltitudeRail'
 import { entriesByStop } from './ZoomAltitudeRail'
 
@@ -47,6 +47,42 @@ export type NodeSelection =
   | { kind: 'concept'; entry: SemanticDimensionEntry }
   | { kind: 'file'; fileName: string; owningEntry: SemanticDimensionEntry }
 
+// A short label plus a one-line "what this means here" section title, per
+// dimension (the approved prototype's DIMENSION_SECTION_TITLE) — shown as
+// the active dimension tab's section heading so a reviewer landing on a
+// crowded territory reads "this group is the business responsibility"
+// instead of an unlabeled wall of tiles.
+const DIMENSION_META: Record<SemanticDimension, { tabLabel: string; sectionTitle: string }> = {
+  RESPONSIBILITY: { tabLabel: 'Capability', sectionTitle: 'Capability — the business responsibility this adds or changes' },
+  FEATURE: { tabLabel: 'Flow', sectionTitle: 'Flow — where this sits in the application' },
+  ARCHITECTURE: { tabLabel: 'Architecture', sectionTitle: 'Architecture — how it is shaped inside' },
+  PATTERN: { tabLabel: 'Pattern', sectionTitle: 'Pattern — recognizable technique' },
+  FRAMEWORK: { tabLabel: 'Framework', sectionTitle: 'Framework — the mechanism used' },
+  STRUCTURAL: { tabLabel: 'Structure', sectionTitle: 'Structure — the atomic edits' },
+  INTENT: { tabLabel: 'Intent', sectionTitle: 'Intent — why' },
+}
+
+/**
+ * Groups a stop's entries by their real {@link SemanticDimension} and, when
+ * a stop spans more than one dimension (Capability+Flow = RESPONSIBILITY +
+ * FEATURE; Pattern+Framework = PATTERN + FRAMEWORK), shows one dimension at
+ * a time behind tabs instead of flattening every entry into one undivided
+ * grid — the prototype's `dimension-tabs` (ticket #128). A stop with only
+ * one dimension present renders it directly with no tab chrome, so the
+ * common single-dimension case stays exactly as immediate as before.
+ */
+function groupByDimension(entries: SemanticDimensionEntry[]): { dimension: SemanticDimension; entries: SemanticDimensionEntry[] }[] {
+  const order: SemanticDimension[] = ['RESPONSIBILITY', 'FEATURE', 'ARCHITECTURE', 'PATTERN', 'FRAMEWORK', 'STRUCTURAL', 'INTENT']
+  const groups: { dimension: SemanticDimension; entries: SemanticDimensionEntry[] }[] = []
+  for (const dimension of order) {
+    const forDimension = entries.filter((e) => e.dimension === dimension)
+    if (forDimension.length > 0) {
+      groups.push({ dimension, entries: forDimension })
+    }
+  }
+  return groups
+}
+
 export default function ZoomAltitudeContent({
   stop,
   profile,
@@ -59,7 +95,62 @@ export default function ZoomAltitudeContent({
   onSelectNode: (selection: NodeSelection) => void
 }) {
   const entries = entriesByStop(profile).get(stop) ?? []
+  const groups = groupByDimension(entries)
+  const [activeDimension, setActiveDimension] = useState<SemanticDimension | undefined>(undefined)
+  const selected = groups.find((g) => g.dimension === activeDimension) ?? groups[0]
 
+  if (groups.length === 0) {
+    return null
+  }
+
+  return (
+    <div role="region" aria-label={`${stop} altitude content`}>
+      {groups.length > 1 && (
+        <div role="tablist" aria-label="Semantic dimension" className="flex flex-wrap gap-1 border-b border-canvas-line px-6 pt-4">
+          {groups.map((group) => (
+            <button
+              key={group.dimension}
+              type="button"
+              role="tab"
+              aria-selected={group.dimension === selected.dimension}
+              onClick={() => setActiveDimension(group.dimension)}
+              className={`-mb-px border-b-2 px-3.5 py-2 text-[13px] font-semibold ${
+                group.dimension === selected.dimension
+                  ? 'border-canvas-gold text-canvas-gold-deep'
+                  : 'border-transparent text-canvas-ink-faint hover:text-canvas-ink'
+              }`}
+            >
+              {DIMENSION_META[group.dimension].tabLabel}
+            </button>
+          ))}
+        </div>
+      )}
+      <div className="px-6 pt-5">
+        <h2 className="mb-3 text-[11px] font-bold uppercase tracking-wide text-canvas-ink-faint">
+          {DIMENSION_META[selected.dimension].sectionTitle}
+        </h2>
+      </div>
+      <DimensionGroupContent
+        stop={stop}
+        entries={selected.entries}
+        showLayerBadges={showLayerBadges}
+        onSelectNode={onSelectNode}
+      />
+    </div>
+  )
+}
+
+function DimensionGroupContent({
+  stop,
+  entries,
+  showLayerBadges,
+  onSelectNode,
+}: {
+  stop: AltitudeStop
+  entries: SemanticDimensionEntry[]
+  showLayerBadges: boolean
+  onSelectNode: (selection: NodeSelection) => void
+}) {
   if (stop === 'STRUCTURE') {
     return <StructureContent entries={entries} showLayerBadges={showLayerBadges} onSelectNode={onSelectNode} />
   }
@@ -67,7 +158,7 @@ export default function ZoomAltitudeContent({
     return <ArchitectureContent entries={entries} showLayerBadges={showLayerBadges} onSelectNode={onSelectNode} />
   }
   return (
-    <div role="region" aria-label={`${stop} altitude content`} className="flex flex-wrap gap-3 p-6">
+    <div className="flex flex-wrap gap-3 px-6 pb-6">
       {entries.map((entry, index) => (
         <ConceptNode
           key={entry.conceptName}
@@ -134,26 +225,24 @@ function ArchitectureContent({
   onSelectNode: (selection: NodeSelection) => void
 }) {
   return (
-    <div role="region" aria-label="Architecture altitude content" className="p-6">
-      <div data-testid="architecture-layer-shape" className="flex flex-wrap gap-3">
-        {entries.map((entry, index) => (
-          <button
-            key={entry.conceptName}
-            type="button"
-            data-testid="concept-node"
-            data-dimension={entry.dimension}
-            className="animate-canvas-node-appear relative min-w-[150px] rounded-xl border-2 border-dashed border-canvas-line-strong bg-transparent px-3 py-2.5 text-left transition-colors hover:border-canvas-gold motion-reduce:animate-none"
-            style={staggerStyle(index)}
-            onClick={() => onSelectNode({ kind: 'concept', entry })}
-          >
-            {showLayerBadges && <DimensionBadge dimension={entry.dimension} />}
-            <div className="mb-1 text-[10.5px] font-semibold uppercase tracking-wide text-canvas-ink-faint">
-              {entry.conceptName}
-            </div>
-            <p className="text-[11px] leading-snug text-canvas-ink-faint">{entry.conceptDescription}</p>
-          </button>
-        ))}
-      </div>
+    <div data-testid="architecture-layer-shape" className="flex flex-wrap gap-3 px-6 pb-6">
+      {entries.map((entry, index) => (
+        <button
+          key={entry.conceptName}
+          type="button"
+          data-testid="concept-node"
+          data-dimension={entry.dimension}
+          className="animate-canvas-node-appear relative min-w-[150px] rounded-xl border-2 border-dashed border-canvas-line-strong bg-transparent px-3 py-2.5 text-left transition-colors hover:border-canvas-gold motion-reduce:animate-none"
+          style={staggerStyle(index)}
+          onClick={() => onSelectNode({ kind: 'concept', entry })}
+        >
+          {showLayerBadges && <DimensionBadge dimension={entry.dimension} />}
+          <div className="mb-1 text-[10.5px] font-semibold uppercase tracking-wide text-canvas-ink-faint">
+            {entry.conceptName}
+          </div>
+          <p className="text-[11px] leading-snug text-canvas-ink-faint">{entry.conceptDescription}</p>
+        </button>
+      ))}
     </div>
   )
 }
@@ -181,7 +270,7 @@ function StructureContent({
   const [testSuiteExpanded, setTestSuiteExpanded] = useState(false)
 
   return (
-    <div role="region" aria-label="Structure altitude content" className="flex flex-wrap gap-2.5 p-6">
+    <div className="flex flex-wrap gap-2.5 px-6 pb-6">
       {productionFiles.map((file, index) => (
         <button
           key={file}
