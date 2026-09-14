@@ -9,7 +9,7 @@ import {
   type ModuleTerritory,
   type ModuleTopology,
 } from './api'
-import { ErrorState, LoadingState } from './ui'
+import { AthenaTopBar, ErrorState, LoadingState } from './ui'
 import ZoomAltitudeRail, { populatedStops, type AltitudeStop } from './ZoomAltitudeRail'
 import ZoomAltitudeContent, { type NodeSelection } from './ZoomAltitudeContent'
 import DetailDrawer, { type DrawerSelection } from './DetailDrawer'
@@ -68,6 +68,33 @@ function layoutTerritories(topology: ModuleTopology): TerritoryBox[] {
       height: TERRITORY_HEIGHT,
     }
   })
+}
+
+/**
+ * The camera that centers the whole territory map inside the viewport
+ * (prototype: the territory grid opens centered, not pinned to the
+ * top-left corner where canvas-space (0,0) happens to fall). Falls back
+ * to the origin when the viewport hasn't been measured yet (e.g. jsdom in
+ * tests, or before the first layout pass) — the same 0-sized rect
+ * `diveInto` already tolerates.
+ */
+function centeredCamera(boxes: TerritoryBox[], viewport: { width: number; height: number }): Camera {
+  if (boxes.length === 0 || (viewport.width === 0 && viewport.height === 0)) {
+    return INITIAL_CAMERA
+  }
+  const minX = Math.min(...boxes.map((b) => b.x))
+  const minY = Math.min(...boxes.map((b) => b.y))
+  const maxX = Math.max(...boxes.map((b) => b.x + b.width))
+  const maxY = Math.max(...boxes.map((b) => b.y + b.height))
+  const contentWidth = maxX - minX
+  const contentHeight = maxY - minY
+  const centerX = minX + contentWidth / 2
+  const centerY = minY + contentHeight / 2
+  return {
+    x: viewport.width / 2 - centerX,
+    y: viewport.height / 2 - centerY,
+    scale: 1,
+  }
 }
 
 function prefersReducedMotion(): boolean {
@@ -191,6 +218,24 @@ export default function SemanticCanvasPage({
     setPendingExplainTarget(undefined)
   }, [pendingExplainTarget, data])
 
+  // Center the territory map in the viewport on first load (prototype:
+  // the map opens centered, never pinned to canvas-space (0,0) at the
+  // top-left) — runs once the container has real dimensions and only
+  // while still at the untouched initial camera, so it never fights a
+  // reviewer's own pan/zoom or a dive-in that's already underway.
+  useEffect(() => {
+    if (!containerRef.current || !data || focusedTerritory !== undefined) {
+      return
+    }
+    setCamera((current) => {
+      if (current.x !== INITIAL_CAMERA.x || current.y !== INITIAL_CAMERA.y || current.scale !== INITIAL_CAMERA.scale) {
+        return current
+      }
+      const viewport = containerRef.current!.getBoundingClientRect()
+      return centeredCamera(layoutTerritories(data), viewport)
+    })
+  }, [data, focusedTerritory])
+
   if (isError) {
     if (error instanceof NotConnectedError) {
       onNotConnected()
@@ -238,7 +283,8 @@ export default function SemanticCanvasPage({
 
   function resetCamera() {
     setInstantTransition(prefersReducedMotion())
-    setCamera(INITIAL_CAMERA)
+    const viewport = containerRef.current?.getBoundingClientRect() ?? { width: 0, height: 0 }
+    setCamera(centeredCamera(boxes, viewport))
     setFocusedTerritory(undefined)
   }
 
@@ -348,9 +394,11 @@ export default function SemanticCanvasPage({
         {reviewMode === 'CONTEXTUAL' && (
           <CanvasSidebar
             hasFocusedTerritory={focusedTerritory !== undefined}
+            focusedTerritoryName={focusedTerritory}
             territoryProfile={territoryProfile}
             currentStop={currentStop}
             onSelectStop={selectStop}
+            onOpenOverview={openOverviewDrawer}
             onZoomOut={resetCamera}
           />
         )}
@@ -486,6 +534,7 @@ export default function SemanticCanvasPage({
           </div>
           <div className="flex-1 overflow-auto">
             <ZoomAltitudeContent
+              key={currentStop}
               stop={currentStop}
               profile={territoryProfile}
               showLayerBadges={showLayerBadges}
@@ -505,10 +554,11 @@ export default function SemanticCanvasPage({
 }
 
 /**
- * The top bar (ticket #128's approved prototype): logo/wordmark, PR chip,
- * semantic-layers-context hint, and the Contextual/File-First mode select —
- * previously missing entirely; the mode toggle floated as an unstyled pill
- * with no logo, PR identity, or comments affordance anywhere on screen.
+ * The top bar (ticket #128's approved prototype): the shared {@link
+ * AthenaTopBar} plus this screen's own PR chip and Contextual/File-First
+ * mode select — previously missing entirely; the mode toggle floated as an
+ * unstyled pill with no logo, PR identity, or comments affordance anywhere
+ * on screen.
  */
 function CanvasTopBar({
   pullRequest,
@@ -520,22 +570,16 @@ function CanvasTopBar({
   onSelectReviewMode: (mode: 'CONTEXTUAL' | 'FILE_FIRST') => void
 }) {
   return (
-    <header className="flex flex-wrap items-center justify-between gap-3.5 border-b border-canvas-line bg-canvas-paper-raised px-5 py-2">
-      <div className="flex min-w-0 items-center gap-3">
-        <img
-          src="/athena-logo.png"
-          alt="Athena"
-          className="h-[46px] w-[46px] flex-shrink-0 rounded-full shadow-[0_0_0_2px_var(--color-canvas-gold),var(--shadow-canvas)]"
-        />
-        <span className="whitespace-nowrap font-display text-lg font-semibold tracking-tight text-canvas-ink">Athena</span>
-        {pullRequest && (
+    <AthenaTopBar
+      prChip={
+        pullRequest && (
           <span className="inline-flex min-w-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-canvas-gold-soft py-1 pl-2.5 pr-3 text-xs text-canvas-ink-soft">
             <span className="font-mono font-semibold text-canvas-gold-deep">#{pullRequest.number}</span>
             <span className="overflow-hidden text-ellipsis">{pullRequest.title}</span>
           </span>
-        )}
-      </div>
-      <div className="flex items-center gap-2.5">
+        )
+      }
+      right={
         <label className="flex items-center gap-1.5 text-xs text-canvas-ink-soft">
           Review mode
           <select
@@ -548,56 +592,152 @@ function CanvasTopBar({
             <option value="FILE_FIRST">File-First</option>
           </select>
         </label>
-      </div>
-    </header>
+      }
+    />
   )
 }
 
 /**
  * The left sidebar (ticket #128's approved prototype): a plain nav stack
- * plus, in Contextual mode with a territory focused, the zoom-altitude
- * rail — previously there was no sidebar at all, and the altitude rail
- * floated as an unstyled top-left box only while a territory was focused.
+ * plus a "Where you are" position indicator that is always present, not
+ * just once a territory is focused — the prototype's rail shows this stack
+ * with "This PR" as the (only, but still visible) step on the very first
+ * screen, then appends the focused territory and its zoom-altitude ladder
+ * once the reviewer dives in. Previously there was no sidebar at all, and
+ * the altitude rail floated as an unstyled top-left box only while a
+ * territory was focused, so the first screen showed no position at all.
  */
 function CanvasSidebar({
   hasFocusedTerritory,
+  focusedTerritoryName,
   territoryProfile,
   currentStop,
   onSelectStop,
+  onOpenOverview,
   onZoomOut,
 }: {
   hasFocusedTerritory: boolean
+  focusedTerritoryName: string | undefined
   territoryProfile: Parameters<typeof ZoomAltitudeRail>[0]['profile'] | undefined
   currentStop: AltitudeStop | undefined
   onSelectStop: (stop: AltitudeStop) => void
+  onOpenOverview: () => void
   onZoomOut: () => void
 }) {
   return (
     <nav className="flex w-44 flex-shrink-0 flex-col gap-0.5 border-r border-canvas-line bg-canvas-paper-raised p-2.5">
       <button
         type="button"
-        aria-current={!hasFocusedTerritory ? 'true' : undefined}
-        onClick={onZoomOut}
-        className={`w-full rounded-lg px-2.5 py-2 text-left text-sm ${
-          !hasFocusedTerritory ? 'bg-canvas-gold-soft font-semibold text-canvas-gold-deep' : 'text-canvas-ink-soft hover:bg-canvas-gold-soft hover:text-canvas-ink'
-        }`}
+        onClick={onOpenOverview}
+        className="w-full rounded-lg px-2.5 py-2 text-left text-sm text-canvas-ink-soft hover:bg-canvas-gold-soft hover:text-canvas-ink"
       >
         PR Overview
       </button>
-      {hasFocusedTerritory && territoryProfile && (
-        <>
-          <div className="my-2 h-px bg-canvas-line" />
-          <ZoomAltitudeRail profile={territoryProfile} currentStop={currentStop} onSelectStop={onSelectStop} />
-          <button
-            type="button"
-            onClick={onZoomOut}
-            className="mt-2 flex items-center gap-1.5 rounded-lg border border-canvas-gold bg-canvas-gold-soft px-2.5 py-2 text-xs font-semibold text-canvas-gold-deep hover:shadow-[var(--shadow-canvas)]"
-          >
-            Zoom out
-          </button>
-        </>
+      <div className="my-2 h-px bg-canvas-line" />
+      <WhereYouAreRail
+        focusedTerritoryName={hasFocusedTerritory ? focusedTerritoryName : undefined}
+        territoryProfile={territoryProfile}
+        currentStop={currentStop}
+        onSelectStop={onSelectStop}
+        onZoomToTerritory={onZoomOut}
+      />
+      {hasFocusedTerritory && (
+        <button
+          type="button"
+          onClick={onZoomOut}
+          className="mt-2 flex items-center gap-1.5 rounded-lg border border-canvas-gold bg-canvas-gold-soft px-2.5 py-2 text-xs font-semibold text-canvas-gold-deep hover:shadow-[var(--shadow-canvas)]"
+        >
+          Zoom out
+        </button>
       )}
     </nav>
+  )
+}
+
+/**
+ * "Where you are" (ticket #128's approved prototype): always visible, not
+ * only once a territory is focused. On the first screen it's a single "This
+ * PR" step; once the reviewer dives into a territory, that step becomes
+ * clickable (zooms back out) and the territory's own zoom-altitude ladder
+ * (Intent → Structure, compressed to only its populated stops) continues
+ * beneath it as the next level of the same position indicator.
+ */
+function WhereYouAreRail({
+  focusedTerritoryName,
+  territoryProfile,
+  currentStop,
+  onSelectStop,
+  onZoomToTerritory,
+}: {
+  focusedTerritoryName: string | undefined
+  territoryProfile: Parameters<typeof ZoomAltitudeRail>[0]['profile'] | undefined
+  currentStop: AltitudeStop | undefined
+  onSelectStop: (stop: AltitudeStop) => void
+  onZoomToTerritory: () => void
+}) {
+  const stops = territoryProfile ? populatedStops(territoryProfile) : []
+  return (
+    <div className="px-1 pt-1">
+      <span className="mb-1.5 block px-1.5 text-[10px] font-semibold uppercase tracking-wide text-canvas-ink-faint">
+        Where you are
+      </span>
+      <nav aria-label="Zoom path" className="flex flex-col">
+        <PositionStep
+          label="This PR"
+          hint="every affected module"
+          isCurrent={!focusedTerritoryName}
+          isPassed={!!focusedTerritoryName}
+          onClick={focusedTerritoryName ? onZoomToTerritory : undefined}
+        />
+        {focusedTerritoryName && (
+          <PositionStep label={focusedTerritoryName} hint="this module, maximized" isCurrent={stops.length === 0} isPassed={stops.length > 0} />
+        )}
+      </nav>
+      {focusedTerritoryName && territoryProfile && (
+        <ZoomAltitudeRail profile={territoryProfile} currentStop={currentStop} onSelectStop={onSelectStop} nested />
+      )}
+    </div>
+  )
+}
+
+/** One step of the "Where you are" ladder — a ring, connecting rail lines, and a label/hint pair. */
+function PositionStep({
+  label,
+  hint,
+  isCurrent,
+  isPassed = false,
+  onClick,
+}: {
+  label: string
+  hint: string
+  isCurrent: boolean
+  isPassed?: boolean
+  onClick?: () => void
+}) {
+  return (
+    <button
+      type="button"
+      aria-current={isCurrent ? 'true' : undefined}
+      disabled={!onClick}
+      onClick={onClick}
+      className={`relative flex w-full items-center gap-2 rounded-lg px-1.5 py-1.5 text-left ${
+        isCurrent ? 'font-semibold text-canvas-gold-deep' : 'text-canvas-ink-faint'
+      } ${onClick ? 'hover:bg-canvas-gold-soft' : 'cursor-default'}`}
+    >
+      <span
+        className={`relative z-[1] h-2 w-2 flex-shrink-0 rounded-full border-[1.5px] ${
+          isCurrent
+            ? 'border-canvas-gold bg-canvas-gold shadow-[0_0_0_3px_var(--color-canvas-gold-glow)]'
+            : isPassed
+              ? 'border-canvas-line-strong bg-canvas-line-strong'
+              : 'border-canvas-line-strong bg-canvas-paper-raised'
+        }`}
+      />
+      <span className="flex flex-col leading-tight">
+        <span className="text-xs">{label}</span>
+        <span className="text-[9.5px] font-normal text-canvas-ink-faint">{hint}</span>
+      </span>
+    </button>
   )
 }
 
