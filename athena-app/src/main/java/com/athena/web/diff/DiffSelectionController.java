@@ -51,9 +51,16 @@ public class DiffSelectionController {
             Diff diff = new Diff(workDir, baseRoot, headRoot, new ReviewStateStore(), new AnnotationBoard(),
                     new ReviewSubmission());
             session.selectDiff(diff);
+            // diff.changes() runs the actual analysis (PrAnalyzer.analyze, only wired up by
+            // selectDiff above) — if THIS throws, the session already holds a Diff pointing at
+            // workDir, which the catch block below is about to delete. Clear it back out first
+            // so the session never keeps a reference to a directory that no longer exists.
             List<Change> changes = diff.changes();
             return new DiffResponse(changes.size());
         } catch (RuntimeException e) {
+            if (session.selectedDiff().isPresent() && session.selectedDiff().get().workDir().equals(workDir)) {
+                session.clearSelectedDiff();
+            }
             TempDirectories.deleteRecursively(workDir);
             throw e;
         }

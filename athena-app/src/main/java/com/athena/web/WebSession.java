@@ -92,6 +92,19 @@ public class WebSession {
         return Optional.ofNullable(selectedDiff);
     }
 
+    /**
+     * Clears the selected Diff without deleting its checkout directory
+     * (ticket #111/#152) — for a caller that has already decided to
+     * delete that directory itself (e.g. {@code DiffSelectionController}
+     * unwinding a Diff whose own analysis failed after selection) and
+     * must not leave the session referencing a directory about to be
+     * removed out from under it. Ordinary replacement/deselection goes
+     * through {@link #selectDiff} instead, which does own that cleanup.
+     */
+    public void clearSelectedDiff() {
+        this.selectedDiff = null;
+    }
+
     /** Set once AI analysis has been triggered for the current selection (ticket #77). */
     public void setAiFindingsBoard(AiFindingsBoard board) {
         this.aiFindingsBoard = board;

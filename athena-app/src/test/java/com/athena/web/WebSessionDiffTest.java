@@ -86,6 +86,19 @@ class WebSessionDiffTest {
         assertThat(session.selectedDiff()).contains(second);
     }
 
+    @Test
+    void clearingTheSelectedDiffLeavesNoSelectionWithoutRequiringAReplacement() {
+        // DiffSelectionController's own use case: a Diff whose analysis fails right after
+        // selectDiff has already set it must be removable from the session without going
+        // through selectDiff again (which would try to delete the very directory the caller
+        // is already in the middle of deleting itself).
+        session.selectDiff(newDiff());
+
+        session.clearSelectedDiff();
+
+        assertThat(session.selectedDiff()).isEmpty();
+    }
+
     private Diff newDiff() {
         return new Diff(diffWorkDir, diffWorkDir, diffWorkDir, new ReviewStateStore(), new AnnotationBoard(),
                 new ReviewSubmission());
