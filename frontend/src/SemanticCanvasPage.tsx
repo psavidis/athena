@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import {
+  getModuleSemanticProfile,
   getModuleTopology,
   NoPullRequestSelectedError,
   NotConnectedError,
@@ -8,16 +9,21 @@ import {
   type ModuleTopology,
 } from './api'
 import { ErrorState, LoadingState } from './ui'
+import ZoomAltitudeRail, { populatedStops, type AltitudeStop } from './ZoomAltitudeRail'
+import ZoomAltitudeContent from './ZoomAltitudeContent'
 
 /**
- * The Semantic Canvas (ticket #129): replaces the Semantic Change Explorer's
- * permanent three-pane shell with a full-viewport pan/zoom surface. On load
- * it shows a territory map — one spatial region per module the PR touches
- * or references — so a reviewer sees where a change physically lands in the
- * system before diving into any one part of it. This ticket's job is the
- * canvas mechanics + territory map only; clicking a territory currently
- * shows a minimal placeholder (the zoom-altitude/detail-drawer/File-First
- * tickets fill that in).
+ * The Semantic Canvas (tickets #129/#130): replaces the Semantic Change
+ * Explorer's permanent three-pane shell with a full-viewport pan/zoom
+ * surface. On load it shows a territory map — one spatial region per
+ * module the PR touches or references — so a reviewer sees where a change
+ * physically lands in the system before diving into any one part of it.
+ * Diving into a territory reveals the zoom-altitude rail (#130): the six
+ * semantic dimensions as literal camera-zoom stops, compressed to only
+ * the dimensions that territory actually has content for, landing on the
+ * first populated one. The detail drawer/Code content and File-First mode
+ * are separate tickets — a selected node currently shows no further detail
+ * beyond this altitude's own content.
  */
 
 const MIN_SCALE = 0.4
@@ -85,9 +91,29 @@ export default function SemanticCanvasPage({
   })
   const [camera, setCamera] = useState<Camera>(INITIAL_CAMERA)
   const [focusedTerritory, setFocusedTerritory] = useState<string | undefined>(undefined)
+  const [currentStop, setCurrentStop] = useState<AltitudeStop | undefined>(undefined)
+  const [showLayerBadges, setShowLayerBadges] = useState(false)
   const [instantTransition, setInstantTransition] = useState(false)
   const dragState = useRef<{ startX: number; startY: number; cameraX: number; cameraY: number } | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+
+  const { data: territoryProfile } = useQuery({
+    queryKey: ['module-semantic-profile', focusedTerritory],
+    queryFn: () => getModuleSemanticProfile(focusedTerritory!),
+    enabled: focusedTerritory !== undefined,
+    retry: false,
+  })
+
+  // Land on the territory's first populated altitude stop (ticket #130),
+  // not a fixed default — re-runs whenever a new territory's profile arrives.
+  useEffect(() => {
+    if (territoryProfile) {
+      const stops = populatedStops(territoryProfile)
+      setCurrentStop(stops[0])
+    } else {
+      setCurrentStop(undefined)
+    }
+  }, [territoryProfile])
 
   if (isError) {
     if (error instanceof NotConnectedError) {
@@ -165,6 +191,23 @@ export default function SemanticCanvasPage({
 
   function onPointerUp() {
     dragState.current = null
+  }
+
+  function selectStop(stop: AltitudeStop) {
+    setInstantTransition(false)
+    setCurrentStop(stop)
+  }
+
+  // Per-node-kind zoom-in on selection (ticket #130): a file/symbol node
+  // (denser, more to read) zooms in further than a concept card. Capped at
+  // MAX_SCALE so repeated clicks can't compound into an unreadably close
+  // view — each selection sets scale to a fixed target for its node kind
+  // rather than adding a delta on top of the current scale, so clicking
+  // several nodes in a row never stacks zoom beyond that kind's own cap.
+  function selectNode(nodeKind: 'concept' | 'file' | 'test-suite') {
+    setInstantTransition(false)
+    const targetScale = nodeKind === 'file' ? MAX_SCALE : Math.min(MAX_SCALE, INITIAL_CAMERA.scale + 0.6)
+    setCamera((current) => ({ ...current, scale: clampScale(targetScale) }))
   }
 
   const byName = new Map(boxes.map((box) => [box.territory.moduleName, box]))
@@ -247,7 +290,31 @@ export default function SemanticCanvasPage({
         >
           Reset
         </button>
+        {focusedTerritory && territoryProfile && (
+          <button
+            aria-pressed={showLayerBadges}
+            className={`rounded-full border px-3 py-2 text-sm shadow-sm ${
+              showLayerBadges ? 'border-accent bg-accent-soft text-accent' : 'border-ink-200 bg-paper-raised hover:bg-ink-100'
+            }`}
+            onClick={() => setShowLayerBadges((current) => !current)}
+          >
+            Semantic layers
+          </button>
+        )}
       </div>
+      {focusedTerritory && territoryProfile && (
+        <ZoomAltitudeRail profile={territoryProfile} currentStop={currentStop} onSelectStop={selectStop} />
+      )}
+      {focusedTerritory && territoryProfile && currentStop && (
+        <div className="absolute inset-x-0 bottom-0 top-24 overflow-auto">
+          <ZoomAltitudeContent
+            stop={currentStop}
+            profile={territoryProfile}
+            showLayerBadges={showLayerBadges}
+            onSelectNode={selectNode}
+          />
+        </div>
+      )}
     </div>
   )
 }
