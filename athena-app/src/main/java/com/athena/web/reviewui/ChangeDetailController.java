@@ -8,6 +8,7 @@ import com.athena.reviewui.PrivateNote;
 import com.athena.semantic.Change;
 import com.athena.web.ChangeKey;
 import com.athena.web.CurrentReviewer;
+import com.athena.web.Diff;
 import com.athena.web.WebSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,8 +41,8 @@ public class ChangeDetailController {
 
     @GetMapping("/api/review/changes/{changeKey}")
     public ChangeDetailResponse changeDetail(@PathVariable String changeKey) {
-        WebSession.SelectedPullRequest selection = requireSelection();
-        Change change = requireChange(changeKey, selection.changes());
+        Diff diff = requireSelection();
+        Change change = requireChange(changeKey, diff.changes());
 
         ChangeDetailView view = ChangeDetailView.of(change);
         return new ChangeDetailResponse(changeKey, view.category(), view.kind(), view.description(), view.symbols(),
@@ -50,45 +51,52 @@ public class ChangeDetailController {
 
     @PostMapping("/api/review/comments")
     public AnnotationsResponse addComment(@RequestBody AddAnnotationRequest request) {
-        WebSession.SelectedPullRequest selection = requireSelection();
-        AnnotationScope scope = request.scope().toScope(selection.changes());
-        addAnnotation(selection, scope, request.text(), true);
-        return annotationsAt(selection, scope);
+        Diff diff = requireSelection();
+        AnnotationScope scope = request.scope().toScope(diff.changes());
+        addAnnotation(diff, scope, request.text(), true);
+        return annotationsAt(diff, scope);
     }
 
     @PostMapping("/api/review/private-notes")
     public AnnotationsResponse addPrivateNote(@RequestBody AddAnnotationRequest request) {
-        WebSession.SelectedPullRequest selection = requireSelection();
-        AnnotationScope scope = request.scope().toScope(selection.changes());
-        addAnnotation(selection, scope, request.text(), false);
-        return annotationsAt(selection, scope);
+        Diff diff = requireSelection();
+        AnnotationScope scope = request.scope().toScope(diff.changes());
+        addAnnotation(diff, scope, request.text(), false);
+        return annotationsAt(diff, scope);
     }
 
-    private void addAnnotation(WebSession.SelectedPullRequest selection, AnnotationScope scope, String text,
-                                boolean isComment) {
+    private void addAnnotation(Diff diff, AnnotationScope scope, String text, boolean isComment) {
         try {
             if (isComment) {
-                selection.annotationBoard().addComment(scope, currentReviewer.login(), text);
+                diff.annotationBoard().addComment(scope, currentReviewer.login(), text);
             } else {
-                selection.annotationBoard().addPrivateNote(scope, text);
+                diff.annotationBoard().addPrivateNote(scope, text);
             }
         } catch (IllegalArgumentException | NullPointerException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "text must not be blank");
         }
     }
 
-    private AnnotationsResponse annotationsAt(WebSession.SelectedPullRequest selection, AnnotationScope scope) {
-        AnnotationBoard board = selection.annotationBoard();
+    private AnnotationsResponse annotationsAt(Diff diff, AnnotationScope scope) {
+        AnnotationBoard board = diff.annotationBoard();
         List<String> comments = board.commentsAt(scope).stream().map(Comment::text).toList();
         List<String> privateNotes = board.privateNotesAt(scope).stream().map(PrivateNote::text).toList();
         return new AnnotationsResponse(comments, privateNotes);
     }
 
-    private WebSession.SelectedPullRequest requireSelection() {
-        session.gitHubToken()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not connected to GitHub"));
-        return session.selectedPullRequest()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT, "No PR selected"));
+    /**
+     * A standalone Diff needs no GitHub connection at all (ticket #111/#153), so this only
+     * ever reports the GitHub-specific 401 when there is truly nothing usable selected AND
+     * no token — the same "not connected to GitHub" reviewers saw before this ticket for the
+     * PR-only flow. A session with a token but nothing selected still reports 409, unchanged.
+     */
+    private Diff requireSelection() {
+        return session.currentDiff().orElseThrow(() -> {
+            if (session.gitHubToken().isEmpty()) {
+                return new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not connected to GitHub");
+            }
+            return new ResponseStatusException(HttpStatus.CONFLICT, "No PR or Diff selected");
+        });
     }
 
     private Change requireChange(String changeKey, List<Change> changes) {

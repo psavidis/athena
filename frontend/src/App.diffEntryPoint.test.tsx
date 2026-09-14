@@ -50,7 +50,22 @@ describe('Diff entry point', () => {
     server.use(http.get('/api/github/status', () => HttpResponse.json({ connected: false, accountLogin: null, installationConfigureUrl: null })))
     server.use(
       http.post('/api/diffs', () => HttpResponse.json({ changeCount: 1 })),
-      http.get('/api/review/topology', () => HttpResponse.json({ territories: [], dependencies: [] })),
+      http.get('/api/review/topology', () =>
+        HttpResponse.json({
+          territories: [
+            {
+              moduleName: 'some-module',
+              status: 'TOUCHED',
+              fileCount: 1,
+              statusSummary: '1 file',
+              techStack: 'JAVA',
+              techStackLabel: 'Java',
+              changeKeys: [],
+            },
+          ],
+          dependencies: [],
+        }),
+      ),
     )
     renderApp()
     const user = userEvent.setup()
@@ -65,7 +80,7 @@ describe('Diff entry point', () => {
     await user.click(screen.getByRole('button', { name: 'Compare' }))
 
     // Then the user lands on the Semantic Canvas showing that Diff's analysis
-    expect(await screen.findByRole('navigation', { name: 'Zoom altitude · semantic spine' })).toBeVisible()
+    expect(await screen.findByRole('button', { name: 'some-module territory' })).toBeVisible()
   })
 
   it('shows an error on the form when the revision does not exist, without navigating away', async () => {
