@@ -1,0 +1,160 @@
+package com.athena.semantic;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+class ModuleTopologyBuilderTest {
+
+    private final ModuleTopologyBuilder builder = new ModuleTopologyBuilder();
+
+    @Test
+    void marksAModuleAbsentFromTheBaseRevisionAsNew(@TempDir Path base, @TempDir Path head) throws IOException {
+        writeMavenModule(head, "crowdness-live", List.of());
+        List<ModuleGroup> groups = groupsFor(moduleChange("crowdness-live", "Live.java"));
+
+        ModuleTopology topology = builder.build(groups, base, head);
+
+        ModuleTerritory territory = territoryFor(topology, "crowdness-live");
+        assertThat(territory.status()).isEqualTo(ModuleStatus.NEW);
+        assertThat(territory.statusSummary()).contains("new module");
+    }
+
+    @Test
+    void marksAModuleThatExistedAtBaseAsTouched(@TempDir Path base, @TempDir Path head) throws IOException {
+        writeMavenModule(base, "crowdness-ingestion", List.of());
+        writeMavenModule(head, "crowdness-ingestion", List.of());
+        List<ModuleGroup> groups = groupsFor(moduleChange("crowdness-ingestion", "Ingestion.java"));
+
+        ModuleTopology topology = builder.build(groups, base, head);
+
+        assertThat(territoryFor(topology, "crowdness-ingestion").status()).isEqualTo(ModuleStatus.TOUCHED);
+    }
+
+    @Test
+    void reportsTheRealFileCountAndChangeSummaryAsStatusText(@TempDir Path base, @TempDir Path head)
+            throws IOException {
+        writeMavenModule(base, "crowdness-ingestion", List.of());
+        writeMavenModule(head, "crowdness-ingestion", List.of());
+        List<ModuleGroup> groups = groupsFor(moduleChange("crowdness-ingestion", "Query.java"));
+
+        ModuleTopology topology = builder.build(groups, base, head);
+
+        ModuleTerritory territory = territoryFor(topology, "crowdness-ingestion");
+        assertThat(territory.fileCount()).isEqualTo(1);
+        assertThat(territory.statusSummary()).startsWith("1 file");
+    }
+
+    @Test
+    void detectsARealMavenDependencyBetweenTwoModules(@TempDir Path base, @TempDir Path head) throws IOException {
+        writeMavenModule(head, "crowdness-connect", List.of());
+        writeMavenModule(head, "crowdness-live", List.of("crowdness-connect"));
+        writeMavenModule(base, "crowdness-live", List.of("crowdness-connect"));
+        List<ModuleGroup> groups = groupsFor(moduleChange("crowdness-live", "Live.java"));
+
+        ModuleTopology topology = builder.build(groups, base, head);
+
+        assertThat(topology.dependencies()).contains(new ModuleDependency("crowdness-live", "crowdness-connect"));
+    }
+
+    @Test
+    void addsAnUnmodifiedDependedOnModuleAsAnIdleTerritory(@TempDir Path base, @TempDir Path head) throws IOException {
+        writeMavenModule(head, "crowdness-connect", List.of());
+        writeMavenModule(head, "crowdness-live", List.of("crowdness-connect"));
+        writeMavenModule(base, "crowdness-live", List.of("crowdness-connect"));
+        List<ModuleGroup> groups = groupsFor(moduleChange("crowdness-live", "Live.java"));
+
+        ModuleTopology topology = builder.build(groups, base, head);
+
+        ModuleTerritory idle = territoryFor(topology, "crowdness-connect");
+        assertThat(idle.status()).isEqualTo(ModuleStatus.IDLE);
+        assertThat(idle.changes()).isEmpty();
+    }
+
+    @Test
+    void doesNotDrawADependencyBetweenModulesWithNoRealDependency(@TempDir Path base, @TempDir Path head)
+            throws IOException {
+        writeMavenModule(head, "crowdness-live", List.of());
+        writeMavenModule(head, "crowdness-management", List.of());
+        writeMavenModule(base, "crowdness-live", List.of());
+        writeMavenModule(base, "crowdness-management", List.of());
+        List<ModuleGroup> groups = groupsFor(
+                moduleChange("crowdness-live", "Live.java"), moduleChange("crowdness-management", "Mgmt.java"));
+
+        ModuleTopology topology = builder.build(groups, base, head);
+
+        assertThat(topology.dependencies()).isEmpty();
+    }
+
+    @Test
+    void identifiesASpringBootModuleByItsRealPomContent(@TempDir Path base, @TempDir Path head) throws IOException {
+        Path moduleDir = head.resolve("crowdness-live");
+        Files.createDirectories(moduleDir);
+        Files.writeString(moduleDir.resolve("pom.xml"), """
+                <project>
+                  <artifactId>crowdness-live</artifactId>
+                  <dependencies>
+                    <dependency><artifactId>spring-boot-starter-web</artifactId></dependency>
+                  </dependencies>
+                </project>
+                """);
+        List<ModuleGroup> groups = groupsFor(moduleChange("crowdness-live", "Live.java"));
+
+        ModuleTopology topology = builder.build(groups, base, head);
+
+        assertThat(territoryFor(topology, "crowdness-live").techStack()).isEqualTo(TechStack.SPRING_BOOT_JAVA);
+    }
+
+    @Test
+    void identifiesAReactTypescriptModuleByItsRealPackageJson(@TempDir Path base, @TempDir Path head)
+            throws IOException {
+        Path moduleDir = head.resolve("crowdness-ui");
+        Files.createDirectories(moduleDir);
+        Files.writeString(moduleDir.resolve("package.json"), """
+                { "name": "crowdness-ui", "dependencies": { "react": "^18.0.0" }, "devDependencies": { "typescript": "^5.0.0" } }
+                """);
+        List<ModuleGroup> groups = groupsFor(moduleChange("crowdness-ui", "App.tsx"));
+
+        ModuleTopology topology = builder.build(groups, base, head);
+
+        assertThat(territoryFor(topology, "crowdness-ui").techStack()).isEqualTo(TechStack.REACT_TYPESCRIPT);
+    }
+
+    private List<ModuleGroup> groupsFor(DetectedTransformation... transformations) {
+        List<Change> changes = new ChangeGrouper().group(List.of(transformations));
+        return new ModuleGrouper().group(changes);
+    }
+
+    private DetectedTransformation moduleChange(String moduleName, String fileName) {
+        return DetectedTransformation.of(TransformationKind.ADD_SYMBOL,
+                List.of("Symbol#member"), List.of(moduleName + "/src/main/java/" + fileName));
+    }
+
+    private ModuleTerritory territoryFor(ModuleTopology topology, String moduleName) {
+        return topology.territories().stream()
+                .filter(t -> t.moduleName().equals(moduleName))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("No territory found for " + moduleName));
+    }
+
+    private void writeMavenModule(Path root, String moduleName, List<String> dependsOnArtifactIds) throws IOException {
+        Path moduleDir = root.resolve(moduleName);
+        Files.createDirectories(moduleDir);
+        StringBuilder pom = new StringBuilder("<project>\n  <artifactId>").append(moduleName).append("</artifactId>\n");
+        if (!dependsOnArtifactIds.isEmpty()) {
+            pom.append("  <dependencies>\n");
+            for (String dep : dependsOnArtifactIds) {
+                pom.append("    <dependency><artifactId>").append(dep).append("</artifactId></dependency>\n");
+            }
+            pom.append("  </dependencies>\n");
+        }
+        pom.append("</project>\n");
+        Files.writeString(moduleDir.resolve("pom.xml"), pom.toString());
+    }
+}
