@@ -47,4 +47,14 @@ public final class ModuleGrouper {
         }
         return "(root)";
     }
+
+    /**
+     * The same leading-path-segment rule as {@link #moduleOf(Change)}, applied to a single
+     * file path directly — used to compare a move's before/after module without a whole
+     * {@link Change} to derive it from (e.g. {@code CapabilitySplitDetector}).
+     */
+    public static String moduleOf(String filePath) {
+        int separator = filePath.indexOf('/');
+        return separator > 0 ? filePath.substring(0, separator) : "(root)";
+    }
 }

@@ -41,9 +41,19 @@ export default function CapabilityLevel({
               >
                 <div className="mb-1 flex items-center gap-2">
                   <h3 className="text-base font-semibold text-ink-900">{entry.conceptName}</h3>
+                  {!!entry.groupedMoveCount && entry.groupedMoveCount > 0 && (
+                    <span className="rounded-full bg-lv-capability-soft px-2 py-0.5 text-xs font-medium text-lv-capability">
+                      {entry.groupedMoveCount} moves
+                    </span>
+                  )}
                   <LevelConfidenceChip dimension="RESPONSIBILITY" inferred={true} confidencePercent={entry.confidencePercent} />
                 </div>
                 <p className="text-sm text-ink-700">{entry.conceptDescription}</p>
+                {entry.supportingConceptNames.length > 0 && (
+                  <p className="mt-1 text-xs text-ink-500">
+                    Flows affected: {entry.supportingConceptNames.join(', ')}
+                  </p>
+                )}
               </button>
             </li>
           ))}

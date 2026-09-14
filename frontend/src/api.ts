@@ -87,6 +87,11 @@ export interface SemanticDimensionEntry {
    * Semantic Canvas's Structure altitude shows one node per file). Absent on any
    * fixture/response that predates this field. */
   filesTouched?: string[]
+  /** For a Capability-level `capability-extraction` entry, how many individual
+   * `move-responsibility` moves it folds together. Zero/absent for every other entry,
+   * including a lone move that didn't recur often enough between the same two modules
+   * to be recognized as a capability split. */
+  groupedMoveCount?: number
 }
 
 export interface SemanticProfile {

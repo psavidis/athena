@@ -1,5 +1,7 @@
 package com.athena.web.reviewui;
 
+import com.athena.semantic.CapabilitySplitDetector;
+import com.athena.semantic.CapabilitySplitGroup;
 import com.athena.semantic.Change;
 import com.athena.semantic.DetectedTransformation;
 import com.athena.semantic.ModuleGroup;
@@ -7,6 +9,7 @@ import com.athena.semantic.ModuleGrouper;
 import com.athena.semantic.SemanticClassification;
 import com.athena.semantic.SemanticDimension;
 import com.athena.semantic.SemanticProfile;
+import com.athena.semantic.TaxonomyLoader;
 import com.athena.web.ChangeKey;
 import com.athena.web.WebSession;
 import org.springframework.http.HttpStatus;
@@ -17,8 +20,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Serves a Change's full Semantic Profile (ticket #94) so the Semantic Change
@@ -76,11 +81,13 @@ public class SemanticProfileController {
     /**
      * The Semantic Change Explorer aggregated across every Change in one module
      * (ticket #122's follow-up: the Explorer is the primary view for a module,
-     * not a per-Change drill-down reached only after a flat change list). Simply
-     * concatenates each Change's own entries per dimension — a module's Structure
-     * level, say, is the union of every Change's structural entries, in the same
-     * shape the frontend already groups single-Change entries in, so no new
-     * response type or frontend grouping logic is needed for this to render.
+     * not a per-Change drill-down reached only after a flat change list). Concatenates
+     * each Change's own entries per dimension — a module's Structure level, say, is the
+     * union of every Change's structural entries, in the same shape the frontend already
+     * groups single-Change entries in — except Capability-level {@code move-responsibility}
+     * entries that recur between the same two modules, which {@link #toResponse} folds
+     * into one {@code capability-extraction} entry via {@link CapabilitySplitDetector}
+     * instead of repeating the same card once per move.
      */
     @GetMapping("/api/review/modules/{moduleName}/semantic-profile")
     public SemanticProfileResponse moduleSemanticProfile(@PathVariable String moduleName) {
@@ -106,14 +113,27 @@ public class SemanticProfileController {
     }
 
     private SemanticProfileResponse toResponse(List<SemanticProfile> profiles) {
+        List<CapabilitySplitGroup> splitGroups = new CapabilitySplitDetector(
+                new TaxonomyLoader().load(SemanticDimension.RESPONSIBILITY)).detect(profiles);
+        Set<SemanticClassification> groupedAway = splitGroups.stream()
+                .flatMap(group -> group.mergedClassifications().stream())
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+
         List<SemanticDimensionEntryResponse> entries = new ArrayList<>();
         for (SemanticDimension dimension : SemanticDimension.values()) {
             for (SemanticProfile profile : profiles) {
                 List<SemanticClassification> classifications = profile.classifications(dimension);
                 for (int rank = 0; rank < classifications.size(); rank++) {
-                    entries.add(toEntry(dimension, classifications.get(rank), rank));
+                    SemanticClassification classification = classifications.get(rank);
+                    if (groupedAway.contains(classification)) {
+                        continue;
+                    }
+                    entries.add(toEntry(dimension, classification, rank));
                 }
             }
+        }
+        for (CapabilitySplitGroup group : splitGroups) {
+            entries.add(toGroupEntry(group));
         }
         return new SemanticProfileResponse(entries);
     }
@@ -129,7 +149,29 @@ public class SemanticProfileController {
                 .toList();
         return new SemanticDimensionEntryResponse(dimension, classification.concept().name(),
                 classification.concept().description(), inferred, confidencePercent, evidence,
-                classification.supportingConceptNames(), classification.beforeEvidenceCount(), filesTouched);
+                classification.supportingConceptNames(), classification.beforeEvidenceCount(), filesTouched, 0);
+    }
+
+    /**
+     * A {@link CapabilitySplitGroup} rendered as one Capability-level entry: a
+     * generated name/description naming the two modules and how many moves were
+     * folded in, standing in for the individual {@code move-responsibility} entries
+     * it replaces. Always Inferred — recognizing a split from several moves is a
+     * heuristic judgment, not a direct reading of one transformation.
+     */
+    private SemanticDimensionEntryResponse toGroupEntry(CapabilitySplitGroup group) {
+        SemanticClassification classification = group.classification();
+        String name = "Extract into " + group.destinationModule();
+        String description = group.moveCount() + " responsibilities moved from " + group.sourceModule()
+                + " to " + group.destinationModule() + ", extracting a capability.";
+        List<String> evidence = classification.evidence().stream().map(DetectedTransformation::diffText).toList();
+        List<String> filesTouched = classification.evidence().stream()
+                .flatMap(occurrence -> occurrence.filesTouched().stream())
+                .distinct()
+                .toList();
+        return new SemanticDimensionEntryResponse(SemanticDimension.RESPONSIBILITY, name, description,
+                true, confidenceFor(SemanticDimension.RESPONSIBILITY, 0), evidence,
+                classification.supportingConceptNames(), 0, filesTouched, group.moveCount());
     }
 
     /**

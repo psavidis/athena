@@ -3,6 +3,7 @@
   {"id": "remove-capability", "name": "Remove Capability", "description": "An existing business-meaningful capability was removed."},
   {"id": "modify-capability", "name": "Modify Capability", "description": "An existing capability's behavior changed without being added or removed."},
   {"id": "move-responsibility", "name": "Move Responsibility", "description": "A responsibility moved from one type/module to another."},
+  {"id": "capability-extraction", "name": "Capability Extraction", "description": "Multiple responsibilities moved from the same source module to the same destination module, extracting a new capability."},
   {"id": "split-responsibility", "name": "Split Responsibility", "description": "One type/module's responsibility was divided across multiple types/modules."},
   {"id": "merge-responsibility", "name": "Merge Responsibility", "description": "Multiple types'/modules' responsibilities were consolidated into one."},
   {"id": "introduce-abstraction", "name": "Introduce Abstraction", "description": "A new interface or abstract type was introduced above existing implementation(s)."},
