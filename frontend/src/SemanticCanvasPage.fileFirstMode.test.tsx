@@ -25,7 +25,7 @@ function renderCanvas() {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
   render(
     <QueryClientProvider client={queryClient}>
-      <SemanticCanvasPage onNotConnected={vi.fn()} onNoPullRequestSelected={vi.fn()} />
+      <SemanticCanvasPage pullRequest={null} onNotConnected={vi.fn()} onNoPullRequestSelected={vi.fn()} />
     </QueryClientProvider>,
   )
 }
@@ -69,7 +69,7 @@ function baseChange(overrides: Partial<ChangeDetail>): ChangeDetail {
 
 async function switchToFileFirst() {
   const user = userEvent.setup()
-  await user.click(await screen.findByRole('button', { name: 'File-First' }))
+  await user.selectOptions(await screen.findByRole('combobox', { name: 'Review mode' }), 'FILE_FIRST')
   return user
 }
 
@@ -272,7 +272,7 @@ describe('Semantic Canvas — File-First review mode', () => {
     const user = await switchToFileFirst()
     await screen.findByRole('region', { name: 'File-First file list' })
 
-    await user.click(screen.getByRole('button', { name: 'Contextual' }))
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Review mode' }), 'CONTEXTUAL')
 
     expect(await screen.findByRole('application', { name: 'Semantic Canvas territory map' })).toBeVisible()
     expect(screen.getByRole('button', { name: 'crowdness-live territory' })).toBeVisible()

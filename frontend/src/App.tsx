@@ -58,6 +58,7 @@ export default function App() {
       }
       return (
         <SemanticCanvasPage
+          pullRequest={selectedPr}
           onNotConnected={() => {
             setConnected(false)
             setSelectedRepo(null)

@@ -21,7 +21,7 @@ function renderCanvas() {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
   render(
     <QueryClientProvider client={queryClient}>
-      <SemanticCanvasPage onNotConnected={vi.fn()} onNoPullRequestSelected={vi.fn()} />
+      <SemanticCanvasPage pullRequest={null} onNotConnected={vi.fn()} onNoPullRequestSelected={vi.fn()} />
     </QueryClientProvider>,
   )
 }
