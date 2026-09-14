@@ -1,5 +1,9 @@
 package com.athena.semantic;
 
+import com.athena.analysis.spi.ExternalAnalysisProvider;
+import com.athena.analysis.spi.ExternalFinding;
+import com.athena.analysis.spi.ProviderConfiguration;
+import com.athena.analysis.spi.ProviderRunResult;
 import com.athena.semantic.spi.FrameworkPlugin;
 import com.athena.semantic.spi.LanguagePlugin;
 import com.athena.semantic.spi.ParseOutcome;
@@ -40,6 +44,7 @@ public final class PrAnalyzer {
 
     private final List<LanguagePlugin> languagePlugins;
     private final List<FrameworkPlugin> frameworkPlugins;
+    private final Map<ExternalAnalysisProvider, ProviderConfiguration> externalProviders;
     private final StructuralTaxonomyClassifier structuralClassifier;
     private final ResponsibilityTaxonomyClassifier responsibilityClassifier;
     private final ArchitectureTaxonomyClassifier architectureClassifier;
@@ -49,8 +54,20 @@ public final class PrAnalyzer {
     private final Taxonomy frameworkTaxonomy;
 
     public PrAnalyzer(List<LanguagePlugin> languagePlugins, List<FrameworkPlugin> frameworkPlugins) {
+        this(languagePlugins, frameworkPlugins, Map.of());
+    }
+
+    /**
+     * @param externalProviders external analysis providers to run alongside Athena's own
+     *        analysis (ticket #114/#149), each with its own {@link ProviderConfiguration}.
+     *        A disabled or absent provider is simply not run — existing callers using the
+     *        other constructor get the exact same behavior as before this parameter existed.
+     */
+    public PrAnalyzer(List<LanguagePlugin> languagePlugins, List<FrameworkPlugin> frameworkPlugins,
+                       Map<ExternalAnalysisProvider, ProviderConfiguration> externalProviders) {
         this.languagePlugins = List.copyOf(languagePlugins);
         this.frameworkPlugins = List.copyOf(frameworkPlugins);
+        this.externalProviders = Map.copyOf(externalProviders);
         TaxonomyLoader taxonomyLoader = new TaxonomyLoader();
         structuralClassifier = new StructuralTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.STRUCTURAL));
         responsibilityClassifier = new ResponsibilityTaxonomyClassifier(taxonomyLoader.load(SemanticDimension.RESPONSIBILITY));
@@ -96,8 +113,49 @@ public final class PrAnalyzer {
                 .toList();
 
         AnalysisStatus status = status(relativePaths.size(), degradedEntries.size());
+        List<ExternalFinding> externalFindings = runExternalProviders(headRoot, relativePaths);
 
-        return new AnalysisResult(status, changes, semanticProfiles, degradedEntries, rawDiffsByFile);
+        return new AnalysisResult(status, changes, semanticProfiles, degradedEntries, rawDiffsByFile, externalFindings);
+    }
+
+    /**
+     * Runs every configured, enabled {@link ExternalAnalysisProvider} against
+     * {@code headRoot} (ticket #114/#149) — additive evidence, gathered
+     * independently of the Change/SemanticProfile pipeline above and never
+     * feeding into it. One provider failing (a thrown exception, or a
+     * failed {@link ProviderRunResult}) never prevents another provider's
+     * findings, or this method's own completion, per the epic's graceful-
+     * degradation-for-providers requirement — Athena's own analysis above
+     * has already completed by the time this runs.
+     */
+    private List<ExternalFinding> runExternalProviders(Path headRoot, Set<String> relativePaths) {
+        if (externalProviders.isEmpty()) {
+            return List.of();
+        }
+        List<Path> changedFiles = relativePaths.stream().map(Path::of).toList();
+        List<ExternalFinding> findings = new ArrayList<>();
+        for (Map.Entry<ExternalAnalysisProvider, ProviderConfiguration> entry : externalProviders.entrySet()) {
+            if (!entry.getValue().isEnabled()) {
+                continue;
+            }
+            ProviderRunResult result = runProvider(entry.getKey(), headRoot, changedFiles, entry.getValue());
+            if (result.isSuccessful()) {
+                findings.addAll(result.findings());
+            }
+        }
+        return findings;
+    }
+
+    /** Isolates one provider's own thrown exception into a failed result, matching the
+     * failure-handling contract {@link ExternalAnalysisProvider#analyze} documents — a
+     * misbehaving implementation that throws anyway must not take the whole run down. */
+    private ProviderRunResult runProvider(ExternalAnalysisProvider provider, Path headRoot, List<Path> changedFiles,
+                                           ProviderConfiguration configuration) {
+        try {
+            return provider.analyze(headRoot, changedFiles, configuration);
+        } catch (RuntimeException e) {
+            return ProviderRunResult.failure(e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName());
+        }
     }
 
     /**
