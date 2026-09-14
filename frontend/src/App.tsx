@@ -3,7 +3,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { getGitHubConnectUrl, getGitHubStatus, listOpenPullRequests, listRepositories, selectPullRequest } from './api'
 import type { ImportedPullRequest } from './api'
 import ChangeDetailPage from './ChangeDetailPage'
-import SemanticChangeExplorerPage, { type SemanticChangeExplorerScope } from './SemanticChangeExplorerPage'
+import SemanticCanvasPage from './SemanticCanvasPage'
+import type { SemanticChangeExplorerScope } from './SemanticChangeExplorerPage'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
 import AiAnalysisPage from './AiAnalysisPage'
 import { BackLink, Card, ErrorState, LoadingState, PageHeading, PageShell, PrimaryButton } from './ui'
@@ -72,13 +73,7 @@ export default function App() {
         )
       }
       return (
-        <SemanticChangeExplorerPage
-          scope={explorerScope}
-          onScopeChange={setExplorerScope}
-          onExitPr={exitPr}
-          onOpenDiffView={setDiffViewChangeKey}
-          onOpenAiAnalysis={() => setShowingAiAnalysis(true)}
-          onOpenSummary={() => setShowingSummary(true)}
+        <SemanticCanvasPage
           onNotConnected={() => {
             setConnected(false)
             setSelectedRepo(null)

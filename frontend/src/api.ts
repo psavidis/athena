@@ -246,6 +246,41 @@ export async function getModuleNarrative(moduleName: string): Promise<ModuleNarr
   return asJson(response)
 }
 
+export type ModuleStatus = 'NEW' | 'TOUCHED' | 'IDLE'
+
+export type TechStack = 'SPRING_BOOT_JAVA' | 'JAVA' | 'REACT_TYPESCRIPT' | 'TYPESCRIPT' | 'UNKNOWN'
+
+export interface ModuleTerritory {
+  moduleName: string
+  status: ModuleStatus
+  fileCount: number
+  statusSummary: string
+  techStack: TechStack
+  techStackLabel: string
+  changeKeys: string[]
+}
+
+export interface ModuleDependency {
+  from: string
+  to: string
+}
+
+export interface ModuleTopology {
+  territories: ModuleTerritory[]
+  dependencies: ModuleDependency[]
+}
+
+export async function getModuleTopology(): Promise<ModuleTopology> {
+  const response = await fetch('/api/review/topology')
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  return asJson(response)
+}
+
 export async function getChangeMap(): Promise<ChangeMap> {
   const response = await fetch('/api/review/change-map')
   if (response.status === 401) {
