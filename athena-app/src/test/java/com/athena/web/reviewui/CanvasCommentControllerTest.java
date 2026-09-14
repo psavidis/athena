@@ -7,6 +7,7 @@ import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.PrAnalyzer;
 import com.athena.semantic.ReviewStateStore;
+import com.athena.web.Diff;
 import com.athena.web.WebSession;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -57,6 +58,22 @@ class CanvasCommentControllerTest {
         assertThatThrownBy(() -> controller.comments("territory:crowdness-live"))
                 .isInstanceOf(ResponseStatusException.class)
                 .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(409));
+    }
+
+    /**
+     * Ticket #111/#153: a standalone {@link com.athena.web.Diff} (no GitHub Pull
+     * Request, no GitHub connection at all) must accept canvas comments the same
+     * way a selected PR Review does.
+     */
+    @Test
+    void postingACommentWorksForAStandaloneDiffWithNoGitHubConnection() {
+        selectStandaloneDiff();
+
+        List<CanvasCommentResponse> comments =
+                controller.addComment("territory:crowdness-live", new CanvasCommentRequest("Why did this move?"));
+
+        assertThat(comments).hasSize(1);
+        assertThat(comments.get(0).text()).isEqualTo("Why did this move?");
     }
 
     @Test
@@ -139,5 +156,10 @@ class CanvasCommentControllerTest {
         session.select(new WebSession.SelectedPullRequest(
                 pr, "acme/widgets", headRoot, baseRoot, headRoot, new ReviewStateStore(), new AnnotationBoard(),
                 new ReviewSubmission()));
+    }
+
+    private void selectStandaloneDiff() {
+        session.selectDiff(new Diff(headRoot, baseRoot, headRoot, new ReviewStateStore(),
+                new AnnotationBoard(), new ReviewSubmission()));
     }
 }

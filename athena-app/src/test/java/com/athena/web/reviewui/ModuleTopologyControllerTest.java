@@ -10,6 +10,7 @@ import com.athena.semantic.ModuleStatus;
 import com.athena.semantic.PrAnalyzer;
 import com.athena.semantic.ReviewStateStore;
 import com.athena.semantic.TechStack;
+import com.athena.web.Diff;
 import com.athena.web.WebSession;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -64,6 +65,31 @@ class ModuleTopologyControllerTest {
                 .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(409));
     }
 
+    /**
+     * Ticket #111/#153: a standalone {@link com.athena.web.Diff} (no GitHub Pull
+     * Request, no GitHub connection at all) must render the same territory map a
+     * selected PR Review does.
+     */
+    @Test
+    void rendersTheTerritoryMapForAStandaloneDiffWithNoGitHubConnection() throws Exception {
+        initRepo();
+        writeFile("README.md", "root\n");
+        String baseSha = commit("Initial commit");
+
+        Files.createDirectories(repoDir.resolve("crowdness-live"));
+        writeFile("crowdness-live/Live.java", "public class Live {\n"
+                + "    public void start() {\n"
+                + "    }\n"
+                + "}\n");
+        String headSha = commit("Add crowdness-live module");
+
+        selectStandaloneDiff(baseSha, headSha);
+
+        ModuleTopologyResponse response = controller.topology();
+
+        assertThat(response.territories()).isNotEmpty();
+    }
+
     @Test
     void reportsANewSpringBootModuleWithARealChangeKey() throws Exception {
         session.connect("test-token");
@@ -105,6 +131,13 @@ class ModuleTopologyControllerTest {
         Path headRoot = GitRevisionCheckout.checkout(repoDir.toString(), headSha, workDir, Map.of());
         session.select(new WebSession.SelectedPullRequest(
                 pr, REPOSITORY_FULL_NAME, workDir, baseRoot, headRoot, new ReviewStateStore(), new AnnotationBoard(),
+                new ReviewSubmission()));
+    }
+
+    private void selectStandaloneDiff(String baseSha, String headSha) {
+        Path baseRoot = GitRevisionCheckout.checkout(repoDir.toString(), baseSha, workDir, Map.of());
+        Path headRoot = GitRevisionCheckout.checkout(repoDir.toString(), headSha, workDir, Map.of());
+        session.selectDiff(new Diff(workDir, baseRoot, headRoot, new ReviewStateStore(), new AnnotationBoard(),
                 new ReviewSubmission()));
     }
 
