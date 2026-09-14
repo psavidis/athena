@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useQueries, useQuery } from '@tanstack/react-query'
 import {
   getModuleSemanticProfile,
   getModuleTopology,
@@ -12,6 +12,7 @@ import { ErrorState, LoadingState } from './ui'
 import ZoomAltitudeRail, { populatedStops, type AltitudeStop } from './ZoomAltitudeRail'
 import ZoomAltitudeContent, { type NodeSelection } from './ZoomAltitudeContent'
 import DetailDrawer, { type DrawerSelection } from './DetailDrawer'
+import FileFirstMode, { type FileRow } from './FileFirstMode'
 
 /**
  * The Semantic Canvas (tickets #129/#130): replaces the Semantic Change
@@ -96,6 +97,18 @@ export default function SemanticCanvasPage({
   const [showLayerBadges, setShowLayerBadges] = useState(false)
   const [instantTransition, setInstantTransition] = useState(false)
   const [drawerSelection, setDrawerSelection] = useState<DrawerSelection | undefined>(undefined)
+  const [reviewMode, setReviewMode] = useState<'CONTEXTUAL' | 'FILE_FIRST'>('CONTEXTUAL')
+  // "Explain this" (ticket #132) wants Structure specifically, not just
+  // whichever stop happens to be first-populated — set right before diving
+  // in, consumed once by the landing effect below, then cleared.
+  const forcedLandingStop = useRef<AltitudeStop | undefined>(undefined)
+  // "Explain this" (ticket #132) switches to Contextual mode and needs to dive
+  // into a territory, but the canvas viewport containerRef.current measures is
+  // null until Contextual mode's DOM actually mounts — can't happen in the same
+  // synchronous click handler as the mode switch. Queue the target module name
+  // instead; the effect below (declared after boxes/diveInto exist) dives in
+  // once the viewport has mounted.
+  const [pendingExplainTarget, setPendingExplainTarget] = useState<string | undefined>(undefined)
   const dragState = useRef<{ startX: number; startY: number; cameraX: number; cameraY: number } | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -106,16 +119,64 @@ export default function SemanticCanvasPage({
     retry: false,
   })
 
+  // File-First's "Has context" filter (ticket #132) needs to know which files
+  // have a matching canvas node across the WHOLE PR, not just the focused
+  // territory — fetched lazily (only in File-First mode) across every
+  // territory rather than eagerly for every PR, since Contextual mode never
+  // needs more than the one focused territory's profile.
+  const allTerritoryNames = data?.territories.map((t) => t.moduleName) ?? []
+  const allProfileQueries = useQueries({
+    queries: allTerritoryNames.map((moduleName) => ({
+      queryKey: ['module-semantic-profile', moduleName],
+      queryFn: () => getModuleSemanticProfile(moduleName),
+      enabled: reviewMode === 'FILE_FIRST',
+      retry: false,
+    })),
+  })
+  const contextFiles = useMemo(() => {
+    const files = new Set<string>()
+    for (const query of allProfileQueries) {
+      for (const entry of query.data?.dimensions ?? []) {
+        for (const file of entry.filesTouched ?? []) {
+          files.add(file)
+        }
+      }
+    }
+    return files
+  }, [allProfileQueries])
+
   // Land on the territory's first populated altitude stop (ticket #130),
   // not a fixed default — re-runs whenever a new territory's profile arrives.
+  // "Explain this" (ticket #132) can override this once with a specific stop.
   useEffect(() => {
     if (territoryProfile) {
       const stops = populatedStops(territoryProfile)
-      setCurrentStop(stops[0])
+      const forced = forcedLandingStop.current
+      forcedLandingStop.current = undefined
+      setCurrentStop(forced && stops.includes(forced) ? forced : stops[0])
     } else {
       setCurrentStop(undefined)
     }
   }, [territoryProfile])
+
+  // "Explain this" (ticket #132): once Contextual mode's viewport has
+  // actually mounted (containerRef.current is null until then), dive into
+  // the queued target module the same way clicking its territory would.
+  // diveInto is a hoisted function declaration further down this same
+  // component body, so calling it here (before its textual definition) is
+  // valid — only the effect's own registration needs to happen up here,
+  // above the early-return guards, to satisfy the Rules of Hooks.
+  useEffect(() => {
+    if (!pendingExplainTarget || !containerRef.current || !data) {
+      return
+    }
+    const box = layoutTerritories(data).find((b) => b.territory.moduleName === pendingExplainTarget)
+    if (box) {
+      forcedLandingStop.current = 'STRUCTURE'
+      diveInto(box)
+    }
+    setPendingExplainTarget(undefined)
+  }, [pendingExplainTarget, data])
 
   if (isError) {
     if (error instanceof NotConnectedError) {
@@ -241,10 +302,56 @@ export default function SemanticCanvasPage({
     setDrawerSelection({ kind: 'overview' })
   }
 
+  // File-First's click-to-diff (ticket #132): opens the same shared detail
+  // drawer File-node content the canvas itself uses — no second diff surface.
+  function openFileFromFileFirst(row: FileRow) {
+    setDrawerSelection({
+      kind: 'file',
+      fileName: row.fileName,
+      fromConceptName: row.moduleName,
+      changeKeys: [row.changeKey],
+    })
+  }
+
+  // "Explain this" (ticket #132): switches to Contextual mode, dives into
+  // the file's module territory, and lands on its Structure-altitude node —
+  // semantic context on demand rather than forced by default.
+  function explainFile(row: FileRow) {
+    setReviewMode('CONTEXTUAL')
+    setPendingExplainTarget(row.moduleName)
+  }
+
   const byName = new Map(boxes.map((box) => [box.territory.moduleName, box]))
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-paper" data-testid="semantic-canvas">
+      <div role="group" aria-label="Review mode" className="absolute right-6 top-6 z-10 flex overflow-hidden rounded-full border border-ink-200 bg-paper-raised shadow-sm">
+        <button
+          type="button"
+          aria-pressed={reviewMode === 'CONTEXTUAL'}
+          className={`px-4 py-2 text-sm ${reviewMode === 'CONTEXTUAL' ? 'bg-accent-soft text-accent' : 'text-ink-700 hover:bg-ink-100'}`}
+          onClick={() => setReviewMode('CONTEXTUAL')}
+        >
+          Contextual
+        </button>
+        <button
+          type="button"
+          aria-pressed={reviewMode === 'FILE_FIRST'}
+          className={`px-4 py-2 text-sm ${reviewMode === 'FILE_FIRST' ? 'bg-accent-soft text-accent' : 'text-ink-700 hover:bg-ink-100'}`}
+          onClick={() => setReviewMode('FILE_FIRST')}
+        >
+          File-First
+        </button>
+      </div>
+      {reviewMode === 'FILE_FIRST' ? (
+        <FileFirstMode
+          topology={topology}
+          contextFiles={contextFiles}
+          onOpenFile={openFileFromFileFirst}
+          onExplainFile={explainFile}
+        />
+      ) : (
+      <>
       <div
         ref={containerRef}
         role="application"
@@ -356,6 +463,8 @@ export default function SemanticCanvasPage({
             onSelectNode={selectNode}
           />
         </div>
+      )}
+      </>
       )}
       <DetailDrawer
         selection={drawerSelection}
