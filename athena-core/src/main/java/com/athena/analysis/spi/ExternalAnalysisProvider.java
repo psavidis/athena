@@ -35,8 +35,12 @@ public interface ExternalAnalysisProvider {
 
     /**
      * Runs this provider against the given source tree with the given
-     * configuration. Never throws for an ordinary analysis failure (the
-     * tool isn't installed, times out, produces no output, etc.) — such
+     * configuration. {@code changedFiles} are relative to {@code
+     * sourceRoot} (resolve each against it to get an absolute path) — the
+     * same convention {@link ExternalFinding}'s own {@link SourceLocation}
+     * uses, so a finding's location can be compared against this list
+     * directly. Never throws for an ordinary analysis failure (the tool
+     * isn't installed, times out, produces no output, etc.) — such
      * failures are reported via a failed {@link ProviderRunResult}, so a
      * caller running several providers can isolate one from another
      * without a try/catch per provider.
