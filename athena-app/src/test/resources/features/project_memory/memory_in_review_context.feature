@@ -23,8 +23,8 @@ Feature: Project Memory in Review Context
     Then the request sent to the AI provider does not include the fact "Invoice.java and InvoiceView.java change together"
 
   Scenario: A review proceeds normally with no project memory recorded
-    Given a project with no recorded memory
+    Given a project whose memory is empty
     And the reviewer has assembled a Review Context for a PR that changes a file named "OrderService.java"
     When the reviewer triggers AI analysis for the memory-aware review
-    Then the AI analysis completes normally
+    Then the memory-aware AI analysis completes normally
     And the request sent to the AI provider includes no project memory
