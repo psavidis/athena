@@ -1,6 +1,7 @@
 package com.athena.memory;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Scopes a project's memory (ticket #169) to what's relevant to a review's
@@ -20,8 +21,17 @@ public final class RelevantMemoryRetriever {
     public static List<MemoryEntry> retrieve(ProjectMemoryStore store, List<String> changedFiles) {
         List<String> fileNames = changedFiles.stream().map(RelevantMemoryRetriever::fileName).toList();
         return store.entries().stream()
-                .filter(entry -> fileNames.stream().anyMatch(name -> entry.fact().contains(name)))
+                .filter(entry -> fileNames.stream().anyMatch(name -> mentions(entry.fact(), name)))
                 .toList();
+    }
+
+    /**
+     * Whether {@code fact} mentions {@code fileName} as a whole file name, not merely as a
+     * substring — a plain {@code contains} would wrongly treat "Handler.java" as mentioned by a
+     * fact about "RequestHandler.java", since the latter ends with the former's exact text.
+     */
+    private static boolean mentions(String fact, String fileName) {
+        return Pattern.compile("\\b" + Pattern.quote(fileName) + "\\b").matcher(fact).find();
     }
 
     private static String fileName(String path) {

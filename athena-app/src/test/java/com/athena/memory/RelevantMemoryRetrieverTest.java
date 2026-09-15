@@ -67,6 +67,16 @@ class RelevantMemoryRetrieverTest {
     }
 
     @Test
+    void doesNotMatchAChangedFileNameThatIsOnlyASuffixOfAMentionedFileName() {
+        store.record(new MemoryEntry("RequestHandler.java and ResponseWriter.java change together",
+                "3 commits", "medium", false));
+
+        List<MemoryEntry> relevant = RelevantMemoryRetriever.retrieve(store, List.of("Handler.java"));
+
+        assertThat(relevant).isEmpty();
+    }
+
+    @Test
     void returnsEmptyWhenTheStoreHasNoMemory() {
         List<MemoryEntry> relevant = RelevantMemoryRetriever.retrieve(store, List.of("OrderService.java"));
 
