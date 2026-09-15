@@ -72,13 +72,20 @@ public class PullRequestHistoryLearningSteps {
 
     @Given("Athena has already learned from that project's Pull Requests once")
     public void athena_has_already_learned_from_that_projects_pull_requests_once() {
-        PullRequestHistoryLearner.learn(REPOSITORY, provider, store);
+        PullRequestHistoryLearner.learn(projectRoot, REPOSITORY, provider, store);
+    }
+
+    @Given("that project's merged Pull Requests separately gain one more Pull Request touching {string} and {string} together")
+    public void that_projects_merged_pull_requests_separately_gain_one_more_pull_request_touching_files_together(String fileA, String fileB) {
+        int number = nextPullRequestNumber++;
+        transport.addClosedPullRequest(REPOSITORY, number, "PR " + number, true);
+        registerContent(number, fileA, fileB);
     }
 
     @When("Athena learns from that project's Pull Requests")
     public void athena_learns_from_that_projects_pull_requests() {
         try {
-            PullRequestHistoryLearner.learn(REPOSITORY, provider, store);
+            PullRequestHistoryLearner.learn(projectRoot, REPOSITORY, provider, store);
         } catch (RuntimeException e) {
             failure = e;
         }

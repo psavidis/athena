@@ -95,14 +95,69 @@ class GitHistoryLearnerTest {
                 .hasSize(1);
     }
 
+    @Test
+    void recordsACursorAfterLearningSoALaterPassCanSkipAlreadyProcessedCommits() throws IOException, InterruptedException {
+        commitFiles("commit 1", "OrderService.java", "OrderProjection.java");
+
+        GitHistoryLearner.learn(repoRoot, store);
+
+        LearningProgressStore progress = new LearningProgressStore(repoRoot);
+        assertThat(progress.cursor("git-history")).isPresent();
+    }
+
+    @Test
+    void accumulatesCoOccurrencesAcrossIncrementalPassesUntilTheThresholdIsCrossed() throws IOException, InterruptedException {
+        commitFiles("commit 1", "OrderService.java", "OrderProjection.java");
+        GitHistoryLearner.learn(repoRoot, store);
+        assertThat(store.entries()).isEmpty();
+
+        commitFiles("commit 2", "OrderService.java", "OrderProjection.java");
+        GitHistoryLearner.learn(repoRoot, store);
+
+        MemoryEntry entry = store.entries().stream()
+                .filter(e -> e.fact().contains("OrderService.java") && e.fact().contains("OrderProjection.java"))
+                .findFirst()
+                .orElseThrow();
+        assertThat(entry.evidence()).isEqualTo("2 commits");
+    }
+
+    @Test
+    void learningInTwoIncrementalPassesMatchesASingleFullPassOverTheSameEvidence() throws IOException, InterruptedException {
+        commitFiles("commit 1", "OrderService.java", "OrderProjection.java");
+        commitFiles("commit 2", "OrderService.java", "OrderProjection.java");
+        commitFiles("commit 3", "OrderService.java", "OrderProjection.java");
+        GitHistoryLearner.learn(repoRoot, store);
+
+        Path incrementalRepoRoot = Files.createTempDirectory("athena-git-history-learner-test-incremental-");
+        try {
+            ProjectMemoryStore incrementalStore = new ProjectMemoryStore(incrementalRepoRoot);
+            runGit(incrementalRepoRoot, "init", "--quiet");
+            runGit(incrementalRepoRoot, "config", "user.email", "test@example.com");
+            runGit(incrementalRepoRoot, "config", "user.name", "Test");
+            commitFilesIn(incrementalRepoRoot, "commit 1", "OrderService.java", "OrderProjection.java");
+            GitHistoryLearner.learn(incrementalRepoRoot, incrementalStore);
+            commitFilesIn(incrementalRepoRoot, "commit 2", "OrderService.java", "OrderProjection.java");
+            commitFilesIn(incrementalRepoRoot, "commit 3", "OrderService.java", "OrderProjection.java");
+            GitHistoryLearner.learn(incrementalRepoRoot, incrementalStore);
+
+            assertThat(incrementalStore.entries()).isEqualTo(store.entries());
+        } finally {
+            TempDirectories.deleteRecursively(incrementalRepoRoot);
+        }
+    }
+
     private void commitFiles(String message, String... fileNames) throws IOException, InterruptedException {
+        commitFilesIn(repoRoot, message, fileNames);
+    }
+
+    private void commitFilesIn(Path root, String message, String... fileNames) throws IOException, InterruptedException {
         for (String fileName : fileNames) {
-            Path file = repoRoot.resolve(fileName);
+            Path file = root.resolve(fileName);
             String previousContent = Files.exists(file) ? Files.readString(file) : "";
             Files.writeString(file, previousContent + message + "\n");
         }
-        runGit(repoRoot, "add", ".");
-        runGit(repoRoot, "commit", "--quiet", "-m", message);
+        runGit(root, "add", ".");
+        runGit(root, "commit", "--quiet", "-m", message);
     }
 
     private void runGit(Path dir, String... args) throws IOException, InterruptedException {
