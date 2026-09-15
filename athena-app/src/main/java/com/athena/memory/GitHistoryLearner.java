@@ -83,7 +83,7 @@ public final class GitHistoryLearner {
 
     private static List<List<String>> readCommits(Path projectRoot) {
         String output = runGitLog(projectRoot);
-        if (output == null) {
+        if (output.isEmpty()) {
             return List.of();
         }
         List<List<String>> commits = new ArrayList<>();
@@ -103,7 +103,7 @@ public final class GitHistoryLearner {
             Process process = builder.start();
             String output = new String(process.getInputStream().readAllBytes());
             int exitCode = process.waitFor();
-            return exitCode == 0 ? output : null;
+            return exitCode == 0 ? output : "";
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         } catch (InterruptedException e) {
