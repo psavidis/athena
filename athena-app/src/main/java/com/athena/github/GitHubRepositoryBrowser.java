@@ -1,5 +1,6 @@
 package com.athena.github;
 
+import com.athena.repository.ClosedPullRequestSummary;
 import com.athena.repository.PullRequestSummary;
 import com.athena.repository.Repository;
 
@@ -59,6 +60,16 @@ public class GitHubRepositoryBrowser {
      */
     public List<PullRequestSummary> listOpenPullRequests(String repositoryFullName) {
         return transport.fetchOpenPullRequests(token, repositoryFullName);
+    }
+
+    /**
+     * Lists the closed Pull Requests for the given repository, each flagged
+     * as merged or closed without merging.
+     *
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     */
+    public List<ClosedPullRequestSummary> listClosedPullRequests(String repositoryFullName) {
+        return transport.fetchClosedPullRequests(token, repositoryFullName);
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.athena.github;
 
 import com.athena.repository.ChangedFile;
+import com.athena.repository.ClosedPullRequestSummary;
 import com.athena.repository.Commit;
 import com.athena.repository.PullRequestSummary;
 import com.athena.repository.Repository;
@@ -50,6 +51,16 @@ public interface GitHubTransport {
      *         exist or isn't accessible
      */
     List<PullRequestSummary> fetchOpenPullRequests(String token, String repositoryFullName);
+
+    /**
+     * Fetches the closed Pull Requests for the given repository, each
+     * flagged as merged or closed without merging.
+     *
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     * @throws GitHubResourceNotFoundException if the repository doesn't
+     *         exist or isn't accessible
+     */
+    List<ClosedPullRequestSummary> fetchClosedPullRequests(String token, String repositoryFullName);
 
     /**
      * Fetches a specific Pull Request by number.

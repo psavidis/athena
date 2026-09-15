@@ -1,5 +1,6 @@
 package com.athena.github;
 
+import com.athena.repository.ClosedPullRequestSummary;
 import com.athena.repository.ImportedPullRequest;
 import com.athena.repository.PullRequestSummary;
 import com.athena.repository.Repository;
@@ -48,6 +49,11 @@ public class GitHubRepositoryProvider implements RepositoryProvider {
     @Override
     public List<PullRequestSummary> openPullRequests(String repositoryFullName) {
         return browser.listOpenPullRequests(repositoryFullName);
+    }
+
+    @Override
+    public List<ClosedPullRequestSummary> closedPullRequests(String repositoryFullName) {
+        return browser.listClosedPullRequests(repositoryFullName);
     }
 
     @Override
