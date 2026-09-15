@@ -35,7 +35,11 @@ module owns the step definitions that implement them:
   classpath, which only `athena-app` has. `pmd_analysis_provider.feature`
   (ticket #114/#116) lives here for the same reason, plus needing the real
   `net.sourceforge.pmd:pmd-java` dependency this module alone carries — see
-  `com.athena.plugins.PmdAnalysisProvider`. `local_diff_without_github.feature`
+  `com.athena.plugins.PmdAnalysisProvider`. `eslint_analysis_provider.feature`
+  (ticket #114/#117) lives here for the same reason, plus needing the real
+  ESLint CLI, resolved from the analyzed project's own local installation
+  — see `com.athena.plugins.ESLintAnalysisProvider`.
+  `local_diff_without_github.feature`
   (ticket #111/#152) lives here too, for the same reason, plus needing
   the web layer's `WebSession`/`DiffSelectionController`.
   `canvas_for_a_standalone_diff.feature` (ticket #111/#153) exercises the

@@ -105,6 +105,39 @@ public class ExternalFindingsAsEvidenceSteps {
                 + "}\n");
     }
 
+    @Given("ESLint is configured as a provider")
+    public void eslint_is_configured_as_a_provider() {
+        registerProvider(new ESLintAnalysisProvider());
+    }
+
+    @Given("a JavaScript project with ESLint installed and configured")
+    public void a_javascript_project_with_eslint_installed_and_configured() throws IOException, InterruptedException {
+        EslintTestFixture.installInto(headRoot);
+    }
+
+    @Given("a JavaScript project without ESLint installed")
+    public void a_javascript_project_without_eslint_installed() {
+        // No-op: headRoot has no node_modules/.bin/eslint unless installInto() above is called,
+        // which is exactly the "ESLint unavailable" condition this scenario exercises.
+    }
+
+    @Given("a JavaScript file {string} with an unused variable")
+    public void a_javascript_file_with_an_unused_variable(String fileName) {
+        writeFile(headRoot, fileName, "function run() {\n"
+                + "  var total = 42;\n"
+                + "  return 1;\n"
+                + "}\n"
+                + "module.exports = { run };\n");
+    }
+
+    @Given("a JavaScript file {string} with no ESLint-detectable issues")
+    public void a_javascript_file_with_no_eslint_detectable_issues(String fileName) {
+        writeFile(headRoot, fileName, "function add(left, right) {\n"
+                + "  return left + right;\n"
+                + "}\n\n"
+                + "module.exports = { add };\n");
+    }
+
     @When("the PR is analyzed")
     public void the_pr_is_analyzed() {
         PrAnalyzer prAnalyzer = new PrAnalyzer(PluginRegistry.languagePlugins(), PluginRegistry.frameworkPlugins(), providers);
@@ -113,6 +146,11 @@ public class ExternalFindingsAsEvidenceSteps {
 
     @When("the PR is analyzed with PMD configured as a provider")
     public void the_pr_is_analyzed_with_pmd_configured_as_a_provider() {
+        the_pr_is_analyzed();
+    }
+
+    @When("the PR is analyzed with ESLint configured as a provider")
+    public void the_pr_is_analyzed_with_eslint_configured_as_a_provider() {
         the_pr_is_analyzed();
     }
 
