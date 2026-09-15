@@ -21,6 +21,13 @@ import java.util.List;
  * storage boundary. A project whose memory directory has never been written,
  * or was deleted directly from disk, behaves identically: {@link #entries()}
  * returns an empty list rather than failing.
+ *
+ * <p>Takes the project's root directory directly rather than a
+ * {@code com.athena.repository.Repository} (owner/name identity): storage is
+ * colocated with the actual project on disk, and Athena has no persistent
+ * per-project checkout today to resolve a {@code Repository} to a root
+ * directory from. That resolution is left to whichever caller actually has
+ * (or creates) a working copy — see tickets #170/#171/#173.
  */
 public class ProjectMemoryStore {
 
