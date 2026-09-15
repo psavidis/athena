@@ -1,6 +1,7 @@
 package com.athena.ai;
 
 import com.athena.knowledge.spi.KnowledgeItem;
+import com.athena.memory.MemoryEntry;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.Change;
 import com.athena.semantic.ReviewStateStore;
@@ -30,7 +31,19 @@ public final class AiAnalysisOrchestrator {
      */
     public static AiFindingsBoard trigger(String prTitle, List<Change> changes, ReviewStateStore store,
                                            AnnotationBoard board, AiProvider provider, List<KnowledgeItem> knowledgeItems) {
-        AiContextBoundary boundary = AiContextBoundary.assemble(prTitle, changes, store, board, knowledgeItems);
+        return trigger(prTitle, changes, store, board, provider, knowledgeItems, List.of());
+    }
+
+    /**
+     * Triggers analysis with the given project knowledge (ticket #118) and relevant project
+     * memory (ticket #173) both folded into the {@link AiContextBoundary}'s payload — empty
+     * when there is none, the normal case for a project whose memory hasn't learned anything
+     * relevant yet.
+     */
+    public static AiFindingsBoard trigger(String prTitle, List<Change> changes, ReviewStateStore store,
+                                           AnnotationBoard board, AiProvider provider, List<KnowledgeItem> knowledgeItems,
+                                           List<MemoryEntry> memoryEntries) {
+        AiContextBoundary boundary = AiContextBoundary.assemble(prTitle, changes, store, board, knowledgeItems, memoryEntries);
         List<AiFinding> findings = provider.analyze(boundary.payload());
         return AiFindingsBoard.assemble(findings, changes);
     }

@@ -1,6 +1,7 @@
 package com.athena.reviewcontext;
 
 import com.athena.knowledge.spi.KnowledgeItem;
+import com.athena.memory.MemoryEntry;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.reviewui.Comment;
 import com.athena.reviewui.PrivateNote;
@@ -37,10 +38,12 @@ public final class ReviewContext {
     private final List<PrivateNote> privateNotes;
     private final String coverageSummary;
     private final List<KnowledgeItem> knowledgeItems;
+    private final List<MemoryEntry> memoryEntries;
 
     private ReviewContext(String prTitle, List<Change> reviewedChanges, List<Change> skippedChanges,
                            List<Change> mechanicalChanges, List<Change> concernChanges, List<Comment> comments,
-                           List<PrivateNote> privateNotes, String coverageSummary, List<KnowledgeItem> knowledgeItems) {
+                           List<PrivateNote> privateNotes, String coverageSummary, List<KnowledgeItem> knowledgeItems,
+                           List<MemoryEntry> memoryEntries) {
         this.prTitle = prTitle;
         this.reviewedChanges = List.copyOf(reviewedChanges);
         this.skippedChanges = List.copyOf(skippedChanges);
@@ -50,6 +53,7 @@ public final class ReviewContext {
         this.privateNotes = List.copyOf(privateNotes);
         this.coverageSummary = coverageSummary;
         this.knowledgeItems = List.copyOf(knowledgeItems);
+        this.memoryEntries = List.copyOf(memoryEntries);
     }
 
     /** Assembles the artifact with private notes excluded and no project knowledge — the safe default. */
@@ -65,7 +69,19 @@ public final class ReviewContext {
      */
     public static ReviewContext assemble(String prTitle, List<Change> changes, ReviewStateStore store,
                                           AnnotationBoard board, List<KnowledgeItem> knowledgeItems) {
-        return assemble(prTitle, changes, store, board, List.of(), knowledgeItems);
+        return assemble(prTitle, changes, store, board, knowledgeItems, List.of());
+    }
+
+    /**
+     * Assembles the artifact with private notes excluded, and the given project knowledge
+     * (ticket #118) and relevant project memory (ticket #173) both included as additional,
+     * non-authoritative contextual evidence — empty when there is none, the normal case for a
+     * project whose memory hasn't learned anything yet.
+     */
+    public static ReviewContext assemble(String prTitle, List<Change> changes, ReviewStateStore store,
+                                          AnnotationBoard board, List<KnowledgeItem> knowledgeItems,
+                                          List<MemoryEntry> memoryEntries) {
+        return assemble(prTitle, changes, store, board, List.of(), knowledgeItems, memoryEntries);
     }
 
     /**
@@ -76,12 +92,12 @@ public final class ReviewContext {
      */
     public static ReviewContext assembleIncludingPrivateNotes(String prTitle, List<Change> changes,
                                                                 ReviewStateStore store, AnnotationBoard board) {
-        return assemble(prTitle, changes, store, board, board.allPrivateNotes(), List.of());
+        return assemble(prTitle, changes, store, board, board.allPrivateNotes(), List.of(), List.of());
     }
 
     private static ReviewContext assemble(String prTitle, List<Change> changes, ReviewStateStore store,
                                            AnnotationBoard board, List<PrivateNote> privateNotes,
-                                           List<KnowledgeItem> knowledgeItems) {
+                                           List<KnowledgeItem> knowledgeItems, List<MemoryEntry> memoryEntries) {
         // Mechanical classification is reported as its own bucket, mutually exclusive with the
         // review-state buckets below — a Change already marked mechanical is not also listed as
         // reviewed/skipped/concern, matching §32's own example (Reviewed and Classified mechanical
@@ -94,7 +110,7 @@ public final class ReviewContext {
         String coverageSummary = ReviewCoverageReport.summary(changes, store);
 
         return new ReviewContext(prTitle, reviewed, skipped, mechanical, concerns,
-                board.allComments(), privateNotes, coverageSummary, knowledgeItems);
+                board.allComments(), privateNotes, coverageSummary, knowledgeItems, memoryEntries);
     }
 
     public String prTitle() {
@@ -137,5 +153,15 @@ public final class ReviewContext {
      */
     public List<KnowledgeItem> knowledgeItems() {
         return knowledgeItems;
+    }
+
+    /**
+     * Project memory (ticket #169) relevant to this review's changed files (ticket #173) —
+     * additive, non-authoritative evidence, exactly like {@link #knowledgeItems()}. Empty when
+     * the project's memory hasn't learned anything relevant yet, or hasn't learned anything at
+     * all — the normal, fully-supported case.
+     */
+    public List<MemoryEntry> memoryEntries() {
+        return memoryEntries;
     }
 }
