@@ -1,6 +1,7 @@
 package com.athena.ai;
 
 import com.athena.knowledge.spi.KnowledgeItem;
+import com.athena.memory.MemoryEntry;
 import com.athena.reviewcontext.ReviewContext;
 import com.athena.semantic.Change;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -38,6 +39,7 @@ final class ClaudeAnalysisPrompt {
         appendChangeList(prompt, "Flagged as a concern", reviewContext.concernChanges());
         prompt.append("Coverage: ").append(reviewContext.coverageSummary()).append("\n\n");
         appendProjectKnowledge(prompt, reviewContext.knowledgeItems());
+        appendProjectMemory(prompt, reviewContext.memoryEntries());
         prompt.append("Respond with only a JSON array of findings, each an object with an \"id\" and a ")
                 .append("\"description\" field. When a finding is about one specific Change listed above, ")
                 .append("also include a \"relatedChangeTitle\" field containing that Change's exact quoted ")
@@ -64,6 +66,27 @@ final class ClaudeAnalysisPrompt {
                 .append("authoritative, and if it conflicts with the change, say so explicitly as a finding):\n");
         for (KnowledgeItem item : knowledgeItems) {
             prompt.append("- \"").append(item.title()).append("\": ").append(item.content()).append('\n');
+        }
+        prompt.append('\n');
+    }
+
+    /**
+     * Appends relevant project memory (ticket #173) as its own labeled section, framed
+     * explicitly as a historical pattern rather than a hard rule — mirrors
+     * {@link #appendProjectKnowledge}'s framing for the same reason (epic #121, "Memory Must
+     * Not Turn Historical Behavior Into Rules"). Omitted entirely when there is nothing
+     * relevant to include, so a review with no project memory produces exactly the same
+     * prompt as before this ticket.
+     */
+    private static void appendProjectMemory(StringBuilder prompt, List<MemoryEntry> memoryEntries) {
+        if (memoryEntries.isEmpty()) {
+            return;
+        }
+        prompt.append("Project Memory (what Athena has learned about this project's history — a historical ")
+                .append("pattern, not a hard rule; it may be outdated or not apply here, and if it conflicts with ")
+                .append("this change, say so explicitly as a finding):\n");
+        for (MemoryEntry entry : memoryEntries) {
+            prompt.append("- ").append(entry.fact()).append(" (evidence: ").append(entry.evidence()).append(")\n");
         }
         prompt.append('\n');
     }

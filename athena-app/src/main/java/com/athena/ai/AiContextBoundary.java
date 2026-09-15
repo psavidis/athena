@@ -1,6 +1,7 @@
 package com.athena.ai;
 
 import com.athena.knowledge.spi.KnowledgeItem;
+import com.athena.memory.MemoryEntry;
 import com.athena.reviewcontext.ReviewContext;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.Change;
@@ -48,6 +49,17 @@ public final class AiContextBoundary {
      */
     public static AiContextBoundary assemble(String prTitle, List<Change> changes, ReviewStateStore store,
                                               AnnotationBoard board, List<KnowledgeItem> knowledgeItems) {
+        return assemble(prTitle, changes, store, board, knowledgeItems, List.of());
+    }
+
+    /**
+     * Assembles the boundary with the given project knowledge (ticket #118) and relevant
+     * project memory (ticket #173) both included in {@link #payload()} — empty when there is
+     * none, the normal case for a project whose memory hasn't learned anything relevant yet.
+     */
+    public static AiContextBoundary assemble(String prTitle, List<Change> changes, ReviewStateStore store,
+                                              AnnotationBoard board, List<KnowledgeItem> knowledgeItems,
+                                              List<MemoryEntry> memoryEntries) {
         List<Change> generated = changes.stream().filter(AiContextBoundary::touchesOnlyGeneratedFiles).toList();
         List<Change> unreviewed = changes.stream()
                 .filter(change -> !generated.contains(change))
@@ -57,7 +69,7 @@ public final class AiContextBoundary {
                 .filter(change -> !generated.contains(change) && !unreviewed.contains(change))
                 .toList();
 
-        ReviewContext payload = ReviewContext.assemble(prTitle, sendable, store, board, knowledgeItems);
+        ReviewContext payload = ReviewContext.assemble(prTitle, sendable, store, board, knowledgeItems, memoryEntries);
         return new AiContextBoundary(payload, unreviewed, generated);
     }
 
