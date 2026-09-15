@@ -32,7 +32,10 @@ module owns the step definitions that implement them:
   `external_findings_as_evidence.feature` (ticket #114/#149): both
   exercise `PrAnalyzer` end to end through `PluginRegistry`-discovered
   plugins, so they need both `athena-core` and `athena-plugin-java` on the
-  classpath, which only `athena-app` has. `local_diff_without_github.feature`
+  classpath, which only `athena-app` has. `pmd_analysis_provider.feature`
+  (ticket #114/#116) lives here for the same reason, plus needing the real
+  `net.sourceforge.pmd:pmd-java` dependency this module alone carries — see
+  `com.athena.plugins.PmdAnalysisProvider`. `local_diff_without_github.feature`
   (ticket #111/#152) lives here too, for the same reason, plus needing
   the web layer's `WebSession`/`DiffSelectionController`.
   `canvas_for_a_standalone_diff.feature` (ticket #111/#153) exercises the

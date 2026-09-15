@@ -60,6 +60,14 @@
       <artifactId>jackson-databind</artifactId>
     </dependency>
 
+    <!-- PMD as a concrete ExternalAnalysisProvider (ticket #114/#116) — see
+         com.athena.plugins.PmdAnalysisProvider, the one class in this module allowed
+         to reference net.sourceforge.pmd.. (see ExternalProviderModuleBoundaryTest). -->
+    <dependency>
+      <groupId>net.sourceforge.pmd</groupId>
+      <artifactId>pmd-java</artifactId>
+    </dependency>
+
     <!-- Architecture tests enforcing the plugin SPI's module conventions — this is the
          one module that can see athena-core and every plugin module's classes together
          (see com.athena.architecture tests). -->
