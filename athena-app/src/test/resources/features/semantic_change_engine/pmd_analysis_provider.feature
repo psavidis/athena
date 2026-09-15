@@ -9,12 +9,14 @@ Feature: PMD as a concrete external analysis provider
   degrades gracefully rather than blocking Athena's own analysis.
 
   Scenario: A PMD-detectable violation surfaces as a finding attributed to PMD
-    Given a Java class "Sample.java" with an unused local variable
+    Given PMD is configured as a provider
+    And a Java class "Sample.java" with an unused local variable
     When the PR is analyzed with PMD configured as a provider
     Then the analysis result includes a finding from "pmd" on "Sample.java"
 
   Scenario: Code with no PMD-detectable issues produces no PMD findings
-    Given a Java class "Clean.java" with no PMD-detectable issues
+    Given PMD is configured as a provider
+    And a Java class "Clean.java" with no PMD-detectable issues
     When the PR is analyzed with PMD configured as a provider
     Then the analysis result includes no finding from "pmd"
 

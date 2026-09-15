@@ -59,6 +59,42 @@ public class ExternalFindingsAsEvidenceSteps {
         providers.clear();
     }
 
+    @Given("PMD is configured as a provider")
+    public void pmd_is_configured_as_a_provider() {
+        registerProvider(new PmdAnalysisProvider());
+    }
+
+    @Given("PMD is configured with a ruleset it cannot load")
+    public void pmd_is_configured_with_a_ruleset_it_cannot_load() {
+        registerProvider(new PmdAnalysisProvider(),
+                Map.of(PmdAnalysisProvider.RULESET_SETTING, "rulesets/java/does-not-exist.xml"));
+    }
+
+    @Given("a Java class {string} with an unused local variable")
+    public void a_java_class_with_an_unused_local_variable(String fileName) {
+        writeFile(headRoot, fileName, "package sample;\n\n"
+                + "public class " + baseName(fileName) + " {\n"
+                + "    public void run() {\n"
+                + "        int total = 42;\n"
+                + "    }\n"
+                + "}\n");
+    }
+
+    @Given("a Java class {string} with no PMD-detectable issues")
+    public void a_java_class_with_no_pmd_detectable_issues(String fileName) {
+        writeFile(headRoot, fileName, "package sample;\n\n"
+                + "public class " + baseName(fileName) + " {\n"
+                + "    public int add(int left, int right) {\n"
+                + "        return left + right;\n"
+                + "    }\n"
+                + "}\n");
+    }
+
+    @Given("a base and head revision where a symbol is renamed")
+    public void a_base_and_head_revision_where_a_symbol_is_renamed() {
+        the_pr_renames_a_symbol();
+    }
+
     @Given("the PR renames a symbol between its base and head revisions")
     public void the_pr_renames_a_symbol() {
         write(baseRoot, "Guard", "public class Guard {\n"
@@ -73,6 +109,11 @@ public class ExternalFindingsAsEvidenceSteps {
     public void the_pr_is_analyzed() {
         PrAnalyzer prAnalyzer = new PrAnalyzer(PluginRegistry.languagePlugins(), PluginRegistry.frameworkPlugins(), providers);
         result = prAnalyzer.analyze(baseRoot, headRoot);
+    }
+
+    @When("the PR is analyzed with PMD configured as a provider")
+    public void the_pr_is_analyzed_with_pmd_configured_as_a_provider() {
+        the_pr_is_analyzed();
     }
 
     @Then("the analysis result includes a finding from {string} on {string}")
@@ -93,9 +134,19 @@ public class ExternalFindingsAsEvidenceSteps {
         assertThat(result.externalFindings()).isEmpty();
     }
 
+    @Then("the analysis result includes no finding from {string}")
+    public void the_analysis_result_includes_no_finding_from(String providerId) {
+        assertThat(result.externalFindings()).noneMatch(finding -> finding.providerId().equals(providerId));
+    }
+
     @Then("the analysis result still detects the rename as a Change")
     public void the_analysis_result_still_detects_the_rename() {
         assertThat(result.changes()).anyMatch(change -> change.kind() == TransformationKind.RENAME_SYMBOL);
+    }
+
+    @Then("the analysis result still classifies the renamed symbol as a Change")
+    public void the_analysis_result_still_classifies_the_renamed_symbol() {
+        the_analysis_result_still_detects_the_rename();
     }
 
     @Then("the analysis result's Change classification is unaffected by the external finding")
@@ -105,15 +156,28 @@ public class ExternalFindingsAsEvidenceSteps {
     }
 
     private void registerProvider(ExternalAnalysisProvider provider) {
-        providers.put(provider, ProviderConfiguration.enabled(Map.of()));
+        registerProvider(provider, Map.of());
+    }
+
+    private void registerProvider(ExternalAnalysisProvider provider, Map<String, String> settings) {
+        providers.put(provider, ProviderConfiguration.enabled(settings));
     }
 
     private void write(Path root, String className, String content) {
+        writeFile(root, className + ".java", content);
+    }
+
+    private void writeFile(Path root, String fileName, String content) {
         try {
-            Files.writeString(root.resolve(className + ".java"), content);
+            Files.writeString(root.resolve(fileName), content);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
+    }
+
+    private String baseName(String fileName) {
+        int dot = fileName.lastIndexOf('.');
+        return dot < 0 ? fileName : fileName.substring(0, dot);
     }
 
     private void deleteRecursively(Path root) throws IOException {
