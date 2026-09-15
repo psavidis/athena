@@ -8,6 +8,13 @@ import com.athena.ai.AiKeyStore;
 import com.athena.ai.AiProvider;
 import com.athena.ai.ClaudeAiProvider;
 import com.athena.ai.ClaudeCliProvider;
+import com.athena.knowledge.ConfiguredKnowledgeProvider;
+import com.athena.knowledge.KnowledgeProviderResolver;
+import com.athena.knowledge.KnowledgeRetriever;
+import com.athena.knowledge.spi.KnowledgeCandidate;
+import com.athena.knowledge.spi.KnowledgeCaptureResult;
+import com.athena.knowledge.spi.KnowledgeItem;
+import com.athena.knowledge.spi.KnowledgeQuery;
 import com.athena.reviewui.ChangeDetailView;
 import com.athena.semantic.Change;
 import com.athena.web.ChangeKey;
@@ -24,6 +31,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.io.File;
 import java.net.http.HttpClient;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiConsumer;
@@ -42,21 +50,34 @@ public class AiAnalysisController {
     private final WebSession session;
     private final AiKeyStore keyStore;
     private final AiProvider fixedProvider;
+    private final KnowledgeProviderResolver knowledgeResolver;
 
     @Autowired
     public AiAnalysisController(WebSession session) {
-        this(session, new AiKeyStore(), null);
+        this(session, new AiKeyStore(), null, new KnowledgeProviderResolver());
     }
 
     /** Test seam: a fake {@link AiProvider} stands in for the real network boundary. */
     AiAnalysisController(WebSession session, AiProvider fixedProvider) {
-        this(session, new AiKeyStore(), fixedProvider);
+        this(session, new AiKeyStore(), fixedProvider, new KnowledgeProviderResolver());
     }
 
-    private AiAnalysisController(WebSession session, AiKeyStore keyStore, AiProvider fixedProvider) {
+    /**
+     * Test seam: as above, plus an explicit {@link KnowledgeProviderResolver} (ticket #118) —
+     * typically backed by a {@code KnowledgeProviderStore} pointed at a temp file, so a test's
+     * "Knowledge Provider configured/not configured" fixture never depends on this machine's own
+     * {@code ~/.athena/knowledge.json}.
+     */
+    AiAnalysisController(WebSession session, AiProvider fixedProvider, KnowledgeProviderResolver knowledgeResolver) {
+        this(session, new AiKeyStore(), fixedProvider, knowledgeResolver);
+    }
+
+    private AiAnalysisController(WebSession session, AiKeyStore keyStore, AiProvider fixedProvider,
+                                  KnowledgeProviderResolver knowledgeResolver) {
         this.session = session;
         this.keyStore = keyStore;
         this.fixedProvider = fixedProvider;
+        this.knowledgeResolver = knowledgeResolver;
     }
 
     /**
@@ -157,11 +178,74 @@ public class AiAnalysisController {
         WebSession.SelectedPullRequest selection = requireSelection();
         List<Change> changes = selection.changes();
 
+        List<KnowledgeItem> knowledgeItems = retrieveKnowledge(selection, changes);
         AiFindingsBoard board = AiAnalysisOrchestrator.trigger(selection.pullRequest().title(), changes,
-                selection.reviewStateStore(), selection.annotationBoard(), provider);
+                selection.reviewStateStore(), selection.annotationBoard(), provider, knowledgeItems);
         session.setAiFindingsBoard(board);
 
         return findingResponses(board, changes);
+    }
+
+    /**
+     * Retrieves knowledge relevant to this review from the configured Knowledge Provider
+     * (ticket #118) — empty, with no error, when none is configured, or when the provider
+     * itself fails, per {@link KnowledgeRetriever}'s own graceful-degradation contract. This is
+     * the one place a review's AI analysis reaches for project knowledge, so "no provider
+     * configured" and "provider failed" are indistinguishable to the rest of the review, exactly
+     * as the ticket requires.
+     */
+    private List<KnowledgeItem> retrieveKnowledge(WebSession.SelectedPullRequest selection, List<Change> changes) {
+        Optional<ConfiguredKnowledgeProvider> configured = knowledgeResolver.resolve();
+        if (configured.isEmpty()) {
+            return List.of();
+        }
+        KnowledgeRetriever retriever = new KnowledgeRetriever(configured.get().asProviderMap());
+        KnowledgeQuery query = KnowledgeQuery.of(selection.repositoryFullName(), changedFilePaths(changes), List.of());
+        return retriever.retrieve(query);
+    }
+
+    private List<String> changedFilePaths(List<Change> changes) {
+        return changes.stream()
+                .flatMap(change -> change.matchedOccurrences().stream())
+                .flatMap(occurrence -> occurrence.filesTouched().stream())
+                .distinct()
+                .toList();
+    }
+
+    /**
+     * Persists an AI finding the reviewer chose to keep as project knowledge (ticket #118's
+     * "knowledge candidate" capture) — always a user-confirmed action, never automatic. Rejected
+     * outright when no Knowledge Provider is configured, rather than silently doing nothing.
+     */
+    @PostMapping("/api/review/ai-findings/{findingId}/save-to-knowledge-base")
+    public KnowledgeCaptureResponse saveToKnowledgeBase(@PathVariable String findingId) {
+        WebSession.SelectedPullRequest selection = requireSelection();
+        AiFindingsBoard board = session.aiFindingsBoard()
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+                        "No AI analysis has been triggered yet"));
+        AiFindingItem finding = requireFinding(board, findingId);
+        ConfiguredKnowledgeProvider configured = knowledgeResolver.resolve()
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,
+                        "No Knowledge Provider is configured"));
+
+        KnowledgeCandidate candidate = KnowledgeCandidate.withRationale(selection.repositoryFullName(),
+                finding.description(), "Accepted AI finding", Instant.now());
+        KnowledgeCaptureResult result = configured.provider().captureCandidate(candidate, configured.configuration());
+        if (!result.isSuccessful()) {
+            throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, result.failureReason());
+        }
+        String storedAs = result.persistedItem().map(KnowledgeItem::source).orElse(null);
+        return new KnowledgeCaptureResponse(true, configured.provider().providerId(), storedAs);
+    }
+
+    private AiFindingItem requireFinding(AiFindingsBoard board, String findingId) {
+        return board.items().stream()
+                .filter(item -> item.id().equals(findingId))
+                .findFirst()
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Finding not found"));
+    }
+
+    public record KnowledgeCaptureResponse(boolean success, String providerId, String storedAs) {
     }
 
     @PostMapping("/api/review/ai-findings/{findingId}/accept")

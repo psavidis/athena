@@ -1,5 +1,6 @@
 package com.athena.ai;
 
+import com.athena.knowledge.spi.KnowledgeItem;
 import com.athena.reviewcontext.ReviewContext;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.Change;
@@ -38,6 +39,15 @@ public final class AiContextBoundary {
 
     public static AiContextBoundary assemble(String prTitle, List<Change> changes, ReviewStateStore store,
                                               AnnotationBoard board) {
+        return assemble(prTitle, changes, store, board, List.of());
+    }
+
+    /**
+     * Assembles the boundary with the given project knowledge (ticket #118) included in
+     * {@link #payload()} — empty when no Knowledge Provider is configured, the normal case.
+     */
+    public static AiContextBoundary assemble(String prTitle, List<Change> changes, ReviewStateStore store,
+                                              AnnotationBoard board, List<KnowledgeItem> knowledgeItems) {
         List<Change> generated = changes.stream().filter(AiContextBoundary::touchesOnlyGeneratedFiles).toList();
         List<Change> unreviewed = changes.stream()
                 .filter(change -> !generated.contains(change))
@@ -47,7 +57,7 @@ public final class AiContextBoundary {
                 .filter(change -> !generated.contains(change) && !unreviewed.contains(change))
                 .toList();
 
-        ReviewContext payload = ReviewContext.assemble(prTitle, sendable, store, board);
+        ReviewContext payload = ReviewContext.assemble(prTitle, sendable, store, board, knowledgeItems);
         return new AiContextBoundary(payload, unreviewed, generated);
     }
 

@@ -1,5 +1,6 @@
 package com.athena.reviewcontext;
 
+import com.athena.knowledge.spi.KnowledgeItem;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.reviewui.Comment;
 import com.athena.reviewui.PrivateNote;
@@ -35,10 +36,11 @@ public final class ReviewContext {
     private final List<Comment> comments;
     private final List<PrivateNote> privateNotes;
     private final String coverageSummary;
+    private final List<KnowledgeItem> knowledgeItems;
 
     private ReviewContext(String prTitle, List<Change> reviewedChanges, List<Change> skippedChanges,
                            List<Change> mechanicalChanges, List<Change> concernChanges, List<Comment> comments,
-                           List<PrivateNote> privateNotes, String coverageSummary) {
+                           List<PrivateNote> privateNotes, String coverageSummary, List<KnowledgeItem> knowledgeItems) {
         this.prTitle = prTitle;
         this.reviewedChanges = List.copyOf(reviewedChanges);
         this.skippedChanges = List.copyOf(skippedChanges);
@@ -47,12 +49,23 @@ public final class ReviewContext {
         this.comments = List.copyOf(comments);
         this.privateNotes = List.copyOf(privateNotes);
         this.coverageSummary = coverageSummary;
+        this.knowledgeItems = List.copyOf(knowledgeItems);
     }
 
-    /** Assembles the artifact with private notes excluded — the safe default. */
+    /** Assembles the artifact with private notes excluded and no project knowledge — the safe default. */
     public static ReviewContext assemble(String prTitle, List<Change> changes, ReviewStateStore store,
                                           AnnotationBoard board) {
         return assemble(prTitle, changes, store, board, List.of());
+    }
+
+    /**
+     * Assembles the artifact with private notes excluded, and the given project knowledge
+     * (ticket #118) included as additional contextual evidence — empty when no Knowledge
+     * Provider is configured, which is the normal, fully-supported case.
+     */
+    public static ReviewContext assemble(String prTitle, List<Change> changes, ReviewStateStore store,
+                                          AnnotationBoard board, List<KnowledgeItem> knowledgeItems) {
+        return assemble(prTitle, changes, store, board, List.of(), knowledgeItems);
     }
 
     /**
@@ -63,11 +76,12 @@ public final class ReviewContext {
      */
     public static ReviewContext assembleIncludingPrivateNotes(String prTitle, List<Change> changes,
                                                                 ReviewStateStore store, AnnotationBoard board) {
-        return assemble(prTitle, changes, store, board, board.allPrivateNotes());
+        return assemble(prTitle, changes, store, board, board.allPrivateNotes(), List.of());
     }
 
     private static ReviewContext assemble(String prTitle, List<Change> changes, ReviewStateStore store,
-                                           AnnotationBoard board, List<PrivateNote> privateNotes) {
+                                           AnnotationBoard board, List<PrivateNote> privateNotes,
+                                           List<KnowledgeItem> knowledgeItems) {
         // Mechanical classification is reported as its own bucket, mutually exclusive with the
         // review-state buckets below — a Change already marked mechanical is not also listed as
         // reviewed/skipped/concern, matching §32's own example (Reviewed and Classified mechanical
@@ -80,7 +94,7 @@ public final class ReviewContext {
         String coverageSummary = ReviewCoverageReport.summary(changes, store);
 
         return new ReviewContext(prTitle, reviewed, skipped, mechanical, concerns,
-                board.allComments(), privateNotes, coverageSummary);
+                board.allComments(), privateNotes, coverageSummary, knowledgeItems);
     }
 
     public String prTitle() {
@@ -114,5 +128,14 @@ public final class ReviewContext {
 
     public String coverageSummary() {
         return coverageSummary;
+    }
+
+    /**
+     * Project knowledge retrieved as relevant to this review (ticket #118) — contextual
+     * evidence only, never authoritative. Empty when no Knowledge Provider is configured, or
+     * when none of its knowledge was relevant to this review's changed files.
+     */
+    public List<KnowledgeItem> knowledgeItems() {
+        return knowledgeItems;
     }
 }
