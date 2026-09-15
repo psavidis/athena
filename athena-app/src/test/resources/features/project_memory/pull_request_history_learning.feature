@@ -17,12 +17,12 @@ Feature: Pull Request History Learning: closed and open PRs as project memory
     When Athena learns from that project's Pull Requests
     Then querying that project's memory returns a fact that "OrderService.java" and "OrderProjection.java" were touched together across merged Pull Requests
     And that fact's evidence names 3 Pull Requests
-    And that fact is reported as an inferred pattern, not a developer-confirmed fact
+    And that fact is reported as an inferred pattern from Pull Request history, not a developer-confirmed fact
 
   Scenario: Files touched together in only one merged Pull Request are not learned as a pattern
     Given a project whose merged Pull Requests include "ReadmeTypo.java" and "ChangeLog.java" touched together in 1 Pull Request
     When Athena learns from that project's Pull Requests
-    Then querying that project's memory does not return a fact about "ReadmeTypo.java" and "ChangeLog.java"
+    Then querying that project's memory does not return a fact that "ReadmeTypo.java" and "ChangeLog.java" were touched together across merged Pull Requests
 
   Scenario: A Pull Request closed without merging is recorded as a rejected change, not an accepted pattern
     Given a project whose Pull Request 42 touched "LegacyExport.java" and "LegacyImport.java" and was closed without merging
@@ -39,8 +39,8 @@ Feature: Pull Request History Learning: closed and open PRs as project memory
   Scenario: A project with no closed Pull Requests yet has no learned memory
     Given a project with no closed Pull Requests
     When Athena learns from that project's Pull Requests
-    Then Athena's project memory for that project contains no learned facts
-    And learning does not fail with an exception
+    Then Athena's Pull Request learning leaves that project's memory empty
+    And Pull Request learning does not fail with an exception
 
   Scenario: Learning from the same Pull Requests again does not duplicate an already-learned pattern
     Given a project whose merged Pull Requests include "OrderService.java" and "OrderProjection.java" touched together in 3 Pull Requests

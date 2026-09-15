@@ -1,5 +1,6 @@
 package com.athena.github;
 
+import com.athena.repository.ClosedPullRequestSummary;
 import com.athena.repository.ImportedPullRequest;
 import com.athena.repository.PullRequestSummary;
 import com.athena.repository.Repository;
@@ -44,6 +45,19 @@ class GitHubRepositoryProviderTest {
         List<PullRequestSummary> pullRequests = provider.openPullRequests("acme/widgets");
 
         assertThat(pullRequests).containsExactly(new PullRequestSummary(42, "Add feature"));
+    }
+
+    @Test
+    void listsClosedPullRequestsForARepositoryWithTheirMergeStatus() {
+        transport.acceptToken(TOKEN, "octocat");
+        transport.addClosedPullRequest("acme/widgets", 10, "Ship it", true);
+        transport.addClosedPullRequest("acme/widgets", 11, "Abandoned idea", false);
+
+        List<ClosedPullRequestSummary> closedPullRequests = provider.closedPullRequests("acme/widgets");
+
+        assertThat(closedPullRequests).containsExactlyInAnyOrder(
+                new ClosedPullRequestSummary(10, "Ship it", true),
+                new ClosedPullRequestSummary(11, "Abandoned idea", false));
     }
 
     @Test
