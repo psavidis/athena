@@ -1,13 +1,13 @@
 Feature: Git History Learning: co-change patterns as project memory
   Git history is the first evidence source Athena's project memory
-  (#121) learns from (#170). Two files that recur together across
-  multiple commits are a signal worth remembering — a fact about the
-  project, not a rule enforced on anyone — while two files that merely
-  happened to change together once are noise, not a pattern. Every
-  learned co-change fact is recorded through the storage introduced in
-  #169, with the commits behind it named explicitly as provenance, and
-  reported as Athena's own inference rather than something a developer
-  confirmed.
+  (ticket 121) learns from (ticket 170). Two files that recur together
+  across multiple commits are a signal worth remembering — a fact about
+  the project, not a rule enforced on anyone — while two files that
+  merely happened to change together once are noise, not a pattern.
+  Every learned co-change fact is recorded through the storage
+  introduced in ticket 169, with the commits behind it named explicitly
+  as provenance, and reported as Athena's own inference rather than
+  something a developer confirmed.
 
   Scenario: Two files that repeatedly change together become a learned co-change fact
     Given a project whose git history has "OrderService.java" and "OrderProjection.java" modified together in 5 commits
@@ -24,8 +24,8 @@ Feature: Git History Learning: co-change patterns as project memory
   Scenario: A project with no git history yet has no learned memory
     Given a project whose git history contains no commits
     When Athena learns from that project's git history
-    Then querying that project's memory is empty
-    And no exception is thrown
+    Then Athena's project memory for that project contains no learned facts
+    And learning does not fail with an exception
 
   Scenario: Multiple independent co-change patterns are each recorded
     Given a project whose git history has "Order.java" and "OrderProjection.java" modified together in 4 commits
