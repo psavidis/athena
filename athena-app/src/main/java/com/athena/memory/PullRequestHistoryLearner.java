@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 /**
@@ -105,7 +106,7 @@ public final class PullRequestHistoryLearner {
         store.record(new MemoryEntry(fact, evidence, confidence, false));
     }
 
-    private static void forEachPair(List<String> files, FilePairConsumer consumer) {
+    private static void forEachPair(List<String> files, BiConsumer<String, String> consumer) {
         for (int i = 0; i < files.size(); i++) {
             for (int j = i + 1; j < files.size(); j++) {
                 consumer.accept(files.get(i), files.get(j));
@@ -121,10 +122,5 @@ public final class PullRequestHistoryLearner {
             return "medium";
         }
         return "low";
-    }
-
-    @FunctionalInterface
-    private interface FilePairConsumer {
-        void accept(String fileA, String fileB);
     }
 }
