@@ -61,9 +61,10 @@ describe('Change detail view rendering', () => {
     await screen.findByText('Rename greet to salute')
 
     // Then removed lines and added lines are styled differently from each other
-    const removedLine = screen.getByText('- greet()')
-    const addedLine = screen.getByText('+ salute()')
-    expect(removedLine.style.color).not.toEqual(addedLine.style.color)
+    const removedMarker = screen.getByText('-')
+    const addedMarker = screen.getByText('+')
+    expect(removedMarker.style.color).not.toEqual(addedMarker.style.color)
+    expect(removedMarker.parentElement?.style.backgroundColor).not.toEqual(addedMarker.parentElement?.style.backgroundColor)
   })
 
   it('shows a fallback message when no diff was recorded', async () => {

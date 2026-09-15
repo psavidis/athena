@@ -6,11 +6,13 @@
  */
 import athenaIcls from './diffThemes/athena.icls?raw'
 import athenaDarkIcls from './diffThemes/athena-dark.icls?raw'
+import draculaIcls from './diffThemes/Dracula.icls?raw'
 import { parseIclsTheme, type IclsTheme } from './icls'
 
 const registry: Record<string, IclsTheme> = {
   athena: parseIclsTheme(athenaIcls, 'athena'),
   'athena-dark': parseIclsTheme(athenaDarkIcls, 'athena dark'),
+  dracula: parseIclsTheme(draculaIcls, 'Dracula'),
 }
 
 export const diffViewerThemes: Record<string, IclsTheme> = registry

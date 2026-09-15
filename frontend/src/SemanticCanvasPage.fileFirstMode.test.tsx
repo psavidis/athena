@@ -217,8 +217,16 @@ describe('Semantic Canvas — File-First review mode', () => {
 
     await user.click(screen.getByTestId('file-first-row'))
 
-    expect(await screen.findByRole('dialog', { name: 'Detail drawer' })).toBeVisible()
-    expect(await screen.findByText('+ added line')).toBeVisible()
+    const drawer = await screen.findByRole('dialog', { name: 'Detail drawer' })
+    // The diff renders the leading +/- marker and the code text as separate
+    // (syntax-highlighted) elements, so match on the one diff line whose own
+    // combined text is the expected content, not an ancestor's.
+    expect(
+      await screen.findByText(
+        (_, element) => element?.tagName === 'DIV' && element.parentElement?.tagName === 'PRE' && element.textContent === '+ added line',
+      ),
+    ).toBeVisible()
+    expect(drawer).toBeVisible()
   })
 
   it('shows no "Explain this" action for a file with no matching canvas node', async () => {

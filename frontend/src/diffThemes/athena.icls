@@ -1,7 +1,7 @@
 <scheme name="athena" version="1" parent_scheme="Default">
   <metaInfo>
     <property name="ide">Athena</property>
-    <property name="description">Athena's light UI palette (index.css paper/ink tokens) applied to the diff viewer, so a reviewed file reads as part of the same calm, warm-paper product rather than a bolted-on dark code panel.</property>
+    <property name="description">Athena's light UI palette (index.css paper/ink/category tokens) applied to the diff viewer, so a reviewed file reads as part of the same calm, warm-paper product rather than a bolted-on dark code panel. Syntax colors reuse the same category hues shown elsewhere in the app (behavioral violet, structural blue, etc.) rather than a separate code-editor palette.</property>
   </metaInfo>
   <attributes>
     <option name="TEXT">
@@ -18,6 +18,51 @@
     <option name="DIFF_DELETED">
       <value>
         <option name="FOREGROUND" value="d1483f" />
+      </value>
+    </option>
+    <option name="DEFAULT_KEYWORD">
+      <value>
+        <option name="FOREGROUND" value="7c3aed" />
+      </value>
+    </option>
+    <option name="DEFAULT_CLASS_NAME">
+      <value>
+        <option name="FOREGROUND" value="2563eb" />
+      </value>
+    </option>
+    <option name="DEFAULT_STRING">
+      <value>
+        <option name="FOREGROUND" value="236b43" />
+      </value>
+    </option>
+    <option name="DEFAULT_NUMBER">
+      <value>
+        <option name="FOREGROUND" value="b45309" />
+      </value>
+    </option>
+    <option name="DEFAULT_LINE_COMMENT">
+      <value>
+        <option name="FOREGROUND" value="7a756c" />
+      </value>
+    </option>
+    <option name="DEFAULT_FUNCTION_DECLARATION">
+      <value>
+        <option name="FOREGROUND" value="0b6d62" />
+      </value>
+    </option>
+    <option name="DEFAULT_CONSTANT">
+      <value>
+        <option name="FOREGROUND" value="a34b3d" />
+      </value>
+    </option>
+    <option name="DEFAULT_PARAMETER">
+      <value>
+        <option name="FOREGROUND" value="c2410c" />
+      </value>
+    </option>
+    <option name="DEFAULT_METADATA">
+      <value>
+        <option name="FOREGROUND" value="be185d" />
       </value>
     </option>
   </attributes>

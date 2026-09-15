@@ -8,6 +8,7 @@ import type { ChangeCategory, PullRequestSummary, ReviewState, SemanticDimension
 import { pullRequestPath } from './shareUrl'
 import { defaultDiffViewerTheme, diffViewerThemes } from './diffViewerThemes'
 import { useDiffViewerThemePreference } from './diffViewerThemePreference'
+import { highlightLine, prismLanguageForPath } from './syntaxHighlight'
 
 // One hue + glyph per Change category (index.css defines the underlying
 // colors), reused for section headers, count chips, and card accents so a
@@ -817,12 +818,57 @@ export function ErrorState({ message }: { message: string }) {
   )
 }
 
-/** Renders a unified diff with added/removed lines colored distinctly — the one diff-rendering
+/** `#rrggbb` (theme colors are always this shape, per icls.ts's hexColor) at the given opacity, for a diff line's background wash. */
+function withAlpha(hexColor: string, alpha: number): string {
+  const r = parseInt(hexColor.slice(1, 3), 16)
+  const g = parseInt(hexColor.slice(3, 5), 16)
+  const b = parseInt(hexColor.slice(5, 7), 16)
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`
+}
+
+/**
+ * Detects the diff's language from its unified-diff file header (`+++ b/Foo.java`
+ * or `--- a/Foo.java`) so DiffView can syntax-highlight with the right Prism
+ * grammar. Real diffs from the backend (UnifiedDiff.java) always carry these
+ * headers; simplified before/after snippets (e.g. in tests) won't match, and
+ * highlightLine already renders unhighlighted plain text for a null language.
+ */
+function detectDiffLanguage(diff: string): string | null {
+  for (const line of diff.split('\n')) {
+    const match = /^(?:\+\+\+|---)\s+[ab]\/(\S+)/.exec(line)
+    if (match) {
+      const language = prismLanguageForPath(match[1])
+      if (language) return language
+    }
+  }
+  return null
+}
+
+/** A diff line's leading marker, stripped before tokenizing the rest of the line. */
+function splitDiffLine(line: string): { marker: string; content: string } {
+  if (line.startsWith('+') || line.startsWith('-')) {
+    return { marker: line[0], content: line.slice(1) }
+  }
+  return { marker: '', content: line }
+}
+
+/** Unified-diff metadata (file headers, hunk markers) rather than a line of the file's actual content — never syntax-highlighted as code. */
+function isDiffMetadataLine(line: string): boolean {
+  return /^(?:diff --git |index |\+\+\+ |--- |@@ )/.test(line)
+}
+
+/**
+ * Renders a unified diff with added/removed lines colored distinctly — the one diff-rendering
  * treatment reused everywhere a diff is shown (`ChangeDetailPage`, the Semantic Change Explorer's
  * evidence panel), rather than each page building its own. Colors come from a named theme in
  * `diffViewerThemes.ts` — each backed by a standard IntelliJ .icls color scheme file under
  * `diffThemes/` — so a new look is a new .icls file, not a DiffView change. Defaults to the
- * reviewer's saved preference ({@link DiffViewerThemePicker}); pass `theme` to override it. */
+ * reviewer's saved preference ({@link DiffViewerThemePicker}); pass `theme` to override it.
+ *
+ * Each line is also syntax-highlighted (see syntaxHighlight.ts) the way IntelliJ's own diff
+ * viewer does: the +/- marker and a subtle line background carry the added/removed signal, while
+ * the code text itself keeps its normal per-token syntax colors rather than being solid green/red.
+ */
 export function DiffView({ diff, theme }: { diff: string; theme?: string }) {
   const [preferredTheme] = useDiffViewerThemePreference()
   const t = diffViewerThemes[theme ?? preferredTheme] ?? diffViewerThemes[defaultDiffViewerTheme]
@@ -838,16 +884,34 @@ export function DiffView({ diff, theme }: { diff: string; theme?: string }) {
     )
   }
 
+  const language = detectDiffLanguage(diff)
+
   return (
     <Card className="overflow-hidden" style={cardStyle}>
       <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed">
         {diff.split('\n').map((line, i) => {
-          const isAdded = line.startsWith('+')
-          const isRemoved = line.startsWith('-')
-          const color = isAdded ? t.diffInserted : isRemoved ? t.diffDeleted : t.foreground
+          if (isDiffMetadataLine(line)) {
+            return (
+              <div key={i} style={{ color: t.foreground, opacity: 0.6 }}>
+                {line}
+              </div>
+            )
+          }
+          const { marker, content } = splitDiffLine(line)
+          const isAdded = marker === '+'
+          const isRemoved = marker === '-'
+          const markerColor = isAdded ? t.diffInserted : isRemoved ? t.diffDeleted : t.foreground
+          const lineBackground = isAdded ? withAlpha(t.diffInserted, 0.12) : isRemoved ? withAlpha(t.diffDeleted, 0.12) : undefined
+          const runs = highlightLine(content, language)
           return (
-            <div key={i} style={{ color }}>
-              {line || ' '}
+            <div key={i} style={{ backgroundColor: lineBackground }}>
+              {marker && <span style={{ color: markerColor }}>{marker}</span>}
+              {runs.length === 0 && content === '' && marker === '' ? ' ' : null}
+              {runs.map((run, j) => (
+                <span key={j} style={{ color: run.tokenType ? t.syntax[run.tokenType] : t.foreground }}>
+                  {run.text}
+                </span>
+              ))}
             </div>
           )
         })}

@@ -22,17 +22,18 @@ describe('DiffViewerThemePicker (via AthenaTopBar)', () => {
     const listbox = screen.getByRole('listbox')
     expect(within(listbox).getByRole('option', { name: 'athena' })).toHaveAttribute('aria-selected', 'true')
     expect(within(listbox).getByRole('option', { name: 'athena dark' })).toHaveAttribute('aria-selected', 'false')
+    expect(within(listbox).getByRole('option', { name: 'Dracula' })).toHaveAttribute('aria-selected', 'false')
   })
 
   it('switches a DiffView rendered alongside it to the newly selected theme', async () => {
     renderTopBarAndDiff()
-    const addedLine = screen.getByText('+ salute()')
-    const beforeColor = addedLine.style.color
+    const addedMarker = screen.getByText('+')
+    const beforeColor = addedMarker.style.color
 
     await userEvent.click(screen.getByRole('button', { name: 'Diff viewer theme' }))
     await userEvent.click(screen.getByRole('option', { name: 'athena dark' }))
 
-    expect(addedLine.style.color).not.toBe(beforeColor)
+    expect(addedMarker.style.color).not.toBe(beforeColor)
   })
 
   it('closes the theme list after a selection', async () => {

@@ -164,7 +164,14 @@ describe('Semantic Canvas — sliding detail drawer', () => {
     await user.click(await screen.findByText('PaymentValidator.java'))
 
     const drawer = await screen.findByRole('dialog', { name: 'Detail drawer' })
-    expect(await screen.findByText('+ public void recover() {}')).toBeVisible()
+    // The diff renders the leading +/- marker and the code text as separate
+    // (syntax-highlighted) elements, so match on the one diff line whose own
+    // combined text is the expected content, not an ancestor's.
+    expect(
+      await screen.findByText(
+        (_, element) => element?.tagName === 'DIV' && element.parentElement?.tagName === 'PRE' && element.textContent === '+ public void recover() {}',
+      ),
+    ).toBeVisible()
     expect(drawer.querySelector('[data-testid="evidence-statement"]')).toHaveTextContent('Idempotent recovery')
   })
 
