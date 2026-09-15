@@ -15,7 +15,7 @@ Feature: Project Memory Foundation
     Given a project with no recorded memory
     When Athena's project memory is queried for that project
     Then the result is empty
-    And no error is reported
+    And no exception is thrown
 
   Scenario: A learned fact is recorded with its provenance and can be read back
     Given a project with no recorded memory
@@ -49,4 +49,4 @@ Feature: Project Memory Foundation
     Given a project whose ".athena/memory" directory contains recorded memory
     When that directory is deleted directly from disk
     Then querying that project's memory is empty
-    And no error is reported
+    And no exception is thrown
