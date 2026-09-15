@@ -1,5 +1,6 @@
 package com.athena.ai;
 
+import com.athena.knowledge.spi.KnowledgeItem;
 import com.athena.reviewcontext.ReviewContext;
 import com.athena.semantic.Change;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -36,12 +37,35 @@ final class ClaudeAnalysisPrompt {
         appendChangeList(prompt, "Skipped", reviewContext.skippedChanges());
         appendChangeList(prompt, "Flagged as a concern", reviewContext.concernChanges());
         prompt.append("Coverage: ").append(reviewContext.coverageSummary()).append("\n\n");
+        appendProjectKnowledge(prompt, reviewContext.knowledgeItems());
         prompt.append("Respond with only a JSON array of findings, each an object with an \"id\" and a ")
                 .append("\"description\" field. When a finding is about one specific Change listed above, ")
                 .append("also include a \"relatedChangeTitle\" field containing that Change's exact quoted ")
                 .append("title from above, verbatim — omit this field for a general finding not tied to one ")
                 .append("Change. Respond with an empty array if there is nothing to add.");
         return prompt.toString();
+    }
+
+    /**
+     * Appends retrieved project knowledge (ticket #118) as its own labeled section, framed
+     * explicitly as contextual evidence rather than ground truth — knowledge must never be
+     * treated as authoritative, and any conflict with the change should be surfaced as a
+     * finding rather than silently resolved either way. Omitted entirely when there is no
+     * knowledge to include (no Knowledge Provider configured, or nothing relevant was found),
+     * so a review with no Knowledge Provider produces exactly the same prompt as before this
+     * ticket.
+     */
+    private static void appendProjectKnowledge(StringBuilder prompt, List<KnowledgeItem> knowledgeItems) {
+        if (knowledgeItems.isEmpty()) {
+            return;
+        }
+        prompt.append("Project Knowledge (contextual evidence from the project's knowledge base — it may be ")
+                .append("outdated, incomplete, or contradict this change; treat it as supporting context, never as ")
+                .append("authoritative, and if it conflicts with the change, say so explicitly as a finding):\n");
+        for (KnowledgeItem item : knowledgeItems) {
+            prompt.append("- \"").append(item.title()).append("\": ").append(item.content()).append('\n');
+        }
+        prompt.append('\n');
     }
 
     private static void appendChangeList(StringBuilder prompt, String label, List<Change> changes) {

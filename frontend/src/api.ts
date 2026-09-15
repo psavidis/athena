@@ -210,6 +210,42 @@ export async function connectAi(apiKey: string): Promise<AiStatus> {
   return response.json()
 }
 
+/**
+ * The Knowledge Provider (ticket #118) — an optional external integration,
+ * configured alongside the Pull Request provider (GitHub) rather than a
+ * required part of the review pipeline. `configured: false` is a fully
+ * normal, error-free state.
+ */
+export interface KnowledgeStatus {
+  configured: boolean
+  providerId: string | null
+  vaultPath: string | null
+}
+
+export async function getKnowledgeStatus(): Promise<KnowledgeStatus> {
+  return asJson(await fetch('/api/knowledge/status'))
+}
+
+export async function connectObsidianVault(vaultPath: string): Promise<KnowledgeStatus> {
+  const response = await fetch('/api/knowledge/obsidian', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ vaultPath }),
+  })
+  if (!response.ok) {
+    throw new Error(`Could not connect the Obsidian vault (${response.status})`)
+  }
+  return response.json()
+}
+
+export async function disconnectObsidianVault(): Promise<KnowledgeStatus> {
+  const response = await fetch('/api/knowledge/obsidian', { method: 'DELETE' })
+  if (!response.ok) {
+    throw new Error(`Could not disconnect the Knowledge Provider (${response.status})`)
+  }
+  return response.json()
+}
+
 export async function listRepositories(): Promise<Repository[]> {
   return asJson(await fetch('/api/repositories'))
 }
@@ -513,6 +549,38 @@ export async function acceptFinding(findingId: string): Promise<AiFinding[]> {
 
 export async function dismissFinding(findingId: string): Promise<AiFinding[]> {
   return evaluateFinding(findingId, 'dismiss')
+}
+
+export class KnowledgeProviderNotConfiguredError extends Error {}
+
+export interface KnowledgeCaptureResult {
+  success: boolean
+  providerId: string | null
+  storedAs: string | null
+}
+
+/** Saves an AI finding as a new knowledge item (ticket #118's knowledge-candidate capture) —
+ * always a user-confirmed action, never automatic. */
+export async function saveFindingToKnowledgeBase(findingId: string): Promise<KnowledgeCaptureResult> {
+  const response = await fetch(`/api/review/ai-findings/${encodeURIComponent(findingId)}/save-to-knowledge-base`, {
+    method: 'POST',
+  })
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 404) {
+    throw new FindingNotFoundError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  if (response.status === 422) {
+    throw new NoAnalysisTriggeredError()
+  }
+  if (response.status === 503) {
+    throw new KnowledgeProviderNotConfiguredError()
+  }
+  return asJson(response)
 }
 
 /**

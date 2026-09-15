@@ -5,10 +5,13 @@ import {
   AiAnalysisNotConfiguredError,
   dismissFinding,
   getAiContextBoundary,
+  saveFindingToKnowledgeBase,
   triggerAiAnalysis,
   type AiFinding,
 } from './api'
 import { BackLink, Card, ErrorState, LoadingState, PageShell, PrimaryButton, SecondaryButton, SectionLabel } from './ui'
+
+type KnowledgeSaveState = 'saved' | 'error'
 
 export default function AiAnalysisPage({
   onBack,
@@ -24,6 +27,7 @@ export default function AiAnalysisPage({
   })
 
   const [findings, setFindings] = useState<AiFinding[] | null>(null)
+  const [knowledgeSaveStates, setKnowledgeSaveStates] = useState<Record<string, KnowledgeSaveState>>({})
 
   const analysisMutation = useMutation({
     mutationFn: triggerAiAnalysis,
@@ -38,6 +42,12 @@ export default function AiAnalysisPage({
   const dismissMutation = useMutation({
     mutationFn: dismissFinding,
     onSuccess: setFindings,
+  })
+
+  const saveToKnowledgeBaseMutation = useMutation({
+    mutationFn: saveFindingToKnowledgeBase,
+    onSuccess: (_result, findingId) => setKnowledgeSaveStates((prev) => ({ ...prev, [findingId]: 'saved' })),
+    onError: (_error, findingId) => setKnowledgeSaveStates((prev) => ({ ...prev, [findingId]: 'error' })),
   })
 
   if (isError) {
@@ -89,6 +99,8 @@ export default function AiAnalysisPage({
           onAccept={(id) => acceptMutation.mutate(id)}
           onDismiss={(id) => dismissMutation.mutate(id)}
           onSelectChange={onSelectChange}
+          onSaveToKnowledgeBase={(id) => saveToKnowledgeBaseMutation.mutate(id)}
+          knowledgeSaveStates={knowledgeSaveStates}
         />
       )}
     </PageShell>
@@ -130,11 +142,15 @@ function FindingsList({
   onAccept,
   onDismiss,
   onSelectChange,
+  onSaveToKnowledgeBase,
+  knowledgeSaveStates,
 }: {
   findings: AiFinding[]
   onAccept: (id: string) => void
   onDismiss: (id: string) => void
   onSelectChange: (changeKey: string) => void
+  onSaveToKnowledgeBase: (id: string) => void
+  knowledgeSaveStates: Record<string, KnowledgeSaveState>
 }) {
   if (findings.length === 0) {
     return <p className="animate-rise-in mt-6 text-sm text-ink-500">No findings.</p>
@@ -165,6 +181,20 @@ function FindingsList({
               <div className="mt-2 flex gap-2">
                 <SecondaryButton onClick={() => onAccept(finding.id)}>Accept</SecondaryButton>
                 <SecondaryButton onClick={() => onDismiss(finding.id)}>Dismiss</SecondaryButton>
+              </div>
+            )}
+            {finding.disposition === 'ACCEPTED' && (
+              <div className="mt-2 flex items-center gap-2">
+                {knowledgeSaveStates[finding.id] === 'saved' ? (
+                  <p className="text-sm text-ink-500">Saved to Knowledge Base.</p>
+                ) : (
+                  <SecondaryButton onClick={() => onSaveToKnowledgeBase(finding.id)}>
+                    Save to Knowledge Base
+                  </SecondaryButton>
+                )}
+                {knowledgeSaveStates[finding.id] === 'error' && (
+                  <p className="text-sm text-red-600">Could not save — is a Knowledge Provider configured?</p>
+                )}
               </div>
             )}
           </div>

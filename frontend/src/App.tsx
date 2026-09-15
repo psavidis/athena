@@ -7,6 +7,7 @@ import SemanticCanvasPage from './SemanticCanvasPage'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
 import AiAnalysisPage from './AiAnalysisPage'
 import GitHubAccessPage from './GitHubAccessPage'
+import KnowledgeSettingsPage from './KnowledgeSettingsPage'
 import { AthenaTopBar, BackLink, PageHeading, PageShell, PrimaryButton, RepoPrPicker, SecondaryButton } from './ui'
 import { parsePullRequestPath, pullRequestPath } from './shareUrl'
 
@@ -31,6 +32,11 @@ export default function App() {
   // GitHub Access is its own page (ticket #113/#145), reachable from the
   // main page rather than a blocking gate the whole app sits behind.
   const [showingGitHubAccess, setShowingGitHubAccess] = useState(false)
+  // Knowledge (Obsidian) settings is another optional External Systems /
+  // Integrations entry (ticket #118), reachable alongside GitHub Access —
+  // never a blocking gate, since Athena works fully with no Knowledge
+  // Provider configured.
+  const [showingKnowledgeSettings, setShowingKnowledgeSettings] = useState(false)
 
   useEffect(() => {
     getGitHubStatus()
@@ -101,6 +107,9 @@ export default function App() {
     if (showingGitHubAccess) {
       return <GitHubAccessPage onBack={() => setShowingGitHubAccess(false)} />
     }
+    if (showingKnowledgeSettings) {
+      return <KnowledgeSettingsPage onBack={() => setShowingKnowledgeSettings(false)} />
+    }
     if (showingDiffEntryPoint) {
       return (
         <DiffEntryPoint
@@ -129,6 +138,7 @@ export default function App() {
       return (
         <NotConnectedPrompt
           onOpenGitHubAccess={() => setShowingGitHubAccess(true)}
+          onOpenKnowledgeSettings={() => setShowingKnowledgeSettings(true)}
           onStartDiff={() => setShowingDiffEntryPoint(true)}
         />
       )
@@ -168,6 +178,7 @@ export default function App() {
       <EmptyCanvasShell
         picker={picker}
         onOpenGitHubAccess={() => setShowingGitHubAccess(true)}
+        onOpenKnowledgeSettings={() => setShowingKnowledgeSettings(true)}
         onStartDiff={() => setShowingDiffEntryPoint(true)}
       />
     )
@@ -178,7 +189,8 @@ export default function App() {
   // there's no picker to show — a bare shared bar keeps the brand chrome
   // present even here.
   const showingBareTopBar =
-    !showingGitHubAccess && !showingDiffEntryPoint && !showingSemanticCanvas && connected === false
+    !showingGitHubAccess && !showingKnowledgeSettings && !showingDiffEntryPoint && !showingSemanticCanvas
+    && connected === false
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -198,9 +210,11 @@ export default function App() {
  */
 function NotConnectedPrompt({
   onOpenGitHubAccess,
+  onOpenKnowledgeSettings,
   onStartDiff,
 }: {
   onOpenGitHubAccess: () => void
+  onOpenKnowledgeSettings: () => void
   onStartDiff: () => void
 }) {
   return (
@@ -213,6 +227,9 @@ function NotConnectedPrompt({
         <PrimaryButton onClick={onOpenGitHubAccess}>Go to GitHub Access</PrimaryButton>
         <SecondaryButton onClick={onStartDiff}>Start a Diff</SecondaryButton>
       </div>
+      <button type="button" onClick={onOpenKnowledgeSettings} className="text-xs text-ink-500 hover:underline">
+        Knowledge settings
+      </button>
     </div>
   )
 }
@@ -228,10 +245,12 @@ function NotConnectedPrompt({
 function EmptyCanvasShell({
   picker,
   onOpenGitHubAccess,
+  onOpenKnowledgeSettings,
   onStartDiff,
 }: {
   picker: React.ReactNode
   onOpenGitHubAccess: () => void
+  onOpenKnowledgeSettings: () => void
   onStartDiff: () => void
 }) {
   return (
@@ -245,6 +264,13 @@ function EmptyCanvasShell({
             </button>
             <button type="button" onClick={onOpenGitHubAccess} className="text-xs text-canvas-gold-deep hover:underline">
               GitHub Access
+            </button>
+            <button
+              type="button"
+              onClick={onOpenKnowledgeSettings}
+              className="text-xs text-canvas-gold-deep hover:underline"
+            >
+              Knowledge
             </button>
           </>
         }
