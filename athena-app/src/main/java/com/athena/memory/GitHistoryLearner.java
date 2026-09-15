@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -28,34 +26,49 @@ import java.util.stream.Collectors;
  * separate concern, left to the caller (see {@link ProjectMemoryStore}'s
  * own Javadoc on the same boundary).
  *
- * <p>Re-running {@link #learn} against the same history does not
- * duplicate a pair already recorded — a full history walk is repeated
- * each time (incremental learning is out of scope, see ticket #170), but
- * facts already known are left alone rather than re-recorded.
+ * <p>Re-running {@link #learn} only processes commits since the last
+ * recorded high-water mark (ticket #174, via {@link LearningProgressStore}):
+ * a pair's co-occurrence count accumulates across passes, so a pair that
+ * hadn't yet crossed {@link #MINIMUM_RECURRING_COMMITS} on an earlier pass
+ * can still cross it once enough new commits arrive, without re-walking
+ * commits already counted.
  */
 public final class GitHistoryLearner {
 
     private static final int MINIMUM_RECURRING_COMMITS = 2;
+    private static final String SOURCE = "git-history";
 
     private GitHistoryLearner() {
     }
 
     public static void learn(Path projectRoot, ProjectMemoryStore store) {
-        Map<UnorderedFilePair, Integer> coChangeCounts = countCoChanges(readCommits(projectRoot));
-        Set<String> alreadyLearned = store.entries().stream()
-                .map(MemoryEntry::fact)
-                .collect(Collectors.toSet());
+        LearningProgressStore progress = new LearningProgressStore(projectRoot);
+        ParsedHistory history = readCommits(projectRoot, progress.cursor(SOURCE));
+        if (history.latestSha().isEmpty()) {
+            return;
+        }
 
-        coChangeCounts.forEach((pair, count) -> {
-            if (count < MINIMUM_RECURRING_COMMITS) {
-                return;
+        for (CommitEvidence commit : history.commits()) {
+            List<String> files = commit.files();
+            for (int i = 0; i < files.size(); i++) {
+                for (int j = i + 1; j < files.size(); j++) {
+                    recordIfRecurring(store, progress, UnorderedFilePair.of(files.get(i), files.get(j)));
+                }
             }
-            String fact = pair.first() + " and " + pair.second() + " change together";
-            if (alreadyLearned.contains(fact)) {
-                return;
-            }
-            store.record(new MemoryEntry(fact, count + " commits", confidenceFor(count), false));
-        });
+        }
+
+        progress.recordCursor(SOURCE, history.latestSha().get());
+    }
+
+    private static void recordIfRecurring(ProjectMemoryStore store, LearningProgressStore progress, UnorderedFilePair pair) {
+        String key = pair.first() + "|" + pair.second();
+        progress.incrementCounter(SOURCE, key, 1);
+        int cumulativeCount = progress.counter(SOURCE, key);
+        if (cumulativeCount < MINIMUM_RECURRING_COMMITS) {
+            return;
+        }
+        String fact = pair.first() + " and " + pair.second() + " change together";
+        store.record(new MemoryEntry(fact, cumulativeCount + " commits", confidenceFor(cumulativeCount), false));
     }
 
     private static String confidenceFor(int commitCount) {
@@ -68,37 +81,40 @@ public final class GitHistoryLearner {
         return "low";
     }
 
-    private static Map<UnorderedFilePair, Integer> countCoChanges(List<List<String>> commits) {
-        Map<UnorderedFilePair, Integer> counts = new LinkedHashMap<>();
-        for (List<String> filesInCommit : commits) {
-            for (int i = 0; i < filesInCommit.size(); i++) {
-                for (int j = i + 1; j < filesInCommit.size(); j++) {
-                    UnorderedFilePair pair = UnorderedFilePair.of(filesInCommit.get(i), filesInCommit.get(j));
-                    counts.merge(pair, 1, Integer::sum);
-                }
-            }
-        }
-        return counts;
+    private record CommitEvidence(String sha, List<String> files) {
     }
 
-    private static List<List<String>> readCommits(Path projectRoot) {
-        String output = runGitLog(projectRoot);
+    private record ParsedHistory(Optional<String> latestSha, List<CommitEvidence> commits) {
+    }
+
+    private static ParsedHistory readCommits(Path projectRoot, Optional<String> since) {
+        String output = runGitLog(projectRoot, since);
         if (output.isEmpty()) {
-            return List.of();
+            return new ParsedHistory(Optional.empty(), List.of());
         }
-        List<List<String>> commits = new ArrayList<>();
+        Optional<String> latestSha = Optional.empty();
+        List<CommitEvidence> commits = new ArrayList<>();
         for (String block : output.split("\u0000")) {
-            List<String> files = block.lines().filter(line -> !line.isBlank()).collect(Collectors.toList());
+            List<String> lines = block.lines().filter(line -> !line.isBlank()).collect(Collectors.toList());
+            if (lines.isEmpty()) {
+                continue;
+            }
+            String sha = lines.get(0);
+            if (latestSha.isEmpty()) {
+                latestSha = Optional.of(sha);
+            }
+            List<String> files = lines.subList(1, lines.size());
             if (!files.isEmpty()) {
-                commits.add(files);
+                commits.add(new CommitEvidence(sha, files));
             }
         }
-        return commits;
+        return new ParsedHistory(latestSha, commits);
     }
 
-    private static String runGitLog(Path projectRoot) {
-        ProcessBuilder builder = new ProcessBuilder("git", "log", "--name-only", "--pretty=format:%x00")
-                .directory(projectRoot.toFile());
+    private static String runGitLog(Path projectRoot, Optional<String> since) {
+        List<String> command = new ArrayList<>(List.of("git", "log", "--name-only", "--pretty=format:%x00%H"));
+        since.ifPresent(sha -> command.add(sha + "..HEAD"));
+        ProcessBuilder builder = new ProcessBuilder(command).directory(projectRoot.toFile());
         try {
             Process process = builder.start();
             String output = new String(process.getInputStream().readAllBytes());

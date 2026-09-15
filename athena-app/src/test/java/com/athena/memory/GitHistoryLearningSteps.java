@@ -49,6 +49,11 @@ public class GitHistoryLearningSteps {
         GitHistoryLearner.learn(projectRoot, store);
     }
 
+    @Given("that project's git history separately gets one more commit modifying {string} and {string} together")
+    public void that_projects_git_history_separately_gets_one_more_commit_modifying_files_together(String fileA, String fileB) throws IOException, InterruptedException {
+        commitFiles("one more commit", fileA, fileB);
+    }
+
     @When("Athena learns from that project's git history")
     public void athena_learns_from_that_projects_git_history() {
         try {

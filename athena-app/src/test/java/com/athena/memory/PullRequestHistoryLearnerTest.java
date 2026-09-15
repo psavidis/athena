@@ -1,5 +1,6 @@
 package com.athena.memory;
 
+import com.athena.git.TempDirectories;
 import com.athena.github.FakeGitHubTransport;
 import com.athena.github.GitHubRepositoryProvider;
 import com.athena.repository.RepositoryProvider;
@@ -43,7 +44,7 @@ class PullRequestHistoryLearnerTest {
         addMergedPullRequest(2, "OrderService.java", "OrderProjection.java");
         addMergedPullRequest(3, "OrderService.java", "OrderProjection.java");
 
-        PullRequestHistoryLearner.learn(REPOSITORY, provider, store);
+        PullRequestHistoryLearner.learn(projectRoot, REPOSITORY, provider, store);
 
         MemoryEntry entry = store.entries().stream()
                 .filter(e -> e.fact().contains("OrderService.java") && e.fact().contains("OrderProjection.java"))
@@ -57,7 +58,7 @@ class PullRequestHistoryLearnerTest {
     void doesNotRecordAPairThatOnlyCoOccurredInOneMergedPullRequest() {
         addMergedPullRequest(1, "ReadmeTypo.java", "ChangeLog.java");
 
-        PullRequestHistoryLearner.learn(REPOSITORY, provider, store);
+        PullRequestHistoryLearner.learn(projectRoot, REPOSITORY, provider, store);
 
         assertThat(store.entries()).isEmpty();
     }
@@ -66,7 +67,7 @@ class PullRequestHistoryLearnerTest {
     void recordsAClosedWithoutMergingPullRequestAsARejectedChangeNotAnAcceptedPattern() {
         addRejectedPullRequest(42, "LegacyExport.java", "LegacyImport.java");
 
-        PullRequestHistoryLearner.learn(REPOSITORY, provider, store);
+        PullRequestHistoryLearner.learn(projectRoot, REPOSITORY, provider, store);
 
         assertThat(store.entries())
                 .anyMatch(e -> e.fact().contains("LegacyExport.java")
@@ -83,7 +84,7 @@ class PullRequestHistoryLearnerTest {
     void recordsOpenPullRequestFilesWithProvisionalConfidence() {
         addOpenPullRequest(55, "Checkout.java", "Payment.java");
 
-        PullRequestHistoryLearner.learn(REPOSITORY, provider, store);
+        PullRequestHistoryLearner.learn(projectRoot, REPOSITORY, provider, store);
 
         MemoryEntry entry = store.entries().stream()
                 .filter(e -> e.fact().contains("Checkout.java") && e.fact().contains("Payment.java"))
@@ -94,7 +95,7 @@ class PullRequestHistoryLearnerTest {
 
     @Test
     void producesNoMemoryWhenThereAreNoPullRequestsYet() {
-        assertThatCode(() -> PullRequestHistoryLearner.learn(REPOSITORY, provider, store))
+        assertThatCode(() -> PullRequestHistoryLearner.learn(projectRoot, REPOSITORY, provider, store))
                 .doesNotThrowAnyException();
 
         assertThat(store.entries()).isEmpty();
@@ -104,31 +105,86 @@ class PullRequestHistoryLearnerTest {
     void doesNotDuplicateAPairAlreadyLearnedOnAnEarlierRun() {
         addMergedPullRequest(1, "OrderService.java", "OrderProjection.java");
         addMergedPullRequest(2, "OrderService.java", "OrderProjection.java");
-        PullRequestHistoryLearner.learn(REPOSITORY, provider, store);
+        PullRequestHistoryLearner.learn(projectRoot, REPOSITORY, provider, store);
 
-        PullRequestHistoryLearner.learn(REPOSITORY, provider, store);
+        PullRequestHistoryLearner.learn(projectRoot, REPOSITORY, provider, store);
 
         assertThat(store.entries())
                 .filteredOn(e -> e.fact().contains("OrderService.java") && e.fact().contains("OrderProjection.java"))
                 .hasSize(1);
     }
 
+    @Test
+    void recordsAProcessedMarkerAfterLearningSoALaterPassCanSkipAlreadyProcessedPullRequests() throws IOException {
+        addMergedPullRequest(1, "OrderService.java", "OrderProjection.java");
+
+        PullRequestHistoryLearner.learn(projectRoot, REPOSITORY, provider, store);
+
+        LearningProgressStore progress = new LearningProgressStore(projectRoot);
+        assertThat(progress.processedMarkers("pr-history")).contains("1");
+    }
+
+    @Test
+    void accumulatesCoOccurrencesAcrossIncrementalPassesUntilTheThresholdIsCrossed() {
+        addMergedPullRequest(1, "OrderService.java", "OrderProjection.java");
+        PullRequestHistoryLearner.learn(projectRoot, REPOSITORY, provider, store);
+        assertThat(store.entries()).isEmpty();
+
+        addMergedPullRequest(2, "OrderService.java", "OrderProjection.java");
+        PullRequestHistoryLearner.learn(projectRoot, REPOSITORY, provider, store);
+
+        MemoryEntry entry = store.entries().stream()
+                .filter(e -> e.fact().contains("OrderService.java") && e.fact().contains("OrderProjection.java"))
+                .findFirst()
+                .orElseThrow();
+        assertThat(entry.evidence()).isEqualTo("2 Pull Requests");
+    }
+
+    @Test
+    void learningInTwoIncrementalPassesMatchesASingleFullPassOverTheSameEvidence() throws IOException {
+        addMergedPullRequest(1, "OrderService.java", "OrderProjection.java");
+        addMergedPullRequest(2, "OrderService.java", "OrderProjection.java");
+        addMergedPullRequest(3, "OrderService.java", "OrderProjection.java");
+        PullRequestHistoryLearner.learn(projectRoot, REPOSITORY, provider, store);
+
+        FakeGitHubTransport incrementalTransport = new FakeGitHubTransport();
+        incrementalTransport.acceptToken(TOKEN, "octocat");
+        RepositoryProvider incrementalProvider = new GitHubRepositoryProvider(TOKEN, incrementalTransport);
+        Path incrementalProjectRoot = Files.createTempDirectory("athena-pr-history-learner-test-incremental-");
+        try {
+            ProjectMemoryStore incrementalStore = new ProjectMemoryStore(incrementalProjectRoot);
+            addMergedPullRequest(incrementalTransport, 1, "OrderService.java", "OrderProjection.java");
+            PullRequestHistoryLearner.learn(incrementalProjectRoot, REPOSITORY, incrementalProvider, incrementalStore);
+            addMergedPullRequest(incrementalTransport, 2, "OrderService.java", "OrderProjection.java");
+            addMergedPullRequest(incrementalTransport, 3, "OrderService.java", "OrderProjection.java");
+            PullRequestHistoryLearner.learn(incrementalProjectRoot, REPOSITORY, incrementalProvider, incrementalStore);
+
+            assertThat(incrementalStore.entries()).isEqualTo(store.entries());
+        } finally {
+            TempDirectories.deleteRecursively(incrementalProjectRoot);
+        }
+    }
+
     private void addMergedPullRequest(int number, String... files) {
+        addMergedPullRequest(transport, number, files);
+    }
+
+    private static void addMergedPullRequest(FakeGitHubTransport transport, int number, String... files) {
         transport.addClosedPullRequest(REPOSITORY, number, "PR " + number, true);
-        registerContent(number, files);
+        registerContent(transport, number, files);
     }
 
     private void addRejectedPullRequest(int number, String... files) {
         transport.addClosedPullRequest(REPOSITORY, number, "PR " + number, false);
-        registerContent(number, files);
+        registerContent(transport, number, files);
     }
 
     private void addOpenPullRequest(int number, String... files) {
         transport.addOpenPullRequest(REPOSITORY, number, "PR " + number);
-        registerContent(number, files);
+        registerContent(transport, number, files);
     }
 
-    private void registerContent(int number, String... files) {
+    private static void registerContent(FakeGitHubTransport transport, int number, String... files) {
         transport.addPullRequestDetail(REPOSITORY, number, "PR " + number, "octocat",
                 "base-" + number, "head-" + number);
         for (String file : files) {
