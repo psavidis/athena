@@ -1,6 +1,7 @@
 package com.athena.github;
 
 import com.athena.repository.ChangedFile;
+import com.athena.repository.ClosedPullRequestSummary;
 import com.athena.repository.Commit;
 import com.athena.repository.PullRequestSummary;
 import com.athena.repository.Repository;
@@ -64,6 +65,17 @@ public class HttpGitHubTransport implements GitHubTransport {
         List<PullRequestSummary> pullRequests = new ArrayList<>();
         for (JsonNode pr : body) {
             pullRequests.add(new PullRequestSummary(pr.path("number").asInt(), pr.path("title").asText()));
+        }
+        return pullRequests;
+    }
+
+    @Override
+    public List<ClosedPullRequestSummary> fetchClosedPullRequests(String token, String repositoryFullName) {
+        JsonNode body = get(token, "/repos/" + repositoryFullName + "/pulls?state=closed", repositoryFullName);
+        List<ClosedPullRequestSummary> pullRequests = new ArrayList<>();
+        for (JsonNode pr : body) {
+            pullRequests.add(new ClosedPullRequestSummary(
+                    pr.path("number").asInt(), pr.path("title").asText(), pr.hasNonNull("merged_at")));
         }
         return pullRequests;
     }

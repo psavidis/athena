@@ -23,6 +23,12 @@ public interface RepositoryProvider {
     List<PullRequestSummary> openPullRequests(String repositoryFullName);
 
     /**
+     * The closed Pull Requests on the given repository, each flagged as
+     * merged or closed without merging (ticket #171).
+     */
+    List<ClosedPullRequestSummary> closedPullRequests(String repositoryFullName);
+
+    /**
      * Imports a specific Pull Request's metadata, revisions, commits, and
      * changed files (with diffs where available).
      */

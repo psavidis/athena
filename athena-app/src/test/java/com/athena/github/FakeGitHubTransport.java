@@ -1,6 +1,7 @@
 package com.athena.github;
 
 import com.athena.repository.ChangedFile;
+import com.athena.repository.ClosedPullRequestSummary;
 import com.athena.repository.Commit;
 import com.athena.repository.PullRequestSummary;
 import com.athena.repository.Repository;
@@ -24,6 +25,7 @@ public class FakeGitHubTransport implements GitHubTransport {
     private final Map<String, String> tokenToUsername = new HashMap<>();
     private final Map<String, List<Repository>> tokenToRepositories = new HashMap<>();
     private final Map<String, List<PullRequestSummary>> repoToOpenPulls = new HashMap<>();
+    private final Map<String, List<ClosedPullRequestSummary>> repoToClosedPulls = new HashMap<>();
     private final Map<Key, PullRequestDetail> pullRequestDetails = new HashMap<>();
     private final Map<Key, List<Commit>> pullRequestCommits = new HashMap<>();
     private final Map<Key, List<ChangedFile>> pullRequestChangedFiles = new HashMap<>();
@@ -58,6 +60,11 @@ public class FakeGitHubTransport implements GitHubTransport {
     public void addOpenPullRequest(String repositoryFullName, int number, String title) {
         repoToOpenPulls.computeIfAbsent(repositoryFullName, k -> new ArrayList<>())
                 .add(new PullRequestSummary(number, title));
+    }
+
+    public void addClosedPullRequest(String repositoryFullName, int number, String title, boolean merged) {
+        repoToClosedPulls.computeIfAbsent(repositoryFullName, k -> new ArrayList<>())
+                .add(new ClosedPullRequestSummary(number, title, merged));
     }
 
     public void addPullRequestDetail(String repositoryFullName, int number, String title, String author,
@@ -135,6 +142,12 @@ public class FakeGitHubTransport implements GitHubTransport {
     public List<PullRequestSummary> fetchOpenPullRequests(String token, String repositoryFullName) {
         requireValidToken(token);
         return repoToOpenPulls.getOrDefault(repositoryFullName, List.of());
+    }
+
+    @Override
+    public List<ClosedPullRequestSummary> fetchClosedPullRequests(String token, String repositoryFullName) {
+        requireValidToken(token);
+        return repoToClosedPulls.getOrDefault(repositoryFullName, List.of());
     }
 
     @Override
