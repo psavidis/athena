@@ -38,6 +38,12 @@ public class ProjectMemoryStore {
         this.memoryFile = projectRoot.resolve(".athena").resolve("memory").resolve("memory.json");
     }
 
+    /**
+     * Records {@code entry}, replacing any existing entry for the same {@link MemoryEntry#fact()}
+     * in place rather than adding a duplicate — an upsert (ticket #174) that lets a learner
+     * revise a fact's evidence/confidence as more supporting evidence arrives across incremental
+     * passes, without needing to track "have I already recorded this exact fact" itself.
+     */
     public synchronized void record(MemoryEntry entry) {
         ArrayNode entries = readEntries();
         ObjectNode node = json.createObjectNode();
@@ -45,8 +51,22 @@ public class ProjectMemoryStore {
         node.put("evidence", entry.evidence());
         node.put("confidence", entry.confidence());
         node.put("developerConfirmed", entry.developerConfirmed());
-        entries.add(node);
+        int existingIndex = indexOfFact(entries, entry.fact());
+        if (existingIndex >= 0) {
+            entries.set(existingIndex, node);
+        } else {
+            entries.add(node);
+        }
         write(entries);
+    }
+
+    private static int indexOfFact(ArrayNode entries, String fact) {
+        for (int i = 0; i < entries.size(); i++) {
+            if (entries.get(i).path("fact").asText().equals(fact)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public List<MemoryEntry> entries() {
