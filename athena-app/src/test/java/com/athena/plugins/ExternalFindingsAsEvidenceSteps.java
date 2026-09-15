@@ -69,10 +69,53 @@ public class ExternalFindingsAsEvidenceSteps {
                 + "}\n");
     }
 
+    @Given("a base and head revision where a symbol is renamed")
+    public void a_base_and_head_revision_where_a_symbol_is_renamed() {
+        the_pr_renames_a_symbol();
+    }
+
+    @Given("ESLint is configured as a provider")
+    public void eslint_is_configured_as_a_provider() {
+        registerProvider(new ESLintAnalysisProvider());
+    }
+
+    @Given("a JavaScript project with ESLint installed and configured")
+    public void a_javascript_project_with_eslint_installed_and_configured() throws IOException, InterruptedException {
+        EslintTestFixture.installInto(headRoot);
+    }
+
+    @Given("a JavaScript project without ESLint installed")
+    public void a_javascript_project_without_eslint_installed() {
+        // No-op: headRoot has no node_modules/.bin/eslint unless installInto() above is called,
+        // which is exactly the "ESLint unavailable" condition this scenario exercises.
+    }
+
+    @Given("a JavaScript file {string} with an unused variable")
+    public void a_javascript_file_with_an_unused_variable(String fileName) {
+        writeFile(headRoot, fileName, "function run() {\n"
+                + "  var total = 42;\n"
+                + "  return 1;\n"
+                + "}\n"
+                + "module.exports = { run };\n");
+    }
+
+    @Given("a JavaScript file {string} with no ESLint-detectable issues")
+    public void a_javascript_file_with_no_eslint_detectable_issues(String fileName) {
+        writeFile(headRoot, fileName, "function add(left, right) {\n"
+                + "  return left + right;\n"
+                + "}\n\n"
+                + "module.exports = { add };\n");
+    }
+
     @When("the PR is analyzed")
     public void the_pr_is_analyzed() {
         PrAnalyzer prAnalyzer = new PrAnalyzer(PluginRegistry.languagePlugins(), PluginRegistry.frameworkPlugins(), providers);
         result = prAnalyzer.analyze(baseRoot, headRoot);
+    }
+
+    @When("the PR is analyzed with ESLint configured as a provider")
+    public void the_pr_is_analyzed_with_eslint_configured_as_a_provider() {
+        the_pr_is_analyzed();
     }
 
     @Then("the analysis result includes a finding from {string} on {string}")
@@ -93,9 +136,19 @@ public class ExternalFindingsAsEvidenceSteps {
         assertThat(result.externalFindings()).isEmpty();
     }
 
+    @Then("the analysis result includes no finding from {string}")
+    public void the_analysis_result_includes_no_finding_from(String providerId) {
+        assertThat(result.externalFindings()).noneMatch(finding -> finding.providerId().equals(providerId));
+    }
+
     @Then("the analysis result still detects the rename as a Change")
     public void the_analysis_result_still_detects_the_rename() {
         assertThat(result.changes()).anyMatch(change -> change.kind() == TransformationKind.RENAME_SYMBOL);
+    }
+
+    @Then("the analysis result still classifies the renamed symbol as a Change")
+    public void the_analysis_result_still_classifies_the_renamed_symbol_as_a_change() {
+        the_analysis_result_still_detects_the_rename();
     }
 
     @Then("the analysis result's Change classification is unaffected by the external finding")
@@ -109,8 +162,12 @@ public class ExternalFindingsAsEvidenceSteps {
     }
 
     private void write(Path root, String className, String content) {
+        writeFile(root, className + ".java", content);
+    }
+
+    private void writeFile(Path root, String fileName, String content) {
         try {
-            Files.writeString(root.resolve(className + ".java"), content);
+            Files.writeString(root.resolve(fileName), content);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
