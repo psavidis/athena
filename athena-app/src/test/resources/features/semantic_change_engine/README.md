@@ -32,7 +32,10 @@ module owns the step definitions that implement them:
   `external_findings_as_evidence.feature` (ticket #114/#149): both
   exercise `PrAnalyzer` end to end through `PluginRegistry`-discovered
   plugins, so they need both `athena-core` and `athena-plugin-java` on the
-  classpath, which only `athena-app` has. `eslint_analysis_provider.feature`
+  classpath, which only `athena-app` has. `pmd_analysis_provider.feature`
+  (ticket #114/#116) lives here for the same reason, plus needing the real
+  `net.sourceforge.pmd:pmd-java` dependency this module alone carries — see
+  `com.athena.plugins.PmdAnalysisProvider`. `eslint_analysis_provider.feature`
   (ticket #114/#117) lives here for the same reason, plus needing the real
   ESLint CLI, resolved from the analyzed project's own local installation
   — see `com.athena.plugins.ESLintAnalysisProvider`.

@@ -40,6 +40,7 @@
     <spring-boot.version>3.3.4</spring-boot.version>
     <testcontainers.version>1.21.4</testcontainers.version>
     <archunit.version>1.4.2</archunit.version>
+    <pmd.version>7.27.0</pmd.version>
   </properties>
 
   <!--
@@ -84,6 +85,16 @@
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
         <version>${jackson.version}</version>
+      </dependency>
+
+      <!-- PMD's own documented in-process embedding API (PmdAnalysis/PMDConfiguration,
+           ticket #114/#116) — BSD-style license, pinned deliberately per the ticket's
+           "no automatic PMD version management" scope note. Only athena-app depends on
+           this; athena-core stays ignorant of it (see PmdAnalysisProvider). -->
+      <dependency>
+        <groupId>net.sourceforge.pmd</groupId>
+        <artifactId>pmd-java</artifactId>
+        <version>${pmd.version}</version>
       </dependency>
 
       <dependency>
