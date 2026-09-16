@@ -14,6 +14,7 @@ import { AthenaTopBar, ErrorState, FullScreenLoader } from './ui'
 import ZoomAltitudeRail, { populatedStops, type AltitudeStop } from './ZoomAltitudeRail'
 import ZoomAltitudeContent, { type NodeSelection } from './ZoomAltitudeContent'
 import DetailDrawer, { type DrawerSelection } from './DetailDrawer'
+import ContextRewindPage from './ContextRewindPage'
 import FileFirstMode, { type FileRow } from './FileFirstMode'
 import { conceptItemId, fileItemId, territoryItemId } from './canvasItemId'
 import { KEY_BINDINGS } from './keyboardBindings'
@@ -128,8 +129,6 @@ export default function SemanticCanvasPage({
   onNoPullRequestSelected,
   liveSession,
   liveSessionPanel,
-  onOpenContextRewind,
-  initialFocusedTerritory,
 }: {
   pullRequest: ImportedPullRequest | null
   // The repo/PR switcher (ticket #128 follow-up), owned by App.tsx and
@@ -155,13 +154,6 @@ export default function SemanticCanvasPage({
   // rendered into this page's own top bar (ticket #158) — owned by App.tsx,
   // the same way `picker` already is.
   liveSessionPanel?: React.ReactNode
-  /** Opens Context Rewind for a file selection's entity (ticket #187), forwarded straight
-   * through to the detail drawer's own Rewind affordance. */
-  onOpenContextRewind?: (entityName: string) => void
-  /** Seeds the initially-focused territory (ticket #191's Context Map "return to the canvas
-   * focused on a related module") — only an initial value, not a controlled prop, since this
-   * page owns its own subsequent territory navigation. */
-  initialFocusedTerritory?: string
 }) {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['module-topology'],
@@ -169,7 +161,12 @@ export default function SemanticCanvasPage({
     retry: false,
   })
   const [camera, setCamera] = useState<Camera>(INITIAL_CAMERA)
-  const [focusedTerritory, setFocusedTerritory] = useState<string | undefined>(initialFocusedTerritory)
+  const [focusedTerritory, setFocusedTerritory] = useState<string | undefined>(undefined)
+  // Context Rewind (ticket #187), opened from the detail drawer's own Rewind affordance for a
+  // file selection — rendered as a full-cover overlay over this still-mounted page (ticket #194),
+  // not a page-level swap, so the canvas's own state (camera position, this territory focus) is
+  // preserved rather than lost to a remount when the developer returns.
+  const [contextRewindEntityName, setContextRewindEntityName] = useState<string | undefined>(undefined)
   const [currentStop, setCurrentStop] = useState<AltitudeStop | undefined>(undefined)
   const [showLayerBadges, setShowLayerBadges] = useState(false)
   const [instantTransition, setInstantTransition] = useState(false)
@@ -865,8 +862,20 @@ export default function SemanticCanvasPage({
         onJumpToFile={jumpToFile}
         onOpenComments={openCommentsDrawer}
         onCommentPosted={() => lastFocusedBeforeDrawerRef.current?.focus()}
-        onOpenContextRewind={onOpenContextRewind}
+        onOpenContextRewind={setContextRewindEntityName}
       />
+      {contextRewindEntityName && (
+        <div className="absolute inset-0 z-50 bg-canvas-paper">
+          <ContextRewindPage
+            entityName={contextRewindEntityName}
+            onBack={() => setContextRewindEntityName(undefined)}
+            onOpenModule={(moduleName) => {
+              setContextRewindEntityName(undefined)
+              setFocusedTerritory(moduleName)
+            }}
+          />
+        </div>
+      )}
     </div>
   )
 }
