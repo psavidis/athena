@@ -589,11 +589,20 @@ export async function saveFindingToKnowledgeBase(findingId: string): Promise<Kno
  * scheme (see SemanticCanvasPage.tsx's canvasItemId helper) and is opaque
  * to the backend, which stores it as a new AnnotationScope kind.
  */
+export interface CanvasCommentReply {
+  id: string
+  author: string
+  text: string
+}
+
 export interface CanvasComment {
   id: string
   author: string
   postedAt: string
   text: string
+  /** Ticket #159: no backend support yet (see `resolveCanvasComment`'s own note) — defaults to unresolved/no replies for a response that doesn't send them. */
+  resolved: boolean
+  replies: CanvasCommentReply[]
 }
 
 function canvasCommentsUrl(itemId: string): string {
@@ -662,6 +671,40 @@ export async function deleteCanvasComment(itemId: string, commentId: string): Pr
   })
   if (response.status === 401) {
     throw new NotConnectedError()
+  }
+  return asJson(response)
+}
+
+/**
+ * Ticket #159 introduces resolve/unresolve and replies for canvas comments
+ * (keyboard-first parity work uncovered that neither existed yet, even via
+ * mouse). These two endpoints have no backend counterpart yet —
+ * `CanvasCommentController`/`AnnotationBoard` only support add/edit/delete
+ * — flagged as a follow-up the same way #160 flagged the sync-idempotency
+ * gap that became #183, rather than expanding this ticket into an
+ * untested backend change.
+ */
+export async function resolveCanvasComment(itemId: string, commentId: string): Promise<CanvasComment[]> {
+  const response = await fetch(`${canvasCommentsUrl(itemId)}/${encodeURIComponent(commentId)}/resolve`, {
+    method: 'PUT',
+  })
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  return asJson(response)
+}
+
+export async function replyToCanvasComment(itemId: string, commentId: string, text: string): Promise<CanvasComment[]> {
+  const response = await fetch(`${canvasCommentsUrl(itemId)}/${encodeURIComponent(commentId)}/replies`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text }),
+  })
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 400) {
+    throw new BlankAnnotationError()
   }
   return asJson(response)
 }

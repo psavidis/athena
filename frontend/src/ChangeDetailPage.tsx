@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { addComment, addPrivateNote, getChangeDetail, type TransformationKind } from './api'
 import { DiffView, ErrorState, LoadingState, PageShell, PrimaryButton, SecondaryButton, SectionLabel } from './ui'
+import { KEY_BINDINGS } from './keyboardBindings'
 
 const KIND_LABELS: Record<TransformationKind, string> = {
   RENAME_SYMBOL: 'Rename',
@@ -90,7 +91,20 @@ export default function ChangeDetailPage({ changeKey, onBack }: { changeKey: str
         <Section title="Impact — Files">
           <ul className="space-y-1 text-sm text-ink-700">
             {data.files.map((file) => (
-              <li key={file} className="font-mono text-xs text-ink-700">
+              <li
+                key={file}
+                data-testid="touched-file"
+                tabIndex={0}
+                className="rounded font-mono text-xs text-ink-700 outline-none focus:ring-2 focus:ring-inset focus:ring-accent"
+                onKeyDown={(e) => {
+                  if (e.key !== KEY_BINDINGS.nextItem) {
+                    return
+                  }
+                  const items = Array.from(document.querySelectorAll<HTMLElement>('[data-testid="touched-file"]'))
+                  const index = items.indexOf(e.currentTarget)
+                  items[index + 1]?.focus()
+                }}
+              >
                 {file}
               </li>
             ))}

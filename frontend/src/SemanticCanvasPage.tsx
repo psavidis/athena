@@ -16,6 +16,8 @@ import ZoomAltitudeContent, { type NodeSelection } from './ZoomAltitudeContent'
 import DetailDrawer, { type DrawerSelection } from './DetailDrawer'
 import FileFirstMode, { type FileRow } from './FileFirstMode'
 import { conceptItemId, fileItemId, territoryItemId } from './canvasItemId'
+import { KEY_BINDINGS } from './keyboardBindings'
+import { isTextEntryTarget } from './keyboardShortcut'
 
 /**
  * The Semantic Canvas (tickets #129/#130): replaces the Semantic Change
@@ -182,6 +184,20 @@ export default function SemanticCanvasPage({
   const [pendingExplainTarget, setPendingExplainTarget] = useState<string | undefined>(undefined)
   const dragState = useRef<{ startX: number; startY: number; cameraX: number; cameraY: number } | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  // Keyboard navigation (ticket #159): the zoom-altitude stop history for
+  // "previous semantic level" (Backspace), the item that had focus right
+  // before the detail drawer opened (so closing it — Escape or the mouse ✕ —
+  // returns focus there), and a flag so the "landed on a new altitude stop"
+  // effect below knows to move focus into the first node only when that
+  // landing was itself triggered from the keyboard (ArrowRight into a
+  // territory), not on every profile refetch.
+  const stopHistoryRef = useRef<AltitudeStop[]>([])
+  const lastFocusedBeforeDrawerRef = useRef<HTMLElement | null>(null)
+  const pendingKeyboardEntryFocusRef = useRef(false)
+  // Higher/lower-level jump (ticket #159): the focused component's own label,
+  // so once the target stop's nodes render we can refocus *that same
+  // component's* representation there rather than just the first node.
+  const pendingFocusLabelRef = useRef<string | null>(null)
 
   const { data: territoryProfile } = useQuery({
     queryKey: ['module-semantic-profile', focusedTerritory],
@@ -235,11 +251,30 @@ export default function SemanticCanvasPage({
       const stops = populatedStops(territoryProfile)
       const forced = forcedLandingStop.current
       forcedLandingStop.current = undefined
+      stopHistoryRef.current = []
       setCurrentStop(forced && stops.includes(forced) ? forced : stops[0])
     } else {
       setCurrentStop(undefined)
     }
   }, [territoryProfile])
+
+  // Keyboard dive-in (ticket #159): once the landing stop above has actually
+  // rendered its nodes, move focus into the first one — diveInto itself can't
+  // do this synchronously since the profile fetch (and therefore the nodes)
+  // isn't ready until this later render.
+  useEffect(() => {
+    if (pendingKeyboardEntryFocusRef.current && currentStop) {
+      pendingKeyboardEntryFocusRef.current = false
+      document.querySelector<HTMLElement>('[data-testid="concept-node"], [data-testid="file-node"]')?.focus()
+    }
+    if (pendingFocusLabelRef.current !== null && currentStop) {
+      const label = pendingFocusLabelRef.current
+      pendingFocusLabelRef.current = null
+      const sameComponent = document.querySelector<HTMLElement>(`[data-item-label="${CSS.escape(label)}"]`)
+      const target = sameComponent ?? document.querySelector<HTMLElement>('[data-testid="concept-node"], [data-testid="file-node"]')
+      target?.focus()
+    }
+  }, [currentStop])
 
   // "Explain this" (ticket #132): once Contextual mode's viewport has
   // actually mounted (containerRef.current is null until then), dive into
@@ -293,6 +328,140 @@ export default function SemanticCanvasPage({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [liveSession?.isFollowing, liveSession?.sharedTerritory, data])
+
+  // Centralized keyboard interaction (ticket #159's Technical Requirements
+  // ask for one shortcut system rather than scattered handlers): a single
+  // document-level listener, keyed off document.activeElement's own
+  // data-testid/data-item-id rather than per-node handlers, so "next/
+  // previous item", "enter/leave", and zoom all work the same way
+  // regardless of which node kind currently has focus. Registered on
+  // `document` (not a React onKeyDown prop) so it also catches shortcuts
+  // dispatched with no specific target element (zoom, previous-level).
+  // diveInto/resetCamera/zoomBy/selectStop are hoisted function
+  // declarations further down this same component body — safe to
+  // reference here, same reasoning as the "Explain this"/Live Session
+  // effects above.
+  useEffect(() => {
+    function focusAdjacentSameTestId(current: HTMLElement, direction: 1 | -1) {
+      const testId = current.getAttribute('data-testid')
+      if (!testId) {
+        return
+      }
+      const items = Array.from(document.querySelectorAll<HTMLElement>(`[data-testid="${testId}"]`))
+      const index = items.indexOf(current)
+      items[index + direction]?.focus()
+    }
+
+    function handleKeyDown(e: KeyboardEvent) {
+      const active = document.activeElement instanceof HTMLElement ? document.activeElement : null
+
+      // Escape always works, even while typing (cancelling a draft) — every
+      // other shortcut below must never intercept normal typing.
+      if (e.key === KEY_BINDINGS.leaveRegion) {
+        if (drawerSelection !== undefined) {
+          setDrawerSelection(undefined)
+          lastFocusedBeforeDrawerRef.current?.focus()
+        } else if (active && containerRef.current?.contains(active)) {
+          active.blur()
+        }
+        return
+      }
+      if (isTextEntryTarget(e.target)) {
+        return
+      }
+
+      if (e.key === KEY_BINDINGS.nextItem && active) {
+        focusAdjacentSameTestId(active, 1)
+        return
+      }
+      if (e.key === KEY_BINDINGS.previousItem && active) {
+        focusAdjacentSameTestId(active, -1)
+        return
+      }
+      if (e.key === KEY_BINDINGS.enterItem && active?.tagName === 'BUTTON') {
+        active.click()
+        return
+      }
+      if (e.key === KEY_BINDINGS.createComment && active) {
+        const itemId = active.getAttribute('data-item-id')
+        const itemLabel = active.getAttribute('data-item-label')
+        if (itemId && itemLabel) {
+          openCommentsDrawer(itemId, itemLabel)
+        }
+        return
+      }
+      if (e.key === KEY_BINDINGS.enterElementContext) {
+        if (active?.getAttribute('data-testid') === 'territory' && data) {
+          const moduleName = active.getAttribute('data-module-name')
+          const box = layoutTerritories(data).find((b) => b.territory.moduleName === moduleName)
+          if (box) {
+            pendingKeyboardEntryFocusRef.current = true
+            diveInto(box)
+          }
+        }
+        return
+      }
+      if (e.key === KEY_BINDINGS.leaveElementContext) {
+        if (focusedTerritory !== undefined) {
+          const moduleName = focusedTerritory
+          resetCamera()
+          document
+            .querySelector<HTMLElement>(`[data-testid="territory"][data-module-name="${CSS.escape(moduleName)}"]`)
+            ?.focus()
+        }
+        return
+      }
+      // "Zoom" (ticket #159's Functional Requirement 5) means the semantic
+      // zoom-altitude level while a territory is focused — this app's real
+      // equivalent of "zoom in/out" once inside one — and falls back to the
+      // literal camera scale (matching the mouse +/- buttons) at the bare
+      // territory map, where there is no altitude stop to move along yet.
+      if (e.key === KEY_BINDINGS.zoomIn || e.key === KEY_BINDINGS.zoomOut) {
+        if (focusedTerritory !== undefined && territoryProfile && currentStop) {
+          const stops = populatedStops(territoryProfile)
+          const delta = e.key === KEY_BINDINGS.zoomIn ? 1 : -1
+          const nextStop = stops[stops.indexOf(currentStop) + delta]
+          if (nextStop) {
+            selectStop(nextStop)
+          }
+        } else {
+          zoomBy(e.key === KEY_BINDINGS.zoomIn ? ZOOM_STEP : -ZOOM_STEP)
+        }
+        return
+      }
+      // Higher/lower-level (ticket #159): the same focused component's own
+      // representation at a shallower/deeper stop, when one exists there —
+      // unlike zoomIn/zoomOut, which just move along the stops regardless
+      // of what's currently focused.
+      if (e.key === KEY_BINDINGS.higherLevel || e.key === KEY_BINDINGS.lowerLevel) {
+        if (focusedTerritory !== undefined && territoryProfile && currentStop) {
+          const stops = populatedStops(territoryProfile)
+          const delta = e.key === KEY_BINDINGS.lowerLevel ? 1 : -1
+          const nextStop = stops[stops.indexOf(currentStop) + delta]
+          const label = active?.getAttribute('data-item-label') ?? null
+          if (nextStop) {
+            pendingFocusLabelRef.current = label
+            selectStop(nextStop)
+          }
+        }
+        return
+      }
+      if (e.key === KEY_BINDINGS.resetView) {
+        resetCamera()
+        return
+      }
+      if (e.key === KEY_BINDINGS.previousZoomLevel) {
+        const previous = stopHistoryRef.current.pop()
+        if (previous) {
+          selectStop(previous)
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, camera, focusedTerritory, currentStop, drawerSelection])
 
   // Center the territory map in the viewport on first load (prototype:
   // the map opens centered, never pinned to canvas-space (0,0) at the
@@ -410,8 +579,25 @@ export default function SemanticCanvasPage({
   }
 
   function selectStop(stop: AltitudeStop) {
+    if (currentStop && currentStop !== stop) {
+      stopHistoryRef.current.push(currentStop)
+    }
     setInstantTransition(false)
     setCurrentStop(stop)
+  }
+
+  // Opens the drawer with `selection`, remembering whatever had keyboard
+  // focus right before — but only the FIRST time (ticket #159's "return
+  // focus to the item it was opened from"): switching kinds inside an
+  // already-open drawer (e.g. a file's detail → its comment thread, via the
+  // drawer's own "Comment" button) must not overwrite that with the
+  // drawer's own internal button, or closing later would refocus the wrong
+  // thing.
+  function openDrawer(selection: DrawerSelection) {
+    if (drawerSelection === undefined) {
+      lastFocusedBeforeDrawerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    }
+    setDrawerSelection(selection)
   }
 
   // Per-node-kind zoom-in on selection (ticket #130): a file/symbol node
@@ -428,14 +614,14 @@ export default function SemanticCanvasPage({
     const targetScale = selection.kind === 'file' ? MAX_SCALE : Math.min(MAX_SCALE, INITIAL_CAMERA.scale + 0.6)
     setCamera((current) => ({ ...current, scale: clampScale(targetScale) }))
     if (selection.kind === 'concept') {
-      setDrawerSelection({
+      openDrawer({
         kind: 'concept',
         entry: selection.entry,
         itemId: conceptItemId(focusedTerritory!, selection.entry.conceptName),
       })
     } else {
       const territory = topology.territories.find((t) => t.moduleName === focusedTerritory)
-      setDrawerSelection({
+      openDrawer({
         kind: 'file',
         fileName: selection.fileName,
         fromConceptName: selection.owningEntry.conceptName,
@@ -454,13 +640,13 @@ export default function SemanticCanvasPage({
   }
 
   function openOverviewDrawer() {
-    setDrawerSelection({ kind: 'overview' })
+    openDrawer({ kind: 'overview' })
   }
 
   // Opens a canvas item's comment thread (ticket #134) — clicking a pin
   // badge, or the drawer's own Comment affordance for an item with none yet.
   function openCommentsDrawer(itemId: string, itemLabel: string) {
-    setDrawerSelection({ kind: 'comments', itemId, itemLabel })
+    openDrawer({ kind: 'comments', itemId, itemLabel })
   }
 
   // File-First's click-to-diff (ticket #132): opens the same shared detail
@@ -590,6 +776,7 @@ export default function SemanticCanvasPage({
             <div className="absolute bottom-6 right-6 flex gap-2">
               <button
                 aria-label="Zoom in"
+                title={`Zoom in (${KEY_BINDINGS.zoomIn})`}
                 className="rounded-full border border-canvas-line-strong bg-canvas-paper-raised px-3 py-2 text-sm text-canvas-ink-soft shadow-[var(--shadow-canvas)] hover:border-canvas-gold"
                 onClick={() => zoomBy(ZOOM_STEP)}
               >
@@ -597,6 +784,7 @@ export default function SemanticCanvasPage({
               </button>
               <button
                 aria-label="Zoom out"
+                title={`Zoom out (${KEY_BINDINGS.zoomOut})`}
                 className="rounded-full border border-canvas-line-strong bg-canvas-paper-raised px-3 py-2 text-sm text-canvas-ink-soft shadow-[var(--shadow-canvas)] hover:border-canvas-gold"
                 onClick={() => zoomBy(-ZOOM_STEP)}
               >
@@ -604,6 +792,7 @@ export default function SemanticCanvasPage({
               </button>
               <button
                 aria-label="Reset view"
+                title={`Reset view (${KEY_BINDINGS.resetView})`}
                 className="rounded-full border border-canvas-line-strong bg-canvas-paper-raised px-3 py-2 text-sm text-canvas-ink-soft shadow-[var(--shadow-canvas)] hover:border-canvas-gold"
                 onClick={resetCamera}
               >
@@ -660,9 +849,13 @@ export default function SemanticCanvasPage({
       <DetailDrawer
         selection={drawerSelection}
         topology={topology}
-        onClose={() => setDrawerSelection(undefined)}
+        onClose={() => {
+          setDrawerSelection(undefined)
+          lastFocusedBeforeDrawerRef.current?.focus()
+        }}
         onJumpToFile={jumpToFile}
         onOpenComments={openCommentsDrawer}
+        onCommentPosted={() => lastFocusedBeforeDrawerRef.current?.focus()}
       />
     </div>
   )
@@ -939,10 +1132,12 @@ function TerritoryCard({
         aria-label={`${territory.moduleName} territory`}
         data-testid="territory"
         data-module-name={territory.moduleName}
+        data-item-id={territoryItemId(territory.moduleName)}
+        data-item-label={territory.moduleName}
         data-status={territory.status}
         aria-current={focused ? 'true' : undefined}
         onClick={onClick}
-        className={`group relative flex h-full w-full flex-col justify-between rounded-[20px] p-4 pb-3 text-left transition-[box-shadow,transform] hover:-translate-y-0.5 hover:shadow-[var(--shadow-canvas-lift)] ${meta.className}`}
+        className={`group relative flex h-full w-full flex-col justify-between rounded-[20px] p-4 pb-3 text-left transition-[box-shadow,transform] hover:-translate-y-0.5 hover:shadow-[var(--shadow-canvas-lift)] focus:outline-none focus:ring-2 focus:ring-canvas-gold ${meta.className}`}
       >
         {territory.status === 'NEW' && (
           <div className="pointer-events-none absolute inset-0 rounded-[20px] animate-canvas-territory-pulse motion-reduce:animate-none" />

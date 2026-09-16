@@ -10,6 +10,7 @@ import {
   type AiFinding,
 } from './api'
 import { BackLink, Card, ErrorState, LoadingState, PageShell, PrimaryButton, SecondaryButton, SectionLabel } from './ui'
+import { KEY_BINDINGS } from './keyboardBindings'
 
 type KnowledgeSaveState = 'saved' | 'error'
 
@@ -160,7 +161,21 @@ function FindingsList({
       {findings.map((finding) => {
         const disposition = DISPOSITION_META[finding.disposition]
         return (
-          <div key={finding.id} className="px-4 py-3.5">
+          <div
+            key={finding.id}
+            data-testid="finding-item"
+            tabIndex={0}
+            className="px-4 py-3.5 outline-none focus:ring-2 focus:ring-inset focus:ring-accent"
+            onKeyDown={(e) => {
+              if (e.key === KEY_BINDINGS.nextFinding) {
+                const items = Array.from(document.querySelectorAll<HTMLElement>('[data-testid="finding-item"]'))
+                const index = items.indexOf(e.currentTarget)
+                items[index + 1]?.focus()
+              } else if (e.key === KEY_BINDINGS.jumpToRelatedChange && finding.jumpTargetChangeKey !== null) {
+                onSelectChange(finding.jumpTargetChangeKey)
+              }
+            }}
+          >
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-sm text-ink-900">{finding.description}</p>

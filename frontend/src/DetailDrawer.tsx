@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
   addCanvasComment,
@@ -6,11 +6,15 @@ import {
   editCanvasComment,
   getCanvasComments,
   getChangeDetail,
+  replyToCanvasComment,
+  resolveCanvasComment,
   type CanvasComment,
   type ModuleTopology,
   type SemanticDimensionEntry,
 } from './api'
 import { DiffView, LoadingState } from './ui'
+import { KEY_BINDINGS } from './keyboardBindings'
+import { isTextEntryTarget } from './keyboardShortcut'
 
 /**
  * What's currently selected on the canvas, driving the detail drawer's
@@ -41,6 +45,7 @@ export default function DetailDrawer({
   onClose,
   onJumpToFile,
   onOpenComments,
+  onCommentPosted,
 }: {
   selection: DrawerSelection | undefined
   topology: ModuleTopology
@@ -50,6 +55,9 @@ export default function DetailDrawer({
    * own Comment affordance, always present for a concept/file selection (not only
    * once it already has a pin), matching the approved prototype's drawer-comment-btn. */
   onOpenComments: (itemId: string, itemLabel: string) => void
+  /** Ticket #159: after posting, focus returns to the item the thread was opened
+   * from (the composer itself stays open/cleared, ready for another comment). */
+  onCommentPosted?: () => void
 }) {
   if (!selection) {
     return null
@@ -59,7 +67,17 @@ export default function DetailDrawer({
   // re-applies the kind-based expand default below, instead of carrying
   // forward whatever expand state the previous item was left in.
   const selectionKey = selection.kind === 'concept' || selection.kind === 'file' ? selection.itemId : selection.kind
-  return <DetailDrawerBody key={selectionKey} selection={selection} topology={topology} onClose={onClose} onJumpToFile={onJumpToFile} onOpenComments={onOpenComments} />
+  return (
+    <DetailDrawerBody
+      key={selectionKey}
+      selection={selection}
+      topology={topology}
+      onClose={onClose}
+      onJumpToFile={onJumpToFile}
+      onOpenComments={onOpenComments}
+      onCommentPosted={onCommentPosted}
+    />
+  )
 }
 
 function DetailDrawerBody({
@@ -68,17 +86,28 @@ function DetailDrawerBody({
   onClose,
   onJumpToFile,
   onOpenComments,
+  onCommentPosted,
 }: {
   selection: DrawerSelection
   topology: ModuleTopology
   onClose: () => void
   onJumpToFile: (fileName: string) => void
   onOpenComments: (itemId: string, itemLabel: string) => void
+  onCommentPosted?: () => void
 }) {
   // Expand/collapse (workspace-layout follow-up): a file's diff is often too
   // tall to read usefully inside the drawer's default strip, so a file
   // selection starts expanded; other kinds start collapsed as before.
   const [isExpanded, setIsExpanded] = useState(selection.kind === 'file')
+  const drawerRef = useRef<HTMLDivElement>(null)
+  // Keyboard entry (ticket #159): opening the drawer moves focus into it, the
+  // same way any other context change here does — except 'comments', which
+  // focuses its own composer textarea instead (see CommentsDrawerContent).
+  useEffect(() => {
+    if (selection.kind !== 'comments') {
+      drawerRef.current?.focus()
+    }
+  }, [selection.kind])
   const title =
     selection.kind === 'concept'
       ? selection.entry.conceptName
@@ -89,9 +118,11 @@ function DetailDrawerBody({
           : 'Footprint'
   return (
     <div
+      ref={drawerRef}
       role="dialog"
       aria-label="Detail drawer"
-      className={`absolute inset-x-0 bottom-0 z-30 flex flex-col rounded-t-2xl border-t border-canvas-line bg-canvas-paper-raised shadow-[0_-8px_24px_rgba(42,38,32,0.1)] transition-[max-height] ${
+      tabIndex={-1}
+      className={`absolute inset-x-0 bottom-0 z-30 flex flex-col rounded-t-2xl border-t border-canvas-line bg-canvas-paper-raised shadow-[0_-8px_24px_rgba(42,38,32,0.1)] outline-none transition-[max-height] ${
         isExpanded ? 'max-h-[88%]' : 'max-h-[46%]'
       }`}
     >
@@ -143,7 +174,7 @@ function DetailDrawerBody({
         {selection.kind === 'concept' && <ConceptDrawerContent entry={selection.entry} onJumpToFile={onJumpToFile} />}
         {selection.kind === 'file' && <FileDrawerContent selection={selection} />}
         {selection.kind === 'overview' && <OverviewDrawerContent topology={topology} />}
-        {selection.kind === 'comments' && <CommentsDrawerContent itemId={selection.itemId} />}
+        {selection.kind === 'comments' && <CommentsDrawerContent itemId={selection.itemId} onCommentPosted={onCommentPosted} />}
       </div>
     </div>
   )
@@ -244,7 +275,7 @@ function OverviewDrawerContent({ topology }: { topology: ModuleTopology }) {
  * hide Edit/Delete behind, unlike the prototype's simulated multi-author
  * thread.
  */
-function CommentsDrawerContent({ itemId }: { itemId: string }) {
+function CommentsDrawerContent({ itemId, onCommentPosted }: { itemId: string; onCommentPosted?: () => void }) {
   const queryClient = useQueryClient()
   const queryKey = ['canvas-comments', itemId]
   const { data: comments, isLoading } = useQuery({
@@ -255,6 +286,22 @@ function CommentsDrawerContent({ itemId }: { itemId: string }) {
   const [draft, setDraft] = useState('')
   const [editingId, setEditingId] = useState<string | undefined>(undefined)
   const [editDraft, setEditDraft] = useState('')
+  const [replyingId, setReplyingId] = useState<string | undefined>(undefined)
+  const [replyDraft, setReplyDraft] = useState('')
+  const newCommentRef = useRef<HTMLTextAreaElement>(null)
+
+  // Keyboard entry into this thread (ticket #159) always lands with focus in
+  // the composer, the same way clicking the drawer's own "Comment" affordance
+  // visually lands the reviewer here — no separate keyboard-only path to track.
+  // Depends on isLoading (not an empty array) because the composer doesn't
+  // exist yet on the first render — the query is still loading and this
+  // renders LoadingState instead — so the ref has nothing to focus until
+  // loading finishes and this effect re-runs.
+  useEffect(() => {
+    if (!isLoading) {
+      newCommentRef.current?.focus()
+    }
+  }, [isLoading])
 
   // Every mutation also invalidates the whole-PR comment-counts query (ticket
   // #134): that query backs both the topbar total and every pin badge on the
@@ -267,6 +314,7 @@ function CommentsDrawerContent({ itemId }: { itemId: string }) {
       queryClient.setQueryData(queryKey, updated)
       invalidateCounts()
       setDraft('')
+      onCommentPosted?.()
     },
   })
   const editMutation = useMutation({
@@ -283,6 +331,24 @@ function CommentsDrawerContent({ itemId }: { itemId: string }) {
       invalidateCounts()
     },
   })
+  const resolveMutation = useMutation({
+    mutationFn: (commentId: string) => resolveCanvasComment(itemId, commentId),
+    onSuccess: (updated) => queryClient.setQueryData(queryKey, updated),
+  })
+  const replyMutation = useMutation({
+    mutationFn: ({ commentId, text }: { commentId: string; text: string }) => replyToCanvasComment(itemId, commentId, text),
+    onSuccess: (updated) => {
+      queryClient.setQueryData(queryKey, updated)
+      setReplyingId(undefined)
+      setReplyDraft('')
+    },
+  })
+
+  function submitDraft() {
+    if (draft.trim().length > 0) {
+      postMutation.mutate(draft)
+    }
+  }
 
   if (isLoading) {
     return <LoadingState />
@@ -308,11 +374,24 @@ function CommentsDrawerContent({ itemId }: { itemId: string }) {
               <CommentEntry
                 key={comment.id}
                 comment={comment}
+                isReplying={replyingId === comment.id}
+                replyDraft={replyDraft}
+                onChangeReplyDraft={setReplyDraft}
                 onEdit={() => {
                   setEditingId(comment.id)
                   setEditDraft(comment.text)
                 }}
                 onDelete={() => deleteMutation.mutate(comment.id)}
+                onToggleResolved={() => resolveMutation.mutate(comment.id)}
+                onStartReply={() => {
+                  setReplyingId(comment.id)
+                  setReplyDraft('')
+                }}
+                onSubmitReply={() => {
+                  if (replyDraft.trim().length > 0) {
+                    replyMutation.mutate({ commentId: comment.id, text: replyDraft })
+                  }
+                }}
               />
             ),
           )}
@@ -320,10 +399,17 @@ function CommentsDrawerContent({ itemId }: { itemId: string }) {
       )}
       <div className="rounded-lg border border-canvas-line-strong bg-canvas-paper">
         <textarea
+          ref={newCommentRef}
           aria-label="New comment"
           placeholder="Leave a note here…"
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === KEY_BINDINGS.submitComment && !e.shiftKey) {
+              e.preventDefault()
+              submitDraft()
+            }
+          }}
           className="min-h-16 w-full resize-y border-none bg-transparent px-3.5 py-3 text-[13px] text-canvas-ink outline-none"
         />
         <div className="flex justify-end gap-2 border-t border-canvas-line px-3.5 py-2">
@@ -337,7 +423,7 @@ function CommentsDrawerContent({ itemId }: { itemId: string }) {
           <button
             type="button"
             disabled={draft.trim().length === 0}
-            onClick={() => postMutation.mutate(draft)}
+            onClick={submitDraft}
             className="rounded-lg bg-canvas-gold-deep px-3 py-1.5 text-xs font-semibold text-canvas-paper-raised disabled:cursor-not-allowed disabled:opacity-40"
           >
             Post comment
@@ -350,20 +436,66 @@ function CommentsDrawerContent({ itemId }: { itemId: string }) {
 
 function CommentEntry({
   comment,
+  isReplying,
+  replyDraft,
+  onChangeReplyDraft,
   onEdit,
   onDelete,
+  onToggleResolved,
+  onStartReply,
+  onSubmitReply,
 }: {
   comment: CanvasComment
+  isReplying: boolean
+  replyDraft: string
+  onChangeReplyDraft: (text: string) => void
   onEdit: () => void
   onDelete: () => void
+  onToggleResolved: () => void
+  onStartReply: () => void
+  onSubmitReply: () => void
 }) {
+  const resolved = comment.resolved ?? false
+  const replies = comment.replies ?? []
   return (
-    <div data-testid="comment-entry" className="rounded-lg border border-canvas-line bg-canvas-paper px-3 py-2.5">
+    <div
+      data-testid="comment-entry"
+      tabIndex={0}
+      className="rounded-lg border border-canvas-line bg-canvas-paper px-3 py-2.5 outline-none focus:ring-2 focus:ring-canvas-gold"
+      onKeyDown={(e) => {
+        // Typing in the nested reply textarea (or any other text entry this
+        // entry ever grows) bubbles up to this same handler — never treat
+        // that as a shortcut meant for when the entry itself has focus.
+        if (isTextEntryTarget(e.target)) {
+          return
+        }
+        if (e.key === KEY_BINDINGS.replyToComment) {
+          onStartReply()
+        } else if (e.key === KEY_BINDINGS.editComment) {
+          onEdit()
+        } else if (e.key === KEY_BINDINGS.resolveComment) {
+          onToggleResolved()
+        }
+      }}
+    >
       <div className="mb-1 flex items-baseline gap-2">
         <span className="text-xs font-semibold text-canvas-ink">{comment.author}</span>
         <span className="text-[11px] text-canvas-ink-faint">{formatTimestamp(comment.postedAt)}</span>
+        <span data-testid="comment-status" className="text-[11px] text-canvas-ink-faint">
+          {resolved ? 'Resolved' : 'Unresolved'}
+        </span>
       </div>
       <p className="mb-2 text-[13px] leading-relaxed text-canvas-ink-soft">{comment.text}</p>
+      {replies.length > 0 && (
+        <div className="mb-2 flex flex-col gap-1.5 border-l-2 border-canvas-line pl-2.5">
+          {replies.map((reply) => (
+            <p key={reply.id} className="text-[12.5px] leading-relaxed text-canvas-ink-soft">
+              <span className="font-semibold text-canvas-ink">{reply.author}: </span>
+              {reply.text}
+            </p>
+          ))}
+        </div>
+      )}
       <div className="flex gap-2">
         <button type="button" onClick={onEdit} className="text-[11.5px] font-semibold text-canvas-ink-soft hover:text-canvas-gold-deep">
           Edit
@@ -371,7 +503,33 @@ function CommentEntry({
         <button type="button" onClick={onDelete} className="text-[11.5px] font-semibold text-canvas-ink-soft hover:text-canvas-brick">
           Delete
         </button>
+        <button type="button" onClick={onStartReply} className="text-[11.5px] font-semibold text-canvas-ink-soft hover:text-canvas-gold-deep">
+          Reply
+        </button>
+        <button type="button" onClick={onToggleResolved} className="text-[11.5px] font-semibold text-canvas-ink-soft hover:text-canvas-gold-deep">
+          {resolved ? 'Unresolve' : 'Resolve'}
+        </button>
       </div>
+      {isReplying && (
+        <div className="mt-2 rounded-lg border border-canvas-line-strong bg-canvas-paper-raised p-2">
+          <textarea
+            aria-label="Reply to comment"
+            autoFocus
+            value={replyDraft}
+            onChange={(e) => onChangeReplyDraft(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === KEY_BINDINGS.submitComment && !e.shiftKey) {
+                e.preventDefault()
+                onSubmitReply()
+              }
+            }}
+            className="mb-1.5 min-h-10 w-full resize-y rounded-md border border-canvas-line bg-canvas-paper px-2 py-1.5 text-[12.5px] text-canvas-ink outline-none"
+          />
+          <button type="button" onClick={onSubmitReply} className="text-[11.5px] font-semibold text-canvas-gold-deep">
+            Post reply
+          </button>
+        </div>
+      )}
     </div>
   )
 }

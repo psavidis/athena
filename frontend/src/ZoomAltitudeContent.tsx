@@ -212,6 +212,7 @@ function DimensionGroupContent({
             key={entry.conceptName}
             entry={entry}
             index={index}
+            itemId={itemId}
             showLayerBadges={showLayerBadges}
             onSelectNode={onSelectNode}
             commentCount={commentCount}
@@ -238,6 +239,7 @@ function DimensionBadge({ dimension }: { dimension: string }) {
 function ConceptNode({
   entry,
   index,
+  itemId,
   showLayerBadges,
   onSelectNode,
   commentCount,
@@ -246,6 +248,9 @@ function ConceptNode({
 }: {
   entry: SemanticDimensionEntry
   index: number
+  /** This node's canvas-item id (ticket #159) — exposed as `data-item-id` so a global
+   * keyboard handler can act on "whatever node currently has focus" without re-deriving it. */
+  itemId: string
   showLayerBadges: boolean
   onSelectNode: (selection: NodeSelection) => void
   /** Comment count for this node's pin badge (ticket #134 follow-up), 0 if none. */
@@ -259,7 +264,9 @@ function ConceptNode({
         type="button"
         data-testid="concept-node"
         data-dimension={entry.dimension}
-        className="animate-canvas-node-appear relative min-w-[180px] max-w-[220px] overflow-hidden rounded-xl border-[1.5px] border-canvas-line-strong bg-canvas-paper-raised text-left shadow-[var(--shadow-canvas)] transition-[box-shadow,transform] hover:-translate-y-px hover:shadow-[var(--shadow-canvas-lift)] motion-reduce:animate-none"
+        data-item-id={itemId}
+        data-item-label={entry.conceptName}
+        className="animate-canvas-node-appear relative min-w-[180px] max-w-[220px] overflow-hidden rounded-xl border-[1.5px] border-canvas-line-strong bg-canvas-paper-raised text-left shadow-[var(--shadow-canvas)] transition-[box-shadow,transform] hover:-translate-y-px hover:shadow-[var(--shadow-canvas-lift)] focus:outline-none focus:ring-2 focus:ring-canvas-gold motion-reduce:animate-none"
         style={staggerStyle(index)}
         onClick={() => onSelectNode({ kind: 'concept', entry })}
       >
@@ -329,7 +336,9 @@ function ArchitectureContent({
               type="button"
               data-testid="concept-node"
               data-dimension={entry.dimension}
-              className="animate-canvas-node-appear relative min-w-[150px] rounded-xl border-2 border-dashed border-canvas-line-strong bg-transparent px-3 py-2.5 text-left transition-colors hover:border-canvas-gold motion-reduce:animate-none"
+              data-item-id={itemId}
+              data-item-label={entry.conceptName}
+              className="animate-canvas-node-appear relative min-w-[150px] rounded-xl border-2 border-dashed border-canvas-line-strong bg-transparent px-3 py-2.5 text-left transition-colors hover:border-canvas-gold focus:outline-none focus:ring-2 focus:ring-canvas-gold motion-reduce:animate-none"
               style={staggerStyle(index)}
               onClick={() => onSelectNode({ kind: 'concept', entry })}
             >
@@ -402,7 +411,9 @@ function StructureContent({
               type="button"
               data-testid="file-node"
               data-file-kind={isConfigFile(file) ? 'config' : 'production'}
-              className="animate-canvas-node-appear relative min-w-[160px] max-w-[220px] rounded-xl border-[1.5px] border-canvas-line-strong bg-canvas-paper-raised px-2.5 py-2 text-left shadow-[var(--shadow-canvas)] transition-[box-shadow,transform] hover:-translate-y-px hover:shadow-[var(--shadow-canvas-lift)] motion-reduce:animate-none"
+              data-item-id={itemId}
+              data-item-label={file}
+              className="animate-canvas-node-appear relative min-w-[160px] max-w-[220px] rounded-xl border-[1.5px] border-canvas-line-strong bg-canvas-paper-raised px-2.5 py-2 text-left shadow-[var(--shadow-canvas)] transition-[box-shadow,transform] hover:-translate-y-px hover:shadow-[var(--shadow-canvas-lift)] focus:outline-none focus:ring-2 focus:ring-canvas-gold motion-reduce:animate-none"
               style={staggerStyle(index)}
               onClick={() => onSelectNode({ kind: 'file', fileName: file, owningEntry: fileOwner.get(file)! })}
             >
