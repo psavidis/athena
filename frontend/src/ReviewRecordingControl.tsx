@@ -4,6 +4,7 @@ import {
   editMoment,
   fetchCaptureDisclosure,
   fetchSummary,
+  MOMENT_KINDS,
   rejectMoment,
   startReviewRecording,
   stopReviewRecording,
@@ -14,15 +15,6 @@ import {
   type ReviewRecordingSummary,
 } from './reviewRecording'
 import { PrimaryButton, SecondaryButton } from './ui'
-
-const MOMENT_KINDS: { kind: MomentKind; label: string }[] = [
-  { kind: 'INSIGHT', label: 'Insight' },
-  { kind: 'QUESTION', label: 'Question' },
-  { kind: 'CONCERN', label: 'Concern' },
-  { kind: 'DECISION', label: 'Decision' },
-  { kind: 'ACTION', label: 'Action' },
-  { kind: 'VERIFICATION', label: 'Verification' },
-]
 
 /**
  * The explicit Start/Stop Review Recording control (ticket #203):

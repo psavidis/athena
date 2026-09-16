@@ -89,6 +89,17 @@ export interface Moment {
   status: MomentStatus
 }
 
+// Shared display label for each moment kind — used wherever a moment is rendered
+// (ReviewRecordingControl's own timeline, and ReviewReplayTimeline's, ticket #211).
+export const MOMENT_KINDS: { kind: MomentKind; label: string }[] = [
+  { kind: 'INSIGHT', label: 'Insight' },
+  { kind: 'QUESTION', label: 'Question' },
+  { kind: 'CONCERN', label: 'Concern' },
+  { kind: 'DECISION', label: 'Decision' },
+  { kind: 'ACTION', label: 'Action' },
+  { kind: 'VERIFICATION', label: 'Verification' },
+]
+
 export interface ReviewRecordingSummary {
   durationSeconds: number
   momentCountsByKind: Record<string, number>
