@@ -4,6 +4,9 @@ import com.athena.contextrewind.ContextNarrativeProvider;
 import com.athena.git.GitRevisionCheckout;
 import com.athena.github.FakeGitHubTransport;
 import com.athena.github.GitHubRepositoryProvider;
+import com.athena.knowledge.KnowledgeProviderResolver;
+import com.athena.knowledge.KnowledgeProviderStore;
+import com.athena.knowledge.ObsidianVaultConfig;
 import com.athena.plugins.PluginRegistry;
 import com.athena.repository.ImportedPullRequest;
 import com.athena.repository.RepositoryProvider;
@@ -51,7 +54,7 @@ class ContextRewindControllerTest {
     private final WebSession session =
             new WebSession(new PrAnalyzer(PluginRegistry.languagePlugins(), PluginRegistry.frameworkPlugins()));
     private final ContextRewindController controller =
-            new ContextRewindController(session, token -> fakeRepositoryProvider, null);
+            new ContextRewindController(session, token -> fakeRepositoryProvider, null, new KnowledgeProviderResolver());
 
     private Path repoDir;
     private Path workDir;
@@ -147,12 +150,52 @@ class ContextRewindControllerTest {
         registerMergedPullRequestTouching(217, "Add retry handling", "PaymentProcessor.java");
         selectPullRequest(baseSha, headSha);
         ContextNarrativeProvider fixedNarrativeProvider = (entityName, facts) -> "PaymentProcessor grew retry handling over time.";
-        ContextRewindController controllerWithNarrative =
-                new ContextRewindController(session, token -> fakeRepositoryProvider, fixedNarrativeProvider);
+        ContextRewindController controllerWithNarrative = new ContextRewindController(
+                session, token -> fakeRepositoryProvider, fixedNarrativeProvider, new KnowledgeProviderResolver());
 
         ContextRewindResponse response = controllerWithNarrative.contextRewind("PaymentProcessor", null);
 
         assertThat(response.aiNarrative()).isEqualTo("PaymentProcessor grew retry handling over time.");
+    }
+
+    @Test
+    void showsKnowledgeBaseFactsWhenAProviderIsConfigured() throws Exception {
+        session.connect(TOKEN);
+        initRepo();
+        writeFile("PaymentProcessor.java", "class PaymentProcessor {}\n");
+        String baseSha = commit("Initial commit");
+        writeFile("PaymentProcessor.java", "class PaymentProcessor { void retry() {} }\n");
+        String headSha = commit("Second commit");
+        selectPullRequest(baseSha, headSha);
+        Path vault = Files.createTempDirectory("athena-context-rewind-controller-vault-");
+        try {
+            Files.writeString(vault.resolve("Ownership.md"), "# Ownership\n\nPaymentProcessor is owned by the payments team.\n");
+            KnowledgeProviderStore store = new KnowledgeProviderStore(vault.resolve("knowledge.json"));
+            store.saveObsidianConfig(new ObsidianVaultConfig(vault.toString(), true));
+            ContextRewindController controllerWithKnowledge = new ContextRewindController(
+                    session, token -> fakeRepositoryProvider, null, new KnowledgeProviderResolver(store));
+
+            ContextRewindResponse response = controllerWithKnowledge.contextRewind("PaymentProcessor", null);
+
+            assertThat(response.knowledgeFacts()).containsExactly("Ownership");
+        } finally {
+            com.athena.git.TempDirectories.deleteRecursively(vault);
+        }
+    }
+
+    @Test
+    void reportsNoKnowledgeFactsWhenNoProviderIsConfigured() throws Exception {
+        session.connect(TOKEN);
+        initRepo();
+        writeFile("PaymentProcessor.java", "class PaymentProcessor {}\n");
+        String baseSha = commit("Initial commit");
+        writeFile("PaymentProcessor.java", "class PaymentProcessor { void retry() {} }\n");
+        String headSha = commit("Second commit");
+        selectPullRequest(baseSha, headSha);
+
+        ContextRewindResponse response = controller.contextRewind("PaymentProcessor", null);
+
+        assertThat(response.knowledgeFacts()).isEmpty();
     }
 
     /**

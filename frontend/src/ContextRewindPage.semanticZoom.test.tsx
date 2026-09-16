@@ -31,6 +31,7 @@ const TIMELINE_ENTITY: ContextRewind = {
   pullRequestReferences: [{ number: 217, repositoryFullName: 'acme/widgets', url: 'https://github.com/acme/widgets/pull/217' }],
   aiNarrative: null,
   insufficientHistoryMessage: null,
+  knowledgeFacts: [],
 }
 
 describe('Context Rewind — semantic zoom for history', () => {
