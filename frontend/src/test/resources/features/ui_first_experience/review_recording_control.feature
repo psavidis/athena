@@ -18,3 +18,8 @@ Feature: Review Recording control
     Given a developer has an active Review Recording
     When the developer stops the recording
     Then the recording indicator is no longer shown
+
+  Scenario: A developer tags the current moment while recording
+    Given a developer has an active Review Recording
+    When the developer tags the current moment as a question
+    Then the moment is tagged as a question

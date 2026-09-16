@@ -3,9 +3,20 @@ import {
   fetchCaptureDisclosure,
   startReviewRecording,
   stopReviewRecording,
+  tagMoment,
+  type MomentKind,
   type ReviewRecordingSnapshot,
 } from './reviewRecording'
 import { PrimaryButton, SecondaryButton } from './ui'
+
+const MOMENT_KINDS: { kind: MomentKind; label: string }[] = [
+  { kind: 'INSIGHT', label: 'Insight' },
+  { kind: 'QUESTION', label: 'Question' },
+  { kind: 'CONCERN', label: 'Concern' },
+  { kind: 'DECISION', label: 'Decision' },
+  { kind: 'ACTION', label: 'Action' },
+  { kind: 'VERIFICATION', label: 'Verification' },
+]
 
 /**
  * The explicit Start/Stop Review Recording control (ticket #203):
@@ -63,20 +74,40 @@ export default function ReviewRecordingControl({ displayName }: { displayName: s
     setSnapshot(updated)
   }
 
+  async function tag(kind: MomentKind) {
+    if (!snapshot) return
+    await tagMoment(snapshot.recordingId, kind)
+  }
+
   if (snapshot?.active) {
     return (
-      <div
-        role="status"
-        aria-label="Review Recording in progress"
-        className="flex items-center gap-2 rounded-full border border-canvas-line-strong bg-canvas-paper-raised px-3 py-1 text-xs text-canvas-ink-soft"
-      >
-        <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" aria-hidden="true" />
-        <span>Recording</span>
-        <span className="font-mono tabular-nums">{formatElapsed(elapsedSeconds)}</span>
-        <span aria-label="participant count">· {snapshot.participantCount}</span>
-        <SecondaryButton onClick={stop} aria-label="Stop Review Recording">
-          Stop
-        </SecondaryButton>
+      <div className="flex flex-col items-start gap-1.5">
+        <div
+          role="status"
+          aria-label="Review Recording in progress"
+          className="flex items-center gap-2 rounded-full border border-canvas-line-strong bg-canvas-paper-raised px-3 py-1 text-xs text-canvas-ink-soft"
+        >
+          <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" aria-hidden="true" />
+          <span>Recording</span>
+          <span className="font-mono tabular-nums">{formatElapsed(elapsedSeconds)}</span>
+          <span aria-label="participant count">· {snapshot.participantCount}</span>
+          <SecondaryButton onClick={stop} aria-label="Stop Review Recording">
+            Stop
+          </SecondaryButton>
+        </div>
+        <div role="group" aria-label="Tag this moment" className="flex flex-wrap gap-1">
+          {MOMENT_KINDS.map(({ kind, label }) => (
+            <button
+              key={kind}
+              type="button"
+              onClick={() => tag(kind)}
+              aria-label={`Tag as ${label}`}
+              className="rounded-full border border-canvas-line px-2 py-0.5 text-[11px] text-canvas-ink-faint transition-colors duration-150 hover:border-accent hover:text-canvas-ink"
+            >
+              {label}
+            </button>
+          ))}
+        </div>
       </div>
     )
   }

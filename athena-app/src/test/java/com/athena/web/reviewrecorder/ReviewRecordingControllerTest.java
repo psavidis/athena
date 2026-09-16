@@ -151,6 +151,51 @@ class ReviewRecordingControllerTest {
                 .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(400));
     }
 
+    @Test
+    void taggingAMomentReferencesTheMostRecentEvent() {
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
+        controller.captureEvent(response.recordingId(),
+                new CaptureSemanticEventRequest("ENTITY_INSPECTED", "entity:OrderService"));
+
+        controller.tagMoment(response.recordingId(), new TagMomentRequest("QUESTION"));
+
+        assertThat(controller.moments(response.recordingId()))
+                .singleElement()
+                .satisfies(moment -> {
+                    assertThat(moment.kind()).isEqualTo("QUESTION");
+                    assertThat(moment.reference()).isEqualTo("entity:OrderService");
+                });
+    }
+
+    @Test
+    void taggingAMomentWithAnUnknownKindIsRejected() {
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
+
+        assertThatThrownBy(() -> controller.tagMoment(response.recordingId(), new TagMomentRequest("NOT_A_REAL_KIND")))
+                .isInstanceOf(ResponseStatusException.class)
+                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(400));
+    }
+
+    @Test
+    void taggingAMomentOnAStoppedRecordingIsRejected() {
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
+        controller.stop(response.recordingId());
+
+        assertThatThrownBy(() -> controller.tagMoment(response.recordingId(), new TagMomentRequest("QUESTION")))
+                .isInstanceOf(ResponseStatusException.class)
+                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(409));
+    }
+
+    @Test
+    void taggingAMomentOnAnUnknownRecordingIsRejected() {
+        assertThatThrownBy(() -> controller.tagMoment("does-not-exist", new TagMomentRequest("QUESTION")))
+                .isInstanceOf(ResponseStatusException.class)
+                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(404));
+    }
+
     private void selectPullRequest(int number, String repositoryFullName) {
         ImportedPullRequest pr = new ImportedPullRequest(number, "A PR", "author", "base-sha", "head-sha",
                 List.of(), List.of());
