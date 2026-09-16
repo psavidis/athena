@@ -33,6 +33,9 @@ export default function App() {
   // affordance for a file selection — an overlay-style entry, the same shape
   // as diffViewChangeKey above.
   const [contextRewindEntityName, setContextRewindEntityName] = useState<string | null>(null)
+  // Set when the Context Map's (ticket #191) "return to the canvas focused on a related
+  // module" action fires, seeding the canvas's initially-focused territory on its next mount.
+  const [mapFocusModule, setMapFocusModule] = useState<string | undefined>(undefined)
   const [showingSummary, setShowingSummary] = useState(false)
   const [showingAiAnalysis, setShowingAiAnalysis] = useState(false)
   // GitHub Access is its own page (ticket #113/#145), reachable from the
@@ -163,7 +166,16 @@ export default function App() {
     }
     if (diffActive) {
       if (contextRewindEntityName) {
-        return <ContextRewindPage entityName={contextRewindEntityName} onBack={() => setContextRewindEntityName(null)} />
+        return (
+          <ContextRewindPage
+            entityName={contextRewindEntityName}
+            onBack={() => setContextRewindEntityName(null)}
+            onOpenModule={(moduleName) => {
+              setContextRewindEntityName(null)
+              setMapFocusModule(moduleName)
+            }}
+          />
+        )
       }
       return (
         <LiveSessionCanvas
@@ -175,6 +187,7 @@ export default function App() {
           }}
           onNoPullRequestSelected={() => setDiffActive(false)}
           onOpenContextRewind={setContextRewindEntityName}
+          initialFocusedTerritory={mapFocusModule}
         />
       )
     }
@@ -189,7 +202,16 @@ export default function App() {
     }
     if (selectedPr) {
       if (contextRewindEntityName) {
-        return <ContextRewindPage entityName={contextRewindEntityName} onBack={() => setContextRewindEntityName(null)} />
+        return (
+          <ContextRewindPage
+            entityName={contextRewindEntityName}
+            onBack={() => setContextRewindEntityName(null)}
+            onOpenModule={(moduleName) => {
+              setContextRewindEntityName(null)
+              setMapFocusModule(moduleName)
+            }}
+          />
+        )
       }
       if (diffViewChangeKey) {
         return <ChangeDetailPage changeKey={diffViewChangeKey} onBack={() => setDiffViewChangeKey(null)} />
@@ -219,6 +241,7 @@ export default function App() {
           }}
           onNoPullRequestSelected={() => setSelectedPr(null)}
           onOpenContextRewind={setContextRewindEntityName}
+          initialFocusedTerritory={mapFocusModule}
         />
       )
     }

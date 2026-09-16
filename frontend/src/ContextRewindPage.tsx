@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getContextRewind, NoPullRequestSelectedError, type ContextRewind, type TimelineEvent } from './api'
+import { getContextRewind, getModuleTopology, NoPullRequestSelectedError, type ContextRewind, type TimelineEvent } from './api'
 import { BackLink, ErrorState, LoadingState, PageHeading, PageShell, PrimaryButton, SecondaryButton, SectionLabel } from './ui'
 
 /** The date an event happened, formatted deterministically (no locale-dependent wording) for
@@ -22,6 +22,7 @@ export default function ContextRewindPage({
   onBack,
   moduleName,
   conceptName,
+  onOpenModule,
 }: {
   entityName: string
   onBack: () => void
@@ -30,6 +31,10 @@ export default function ContextRewindPage({
    * entity name when absent. */
   moduleName?: string
   conceptName?: string
+  /** Returns to the Semantic Canvas focused on a related module selected from the Context Map
+   * (ticket #191) — optional since the Context Map itself is only offered when `moduleName` is
+   * known. */
+  onOpenModule?: (moduleName: string) => void
 }) {
   const [catchUpSince, setCatchUpSince] = useState<string | undefined>(undefined)
   const [catchUpDraft, setCatchUpDraft] = useState('')
@@ -40,6 +45,7 @@ export default function ContextRewindPage({
   })
   const [selectedEvent, setSelectedEvent] = useState<TimelineEvent | undefined>(undefined)
   const [zoomLevel, setZoomLevel] = useState<ZoomLevel>('orientation')
+  const [showingMap, setShowingMap] = useState(false)
 
   if (isError) {
     if (error instanceof NoPullRequestSelectedError) {
@@ -62,14 +68,19 @@ export default function ContextRewindPage({
     )
   }
 
+  if (showingMap && moduleName) {
+    return <ContextMap moduleName={moduleName} onBack={() => setShowingMap(false)} onOpenModule={onOpenModule} />
+  }
+
   if (zoomLevel === 'orientation') {
     const breadcrumb = moduleName && conceptName ? `${moduleName} › ${conceptName} › ${entityName}` : entityName
     return (
       <PageShell>
         <BackLink onClick={onBack}>← Back</BackLink>
         <PageHeading eyebrow="Context Rewind" title={breadcrumb} />
-        <div className="mb-6">
+        <div className="mb-6 flex gap-2">
           <PrimaryButton onClick={() => setZoomLevel('overview')}>Zoom in</PrimaryButton>
+          {moduleName && <SecondaryButton onClick={() => setShowingMap(true)}>Context Map</SecondaryButton>}
         </div>
         <div className="flex items-end gap-2">
           <div>
@@ -187,6 +198,66 @@ export default function ContextRewindPage({
       )}
 
       <ContextLayers data={data} />
+    </PageShell>
+  )
+}
+
+/** A relationship view of the entity's module and its direct dependencies/dependents (ticket
+ * #191), reusing the Semantic Canvas's own module topology data rather than a new class-level
+ * dependency graph — Athena models relationships at module granularity only. Selecting a related
+ * module returns to the canvas focused there via `onOpenModule`, not into another entity's own
+ * Context Rewind (there's no class-level node to navigate a click into). */
+function ContextMap({
+  moduleName,
+  onBack,
+  onOpenModule,
+}: {
+  moduleName: string
+  onBack: () => void
+  onOpenModule?: (moduleName: string) => void
+}) {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['module-topology'],
+    queryFn: getModuleTopology,
+    retry: false,
+  })
+
+  if (isError) {
+    return <ErrorState message="Could not load the Context Map." />
+  }
+  if (isLoading || !data) {
+    return <LoadingState />
+  }
+
+  const dependsOn = data.dependencies.filter((dependency) => dependency.from === moduleName)
+  const dependedOnBy = data.dependencies.filter((dependency) => dependency.to === moduleName)
+
+  return (
+    <PageShell>
+      <BackLink onClick={onBack}>← Back</BackLink>
+      <PageHeading eyebrow="Context Map" title={moduleName} />
+      <section className="mb-8">
+        <SectionLabel>Relationships</SectionLabel>
+        <ul className="flex flex-col gap-1.5">
+          {[...dependsOn, ...dependedOnBy].map((dependency) => (
+            <li key={`${dependency.from}->${dependency.to}`} className="flex items-center gap-2 text-sm text-ink-700">
+              <span>
+                {dependency.from} depends on {dependency.to}
+              </span>
+              <button
+                type="button"
+                onClick={() => onOpenModule?.(dependency.from === moduleName ? dependency.to : dependency.from)}
+                className="rounded-lg border border-ink-200 px-2 py-1 text-xs font-medium text-ink-700 hover:border-accent hover:bg-ink-100"
+              >
+                {dependency.from === moduleName ? dependency.to : dependency.from}
+              </button>
+            </li>
+          ))}
+          {dependsOn.length === 0 && dependedOnBy.length === 0 && (
+            <li className="text-sm text-ink-500">No known relationships for this module.</li>
+          )}
+        </ul>
+      </section>
     </PageShell>
   )
 }
