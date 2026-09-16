@@ -134,11 +134,11 @@ public class ReviewRecordingController {
     }
 
     @PostMapping("/{id}/moments")
-    public void tagMoment(@PathVariable String id, @RequestBody TagMomentRequest request) {
+    public MomentResponse tagMoment(@PathVariable String id, @RequestBody TagMomentRequest request) {
         ReviewRecording recording = requireRecording(id);
         MomentKind kind = requireMomentKind(request.kind());
         try {
-            recording.tagMoment(kind);
+            return MomentResponse.of(recording.tagMoment(kind));
         } catch (IllegalStateException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
         }
@@ -148,6 +148,49 @@ public class ReviewRecordingController {
     public List<MomentResponse> moments(@PathVariable String id) {
         ReviewRecording recording = requireRecording(id);
         return recording.moments().stream().map(MomentResponse::of).toList();
+    }
+
+    @PostMapping("/{id}/moments/{momentId}/confirm")
+    public void confirmMoment(@PathVariable String id, @PathVariable String momentId) {
+        ReviewRecording recording = requireRecording(id);
+        try {
+            recording.confirmMoment(momentId);
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (IllegalStateException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        }
+    }
+
+    @PostMapping("/{id}/moments/{momentId}/reject")
+    public void rejectMoment(@PathVariable String id, @PathVariable String momentId) {
+        ReviewRecording recording = requireRecording(id);
+        try {
+            recording.rejectMoment(momentId);
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (IllegalStateException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        }
+    }
+
+    @PostMapping("/{id}/moments/{momentId}/edit")
+    public void editMoment(@PathVariable String id, @PathVariable String momentId, @RequestBody TagMomentRequest request) {
+        ReviewRecording recording = requireRecording(id);
+        MomentKind kind = requireMomentKind(request.kind());
+        try {
+            recording.editMoment(momentId, kind);
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (IllegalStateException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}/summary")
+    public ReviewRecordingSummaryResponse summary(@PathVariable String id) {
+        ReviewRecording recording = requireRecording(id);
+        return ReviewRecordingSummaryResponse.of(recording.summary());
     }
 
     private MomentKind requireMomentKind(String kind) {

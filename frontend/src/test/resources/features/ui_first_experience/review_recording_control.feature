@@ -23,3 +23,18 @@ Feature: Review Recording control
     Given a developer has an active Review Recording
     When the developer tags the current moment as a question
     Then the moment is tagged as a question
+
+  Scenario: A developer confirms a pending moment
+    Given a developer has tagged the current moment as a question
+    When the developer confirms the pending moment
+    Then the moment appears confirmed on the timeline
+
+  Scenario: A developer rejects a pending moment
+    Given a developer has tagged the current moment as a question
+    When the developer rejects the pending moment
+    Then the pending-moment confirmation prompt is dismissed
+
+  Scenario: Stopping a recording shows a duration and moment-count summary
+    Given a developer has confirmed a tagged moment
+    When the developer stops the recording
+    Then the review summary shows the recording's duration and moment counts
