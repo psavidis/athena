@@ -56,17 +56,15 @@ export default function LiveSessionCanvas(props: {
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [participantId, setParticipantId] = useState<string | null>(null)
   const [snapshot, setSnapshot] = useState<LiveReviewSessionSnapshot | null>(null)
-  const [joinPromptSessionId, setJoinPromptSessionId] = useState<string | null>(null)
+  // A shared link (/live/:id) opened this app instance — prompt for a display
+  // name to join. Read once, directly, as the initial state value rather
+  // than via a mount effect (the URL a fresh render mounted with is already
+  // everything this needs).
+  const [joinPromptSessionId, setJoinPromptSessionId] = useState<string | null>(() =>
+    parseLiveSessionPath(window.location.pathname),
+  )
   const [error, setError] = useState<string | null>(null)
   const localTerritoryRef = useRef<string | undefined>(undefined)
-
-  // A shared link (/live/:id) opened this app instance — prompt for a display name to join.
-  useEffect(() => {
-    const id = parseLiveSessionPath(window.location.pathname)
-    if (id) {
-      setJoinPromptSessionId(id)
-    }
-  }, [])
 
   useEffect(() => {
     if (!sessionId || !participantId) {
