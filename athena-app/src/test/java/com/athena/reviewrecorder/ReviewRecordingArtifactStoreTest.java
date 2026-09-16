@@ -122,6 +122,25 @@ class ReviewRecordingArtifactStoreTest {
     }
 
     @Test
+    void rejectsImportingValidJsonWithACorruptFieldValue() throws IOException {
+        Path validJsonBadTimestamp = Files.createTempFile("athena-review-recording-shared-artifact-", ".json");
+        Files.writeString(validJsonBadTimestamp, """
+                {
+                  "recordingId": "r1",
+                  "repositoryFullName": "acme/widgets",
+                  "pullRequestNumber": 42,
+                  "commitOrVersion": "abc123",
+                  "durationSeconds": 0,
+                  "events": [{"type": "ENTITY_INSPECTED", "reference": "entity:OrderService", "occurredAt": "not-a-timestamp"}],
+                  "moments": []
+                }
+                """);
+
+        assertThatThrownBy(() -> store.importFrom(validJsonBadTimestamp, "acme/widgets"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void rejectsImportingAnArtifactWhoseRecordingIdAlreadyExistsLocally() throws IOException {
         ReviewRecording recording = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros",
                 Clock.fixed(START, ZoneOffset.UTC));

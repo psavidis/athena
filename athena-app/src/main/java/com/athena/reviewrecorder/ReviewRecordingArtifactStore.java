@@ -96,7 +96,12 @@ public class ReviewRecordingArtifactStore {
         try {
             root = readTree(file);
             artifact = parseArtifact(root);
-        } catch (UncheckedIOException | IllegalArgumentException | NullPointerException e) {
+        } catch (RuntimeException e) {
+            // Covers UncheckedIOException (invalid JSON), DateTimeParseException (Instant.parse
+            // on a corrupt occurredAt/taggedAt), and IllegalArgumentException/NullPointerException
+            // (SemanticEventType/MomentKind.valueOf, requireNonBlank) — every way a
+            // structurally-valid-JSON-but-not-actually-an-artifact file can fail parsing must
+            // reject as "not a valid artifact", never surface as an unhandled 500.
             throw new IllegalArgumentException("Not a valid Review Recording artifact file: " + file, e);
         }
         if (!artifact.repositoryFullName().equals(expectedRepositoryFullName)) {
