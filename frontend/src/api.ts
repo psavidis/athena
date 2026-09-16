@@ -377,6 +377,36 @@ export async function getChangeDetail(changeKey: string): Promise<ChangeDetail> 
   return asJson(response)
 }
 
+export interface TimelineEvent {
+  description: string
+  occurredAt: string
+}
+
+export interface PullRequestEvidence {
+  number: number
+  repositoryFullName: string
+  url: string
+}
+
+export interface ContextRewind {
+  entityName: string
+  evolutionTimeline: TimelineEvent[]
+  pullRequestReferences: PullRequestEvidence[]
+  aiNarrative: string | null
+  insufficientHistoryMessage: string | null
+}
+
+export async function getContextRewind(entityName: string): Promise<ContextRewind> {
+  const response = await fetch(`/api/review/context-rewind/${encodeURIComponent(entityName)}`)
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  if (response.status === 409) {
+    throw new NoPullRequestSelectedError()
+  }
+  return asJson(response)
+}
+
 export async function getSemanticProfile(changeKey: string): Promise<SemanticProfile> {
   const response = await fetch(`/api/review/change-map/${encodeURIComponent(changeKey)}/semantic-profile`)
   if (response.status === 401) {

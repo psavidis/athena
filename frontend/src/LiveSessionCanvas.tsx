@@ -60,6 +60,8 @@ export default function LiveSessionCanvas(props: {
   // presence/comments layer. Absent for a standalone-Diff-backed session,
   // which has no PR identity to hand back.
   onJoinedPr?: (repositoryFullName: string, number: number) => void
+  /** Forwarded straight through to {@link SemanticCanvasPage} (ticket #187). */
+  onOpenContextRewind?: (entityName: string) => void
 }) {
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [participantId, setParticipantId] = useState<string | null>(null)

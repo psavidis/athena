@@ -46,6 +46,7 @@ export default function DetailDrawer({
   onJumpToFile,
   onOpenComments,
   onCommentPosted,
+  onOpenContextRewind,
 }: {
   selection: DrawerSelection | undefined
   topology: ModuleTopology
@@ -58,6 +59,9 @@ export default function DetailDrawer({
   /** Ticket #159: after posting, focus returns to the item the thread was opened
    * from (the composer itself stays open/cleared, ready for another comment). */
   onCommentPosted?: () => void
+  /** Opens Context Rewind for a file selection's entity (ticket #187) — the Java simple
+   * class name, by the same file-name convention Context Rewind's backend already uses. */
+  onOpenContextRewind?: (entityName: string) => void
 }) {
   if (!selection) {
     return null
@@ -76,6 +80,7 @@ export default function DetailDrawer({
       onJumpToFile={onJumpToFile}
       onOpenComments={onOpenComments}
       onCommentPosted={onCommentPosted}
+      onOpenContextRewind={onOpenContextRewind}
     />
   )
 }
@@ -87,6 +92,7 @@ function DetailDrawerBody({
   onJumpToFile,
   onOpenComments,
   onCommentPosted,
+  onOpenContextRewind,
 }: {
   selection: DrawerSelection
   topology: ModuleTopology
@@ -94,6 +100,7 @@ function DetailDrawerBody({
   onJumpToFile: (fileName: string) => void
   onOpenComments: (itemId: string, itemLabel: string) => void
   onCommentPosted?: () => void
+  onOpenContextRewind?: (entityName: string) => void
 }) {
   // Expand/collapse (workspace-layout follow-up): a file's diff is often too
   // tall to read usefully inside the drawer's default strip, so a file
@@ -142,6 +149,15 @@ function DetailDrawerBody({
           </span>
         </div>
         <div className="flex flex-shrink-0 items-center gap-2">
+          {selection.kind === 'file' && onOpenContextRewind && (
+            <button
+              type="button"
+              onClick={() => onOpenContextRewind(selection.fileName.replace(/\.java$/, ''))}
+              className="flex items-center gap-1 rounded-lg border border-canvas-line-strong bg-canvas-paper px-2.5 py-1 text-xs font-semibold text-canvas-ink hover:border-canvas-gold hover:bg-canvas-gold-soft"
+            >
+              ↩ Rewind
+            </button>
+          )}
           {(selection.kind === 'concept' || selection.kind === 'file') && (
             <button
               type="button"
