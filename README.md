@@ -1,6 +1,9 @@
 # Athena
 
-![Athena logo](athena-logo.png)
+> Code review with context.
+
+
+![Athena logo](athena-logo-white.png)
 
 Athena analyzes a GitHub Pull Request's Java diff and groups it into
 meaningful **Changes** — rename, move, extract, mechanical replacement,
