@@ -1,11 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import {
+  confirmMoment,
+  editMoment,
   fetchCaptureDisclosure,
+  fetchSummary,
+  rejectMoment,
   startReviewRecording,
   stopReviewRecording,
   tagMoment,
+  type Moment,
   type MomentKind,
   type ReviewRecordingSnapshot,
+  type ReviewRecordingSummary,
 } from './reviewRecording'
 import { PrimaryButton, SecondaryButton } from './ui'
 
@@ -25,12 +31,21 @@ const MOMENT_KINDS: { kind: MomentKind; label: string }[] = [
  * dominated by recording controls. Session lifecycle shell only; no
  * audio/transcription/semantic-event UI yet.
  */
-export default function ReviewRecordingControl({ displayName }: { displayName: string }) {
+export default function ReviewRecordingControl({
+  displayName,
+  onNavigateToReference,
+}: {
+  displayName: string
+  onNavigateToReference?: (reference: string) => void
+}) {
   const [disclosureOpen, setDisclosureOpen] = useState(false)
   const [disclosureText, setDisclosureText] = useState('')
   const [snapshot, setSnapshot] = useState<ReviewRecordingSnapshot | null>(null)
   const [elapsedSeconds, setElapsedSeconds] = useState(0)
   const [error, setError] = useState<string | null>(null)
+  const [timeline, setTimeline] = useState<Moment[]>([])
+  const [pendingMoment, setPendingMoment] = useState<Moment | null>(null)
+  const [summary, setSummary] = useState<ReviewRecordingSummary | null>(null)
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => {
@@ -70,13 +85,35 @@ export default function ReviewRecordingControl({ displayName }: { displayName: s
 
   async function stop() {
     if (!snapshot) return
-    const updated = await stopReviewRecording(snapshot.recordingId)
+    const recordingId = snapshot.recordingId
+    const updated = await stopReviewRecording(recordingId)
     setSnapshot(updated)
+    setSummary(await fetchSummary(recordingId))
   }
 
   async function tag(kind: MomentKind) {
     if (!snapshot) return
-    await tagMoment(snapshot.recordingId, kind)
+    const moment = await tagMoment(snapshot.recordingId, kind)
+    setPendingMoment(moment)
+  }
+
+  async function confirmPending() {
+    if (!snapshot || !pendingMoment) return
+    await confirmMoment(snapshot.recordingId, pendingMoment.momentId)
+    setTimeline((current) => [...current, { ...pendingMoment, status: 'CONFIRMED' }])
+    setPendingMoment(null)
+  }
+
+  async function rejectPending() {
+    if (!snapshot || !pendingMoment) return
+    await rejectMoment(snapshot.recordingId, pendingMoment.momentId)
+    setPendingMoment(null)
+  }
+
+  async function editPending(kind: MomentKind) {
+    if (!snapshot || !pendingMoment) return
+    await editMoment(snapshot.recordingId, pendingMoment.momentId, kind)
+    setPendingMoment({ ...pendingMoment, kind })
   }
 
   if (snapshot?.active) {
@@ -108,6 +145,66 @@ export default function ReviewRecordingControl({ displayName }: { displayName: s
             </button>
           ))}
         </div>
+        {pendingMoment && (
+          <div
+            role="group"
+            aria-label="Confirm tagged moment"
+            className="flex items-center gap-2 rounded-lg border border-canvas-line-strong bg-canvas-paper-raised px-3 py-1.5 text-xs text-canvas-ink-soft"
+          >
+            <span>
+              {MOMENT_KINDS.find((m) => m.kind === pendingMoment.kind)?.label ?? pendingMoment.kind}?
+            </span>
+            <select
+              aria-label="Change moment kind"
+              value={pendingMoment.kind}
+              onChange={(e) => editPending(e.target.value as MomentKind)}
+              className="rounded border border-canvas-line bg-canvas-paper px-1 py-0.5 text-xs"
+            >
+              {MOMENT_KINDS.map(({ kind, label }) => (
+                <option key={kind} value={kind}>
+                  {label}
+                </option>
+              ))}
+            </select>
+            <SecondaryButton onClick={confirmPending}>Confirm</SecondaryButton>
+            <SecondaryButton onClick={rejectPending}>Reject</SecondaryButton>
+          </div>
+        )}
+        {timeline.length > 0 && (
+          <ol aria-label="Review timeline" className="flex flex-col gap-1">
+            {timeline.map((moment) => (
+              <li key={moment.momentId}>
+                <button
+                  type="button"
+                  onClick={() => moment.reference && onNavigateToReference?.(moment.reference)}
+                  className="text-left text-[11px] text-canvas-ink-faint underline-offset-2 hover:text-canvas-ink hover:underline"
+                >
+                  {MOMENT_KINDS.find((m) => m.kind === moment.kind)?.label ?? moment.kind}
+                  {moment.reference ? ` — ${moment.reference}` : ''}
+                </button>
+              </li>
+            ))}
+          </ol>
+        )}
+      </div>
+    )
+  }
+
+  if (summary) {
+    return (
+      <div
+        role="region"
+        aria-label="Review summary"
+        className="flex flex-col gap-1 rounded-lg border border-canvas-line-strong bg-canvas-paper-raised p-3 text-xs text-canvas-ink-soft"
+      >
+        <p>Duration: {formatElapsed(summary.durationSeconds)}</p>
+        <ul className="flex flex-col gap-0.5">
+          {Object.entries(summary.momentCountsByKind).map(([kind, count]) => (
+            <li key={kind}>
+              {MOMENT_KINDS.find((m) => m.kind === kind)?.label ?? kind}: {count}
+            </li>
+          ))}
+        </ul>
       </div>
     )
   }

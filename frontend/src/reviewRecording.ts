@@ -79,10 +79,60 @@ export async function getReviewRecording(recordingId: string): Promise<ReviewRec
 }
 
 export type MomentKind = 'INSIGHT' | 'QUESTION' | 'CONCERN' | 'DECISION' | 'ACTION' | 'VERIFICATION'
+export type MomentStatus = 'PENDING' | 'CONFIRMED' | 'REJECTED'
 
-export async function tagMoment(recordingId: string, kind: MomentKind): Promise<void> {
+export interface Moment {
+  momentId: string
+  kind: MomentKind
+  reference: string | null
+  taggedAt: string
+  status: MomentStatus
+}
+
+export interface ReviewRecordingSummary {
+  durationSeconds: number
+  momentCountsByKind: Record<string, number>
+}
+
+export async function tagMoment(recordingId: string, kind: MomentKind): Promise<Moment> {
   const response = await postJson(`/api/review-recordings/${encodeURIComponent(recordingId)}/moments`, { kind })
+  return asJson(response)
+}
+
+export async function fetchMoments(recordingId: string): Promise<Moment[]> {
+  const response = await fetch(`/api/review-recordings/${encodeURIComponent(recordingId)}/moments`)
+  return asJson(response)
+}
+
+export async function confirmMoment(recordingId: string, momentId: string): Promise<void> {
+  const response = await postJson(
+    `/api/review-recordings/${encodeURIComponent(recordingId)}/moments/${encodeURIComponent(momentId)}/confirm`,
+  )
   if (!response.ok) {
-    throw new Error(`Tag moment request failed: ${response.status}`)
+    throw new Error(`Confirm moment request failed: ${response.status}`)
   }
+}
+
+export async function rejectMoment(recordingId: string, momentId: string): Promise<void> {
+  const response = await postJson(
+    `/api/review-recordings/${encodeURIComponent(recordingId)}/moments/${encodeURIComponent(momentId)}/reject`,
+  )
+  if (!response.ok) {
+    throw new Error(`Reject moment request failed: ${response.status}`)
+  }
+}
+
+export async function editMoment(recordingId: string, momentId: string, kind: MomentKind): Promise<void> {
+  const response = await postJson(
+    `/api/review-recordings/${encodeURIComponent(recordingId)}/moments/${encodeURIComponent(momentId)}/edit`,
+    { kind },
+  )
+  if (!response.ok) {
+    throw new Error(`Edit moment request failed: ${response.status}`)
+  }
+}
+
+export async function fetchSummary(recordingId: string): Promise<ReviewRecordingSummary> {
+  const response = await fetch(`/api/review-recordings/${encodeURIComponent(recordingId)}/summary`)
+  return asJson(response)
 }

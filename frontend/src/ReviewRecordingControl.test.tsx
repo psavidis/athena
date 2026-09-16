@@ -19,6 +19,14 @@ const SNAPSHOT = {
   participantDisplayNames: ['Petros'],
 }
 
+const TAGGED_MOMENT = {
+  momentId: 'moment-1',
+  kind: 'QUESTION',
+  reference: 'entity:OrderService',
+  taggedAt: '2026-09-17T10:00:00Z',
+  status: 'PENDING',
+}
+
 function mockEndpoints() {
   server.use(
     http.get('/api/review-recordings/capture-disclosure', () => HttpResponse.json(DISCLOSURE)),
@@ -28,8 +36,21 @@ function mockEndpoints() {
     http.post('/api/review-recordings/recording-1/stop', () =>
       HttpResponse.json({ ...SNAPSHOT, active: false }),
     ),
-    http.post('/api/review-recordings/recording-1/moments', () => new HttpResponse(null, { status: 200 })),
+    http.get('/api/review-recordings/recording-1/summary', () =>
+      HttpResponse.json({ durationSeconds: 42, momentCountsByKind: { QUESTION: 1 } }),
+    ),
+    http.post('/api/review-recordings/recording-1/moments', () => HttpResponse.json(TAGGED_MOMENT)),
+    http.post('/api/review-recordings/recording-1/moments/moment-1/confirm', () => new HttpResponse(null, { status: 200 })),
+    http.post('/api/review-recordings/recording-1/moments/moment-1/reject', () => new HttpResponse(null, { status: 200 })),
   )
+}
+
+async function startRecordingAndTagQuestion(user: ReturnType<typeof userEvent.setup>) {
+  await user.click(screen.getByRole('button', { name: 'Start Review Recording' }))
+  await user.click(await screen.findByRole('button', { name: 'Start recording' }))
+  await screen.findByRole('status', { name: 'Review Recording in progress' })
+  await user.click(screen.getByRole('button', { name: 'Tag as Question' }))
+  await screen.findByRole('group', { name: 'Confirm tagged moment' })
 }
 
 describe('Review Recording control', () => {
@@ -70,7 +91,6 @@ describe('Review Recording control', () => {
     await waitFor(() =>
       expect(screen.queryByRole('status', { name: 'Review Recording in progress' })).not.toBeInTheDocument(),
     )
-    expect(screen.getByRole('button', { name: 'Start Review Recording' })).toBeVisible()
   })
 
   it('a developer tags the current moment while recording', async () => {
@@ -79,7 +99,7 @@ describe('Review Recording control', () => {
     server.use(
       http.post('/api/review-recordings/recording-1/moments', async ({ request }) => {
         tagRequestBody = await request.json()
-        return new HttpResponse(null, { status: 200 })
+        return HttpResponse.json(TAGGED_MOMENT)
       }),
     )
     render(<ReviewRecordingControl displayName="Petros" />)
@@ -91,5 +111,47 @@ describe('Review Recording control', () => {
     await user.click(screen.getByRole('button', { name: 'Tag as Question' }))
 
     await waitFor(() => expect(tagRequestBody).toEqual({ kind: 'QUESTION' }))
+  })
+
+  it('a developer confirms a pending moment', async () => {
+    mockEndpoints()
+    render(<ReviewRecordingControl displayName="Petros" />)
+    const user = userEvent.setup()
+    await startRecordingAndTagQuestion(user)
+
+    await user.click(screen.getByRole('button', { name: 'Confirm' }))
+
+    await waitFor(() =>
+      expect(screen.queryByRole('group', { name: 'Confirm tagged moment' })).not.toBeInTheDocument(),
+    )
+    expect(screen.getByRole('list', { name: 'Review timeline' })).toHaveTextContent('Question')
+  })
+
+  it('a developer rejects a pending moment', async () => {
+    mockEndpoints()
+    render(<ReviewRecordingControl displayName="Petros" />)
+    const user = userEvent.setup()
+    await startRecordingAndTagQuestion(user)
+
+    await user.click(screen.getByRole('button', { name: 'Reject' }))
+
+    await waitFor(() =>
+      expect(screen.queryByRole('group', { name: 'Confirm tagged moment' })).not.toBeInTheDocument(),
+    )
+  })
+
+  it("stopping a recording shows a duration and moment-count summary", async () => {
+    mockEndpoints()
+    render(<ReviewRecordingControl displayName="Petros" />)
+    const user = userEvent.setup()
+    await startRecordingAndTagQuestion(user)
+    await user.click(screen.getByRole('button', { name: 'Confirm' }))
+    await screen.findByRole('list', { name: 'Review timeline' })
+
+    await user.click(screen.getByRole('button', { name: 'Stop Review Recording' }))
+
+    const summary = await screen.findByRole('region', { name: 'Review summary' })
+    expect(summary).toHaveTextContent('0:42')
+    expect(summary).toHaveTextContent('Question: 1')
   })
 })
