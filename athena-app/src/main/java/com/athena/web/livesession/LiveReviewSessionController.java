@@ -3,7 +3,6 @@ package com.athena.web.livesession;
 import com.athena.livesession.CanvasFocus;
 import com.athena.livesession.LiveReviewSession;
 import com.athena.livesession.LiveReviewSessionRegistry;
-import com.athena.livesession.LiveReviewSessionSnapshot;
 import com.athena.livesession.Participant;
 import com.athena.reviewui.AnnotationScope;
 import com.athena.web.WebSession;
@@ -23,7 +22,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 /**
  * The web entry point for a Live Code Review Session (ticket #158):
@@ -61,7 +59,8 @@ public class LiveReviewSessionController {
         String displayName = requireDisplayName(request.displayName());
         LiveReviewSession liveSession = registry.create(
                 selected.repositoryFullName(), selected.pullRequest().number(), displayName);
-        return new LiveSessionJoinResponse(liveSession.id(), liveSession.creatorId(), liveSession.snapshot());
+        return new LiveSessionJoinResponse(liveSession.id(), liveSession.creatorId(),
+                LiveReviewSessionSnapshot.of(liveSession));
     }
 
     @PostMapping("/{id}/join")
@@ -69,19 +68,19 @@ public class LiveReviewSessionController {
         LiveReviewSession liveSession = requireSession(id);
         String displayName = requireDisplayName(request.displayName());
         Participant participant = liveSession.join(Optional.ofNullable(request.participantId()), displayName);
-        return new LiveSessionJoinResponse(id, participant.id(), liveSession.snapshot());
+        return new LiveSessionJoinResponse(id, participant.id(), LiveReviewSessionSnapshot.of(liveSession));
     }
 
     @GetMapping("/{id}")
     public LiveReviewSessionSnapshot snapshot(@PathVariable String id) {
-        return requireSession(id).snapshot();
+        return LiveReviewSessionSnapshot.of(requireSession(id));
     }
 
     @GetMapping(path = "/{id}/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter events(@PathVariable String id, @RequestParam String participantId) {
         LiveReviewSession liveSession = requireSession(id);
         SseEmitter emitter = new SseEmitter(0L);
-        Consumer<LiveReviewSessionSnapshot> listener = snapshotEvent -> sendSnapshot(emitter, snapshotEvent);
+        Runnable listener = () -> sendSnapshot(emitter, LiveReviewSessionSnapshot.of(liveSession));
         liveSession.addListener(listener);
         Runnable onDisconnect = () -> {
             liveSession.removeListener(listener);
@@ -90,7 +89,7 @@ public class LiveReviewSessionController {
         emitter.onCompletion(onDisconnect);
         emitter.onTimeout(onDisconnect);
         emitter.onError(e -> onDisconnect.run());
-        sendSnapshot(emitter, liveSession.snapshot());
+        sendSnapshot(emitter, LiveReviewSessionSnapshot.of(liveSession));
         return emitter;
     }
 
@@ -109,14 +108,14 @@ public class LiveReviewSessionController {
     public LiveReviewSessionSnapshot takeControl(@PathVariable String id, @RequestBody LiveParticipantRequest request) {
         LiveReviewSession liveSession = requireSession(id);
         withParticipant(() -> liveSession.takeControl(request.participantId()));
-        return liveSession.snapshot();
+        return LiveReviewSessionSnapshot.of(liveSession);
     }
 
     @PostMapping("/{id}/follow")
     public LiveReviewSessionSnapshot follow(@PathVariable String id, @RequestBody LiveParticipantRequest request) {
         LiveReviewSession liveSession = requireSession(id);
         withParticipant(() -> liveSession.follow(request.participantId()));
-        return liveSession.snapshot();
+        return LiveReviewSessionSnapshot.of(liveSession);
     }
 
     @PostMapping("/{id}/explore")
@@ -124,7 +123,7 @@ public class LiveReviewSessionController {
         LiveReviewSession liveSession = requireSession(id);
         CanvasFocus focus = requireFocus(request);
         withParticipant(() -> liveSession.explore(request.participantId(), focus));
-        return liveSession.snapshot();
+        return LiveReviewSessionSnapshot.of(liveSession);
     }
 
     @PostMapping("/{id}/focus")
@@ -138,14 +137,14 @@ public class LiveReviewSessionController {
         } catch (IllegalStateException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
         }
-        return liveSession.snapshot();
+        return LiveReviewSessionSnapshot.of(liveSession);
     }
 
     @PostMapping("/{id}/leave")
     public LiveReviewSessionSnapshot leave(@PathVariable String id, @RequestBody LiveParticipantRequest request) {
         LiveReviewSession liveSession = requireSession(id);
         withParticipant(() -> liveSession.leave(request.participantId()));
-        return liveSession.snapshot();
+        return LiveReviewSessionSnapshot.of(liveSession);
     }
 
     @PostMapping("/{id}/end")
@@ -159,7 +158,7 @@ public class LiveReviewSessionController {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
         }
         registry.remove(id);
-        return liveSession.snapshot();
+        return LiveReviewSessionSnapshot.of(liveSession);
     }
 
     @PostMapping("/{id}/comments")

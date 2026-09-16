@@ -4,10 +4,10 @@ import com.athena.reviewui.AnnotationScope;
 import com.athena.reviewui.Comment;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -32,7 +32,7 @@ class LiveReviewSessionTest {
         assertThat(session.repositoryFullName()).isEqualTo("acme/widgets");
         assertThat(session.pullRequestNumber()).isEqualTo(42);
         assertThat(session.presenterId()).contains(session.creatorId());
-        assertThat(session.snapshot().participants())
+        assertThat(session.participants())
                 .singleElement()
                 .satisfies(p -> {
                     assertThat(p.displayName()).isEqualTo("Petros");
@@ -47,8 +47,8 @@ class LiveReviewSessionTest {
 
         Participant maria = session.join(Optional.empty(), "Maria");
 
-        assertThat(session.snapshot().participants())
-                .extracting(ParticipantSnapshot::displayName)
+        assertThat(session.participants())
+                .extracting(Participant::displayName)
                 .containsExactlyInAnyOrder("Petros", "Maria");
         assertThat(maria.mode()).isEqualTo(ParticipantMode.FOLLOWING);
     }
@@ -60,8 +60,8 @@ class LiveReviewSessionTest {
 
         session.leave(maria.id());
 
-        assertThat(session.snapshot().participants())
-                .extracting(ParticipantSnapshot::displayName)
+        assertThat(session.participants())
+                .extracting(Participant::displayName)
                 .containsExactly("Petros");
     }
 
@@ -81,8 +81,8 @@ class LiveReviewSessionTest {
 
         session.disconnect(maria.id());
 
-        List<ParticipantSnapshot> participants = session.snapshot().participants();
-        assertThat(participants).extracting(ParticipantSnapshot::displayName).contains("Petros", "Maria");
+        List<Participant> participants = session.participants();
+        assertThat(participants).extracting(Participant::displayName).contains("Petros", "Maria");
         assertThat(participants).filteredOn(p -> p.displayName().equals("Maria"))
                 .singleElement()
                 .satisfies(p -> assertThat(p.connected()).isFalse());
@@ -97,8 +97,8 @@ class LiveReviewSessionTest {
         Participant reconnected = session.join(Optional.of(maria.id()), "Maria");
 
         assertThat(reconnected.id()).isEqualTo(maria.id());
-        assertThat(session.snapshot().participants())
-                .filteredOn(p -> p.participantId().equals(maria.id()))
+        assertThat(session.participants())
+                .filteredOn(p -> p.id().equals(maria.id()))
                 .singleElement()
                 .satisfies(p -> assertThat(p.connected()).isTrue());
     }
@@ -129,7 +129,7 @@ class LiveReviewSessionTest {
 
         session.presentFocus(session.creatorId(), PAYMENT_VALIDATOR);
 
-        assertThat(session.snapshot().sharedFocus()).isEqualTo(PAYMENT_VALIDATOR);
+        assertThat(session.sharedFocus()).isEqualTo(PAYMENT_VALIDATOR);
     }
 
     @Test
@@ -140,8 +140,8 @@ class LiveReviewSessionTest {
         session.takeControl(maria.id());
 
         assertThat(session.presenterId()).contains(maria.id());
-        assertThat(session.snapshot().participants())
-                .filteredOn(p -> p.participantId().equals(session.creatorId()))
+        assertThat(session.participants())
+                .filteredOn(p -> p.id().equals(session.creatorId()))
                 .singleElement()
                 .satisfies(p -> assertThat(p.mode()).isEqualTo(ParticipantMode.FOLLOWING));
     }
@@ -154,13 +154,13 @@ class LiveReviewSessionTest {
 
         session.explore(maria.id(), ORDER_SERVICE);
 
-        assertThat(session.snapshot().sharedFocus()).isEqualTo(PAYMENT_VALIDATOR);
-        assertThat(session.snapshot().participants())
-                .filteredOn(p -> p.participantId().equals(maria.id()))
+        assertThat(session.sharedFocus()).isEqualTo(PAYMENT_VALIDATOR);
+        assertThat(session.participants())
+                .filteredOn(p -> p.id().equals(maria.id()))
                 .singleElement()
                 .satisfies(p -> {
                     assertThat(p.mode()).isEqualTo(ParticipantMode.EXPLORING);
-                    assertThat(p.personalFocus()).isEqualTo(ORDER_SERVICE);
+                    assertThat(p.personalFocus()).contains(ORDER_SERVICE);
                 });
     }
 
@@ -181,12 +181,12 @@ class LiveReviewSessionTest {
 
         session.follow(maria.id());
 
-        assertThat(session.snapshot().participants())
-                .filteredOn(p -> p.participantId().equals(maria.id()))
+        assertThat(session.participants())
+                .filteredOn(p -> p.id().equals(maria.id()))
                 .singleElement()
                 .satisfies(p -> {
                     assertThat(p.mode()).isEqualTo(ParticipantMode.FOLLOWING);
-                    assertThat(p.personalFocus()).isNull();
+                    assertThat(p.personalFocus()).isEmpty();
                 });
     }
 
@@ -230,28 +230,29 @@ class LiveReviewSessionTest {
     }
 
     @Test
-    void everyMutationIncreasesTheRevisionAndBroadcastsToListeners() {
+    void everyMutationIncreasesTheRevisionAndNotifiesListeners() {
         LiveReviewSession session = LiveReviewSession.create("acme/widgets", 42, "Petros");
-        List<LiveReviewSessionSnapshot> received = new ArrayList<>();
-        session.addListener(received::add);
+        AtomicInteger notifications = new AtomicInteger();
+        session.addListener(notifications::incrementAndGet);
+        long revisionAfterCreate = session.revision();
 
         session.join(Optional.empty(), "Maria");
         session.presentFocus(session.creatorId(), PAYMENT_VALIDATOR);
 
-        assertThat(received).hasSize(2);
-        assertThat(received.get(0).revision()).isLessThan(received.get(1).revision());
+        assertThat(notifications.get()).isEqualTo(2);
+        assertThat(session.revision()).isEqualTo(revisionAfterCreate + 2);
     }
 
     @Test
     void removingAListenerStopsFurtherNotifications() {
         LiveReviewSession session = LiveReviewSession.create("acme/widgets", 42, "Petros");
-        List<LiveReviewSessionSnapshot> received = new ArrayList<>();
-        java.util.function.Consumer<LiveReviewSessionSnapshot> listener = received::add;
+        AtomicInteger notifications = new AtomicInteger();
+        Runnable listener = notifications::incrementAndGet;
         session.addListener(listener);
         session.removeListener(listener);
 
         session.join(Optional.empty(), "Maria");
 
-        assertThat(received).isEmpty();
+        assertThat(notifications.get()).isZero();
     }
 }

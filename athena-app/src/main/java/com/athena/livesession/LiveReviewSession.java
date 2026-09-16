@@ -5,7 +5,6 @@ import com.athena.reviewui.AnnotationScope;
 import com.athena.reviewui.Comment;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +13,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.function.Consumer;
 
 /**
  * A Live Code Review Session (ticket #158): lets multiple reviewers join
@@ -39,10 +37,14 @@ import java.util.function.Consumer;
  * this session's whole answer to "deterministic behavior when multiple
  * participants attempt to change shared state simultaneously" — whichever
  * request reaches the method first wins, no client-side merge required.
- * Each one ends by bumping {@link #revision} and broadcasting a fresh
- * {@link LiveReviewSessionSnapshot} to every registered listener (the
- * transport-agnostic seam {@link com.athena.web.livesession.LiveReviewSessionController}
- * wires an SSE emitter into).
+ * Each one ends by bumping its revision counter and notifying every
+ * registered listener that something changed — a transport-agnostic seam
+ * {@code com.athena.web.livesession.LiveReviewSessionController} wires an
+ * SSE emitter into, reading this aggregate's own state back out through its
+ * read accessors ({@link #participants()}, {@link #sharedFocus()}, etc.)
+ * rather than this class building any wire-shaped payload itself — building
+ * one is the web layer's job, keeping this domain class free of any
+ * JSON/HTTP concern.
  */
 public final class LiveReviewSession {
 
@@ -53,7 +55,7 @@ public final class LiveReviewSession {
     private final String creatorId;
     private final AnnotationBoard comments = new AnnotationBoard();
     private final Map<String, Participant> participants = new LinkedHashMap<>();
-    private final List<Consumer<LiveReviewSessionSnapshot>> listeners = new CopyOnWriteArrayList<>();
+    private final List<Runnable> listeners = new CopyOnWriteArrayList<>();
 
     private CanvasFocus sharedFocus = CanvasFocus.initial();
     private String presenterId;
@@ -106,6 +108,20 @@ public final class LiveReviewSession {
 
     public boolean ended() {
         return ended;
+    }
+
+    public CanvasFocus sharedFocus() {
+        return sharedFocus;
+    }
+
+    /** Every participant, in the order they joined. */
+    public List<Participant> participants() {
+        return List.copyOf(participants.values());
+    }
+
+    /** Increases by one on every state change — see this class's own doc for what that's used for. */
+    public long revision() {
+        return revision;
     }
 
     /**
@@ -218,21 +234,12 @@ public final class LiveReviewSession {
         broadcast();
     }
 
-    public synchronized LiveReviewSessionSnapshot snapshot() {
-        List<ParticipantSnapshot> participantSnapshots = new ArrayList<>();
-        for (Participant participant : participants.values()) {
-            participantSnapshots.add(ParticipantSnapshot.of(participant));
-        }
-        return new LiveReviewSessionSnapshot(id, revision, repositoryFullName, pullRequestNumber, sharedFocus,
-                presenterId, List.copyOf(participantSnapshots), ended);
-    }
-
-    /** Registers a listener notified with a fresh snapshot on every state change, until {@link #removeListener}. */
-    public void addListener(Consumer<LiveReviewSessionSnapshot> listener) {
+    /** Registers a listener notified (with no payload — read this session's own state back via its accessors) on every state change, until {@link #removeListener}. */
+    public void addListener(Runnable listener) {
         listeners.add(listener);
     }
 
-    public void removeListener(Consumer<LiveReviewSessionSnapshot> listener) {
+    public void removeListener(Runnable listener) {
         listeners.remove(listener);
     }
 
@@ -246,9 +253,8 @@ public final class LiveReviewSession {
 
     private void broadcast() {
         revision++;
-        LiveReviewSessionSnapshot snapshot = snapshot();
-        for (Consumer<LiveReviewSessionSnapshot> listener : listeners) {
-            listener.accept(snapshot);
+        for (Runnable listener : listeners) {
+            listener.run();
         }
     }
 }

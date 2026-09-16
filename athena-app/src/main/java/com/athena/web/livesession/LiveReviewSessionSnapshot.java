@@ -1,4 +1,6 @@
-package com.athena.livesession;
+package com.athena.web.livesession;
+
+import com.athena.livesession.LiveReviewSession;
 
 import java.util.List;
 
@@ -8,8 +10,11 @@ import java.util.List;
  * what its SSE stream pushes to every connected participant on every
  * change (ticket #158). {@code presenterId} is {@code null} exactly when
  * nobody currently holds shared-navigation control (its presenter left
- * without anyone taking control back) — an external/wire DTO, so a plain
- * nullable field rather than {@code Optional} (CODE_STYLE.md &sect;A.3).
+ * without anyone taking control back) — a plain nullable field rather than
+ * {@code Optional} (CODE_STYLE.md &sect;D.1), since this is the JSON wire
+ * shape, mapped here from the domain aggregate rather than serialized
+ * directly (this codebase's established DTO-mapping convention — see
+ * {@code CanvasCommentResponse.of}).
  *
  * <p>{@code revision} increases by one on every state change this session
  * makes; a client can use it to ignore an out-of-order push arriving after
@@ -23,8 +28,15 @@ public record LiveReviewSessionSnapshot(
         long revision,
         String repositoryFullName,
         int pullRequestNumber,
-        CanvasFocus sharedFocus,
+        CanvasFocusResponse sharedFocus,
         String presenterId,
         List<ParticipantSnapshot> participants,
         boolean ended) {
+
+    static LiveReviewSessionSnapshot of(LiveReviewSession session) {
+        List<ParticipantSnapshot> participants = session.participants().stream().map(ParticipantSnapshot::of).toList();
+        return new LiveReviewSessionSnapshot(session.id(), session.revision(), session.repositoryFullName(),
+                session.pullRequestNumber(), CanvasFocusResponse.of(session.sharedFocus()),
+                session.presenterId().orElse(null), participants, session.ended());
+    }
 }

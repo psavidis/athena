@@ -17,6 +17,12 @@ import java.util.Optional;
  * encoding — this class relays them, it never interprets them. That keeps
  * the collaboration layer able to evolve independently of the semantic
  * canvas/analysis pipeline, per the ticket's own technical requirement.
+ *
+ * <p>An internal domain value (CODE_STYLE.md &sect;D.1), so its optional
+ * fields are exposed as {@link Optional}, not plain nullable getters — the
+ * web layer's {@code CanvasFocusResponse} is the plain-nullable-field wire
+ * shape this maps to for JSON, kept separate rather than serializing this
+ * class directly (this codebase's established DTO-mapping convention).
  */
 public final class CanvasFocus {
 

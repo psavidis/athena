@@ -3,9 +3,7 @@ package com.athena.web.livesession;
 import com.athena.git.TempDirectories;
 import com.athena.livesession.LiveReviewSession;
 import com.athena.livesession.LiveReviewSessionRegistry;
-import com.athena.livesession.LiveReviewSessionSnapshot;
 import com.athena.livesession.ParticipantMode;
-import com.athena.livesession.ParticipantSnapshot;
 import com.athena.plugins.PluginRegistry;
 import com.athena.repository.ImportedPullRequest;
 import com.athena.reviewcontext.ReviewSubmission;
@@ -243,7 +241,7 @@ public class LiveCodeReviewSessionSteps {
 
     @Then("the session's shared focus is the {string} component")
     public void the_sessions_shared_focus_is_the_component(String componentName) {
-        assertThat(currentSnapshot().sharedFocus().selectedEntityId()).contains("component:" + componentName);
+        assertThat(currentSnapshot().sharedFocus().selectedEntityId()).isEqualTo("component:" + componentName);
     }
 
     @Then("the session's shared focus is still the {string} component")
@@ -283,7 +281,7 @@ public class LiveCodeReviewSessionSteps {
                     assertThat(p.displayName()).isEqualTo(displayName);
                     assertThat(p.mode()).isEqualTo(ParticipantMode.EXPLORING);
                     assertThat(p.personalFocus()).isNotNull();
-                    assertThat(p.personalFocus().selectedEntityId()).contains("component:" + componentName);
+                    assertThat(p.personalFocus().selectedEntityId()).isEqualTo("component:" + componentName);
                 });
     }
 
