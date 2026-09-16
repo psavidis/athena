@@ -34,10 +34,22 @@ public record LiveReviewSessionSnapshot(
         List<ParticipantSnapshot> participants,
         boolean ended) {
 
+    /**
+     * Synchronizes on {@code session} itself for the duration of this read: {@link LiveReviewSession}'s
+     * own mutators each guard their state change with a {@code synchronized(this)} block using that
+     * same monitor, so without this, reading {@code revision}/{@code presenterId}/{@code participants}/etc.
+     * one call at a time here could observe a torn combination of two different, non-atomic mutations
+     * interleaved with each other — not just a single moment in time. Cheap (a handful of field reads,
+     * no I/O), unlike the real network I/O this class's own class doc explains {@link LiveReviewSession}
+     * deliberately keeps outside its locked sections.
+     */
     static LiveReviewSessionSnapshot of(LiveReviewSession session) {
-        List<ParticipantSnapshot> participants = session.participants().stream().map(ParticipantSnapshot::of).toList();
-        return new LiveReviewSessionSnapshot(session.id(), session.revision(), session.repositoryFullName(),
-                session.pullRequestNumber(), CanvasFocusResponse.of(session.sharedFocus()),
-                session.presenterId().orElse(null), session.creatorId(), participants, session.ended());
+        synchronized (session) {
+            List<ParticipantSnapshot> participants =
+                    session.participants().stream().map(ParticipantSnapshot::of).toList();
+            return new LiveReviewSessionSnapshot(session.id(), session.revision(), session.repositoryFullName(),
+                    session.pullRequestNumber(), CanvasFocusResponse.of(session.sharedFocus()),
+                    session.presenterId().orElse(null), session.creatorId(), participants, session.ended());
+        }
     }
 }

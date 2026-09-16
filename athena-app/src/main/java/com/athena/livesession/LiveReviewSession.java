@@ -32,19 +32,18 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * per-selection annotation board so a private note never becomes
  * visible to anyone else just by starting or joining a session.
  *
- * <p>Every mutating method is {@code synchronized}: concurrent requests
- * from different participants are serialized in arrival order, which is
- * this session's whole answer to "deterministic behavior when multiple
- * participants attempt to change shared state simultaneously" — whichever
- * request reaches the method first wins, no client-side merge required.
- * Each one ends by bumping its revision counter and notifying every
- * registered listener that something changed — a transport-agnostic seam
- * {@code com.athena.web.livesession.LiveReviewSessionController} wires an
- * SSE emitter into, reading this aggregate's own state back out through its
- * read accessors ({@link #participants()}, {@link #sharedFocus()}, etc.)
- * rather than this class building any wire-shaped payload itself — building
- * one is the web layer's job, keeping this domain class free of any
- * JSON/HTTP concern.
+ * <p>Every mutating method guards its own state change with a
+ * {@code synchronized(this)} block: concurrent requests from different
+ * participants are serialized in arrival order, which is this session's
+ * whole answer to "deterministic behavior when multiple participants
+ * attempt to change shared state simultaneously" — whichever request
+ * reaches the block first wins, no client-side merge required. Each one
+ * then notifies every registered listener that something changed —
+ * deliberately <em>outside</em> that block: a listener is
+ * {@code com.athena.web.livesession.LiveReviewSessionController}'s SSE
+ * push, real network I/O that can block on a slow/stalled participant's
+ * connection, and that must never hold up every other participant's
+ * unrelated action on this same session while it does.
  */
 public final class LiveReviewSession {
 
@@ -102,25 +101,25 @@ public final class LiveReviewSession {
         return creatorId;
     }
 
-    public Optional<String> presenterId() {
+    public synchronized Optional<String> presenterId() {
         return Optional.ofNullable(presenterId);
     }
 
-    public boolean ended() {
+    public synchronized boolean ended() {
         return ended;
     }
 
-    public CanvasFocus sharedFocus() {
+    public synchronized CanvasFocus sharedFocus() {
         return sharedFocus;
     }
 
     /** Every participant, in the order they joined. */
-    public List<Participant> participants() {
+    public synchronized List<Participant> participants() {
         return List.copyOf(participants.values());
     }
 
     /** Increases by one on every state change — see this class's own doc for what that's used for. */
-    public long revision() {
+    public synchronized long revision() {
         return revision;
     }
 
@@ -131,71 +130,91 @@ public final class LiveReviewSession {
      * instead of starting over — otherwise (first join, or an id this session doesn't
      * recognize) a brand-new participant is created.
      */
-    public synchronized Participant join(Optional<String> existingParticipantId, String displayName) {
-        Optional<Participant> reconnecting = existingParticipantId.map(participants::get);
-        Participant participant = reconnecting
-                .map(existing -> existing.withConnected(true).withDisplayName(displayName))
-                .orElseGet(() -> Participant.join(displayName));
-        participants.put(participant.id(), participant);
-        broadcast();
+    public Participant join(Optional<String> existingParticipantId, String displayName) {
+        Participant participant;
+        synchronized (this) {
+            Optional<Participant> reconnecting = existingParticipantId.map(participants::get);
+            participant = reconnecting
+                    .map(existing -> existing.withConnected(true).withDisplayName(displayName))
+                    .orElseGet(() -> Participant.join(displayName));
+            participants.put(participant.id(), participant);
+            bumpRevision();
+        }
+        notifyListeners();
         return participant;
     }
 
     /** Removes {@code participantId} entirely — an explicit "leave," not a transient disconnect. */
-    public synchronized void leave(String participantId) {
-        requireParticipant(participantId);
-        participants.remove(participantId);
-        if (participantId.equals(presenterId)) {
-            presenterId = null;
+    public void leave(String participantId) {
+        synchronized (this) {
+            requireParticipant(participantId);
+            participants.remove(participantId);
+            if (participantId.equals(presenterId)) {
+                presenterId = null;
+            }
+            bumpRevision();
         }
-        broadcast();
+        notifyListeners();
     }
 
     /** Marks {@code participantId} as no longer connected (a dropped SSE connection) without discarding their state. */
-    public synchronized void disconnect(String participantId) {
-        Participant participant = participants.get(participantId);
-        if (participant == null) {
-            return;
+    public void disconnect(String participantId) {
+        synchronized (this) {
+            Participant participant = participants.get(participantId);
+            if (participant == null) {
+                return;
+            }
+            participants.put(participantId, participant.withConnected(false));
+            bumpRevision();
         }
-        participants.put(participantId, participant.withConnected(false));
-        broadcast();
+        notifyListeners();
     }
 
     /** {@code participantId} takes control of the session's shared navigation. */
-    public synchronized void takeControl(String participantId) {
-        Participant participant = requireParticipant(participantId);
-        if (presenterId != null && !presenterId.equals(participantId)) {
-            Participant oldPresenter = participants.get(presenterId);
-            if (oldPresenter != null) {
-                participants.put(oldPresenter.id(), oldPresenter.asFollowing());
+    public void takeControl(String participantId) {
+        synchronized (this) {
+            Participant participant = requireParticipant(participantId);
+            if (presenterId != null && !presenterId.equals(participantId)) {
+                Participant oldPresenter = participants.get(presenterId);
+                if (oldPresenter != null) {
+                    participants.put(oldPresenter.id(), oldPresenter.asFollowing());
+                }
             }
+            presenterId = participantId;
+            participants.put(participantId, participant.asPresenting());
+            bumpRevision();
         }
-        presenterId = participantId;
-        participants.put(participantId, participant.asPresenting());
-        broadcast();
+        notifyListeners();
     }
 
     /**
      * {@code participantId} moves the session's shared focus — only valid for the current
      * presenter; every following participant's view is meant to track this.
      */
-    public synchronized void presentFocus(String participantId, CanvasFocus focus) {
-        requireParticipant(participantId);
-        if (!participantId.equals(presenterId)) {
-            throw new IllegalStateException("Only the current presenter can move the shared focus");
+    public void presentFocus(String participantId, CanvasFocus focus) {
+        Objects.requireNonNull(focus, "focus");
+        synchronized (this) {
+            requireParticipant(participantId);
+            if (!participantId.equals(presenterId)) {
+                throw new IllegalStateException("Only the current presenter can move the shared focus");
+            }
+            this.sharedFocus = focus;
+            bumpRevision();
         }
-        this.sharedFocus = Objects.requireNonNull(focus, "focus");
-        broadcast();
+        notifyListeners();
     }
 
     /** {@code participantId} stops presenting/exploring and returns to following the shared focus. */
-    public synchronized void follow(String participantId) {
-        Participant participant = requireParticipant(participantId);
-        if (participantId.equals(presenterId)) {
-            presenterId = null;
+    public void follow(String participantId) {
+        synchronized (this) {
+            Participant participant = requireParticipant(participantId);
+            if (participantId.equals(presenterId)) {
+                presenterId = null;
+            }
+            participants.put(participantId, participant.asFollowing());
+            bumpRevision();
         }
-        participants.put(participantId, participant.asFollowing());
-        broadcast();
+        notifyListeners();
     }
 
     /**
@@ -203,20 +222,26 @@ public final class LiveReviewSession {
      * {@code focus} — visible to other participants as "where they're looking," but never
      * affecting the shared focus itself.
      */
-    public synchronized void explore(String participantId, CanvasFocus focus) {
-        Participant participant = requireParticipant(participantId);
-        if (participantId.equals(presenterId)) {
-            presenterId = null;
+    public void explore(String participantId, CanvasFocus focus) {
+        synchronized (this) {
+            Participant participant = requireParticipant(participantId);
+            if (participantId.equals(presenterId)) {
+                presenterId = null;
+            }
+            participants.put(participantId, participant.asExploring(focus));
+            bumpRevision();
         }
-        participants.put(participantId, participant.asExploring(focus));
-        broadcast();
+        notifyListeners();
     }
 
     /** Adds a comment attributed to {@code participantId}'s display name, visible to every participant. */
-    public synchronized void addComment(String participantId, AnnotationScope scope, String text) {
-        Participant participant = requireParticipant(participantId);
-        comments.addComment(scope, participant.displayName(), text);
-        broadcast();
+    public void addComment(String participantId, AnnotationScope scope, String text) {
+        synchronized (this) {
+            Participant participant = requireParticipant(participantId);
+            comments.addComment(scope, participant.displayName(), text);
+            bumpRevision();
+        }
+        notifyListeners();
     }
 
     /** Every comment posted at {@code scope} during this session, oldest first. */
@@ -225,13 +250,16 @@ public final class LiveReviewSession {
     }
 
     /** Ends the session — only the participant who created it may do this. */
-    public synchronized void end(String participantId) {
-        requireParticipant(participantId);
-        if (!participantId.equals(creatorId)) {
-            throw new IllegalStateException("Only the session's creator can end it");
+    public void end(String participantId) {
+        synchronized (this) {
+            requireParticipant(participantId);
+            if (!participantId.equals(creatorId)) {
+                throw new IllegalStateException("Only the session's creator can end it");
+            }
+            this.ended = true;
+            bumpRevision();
         }
-        this.ended = true;
-        broadcast();
+        notifyListeners();
     }
 
     /** Registers a listener notified (with no payload — read this session's own state back via its accessors) on every state change, until {@link #removeListener}. */
@@ -251,8 +279,17 @@ public final class LiveReviewSession {
         return participant;
     }
 
-    private void broadcast() {
+    private void bumpRevision() {
         revision++;
+    }
+
+    /**
+     * Runs every registered listener — deliberately called with no lock held (see this
+     * class's own doc): {@link CopyOnWriteArrayList} iteration is safe to do concurrently
+     * with {@link #addListener}/{@link #removeListener}, and a listener's own I/O (an SSE
+     * push) blocking here would otherwise stall every other participant's unrelated action.
+     */
+    private void notifyListeners() {
         for (Runnable listener : listeners) {
             listener.run();
         }
