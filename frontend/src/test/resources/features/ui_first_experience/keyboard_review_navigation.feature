@@ -1,37 +1,44 @@
 Feature: Keyboard review navigation
-  A reviewer moves through the Review Queue's Changes, a Change's files,
-  AI findings, and comments — and back to whatever context they came from
-  — entirely from the keyboard (ticket #159), without needing to be
+  A reviewer moves through the touched files/concepts the Semantic Canvas
+  surfaces for the current territory, a Change's own detail view, AI
+  findings, and comments — and back to whatever context they came from —
+  entirely from the keyboard (ticket #159), without needing to be
   reminded which item the mouse last touched.
 
-  Scenario: Moving to the next Change in the Review Queue
-    Given the reviewer is focused on a Change in the Review Queue
-    When the reviewer uses the keyboard shortcut for the next Change
-    Then keyboard focus moves to the next Change in the Review Queue's order
+  Note: earlier drafting of this file assumed a separate "Review Queue"
+  list view. That view doesn't exist in this app — the Semantic Canvas's
+  territory/node navigation replaced it (see `ChangeDetailPage`'s own
+  note that the flat "Change Map" is retired). Navigation here is
+  reframed onto the canvas's real touched-item model.
 
-  Scenario: Moving to the previous Change in the Review Queue
-    Given the reviewer is focused on the second Change in the Review Queue
-    When the reviewer uses the keyboard shortcut for the previous Change
-    Then keyboard focus moves to the first Change in the Review Queue's order
+  Scenario: Moving to the next touched item in the current territory
+    Given the reviewer is focused on a touched file/concept node in the current territory
+    When the reviewer uses the keyboard shortcut for the next item
+    Then keyboard focus moves to the next touched item in that territory
 
-  Scenario: There is no next Change after the last one
-    Given the reviewer is focused on the last Change in the Review Queue
-    When the reviewer uses the keyboard shortcut for the next Change
-    Then keyboard focus remains on the last Change
+  Scenario: Moving to the previous touched item in the current territory
+    Given the reviewer is focused on the second touched item in the current territory
+    When the reviewer uses the keyboard shortcut for the previous item
+    Then keyboard focus moves to the first touched item in that territory
 
-  Scenario: Entering a Change's detail view with the keyboard
-    Given the reviewer is focused on a Change in the Review Queue
-    When the reviewer uses the keyboard shortcut to enter the focused Change
-    Then the Change's detail view opens
+  Scenario: There is no next item after the last one
+    Given the reviewer is focused on the last touched item in the current territory
+    When the reviewer uses the keyboard shortcut for the next item
+    Then keyboard focus remains on the last item
+
+  Scenario: Entering a touched item's Change detail view with the keyboard
+    Given the reviewer is focused on a file node backed by a Change
+    When the reviewer uses the keyboard shortcut to enter the focused item
+    Then that Change's detail view opens
     And keyboard focus moves into the detail view
 
-  Scenario: Returning from a Change's detail view to the Review Queue
-    Given the reviewer opened a Change's detail view from the Review Queue using the keyboard
+  Scenario: Returning from a Change's detail view to the canvas
+    Given the reviewer opened a Change's detail view from the canvas using the keyboard
     When the reviewer uses the keyboard shortcut to return to the previous context
     Then the Change's detail view closes
-    And keyboard focus returns to that Change in the Review Queue
+    And keyboard focus returns to that item on the canvas
 
-  Scenario: Moving to the next file within a Change's detail view
+  Scenario: Moving to the next file listed in a Change's detail view
     Given the reviewer is viewing a Change's detail view listing more than one touched file
     When the reviewer uses the keyboard shortcut for the next file
     Then keyboard focus moves to the next listed file
@@ -44,7 +51,7 @@ Feature: Keyboard review navigation
   Scenario: Jumping from a finding to its related Change
     Given the reviewer is focused on an AI finding about a specific Change
     When the reviewer uses the keyboard shortcut to jump to the finding's related Change
-    Then the Change's detail view opens
+    Then that Change's detail view opens
     And keyboard focus moves into the detail view
 
   Scenario: A finding with no related Change has no jump target

@@ -13,7 +13,7 @@ Feature: Keyboard commenting
     Given the reviewer has an open comment editor with the text "Looks good" typed in
     When the reviewer uses the keyboard shortcut to submit the comment
     Then the Change's comments include "Looks good"
-    And the comment editor closes
+    And the comment editor's draft is cleared, ready for another comment
 
   Scenario: Cancelling comment creation with the keyboard
     Given the reviewer has an open comment editor with the text "Draft thought" typed in
