@@ -32,6 +32,7 @@ public final class ReviewRecording {
     private final Instant startedAt;
     private final Set<String> participantDisplayNames = new LinkedHashSet<>();
     private final List<SemanticEvent> events = new ArrayList<>();
+    private final List<Moment> moments = new ArrayList<>();
 
     private Instant stoppedAt;
 
@@ -112,6 +113,22 @@ public final class ReviewRecording {
     /** Every semantic event captured so far, in the order they were captured. */
     public synchronized List<SemanticEvent> events() {
         return List.copyOf(events);
+    }
+
+    /**
+     * Tags the current moment as {@code kind} (ticket #205), referencing whichever
+     * entity/change the most recently captured {@link SemanticEvent} concerns — or no
+     * reference at all if nothing has been captured yet. Requires the recording still be active.
+     */
+    public synchronized void tagMoment(MomentKind kind) {
+        requireActive();
+        String reference = events.isEmpty() ? null : events.get(events.size() - 1).reference();
+        moments.add(Moment.of(kind, reference, clock.instant()));
+    }
+
+    /** Every moment tagged so far, in the order they were tagged. */
+    public synchronized List<Moment> moments() {
+        return List.copyOf(moments);
     }
 
     /** Stops this recording. Requires it not already be stopped. */

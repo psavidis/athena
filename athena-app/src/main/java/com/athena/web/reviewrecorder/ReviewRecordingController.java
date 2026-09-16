@@ -1,5 +1,7 @@
 package com.athena.web.reviewrecorder;
 
+import com.athena.reviewrecorder.Moment;
+import com.athena.reviewrecorder.MomentKind;
 import com.athena.reviewrecorder.ReviewRecording;
 import com.athena.reviewrecorder.ReviewRecordingRegistry;
 import com.athena.reviewrecorder.SemanticEvent;
@@ -128,6 +130,31 @@ public class ReviewRecordingController {
             return SemanticEventType.valueOf(type);
         } catch (IllegalArgumentException | NullPointerException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unknown semantic event type: " + type);
+        }
+    }
+
+    @PostMapping("/{id}/moments")
+    public void tagMoment(@PathVariable String id, @RequestBody TagMomentRequest request) {
+        ReviewRecording recording = requireRecording(id);
+        MomentKind kind = requireMomentKind(request.kind());
+        try {
+            recording.tagMoment(kind);
+        } catch (IllegalStateException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}/moments")
+    public List<MomentResponse> moments(@PathVariable String id) {
+        ReviewRecording recording = requireRecording(id);
+        return recording.moments().stream().map(MomentResponse::of).toList();
+    }
+
+    private MomentKind requireMomentKind(String kind) {
+        try {
+            return MomentKind.valueOf(kind);
+        } catch (IllegalArgumentException | NullPointerException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unknown moment kind: " + kind);
         }
     }
 

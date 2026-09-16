@@ -1,10 +1,10 @@
 Feature: Explicit moment tagging during a Review Recording
   A developer explicitly marks a moment in their review as an insight,
   question, concern, decision, action, or verification, so the resulting
-  recording highlights what mattered instead of a flat event log (ticket
-  #205). Moments are explicit human actions only in this ticket —
-  inference from audio/transcript is out of scope until that capability
-  exists.
+  recording highlights what mattered instead of a flat event log
+  (ticket #205). Moments are explicit human actions only in this
+  ticket — inference from audio/transcript is out of scope until that
+  capability exists.
 
   Scenario: A developer tags the current moment as a question
     Given "Petros" has started a Review Recording for PR 42 in "acme/widgets"
