@@ -31,9 +31,11 @@ export default function ContextRewindPage({
   moduleName?: string
   conceptName?: string
 }) {
+  const [catchUpSince, setCatchUpSince] = useState<string | undefined>(undefined)
+  const [catchUpDraft, setCatchUpDraft] = useState('')
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['context-rewind', entityName],
-    queryFn: () => getContextRewind(entityName),
+    queryKey: ['context-rewind', entityName, catchUpSince],
+    queryFn: () => getContextRewind(entityName, catchUpSince),
     retry: false,
   })
   const [selectedEvent, setSelectedEvent] = useState<TimelineEvent | undefined>(undefined)
@@ -66,7 +68,33 @@ export default function ContextRewindPage({
       <PageShell>
         <BackLink onClick={onBack}>← Back</BackLink>
         <PageHeading eyebrow="Context Rewind" title={breadcrumb} />
-        <PrimaryButton onClick={() => setZoomLevel('overview')}>Zoom in</PrimaryButton>
+        <div className="mb-6">
+          <PrimaryButton onClick={() => setZoomLevel('overview')}>Zoom in</PrimaryButton>
+        </div>
+        <div className="flex items-end gap-2">
+          <div>
+            <label htmlFor="catch-up-since" className="mb-1 block text-sm text-ink-700">
+              Catch me up since
+            </label>
+            <input
+              id="catch-up-since"
+              type="text"
+              placeholder="YYYY-MM-DD"
+              value={catchUpDraft}
+              onChange={(e) => setCatchUpDraft(e.target.value)}
+              className="rounded-lg border border-ink-200 px-3 py-2 text-sm focus:border-accent focus:outline-none"
+            />
+          </div>
+          <SecondaryButton
+            disabled={catchUpDraft.trim().length === 0}
+            onClick={() => {
+              setCatchUpSince(catchUpDraft.trim())
+              setZoomLevel('overview')
+            }}
+          >
+            Catch me up
+          </SecondaryButton>
+        </div>
       </PageShell>
     )
   }
@@ -87,30 +115,42 @@ export default function ContextRewindPage({
     )
   }
 
+  const caughtUpWithNoActivity = catchUpSince && data.evolutionTimeline.length === 0
+
   return (
     <PageShell>
       <BackLink onClick={onBack}>← Back</BackLink>
       <PageHeading eyebrow="Context Rewind" title={data.entityName} />
 
-      <section className="mb-8">
-        <SectionLabel>Story of this code</SectionLabel>
-        <ol className="flex flex-col gap-1.5">
-          {data.evolutionTimeline.map((event, index) => (
-            <li key={index}>
-              <button
-                type="button"
-                data-testid="timeline-event"
-                onClick={() => setSelectedEvent(event)}
-                className="w-full rounded-lg px-3 py-2 text-left text-sm text-ink-700 hover:bg-ink-100"
-              >
-                <span className="mr-2 font-mono text-xs text-ink-500">{eventDate(event.occurredAt)}</span>
-                {event.description}
-              </button>
-            </li>
-          ))}
-          <li className="px-3 py-2 text-sm font-medium text-ink-900">Current state</li>
-        </ol>
-      </section>
+      {catchUpSince && (
+        <p className="mb-4 text-sm font-medium text-ink-900">
+          {caughtUpWithNoActivity
+            ? `Nothing has changed since ${catchUpSince}.`
+            : `${data.evolutionTimeline.length} change${data.evolutionTimeline.length === 1 ? '' : 's'} since ${catchUpSince}`}
+        </p>
+      )}
+
+      {!caughtUpWithNoActivity && (
+        <section className="mb-8">
+          <SectionLabel>Story of this code</SectionLabel>
+          <ol className="flex flex-col gap-1.5">
+            {data.evolutionTimeline.map((event, index) => (
+              <li key={index}>
+                <button
+                  type="button"
+                  data-testid="timeline-event"
+                  onClick={() => setSelectedEvent(event)}
+                  className="w-full rounded-lg px-3 py-2 text-left text-sm text-ink-700 hover:bg-ink-100"
+                >
+                  <span className="mr-2 font-mono text-xs text-ink-500">{eventDate(event.occurredAt)}</span>
+                  {event.description}
+                </button>
+              </li>
+            ))}
+            <li className="px-3 py-2 text-sm font-medium text-ink-900">Current state</li>
+          </ol>
+        </section>
+      )}
 
       {selectedEvent && (
         <section data-testid="evidence-panel" className="mb-8 rounded-lg border border-ink-200 bg-paper-raised px-4 py-3">

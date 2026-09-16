@@ -18,11 +18,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.net.http.HttpClient;
 import java.time.Duration;
+import java.time.Instant;
+import java.time.format.DateTimeParseException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -47,6 +50,14 @@ import java.util.function.Function;
  * history depth). Giving the session a full-history local clone is a
  * separate, not-yet-built capability, left to a follow-up rather than
  * solved here.
+ *
+ * <p><b>Known limitation (ticket #189):</b> the optional {@code since}
+ * parameter only scopes the git-derived evolution timeline —
+ * {@link ContextRewindService}'s Pull Request lookup has no date to scope
+ * by, since neither {@code ImportedPullRequest} nor
+ * {@code ClosedPullRequestSummary} carries one. A "catch me up" response's
+ * {@code pullRequestReferences} is therefore always the full, unscoped
+ * list, not limited to Pull Requests since the given point.
  */
 @RestController
 public class ContextRewindController {
@@ -74,7 +85,8 @@ public class ContextRewindController {
     }
 
     @GetMapping("/api/review/context-rewind/{entityName}")
-    public ContextRewindResponse contextRewind(@PathVariable String entityName) {
+    public ContextRewindResponse contextRewind(@PathVariable String entityName,
+                                                @RequestParam(required = false) String since) {
         String token = session.gitHubToken()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not connected to GitHub"));
         WebSession.SelectedPullRequest selection = session.selectedPullRequest()
@@ -84,9 +96,23 @@ public class ContextRewindController {
         ContextRewindService service = new ContextRewindService(repositoryProvider,
                 new ProjectMemoryStore(selection.headRoot()), knowledgeProviders(), Optional.ofNullable(narrativeProvider()));
 
-        ReconstructedContext context = service.reconstruct(
-                ContextRewindRequest.of(entityName, selection.headRoot(), selection.repositoryFullName()));
+        ContextRewindRequest request = ContextRewindRequest.of(entityName, selection.headRoot(), selection.repositoryFullName());
+        if (since != null) {
+            request = request.since(parseSince(since));
+        }
+
+        ReconstructedContext context = service.reconstruct(request);
         return ContextRewindResponse.from(context);
+    }
+
+    /** A "catch me up" scoping point (ticket #189) — a developer-chosen date, since Athena
+     * tracks no per-developer last-interaction timestamp to auto-detect one from. */
+    private static Instant parseSince(String since) {
+        try {
+            return Instant.parse(since);
+        } catch (DateTimeParseException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "since must be a valid instant");
+        }
     }
 
     private Map<KnowledgeProvider, KnowledgeProviderConfiguration> knowledgeProviders() {
