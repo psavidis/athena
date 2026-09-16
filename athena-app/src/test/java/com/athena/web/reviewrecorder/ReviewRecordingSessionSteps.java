@@ -61,6 +61,16 @@ public class ReviewRecordingSessionSteps {
     private Path baseRoot;
     private Path headRoot;
 
+    /** The most recently started recording's id — for steps classes sharing this fixture (e.g. Review Replay's). */
+    public String recordingId() {
+        return recordingId;
+    }
+
+    /** This fixture's {@link WebSession} — for steps classes that must see the same selected PR/Diff (e.g. Review Replay's). */
+    public WebSession webSession() {
+        return webSession;
+    }
+
     @Before
     public void createTempRoots() throws IOException {
         baseRoot = Files.createTempDirectory("athena-review-recording-base-");

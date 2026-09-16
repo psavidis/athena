@@ -29,4 +29,4 @@ Feature: Loading and resolving a recorded review artifact for Replay
 
   Scenario: Opening a Replay for an unknown recording id is rejected
     When a developer attempts to open a Replay of artifact "does-not-exist"
-    Then the review recording request is rejected as invalid
+    Then the Replay request is rejected as invalid
