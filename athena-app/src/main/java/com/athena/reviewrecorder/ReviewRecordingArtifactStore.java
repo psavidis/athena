@@ -78,7 +78,45 @@ public class ReviewRecordingArtifactStore {
         if (!Files.exists(file)) {
             return Optional.empty();
         }
-        JsonNode root = readTree(file);
+        return Optional.of(parseArtifact(readTree(file)));
+    }
+
+    /**
+     * Imports a Review Recording artifact a teammate exported from their own Athena instance
+     * (ticket #217) — the same JSON shape {@link #persist} writes, since that file already is
+     * the portable artifact format; no separate export mechanism needed. Rejects (with {@link
+     * IllegalArgumentException}) a file that isn't a valid artifact, one whose repository doesn't
+     * match {@code expectedRepositoryFullName}, or one whose recording id is already stored
+     * locally — the last case protects against a shared file silently overwriting a distinct
+     * local recording that happens to share an id.
+     */
+    public ReviewRecordingArtifact importFrom(Path file, String expectedRepositoryFullName) {
+        JsonNode root;
+        ReviewRecordingArtifact artifact;
+        try {
+            root = readTree(file);
+            artifact = parseArtifact(root);
+        } catch (RuntimeException e) {
+            // Covers UncheckedIOException (invalid JSON), DateTimeParseException (Instant.parse
+            // on a corrupt occurredAt/taggedAt), and IllegalArgumentException/NullPointerException
+            // (SemanticEventType/MomentKind.valueOf, requireNonBlank) — every way a
+            // structurally-valid-JSON-but-not-actually-an-artifact file can fail parsing must
+            // reject as "not a valid artifact", never surface as an unhandled 500.
+            throw new IllegalArgumentException("Not a valid Review Recording artifact file: " + file, e);
+        }
+        if (!artifact.repositoryFullName().equals(expectedRepositoryFullName)) {
+            throw new IllegalArgumentException("Artifact is for repository \"" + artifact.repositoryFullName()
+                    + "\", not the currently-selected \"" + expectedRepositoryFullName + "\"");
+        }
+        if (Files.exists(artifactFile(artifact.recordingId()))) {
+            throw new IllegalArgumentException(
+                    "A Review Recording artifact with id \"" + artifact.recordingId() + "\" already exists locally");
+        }
+        persist(artifact);
+        return artifact;
+    }
+
+    private ReviewRecordingArtifact parseArtifact(JsonNode root) {
         List<SemanticEvent> events = new ArrayList<>();
         for (JsonNode node : root.path("events")) {
             events.add(SemanticEvent.of(SemanticEventType.valueOf(node.path("type").asText()),
@@ -91,9 +129,17 @@ public class ReviewRecordingArtifactStore {
                     MomentStatus.valueOf(node.path("status").asText())));
         }
         Duration duration = Duration.ofSeconds(root.path("durationSeconds").asLong());
-        return Optional.of(ReviewRecordingArtifact.of(root.path("recordingId").asText(),
-                root.path("repositoryFullName").asText(), root.path("pullRequestNumber").asInt(),
-                root.path("commitOrVersion").asText(), events, moments, duration));
+        String recordingId = requireNonBlank(root.path("recordingId").asText(null), "recordingId");
+        String repositoryFullName = requireNonBlank(root.path("repositoryFullName").asText(null), "repositoryFullName");
+        return ReviewRecordingArtifact.of(recordingId, repositoryFullName, root.path("pullRequestNumber").asInt(),
+                root.path("commitOrVersion").asText(), events, moments, duration);
+    }
+
+    private String requireNonBlank(String value, String fieldName) {
+        if (value == null || value.isBlank()) {
+            throw new IllegalArgumentException(fieldName + " must not be blank");
+        }
+        return value;
     }
 
     private JsonNode readTree(Path file) {

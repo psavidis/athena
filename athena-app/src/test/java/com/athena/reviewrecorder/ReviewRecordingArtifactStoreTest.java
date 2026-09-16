@@ -93,4 +93,76 @@ class ReviewRecordingArtifactStoreTest {
 
         assertThatThrownBy(() -> store.find("broken")).isInstanceOf(UncheckedIOException.class);
     }
+
+    @Test
+    void importsASharedArtifactFileForTheMatchingRepository() throws IOException {
+        Path exported = exportedArtifactFile("acme/widgets");
+
+        ReviewRecordingArtifact imported = store.importFrom(exported, "acme/widgets");
+
+        assertThat(imported.repositoryFullName()).isEqualTo("acme/widgets");
+        assertThat(store.find(imported.recordingId())).isPresent();
+    }
+
+    @Test
+    void rejectsImportingAnArtifactForADifferentRepository() throws IOException {
+        Path exported = exportedArtifactFile("acme/widgets");
+
+        assertThatThrownBy(() -> store.importFrom(exported, "other-org/other-repo"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void rejectsImportingAMalformedFile() throws IOException {
+        Path malformed = Files.createTempFile("athena-review-recording-shared-artifact-", ".json");
+        Files.writeString(malformed, "not valid json");
+
+        assertThatThrownBy(() -> store.importFrom(malformed, "acme/widgets"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void rejectsImportingValidJsonWithACorruptFieldValue() throws IOException {
+        Path validJsonBadTimestamp = Files.createTempFile("athena-review-recording-shared-artifact-", ".json");
+        Files.writeString(validJsonBadTimestamp, """
+                {
+                  "recordingId": "r1",
+                  "repositoryFullName": "acme/widgets",
+                  "pullRequestNumber": 42,
+                  "commitOrVersion": "abc123",
+                  "durationSeconds": 0,
+                  "events": [{"type": "ENTITY_INSPECTED", "reference": "entity:OrderService", "occurredAt": "not-a-timestamp"}],
+                  "moments": []
+                }
+                """);
+
+        assertThatThrownBy(() -> store.importFrom(validJsonBadTimestamp, "acme/widgets"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void rejectsImportingAnArtifactWhoseRecordingIdAlreadyExistsLocally() throws IOException {
+        ReviewRecording recording = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros",
+                Clock.fixed(START, ZoneOffset.UTC));
+        recording.stop();
+        store.persist(ReviewRecordingArtifact.of(recording));
+        Path exported = exportedArtifactFileFor(recording);
+
+        assertThatThrownBy(() -> store.importFrom(exported, "acme/widgets"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private Path exportedArtifactFile(String repositoryFullName) throws IOException {
+        ReviewRecording recording = ReviewRecording.start(repositoryFullName, 42, "abc123", "Petros",
+                Clock.fixed(START, ZoneOffset.UTC));
+        recording.stop();
+        return exportedArtifactFileFor(recording);
+    }
+
+    private Path exportedArtifactFileFor(ReviewRecording recording) throws IOException {
+        Path exportsDir = Files.createTempDirectory("athena-review-recording-shared-artifact-");
+        ReviewRecordingArtifactStore exportingStore = new ReviewRecordingArtifactStore(exportsDir);
+        exportingStore.persist(ReviewRecordingArtifact.of(recording));
+        return exportsDir.resolve(".athena").resolve("review-recordings").resolve(recording.id() + ".json");
+    }
 }
