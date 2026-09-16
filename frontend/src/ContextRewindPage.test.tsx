@@ -45,6 +45,7 @@ const TIMELINE_ENTITY: ContextRewind = {
   pullRequestReferences: [],
   aiNarrative: null,
   insufficientHistoryMessage: null,
+  knowledgeFacts: [],
 }
 
 describe('Context Rewind — story timeline & evidence panel', () => {
@@ -126,6 +127,7 @@ describe('Context Rewind — story timeline & evidence panel', () => {
       pullRequestReferences: [],
       aiNarrative: null,
       insufficientHistoryMessage: 'Not enough historical information is available for UnknownWidget',
+      knowledgeFacts: [],
     })
 
     // When the developer opens Context Rewind for "UnknownWidget"

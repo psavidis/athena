@@ -394,6 +394,8 @@ export interface ContextRewind {
   pullRequestReferences: PullRequestEvidence[]
   aiNarrative: string | null
   insufficientHistoryMessage: string | null
+  /** Facts from Athena's Knowledge Base (ticket #190's Knowledge layer). */
+  knowledgeFacts: string[]
 }
 
 /** `since` is a plain `YYYY-MM-DD` date (ticket #189's "catch me up" — a developer-chosen

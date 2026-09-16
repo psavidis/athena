@@ -27,6 +27,7 @@ const FULL_HISTORY: ContextRewind = {
   pullRequestReferences: [],
   aiNarrative: null,
   insufficientHistoryMessage: null,
+  knowledgeFacts: [],
 }
 
 /** Distinguishes an unscoped request from one scoped by `?since=`, the way the real backend
