@@ -49,7 +49,7 @@ public class ReviewRecordingSessionSteps {
             new WebSession(new PrAnalyzer(PluginRegistry.languagePlugins(), PluginRegistry.frameworkPlugins()));
     private final MutableClock clock = new MutableClock(Instant.parse("2026-09-17T10:00:00Z"));
     private final ReviewRecordingRegistry registry = new ReviewRecordingRegistry(clock);
-    private final ReviewRecordingController controller = new ReviewRecordingController(webSession, registry, clock);
+    private ReviewRecordingController controller = new ReviewRecordingController(webSession, registry, clock);
 
     private String recordingId;
     private String lastTaggedMomentId;
@@ -472,6 +472,64 @@ public class ReviewRecordingSessionSteps {
     public void the_stop_summary_shows_questions(int questionCount) {
         ReviewRecordingSummaryResponse summary = controller.summary(recordingId);
         assertThat(summary.momentCountsByKind().getOrDefault("QUESTION", 0)).isEqualTo(questionCount);
+    }
+
+    // --- Artifact persistence (ticket #207) ---
+
+    private ReviewRecordingArtifactResponse reopenedArtifact;
+
+    @Given("persisting artifacts is currently failing")
+    public void persisting_artifacts_is_currently_failing() throws IOException {
+        Path notADirectory = Files.createTempFile("athena-review-recording-broken-root-", "");
+        controller = new ReviewRecordingController(webSession, registry, clock,
+                projectRoot -> new com.athena.reviewrecorder.ReviewRecordingArtifactStore(notADirectory));
+    }
+
+    @Then("the recording's artifact is persisted")
+    public void the_recordings_artifact_is_persisted() {
+        reopenedArtifact = controller.artifact(recordingId);
+        assertThat(reopenedArtifact).isNotNull();
+    }
+
+    @Then("the persisted artifact is associated with {string}, PR {int}, and the recording's commit")
+    public void the_persisted_artifact_is_associated_with(String repositoryFullName, int pullRequestNumber) {
+        assertThat(reopenedArtifact.repositoryFullName()).isEqualTo(repositoryFullName);
+        assertThat(reopenedArtifact.pullRequestNumber()).isEqualTo(pullRequestNumber);
+        assertThat(reopenedArtifact.commitOrVersion()).isNotBlank();
+    }
+
+    @When("a developer reopens the persisted artifact")
+    public void a_developer_reopens_the_persisted_artifact() {
+        reopenedArtifact = controller.artifact(recordingId);
+    }
+
+    @When("a developer attempts to reopen artifact {string}")
+    public void a_developer_attempts_to_reopen_artifact(String unknownRecordingId) {
+        try {
+            controller.artifact(unknownRecordingId);
+        } catch (ResponseStatusException e) {
+            failure = e;
+        }
+    }
+
+    @Then("the reopened artifact shows the confirmed question referencing the {string} entity")
+    public void the_reopened_artifact_shows_the_confirmed_question_referencing_the_entity(String entityName) {
+        assertThat(reopenedArtifact.moments()).anySatisfy(moment -> {
+            assertThat(moment.kind()).isEqualTo("QUESTION");
+            assertThat(moment.status()).isEqualTo("CONFIRMED");
+            assertThat(moment.reference()).isEqualTo("entity:" + entityName);
+        });
+    }
+
+    @Then("the reopened artifact shows the recording's summary")
+    public void the_reopened_artifact_shows_the_recordings_summary() {
+        assertThat(reopenedArtifact.summary()).isNotNull();
+        assertThat(reopenedArtifact.summary().momentCountsByKind()).isNotEmpty();
+    }
+
+    @Then("the recording's summary can still be read")
+    public void the_recordings_summary_can_still_be_read() {
+        assertThat(controller.summary(recordingId)).isNotNull();
     }
 
     private ReviewRecordingSnapshot currentSnapshot() {

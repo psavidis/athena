@@ -3,10 +3,14 @@ package com.athena.web.reviewrecorder;
 import com.athena.reviewrecorder.Moment;
 import com.athena.reviewrecorder.MomentKind;
 import com.athena.reviewrecorder.ReviewRecording;
+import com.athena.reviewrecorder.ReviewRecordingArtifact;
+import com.athena.reviewrecorder.ReviewRecordingArtifactStore;
 import com.athena.reviewrecorder.ReviewRecordingRegistry;
 import com.athena.reviewrecorder.SemanticEvent;
 import com.athena.reviewrecorder.SemanticEventType;
+import com.athena.web.Diff;
 import com.athena.web.WebSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.UncheckedIOException;
+import java.nio.file.Path;
 import java.time.Clock;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.function.Function;
 
 /**
  * The web entry point for a Review Recording (ticket #203): the capture
@@ -42,11 +49,24 @@ public class ReviewRecordingController {
     private final WebSession session;
     private final ReviewRecordingRegistry registry;
     private final Clock clock;
+    private final Function<Path, ReviewRecordingArtifactStore> artifactStoreFactory;
 
+    @Autowired
     public ReviewRecordingController(WebSession session, ReviewRecordingRegistry registry, Clock clock) {
+        this(session, registry, clock, ReviewRecordingArtifactStore::new);
+    }
+
+    /**
+     * @param artifactStoreFactory resolves the {@link ReviewRecordingArtifactStore} for a given
+     *                              project root — overridable so a test can substitute a store
+     *                              that fails persistence deterministically (ticket #207)
+     */
+    ReviewRecordingController(WebSession session, ReviewRecordingRegistry registry, Clock clock,
+                               Function<Path, ReviewRecordingArtifactStore> artifactStoreFactory) {
         this.session = session;
         this.registry = registry;
         this.clock = clock;
+        this.artifactStoreFactory = artifactStoreFactory;
     }
 
     @GetMapping("/capture-disclosure")
@@ -103,7 +123,29 @@ public class ReviewRecordingController {
         } catch (IllegalStateException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
         }
+        // A persistence failure must not corrupt the recording's own in-memory state (ticket #207):
+        // this runs after stop() has already succeeded, and never calls back into `recording` on
+        // failure, so the caller still gets a normal, intact snapshot either way.
+        try {
+            session.currentDiff().ifPresent(diff ->
+                    artifactStoreFactory.apply(diff.headRoot()).persist(ReviewRecordingArtifact.of(recording)));
+        } catch (UncheckedIOException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Failed to persist Review Recording artifact: " + e.getMessage());
+        }
         return ReviewRecordingSnapshot.of(recording);
+    }
+
+    @GetMapping("/artifacts/{recordingId}")
+    public ReviewRecordingArtifactResponse artifact(@PathVariable String recordingId) {
+        Path projectRoot = session.currentDiff()
+                .map(Diff::headRoot)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT,
+                        "Select a Pull Request or Diff before reopening a Review Recording artifact"));
+        return artifactStoreFactory.apply(projectRoot).find(recordingId)
+                .map(ReviewRecordingArtifactResponse::of)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "No such Review Recording artifact"));
     }
 
     @PostMapping("/{id}/events")

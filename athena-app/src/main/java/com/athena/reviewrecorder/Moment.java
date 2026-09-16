@@ -41,6 +41,19 @@ public final class Moment {
         return new Moment(UUID.randomUUID().toString(), kind, reference, taggedAt, MomentStatus.PENDING);
     }
 
+    /**
+     * Rebuilds a moment with its exact previously-recorded id and status (ticket #207) — for
+     * {@link ReviewRecordingArtifactStore} reading a persisted artifact back, where every field
+     * (including status) is already known rather than starting fresh at {@link MomentStatus#PENDING}.
+     */
+    static Moment reconstruct(String id, MomentKind kind, String reference, Instant taggedAt, MomentStatus status) {
+        Objects.requireNonNull(id, "id");
+        Objects.requireNonNull(kind, "kind");
+        Objects.requireNonNull(taggedAt, "taggedAt");
+        Objects.requireNonNull(status, "status");
+        return new Moment(id, kind, reference, taggedAt, status);
+    }
+
     public String id() {
         return id;
     }
