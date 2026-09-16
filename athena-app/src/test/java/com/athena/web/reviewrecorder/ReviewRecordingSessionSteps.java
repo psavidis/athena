@@ -52,6 +52,8 @@ public class ReviewRecordingSessionSteps {
     private final ReviewRecordingController controller = new ReviewRecordingController(webSession, registry, clock);
 
     private String recordingId;
+    private String lastTaggedMomentId;
+    private ReviewRecordingSummaryResponse stopSummary;
     private ReviewRecordingSnapshot lastSnapshot;
     private ResponseStatusException failure;
     private boolean disclosureShown;
@@ -334,7 +336,7 @@ public class ReviewRecordingSessionSteps {
 
     private void tagMoment(String kind) {
         try {
-            controller.tagMoment(recordingId, new TagMomentRequest(kind));
+            lastTaggedMomentId = controller.tagMoment(recordingId, new TagMomentRequest(kind)).momentId();
         } catch (ResponseStatusException e) {
             failure = e;
         }
@@ -369,6 +371,107 @@ public class ReviewRecordingSessionSteps {
     public void the_tagged_moments_list_the_question_before_the_decision() {
         List<MomentResponse> moments = controller.moments(recordingId);
         assertThat(moments).extracting(MomentResponse::kind).containsExactly("QUESTION", "DECISION");
+    }
+
+    // --- Review timeline and session summary (ticket #206) ---
+
+    @Given("{string} has tagged the current moment as a question")
+    public void has_tagged_the_current_moment_as_a_question(String displayName) {
+        tagMoment("QUESTION");
+    }
+
+    @Given("{string} has tagged the current moment as a decision")
+    public void has_tagged_the_current_moment_as_a_decision(String displayName) {
+        tagMoment("DECISION");
+    }
+
+    @When("{string} confirms that moment")
+    public void confirms_that_moment(String displayName) {
+        try {
+            controller.confirmMoment(recordingId, lastTaggedMomentId);
+        } catch (ResponseStatusException e) {
+            failure = e;
+        }
+    }
+
+    @Given("{string} has confirmed that moment")
+    public void has_confirmed_that_moment(String displayName) {
+        confirms_that_moment(displayName);
+    }
+
+    @When("{string} attempts to confirm that moment again")
+    public void attempts_to_confirm_that_moment_again(String displayName) {
+        confirms_that_moment(displayName);
+    }
+
+    @When("{string} edits that moment to a concern")
+    public void edits_that_moment_to_a_concern(String displayName) {
+        try {
+            controller.editMoment(recordingId, lastTaggedMomentId, new TagMomentRequest("CONCERN"));
+        } catch (ResponseStatusException e) {
+            failure = e;
+        }
+    }
+
+    @When("{string} rejects that moment")
+    public void rejects_that_moment(String displayName) {
+        try {
+            controller.rejectMoment(recordingId, lastTaggedMomentId);
+        } catch (ResponseStatusException e) {
+            failure = e;
+        }
+    }
+
+    @Then("the recording's timeline shows a pending question referencing the {string} entity")
+    public void the_timeline_shows_a_pending_question_referencing_the_entity(String entityName) {
+        assertTimelineMoment("QUESTION", "PENDING", "entity:" + entityName);
+    }
+
+    @Then("the recording's timeline shows a confirmed question referencing the {string} entity")
+    public void the_timeline_shows_a_confirmed_question_referencing_the_entity(String entityName) {
+        assertTimelineMoment("QUESTION", "CONFIRMED", "entity:" + entityName);
+    }
+
+    @Then("the recording's timeline shows a confirmed concern referencing the {string} entity")
+    public void the_timeline_shows_a_confirmed_concern_referencing_the_entity(String entityName) {
+        assertTimelineMoment("CONCERN", "CONFIRMED", "entity:" + entityName);
+    }
+
+    private void assertTimelineMoment(String kind, String status, String reference) {
+        List<MomentResponse> moments = controller.moments(recordingId);
+        assertThat(moments).anySatisfy(moment -> {
+            assertThat(moment.kind()).isEqualTo(kind);
+            assertThat(moment.status()).isEqualTo(status);
+            assertThat(moment.reference()).isEqualTo(reference);
+        });
+    }
+
+    @Then("the recording's timeline does not show a question referencing the {string} entity")
+    public void the_timeline_does_not_show_a_question_referencing_the_entity(String entityName) {
+        List<MomentResponse> moments = controller.moments(recordingId);
+        assertThat(moments).noneSatisfy(moment -> {
+            assertThat(moment.kind()).isEqualTo("QUESTION");
+            assertThat(moment.reference()).isEqualTo("entity:" + entityName);
+            assertThat(moment.status()).isNotEqualTo("REJECTED");
+        });
+    }
+
+    @Then("the stop summary shows {int} question and {int} decision")
+    public void the_stop_summary_shows_question_and_decision(int questionCount, int decisionCount) {
+        stopSummary = controller.summary(recordingId);
+        assertThat(stopSummary.momentCountsByKind().getOrDefault("QUESTION", 0)).isEqualTo(questionCount);
+        assertThat(stopSummary.momentCountsByKind().getOrDefault("DECISION", 0)).isEqualTo(decisionCount);
+    }
+
+    @Then("the stop summary shows the recording's duration")
+    public void the_stop_summary_shows_the_recordings_duration() {
+        assertThat(stopSummary.durationSeconds()).isGreaterThanOrEqualTo(0);
+    }
+
+    @Then("the stop summary shows {int} questions")
+    public void the_stop_summary_shows_questions(int questionCount) {
+        ReviewRecordingSummaryResponse summary = controller.summary(recordingId);
+        assertThat(summary.momentCountsByKind().getOrDefault("QUESTION", 0)).isEqualTo(questionCount);
     }
 
     private ReviewRecordingSnapshot currentSnapshot() {

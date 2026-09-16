@@ -152,7 +152,7 @@ class ReviewRecordingControllerTest {
     }
 
     @Test
-    void taggingAMomentReferencesTheMostRecentEvent() {
+    void taggingAMomentReferencesTheMostRecentEventAndStartsPending() {
         selectPullRequest(42, "acme/widgets");
         ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
         controller.captureEvent(response.recordingId(),
@@ -165,7 +165,84 @@ class ReviewRecordingControllerTest {
                 .satisfies(moment -> {
                     assertThat(moment.kind()).isEqualTo("QUESTION");
                     assertThat(moment.reference()).isEqualTo("entity:OrderService");
+                    assertThat(moment.status()).isEqualTo("PENDING");
                 });
+    }
+
+    @Test
+    void confirmingAPendingMomentMakesItDurable() {
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
+        MomentResponse tagged = controller.tagMoment(response.recordingId(), new TagMomentRequest("QUESTION"));
+
+        controller.confirmMoment(response.recordingId(), tagged.momentId());
+
+        assertThat(controller.moments(response.recordingId()))
+                .singleElement()
+                .satisfies(moment -> assertThat(moment.status()).isEqualTo("CONFIRMED"));
+    }
+
+    @Test
+    void editingAPendingMomentChangesItsKind() {
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
+        MomentResponse tagged = controller.tagMoment(response.recordingId(), new TagMomentRequest("QUESTION"));
+
+        controller.editMoment(response.recordingId(), tagged.momentId(), new TagMomentRequest("CONCERN"));
+
+        assertThat(controller.moments(response.recordingId()))
+                .singleElement()
+                .satisfies(moment -> assertThat(moment.kind()).isEqualTo("CONCERN"));
+    }
+
+    @Test
+    void rejectingAPendingMomentMarksItRejected() {
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
+        MomentResponse tagged = controller.tagMoment(response.recordingId(), new TagMomentRequest("QUESTION"));
+
+        controller.rejectMoment(response.recordingId(), tagged.momentId());
+
+        assertThat(controller.moments(response.recordingId()))
+                .singleElement()
+                .satisfies(moment -> assertThat(moment.status()).isEqualTo("REJECTED"));
+    }
+
+    @Test
+    void confirmingAnAlreadyConfirmedMomentIsRejected() {
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
+        MomentResponse tagged = controller.tagMoment(response.recordingId(), new TagMomentRequest("QUESTION"));
+        controller.confirmMoment(response.recordingId(), tagged.momentId());
+
+        assertThatThrownBy(() -> controller.confirmMoment(response.recordingId(), tagged.momentId()))
+                .isInstanceOf(ResponseStatusException.class)
+                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(409));
+    }
+
+    @Test
+    void confirmingAnUnknownMomentIsRejected() {
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
+
+        assertThatThrownBy(() -> controller.confirmMoment(response.recordingId(), "does-not-exist"))
+                .isInstanceOf(ResponseStatusException.class)
+                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(404));
+    }
+
+    @Test
+    void summaryCountsOnlyConfirmedMomentsAfterStopping() {
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
+        MomentResponse question = controller.tagMoment(response.recordingId(), new TagMomentRequest("QUESTION"));
+        controller.confirmMoment(response.recordingId(), question.momentId());
+        controller.tagMoment(response.recordingId(), new TagMomentRequest("CONCERN")); // left pending
+        controller.stop(response.recordingId());
+
+        ReviewRecordingSummaryResponse summary = controller.summary(response.recordingId());
+
+        assertThat(summary.momentCountsByKind()).containsEntry("QUESTION", 1);
+        assertThat(summary.momentCountsByKind()).doesNotContainKey("CONCERN");
     }
 
     @Test
