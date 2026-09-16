@@ -22,6 +22,50 @@ function eventDate(occurredAt: string): string {
  * focuses on a single selected event's own evidence. */
 type ZoomLevel = 'orientation' | 'overview' | 'detail'
 
+/** The fixed set of "Explain Why" quick actions (ticket #193) — no free-text prompt. */
+const QUICK_ACTIONS = [
+  'Why does this exist?',
+  'Why was this introduced?',
+  'Why was this changed?',
+  'Why is it implemented this way?',
+  'What happened here?',
+  'What did reviewers question?',
+  'What was decided?',
+  'What changed since I last saw this?',
+] as const
+
+const WHY_QUESTIONS: ReadonlySet<string> = new Set(QUICK_ACTIONS.slice(0, 4))
+
+/** Resolves a quick action using data Context Rewind has already fetched — no new backend calls,
+ * no free-text Q&A. Evidence-first: a "Why" answer is always paired with what it's based on. */
+function answerQuickAction(question: string, data: ContextRewind): { text: string; evidence?: string } {
+  if (WHY_QUESTIONS.has(question)) {
+    if (!data.aiNarrative) {
+      return { text: 'Not enough information is available to answer that.' }
+    }
+    const eventCount = data.evolutionTimeline.length
+    const prCount = data.pullRequestReferences.length
+    return {
+      text: data.aiNarrative,
+      evidence: `Based on ${eventCount} recorded event${eventCount === 1 ? '' : 's'} and ${prCount} Pull Request${prCount === 1 ? '' : 's'}`,
+    }
+  }
+  if (question === 'What happened here?') {
+    return data.evolutionTimeline.length > 0
+      ? { text: `${data.evolutionTimeline.length} recorded event(s) — see the timeline above after zooming in.` }
+      : { text: 'No recorded history.' }
+  }
+  if (question === 'What did reviewers question?') {
+    return data.pullRequestReferences.length > 0
+      ? { text: `See the review for Pull Request ${data.pullRequestReferences[0].number}.` }
+      : { text: 'No Pull Request is recorded for this entity.' }
+  }
+  if (question === 'What was decided?') {
+    return { text: 'Nothing is recorded for decisions.' }
+  }
+  return { text: 'Use the "Catch me up" prompt below.' }
+}
+
 /** Context Rewind's foundational story timeline & evidence panel (ticket #187), reached through
  * a semantic-zoom progression (ticket #188) so the amount of information increases as the
  * developer zooms in rather than presenting everything at once. */
@@ -55,6 +99,7 @@ export default function ContextRewindPage({
   const [zoomLevel, setZoomLevel] = useState<ZoomLevel>('orientation')
   const [showingMap, setShowingMap] = useState(false)
   const [reviewingPr, setReviewingPr] = useState<PullRequestEvidence | undefined>(undefined)
+  const [activeQuestion, setActiveQuestion] = useState<string | undefined>(undefined)
 
   if (isError) {
     if (error instanceof NoPullRequestSelectedError) {
@@ -118,6 +163,32 @@ export default function ContextRewindPage({
           >
             Catch me up
           </SecondaryButton>
+        </div>
+
+        <div className="mt-6">
+          <SectionLabel>Explain Why</SectionLabel>
+          <div className="mb-3 flex flex-wrap gap-2">
+            {QUICK_ACTIONS.map((question) => (
+              <button
+                key={question}
+                type="button"
+                onClick={() => setActiveQuestion(question)}
+                className="rounded-lg border border-ink-200 px-2.5 py-1 text-xs font-medium text-ink-700 hover:border-accent hover:bg-ink-100"
+              >
+                {question}
+              </button>
+            ))}
+          </div>
+          {activeQuestion &&
+            (() => {
+              const answer = answerQuickAction(activeQuestion, data)
+              return (
+                <div className="rounded-lg border border-ink-200 bg-paper-raised px-4 py-3">
+                  <p className="mb-1 text-sm text-ink-700">{answer.text}</p>
+                  {answer.evidence && <p className="text-xs text-ink-500">{answer.evidence}</p>}
+                </div>
+              )
+            })()}
         </div>
       </PageShell>
     )
