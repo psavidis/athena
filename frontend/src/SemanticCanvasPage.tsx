@@ -129,6 +129,7 @@ export default function SemanticCanvasPage({
   liveSession,
   liveSessionPanel,
   onOpenContextRewind,
+  initialFocusedTerritory,
 }: {
   pullRequest: ImportedPullRequest | null
   // The repo/PR switcher (ticket #128 follow-up), owned by App.tsx and
@@ -157,6 +158,10 @@ export default function SemanticCanvasPage({
   /** Opens Context Rewind for a file selection's entity (ticket #187), forwarded straight
    * through to the detail drawer's own Rewind affordance. */
   onOpenContextRewind?: (entityName: string) => void
+  /** Seeds the initially-focused territory (ticket #191's Context Map "return to the canvas
+   * focused on a related module") — only an initial value, not a controlled prop, since this
+   * page owns its own subsequent territory navigation. */
+  initialFocusedTerritory?: string
 }) {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['module-topology'],
@@ -164,7 +169,7 @@ export default function SemanticCanvasPage({
     retry: false,
   })
   const [camera, setCamera] = useState<Camera>(INITIAL_CAMERA)
-  const [focusedTerritory, setFocusedTerritory] = useState<string | undefined>(undefined)
+  const [focusedTerritory, setFocusedTerritory] = useState<string | undefined>(initialFocusedTerritory)
   const [currentStop, setCurrentStop] = useState<AltitudeStop | undefined>(undefined)
   const [showLayerBadges, setShowLayerBadges] = useState(false)
   const [instantTransition, setInstantTransition] = useState(false)
