@@ -47,6 +47,18 @@ public class SyncReviewDecisionToGitHubSteps {
         }
     }
 
+    @When("Athena syncs an approval {string} to pull request {int} in repository {string} twice")
+    public void athena_syncs_approval_twice(String body, int number, String repo) {
+        ReviewDecisionSyncer syncer = new ReviewDecisionSyncer(context.token, context.transport);
+        try {
+            syncer.syncApproval(repo, number, body);
+            syncer.syncApproval(repo, number, body);
+            syncSucceeded = true;
+        } catch (Exception e) {
+            thrown = e;
+        }
+    }
+
     @Then("the review sync succeeds")
     public void review_sync_succeeds() {
         assertThat(syncSucceeded).isTrue();
@@ -60,6 +72,12 @@ public class SyncReviewDecisionToGitHubSteps {
                     assertThat(r.event()).isEqualTo(event);
                     assertThat(r.body()).isEqualTo(body);
                 });
+    }
+
+    @Then("GitHub shows exactly one {string} review {string} on pull request {int}")
+    public void github_shows_exactly_one_review(String event, String body, int number) {
+        assertThat(context.transport.postedReviews(repositoryFullName, number))
+                .containsExactly(new FakeGitHubTransport.PostedReview(event, body));
     }
 
     @Then("the review sync fails clearly")

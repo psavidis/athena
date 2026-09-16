@@ -1,6 +1,8 @@
 package com.athena.github;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,6 +19,8 @@ public class FakeGitHubGraphQLTransport implements GitHubGraphQLTransport {
     private final Set<String> resolvedThreads = new HashSet<>();
     private final Set<FileKey> viewableFiles = new HashSet<>();
     private final Set<FileKey> viewedFiles = new HashSet<>();
+    private final List<String> resolveMutationCalls = new ArrayList<>();
+    private final List<FileKey> markViewedMutationCalls = new ArrayList<>();
     private String rejectedToken;
 
     public void allowResolvingThread(String threadId) {
@@ -45,12 +49,24 @@ public class FakeGitHubGraphQLTransport implements GitHubGraphQLTransport {
         return paths;
     }
 
+    /** How many times the resolve-thread mutation actually reached this transport for the given thread. */
+    public long resolveMutationCallCount(String threadId) {
+        return resolveMutationCalls.stream().filter(threadId::equals).count();
+    }
+
+    /** How many times the mark-file-as-viewed mutation actually reached this transport for the given file. */
+    public long markViewedMutationCallCount(String repositoryFullName, int number, String path) {
+        FileKey key = new FileKey(repositoryFullName, number, path);
+        return markViewedMutationCalls.stream().filter(key::equals).count();
+    }
+
     @Override
     public void resolveReviewThread(String token, String threadId) {
         requireValidToken(token);
         if (!resolvableThreads.contains(threadId)) {
             throw new GitHubResourceNotFoundException("Review thread not found or not resolvable: " + threadId);
         }
+        resolveMutationCalls.add(threadId);
         resolvedThreads.add(threadId);
     }
 
@@ -62,6 +78,7 @@ public class FakeGitHubGraphQLTransport implements GitHubGraphQLTransport {
             throw new GitHubResourceNotFoundException(
                     "File not found on pull request: " + path + " in " + repositoryFullName + "#" + number);
         }
+        markViewedMutationCalls.add(key);
         viewedFiles.add(key);
     }
 

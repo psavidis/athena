@@ -60,6 +60,30 @@ public class SyncResolvedDiscussionsAndViewedFilesSteps {
         }
     }
 
+    @When("Athena resolves discussion thread {string} on pull request {int} in repository {string} twice")
+    public void athena_resolves_discussion_thread_twice(String threadId, int number, String repo) {
+        DiscussionAndViewedFileSyncer syncer = new DiscussionAndViewedFileSyncer(context.token, graphQLTransport);
+        try {
+            syncer.resolveDiscussionThread(threadId);
+            syncer.resolveDiscussionThread(threadId);
+            succeeded = true;
+        } catch (Exception e) {
+            thrown = e;
+        }
+    }
+
+    @When("Athena marks file {string} as viewed on pull request {int} in repository {string} twice")
+    public void athena_marks_file_as_viewed_twice(String path, int number, String repo) {
+        DiscussionAndViewedFileSyncer syncer = new DiscussionAndViewedFileSyncer(context.token, graphQLTransport);
+        try {
+            syncer.markFileAsViewed(repo, number, path);
+            syncer.markFileAsViewed(repo, number, path);
+            succeeded = true;
+        } catch (Exception e) {
+            thrown = e;
+        }
+    }
+
     @Then("the resolve sync succeeds")
     public void resolve_sync_succeeds() {
         assertThat(succeeded).isTrue();
@@ -71,6 +95,11 @@ public class SyncResolvedDiscussionsAndViewedFilesSteps {
         assertThat(graphQLTransport.resolvedThreads()).contains(threadId);
     }
 
+    @Then("GitHub received exactly one resolve mutation for review thread {string}")
+    public void github_received_exactly_one_resolve_mutation(String threadId) {
+        assertThat(graphQLTransport.resolveMutationCallCount(threadId)).isEqualTo(1);
+    }
+
     @Then("the viewed-file sync succeeds")
     public void viewed_file_sync_succeeds() {
         assertThat(succeeded).isTrue();
@@ -80,6 +109,11 @@ public class SyncResolvedDiscussionsAndViewedFilesSteps {
     @Then("GitHub shows file {string} as viewed on pull request {int}")
     public void github_shows_file_viewed(String path, int number) {
         assertThat(graphQLTransport.viewedFiles(repositoryFullName, number)).contains(path);
+    }
+
+    @Then("GitHub received exactly one mark-as-viewed mutation for file {string} on pull request {int}")
+    public void github_received_exactly_one_mark_viewed_mutation(String path, int number) {
+        assertThat(graphQLTransport.markViewedMutationCallCount(repositoryFullName, number, path)).isEqualTo(1);
     }
 
     @Then("the resolve sync fails clearly")
