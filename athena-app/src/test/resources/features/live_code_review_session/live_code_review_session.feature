@@ -14,7 +14,7 @@ Feature: Live Code Review Session lifecycle
   Scenario: Starting a session with no review selected is rejected
     Given a reviewer has no PR or Diff selected
     When the reviewer attempts to start a Live Code Review Session as "Petros"
-    Then the attempt is rejected as invalid
+    Then the live session request is rejected as invalid
 
   Scenario: A second reviewer joins the session via its shareable id
     Given "Petros" has started a Live Code Review Session for PR 42 in "acme/widgets"
@@ -30,7 +30,7 @@ Feature: Live Code Review Session lifecycle
 
   Scenario: Joining an unknown session is rejected
     When a reviewer attempts to join session "does-not-exist"
-    Then the attempt is rejected as invalid
+    Then the live session request is rejected as invalid
 
   Scenario: A participant who leaves no longer appears as an active participant
     Given "Petros" has started a Live Code Review Session for PR 42 in "acme/widgets"

@@ -22,4 +22,4 @@ Feature: Live Code Review Session — collaborative comments
   Scenario: A blank comment is rejected
     Given "Petros" has started a Live Code Review Session for PR 42 in "acme/widgets"
     When "Petros" attempts to comment "   " on the "PaymentValidator" component
-    Then the attempt is rejected as invalid
+    Then the live session request is rejected as invalid

@@ -14,7 +14,7 @@ Feature: Live Code Review Session — shared navigation, follow, and present
     Given "Petros" has started a Live Code Review Session for PR 42 in "acme/widgets"
     And "Maria" has joined that session
     When "Maria" attempts to move the shared focus to the "PaymentValidator" component
-    Then the attempt is rejected as invalid
+    Then the live session request is rejected as invalid
 
   Scenario: A participant takes control of the shared presentation
     Given "Petros" has started a Live Code Review Session for PR 42 in "acme/widgets"
