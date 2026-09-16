@@ -25,15 +25,17 @@ const SNAPSHOT = {
   ended: false,
 }
 
-function renderCanvas() {
+function renderCanvas(pullRequest: { number: number; title: string; author: string; baseRevision: string; headRevision: string } | null = {
+  number: 42,
+  title: 'Add live module',
+  author: 'octocat',
+  baseRevision: 'a',
+  headRevision: 'b',
+}) {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
   render(
     <QueryClientProvider client={queryClient}>
-      <LiveSessionCanvas
-        pullRequest={{ number: 42, title: 'Add live module', author: 'octocat', baseRevision: 'a', headRevision: 'b' }}
-        onNotConnected={vi.fn()}
-        onNoPullRequestSelected={vi.fn()}
-      />
+      <LiveSessionCanvas pullRequest={pullRequest} onNotConnected={vi.fn()} onNoPullRequestSelected={vi.fn()} />
     </QueryClientProvider>,
   )
 }
@@ -98,5 +100,38 @@ describe('Live Code Review Session panel', () => {
     await user.click(screen.getByRole('button', { name: 'Post' }))
 
     expect(await screen.findByText('Looks good')).toBeVisible()
+  })
+
+  it('joining via a shared link with no PR of your own selected shows the session instead of a blank page', async () => {
+    const joinedSnapshot = { ...SNAPSHOT, repositoryFullName: 'Local diff comparison', pullRequestNumber: 0 }
+    server.use(
+      http.post('/api/live-sessions/session-1/join', () =>
+        HttpResponse.json({ sessionId: 'session-1', participantId: 'participant-2', snapshot: joinedSnapshot }),
+      ),
+    )
+    window.history.replaceState(null, '', '/live/session-1')
+    renderCanvas(null)
+    const user = userEvent.setup()
+
+    await user.type(await screen.findByLabelText('Your name'), 'Maria')
+    await user.click(screen.getByRole('button', { name: 'Join session' }))
+
+    expect(await screen.findByText(/no GitHub Pull Request to select/)).toBeVisible()
+    expect(screen.getByText('Local diff comparison')).toBeVisible()
+  })
+
+  // Regression test: a standalone Diff (ticket #111/#153) always renders with
+  // pullRequest={null} — that must NOT be confused with "no review to show,"
+  // which only applies to someone who *joined via a link* with nothing of
+  // their own selected. The session's own creator must still see their canvas.
+  it('starting a session from a standalone Diff (pullRequest=null) still shows the canvas, not the no-PR fallback', async () => {
+    mockEndpoints()
+    renderCanvas(null)
+    const user = userEvent.setup()
+
+    await startSession(user)
+
+    expect(screen.getByTestId('semantic-canvas')).toBeVisible()
+    expect(screen.queryByText(/no GitHub Pull Request to select/)).not.toBeInTheDocument()
   })
 })

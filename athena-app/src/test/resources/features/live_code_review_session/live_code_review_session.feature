@@ -16,6 +16,12 @@ Feature: Live Code Review Session lifecycle
     When the reviewer attempts to start a Live Code Review Session as "Petros"
     Then the live session request is rejected as invalid
 
+  Scenario: A reviewer starts a session from a standalone Diff, with no GitHub PR at all
+    Given a reviewer has a standalone Diff selected, with no GitHub PR
+    When the reviewer starts a Live Code Review Session as "Petros"
+    Then the session exists
+    And "Petros" is the session's presenter
+
   Scenario: A second reviewer joins the session via its shareable id
     Given "Petros" has started a Live Code Review Session for PR 42 in "acme/widgets"
     When "Maria" joins that session

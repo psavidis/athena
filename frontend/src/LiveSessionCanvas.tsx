@@ -52,6 +52,14 @@ export default function LiveSessionCanvas(props: {
   picker?: React.ReactNode
   onNotConnected: () => void
   onNoPullRequestSelected: () => void
+  // Called right after joining a session whose review is a real GitHub PR
+  // (ticket #158's "a participant joining an existing session" flow) — the
+  // owner (App.tsx) is expected to select that same PR through the normal,
+  // already-working GitHub flow so this component's own `pullRequest` prop
+  // becomes non-null and the canvas actually renders content, not just the
+  // presence/comments layer. Absent for a standalone-Diff-backed session,
+  // which has no PR identity to hand back.
+  onJoinedPr?: (repositoryFullName: string, number: number) => void
 }) {
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [participantId, setParticipantId] = useState<string | null>(null)
@@ -63,6 +71,14 @@ export default function LiveSessionCanvas(props: {
   const [joinPromptSessionId, setJoinPromptSessionId] = useState<string | null>(() =>
     parseLiveSessionPath(window.location.pathname),
   )
+  // True once this participant has joined an existing session (as opposed
+  // to starting one) — distinct from `joinPromptSessionId` (which clears
+  // once the prompt closes) because it must keep meaning "I'm a joiner,
+  // not the one who started this" for as long as the session lasts. Needed
+  // because `props.pullRequest === null` is NOT itself a "nothing to show"
+  // signal — the session's own creator legitimately has it null too when
+  // presenting a standalone Diff (ticket #111/#153's existing convention).
+  const [joinedViaLink, setJoinedViaLink] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const localTerritoryRef = useRef<string | undefined>(undefined)
 
@@ -110,6 +126,10 @@ export default function LiveSessionCanvas(props: {
       setParticipantId(result.participantId)
       setSnapshot(result.snapshot)
       setJoinPromptSessionId(null)
+      setJoinedViaLink(true)
+      if (result.snapshot.pullRequestNumber > 0) {
+        props.onJoinedPr?.(result.snapshot.repositoryFullName, result.snapshot.pullRequestNumber)
+      }
     } catch {
       setError('This Live Code Review Session could not be found.')
       setJoinPromptSessionId(null)
@@ -139,28 +159,71 @@ export default function LiveSessionCanvas(props: {
     }
   }
 
+  const panel = (
+    <LiveSessionPanel
+      snapshot={snapshot}
+      participantId={participantId}
+      error={error}
+      onStart={handleStart}
+      onLeave={handleLeave}
+      onTakeControl={() => sessionId && participantId && takeControl(sessionId, participantId)}
+      onExplore={() =>
+        sessionId && participantId && exploreIndependently(sessionId, participantId, territoryFocus(localTerritoryRef.current))
+      }
+      onReturnToShared={() => sessionId && participantId && followSharedView(sessionId, participantId)}
+      onEnd={() => sessionId && participantId && endLiveSession(sessionId, participantId).then(handleLeave)}
+    />
+  )
+
+  // Joined a session but have no review of our own selected yet — a
+  // standalone-Diff-backed session (no PR to independently select) or a
+  // PR-backed one still waiting on App.tsx's own select-PR mutation. Show
+  // the session itself (presence, comments, controls) rather than letting
+  // SemanticCanvasPage's "no PR/Diff selected" error state blank the whole
+  // page — that error path is for someone who hasn't joined anything at
+  // all, not a participant who very much has (ticket #158).
+  if ((joinedViaLink || joinPromptSessionId) && !props.pullRequest) {
+    return (
+      <div className="flex h-screen w-full flex-col overflow-hidden bg-canvas-paper text-canvas-ink">
+        {joinPromptSessionId && (
+          <JoinLiveSessionPrompt onJoin={handleJoin} onCancel={() => setJoinPromptSessionId(null)} />
+        )}
+        <header className="flex items-center justify-between border-b border-canvas-line bg-canvas-paper-raised px-4 py-2">
+          <span className="font-display text-lg font-bold tracking-[0.12em] text-canvas-gold-deep">ATHENA</span>
+          {snapshot && panel}
+        </header>
+        {snapshot && (
+          <div className="flex flex-1 items-center justify-center px-6 text-center">
+            <p className="max-w-sm text-sm text-canvas-ink-soft">
+              {snapshot.pullRequestNumber > 0 ? (
+                <>
+                  You&rsquo;re in the Live Code Review Session for{' '}
+                  <span className="font-semibold text-canvas-ink">
+                    {snapshot.repositoryFullName}#{snapshot.pullRequestNumber}
+                  </span>
+                  . Loading that Pull Request…
+                </>
+              ) : (
+                <>
+                  You&rsquo;re in the Live Code Review Session for{' '}
+                  <span className="font-semibold text-canvas-ink">{snapshot.repositoryFullName}</span>. This review has
+                  no GitHub Pull Request to select on your own machine — ask the presenter to share it, or select the
+                  same comparison yourself to see the canvas.
+                </>
+              )}
+            </p>
+          </div>
+        )}
+      </div>
+    )
+  }
+
   return (
     <>
       {joinPromptSessionId && <JoinLiveSessionPrompt onJoin={handleJoin} onCancel={() => setJoinPromptSessionId(null)} />}
       <SemanticCanvasPage
         {...props}
-        liveSessionPanel={
-          <LiveSessionPanel
-            snapshot={snapshot}
-            participantId={participantId}
-            error={error}
-            onStart={handleStart}
-            onLeave={handleLeave}
-            onTakeControl={() => sessionId && participantId && takeControl(sessionId, participantId)}
-            onExplore={() =>
-              sessionId &&
-              participantId &&
-              exploreIndependently(sessionId, participantId, territoryFocus(localTerritoryRef.current))
-            }
-            onReturnToShared={() => sessionId && participantId && followSharedView(sessionId, participantId)}
-            onEnd={() => sessionId && participantId && endLiveSession(sessionId, participantId).then(handleLeave)}
-          />
-        }
+        liveSessionPanel={panel}
         liveSession={
           sessionId && participantId
             ? { isPresenter, isFollowing, sharedTerritory, onLocalTerritoryChange: handleLocalTerritoryChange }

@@ -10,6 +10,7 @@ import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.PrAnalyzer;
 import com.athena.semantic.ReviewStateStore;
+import com.athena.web.Diff;
 import com.athena.web.WebSession;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -79,6 +80,12 @@ public class LiveCodeReviewSessionSteps {
     @Given("a reviewer has no PR or Diff selected")
     public void a_reviewer_has_no_pr_or_diff_selected() {
         // no-op: a fresh WebSession starts with nothing selected
+    }
+
+    @Given("a reviewer has a standalone Diff selected, with no GitHub PR")
+    public void a_reviewer_has_a_standalone_diff_selected() {
+        webSession.selectDiff(new Diff(headRoot, baseRoot, headRoot, new ReviewStateStore(), new AnnotationBoard(),
+                new ReviewSubmission()));
     }
 
     @When("the reviewer starts a Live Code Review Session as {string}")

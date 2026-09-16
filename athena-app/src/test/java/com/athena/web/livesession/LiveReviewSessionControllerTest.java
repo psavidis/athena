@@ -8,6 +8,7 @@ import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.PrAnalyzer;
 import com.athena.semantic.ReviewStateStore;
+import com.athena.web.Diff;
 import com.athena.web.WebSession;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -77,6 +78,23 @@ class LiveReviewSessionControllerTest {
         assertThat(response.snapshot().presenterId()).isEqualTo(response.participantId());
         assertThat(response.snapshot().repositoryFullName()).isEqualTo("acme/widgets");
         assertThat(response.snapshot().pullRequestNumber()).isEqualTo(42);
+    }
+
+    /**
+     * A standalone Diff (ticket #111/#153, no GitHub PR at all) is still an existing Athena
+     * review — the session's join/presence/focus/comments protocol never actually depends on
+     * repository/PR identity, only on the registry entry itself, so this must work exactly
+     * like a PR-backed session, just without a repository/PR number to display.
+     */
+    @Test
+    void creatingFromAStandaloneDiffWorksWithoutAGitHubPr() {
+        selectStandaloneDiff();
+
+        LiveSessionJoinResponse response = controller.create(new CreateLiveSessionRequest("Petros"));
+
+        assertThat(response.snapshot().presenterId()).isEqualTo(response.participantId());
+        assertThat(response.snapshot().repositoryFullName()).isEqualTo("Local diff comparison");
+        assertThat(response.snapshot().pullRequestNumber()).isZero();
     }
 
     @Test
@@ -173,6 +191,11 @@ class LiveReviewSessionControllerTest {
         webSession.connect("test-token");
         webSession.select(new WebSession.SelectedPullRequest(
                 pr, "acme/widgets", headRoot, baseRoot, headRoot, new ReviewStateStore(), new AnnotationBoard(),
+                new ReviewSubmission()));
+    }
+
+    private void selectStandaloneDiff() {
+        webSession.selectDiff(new Diff(headRoot, baseRoot, headRoot, new ReviewStateStore(), new AnnotationBoard(),
                 new ReviewSubmission()));
     }
 }

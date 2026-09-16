@@ -53,12 +53,21 @@ public class LiveReviewSessionController {
 
     @PostMapping
     public LiveSessionJoinResponse create(@RequestBody CreateLiveSessionRequest request) {
-        WebSession.SelectedPullRequest selected = session.selectedPullRequest()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT,
-                        "Select a Pull Request before starting a Live Code Review Session"));
+        session.currentDiff().orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT,
+                "Select a Pull Request or Diff before starting a Live Code Review Session"));
         String displayName = requireDisplayName(request.displayName());
-        LiveReviewSession liveSession = registry.create(
-                selected.repositoryFullName(), selected.pullRequest().number(), displayName);
+        // A PR-backed selection carries a real repository/PR number for the session to display
+        // (and, in principle, for another participant to independently re-select via GitHub
+        // import); a standalone Diff has neither, but the session's own join/presence/focus/
+        // comments protocol never actually depends on that identity — only on the registry
+        // entry itself — so it works identically either way.
+        String repositoryFullName = session.selectedPullRequest()
+                .map(WebSession.SelectedPullRequest::repositoryFullName)
+                .orElse("Local diff comparison");
+        int pullRequestNumber = session.selectedPullRequest()
+                .map(selected -> selected.pullRequest().number())
+                .orElse(0);
+        LiveReviewSession liveSession = registry.create(repositoryFullName, pullRequestNumber, displayName);
         return new LiveSessionJoinResponse(liveSession.id(), liveSession.creatorId(),
                 LiveReviewSessionSnapshot.of(liveSession));
     }
