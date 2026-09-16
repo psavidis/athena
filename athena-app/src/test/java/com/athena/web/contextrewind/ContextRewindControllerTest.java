@@ -71,7 +71,7 @@ class ContextRewindControllerTest {
 
     @Test
     void rejectsWhenNotConnectedToGitHub() {
-        assertThatThrownBy(() -> controller.contextRewind("PaymentProcessor"))
+        assertThatThrownBy(() -> controller.contextRewind("PaymentProcessor", null))
                 .isInstanceOf(ResponseStatusException.class)
                 .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(401));
     }
@@ -80,7 +80,7 @@ class ContextRewindControllerTest {
     void rejectsWhenNoPullRequestIsSelected() {
         session.connect(TOKEN);
 
-        assertThatThrownBy(() -> controller.contextRewind("PaymentProcessor"))
+        assertThatThrownBy(() -> controller.contextRewind("PaymentProcessor", null))
                 .isInstanceOf(ResponseStatusException.class)
                 .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(409));
     }
@@ -95,7 +95,7 @@ class ContextRewindControllerTest {
         String headSha = commit("Second commit");
         selectStandaloneDiff(baseSha, headSha);
 
-        assertThatThrownBy(() -> controller.contextRewind("PaymentProcessor"))
+        assertThatThrownBy(() -> controller.contextRewind("PaymentProcessor", null))
                 .isInstanceOf(ResponseStatusException.class)
                 .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(409));
     }
@@ -111,7 +111,7 @@ class ContextRewindControllerTest {
         registerMergedPullRequestTouching(217, "Add retry handling", "PaymentProcessor.java");
         selectPullRequest(baseSha, headSha);
 
-        ContextRewindResponse response = controller.contextRewind("PaymentProcessor");
+        ContextRewindResponse response = controller.contextRewind("PaymentProcessor", null);
 
         assertThat(response.entityName()).isEqualTo("PaymentProcessor");
         assertThat(response.pullRequestReferences())
@@ -129,7 +129,7 @@ class ContextRewindControllerTest {
         String headSha = commit("Second commit");
         selectPullRequest(baseSha, headSha);
 
-        ContextRewindResponse response = controller.contextRewind("UntouchedHelper");
+        ContextRewindResponse response = controller.contextRewind("UntouchedHelper", null);
 
         assertThat(response.insufficientHistoryMessage())
                 .isEqualTo("Not enough historical information is available for UntouchedHelper");
@@ -150,9 +150,35 @@ class ContextRewindControllerTest {
         ContextRewindController controllerWithNarrative =
                 new ContextRewindController(session, token -> fakeRepositoryProvider, fixedNarrativeProvider);
 
-        ContextRewindResponse response = controllerWithNarrative.contextRewind("PaymentProcessor");
+        ContextRewindResponse response = controllerWithNarrative.contextRewind("PaymentProcessor", null);
 
         assertThat(response.aiNarrative()).isEqualTo("PaymentProcessor grew retry handling over time.");
+    }
+
+    /**
+     * Doesn't assert the resulting {@code evolutionTimeline} content: {@link ContextRewindService}'s
+     * own "catch me up" scoping is already covered directly against a full-history repo root in
+     * {@code ContextRewindServiceTest#catchUpScopesActivityToAfterTheGivenPoint} (ticket #161).
+     * Through this controller, {@code selection.headRoot()} is a shallow, single-commit checkout
+     * (see the controller's class Javadoc), so a real multi-commit scoping assertion here would
+     * either trivially pass regardless of whether {@code since} is even wired up, or require
+     * bypassing the session's real checkout mechanics — neither is a meaningful test. This test
+     * covers what the controller itself is actually responsible for: parsing {@code since} and
+     * rejecting a malformed one, rather than silently ignoring it.
+     */
+    @Test
+    void rejectsAMalformedSinceParameter() throws Exception {
+        session.connect(TOKEN);
+        initRepo();
+        writeFile("README.md", "root\n");
+        String baseSha = commit("Initial commit");
+        writeFile("README.md", "root, updated\n");
+        String headSha = commit("Second commit");
+        selectPullRequest(baseSha, headSha);
+
+        assertThatThrownBy(() -> controller.contextRewind("PaymentProcessor", "not-a-date"))
+                .isInstanceOf(ResponseStatusException.class)
+                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(400));
     }
 
     private void registerMergedPullRequestTouching(int number, String title, String changedFile) {

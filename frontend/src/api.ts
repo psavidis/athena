@@ -396,8 +396,12 @@ export interface ContextRewind {
   insufficientHistoryMessage: string | null
 }
 
-export async function getContextRewind(entityName: string): Promise<ContextRewind> {
-  const response = await fetch(`/api/review/context-rewind/${encodeURIComponent(entityName)}`)
+/** `since` is a plain `YYYY-MM-DD` date (ticket #189's "catch me up" — a developer-chosen
+ * point, not an auto-detected last-visit), converted here to a full instant the backend can
+ * parse. */
+export async function getContextRewind(entityName: string, since?: string): Promise<ContextRewind> {
+  const query = since ? `?since=${encodeURIComponent(`${since}T00:00:00Z`)}` : ''
+  const response = await fetch(`/api/review/context-rewind/${encodeURIComponent(entityName)}${query}`)
   if (response.status === 401) {
     throw new NotConnectedError()
   }
