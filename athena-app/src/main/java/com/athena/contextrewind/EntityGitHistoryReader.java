@@ -30,11 +30,33 @@ final class EntityGitHistoryReader {
      * The commits that touched {@code fileName}, oldest first. Returns an
      * empty list — never throws — when {@code projectRoot} isn't a git
      * repository or the file has no history there.
+     *
+     * <p>{@code fileName} is a bare name (e.g. {@code "PaymentProcessor.java"}),
+     * not a repo-relative path, so it's first resolved against every
+     * currently-tracked file ending in that name (via a glob pathspec) —
+     * a plain {@code git log -- fileName} would otherwise only ever match
+     * a file sitting directly at {@code projectRoot}, never one under a
+     * normal package directory. {@code --follow} (rename tracking) is
+     * applied per resolved path rather than to the glob itself, since git
+     * rejects combining {@code --follow} with glob pathspecs.
      */
     static List<HistoricalActivity> read(Path projectRoot, String fileName) {
-        List<String> command = List.of("git", "log", "--follow",
-                "--format=%H" + FIELD_SEPARATOR + "%cI" + FIELD_SEPARATOR + "%s", "--", fileName);
-        String output = runGit(projectRoot, command);
+        List<HistoricalActivity> activities = new ArrayList<>();
+        for (String resolvedPath : resolveTrackedPaths(projectRoot, fileName)) {
+            activities.addAll(readCommitsForPath(projectRoot, resolvedPath));
+        }
+        activities.sort(Comparator.comparing(HistoricalActivity::occurredAt));
+        return activities;
+    }
+
+    private static List<String> resolveTrackedPaths(Path projectRoot, String fileName) {
+        String output = runGit(projectRoot, List.of("git", "ls-files", "--", ":(glob)**/" + fileName));
+        return output.lines().filter(line -> !line.isBlank()).toList();
+    }
+
+    private static List<HistoricalActivity> readCommitsForPath(Path projectRoot, String repoRelativePath) {
+        String output = runGit(projectRoot, List.of("git", "log", "--follow",
+                "--format=%H" + FIELD_SEPARATOR + "%cI" + FIELD_SEPARATOR + "%s", "--", repoRelativePath));
         if (output.isBlank()) {
             return List.of();
         }
@@ -50,7 +72,6 @@ final class EntityGitHistoryReader {
             String subject = fields[2];
             activities.add(new HistoricalActivity(subject + " (" + shortSha + ")", occurredAt));
         }
-        activities.sort(Comparator.comparing(HistoricalActivity::occurredAt));
         return activities;
     }
 

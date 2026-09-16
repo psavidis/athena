@@ -52,6 +52,17 @@ class EntityGitHistoryReaderTest {
     }
 
     @Test
+    void findsCommitsForAFileUnderANestedPackageDirectory() throws IOException, InterruptedException {
+        initRepo();
+        commitFile("src/main/java/com/acme/PaymentProcessor.java", "add processor", "2025-12-01T10:00:00+00:00");
+
+        List<HistoricalActivity> activity = EntityGitHistoryReader.read(projectRoot, "PaymentProcessor.java");
+
+        assertThat(activity).hasSize(1);
+        assertThat(activity.get(0).description()).contains("add processor");
+    }
+
+    @Test
     void doesNotIncludeCommitsThatTouchedAnotherFile() throws IOException, InterruptedException {
         initRepo();
         commitFile("Unrelated.java", "unrelated change", "2025-12-01T10:00:00+00:00");
@@ -76,6 +87,7 @@ class EntityGitHistoryReaderTest {
 
     private void commitFile(String fileName, String message, String isoCommitDate) throws IOException, InterruptedException {
         Path file = projectRoot.resolve(fileName);
+        Files.createDirectories(file.getParent());
         String previousContent = Files.exists(file) ? Files.readString(file) : "";
         Files.writeString(file, previousContent + message + "\n");
         runGit("add", ".");
