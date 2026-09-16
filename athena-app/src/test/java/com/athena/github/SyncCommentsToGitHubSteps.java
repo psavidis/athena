@@ -55,6 +55,30 @@ public class SyncCommentsToGitHubSteps {
         }
     }
 
+    @When("Athena syncs a general comment {string} to pull request {int} in repository {string} twice")
+    public void athena_syncs_general_comment_twice(String body, int number, String repo) {
+        CommentSyncer syncer = new CommentSyncer(context.token, context.transport);
+        try {
+            syncer.syncGeneralComment(repo, number, body);
+            syncer.syncGeneralComment(repo, number, body);
+            syncSucceeded = true;
+        } catch (Exception e) {
+            thrown = e;
+        }
+    }
+
+    @When("Athena syncs a line comment {string} on file {string} line {int} to pull request {int} in repository {string} twice")
+    public void athena_syncs_line_comment_twice(String body, String path, int line, int number, String repo) {
+        CommentSyncer syncer = new CommentSyncer(context.token, context.transport);
+        try {
+            syncer.syncLineComment(repo, number, body, path, line);
+            syncer.syncLineComment(repo, number, body, path, line);
+            syncSucceeded = true;
+        } catch (Exception e) {
+            thrown = e;
+        }
+    }
+
     @Then("the sync succeeds")
     public void sync_succeeds() {
         assertThat(syncSucceeded).isTrue();
@@ -64,6 +88,22 @@ public class SyncCommentsToGitHubSteps {
     @Then("GitHub shows a general comment {string} on pull request {int}")
     public void github_shows_general_comment(String body, int number) {
         assertThat(context.transport.postedGeneralComments(repositoryFullName, number)).contains(body);
+    }
+
+    @Then("GitHub shows exactly one general comment {string} on pull request {int}")
+    public void github_shows_exactly_one_general_comment(String body, int number) {
+        assertThat(context.transport.postedGeneralComments(repositoryFullName, number)).containsExactly(body);
+    }
+
+    @Then("GitHub shows exactly one line comment {string} on file {string} line {int} of pull request {int}")
+    public void github_shows_exactly_one_line_comment(String body, String path, int line, int number) {
+        assertThat(context.transport.postedLineComments(repositoryFullName, number))
+                .hasSize(1)
+                .anySatisfy(c -> {
+                    assertThat(c.body()).isEqualTo(body);
+                    assertThat(c.path()).isEqualTo(path);
+                    assertThat(c.line()).isEqualTo(line);
+                });
     }
 
     @Then("GitHub shows a line comment {string} on file {string} line {int} of pull request {int}")

@@ -20,3 +20,9 @@ Feature: Sync review decision to GitHub
     Given an invalid GitHub Personal Access Token
     When Athena syncs an approval "Looks great" to pull request 42 in repository "octocat/Hello-World"
     Then the review sync fails clearly
+
+  Scenario: Retrying an approval sync does not create a duplicate review
+    Given a valid GitHub Personal Access Token
+    And repository "octocat/Hello-World" pull request 42 accepts synced reviews
+    When Athena syncs an approval "Looks great" to pull request 42 in repository "octocat/Hello-World" twice
+    Then GitHub shows exactly one "APPROVE" review "Looks great" on pull request 42
