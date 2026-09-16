@@ -6,6 +6,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -118,17 +119,55 @@ public final class ReviewRecording {
     /**
      * Tags the current moment as {@code kind} (ticket #205), referencing whichever
      * entity/change the most recently captured {@link SemanticEvent} concerns — or no
-     * reference at all if nothing has been captured yet. Requires the recording still be active.
+     * reference at all if nothing has been captured yet. Starts {@link MomentStatus#PENDING}
+     * (ticket #206) — it isn't durable until {@link #confirmMoment} confirms it. Requires the
+     * recording still be active.
      */
-    public synchronized void tagMoment(MomentKind kind) {
+    public synchronized Moment tagMoment(MomentKind kind) {
         requireActive();
         String reference = events.isEmpty() ? null : events.get(events.size() - 1).reference();
-        moments.add(Moment.of(kind, reference, clock.instant()));
+        Moment moment = Moment.tagged(kind, reference, clock.instant());
+        moments.add(moment);
+        return moment;
+    }
+
+    /** Confirms the pending moment {@code momentId}, making it durable. Requires it exist and still be pending. */
+    public synchronized void confirmMoment(String momentId) {
+        replaceMoment(momentId, Moment::confirmed);
+    }
+
+    /** Rejects the pending moment {@code momentId}, discarding it. Requires it exist and still be pending. */
+    public synchronized void rejectMoment(String momentId) {
+        replaceMoment(momentId, Moment::rejected);
+    }
+
+    /** Changes the pending moment {@code momentId}'s kind to {@code newKind}. Requires it exist and still be pending. */
+    public synchronized void editMoment(String momentId, MomentKind newKind) {
+        replaceMoment(momentId, moment -> moment.withKind(newKind));
+    }
+
+    private void replaceMoment(String momentId, java.util.function.UnaryOperator<Moment> transition) {
+        int index = indexOfMoment(momentId);
+        moments.set(index, transition.apply(moments.get(index)));
+    }
+
+    private int indexOfMoment(String momentId) {
+        for (int i = 0; i < moments.size(); i++) {
+            if (moments.get(i).id().equals(momentId)) {
+                return i;
+            }
+        }
+        throw new NoSuchElementException("No moment " + momentId + " in this recording");
     }
 
     /** Every moment tagged so far, in the order they were tagged. */
     public synchronized List<Moment> moments() {
         return List.copyOf(moments);
+    }
+
+    /** This recording's summary (ticket #206): duration and confirmed-moment counts by kind. */
+    public synchronized ReviewRecordingSummary summary() {
+        return ReviewRecordingSummary.of(elapsed(), moments);
     }
 
     /** Stops this recording. Requires it not already be stopped. */
