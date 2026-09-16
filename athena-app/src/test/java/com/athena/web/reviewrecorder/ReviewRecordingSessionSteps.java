@@ -30,11 +30,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Step definitions for the Review Recording session lifecycle (ticket
- * #203) and semantic event capture (ticket #204) features. Kept as one
- * class since both share the same "Petros has started a Review
- * Recording" fixture — matching {@code LiveCodeReviewSessionSteps}'s own
- * precedent of one steps class per closely-related ticket group, for the
- * closest analogous feature in this codebase. Detroit-school: real
+ * #203), semantic event capture (ticket #204), and explicit moment
+ * tagging (ticket #205) features. Kept as one class since all three
+ * share the same "Petros has started a Review Recording" fixture —
+ * matching {@code LiveCodeReviewSessionSteps}'s own precedent of one
+ * steps class per closely-related ticket group, for the closest
+ * analogous feature in this codebase. Detroit-school: real
  * {@link WebSession}, {@link ReviewRecordingRegistry}, and
  * {@link ReviewRecordingController} — no mocks.
  *
@@ -287,6 +288,87 @@ public class ReviewRecordingSessionSteps {
         List<SemanticEventResponse> events = controller.events(recordingId);
         assertThat(events).extracting(SemanticEventResponse::type)
                 .containsExactly("CANVAS_NAVIGATION", "ENTITY_INSPECTED");
+    }
+
+    // --- Explicit moment tagging (ticket #205) ---
+
+    @When("{string} tags the current moment as a question")
+    public void tags_the_current_moment_as_a_question(String displayName) {
+        tagMoment("QUESTION");
+    }
+
+    @When("{string} tags the current moment as a decision")
+    public void tags_the_current_moment_as_a_decision(String displayName) {
+        tagMoment("DECISION");
+    }
+
+    @When("{string} tags the current moment as an insight")
+    public void tags_the_current_moment_as_an_insight(String displayName) {
+        tagMoment("INSIGHT");
+    }
+
+    @When("{string} tags the current moment as a concern")
+    public void tags_the_current_moment_as_a_concern(String displayName) {
+        tagMoment("CONCERN");
+    }
+
+    @When("{string} tags the current moment as an action")
+    public void tags_the_current_moment_as_an_action(String displayName) {
+        tagMoment("ACTION");
+    }
+
+    @When("{string} tags the current moment as a verification")
+    public void tags_the_current_moment_as_a_verification(String displayName) {
+        tagMoment("VERIFICATION");
+    }
+
+    @When("{string} attempts to tag the current moment as a question")
+    public void attempts_to_tag_the_current_moment_as_a_question(String displayName) {
+        tagMoment("QUESTION");
+    }
+
+    @When("{string} attempts to tag the current moment with an unknown kind")
+    public void attempts_to_tag_the_current_moment_with_an_unknown_kind(String displayName) {
+        tagMoment("NOT_A_REAL_KIND");
+    }
+
+    private void tagMoment(String kind) {
+        try {
+            controller.tagMoment(recordingId, new TagMomentRequest(kind));
+        } catch (ResponseStatusException e) {
+            failure = e;
+        }
+    }
+
+    @Then("the recording's tagged moments include a question referencing the {string} entity")
+    public void the_tagged_moments_include_a_question_referencing_the_entity(String entityName) {
+        assertMomentPresent("QUESTION", "entity:" + entityName);
+    }
+
+    @Then("the recording's tagged moments include a decision referencing the {string} component")
+    public void the_tagged_moments_include_a_decision_referencing_the_component(String componentName) {
+        assertMomentPresent("DECISION", "component:" + componentName);
+    }
+
+    private void assertMomentPresent(String kind, String reference) {
+        List<MomentResponse> moments = controller.moments(recordingId);
+        assertThat(moments).anySatisfy(moment -> {
+            assertThat(moment.kind()).isEqualTo(kind);
+            assertThat(moment.reference()).isEqualTo(reference);
+        });
+    }
+
+    @Then("the recording's tagged moments include an insight, a concern, an action, and a verification")
+    public void the_tagged_moments_include_an_insight_a_concern_an_action_and_a_verification() {
+        List<MomentResponse> moments = controller.moments(recordingId);
+        assertThat(moments).extracting(MomentResponse::kind)
+                .containsExactlyInAnyOrder("INSIGHT", "CONCERN", "ACTION", "VERIFICATION");
+    }
+
+    @Then("the recording's tagged moments list the question before the decision")
+    public void the_tagged_moments_list_the_question_before_the_decision() {
+        List<MomentResponse> moments = controller.moments(recordingId);
+        assertThat(moments).extracting(MomentResponse::kind).containsExactly("QUESTION", "DECISION");
     }
 
     private ReviewRecordingSnapshot currentSnapshot() {
