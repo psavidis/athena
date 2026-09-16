@@ -169,7 +169,10 @@ export default function App() {
         return (
           <ContextRewindPage
             entityName={contextRewindEntityName}
-            onBack={() => setContextRewindEntityName(null)}
+            onBack={() => {
+              setContextRewindEntityName(null)
+              setMapFocusModule(undefined)
+            }}
             onOpenModule={(moduleName) => {
               setContextRewindEntityName(null)
               setMapFocusModule(moduleName)
@@ -205,7 +208,10 @@ export default function App() {
         return (
           <ContextRewindPage
             entityName={contextRewindEntityName}
-            onBack={() => setContextRewindEntityName(null)}
+            onBack={() => {
+              setContextRewindEntityName(null)
+              setMapFocusModule(undefined)
+            }}
             onOpenModule={(moduleName) => {
               setContextRewindEntityName(null)
               setMapFocusModule(moduleName)
