@@ -11,7 +11,7 @@ Feature: Context Rewind: reconstructing an entity's context from project history
 
   Scenario: Reconstructing context for an entity aggregates its available history and knowledge
     Given a project whose git history and Pull Requests both mention a class "PaymentProcessor"
-    And that project's memory contains the fact "PaymentProcessor and RetryWorker change together" about "PaymentProcessor"
+    And that project's memory contains the fact "PaymentProcessor.java and RetryWorker.java change together" about "PaymentProcessor"
     And an Obsidian vault configured as the Knowledge Provider contains a note about "PaymentProcessor"
     When Athena reconstructs the context for "PaymentProcessor"
     Then the reconstructed context includes the git commits and Pull Requests that touched "PaymentProcessor"
@@ -20,7 +20,7 @@ Feature: Context Rewind: reconstructing an entity's context from project history
 
   Scenario: Reconstructed context labels each piece of information by its source
     Given a project whose git history and Pull Requests both mention a class "PaymentProcessor"
-    And that project's memory contains the fact "PaymentProcessor and RetryWorker change together" about "PaymentProcessor"
+    And that project's memory contains the fact "PaymentProcessor.java and RetryWorker.java change together" about "PaymentProcessor"
     And an Obsidian vault configured as the Knowledge Provider contains a note about "PaymentProcessor"
     When Athena reconstructs the context for "PaymentProcessor"
     Then the git and Pull Request history in the reconstructed context is labeled as historical fact
