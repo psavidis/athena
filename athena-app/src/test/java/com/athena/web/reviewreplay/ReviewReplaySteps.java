@@ -1,15 +1,25 @@
 package com.athena.web.reviewreplay;
 
+import com.athena.git.TempDirectories;
+import com.athena.repository.ImportedPullRequest;
+import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewreplay.KnownEntityReferenceResolver;
 import com.athena.reviewrecorder.Moment;
 import com.athena.reviewrecorder.ReviewRecordingArtifact;
 import com.athena.reviewrecorder.ReviewRecordingArtifactStore;
+import com.athena.reviewui.AnnotationBoard;
+import com.athena.semantic.ReviewStateStore;
+import com.athena.web.WebSession;
 import com.athena.web.reviewrecorder.ReviewRecordingSessionSteps;
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -55,11 +65,31 @@ public class ReviewReplaySteps {
     private ReviewReplayResponse replay;
     private ResponseStatusException failure;
 
+    // --- Importing a shared artifact (ticket #217) ---
+
+    private Path exportedArtifactFile;
+    private ReviewRecordingArtifact exportedArtifact;
+    private Path importingProjectHeadRoot;
+    private Path importingProjectBaseRoot;
+
     public ReviewReplaySteps(ReviewRecordingSessionSteps recordingSteps) {
         this.recordingSteps = recordingSteps;
         this.replayController = new ReviewReplayController(recordingSteps.webSession(),
                 ReviewRecordingArtifactStore::new,
                 diff -> new KnownEntityReferenceResolver(() -> currentlyKnownEntityNames(diff.headRoot())));
+    }
+
+    @After
+    public void cleanUpImportingProject() {
+        if (importingProjectHeadRoot != null) {
+            TempDirectories.deleteRecursively(importingProjectHeadRoot);
+        }
+        if (importingProjectBaseRoot != null) {
+            TempDirectories.deleteRecursively(importingProjectBaseRoot);
+        }
+        if (exportedArtifactFile != null) {
+            TempDirectories.deleteRecursively(exportedArtifactFile.getParent());
+        }
     }
 
     @Given("the {string} entity has since been renamed and no longer resolves")
@@ -139,6 +169,91 @@ public class ReviewReplaySteps {
     // its own failure assertion under a distinct step text instead of colliding with that one.
     @Then("the Replay request is rejected as invalid")
     public void the_replay_request_is_rejected_as_invalid() {
+        assertThat(failure).isNotNull();
+        assertThat(failure.getStatusCode().is4xxClientError()).isTrue();
+    }
+
+    @Given("the recording's artifact has been exported to a shared file")
+    public void the_recordings_artifact_has_been_exported_to_a_shared_file() throws IOException {
+        // "Exported" means copied out to an independent location: selecting a different project
+        // below (selectImportingProject) replaces the current WebSession selection, which frees
+        // the recording's own headRoot (see WebSession#select) — the shared file must survive
+        // that, the same way a real teammate's exported file lives independently of the
+        // recorder's own machine.
+        Path recordingHeadRoot = recordingSteps.webSession().currentDiff().orElseThrow().headRoot();
+        ReviewRecordingArtifact artifact = new ReviewRecordingArtifactStore(recordingHeadRoot)
+                .find(recordingSteps.recordingId())
+                .orElseThrow();
+        Path sharedDir = Files.createTempDirectory("athena-review-replay-shared-artifact-");
+        exportedArtifactFile = sharedDir.resolve(artifact.recordingId() + ".json");
+        new ReviewRecordingArtifactStore(sharedDir).persist(artifact);
+        Files.move(sharedDir.resolve(".athena").resolve("review-recordings").resolve(artifact.recordingId() + ".json"),
+                exportedArtifactFile);
+        exportedArtifact = artifact;
+    }
+
+    @Given("that same artifact is already stored locally")
+    public void that_same_artifact_is_already_stored_locally() {
+        selectImportingProject("acme/widgets");
+        new ReviewRecordingArtifactStore(importingProjectHeadRoot).persist(exportedArtifact);
+    }
+
+    @When("a developer imports that shared file into a project selected on {string}")
+    public void a_developer_imports_that_shared_file_into_a_project_selected_on(String repositoryFullName) {
+        if (importingProjectHeadRoot == null) {
+            selectImportingProject(repositoryFullName);
+        }
+        importSharedFile(exportedArtifactFile.toString());
+    }
+
+    @When("a developer imports a malformed shared file into a project selected on {string}")
+    public void a_developer_imports_a_malformed_shared_file_into_a_project_selected_on(String repositoryFullName)
+            throws IOException {
+        selectImportingProject(repositoryFullName);
+        Path malformed = Files.createTempFile("athena-review-replay-malformed-shared-artifact-", ".json");
+        Files.writeString(malformed, "not valid json");
+        importSharedFile(malformed.toString());
+    }
+
+    private void importSharedFile(String filePath) {
+        try {
+            replay = replayController.importSharedArtifact(new ImportSharedArtifactRequest(filePath));
+        } catch (ResponseStatusException e) {
+            failure = e;
+        }
+    }
+
+    private void selectImportingProject(String repositoryFullName) {
+        try {
+            importingProjectBaseRoot = Files.createTempDirectory("athena-review-replay-import-base-");
+            importingProjectHeadRoot = Files.createTempDirectory("athena-review-replay-import-head-");
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+        WebSession webSession = recordingSteps.webSession();
+        ImportedPullRequest pr = new ImportedPullRequest(99, "Importing PR", "author", "base-sha", "head-sha",
+                List.of(), List.of());
+        webSession.connect("test-token");
+        webSession.select(new WebSession.SelectedPullRequest(
+                pr, repositoryFullName, importingProjectHeadRoot, importingProjectBaseRoot, importingProjectHeadRoot,
+                new ReviewStateStore(), new AnnotationBoard(), new ReviewSubmission()));
+    }
+
+    @Then("the import succeeds")
+    public void the_import_succeeds() {
+        assertThat(failure).isNull();
+        assertThat(replay).isNotNull();
+    }
+
+    @Then("a developer can open the imported artifact as a Replay")
+    public void a_developer_can_open_the_imported_artifact_as_a_replay() {
+        openReplay(replay.recordingId());
+        assertThat(failure).isNull();
+        assertThat(replay).isNotNull();
+    }
+
+    @Then("the import is rejected as invalid")
+    public void the_import_is_rejected_as_invalid() {
         assertThat(failure).isNotNull();
         assertThat(failure.getStatusCode().is4xxClientError()).isTrue();
     }
