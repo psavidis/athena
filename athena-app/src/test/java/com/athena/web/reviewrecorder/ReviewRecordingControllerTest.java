@@ -231,6 +231,53 @@ class ReviewRecordingControllerTest {
     }
 
     @Test
+    void stoppingPersistsTheArtifactAndItCanBeReopened() {
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
+        controller.captureEvent(response.recordingId(),
+                new CaptureSemanticEventRequest("ENTITY_INSPECTED", "entity:OrderService"));
+
+        controller.stop(response.recordingId());
+        ReviewRecordingArtifactResponse artifact = controller.artifact(response.recordingId());
+
+        assertThat(artifact.recordingId()).isEqualTo(response.recordingId());
+        assertThat(artifact.repositoryFullName()).isEqualTo("acme/widgets");
+        assertThat(artifact.pullRequestNumber()).isEqualTo(42);
+        assertThat(artifact.events()).hasSize(1);
+    }
+
+    @Test
+    void reopeningAnUnknownArtifactIsRejected() {
+        selectPullRequest(42, "acme/widgets");
+
+        assertThatThrownBy(() -> controller.artifact("does-not-exist"))
+                .isInstanceOf(ResponseStatusException.class)
+                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(404));
+    }
+
+    @Test
+    void aPersistenceFailureDoesNotCorruptTheInMemoryRecording() throws IOException {
+        // A real, genuine I/O failure (CODE_STYLE.md's own criterion for a legitimate boundary):
+        // a plain file where the artifact store expects to create a directory, so persist()'s own
+        // Files.createDirectories(...) fails for real, rather than a mocked/injected failure.
+        Path notADirectory = Files.createTempFile("athena-review-recording-broken-root-", "");
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingController brokenRootController = new ReviewRecordingController(webSession, registry,
+                Clock.systemUTC(), projectRoot -> new com.athena.reviewrecorder.ReviewRecordingArtifactStore(notADirectory));
+        ReviewRecordingStartResponse response =
+                brokenRootController.start(new StartReviewRecordingRequest("Petros", true));
+
+        assertThatThrownBy(() -> brokenRootController.stop(response.recordingId()))
+                .isInstanceOf(ResponseStatusException.class)
+                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().is5xxServerError()).isTrue());
+
+        ReviewRecordingSnapshot snapshot = brokenRootController.snapshot(response.recordingId());
+        assertThat(snapshot.active()).isFalse();
+
+        Files.delete(notADirectory);
+    }
+
+    @Test
     void summaryCountsOnlyConfirmedMomentsAfterStopping() {
         selectPullRequest(42, "acme/widgets");
         ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
