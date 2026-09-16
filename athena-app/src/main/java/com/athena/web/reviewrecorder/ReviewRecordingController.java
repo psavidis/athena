@@ -10,6 +10,7 @@ import com.athena.reviewrecorder.SemanticEvent;
 import com.athena.reviewrecorder.SemanticEventType;
 import com.athena.web.Diff;
 import com.athena.web.WebSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,6 +51,7 @@ public class ReviewRecordingController {
     private final Clock clock;
     private final Function<Path, ReviewRecordingArtifactStore> artifactStoreFactory;
 
+    @Autowired
     public ReviewRecordingController(WebSession session, ReviewRecordingRegistry registry, Clock clock) {
         this(session, registry, clock, ReviewRecordingArtifactStore::new);
     }
