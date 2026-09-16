@@ -63,7 +63,7 @@ const STRUCTURE_TWO_FILES: SemanticProfile = {
       confidencePercent: 100,
       evidence: [],
       supportingConceptNames: [],
-      filesTouched: ['PaymentValidator.java', 'PaymentValidatorTest.java'],
+      filesTouched: ['PaymentValidator.java', 'PaymentGateway.java'],
     },
   ],
 }
@@ -126,7 +126,7 @@ describe('Keyboard navigation and focus', () => {
     const territory = await screen.findByRole('button', { name: 'crowdness-live territory' })
     await user.click(territory)
 
-    const conceptNode = await screen.findByTestId('concept-node')
+    const [conceptNode] = await screen.findAllByTestId('file-node')
     conceptNode.focus()
     pressShortcut('selectElement', conceptNode)
 
@@ -142,7 +142,8 @@ describe('Keyboard navigation and focus', () => {
 
     pressShortcut('enterElementContext', territory)
 
-    const rail = await screen.findByRole('navigation', { name: 'Zoom altitude · semantic spine' })
+    await screen.findAllByTestId('file-node')
+    const rail = screen.getByRole('navigation', { name: 'Zoom altitude · semantic spine' })
     expect(rail).toBeVisible()
     expect(document.activeElement).not.toBe(territory)
     expect(document.activeElement === document.body).toBe(false)

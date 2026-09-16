@@ -86,6 +86,7 @@ async function openCommentEditorOnFileNode() {
   let drawer = await screen.findByRole('dialog', { name: 'Detail drawer' })
   await user.click(within(drawer).getByRole('button', { name: /Comment/ }))
   drawer = await screen.findByRole('dialog', { name: 'Detail drawer' })
+  await within(drawer).findByRole('textbox', { name: 'New comment' })
   return { user, drawer, fileNode }
 }
 

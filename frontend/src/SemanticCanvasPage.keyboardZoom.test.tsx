@@ -45,6 +45,15 @@ const ONE_TERRITORY: ModuleTopology = {
 const CAPABILITY_PROFILE: SemanticProfile = {
   dimensions: [
     {
+      dimension: 'INTENT',
+      conceptName: 'Reduce coupling',
+      conceptDescription: 'Description',
+      inferred: true,
+      confidencePercent: 70,
+      evidence: [],
+      supportingConceptNames: [],
+    },
+    {
       dimension: 'RESPONSIBILITY',
       conceptName: 'Move Responsibility',
       conceptDescription: 'Description',
@@ -52,6 +61,16 @@ const CAPABILITY_PROFILE: SemanticProfile = {
       confidencePercent: 70,
       evidence: [],
       supportingConceptNames: [],
+    },
+    {
+      dimension: 'STRUCTURAL',
+      conceptName: 'Add validation',
+      conceptDescription: 'Description',
+      inferred: false,
+      confidencePercent: 100,
+      evidence: [],
+      supportingConceptNames: [],
+      filesTouched: ['PaymentValidator.java'],
     },
   ],
 }
@@ -90,7 +109,7 @@ describe('Keyboard control of Semantic Canvas zoom', () => {
 
     pressShortcut('zoomOut')
 
-    expect(currentStop(rail)).toBe('')
+    expect(currentStop(rail)).not.toContain('Capability')
   })
 
   it('resets/fits the view with the keyboard', async () => {

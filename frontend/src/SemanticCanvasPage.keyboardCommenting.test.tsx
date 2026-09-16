@@ -138,6 +138,7 @@ async function diveInAndOpenPaymentValidatorComments() {
   let drawer = await screen.findByRole('dialog', { name: 'Detail drawer' })
   await user.click(within(drawer).getByRole('button', { name: /Comment/ }))
   drawer = await screen.findByRole('dialog', { name: 'Detail drawer' })
+  await within(drawer).findByRole('textbox', { name: 'New comment' })
   return { user, drawer }
 }
 
@@ -158,7 +159,7 @@ describe('Keyboard commenting', () => {
     pressShortcut('createComment')
 
     const drawer = await screen.findByRole('dialog', { name: 'Detail drawer' })
-    const editor = within(drawer).getByRole('textbox', { name: 'New comment' })
+    const editor = await within(drawer).findByRole('textbox', { name: 'New comment' })
     expect(document.activeElement).toBe(editor)
   })
 
@@ -213,7 +214,7 @@ describe('Keyboard commenting', () => {
     await user.click(within(rail).getByRole('button', { name: /Structure/ }))
     await user.click(await screen.findByTestId('comment-pin'))
     const drawer = await screen.findByRole('dialog', { name: 'Detail drawer' })
-    const commentEntry = within(drawer).getByTestId('comment-entry')
+    const commentEntry = await within(drawer).findByTestId('comment-entry')
     commentEntry.focus()
 
     pressShortcut('replyToComment', commentEntry)
@@ -221,7 +222,12 @@ describe('Keyboard commenting', () => {
     await user.type(replyField, 'Legacy API contract')
     pressShortcut('submitComment', replyField)
 
-    expect(await within(commentEntry).findByText('Legacy API contract')).toBeVisible()
+    // {selector: 'p'} avoids Testing Library's own text-matching also
+    // considering a <textarea>'s live value a match (the same jsdom/RTL
+    // quirk noted elsewhere in this file) — here the reply textarea is
+    // still mid-unmount, so an unscoped findByText can transiently resolve
+    // to it instead of the rendered reply.
+    expect(await within(commentEntry).findByText('Legacy API contract', { selector: 'p' })).toBeVisible()
   })
 
   it('edits a comment with the keyboard', async () => {
