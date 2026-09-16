@@ -89,7 +89,9 @@ class ContextRewindControllerTest {
     void rejectsAStandaloneDiffSinceContextRewindNeedsARepository() throws Exception {
         session.connect(TOKEN);
         initRepo();
+        writeFile("README.md", "root\n");
         String baseSha = commit("Initial commit");
+        writeFile("README.md", "root, updated\n");
         String headSha = commit("Second commit");
         selectStandaloneDiff(baseSha, headSha);
 
@@ -121,7 +123,9 @@ class ContextRewindControllerTest {
     void mapsInsufficientHistoryMessageWhenNoneIsAvailable() throws Exception {
         session.connect(TOKEN);
         initRepo();
+        writeFile("README.md", "root\n");
         String baseSha = commit("Initial commit");
+        writeFile("README.md", "root, updated\n");
         String headSha = commit("Second commit");
         selectPullRequest(baseSha, headSha);
 
@@ -138,6 +142,7 @@ class ContextRewindControllerTest {
         initRepo();
         writeFile("PaymentProcessor.java", "class PaymentProcessor {}\n");
         String baseSha = commit("Initial commit");
+        writeFile("PaymentProcessor.java", "class PaymentProcessor { void retry() {} }\n");
         String headSha = commit("Second commit");
         registerMergedPullRequestTouching(217, "Add retry handling", "PaymentProcessor.java");
         selectPullRequest(baseSha, headSha);

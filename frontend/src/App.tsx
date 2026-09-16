@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createDiff, getGitHubStatus, selectPullRequest } from './api'
 import type { ImportedPullRequest } from './api'
 import ChangeDetailPage from './ChangeDetailPage'
+import ContextRewindPage from './ContextRewindPage'
 import LiveSessionCanvas from './LiveSessionCanvas'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
 import AiAnalysisPage from './AiAnalysisPage'
@@ -28,6 +29,10 @@ export default function App() {
   // The Diff view overlay (ticket #100): shows one Change's raw diff,
   // reached from AI Analysis; exiting it returns to the Canvas.
   const [diffViewChangeKey, setDiffViewChangeKey] = useState<string | null>(null)
+  // Context Rewind (ticket #187), opened from the detail drawer's own Rewind
+  // affordance for a file selection — an overlay-style entry, the same shape
+  // as diffViewChangeKey above.
+  const [contextRewindEntityName, setContextRewindEntityName] = useState<string | null>(null)
   const [showingSummary, setShowingSummary] = useState(false)
   const [showingAiAnalysis, setShowingAiAnalysis] = useState(false)
   // GitHub Access is its own page (ticket #113/#145), reachable from the
@@ -157,6 +162,9 @@ export default function App() {
       )
     }
     if (diffActive) {
+      if (contextRewindEntityName) {
+        return <ContextRewindPage entityName={contextRewindEntityName} onBack={() => setContextRewindEntityName(null)} />
+      }
       return (
         <LiveSessionCanvas
           pullRequest={null}
@@ -166,6 +174,7 @@ export default function App() {
             setDiffActive(false)
           }}
           onNoPullRequestSelected={() => setDiffActive(false)}
+          onOpenContextRewind={setContextRewindEntityName}
         />
       )
     }
@@ -179,6 +188,9 @@ export default function App() {
       )
     }
     if (selectedPr) {
+      if (contextRewindEntityName) {
+        return <ContextRewindPage entityName={contextRewindEntityName} onBack={() => setContextRewindEntityName(null)} />
+      }
       if (diffViewChangeKey) {
         return <ChangeDetailPage changeKey={diffViewChangeKey} onBack={() => setDiffViewChangeKey(null)} />
       }
@@ -206,6 +218,7 @@ export default function App() {
             setSelectedPr(null)
           }}
           onNoPullRequestSelected={() => setSelectedPr(null)}
+          onOpenContextRewind={setContextRewindEntityName}
         />
       )
     }

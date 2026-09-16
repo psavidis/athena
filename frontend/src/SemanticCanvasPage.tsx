@@ -128,6 +128,7 @@ export default function SemanticCanvasPage({
   onNoPullRequestSelected,
   liveSession,
   liveSessionPanel,
+  onOpenContextRewind,
 }: {
   pullRequest: ImportedPullRequest | null
   // The repo/PR switcher (ticket #128 follow-up), owned by App.tsx and
@@ -153,6 +154,9 @@ export default function SemanticCanvasPage({
   // rendered into this page's own top bar (ticket #158) — owned by App.tsx,
   // the same way `picker` already is.
   liveSessionPanel?: React.ReactNode
+  /** Opens Context Rewind for a file selection's entity (ticket #187), forwarded straight
+   * through to the detail drawer's own Rewind affordance. */
+  onOpenContextRewind?: (entityName: string) => void
 }) {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['module-topology'],
@@ -856,6 +860,7 @@ export default function SemanticCanvasPage({
         onJumpToFile={jumpToFile}
         onOpenComments={openCommentsDrawer}
         onCommentPosted={() => lastFocusedBeforeDrawerRef.current?.focus()}
+        onOpenContextRewind={onOpenContextRewind}
       />
     </div>
   )
