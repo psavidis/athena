@@ -413,6 +413,31 @@ export async function getContextRewind(entityName: string, since?: string): Prom
   return asJson(response)
 }
 
+export interface ReviewComment {
+  author: string
+  body: string
+  path: string
+}
+
+export interface ReviewVerdict {
+  reviewer: string
+  state: string
+}
+
+export interface PullRequestReview {
+  comments: ReviewComment[]
+  reviews: ReviewVerdict[]
+}
+
+export async function getPullRequestReview(repositoryFullName: string, number: number): Promise<PullRequestReview> {
+  const [owner, repo] = repositoryFullName.split('/')
+  const response = await fetch(`/api/repositories/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/pulls/${number}/review`)
+  if (response.status === 401) {
+    throw new NotConnectedError()
+  }
+  return asJson(response)
+}
+
 export async function getSemanticProfile(changeKey: string): Promise<SemanticProfile> {
   const response = await fetch(`/api/review/change-map/${encodeURIComponent(changeKey)}/semantic-profile`)
   if (response.status === 401) {

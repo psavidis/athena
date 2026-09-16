@@ -1,6 +1,14 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getContextRewind, getModuleTopology, NoPullRequestSelectedError, type ContextRewind, type TimelineEvent } from './api'
+import {
+  getContextRewind,
+  getModuleTopology,
+  getPullRequestReview,
+  NoPullRequestSelectedError,
+  type ContextRewind,
+  type PullRequestEvidence,
+  type TimelineEvent,
+} from './api'
 import { BackLink, ErrorState, LoadingState, PageHeading, PageShell, PrimaryButton, SecondaryButton, SectionLabel } from './ui'
 
 /** The date an event happened, formatted deterministically (no locale-dependent wording) for
@@ -46,6 +54,7 @@ export default function ContextRewindPage({
   const [selectedEvent, setSelectedEvent] = useState<TimelineEvent | undefined>(undefined)
   const [zoomLevel, setZoomLevel] = useState<ZoomLevel>('orientation')
   const [showingMap, setShowingMap] = useState(false)
+  const [reviewingPr, setReviewingPr] = useState<PullRequestEvidence | undefined>(undefined)
 
   if (isError) {
     if (error instanceof NoPullRequestSelectedError) {
@@ -70,6 +79,10 @@ export default function ContextRewindPage({
 
   if (showingMap && moduleName) {
     return <ContextMap moduleName={moduleName} onBack={() => setShowingMap(false)} onOpenModule={onOpenModule} />
+  }
+
+  if (reviewingPr) {
+    return <PullRequestReviewView reference={reviewingPr} onBack={() => setReviewingPr(undefined)} />
   }
 
   if (zoomLevel === 'orientation') {
@@ -177,10 +190,17 @@ export default function ContextRewindPage({
           <SectionLabel>Pull Requests</SectionLabel>
           <ul className="flex flex-col gap-1">
             {data.pullRequestReferences.map((reference) => (
-              <li key={reference.number}>
+              <li key={reference.number} className="flex items-center gap-2">
                 <a href={reference.url} target="_blank" rel="noreferrer" className="text-sm text-accent hover:underline">
                   Pull Request {reference.number}
                 </a>
+                <button
+                  type="button"
+                  onClick={() => setReviewingPr(reference)}
+                  className="text-xs font-medium text-ink-500 hover:text-ink-900"
+                >
+                  View review
+                </button>
               </li>
             ))}
           </ul>
@@ -258,6 +278,71 @@ function ContextMap({
           )}
         </ul>
       </section>
+    </PageShell>
+  )
+}
+
+/** A Pull Request's existing review comments and reviewer verdicts (ticket #192), shown as a
+ * flat, file-grouped list — not a structured reasoning trail. See the ticket for why: the real
+ * review data has no reply-threading, timestamps, or diff position to build one from. */
+function PullRequestReviewView({ reference, onBack }: { reference: PullRequestEvidence; onBack: () => void }) {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['pull-request-review', reference.repositoryFullName, reference.number],
+    queryFn: () => getPullRequestReview(reference.repositoryFullName, reference.number),
+    retry: false,
+  })
+
+  if (isError) {
+    return <ErrorState message="Could not load this Pull Request's review." />
+  }
+  if (isLoading || !data) {
+    return <LoadingState />
+  }
+
+  const commentsByPath = new Map<string, typeof data.comments>()
+  for (const comment of data.comments) {
+    commentsByPath.set(comment.path, [...(commentsByPath.get(comment.path) ?? []), comment])
+  }
+
+  const nothingRecorded = data.comments.length === 0 && data.reviews.length === 0
+
+  return (
+    <PageShell>
+      <BackLink onClick={onBack}>← Back</BackLink>
+      <PageHeading eyebrow="Review" title={`Pull Request ${reference.number}`} />
+
+      {nothingRecorded ? (
+        <p className="text-sm text-ink-500">Nothing was recorded for this review.</p>
+      ) : (
+        <>
+          {data.reviews.length > 0 && (
+            <section className="mb-8">
+              <SectionLabel>Verdicts</SectionLabel>
+              <ul className="flex flex-col gap-1">
+                {data.reviews.map((review, index) => (
+                  <li key={index} className="text-sm text-ink-700">
+                    {review.reviewer}: {review.state}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {[...commentsByPath.entries()].map(([path, comments]) => (
+            <section key={path} className="mb-8">
+              <SectionLabel>{path}</SectionLabel>
+              <ul className="flex flex-col gap-2">
+                {comments.map((comment, index) => (
+                  <li key={index} className="rounded-lg border border-ink-200 bg-paper-raised px-3 py-2">
+                    <p className="mb-1 text-xs font-semibold text-ink-900">{comment.author}</p>
+                    <p className="text-sm text-ink-700">{comment.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </>
+      )}
     </PageShell>
   )
 }
