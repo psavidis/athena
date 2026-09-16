@@ -48,7 +48,7 @@ public class ReviewRecordingSessionSteps {
             new WebSession(new PrAnalyzer(PluginRegistry.languagePlugins(), PluginRegistry.frameworkPlugins()));
     private final MutableClock clock = new MutableClock(Instant.parse("2026-09-17T10:00:00Z"));
     private final ReviewRecordingRegistry registry = new ReviewRecordingRegistry(clock);
-    private final ReviewRecordingController controller = new ReviewRecordingController(webSession, registry);
+    private final ReviewRecordingController controller = new ReviewRecordingController(webSession, registry, clock);
 
     private String recordingId;
     private ReviewRecordingSnapshot lastSnapshot;
