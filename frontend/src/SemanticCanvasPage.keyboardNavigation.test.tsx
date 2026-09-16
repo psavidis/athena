@@ -68,6 +68,29 @@ const STRUCTURE_TWO_FILES: SemanticProfile = {
   ],
 }
 
+const SAME_CONCEPT_AT_PATTERN_AND_ARCHITECTURE: SemanticProfile = {
+  dimensions: [
+    {
+      dimension: 'PATTERN',
+      conceptName: 'Idempotent recovery',
+      conceptDescription: 'Description',
+      inferred: true,
+      confidencePercent: 70,
+      evidence: [],
+      supportingConceptNames: [],
+    },
+    {
+      dimension: 'ARCHITECTURE',
+      conceptName: 'Idempotent recovery',
+      conceptDescription: 'Description',
+      inferred: true,
+      confidencePercent: 70,
+      evidence: [],
+      supportingConceptNames: [],
+    },
+  ],
+}
+
 describe('Keyboard navigation and focus', () => {
   it('reaches a territory, and the canvas zoom controls, without the mouse', async () => {
     mockTopology(TWO_TERRITORIES)
@@ -253,5 +276,41 @@ describe('Keyboard navigation and focus', () => {
 
     expect(screen.queryByRole('dialog', { name: 'Detail drawer' })).not.toBeInTheDocument()
     expect(document.activeElement).toBe(fileNode)
+  })
+
+  it('jumps to a higher-level representation of the focused component with the keyboard', async () => {
+    mockTopology(TWO_TERRITORIES)
+    mockModuleProfile('crowdness-live', SAME_CONCEPT_AT_PATTERN_AND_ARCHITECTURE)
+    renderCanvas()
+    const user = userEvent.setup()
+    const territory = await screen.findByRole('button', { name: 'crowdness-live territory' })
+    await user.click(territory)
+    const rail = await screen.findByRole('navigation', { name: 'Zoom altitude · semantic spine' })
+    await user.click(within(rail).getByRole('button', { name: /Pattern/ }))
+    const patternNode = await screen.findByTestId('concept-node')
+    patternNode.focus()
+
+    pressShortcut('higherLevel', patternNode)
+
+    expect(within(rail).getByRole('button', { name: /Architecture/ })).toHaveAttribute('aria-current', 'true')
+    expect(document.activeElement).toHaveAttribute('data-item-label', 'Idempotent recovery')
+  })
+
+  it('jumps to a lower-level representation of the focused territory with the keyboard', async () => {
+    mockTopology(TWO_TERRITORIES)
+    mockModuleProfile('crowdness-live', SAME_CONCEPT_AT_PATTERN_AND_ARCHITECTURE)
+    renderCanvas()
+    const user = userEvent.setup()
+    const territory = await screen.findByRole('button', { name: 'crowdness-live territory' })
+    await user.click(territory)
+    const rail = await screen.findByRole('navigation', { name: 'Zoom altitude · semantic spine' })
+    await user.click(within(rail).getByRole('button', { name: /Architecture/ }))
+    const architectureNode = await screen.findByTestId('concept-node')
+    architectureNode.focus()
+
+    pressShortcut('lowerLevel', architectureNode)
+
+    expect(within(rail).getByRole('button', { name: /Pattern/ })).toHaveAttribute('aria-current', 'true')
+    expect(document.activeElement).toHaveAttribute('data-item-label', 'Idempotent recovery')
   })
 })

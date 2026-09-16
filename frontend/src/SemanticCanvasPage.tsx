@@ -194,6 +194,10 @@ export default function SemanticCanvasPage({
   const stopHistoryRef = useRef<AltitudeStop[]>([])
   const lastFocusedBeforeDrawerRef = useRef<HTMLElement | null>(null)
   const pendingKeyboardEntryFocusRef = useRef(false)
+  // Higher/lower-level jump (ticket #159): the focused component's own label,
+  // so once the target stop's nodes render we can refocus *that same
+  // component's* representation there rather than just the first node.
+  const pendingFocusLabelRef = useRef<string | null>(null)
 
   const { data: territoryProfile } = useQuery({
     queryKey: ['module-semantic-profile', focusedTerritory],
@@ -262,6 +266,13 @@ export default function SemanticCanvasPage({
     if (pendingKeyboardEntryFocusRef.current && currentStop) {
       pendingKeyboardEntryFocusRef.current = false
       document.querySelector<HTMLElement>('[data-testid="concept-node"], [data-testid="file-node"]')?.focus()
+    }
+    if (pendingFocusLabelRef.current !== null && currentStop) {
+      const label = pendingFocusLabelRef.current
+      pendingFocusLabelRef.current = null
+      const sameComponent = document.querySelector<HTMLElement>(`[data-item-label="${CSS.escape(label)}"]`)
+      const target = sameComponent ?? document.querySelector<HTMLElement>('[data-testid="concept-node"], [data-testid="file-node"]')
+      target?.focus()
     }
   }, [currentStop])
 
@@ -415,6 +426,23 @@ export default function SemanticCanvasPage({
           }
         } else {
           zoomBy(e.key === KEY_BINDINGS.zoomIn ? ZOOM_STEP : -ZOOM_STEP)
+        }
+        return
+      }
+      // Higher/lower-level (ticket #159): the same focused component's own
+      // representation at a shallower/deeper stop, when one exists there —
+      // unlike zoomIn/zoomOut, which just move along the stops regardless
+      // of what's currently focused.
+      if (e.key === KEY_BINDINGS.higherLevel || e.key === KEY_BINDINGS.lowerLevel) {
+        if (focusedTerritory !== undefined && territoryProfile && currentStop) {
+          const stops = populatedStops(territoryProfile)
+          const delta = e.key === KEY_BINDINGS.lowerLevel ? 1 : -1
+          const nextStop = stops[stops.indexOf(currentStop) + delta]
+          const label = active?.getAttribute('data-item-label') ?? null
+          if (nextStop) {
+            pendingFocusLabelRef.current = label
+            selectStop(nextStop)
+          }
         }
         return
       }
