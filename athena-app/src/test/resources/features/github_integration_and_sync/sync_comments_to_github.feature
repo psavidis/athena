@@ -20,3 +20,11 @@ Feature: Sync comments to GitHub
     Given an invalid GitHub Personal Access Token
     When Athena syncs a general comment "Looks good overall" to pull request 42 in repository "octocat/Hello-World"
     Then the sync fails clearly
+
+  Scenario: Syncing multiple comments from the same review does not overwrite or merge them
+    Given a valid GitHub Personal Access Token
+    And repository "octocat/Hello-World" pull request 42 is at commit "head456" and accepts synced comments
+    When Athena syncs a general comment "Looks good overall" to pull request 42 in repository "octocat/Hello-World"
+    And Athena syncs a line comment "Please rename this variable" on file "README.md" line 10 to pull request 42 in repository "octocat/Hello-World"
+    Then GitHub shows a general comment "Looks good overall" on pull request 42
+    And GitHub shows a line comment "Please rename this variable" on file "README.md" line 10 of pull request 42
