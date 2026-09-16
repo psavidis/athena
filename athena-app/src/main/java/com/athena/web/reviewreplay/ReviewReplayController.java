@@ -12,11 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -24,8 +27,9 @@ import java.util.stream.Collectors;
  * The web entry point for opening a Review Replay (ticket #210): loads a
  * persisted {@code ReviewRecordingArtifact} (ticket #207) and resolves its
  * moment references against the currently-selected PR/Diff's analyzed
- * entities. No timeline UI or transcript handling yet — later tickets
- * (#211+) build on this contract.
+ * entities. Also imports an artifact a teammate shared from their own
+ * Athena instance (ticket #217). No timeline UI or transcript handling
+ * yet — later tickets (#211+) build on this contract.
  */
 @RestController
 @RequestMapping("/api/review-replays")
@@ -59,11 +63,31 @@ public class ReviewReplayController {
 
     @GetMapping("/{recordingId}")
     public ReviewReplayResponse open(@PathVariable String recordingId) {
-        Diff diff = session.currentDiff()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT,
-                        "Select a Pull Request or Diff before opening a Review Replay"));
+        Diff diff = requireCurrentDiff();
         ReviewRecordingArtifact artifact = artifactStoreFactory.apply(diff.headRoot()).find(recordingId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No such Review Recording artifact"));
         return ReviewReplayResponse.of(ReviewReplay.open(artifact, resolverFactory.apply(diff)));
+    }
+
+    @PostMapping("/import")
+    public ReviewReplayResponse importSharedArtifact(@RequestBody ImportSharedArtifactRequest request) {
+        Diff diff = requireCurrentDiff();
+        String repositoryFullName = session.selectedPullRequest()
+                .map(WebSession.SelectedPullRequest::repositoryFullName)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT,
+                        "Select a Pull Request before importing a shared Review Replay artifact"));
+        try {
+            ReviewRecordingArtifact artifact = artifactStoreFactory.apply(diff.headRoot())
+                    .importFrom(Paths.get(request.filePath()), repositoryFullName);
+            return ReviewReplayResponse.of(ReviewReplay.open(artifact, resolverFactory.apply(diff)));
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+    }
+
+    private Diff requireCurrentDiff() {
+        return session.currentDiff()
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT,
+                        "Select a Pull Request or Diff before opening a Review Replay"));
     }
 }
