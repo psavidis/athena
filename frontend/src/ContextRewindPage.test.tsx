@@ -28,6 +28,14 @@ function mockContextRewindStatus(entityName: string, status: number) {
   server.use(http.get(`/api/review/context-rewind/${entityName}`, () => new HttpResponse(null, { status })))
 }
 
+/** Context Rewind now lands at the Orientation level (ticket #188); these Overview-level
+ * scenarios need an explicit zoom-in first. */
+async function zoomToOverview() {
+  const user = userEvent.setup()
+  await user.click(await screen.findByRole('button', { name: 'Zoom in' }))
+  return user
+}
+
 const TIMELINE_ENTITY: ContextRewind = {
   entityName: 'PaymentProcessor',
   evolutionTimeline: [
@@ -45,8 +53,9 @@ describe('Context Rewind — story timeline & evidence panel', () => {
     // "2025-12-01" change and a "2026-02-01" change
     mockContextRewind('PaymentProcessor', TIMELINE_ENTITY)
 
-    // When the developer opens Context Rewind for "PaymentProcessor"
+    // When the developer opens Context Rewind for "PaymentProcessor" and zooms in to the Overview level
     renderContextRewindPage('PaymentProcessor')
+    await zoomToOverview()
 
     // Then the timeline lists the "2025-12-01" event before the "2026-02-01" event
     const events = await screen.findAllByTestId('timeline-event')
@@ -62,8 +71,7 @@ describe('Context Rewind — story timeline & evidence panel', () => {
     // Given the developer has Context Rewind open for "PaymentProcessor" showing a "Retry mechanism added" event
     mockContextRewind('PaymentProcessor', TIMELINE_ENTITY)
     renderContextRewindPage('PaymentProcessor')
-    const user = userEvent.setup()
-    await screen.findAllByTestId('timeline-event')
+    const user = await zoomToOverview()
 
     // When the developer selects the "Retry mechanism added" event
     await user.click(screen.getByText('Retry mechanism added'))
@@ -81,8 +89,9 @@ describe('Context Rewind — story timeline & evidence panel', () => {
       pullRequestReferences: [{ number: 217, repositoryFullName: 'acme/widgets', url: 'https://github.com/acme/widgets/pull/217' }],
     })
 
-    // When the developer opens Context Rewind for "PaymentProcessor"
+    // When the developer opens Context Rewind for "PaymentProcessor" and zooms in to the Overview level
     renderContextRewindPage('PaymentProcessor')
+    await zoomToOverview()
 
     // Then Context Rewind references Pull Request 217
     const link = await screen.findByRole('link', { name: /Pull Request 217/ })
@@ -97,8 +106,9 @@ describe('Context Rewind — story timeline & evidence panel', () => {
       aiNarrative: 'This component was separated from OrderService to isolate payment provider logic.',
     })
 
-    // When the developer opens Context Rewind for "PaymentProcessor"
+    // When the developer opens Context Rewind for "PaymentProcessor" and zooms in to the Overview level
     renderContextRewindPage('PaymentProcessor')
+    await zoomToOverview()
 
     // Then Context Rewind shows the AI-generated narrative
     expect(
