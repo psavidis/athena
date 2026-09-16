@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getContextRewind, NoPullRequestSelectedError, type TimelineEvent } from './api'
+import { getContextRewind, NoPullRequestSelectedError, type ContextRewind, type TimelineEvent } from './api'
 import { BackLink, ErrorState, LoadingState, PageHeading, PageShell, PrimaryButton, SecondaryButton, SectionLabel } from './ui'
 
 /** The date an event happened, formatted deterministically (no locale-dependent wording) for
@@ -185,6 +185,86 @@ export default function ContextRewindPage({
           </span>
         </section>
       )}
+
+      <ContextLayers data={data} />
     </PageShell>
+  )
+}
+
+/** Separates different kinds of context visually — Current, Evolution, Discussions, Decisions,
+ * Knowledge (ticket #190) — instead of mixing them into one AI-generated narrative. Behaves as
+ * progressively explorable layers, not tabs: more than one can be expanded at once. Current,
+ * Discussions, and Decisions always report nothing recorded — Athena has no structured source for
+ * "what the code does today," "what developers discussed," or "what the team decided" yet (see
+ * the ticket for why); Evolution and Knowledge are backed by real data. */
+function ContextLayers({ data }: { data: ContextRewind }) {
+  const [expandedLayers, setExpandedLayers] = useState<Set<string>>(new Set())
+
+  function toggle(name: string) {
+    setExpandedLayers((current) => {
+      const next = new Set(current)
+      if (next.has(name)) {
+        next.delete(name)
+      } else {
+        next.add(name)
+      }
+      return next
+    })
+  }
+
+  const nothingRecorded = <p className="text-sm text-ink-500">Nothing recorded yet.</p>
+
+  const layers: { name: string; content: React.ReactNode }[] = [
+    { name: 'Current', content: nothingRecorded },
+    {
+      name: 'Evolution',
+      content:
+        data.evolutionTimeline.length > 0 ? (
+          <p className="text-sm text-ink-700">
+            {data.evolutionTimeline.length} recorded change{data.evolutionTimeline.length === 1 ? '' : 's'} — see the
+            timeline above.
+          </p>
+        ) : (
+          nothingRecorded
+        ),
+    },
+    { name: 'Discussions', content: nothingRecorded },
+    { name: 'Decisions', content: nothingRecorded },
+    {
+      name: 'Knowledge',
+      content:
+        data.knowledgeFacts.length > 0 ? (
+          <ul className="flex flex-col gap-1">
+            {data.knowledgeFacts.map((fact, index) => (
+              <li key={index} className="text-sm text-ink-700">
+                {fact}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          nothingRecorded
+        ),
+    },
+  ]
+
+  return (
+    <section className="mb-8">
+      <SectionLabel>Context Layers</SectionLabel>
+      <div className="flex flex-col gap-2">
+        {layers.map((layer) => (
+          <div key={layer.name} className="rounded-lg border border-ink-200">
+            <button
+              type="button"
+              aria-expanded={expandedLayers.has(layer.name)}
+              onClick={() => toggle(layer.name)}
+              className="w-full px-3 py-2 text-left text-sm font-medium text-ink-900 hover:bg-ink-100"
+            >
+              {layer.name}
+            </button>
+            {expandedLayers.has(layer.name) && <div className="border-t border-ink-200 px-3 py-2">{layer.content}</div>}
+          </div>
+        ))}
+      </div>
+    </section>
   )
 }

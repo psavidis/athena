@@ -70,18 +70,19 @@ public class ContextRewindController {
 
     @Autowired
     public ContextRewindController(WebSession session) {
-        this(session, GitHubRepositoryProvider::new, null);
+        this(session, GitHubRepositoryProvider::new, null, new KnowledgeProviderResolver());
     }
 
-    /** Test seam: a fake {@link RepositoryProvider} factory and/or a fixed narrative provider
-     * stand in for GitHub and the AI-network boundary. */
+    /** Test seam: a fake {@link RepositoryProvider} factory, a fixed narrative provider, and/or a
+     * {@link KnowledgeProviderResolver} backed by a temp config file stand in for GitHub, the
+     * AI-network boundary, and persisted Knowledge Provider configuration. */
     ContextRewindController(WebSession session, Function<String, RepositoryProvider> repositoryProviderFactory,
-                             ContextNarrativeProvider fixedNarrativeProvider) {
+                             ContextNarrativeProvider fixedNarrativeProvider, KnowledgeProviderResolver knowledgeResolver) {
         this.session = session;
         this.repositoryProviderFactory = repositoryProviderFactory;
         this.fixedNarrativeProvider = fixedNarrativeProvider;
         this.keyStore = new AiKeyStore();
-        this.knowledgeResolver = new KnowledgeProviderResolver();
+        this.knowledgeResolver = knowledgeResolver;
     }
 
     @GetMapping("/api/review/context-rewind/{entityName}")

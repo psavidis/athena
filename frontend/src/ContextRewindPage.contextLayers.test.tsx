@@ -77,7 +77,7 @@ describe('Context Rewind — Context Layers', () => {
 
     // Then both the "Knowledge" and "Evolution" layers remain expanded
     expect(screen.getByText('Owned by the payments team')).toBeVisible()
-    expect(screen.getByText('PaymentProcessor introduced')).toBeVisible()
+    expect(screen.getByText('1 recorded change — see the timeline above.')).toBeVisible()
   })
 
   it('states plainly that nothing is recorded for a layer with no available content', async () => {
