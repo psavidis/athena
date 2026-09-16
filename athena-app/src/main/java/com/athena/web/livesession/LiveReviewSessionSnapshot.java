@@ -30,6 +30,7 @@ public record LiveReviewSessionSnapshot(
         int pullRequestNumber,
         CanvasFocusResponse sharedFocus,
         String presenterId,
+        String creatorId,
         List<ParticipantSnapshot> participants,
         boolean ended) {
 
@@ -37,6 +38,6 @@ public record LiveReviewSessionSnapshot(
         List<ParticipantSnapshot> participants = session.participants().stream().map(ParticipantSnapshot::of).toList();
         return new LiveReviewSessionSnapshot(session.id(), session.revision(), session.repositoryFullName(),
                 session.pullRequestNumber(), CanvasFocusResponse.of(session.sharedFocus()),
-                session.presenterId().orElse(null), participants, session.ended());
+                session.presenterId().orElse(null), session.creatorId(), participants, session.ended());
     }
 }

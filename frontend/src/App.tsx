@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createDiff, getGitHubStatus, selectPullRequest } from './api'
 import type { ImportedPullRequest } from './api'
 import ChangeDetailPage from './ChangeDetailPage'
-import SemanticCanvasPage from './SemanticCanvasPage'
+import LiveSessionCanvas from './LiveSessionCanvas'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
 import AiAnalysisPage from './AiAnalysisPage'
 import GitHubAccessPage from './GitHubAccessPage'
@@ -123,7 +123,7 @@ export default function App() {
     }
     if (diffActive) {
       return (
-        <SemanticCanvasPage
+        <LiveSessionCanvas
           pullRequest={null}
           picker={picker}
           onNotConnected={() => {
@@ -162,7 +162,7 @@ export default function App() {
         )
       }
       return (
-        <SemanticCanvasPage
+        <LiveSessionCanvas
           pullRequest={selectedPr}
           picker={picker}
           onNotConnected={() => {

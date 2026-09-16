@@ -124,6 +124,8 @@ export default function SemanticCanvasPage({
   picker,
   onNotConnected,
   onNoPullRequestSelected,
+  liveSession,
+  liveSessionPanel,
 }: {
   pullRequest: ImportedPullRequest | null
   // The repo/PR switcher (ticket #128 follow-up), owned by App.tsx and
@@ -132,6 +134,23 @@ export default function SemanticCanvasPage({
   picker?: React.ReactNode
   onNotConnected: () => void
   onNoPullRequestSelected: () => void
+  // Live Code Review Session sync (ticket #158), both optional so every
+  // existing caller/test is unaffected: while presenting, this participant's
+  // own territory navigation is reported upward; while following, an
+  // incoming shared territory drives this same navigation the way clicking
+  // a territory box would. Deliberately territory-grained only, not every
+  // zoom-altitude stop/node selection — see the ticket's own "does not need
+  // to synchronize every UI interaction" scope note.
+  liveSession?: {
+    isPresenter: boolean
+    isFollowing: boolean
+    sharedTerritory: string | undefined
+    onLocalTerritoryChange: (moduleName: string | undefined) => void
+  }
+  // The Live Code Review Session panel (start/join/presence/controls),
+  // rendered into this page's own top bar (ticket #158) — owned by App.tsx,
+  // the same way `picker` already is.
+  liveSessionPanel?: React.ReactNode
 }) {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['module-topology'],
@@ -240,6 +259,40 @@ export default function SemanticCanvasPage({
     }
     setPendingExplainTarget(undefined)
   }, [pendingExplainTarget, data])
+
+  // Live Code Review Session sync (ticket #158): while presenting, report
+  // this participant's own territory navigation upward so it becomes the
+  // session's shared focus for everyone else.
+  useEffect(() => {
+    if (liveSession?.isPresenter) {
+      liveSession.onLocalTerritoryChange(focusedTerritory)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [liveSession?.isPresenter, focusedTerritory])
+
+  // Live Code Review Session sync (ticket #158): while following, an
+  // incoming shared territory drives this participant's own navigation the
+  // same way clicking that territory box would — diveInto/layoutTerritories
+  // are hoisted/module-level, so calling them here (before their textual
+  // definition, above the early-return guards) is valid, the same reasoning
+  // as the "Explain this" effect just above.
+  useEffect(() => {
+    if (!liveSession?.isFollowing || liveSession.sharedTerritory === focusedTerritory) {
+      return
+    }
+    if (liveSession.sharedTerritory === undefined) {
+      resetCamera()
+      return
+    }
+    if (!data) {
+      return
+    }
+    const box = layoutTerritories(data).find((b) => b.territory.moduleName === liveSession.sharedTerritory)
+    if (box) {
+      diveInto(box)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [liveSession?.isFollowing, liveSession?.sharedTerritory, data])
 
   // Center the territory map in the viewport on first load (prototype:
   // the map opens centered, never pinned to canvas-space (0,0) at the
@@ -437,6 +490,7 @@ export default function SemanticCanvasPage({
       <CanvasTopBar
         pullRequest={pullRequest}
         picker={picker}
+        liveSessionPanel={liveSessionPanel}
         reviewMode={reviewMode}
         onSelectReviewMode={setReviewMode}
         totalCommentCount={totalCommentCount}
@@ -657,6 +711,7 @@ function CanvasIdentityBar({
 function CanvasTopBar({
   pullRequest,
   picker,
+  liveSessionPanel,
   reviewMode,
   onSelectReviewMode,
   totalCommentCount,
@@ -665,6 +720,7 @@ function CanvasTopBar({
 }: {
   pullRequest: ImportedPullRequest | null
   picker?: React.ReactNode
+  liveSessionPanel?: React.ReactNode
   reviewMode: 'CONTEXTUAL' | 'FILE_FIRST'
   onSelectReviewMode: (mode: 'CONTEXTUAL' | 'FILE_FIRST') => void
   totalCommentCount: number
@@ -677,6 +733,7 @@ function CanvasTopBar({
       picker={picker}
       right={
         <>
+          {liveSessionPanel}
           <button
             type="button"
             aria-pressed={showCommentedOnly}
