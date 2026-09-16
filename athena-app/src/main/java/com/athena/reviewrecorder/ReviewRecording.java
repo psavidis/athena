@@ -3,7 +3,9 @@ package com.athena.reviewrecorder;
 import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -29,6 +31,7 @@ public final class ReviewRecording {
     private final Clock clock;
     private final Instant startedAt;
     private final Set<String> participantDisplayNames = new LinkedHashSet<>();
+    private final List<SemanticEvent> events = new ArrayList<>();
 
     private Instant stoppedAt;
 
@@ -98,6 +101,17 @@ public final class ReviewRecording {
     public synchronized void join(String displayName) {
         requireActive();
         participantDisplayNames.add(requireDisplayName(displayName));
+    }
+
+    /** Appends {@code event} to this recording's event stream (ticket #204). Requires the recording still be active. */
+    public synchronized void capture(SemanticEvent event) {
+        requireActive();
+        events.add(Objects.requireNonNull(event, "event"));
+    }
+
+    /** Every semantic event captured so far, in the order they were captured. */
+    public synchronized List<SemanticEvent> events() {
+        return List.copyOf(events);
     }
 
     /** Stops this recording. Requires it not already be stopped. */

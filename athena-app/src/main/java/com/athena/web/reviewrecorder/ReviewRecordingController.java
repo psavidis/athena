@@ -2,6 +2,8 @@ package com.athena.web.reviewrecorder;
 
 import com.athena.reviewrecorder.ReviewRecording;
 import com.athena.reviewrecorder.ReviewRecordingRegistry;
+import com.athena.reviewrecorder.SemanticEvent;
+import com.athena.reviewrecorder.SemanticEventType;
 import com.athena.web.WebSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Clock;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -35,10 +39,12 @@ public class ReviewRecordingController {
 
     private final WebSession session;
     private final ReviewRecordingRegistry registry;
+    private final Clock clock;
 
-    public ReviewRecordingController(WebSession session, ReviewRecordingRegistry registry) {
+    public ReviewRecordingController(WebSession session, ReviewRecordingRegistry registry, Clock clock) {
         this.session = session;
         this.registry = registry;
+        this.clock = clock;
     }
 
     @GetMapping("/capture-disclosure")
@@ -96,6 +102,33 @@ public class ReviewRecordingController {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
         }
         return ReviewRecordingSnapshot.of(recording);
+    }
+
+    @PostMapping("/{id}/events")
+    public void captureEvent(@PathVariable String id, @RequestBody CaptureSemanticEventRequest request) {
+        ReviewRecording recording = requireRecording(id);
+        SemanticEventType type = requireEventType(request.type());
+        try {
+            recording.capture(SemanticEvent.of(type, request.reference(), clock.instant()));
+        } catch (IllegalStateException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}/events")
+    public List<SemanticEventResponse> events(@PathVariable String id) {
+        ReviewRecording recording = requireRecording(id);
+        return recording.events().stream().map(SemanticEventResponse::of).toList();
+    }
+
+    private SemanticEventType requireEventType(String type) {
+        try {
+            return SemanticEventType.valueOf(type);
+        } catch (IllegalArgumentException | NullPointerException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unknown semantic event type: " + type);
+        }
     }
 
     private String requireDisplayName(String displayName) {

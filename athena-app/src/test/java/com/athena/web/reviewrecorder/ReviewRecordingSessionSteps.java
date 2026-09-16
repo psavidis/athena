@@ -29,11 +29,14 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Step definitions for the Review Recording session lifecycle feature
- * (ticket #203). Detroit-school: real {@link WebSession},
- * {@link ReviewRecordingRegistry}, and {@link ReviewRecordingController}
- * — no mocks — matching {@code LiveCodeReviewSessionSteps}'s own
- * precedent for the closest analogous feature in this codebase.
+ * Step definitions for the Review Recording session lifecycle (ticket
+ * #203) and semantic event capture (ticket #204) features. Kept as one
+ * class since both share the same "Petros has started a Review
+ * Recording" fixture — matching {@code LiveCodeReviewSessionSteps}'s own
+ * precedent of one steps class per closely-related ticket group, for the
+ * closest analogous feature in this codebase. Detroit-school: real
+ * {@link WebSession}, {@link ReviewRecordingRegistry}, and
+ * {@link ReviewRecordingController} — no mocks.
  *
  * <p>The recording's clock is the one legitimate whitebox seam here (a
  * non-deterministic system clock, per CODE_STYLE.md &sect;F): a mutable
@@ -45,7 +48,7 @@ public class ReviewRecordingSessionSteps {
             new WebSession(new PrAnalyzer(PluginRegistry.languagePlugins(), PluginRegistry.frameworkPlugins()));
     private final MutableClock clock = new MutableClock(Instant.parse("2026-09-17T10:00:00Z"));
     private final ReviewRecordingRegistry registry = new ReviewRecordingRegistry(clock);
-    private final ReviewRecordingController controller = new ReviewRecordingController(webSession, registry);
+    private final ReviewRecordingController controller = new ReviewRecordingController(webSession, registry, clock);
 
     private String recordingId;
     private ReviewRecordingSnapshot lastSnapshot;
@@ -204,6 +207,86 @@ public class ReviewRecordingSessionSteps {
     public void the_review_recording_request_is_rejected_as_invalid() {
         assertThat(failure).isNotNull();
         assertThat(failure.getStatusCode().is4xxClientError()).isTrue();
+    }
+
+    // --- Semantic event capture (ticket #204) ---
+
+    @When("{string} navigates the canvas to the {string} component")
+    public void navigates_the_canvas_to_the_component(String displayName, String componentName) {
+        captureEvent("CANVAS_NAVIGATION", "component:" + componentName);
+    }
+
+    @When("{string} attempts to navigate the canvas to the {string} component")
+    public void attempts_to_navigate_the_canvas_to_the_component(String displayName, String componentName) {
+        captureEvent("CANVAS_NAVIGATION", "component:" + componentName);
+    }
+
+    @When("{string} changes the semantic zoom to {string}")
+    public void changes_the_semantic_zoom_to(String displayName, String zoomLevel) {
+        captureEvent("SEMANTIC_ZOOM_CHANGE", zoomLevel);
+    }
+
+    @When("{string} inspects the {string} entity")
+    public void inspects_the_entity(String displayName, String entityName) {
+        captureEvent("ENTITY_INSPECTED", "entity:" + entityName);
+    }
+
+    @When("{string} views the diff area for {string}")
+    public void views_the_diff_area_for(String displayName, String filePath) {
+        captureEvent("DIFF_AREA_VIEWED", filePath);
+    }
+
+    @When("{string} creates the comment {string} on the {string} component")
+    public void creates_the_comment_on_the_component(String displayName, String text, String componentName) {
+        captureEvent("COMMENT_CREATED", "component:" + componentName);
+    }
+
+    private void captureEvent(String type, String reference) {
+        try {
+            controller.captureEvent(recordingId, new CaptureSemanticEventRequest(type, reference));
+        } catch (ResponseStatusException e) {
+            failure = e;
+        }
+    }
+
+    @Then("the recording's event stream includes a navigation event for the {string} component")
+    public void the_event_stream_includes_a_navigation_event_for_the_component(String componentName) {
+        assertEventPresent("CANVAS_NAVIGATION", "component:" + componentName);
+    }
+
+    @Then("the recording's event stream includes a semantic zoom event to {string}")
+    public void the_event_stream_includes_a_semantic_zoom_event_to(String zoomLevel) {
+        assertEventPresent("SEMANTIC_ZOOM_CHANGE", zoomLevel);
+    }
+
+    @Then("the recording's event stream includes an entity-inspected event for the {string} entity")
+    public void the_event_stream_includes_an_entity_inspected_event_for_the_entity(String entityName) {
+        assertEventPresent("ENTITY_INSPECTED", "entity:" + entityName);
+    }
+
+    @Then("the recording's event stream includes a diff-area-viewed event for {string}")
+    public void the_event_stream_includes_a_diff_area_viewed_event_for(String filePath) {
+        assertEventPresent("DIFF_AREA_VIEWED", filePath);
+    }
+
+    @Then("the recording's event stream includes a comment-created event referencing the {string} component")
+    public void the_event_stream_includes_a_comment_created_event_referencing_the_component(String componentName) {
+        assertEventPresent("COMMENT_CREATED", "component:" + componentName);
+    }
+
+    private void assertEventPresent(String type, String reference) {
+        List<SemanticEventResponse> events = controller.events(recordingId);
+        assertThat(events).anySatisfy(event -> {
+            assertThat(event.type()).isEqualTo(type);
+            assertThat(event.reference()).isEqualTo(reference);
+        });
+    }
+
+    @Then("the recording's event stream lists the navigation event before the entity-inspected event")
+    public void the_event_stream_lists_the_navigation_event_before_the_entity_inspected_event() {
+        List<SemanticEventResponse> events = controller.events(recordingId);
+        assertThat(events).extracting(SemanticEventResponse::type)
+                .containsExactly("CANVAS_NAVIGATION", "ENTITY_INSPECTED");
     }
 
     private ReviewRecordingSnapshot currentSnapshot() {

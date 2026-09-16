@@ -36,7 +36,7 @@ class ReviewRecordingControllerTest {
     private final WebSession webSession =
             new WebSession(new PrAnalyzer(PluginRegistry.languagePlugins(), PluginRegistry.frameworkPlugins()));
     private final ReviewRecordingRegistry registry = new ReviewRecordingRegistry(Clock.systemUTC());
-    private final ReviewRecordingController controller = new ReviewRecordingController(webSession, registry);
+    private final ReviewRecordingController controller = new ReviewRecordingController(webSession, registry, Clock.systemUTC());
 
     private Path baseRoot;
     private Path headRoot;
@@ -102,6 +102,53 @@ class ReviewRecordingControllerTest {
     @Test
     void captureDisclosureNamesWhatWillBeCaptured() {
         assertThat(controller.captureDisclosure()).isNotBlank();
+    }
+
+    @Test
+    void capturingAnEventAppendsItToTheRecordingsEventStream() {
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
+
+        controller.captureEvent(response.recordingId(),
+                new CaptureSemanticEventRequest("CANVAS_NAVIGATION", "component:PaymentValidator"));
+
+        assertThat(controller.events(response.recordingId()))
+                .singleElement()
+                .satisfies(event -> {
+                    assertThat(event.type()).isEqualTo("CANVAS_NAVIGATION");
+                    assertThat(event.reference()).isEqualTo("component:PaymentValidator");
+                });
+    }
+
+    @Test
+    void capturingAnEventOnAnUnknownRecordingIsRejected() {
+        assertThatThrownBy(() -> controller.captureEvent("does-not-exist",
+                new CaptureSemanticEventRequest("CANVAS_NAVIGATION", "component:PaymentValidator")))
+                .isInstanceOf(ResponseStatusException.class)
+                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(404));
+    }
+
+    @Test
+    void capturingAnEventOnAStoppedRecordingIsRejected() {
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
+        controller.stop(response.recordingId());
+
+        assertThatThrownBy(() -> controller.captureEvent(response.recordingId(),
+                new CaptureSemanticEventRequest("CANVAS_NAVIGATION", "component:PaymentValidator")))
+                .isInstanceOf(ResponseStatusException.class)
+                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(409));
+    }
+
+    @Test
+    void capturingAnEventWithAnUnknownTypeIsRejected() {
+        selectPullRequest(42, "acme/widgets");
+        ReviewRecordingStartResponse response = controller.start(new StartReviewRecordingRequest("Petros", true));
+
+        assertThatThrownBy(() -> controller.captureEvent(response.recordingId(),
+                new CaptureSemanticEventRequest("NOT_A_REAL_TYPE", "component:PaymentValidator")))
+                .isInstanceOf(ResponseStatusException.class)
+                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode().value()).isEqualTo(400));
     }
 
     private void selectPullRequest(int number, String repositoryFullName) {
