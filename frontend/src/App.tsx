@@ -3,13 +3,14 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createDiff, getGitHubStatus, selectPullRequest } from './api'
 import type { ImportedPullRequest } from './api'
 import ChangeDetailPage from './ChangeDetailPage'
-import SemanticCanvasPage from './SemanticCanvasPage'
+import LiveSessionCanvas from './LiveSessionCanvas'
 import PreSubmissionSummaryPage from './PreSubmissionSummaryPage'
 import AiAnalysisPage from './AiAnalysisPage'
 import GitHubAccessPage from './GitHubAccessPage'
 import KnowledgeSettingsPage from './KnowledgeSettingsPage'
 import { AthenaTopBar, BackLink, PageHeading, PageShell, PrimaryButton, RepoPrPicker, SecondaryButton } from './ui'
 import { parsePullRequestPath, pullRequestPath } from './shareUrl'
+import { parseLiveSessionPath } from './liveSessionUrl'
 
 export default function App() {
   const [connected, setConnected] = useState<boolean | null>(null)
@@ -37,6 +38,13 @@ export default function App() {
   // never a blocking gate, since Athena works fully with no Knowledge
   // Provider configured.
   const [showingKnowledgeSettings, setShowingKnowledgeSettings] = useState(false)
+  // A shared Live Code Review Session link (/live/:id, ticket #158) opened
+  // this app instance — read once, directly, as the initial state (see
+  // liveSessionRoute's own render-branch comment below for why this has to
+  // be checked ahead of the normal connected/selectedPr branching).
+  const [liveSessionRoute, setLiveSessionRoute] = useState<string | null>(() =>
+    parseLiveSessionPath(window.location.pathname),
+  )
 
   useEffect(() => {
     getGitHubStatus()
@@ -104,6 +112,33 @@ export default function App() {
     if (connected === null) {
       return null
     }
+    // A shared Live Code Review Session link takes priority over the usual
+    // connected/repo-picker branching below (ticket #158): joining must work
+    // for a browser that has nothing selected yet — or isn't even connected
+    // to GitHub yet — not only once a PR/Diff is already active. Once
+    // LiveSessionCanvas learns the session's real PR identity from joining,
+    // it calls back here to select that PR the normal way; `selectedPr`
+    // populating clears this branch, so rendering falls through to the
+    // ordinary selectedPr branch below (same LiveSessionCanvas instance,
+    // now with a real `pullRequest`, not a second join). A standalone-Diff-
+    // backed session never gets that callback, so a joiner stays on this
+    // branch — a disclosed limitation: they get presence/comments, not the
+    // canvas content itself, since there's no PR for them to independently
+    // select (see the ticket's "PR-backed only" scope note).
+    if (liveSessionRoute && !selectedPr) {
+      return (
+        <LiveSessionCanvas
+          pullRequest={null}
+          picker={picker}
+          onNotConnected={() => setConnected(false)}
+          onNoPullRequestSelected={() => {}}
+          onJoinedPr={(repositoryFullName, number) => {
+            setLiveSessionRoute(null)
+            selectPr({ repositoryFullName, number })
+          }}
+        />
+      )
+    }
     if (showingGitHubAccess) {
       return <GitHubAccessPage onBack={() => setShowingGitHubAccess(false)} />
     }
@@ -123,7 +158,7 @@ export default function App() {
     }
     if (diffActive) {
       return (
-        <SemanticCanvasPage
+        <LiveSessionCanvas
           pullRequest={null}
           picker={picker}
           onNotConnected={() => {
@@ -162,7 +197,7 @@ export default function App() {
         )
       }
       return (
-        <SemanticCanvasPage
+        <LiveSessionCanvas
           pullRequest={selectedPr}
           picker={picker}
           onNotConnected={() => {
