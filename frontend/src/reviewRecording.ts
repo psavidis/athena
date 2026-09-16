@@ -77,3 +77,12 @@ export async function getReviewRecording(recordingId: string): Promise<ReviewRec
   }
   return asJson(response)
 }
+
+export type MomentKind = 'INSIGHT' | 'QUESTION' | 'CONCERN' | 'DECISION' | 'ACTION' | 'VERIFICATION'
+
+export async function tagMoment(recordingId: string, kind: MomentKind): Promise<void> {
+  const response = await postJson(`/api/review-recordings/${encodeURIComponent(recordingId)}/moments`, { kind })
+  if (!response.ok) {
+    throw new Error(`Tag moment request failed: ${response.status}`)
+  }
+}

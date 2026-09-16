@@ -28,6 +28,7 @@ function mockEndpoints() {
     http.post('/api/review-recordings/recording-1/stop', () =>
       HttpResponse.json({ ...SNAPSHOT, active: false }),
     ),
+    http.post('/api/review-recordings/recording-1/moments', () => new HttpResponse(null, { status: 200 })),
   )
 }
 
@@ -70,5 +71,25 @@ describe('Review Recording control', () => {
       expect(screen.queryByRole('status', { name: 'Review Recording in progress' })).not.toBeInTheDocument(),
     )
     expect(screen.getByRole('button', { name: 'Start Review Recording' })).toBeVisible()
+  })
+
+  it('a developer tags the current moment while recording', async () => {
+    mockEndpoints()
+    let tagRequestBody: unknown = null
+    server.use(
+      http.post('/api/review-recordings/recording-1/moments', async ({ request }) => {
+        tagRequestBody = await request.json()
+        return new HttpResponse(null, { status: 200 })
+      }),
+    )
+    render(<ReviewRecordingControl displayName="Petros" />)
+    const user = userEvent.setup()
+    await user.click(screen.getByRole('button', { name: 'Start Review Recording' }))
+    await user.click(await screen.findByRole('button', { name: 'Start recording' }))
+    await screen.findByRole('status', { name: 'Review Recording in progress' })
+
+    await user.click(screen.getByRole('button', { name: 'Tag as Question' }))
+
+    await waitFor(() => expect(tagRequestBody).toEqual({ kind: 'QUESTION' }))
   })
 })
