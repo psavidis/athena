@@ -3,6 +3,7 @@ package com.athena.reviewbriefing;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * A developer's review briefing (ticket #218): structured data, not a
@@ -17,7 +18,12 @@ import java.util.Objects;
  *
  * <p>An empty section is still present — {@link #focusAreas()} etc.
  * return an empty list, never null — so a renderer can distinguish
- * "nothing flagged here" from a section that was never built at all.
+ * "nothing flagged here" from a section that was never built at all. The
+ * two single-item sections express the same "nothing to say yet" case as
+ * {@link Optional#empty()} rather than a placeholder string — what to
+ * show for an absent summary/recommendation is a rendering decision, not
+ * this domain-shape ticket's concern (mirrors {@code
+ * ReconstructedContext#aiNarrative()}'s own "maybe absent" precedent).
  *
  * <p>Defines the shape only; generating one is a later ticket's concern.
  */
@@ -45,8 +51,8 @@ public final class ReviewBriefing {
         return new Builder();
     }
 
-    public BriefingItem changeSummary() {
-        return changeSummary;
+    public Optional<BriefingItem> changeSummary() {
+        return Optional.ofNullable(changeSummary);
     }
 
     public List<BriefingItem> focusAreas() {
@@ -69,19 +75,19 @@ public final class ReviewBriefing {
         return relevantKnowledge;
     }
 
-    public BriefingItem recommendedStartingPoint() {
-        return recommendedStartingPoint;
+    public Optional<BriefingItem> recommendedStartingPoint() {
+        return Optional.ofNullable(recommendedStartingPoint);
     }
 
     public static final class Builder {
 
-        private BriefingItem changeSummary = BriefingItem.of("No change summary available.");
+        private BriefingItem changeSummary;
         private final List<BriefingItem> focusAreas = new ArrayList<>();
         private final List<BriefingItem> uncertainties = new ArrayList<>();
         private final List<BriefingItem> questions = new ArrayList<>();
         private final List<BriefingItem> historicalContext = new ArrayList<>();
         private final List<BriefingItem> relevantKnowledge = new ArrayList<>();
-        private BriefingItem recommendedStartingPoint = BriefingItem.of("No recommendation available.");
+        private BriefingItem recommendedStartingPoint;
 
         private Builder() {
         }

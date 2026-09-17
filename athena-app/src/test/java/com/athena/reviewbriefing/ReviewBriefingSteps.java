@@ -68,7 +68,7 @@ public class ReviewBriefingSteps {
 
     @Then("the briefing's change summary is present")
     public void the_briefings_change_summary_is_present() {
-        assertThat(briefing.changeSummary()).isNotNull();
+        assertThat(briefing.changeSummary()).isPresent();
     }
 
     @Then("the briefing has {int} focus area")
@@ -103,7 +103,7 @@ public class ReviewBriefingSteps {
 
     @Then("the briefing's recommended starting point is present")
     public void the_briefings_recommended_starting_point_is_present() {
-        assertThat(briefing.recommendedStartingPoint()).isNotNull();
+        assertThat(briefing.recommendedStartingPoint()).isPresent();
     }
 
     @Then("that focus area references {string}")

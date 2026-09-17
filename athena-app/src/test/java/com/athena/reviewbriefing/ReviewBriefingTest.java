@@ -19,13 +19,15 @@ class ReviewBriefingTest {
                 .recommendedStartingPoint(BriefingItem.of("Start with the retry logic"))
                 .build();
 
-        assertThat(briefing.changeSummary().description()).isEqualTo("Renamed OrderService to OrderProcessor");
+        assertThat(briefing.changeSummary()).isPresent();
+        assertThat(briefing.changeSummary().get().description()).isEqualTo("Renamed OrderService to OrderProcessor");
         assertThat(briefing.focusAreas()).hasSize(1);
         assertThat(briefing.uncertainties()).hasSize(1);
         assertThat(briefing.questions()).hasSize(1);
         assertThat(briefing.historicalContext()).hasSize(1);
         assertThat(briefing.relevantKnowledge()).hasSize(1);
-        assertThat(briefing.recommendedStartingPoint().description()).isEqualTo("Start with the retry logic");
+        assertThat(briefing.recommendedStartingPoint()).isPresent();
+        assertThat(briefing.recommendedStartingPoint().get().description()).isEqualTo("Start with the retry logic");
     }
 
     @Test
@@ -37,8 +39,8 @@ class ReviewBriefingTest {
         assertThat(briefing.questions()).isNotNull().isEmpty();
         assertThat(briefing.historicalContext()).isNotNull().isEmpty();
         assertThat(briefing.relevantKnowledge()).isNotNull().isEmpty();
-        assertThat(briefing.changeSummary()).isNotNull();
-        assertThat(briefing.recommendedStartingPoint()).isNotNull();
+        assertThat(briefing.changeSummary()).isEmpty();
+        assertThat(briefing.recommendedStartingPoint()).isEmpty();
     }
 
     @Test
