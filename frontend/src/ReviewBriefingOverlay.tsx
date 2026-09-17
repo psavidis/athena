@@ -85,7 +85,7 @@ export default function ReviewBriefingOverlay({
       <button
         type="button"
         onClick={onReopen}
-        className="absolute top-4 right-4 z-40 rounded-full border border-canvas-line-strong bg-canvas-paper-raised px-3 py-1.5 text-xs font-semibold text-canvas-ink-soft shadow hover:border-canvas-gold"
+        className="absolute top-16 right-4 z-40 rounded-full border border-canvas-line-strong bg-canvas-paper-raised px-3 py-1.5 text-xs font-semibold text-canvas-ink-soft shadow hover:border-canvas-gold"
       >
         Briefing
       </button>
