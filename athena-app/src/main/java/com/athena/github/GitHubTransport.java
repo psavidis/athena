@@ -119,6 +119,19 @@ public interface GitHubTransport {
     List<Review> fetchReviews(String token, String repositoryFullName, int number);
 
     /**
+     * Fetches a Pull Request's description text (ticket #213 — transcript
+     * discovery scans this for a linked transcript), separately from
+     * {@link #fetchPullRequestDetail}'s core metadata, the same way review
+     * comments/reviews are their own fetches rather than bundled fields.
+     * Empty (never null) if the PR has no description.
+     *
+     * @throws GitHubAuthenticationException if the token is invalid/rejected
+     * @throws GitHubResourceNotFoundException if the repository or Pull
+     *         Request doesn't exist or isn't accessible
+     */
+    String fetchPullRequestBody(String token, String repositoryFullName, int number);
+
+    /**
      * Fetches the authenticated user's permission level on a repository
      * (e.g. "read", "write", "admin").
      *
