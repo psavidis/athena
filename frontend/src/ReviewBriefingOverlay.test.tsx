@@ -28,13 +28,12 @@ function mockBriefing() {
 function Harness({ pullRequestNumber }: { pullRequestNumber: number }) {
   const [collapsed, setCollapsed] = useState(false)
   return (
-    <div key={pullRequestNumber}>
-      <ReviewBriefingOverlay
-        collapsed={collapsed}
-        onStartReview={() => setCollapsed(true)}
-        onReopen={() => setCollapsed(false)}
-      />
-    </div>
+    <ReviewBriefingOverlay
+      pullRequestNumber={pullRequestNumber}
+      collapsed={collapsed}
+      onStartReview={() => setCollapsed(true)}
+      onReopen={() => setCollapsed(false)}
+    />
   )
 }
 

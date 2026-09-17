@@ -887,6 +887,7 @@ export default function SemanticCanvasPage({
       )}
       {pullRequest && (
         <ReviewBriefingOverlay
+          pullRequestNumber={pullRequest.number}
           collapsed={briefingCollapsed}
           onStartReview={() => setBriefingCollapsed(true)}
           onReopen={() => setBriefingCollapsed(false)}

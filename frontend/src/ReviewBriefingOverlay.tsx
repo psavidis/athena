@@ -29,16 +29,22 @@ function BriefingSection({ title, items }: { title: string; items: BriefingItem[
  * component only renders whichever state it's told.
  */
 export default function ReviewBriefingOverlay({
+  pullRequestNumber,
   collapsed,
   onStartReview,
   onReopen,
 }: {
+  pullRequestNumber: number
   collapsed: boolean
   onStartReview: () => void
   onReopen: () => void
 }) {
+  // Scoped to the PR (matching ContextRewindPage's own pull-request-review key precedent):
+  // SemanticCanvasPage doesn't remount this component on a PR switch — only briefingCollapsed
+  // resets — so an unscoped key would let react-query serve the previous PR's cached briefing
+  // instead of fetching the new one's.
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['review-briefing'],
+    queryKey: ['review-briefing', pullRequestNumber],
     queryFn: getReviewBriefing,
     retry: false,
   })

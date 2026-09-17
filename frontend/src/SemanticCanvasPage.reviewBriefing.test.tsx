@@ -11,21 +11,29 @@ import { server } from './test/server'
 
 const EMPTY_TOPOLOGY: ModuleTopology = { territories: [], dependencies: [] }
 
-const BRIEFING = {
-  changeSummary: { description: 'Renamed a method on Greeter.', entityReference: 'Greeter' },
-  focusAreas: [],
-  uncertainties: [],
-  questions: [],
-  historicalContext: [],
-  relevantKnowledge: [],
-  recommendedStartingPoint: null,
+function briefingFor(summary: string) {
+  return {
+    changeSummary: { description: summary, entityReference: 'Greeter' },
+    focusAreas: [],
+    uncertainties: [],
+    questions: [],
+    historicalContext: [],
+    relevantKnowledge: [],
+    recommendedStartingPoint: null,
+  }
 }
 
 function mockEndpoints() {
-  server.use(
-    http.get('/api/review/topology', () => HttpResponse.json(EMPTY_TOPOLOGY)),
-    http.get('/api/review-briefings', () => HttpResponse.json(BRIEFING)),
-  )
+  server.use(http.get('/api/review/topology', () => HttpResponse.json(EMPTY_TOPOLOGY)))
+}
+
+// The real endpoint has no PR number in its URL — it reads the session's currently-selected PR
+// server-side — so a test can't tell PRs apart by request shape. Instead, this changes what the
+// *same* endpoint returns between renders, simulating "the backend's selected PR changed
+// server-side" the way a real PR switch would: if the frontend's query key isn't scoped to the
+// PR, it'll keep showing the first response instead of re-fetching this new one.
+function mockBriefing(summary: string) {
+  server.use(http.get('/api/review-briefings', () => HttpResponse.json(briefingFor(summary))))
 }
 
 function pr(number: number): ImportedPullRequest {
@@ -53,21 +61,27 @@ function renderCanvas(pullRequest: ImportedPullRequest | null) {
 describe('SemanticCanvasPage Review Briefing overlay', () => {
   it('shows the briefing overlay on first entering a PR', async () => {
     mockEndpoints()
+    mockBriefing('Renamed a method on Greeter.')
     renderCanvas(pr(42))
 
     expect(await screen.findByText('Review Briefing')).toBeVisible()
+    expect(await screen.findByText('Renamed a method on Greeter.')).toBeVisible()
   })
 
-  it('a different PR shows the overlay again on entry', async () => {
+  it('a different PR shows the overlay again on entry, with that PR\'s own content', async () => {
     mockEndpoints()
+    mockBriefing('Renamed a method on Greeter.')
     const { rerenderWithPr } = renderCanvas(pr(42))
     const user = userEvent.setup()
-    await screen.findByText('Review Briefing')
+    await screen.findByText('Renamed a method on Greeter.')
     await user.click(screen.getByRole('button', { name: 'Start Review' }))
     expect(screen.queryByText('Review Briefing')).not.toBeInTheDocument()
 
+    mockBriefing('Extracted a helper on OrderService.')
     rerenderWithPr(pr(43))
 
     expect(await screen.findByText('Review Briefing')).toBeVisible()
+    expect(await screen.findByText('Extracted a helper on OrderService.')).toBeVisible()
+    expect(screen.queryByText('Renamed a method on Greeter.')).not.toBeInTheDocument()
   })
 })
