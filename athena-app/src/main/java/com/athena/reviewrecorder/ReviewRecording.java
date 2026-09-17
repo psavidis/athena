@@ -31,6 +31,7 @@ public final class ReviewRecording {
     private final String commitOrVersion;
     private final Clock clock;
     private final Instant startedAt;
+    private final boolean audioEnabled;
     private final Set<String> participantDisplayNames = new LinkedHashSet<>();
     private final List<SemanticEvent> events = new ArrayList<>();
     private final List<Moment> moments = new ArrayList<>();
@@ -38,26 +39,37 @@ public final class ReviewRecording {
     private Instant stoppedAt;
 
     private ReviewRecording(String repositoryFullName, int pullRequestNumber, String commitOrVersion,
-                             String starterDisplayName, Clock clock) {
+                             String starterDisplayName, Clock clock, boolean audioEnabled) {
         this.id = UUID.randomUUID().toString();
         this.repositoryFullName = repositoryFullName;
         this.pullRequestNumber = pullRequestNumber;
         this.commitOrVersion = commitOrVersion;
         this.clock = clock;
         this.startedAt = clock.instant();
+        this.audioEnabled = audioEnabled;
         this.participantDisplayNames.add(starterDisplayName);
     }
 
     /** Starts a new recording about {@code repositoryFullName}#{@code pullRequestNumber} at {@code commitOrVersion}. */
     static ReviewRecording start(String repositoryFullName, int pullRequestNumber, String commitOrVersion,
                                   String starterDisplayName, Clock clock) {
+        return start(repositoryFullName, pullRequestNumber, commitOrVersion, starterDisplayName, clock, false);
+    }
+
+    /**
+     * Starts a new recording, recording whether the developer opted in to audio capture (ticket
+     * #208) as an intent only — no real transcription provider exists yet (see {@link
+     * TranscriptionProvider}), so enabling this never causes any audio to actually be captured.
+     */
+    static ReviewRecording start(String repositoryFullName, int pullRequestNumber, String commitOrVersion,
+                                  String starterDisplayName, Clock clock, boolean audioEnabled) {
         Objects.requireNonNull(repositoryFullName, "repositoryFullName");
         Objects.requireNonNull(clock, "clock");
         if (repositoryFullName.isBlank()) {
             throw new IllegalArgumentException("repositoryFullName must not be blank");
         }
         String starter = requireDisplayName(starterDisplayName);
-        return new ReviewRecording(repositoryFullName, pullRequestNumber, commitOrVersion, starter, clock);
+        return new ReviewRecording(repositoryFullName, pullRequestNumber, commitOrVersion, starter, clock, audioEnabled);
     }
 
     public String id() {
@@ -78,6 +90,11 @@ public final class ReviewRecording {
 
     public Instant startedAt() {
         return startedAt;
+    }
+
+    /** Whether the developer opted in to audio capture when starting this recording (ticket #208). */
+    public boolean audioEnabled() {
+        return audioEnabled;
     }
 
     public synchronized boolean active() {

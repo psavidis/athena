@@ -94,7 +94,8 @@ public class ReviewRecordingController {
         String commitOrVersion = session.selectedPullRequest()
                 .map(selected -> selected.pullRequest().headRevision())
                 .orElse("local");
-        ReviewRecording recording = registry.start(repositoryFullName, pullRequestNumber, commitOrVersion, displayName);
+        ReviewRecording recording = registry.start(
+                repositoryFullName, pullRequestNumber, commitOrVersion, displayName, request.audioEnabled());
         return new ReviewRecordingStartResponse(recording.id(), ReviewRecordingSnapshot.of(recording));
     }
 

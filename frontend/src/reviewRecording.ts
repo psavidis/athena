@@ -7,6 +7,7 @@ export interface ReviewRecordingSnapshot {
   repositoryFullName: string
   pullRequestNumber: number
   active: boolean
+  audioEnabled: boolean
   elapsedSeconds: number
   participantCount: number
   participantDisplayNames: string[]
@@ -48,8 +49,9 @@ export async function fetchCaptureDisclosure(): Promise<string> {
 export async function startReviewRecording(
   displayName: string,
   disclosureAcknowledged: boolean,
+  audioEnabled = false,
 ): Promise<ReviewRecordingStartResult> {
-  const response = await postJson('/api/review-recordings', { displayName, disclosureAcknowledged })
+  const response = await postJson('/api/review-recordings', { displayName, disclosureAcknowledged, audioEnabled })
   if (response.status === 409) {
     throw new NoReviewSelectedForRecordingError()
   }

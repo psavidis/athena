@@ -27,8 +27,14 @@ public class ReviewRecordingRegistry {
     /** Starts and registers a new recording about {@code repositoryFullName}#{@code pullRequestNumber}. */
     public ReviewRecording start(String repositoryFullName, int pullRequestNumber, String commitOrVersion,
                                   String starterDisplayName) {
-        ReviewRecording recording =
-                ReviewRecording.start(repositoryFullName, pullRequestNumber, commitOrVersion, starterDisplayName, clock);
+        return start(repositoryFullName, pullRequestNumber, commitOrVersion, starterDisplayName, false);
+    }
+
+    /** Starts and registers a new recording, with audio capture opted in or out (ticket #208). */
+    public ReviewRecording start(String repositoryFullName, int pullRequestNumber, String commitOrVersion,
+                                  String starterDisplayName, boolean audioEnabled) {
+        ReviewRecording recording = ReviewRecording.start(
+                repositoryFullName, pullRequestNumber, commitOrVersion, starterDisplayName, clock, audioEnabled);
         recordings.put(recording.id(), recording);
         return recording;
     }

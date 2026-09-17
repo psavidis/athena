@@ -32,6 +32,7 @@ export default function ReviewRecordingControl({
 }) {
   const [disclosureOpen, setDisclosureOpen] = useState(false)
   const [disclosureText, setDisclosureText] = useState('')
+  const [audioEnabled, setAudioEnabled] = useState(false)
   const [snapshot, setSnapshot] = useState<ReviewRecordingSnapshot | null>(null)
   const [elapsedSeconds, setElapsedSeconds] = useState(0)
   const [error, setError] = useState<string | null>(null)
@@ -60,6 +61,7 @@ export default function ReviewRecordingControl({
 
   async function openDisclosure() {
     setError(null)
+    setAudioEnabled(false)
     const text = await fetchCaptureDisclosure()
     setDisclosureText(text)
     setDisclosureOpen(true)
@@ -68,7 +70,7 @@ export default function ReviewRecordingControl({
   async function acknowledgeAndStart() {
     setDisclosureOpen(false)
     try {
-      const result = await startReviewRecording(displayName, true)
+      const result = await startReviewRecording(displayName, true, audioEnabled)
       setSnapshot(result.snapshot)
     } catch {
       setError('Select a Pull Request or Diff before starting a Review Recording.')
@@ -216,6 +218,14 @@ export default function ReviewRecordingControl({
               Before you start recording
             </h2>
             <p className="mb-4 text-sm text-canvas-ink-soft">{disclosureText}</p>
+            <label className="mb-4 flex items-center gap-2 text-sm text-canvas-ink-soft">
+              <input
+                type="checkbox"
+                checked={audioEnabled}
+                onChange={(e) => setAudioEnabled(e.target.checked)}
+              />
+              Also capture audio and a transcript
+            </label>
             <div className="flex justify-end gap-2">
               <SecondaryButton onClick={() => setDisclosureOpen(false)}>Cancel</SecondaryButton>
               <PrimaryButton onClick={acknowledgeAndStart}>Start recording</PrimaryButton>

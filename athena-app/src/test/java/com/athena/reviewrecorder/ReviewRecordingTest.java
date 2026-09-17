@@ -38,6 +38,22 @@ class ReviewRecordingTest {
     }
 
     @Test
+    void audioCaptureDefaultsToDisabled() {
+        ReviewRecording recording = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros",
+                Clock.fixed(START, ZoneOffset.UTC));
+
+        assertThat(recording.audioEnabled()).isFalse();
+    }
+
+    @Test
+    void audioCaptureCanBeExplicitlyEnabled() {
+        ReviewRecording recording = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros",
+                Clock.fixed(START, ZoneOffset.UTC), true);
+
+        assertThat(recording.audioEnabled()).isTrue();
+    }
+
+    @Test
     void startingWithABlankRepositoryIsRejected() {
         assertThatThrownBy(() -> ReviewRecording.start(" ", 42, "abc123", "Petros", Clock.systemUTC()))
                 .isInstanceOf(IllegalArgumentException.class);
