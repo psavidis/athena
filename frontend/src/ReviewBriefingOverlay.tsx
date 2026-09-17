@@ -28,8 +28,9 @@ function BriefingSection({
           <li key={index}>
             <button
               type="button"
+              data-testid="briefing-item"
               onClick={() => selectItem(item, onFocusModule)}
-              className="text-left text-sm text-ink-700 hover:underline"
+              className="rounded text-left text-sm text-ink-700 outline-none hover:underline focus:ring-2 focus:ring-inset focus:ring-accent"
             >
               {item.description}
             </button>
