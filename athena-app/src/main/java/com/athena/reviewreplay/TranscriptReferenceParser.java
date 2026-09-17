@@ -3,6 +3,7 @@ package com.athena.reviewreplay;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,7 +33,7 @@ public final class TranscriptReferenceParser {
             return references;
         }
         for (String line : description.split("\n")) {
-            if (!line.toLowerCase().contains("transcript")) {
+            if (!line.toLowerCase(Locale.ROOT).contains("transcript")) {
                 continue;
             }
             Matcher matcher = MARKDOWN_LINK.matcher(line);
