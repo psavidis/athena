@@ -19,17 +19,19 @@ public final class ReviewRecordingArtifact {
     private final String repositoryFullName;
     private final int pullRequestNumber;
     private final String commitOrVersion;
+    private final boolean audioEnabled;
     private final List<SemanticEvent> events;
     private final List<Moment> moments;
     private final ReviewRecordingSummary summary;
 
     private ReviewRecordingArtifact(String recordingId, String repositoryFullName, int pullRequestNumber,
-                                     String commitOrVersion, List<SemanticEvent> events, List<Moment> moments,
-                                     ReviewRecordingSummary summary) {
+                                     String commitOrVersion, boolean audioEnabled, List<SemanticEvent> events,
+                                     List<Moment> moments, ReviewRecordingSummary summary) {
         this.recordingId = recordingId;
         this.repositoryFullName = repositoryFullName;
         this.pullRequestNumber = pullRequestNumber;
         this.commitOrVersion = commitOrVersion;
+        this.audioEnabled = audioEnabled;
         this.events = events;
         this.moments = moments;
         this.summary = summary;
@@ -39,15 +41,15 @@ public final class ReviewRecordingArtifact {
     public static ReviewRecordingArtifact of(ReviewRecording recording) {
         Objects.requireNonNull(recording, "recording");
         return new ReviewRecordingArtifact(recording.id(), recording.repositoryFullName(),
-                recording.pullRequestNumber(), recording.commitOrVersion(), recording.events(), recording.moments(),
-                recording.summary());
+                recording.pullRequestNumber(), recording.commitOrVersion(), recording.audioEnabled(),
+                recording.events(), recording.moments(), recording.summary());
     }
 
     static ReviewRecordingArtifact of(String recordingId, String repositoryFullName, int pullRequestNumber,
-                                       String commitOrVersion, List<SemanticEvent> events, List<Moment> moments,
-                                       Duration duration) {
+                                       String commitOrVersion, boolean audioEnabled, List<SemanticEvent> events,
+                                       List<Moment> moments, Duration duration) {
         return new ReviewRecordingArtifact(recordingId, repositoryFullName, pullRequestNumber, commitOrVersion,
-                List.copyOf(events), List.copyOf(moments), ReviewRecordingSummary.of(duration, moments));
+                audioEnabled, List.copyOf(events), List.copyOf(moments), ReviewRecordingSummary.of(duration, moments));
     }
 
     public String recordingId() {
@@ -64,6 +66,11 @@ public final class ReviewRecordingArtifact {
 
     public String commitOrVersion() {
         return commitOrVersion;
+    }
+
+    /** Whether the developer opted in to audio capture when this recording was started (ticket #208). */
+    public boolean audioEnabled() {
+        return audioEnabled;
     }
 
     public List<SemanticEvent> events() {

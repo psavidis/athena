@@ -10,6 +10,7 @@ public record ReviewRecordingArtifactResponse(
         String repositoryFullName,
         int pullRequestNumber,
         String commitOrVersion,
+        boolean audioEnabled,
         List<SemanticEventResponse> events,
         List<MomentResponse> moments,
         ReviewRecordingSummaryResponse summary) {
@@ -20,6 +21,7 @@ public record ReviewRecordingArtifactResponse(
                 artifact.repositoryFullName(),
                 artifact.pullRequestNumber(),
                 artifact.commitOrVersion(),
+                artifact.audioEnabled(),
                 artifact.events().stream().map(SemanticEventResponse::of).toList(),
                 artifact.moments().stream().map(MomentResponse::of).toList(),
                 ReviewRecordingSummaryResponse.of(artifact.summary()));

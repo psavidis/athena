@@ -112,23 +112,28 @@ public class ReviewRecordingSessionSteps {
 
     @When("the developer starts a Review Recording as {string}, having acknowledged the disclosure")
     public void the_developer_starts_a_review_recording_as(String displayName) {
-        attemptStart(displayName, true);
+        attemptStart(displayName, true, false);
+    }
+
+    @When("the developer starts a Review Recording as {string} with audio enabled, having acknowledged the disclosure")
+    public void the_developer_starts_a_review_recording_as_with_audio_enabled(String displayName) {
+        attemptStart(displayName, true, true);
     }
 
     @When("the developer attempts to start a Review Recording as {string}, without acknowledging the disclosure")
     public void the_developer_attempts_to_start_without_acknowledging(String displayName) {
-        attemptStart(displayName, false);
+        attemptStart(displayName, false, false);
     }
 
     @When("the developer attempts to start a Review Recording as {string}, having acknowledged the disclosure")
     public void the_developer_attempts_to_start_having_acknowledged(String displayName) {
-        attemptStart(displayName, true);
+        attemptStart(displayName, true, false);
     }
 
-    private void attemptStart(String displayName, boolean disclosureAcknowledged) {
+    private void attemptStart(String displayName, boolean disclosureAcknowledged, boolean audioEnabled) {
         try {
-            ReviewRecordingStartResponse response =
-                    controller.start(new StartReviewRecordingRequest(displayName, disclosureAcknowledged));
+            ReviewRecordingStartResponse response = controller.start(
+                    new StartReviewRecordingRequest(displayName, disclosureAcknowledged, audioEnabled));
             recordingId = response.recordingId();
             lastSnapshot = response.snapshot();
         } catch (ResponseStatusException e) {
@@ -139,7 +144,23 @@ public class ReviewRecordingSessionSteps {
     @Given("{string} has started a Review Recording for PR {int} in {string}")
     public void has_started_a_review_recording(String displayName, int number, String repositoryFullName) {
         selectPullRequest(number, repositoryFullName);
-        attemptStart(displayName, true);
+        attemptStart(displayName, true, false);
+    }
+
+    @Given("{string} has started a Review Recording for PR {int} in {string} with audio enabled")
+    public void has_started_a_review_recording_with_audio_enabled(String displayName, int number, String repositoryFullName) {
+        selectPullRequest(number, repositoryFullName);
+        attemptStart(displayName, true, true);
+    }
+
+    @Then("the recording has audio capture enabled")
+    public void the_recording_has_audio_capture_enabled() {
+        assertThat(lastSnapshot.audioEnabled()).isTrue();
+    }
+
+    @Then("the recording does not have audio capture enabled")
+    public void the_recording_does_not_have_audio_capture_enabled() {
+        assertThat(lastSnapshot.audioEnabled()).isFalse();
     }
 
     @Then("the recording exists")
@@ -550,6 +571,11 @@ public class ReviewRecordingSessionSteps {
     public void the_reopened_artifact_shows_the_recordings_summary() {
         assertThat(reopenedArtifact.summary()).isNotNull();
         assertThat(reopenedArtifact.summary().momentCountsByKind()).isNotEmpty();
+    }
+
+    @Then("the reopened artifact shows audio capture as enabled")
+    public void the_reopened_artifact_shows_audio_capture_as_enabled() {
+        assertThat(reopenedArtifact.audioEnabled()).isTrue();
     }
 
     @Then("the recording's summary can still be read")

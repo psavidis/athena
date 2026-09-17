@@ -40,6 +40,7 @@ public class ReviewRecordingArtifactStore {
         root.put("repositoryFullName", artifact.repositoryFullName());
         root.put("pullRequestNumber", artifact.pullRequestNumber());
         root.put("commitOrVersion", artifact.commitOrVersion());
+        root.put("audioEnabled", artifact.audioEnabled());
         root.put("durationSeconds", artifact.summary().duration().getSeconds());
         root.set("events", eventsNode(artifact.events()));
         root.set("moments", momentsNode(artifact.moments()));
@@ -132,7 +133,7 @@ public class ReviewRecordingArtifactStore {
         String recordingId = requireNonBlank(root.path("recordingId").asText(null), "recordingId");
         String repositoryFullName = requireNonBlank(root.path("repositoryFullName").asText(null), "repositoryFullName");
         return ReviewRecordingArtifact.of(recordingId, repositoryFullName, root.path("pullRequestNumber").asInt(),
-                root.path("commitOrVersion").asText(), events, moments, duration);
+                root.path("commitOrVersion").asText(), root.path("audioEnabled").asBoolean(), events, moments, duration);
     }
 
     private String requireNonBlank(String value, String fieldName) {

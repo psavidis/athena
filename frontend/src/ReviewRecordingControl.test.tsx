@@ -14,6 +14,7 @@ const SNAPSHOT = {
   repositoryFullName: 'acme/widgets',
   pullRequestNumber: 42,
   active: true,
+  audioEnabled: false,
   elapsedSeconds: 0,
   participantCount: 1,
   participantDisplayNames: ['Petros'],
@@ -153,5 +154,48 @@ describe('Review Recording control', () => {
     const summary = await screen.findByRole('region', { name: 'Review summary' })
     expect(summary).toHaveTextContent('0:42')
     expect(summary).toHaveTextContent('Question: 1')
+  })
+
+  // Traces frontend/src/test/resources/features/review_recorder/audio_consent.feature (ticket #208)
+  it('starting a recording without checking the audio box does not enable audio capture', async () => {
+    mockEndpoints()
+    let startRequestBody: unknown = null
+    server.use(
+      http.post('/api/review-recordings', async ({ request }) => {
+        startRequestBody = await request.json()
+        return HttpResponse.json({ recordingId: 'recording-1', snapshot: SNAPSHOT })
+      }),
+    )
+    render(<ReviewRecordingControl displayName="Petros" />)
+    const user = userEvent.setup()
+
+    await user.click(screen.getByRole('button', { name: 'Start Review Recording' }))
+    await user.click(await screen.findByRole('button', { name: 'Start recording' }))
+
+    await waitFor(() =>
+      expect(startRequestBody).toEqual({ displayName: 'Petros', disclosureAcknowledged: true, audioEnabled: false }),
+    )
+  })
+
+  it('checking the audio box before starting enables audio capture', async () => {
+    mockEndpoints()
+    let startRequestBody: unknown = null
+    server.use(
+      http.post('/api/review-recordings', async ({ request }) => {
+        startRequestBody = await request.json()
+        return HttpResponse.json({ recordingId: 'recording-1', snapshot: { ...SNAPSHOT, audioEnabled: true } })
+      }),
+    )
+    render(<ReviewRecordingControl displayName="Petros" />)
+    const user = userEvent.setup()
+    await user.click(screen.getByRole('button', { name: 'Start Review Recording' }))
+    await screen.findByText(DISCLOSURE)
+
+    await user.click(screen.getByRole('checkbox', { name: 'Also capture audio and a transcript' }))
+    await user.click(screen.getByRole('button', { name: 'Start recording' }))
+
+    await waitFor(() =>
+      expect(startRequestBody).toEqual({ displayName: 'Petros', disclosureAcknowledged: true, audioEnabled: true }),
+    )
   })
 })

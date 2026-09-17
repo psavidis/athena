@@ -15,6 +15,7 @@ public record ReviewRecordingSnapshot(
         String repositoryFullName,
         int pullRequestNumber,
         boolean active,
+        boolean audioEnabled,
         long elapsedSeconds,
         int participantCount,
         List<String> participantDisplayNames) {
@@ -25,6 +26,7 @@ public record ReviewRecordingSnapshot(
                 recording.repositoryFullName(),
                 recording.pullRequestNumber(),
                 recording.active(),
+                recording.audioEnabled(),
                 recording.elapsed().getSeconds(),
                 recording.participantCount(),
                 List.copyOf(recording.participantDisplayNames()));

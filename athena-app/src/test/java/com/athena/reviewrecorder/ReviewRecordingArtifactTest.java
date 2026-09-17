@@ -35,6 +35,17 @@ class ReviewRecordingArtifactTest {
     }
 
     @Test
+    void capturesWhetherAudioCaptureWasEnabled() {
+        ReviewRecording recording = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros",
+                Clock.fixed(START, ZoneOffset.UTC), true);
+        recording.stop();
+
+        ReviewRecordingArtifact artifact = ReviewRecordingArtifact.of(recording);
+
+        assertThat(artifact.audioEnabled()).isTrue();
+    }
+
+    @Test
     void durationMatchesTheRecordingsElapsedTimeAtCaptureTime() {
         MutableClock clock = new MutableClock(START);
         ReviewRecording recording = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros", clock);

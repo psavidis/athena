@@ -70,6 +70,20 @@ class ReviewRecordingArtifactStoreTest {
     }
 
     @Test
+    void persistsAndReadsBackWhetherAudioCaptureWasEnabled() {
+        ReviewRecording recording = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros",
+                Clock.fixed(START, ZoneOffset.UTC), true);
+        recording.stop();
+        ReviewRecordingArtifact artifact = ReviewRecordingArtifact.of(recording);
+
+        store.persist(artifact);
+        Optional<ReviewRecordingArtifact> reopened = store.find(recording.id());
+
+        assertThat(reopened).isPresent();
+        assertThat(reopened.get().audioEnabled()).isTrue();
+    }
+
+    @Test
     void persistingTwoArtifactsPreservesBoth() {
         ReviewRecording first = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros",
                 Clock.fixed(START, ZoneOffset.UTC));
