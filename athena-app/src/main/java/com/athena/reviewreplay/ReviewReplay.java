@@ -76,4 +76,9 @@ public final class ReviewReplay {
     public Optional<ResolvedReference> resolvedReference(String reference) {
         return Optional.ofNullable(resolvedReferencesByReference.get(reference));
     }
+
+    /** This Replay's concise end-of-review outcome (ticket #215), derived fresh from the artifact's moments. */
+    public ReviewOutcome outcome() {
+        return ReviewOutcome.derive(artifact.moments());
+    }
 }
