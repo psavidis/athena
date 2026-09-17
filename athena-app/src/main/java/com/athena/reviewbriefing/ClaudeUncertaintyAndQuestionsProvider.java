@@ -13,16 +13,14 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Production {@link UncertaintyAndQuestionsProvider} backed directly by
  * the Anthropic Messages API — mirrors {@link
- * ClaudeSemanticChangeSummaryProvider}'s (#219) own structure, but parses
- * Claude's response as the structured JSON {@link
- * UncertaintyAndQuestionsPrompt} asks for instead of taking it as free
- * text.
+ * ClaudeSemanticChangeSummaryProvider}'s (#219) own structure. Response
+ * parsing itself lives in {@link UncertaintyAndQuestionsResponseParser}
+ * so it can be unit-tested without a real or faked network boundary.
  */
 public class ClaudeUncertaintyAndQuestionsProvider implements UncertaintyAndQuestionsProvider {
 
@@ -43,29 +41,7 @@ public class ClaudeUncertaintyAndQuestionsProvider implements UncertaintyAndQues
     public UncertaintyAndQuestions analyze(List<Change> changes, List<SemanticProfile> profiles) {
         JsonNode responseBody = send(UncertaintyAndQuestionsPrompt.build(changes, profiles));
         String text = responseBody.path("content").path(0).path("text").asText("").strip();
-        return parse(text);
-    }
-
-    private UncertaintyAndQuestions parse(String text) {
-        JsonNode root;
-        try {
-            root = json.readTree(text);
-        } catch (IOException e) {
-            throw new AiProviderException("Could not parse Claude's uncertainty/questions response: " + e.getMessage(), e);
-        }
-        return new UncertaintyAndQuestions(toItems(root.path("uncertainties")), toItems(root.path("questions")));
-    }
-
-    private List<BriefingItem> toItems(JsonNode array) {
-        List<BriefingItem> items = new ArrayList<>();
-        for (JsonNode node : array) {
-            String description = node.path("description").asText("");
-            if (description.isBlank()) {
-                continue;
-            }
-            items.add(BriefingItem.of(description, node.path("entity").asText(null)));
-        }
-        return items;
+        return UncertaintyAndQuestionsResponseParser.parse(text);
     }
 
     private JsonNode send(String prompt) {
