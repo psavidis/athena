@@ -1,6 +1,8 @@
 package com.athena.web.reviewreplay;
 
 import com.athena.git.TempDirectories;
+import com.athena.memory.MemoryEntry;
+import com.athena.memory.ProjectMemoryStore;
 import com.athena.repository.ImportedPullRequest;
 import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewreplay.KnownEntityReferenceResolver;
@@ -65,6 +67,7 @@ public class ReviewReplaySteps {
 
     private ReviewReplayResponse replay;
     private ResponseStatusException failure;
+    private String lastPromotedFact;
 
     // --- Importing a shared artifact (ticket #217) ---
 
@@ -217,6 +220,72 @@ public class ReviewReplaySteps {
     public void the_replay_request_is_rejected_as_invalid() {
         assertThat(failure).isNotNull();
         assertThat(failure.getStatusCode().is4xxClientError()).isTrue();
+    }
+
+    // --- Promoting a learning or decision to project memory (ticket #216) ---
+
+    @When("a developer promotes that learned item to project memory as {string}")
+    public void a_developer_promotes_that_learned_item_to_project_memory_as(String fact) {
+        promoteTheOnlyItemIn("LEARNED", fact);
+    }
+
+    @When("a developer promotes that decided item to project memory as {string}")
+    public void a_developer_promotes_that_decided_item_to_project_memory_as(String fact) {
+        promoteTheOnlyItemIn("DECIDED", fact);
+    }
+
+    private void promoteTheOnlyItemIn(String section, String fact) {
+        openReplay(recordingSteps.recordingId());
+        String reference = ("LEARNED".equals(section) ? replay.outcome().learned() : replay.outcome().decided())
+                .get(0).reference();
+        promote(recordingSteps.recordingId(), section, reference, fact);
+    }
+
+    @When("a developer attempts to promote a learning to project memory as {string}")
+    public void a_developer_attempts_to_promote_a_learning_to_project_memory_as(String fact) {
+        promote("does-not-matter", "LEARNED", null, fact);
+    }
+
+    private void promote(String recordingId, String section, String reference, String fact) {
+        lastPromotedFact = fact;
+        try {
+            replayController.promoteOutcomeItem(recordingId, new PromoteOutcomeItemRequest(section, reference, fact));
+            failure = null;
+        } catch (ResponseStatusException e) {
+            failure = e;
+        }
+    }
+
+    @Then("the promotion request is rejected as invalid")
+    public void the_promotion_request_is_rejected_as_invalid() {
+        assertThat(failure).isNotNull();
+        assertThat(failure.getStatusCode().is4xxClientError()).isTrue();
+    }
+
+    @Then("project memory has an entry {string}")
+    public void project_memory_has_an_entry(String fact) {
+        assertThat(entriesFor(fact)).isNotEmpty();
+    }
+
+    @Then("project memory has exactly {int} entry {string}")
+    public void project_memory_has_exactly_entry(int count, String fact) {
+        assertThat(entriesFor(fact)).hasSize(count);
+    }
+
+    @Then("that entry is developer-confirmed")
+    public void that_entry_is_developer_confirmed() {
+        assertThat(entriesFor(lastPromotedFact).get(0).developerConfirmed()).isTrue();
+    }
+
+    @Then("that entry's evidence mentions {string}, PR {int}, and {string}")
+    public void that_entrys_evidence_mentions(String repositoryFullName, int pullRequestNumber, String entityName) {
+        String evidence = entriesFor(lastPromotedFact).get(0).evidence();
+        assertThat(evidence).contains(repositoryFullName).contains("PR " + pullRequestNumber).contains(entityName);
+    }
+
+    private List<MemoryEntry> entriesFor(String fact) {
+        return new ProjectMemoryStore(recordingSteps.webSession().currentDiff().orElseThrow().headRoot())
+                .entries().stream().filter(e -> e.fact().equals(fact)).toList();
     }
 
     @Given("the recording's artifact has been exported to a shared file")

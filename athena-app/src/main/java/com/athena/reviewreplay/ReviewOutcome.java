@@ -6,6 +6,7 @@ import com.athena.reviewrecorder.MomentStatus;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * A Replay's concise end-of-review outcome (ticket #215): what was
@@ -70,5 +71,19 @@ public final class ReviewOutcome {
 
     public List<OutcomeItem> actions() {
         return actions;
+    }
+
+    /** The item in {@code section} whose reference is {@code reference}, if any (ticket #216). */
+    public Optional<OutcomeItem> item(OutcomeSection section, String reference) {
+        return sectionOf(section).stream().filter(item -> item.reference().equals(Optional.ofNullable(reference))).findFirst();
+    }
+
+    private List<OutcomeItem> sectionOf(OutcomeSection section) {
+        return switch (section) {
+            case LEARNED -> learned;
+            case DECIDED -> decided;
+            case UNRESOLVED -> unresolved;
+            case ACTIONS -> actions;
+        };
     }
 }
