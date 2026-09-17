@@ -2,15 +2,37 @@ import { useQuery } from '@tanstack/react-query'
 import { getReviewBriefing, type BriefingItem } from './reviewBriefing'
 import { PrimaryButton } from './ui'
 
-function BriefingSection({ title, items }: { title: string; items: BriefingItem[] }) {
+/** Calls `onFocusModule` only when `item` resolves to a known module (ticket #224) — otherwise the
+ * canvas is left wherever it was, matching Review Replay's own "leaves canvas unchanged" contract. */
+function selectItem(item: BriefingItem, onFocusModule?: (moduleName: string) => void) {
+  if (item.module) {
+    onFocusModule?.(item.module)
+  }
+}
+
+function BriefingSection({
+  title,
+  items,
+  onFocusModule,
+}: {
+  title: string
+  items: BriefingItem[]
+  onFocusModule?: (moduleName: string) => void
+}) {
   if (items.length === 0) return null
   return (
     <div>
       <h3 className="mb-1 text-xs font-semibold tracking-wide text-ink-500 uppercase">{title}</h3>
       <ul className="space-y-1">
         {items.map((item, index) => (
-          <li key={index} className="text-sm text-ink-700">
-            {item.description}
+          <li key={index}>
+            <button
+              type="button"
+              onClick={() => selectItem(item, onFocusModule)}
+              className="text-left text-sm text-ink-700 hover:underline"
+            >
+              {item.description}
+            </button>
           </li>
         ))}
       </ul>
@@ -27,17 +49,25 @@ function BriefingSection({ title, items }: { title: string; items: BriefingItem[
  * reopenable at any time. `SemanticCanvasPage` owns the open/collapsed
  * state itself (per-PR, reset when the selected PR changes) — this
  * component only renders whichever state it's told.
+ *
+ * <p>Selecting an item, or starting the review, focuses the Semantic
+ * Canvas on the relevant module via `onFocusModule` (ticket #224) —
+ * mirroring Review Replay's own `onFocusModule` contract (#212). A
+ * module that can't be determined (no entity reference, or no known
+ * module) simply doesn't call it, leaving the canvas wherever it was.
  */
 export default function ReviewBriefingOverlay({
   pullRequestNumber,
   collapsed,
   onStartReview,
   onReopen,
+  onFocusModule,
 }: {
   pullRequestNumber: number
   collapsed: boolean
   onStartReview: () => void
   onReopen: () => void
+  onFocusModule?: (moduleName: string) => void
 }) {
   // Scoped to the PR (matching ContextRewindPage's own pull-request-review key precedent):
   // SemanticCanvasPage doesn't remount this component on a PR switch — only briefingCollapsed
@@ -83,16 +113,25 @@ export default function ReviewBriefingOverlay({
         {data && (
           <div className="space-y-4">
             {data.changeSummary && <p className="text-sm text-ink-700">{data.changeSummary.description}</p>}
-            <BriefingSection title="Focus areas" items={data.focusAreas} />
-            <BriefingSection title="Uncertainties" items={data.uncertainties} />
-            <BriefingSection title="Questions" items={data.questions} />
-            <BriefingSection title="Historical context" items={data.historicalContext} />
-            <BriefingSection title="Relevant knowledge" items={data.relevantKnowledge} />
+            <BriefingSection title="Focus areas" items={data.focusAreas} onFocusModule={onFocusModule} />
+            <BriefingSection title="Uncertainties" items={data.uncertainties} onFocusModule={onFocusModule} />
+            <BriefingSection title="Questions" items={data.questions} onFocusModule={onFocusModule} />
+            <BriefingSection title="Historical context" items={data.historicalContext} onFocusModule={onFocusModule} />
+            <BriefingSection title="Relevant knowledge" items={data.relevantKnowledge} onFocusModule={onFocusModule} />
           </div>
         )}
 
         <div className="mt-6 flex justify-end">
-          <PrimaryButton onClick={onStartReview}>Start Review</PrimaryButton>
+          <PrimaryButton
+            onClick={() => {
+              if (data?.recommendedStartingPoint) {
+                selectItem(data.recommendedStartingPoint, onFocusModule)
+              }
+              onStartReview()
+            }}
+          >
+            Start Review
+          </PrimaryButton>
         </div>
       </div>
     </div>
