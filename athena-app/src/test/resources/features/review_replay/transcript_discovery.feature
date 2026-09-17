@@ -19,7 +19,11 @@ Feature: Review Replay transcript discovery
     Then no transcript reference is found
 
   Scenario: A PR description linking multiple transcripts
-    Given a PR whose description reads "**Transcript (part 1):** [Recording](https://otter.ai/s/abc123)\n**Transcript (part 2):** [Recording](https://otter.ai/s/def456)"
+    Given a PR whose description reads:
+      """
+      **Transcript (part 1):** [Recording](https://otter.ai/s/abc123)
+      **Transcript (part 2):** [Recording](https://otter.ai/s/def456)
+      """
     When Athena discovers transcript references for that PR
     Then 2 transcript references are found
 
