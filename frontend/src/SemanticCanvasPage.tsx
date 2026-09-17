@@ -15,6 +15,7 @@ import ZoomAltitudeRail, { populatedStops, type AltitudeStop } from './ZoomAltit
 import ZoomAltitudeContent, { type NodeSelection } from './ZoomAltitudeContent'
 import DetailDrawer, { type DrawerSelection } from './DetailDrawer'
 import ContextRewindPage from './ContextRewindPage'
+import ReviewBriefingOverlay from './ReviewBriefingOverlay'
 import FileFirstMode, { type FileRow } from './FileFirstMode'
 import { conceptItemId, fileItemId, territoryItemId } from './canvasItemId'
 import { KEY_BINDINGS } from './keyboardBindings'
@@ -167,6 +168,14 @@ export default function SemanticCanvasPage({
   // not a page-level swap, so the canvas's own state (camera position, this territory focus) is
   // preserved rather than lost to a remount when the developer returns.
   const [contextRewindEntityName, setContextRewindEntityName] = useState<string | undefined>(undefined)
+  // Review Briefing (ticket #223): shown automatically on first entering a PR, over the canvas —
+  // the same full-cover-overlay-over-a-still-mounted-page pattern as Context Rewind (#194), not a
+  // page-level swap. Collapses to a small indicator on "Start Review"; a different PR gets its
+  // own "first entering" moment (the effect below, keyed on the PR number, re-shows it).
+  const [briefingCollapsed, setBriefingCollapsed] = useState(false)
+  useEffect(() => {
+    setBriefingCollapsed(false)
+  }, [pullRequest?.number])
   const [currentStop, setCurrentStop] = useState<AltitudeStop | undefined>(undefined)
   const [showLayerBadges, setShowLayerBadges] = useState(false)
   const [instantTransition, setInstantTransition] = useState(false)
@@ -875,6 +884,14 @@ export default function SemanticCanvasPage({
             }}
           />
         </div>
+      )}
+      {pullRequest && (
+        <ReviewBriefingOverlay
+          pullRequestNumber={pullRequest.number}
+          collapsed={briefingCollapsed}
+          onStartReview={() => setBriefingCollapsed(true)}
+          onReopen={() => setBriefingCollapsed(false)}
+        />
       )}
     </div>
   )
