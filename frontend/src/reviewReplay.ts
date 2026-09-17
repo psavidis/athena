@@ -28,6 +28,46 @@ export async function fetchReplayMoments(recordingId: string): Promise<Moment[]>
   return artifact.moments
 }
 
+interface ResolvedReferenceResponse {
+  reference: string
+  resolved: boolean
+  resolvedLabel: string | null
+  module: string | null
+}
+
+interface ReviewReplayResponse {
+  resolvedReferences: ResolvedReferenceResponse[]
+}
+
+/**
+ * The module each of this Replay's moment references resolves to, keyed
+ * by reference (ticket #212). A reference absent from the map, or mapped
+ * to `undefined`, means its module couldn't be determined — selecting
+ * that moment must leave the canvas focus unchanged, not clear it.
+ */
+export async function fetchReplayModulesByReference(recordingId: string): Promise<Map<string, string>> {
+  const response = await fetch(`/api/review-replays/${encodeURIComponent(recordingId)}`)
+  if (!response.ok) {
+    throw new Error(`Review Replay request failed: ${response.status}`)
+  }
+  const replay = (await response.json()) as ReviewReplayResponse
+  const modulesByReference = new Map<string, string>()
+  for (const resolved of replay.resolvedReferences) {
+    if (resolved.module) {
+      modulesByReference.set(resolved.reference, resolved.module)
+    }
+  }
+  return modulesByReference
+}
+
+/** The module `moment`'s reference resolves to, if any (ticket #212). */
+export function moduleForMoment(moment: Moment, modulesByReference: Map<string, string>): string | undefined {
+  if (moment.reference === null) {
+    return undefined
+  }
+  return modulesByReference.get(moment.reference)
+}
+
 export interface MomentGroup {
   /** The reference every moment in this group shares, or null for a group of un-referenced moments. */
   reference: string | null

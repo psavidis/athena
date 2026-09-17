@@ -28,13 +28,24 @@ public final class ReviewReplay {
 
     /** Opens {@code artifact} for replay, resolving every distinct moment reference it carries via {@code resolver}. */
     public static ReviewReplay open(ReviewRecordingArtifact artifact, ReplayReferenceResolver resolver) {
+        return open(artifact, resolver, entityName -> Optional.empty());
+    }
+
+    /**
+     * Opens {@code artifact} for replay, resolving every distinct moment
+     * reference via {@code resolver} and, for each that still resolves,
+     * its module via {@code moduleResolver} (ticket #212).
+     */
+    public static ReviewReplay open(ReviewRecordingArtifact artifact, ReplayReferenceResolver resolver,
+                                     ReplayModuleResolver moduleResolver) {
         Objects.requireNonNull(artifact, "artifact");
         Objects.requireNonNull(resolver, "resolver");
+        Objects.requireNonNull(moduleResolver, "moduleResolver");
         Map<String, ResolvedReference> resolved = new LinkedHashMap<>();
         for (Moment moment : artifact.moments()) {
             String reference = moment.reference();
             if (reference != null) {
-                resolved.computeIfAbsent(reference, ref -> ResolvedReference.resolve(ref, resolver));
+                resolved.computeIfAbsent(reference, ref -> ResolvedReference.resolve(ref, resolver, moduleResolver));
             }
         }
         return new ReviewReplay(artifact, Map.copyOf(resolved));

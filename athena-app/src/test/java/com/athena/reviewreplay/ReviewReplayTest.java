@@ -68,6 +68,48 @@ class ReviewReplayTest {
         assertThat(replay.pullRequestNumber()).isEqualTo(42);
     }
 
+    // --- Semantic Canvas integration (ticket #212) ---
+
+    @Test
+    void resolvesAReferencesModuleWhenTheReferenceItselfResolves() {
+        ReviewRecordingArtifact artifact = artifactWithOneQuestionAbout("OrderService");
+
+        ReviewReplay replay = ReviewReplay.open(artifact,
+                new KnownEntityReferenceResolver(() -> Set.of("OrderService")),
+                entityName -> "OrderService".equals(entityName) ? Optional.of("orders") : Optional.empty());
+
+        Optional<ResolvedReference> resolved = replay.resolvedReference("entity:OrderService");
+        assertThat(resolved).isPresent();
+        assertThat(resolved.get().module()).contains("orders");
+    }
+
+    @Test
+    void hasNoModuleWhenTheModuleResolverCannotDetermineOne() {
+        ReviewRecordingArtifact artifact = artifactWithOneQuestionAbout("OrderService");
+
+        ReviewReplay replay = ReviewReplay.open(artifact,
+                new KnownEntityReferenceResolver(() -> Set.of("OrderService")),
+                entityName -> Optional.empty());
+
+        Optional<ResolvedReference> resolved = replay.resolvedReference("entity:OrderService");
+        assertThat(resolved).isPresent();
+        assertThat(resolved.get().module()).isEmpty();
+    }
+
+    @Test
+    void hasNoModuleWhenTheReferenceItselfNoLongerResolves() {
+        ReviewRecordingArtifact artifact = artifactWithOneQuestionAbout("OrderService");
+
+        ReviewReplay replay = ReviewReplay.open(artifact,
+                new KnownEntityReferenceResolver(Set::of),
+                entityName -> Optional.of("orders"));
+
+        Optional<ResolvedReference> resolved = replay.resolvedReference("entity:OrderService");
+        assertThat(resolved).isPresent();
+        assertThat(resolved.get().resolved()).isFalse();
+        assertThat(resolved.get().module()).isEmpty();
+    }
+
     private static ReviewRecordingArtifact artifactWithOneQuestionAbout(String entityName) {
         ReviewRecordingRegistry registry = new ReviewRecordingRegistry(Clock.fixed(START, ZoneOffset.UTC));
         ReviewRecording recording = registry.start("acme/widgets", 42, "abc123", "Petros");
