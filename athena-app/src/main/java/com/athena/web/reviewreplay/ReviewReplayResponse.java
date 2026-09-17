@@ -4,13 +4,18 @@ import com.athena.reviewreplay.ReviewReplay;
 
 import java.util.List;
 
-/** A read-only view of a {@link ReviewReplay} opened from a persisted artifact (ticket #210). */
+/**
+ * A read-only view of a {@link ReviewReplay} opened from a persisted
+ * artifact (ticket #210), including its derived end-of-review outcome
+ * (ticket #215).
+ */
 public record ReviewReplayResponse(
         String recordingId,
         String repositoryFullName,
         int pullRequestNumber,
         String commitOrVersion,
-        List<ResolvedReferenceResponse> resolvedReferences) {
+        List<ResolvedReferenceResponse> resolvedReferences,
+        ReviewOutcomeResponse outcome) {
 
     static ReviewReplayResponse of(ReviewReplay replay) {
         return new ReviewReplayResponse(
@@ -18,6 +23,7 @@ public record ReviewReplayResponse(
                 replay.repositoryFullName(),
                 replay.pullRequestNumber(),
                 replay.commitOrVersion(),
-                replay.resolvedReferences().stream().map(ResolvedReferenceResponse::of).toList());
+                replay.resolvedReferences().stream().map(ResolvedReferenceResponse::of).toList(),
+                ReviewOutcomeResponse.of(replay.outcome()));
     }
 }

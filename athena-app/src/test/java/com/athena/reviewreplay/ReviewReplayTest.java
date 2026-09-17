@@ -110,6 +110,19 @@ class ReviewReplayTest {
         assertThat(resolved.get().module()).isEmpty();
     }
 
+    // --- Review outcome and derived learnings (ticket #215) ---
+
+    @Test
+    void surfacesTheArtifactsConfirmedQuestionAsUnresolvedInTheOutcome() {
+        ReviewRecordingArtifact artifact = artifactWithOneQuestionAbout("OrderService");
+
+        ReviewReplay replay = ReviewReplay.open(artifact, new KnownEntityReferenceResolver(Set::of));
+
+        assertThat(replay.outcome().unresolved()).hasSize(1);
+        assertThat(replay.outcome().unresolved().get(0).reference()).contains("entity:OrderService");
+        assertThat(replay.outcome().learned()).isEmpty();
+    }
+
     private static ReviewRecordingArtifact artifactWithOneQuestionAbout(String entityName) {
         ReviewRecordingRegistry registry = new ReviewRecordingRegistry(Clock.fixed(START, ZoneOffset.UTC));
         ReviewRecording recording = registry.start("acme/widgets", 42, "abc123", "Petros");

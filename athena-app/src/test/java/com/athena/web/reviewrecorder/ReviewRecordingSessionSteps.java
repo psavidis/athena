@@ -395,6 +395,16 @@ public class ReviewRecordingSessionSteps {
         tagMoment("DECISION");
     }
 
+    @Given("{string} has tagged the current moment as an insight")
+    public void has_tagged_the_current_moment_as_an_insight(String displayName) {
+        tagMoment("INSIGHT");
+    }
+
+    @Given("{string} has tagged the current moment as an action")
+    public void has_tagged_the_current_moment_as_an_action(String displayName) {
+        tagMoment("ACTION");
+    }
+
     @When("{string} confirms that moment")
     public void confirms_that_moment(String displayName) {
         try {
@@ -430,6 +440,11 @@ public class ReviewRecordingSessionSteps {
         } catch (ResponseStatusException e) {
             failure = e;
         }
+    }
+
+    @Given("{string} has rejected that moment")
+    public void has_rejected_that_moment(String displayName) {
+        rejects_that_moment(displayName);
     }
 
     @Then("the recording's timeline shows a pending question referencing the {string} entity")

@@ -116,6 +116,13 @@ public class ReviewReplaySteps {
         openReplay(recordingSteps.recordingId());
     }
 
+    // "opens the Replay's outcome" (ticket #215) reuses the same open() call — the outcome is
+    // just one more field on the already-open ReviewReplayResponse, not a separate endpoint.
+    @When("a developer opens the Replay's outcome")
+    public void a_developer_opens_the_replays_outcome() {
+        openReplay(recordingSteps.recordingId());
+    }
+
     @When("a developer attempts to open a Replay of artifact {string}")
     public void a_developer_attempts_to_open_a_replay_of_artifact(String unknownRecordingId) {
         openReplay(unknownRecordingId);
@@ -163,6 +170,43 @@ public class ReviewReplaySteps {
                 .filter(r -> r.reference().equals("entity:" + entityName))
                 .findFirst()
                 .orElseThrow(() -> new AssertionError("No resolved reference for entity:" + entityName));
+    }
+
+    // --- Review outcome and derived learnings (ticket #215) ---
+
+    @Then("the outcome's learned section has {int} item about the {string} entity")
+    public void the_outcomes_learned_section_has_item_about_the_entity(int count, String entityName) {
+        assertOutcomeSection(replay.outcome().learned(), count, entityName);
+    }
+
+    @Then("the outcome's decided section has {int} item about the {string} entity")
+    public void the_outcomes_decided_section_has_item_about_the_entity(int count, String entityName) {
+        assertOutcomeSection(replay.outcome().decided(), count, entityName);
+    }
+
+    @Then("the outcome's unresolved section has {int} item about the {string} entity")
+    public void the_outcomes_unresolved_section_has_item_about_the_entity(int count, String entityName) {
+        assertOutcomeSection(replay.outcome().unresolved(), count, entityName);
+    }
+
+    @Then("the outcome's actions section has {int} item about the {string} entity")
+    public void the_outcomes_actions_section_has_item_about_the_entity(int count, String entityName) {
+        assertOutcomeSection(replay.outcome().actions(), count, entityName);
+    }
+
+    private void assertOutcomeSection(List<OutcomeItemResponse> section, int count, String entityName) {
+        assertThat(section).hasSize(count);
+        assertThat(section).extracting(OutcomeItemResponse::reference).contains("entity:" + entityName);
+    }
+
+    @Then("the outcome's learned section is empty")
+    public void the_outcomes_learned_section_is_empty() {
+        assertThat(replay.outcome().learned()).isEmpty();
+    }
+
+    @Then("the outcome's decided section is empty")
+    public void the_outcomes_decided_section_is_empty() {
+        assertThat(replay.outcome().decided()).isEmpty();
     }
 
     // "the review recording request is rejected as invalid" is already defined by
