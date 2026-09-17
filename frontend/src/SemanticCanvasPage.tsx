@@ -891,6 +891,7 @@ export default function SemanticCanvasPage({
           collapsed={briefingCollapsed}
           onStartReview={() => setBriefingCollapsed(true)}
           onReopen={() => setBriefingCollapsed(false)}
+          onFocusModule={setFocusedTerritory}
         />
       )}
     </div>

@@ -7,6 +7,7 @@ import { NoPullRequestSelectedError, NotConnectedError } from './api'
 export interface BriefingItem {
   description: string
   entityReference: string | null
+  module: string | null
 }
 
 export interface ReviewBriefing {

@@ -98,7 +98,7 @@ public class ReviewBriefingController {
                 new HistoricalContextGenerator(contextRewindService));
 
         ReviewBriefing briefing = service.generate(changes, profiles, selection.headRoot(), selection.repositoryFullName());
-        return ReviewBriefingResponse.of(briefing);
+        return ReviewBriefingResponse.of(briefing, changes);
     }
 
     private SemanticChangeSummaryProvider summaryProvider() {
