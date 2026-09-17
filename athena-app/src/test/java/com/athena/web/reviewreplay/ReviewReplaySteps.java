@@ -23,6 +23,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -76,7 +77,8 @@ public class ReviewReplaySteps {
         this.recordingSteps = recordingSteps;
         this.replayController = new ReviewReplayController(recordingSteps.webSession(),
                 ReviewRecordingArtifactStore::new,
-                diff -> new KnownEntityReferenceResolver(() -> currentlyKnownEntityNames(diff.headRoot())));
+                diff -> new KnownEntityReferenceResolver(() -> currentlyKnownEntityNames(diff.headRoot())),
+                diff -> entityName -> Optional.empty());
     }
 
     @After

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { groupMomentsByReference, nextMomentId, previousMomentId, type Moment } from './reviewReplay'
+import { groupMomentsByReference, moduleForMoment, nextMomentId, previousMomentId, type Moment } from './reviewReplay'
 
 // Dedicated unit test for the timeline grouping/navigation logic (ticket #211),
 // independent of how ReviewReplayTimeline renders it.
@@ -75,5 +75,25 @@ describe('previousMomentId', () => {
 
   it('stays on the first moment when already there', () => {
     expect(previousMomentId(moments, 'm1')).toBe('m1')
+  })
+})
+
+describe('moduleForMoment', () => {
+  it('returns the module mapped to the moment\'s reference', () => {
+    const question = moment('m1', 'QUESTION', 'entity:OrderService')
+
+    expect(moduleForMoment(question, new Map([['entity:OrderService', 'orders']]))).toBe('orders')
+  })
+
+  it('is undefined when the reference has no known module', () => {
+    const question = moment('m1', 'QUESTION', 'entity:OrderService')
+
+    expect(moduleForMoment(question, new Map())).toBeUndefined()
+  })
+
+  it('is undefined for an un-referenced moment', () => {
+    const insight = moment('m1', 'INSIGHT', null)
+
+    expect(moduleForMoment(insight, new Map([['entity:OrderService', 'orders']]))).toBeUndefined()
   })
 })
