@@ -18,12 +18,12 @@ Feature: Review Briefing focus areas
   Scenario: A PR with fewer than 4 Changes returns however many exist
     Given a PR with 2 detected Changes
     When Athena generates the Review Briefing's focus areas
-    Then the briefing has 2 focus areas
+    Then the generated focus areas number 2
 
   Scenario: A PR with no detected Changes has no focus areas
     Given a PR with no detected Changes for the focus areas
     When Athena generates the Review Briefing's focus areas
-    Then the briefing has 0 focus areas
+    Then the generated focus areas number 0
 
   Scenario: Each focus area references the entity its Change concerns
     Given a PR with 2 detected Changes
