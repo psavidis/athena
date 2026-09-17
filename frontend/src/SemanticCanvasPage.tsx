@@ -376,6 +376,13 @@ export default function SemanticCanvasPage({
         if (drawerSelection !== undefined) {
           setDrawerSelection(undefined)
           lastFocusedBeforeDrawerRef.current?.focus()
+        } else if (pullRequest && !briefingCollapsed) {
+          // Review Briefing keyboard-first interaction (ticket #225): Escape
+          // collapses the open overlay to its indicator, the same outcome as
+          // clicking outside it — but without also jumping to the
+          // recommended starting point, since Escape means "dismiss," not
+          // "start reviewing" (that's Start Review's own Enter shortcut).
+          setBriefingCollapsed(true)
         } else if (active && containerRef.current?.contains(active)) {
           active.blur()
         }
@@ -476,7 +483,7 @@ export default function SemanticCanvasPage({
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, camera, focusedTerritory, currentStop, drawerSelection])
+  }, [data, camera, focusedTerritory, currentStop, drawerSelection, pullRequest, briefingCollapsed])
 
   // Center the territory map in the viewport on first load (prototype:
   // the map opens centered, never pinned to canvas-space (0,0) at the
