@@ -1,7 +1,11 @@
 package com.athena.web.reviewreplay;
 
+import com.athena.memory.MemoryEntry;
+import com.athena.memory.ProjectMemoryStore;
 import com.athena.reviewreplay.KnownEntityModuleResolver;
 import com.athena.reviewreplay.KnownEntityReferenceResolver;
+import com.athena.reviewreplay.OutcomePromotion;
+import com.athena.reviewreplay.OutcomeSection;
 import com.athena.reviewreplay.ReplayModuleResolver;
 import com.athena.reviewreplay.ReplayReferenceResolver;
 import com.athena.reviewreplay.ReviewReplay;
@@ -72,10 +76,28 @@ public class ReviewReplayController {
     @GetMapping("/{recordingId}")
     public ReviewReplayResponse open(@PathVariable String recordingId) {
         Diff diff = requireCurrentDiff();
+        return ReviewReplayResponse.of(openReplay(recordingId, diff));
+    }
+
+    @PostMapping("/{recordingId}/outcome/promote")
+    public void promoteOutcomeItem(@PathVariable String recordingId, @RequestBody PromoteOutcomeItemRequest request) {
+        Diff diff = requireCurrentDiff();
+        ReviewReplay replay = openReplay(recordingId, diff);
+        OutcomeSection section;
+        try {
+            section = OutcomeSection.valueOf(request.section());
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unknown outcome section: " + request.section());
+        }
+        MemoryEntry entry = OutcomePromotion.entryFor(replay, section, request.reference(), request.fact())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No such outcome item"));
+        new ProjectMemoryStore(diff.headRoot()).record(entry);
+    }
+
+    private ReviewReplay openReplay(String recordingId, Diff diff) {
         ReviewRecordingArtifact artifact = artifactStoreFactory.apply(diff.headRoot()).find(recordingId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No such Review Recording artifact"));
-        return ReviewReplayResponse.of(
-                ReviewReplay.open(artifact, resolverFactory.apply(diff), moduleResolverFactory.apply(diff)));
+        return ReviewReplay.open(artifact, resolverFactory.apply(diff), moduleResolverFactory.apply(diff));
     }
 
     @PostMapping("/import")
