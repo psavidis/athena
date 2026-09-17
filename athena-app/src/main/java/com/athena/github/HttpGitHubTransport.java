@@ -147,6 +147,12 @@ public class HttpGitHubTransport implements GitHubTransport {
     }
 
     @Override
+    public String fetchPullRequestBody(String token, String repositoryFullName, int number) {
+        JsonNode body = get(token, "/repos/" + repositoryFullName + "/pulls/" + number, repositoryFullName);
+        return body.path("body").asText();
+    }
+
+    @Override
     public String fetchRepositoryPermission(String token, String repositoryFullName) {
         AuthenticatedUser user = fetchAuthenticatedUser(token);
         JsonNode body = get(token,

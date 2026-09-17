@@ -31,6 +31,7 @@ public class FakeGitHubTransport implements GitHubTransport {
     private final Map<Key, List<ChangedFile>> pullRequestChangedFiles = new HashMap<>();
     private final Map<Key, List<ReviewComment>> pullRequestReviewComments = new HashMap<>();
     private final Map<Key, List<Review>> pullRequestReviews = new HashMap<>();
+    private final Map<Key, String> pullRequestBodies = new HashMap<>();
     private final Map<String, String> repositoryPermissions = new HashMap<>();
     private final Map<Key, Boolean> commentSyncEnabled = new HashMap<>();
     private final Map<Key, List<String>> postedGeneralComments = new HashMap<>();
@@ -91,6 +92,10 @@ public class FakeGitHubTransport implements GitHubTransport {
     public void addReview(String repositoryFullName, int number, String reviewer, String state) {
         pullRequestReviews.computeIfAbsent(new Key(repositoryFullName, number), k -> new ArrayList<>())
                 .add(new Review(reviewer, state));
+    }
+
+    public void setPullRequestBody(String repositoryFullName, int number, String body) {
+        pullRequestBodies.put(new Key(repositoryFullName, number), body);
     }
 
     public void setPermission(String repositoryFullName, String level) {
@@ -193,6 +198,12 @@ public class FakeGitHubTransport implements GitHubTransport {
     public List<Review> fetchReviews(String token, String repositoryFullName, int number) {
         requireValidToken(token);
         return pullRequestReviews.getOrDefault(new Key(repositoryFullName, number), List.of());
+    }
+
+    @Override
+    public String fetchPullRequestBody(String token, String repositoryFullName, int number) {
+        requireValidToken(token);
+        return pullRequestBodies.getOrDefault(new Key(repositoryFullName, number), "");
     }
 
     @Override
