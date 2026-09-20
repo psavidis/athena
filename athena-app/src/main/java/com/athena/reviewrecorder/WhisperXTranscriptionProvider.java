@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -44,6 +48,14 @@ public final class WhisperXTranscriptionProvider implements TranscriptionProvide
 
     private static final String SCRIPT_RESOURCE_PATH = "/transcription/transcribe.py";
     private static final long TIMEOUT_MINUTES = 10;
+
+    /**
+     * Drains a subprocess's stderr concurrently with this class reading its stdout — see
+     * {@link #runScript()}'s javadoc comment for why reading the two pipes sequentially would
+     * risk a deadlock. Virtual threads: this pool only ever blocks on process I/O, never on
+     * CPU work, so an unbounded supply of them is cheap and never itself a bottleneck.
+     */
+    private static final ExecutorService STDERR_DRAIN_POOL = Executors.newVirtualThreadPerTaskExecutor();
 
     private final Path audioFile;
     private final Instant recordingStartedAt;
@@ -142,20 +154,42 @@ public final class WhisperXTranscriptionProvider implements TranscriptionProvide
         ProcessBuilder processBuilder = new ProcessBuilder(command);
         // Deliberately NOT redirectErrorStream(true): WhisperX/pyannote log noisily to
         // stderr, and this class's stdout-is-pure-JSON contract would break if merged.
+        // Both pipes are still drained concurrently below (stderr on its own thread) —
+        // reading only stdout here would deadlock once WhisperX's stderr output fills the
+        // OS pipe buffer, since the child would then block writing to stderr while this
+        // thread blocks reading stdout, and neither side would ever reach process exit.
         Process process = processBuilder.start();
-        String stdout;
-        try (InputStream in = process.getInputStream()) {
-            stdout = new String(in.readAllBytes(), StandardCharsets.UTF_8);
-        }
+        Future<String> stderr = STDERR_DRAIN_POOL.submit(() -> readFully(process.getErrorStream()));
+        String stdout = readFully(process.getInputStream());
         boolean finished = process.waitFor(TIMEOUT_MINUTES, TimeUnit.MINUTES);
         if (!finished) {
             process.destroyForcibly();
             throw new IOException("transcription timed out after " + TIMEOUT_MINUTES + " minutes");
         }
         if (process.exitValue() != 0) {
-            throw new IOException("transcribe.py exited with code " + process.exitValue());
+            String diagnostic = stderrOrEmpty(stderr);
+            throw new IOException("transcribe.py exited with code " + process.exitValue()
+                    + (diagnostic.isBlank() ? "" : ": " + diagnostic.strip()));
         }
         return stdout;
+    }
+
+    private static String readFully(InputStream in) throws IOException {
+        try (in) {
+            return new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+    }
+
+    /** Best-effort: a failed stderr read must not mask the real failure it would explain. */
+    private static String stderrOrEmpty(Future<String> stderr) {
+        try {
+            return stderr.get();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return "";
+        } catch (ExecutionException e) {
+            return "";
+        }
     }
 
     private List<TranscriptSegment> parseSegments(String output) {
