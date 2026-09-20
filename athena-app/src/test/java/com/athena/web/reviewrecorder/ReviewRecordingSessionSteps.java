@@ -697,6 +697,121 @@ public class ReviewRecordingSessionSteps {
         assertThat(controller.summary(recordingId)).isNotNull();
     }
 
+    // --- Remote multi-participant audio capture, upload, and clock sync (ticket #252) ---
+
+    @Then("{string} receives a clock-anchoring basis for timestamping her own captured audio")
+    public void receives_a_clock_anchoring_basis(String displayName) {
+        // The recording's own startedAt is the clock-anchoring basis every participant receives
+        // from join() (and every other snapshot-returning action, for consistency) — a
+        // participant computes their own offset as serverStartedAt minus their local clock's
+        // reading at join time, rather than trusting their own machine's wall clock directly.
+        assertThat(lastSnapshot.startedAt()).isNotNull();
+    }
+
+    @Given("{string} has joined that recording")
+    public void has_joined_that_recording(String displayName) {
+        joins_that_recording(displayName);
+    }
+
+    @When("{string} uploads audio in which he says {string}")
+    @When("{string} uploads audio in which she says {string}")
+    public void uploads_audio_in_which_they_say(String displayName, String text) {
+        uploadAudio(displayName, text, clock.instant());
+    }
+
+    @When("{string} uploads audio in which he says {string} before {string} speaks")
+    public void uploads_audio_before_other_speaks(String displayName, String text, String otherDisplayName) {
+        uploadAudio(displayName, text, clock.instant());
+        clock.advance(Duration.ofSeconds(5));
+    }
+
+    @When("{string} uploads audio in which she says {string} after {string} spoke")
+    public void uploads_audio_after_other_spoke(String displayName, String text, String otherDisplayName) {
+        uploadAudio(displayName, text, clock.instant());
+    }
+
+    @When("{string} never uploads her audio")
+    public void never_uploads_her_audio(String displayName) {
+        // no-op: deliberately does not call uploadAudio — exercises the missing-stream path
+    }
+
+    @When("a developer attempts to upload audio for recording {string}")
+    public void a_developer_attempts_to_upload_audio_for_recording(String unknownRecordingId) {
+        try {
+            controller.uploadAudio(unknownRecordingId,
+                    new UploadRemoteAudioRequest("Someone", fixtureAudioTranscriptionProvider("irrelevant")));
+        } catch (ResponseStatusException e) {
+            failure = e;
+        }
+    }
+
+    @When("{string} attempts to upload audio to that recording")
+    public void attempts_to_upload_audio_to_that_recording(String displayName) {
+        try {
+            controller.uploadAudio(recordingId,
+                    new UploadRemoteAudioRequest(displayName, fixtureAudioTranscriptionProvider("irrelevant")));
+        } catch (ResponseStatusException e) {
+            failure = e;
+        }
+    }
+
+    private void uploadAudio(String displayName, String text, Instant spokenAt) {
+        try {
+            lastSnapshot = controller.uploadAudio(recordingId,
+                    new UploadRemoteAudioRequest(displayName, fixtureAudioTranscriptionProvider(text, displayName, spokenAt)));
+        } catch (ResponseStatusException e) {
+            failure = e;
+        }
+    }
+
+    private TranscriptionProvider fixtureAudioTranscriptionProvider(String text) {
+        return fixtureAudioTranscriptionProvider(text, "Unknown", clock.instant());
+    }
+
+    private TranscriptionProvider fixtureAudioTranscriptionProvider(String text, String speaker, Instant spokenAt) {
+        // The legitimate whitebox seam for this ticket too (see FixtureTranscriptionProvider's
+        // own javadoc): #252 is responsible for the upload/merge wiring, not for re-validating
+        // WhisperX transcription accuracy, which #251's own tests already cover against a real
+        // install. A per-upload fixture stands in for "this participant's audio, once
+        // transcribed" so these scenarios can assert on merge order and graceful degradation
+        // deterministically.
+        FixtureTranscriptionProvider provider = new FixtureTranscriptionProvider();
+        provider.add(TranscriptSegment.of(text, spokenAt, speaker));
+        return provider;
+    }
+
+    @Then("the recording's transcript includes what each participant said")
+    public void the_recordings_transcript_includes_what_each_participant_said() {
+        List<AlignedTranscriptSegmentResponse> transcript = controller.alignedTranscript(recordingId);
+        assertThat(transcript).hasSizeGreaterThanOrEqualTo(2);
+    }
+
+    @Then("the recording's transcript includes what {string} said")
+    public void the_recordings_transcript_includes_what_said(String displayName) {
+        List<AlignedTranscriptSegmentResponse> transcript = controller.alignedTranscript(recordingId);
+        assertThat(transcript).anySatisfy(segment -> assertThat(segment.speaker()).isEqualTo(displayName));
+    }
+
+    @Then("{string}'s words appear before {string}'s words in the transcript, matching when they were actually spoken")
+    public void words_appear_before_words_in_the_transcript(String firstDisplayName, String secondDisplayName) {
+        List<AlignedTranscriptSegmentResponse> transcript = controller.alignedTranscript(recordingId);
+        assertThat(transcript).extracting(AlignedTranscriptSegmentResponse::speaker)
+                .containsExactly(firstDisplayName, secondDisplayName);
+    }
+
+    @Then("the transcript segment is attributed to {string}")
+    public void the_transcript_segment_is_attributed_to(String displayName) {
+        List<AlignedTranscriptSegmentResponse> transcript = controller.alignedTranscript(recordingId);
+        assertThat(transcript).hasSize(1);
+        assertThat(transcript.get(0).speaker()).isEqualTo(displayName);
+    }
+
+    @Then("the upload request is rejected as invalid")
+    public void the_upload_request_is_rejected_as_invalid() {
+        assertThat(failure).isNotNull();
+        assertThat(failure.getStatusCode().is4xxClientError()).isTrue();
+    }
+
     private ReviewRecordingSnapshot currentSnapshot() {
         return controller.snapshot(recordingId);
     }
