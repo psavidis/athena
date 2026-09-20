@@ -8,6 +8,7 @@ import com.athena.reviewrecorder.TranscriptSegment;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,7 +36,7 @@ class ReconstructedConversationTest {
     void segmentsAreDefensivelyCopied() {
         TranscriptSegment segment = TranscriptSegment.of("Late addition", T2, "Alice");
         List<AlignedTranscriptSegment> aligned = TranscriptAligner.align(List.of(segment), List.of());
-        java.util.ArrayList<AlignedTranscriptSegment> mutable = new java.util.ArrayList<>(aligned);
+        ArrayList<AlignedTranscriptSegment> mutable = new ArrayList<>(aligned);
         ReconstructedConversation conversation = ReconstructedConversation.of("entity:PaymentProcessor", mutable);
 
         mutable.clear();
