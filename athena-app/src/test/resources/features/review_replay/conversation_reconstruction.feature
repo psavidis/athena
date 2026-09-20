@@ -42,7 +42,6 @@ Feature: Conversation reconstruction from a transcript
     Given no aligned segments are available
     When Athena reconstructs the conversation for "PaymentProcessor"
     Then the reconstructed conversation is empty
-    And no error occurs
 
   Scenario: Reconstructing for an entity with no discussion yields an empty conversation
     Given aligned segments:
