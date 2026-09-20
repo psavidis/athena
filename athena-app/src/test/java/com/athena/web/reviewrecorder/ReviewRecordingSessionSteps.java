@@ -745,16 +745,6 @@ public class ReviewRecordingSessionSteps {
         }
     }
 
-    @When("{string} attempts to upload audio to that recording")
-    public void attempts_to_upload_audio_to_that_recording(String displayName) {
-        try {
-            controller.uploadAudio(recordingId,
-                    new UploadRemoteAudioRequest(displayName, fixtureAudioTranscriptionProvider("irrelevant")));
-        } catch (ResponseStatusException e) {
-            failure = e;
-        }
-    }
-
     private void uploadAudio(String displayName, String text, Instant spokenAt) {
         try {
             lastSnapshot = controller.uploadAudio(recordingId,
