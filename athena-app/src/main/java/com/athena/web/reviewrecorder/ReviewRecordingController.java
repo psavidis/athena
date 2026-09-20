@@ -236,6 +236,16 @@ public class ReviewRecordingController {
         return ReviewRecordingSummaryResponse.of(recording.summary());
     }
 
+    /**
+     * This recording's transcript aligned to its semantic events (ticket #209). Always an empty
+     * list today — see {@link com.athena.reviewrecorder.NoOpTranscriptionProvider}'s javadoc.
+     */
+    @GetMapping("/{id}/transcript/aligned")
+    public List<AlignedTranscriptSegmentResponse> alignedTranscript(@PathVariable String id) {
+        ReviewRecording recording = requireRecording(id);
+        return recording.alignedTranscript().stream().map(AlignedTranscriptSegmentResponse::of).toList();
+    }
+
     private MomentKind requireMomentKind(String kind) {
         try {
             return MomentKind.valueOf(kind);

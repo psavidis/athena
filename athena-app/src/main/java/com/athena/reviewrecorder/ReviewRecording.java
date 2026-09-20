@@ -35,11 +35,13 @@ public final class ReviewRecording {
     private final Set<String> participantDisplayNames = new LinkedHashSet<>();
     private final List<SemanticEvent> events = new ArrayList<>();
     private final List<Moment> moments = new ArrayList<>();
+    private final TranscriptionProvider transcriptionProvider;
 
     private Instant stoppedAt;
 
     private ReviewRecording(String repositoryFullName, int pullRequestNumber, String commitOrVersion,
-                             String starterDisplayName, Clock clock, boolean audioEnabled) {
+                             String starterDisplayName, Clock clock, boolean audioEnabled,
+                             TranscriptionProvider transcriptionProvider) {
         this.id = UUID.randomUUID().toString();
         this.repositoryFullName = repositoryFullName;
         this.pullRequestNumber = pullRequestNumber;
@@ -48,6 +50,7 @@ public final class ReviewRecording {
         this.startedAt = clock.instant();
         this.audioEnabled = audioEnabled;
         this.participantDisplayNames.add(starterDisplayName);
+        this.transcriptionProvider = transcriptionProvider;
     }
 
     /** Starts a new recording about {@code repositoryFullName}#{@code pullRequestNumber} at {@code commitOrVersion}. */
@@ -63,13 +66,27 @@ public final class ReviewRecording {
      */
     static ReviewRecording start(String repositoryFullName, int pullRequestNumber, String commitOrVersion,
                                   String starterDisplayName, Clock clock, boolean audioEnabled) {
+        return start(repositoryFullName, pullRequestNumber, commitOrVersion, starterDisplayName, clock, audioEnabled,
+                new NoOpTranscriptionProvider());
+    }
+
+    /**
+     * Starts a new recording with an explicit {@link TranscriptionProvider} (ticket #209) —
+     * overridable so a test can supply one that actually produces segments, since {@link
+     * NoOpTranscriptionProvider} (the default above) never does.
+     */
+    static ReviewRecording start(String repositoryFullName, int pullRequestNumber, String commitOrVersion,
+                                  String starterDisplayName, Clock clock, boolean audioEnabled,
+                                  TranscriptionProvider transcriptionProvider) {
         Objects.requireNonNull(repositoryFullName, "repositoryFullName");
         Objects.requireNonNull(clock, "clock");
+        Objects.requireNonNull(transcriptionProvider, "transcriptionProvider");
         if (repositoryFullName.isBlank()) {
             throw new IllegalArgumentException("repositoryFullName must not be blank");
         }
         String starter = requireDisplayName(starterDisplayName);
-        return new ReviewRecording(repositoryFullName, pullRequestNumber, commitOrVersion, starter, clock, audioEnabled);
+        return new ReviewRecording(repositoryFullName, pullRequestNumber, commitOrVersion, starter, clock,
+                audioEnabled, transcriptionProvider);
     }
 
     public String id() {
@@ -185,6 +202,17 @@ public final class ReviewRecording {
     /** This recording's summary (ticket #206): duration and confirmed-moment counts by kind. */
     public synchronized ReviewRecordingSummary summary() {
         return ReviewRecordingSummary.of(elapsed(), moments);
+    }
+
+    /**
+     * This recording's transcript segments aligned to whichever entity was in focus when each
+     * was spoken (ticket #209), via {@link TranscriptAligner}. Always empty today: {@link
+     * #transcriptionProvider}'s only implementation, {@link NoOpTranscriptionProvider}, never
+     * produces segments — see its javadoc for why that's the accepted, best-effort state rather
+     * than a bug.
+     */
+    public synchronized List<AlignedTranscriptSegment> alignedTranscript() {
+        return TranscriptAligner.align(transcriptionProvider.segments(), events);
     }
 
     /** Stops this recording. Requires it not already be stopped. */

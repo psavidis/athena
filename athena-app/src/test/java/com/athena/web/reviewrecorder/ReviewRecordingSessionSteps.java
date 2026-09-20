@@ -4,7 +4,11 @@ import com.athena.git.TempDirectories;
 import com.athena.plugins.PluginRegistry;
 import com.athena.repository.ImportedPullRequest;
 import com.athena.reviewcontext.ReviewSubmission;
+import com.athena.reviewrecorder.NoOpTranscriptionProvider;
+import com.athena.reviewrecorder.ReviewRecording;
 import com.athena.reviewrecorder.ReviewRecordingRegistry;
+import com.athena.reviewrecorder.TranscriptSegment;
+import com.athena.reviewrecorder.TranscriptionProvider;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.PrAnalyzer;
 import com.athena.semantic.ReviewStateStore;
@@ -24,7 +28,9 @@ import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -57,6 +63,8 @@ public class ReviewRecordingSessionSteps {
     private ReviewRecordingSnapshot lastSnapshot;
     private ResponseStatusException failure;
     private boolean disclosureShown;
+    private final FixtureTranscriptionProvider fixtureTranscriptionProvider = new FixtureTranscriptionProvider();
+    private List<AlignedTranscriptSegmentResponse> alignedTranscript;
 
     private Path baseRoot;
     private Path headRoot;
@@ -576,6 +584,112 @@ public class ReviewRecordingSessionSteps {
     @Then("the reopened artifact shows audio capture as enabled")
     public void the_reopened_artifact_shows_audio_capture_as_enabled() {
         assertThat(reopenedArtifact.audioEnabled()).isTrue();
+    }
+
+    // --- Transcript-to-entity alignment (ticket #209) ---
+
+    @Given("{string} has started a Review Recording for PR {int} in {string}, with a transcript to align")
+    public void has_started_a_review_recording_with_a_transcript_to_align(
+            String displayName, int number, String repositoryFullName) {
+        selectPullRequest(number, repositoryFullName);
+        // Deliberately its own step, not a variant of has_started_a_review_recording: that
+        // shared step must keep going through controller.start() so it still exercises the real
+        // HTTP-level start path (disclosure acknowledgment included) for the ~40 other scenarios
+        // that reuse it. This one uses the registry directly instead, backing the recording with
+        // fixtureTranscriptionProvider so the "a transcript segment ... arrives" steps below have
+        // somewhere to add segments — the HTTP start endpoint has no per-request provider concept.
+        ReviewRecording recording = registry.start(
+                repositoryFullName, number, "head-sha", displayName, false, fixtureTranscriptionProvider);
+        recordingId = recording.id();
+        lastSnapshot = ReviewRecordingSnapshot.of(recording);
+    }
+
+    @Given("a transcript segment {string} spoken by {string} arrives after that")
+    public void a_transcript_segment_spoken_by_arrives_after_that(String text, String speaker) {
+        fixtureTranscriptionProvider.add(TranscriptSegment.of(text, clock.instant(), speaker));
+    }
+
+    @Given("a transcript segment {string} with no known speaker arrives after that")
+    public void a_transcript_segment_with_no_known_speaker_arrives_after_that(String text) {
+        fixtureTranscriptionProvider.add(TranscriptSegment.withoutSpeaker(text, clock.instant()));
+    }
+
+    @Given("no transcript was produced for the recording")
+    public void no_transcript_was_produced_for_the_recording() {
+        // no-op: fixtureTranscriptionProvider starts with no segments, same as NoOpTranscriptionProvider
+    }
+
+    @When("Athena aligns the recording's transcript to its semantic events")
+    public void athena_aligns_the_recordings_transcript_to_its_semantic_events() {
+        alignedTranscript = controller.alignedTranscript(recordingId);
+    }
+
+    @Then("the aligned segment references the {string} entity")
+    public void the_aligned_segment_references_the_entity(String entityName) {
+        assertThat(alignedTranscript).hasSize(1);
+        assertThat(alignedTranscript.get(0).entityReference()).isEqualTo("entity:" + entityName);
+    }
+
+    @Then("the aligned segment has no referenced entity")
+    public void the_aligned_segment_has_no_referenced_entity() {
+        assertThat(alignedTranscript).hasSize(1);
+        assertThat(alignedTranscript.get(0).entityReference()).isNull();
+    }
+
+    @Then("the aligned segment is attributed to speaker {string}")
+    public void the_aligned_segment_is_attributed_to_speaker(String speaker) {
+        assertThat(alignedTranscript.get(0).speaker()).isEqualTo(speaker);
+    }
+
+    @Then("the aligned segment has no attributed speaker")
+    public void the_aligned_segment_has_no_attributed_speaker() {
+        assertThat(alignedTranscript.get(0).speaker()).isNull();
+    }
+
+    @Then("no aligned segments are produced")
+    public void no_aligned_segments_are_produced() {
+        assertThat(alignedTranscript).isEmpty();
+    }
+
+    @Then("no error occurs")
+    public void no_error_occurs() {
+        assertThat(failure).isNull();
+    }
+
+    @Then("the aligned segment is marked as raw transcript, not as a confirmed decision")
+    public void the_aligned_segment_is_marked_as_raw_transcript_not_as_a_confirmed_decision() {
+        // AlignedTranscriptSegmentResponse carries only text/spokenAt/speaker/entityReference —
+        // no status or "confirmed" field exists on it at all, unlike MomentResponse. That
+        // absence is the guarantee: there is no representation in which this could be mistaken
+        // for a confirmed Moment (ticket #205/#206 own that distinction, untouched by #209).
+        assertThat(alignedTranscript).hasSize(1);
+        List<MomentResponse> moments = controller.moments(recordingId);
+        assertThat(moments).noneMatch(moment -> "DECISION".equals(moment.kind()));
+    }
+
+    /**
+     * A {@link TranscriptionProvider} test fixture that returns whatever segments the step
+     * definitions have added (ticket #209) — the legitimate whitebox seam CODE_STYLE.md &sect;F
+     * allows at a genuine external boundary (a real speech-to-text vendor), since no such vendor
+     * is adopted in this codebase (see {@link NoOpTranscriptionProvider}'s javadoc) and one must
+     * be simulated to exercise {@link com.athena.reviewrecorder.TranscriptAligner} at all.
+     */
+    private static final class FixtureTranscriptionProvider implements TranscriptionProvider {
+        private final List<TranscriptSegment> segments = new ArrayList<>();
+
+        void add(TranscriptSegment segment) {
+            segments.add(segment);
+        }
+
+        @Override
+        public Optional<String> transcribe() {
+            return segments.isEmpty() ? Optional.empty() : Optional.of("(fixture transcript)");
+        }
+
+        @Override
+        public List<TranscriptSegment> segments() {
+            return List.copyOf(segments);
+        }
     }
 
     @Then("the recording's summary can still be read")
