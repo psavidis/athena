@@ -14,6 +14,14 @@ Feature: Remote multi-participant audio capture, upload, and clock synchronizati
   assumes its input streams' timestamps are comparable — this ticket is
   what makes that true for real, differently-clocked machines).
 
+  An upload may legitimately finish after the recording has already
+  stopped — a participant's client may still be transferring audio when
+  someone else ends the call, and #253's in-person mode uploads its
+  captured audio only once recording stops in the first place. Uploads
+  are accepted regardless of the recording's active/stopped state (a
+  revision made while implementing #253, once that ticket's own capture
+  timing exposed this as a real, not hypothetical, case).
+
   Scenario: Joining a recording provides a basis for comparable timestamps
     Given "Petros" has started a Review Recording for PR 42 in "acme/widgets"
     When "Maria" joins that recording
@@ -44,11 +52,11 @@ Feature: Remote multi-participant audio capture, upload, and clock synchronizati
     When a developer attempts to upload audio for recording "does-not-exist"
     Then the upload request is rejected as invalid
 
-  Scenario: Uploading audio against a recording that has already stopped is rejected
+  Scenario: Uploading audio still succeeds after the recording has stopped
     Given "Petros" has started a Review Recording for PR 42 in "acme/widgets"
     And "Petros" has stopped the recording
-    When "Petros" attempts to upload audio to that recording
-    Then the upload request is rejected as invalid
+    When "Petros" uploads audio in which he says "This finished uploading after I stopped"
+    Then the recording's transcript includes what "Petros" said
 
   Scenario: The merged remote transcript aligns to entities the same way an in-person transcript does
     Given "Petros" has started a Review Recording for PR 42 in "acme/widgets"

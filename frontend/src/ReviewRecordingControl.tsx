@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { startMicCapture, type MicCaptureSession } from './micCapture'
 import {
   confirmMoment,
   editMoment,
@@ -9,6 +10,7 @@ import {
   startReviewRecording,
   stopReviewRecording,
   tagMoment,
+  uploadReviewRecordingAudio,
   type Moment,
   type MomentKind,
   type ReviewRecordingSnapshot,
@@ -40,6 +42,7 @@ export default function ReviewRecordingControl({
   const [pendingMoment, setPendingMoment] = useState<Moment | null>(null)
   const [summary, setSummary] = useState<ReviewRecordingSummary | null>(null)
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const micCaptureRef = useRef<MicCaptureSession | null>(null)
 
   useEffect(() => {
     if (!snapshot?.active) {
@@ -69,11 +72,22 @@ export default function ReviewRecordingControl({
 
   async function acknowledgeAndStart() {
     setDisclosureOpen(false)
+    let result
     try {
-      const result = await startReviewRecording(displayName, true, audioEnabled)
-      setSnapshot(result.snapshot)
+      result = await startReviewRecording(displayName, true, audioEnabled)
     } catch {
       setError('Select a Pull Request or Diff before starting a Review Recording.')
+      return
+    }
+    setSnapshot(result.snapshot)
+    // Capture starts only once the recording itself has actually started (never speculatively
+    // before that call, in case it's rejected) — ticket #253's own scope: audio capture must
+    // only ever happen after explicit consent, which audioEnabled already carries here.
+    // Deliberately outside the try/catch above: startMicCapture never throws (see its own
+    // contract), but keeping it out of that catch means even a future regression there could
+    // never be misattributed to "no review selected" — the two failure domains stay separate.
+    if (audioEnabled) {
+      micCaptureRef.current = await startMicCapture()
     }
   }
 
@@ -83,6 +97,14 @@ export default function ReviewRecordingControl({
     const updated = await stopReviewRecording(recordingId)
     setSnapshot(updated)
     setSummary(await fetchSummary(recordingId))
+    const capture = micCaptureRef.current
+    micCaptureRef.current = null
+    if (capture) {
+      // capture.stop() never throws (see MicCaptureSession's own contract) — whatever was
+      // captured up to whenever the underlying recorder actually stopped is still uploaded.
+      const audio = await capture.stop()
+      await uploadReviewRecordingAudio(recordingId, displayName, audio)
+    }
   }
 
   async function tag(kind: MomentKind) {

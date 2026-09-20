@@ -192,14 +192,20 @@ class ReviewRecordingTest {
     }
 
     @Test
-    void uploadingATranscriptStreamToAStoppedRecordingIsRejected() {
+    void uploadingATranscriptStreamAfterTheRecordingHasStoppedStillSucceeds() {
+        // Revised while implementing #253: in-person mode uploads its captured audio only once
+        // recording stops (the file isn't finished/available before then), and a remote-mode
+        // participant's upload may legitimately still be in flight when someone else ends the
+        // call — rejecting either case would silently drop real transcript data that arrived a
+        // moment too late, which is worse than accepting it after the fact.
         ReviewRecording recording = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros",
                 Clock.fixed(START, ZoneOffset.UTC), false);
         recording.stop();
 
-        assertThatThrownBy(() -> recording.uploadTranscriptStream("Petros",
-                List.of(TranscriptSegment.of("Too late", START, "Petros"))))
-                .isInstanceOf(IllegalStateException.class);
+        recording.uploadTranscriptStream("Petros", List.of(TranscriptSegment.of("Finished late", START, "Petros")));
+
+        assertThat(recording.alignedTranscript()).extracting(segment -> segment.segment().speaker().orElseThrow())
+                .containsExactly("Petros");
     }
 
     /**

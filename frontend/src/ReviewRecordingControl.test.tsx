@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { http, HttpResponse } from 'msw'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import ReviewRecordingControl from './ReviewRecordingControl'
 import { server } from './test/server'
 
@@ -197,5 +197,166 @@ describe('Review Recording control', () => {
     await waitFor(() =>
       expect(startRequestBody).toEqual({ displayName: 'Petros', disclosureAcknowledged: true, audioEnabled: true }),
     )
+  })
+})
+
+// Traces frontend/src/test/resources/features/ui_first_experience/in_person_mic_capture.feature (ticket #253)
+describe('In-person single-microphone audio capture', () => {
+  // A fake MediaStream/MediaRecorder pair standing in for the browser's real microphone
+  // hardware and MediaRecorder API — the one genuine external boundary this suite can't cross
+  // for real (no physical microphone or permission prompt exists in a test run). This fakes
+  // only that boundary, never ReviewRecordingControl's or micCapture.ts's own logic.
+  class FakeMediaRecorder {
+    ondataavailable: ((event: { data: Blob }) => void) | null = null
+    onstop: (() => void) | null = null
+    stream: unknown
+
+    constructor(stream: unknown) {
+      this.stream = stream
+    }
+
+    start(): void {}
+
+    stop(): void {
+      this.ondataavailable?.({ data: new Blob(['fake-audio-bytes'], { type: 'audio/webm' }) })
+      this.onstop?.()
+    }
+  }
+
+  function stubAvailableMicrophone(): ReturnType<typeof vi.fn> {
+    // Real enough that micCapture.ts's real track-cleanup logic (releasing the microphone once
+    // capture ends) has something real to call, rather than silently skipping it untested.
+    const fakeTrack = { stop: vi.fn() }
+    const getUserMedia = vi.fn().mockResolvedValue({ getTracks: () => [fakeTrack] })
+    vi.stubGlobal('navigator', { mediaDevices: { getUserMedia } })
+    vi.stubGlobal('MediaRecorder', FakeMediaRecorder)
+    return getUserMedia
+  }
+
+  function stubPermissionDeniedMicrophone(): void {
+    vi.stubGlobal('navigator', {
+      mediaDevices: { getUserMedia: vi.fn().mockRejectedValue(new DOMException('denied', 'NotAllowedError')) },
+    })
+    vi.stubGlobal('MediaRecorder', FakeMediaRecorder)
+  }
+
+  function stubUnsupportedBrowser(): void {
+    vi.stubGlobal('navigator', { mediaDevices: undefined })
+    vi.stubGlobal('MediaRecorder', undefined)
+  }
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  it('starting a recording with audio enabled begins capturing the shared microphone', async () => {
+    mockEndpoints()
+    const getUserMedia = stubAvailableMicrophone()
+    render(<ReviewRecordingControl displayName="Petros" />)
+    const user = userEvent.setup()
+    await user.click(screen.getByRole('button', { name: 'Start Review Recording' }))
+    await user.click(screen.getByRole('checkbox', { name: 'Also capture audio and a transcript' }))
+
+    await user.click(screen.getByRole('button', { name: 'Start recording' }))
+
+    await screen.findByRole('status', { name: 'Review Recording in progress' })
+    await waitFor(() => expect(getUserMedia).toHaveBeenCalled())
+  })
+
+  it('starting a recording without audio enabled never touches the microphone', async () => {
+    mockEndpoints()
+    const getUserMedia = stubAvailableMicrophone()
+    render(<ReviewRecordingControl displayName="Petros" />)
+    const user = userEvent.setup()
+    await user.click(screen.getByRole('button', { name: 'Start Review Recording' }))
+
+    await user.click(await screen.findByRole('button', { name: 'Start recording' }))
+
+    await screen.findByRole('status', { name: 'Review Recording in progress' })
+    expect(getUserMedia).not.toHaveBeenCalled()
+  })
+
+  it('stopping a recording uploads the captured audio', async () => {
+    mockEndpoints()
+    stubAvailableMicrophone()
+    let uploadReceived = false
+    let uploadContentType: string | null = null
+    server.use(
+      // Deliberately does not call request.formData()/.text() to inspect the body: reading a
+      // multipart body containing a Blob hangs indefinitely in this test environment (msw/node
+      // + jsdom's Blob/FormData streaming — verified with a minimal repro outside this ticket's
+      // component under test, not something production code can work around). Asserting the
+      // request reached this handler at all, as a real multipart POST, is what this environment
+      // can actually verify; the multipart wire format itself is standard fetch/FormData
+      // behavior, not something #253 implements.
+      http.post('/api/review-recordings/recording-1/audio', ({ request }) => {
+        uploadReceived = true
+        uploadContentType = request.headers.get('content-type')
+        return HttpResponse.json({ ...SNAPSHOT, active: false })
+      }),
+    )
+    render(<ReviewRecordingControl displayName="Petros" />)
+    const user = userEvent.setup()
+    await user.click(screen.getByRole('button', { name: 'Start Review Recording' }))
+    await user.click(screen.getByRole('checkbox', { name: 'Also capture audio and a transcript' }))
+    await user.click(screen.getByRole('button', { name: 'Start recording' }))
+    await screen.findByRole('status', { name: 'Review Recording in progress' })
+
+    await user.click(screen.getByRole('button', { name: 'Stop Review Recording' }))
+
+    await waitFor(() => expect(uploadReceived).toBe(true))
+    expect(uploadContentType).toContain('multipart/form-data')
+  })
+
+  it('microphone permission denial still lets the recording start normally', async () => {
+    mockEndpoints()
+    stubPermissionDeniedMicrophone()
+    let audioUploaded = false
+    server.use(
+      http.post('/api/review-recordings/recording-1/audio', () => {
+        audioUploaded = true
+        return HttpResponse.json({ ...SNAPSHOT, active: false })
+      }),
+    )
+    render(<ReviewRecordingControl displayName="Petros" />)
+    const user = userEvent.setup()
+    await user.click(screen.getByRole('button', { name: 'Start Review Recording' }))
+    await user.click(screen.getByRole('checkbox', { name: 'Also capture audio and a transcript' }))
+    await user.click(screen.getByRole('button', { name: 'Start recording' }))
+    const indicator = await screen.findByRole('status', { name: 'Review Recording in progress' })
+    expect(indicator).toHaveTextContent('Recording')
+
+    await user.click(screen.getByRole('button', { name: 'Stop Review Recording' }))
+
+    await waitFor(() =>
+      expect(screen.queryByRole('status', { name: 'Review Recording in progress' })).not.toBeInTheDocument(),
+    )
+    expect(audioUploaded).toBe(false)
+  })
+
+  it('an unsupported browser still lets the recording start normally', async () => {
+    mockEndpoints()
+    stubUnsupportedBrowser()
+    let audioUploaded = false
+    server.use(
+      http.post('/api/review-recordings/recording-1/audio', () => {
+        audioUploaded = true
+        return HttpResponse.json({ ...SNAPSHOT, active: false })
+      }),
+    )
+    render(<ReviewRecordingControl displayName="Petros" />)
+    const user = userEvent.setup()
+    await user.click(screen.getByRole('button', { name: 'Start Review Recording' }))
+    await user.click(screen.getByRole('checkbox', { name: 'Also capture audio and a transcript' }))
+    await user.click(screen.getByRole('button', { name: 'Start recording' }))
+    const indicator = await screen.findByRole('status', { name: 'Review Recording in progress' })
+    expect(indicator).toHaveTextContent('Recording')
+
+    await user.click(screen.getByRole('button', { name: 'Stop Review Recording' }))
+
+    await waitFor(() =>
+      expect(screen.queryByRole('status', { name: 'Review Recording in progress' })).not.toBeInTheDocument(),
+    )
+    expect(audioUploaded).toBe(false)
   })
 })

@@ -38,7 +38,7 @@ public final class ReviewRecording {
     private final List<SemanticEvent> events = new ArrayList<>();
     private final List<Moment> moments = new ArrayList<>();
     private final TranscriptionProvider transcriptionProvider;
-    private final Map<String, List<TranscriptSegment>> remoteTranscriptStreamsByParticipant = new LinkedHashMap<>();
+    private final Map<String, List<TranscriptSegment>> uploadedTranscriptStreams = new LinkedHashMap<>();
 
     private Instant stoppedAt;
 
@@ -220,28 +220,35 @@ public final class ReviewRecording {
     public synchronized List<AlignedTranscriptSegment> alignedTranscript() {
         List<List<TranscriptSegment>> streams = new ArrayList<>();
         streams.add(transcriptionProvider.segments());
-        streams.addAll(remoteTranscriptStreamsByParticipant.values());
+        streams.addAll(uploadedTranscriptStreams.values());
         return TranscriptAligner.align(RemoteTranscriptMerger.merge(streams), events);
     }
 
     /**
-     * Records {@code participantDisplayName}'s already-transcribed audio stream for a
-     * remote/call-based recording (ticket #252): each participant's client captures and
-     * transcribes only their own microphone (single-speaker per stream, via #251's {@link
-     * TranscriptionProvider} — no diarization needed here), and uploads the resulting segments
-     * here. A participant with no uploaded stream simply contributes nothing to {@link
-     * #alignedTranscript()} — the recording still produces a usable transcript from whichever
-     * streams did arrive (ticket #251's {@link RemoteTranscriptMerger} already degrades
-     * gracefully at the algorithm level; this is what lets that hold even when a stream never
-     * shows up at all). Replaces any previously-uploaded stream for the same participant, so a
-     * client can safely retry/resubmit rather than duplicating a partial upload's segments.
-     * Requires the recording still be active.
+     * Records {@code participantDisplayName}'s already-transcribed audio stream: one
+     * participant's own microphone for a remote/call-based recording (ticket #252), or the one
+     * shared-microphone stream for an in-person recording (ticket #253) — both arrive the same
+     * way, since #251's {@link TranscriptionProvider} produces the same {@link TranscriptSegment}
+     * shape either way (diarized speakers already attributed per segment for the in-person case;
+     * single-speaker per stream, no diarization needed, for the remote case). A participant/
+     * stream that never uploads simply contributes nothing to {@link #alignedTranscript()} — the
+     * recording still produces a usable transcript from whichever streams did arrive (ticket
+     * #251's {@link RemoteTranscriptMerger} already degrades gracefully at the algorithm level;
+     * this is what lets that hold even when a stream never shows up at all). Replaces any
+     * previously-uploaded stream under the same key, so a client can safely retry/resubmit
+     * rather than duplicating a partial upload's segments.
+     *
+     * <p>Callable regardless of whether the recording is still active (ticket #253's own
+     * revision to #252's original, more restrictive contract): an in-person recording's captured
+     * audio finishes uploading only once the recording has already stopped (the file isn't
+     * complete before then), and a remote participant's upload may legitimately still be in
+     * flight when someone else ends the call — rejecting either case would silently drop real
+     * transcript data that arrived a moment too late, which is strictly worse than accepting it.
      */
     public synchronized void uploadTranscriptStream(String participantDisplayName, List<TranscriptSegment> segments) {
-        requireActive();
         String participant = requireDisplayName(participantDisplayName);
         Objects.requireNonNull(segments, "segments");
-        remoteTranscriptStreamsByParticipant.put(participant, List.copyOf(segments));
+        uploadedTranscriptStreams.put(participant, List.copyOf(segments));
     }
 
     /** Stops this recording. Requires it not already be stopped. */
