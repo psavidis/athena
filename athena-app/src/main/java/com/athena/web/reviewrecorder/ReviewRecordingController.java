@@ -8,6 +8,7 @@ import com.athena.reviewrecorder.ReviewRecordingArtifactStore;
 import com.athena.reviewrecorder.ReviewRecordingRegistry;
 import com.athena.reviewrecorder.SemanticEvent;
 import com.athena.reviewrecorder.SemanticEventType;
+import com.athena.reviewrecorder.WhisperXTranscriptionProvider;
 import com.athena.web.Diff;
 import com.athena.web.WebSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Clock;
 import java.util.List;
@@ -244,6 +249,78 @@ public class ReviewRecordingController {
     public List<AlignedTranscriptSegmentResponse> alignedTranscript(@PathVariable String id) {
         ReviewRecording recording = requireRecording(id);
         return recording.alignedTranscript().stream().map(AlignedTranscriptSegmentResponse::of).toList();
+    }
+
+    /**
+     * Uploads one participant's own already-captured audio for a remote/call-based recording
+     * (ticket #252): each participant's client captures only their own microphone and uploads
+     * that file here, tagged with the participant's display name. The file is transcribed via
+     * {@link WhisperXTranscriptionProvider} (single-speaker per stream — no diarization needed,
+     * since each stream is already known to be one participant's own voice) and merged with any
+     * other participants' streams before {@link #alignedTranscript} sees it — see {@link
+     * ReviewRecording#uploadTranscriptStream}'s own javadoc for the merge contract, including
+     * graceful handling when another participant's stream never arrives at all.
+     *
+     * <p>{@code startedAt} anchors WhisperX's file-relative segment offsets to the recording's
+     * shared clock basis — the client computes it as an offset from the {@code startedAt} value
+     * {@link #join}/{@link #start}/{@link #snapshot} already return on every {@link
+     * ReviewRecordingSnapshot} (ticket #252's clock-synchronization requirement), rather than
+     * trusting its own machine's wall clock directly.
+     */
+    @PostMapping("/{id}/audio")
+    public ReviewRecordingSnapshot uploadAudio(@PathVariable String id, @RequestParam("file") MultipartFile file,
+                                                @RequestParam("participantDisplayName") String participantDisplayName) {
+        ReviewRecording recording = requireRecording(id);
+        Path audioFile = writeToTempFile(file);
+        try {
+            return uploadAudio(id, new UploadRemoteAudioRequest(participantDisplayName,
+                    WhisperXTranscriptionProvider.forAudioFile(audioFile, recording.startedAt())));
+        } finally {
+            // The uploaded file's only consumer is the synchronous WhisperXTranscriptionProvider
+            // .segments() call inside uploadAudio(String, UploadRemoteAudioRequest) above — once
+            // that has run (successfully or not), nothing needs this file again. Left uncleaned,
+            // a real deployment handling remote recordings would leak one file per upload into
+            // the OS temp directory indefinitely.
+            deleteQuietly(audioFile);
+        }
+    }
+
+    private void deleteQuietly(Path file) {
+        try {
+            Files.deleteIfExists(file);
+        } catch (IOException ignored) {
+            // Best-effort cleanup: a failure to delete a temp file must not turn an otherwise-
+            // successful (or already-failed) upload into a different error.
+        }
+    }
+
+    /**
+     * Package-visible, not a Spring endpoint (no {@code @PathVariable}/{@code @RequestBody} —
+     * those only matter on a real {@code @PostMapping} method): {@code request} carries a {@link
+     * com.athena.reviewrecorder.TranscriptionProvider} directly, a test-only seam (see {@link
+     * UploadRemoteAudioRequest}'s own javadoc) that lets a test substitute a fixture transcript
+     * instead of a real WhisperX subprocess per scenario. The public multipart endpoint above is
+     * the only caller of this method from outside a test.
+     */
+    ReviewRecordingSnapshot uploadAudio(String id, UploadRemoteAudioRequest request) {
+        ReviewRecording recording = requireRecording(id);
+        String participantDisplayName = requireDisplayName(request.participantDisplayName());
+        try {
+            recording.uploadTranscriptStream(participantDisplayName, request.transcriptionProvider().segments());
+        } catch (IllegalStateException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        }
+        return ReviewRecordingSnapshot.of(recording);
+    }
+
+    private Path writeToTempFile(MultipartFile file) {
+        try {
+            Path tempFile = Files.createTempFile("athena-remote-audio-upload-", ".audio");
+            file.transferTo(tempFile);
+            return tempFile;
+        } catch (IOException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not read uploaded audio: " + e.getMessage());
+        }
     }
 
     private MomentKind requireMomentKind(String kind) {

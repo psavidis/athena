@@ -8,6 +8,11 @@ export interface ReviewRecordingSnapshot {
   pullRequestNumber: number
   active: boolean
   audioEnabled: boolean
+  // The clock-anchoring basis a remote/call-based recording's participants need (ticket #252):
+  // an ISO-8601 instant, serialized by Jackson's default Instant handling. A participant
+  // computes their own upload timestamps as an offset from this shared instant rather than
+  // trusting their own machine's wall clock directly.
+  startedAt: string
   elapsedSeconds: number
   participantCount: number
   participantDisplayNames: string[]

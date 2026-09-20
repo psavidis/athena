@@ -6,6 +6,7 @@ import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.ZoneOffset;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -124,6 +125,105 @@ class ReviewRecordingTest {
         recording.stop();
 
         assertThatThrownBy(recording::stop).isInstanceOf(IllegalStateException.class);
+    }
+
+    // --- Remote multi-participant audio capture, upload, and clock sync (ticket #252) ---
+
+    @Test
+    void startedAtIsTheClockAnchoringBasisEveryParticipantReceives() {
+        ReviewRecording recording = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros",
+                Clock.fixed(START, ZoneOffset.UTC));
+
+        // startedAt() already existed (ticket #203) — #252 repurposes it as the one clock-anchoring
+        // basis every participant computes their own upload timestamps against (see
+        // RemoteTranscriptMerger's own javadoc: it trusts its input streams' timestamps are
+        // already comparable, which is only true once every participant anchors to the same
+        // instant), rather than inventing separate new state for the same purpose.
+        assertThat(recording.startedAt()).isEqualTo(START);
+    }
+
+    @Test
+    void twoParticipantsUploadedTranscriptStreamsMergeInChronologicalOrder() {
+        MutableClock clock = new MutableClock(START);
+        ReviewRecording recording = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros", clock, false);
+        recording.join("Maria");
+
+        recording.uploadTranscriptStream("Petros",
+                List.of(TranscriptSegment.of("Could this execute twice?", START, "Petros")));
+        recording.uploadTranscriptStream("Maria",
+                List.of(TranscriptSegment.of("Only with a network retry.", START.plusSeconds(5), "Maria")));
+
+        assertThat(recording.alignedTranscript()).extracting(segment -> segment.segment().speaker().orElseThrow())
+                .containsExactly("Petros", "Maria");
+    }
+
+    @Test
+    void aMissingParticipantStreamStillProducesAUsableTranscript() {
+        ReviewRecording recording = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros",
+                Clock.fixed(START, ZoneOffset.UTC), false);
+        recording.join("Maria");
+
+        recording.uploadTranscriptStream("Petros",
+                List.of(TranscriptSegment.of("Let's get started", START, "Petros")));
+        // Maria's stream never uploads at all — must not block or corrupt the recording.
+
+        assertThat(recording.alignedTranscript()).extracting(segment -> segment.segment().speaker().orElseThrow())
+                .containsExactly("Petros");
+        assertThat(recording.active()).isTrue();
+    }
+
+    @Test
+    void anUploadedStreamIsMergedAlongsideTheRecordingsOwnInPersonProvider() {
+        // The in-person (single-provider) and remote (per-participant upload) paths are not
+        // separate code paths downstream — an uploaded stream merges into the same
+        // alignedTranscript() a single TranscriptionProvider already populates, per the ticket's
+        // own "no separate downstream code path" requirement.
+        FakeTranscriptionProvider inPersonProvider = new FakeTranscriptionProvider(
+                List.of(TranscriptSegment.of("In-person segment", START, "Petros")));
+        ReviewRecording recording = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros",
+                Clock.fixed(START, ZoneOffset.UTC), false, inPersonProvider);
+        recording.join("Maria");
+
+        recording.uploadTranscriptStream("Maria",
+                List.of(TranscriptSegment.of("Remote segment", START.plusSeconds(5), "Maria")));
+
+        assertThat(recording.alignedTranscript()).extracting(segment -> segment.segment().speaker().orElseThrow())
+                .containsExactly("Petros", "Maria");
+    }
+
+    @Test
+    void uploadingATranscriptStreamToAStoppedRecordingIsRejected() {
+        ReviewRecording recording = ReviewRecording.start("acme/widgets", 42, "abc123", "Petros",
+                Clock.fixed(START, ZoneOffset.UTC), false);
+        recording.stop();
+
+        assertThatThrownBy(() -> recording.uploadTranscriptStream("Petros",
+                List.of(TranscriptSegment.of("Too late", START, "Petros"))))
+                .isInstanceOf(IllegalStateException.class);
+    }
+
+    /**
+     * A {@link TranscriptionProvider} test fixture returning fixed segments (ticket #252) — the
+     * same legitimate whitebox seam {@code ReviewRecordingSessionSteps.FixtureTranscriptionProvider}
+     * uses (a real speech-to-text vendor is a genuine external boundary CODE_STYLE.md &sect;F
+     * allows substituting).
+     */
+    private static final class FakeTranscriptionProvider implements TranscriptionProvider {
+        private final java.util.List<TranscriptSegment> segments;
+
+        FakeTranscriptionProvider(java.util.List<TranscriptSegment> segments) {
+            this.segments = segments;
+        }
+
+        @Override
+        public java.util.Optional<String> transcribe() {
+            return segments.isEmpty() ? java.util.Optional.empty() : java.util.Optional.of("(fixture transcript)");
+        }
+
+        @Override
+        public java.util.List<TranscriptSegment> segments() {
+            return segments;
+        }
     }
 
     /** A {@link Clock} whose {@link #advance} lets a test move time forward deterministically. */

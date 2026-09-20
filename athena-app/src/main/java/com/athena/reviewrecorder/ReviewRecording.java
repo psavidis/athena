@@ -4,8 +4,10 @@ import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Set;
@@ -36,6 +38,7 @@ public final class ReviewRecording {
     private final List<SemanticEvent> events = new ArrayList<>();
     private final List<Moment> moments = new ArrayList<>();
     private final TranscriptionProvider transcriptionProvider;
+    private final Map<String, List<TranscriptSegment>> remoteTranscriptStreamsByParticipant = new LinkedHashMap<>();
 
     private Instant stoppedAt;
 
@@ -206,13 +209,39 @@ public final class ReviewRecording {
 
     /**
      * This recording's transcript segments aligned to whichever entity was in focus when each
-     * was spoken (ticket #209), via {@link TranscriptAligner}. Always empty today: {@link
-     * #transcriptionProvider}'s only implementation, {@link NoOpTranscriptionProvider}, never
-     * produces segments — see its javadoc for why that's the accepted, best-effort state rather
-     * than a bug.
+     * was spoken (ticket #209), via {@link TranscriptAligner}. The in-person mode's single
+     * {@link #transcriptionProvider} and any remote-mode per-participant streams uploaded via
+     * {@link #uploadTranscriptStream} are merged into one chronological sequence by {@link
+     * RemoteTranscriptMerger} before alignment (ticket #252) — there is no separate downstream
+     * code path for the two capture modes. Empty in the common case today where only {@link
+     * NoOpTranscriptionProvider} backs a recording and no stream has been uploaded — see its
+     * javadoc for why that's the accepted, best-effort state rather than a bug.
      */
     public synchronized List<AlignedTranscriptSegment> alignedTranscript() {
-        return TranscriptAligner.align(transcriptionProvider.segments(), events);
+        List<List<TranscriptSegment>> streams = new ArrayList<>();
+        streams.add(transcriptionProvider.segments());
+        streams.addAll(remoteTranscriptStreamsByParticipant.values());
+        return TranscriptAligner.align(RemoteTranscriptMerger.merge(streams), events);
+    }
+
+    /**
+     * Records {@code participantDisplayName}'s already-transcribed audio stream for a
+     * remote/call-based recording (ticket #252): each participant's client captures and
+     * transcribes only their own microphone (single-speaker per stream, via #251's {@link
+     * TranscriptionProvider} — no diarization needed here), and uploads the resulting segments
+     * here. A participant with no uploaded stream simply contributes nothing to {@link
+     * #alignedTranscript()} — the recording still produces a usable transcript from whichever
+     * streams did arrive (ticket #251's {@link RemoteTranscriptMerger} already degrades
+     * gracefully at the algorithm level; this is what lets that hold even when a stream never
+     * shows up at all). Replaces any previously-uploaded stream for the same participant, so a
+     * client can safely retry/resubmit rather than duplicating a partial upload's segments.
+     * Requires the recording still be active.
+     */
+    public synchronized void uploadTranscriptStream(String participantDisplayName, List<TranscriptSegment> segments) {
+        requireActive();
+        String participant = requireDisplayName(participantDisplayName);
+        Objects.requireNonNull(segments, "segments");
+        remoteTranscriptStreamsByParticipant.put(participant, List.copyOf(segments));
     }
 
     /** Stops this recording. Requires it not already be stopped. */
