@@ -60,6 +60,38 @@ function stubUnsupportedBrowser(): void {
   vi.stubGlobal('MediaRecorder', undefined)
 }
 
+// A MediaRecorder whose constructor throws — a real browser does this (NotSupportedError) for
+// a codec/MIME-type combination it won't record, even though getUserMedia already succeeded.
+class ThrowingConstructorMediaRecorder {
+  constructor() {
+    throw new DOMException('not supported', 'NotSupportedError')
+  }
+}
+
+// A MediaRecorder that constructs fine but throws from start() — an independently-fallible step
+// from the constructor.
+class ThrowingStartMediaRecorder {
+  ondataavailable: ((event: { data: Blob }) => void) | null = null
+  onstop: (() => void) | null = null
+
+  start(): void {
+    throw new DOMException('already recording', 'InvalidStateError')
+  }
+}
+
+// A MediaRecorder that starts fine but throws from stop() — e.g. the browser already
+// auto-stopped it because the user revoked mic permission mid-recording.
+class ThrowingStopMediaRecorder {
+  ondataavailable: ((event: { data: Blob }) => void) | null = null
+  onstop: (() => void) | null = null
+
+  start(): void {}
+
+  stop(): void {
+    throw new DOMException('already inactive', 'InvalidStateError')
+  }
+}
+
 afterEach(() => {
   vi.unstubAllGlobals()
 })
@@ -97,5 +129,45 @@ describe('startMicCapture', () => {
     const session = await startMicCapture()
 
     expect(session).toBeNull()
+  })
+
+  it('returns null rather than throwing when the MediaRecorder constructor itself throws', async () => {
+    const track = { stop: vi.fn() }
+    vi.stubGlobal('navigator', {
+      mediaDevices: { getUserMedia: vi.fn().mockResolvedValue({ getTracks: () => [track] }) },
+    })
+    vi.stubGlobal('MediaRecorder', ThrowingConstructorMediaRecorder)
+
+    const session = await startMicCapture()
+
+    expect(session).toBeNull()
+    expect(track.stop).toHaveBeenCalled()
+  })
+
+  it('returns null rather than throwing when MediaRecorder.start() throws', async () => {
+    const track = { stop: vi.fn() }
+    vi.stubGlobal('navigator', {
+      mediaDevices: { getUserMedia: vi.fn().mockResolvedValue({ getTracks: () => [track] }) },
+    })
+    vi.stubGlobal('MediaRecorder', ThrowingStartMediaRecorder)
+
+    const session = await startMicCapture()
+
+    expect(session).toBeNull()
+    expect(track.stop).toHaveBeenCalled()
+  })
+
+  it('still resolves with whatever was captured when MediaRecorder.stop() throws', async () => {
+    const track = { stop: vi.fn() }
+    vi.stubGlobal('navigator', {
+      mediaDevices: { getUserMedia: vi.fn().mockResolvedValue({ getTracks: () => [track] }) },
+    })
+    vi.stubGlobal('MediaRecorder', ThrowingStopMediaRecorder)
+    const session = await startMicCapture()
+
+    const audio = await session!.stop()
+
+    expect(audio).toBeInstanceOf(Blob)
+    expect(track.stop).toHaveBeenCalled()
   })
 })

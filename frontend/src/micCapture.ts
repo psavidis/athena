@@ -32,26 +32,57 @@ export async function startMicCapture(): Promise<MicCaptureSession | null> {
     return null
   }
 
-  const recorder = new MediaRecorder(stream)
+  let recorder: MediaRecorder
+  try {
+    recorder = new MediaRecorder(stream)
+  } catch {
+    // The MediaRecorder constructor itself can throw (e.g. NotSupportedError for a browser/
+    // codec combination it won't record) even though getUserMedia already succeeded — the two
+    // are independently-fallible steps. The stream was still acquired, so its tracks must be
+    // released here or the microphone stays "in use" with nothing ever consuming it.
+    stopAllTracks(stream)
+    return null
+  }
+
   const chunks: Blob[] = []
   recorder.ondataavailable = (event) => {
     if (event.data.size > 0) {
       chunks.push(event.data)
     }
   }
-  recorder.start()
+
+  try {
+    recorder.start()
+  } catch {
+    // Same reasoning as the constructor above: start() can independently throw.
+    stopAllTracks(stream)
+    return null
+  }
 
   return {
     stop(): Promise<Blob> {
       return new Promise((resolve) => {
         recorder.onstop = () => {
-          for (const track of stream.getTracks()) {
-            track.stop()
-          }
+          stopAllTracks(stream)
           resolve(new Blob(chunks, { type: recorder.mimeType || 'audio/webm' }))
         }
-        recorder.stop()
+        try {
+          recorder.stop()
+        } catch {
+          // MediaRecorder.stop() can itself throw (e.g. the browser already auto-stopped the
+          // recorder because the user revoked mic permission mid-recording) — this must not
+          // become an unhandled rejection in the caller. Whatever was captured before this
+          // point is still worth uploading rather than discarding entirely.
+          stopAllTracks(stream)
+          resolve(new Blob(chunks, { type: recorder.mimeType || 'audio/webm' }))
+        }
       })
     },
+  }
+}
+
+function stopAllTracks(stream: MediaStream): void {
+  for (const track of stream.getTracks()) {
+    track.stop()
   }
 }

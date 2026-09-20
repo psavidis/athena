@@ -72,19 +72,22 @@ export default function ReviewRecordingControl({
 
   async function acknowledgeAndStart() {
     setDisclosureOpen(false)
+    let result
     try {
-      const result = await startReviewRecording(displayName, true, audioEnabled)
-      setSnapshot(result.snapshot)
-      // Capture starts only once the recording itself has actually started (never speculatively
-      // before that call, in case it's rejected) — ticket #253's own scope: audio capture must
-      // only ever happen after explicit consent, which audioEnabled already carries here.
-      // A denied/unsupported microphone (startMicCapture resolves null rather than throwing)
-      // never blocks or fails the recording itself — it just means no transcript later.
-      if (audioEnabled) {
-        micCaptureRef.current = await startMicCapture()
-      }
+      result = await startReviewRecording(displayName, true, audioEnabled)
     } catch {
       setError('Select a Pull Request or Diff before starting a Review Recording.')
+      return
+    }
+    setSnapshot(result.snapshot)
+    // Capture starts only once the recording itself has actually started (never speculatively
+    // before that call, in case it's rejected) — ticket #253's own scope: audio capture must
+    // only ever happen after explicit consent, which audioEnabled already carries here.
+    // Deliberately outside the try/catch above: startMicCapture never throws (see its own
+    // contract), but keeping it out of that catch means even a future regression there could
+    // never be misattributed to "no review selected" — the two failure domains stay separate.
+    if (audioEnabled) {
+      micCaptureRef.current = await startMicCapture()
     }
   }
 
@@ -97,6 +100,8 @@ export default function ReviewRecordingControl({
     const capture = micCaptureRef.current
     micCaptureRef.current = null
     if (capture) {
+      // capture.stop() never throws (see MicCaptureSession's own contract) — whatever was
+      // captured up to whenever the underlying recorder actually stopped is still uploaded.
       const audio = await capture.stop()
       await uploadReviewRecordingAudio(recordingId, displayName, audio)
     }
