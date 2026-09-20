@@ -100,6 +100,26 @@ Tests are Cucumber (`.feature` files under each module's own
 `CODE_STYLE.md` for the testing philosophy (Detroit-school/classicist;
 mocks only at genuine external boundaries).
 
+`WhisperXTranscriptionProviderTest` and the WhisperX-backed Cucumber
+scenarios (`whisperx_transcription_provider.feature`, ticket #251) need a
+one-time local setup, and are skipped (not failed) when it's absent:
+
+- A `python3.12` interpreter on `PATH` — WhisperX's pinned `ctranslate2`
+  dependency has no wheel for Python 3.14+, so a newer system default
+  Python will not work.
+- A Hugging Face access token with access to the gated diarization
+  model(s) the installed WhisperX version requests (confirm exactly which
+  by running the script once — this has changed between WhisperX
+  releases; do not assume the model this ticket's own history names is
+  still current). Create a free account at huggingface.co, accept the
+  model's access conditions on its model page, generate a read-scoped
+  token at huggingface.co/settings/tokens, and either place it at
+  `~/.cache/huggingface/token` or set `HF_TOKEN`/`HUGGINGFACE_HUB_TOKEN`.
+- Verified on macOS; expected (not independently verified) to work on
+  Ubuntu too, since the underlying stack (Python/PyTorch/CTranslate2) has
+  no macOS-specific dependency — CPU-only inference is the baseline on
+  both.
+
 ## Module layout
 
 The detection engine is a plugin architecture: `athena-core` defines a
