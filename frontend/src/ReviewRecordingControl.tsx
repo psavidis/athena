@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { startMicCapture, type MicCaptureSession } from './micCapture'
 import {
   confirmMoment,
   editMoment,
@@ -9,6 +10,7 @@ import {
   startReviewRecording,
   stopReviewRecording,
   tagMoment,
+  uploadReviewRecordingAudio,
   type Moment,
   type MomentKind,
   type ReviewRecordingSnapshot,
@@ -40,6 +42,7 @@ export default function ReviewRecordingControl({
   const [pendingMoment, setPendingMoment] = useState<Moment | null>(null)
   const [summary, setSummary] = useState<ReviewRecordingSummary | null>(null)
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const micCaptureRef = useRef<MicCaptureSession | null>(null)
 
   useEffect(() => {
     if (!snapshot?.active) {
@@ -72,6 +75,14 @@ export default function ReviewRecordingControl({
     try {
       const result = await startReviewRecording(displayName, true, audioEnabled)
       setSnapshot(result.snapshot)
+      // Capture starts only once the recording itself has actually started (never speculatively
+      // before that call, in case it's rejected) — ticket #253's own scope: audio capture must
+      // only ever happen after explicit consent, which audioEnabled already carries here.
+      // A denied/unsupported microphone (startMicCapture resolves null rather than throwing)
+      // never blocks or fails the recording itself — it just means no transcript later.
+      if (audioEnabled) {
+        micCaptureRef.current = await startMicCapture()
+      }
     } catch {
       setError('Select a Pull Request or Diff before starting a Review Recording.')
     }
@@ -83,6 +94,12 @@ export default function ReviewRecordingControl({
     const updated = await stopReviewRecording(recordingId)
     setSnapshot(updated)
     setSummary(await fetchSummary(recordingId))
+    const capture = micCaptureRef.current
+    micCaptureRef.current = null
+    if (capture) {
+      const audio = await capture.stop()
+      await uploadReviewRecordingAudio(recordingId, displayName, audio)
+    }
   }
 
   async function tag(kind: MomentKind) {

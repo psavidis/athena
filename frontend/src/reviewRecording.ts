@@ -85,6 +85,35 @@ export async function getReviewRecording(recordingId: string): Promise<ReviewRec
   return asJson(response)
 }
 
+/**
+ * Uploads captured audio for transcription (ticket #253's in-person shared-microphone capture,
+ * and #252's remote per-participant capture share this one backend endpoint). Never throws on
+ * an ordinary failure (network error, recording not found) — matching this ticket's own
+ * "a failed capture/upload must not lose the underlying recording" requirement, the caller
+ * (ReviewRecordingControl) already has the recording's own final snapshot from stopping it, so a
+ * failed upload here has nothing further to report back to the developer beyond a missing
+ * transcript, which the recording already degrades to gracefully.
+ */
+export async function uploadReviewRecordingAudio(
+  recordingId: string,
+  participantDisplayName: string,
+  audio: Blob,
+): Promise<void> {
+  const formData = new FormData()
+  formData.append('file', audio)
+  formData.append('participantDisplayName', participantDisplayName)
+  try {
+    await fetch(`/api/review-recordings/${encodeURIComponent(recordingId)}/audio`, {
+      method: 'POST',
+      body: formData,
+    })
+  } catch {
+    // A network failure uploading audio must not surface as an error to the developer — the
+    // recording itself already stopped successfully by this point; losing the transcript is the
+    // accepted degraded outcome (ticket #253's own graceful-degradation requirement).
+  }
+}
+
 export type MomentKind = 'INSIGHT' | 'QUESTION' | 'CONCERN' | 'DECISION' | 'ACTION' | 'VERIFICATION'
 export type MomentStatus = 'PENDING' | 'CONFIRMED' | 'REJECTED'
 

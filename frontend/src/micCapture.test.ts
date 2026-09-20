@@ -11,8 +11,11 @@ class FakeMediaRecorder {
   ondataavailable: ((event: { data: Blob }) => void) | null = null
   onstop: (() => void) | null = null
   state: 'inactive' | 'recording' = 'inactive'
+  stream: unknown
 
-  constructor(public stream: unknown) {}
+  constructor(stream: unknown) {
+    this.stream = stream
+  }
 
   start(): void {
     this.state = 'recording'
@@ -25,10 +28,19 @@ class FakeMediaRecorder {
   }
 }
 
+// A fake MediaStream track, just real enough that startMicCapture's real cleanup logic
+// (stopping every track once capture ends, to actually release the microphone) has something
+// real to call — a bare `{ id: ... }` object would silently skip that behavior in a test
+// without ever exercising it.
+function fakeMediaStream(): MediaStream {
+  const track = { stop: vi.fn() }
+  return { getTracks: () => [track] } as unknown as MediaStream
+}
+
 function stubAvailableMicrophone(): void {
   vi.stubGlobal('navigator', {
     mediaDevices: {
-      getUserMedia: vi.fn().mockResolvedValue({ id: 'fake-stream' }),
+      getUserMedia: vi.fn().mockResolvedValue(fakeMediaStream()),
     },
   })
   vi.stubGlobal('MediaRecorder', FakeMediaRecorder)
