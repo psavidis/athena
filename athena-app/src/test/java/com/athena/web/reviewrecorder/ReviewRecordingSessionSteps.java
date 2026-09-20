@@ -152,14 +152,7 @@ public class ReviewRecordingSessionSteps {
     @Given("{string} has started a Review Recording for PR {int} in {string}")
     public void has_started_a_review_recording(String displayName, int number, String repositoryFullName) {
         selectPullRequest(number, repositoryFullName);
-        // Uses the registry directly (not controller.start()) so this recording is backed by
-        // fixtureTranscriptionProvider, letting later "a transcript segment ... arrives" steps
-        // populate it — the HTTP-level start endpoint has no per-request provider concept, and
-        // rightly so; that's a controller-construction-time wiring detail, not a request field.
-        ReviewRecording recording = registry.start(
-                repositoryFullName, number, "head-sha", displayName, false, fixtureTranscriptionProvider);
-        recordingId = recording.id();
-        lastSnapshot = ReviewRecordingSnapshot.of(recording);
+        attemptStart(displayName, true, false);
     }
 
     @Given("{string} has started a Review Recording for PR {int} in {string} with audio enabled")
@@ -594,6 +587,22 @@ public class ReviewRecordingSessionSteps {
     }
 
     // --- Transcript-to-entity alignment (ticket #209) ---
+
+    @Given("{string} has started a Review Recording for PR {int} in {string}, with a transcript to align")
+    public void has_started_a_review_recording_with_a_transcript_to_align(
+            String displayName, int number, String repositoryFullName) {
+        selectPullRequest(number, repositoryFullName);
+        // Deliberately its own step, not a variant of has_started_a_review_recording: that
+        // shared step must keep going through controller.start() so it still exercises the real
+        // HTTP-level start path (disclosure acknowledgment included) for the ~40 other scenarios
+        // that reuse it. This one uses the registry directly instead, backing the recording with
+        // fixtureTranscriptionProvider so the "a transcript segment ... arrives" steps below have
+        // somewhere to add segments — the HTTP start endpoint has no per-request provider concept.
+        ReviewRecording recording = registry.start(
+                repositoryFullName, number, "head-sha", displayName, false, fixtureTranscriptionProvider);
+        recordingId = recording.id();
+        lastSnapshot = ReviewRecordingSnapshot.of(recording);
+    }
 
     @Given("a transcript segment {string} spoken by {string} arrives after that")
     public void a_transcript_segment_spoken_by_arrives_after_that(String text, String speaker) {
