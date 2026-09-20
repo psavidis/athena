@@ -39,6 +39,21 @@ public class ReviewRecordingRegistry {
         return recording;
     }
 
+    /**
+     * Starts and registers a new recording with an explicit {@link TranscriptionProvider}
+     * (ticket #209) — overridable so a test can supply one that actually produces transcript
+     * segments to align, since the registry's own default ({@link NoOpTranscriptionProvider})
+     * never does.
+     */
+    public ReviewRecording start(String repositoryFullName, int pullRequestNumber, String commitOrVersion,
+                                  String starterDisplayName, boolean audioEnabled,
+                                  TranscriptionProvider transcriptionProvider) {
+        ReviewRecording recording = ReviewRecording.start(repositoryFullName, pullRequestNumber, commitOrVersion,
+                starterDisplayName, clock, audioEnabled, transcriptionProvider);
+        recordings.put(recording.id(), recording);
+        return recording;
+    }
+
     public Optional<ReviewRecording> find(String recordingId) {
         return Optional.ofNullable(recordings.get(recordingId));
     }
