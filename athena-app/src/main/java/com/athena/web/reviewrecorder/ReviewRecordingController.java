@@ -272,8 +272,26 @@ public class ReviewRecordingController {
                                                 @RequestParam("participantDisplayName") String participantDisplayName) {
         ReviewRecording recording = requireRecording(id);
         Path audioFile = writeToTempFile(file);
-        return uploadAudio(id, new UploadRemoteAudioRequest(participantDisplayName,
-                WhisperXTranscriptionProvider.forAudioFile(audioFile, recording.startedAt())));
+        try {
+            return uploadAudio(id, new UploadRemoteAudioRequest(participantDisplayName,
+                    WhisperXTranscriptionProvider.forAudioFile(audioFile, recording.startedAt())));
+        } finally {
+            // The uploaded file's only consumer is the synchronous WhisperXTranscriptionProvider
+            // .segments() call inside uploadAudio(String, UploadRemoteAudioRequest) above — once
+            // that has run (successfully or not), nothing needs this file again. Left uncleaned,
+            // a real deployment handling remote recordings would leak one file per upload into
+            // the OS temp directory indefinitely.
+            deleteQuietly(audioFile);
+        }
+    }
+
+    private void deleteQuietly(Path file) {
+        try {
+            Files.deleteIfExists(file);
+        } catch (IOException ignored) {
+            // Best-effort cleanup: a failure to delete a temp file must not turn an otherwise-
+            // successful (or already-failed) upload into a different error.
+        }
     }
 
     /**
