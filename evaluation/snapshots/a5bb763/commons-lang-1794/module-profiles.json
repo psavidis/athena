@@ -1,0 +1,27 @@
+{
+  "src" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@Test\n+    void testReducedFactoryIntegerMinValue() {\n+        Fraction f = Fraction.getReducedFraction(Integer.MIN_VALUE, -2);\n+        assertEquals(1073741824, f.getNumerator());\n+        assertEquals(1, f.getDenominator());\n \n+        f = Fraction.getReducedFraction(Integer.MIN_VALUE, -6);\n+        assertEquals(1073741824, f.getNumerator());\n+        assertEquals(3, f.getDenominator());\n+\n+        f = Fraction.getReducedFraction(Integer.MIN_VALUE, Integer.MIN_VALUE);\n+        assertEquals(1, f.getNumerator());\n+        assertEquals(1, f.getDenominator());\n+\n+        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(Integer.MIN_VALUE, -1));\n+        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(Integer.MIN_VALUE, -3));\n+\n+        f = Fraction.getReducedFraction(-2, Integer.MIN_VALUE);\n+        assertEquals(1, f.getNumerator());\n+        assertEquals(1073741824, f.getDenominator());\n+\n+        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(-7, Integer.MIN_VALUE));\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/test/java/org/apache/commons/lang3/math/FractionTest.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "+@Test\n+    void testReducedFactoryIntegerMinValue() {\n+        Fraction f = Fraction.getReducedFraction(Integer.MIN_VALUE, -2);\n+        assertEquals(1073741824, f.getNumerator());\n+        assertEquals(1, f.getDenominator());\n \n+        f = Fraction.getReducedFraction(Integer.MIN_VALUE, -6);\n+        assertEquals(1073741824, f.getNumerator());\n+        assertEquals(3, f.getDenominator());\n+\n+        f = Fraction.getReducedFraction(Integer.MIN_VALUE, Integer.MIN_VALUE);\n+        assertEquals(1, f.getNumerator());\n+        assertEquals(1, f.getDenominator());\n+\n+        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(Integer.MIN_VALUE, -1));\n+        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(Integer.MIN_VALUE, -3));\n+\n+        f = Fraction.getReducedFraction(-2, Integer.MIN_VALUE);\n+        assertEquals(1, f.getNumerator());\n+        assertEquals(1073741824, f.getDenominator());\n+\n+        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(-7, Integer.MIN_VALUE));\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/test/java/org/apache/commons/lang3/math/FractionTest.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  }
+}

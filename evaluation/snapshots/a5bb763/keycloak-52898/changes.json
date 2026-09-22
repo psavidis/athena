@@ -1,0 +1,739 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTCkFic3RyYWN0Q2xpZW50U2Vzc2lvbkN0eFRva2VuUmVzcG9uc2VDb250ZXh0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AbstractClientSessionCtxTokenResponseContext",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractClientSessionCtxTokenResponseContext.java" ],
+  "symbols" : [ "AbstractClientSessionCtxTokenResponseContext" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NMQVNTCkpXVEF1dGhvcml6YXRpb25HcmFudFJlc3BvbnNlQ29udGV4dA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class JWTAuthorizationGrantResponseContext",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/JWTAuthorizationGrantResponseContext.java" ],
+  "symbols" : [ "JWTAuthorizationGrantResponseContext" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NMQVNTClRva2VuRXhjaGFuZ2VSZXNwb25zZUNvbnRleHQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class TokenExchangeResponseContext",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/TokenExchangeResponseContext.java" ],
+  "symbols" : [ "TokenExchangeResponseContext" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFic3RyYWN0VG9rZW5SZXNwb25zZUNvbnRleHQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AbstractTokenResponseContext",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractTokenResponseContext.java" ],
+  "symbols" : [ "AbstractTokenResponseContext" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NMQVNTClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class RejectMayActClaimExecutorFactory",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java" ],
+  "symbols" : [ "RejectMayActClaimExecutorFactory" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NMQVNTClJlamVjdE1heUFjdENsYWltRXhlY3V0b3I",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class RejectMayActClaimExecutor",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutor.java" ],
+  "symbols" : [ "RejectMayActClaimExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKR3JhbnRUeXBlQ29uZGl0aW9uI2lzR3JhbnRNYXRjaGluZw",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of GrantTypeCondition#isGrantMatching",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/condition/GrantTypeCondition.java" ],
+  "symbols" : [ "GrantTypeCondition#isGrantMatching" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "TU9WRV9TWU1CT0wKQWJzdHJhY3RUb2tlblJlc3BvbnNlQ29udGV4dCNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcgpEZXZpY2VUb2tlblJlc3BvbnNlQ29udGV4dCNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcg",
+  "kind" : "MOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Move DeviceTokenResponseContext#getAccessTokenResponseBuilder -> AbstractTokenResponseContext#getAccessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/protocol/oidc/grants/device/clientpolicy/context/DeviceTokenResponseContext.java", "services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractTokenResponseContext.java" ],
+  "symbols" : [ "DeviceTokenResponseContext#getAccessTokenResponseBuilder", "AbstractTokenResponseContext#getAccessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "TU9WRV9TWU1CT0wKQWJzdHJhY3RDbGllbnRTZXNzaW9uQ3R4VG9rZW5SZXNwb25zZUNvbnRleHQjZ2V0Q2xpZW50U2Vzc2lvbkNvbnRleHQKQmFja2NoYW5uZWxUb2tlblJlc3BvbnNlQ29udGV4dCNnZXRDbGllbnRTZXNzaW9uQ29udGV4dA",
+  "kind" : "MOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Move BackchannelTokenResponseContext#getClientSessionContext -> AbstractClientSessionCtxTokenResponseContext#getClientSessionContext",
+  "files" : [ "services/src/main/java/org/keycloak/protocol/oidc/grants/ciba/clientpolicy/context/BackchannelTokenResponseContext.java", "services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractClientSessionCtxTokenResponseContext.java" ],
+  "symbols" : [ "BackchannelTokenResponseContext#getClientSessionContext", "AbstractClientSessionCtxTokenResponseContext#getClientSessionContext" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "RVhUUkFDVF9NRVRIT0QKQWJzdHJhY3RDb25maWd1cmF0aW9uVGVzdCNpbml0Q29uZmlnClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5I2luaXQ",
+  "kind" : "EXTRACT_METHOD",
+  "category" : "STRUCTURAL",
+  "description" : "Extract RejectMayActClaimExecutorFactory#init",
+  "files" : [ "quarkus/runtime/src/test/java/org/keycloak/quarkus/runtime/configuration/AbstractConfigurationTest.java", "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java" ],
+  "symbols" : [ "AbstractConfigurationTest#initConfig", "RejectMayActClaimExecutorFactory#init" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "RVhUUkFDVF9NRVRIT0QKUmF3S2V5Y2xvYWtEaXN0cmlidXRpb24jcHJlcGFyZURpc3RyaWJ1dGlvbgpSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNwb3N0SW5pdA",
+  "kind" : "EXTRACT_METHOD",
+  "category" : "STRUCTURAL",
+  "description" : "Extract RejectMayActClaimExecutorFactory#postInit",
+  "files" : [ "quarkus/tests/junit5/src/main/java/org/keycloak/it/utils/RawKeycloakDistribution.java", "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java" ],
+  "symbols" : [ "RawKeycloakDistribution#prepareDistribution", "RejectMayActClaimExecutorFactory#postInit" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "RVhUUkFDVF9NRVRIT0QKUmVqZWN0TWF5QWN0Q2xhaW1FeGVjdXRvckZhY3RvcnkjY2xvc2UKVHJpdnlSZXBvcnRQYXJzZXIjY3JlYXRlUmVwb3J0",
+  "kind" : "EXTRACT_METHOD",
+  "category" : "STRUCTURAL",
+  "description" : "Extract RejectMayActClaimExecutorFactory#close",
+  "files" : [ "misc/vuln-to-issues/src/main/java/org/keycloak/misc/TrivyReportParser.java", "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java" ],
+  "symbols" : [ "TrivyReportParser#createReport", "RejectMayActClaimExecutorFactory#close" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApCYWNrY2hhbm5lbFRva2VuUmVzcG9uc2VDb250ZXh0I2dldEFjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVy",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove BackchannelTokenResponseContext#getAccessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/protocol/oidc/grants/ciba/clientpolicy/context/BackchannelTokenResponseContext.java" ],
+  "symbols" : [ "BackchannelTokenResponseContext#getAccessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZXNvdXJjZU93bmVyUGFzc3dvcmRDcmVkZW50aWFsc1Jlc3BvbnNlQ29udGV4dCNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ResourceOwnerPasswordCredentialsResponseContext#getAccessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/ResourceOwnerPasswordCredentialsResponseContext.java" ],
+  "symbols" : [ "ResourceOwnerPasswordCredentialsResponseContext#getAccessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZXNvdXJjZU93bmVyUGFzc3dvcmRDcmVkZW50aWFsc1Jlc3BvbnNlQ29udGV4dCNnZXRDbGllbnRTZXNzaW9uQ29udGV4dA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ResourceOwnerPasswordCredentialsResponseContext#getClientSessionContext",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/ResourceOwnerPasswordCredentialsResponseContext.java" ],
+  "symbols" : [ "ResourceOwnerPasswordCredentialsResponseContext#getClientSessionContext" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTZXJ2aWNlQWNjb3VudFRva2VuUmVzcG9uc2VDb250ZXh0I2dldENsaWVudFNlc3Npb24",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ServiceAccountTokenResponseContext#getClientSession",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/ServiceAccountTokenResponseContext.java" ],
+  "symbols" : [ "ServiceAccountTokenResponseContext#getClientSession" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTZXJ2aWNlQWNjb3VudFRva2VuUmVzcG9uc2VDb250ZXh0I2dldEFjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVy",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ServiceAccountTokenResponseContext#getAccessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/ServiceAccountTokenResponseContext.java" ],
+  "symbols" : [ "ServiceAccountTokenResponseContext#getAccessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApJbXBsaWNpdEh5YnJpZFRva2VuUmVzcG9uc2UjZ2V0QWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXI",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ImplicitHybridTokenResponse#getAccessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/ImplicitHybridTokenResponse.java" ],
+  "symbols" : [ "ImplicitHybridTokenResponse#getAccessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApJbXBsaWNpdEh5YnJpZFRva2VuUmVzcG9uc2UjZ2V0Q2xpZW50U2Vzc2lvbkNvbnRleHQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ImplicitHybridTokenResponse#getClientSessionContext",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/ImplicitHybridTokenResponse.java" ],
+  "symbols" : [ "ImplicitHybridTokenResponse#getClientSessionContext" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApUb2tlblJlc3BvbnNlQ29udGV4dCNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove TokenResponseContext#getAccessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/TokenResponseContext.java" ],
+  "symbols" : [ "TokenResponseContext#getAccessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApUb2tlblJlc3BvbnNlQ29udGV4dCNnZXRDbGllbnRTZXNzaW9u",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove TokenResponseContext#getClientSession",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/TokenResponseContext.java" ],
+  "symbols" : [ "TokenResponseContext#getClientSession" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApUb2tlblJlc3BvbnNlQ29udGV4dCNnZXRDbGllbnRTZXNzaW9uQ29udGV4dA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove TokenResponseContext#getClientSessionContext",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/TokenResponseContext.java" ],
+  "symbols" : [ "TokenResponseContext#getClientSessionContext" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApUb2tlblJlZnJlc2hSZXNwb25zZUNvbnRleHQjZ2V0QWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXI",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove TokenRefreshResponseContext#getAccessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/TokenRefreshResponseContext.java" ],
+  "symbols" : [ "TokenRefreshResponseContext#getAccessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I3JlamVjdE1heUFjdENsaWVudFBvbGljeVN1Y2Nlc3M",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ClientAgentDelegationTest#rejectMayActClientPolicySuccess",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientAgentDelegationTest.java" ],
+  "symbols" : [ "ClientAgentDelegationTest#rejectMayActClientPolicySuccess" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I3JlamVjdE1heUFjdENsaWVudFBvbGljeVJlamVjdEFueQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ClientAgentDelegationTest#rejectMayActClientPolicyRejectAny",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientAgentDelegationTest.java" ],
+  "symbols" : [ "ClientAgentDelegationTest#rejectMayActClientPolicyRejectAny" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I3JlamVjdE1heUFjdENsaWVudFBvbGljeVBlcm1pc3Npb24",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ClientAgentDelegationTest#rejectMayActClientPolicyPermission",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientAgentDelegationTest.java" ],
+  "symbols" : [ "ClientAgentDelegationTest#rejectMayActClientPolicyPermission" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I3JlamVjdE1heUFjdENsaWVudFBvbGljeUNvbnNlbnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ClientAgentDelegationTest#rejectMayActClientPolicyConsent",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientAgentDelegationTest.java" ],
+  "symbols" : [ "ClientAgentDelegationTest#rejectMayActClientPolicyConsent" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I2NyZWF0ZUhhcmRjb2RlZFN1Yk1hcHBlckZvckNsaWVudElk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ClientAgentDelegationTest#createHardcodedSubMapperForClientId",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientAgentDelegationTest.java" ],
+  "symbols" : [ "ClientAgentDelegationTest#createHardcodedSubMapperForClientId" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I2xvZ2luV2l0aERlbGVnYXRpb25Ob0V2ZW50",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ClientAgentDelegationTest#loginWithDelegationNoEvent",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientAgentDelegationTest.java" ],
+  "symbols" : [ "ClientAgentDelegationTest#loginWithDelegationNoEvent" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5U3VjY2Vzcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TokenExchangeDelegationTest#rejectMayActClientPolicySuccess",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/TokenExchangeDelegationTest.java" ],
+  "symbols" : [ "TokenExchangeDelegationTest#rejectMayActClientPolicySuccess" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5UmVqZWN0QW55",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TokenExchangeDelegationTest#rejectMayActClientPolicyRejectAny",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/TokenExchangeDelegationTest.java" ],
+  "symbols" : [ "TokenExchangeDelegationTest#rejectMayActClientPolicyRejectAny" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5UGVybWlzc2lvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TokenExchangeDelegationTest#rejectMayActClientPolicyPermission",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/TokenExchangeDelegationTest.java" ],
+  "symbols" : [ "TokenExchangeDelegationTest#rejectMayActClientPolicyPermission" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5Q29uc2VudA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TokenExchangeDelegationTest#rejectMayActClientPolicyConsent",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/TokenExchangeDelegationTest.java" ],
+  "symbols" : [ "TokenExchangeDelegationTest#rejectMayActClientPolicyConsent" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjbG9naW5XaXRoRGVsZWdhdGlvbk5vRXZlbnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TokenExchangeDelegationTest#loginWithDelegationNoEvent",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/TokenExchangeDelegationTest.java" ],
+  "symbols" : [ "TokenExchangeDelegationTest#loginWithDelegationNoEvent" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjY3JlYXRlSGFyZGNvZGVkU3ViTWFwcGVyRm9yQWRtaW5pc3RyYXRvcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TokenExchangeDelegationTest#createHardcodedSubMapperForAdministrator",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/TokenExchangeDelegationTest.java" ],
+  "symbols" : [ "TokenExchangeDelegationTest#createHardcodedSubMapperForAdministrator" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDbGllbnREZWxlZ2F0aW9uQ2liYVRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5U3VjY2Vzcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ClientDelegationCibaTest#rejectMayActClientPolicySuccess",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientDelegationCibaTest.java" ],
+  "symbols" : [ "ClientDelegationCibaTest#rejectMayActClientPolicySuccess" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDbGllbnREZWxlZ2F0aW9uQ2liYVRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5UmVqZWN0QW55",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ClientDelegationCibaTest#rejectMayActClientPolicyRejectAny",
+  "files" : [ "tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientDelegationCibaTest.java" ],
+  "symbols" : [ "ClientDelegationCibaTest#rejectMayActClientPolicyRejectAny" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCYWNrY2hhbm5lbFRva2VuUmVzcG9uc2VDb250ZXh0I2dldENsaWVudA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BackchannelTokenResponseContext#getClient",
+  "files" : [ "services/src/main/java/org/keycloak/protocol/oidc/grants/ciba/clientpolicy/context/BackchannelTokenResponseContext.java" ],
+  "symbols" : [ "BackchannelTokenResponseContext#getClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCYWNrY2hhbm5lbFRva2VuUmVzcG9uc2VDb250ZXh0I2dldFNjb3BlUGFyYW1ldGVy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BackchannelTokenResponseContext#getScopeParameter",
+  "files" : [ "services/src/main/java/org/keycloak/protocol/oidc/grants/ciba/clientpolicy/context/BackchannelTokenResponseContext.java" ],
+  "symbols" : [ "BackchannelTokenResponseContext#getScopeParameter" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBYnN0cmFjdENsaWVudFNlc3Npb25DdHhUb2tlblJlc3BvbnNlQ29udGV4dCNnZXRDbGllbnRTZXNzaW9u",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AbstractClientSessionCtxTokenResponseContext#getClientSession",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractClientSessionCtxTokenResponseContext.java" ],
+  "symbols" : [ "AbstractClientSessionCtxTokenResponseContext#getClientSession" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApKV1RBdXRob3JpemF0aW9uR3JhbnRSZXNwb25zZUNvbnRleHQjZ2V0UGFyYW1z",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add JWTAuthorizationGrantResponseContext#getParams",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/JWTAuthorizationGrantResponseContext.java" ],
+  "symbols" : [ "JWTAuthorizationGrantResponseContext#getParams" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApKV1RBdXRob3JpemF0aW9uR3JhbnRSZXNwb25zZUNvbnRleHQjZ2V0RXZlbnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add JWTAuthorizationGrantResponseContext#getEvent",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/JWTAuthorizationGrantResponseContext.java" ],
+  "symbols" : [ "JWTAuthorizationGrantResponseContext#getEvent" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlUmVzcG9uc2VDb250ZXh0I2dldFBhcmFtcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TokenExchangeResponseContext#getParams",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/TokenExchangeResponseContext.java" ],
+  "symbols" : [ "TokenExchangeResponseContext#getParams" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlUmVzcG9uc2VDb250ZXh0I2dldEV2ZW50",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TokenExchangeResponseContext#getEvent",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/TokenExchangeResponseContext.java" ],
+  "symbols" : [ "TokenExchangeResponseContext#getEvent" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApHcmFudFR5cGVDb25kaXRpb24jaXNHcmFudE1hdGNoaW5nUmVzcG9uc2VUeXBl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add GrantTypeCondition#isGrantMatchingResponseType",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/condition/GrantTypeCondition.java" ],
+  "symbols" : [ "GrantTypeCondition#isGrantMatchingResponseType" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApHcmFudFR5cGVDb25kaXRpb24jaXNHcmFudE1hdGNoaW5n",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add GrantTypeCondition#isGrantMatching",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/condition/GrantTypeCondition.java" ],
+  "symbols" : [ "GrantTypeCondition#isGrantMatching" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNnZXRIZWxwVGV4dA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RejectMayActClaimExecutorFactory#getHelpText",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java" ],
+  "symbols" : [ "RejectMayActClaimExecutorFactory#getHelpText" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNnZXRDb25maWdQcm9wZXJ0aWVz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RejectMayActClaimExecutorFactory#getConfigProperties",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java" ],
+  "symbols" : [ "RejectMayActClaimExecutorFactory#getConfigProperties" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNjcmVhdGU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RejectMayActClaimExecutorFactory#create",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java" ],
+  "symbols" : [ "RejectMayActClaimExecutorFactory#create" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNnZXRJZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RejectMayActClaimExecutorFactory#getId",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java" ],
+  "symbols" : [ "RejectMayActClaimExecutorFactory#getId" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNpc1N1cHBvcnRlZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RejectMayActClaimExecutorFactory#isSupported",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java" ],
+  "symbols" : [ "RejectMayActClaimExecutorFactory#isSupported" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI2dldFByb3ZpZGVySWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RejectMayActClaimExecutor#getProviderId",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutor.java" ],
+  "symbols" : [ "RejectMayActClaimExecutor#getProviderId" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI3NldHVwQ29uZmlndXJhdGlvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RejectMayActClaimExecutor#setupConfiguration",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutor.java" ],
+  "symbols" : [ "RejectMayActClaimExecutor#setupConfiguration" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI2dldEV4ZWN1dG9yQ29uZmlndXJhdGlvbkNsYXNz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RejectMayActClaimExecutor#getExecutorConfigurationClass",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutor.java" ],
+  "symbols" : [ "RejectMayActClaimExecutor#getExecutorConfigurationClass" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI2V4ZWN1dGVPbkV2ZW50",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RejectMayActClaimExecutor#executeOnEvent",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutor.java" ],
+  "symbols" : [ "RejectMayActClaimExecutor#executeOnEvent" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI3ZhbGlkYXRl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RejectMayActClaimExecutor#validate",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutor.java" ],
+  "symbols" : [ "RejectMayActClaimExecutor#validate" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApBYnN0cmFjdFRva2VuUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyCkRldmljZVRva2VuUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVy",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field DeviceTokenResponseContext#accessTokenResponseBuilder -> AbstractTokenResponseContext#accessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/protocol/oidc/grants/device/clientpolicy/context/DeviceTokenResponseContext.java", "services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractTokenResponseContext.java" ],
+  "symbols" : [ "DeviceTokenResponseContext#accessTokenResponseBuilder", "AbstractTokenResponseContext#accessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApBYnN0cmFjdENsaWVudFNlc3Npb25DdHhUb2tlblJlc3BvbnNlQ29udGV4dCNjbGllbnRTZXNzaW9uQ3R4CkJhY2tjaGFubmVsVG9rZW5SZXNwb25zZUNvbnRleHQjY2xpZW50U2Vzc2lvbkN0eA",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field BackchannelTokenResponseContext#clientSessionCtx -> AbstractClientSessionCtxTokenResponseContext#clientSessionCtx",
+  "files" : [ "services/src/main/java/org/keycloak/protocol/oidc/grants/ciba/clientpolicy/context/BackchannelTokenResponseContext.java", "services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractClientSessionCtxTokenResponseContext.java" ],
+  "symbols" : [ "BackchannelTokenResponseContext#clientSessionCtx", "AbstractClientSessionCtxTokenResponseContext#clientSessionCtx" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkJhY2tjaGFubmVsVG9rZW5SZXNwb25zZUNvbnRleHQjYWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXI",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field BackchannelTokenResponseContext#accessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/protocol/oidc/grants/ciba/clientpolicy/context/BackchannelTokenResponseContext.java" ],
+  "symbols" : [ "BackchannelTokenResponseContext#accessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClJlc291cmNlT3duZXJQYXNzd29yZENyZWRlbnRpYWxzUmVzcG9uc2VDb250ZXh0I2NsaWVudFNlc3Npb25DdHg",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ResourceOwnerPasswordCredentialsResponseContext#clientSessionCtx",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/ResourceOwnerPasswordCredentialsResponseContext.java" ],
+  "symbols" : [ "ResourceOwnerPasswordCredentialsResponseContext#clientSessionCtx" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClJlc291cmNlT3duZXJQYXNzd29yZENyZWRlbnRpYWxzUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVy",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ResourceOwnerPasswordCredentialsResponseContext#accessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/ResourceOwnerPasswordCredentialsResponseContext.java" ],
+  "symbols" : [ "ResourceOwnerPasswordCredentialsResponseContext#accessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClNlcnZpY2VBY2NvdW50VG9rZW5SZXNwb25zZUNvbnRleHQjY2xpZW50U2Vzc2lvbg",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ServiceAccountTokenResponseContext#clientSession",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/ServiceAccountTokenResponseContext.java" ],
+  "symbols" : [ "ServiceAccountTokenResponseContext#clientSession" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClNlcnZpY2VBY2NvdW50VG9rZW5SZXNwb25zZUNvbnRleHQjYWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXI",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ServiceAccountTokenResponseContext#accessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/ServiceAccountTokenResponseContext.java" ],
+  "symbols" : [ "ServiceAccountTokenResponseContext#accessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkltcGxpY2l0SHlicmlkVG9rZW5SZXNwb25zZSNjbGllbnRTZXNzaW9uQ3R4",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ImplicitHybridTokenResponse#clientSessionCtx",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/ImplicitHybridTokenResponse.java" ],
+  "symbols" : [ "ImplicitHybridTokenResponse#clientSessionCtx" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkltcGxpY2l0SHlicmlkVG9rZW5SZXNwb25zZSNhY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcg",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ImplicitHybridTokenResponse#accessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/ImplicitHybridTokenResponse.java" ],
+  "symbols" : [ "ImplicitHybridTokenResponse#accessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClRva2VuUmVzcG9uc2VDb250ZXh0I2NsaWVudFNlc3Npb25DdHg",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field TokenResponseContext#clientSessionCtx",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/TokenResponseContext.java" ],
+  "symbols" : [ "TokenResponseContext#clientSessionCtx" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClRva2VuUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVy",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field TokenResponseContext#accessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/TokenResponseContext.java" ],
+  "symbols" : [ "TokenResponseContext#accessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClRva2VuUmVmcmVzaFJlc3BvbnNlQ29udGV4dCNhY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcg",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field TokenRefreshResponseContext#accessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/TokenRefreshResponseContext.java" ],
+  "symbols" : [ "TokenRefreshResponseContext#accessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxECkpXVEF1dGhvcml6YXRpb25HcmFudFJlc3BvbnNlQ29udGV4dCNwYXJhbXM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field JWTAuthorizationGrantResponseContext#params",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/JWTAuthorizationGrantResponseContext.java" ],
+  "symbols" : [ "JWTAuthorizationGrantResponseContext#params" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRva2VuRXhjaGFuZ2VSZXNwb25zZUNvbnRleHQjcGFyYW1z",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TokenExchangeResponseContext#params",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/TokenExchangeResponseContext.java" ],
+  "symbols" : [ "TokenExchangeResponseContext#params" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5I1BST1ZJREVSX0lE",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RejectMayActClaimExecutorFactory#PROVIDER_ID",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java" ],
+  "symbols" : [ "RejectMayActClaimExecutorFactory#PROVIDER_ID" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5I1JFSkVDVF9BTllfTUFZX0FDVA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RejectMayActClaimExecutorFactory#REJECT_ANY_MAY_ACT",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java" ],
+  "symbols" : [ "RejectMayActClaimExecutorFactory#REJECT_ANY_MAY_ACT" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5I0FWT0lEX1BFUk1JU1NJT05fQ0hFQ0s",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RejectMayActClaimExecutorFactory#AVOID_PERMISSION_CHECK",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java" ],
+  "symbols" : [ "RejectMayActClaimExecutorFactory#AVOID_PERMISSION_CHECK" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5I0FWT0lEX0NPTlNFTlRfQ0hFQ0s",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RejectMayActClaimExecutorFactory#AVOID_CONSENT_CHECK",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java" ],
+  "symbols" : [ "RejectMayActClaimExecutorFactory#AVOID_CONSENT_CHECK" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IjbG9nZ2Vy",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RejectMayActClaimExecutor#logger",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutor.java" ],
+  "symbols" : [ "RejectMayActClaimExecutor#logger" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3Ijc2Vzc2lvbg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RejectMayActClaimExecutor#session",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutor.java" ],
+  "symbols" : [ "RejectMayActClaimExecutor#session" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IjY29uZmlndXJhdGlvbg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RejectMayActClaimExecutor#configuration",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutor.java" ],
+  "symbols" : [ "RejectMayActClaimExecutor#configuration" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpBYnN0cmFjdENsaWVudFNlc3Npb25DdHhUb2tlblJlc3BvbnNlQ29udGV4dCNjbGllbnRTZXNzaW9uQ3R4",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter AbstractClientSessionCtxTokenResponseContext#clientSessionCtx",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractClientSessionCtxTokenResponseContext.java" ],
+  "symbols" : [ "AbstractClientSessionCtxTokenResponseContext#clientSessionCtx" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpKV1RBdXRob3JpemF0aW9uR3JhbnRSZXNwb25zZUNvbnRleHQjcGFyYW1z",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter JWTAuthorizationGrantResponseContext#params",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/JWTAuthorizationGrantResponseContext.java" ],
+  "symbols" : [ "JWTAuthorizationGrantResponseContext#params" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUb2tlbkV4Y2hhbmdlUmVzcG9uc2VDb250ZXh0I3BhcmFtcw",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter TokenExchangeResponseContext#params",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/TokenExchangeResponseContext.java" ],
+  "symbols" : [ "TokenExchangeResponseContext#params" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpBYnN0cmFjdFRva2VuUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVy",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter AbstractTokenResponseContext#accessTokenResponseBuilder",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractTokenResponseContext.java" ],
+  "symbols" : [ "AbstractTokenResponseContext#accessTokenResponseBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI3Nlc3Npb24",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter RejectMayActClaimExecutor#session",
+  "files" : [ "services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutor.java" ],
+  "symbols" : [ "RejectMayActClaimExecutor#session" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+} ]

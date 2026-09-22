@@ -1,0 +1,82 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTClNweUFubm90YXRpb25VdGls",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SpyAnnotationUtil",
+  "files" : [ "mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationUtil.java" ],
+  "symbols" : [ "SpyAnnotationUtil" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTcHlBbm5vdGF0aW9uRW5naW5lI3NweUluc3RhbmNl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove SpyAnnotationEngine#spyInstance",
+  "files" : [ "mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationEngine.java" ],
+  "symbols" : [ "SpyAnnotationEngine#spyInstance" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfY3JlYXRlX3NweV93aXRoX3NwZWNpZmllZF9tb2NrX21ha2VyX2Zvcl9wcm92aWRlZF9pbnN0YW5jZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_provided_instance",
+  "files" : [ "mockito-core/src/test/java/org/mockitousage/annotation/SpyAnnotationTest.java" ],
+  "symbols" : [ "SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_provided_instance" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfY3JlYXRlX3NweV93aXRoX3NwZWNpZmllZF9tb2NrX21ha2VyX2Zvcl9hdXRvX2NyZWF0ZWRfaW5zdGFuY2U",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_auto_created_instance",
+  "files" : [ "mockito-core/src/test/java/org/mockitousage/annotation/SpyAnnotationTest.java" ],
+  "symbols" : [ "SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_auto_created_instance" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfbm90X3NldF9tb2NrX21ha2VyX3doZW5fdW5zcGVjaWZpZWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SpyAnnotationTest#should_not_set_mock_maker_when_unspecified",
+  "files" : [ "mockito-core/src/test/java/org/mockitousage/annotation/SpyAnnotationTest.java" ],
+  "symbols" : [ "SpyAnnotationTest#should_not_set_mock_maker_when_unspecified" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfY3JlYXRlX3NweV93aXRoX3NwZWNpZmllZF9tb2NrX21ha2VyX2Zvcl9pbmplY3RlZF9maWVsZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_injected_field",
+  "files" : [ "mockito-core/src/test/java/org/mockitousage/annotation/SpyAnnotationTest.java" ],
+  "symbols" : [ "SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_injected_field" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVXRpbCNyZXNldE9yQ3JlYXRlU3B5",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SpyAnnotationUtil#resetOrCreateSpy",
+  "files" : [ "mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationUtil.java" ],
+  "symbols" : [ "SpyAnnotationUtil#resetOrCreateSpy" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVXRpbCNjcmVhdGVTcHk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SpyAnnotationUtil#createSpy",
+  "files" : [ "mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationUtil.java" ],
+  "symbols" : [ "SpyAnnotationUtil#createSpy" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVXRpbCNhcHBseU1vY2tNYWtlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SpyAnnotationUtil#applyMockMaker",
+  "files" : [ "mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationUtil.java" ],
+  "symbols" : [ "SpyAnnotationUtil#applyMockMaker" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+} ]

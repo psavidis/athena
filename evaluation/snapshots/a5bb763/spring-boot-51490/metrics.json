@@ -1,0 +1,47 @@
+{
+  "diff": {
+    "files": 8,
+    "java_files": 8,
+    "non_java_files": 0,
+    "substantive_java_files": 8,
+    "copyright_only_java_files": 0,
+    "production_java_files": 7,
+    "java_hunks": 18,
+    "java_lines_changed": 117
+  },
+  "athena": {
+    "changes": 10,
+    "changes_by_kind": {
+      "REMOVE_SYMBOL": 3,
+      "ADD_SYMBOL": 3,
+      "CHANGE_FIELD_ANNOTATIONS": 2,
+      "ADD_CONSTRUCTOR_PARAMETER": 2
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 10
+    },
+    "semantic_entries": 13,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 10,
+      "RESPONSIBILITY": 3
+    },
+    "inferred_entries": 3,
+    "module_territories": 2,
+    "module_dependencies": 0,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 4,
+    "substantive_java_file_coverage": 0.5,
+    "production_java_files_represented": 4,
+    "production_java_file_coverage": 0.57,
+    "unrepresented_production_java_files": [
+      "core/spring-boot-test/src/main/java/org/springframework/boot/test/context/ImportsContextCustomizer.java",
+      "module/spring-boot-web-server/src/main/java/org/springframework/boot/web/server/autoconfigure/reactive/ReactiveWebServerConfiguration.java",
+      "module/spring-boot-web-server/src/main/java/org/springframework/boot/web/server/autoconfigure/servlet/ServletWebServerConfiguration.java"
+    ],
+    "unrepresented_test_java_files": [
+      "module/spring-boot-actuator-autoconfigure/src/test/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelectorTests.java"
+    ]
+  }
+}

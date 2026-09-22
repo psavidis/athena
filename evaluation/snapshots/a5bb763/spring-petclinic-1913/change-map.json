@@ -1,0 +1,230 @@
+{
+  "prTitle" : "Upgrading to Spring Boot 3.5",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 11,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTClBldFR5cGVSZXBvc2l0b3J5",
+    "description" : "Add class PetTypeRepository",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 1,
+    "changeKey" : "TU9WRV9TWU1CT0wKT3duZXJSZXBvc2l0b3J5I2ZpbmRQZXRUeXBlcwpQZXRUeXBlUmVwb3NpdG9yeSNmaW5kUGV0VHlwZXM",
+    "description" : "Move OwnerRepository#findPetTypes -> PetTypeRepository#findPetTypes",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 2,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXJUZXN0cyNwZXRz",
+    "description" : "Remove field PetTypeFormatterTests#pets",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 3,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXIjb3duZXJz",
+    "description" : "Remove field PetTypeFormatter#owners",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX0ZJRUxEClBldENvbnRyb2xsZXJUZXN0cyN0eXBlcw",
+    "description" : "Add field PetControllerTests#types",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXJUZXN0cyN0eXBlcw",
+    "description" : "Add field PetTypeFormatterTests#types",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX0ZJRUxECkNsaW5pY1NlcnZpY2VUZXN0cyN0eXBlcw",
+    "description" : "Add field ClinicServiceTests#types",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXIjdHlwZXM",
+    "description" : "Add field PetTypeFormatter#types",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX0ZJRUxEClBldENvbnRyb2xsZXIjdHlwZXM",
+    "description" : "Add field PetController#types",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpQZXRUeXBlRm9ybWF0dGVyI3R5cGVz",
+    "description" : "Add constructor parameter PetTypeFormatter#types",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpQZXRDb250cm9sbGVyI3R5cGVz",
+    "description" : "Add constructor parameter PetController#types",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "PetTypeRepository",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTClBldFR5cGVSZXBvc2l0b3J5",
+      "description" : "Add class PetTypeRepository",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "OwnerRepository",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "TU9WRV9TWU1CT0wKT3duZXJSZXBvc2l0b3J5I2ZpbmRQZXRUeXBlcwpQZXRUeXBlUmVwb3NpdG9yeSNmaW5kUGV0VHlwZXM",
+      "description" : "Move OwnerRepository#findPetTypes -> PetTypeRepository#findPetTypes",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "PetTypeFormatterTests",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXJUZXN0cyNwZXRz",
+      "description" : "Remove field PetTypeFormatterTests#pets",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXJUZXN0cyN0eXBlcw",
+      "description" : "Add field PetTypeFormatterTests#types",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "PetTypeFormatter",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXIjb3duZXJz",
+      "description" : "Remove field PetTypeFormatter#owners",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXIjdHlwZXM",
+      "description" : "Add field PetTypeFormatter#types",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 9,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpQZXRUeXBlRm9ybWF0dGVyI3R5cGVz",
+      "description" : "Add constructor parameter PetTypeFormatter#types",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "PetControllerTests",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "QUREX0ZJRUxEClBldENvbnRyb2xsZXJUZXN0cyN0eXBlcw",
+      "description" : "Add field PetControllerTests#types",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "ClinicServiceTests",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX0ZJRUxECkNsaW5pY1NlcnZpY2VUZXN0cyN0eXBlcw",
+      "description" : "Add field ClinicServiceTests#types",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "PetController",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "QUREX0ZJRUxEClBldENvbnRyb2xsZXIjdHlwZXM",
+      "description" : "Add field PetController#types",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 10,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpQZXRDb250cm9sbGVyI3R5cGVz",
+      "description" : "Add constructor parameter PetController#types",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  } ]
+}

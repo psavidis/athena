@@ -1,0 +1,10 @@
+[ {
+  "changeKey" : "QUREX1NZTUJPTApDb25jdXJyZW50THJ1Q2FjaGVUZXN0cyNyZW1vdmVSYWNpbmdXaXRoRXZpY3Rpb25Eb2VzTm90RXhjZWVkQ2FwYWNpdHk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConcurrentLruCacheTests#removeRacingWithEvictionDoesNotExceedCapacity",
+  "files" : [ "spring-core/src/test/java/org/springframework/util/ConcurrentLruCacheTests.java" ],
+  "symbols" : [ "ConcurrentLruCacheTests#removeRacingWithEvictionDoesNotExceedCapacity" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+} ]

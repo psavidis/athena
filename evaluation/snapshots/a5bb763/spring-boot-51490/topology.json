@@ -1,0 +1,20 @@
+{
+  "territories" : [ {
+    "moduleName" : "module",
+    "status" : "TOUCHED",
+    "fileCount" : 3,
+    "statusSummary" : "3 files · 7 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "UkVNT1ZFX1NZTUJPTApJbnRlZ3JhdGlvbkF1dG9Db25maWd1cmF0aW9uU2NhblJlZ2lzdHJhciNzZXRCZWFuRmFjdG9yeQ", "UkVNT1ZFX1NZTUJPTApNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvciNzZXRCZWFuQ2xhc3NMb2FkZXI", "UkVNT1ZFX1NZTUJPTApQcmltYXJ5RGVmYXVsdFZhbGlkYXRvclBvc3RQcm9jZXNzb3Ijc2V0QmVhbkZhY3Rvcnk", "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCkludGVncmF0aW9uQXV0b0NvbmZpZ3VyYXRpb25TY2FuUmVnaXN0cmFyI2JlYW5GYWN0b3J5", "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCk1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbkltcG9ydFNlbGVjdG9yI2NsYXNzTG9hZGVy", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpJbnRlZ3JhdGlvbkF1dG9Db25maWd1cmF0aW9uU2NhblJlZ2lzdHJhciNiZWFuRmFjdG9yeQ", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvciNjbGFzc0xvYWRlcg" ]
+  }, {
+    "moduleName" : "buildSrc",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 3 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNpbXBvcnRQYXJ0aWNpcGFudHNTaG91bGRPbmx5SW1wbGVtZW50QXdhcmVJbnRlcmZhY2VzSWZUaGV5QXJlUHVibGlj", "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNhcmVJbXBvcnRQYXJ0aWNpcGFudHM", "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNub3REaXJlY3RseUltcGxlbWVudEF3YXJlSW50ZXJmYWNlcw" ]
+  } ],
+  "dependencies" : [ ]
+}

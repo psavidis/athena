@@ -1,0 +1,146 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Remove",
+    "conceptDescription" : "An existing symbol was deleted with no successor.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-@Override\n-\tpublic void setBeanFactory(BeanFactory beanFactory) throws BeansException {\n-\t\tthis.beanFactory = beanFactory;\n-\t}\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationAutoConfigurationScanRegistrar.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Remove",
+    "conceptDescription" : "An existing symbol was deleted with no successor.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-@Override\n-\tpublic void setBeanClassLoader(ClassLoader classLoader) {\n-\t\tthis.classLoader = classLoader;\n-\t}\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelector.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Remove",
+    "conceptDescription" : "An existing symbol was deleted with no successor.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-@Override\n-\tpublic void setBeanFactory(BeanFactory beanFactory) throws BeansException {\n-\t\tif (beanFactory instanceof ConfigurableListableBeanFactory listableBeanFactory) {\n-\t\t\tthis.beanFactory = listableBeanFactory;\n-\t\t}\n-\t}\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-validation/src/main/java/org/springframework/boot/validation/autoconfigure/PrimaryDefaultValidatorPostProcessor.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+private static ArchRule importParticipantsShouldOnlyImplementAwareInterfacesIfTheyArePublic() {\n+\t\treturn ArchRuleDefinition.classes()\n+\t\t\t.that(areImportParticipants())\n+\t\t\t.and()\n+\t\t\t.areNotPublic()\n+\t\t\t.should(notDirectlyImplementAwareInterfaces())\n+\t\t\t.allowEmptyShould(true);\n+\t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+private static DescribedPredicate<JavaClass> areImportParticipants() {\n+\t\treturn JavaClass.Predicates.implement(ImportBeanDefinitionRegistrar.class)\n+\t\t\t.or(JavaClass.Predicates.implement(ImportSelector.class))\n+\t\t\t.or(JavaClass.Predicates.implement(TypeFilter.class));\n+\t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+private static ArchCondition<JavaClass> notDirectlyImplementAwareInterfaces() {\n+\t\tSet<String> awareNames = Set.of(BeanClassLoaderAware.class.getName(), BeanFactoryAware.class.getName(),\n+\t\t\t\tEnvironmentAware.class.getName(), ResourceLoaderAware.class.getName());\n+\t\treturn ArchCondition\n+\t\t\t.from(DescribedPredicate.describe(\"not directly implement BeanClassLoaderAware, BeanFactoryAware,\"\n+\t\t\t\t\t+ \" EnvironmentAware, or ResourceLoaderAware\", (javaClass) -> {\n+\t\t\t\t\t\tfor (JavaClass rawInterface : javaClass.getRawInterfaces()) {\n+\t\t\t\t\t\t\tif (awareNames.contains(rawInterface.getFullName())) {\n+\t\t\t\t\t\t\t\treturn false;\n+\t\t\t\t\t\t\t}\n+\t\t\t\t\t\t}\n+\t\t\t\t\t\treturn true;\n+\t\t\t\t\t}));\n+\t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Field Annotations",
+    "conceptDescription" : "A field kept its name and declared type but the set of annotations on it changed.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-@SuppressWarnings(\"NullAway.Init\")\n-\tprivate BeanFactory beanFactory;\n+private final BeanFactory beanFactory;" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationAutoConfigurationScanRegistrar.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Field Annotations",
+    "conceptDescription" : "A field kept its name and declared type but the set of annotations on it changed.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-private @Nullable ClassLoader classLoader;\n+private final ClassLoader classLoader;" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelector.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add Constructor Parameter",
+    "conceptDescription" : "A constructor gained a parameter that it assigns straight to a same-named field.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+IntegrationAutoConfigurationScanRegistrar(BeanFactory beanFactory) {\n+\t\tthis.beanFactory = beanFactory;\n+\t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationAutoConfigurationScanRegistrar.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add Constructor Parameter",
+    "conceptDescription" : "A constructor gained a parameter that it assigns straight to a same-named field.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+ManagementContextConfigurationImportSelector(ClassLoader classLoader) {\n+\t\tthis.classLoader = classLoader;\n+\t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelector.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Remove Capability",
+    "conceptDescription" : "An existing business-meaningful capability was removed.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-@Override\n-\tpublic void setBeanFactory(BeanFactory beanFactory) throws BeansException {\n-\t\tthis.beanFactory = beanFactory;\n-\t}\n+", "-@Override\n-\tpublic void setBeanClassLoader(ClassLoader classLoader) {\n-\t\tthis.classLoader = classLoader;\n-\t}\n+", "-@Override\n-\tpublic void setBeanFactory(BeanFactory beanFactory) throws BeansException {\n-\t\tif (beanFactory instanceof ConfigurableListableBeanFactory listableBeanFactory) {\n-\t\t\tthis.beanFactory = listableBeanFactory;\n-\t\t}\n-\t}\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationAutoConfigurationScanRegistrar.java", "module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelector.java", "module/spring-boot-validation/src/main/java/org/springframework/boot/validation/autoconfigure/PrimaryDefaultValidatorPostProcessor.java" ],
+    "groupedMoveCount" : 3
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Add Capability",
+    "conceptDescription" : "A new business-meaningful capability was introduced.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-\n+private static ArchRule importParticipantsShouldOnlyImplementAwareInterfacesIfTheyArePublic() {\n+\t\treturn ArchRuleDefinition.classes()\n+\t\t\t.that(areImportParticipants())\n+\t\t\t.and()\n+\t\t\t.areNotPublic()\n+\t\t\t.should(notDirectlyImplementAwareInterfaces())\n+\t\t\t.allowEmptyShould(true);\n+\t}", "-\n+private static DescribedPredicate<JavaClass> areImportParticipants() {\n+\t\treturn JavaClass.Predicates.implement(ImportBeanDefinitionRegistrar.class)\n+\t\t\t.or(JavaClass.Predicates.implement(ImportSelector.class))\n+\t\t\t.or(JavaClass.Predicates.implement(TypeFilter.class));\n+\t}", "-\n+private static ArchCondition<JavaClass> notDirectlyImplementAwareInterfaces() {\n+\t\tSet<String> awareNames = Set.of(BeanClassLoaderAware.class.getName(), BeanFactoryAware.class.getName(),\n+\t\t\t\tEnvironmentAware.class.getName(), ResourceLoaderAware.class.getName());\n+\t\treturn ArchCondition\n+\t\t\t.from(DescribedPredicate.describe(\"not directly implement BeanClassLoaderAware, BeanFactoryAware,\"\n+\t\t\t\t\t+ \" EnvironmentAware, or ResourceLoaderAware\", (javaClass) -> {\n+\t\t\t\t\t\tfor (JavaClass rawInterface : javaClass.getRawInterfaces()) {\n+\t\t\t\t\t\t\tif (awareNames.contains(rawInterface.getFullName())) {\n+\t\t\t\t\t\t\t\treturn false;\n+\t\t\t\t\t\t\t}\n+\t\t\t\t\t\t}\n+\t\t\t\t\t\treturn true;\n+\t\t\t\t\t}));\n+\t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java" ],
+    "groupedMoveCount" : 3
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Change API Responsibility",
+    "conceptDescription" : "What a public API is responsible for doing changed.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-\n+IntegrationAutoConfigurationScanRegistrar(BeanFactory beanFactory) {\n+\t\tthis.beanFactory = beanFactory;\n+\t}", "-\n+ManagementContextConfigurationImportSelector(ClassLoader classLoader) {\n+\t\tthis.classLoader = classLoader;\n+\t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationAutoConfigurationScanRegistrar.java", "module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelector.java" ],
+    "groupedMoveCount" : 2
+  } ]
+}

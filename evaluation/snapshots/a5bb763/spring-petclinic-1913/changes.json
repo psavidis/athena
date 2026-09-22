@@ -1,0 +1,100 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTClBldFR5cGVSZXBvc2l0b3J5",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class PetTypeRepository",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeRepository.java" ],
+  "symbols" : [ "PetTypeRepository" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "TU9WRV9TWU1CT0wKT3duZXJSZXBvc2l0b3J5I2ZpbmRQZXRUeXBlcwpQZXRUeXBlUmVwb3NpdG9yeSNmaW5kUGV0VHlwZXM",
+  "kind" : "MOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Move OwnerRepository#findPetTypes -> PetTypeRepository#findPetTypes",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/OwnerRepository.java", "src/main/java/org/springframework/samples/petclinic/owner/PetTypeRepository.java" ],
+  "symbols" : [ "OwnerRepository#findPetTypes", "PetTypeRepository#findPetTypes" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXJUZXN0cyNwZXRz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PetTypeFormatterTests#pets",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/owner/PetTypeFormatterTests.java" ],
+  "symbols" : [ "PetTypeFormatterTests#pets" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXIjb3duZXJz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PetTypeFormatter#owners",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+  "symbols" : [ "PetTypeFormatter#owners" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxEClBldENvbnRyb2xsZXJUZXN0cyN0eXBlcw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field PetControllerTests#types",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java" ],
+  "symbols" : [ "PetControllerTests#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXJUZXN0cyN0eXBlcw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field PetTypeFormatterTests#types",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/owner/PetTypeFormatterTests.java" ],
+  "symbols" : [ "PetTypeFormatterTests#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxECkNsaW5pY1NlcnZpY2VUZXN0cyN0eXBlcw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ClinicServiceTests#types",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java" ],
+  "symbols" : [ "ClinicServiceTests#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXIjdHlwZXM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field PetTypeFormatter#types",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+  "symbols" : [ "PetTypeFormatter#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0ZJRUxEClBldENvbnRyb2xsZXIjdHlwZXM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field PetController#types",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetController.java" ],
+  "symbols" : [ "PetController#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpQZXRUeXBlRm9ybWF0dGVyI3R5cGVz",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter PetTypeFormatter#types",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+  "symbols" : [ "PetTypeFormatter#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpQZXRDb250cm9sbGVyI3R5cGVz",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter PetController#types",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetController.java" ],
+  "symbols" : [ "PetController#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+} ]

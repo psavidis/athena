@@ -1,0 +1,12 @@
+{
+  "territories" : [ {
+    "moduleName" : "mockito-core",
+    "status" : "TOUCHED",
+    "fileCount" : 3,
+    "statusSummary" : "3 files · 9 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "QUREX0NMQVNTClNweUFubm90YXRpb25VdGls", "UkVNT1ZFX1NZTUJPTApTcHlBbm5vdGF0aW9uRW5naW5lI3NweUluc3RhbmNl", "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfY3JlYXRlX3NweV93aXRoX3NwZWNpZmllZF9tb2NrX21ha2VyX2Zvcl9wcm92aWRlZF9pbnN0YW5jZQ", "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfY3JlYXRlX3NweV93aXRoX3NwZWNpZmllZF9tb2NrX21ha2VyX2Zvcl9hdXRvX2NyZWF0ZWRfaW5zdGFuY2U", "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfbm90X3NldF9tb2NrX21ha2VyX3doZW5fdW5zcGVjaWZpZWQ", "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfY3JlYXRlX3NweV93aXRoX3NwZWNpZmllZF9tb2NrX21ha2VyX2Zvcl9pbmplY3RlZF9maWVsZA", "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVXRpbCNyZXNldE9yQ3JlYXRlU3B5", "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVXRpbCNjcmVhdGVTcHk", "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVXRpbCNhcHBseU1vY2tNYWtlcg" ]
+  } ],
+  "dependencies" : [ ]
+}

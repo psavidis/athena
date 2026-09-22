@@ -1,0 +1,40 @@
+{
+  "diff": {
+    "files": 2,
+    "java_files": 2,
+    "non_java_files": 0,
+    "substantive_java_files": 2,
+    "copyright_only_java_files": 0,
+    "production_java_files": 1,
+    "java_hunks": 2,
+    "java_lines_changed": 28
+  },
+  "athena": {
+    "changes": 1,
+    "changes_by_kind": {
+      "ADD_SYMBOL": 1
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 1
+    },
+    "semantic_entries": 2,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 1,
+      "RESPONSIBILITY": 1
+    },
+    "inferred_entries": 1,
+    "module_territories": 1,
+    "module_dependencies": 0,
+    "focus_areas": 1
+  },
+  "coverage": {
+    "substantive_java_files_represented": 1,
+    "substantive_java_file_coverage": 0.5,
+    "production_java_files_represented": 0,
+    "production_java_file_coverage": 0.0,
+    "unrepresented_production_java_files": [
+      "src/main/java/org/apache/commons/lang3/math/Fraction.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

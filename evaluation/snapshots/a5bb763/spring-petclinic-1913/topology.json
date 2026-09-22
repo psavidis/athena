@@ -1,0 +1,12 @@
+{
+  "territories" : [ {
+    "moduleName" : "src",
+    "status" : "TOUCHED",
+    "fileCount" : 7,
+    "statusSummary" : "7 files · 11 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "QUREX0NMQVNTClBldFR5cGVSZXBvc2l0b3J5", "TU9WRV9TWU1CT0wKT3duZXJSZXBvc2l0b3J5I2ZpbmRQZXRUeXBlcwpQZXRUeXBlUmVwb3NpdG9yeSNmaW5kUGV0VHlwZXM", "UkVNT1ZFX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXJUZXN0cyNwZXRz", "UkVNT1ZFX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXIjb3duZXJz", "QUREX0ZJRUxEClBldENvbnRyb2xsZXJUZXN0cyN0eXBlcw", "QUREX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXJUZXN0cyN0eXBlcw", "QUREX0ZJRUxECkNsaW5pY1NlcnZpY2VUZXN0cyN0eXBlcw", "QUREX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXIjdHlwZXM", "QUREX0ZJRUxEClBldENvbnRyb2xsZXIjdHlwZXM", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpQZXRUeXBlRm9ybWF0dGVyI3R5cGVz", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpQZXRDb250cm9sbGVyI3R5cGVz" ]
+  } ],
+  "dependencies" : [ ]
+}

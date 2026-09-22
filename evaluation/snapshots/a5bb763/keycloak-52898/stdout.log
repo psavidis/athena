@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/keycloak/keycloak.git",
+  "base" : "33ee7c0ba6781767737e3055fb012b75c42048df",
+  "head" : "8a23b5e55431e929b7174999dc7ec8f192853cff",
+  "changeCount" : 82,
+  "moduleCount" : 4,
+  "checkoutAndAnalysisSeconds" : 1604.11
+}

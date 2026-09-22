@@ -1,0 +1,124 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+public final class SpyAnnotationUtil {\n \n+    private SpyAnnotationUtil() {}\n+\n+    /**\n+     * Turns the value currently held by the given field into a spy.\n+     *\n+     * <p>If the value is already a mock (for example because {@code MockitoAnnotations.openMocks}\n+     * was called more than once) it is simply reset. Otherwise, a spy of the value is created and\n+     * written back into the field.\n+     *\n+     * @param field the {@code @Spy} annotated field being processed\n+     * @param instance the current value held by the field, which must not be {@code null}\n+     * @param accessor the accessor used to write the spy back into the field\n+     * @param fieldOwner the object on which the field is declared\n+     * @throws IllegalAccessException if the spy cannot be written back into the field\n+     */\n+    public static void resetOrCreateSpy(\n+            Field field, Object instance, MemberAccessor accessor, Object fieldOwner)\n+            throws IllegalAccessException {\n+        if (MockUtil.isMock(instance)) {\n+            // instance has been spied earlier, e.g. when MockitoAnnotations.openMocks is called\n+            // more than once\n+            Mockito.reset(instance);\n+        } else {\n+            accessor.set(field, fieldOwner, createSpy(field, instance));\n+        }\n+    }\n+\n+    /**\n+     * Creates a spy of the given instance, deriving the mock settings from the field.\n+     *\n+     * @param field the {@code @Spy} annotated field, used to derive the mock settings\n+     * @param instance the instance to spy on\n+     * @return the created spy\n+     */\n+    private static Object createSpy(Field field, Object instance) {\n+        MockSettings settings =\n+                withSettings()\n+                        .genericTypeToMock(field.getGenericType())\n+                        .spiedInstance(instance)\n+                        .defaultAnswer(CALLS_REAL_METHODS)\n+                        .name(field.getName());\n+        applyMockMaker(field, settings);\n+        return Mockito.mock(instance.getClass(), settings);\n+    }\n+\n+    /**\n+     * Applies the {@link Spy#mockMaker()} of the field, if any, to the given settings so that a spy\n+     * can opt into a specific {@link org.mockito.plugins.MockMaker}.\n+     *\n+     * @param field the {@code @Spy} annotated field\n+     * @param settings the settings to apply the mock maker to; untouched if no mock maker specified\n+     */\n+    static void applyMockMaker(Field field, MockSettings settings) {\n+        String mockMaker = field.getAnnotation(Spy.class).mockMaker();\n+        if (!mockMaker.isEmpty()) {\n+            settings.mockMaker(mockMaker);\n+        }\n+    }\n+}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationUtil.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Remove",
+    "conceptDescription" : "An existing symbol was deleted with no successor.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-private static Object spyInstance(Field field, Object instance) {\n-        // TODO: Add mockMaker option for @Spy annotation (#2740)\n-        return Mockito.mock(\n-                instance.getClass(),\n-                withSettings()\n-                        .genericTypeToMock(field.getGenericType())\n-                        .spiedInstance(instance)\n-                        .defaultAnswer(CALLS_REAL_METHODS)\n-                        .name(field.getName()));\n-    }\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationEngine.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+@Test\n+    public void should_create_spy_with_specified_mock_maker_for_provided_instance()\n+            throws Exception {\n+        WithMockMakerSpies holder = new WithMockMakerSpies();\n \n+        try (AutoCloseable ignored = MockitoAnnotations.openMocks(holder)) {\n+            assertThat(mockingDetails(holder.instanceSpy).getMockCreationSettings().getMockMaker())\n+                    .isEqualTo(MockMakers.SUBCLASS);\n+\n+            // spy is still functional\n+            doReturn(10).when(holder.instanceSpy).size();\n+            assertEquals(10, holder.instanceSpy.size());\n+        }\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/test/java/org/mockitousage/annotation/SpyAnnotationTest.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+@Test\n+    public void should_create_spy_with_specified_mock_maker_for_auto_created_instance()\n+            throws Exception {\n+        WithMockMakerSpies holder = new WithMockMakerSpies();\n \n+        try (AutoCloseable ignored = MockitoAnnotations.openMocks(holder)) {\n+            assertThat(\n+                            mockingDetails(holder.autoCreatedSpy)\n+                                    .getMockCreationSettings()\n+                                    .getMockMaker())\n+                    .isEqualTo(MockMakers.SUBCLASS);\n+        }\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/test/java/org/mockitousage/annotation/SpyAnnotationTest.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+@Test\n+    public void should_not_set_mock_maker_when_unspecified() throws Exception {\n+        WithMockMakerSpies holder = new WithMockMakerSpies();\n \n+        try (AutoCloseable ignored = MockitoAnnotations.openMocks(holder)) {\n+            assertThat(mockingDetails(holder.defaultSpy).getMockCreationSettings().getMockMaker())\n+                    .isNull();\n+        }\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/test/java/org/mockitousage/annotation/SpyAnnotationTest.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+@Test\n+    public void should_create_spy_with_specified_mock_maker_for_injected_field() throws Exception {\n+        WithInjectedMockMakerSpy holder = new WithInjectedMockMakerSpy();\n \n+        try (AutoCloseable ignored = MockitoAnnotations.openMocks(holder)) {\n+            assertThat(mockingDetails(holder.service).getMockCreationSettings().getMockMaker())\n+                    .isEqualTo(MockMakers.SUBCLASS);\n+        }\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/test/java/org/mockitousage/annotation/SpyAnnotationTest.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+public static void resetOrCreateSpy(\n+            Field field, Object instance, MemberAccessor accessor, Object fieldOwner)\n+            throws IllegalAccessException {\n+        if (MockUtil.isMock(instance)) {\n+            // instance has been spied earlier, e.g. when MockitoAnnotations.openMocks is called\n+            // more than once\n+            Mockito.reset(instance);\n+        } else {\n+            accessor.set(field, fieldOwner, createSpy(field, instance));\n+        }\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationUtil.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+private static Object createSpy(Field field, Object instance) {\n+        MockSettings settings =\n+                withSettings()\n+                        .genericTypeToMock(field.getGenericType())\n+                        .spiedInstance(instance)\n+                        .defaultAnswer(CALLS_REAL_METHODS)\n+                        .name(field.getName());\n+        applyMockMaker(field, settings);\n+        return Mockito.mock(instance.getClass(), settings);\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationUtil.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+static void applyMockMaker(Field field, MockSettings settings) {\n+        String mockMaker = field.getAnnotation(Spy.class).mockMaker();\n+        if (!mockMaker.isEmpty()) {\n+            settings.mockMaker(mockMaker);\n+        }\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationUtil.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Remove Capability",
+    "conceptDescription" : "An existing business-meaningful capability was removed.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-private static Object spyInstance(Field field, Object instance) {\n-        // TODO: Add mockMaker option for @Spy annotation (#2740)\n-        return Mockito.mock(\n-                instance.getClass(),\n-                withSettings()\n-                        .genericTypeToMock(field.getGenericType())\n-                        .spiedInstance(instance)\n-                        .defaultAnswer(CALLS_REAL_METHODS)\n-                        .name(field.getName()));\n-    }\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationEngine.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Add Capability",
+    "conceptDescription" : "A new business-meaningful capability was introduced.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "+public final class SpyAnnotationUtil {\n \n+    private SpyAnnotationUtil() {}\n+\n+    /**\n+     * Turns the value currently held by the given field into a spy.\n+     *\n+     * <p>If the value is already a mock (for example because {@code MockitoAnnotations.openMocks}\n+     * was called more than once) it is simply reset. Otherwise, a spy of the value is created and\n+     * written back into the field.\n+     *\n+     * @param field the {@code @Spy} annotated field being processed\n+     * @param instance the current value held by the field, which must not be {@code null}\n+     * @param accessor the accessor used to write the spy back into the field\n+     * @param fieldOwner the object on which the field is declared\n+     * @throws IllegalAccessException if the spy cannot be written back into the field\n+     */\n+    public static void resetOrCreateSpy(\n+            Field field, Object instance, MemberAccessor accessor, Object fieldOwner)\n+            throws IllegalAccessException {\n+        if (MockUtil.isMock(instance)) {\n+            // instance has been spied earlier, e.g. when MockitoAnnotations.openMocks is called\n+            // more than once\n+            Mockito.reset(instance);\n+        } else {\n+            accessor.set(field, fieldOwner, createSpy(field, instance));\n+        }\n+    }\n+\n+    /**\n+     * Creates a spy of the given instance, deriving the mock settings from the field.\n+     *\n+     * @param field the {@code @Spy} annotated field, used to derive the mock settings\n+     * @param instance the instance to spy on\n+     * @return the created spy\n+     */\n+    private static Object createSpy(Field field, Object instance) {\n+        MockSettings settings =\n+                withSettings()\n+                        .genericTypeToMock(field.getGenericType())\n+                        .spiedInstance(instance)\n+                        .defaultAnswer(CALLS_REAL_METHODS)\n+                        .name(field.getName());\n+        applyMockMaker(field, settings);\n+        return Mockito.mock(instance.getClass(), settings);\n+    }\n+\n+    /**\n+     * Applies the {@link Spy#mockMaker()} of the field, if any, to the given settings so that a spy\n+     * can opt into a specific {@link org.mockito.plugins.MockMaker}.\n+     *\n+     * @param field the {@code @Spy} annotated field\n+     * @param settings the settings to apply the mock maker to; untouched if no mock maker specified\n+     */\n+    static void applyMockMaker(Field field, MockSettings settings) {\n+        String mockMaker = field.getAnnotation(Spy.class).mockMaker();\n+        if (!mockMaker.isEmpty()) {\n+            settings.mockMaker(mockMaker);\n+        }\n+    }\n+}", "+@Test\n+    public void should_create_spy_with_specified_mock_maker_for_provided_instance()\n+            throws Exception {\n+        WithMockMakerSpies holder = new WithMockMakerSpies();\n \n+        try (AutoCloseable ignored = MockitoAnnotations.openMocks(holder)) {\n+            assertThat(mockingDetails(holder.instanceSpy).getMockCreationSettings().getMockMaker())\n+                    .isEqualTo(MockMakers.SUBCLASS);\n+\n+            // spy is still functional\n+            doReturn(10).when(holder.instanceSpy).size();\n+            assertEquals(10, holder.instanceSpy.size());\n+        }\n+    }", "+@Test\n+    public void should_create_spy_with_specified_mock_maker_for_auto_created_instance()\n+            throws Exception {\n+        WithMockMakerSpies holder = new WithMockMakerSpies();\n \n+        try (AutoCloseable ignored = MockitoAnnotations.openMocks(holder)) {\n+            assertThat(\n+                            mockingDetails(holder.autoCreatedSpy)\n+                                    .getMockCreationSettings()\n+                                    .getMockMaker())\n+                    .isEqualTo(MockMakers.SUBCLASS);\n+        }\n+    }", "+@Test\n+    public void should_not_set_mock_maker_when_unspecified() throws Exception {\n+        WithMockMakerSpies holder = new WithMockMakerSpies();\n \n+        try (AutoCloseable ignored = MockitoAnnotations.openMocks(holder)) {\n+            assertThat(mockingDetails(holder.defaultSpy).getMockCreationSettings().getMockMaker())\n+                    .isNull();\n+        }\n+    }", "+@Test\n+    public void should_create_spy_with_specified_mock_maker_for_injected_field() throws Exception {\n+        WithInjectedMockMakerSpy holder = new WithInjectedMockMakerSpy();\n \n+        try (AutoCloseable ignored = MockitoAnnotations.openMocks(holder)) {\n+            assertThat(mockingDetails(holder.service).getMockCreationSettings().getMockMaker())\n+                    .isEqualTo(MockMakers.SUBCLASS);\n+        }\n+    }", "-\n+public static void resetOrCreateSpy(\n+            Field field, Object instance, MemberAccessor accessor, Object fieldOwner)\n+            throws IllegalAccessException {\n+        if (MockUtil.isMock(instance)) {\n+            // instance has been spied earlier, e.g. when MockitoAnnotations.openMocks is called\n+            // more than once\n+            Mockito.reset(instance);\n+        } else {\n+            accessor.set(field, fieldOwner, createSpy(field, instance));\n+        }\n+    }", "-\n+private static Object createSpy(Field field, Object instance) {\n+        MockSettings settings =\n+                withSettings()\n+                        .genericTypeToMock(field.getGenericType())\n+                        .spiedInstance(instance)\n+                        .defaultAnswer(CALLS_REAL_METHODS)\n+                        .name(field.getName());\n+        applyMockMaker(field, settings);\n+        return Mockito.mock(instance.getClass(), settings);\n+    }", "-\n+static void applyMockMaker(Field field, MockSettings settings) {\n+        String mockMaker = field.getAnnotation(Spy.class).mockMaker();\n+        if (!mockMaker.isEmpty()) {\n+            settings.mockMaker(mockMaker);\n+        }\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationUtil.java", "mockito-core/src/test/java/org/mockitousage/annotation/SpyAnnotationTest.java" ],
+    "groupedMoveCount" : 8
+  } ]
+}

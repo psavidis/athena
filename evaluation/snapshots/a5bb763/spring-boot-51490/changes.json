@@ -1,0 +1,91 @@
+[ {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApJbnRlZ3JhdGlvbkF1dG9Db25maWd1cmF0aW9uU2NhblJlZ2lzdHJhciNzZXRCZWFuRmFjdG9yeQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove IntegrationAutoConfigurationScanRegistrar#setBeanFactory",
+  "files" : [ "module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationAutoConfigurationScanRegistrar.java" ],
+  "symbols" : [ "IntegrationAutoConfigurationScanRegistrar#setBeanFactory" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvciNzZXRCZWFuQ2xhc3NMb2FkZXI",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ManagementContextConfigurationImportSelector#setBeanClassLoader",
+  "files" : [ "module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelector.java" ],
+  "symbols" : [ "ManagementContextConfigurationImportSelector#setBeanClassLoader" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQcmltYXJ5RGVmYXVsdFZhbGlkYXRvclBvc3RQcm9jZXNzb3Ijc2V0QmVhbkZhY3Rvcnk",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PrimaryDefaultValidatorPostProcessor#setBeanFactory",
+  "files" : [ "module/spring-boot-validation/src/main/java/org/springframework/boot/validation/autoconfigure/PrimaryDefaultValidatorPostProcessor.java" ],
+  "symbols" : [ "PrimaryDefaultValidatorPostProcessor#setBeanFactory" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNpbXBvcnRQYXJ0aWNpcGFudHNTaG91bGRPbmx5SW1wbGVtZW50QXdhcmVJbnRlcmZhY2VzSWZUaGV5QXJlUHVibGlj",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ArchitectureRules#importParticipantsShouldOnlyImplementAwareInterfacesIfTheyArePublic",
+  "files" : [ "buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java" ],
+  "symbols" : [ "ArchitectureRules#importParticipantsShouldOnlyImplementAwareInterfacesIfTheyArePublic" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNhcmVJbXBvcnRQYXJ0aWNpcGFudHM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ArchitectureRules#areImportParticipants",
+  "files" : [ "buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java" ],
+  "symbols" : [ "ArchitectureRules#areImportParticipants" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNub3REaXJlY3RseUltcGxlbWVudEF3YXJlSW50ZXJmYWNlcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ArchitectureRules#notDirectlyImplementAwareInterfaces",
+  "files" : [ "buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java" ],
+  "symbols" : [ "ArchitectureRules#notDirectlyImplementAwareInterfaces" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCkludGVncmF0aW9uQXV0b0NvbmZpZ3VyYXRpb25TY2FuUmVnaXN0cmFyI2JlYW5GYWN0b3J5",
+  "kind" : "CHANGE_FIELD_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change annotations on field IntegrationAutoConfigurationScanRegistrar#beanFactory",
+  "files" : [ "module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationAutoConfigurationScanRegistrar.java" ],
+  "symbols" : [ "IntegrationAutoConfigurationScanRegistrar#beanFactory" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCk1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbkltcG9ydFNlbGVjdG9yI2NsYXNzTG9hZGVy",
+  "kind" : "CHANGE_FIELD_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change annotations on field ManagementContextConfigurationImportSelector#classLoader",
+  "files" : [ "module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelector.java" ],
+  "symbols" : [ "ManagementContextConfigurationImportSelector#classLoader" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpJbnRlZ3JhdGlvbkF1dG9Db25maWd1cmF0aW9uU2NhblJlZ2lzdHJhciNiZWFuRmFjdG9yeQ",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter IntegrationAutoConfigurationScanRegistrar#beanFactory",
+  "files" : [ "module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationAutoConfigurationScanRegistrar.java" ],
+  "symbols" : [ "IntegrationAutoConfigurationScanRegistrar#beanFactory" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvciNjbGFzc0xvYWRlcg",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ManagementContextConfigurationImportSelector#classLoader",
+  "files" : [ "module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelector.java" ],
+  "symbols" : [ "ManagementContextConfigurationImportSelector#classLoader" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+} ]

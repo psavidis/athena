@@ -1,0 +1,54 @@
+{
+  "diff": {
+    "files": 22,
+    "java_files": 21,
+    "non_java_files": 1,
+    "substantive_java_files": 21,
+    "copyright_only_java_files": 0,
+    "production_java_files": 18,
+    "java_hunks": 47,
+    "java_lines_changed": 877
+  },
+  "athena": {
+    "changes": 82,
+    "changes_by_kind": {
+      "ADD_CLASS": 6,
+      "CHANGE_METHOD_SIGNATURE": 1,
+      "MOVE_SYMBOL": 2,
+      "EXTRACT_METHOD": 3,
+      "REMOVE_SYMBOL": 11,
+      "ADD_SYMBOL": 33,
+      "MOVE_FIELD": 2,
+      "REMOVE_FIELD": 10,
+      "ADD_FIELD": 9,
+      "ADD_CONSTRUCTOR_PARAMETER": 5
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 82
+    },
+    "semantic_entries": 92,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 82,
+      "PATTERN": 1,
+      "FRAMEWORK": 1,
+      "RESPONSIBILITY": 8
+    },
+    "inferred_entries": 10,
+    "module_territories": 4,
+    "module_dependencies": 0,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 17,
+    "substantive_java_file_coverage": 0.81,
+    "production_java_files_represented": 14,
+    "production_java_file_coverage": 0.78,
+    "unrepresented_production_java_files": [
+      "server-spi/src/main/java/org/keycloak/services/clientpolicy/ClientPolicyEvent.java",
+      "services/src/main/java/org/keycloak/protocol/oidc/grants/ClientCredentialsGrantType.java",
+      "services/src/main/java/org/keycloak/protocol/oidc/grants/JWTAuthorizationGrantType.java",
+      "services/src/main/java/org/keycloak/protocol/oidc/tokenexchange/StandardTokenExchangeProvider.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

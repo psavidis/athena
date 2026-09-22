@@ -1,0 +1,13 @@
+[ {
+  "description" : "Add class PetTypeRepository",
+  "entity" : "PetTypeRepository"
+}, {
+  "description" : "Add constructor parameter PetController#types",
+  "entity" : "PetController"
+}, {
+  "description" : "Add constructor parameter PetTypeFormatter#types",
+  "entity" : "PetTypeFormatter"
+}, {
+  "description" : "Add field ClinicServiceTests#types",
+  "entity" : "ClinicServiceTests"
+} ]
