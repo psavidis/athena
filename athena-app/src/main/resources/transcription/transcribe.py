@@ -29,6 +29,15 @@ A segment's "speaker" key is omitted entirely when diarization could not
 attribute one — never a null/empty placeholder, so the Java side's parsing
 can treat "key present" as "speaker known" directly.
 
+Accepts an optional trailing `--model NAME` (default "large-v3", the
+production-accuracy model). Tests point this at a much smaller model
+(e.g. "tiny") via WhisperXTranscriptionProvider's own model-name
+parameter — loading/running "large-v3" on every test invocation (a
+~2.9GB model, expensive even on CPU regardless of whether it is already
+downloaded) is what made the test suite slow; the model is the accuracy
+knob, and unit/Gherkin tests here only need the pipeline's wiring to be
+correct, not its transcription accuracy.
+
 On failure (tool/model unavailable, bad input, inference error): prints a
 one-line diagnostic to stderr and exits non-zero. Never partially writes
 malformed JSON to stdout on failure.
@@ -60,7 +69,11 @@ def _silence_whisperx_console_logging() -> None:
     whisperx_logger.propagate = False
 
 
-def transcribe(audio_path: str, min_speakers: int | None, max_speakers: int | None) -> dict:
+DEFAULT_MODEL = "large-v3"
+
+
+def transcribe(audio_path: str, min_speakers: int | None, max_speakers: int | None,
+               model_name: str = DEFAULT_MODEL) -> dict:
     # Silenced BEFORE `import whisperx`: whisperx.asr logs "No language specified" from
     # inside load_model() itself (source-verified: whisperx/asr.py line ~368, before
     # load_model returns) — too early for any fix placed after that call. Pre-configuring
@@ -77,7 +90,7 @@ def transcribe(audio_path: str, min_speakers: int | None, max_speakers: int | No
     device = "cpu"
     compute_type = "int8"
 
-    model = whisperx.load_model("large-v3", device, compute_type=compute_type)
+    model = whisperx.load_model(model_name, device, compute_type=compute_type)
     audio = whisperx.load_audio(audio_path)
     result = model.transcribe(audio, batch_size=16)
 
@@ -109,15 +122,18 @@ def main() -> int:
     audio_path = sys.argv[1]
     min_speakers = None
     max_speakers = None
+    model_name = DEFAULT_MODEL
     args = sys.argv[2:]
     for i in range(0, len(args) - 1, 2):
         if args[i] == "--min-speakers":
             min_speakers = int(args[i + 1])
         elif args[i] == "--max-speakers":
             max_speakers = int(args[i + 1])
+        elif args[i] == "--model":
+            model_name = args[i + 1]
 
     try:
-        result = transcribe(audio_path, min_speakers, max_speakers)
+        result = transcribe(audio_path, min_speakers, max_speakers, model_name)
     except Exception as e:  # noqa: BLE001 - deliberately broad: any failure here must become
                              # a clean non-zero exit + stderr message, matching
                              # ESLintAnalysisProvider's "never throws for an ordinary failure"
