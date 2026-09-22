@@ -50,6 +50,15 @@ public final class WhisperXTranscriptionProvider implements TranscriptionProvide
     private static final long TIMEOUT_MINUTES = 10;
 
     /**
+     * {@code transcribe.py}'s own default — WhisperX's largest, most accurate Whisper
+     * model. Production transcription wants this; a test only needs the pipeline's
+     * wiring exercised, not this model's accuracy, and should pass a much smaller one
+     * (e.g. {@code "tiny"}) via {@link #forAudioFile(Path, Instant, String, String,
+     * Optional, Optional)} instead — see that overload's javadoc.
+     */
+    public static final String DEFAULT_MODEL = "large-v3";
+
+    /**
      * Drains a subprocess's stderr concurrently with this class reading its stdout — see
      * {@link #runScript()}'s javadoc comment for why reading the two pipes sequentially would
      * risk a deadlock. Virtual threads: this pool only ever blocks on process I/O, never on
@@ -60,6 +69,7 @@ public final class WhisperXTranscriptionProvider implements TranscriptionProvide
     private final Path audioFile;
     private final Instant recordingStartedAt;
     private final String pythonExecutable;
+    private final String modelName;
     private final Optional<Integer> minSpeakers;
     private final Optional<Integer> maxSpeakers;
     private final ObjectMapper json = new ObjectMapper();
@@ -72,7 +82,7 @@ public final class WhisperXTranscriptionProvider implements TranscriptionProvide
      * already use, so {@link TranscriptAligner} can compare them meaningfully.
      */
     public static WhisperXTranscriptionProvider forAudioFile(Path audioFile, Instant recordingStartedAt) {
-        return new WhisperXTranscriptionProvider(audioFile, recordingStartedAt, "python3",
+        return new WhisperXTranscriptionProvider(audioFile, recordingStartedAt, "python3", DEFAULT_MODEL,
                 Optional.empty(), Optional.empty());
     }
 
@@ -90,14 +100,31 @@ public final class WhisperXTranscriptionProvider implements TranscriptionProvide
     public static WhisperXTranscriptionProvider forAudioFile(Path audioFile, Instant recordingStartedAt,
                                                                String pythonExecutable, Optional<Integer> minSpeakers,
                                                                Optional<Integer> maxSpeakers) {
-        return new WhisperXTranscriptionProvider(audioFile, recordingStartedAt, pythonExecutable, minSpeakers, maxSpeakers);
+        return new WhisperXTranscriptionProvider(audioFile, recordingStartedAt, pythonExecutable, DEFAULT_MODEL,
+                minSpeakers, maxSpeakers);
+    }
+
+    /**
+     * @param modelName the Whisper model to load (e.g. {@code "large-v3"} for production
+     *                   accuracy, or a much smaller/faster one such as {@code "tiny"} for a
+     *                   test that only needs the pipeline's wiring exercised) — see {@link
+     *                   #DEFAULT_MODEL}'s javadoc for why tests should not use the default
+     */
+    public static WhisperXTranscriptionProvider forAudioFile(Path audioFile, Instant recordingStartedAt,
+                                                               String pythonExecutable, String modelName,
+                                                               Optional<Integer> minSpeakers,
+                                                               Optional<Integer> maxSpeakers) {
+        return new WhisperXTranscriptionProvider(audioFile, recordingStartedAt, pythonExecutable, modelName,
+                minSpeakers, maxSpeakers);
     }
 
     private WhisperXTranscriptionProvider(Path audioFile, Instant recordingStartedAt, String pythonExecutable,
-                                           Optional<Integer> minSpeakers, Optional<Integer> maxSpeakers) {
+                                           String modelName, Optional<Integer> minSpeakers,
+                                           Optional<Integer> maxSpeakers) {
         this.audioFile = audioFile;
         this.recordingStartedAt = recordingStartedAt;
         this.pythonExecutable = pythonExecutable;
+        this.modelName = Objects.requireNonNull(modelName, "modelName");
         this.minSpeakers = Objects.requireNonNull(minSpeakers, "minSpeakers");
         this.maxSpeakers = Objects.requireNonNull(maxSpeakers, "maxSpeakers");
     }
@@ -150,6 +177,8 @@ public final class WhisperXTranscriptionProvider implements TranscriptionProvide
             command.add("--max-speakers");
             command.add(value.toString());
         });
+        command.add("--model");
+        command.add(modelName);
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
         // Deliberately NOT redirectErrorStream(true): WhisperX/pyannote log noisily to

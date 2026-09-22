@@ -28,11 +28,20 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Hugging Face credentials (see {@link WhisperXTestFixture#isAvailable()}).
  * Failure-path tests that need no real install live in {@link
  * WhisperXTranscriptionProviderFailureTest} instead, so they always run.
+ *
+ * <p>Deliberately uses {@link #TEST_MODEL} ({@code "tiny"}), not {@link
+ * WhisperXTranscriptionProvider#DEFAULT_MODEL} ({@code "large-v3"}): this
+ * test only needs the pipeline's wiring exercised end to end against
+ * these short fixtures, never the production model's transcription
+ * accuracy — loading and running {@code large-v3} on every invocation
+ * (a ~2.9GB model, expensive on CPU even once downloaded) previously
+ * made this one class alone take minutes per test.
  */
 @EnabledIf("com.athena.reviewrecorder.WhisperXTestFixture#isAvailable")
 class WhisperXTranscriptionProviderTest {
 
     private static final Instant RECORDING_STARTED_AT = Instant.parse("2026-09-17T10:00:00Z");
+    private static final String TEST_MODEL = "tiny";
 
     private static Path venvPython;
     private static Path venvRoot;
@@ -62,7 +71,7 @@ class WhisperXTranscriptionProviderTest {
     void aTwoSpeakerRecordingIsTranscribedWithDistinctSpeakerAttribution() throws URISyntaxException {
         Path audio = fixtureAudio("two_speakers.wav");
         WhisperXTranscriptionProvider provider = WhisperXTranscriptionProvider.forAudioFile(
-                audio, RECORDING_STARTED_AT, venvPython.toString(), Optional.of(2), Optional.of(2));
+                audio, RECORDING_STARTED_AT, venvPython.toString(), TEST_MODEL, Optional.of(2), Optional.of(2));
 
         List<TranscriptSegment> segments = provider.segments();
 
@@ -77,7 +86,7 @@ class WhisperXTranscriptionProviderTest {
     void aSingleSpeakerRecordingIsTranscribed() throws URISyntaxException {
         Path audio = fixtureAudio("one_speaker.wav");
         WhisperXTranscriptionProvider provider = WhisperXTranscriptionProvider.forAudioFile(
-                audio, RECORDING_STARTED_AT, venvPython.toString(), Optional.empty(), Optional.empty());
+                audio, RECORDING_STARTED_AT, venvPython.toString(), TEST_MODEL, Optional.empty(), Optional.empty());
 
         List<TranscriptSegment> segments = provider.segments();
 
@@ -89,7 +98,7 @@ class WhisperXTranscriptionProviderTest {
     void segmentsAreAnchoredToTheRecordingsStartInstant() throws URISyntaxException {
         Path audio = fixtureAudio("one_speaker.wav");
         WhisperXTranscriptionProvider provider = WhisperXTranscriptionProvider.forAudioFile(
-                audio, RECORDING_STARTED_AT, venvPython.toString(), Optional.empty(), Optional.empty());
+                audio, RECORDING_STARTED_AT, venvPython.toString(), TEST_MODEL, Optional.empty(), Optional.empty());
 
         List<TranscriptSegment> segments = provider.segments();
 
@@ -101,7 +110,7 @@ class WhisperXTranscriptionProviderTest {
     void transcribeJoinsAllSegmentsIntoOneString() throws URISyntaxException {
         Path audio = fixtureAudio("one_speaker.wav");
         WhisperXTranscriptionProvider provider = WhisperXTranscriptionProvider.forAudioFile(
-                audio, RECORDING_STARTED_AT, venvPython.toString(), Optional.empty(), Optional.empty());
+                audio, RECORDING_STARTED_AT, venvPython.toString(), TEST_MODEL, Optional.empty(), Optional.empty());
 
         assertThat(provider.transcribe()).isPresent();
         assertThat(provider.transcribe().get()).containsIgnoringCase("execute");

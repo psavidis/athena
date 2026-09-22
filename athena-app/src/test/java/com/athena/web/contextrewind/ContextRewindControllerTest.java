@@ -1,5 +1,6 @@
 package com.athena.web.contextrewind;
 
+import com.athena.ai.AiKeyStore;
 import com.athena.contextrewind.ContextNarrativeProvider;
 import com.athena.git.GitRevisionCheckout;
 import com.athena.github.FakeGitHubTransport;
@@ -53,8 +54,14 @@ class ContextRewindControllerTest {
     private final RepositoryProvider fakeRepositoryProvider = new GitHubRepositoryProvider(TOKEN, transport);
     private final WebSession session =
             new WebSession(new PrAnalyzer(PluginRegistry.languagePlugins(), PluginRegistry.frameworkPlugins()));
+    // An AiKeyStore pointed at a path with nothing behind it: `fixedNarrativeProvider == null`
+    // below means "resolve a narrative provider from a configured API key," and this test wants
+    // that to resolve to none, never fall through to this machine's own real ~/.athena/claude.json
+    // (or an ANTHROPIC_API_KEY already in this shell) and fire a live Claude API call.
+    private final AiKeyStore noKeyConfigured =
+            new AiKeyStore(Path.of(System.getProperty("java.io.tmpdir"), "athena-context-rewind-controller-no-key.json"));
     private final ContextRewindController controller =
-            new ContextRewindController(session, token -> fakeRepositoryProvider, null, new KnowledgeProviderResolver());
+            new ContextRewindController(session, token -> fakeRepositoryProvider, noKeyConfigured, null, new KnowledgeProviderResolver());
 
     private Path repoDir;
     private Path workDir;
@@ -173,7 +180,7 @@ class ContextRewindControllerTest {
             KnowledgeProviderStore store = new KnowledgeProviderStore(vault.resolve("knowledge.json"));
             store.saveObsidianConfig(new ObsidianVaultConfig(vault.toString(), true));
             ContextRewindController controllerWithKnowledge = new ContextRewindController(
-                    session, token -> fakeRepositoryProvider, null, new KnowledgeProviderResolver(store));
+                    session, token -> fakeRepositoryProvider, noKeyConfigured, null, new KnowledgeProviderResolver(store));
 
             ContextRewindResponse response = controllerWithKnowledge.contextRewind("PaymentProcessor", null);
 

@@ -26,10 +26,15 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
  * javadoc for why this is never mocked. Skipped (via {@code assumeTrue},
  * not failed) when this machine lacks a compatible Python interpreter or
  * Hugging Face credentials, matching {@link WhisperXTestFixture#isAvailable()}.
+ *
+ * <p>Uses the same small {@code "tiny"} model as {@link
+ * WhisperXTranscriptionProviderTest} rather than the production default —
+ * see that class's javadoc for why.
  */
 public class WhisperXTranscriptionSteps {
 
     private static final Instant RECORDING_STARTED_AT = Instant.parse("2026-09-17T10:00:00Z");
+    private static final String TEST_MODEL = "tiny";
 
     private static Path venvPython;
     private static Path venvRoot;
@@ -77,7 +82,7 @@ public class WhisperXTranscriptionSteps {
         try {
             Path audio = Path.of(getClass().getResource("/audio-fixtures/" + fixtureFileName).toURI());
             WhisperXTranscriptionProvider provider = WhisperXTranscriptionProvider.forAudioFile(
-                    audio, RECORDING_STARTED_AT, venvPython.toString(), minSpeakers, maxSpeakers);
+                    audio, RECORDING_STARTED_AT, venvPython.toString(), TEST_MODEL, minSpeakers, maxSpeakers);
             transcript = provider.segments();
         } catch (URISyntaxException e) {
             throw new IllegalStateException(e);

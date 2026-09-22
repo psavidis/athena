@@ -70,18 +70,32 @@ public class ContextRewindController {
 
     @Autowired
     public ContextRewindController(WebSession session) {
-        this(session, GitHubRepositoryProvider::new, null, new KnowledgeProviderResolver());
+        this(session, GitHubRepositoryProvider::new, new AiKeyStore(), null, new KnowledgeProviderResolver());
     }
 
     /** Test seam: a fake {@link RepositoryProvider} factory, a fixed narrative provider, and/or a
      * {@link KnowledgeProviderResolver} backed by a temp config file stand in for GitHub, the
-     * AI-network boundary, and persisted Knowledge Provider configuration. */
+     * AI-network boundary, and persisted Knowledge Provider configuration. {@code
+     * fixedNarrativeProvider} being {@code null} means "resolve one from a configured API key" —
+     * a test wanting "no key configured" instead must use {@link #ContextRewindController(WebSession,
+     * Function, AiKeyStore, ContextNarrativeProvider, KnowledgeProviderResolver)} with an
+     * {@link AiKeyStore} pointed at an empty temp file, the same way {@code AiAnalysisController}'s
+     * own test seam takes an explicit {@link AiKeyStore} rather than always defaulting to this
+     * machine's real {@code ~/.athena/claude.json}. */
     ContextRewindController(WebSession session, Function<String, RepositoryProvider> repositoryProviderFactory,
                              ContextNarrativeProvider fixedNarrativeProvider, KnowledgeProviderResolver knowledgeResolver) {
+        this(session, repositoryProviderFactory, new AiKeyStore(), fixedNarrativeProvider, knowledgeResolver);
+    }
+
+    /** Test seam: as above, plus an explicit {@link AiKeyStore} — so a test exercising the
+     * "no AI narrative provider configured" path never depends on this machine's own saved key. */
+    ContextRewindController(WebSession session, Function<String, RepositoryProvider> repositoryProviderFactory,
+                             AiKeyStore keyStore, ContextNarrativeProvider fixedNarrativeProvider,
+                             KnowledgeProviderResolver knowledgeResolver) {
         this.session = session;
         this.repositoryProviderFactory = repositoryProviderFactory;
         this.fixedNarrativeProvider = fixedNarrativeProvider;
-        this.keyStore = new AiKeyStore();
+        this.keyStore = keyStore;
         this.knowledgeResolver = knowledgeResolver;
     }
 

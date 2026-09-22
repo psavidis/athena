@@ -184,12 +184,34 @@ public final class ESLintAnalysisProvider implements ExternalAnalysisProvider {
         return ruleId.isBlank() ? "parse-error" : ruleId;
     }
 
+    /**
+     * ESLint (Node.js) reports each finding's {@code filePath} resolved through any
+     * symlinks in its path (e.g. macOS's {@code /var} &rarr; {@code /private/var}),
+     * while {@code sourceRoot} is whatever path it was constructed with — often
+     * un-resolved, as with {@link Files#createTempDirectory}. Relativizing an
+     * un-resolved root against a resolved reported path are treated as unrelated
+     * absolute paths by {@link Path#relativize}, producing a nonsense {@code ../..}
+     * escape instead of a clean relative path (reproduced by a real ESLint run
+     * against a temp dir in {@code ESLintAnalysisProviderTest}). Resolving both
+     * sides to their real path first keeps them comparable regardless of symlinks.
+     */
     private String relativePathOf(String reportedPath, Path sourceRoot) {
         if (reportedPath.isBlank()) {
             return reportedPath;
         }
         Path reported = Path.of(reportedPath);
-        return reported.isAbsolute() ? sourceRoot.relativize(reported).toString() : reportedPath;
+        if (!reported.isAbsolute()) {
+            return reportedPath;
+        }
+        return realPathOrSelf(sourceRoot).relativize(realPathOrSelf(reported)).toString();
+    }
+
+    private Path realPathOrSelf(Path path) {
+        try {
+            return path.toRealPath();
+        } catch (IOException e) {
+            return path.toAbsolutePath().normalize();
+        }
     }
 
     /** Package-visible for a dedicated, exhaustive unit test — see ESLintAnalysisProviderTest. */
