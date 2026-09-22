@@ -24,8 +24,9 @@ tail -n +2 evaluation/corpus.tsv | while IFS=$'\t' read -r id category repositor
     dir="$out_root/$id"
     mkdir -p "$dir"
     echo "== $id ($category) $repository#$pr"
-    gh pr diff "$pr" -R "$repository" > "$dir/pr.diff"
+    # stdin redirected so neither command can swallow the rest of the manifest the loop reads.
+    gh pr diff "$pr" -R "$repository" < /dev/null > "$dir/pr.diff"
     java -Xmx6g -cp "$classpath" evaluation/tools/AthenaSnapshot.java \
         "https://github.com/$repository.git" "$base" "$head" "$title" "$dir" \
-        > "$dir/stdout.log" 2>&1 || echo "   FAILED — see $dir/stdout.log"
+        < /dev/null > "$dir/stdout.log" 2>&1 || echo "   FAILED — see $dir/stdout.log"
 done
