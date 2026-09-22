@@ -1,0 +1,35 @@
+{
+  "diff": {
+    "files": 2,
+    "java_files": 2,
+    "non_java_files": 0,
+    "substantive_java_files": 2,
+    "copyright_only_java_files": 0,
+    "production_java_files": 1,
+    "java_hunks": 10,
+    "java_lines_changed": 456
+  },
+  "athena": {
+    "changes": 0,
+    "changes_by_kind": {},
+    "changes_by_category": {},
+    "semantic_entries": 0,
+    "semantic_entries_by_dimension": {},
+    "inferred_entries": 0,
+    "module_territories": 0,
+    "module_dependencies": 0,
+    "focus_areas": 0
+  },
+  "coverage": {
+    "substantive_java_files_represented": 0,
+    "substantive_java_file_coverage": 0.0,
+    "production_java_files_represented": 0,
+    "production_java_file_coverage": 0.0,
+    "unrepresented_production_java_files": [
+      "gson/src/main/java/com/google/gson/stream/JsonReader.java"
+    ],
+    "unrepresented_test_java_files": [
+      "gson/src/test/java/com/google/gson/stream/JsonReaderTest.java"
+    ]
+  }
+}

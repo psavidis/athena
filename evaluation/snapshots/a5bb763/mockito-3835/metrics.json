@@ -1,0 +1,43 @@
+{
+  "diff": {
+    "files": 5,
+    "java_files": 5,
+    "non_java_files": 0,
+    "substantive_java_files": 5,
+    "copyright_only_java_files": 0,
+    "production_java_files": 4,
+    "java_hunks": 12,
+    "java_lines_changed": 233
+  },
+  "athena": {
+    "changes": 9,
+    "changes_by_kind": {
+      "ADD_CLASS": 1,
+      "REMOVE_SYMBOL": 1,
+      "ADD_SYMBOL": 7
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 9
+    },
+    "semantic_entries": 11,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 9,
+      "RESPONSIBILITY": 2
+    },
+    "inferred_entries": 2,
+    "module_territories": 1,
+    "module_dependencies": 0,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 3,
+    "substantive_java_file_coverage": 0.6,
+    "production_java_files_represented": 2,
+    "production_java_file_coverage": 0.5,
+    "unrepresented_production_java_files": [
+      "mockito-core/src/main/java/org/mockito/Spy.java",
+      "mockito-core/src/main/java/org/mockito/internal/configuration/injection/SpyOnInjectedFieldsHandler.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

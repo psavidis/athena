@@ -1,0 +1,50 @@
+{
+  "diff": {
+    "files": 63,
+    "java_files": 40,
+    "non_java_files": 23,
+    "substantive_java_files": 11,
+    "copyright_only_java_files": 29,
+    "production_java_files": 5,
+    "java_hunks": 60,
+    "java_lines_changed": 188
+  },
+  "athena": {
+    "changes": 11,
+    "changes_by_kind": {
+      "ADD_CLASS": 1,
+      "MOVE_SYMBOL": 1,
+      "REMOVE_FIELD": 2,
+      "ADD_FIELD": 5,
+      "ADD_CONSTRUCTOR_PARAMETER": 2
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 11
+    },
+    "semantic_entries": 17,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 11,
+      "PATTERN": 1,
+      "RESPONSIBILITY": 4,
+      "ARCHITECTURE": 1
+    },
+    "inferred_entries": 6,
+    "module_territories": 1,
+    "module_dependencies": 0,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 7,
+    "substantive_java_file_coverage": 0.64,
+    "production_java_files_represented": 4,
+    "production_java_file_coverage": 0.8,
+    "unrepresented_production_java_files": [
+      "src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java"
+    ],
+    "unrepresented_test_java_files": [
+      "src/test/java/org/springframework/samples/petclinic/MySqlIntegrationTests.java",
+      "src/test/java/org/springframework/samples/petclinic/MysqlTestApplication.java",
+      "src/test/java/org/springframework/samples/petclinic/system/CrashControllerIntegrationTests.java"
+    ]
+  }
+}

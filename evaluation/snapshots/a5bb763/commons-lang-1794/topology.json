@@ -1,0 +1,12 @@
+{
+  "territories" : [ {
+    "moduleName" : "src",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Add FractionTest#testReducedFactoryIntegerMinValue",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "QUREX1NZTUJPTApGcmFjdGlvblRlc3QjdGVzdFJlZHVjZWRGYWN0b3J5SW50ZWdlck1pblZhbHVl" ]
+  } ],
+  "dependencies" : [ ]
+}

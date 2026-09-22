@@ -1,0 +1,13 @@
+[ {
+  "entity" : "RejectMayActClaimExecutor",
+  "description" : "Add class RejectMayActClaimExecutor"
+}, {
+  "entity" : "RejectMayActClaimExecutorFactory",
+  "description" : "Add class RejectMayActClaimExecutorFactory"
+}, {
+  "entity" : "AbstractClientSessionCtxTokenResponseContext",
+  "description" : "Add AbstractClientSessionCtxTokenResponseContext#getClientSession"
+}, {
+  "entity" : "BackchannelTokenResponseContext",
+  "description" : "Add BackchannelTokenResponseContext#getClient"
+} ]

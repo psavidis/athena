@@ -1,0 +1,12 @@
+{
+  "territories" : [ {
+    "moduleName" : "spring-core",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Add ConcurrentLruCacheTests#removeRacingWithEvictionDoesNotExceedCapacity",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "QUREX1NZTUJPTApDb25jdXJyZW50THJ1Q2FjaGVUZXN0cyNyZW1vdmVSYWNpbmdXaXRoRXZpY3Rpb25Eb2VzTm90RXhjZWVkQ2FwYWNpdHk" ]
+  } ],
+  "dependencies" : [ ]
+}

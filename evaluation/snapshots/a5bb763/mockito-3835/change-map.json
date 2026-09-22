@@ -1,0 +1,182 @@
+{
+  "prTitle" : "Fixes #2740 : Add mockMaker option to @Spy annotation",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 9,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTClNweUFubm90YXRpb25VdGls",
+    "description" : "Add class SpyAnnotationUtil",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 1,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApTcHlBbm5vdGF0aW9uRW5naW5lI3NweUluc3RhbmNl",
+    "description" : "Remove SpyAnnotationEngine#spyInstance",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfY3JlYXRlX3NweV93aXRoX3NwZWNpZmllZF9tb2NrX21ha2VyX2Zvcl9wcm92aWRlZF9pbnN0YW5jZQ",
+    "description" : "Add SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_provided_instance",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfY3JlYXRlX3NweV93aXRoX3NwZWNpZmllZF9tb2NrX21ha2VyX2Zvcl9hdXRvX2NyZWF0ZWRfaW5zdGFuY2U",
+    "description" : "Add SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_auto_created_instance",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfbm90X3NldF9tb2NrX21ha2VyX3doZW5fdW5zcGVjaWZpZWQ",
+    "description" : "Add SpyAnnotationTest#should_not_set_mock_maker_when_unspecified",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfY3JlYXRlX3NweV93aXRoX3NwZWNpZmllZF9tb2NrX21ha2VyX2Zvcl9pbmplY3RlZF9maWVsZA",
+    "description" : "Add SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_injected_field",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVXRpbCNyZXNldE9yQ3JlYXRlU3B5",
+    "description" : "Add SpyAnnotationUtil#resetOrCreateSpy",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVXRpbCNjcmVhdGVTcHk",
+    "description" : "Add SpyAnnotationUtil#createSpy",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVXRpbCNhcHBseU1vY2tNYWtlcg",
+    "description" : "Add SpyAnnotationUtil#applyMockMaker",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "SpyAnnotationUtil",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTClNweUFubm90YXRpb25VdGls",
+      "description" : "Add class SpyAnnotationUtil",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVXRpbCNyZXNldE9yQ3JlYXRlU3B5",
+      "description" : "Add SpyAnnotationUtil#resetOrCreateSpy",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVXRpbCNjcmVhdGVTcHk",
+      "description" : "Add SpyAnnotationUtil#createSpy",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVXRpbCNhcHBseU1vY2tNYWtlcg",
+      "description" : "Add SpyAnnotationUtil#applyMockMaker",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "SpyAnnotationEngine",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApTcHlBbm5vdGF0aW9uRW5naW5lI3NweUluc3RhbmNl",
+      "description" : "Remove SpyAnnotationEngine#spyInstance",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "SpyAnnotationTest",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfY3JlYXRlX3NweV93aXRoX3NwZWNpZmllZF9tb2NrX21ha2VyX2Zvcl9wcm92aWRlZF9pbnN0YW5jZQ",
+      "description" : "Add SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_provided_instance",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfY3JlYXRlX3NweV93aXRoX3NwZWNpZmllZF9tb2NrX21ha2VyX2Zvcl9hdXRvX2NyZWF0ZWRfaW5zdGFuY2U",
+      "description" : "Add SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_auto_created_instance",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfbm90X3NldF9tb2NrX21ha2VyX3doZW5fdW5zcGVjaWZpZWQ",
+      "description" : "Add SpyAnnotationTest#should_not_set_mock_maker_when_unspecified",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApTcHlBbm5vdGF0aW9uVGVzdCNzaG91bGRfY3JlYXRlX3NweV93aXRoX3NwZWNpZmllZF9tb2NrX21ha2VyX2Zvcl9pbmplY3RlZF9maWVsZA",
+      "description" : "Add SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_injected_field",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  } ]
+}

@@ -1,0 +1,10 @@
+[ {
+  "changeKey" : "QUREX1NZTUJPTApGcmFjdGlvblRlc3QjdGVzdFJlZHVjZWRGYWN0b3J5SW50ZWdlck1pblZhbHVl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add FractionTest#testReducedFactoryIntegerMinValue",
+  "files" : [ "src/test/java/org/apache/commons/lang3/math/FractionTest.java" ],
+  "symbols" : [ "FractionTest#testReducedFactoryIntegerMinValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+} ]

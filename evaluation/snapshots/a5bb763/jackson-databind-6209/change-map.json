@@ -1,0 +1,749 @@
+{
+  "prTitle" : "Fix #6198: make AnnotatedMethod InvokerHolder access lazy",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 40,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "UkVNT1ZFX0NMQVNTClVucmVmbGVjdEhhbmRsZVN1cHBsaWVy",
+    "description" : "Remove class UnreflectHandleSupplier",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 1,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNnZXQ",
+    "description" : "Remove UnreflectHandleSupplier#get",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 2,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNpbml0aWFsaXpl",
+    "description" : "Remove UnreflectHandleSupplier#initialize",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 3,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNwb3N0cHJvY2Vzcw",
+    "description" : "Remove UnreflectHandleSupplier#postprocess",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 4,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciN1bnJlZmxlY3Q",
+    "description" : "Remove UnreflectHandleSupplier#unreflect",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 5,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciN0b1N0cmluZw",
+    "description" : "Remove UnreflectHandleSupplier#toString",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kRG9lc05vdEVhZ2VybHlDb25zdHJ1Y3RJbnZva2Vycw",
+    "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodDoesNotEagerlyConstructInvokers",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kQ2FsbE9uQnVpbGRzT25seVVuYXJ5SW52b2tlcg",
+    "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodCallOnBuildsOnlyUnaryInvoker",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kQ2FsbE9uV2l0aEJ1aWxkc09ubHlGaXhlZEFyaXR5SW52b2tlcg",
+    "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodCallOnWithBuildsOnlyFixedArityInvoker",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kTnVsbGFyeUNhbGxCdWlsZHNPbmx5TnVsbGFyeUludm9rZXI",
+    "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodNullaryCallBuildsOnlyNullaryInvoker",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlck51bGxhcnk",
+    "description" : "Add AnnotatedMethod#invokerNullary",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlclVuYXJ5",
+    "description" : "Add AnnotatedMethod#invokerUnary",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlckZpeGVkQXJpdHk",
+    "description" : "Add AnnotatedMethod#invokerFixedArity",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjdW5yZWZsZWN0",
+    "description" : "Add AnnotatedMethod#unreflect",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfc2V0dGVySGFuZGxl",
+    "description" : "Add MethodProperty#_setterHandle",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfc2V0dGVyUmV0dXJuSGFuZGxl",
+    "description" : "Add MethodProperty#_setterReturnHandle",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfdW5yZWZsZWN0U2V0dGVy",
+    "description" : "Add MethodProperty#_unreflectSetter",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX1NZTUJPTApCZWFuUHJvcGVydHlXcml0ZXIjX2FjY2Vzc29ySGFuZGxl",
+    "description" : "Add BeanPropertyWriter#_accessorHandle",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX1NZTUJPTApCZWFuUHJvcGVydHlXcml0ZXIjX3VucmVmbGVjdEFjY2Vzc29y",
+    "description" : "Add BeanPropertyWriter#_unreflectAccessor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 19,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClVucmVmbGVjdEhhbmRsZVN1cHBsaWVyI2FzVHlwZQ",
+    "description" : "Remove field UnreflectHandleSupplier#asType",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 20,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClVucmVmbGVjdEhhbmRsZVN1cHBsaWVyI2NhY2hlZEhhbmRsZQ",
+    "description" : "Remove field UnreflectHandleSupplier#cachedHandle",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 21,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkFubm90YXRlZE1ldGhvZCNfaW52b2tlckZpeGVkQXJpdHk",
+    "description" : "Remove field AnnotatedMethod#_invokerFixedArity",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 22,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkFubm90YXRlZE1ldGhvZCNfaW52b2tlck51bGxhcnk",
+    "description" : "Remove field AnnotatedMethod#_invokerNullary",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 23,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkFubm90YXRlZE1ldGhvZCNfaW52b2tlclVuYXJ5",
+    "description" : "Remove field AnnotatedMethod#_invokerUnary",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 24,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECk1ldGhvZFByb3BlcnR5I19zZXR0ZXI",
+    "description" : "Remove field MethodProperty#_setter",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 25,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECk1ldGhvZFByb3BlcnR5I19zZXR0ZXJSZXR1cm4",
+    "description" : "Remove field MethodProperty#_setterReturn",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 26,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkJlYW5Qcm9wZXJ0eVdyaXRlciNfYWNjZXNzb3I",
+    "description" : "Remove field BeanPropertyWriter#_accessor",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 27,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNJTlZPS0VSX05VTExBUllfVFlQRQ",
+    "description" : "Add field AnnotatedMethod#INVOKER_NULLARY_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 28,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNJTlZPS0VSX1VOQVJZX1RZUEU",
+    "description" : "Add field AnnotatedMethod#INVOKER_UNARY_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 29,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNfaW52b2tlckZpeGVkQXJpdHk",
+    "description" : "Add field AnnotatedMethod#_invokerFixedArity",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 30,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNfaW52b2tlck51bGxhcnk",
+    "description" : "Add field AnnotatedMethod#_invokerNullary",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 31,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNfaW52b2tlclVuYXJ5",
+    "description" : "Add field AnnotatedMethod#_invokerUnary",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 32,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZENvbnN0cnVjdG9yI0lOVk9LRVJfTlVMTEFSWV9UWVBF",
+    "description" : "Add field AnnotatedConstructor#INVOKER_NULLARY_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 33,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZENvbnN0cnVjdG9yI0lOVk9LRVJfVU5BUllfVFlQRQ",
+    "description" : "Add field AnnotatedConstructor#INVOKER_UNARY_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 34,
+    "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I1NFVFRFUl9UWVBF",
+    "description" : "Add field MethodProperty#SETTER_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 35,
+    "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I1NFVFRFUl9SRVRVUk5fVFlQRQ",
+    "description" : "Add field MethodProperty#SETTER_RETURN_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 36,
+    "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I19zZXR0ZXI",
+    "description" : "Add field MethodProperty#_setter",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 37,
+    "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I19zZXR0ZXJSZXR1cm4",
+    "description" : "Add field MethodProperty#_setterReturn",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 38,
+    "changeKey" : "QUREX0ZJRUxECkJlYW5Qcm9wZXJ0eVdyaXRlciNHRVRURVJfVFlQRQ",
+    "description" : "Add field BeanPropertyWriter#GETTER_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 39,
+    "changeKey" : "QUREX0ZJRUxECkJlYW5Qcm9wZXJ0eVdyaXRlciNfYWNjZXNzb3I",
+    "description" : "Add field BeanPropertyWriter#_accessor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "UnreflectHandleSupplier",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "UkVNT1ZFX0NMQVNTClVucmVmbGVjdEhhbmRsZVN1cHBsaWVy",
+      "description" : "Remove class UnreflectHandleSupplier",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 1,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNnZXQ",
+      "description" : "Remove UnreflectHandleSupplier#get",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 2,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNpbml0aWFsaXpl",
+      "description" : "Remove UnreflectHandleSupplier#initialize",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 3,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNwb3N0cHJvY2Vzcw",
+      "description" : "Remove UnreflectHandleSupplier#postprocess",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 4,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciN1bnJlZmxlY3Q",
+      "description" : "Remove UnreflectHandleSupplier#unreflect",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 5,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciN0b1N0cmluZw",
+      "description" : "Remove UnreflectHandleSupplier#toString",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 19,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClVucmVmbGVjdEhhbmRsZVN1cHBsaWVyI2FzVHlwZQ",
+      "description" : "Remove field UnreflectHandleSupplier#asType",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 20,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClVucmVmbGVjdEhhbmRsZVN1cHBsaWVyI2NhY2hlZEhhbmRsZQ",
+      "description" : "Remove field UnreflectHandleSupplier#cachedHandle",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "AnnotatedMemberEqualityTest",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kRG9lc05vdEVhZ2VybHlDb25zdHJ1Y3RJbnZva2Vycw",
+      "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodDoesNotEagerlyConstructInvokers",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kQ2FsbE9uQnVpbGRzT25seVVuYXJ5SW52b2tlcg",
+      "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodCallOnBuildsOnlyUnaryInvoker",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kQ2FsbE9uV2l0aEJ1aWxkc09ubHlGaXhlZEFyaXR5SW52b2tlcg",
+      "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodCallOnWithBuildsOnlyFixedArityInvoker",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 9,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kTnVsbGFyeUNhbGxCdWlsZHNPbmx5TnVsbGFyeUludm9rZXI",
+      "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodNullaryCallBuildsOnlyNullaryInvoker",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "AnnotatedMethod",
+    "entries" : [ {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlck51bGxhcnk",
+      "description" : "Add AnnotatedMethod#invokerNullary",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlclVuYXJ5",
+      "description" : "Add AnnotatedMethod#invokerUnary",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlckZpeGVkQXJpdHk",
+      "description" : "Add AnnotatedMethod#invokerFixedArity",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjdW5yZWZsZWN0",
+      "description" : "Add AnnotatedMethod#unreflect",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 21,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkFubm90YXRlZE1ldGhvZCNfaW52b2tlckZpeGVkQXJpdHk",
+      "description" : "Remove field AnnotatedMethod#_invokerFixedArity",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 22,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkFubm90YXRlZE1ldGhvZCNfaW52b2tlck51bGxhcnk",
+      "description" : "Remove field AnnotatedMethod#_invokerNullary",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 23,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkFubm90YXRlZE1ldGhvZCNfaW52b2tlclVuYXJ5",
+      "description" : "Remove field AnnotatedMethod#_invokerUnary",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 27,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNJTlZPS0VSX05VTExBUllfVFlQRQ",
+      "description" : "Add field AnnotatedMethod#INVOKER_NULLARY_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 28,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNJTlZPS0VSX1VOQVJZX1RZUEU",
+      "description" : "Add field AnnotatedMethod#INVOKER_UNARY_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 29,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNfaW52b2tlckZpeGVkQXJpdHk",
+      "description" : "Add field AnnotatedMethod#_invokerFixedArity",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 30,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNfaW52b2tlck51bGxhcnk",
+      "description" : "Add field AnnotatedMethod#_invokerNullary",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 31,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNfaW52b2tlclVuYXJ5",
+      "description" : "Add field AnnotatedMethod#_invokerUnary",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "MethodProperty",
+    "entries" : [ {
+      "id" : 14,
+      "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfc2V0dGVySGFuZGxl",
+      "description" : "Add MethodProperty#_setterHandle",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfc2V0dGVyUmV0dXJuSGFuZGxl",
+      "description" : "Add MethodProperty#_setterReturnHandle",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfdW5yZWZsZWN0U2V0dGVy",
+      "description" : "Add MethodProperty#_unreflectSetter",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 24,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECk1ldGhvZFByb3BlcnR5I19zZXR0ZXI",
+      "description" : "Remove field MethodProperty#_setter",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 25,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECk1ldGhvZFByb3BlcnR5I19zZXR0ZXJSZXR1cm4",
+      "description" : "Remove field MethodProperty#_setterReturn",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 34,
+      "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I1NFVFRFUl9UWVBF",
+      "description" : "Add field MethodProperty#SETTER_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 35,
+      "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I1NFVFRFUl9SRVRVUk5fVFlQRQ",
+      "description" : "Add field MethodProperty#SETTER_RETURN_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 36,
+      "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I19zZXR0ZXI",
+      "description" : "Add field MethodProperty#_setter",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 37,
+      "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I19zZXR0ZXJSZXR1cm4",
+      "description" : "Add field MethodProperty#_setterReturn",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "BeanPropertyWriter",
+    "entries" : [ {
+      "id" : 17,
+      "changeKey" : "QUREX1NZTUJPTApCZWFuUHJvcGVydHlXcml0ZXIjX2FjY2Vzc29ySGFuZGxl",
+      "description" : "Add BeanPropertyWriter#_accessorHandle",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 18,
+      "changeKey" : "QUREX1NZTUJPTApCZWFuUHJvcGVydHlXcml0ZXIjX3VucmVmbGVjdEFjY2Vzc29y",
+      "description" : "Add BeanPropertyWriter#_unreflectAccessor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 26,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkJlYW5Qcm9wZXJ0eVdyaXRlciNfYWNjZXNzb3I",
+      "description" : "Remove field BeanPropertyWriter#_accessor",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 38,
+      "changeKey" : "QUREX0ZJRUxECkJlYW5Qcm9wZXJ0eVdyaXRlciNHRVRURVJfVFlQRQ",
+      "description" : "Add field BeanPropertyWriter#GETTER_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 39,
+      "changeKey" : "QUREX0ZJRUxECkJlYW5Qcm9wZXJ0eVdyaXRlciNfYWNjZXNzb3I",
+      "description" : "Add field BeanPropertyWriter#_accessor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "AnnotatedConstructor",
+    "entries" : [ {
+      "id" : 32,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZENvbnN0cnVjdG9yI0lOVk9LRVJfTlVMTEFSWV9UWVBF",
+      "description" : "Add field AnnotatedConstructor#INVOKER_NULLARY_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 33,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZENvbnN0cnVjdG9yI0lOVk9LRVJfVU5BUllfVFlQRQ",
+      "description" : "Add field AnnotatedConstructor#INVOKER_UNARY_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  } ]
+}
