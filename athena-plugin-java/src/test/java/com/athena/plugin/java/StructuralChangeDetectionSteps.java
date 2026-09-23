@@ -330,6 +330,101 @@ public class StructuralChangeDetectionSteps {
                 + "}\n");
     }
 
+    // ---- nested and inner types (ticket #265) ----
+
+    @Given("a base revision where nested class {string} inside {string} has no field {string}")
+    public void base_nested_class_has_no_field(String nested, String outer, String fieldName) {
+        write(baseRoot, outer, nestedSource(outer + "." + nested, ""));
+    }
+
+    @Given("a head revision where {string} has a field {string}")
+    public void head_nested_class_has_field(String qualifiedName, String fieldName) {
+        write(headRoot, topLevelOf(qualifiedName), nestedSource(qualifiedName, "private boolean " + fieldName + ";\n"));
+    }
+
+    @Given("a base revision where nested class {string} inside {string} has no method {string}")
+    public void base_nested_class_has_no_method(String nested, String outer, String methodName) {
+        write(baseRoot, outer, nestedSource(outer + "." + nested, ""));
+    }
+
+    @Given("a head revision where {string} has a method {string}")
+    public void head_nested_class_has_method(String qualifiedName, String methodName) {
+        write(headRoot, topLevelOf(qualifiedName), nestedSource(qualifiedName, method(methodName)));
+    }
+
+    @Given("a base revision where inner class {string} inside {string} has a method {string}")
+    public void base_inner_class_has_method(String inner, String outer, String methodName) {
+        write(baseRoot, outer, nestedSource(outer + "." + inner, method(methodName), false));
+    }
+
+    @Given("a head revision where {string} no longer has {string}")
+    public void head_nested_class_no_longer_has(String qualifiedName, String memberName) {
+        write(headRoot, topLevelOf(qualifiedName), nestedSource(qualifiedName, "", false));
+    }
+
+    @Given("a base revision where nested class {string} inside {string} gets its bean factory through a setter")
+    public void base_nested_class_setter_injection(String nested, String outer) {
+        write(baseRoot, outer, nestedSource(outer + "." + nested,
+                "private Object beanFactory;\n"
+                        + "public void setBeanFactory(Object beanFactory) {\n"
+                        + "    this.beanFactory = beanFactory;\n"
+                        + "}\n"));
+    }
+
+    @Given("a head revision where {string} takes the bean factory as a constructor parameter assigned to a same-named field")
+    public void head_nested_class_constructor_injection(String qualifiedName) {
+        String simpleName = qualifiedName.substring(qualifiedName.lastIndexOf('.') + 1);
+        write(headRoot, topLevelOf(qualifiedName), nestedSource(qualifiedName,
+                "private final Object beanFactory;\n"
+                        + simpleName + "(Object beanFactory) {\n"
+                        + "    this.beanFactory = beanFactory;\n"
+                        + "}\n"));
+    }
+
+    @Given("a base revision where both {string} and {string} have a nested class {string} with a method {string}")
+    public void base_two_outers_with_same_nested_class(String outerA, String outerB, String nested, String methodName) {
+        write(baseRoot, outerA, nestedSource(outerA + "." + nested, method(methodName)));
+        write(baseRoot, outerB, nestedSource(outerB + "." + nested, method(methodName)));
+    }
+
+    @Given("a head revision where only {string} no longer has {string}")
+    public void head_only_one_nested_class_loses_method(String qualifiedName, String methodName) {
+        String changedOuter = topLevelOf(qualifiedName);
+        String nested = qualifiedName.substring(qualifiedName.indexOf('.') + 1);
+        write(headRoot, changedOuter, nestedSource(qualifiedName, ""));
+        try (var files = Files.list(baseRoot)) {
+            for (Path baseFile : files.toList()) {
+                String outer = baseFile.getFileName().toString().replace(".java", "");
+                if (!outer.equals(changedOuter)) {
+                    write(headRoot, outer, nestedSource(outer + "." + nested, method(methodName)));
+                }
+            }
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    @Given("a base revision where class {string} has no nested class {string}")
+    public void base_class_has_no_nested_class(String outer, String nested) {
+        write(baseRoot, outer, "public class " + outer + " {\n}\n");
+    }
+
+    @Given("a head revision where {string} has a nested class {string}")
+    public void head_class_has_nested_class(String outer, String nested) {
+        write(headRoot, outer, nestedSource(outer + "." + nested, method("attempts")));
+    }
+
+    @Given("a base and head revision where class {string} gains a method {string}")
+    public void base_and_head_where_deeply_nested_class_gains_method(String qualifiedName, String methodName) {
+        write(baseRoot, topLevelOf(qualifiedName), nestedSource(qualifiedName, ""));
+        write(headRoot, topLevelOf(qualifiedName), nestedSource(qualifiedName, method(methodName)));
+    }
+
+    @Then("no transformation is detected involving {string}")
+    public void no_transformation_is_detected_involving(String symbol) {
+        no_structural_transformation_involving(symbol);
+    }
+
     // ---- action ----
 
     @When("the semantic engine detects transformations between the revisions")
@@ -391,6 +486,36 @@ public class StructuralChangeDetectionSteps {
     }
 
     // ---- helpers ----
+
+    private static String topLevelOf(String qualifiedName) {
+        int dot = qualifiedName.indexOf('.');
+        return dot < 0 ? qualifiedName : qualifiedName.substring(0, dot);
+    }
+
+    private static String method(String methodName) {
+        return "public String " + methodName + "() {\n    return \"" + methodName + "\";\n}\n";
+    }
+
+    /** Source for {@code Outer.Middle.Inner} with {@code members} inside the innermost class (static nested). */
+    private static String nestedSource(String qualifiedName, String members) {
+        return nestedSource(qualifiedName, members, true);
+    }
+
+    /**
+     * Source for {@code Outer.Middle.Inner}, every level nested in the previous one, with
+     * {@code members} inside the innermost class — {@code staticNested} false makes the
+     * nested levels inner (non-static) classes instead.
+     */
+    private static String nestedSource(String qualifiedName, String members, boolean staticNested) {
+        String[] names = qualifiedName.split("\\.");
+        StringBuilder source = new StringBuilder("public class " + names[0] + " {\n");
+        for (int i = 1; i < names.length; i++) {
+            source.append(staticNested ? "static class " : "class ").append(names[i]).append(" {\n");
+        }
+        source.append(members);
+        source.append("}\n".repeat(names.length));
+        return source.toString();
+    }
 
     private long countBaseRefFiles() {
         try (var stream = Files.list(baseRoot)) {
