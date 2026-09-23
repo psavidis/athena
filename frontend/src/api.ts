@@ -353,6 +353,37 @@ export interface ModuleTopology {
   dependencies: ModuleDependency[]
 }
 
+/** One changed file no Change represents (ticket #260/#261). `reasonLabel` is the reviewer-facing wording. */
+export interface UnrepresentedFile {
+  path: string
+  status: 'ADDED' | 'MODIFIED' | 'REMOVED'
+  linesChanged: number
+  hunkCount: number
+  reason: 'UNSUPPORTED_FILE_TYPE' | 'PARSE_FAILED' | 'NO_SEMANTIC_CHANGE'
+  reasonLabel: string
+}
+
+export interface UnrepresentedFiles {
+  changedFileCount: number
+  representedFileCount: number
+  files: UnrepresentedFile[]
+}
+
+export interface RawDiff {
+  path: string
+  diff: string
+}
+
+/** The current selection's changed files no Change represents (ticket #261). */
+export async function getUnrepresentedFiles(): Promise<UnrepresentedFiles> {
+  return asJson(await fetch('/api/review/unrepresented-files'))
+}
+
+/** The unified diff of one changed file, whether or not a Change represents it (ticket #261). */
+export async function getRawDiff(path: string): Promise<RawDiff> {
+  return asJson(await fetch(`/api/review/raw-diff?path=${encodeURIComponent(path)}`))
+}
+
 export async function getModuleTopology(): Promise<ModuleTopology> {
   const response = await fetch('/api/review/topology')
   if (response.status === 401) {
