@@ -104,8 +104,9 @@ export interface SemanticDimensionEntry {
   /** How many individual per-Change classifications this entry folds together: for a
    * Capability-level `capability-extraction` entry, how many `move-responsibility` moves
    * between the same two modules; for any other repeated Capability-level concept (e.g.
-   * `add-capability` recurring across several Changes), how many occurrences. Zero/absent
-   * for an entry that represents just one Change. */
+   * `add-capability` recurring across several Changes), how many occurrences; for a
+   * Structure-level "Test changes in X" entry (ticket #287), how many test Changes of that
+   * test class. Zero/absent for an entry that represents just one Change. */
   groupedMoveCount?: number
 }
 

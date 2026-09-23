@@ -6,7 +6,8 @@ import { Card, LevelConfidenceChip, SectionLabel } from './ui'
  * compact, terse chip per atomic structural change, deliberately
  * lightweight so it doesn't compete visually with the higher semantic
  * levels. Selecting a chip is how a reviewer picks which one's diff
- * evidence gets highlighted in the evidence panel.
+ * evidence gets highlighted in the evidence panel. A grouped entry (ticket
+ * #287: all test changes of one test class) shows how many changes it folds.
  */
 export default function StructureLevel({
   entries,
@@ -41,6 +42,11 @@ export default function StructureLevel({
               >
                 {entry.conceptName}
               </button>
+              {!!entry.groupedMoveCount && entry.groupedMoveCount > 0 && (
+                <span className="ml-2 inline-block rounded-full bg-lv-structure-soft px-2 py-0.5 align-middle text-xs font-semibold text-ink-700">
+                  {entry.groupedMoveCount} {entry.groupedMoveCount === 1 ? 'change' : 'changes'}
+                </span>
+              )}
               <span className="ml-2 inline-block align-middle">
                 <LevelConfidenceChip dimension="STRUCTURAL" inferred={entry.inferred} confidencePercent={entry.confidencePercent} />
               </span>
