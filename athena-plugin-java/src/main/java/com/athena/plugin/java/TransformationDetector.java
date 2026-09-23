@@ -388,6 +388,13 @@ public final class TransformationDetector {
             results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_FIELD_TYPE,
                     List.of(base.description(), base.type + " -> " + head.type + visibilityNote),
                     List.of(base.file, head.file), base.rawDeclaration, head.rawDeclaration));
+            // A retyped field can also have changed annotations (e.g. @Autowired dropped while
+            // moving to constructor injection) — a separate fact the framework correlators need.
+            if (!base.annotationNames.equals(head.annotationNames)) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_FIELD_ANNOTATIONS,
+                        List.of(base.description()), List.of(base.file, head.file),
+                        base.rawDeclaration, head.rawDeclaration));
+            }
         }
 
         List<FieldInfo> unmatchedBase = baseFields.stream().filter(f -> !matchedBase.contains(f)).toList();

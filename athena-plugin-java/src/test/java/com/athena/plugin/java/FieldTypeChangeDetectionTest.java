@@ -64,6 +64,15 @@ class FieldTypeChangeDetectionTest {
     }
 
     @Test
+    void aRetypedFieldThatAlsoDroppedAnAnnotationReportsBoth() throws IOException {
+        write(baseRoot, "UserService", "public class UserService {\n    @Autowired private OldRepository repository;\n}\n");
+        write(headRoot, "UserService", "public class UserService {\n    private final UserRepository repository;\n}\n");
+
+        assertThat(detect()).extracting(DetectedTransformation::kind)
+                .contains(TransformationKind.CHANGE_FIELD_TYPE, TransformationKind.CHANGE_FIELD_ANNOTATIONS);
+    }
+
+    @Test
     void aFieldWhoseNameAndTypeBothChangedIsNotATypeChange() throws IOException {
         write(baseRoot, "Cache", "public class Cache {\n    private int size;\n}\n");
         write(headRoot, "Cache", "public class Cache {\n    private long count;\n}\n");
