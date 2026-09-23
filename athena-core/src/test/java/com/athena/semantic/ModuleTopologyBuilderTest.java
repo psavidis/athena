@@ -12,6 +12,93 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ModuleTopologyBuilderTest {
 
+    // ---- Gradle and nested modules (ticket #293) ----
+
+    @Test
+    void identifiesASpringBootGradleModuleByItsBuildFile(@TempDir Path base, @TempDir Path head) throws IOException {
+        write(head, "module/web-server/build.gradle", "plugins { id 'org.springframework.boot' }\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "module/web-server/src/main/java/A.java"), base, head);
+
+        assertThat(territoryFor(topology, "web-server").techStack()).isEqualTo(TechStack.SPRING_BOOT_JAVA);
+    }
+
+    @Test
+    void identifiesAKotlinDslGradleModuleWithoutSpringBootAsJava(@TempDir Path base, @TempDir Path head) throws IOException {
+        write(head, "module/validation/build.gradle.kts", "plugins { java }\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "module/validation/src/main/java/A.java"), base, head);
+
+        assertThat(territoryFor(topology, "validation").techStack()).isEqualTo(TechStack.JAVA);
+    }
+
+    @Test
+    void detectsAGradleProjectDependencyAndAddsItsTargetAsIdle(@TempDir Path base, @TempDir Path head) throws IOException {
+        write(head, "module/core/build.gradle", "");
+        write(head, "module/web-server/build.gradle", "dependencies {\n    api(project(\":module:core\"))\n}\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "module/web-server/src/main/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).containsExactly(new ModuleDependency("web-server", "core"));
+        assertThat(territoryFor(topology, "core").status()).isEqualTo(ModuleStatus.IDLE);
+        assertThat(territoryFor(topology, "core").techStack()).isEqualTo(TechStack.JAVA);
+    }
+
+    @Test
+    void detectsAGradleTypeSafeProjectAccessorDependency(@TempDir Path base, @TempDir Path head) throws IOException {
+        write(head, "module/spring-boot-core/build.gradle", "");
+        write(head, "module/web-server/build.gradle", "dependencies {\n    api(projects.module.springBootCore)\n}\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "module/web-server/src/main/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).containsExactly(new ModuleDependency("web-server", "spring-boot-core"));
+    }
+
+    @Test
+    void detectsANestedMavenModuleDependencyByItsSiblingsArtifactId(@TempDir Path base, @TempDir Path head)
+            throws IOException {
+        write(head, "modules/model/pom.xml", "<project><parent><artifactId>p</artifactId></parent>"
+                + "<artifactId>acme-model</artifactId></project>");
+        write(head, "modules/api/pom.xml", "<project><parent><artifactId>p</artifactId></parent><artifactId>acme-api</artifactId>"
+                + "<dependencies><dependency><artifactId>acme-model</artifactId></dependency></dependencies></project>");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "modules/api/src/main/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).containsExactly(new ModuleDependency("api", "model"));
+    }
+
+    @Test
+    void readsASingleModuleProjectsTechStackFromItsRootBuildFile(@TempDir Path base, @TempDir Path head) throws IOException {
+        write(head, "build.gradle", "plugins { id 'java' }\n");
+        write(head, "settings.gradle", "rootProject.name = 'petclinic'\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "src/main/java/A.java"), base, head);
+
+        assertThat(territoryFor(topology, "petclinic").techStack()).isEqualTo(TechStack.JAVA);
+    }
+
+    @Test
+    void neverLooksForModulesInsideSourceOrBuildOutputDirectories(@TempDir Path base, @TempDir Path head)
+            throws IOException {
+        write(head, "module/web-server/build.gradle", "dependencies {\n    api(project(\":fixtures\"))\n}\n");
+        write(head, "module/web-server/src/test/resources/fixtures/build.gradle", "");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "module/web-server/src/main/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).isEmpty();
+    }
+
+    private List<ModuleGroup> layoutGroupsFor(Path base, Path head, String file) {
+        return new ModuleGrouper(ModuleLayout.of(base, head)).group(new ChangeGrouper().group(List.of(
+                DetectedTransformation.of(TransformationKind.ADD_SYMBOL, List.of("A#m"), List.of(file)))));
+    }
+
+    private static void write(Path root, String relativePath, String content) throws IOException {
+        Path file = root.resolve(relativePath);
+        Files.createDirectories(file.getParent());
+        Files.writeString(file, content);
+    }
+
     private final ModuleTopologyBuilder builder = new ModuleTopologyBuilder();
 
     @Test

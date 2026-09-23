@@ -1,6 +1,7 @@
 package com.athena.web.reviewui;
 
 import com.athena.plugins.PluginRegistry;
+import com.athena.semantic.ModuleStatus;
 import com.athena.semantic.PrAnalyzer;
 import com.athena.web.WebSession;
 import com.athena.web.diff.DiffSelectionController;
@@ -137,5 +138,73 @@ public class ModuleIdentitySteps {
     private static String classSource(String file, String body) {
         String className = file.substring(file.lastIndexOf('/') + 1).replace(".java", "");
         return "package com.acme;\n\npublic class " + className + " {\n" + body + "}\n";
+    }
+
+    // --- Ticket #293: tech stack and dependency rails ---
+
+    @Given("the user has created a standalone Diff changing a class in Gradle module {string} whose build file applies Spring Boot")
+    public void a_diff_in_a_spring_boot_gradle_module(String module) {
+        repository = GitRepositoryFixture.create();
+        repository.write(module + "/build.gradle", "plugins {\n    id 'java'\n    id 'org.springframework.boot'\n}\n");
+        changeClasses(List.of(module + "/src/main/java/com/acme/Service.java"));
+    }
+
+    @Given("the user has created a standalone Diff changing a class in Kotlin-DSL Gradle module {string}")
+    public void a_diff_in_a_kotlin_dsl_gradle_module(String module) {
+        repository = GitRepositoryFixture.create();
+        repository.write(module + "/build.gradle.kts", "plugins {\n    java\n}\n");
+        changeClasses(List.of(module + "/src/main/java/com/acme/Service.java"));
+    }
+
+    @Given("the user has created a standalone Diff changing a class in Gradle module {string} which depends on project {string}")
+    public void a_diff_in_a_gradle_module_with_a_project_dependency(String module, String projectPath) {
+        repository = GitRepositoryFixture.create();
+        String dependencyDirectory = projectPath.substring(1).replace(':', '/');
+        repository.write(dependencyDirectory + "/build.gradle", "plugins { id 'java' }\n");
+        repository.write(module + "/build.gradle", "plugins { id 'java' }\n\ndependencies {\n"
+                + "    implementation(project(\"" + projectPath + "\"))\n}\n");
+        changeClasses(List.of(module + "/src/main/java/com/acme/Service.java"));
+    }
+
+    @Given("the user has created a standalone Diff changing a class in Gradle module {string} which depends on {string}")
+    public void a_diff_in_a_gradle_module_with_a_type_safe_accessor(String module, String accessor) {
+        repository = GitRepositoryFixture.create();
+        repository.write("module/spring-boot-core/build.gradle", "plugins { id 'java' }\n");
+        repository.write(module + "/build.gradle", "plugins { id 'java' }\n\ndependencies {\n"
+                + "    api(" + accessor + ")\n}\n");
+        changeClasses(List.of(module + "/src/main/java/com/acme/Service.java"));
+    }
+
+    @Given("the user has created a standalone Diff changing a class in Maven module {string} which depends on sibling module {string} with artifactId {string}")
+    public void a_diff_in_a_nested_maven_module(String module, String sibling, String siblingArtifactId) {
+        repository = GitRepositoryFixture.create();
+        repository.write(sibling + "/pom.xml", "<project>\n  <parent><artifactId>acme-parent</artifactId></parent>\n"
+                + "  <artifactId>" + siblingArtifactId + "</artifactId>\n</project>\n");
+        repository.write(module + "/pom.xml", "<project>\n  <parent><artifactId>acme-parent</artifactId></parent>\n"
+                + "  <artifactId>acme-api</artifactId>\n  <dependencies>\n    <dependency>\n"
+                + "      <artifactId>" + siblingArtifactId + "</artifactId>\n    </dependency>\n  </dependencies>\n</project>\n");
+        changeClasses(List.of(module + "/src/main/java/com/acme/Service.java"));
+    }
+
+    @Then("territory {string} has tech stack {string}")
+    public void territory_has_tech_stack(String name, String label) {
+        assertThat(territory(name).techStackLabel()).isEqualTo(label);
+    }
+
+    @Then("a dependency rail runs from {string} to {string}")
+    public void a_dependency_rail_runs(String from, String to) {
+        assertThat(topology.dependencies()).anySatisfy(dependency -> {
+            assertThat(dependency.from()).isEqualTo(from);
+            assertThat(dependency.to()).isEqualTo(to);
+        });
+    }
+
+    @Then("territory {string} is idle")
+    public void territory_is_idle(String name) {
+        assertThat(territory(name).status()).isEqualTo(ModuleStatus.IDLE);
+    }
+
+    private ModuleTerritoryResponse territory(String name) {
+        return topology.territories().stream().filter(t -> t.moduleName().equals(name)).findFirst().orElseThrow();
     }
 }

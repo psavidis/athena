@@ -2,8 +2,11 @@ package com.athena.semantic;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -36,9 +39,19 @@ public final class ModuleTopologyBuilder {
             Pattern.compile("\"(?:dependencies|devDependencies)\"\\s*:\\s*\\{([^}]*)}");
     private static final Pattern PACKAGE_JSON_DEPENDENCY_NAME =
             Pattern.compile("\"([^\"]+)\"\\s*:\\s*\"[^\"]*\"");
+    private static final Pattern MAVEN_PARENT = Pattern.compile("<parent>.*?</parent>", Pattern.DOTALL);
+    // project(":module:web-server"), project(path: ":core") — Groovy and Kotlin DSL alike.
+    private static final Pattern GRADLE_PROJECT_DEPENDENCY =
+            Pattern.compile("project\\(\\s*(?:path\\s*[:=]\\s*)?['\"](:[^'\"]+)['\"]");
+    // projects.module.springBootCore — Gradle's type-safe project accessors.
+    private static final Pattern GRADLE_PROJECT_ACCESSOR = Pattern.compile("\\bprojects((?:\\.\\w+)+)");
+    private static final List<String> GRADLE_BUILD_FILES = List.of("build.gradle", "build.gradle.kts");
+    private static final List<String> BUILD_DESCRIPTORS = List.of("pom.xml", "build.gradle", "build.gradle.kts", "package.json");
+    private static final Set<String> NEVER_MODULE_DIRECTORIES = Set.of("node_modules", "target", "build", "src", "out", "bin");
+    private static final int MAX_MODULE_DEPTH = 5;
 
     public ModuleTopology build(List<ModuleGroup> changedGroups, Path baseRoot, Path headRoot) {
-        Set<String> allModuleNames = discoverModuleDirectories(headRoot);
+        List<RepositoryModule> allModules = discoverModules(baseRoot, headRoot);
         Map<String, ModuleGroup> changedByName = new LinkedHashMap<>();
         for (ModuleGroup group : changedGroups) {
             changedByName.put(group.moduleName(), group);
@@ -48,7 +61,7 @@ public final class ModuleTopologyBuilder {
         Set<String> referencedModules = new LinkedHashSet<>();
         for (ModuleGroup group : changedGroups) {
             String moduleName = group.moduleName();
-            for (String dependsOn : manifestDependencies(headRoot, group.directory(), moduleName, allModuleNames)) {
+            for (String dependsOn : manifestDependencies(headRoot, group.directory(), moduleName, allModules)) {
                 dependencies.add(new ModuleDependency(moduleName, dependsOn));
                 if (!changedByName.containsKey(dependsOn)) {
                     referencedModules.add(dependsOn);
@@ -61,7 +74,9 @@ public final class ModuleTopologyBuilder {
             territories.add(territoryFor(group, baseRoot, headRoot));
         }
         for (String idleModuleName : referencedModules) {
-            territories.add(idleTerritory(idleModuleName, headRoot));
+            String directory = allModules.stream().filter(module -> module.name().equals(idleModuleName))
+                    .map(RepositoryModule::directory).findFirst().orElse(idleModuleName);
+            territories.add(idleTerritory(idleModuleName, directory, headRoot));
         }
 
         return new ModuleTopology(territories, dependencies);
@@ -83,9 +98,9 @@ public final class ModuleTopologyBuilder {
                 techStackOf(headRoot, directory), group.changes());
     }
 
-    private ModuleTerritory idleTerritory(String moduleName, Path headRoot) {
+    private ModuleTerritory idleTerritory(String moduleName, String directory, Path headRoot) {
         return new ModuleTerritory(moduleName, ModuleStatus.IDLE, 0, "unchanged",
-                techStackOf(headRoot, moduleName), List.of());
+                techStackOf(headRoot, directory), List.of());
     }
 
     private Set<String> filesTouchedBy(ModuleGroup group) {
@@ -109,37 +124,101 @@ public final class ModuleTopologyBuilder {
         return group.changes().size() + " changes";
     }
 
-    private Set<String> discoverModuleDirectories(Path root) {
-        Set<String> names = new LinkedHashSet<>();
-        if (root == null || !Files.isDirectory(root)) {
-            return names;
+    /**
+     * Every module of the repository at head (ticket #293): each directory, up to {@value
+     * #MAX_MODULE_DEPTH} levels down, holding a build descriptor — named as {@link ModuleLayout}
+     * names it, so a dependency target matches its territory's name. Source, build-output and
+     * hidden directories are never searched.
+     */
+    private List<RepositoryModule> discoverModules(Path baseRoot, Path headRoot) {
+        List<RepositoryModule> modules = new ArrayList<>();
+        if (headRoot == null || !Files.isDirectory(headRoot)) {
+            return modules;
         }
-        try (var stream = Files.list(root)) {
-            stream.filter(Files::isDirectory)
-                    .filter(dir -> Files.isRegularFile(dir.resolve("pom.xml"))
-                            || Files.isRegularFile(dir.resolve("package.json")))
-                    .forEach(dir -> names.add(dir.getFileName().toString()));
+        ModuleLayout layout = ModuleLayout.of(baseRoot, headRoot);
+        try {
+            Files.walkFileTree(headRoot, Set.of(), MAX_MODULE_DEPTH, new SimpleFileVisitor<>() {
+                @Override
+                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attributes) {
+                    String name = dir.getFileName() == null ? "" : dir.getFileName().toString();
+                    if (!dir.equals(headRoot) && (name.startsWith(".") || NEVER_MODULE_DIRECTORIES.contains(name))) {
+                        return FileVisitResult.SKIP_SUBTREE;
+                    }
+                    if (BUILD_DESCRIPTORS.stream().anyMatch(descriptor -> Files.isRegularFile(dir.resolve(descriptor)))) {
+                        String directory = headRoot.relativize(dir).toString().replace('\\', '/');
+                        modules.add(new RepositoryModule(directory, layout.nameOf(directory), mavenArtifactId(dir)));
+                    }
+                    return FileVisitResult.CONTINUE;
+                }
+            });
         } catch (IOException e) {
-            throw new UncheckedIOException("Could not list module directories under " + root, e);
+            throw new UncheckedIOException("Could not discover modules under " + headRoot, e);
         }
-        return names;
+        return modules;
     }
 
-    /** Real declared dependencies on other modules in this repo, read from this module's own manifest. */
+    private String mavenArtifactId(Path moduleDir) {
+        Path pom = moduleDir.resolve("pom.xml");
+        if (!Files.isRegularFile(pom)) {
+            return "";
+        }
+        Matcher matcher = MAVEN_ARTIFACT_ID.matcher(MAVEN_PARENT.matcher(readQuietly(pom)).replaceAll(""));
+        return matcher.find() ? matcher.group(1) : "";
+    }
+
+    /**
+     * Real declared dependencies on other modules in this repo, read from this module's own
+     * build files: Maven artifactIds, Gradle {@code project(":…")} references and type-safe
+     * {@code projects.…} accessors (ticket #293), and npm package names.
+     */
     private Set<String> manifestDependencies(Path headRoot, String moduleDirectory, String moduleName,
-                                             Set<String> allModuleNames) {
+                                             List<RepositoryModule> allModules) {
         Path moduleDir = headRoot.resolve(moduleDirectory);
         Set<String> found = new LinkedHashSet<>();
 
         Path pomFile = moduleDir.resolve("pom.xml");
         if (Files.isRegularFile(pomFile)) {
-            String content = readQuietly(pomFile);
+            String content = MAVEN_PARENT.matcher(readQuietly(pomFile)).replaceAll("");
             Matcher matcher = MAVEN_ARTIFACT_ID.matcher(content);
             while (matcher.find()) {
                 String artifactId = matcher.group(1);
-                if (!artifactId.equals(moduleName) && allModuleNames.contains(artifactId)) {
-                    found.add(artifactId);
-                }
+                allModules.stream()
+                        // A Maven module is matched by its own artifactId only; its directory name
+                        // could equal some unrelated external artifact ("core", "ui", "tests").
+                        .filter(module -> module.artifactId().isEmpty()
+                                ? module.name().equals(artifactId) : module.artifactId().equals(artifactId))
+                        .map(RepositoryModule::name)
+                        .findFirst()
+                        .ifPresent(found::add);
+            }
+        }
+
+        for (String buildFile : GRADLE_BUILD_FILES) {
+            Path gradleFile = moduleDir.resolve(buildFile);
+            if (!Files.isRegularFile(gradleFile)) {
+                continue;
+            }
+            String content = readQuietly(gradleFile);
+            Matcher projectMatcher = GRADLE_PROJECT_DEPENDENCY.matcher(content);
+            while (projectMatcher.find()) {
+                String directory = projectMatcher.group(1).substring(1).replace(':', '/');
+                String lastSegment = directory.substring(directory.lastIndexOf('/') + 1);
+                allModules.stream()
+                        .filter(module -> module.directory().equals(directory))
+                        .findFirst()
+                        .or(() -> allModules.stream().filter(module -> module.name().equals(lastSegment)).findFirst())
+                        .map(RepositoryModule::name)
+                        .ifPresent(found::add);
+            }
+            Matcher accessorMatcher = GRADLE_PROJECT_ACCESSOR.matcher(content);
+            while (accessorMatcher.find()) {
+                String path = accessorMatcher.group(1);
+                String accessor = path.substring(path.lastIndexOf('.') + 1);
+                allModules.stream()
+                        .filter(module -> camelCase(module.name()).equals(accessor))
+                        .map(RepositoryModule::name)
+                        .findFirst()
+                        .ifPresent(found::add);
             }
         }
 
@@ -151,14 +230,30 @@ public final class ModuleTopologyBuilder {
                 Matcher nameMatcher = PACKAGE_JSON_DEPENDENCY_NAME.matcher(blockMatcher.group(1));
                 while (nameMatcher.find()) {
                     String depName = nameMatcher.group(1);
-                    if (allModuleNames.contains(depName) && !depName.equals(moduleName)) {
+                    if (allModules.stream().anyMatch(module -> module.name().equals(depName))) {
                         found.add(depName);
                     }
                 }
             }
         }
 
+        found.remove(moduleName);
         return found;
+    }
+
+    /** "spring-boot-core" -> "springBootCore", as Gradle derives type-safe project accessors. */
+    private static String camelCase(String name) {
+        StringBuilder camel = new StringBuilder();
+        boolean upper = false;
+        for (char c : name.toCharArray()) {
+            if (c == '-' || c == '_' || c == '.') {
+                upper = true;
+            } else {
+                camel.append(upper ? Character.toUpperCase(c) : c);
+                upper = false;
+            }
+        }
+        return camel.toString();
     }
 
     private TechStack techStackOf(Path headRoot, String moduleDirectory) {
@@ -168,6 +263,13 @@ public final class ModuleTopologyBuilder {
         if (hasPom) {
             String content = readQuietly(moduleDir.resolve("pom.xml"));
             return content.contains("spring-boot") ? TechStack.SPRING_BOOT_JAVA : TechStack.JAVA;
+        }
+        for (String buildFile : GRADLE_BUILD_FILES) {
+            if (Files.isRegularFile(moduleDir.resolve(buildFile))) {
+                String content = readQuietly(moduleDir.resolve(buildFile));
+                return content.contains("spring-boot") || content.contains("org.springframework.boot")
+                        ? TechStack.SPRING_BOOT_JAVA : TechStack.JAVA;
+            }
         }
         if (hasPackageJson) {
             String content = readQuietly(moduleDir.resolve("package.json"));
@@ -184,5 +286,9 @@ public final class ModuleTopologyBuilder {
         } catch (IOException e) {
             throw new UncheckedIOException("Could not read manifest " + file, e);
         }
+    }
+
+    /** A module found in the repository: its directory ("" for the root), name and Maven artifactId ("" if none). */
+    private record RepositoryModule(String directory, String name, String artifactId) {
     }
 }
