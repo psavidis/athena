@@ -32,6 +32,7 @@ const KIND_LABELS: Record<TransformationKind, string> = {
   CHANGE_PARAMETER_ANNOTATIONS: 'Parameter annotations',
   CHANGE_METHOD_ANNOTATIONS: 'Method annotations',
   CHANGE_CONTROL_FLOW: 'Control flow change',
+  MODIFY_METHOD_BODY: 'Body modified',
 }
 
 const CATEGORY_LABELS = {

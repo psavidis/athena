@@ -31,6 +31,9 @@ public enum ChangeCategory {
     public static ChangeCategory of(TransformationKind kind) {
         return switch (kind) {
             case CHANGE_CONTROL_FLOW -> BEHAVIORAL;
+            // A body edit no more specific detector could classify: it may or may not change
+            // behavior, so it is honestly Unknown rather than dropped (ticket #264).
+            case MODIFY_METHOD_BODY -> UNKNOWN;
             case MECHANICAL_REPLACEMENT, FORMATTING_ONLY -> MECHANICAL;
             case RENAME_SYMBOL, MOVE_SYMBOL, ADD_SYMBOL, REMOVE_SYMBOL,
                  CHANGE_METHOD_SIGNATURE, EXTRACT_METHOD,

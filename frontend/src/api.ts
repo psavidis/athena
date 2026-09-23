@@ -51,6 +51,7 @@ export type TransformationKind =
   | 'CHANGE_PARAMETER_ANNOTATIONS'
   | 'CHANGE_METHOD_ANNOTATIONS'
   | 'CHANGE_CONTROL_FLOW'
+  | 'MODIFY_METHOD_BODY'
 
 export type ReviewState = 'UNSEEN' | 'UNDERSTANDING' | 'REVIEWED' | 'CONCERN' | 'SKIPPED'
 
