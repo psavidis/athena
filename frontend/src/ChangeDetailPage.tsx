@@ -21,6 +21,13 @@ const KIND_LABELS: Record<TransformationKind, string> = {
   MOVE_FIELD: 'Move field',
   ADD_FIELD: 'Add field',
   REMOVE_FIELD: 'Remove field',
+  ADD_CONSTRUCTOR_PARAMETER: 'Add constructor parameter',
+  CHANGE_FIELD_ANNOTATIONS: 'Field annotations',
+  ADD_ENUM_CONSTANT: 'Add enum constant',
+  REMOVE_ENUM_CONSTANT: 'Remove enum constant',
+  ADD_ANNOTATION_ELEMENT: 'Add annotation element',
+  REMOVE_ANNOTATION_ELEMENT: 'Remove annotation element',
+  CHANGE_ANNOTATION_ELEMENT_DEFAULT: 'Annotation default change',
 }
 
 const CATEGORY_LABELS = {

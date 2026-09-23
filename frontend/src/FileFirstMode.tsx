@@ -19,7 +19,7 @@ import { LoadingState } from './ui'
  */
 
 const CONFIG_FILE_PATTERN = /(^|\/)(pom\.xml|package\.json|application[\w.-]*\.ya?ml|application[\w.-]*\.properties|tsconfig[\w.-]*\.json|vite\.config\.\w+|build\.gradle\w*)$/
-const NEW_CODE_KINDS: TransformationKind[] = ['ADD_CLASS', 'ADD_SYMBOL', 'ADD_FIELD']
+const NEW_CODE_KINDS: TransformationKind[] = ['ADD_CLASS', 'ADD_SYMBOL', 'ADD_FIELD', 'ADD_ENUM_CONSTANT', 'ADD_ANNOTATION_ELEMENT']
 
 function isConfigFile(path: string): boolean {
   return CONFIG_FILE_PATTERN.test(path)

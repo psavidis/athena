@@ -33,7 +33,11 @@ public final class ResponsibilityTaxonomyClassifier {
             case ADD_CLASS, ADD_SYMBOL, ADD_FIELD -> Optional.of("add-capability");
             case REMOVE_CLASS, REMOVE_SYMBOL, REMOVE_FIELD -> Optional.of("remove-capability");
             case MOVE_CLASS, MOVE_SYMBOL, MOVE_FIELD -> Optional.of("move-responsibility");
-            case CHANGE_METHOD_SIGNATURE, ADD_CONSTRUCTOR_PARAMETER -> Optional.of("change-api-responsibility");
+            // An enum constant or annotation element widens or narrows the type's public
+            // contract; it isn't a new business capability of its own (ticket #266).
+            case CHANGE_METHOD_SIGNATURE, ADD_CONSTRUCTOR_PARAMETER, ADD_ENUM_CONSTANT, REMOVE_ENUM_CONSTANT,
+                 ADD_ANNOTATION_ELEMENT, REMOVE_ANNOTATION_ELEMENT, CHANGE_ANNOTATION_ELEMENT_DEFAULT ->
+                    Optional.of("change-api-responsibility");
             case EXTRACT_METHOD -> Optional.of("split-responsibility");
             case RENAME_SYMBOL, RENAME_CLASS, RENAME_FIELD, MECHANICAL_REPLACEMENT, FORMATTING_ONLY,
                  CHANGE_FIELD_ANNOTATIONS -> Optional.empty();

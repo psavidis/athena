@@ -88,6 +88,11 @@ public final class ChangeGrouper {
             case REMOVE_FIELD -> "Remove field " + key.involvedDescriptions.get(0);
             case ADD_CONSTRUCTOR_PARAMETER -> "Add constructor parameter " + key.involvedDescriptions.get(0);
             case CHANGE_FIELD_ANNOTATIONS -> "Change annotations on field " + key.involvedDescriptions.get(0);
+            case ADD_ENUM_CONSTANT -> "Add enum constant " + key.involvedDescriptions.get(0);
+            case REMOVE_ENUM_CONSTANT -> "Remove enum constant " + key.involvedDescriptions.get(0);
+            case ADD_ANNOTATION_ELEMENT -> "Add annotation element " + key.involvedDescriptions.get(0);
+            case REMOVE_ANNOTATION_ELEMENT -> "Remove annotation element " + key.involvedDescriptions.get(0);
+            case CHANGE_ANNOTATION_ELEMENT_DEFAULT -> "Change default of annotation element " + key.involvedDescriptions.get(0);
         };
     }
 

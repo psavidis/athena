@@ -34,9 +34,9 @@ public final class StructuralTaxonomyClassifier {
         return switch (kind) {
             case RENAME_SYMBOL, RENAME_CLASS, RENAME_FIELD -> "rename";
             case MOVE_SYMBOL, MOVE_CLASS, MOVE_FIELD -> "move";
-            case ADD_SYMBOL, ADD_CLASS, ADD_FIELD -> "add";
-            case REMOVE_SYMBOL, REMOVE_CLASS, REMOVE_FIELD -> "remove";
-            case CHANGE_METHOD_SIGNATURE -> "change-signature";
+            case ADD_SYMBOL, ADD_CLASS, ADD_FIELD, ADD_ENUM_CONSTANT, ADD_ANNOTATION_ELEMENT -> "add";
+            case REMOVE_SYMBOL, REMOVE_CLASS, REMOVE_FIELD, REMOVE_ENUM_CONSTANT, REMOVE_ANNOTATION_ELEMENT -> "remove";
+            case CHANGE_METHOD_SIGNATURE, CHANGE_ANNOTATION_ELEMENT_DEFAULT -> "change-signature";
             case EXTRACT_METHOD -> "extract-method";
             case MECHANICAL_REPLACEMENT -> "mechanical-replacement";
             case FORMATTING_ONLY -> "formatting-only";
