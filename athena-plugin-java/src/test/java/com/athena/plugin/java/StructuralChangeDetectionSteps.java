@@ -1023,6 +1023,50 @@ public class StructuralChangeDetectionSteps {
                 + "();\n    }\n}\n";
     }
 
+    // ---- structural detection scoped to changed files (ticket #271) ----
+
+    @Given("the repository contains many other unchanged classes")
+    public void many_other_unchanged_classes() {
+        for (int i = 0; i < 25; i++) {
+            String source = "public class Unchanged" + i + " {\n    public String greet() {\n        return \"greeting\";\n    }\n}\n";
+            write(world.baseRoot(), "Unchanged" + i, source);
+            write(world.headRoot(), "Unchanged" + i, source);
+        }
+    }
+
+    @Given("a base revision with class {string} and a head revision where it is renamed {string} with the same members")
+    public void class_renamed_with_same_members(String oldName, String newName) {
+        String members = " {\n    private String name;\n    public String find() {\n        return name;\n    }\n}\n";
+        writeFile(world.baseRoot(), oldName + ".java", "public class " + oldName + members);
+        writeFile(world.headRoot(), oldName + ".java", "public class " + newName + members);
+    }
+
+    @Given("a base and head revision where unchanged class {string} has a method {string} with a given body")
+    public void unchanged_class_with_method(String className, String method) {
+        String source = "public class " + className + " {\n    int " + method + "(int x) {\n        return x * 42 + 7;\n    }\n}\n";
+        write(world.baseRoot(), className, source);
+        write(world.headRoot(), className, source);
+    }
+
+    @Given("the head revision adds class {string} with a method {string} with the same body")
+    public void head_adds_class_with_same_body_method(String className, String method) {
+        write(world.headRoot(), className, "public class " + className + " {\n    int " + method + "(int x) {\n        return x * 42 + 7;\n    }\n}\n");
+    }
+
+    @Given("a base and head revision where an unchanged file fails to parse")
+    public void unchanged_file_fails_to_parse() {
+        String broken = "public class Broken {\n    void m( { not java\n";
+        writeFile(world.baseRoot(), "Broken.java", broken);
+        writeFile(world.headRoot(), "Broken.java", broken);
+    }
+
+    @Given("class {string} gains a method {string} in a changed file")
+    public void class_gains_method_in_changed_file(String className, String method) {
+        write(world.baseRoot(), className, "public class " + className + " {\n}\n");
+        write(world.headRoot(), className, "public class " + className + " {\n    public String " + method
+                + "() {\n        return \"bye\";\n    }\n}\n");
+    }
+
     // ---- helpers ----
 
     private String readBase(String topLevelClassName) {
