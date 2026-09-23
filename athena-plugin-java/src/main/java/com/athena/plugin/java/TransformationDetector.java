@@ -5,8 +5,11 @@ import com.athena.semantic.TransformationKind;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.body.AnnotationMemberDeclaration;
 import com.github.javaparser.ast.body.BodyDeclaration;
 import com.github.javaparser.ast.body.ConstructorDeclaration;
+import com.github.javaparser.ast.body.EnumConstantDeclaration;
+import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
@@ -24,8 +27,11 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -233,6 +239,68 @@ public final class TransformationDetector {
         // set this detector's single pass through one class's constructors can't.
         results.addAll(detectAddedConstructorParameters(baseParsed.constructors(), headParsed.constructors()));
 
+        // 10. Enum constants and annotation-type elements (ticket #266): matched by enclosing
+        // type + name, so reordering is never reported. An element present on both sides whose
+        // default value changed is reported as such; a changed element type is left to the
+        // remove/add fallback, the same no-fuzzy-matching policy as fields.
+        results.addAll(detectEnumConstantChanges(
+                excluding(baseParsed.enumConstants(), EnumConstantInfo::enclosingType, classMatch.excludedBaseTypes()),
+                excluding(headParsed.enumConstants(), EnumConstantInfo::enclosingType, classMatch.excludedHeadTypes())));
+        results.addAll(detectAnnotationElementChanges(
+                excluding(baseParsed.annotationElements(), AnnotationElementInfo::enclosingType, classMatch.excludedBaseTypes()),
+                excluding(headParsed.annotationElements(), AnnotationElementInfo::enclosingType, classMatch.excludedHeadTypes())));
+
+        return results;
+    }
+
+    private static <T> List<T> excluding(List<T> declarations, Function<T, String> enclosingType, Set<String> excludedTypes) {
+        return declarations.stream().filter(d -> !excludedTypes.contains(enclosingType.apply(d))).toList();
+    }
+
+    private List<DetectedTransformation> detectEnumConstantChanges(List<EnumConstantInfo> baseConstants,
+                                                                    List<EnumConstantInfo> headConstants) {
+        Set<String> baseNames = baseConstants.stream().map(EnumConstantInfo::description).collect(Collectors.toSet());
+        Set<String> headNames = headConstants.stream().map(EnumConstantInfo::description).collect(Collectors.toSet());
+        List<DetectedTransformation> results = new ArrayList<>();
+        for (EnumConstantInfo base : baseConstants) {
+            if (!headNames.contains(base.description())) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.REMOVE_ENUM_CONSTANT,
+                        List.of(base.description()), List.of(base.file()), base.rawDeclaration(), ""));
+            }
+        }
+        for (EnumConstantInfo head : headConstants) {
+            if (!baseNames.contains(head.description())) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.ADD_ENUM_CONSTANT,
+                        List.of(head.description()), List.of(head.file()), "", head.rawDeclaration()));
+            }
+        }
+        return results;
+    }
+
+    private List<DetectedTransformation> detectAnnotationElementChanges(List<AnnotationElementInfo> baseElements,
+                                                                         List<AnnotationElementInfo> headElements) {
+        Map<String, AnnotationElementInfo> headByDescription = new LinkedHashMap<>();
+        headElements.forEach(head -> headByDescription.put(head.description(), head));
+        Set<String> baseDescriptions = baseElements.stream().map(AnnotationElementInfo::description).collect(Collectors.toSet());
+
+        List<DetectedTransformation> results = new ArrayList<>();
+        for (AnnotationElementInfo base : baseElements) {
+            AnnotationElementInfo head = headByDescription.get(base.description());
+            if (head == null) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.REMOVE_ANNOTATION_ELEMENT,
+                        List.of(base.description()), List.of(base.file()), base.rawDeclaration(), ""));
+            } else if (base.type().equals(head.type()) && !base.defaultValue().equals(head.defaultValue())) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_ANNOTATION_ELEMENT_DEFAULT,
+                        List.of(base.description()), List.of(base.file(), head.file()),
+                        base.rawDeclaration(), head.rawDeclaration()));
+            }
+        }
+        for (AnnotationElementInfo head : headElements) {
+            if (!baseDescriptions.contains(head.description())) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.ADD_ANNOTATION_ELEMENT,
+                        List.of(head.description()), List.of(head.file()), "", head.rawDeclaration()));
+            }
+        }
         return results;
     }
 
@@ -696,11 +764,7 @@ public final class TransformationDetector {
      * already-parsed AST is cheap).
      */
     private ParsedRoot parseRoot(Path root) {
-        List<MethodInfo> methods = new ArrayList<>();
-        List<FieldInfo> fields = new ArrayList<>();
-        List<ClassInfo> classes = new ArrayList<>();
-        List<ConstructorInfo> constructors = new ArrayList<>();
-        Map<String, RecordInfo> records = new LinkedHashMap<>();
+        DeclarationCollector collected = new DeclarationCollector();
         for (Path file : javaFiles(root)) {
             String relativePath = root.relativize(file).toString();
             CompilationUnit cu;
@@ -713,11 +777,10 @@ public final class TransformationDetector {
                 continue;
             }
             for (TypeDeclaration<?> type : cu.getTypes()) {
-                collectType(type, type.getNameAsString(), relativePath, sourceLines,
-                        methods, fields, classes, constructors, records);
+                collectType(type, type.getNameAsString(), relativePath, sourceLines, collected);
             }
         }
-        return new ParsedRoot(methods, fields, classes, constructors, records);
+        return collected.toParsedRoot();
     }
 
     /**
@@ -728,8 +791,7 @@ public final class TransformationDetector {
      * type is a separate {@link ClassInfo}, not part of its outer class's identity.
      */
     private void collectType(TypeDeclaration<?> type, String qualifiedName, String relativePath, List<String> sourceLines,
-                             List<MethodInfo> methods, List<FieldInfo> fields, List<ClassInfo> classes,
-                             List<ConstructorInfo> constructors, Map<String, RecordInfo> records) {
+                             DeclarationCollector collected) {
         Set<String> memberSignatures = new TreeSet<>();
         for (MethodDeclaration method : type.getMethods()) {
             // Two different textual views, both from *original source text* (via
@@ -749,7 +811,7 @@ public final class TransformationDetector {
                     .orElse(method.getBody().map(Node::toString).orElse(""));
             List<String> paramTypes = method.getParameters().stream()
                     .map(Parameter::getTypeAsString).toList();
-            methods.add(new MethodInfo(qualifiedName, method.getNameAsString(),
+            collected.methods.add(new MethodInfo(qualifiedName, method.getNameAsString(),
                     paramTypes, method.getTypeAsString(),
                     wholeDeclarationText, normalize(wholeDeclarationText),
                     normalize(bodyOnlyText), relativePath));
@@ -766,7 +828,7 @@ public final class TransformationDetector {
                     .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
             for (VariableDeclarator variable : field.getVariables()) {
                 String typeAsString = variable.getType().asString();
-                fields.add(new FieldInfo(qualifiedName, variable.getNameAsString(), typeAsString,
+                collected.fields.add(new FieldInfo(qualifiedName, variable.getNameAsString(), typeAsString,
                         annotationNames, rawDeclaration, relativePath));
                 memberSignatures.add("field:" + variable.getNameAsString() + ":" + typeAsString);
             }
@@ -785,8 +847,27 @@ public final class TransformationDetector {
             Set<String> assignedFieldNames = paramNames.stream()
                     .filter(name -> assignsParameterToSameNamedField(bodyText, name))
                     .collect(java.util.stream.Collectors.toCollection(LinkedHashSet::new));
-            constructors.add(new ConstructorInfo(qualifiedName, paramTypes, paramNames,
+            collected.constructors.add(new ConstructorInfo(qualifiedName, paramTypes, paramNames,
                     assignedFieldNames, rawDeclaration, relativePath));
+        }
+        if (type instanceof EnumDeclaration enumDeclaration) {
+            for (EnumConstantDeclaration constant : enumDeclaration.getEntries()) {
+                String rawDeclaration = constant.getRange()
+                        .map(range -> sourceSlice(sourceLines, range))
+                        .orElse(constant.toString());
+                collected.enumConstants.add(new EnumConstantInfo(qualifiedName, constant.getNameAsString(),
+                        rawDeclaration, relativePath));
+                memberSignatures.add("constant:" + constant.getNameAsString());
+            }
+        }
+        for (AnnotationMemberDeclaration element : type.getMembers().stream()
+                .filter(AnnotationMemberDeclaration.class::isInstance).map(AnnotationMemberDeclaration.class::cast).toList()) {
+            String rawDeclaration = element.getRange()
+                    .map(range -> sourceSlice(sourceLines, range))
+                    .orElse(element.toString());
+            collected.annotationElements.add(new AnnotationElementInfo(qualifiedName, element.getNameAsString(),
+                    element.getTypeAsString(), element.getDefaultValue().map(Node::toString), rawDeclaration, relativePath));
+            memberSignatures.add("element:" + element.getNameAsString() + ":" + element.getTypeAsString());
         }
         if (type instanceof RecordDeclaration record) {
             List<String> componentTypes = record.getParameters().stream()
@@ -795,16 +876,15 @@ public final class TransformationDetector {
                     + String.join(", ", record.getParameters().stream()
                             .map(p -> p.getTypeAsString() + " " + p.getNameAsString()).toList())
                     + ")";
-            records.put(qualifiedName, new RecordInfo(componentTypes, relativePath, headerText));
+            collected.records.put(qualifiedName, new RecordInfo(componentTypes, relativePath, headerText));
         } else {
             String headerText = type.getRange().map(range -> sourceSlice(sourceLines, range))
                     .orElse(type.toString());
-            classes.add(new ClassInfo(qualifiedName, relativePath, memberSignatures, headerText));
+            collected.classes.add(new ClassInfo(qualifiedName, relativePath, memberSignatures, headerText));
         }
         for (BodyDeclaration<?> member : type.getMembers()) {
             if (member instanceof TypeDeclaration<?> nested) {
-                collectType(nested, qualifiedName + "." + nested.getNameAsString(), relativePath, sourceLines,
-                        methods, fields, classes, constructors, records);
+                collectType(nested, qualifiedName + "." + nested.getNameAsString(), relativePath, sourceLines, collected);
             }
         }
     }
@@ -822,7 +902,39 @@ public final class TransformationDetector {
     }
 
     private record ParsedRoot(List<MethodInfo> methods, List<FieldInfo> fields, List<ClassInfo> classes,
-                               List<ConstructorInfo> constructors, Map<String, RecordInfo> records) {
+                               List<ConstructorInfo> constructors, Map<String, RecordInfo> records,
+                               List<EnumConstantInfo> enumConstants, List<AnnotationElementInfo> annotationElements) {
+    }
+
+    /** Accumulates one root's declarations while {@link #collectType} walks its types. */
+    private static final class DeclarationCollector {
+        private final List<MethodInfo> methods = new ArrayList<>();
+        private final List<FieldInfo> fields = new ArrayList<>();
+        private final List<ClassInfo> classes = new ArrayList<>();
+        private final List<ConstructorInfo> constructors = new ArrayList<>();
+        private final Map<String, RecordInfo> records = new LinkedHashMap<>();
+        private final List<EnumConstantInfo> enumConstants = new ArrayList<>();
+        private final List<AnnotationElementInfo> annotationElements = new ArrayList<>();
+
+        ParsedRoot toParsedRoot() {
+            return new ParsedRoot(List.copyOf(methods), List.copyOf(fields), List.copyOf(classes),
+                    List.copyOf(constructors), Map.copyOf(records), List.copyOf(enumConstants),
+                    List.copyOf(annotationElements));
+        }
+    }
+
+    private record EnumConstantInfo(String enclosingType, String name, String rawDeclaration, String file) {
+        String description() {
+            return enclosingType + "#" + name;
+        }
+    }
+
+    /** An annotation-type element ({@code String mockMaker() default "";}); {@code defaultValue} is its source text. */
+    private record AnnotationElementInfo(String enclosingType, String name, String type, Optional<String> defaultValue,
+                                          String rawDeclaration, String file) {
+        String description() {
+            return enclosingType + "#" + name;
+        }
     }
 
     /**

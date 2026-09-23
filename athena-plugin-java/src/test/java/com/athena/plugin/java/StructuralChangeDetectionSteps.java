@@ -2,6 +2,14 @@ package com.athena.plugin.java;
 
 import com.athena.semantic.DetectedTransformation;
 import com.athena.semantic.TransformationKind;
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.AnnotationMemberDeclaration;
+import com.github.javaparser.ast.body.BodyDeclaration;
+import com.github.javaparser.ast.body.EnumDeclaration;
+import com.github.javaparser.ast.body.FieldDeclaration;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.TypeDeclaration;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -358,8 +366,9 @@ public class StructuralChangeDetectionSteps {
     }
 
     @Given("a head revision where {string} no longer has {string}")
-    public void head_nested_class_no_longer_has(String qualifiedName, String memberName) {
-        write(headRoot, topLevelOf(qualifiedName), nestedSource(qualifiedName, "", false));
+    public void head_type_no_longer_has_member(String qualifiedName, String memberName) {
+        String topLevel = topLevelOf(qualifiedName);
+        write(headRoot, topLevel, withoutMember(readBase(topLevel), qualifiedName, memberName));
     }
 
     @Given("a base revision where nested class {string} inside {string} gets its bean factory through a setter")
@@ -485,7 +494,151 @@ public class StructuralChangeDetectionSteps {
         assertThat(transformation.diffText().lines().anyMatch(l -> l.startsWith("+") && l.contains(addedText))).isTrue();
     }
 
+    // ---- enum constants and annotation elements (ticket #266) ----
+
+    @Given("a base revision where enum {string} has constants {string} and {string}")
+    public void base_enum_has_two_constants(String enumName, String first, String second) {
+        write(baseRoot, enumName, "public enum " + enumName + " {\n    " + first + ",\n    " + second + "\n}\n");
+    }
+
+    @Given("a base revision where enum {string} has constants {string}, {string} and {string}")
+    public void base_enum_has_three_constants(String enumName, String first, String second, String third) {
+        write(baseRoot, enumName, "public enum " + enumName + " {\n    " + first + ",\n    " + second + ",\n    "
+                + third + "\n}\n");
+    }
+
+    @Given("a head revision where {string} also has {string}")
+    public void head_enum_also_has_constant(String enumName, String constant) {
+        String base = readBase(enumName);
+        write(headRoot, enumName, base.replace("\n}", ",\n    " + constant + "\n}"));
+    }
+
+    @Given("a base and head revision where enum {string} has the same constants in a different order")
+    public void enum_constants_reordered(String enumName) {
+        write(baseRoot, enumName, "public enum " + enumName + " {\n    ACTIVE,\n    DISABLED\n}\n");
+        write(headRoot, enumName, "public enum " + enumName + " {\n    DISABLED,\n    ACTIVE\n}\n");
+    }
+
+    @Given("a base revision where annotation {string} has no elements")
+    public void base_annotation_has_no_elements(String annotation) {
+        write(baseRoot, annotation, "public @interface " + annotation + " {\n}\n");
+    }
+
+    @Given("a head revision where annotation {string} has element {string} of type {string} with default {string}")
+    public void head_annotation_has_element_with_default(String annotation, String element, String type, String defaultValue) {
+        write(headRoot, annotation, "public @interface " + annotation + " {\n    " + type + " " + element
+                + "() default \"" + defaultValue + "\";\n}\n");
+    }
+
+    @Given("a base revision where annotation {string} has elements {string} and {string}")
+    public void base_annotation_has_two_elements(String annotation, String first, String second) {
+        write(baseRoot, annotation, "public @interface " + annotation + " {\n    int " + first + "();\n    int "
+                + second + "();\n}\n");
+    }
+
+    @Given("a head revision where annotation {string} only has {string}")
+    public void head_annotation_only_has_element(String annotation, String element) {
+        write(headRoot, annotation, "public @interface " + annotation + " {\n    int " + element + "();\n}\n");
+    }
+
+    @Given("a base revision where annotation {string} has element {string} with default {int}")
+    public void base_annotation_element_with_default(String annotation, String element, int defaultValue) {
+        write(baseRoot, annotation, "public @interface " + annotation + " {\n    int " + element + "() default "
+                + defaultValue + ";\n}\n");
+    }
+
+    @Given("a head revision where {string} on {string} has default {int}")
+    public void head_annotation_element_default_changed(String element, String annotation, int defaultValue) {
+        write(headRoot, annotation, "public @interface " + annotation + " {\n    int " + element + "() default "
+                + defaultValue + ";\n}\n");
+    }
+
+    @Then("an enum constant addition is detected involving {string}")
+    public void an_enum_constant_addition_is_detected(String constant) {
+        a_transformation_is_detected_involving_one("ADD_ENUM_CONSTANT", constant);
+    }
+
+    @Then("an enum constant removal is detected involving {string}")
+    public void an_enum_constant_removal_is_detected(String constant) {
+        a_transformation_is_detected_involving_one("REMOVE_ENUM_CONSTANT", constant);
+    }
+
+    @Then("no enum constant addition or removal is detected involving {string}")
+    public void no_enum_constant_addition_or_removal(String enumName) {
+        assertThat(transformations).noneMatch(t -> (t.kind() == TransformationKind.ADD_ENUM_CONSTANT
+                || t.kind() == TransformationKind.REMOVE_ENUM_CONSTANT)
+                && t.involvedDescriptions().stream().anyMatch(d -> d.startsWith(enumName + "#")));
+    }
+
+    @Then("an annotation element addition is detected involving {string}")
+    public void an_annotation_element_addition_is_detected(String element) {
+        a_transformation_is_detected_involving_one("ADD_ANNOTATION_ELEMENT", element);
+    }
+
+    @Then("the detection shows its default value {string}")
+    public void the_detection_shows_its_default_value(String defaultValue) {
+        assertThat(transformations).anyMatch(t -> t.kind() == TransformationKind.ADD_ANNOTATION_ELEMENT
+                && t.diffText().contains("default \"" + defaultValue + "\""));
+    }
+
+    @Then("an annotation element removal is detected involving {string}")
+    public void an_annotation_element_removal_is_detected(String element) {
+        a_transformation_is_detected_involving_one("REMOVE_ANNOTATION_ELEMENT", element);
+    }
+
+    @Then("an annotation element default change is detected involving {string} from {int} to {int}")
+    public void an_annotation_element_default_change_is_detected(String element, int from, int to) {
+        the_transformation_has_a_diff_showing("CHANGE_ANNOTATION_ELEMENT_DEFAULT", element,
+                "default " + from, "default " + to);
+    }
+
     // ---- helpers ----
+
+    private String readBase(String topLevelClassName) {
+        try {
+            return Files.readString(baseRoot.resolve(topLevelClassName + ".java"));
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    /**
+     * {@code source} with every member called {@code memberName} (method, field, enum
+     * constant, annotation element) removed from type {@code qualifiedTypeName}, so a
+     * "no longer has" step works whatever kind of type and member the base declared.
+     */
+    private static String withoutMember(String source, String qualifiedTypeName, String memberName) {
+        CompilationUnit unit = new JavaParser(JavaParserConfigurations.currentJava()).parse(source).getResult()
+                .orElseThrow(() -> new IllegalStateException("Fixture source does not parse"));
+        String[] names = qualifiedTypeName.split("\\.");
+        TypeDeclaration<?> type = unit.getType(0);
+        for (int i = 1; i < names.length; i++) {
+            String name = names[i];
+            type = type.getMembers().stream()
+                    .filter(member -> member instanceof TypeDeclaration<?> nested && nested.getNameAsString().equals(name))
+                    .map(member -> (TypeDeclaration<?>) member)
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalStateException("No nested type " + name));
+        }
+        type.getMembers().removeIf(member -> declaresName(member, memberName));
+        if (type instanceof EnumDeclaration enumDeclaration) {
+            enumDeclaration.getEntries().removeIf(entry -> entry.getNameAsString().equals(memberName));
+        }
+        return unit.toString();
+    }
+
+    private static boolean declaresName(BodyDeclaration<?> member, String name) {
+        if (member instanceof MethodDeclaration method) {
+            return method.getNameAsString().equals(name);
+        }
+        if (member instanceof AnnotationMemberDeclaration element) {
+            return element.getNameAsString().equals(name);
+        }
+        if (member instanceof FieldDeclaration field) {
+            return field.getVariables().stream().anyMatch(variable -> variable.getNameAsString().equals(name));
+        }
+        return false;
+    }
 
     private static String topLevelOf(String qualifiedName) {
         int dot = qualifiedName.indexOf('.');
