@@ -192,10 +192,16 @@ public final class TransformationDetector {
 
         // 4. Extract method: a head method not present in base whose body is structurally
         //    equivalent to a fragment still present (as a call) inside a base method that
-        //    still exists in head with a shorter body calling the new method.
+        //    still exists in head with a shorter body calling the new method. Only a caller
+        //    whose own body changed can have had something extracted out of it, and an empty
+        //    body is "contained" in any method, so it's never an extraction (ticket #269: the
+        //    keycloak false positive credited new empty init()/close() methods to untouched
+        //    files that merely call a same-named method).
         for (MethodInfo head : new ArrayList<>(stillUnmatchedHead)) {
+            if (stripBraces(head.normalizedBody).isEmpty()) continue;
             for (MethodInfo callerHead : headMethods) {
                 if (callerHead.name.equals(head.name)) continue;
+                if (!bodyChanged(baseByKey, callerHead)) continue;
                 if (callsMethod(callerHead.normalizedBody, head.name) && baseHasInlineEquivalent(baseByKey, callerHead, head)) {
                     MethodInfo callerBase = firstUnmatched(
                             baseByKey.get(new MethodKey(callerHead.file, callerHead.enclosingType, callerHead.name)), Set.of());
@@ -850,6 +856,12 @@ public final class TransformationDetector {
 
     private boolean callsMethod(String body, String methodName) {
         return body.contains(methodName + "(");
+    }
+
+    /** True if {@code callerHead} existed in base (same enclosing type + name) with a different body. */
+    private boolean bodyChanged(Map<MethodKey, List<MethodInfo>> baseByKey, MethodInfo callerHead) {
+        List<MethodInfo> candidates = baseByKey.get(new MethodKey(callerHead.enclosingType, callerHead.name));
+        return candidates != null && candidates.stream().noneMatch(base -> base.normalizedBody.equals(callerHead.normalizedBody));
     }
 
     private boolean baseHasInlineEquivalent(Map<MethodKey, List<MethodInfo>> baseByKey, MethodInfo callerHead,
