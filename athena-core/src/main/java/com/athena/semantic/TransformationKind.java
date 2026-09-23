@@ -34,5 +34,9 @@ public enum TransformationKind {
     CHANGE_PARAMETER_ANNOTATIONS,
     CHANGE_METHOD_ANNOTATIONS,
     CHANGE_CONTROL_FLOW,
-    MODIFY_METHOD_BODY
+    MODIFY_METHOD_BODY,
+    // A field/method several existing classes lost to a newly added common base class that
+    // gained it (ticket #290). Involved: "Base#member" first, then each source "Sub#member".
+    PULL_UP_FIELD,
+    PULL_UP_SYMBOL
 }

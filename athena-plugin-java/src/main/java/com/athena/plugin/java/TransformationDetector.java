@@ -7,6 +7,7 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.AnnotationMemberDeclaration;
 import com.github.javaparser.ast.body.BodyDeclaration;
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.EnumConstantDeclaration;
 import com.github.javaparser.ast.body.EnumDeclaration;
@@ -17,6 +18,7 @@ import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.RecordDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
+import com.github.javaparser.ast.type.ClassOrInterfaceType;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -24,6 +26,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Comparator;
+import java.util.EnumSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -300,7 +304,113 @@ public final class TransformationDetector {
                 excluding(baseParsed.annotationElements(), AnnotationElementInfo::enclosingType, classMatch.excludedBaseTypes()),
                 excluding(headParsed.annotationElements(), AnnotationElementInfo::enclosingType, classMatch.excludedHeadTypes())));
 
-        return results;
+        // 11. Pull-ups (ticket #290): a member several existing classes lost to a new common
+        // base class that gained it. Runs last, since it replaces the move/remove/add rows the
+        // steps above already reported for those same members.
+        return withPullUps(baseParsed, headParsed, results);
+    }
+
+    /**
+     * {@code results} with every pull-up added and the move/remove/add transformations it
+     * explains taken out. A pull-up needs a base class that is new in head, two or more classes
+     * that existed in base and extend it (directly or through other classes) in head, and a
+     * member — same name and type/signature — each of those classes had in base but not in head,
+     * which the new base class declares. Sources are listed alphabetically, so the result never
+     * depends on file order.
+     */
+    private List<DetectedTransformation> withPullUps(ParsedRoot baseParsed, ParsedRoot headParsed,
+                                                     List<DetectedTransformation> results) {
+        Map<String, ClassInfo> baseClasses = new LinkedHashMap<>();
+        baseParsed.classes().forEach(c -> baseClasses.putIfAbsent(c.simpleName(), c));
+        List<DetectedTransformation> pullUps = new ArrayList<>();
+        Set<String> covered = new LinkedHashSet<>();
+        for (ClassInfo newBase : headParsed.classes()) {
+            if (baseClasses.containsKey(newBase.simpleName())) {
+                continue;
+            }
+            List<ClassInfo> subclasses = headParsed.classes().stream()
+                    .filter(c -> baseClasses.containsKey(c.simpleName()))
+                    .filter(c -> extendsTransitively(c, newBase, headParsed.classes()))
+                    .sorted(Comparator.comparing(ClassInfo::simpleName))
+                    .toList();
+            for (String signature : newBase.memberSignatures()) {
+                boolean field = signature.startsWith("field:");
+                if (!field && !signature.startsWith("method:")) {
+                    continue;
+                }
+                List<ClassInfo> sources = subclasses.stream()
+                        .filter(sub -> baseClasses.get(sub.simpleName()).memberSignatures().contains(signature))
+                        .filter(sub -> !sub.memberSignatures().contains(signature))
+                        .toList();
+                if (sources.size() < 2) {
+                    continue;
+                }
+                String member = memberName(signature);
+                List<String> involved = new ArrayList<>(List.of(newBase.simpleName() + "#" + member));
+                sources.forEach(source -> involved.add(source.simpleName() + "#" + member));
+                covered.addAll(involved);
+                List<String> files = new ArrayList<>(List.of(newBase.file()));
+                sources.stream().map(ClassInfo::file).filter(file -> !files.contains(file)).forEach(files::add);
+                String before = sources.stream()
+                        .map(source -> declarationOf(baseParsed, source.simpleName(), member, field))
+                        .collect(Collectors.joining("\n"));
+                pullUps.add(DetectedTransformation.withDiff(
+                        field ? TransformationKind.PULL_UP_FIELD : TransformationKind.PULL_UP_SYMBOL,
+                        involved, files, before, declarationOf(headParsed, newBase.simpleName(), member, field)));
+            }
+        }
+        if (pullUps.isEmpty()) {
+            return results;
+        }
+        List<DetectedTransformation> remaining = results.stream()
+                .filter(t -> !PULLED_UP_KINDS.contains(t.kind()) || !covered.containsAll(t.involvedDescriptions()))
+                .collect(Collectors.toCollection(ArrayList::new));
+        remaining.addAll(pullUps);
+        return remaining;
+    }
+
+    private static final Set<TransformationKind> PULLED_UP_KINDS = EnumSet.of(
+            TransformationKind.MOVE_FIELD, TransformationKind.REMOVE_FIELD, TransformationKind.ADD_FIELD,
+            TransformationKind.MOVE_SYMBOL, TransformationKind.REMOVE_SYMBOL, TransformationKind.ADD_SYMBOL);
+
+    /** Whether {@code type} extends {@code ancestor} in head, directly or through other head classes. */
+    private static boolean extendsTransitively(ClassInfo type, ClassInfo ancestor, List<ClassInfo> headClasses) {
+        Set<String> visited = new LinkedHashSet<>();
+        ClassInfo current = type;
+        while (current != null && !current.superclass().isEmpty() && visited.add(current.simpleName())) {
+            String superclass = current.superclass();
+            if (simpleNameOf(ancestor.simpleName()).equals(superclass)) {
+                return true;
+            }
+            current = headClasses.stream().filter(c -> simpleNameOf(c.simpleName()).equals(superclass)).findFirst().orElse(null);
+        }
+        return false;
+    }
+
+    private static String simpleNameOf(String qualifiedName) {
+        return qualifiedName.substring(qualifiedName.lastIndexOf('.') + 1);
+    }
+
+    /** The member name from a signature: "field:name:Type" or "method:name(Params):Return". */
+    private static String memberName(String signature) {
+        String rest = signature.substring(signature.indexOf(':') + 1);
+        return rest.substring(0, Math.min(indexOrEnd(rest, '('), indexOrEnd(rest, ':')));
+    }
+
+    private static int indexOrEnd(String text, char c) {
+        int index = text.indexOf(c);
+        return index < 0 ? text.length() : index;
+    }
+
+    private static String declarationOf(ParsedRoot parsed, String enclosingType, String member, boolean field) {
+        if (field) {
+            return parsed.fields().stream()
+                    .filter(f -> f.enclosingType().equals(enclosingType) && f.name().equals(member))
+                    .map(FieldInfo::rawDeclaration).findFirst().orElse("");
+        }
+        return parsed.methods().stream()
+                .filter(m -> m.enclosingType().equals(enclosingType) && m.name().equals(member))
+                .map(MethodInfo::rawWholeDeclaration).findFirst().orElse("");
     }
 
     private List<BodyEdit> constructorBodyEdits(List<ConstructorInfo> baseConstructors, List<ConstructorInfo> headConstructors) {
@@ -1038,7 +1148,10 @@ public final class TransformationDetector {
         } else {
             String headerText = type.getRange().map(range -> sourceSlice(sourceLines, range))
                     .orElse(type.toString());
-            collected.classes.add(new ClassInfo(qualifiedName, relativePath, memberSignatures, headerText));
+            String superclass = type instanceof ClassOrInterfaceDeclaration declaration && !declaration.isInterface()
+                    ? declaration.getExtendedTypes().getFirst().map(ClassOrInterfaceType::getNameAsString).orElse("")
+                    : "";
+            collected.classes.add(new ClassInfo(qualifiedName, relativePath, memberSignatures, headerText, superclass));
         }
         for (BodyDeclaration<?> member : type.getMembers()) {
             if (member instanceof TypeDeclaration<?> nested) {
@@ -1153,8 +1266,10 @@ public final class TransformationDetector {
      * method — the "did the substance stay the same" signal that lets a rename/move be
      * told apart from an unrelated add+remove pair. {@code headerText} is the type's own
      * full source text (used for the class-level diff and formatting-only detection).
+     * {@code superclass} is the simple name of the class it extends, empty for none (ticket #290).
      */
-    private record ClassInfo(String simpleName, String file, Set<String> memberSignatures, String headerText) {
+    private record ClassInfo(String simpleName, String file, Set<String> memberSignatures, String headerText,
+                             String superclass) {
     }
 
     /** {@code visibility} is the declared access level: public, protected, package-private or private. */
