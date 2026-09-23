@@ -903,6 +903,63 @@ public class StructuralChangeDetectionSteps {
                 + ") {\n            return true;\n        }\n        return false;\n    }\n}\n";
     }
 
+    // ---- extract-method scoped to the change (ticket #269) ----
+
+    @Given("a base and head revision where unchanged class {string} has a method that calls {string} on a stream")
+    public void unchanged_class_calls_method_on_stream(String className, String call) {
+        String source = "public class " + className + " {\n    void shutdown(java.io.InputStream stream) throws Exception {\n        stream."
+                + call + ";\n    }\n}\n";
+        write(world.baseRoot(), className, source);
+        write(world.headRoot(), className, source);
+    }
+
+    @Given("the head revision adds class {string} with a new method {string}")
+    public void head_adds_class_with_new_empty_method(String className, String method) {
+        write(world.headRoot(), className, "public class " + className + " {\n    public void " + method + "() {\n    }\n}\n");
+    }
+
+    @Given("a base revision where class {string} does not exist")
+    public void base_class_does_not_exist(String className) {
+        write(world.baseRoot(), "Placeholder", "public class Placeholder {\n}\n");
+    }
+
+    @Given("a head revision where class {string} has an empty method {string} and a changed method {string} that calls {string}")
+    public void head_class_with_empty_method_and_caller(String className, String emptyMethod, String caller, String call) {
+        write(world.headRoot(), "Placeholder", "public class Placeholder {\n}\n");
+        write(world.headRoot(), className, "public class " + className + " {\n    public void " + emptyMethod
+                + "() {\n    }\n    public Object " + caller + "() {\n        " + call + ";\n        return this;\n    }\n}\n");
+    }
+
+    @Given("a base and head revision where files {string} and {string} changed and every other file is identical")
+    public void only_two_files_changed(String firstFile, String secondFile) {
+        String first = firstFile.replace(".java", "");
+        String second = secondFile.replace(".java", "");
+        write(world.baseRoot(), first, "public class " + first + " {\n    String run() {\n        return \"a\";\n    }\n}\n");
+        write(world.headRoot(), first, "public class " + first + " {\n    String run() {\n        return prepare();\n    }\n"
+                + "    String prepare() {\n        return \"a\";\n    }\n    void close() {\n    }\n}\n");
+        write(world.baseRoot(), second, "public class " + second + " {\n}\n");
+        write(world.headRoot(), second, "public class " + second + " {\n    void init() {\n    }\n}\n");
+        for (String unchanged : List.of("Closer", "Starter")) {
+            String source = "public class " + unchanged + " {\n    void go(" + first + " a) {\n        a.close();\n        init();\n    }\n"
+                    + "    void init() {\n    }\n}\n";
+            write(world.baseRoot(), unchanged, source);
+            write(world.headRoot(), unchanged, source);
+        }
+    }
+
+    @Then("no transformation cites a file of class {string}")
+    public void no_transformation_cites_a_file_of_class(String className) {
+        assertThat(transformations).noneMatch(t -> t.filesTouched().stream()
+                .anyMatch(file -> file.endsWith(className + ".java")));
+    }
+
+    @Then("every detected transformation only cites {string} or {string}")
+    public void every_transformation_only_cites(String firstFile, String secondFile) {
+        assertThat(transformations).isNotEmpty();
+        assertThat(transformations).allMatch(t -> t.filesTouched().stream()
+                .allMatch(file -> file.endsWith(firstFile) || file.endsWith(secondFile)));
+    }
+
     // ---- helpers ----
 
     private String readBase(String topLevelClassName) {
