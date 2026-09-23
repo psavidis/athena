@@ -4,6 +4,7 @@ import com.athena.plugins.PluginRegistry;
 import com.athena.reviewbriefing.BriefingItem;
 import com.athena.semantic.AnalysisResult;
 import com.athena.semantic.Change;
+import com.athena.semantic.ModuleGrouper;
 import com.athena.semantic.PrAnalyzer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -50,7 +51,7 @@ class BriefingItemResponseTest {
         writeClass(headRoot, "orders/OrderService.java", "OrderService");
         List<Change> changes = analyzer.analyze(baseRoot, headRoot).changes();
 
-        BriefingItemResponse response = BriefingItemResponse.of(BriefingItem.of("Changed retry logic", "OrderService"), changes);
+        BriefingItemResponse response = BriefingItemResponse.of(BriefingItem.of("Changed retry logic", "OrderService"), changes, new ModuleGrouper());
 
         assertThat(response.entityReference()).isEqualTo("OrderService");
         assertThat(response.module()).isEqualTo("orders");
@@ -61,14 +62,14 @@ class BriefingItemResponseTest {
         writeClass(headRoot, "orders/OrderService.java", "OrderService");
         List<Change> changes = analyzer.analyze(baseRoot, headRoot).changes();
 
-        BriefingItemResponse response = BriefingItemResponse.of(BriefingItem.of("Unrelated", "PaymentGateway"), changes);
+        BriefingItemResponse response = BriefingItemResponse.of(BriefingItem.of("Unrelated", "PaymentGateway"), changes, new ModuleGrouper());
 
         assertThat(response.module()).isNull();
     }
 
     @Test
     void hasNoModuleWhenTheItemHasNoEntityReferenceAtAll() {
-        BriefingItemResponse response = BriefingItemResponse.of(BriefingItem.of("A repo-wide observation"), List.of());
+        BriefingItemResponse response = BriefingItemResponse.of(BriefingItem.of("A repo-wide observation"), List.of(), new ModuleGrouper());
 
         assertThat(response.entityReference()).isNull();
         assertThat(response.module()).isNull();

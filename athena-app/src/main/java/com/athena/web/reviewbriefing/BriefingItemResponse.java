@@ -3,6 +3,7 @@ package com.athena.web.reviewbriefing;
 import com.athena.reviewbriefing.BriefingItem;
 import com.athena.reviewreplay.EntityModuleResolver;
 import com.athena.semantic.Change;
+import com.athena.semantic.ModuleGrouper;
 
 import java.util.List;
 
@@ -16,9 +17,9 @@ import java.util.List;
  */
 public record BriefingItemResponse(String description, String entityReference, String module) {
 
-    static BriefingItemResponse of(BriefingItem item, List<Change> changes) {
+    static BriefingItemResponse of(BriefingItem item, List<Change> changes, ModuleGrouper grouper) {
         String module = item.entityReference()
-                .flatMap(entityReference -> EntityModuleResolver.resolve(entityReference, changes))
+                .flatMap(entityReference -> EntityModuleResolver.resolve(entityReference, changes, grouper))
                 .orElse(null);
         return new BriefingItemResponse(item.description(), item.entityReference().orElse(null), module);
     }

@@ -46,8 +46,9 @@ public final class ModuleTopologyBuilder {
 
         List<ModuleDependency> dependencies = new ArrayList<>();
         Set<String> referencedModules = new LinkedHashSet<>();
-        for (String moduleName : changedByName.keySet()) {
-            for (String dependsOn : manifestDependencies(headRoot, moduleName, allModuleNames)) {
+        for (ModuleGroup group : changedGroups) {
+            String moduleName = group.moduleName();
+            for (String dependsOn : manifestDependencies(headRoot, group.directory(), moduleName, allModuleNames)) {
                 dependencies.add(new ModuleDependency(moduleName, dependsOn));
                 if (!changedByName.containsKey(dependsOn)) {
                     referencedModules.add(dependsOn);
@@ -68,8 +69,10 @@ public final class ModuleTopologyBuilder {
 
     private ModuleTerritory territoryFor(ModuleGroup group, Path baseRoot, Path headRoot) {
         String moduleName = group.moduleName();
-        boolean isNew = !Files.isDirectory(baseRoot.resolve(moduleName))
-                && Files.isDirectory(headRoot.resolve(moduleName));
+        // The module's own directory (ticket #292), which for a nested module isn't its name.
+        String directory = group.directory();
+        boolean isNew = !directory.isEmpty() && !Files.isDirectory(baseRoot.resolve(directory))
+                && Files.isDirectory(headRoot.resolve(directory));
         Set<String> filesTouched = filesTouchedBy(group);
         ModuleStatus status = isNew ? ModuleStatus.NEW : ModuleStatus.TOUCHED;
         String summary = isNew
@@ -77,7 +80,7 @@ public final class ModuleTopologyBuilder {
                 : filesTouched.size() + (filesTouched.size() == 1 ? " file" : " files")
                         + " · " + changeSummary(group);
         return new ModuleTerritory(moduleName, status, filesTouched.size(), summary,
-                techStackOf(headRoot, moduleName), group.changes());
+                techStackOf(headRoot, directory), group.changes());
     }
 
     private ModuleTerritory idleTerritory(String moduleName, Path headRoot) {
@@ -123,8 +126,9 @@ public final class ModuleTopologyBuilder {
     }
 
     /** Real declared dependencies on other modules in this repo, read from this module's own manifest. */
-    private Set<String> manifestDependencies(Path headRoot, String moduleName, Set<String> allModuleNames) {
-        Path moduleDir = headRoot.resolve(moduleName);
+    private Set<String> manifestDependencies(Path headRoot, String moduleDirectory, String moduleName,
+                                             Set<String> allModuleNames) {
+        Path moduleDir = headRoot.resolve(moduleDirectory);
         Set<String> found = new LinkedHashSet<>();
 
         Path pomFile = moduleDir.resolve("pom.xml");
@@ -157,8 +161,8 @@ public final class ModuleTopologyBuilder {
         return found;
     }
 
-    private TechStack techStackOf(Path headRoot, String moduleName) {
-        Path moduleDir = headRoot.resolve(moduleName);
+    private TechStack techStackOf(Path headRoot, String moduleDirectory) {
+        Path moduleDir = headRoot.resolve(moduleDirectory);
         boolean hasPom = Files.isRegularFile(moduleDir.resolve("pom.xml"));
         boolean hasPackageJson = Files.isRegularFile(moduleDir.resolve("package.json"));
         if (hasPom) {

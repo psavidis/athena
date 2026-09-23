@@ -6,50 +6,66 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Clusters {@link Change}s by top-level module, the coarse unit a reviewer
- * actually thinks in ("the new crowdness-live module", "the ingestion
- * module") — see {@link ModuleGroup}. Purely structural (a path-segment
- * split), like {@link ChangeGrouper}: no AI, no confidence score. The AI
+ * Clusters {@link Change}s by module, the coarse unit a reviewer actually
+ * thinks in ("the new crowdness-live module", "the ingestion module") — see
+ * {@link ModuleGroup}. Where a module ends is read from the project's build
+ * descriptors when a {@link ModuleLayout} with the revision roots is given
+ * (ticket #292), else from the leading path segment. Deterministic, like
+ * {@link ChangeGrouper}: no AI, no confidence score. The AI
  * narrative that explains *why* a module was touched is a separate,
  * explicitly non-deterministic concern layered on top of this grouping
  * (see {@code com.athena.ai.ModuleNarrativeProvider}), not part of it.
  */
 public final class ModuleGrouper {
 
+    private final ModuleLayout layout;
+
+    /** Groups by the leading path segment alone (see {@link ModuleLayout#pathBased()}). */
+    public ModuleGrouper() {
+        this(ModuleLayout.pathBased());
+    }
+
+    /** Groups by the module {@code layout} places each Change's first touched file in (ticket #292). */
+    public ModuleGrouper(ModuleLayout layout) {
+        this.layout = layout;
+    }
+
     public List<ModuleGroup> group(List<Change> changes) {
-        Map<String, List<Change>> byModule = new LinkedHashMap<>();
+        Map<String, List<Change>> byDirectory = new LinkedHashMap<>();
         for (Change change : changes) {
-            byModule.computeIfAbsent(moduleOf(change), m -> new ArrayList<>()).add(change);
+            byDirectory.computeIfAbsent(directoryOf(change), m -> new ArrayList<>()).add(change);
         }
 
         List<ModuleGroup> groups = new ArrayList<>();
-        for (Map.Entry<String, List<Change>> entry : byModule.entrySet()) {
-            groups.add(new ModuleGroup(entry.getKey(), entry.getValue()));
+        for (Map.Entry<String, List<Change>> entry : byDirectory.entrySet()) {
+            groups.add(new ModuleGroup(layout.nameOf(entry.getKey()), entry.getKey(), entry.getValue()));
         }
         return groups;
     }
 
-    /**
-     * The first matched occurrence's first touched file's leading path
-     * segment (e.g. "crowdness-live/src/main/..." -> "crowdness-live"), or
-     * "(root)" for a file with no module segment (a single-module repo, or
-     * a file living directly under the checkout root) — kept distinct from
-     * an empty string so it still reads as a real, if unstructured, group.
-     */
-    private String moduleOf(Change change) {
-        for (DetectedTransformation occurrence : change.matchedOccurrences()) {
-            for (String file : occurrence.filesTouched()) {
-                int separator = file.indexOf('/');
-                if (separator > 0) {
-                    return file.substring(0, separator);
-                }
-            }
-        }
-        return "(root)";
+    /** The name of the module {@code filePath} belongs to under this grouper's layout. */
+    public String moduleNameOf(String filePath) {
+        return layout.nameOf(layout.directoryOf(filePath));
     }
 
     /**
-     * The same leading-path-segment rule as {@link #moduleOf(Change)}, applied to a single
+     * The module directory of the first touched file (in matched-occurrence order) that isn't
+     * at the repository root, or "" — the root module — when every touched file is.
+     */
+    private String directoryOf(Change change) {
+        for (DetectedTransformation occurrence : change.matchedOccurrences()) {
+            for (String file : occurrence.filesTouched()) {
+                String directory = layout.directoryOf(file);
+                if (!directory.isEmpty()) {
+                    return directory;
+                }
+            }
+        }
+        return "";
+    }
+
+    /**
+     * The leading-path-segment rule of {@link ModuleLayout#pathBased()}, applied to a single
      * file path directly — used to compare a move's before/after module without a whole
      * {@link Change} to derive it from (e.g. {@code CapabilitySplitDetector}).
      */

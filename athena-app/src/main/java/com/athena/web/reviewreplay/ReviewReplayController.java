@@ -12,6 +12,7 @@ import com.athena.reviewreplay.ReviewReplay;
 import com.athena.reviewrecorder.ReviewRecordingArtifact;
 import com.athena.reviewrecorder.ReviewRecordingArtifactStore;
 import com.athena.semantic.Change;
+import com.athena.semantic.ModuleGrouper;
 import com.athena.web.Diff;
 import com.athena.web.WebSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class ReviewReplayController {
         this(session, ReviewRecordingArtifactStore::new,
                 diff -> new KnownEntityReferenceResolver(
                         () -> diff.changes().stream().map(Change::enclosingType).collect(Collectors.toSet())),
-                diff -> new KnownEntityModuleResolver(diff::changes));
+                diff -> new KnownEntityModuleResolver(diff::changes, () -> new ModuleGrouper(diff.moduleLayout())));
     }
 
     /**
