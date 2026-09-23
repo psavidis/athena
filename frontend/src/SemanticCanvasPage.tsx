@@ -1,3 +1,4 @@
+import CoverageIndicator from './CoverageIndicator'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useQueries, useQuery } from '@tanstack/react-query'
 import {
@@ -705,6 +706,7 @@ export default function SemanticCanvasPage({
         showCommentedOnly={showCommentedOnly}
         onToggleCommentedOnly={() => setShowCommentedOnly((current) => !current)}
       />
+      <CoverageIndicator />
       <div className="flex min-h-0 flex-1">
         {reviewMode === 'CONTEXTUAL' && (
           <CanvasSidebar

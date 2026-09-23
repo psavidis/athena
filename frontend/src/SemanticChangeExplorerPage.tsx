@@ -1,3 +1,4 @@
+import CoverageIndicator from './CoverageIndicator'
 import { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
@@ -263,6 +264,7 @@ export default function SemanticChangeExplorerPage({
   return (
     <div className="flex min-h-screen flex-col">
       {topbar}
+      <CoverageIndicator />
       <div className="flex-1 px-6 py-10 sm:px-10 sm:py-14">
         <div className="animate-rise-in">
           <div className="mb-2 flex items-center justify-end">
