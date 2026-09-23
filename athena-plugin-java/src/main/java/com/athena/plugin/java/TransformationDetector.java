@@ -33,7 +33,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Detects deterministic structural/mechanical transformations between a
@@ -57,8 +56,11 @@ public final class TransformationDetector {
         // independently call StaticJavaParser.parse() over every file, so every root's
         // source tree was parsed twice for no reason (parsing is the expensive part; the
         // method-vs-record extraction from an already-parsed CompilationUnit is cheap).
-        ParsedRoot baseParsed = parseRoot(baseRoot);
-        ParsedRoot headParsed = parseRoot(headRoot);
+        // Only files that differ between the revisions are parsed and compared (ticket #271):
+        // an identical file can't be the source or target of any change reported here.
+        ChangedJavaFiles changedFiles = ChangedJavaFiles.between(baseRoot, headRoot);
+        ParsedRoot baseParsed = parseRoot(baseRoot, changedFiles.relativePaths());
+        ParsedRoot headParsed = parseRoot(headRoot, changedFiles.relativePaths());
 
         List<DetectedTransformation> results = new ArrayList<>();
 
@@ -236,7 +238,8 @@ public final class TransformationDetector {
 
         // 6. Mechanical replacement: a whole-identifier textual substitution applied
         //    identically across every file that referenced the old identifier.
-        List<DetectedTransformation> mechanicalReplacements = detectMechanicalReplacements(baseRoot, headRoot);
+        List<DetectedTransformation> mechanicalReplacements = detectMechanicalReplacements(baseRoot, headRoot,
+                changedFiles.presentInBoth());
         results.addAll(mechanicalReplacements);
 
         // 6b. Body modifications (ticket #264): every same-signature method or constructor whose
@@ -719,19 +722,13 @@ public final class TransformationDetector {
      * cost a full scan per candidate (every identifier of the repository × every file). A
      * replacement cites only the files it occurs in.
      */
-    private List<DetectedTransformation> detectMechanicalReplacements(Path baseRoot, Path headRoot) {
+    private List<DetectedTransformation> detectMechanicalReplacements(Path baseRoot, Path headRoot,
+                                                                       List<String> editedFiles) {
         Map<String, String> baseTextByFile = new LinkedHashMap<>();
         Map<String, String> headTextByFile = new LinkedHashMap<>();
-        for (Path baseFile : javaFiles(baseRoot)) {
-            String rel = baseRoot.relativize(baseFile).toString();
-            Path headFile = headRoot.resolve(rel);
-            if (!Files.exists(headFile)) continue;
-            String baseText = readFile(baseFile);
-            String headText = readFile(headFile);
-            if (!baseText.equals(headText)) {
-                baseTextByFile.put(rel, baseText);
-                headTextByFile.put(rel, headText);
-            }
+        for (String rel : editedFiles) {
+            baseTextByFile.put(rel, readFile(baseRoot.resolve(rel)));
+            headTextByFile.put(rel, readFile(headRoot.resolve(rel)));
         }
 
         Set<String> candidateIdentifiers = new LinkedHashSet<>();
@@ -880,17 +877,19 @@ public final class TransformationDetector {
     }
 
     /**
-     * Parses every file under {@code root} exactly once and extracts both
+     * Parses each of {@code relativePaths} (the changed files, ticket #271) that exists
+     * under {@code root} exactly once and extracts both
      * {@link MethodInfo}s and {@link RecordInfo}s from the same
      * {@link CompilationUnit} — methodInfos and recordInfos used to each
      * independently re-parse every file, doubling the tree's parse cost
      * (parsing dominates; extracting two different views from an
      * already-parsed AST is cheap).
      */
-    private ParsedRoot parseRoot(Path root) {
+    private ParsedRoot parseRoot(Path root, List<String> relativePaths) {
         DeclarationCollector collected = new DeclarationCollector();
-        for (Path file : javaFiles(root)) {
-            String relativePath = root.relativize(file).toString();
+        for (String relativePath : relativePaths) {
+            Path file = root.resolve(relativePath);
+            if (!Files.isRegularFile(file)) continue;
             CompilationUnit cu;
             List<String> sourceLines;
             try {
@@ -1168,13 +1167,6 @@ public final class TransformationDetector {
         return body.replaceAll("\\s+", " ").trim();
     }
 
-    private List<Path> javaFiles(Path root) {
-        try (Stream<Path> walk = Files.walk(root)) {
-            return walk.filter(p -> p.toString().endsWith(".java")).filter(Files::isRegularFile).toList();
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        }
-    }
 
     private String readFile(Path path) {
         try {
