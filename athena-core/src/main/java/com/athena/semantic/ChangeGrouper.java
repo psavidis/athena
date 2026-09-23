@@ -95,6 +95,10 @@ public final class ChangeGrouper {
             case CHANGE_ANNOTATION_ELEMENT_DEFAULT -> "Change default of annotation element " + key.involvedDescriptions.get(0);
             case CHANGE_FIELD_TYPE -> "Change type of field " + key.involvedDescriptions.get(0)
                     + ": " + key.involvedDescriptions.get(1);
+            case CHANGE_PARAMETER_ANNOTATIONS -> "Change parameter annotations of " + key.involvedDescriptions.get(0)
+                    + ": " + key.involvedDescriptions.get(1);
+            case CHANGE_METHOD_ANNOTATIONS -> "Change annotations of " + key.involvedDescriptions.get(0)
+                    + ": " + key.involvedDescriptions.get(1);
         };
     }
 
