@@ -1,6 +1,7 @@
 package com.athena.plugin.java;
 
 import com.athena.semantic.ChangeCategory;
+import com.athena.semantic.ChangeGrouper;
 import com.athena.semantic.DetectedTransformation;
 import com.athena.semantic.TransformationKind;
 import com.github.javaparser.JavaParser;
@@ -889,6 +890,68 @@ public class StructuralChangeDetectionSteps {
     @Then("no body modification is detected involving {string}")
     public void no_body_modification_is_detected(String symbol) {
         assertThat(bodyModificationsInvolving(symbol)).isEmpty();
+    }
+
+    // ---- body modification summaries (ticket #288) ----
+
+    @Given("a base revision where method {string} on class {string} returns its token")
+    public void base_method_returns_its_token(String method, String className) {
+        write(world.baseRoot(), className, tokenMethod(className, method, "        return token;\n"));
+    }
+
+    @Given("a head revision where {string} on {string} returns its token")
+    public void head_method_returns_its_token(String method, String className) {
+        write(world.headRoot(), className, tokenMethod(className, method, "        return token;\n"));
+    }
+
+    @Given("a base revision where method {string} on class {string} calls {string} before returning its token")
+    public void base_method_calls_before_returning(String method, String className, String call) {
+        write(world.baseRoot(), className, tokenMethod(className, method, "        " + call + "(token);\n        return token;\n"));
+    }
+
+    @Given("a head revision where {string} on {string} calls {string} before returning its token")
+    public void head_method_calls_before_returning(String method, String className, String call) {
+        write(world.headRoot(), className, tokenMethod(className, method, "        " + call + "(token);\n        return token;\n"));
+    }
+
+    @Given("a head revision where {string} on {string} calls {string} with a different argument before returning its token")
+    public void head_method_calls_with_different_argument(String method, String className, String call) {
+        write(world.headRoot(), className, tokenMethod(className, method, "        " + call + "(\"other\");\n        return token;\n"));
+    }
+
+    @Given("a head revision where {string} on {string} calls {string}, {string}, {string}, {string}, {string}, {string} and {string} before returning its token")
+    public void head_method_calls_many(String method, String className, String c1, String c2, String c3, String c4,
+                                       String c5, String c6, String c7) {
+        StringBuilder body = new StringBuilder();
+        for (String call : List.of(c1, c2, c3, c4, c5, c6, c7)) {
+            body.append("        ").append(call).append("(token);\n");
+        }
+        write(world.headRoot(), className, tokenMethod(className, method, body.append("        return token;\n").toString()));
+    }
+
+    // try/catch, not an if: a new branch would make this a control-flow change instead (ticket #263).
+    @Given("a head revision where {string} on {string} throws {string} on failure")
+    public void head_method_throws_on_failure(String method, String className, String exception) {
+        write(world.headRoot(), className, tokenMethod(className, method, "        try {\n            return token;\n"
+                + "        } catch (RuntimeException e) {\n            throw new " + exception + "(e);\n        }\n"));
+    }
+
+    @Given("a head revision where {string} on {string} returns a fallback token on failure")
+    public void head_method_returns_fallback_on_failure(String method, String className) {
+        write(world.headRoot(), className, tokenMethod(className, method, "        try {\n            return token;\n"
+                + "        } catch (RuntimeException e) {\n            return \"fallback\";\n        }\n"));
+    }
+
+    @Then("the body modification of {string} is described as {string}")
+    public void the_body_modification_is_described_as(String symbol, String description) {
+        List<DetectedTransformation> modifications = bodyModificationsInvolving(symbol);
+        assertThat(modifications).hasSize(1);
+        assertThat(new ChangeGrouper().group(modifications)).singleElement()
+                .satisfies(change -> assertThat(change.title()).isEqualTo(description));
+    }
+
+    private static String tokenMethod(String className, String method, String body) {
+        return "public class " + className + " {\n    public String " + method + "(String token) {\n" + body + "    }\n}\n";
     }
 
     private List<DetectedTransformation> bodyModificationsInvolving(String symbol) {

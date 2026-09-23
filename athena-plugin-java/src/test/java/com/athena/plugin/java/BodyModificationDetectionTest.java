@@ -34,7 +34,7 @@ class BodyModificationDetectionTest {
         assertThat(detect()).singleElement().satisfies(change -> {
             assertThat(change.kind()).isEqualTo(TransformationKind.MODIFY_METHOD_BODY);
             assertThat(ChangeCategory.of(change.kind())).isEqualTo(ChangeCategory.UNKNOWN);
-            assertThat(change.involvedDescriptions()).containsExactly("Printer#format");
+            assertThat(change.involvedDescriptions()).containsExactly("Printer#format", "+trim");
             assertThat(change.diffText()).contains("-        return name;").contains("+        return name.trim();");
         });
     }
@@ -45,7 +45,7 @@ class BodyModificationDetectionTest {
         write(headRoot, "Account", "public class Account {\n    long balance;\n    Account(long b) { this.balance = Math.max(0, b); }\n}\n");
 
         assertThat(detect()).extracting(t -> t.kind() + " " + t.involvedDescriptions())
-                .contains("MODIFY_METHOD_BODY [Account#<init>]");
+                .contains("MODIFY_METHOD_BODY [Account#<init>, +max]");
     }
 
     @Test
@@ -100,7 +100,7 @@ class BodyModificationDetectionTest {
 
         assertThat(detect()).singleElement().satisfies(change -> {
             assertThat(change.kind()).isEqualTo(TransformationKind.MODIFY_METHOD_BODY);
-            assertThat(change.involvedDescriptions()).containsExactly("Reader#<clinit>");
+            assertThat(change.involvedDescriptions()).containsExactly("Reader#<clinit>", "+flush");
             assertThat(change.diffText()).contains("r.flush()");
         });
     }
