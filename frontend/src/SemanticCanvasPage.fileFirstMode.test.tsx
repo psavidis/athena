@@ -40,6 +40,7 @@ const TWO_MODULE_TOPOLOGY: ModuleTopology = {
       techStack: 'SPRING_BOOT_JAVA',
       techStackLabel: 'Spring Boot · Java',
       changeKeys: ['change-1'],
+      testChangeKeys: [],
     },
     {
       moduleName: 'crowdness-ingestion',
@@ -49,6 +50,7 @@ const TWO_MODULE_TOPOLOGY: ModuleTopology = {
       techStack: 'JAVA',
       techStackLabel: 'Java',
       changeKeys: ['change-2'],
+      testChangeKeys: [],
     },
   ],
   dependencies: [],
@@ -63,6 +65,7 @@ function baseChange(overrides: Partial<ChangeDetail>): ChangeDetail {
     symbols: [],
     files: [],
     diff: '',
+    testCode: false,
     ...overrides,
   }
 }

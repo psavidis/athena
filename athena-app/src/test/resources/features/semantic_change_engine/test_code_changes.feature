@@ -5,7 +5,7 @@ Feature: Changes in test code are recognized as test code
 
   Scenario Outline: A Change in a test source is marked as test code
     Given the reviewer has selected a PR where a method was added to the class in "<file>"
-    When the reviewer opens the Change Map
+    When the reviewer views the Change Map of that PR
     Then the Change for that method is marked as test code
 
     Examples:
@@ -23,7 +23,7 @@ Feature: Changes in test code are recognized as test code
 
   Scenario Outline: A Change in production code is not marked as test code
     Given the reviewer has selected a PR where a method was added to the class in "<file>"
-    When the reviewer opens the Change Map
+    When the reviewer views the Change Map of that PR
     Then the Change for that method is not marked as test code
 
     Examples:

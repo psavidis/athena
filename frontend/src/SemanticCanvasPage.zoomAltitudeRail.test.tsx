@@ -40,6 +40,7 @@ const LIVE_TERRITORY: ModuleTopology = {
       techStack: 'SPRING_BOOT_JAVA',
       techStackLabel: 'Spring Boot · Java',
       changeKeys: [],
+      testChangeKeys: [],
     },
   ],
   dependencies: [],

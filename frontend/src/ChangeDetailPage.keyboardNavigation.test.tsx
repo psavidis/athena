@@ -31,6 +31,7 @@ const TWO_FILE_DETAIL: ChangeDetail = {
   symbols: ['Account#validate'],
   files: ['Account.java', 'AccountTest.java'],
   diff: '- validate()\n+ moved',
+  testCode: false,
 }
 
 describe('Keyboard navigation of a Change detail view', () => {

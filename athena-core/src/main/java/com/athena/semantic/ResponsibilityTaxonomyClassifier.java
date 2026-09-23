@@ -47,7 +47,8 @@ public final class ResponsibilityTaxonomyClassifier {
     }
 
     public Optional<SemanticClassification> classify(Change change) {
-        if (change.matchedOccurrences().isEmpty()) {
+        // A test is not a business capability (ticket #285): a new test method isn't "Add Capability".
+        if (change.matchedOccurrences().isEmpty() || change.isTestCode()) {
             return Optional.empty();
         }
         return conceptIdFor(change.kind())

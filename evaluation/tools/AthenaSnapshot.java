@@ -107,6 +107,7 @@ public class AthenaSnapshot {
             detail.put("symbols", view.symbols());
             detail.put("occurrences", change.occurrenceCount());
             detail.put("exceptions", change.exceptionCount());
+            detail.put("testCode", change.isTestCode());
             details.add(detail);
         }
         json.writeValue(out.resolve("changes.json").toFile(), details);

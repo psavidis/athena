@@ -64,6 +64,8 @@ export interface ChangeMapEntry {
   reviewState: ReviewState
   occurrenceCount: number
   exceptionCount: number
+  /** Whether the Change is in test code (ticket #285). */
+  testCode: boolean
 }
 
 export interface ClassGroup {
@@ -119,6 +121,8 @@ export interface ChangeDetail {
   symbols: string[]
   files: string[]
   diff: string
+  /** Whether the Change is in test code (ticket #285). */
+  testCode: boolean
 }
 
 export type AnnotationScope =
@@ -341,6 +345,8 @@ export interface ModuleTerritory {
   techStack: TechStack
   techStackLabel: string
   changeKeys: string[]
+  /** The subset of changeKeys whose Changes are in test code (ticket #285). */
+  testChangeKeys: string[]
 }
 
 export interface ModuleDependency {
