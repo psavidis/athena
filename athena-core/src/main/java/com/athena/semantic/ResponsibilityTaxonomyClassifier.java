@@ -40,7 +40,8 @@ public final class ResponsibilityTaxonomyClassifier {
                     Optional.of("change-api-responsibility");
             case EXTRACT_METHOD -> Optional.of("split-responsibility");
             case RENAME_SYMBOL, RENAME_CLASS, RENAME_FIELD, MECHANICAL_REPLACEMENT, FORMATTING_ONLY,
-                 CHANGE_FIELD_ANNOTATIONS, CHANGE_FIELD_TYPE -> Optional.empty();
+                 CHANGE_FIELD_ANNOTATIONS, CHANGE_FIELD_TYPE, CHANGE_PARAMETER_ANNOTATIONS,
+                 CHANGE_METHOD_ANNOTATIONS -> Optional.empty();
         };
     }
 

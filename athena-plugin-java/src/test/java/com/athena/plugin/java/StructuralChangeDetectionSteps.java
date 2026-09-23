@@ -670,6 +670,131 @@ public class StructuralChangeDetectionSteps {
         return "public class " + className + " {\n    " + annotation + visibility + " " + type + " " + fieldName + ";\n}\n";
     }
 
+    // ---- parameter and return annotation changes (ticket #268) ----
+
+    @Given("a base revision where method {string} on class {string} takes parameter {string} with no annotation")
+    public void base_method_takes_unannotated_parameter(String method, String className, String parameter) {
+        write(baseRoot, className, methodSource("class", className, "", method, "Object " + parameter));
+    }
+
+    @Given("a head revision where parameter {string} of {string} is annotated {string}")
+    public void head_parameter_is_annotated(String parameter, String qualifiedMethod, String annotation) {
+        String className = qualifiedMethod.substring(0, qualifiedMethod.indexOf('#'));
+        String method = qualifiedMethod.substring(qualifiedMethod.indexOf('#') + 1);
+        write(headRoot, className, methodSource("class", className, "", method, annotation + " Object " + parameter));
+    }
+
+    @Given("a base revision where method {string} on class {string} takes parameter {string} annotated {string}")
+    public void base_method_takes_annotated_parameter(String method, String className, String parameter, String annotation) {
+        write(baseRoot, className, methodSource("class", className, "", method, annotation + " Object " + parameter));
+    }
+
+    @Given("a head revision where parameter {string} of {string} has no annotation")
+    public void head_parameter_has_no_annotation(String parameter, String qualifiedMethod) {
+        String className = qualifiedMethod.substring(0, qualifiedMethod.indexOf('#'));
+        String method = qualifiedMethod.substring(qualifiedMethod.indexOf('#') + 1);
+        write(headRoot, className, methodSource("class", className, "", method, "Object " + parameter));
+    }
+
+    @Given("a base revision where method {string} on interface {string} takes parameters {string} and {string} with no annotations")
+    public void base_interface_method_takes_two_parameters(String method, String interfaceName, String first, String second) {
+        write(baseRoot, interfaceName, "public interface " + interfaceName + "<T> {\n    " + interfaceName + "<T> "
+                + method + "(T " + first + ", T... " + second + ");\n}\n");
+    }
+
+    @Given("a head revision where both parameters of {string} are annotated {string}")
+    public void head_both_parameters_annotated(String qualifiedMethod, String annotation) {
+        String interfaceName = qualifiedMethod.substring(0, qualifiedMethod.indexOf('#'));
+        String method = qualifiedMethod.substring(qualifiedMethod.indexOf('#') + 1);
+        write(headRoot, interfaceName, "public interface " + interfaceName + "<T> {\n    " + interfaceName + "<T> "
+                + method + "(" + annotation + " T value, " + annotation + " T... values);\n}\n");
+    }
+
+    @Given("a base revision where the constructor of class {string} takes parameter {string} with no annotation")
+    public void base_constructor_takes_unannotated_parameter(String className, String parameter) {
+        write(baseRoot, className, "public class " + className + " {\n    public " + className + "(Object " + parameter
+                + ") {\n    }\n}\n");
+    }
+
+    @Given("a head revision where parameter {string} of the {string} constructor is annotated {string}")
+    public void head_constructor_parameter_annotated(String parameter, String className, String annotation) {
+        write(headRoot, className, "public class " + className + " {\n    public " + className + "(" + annotation
+                + " Object " + parameter + ") {\n    }\n}\n");
+    }
+
+    @Given("a base revision where method {string} on class {string} has no annotation on its return type")
+    public void base_method_without_return_annotation(String method, String className) {
+        write(baseRoot, className, methodSource("class", className, "", method, ""));
+    }
+
+    @Given("a head revision where {string} is annotated {string} on its return type")
+    public void head_method_with_return_annotation(String qualifiedMethod, String annotation) {
+        String className = qualifiedMethod.substring(0, qualifiedMethod.indexOf('#'));
+        String method = qualifiedMethod.substring(qualifiedMethod.indexOf('#') + 1);
+        write(headRoot, className, methodSource("class", className, annotation + " ", method, ""));
+    }
+
+    @Given("a base and head revision where the only difference in method {string} on class {string} is {string} on its parameter")
+    public void only_parameter_annotation_differs(String method, String className, String annotation) {
+        write(baseRoot, className, methodSource("class", className, "", method, "Object methodCall"));
+        write(headRoot, className, methodSource("class", className, "", method, annotation + " Object methodCall"));
+    }
+
+    @Then("a parameter annotation change is detected involving {string}")
+    public void a_parameter_annotation_change_is_detected(String qualifiedMethod) {
+        assertThat(parameterAnnotationChangesInvolving(qualifiedMethod)).isNotEmpty();
+    }
+
+    @Then("a parameter annotation change is detected involving the constructor of {string}")
+    public void a_parameter_annotation_change_on_constructor(String className) {
+        a_parameter_annotation_change_is_detected(className + "#<init>");
+    }
+
+    @Then("it names parameter {string} as having gained {string}")
+    public void it_names_parameter_as_having_gained(String parameter, String annotation) {
+        assertThat(transformations).anyMatch(t -> t.kind() == TransformationKind.CHANGE_PARAMETER_ANNOTATIONS
+                && t.involvedDescriptions().stream().anyMatch(d -> d.contains(parameter + " +" + annotation)));
+    }
+
+    @Then("it names parameter {string} as having lost {string}")
+    public void it_names_parameter_as_having_lost(String parameter, String annotation) {
+        assertThat(transformations).anyMatch(t -> t.kind() == TransformationKind.CHANGE_PARAMETER_ANNOTATIONS
+                && t.involvedDescriptions().stream().anyMatch(d -> d.contains(parameter + " -" + annotation)));
+    }
+
+    @Then("one parameter annotation change is detected involving {string} naming both parameters")
+    public void one_parameter_annotation_change_naming_both(String qualifiedMethod) {
+        List<DetectedTransformation> changes = parameterAnnotationChangesInvolving(qualifiedMethod);
+        assertThat(changes).hasSize(1);
+        assertThat(changes.get(0).involvedDescriptions().get(1)).contains("value +@").contains("values +@");
+    }
+
+    @Then("a return annotation change is detected involving {string}")
+    public void a_return_annotation_change_is_detected(String qualifiedMethod) {
+        assertThat(transformations).anyMatch(t -> t.kind() == TransformationKind.CHANGE_METHOD_ANNOTATIONS
+                && t.involvedDescriptions().get(0).equals(qualifiedMethod));
+    }
+
+    @Then("no {string} transformation is detected involving {string}")
+    public void no_transformation_of_kind_is_detected(String kind, String symbol) {
+        TransformationKind unexpected = TransformationKind.valueOf(kind);
+        assertThat(transformations).noneMatch(t -> t.kind() == unexpected
+                && t.involvedDescriptions().stream().anyMatch(d -> d.contains(symbol)));
+    }
+
+    private List<DetectedTransformation> parameterAnnotationChangesInvolving(String qualifiedMethod) {
+        return transformations.stream()
+                .filter(t -> t.kind() == TransformationKind.CHANGE_PARAMETER_ANNOTATIONS)
+                .filter(t -> t.involvedDescriptions().get(0).equals(qualifiedMethod))
+                .toList();
+    }
+
+    private static String methodSource(String typeKeyword, String typeName, String methodAnnotation, String method,
+                                       String parameters) {
+        return "public " + typeKeyword + " " + typeName + " {\n    " + methodAnnotation + "public Object " + method
+                + "(" + parameters + ") {\n        return null;\n    }\n}\n";
+    }
+
     // ---- helpers ----
 
     private String readBase(String topLevelClassName) {

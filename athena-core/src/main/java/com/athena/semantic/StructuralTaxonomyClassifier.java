@@ -36,7 +36,8 @@ public final class StructuralTaxonomyClassifier {
             case MOVE_SYMBOL, MOVE_CLASS, MOVE_FIELD -> "move";
             case ADD_SYMBOL, ADD_CLASS, ADD_FIELD, ADD_ENUM_CONSTANT, ADD_ANNOTATION_ELEMENT -> "add";
             case REMOVE_SYMBOL, REMOVE_CLASS, REMOVE_FIELD, REMOVE_ENUM_CONSTANT, REMOVE_ANNOTATION_ELEMENT -> "remove";
-            case CHANGE_METHOD_SIGNATURE, CHANGE_ANNOTATION_ELEMENT_DEFAULT, CHANGE_FIELD_TYPE -> "change-signature";
+            case CHANGE_METHOD_SIGNATURE, CHANGE_ANNOTATION_ELEMENT_DEFAULT, CHANGE_FIELD_TYPE,
+                 CHANGE_PARAMETER_ANNOTATIONS, CHANGE_METHOD_ANNOTATIONS -> "change-signature";
             case EXTRACT_METHOD -> "extract-method";
             case MECHANICAL_REPLACEMENT -> "mechanical-replacement";
             case FORMATTING_ONLY -> "formatting-only";

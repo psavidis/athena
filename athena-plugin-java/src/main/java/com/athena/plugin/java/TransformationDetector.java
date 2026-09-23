@@ -101,6 +101,17 @@ public final class TransformationDetector {
             matchedHead.add(head);
 
             if (base.parameterTypes.equals(head.parameterTypes) && base.returnType.equals(head.returnType)) {
+                // Annotations on parameters, on the return type, or on the method itself change
+                // the method's contract without changing its signature (ticket #268).
+                base.parameterAnnotations.describeChangesTo(head.parameterAnnotations).ifPresent(changes ->
+                        results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_PARAMETER_ANNOTATIONS,
+                                List.of(base.description(), changes), List.of(base.file, head.file),
+                                base.rawWholeDeclaration, head.rawWholeDeclaration)));
+                if (!base.methodAnnotations.equals(head.methodAnnotations)) {
+                    results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_METHOD_ANNOTATIONS,
+                            List.of(base.description(), ParameterAnnotations.describe(base.methodAnnotations, head.methodAnnotations)),
+                            List.of(base.file, head.file), base.rawWholeDeclaration, head.rawWholeDeclaration));
+                }
                 if (base.normalizedWholeDeclaration.equals(head.normalizedWholeDeclaration)) {
                     if (!base.rawWholeDeclaration.equals(head.rawWholeDeclaration)) {
                         results.add(DetectedTransformation.withDiff(TransformationKind.FORMATTING_ONLY,
@@ -238,6 +249,7 @@ public final class TransformationDetector {
         // name/type is decided later by PatternTaxonomyClassifier, which sees the full Change
         // set this detector's single pass through one class's constructors can't.
         results.addAll(detectAddedConstructorParameters(baseParsed.constructors(), headParsed.constructors()));
+        results.addAll(detectConstructorParameterAnnotationChanges(baseParsed.constructors(), headParsed.constructors()));
 
         // 10. Enum constants and annotation-type elements (ticket #266): matched by enclosing
         // type + name, so reordering is never reported. An element present on both sides whose
@@ -300,6 +312,23 @@ public final class TransformationDetector {
                 results.add(DetectedTransformation.withDiff(TransformationKind.ADD_ANNOTATION_ELEMENT,
                         List.of(head.description()), List.of(head.file()), "", head.rawDeclaration()));
             }
+        }
+        return results;
+    }
+
+    /** A constructor matched by enclosing type + parameter types whose parameter annotations changed (ticket #268). */
+    private List<DetectedTransformation> detectConstructorParameterAnnotationChanges(List<ConstructorInfo> baseConstructors,
+                                                                                    List<ConstructorInfo> headConstructors) {
+        List<DetectedTransformation> results = new ArrayList<>();
+        for (ConstructorInfo base : baseConstructors) {
+            headConstructors.stream()
+                    .filter(head -> head.enclosingType.equals(base.enclosingType) && head.parameterTypes.equals(base.parameterTypes))
+                    .findFirst()
+                    .flatMap(head -> base.parameterAnnotations.describeChangesTo(head.parameterAnnotations)
+                            .map(changes -> DetectedTransformation.withDiff(TransformationKind.CHANGE_PARAMETER_ANNOTATIONS,
+                                    List.of(base.enclosingType + "#<init>", changes), List.of(base.file, head.file),
+                                    base.rawDeclaration, head.rawDeclaration)))
+                    .ifPresent(results::add);
         }
         return results;
     }
@@ -838,7 +867,8 @@ public final class TransformationDetector {
             collected.methods.add(new MethodInfo(qualifiedName, method.getNameAsString(),
                     paramTypes, method.getTypeAsString(),
                     wholeDeclarationText, normalize(wholeDeclarationText),
-                    normalize(bodyOnlyText), relativePath));
+                    normalize(bodyOnlyText), relativePath, parameterAnnotationsOf(method.getParameters()),
+                    methodAnnotationsOf(method)));
             memberSignatures.add("method:" + method.getNameAsString() + "(" + String.join(",", paramTypes) + "):"
                     + method.getTypeAsString());
         }
@@ -872,7 +902,7 @@ public final class TransformationDetector {
                     .filter(name -> assignsParameterToSameNamedField(bodyText, name))
                     .collect(java.util.stream.Collectors.toCollection(LinkedHashSet::new));
             collected.constructors.add(new ConstructorInfo(qualifiedName, paramTypes, paramNames,
-                    assignedFieldNames, rawDeclaration, relativePath));
+                    assignedFieldNames, rawDeclaration, relativePath, parameterAnnotationsOf(constructor.getParameters())));
         }
         if (type instanceof EnumDeclaration enumDeclaration) {
             for (EnumConstantDeclaration constant : enumDeclaration.getEntries()) {
@@ -911,6 +941,25 @@ public final class TransformationDetector {
                 collectType(nested, qualifiedName + "." + nested.getNameAsString(), relativePath, sourceLines, collected);
             }
         }
+    }
+
+    private static ParameterAnnotations parameterAnnotationsOf(List<Parameter> parameters) {
+        List<String> names = parameters.stream().map(Parameter::getNameAsString).toList();
+        List<Set<String>> annotations = parameters.stream().map(parameter -> {
+            Set<String> annotationNames = new TreeSet<>();
+            parameter.getAnnotations().forEach(a -> annotationNames.add("@" + a.getName().getIdentifier()));
+            parameter.getVarArgsAnnotations().forEach(a -> annotationNames.add("@" + a.getName().getIdentifier()));
+            parameter.getType().getAnnotations().forEach(a -> annotationNames.add("@" + a.getName().getIdentifier()));
+            return (Set<String>) annotationNames;
+        }).toList();
+        return new ParameterAnnotations(names, annotations);
+    }
+
+    private static Set<String> methodAnnotationsOf(MethodDeclaration method) {
+        Set<String> names = new TreeSet<>();
+        method.getAnnotations().forEach(a -> names.add("@" + a.getName().getIdentifier()));
+        method.getType().getAnnotations().forEach(a -> names.add("@" + a.getName().getIdentifier()));
+        return names;
     }
 
     private static String visibilityOf(FieldDeclaration field) {
@@ -978,7 +1027,8 @@ public final class TransformationDetector {
      * that parameter as field state, not just uses it transiently).
      */
     private record ConstructorInfo(String enclosingType, List<String> parameterTypes, List<String> parameterNames,
-                                    Set<String> assignedFieldNames, String rawDeclaration, String file) {
+                                    Set<String> assignedFieldNames, String rawDeclaration, String file,
+                                    ParameterAnnotations parameterAnnotations) {
     }
 
     /**
@@ -1036,9 +1086,42 @@ public final class TransformationDetector {
         }
     }
 
+    /**
+     * Each parameter's annotation names, aligned with the parameter names — compared between
+     * two revisions of the same method/constructor to report which parameters gained or lost
+     * annotations (ticket #268).
+     */
+    private record ParameterAnnotations(List<String> parameterNames, List<Set<String>> annotations) {
+
+        /** e.g. {@code "value +@Nullable, values +@Nullable"}, or empty when nothing changed. */
+        Optional<String> describeChangesTo(ParameterAnnotations head) {
+            List<String> changed = new ArrayList<>();
+            for (int i = 0; i < Math.min(annotations.size(), head.annotations.size()); i++) {
+                if (!annotations.get(i).equals(head.annotations.get(i))) {
+                    changed.add(head.parameterNames.get(i) + " " + describe(annotations.get(i), head.annotations.get(i)));
+                }
+            }
+            return changed.isEmpty() ? Optional.empty() : Optional.of(String.join(", ", changed));
+        }
+
+        /** Added annotations as {@code +@A}, removed as {@code -@B}, space-separated. */
+        static String describe(Set<String> before, Set<String> after) {
+            List<String> parts = new ArrayList<>();
+            after.stream().filter(a -> !before.contains(a)).forEach(a -> parts.add("+" + a));
+            before.stream().filter(a -> !after.contains(a)).forEach(a -> parts.add("-" + a));
+            return String.join(" ", parts);
+        }
+    }
+
+    /**
+     * {@code parameterAnnotations} holds each parameter's annotation names ({@code @Nullable}),
+     * aligned with {@code parameterNames}; {@code methodAnnotations} holds the method's own
+     * annotations plus those on its return type (ticket #268: both are part of its contract).
+     */
     private record MethodInfo(String enclosingType, String name, List<String> parameterTypes, String returnType,
                                String rawWholeDeclaration, String normalizedWholeDeclaration,
-                               String normalizedBody, String file) {
+                               String normalizedBody, String file, ParameterAnnotations parameterAnnotations,
+                               Set<String> methodAnnotations) {
         String description() {
             return enclosingType + "#" + name;
         }
