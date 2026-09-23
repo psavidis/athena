@@ -54,6 +54,23 @@ class ResponsibilityTaxonomyClassifierTest {
         assertThat(classifier.classify(changeOf(TransformationKind.FORMATTING_ONLY, "A#m"))).isEmpty();
     }
 
+    @Test
+    void leavesAMethodAddedInTestCodeUnclassifiedSinceATestIsNotACapability() {
+        DetectedTransformation added = DetectedTransformation.of(TransformationKind.ADD_SYMBOL,
+                List.of("GreeterTest#greetsByName"), List.of("core/src/test/java/GreeterTest.java"));
+
+        assertThat(classifier.classify(new ChangeGrouper().group(List.of(added)).get(0))).isEmpty();
+    }
+
+    @Test
+    void stillClassifiesAMethodAddedInProductionCodeAsAddCapability() {
+        DetectedTransformation added = DetectedTransformation.of(TransformationKind.ADD_SYMBOL,
+                List.of("Greeter#greetByName"), List.of("core/src/main/java/Greeter.java"));
+
+        assertThat(classifier.classify(new ChangeGrouper().group(List.of(added)).get(0)).get().concept().id())
+                .isEqualTo("add-capability");
+    }
+
     private Change changeOf(TransformationKind kind, String... involved) {
         DetectedTransformation t = DetectedTransformation.of(kind, List.of(involved), List.of());
         return new ChangeGrouper().group(List.of(t)).get(0);

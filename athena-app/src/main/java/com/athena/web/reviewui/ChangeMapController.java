@@ -77,7 +77,7 @@ public class ChangeMapController {
             ChangeMapEntry entry = viewEntries.get(i);
             byEntry.put(entry, new ChangeEntryResponse(i, ChangeKey.encode(entry.change()), entry.description(),
                     entry.category(), entry.change().kind(), entry.reviewState(), entry.change().occurrenceCount(),
-                    entry.change().exceptionCount()));
+                    entry.change().exceptionCount(), entry.change().isTestCode()));
         }
         return byEntry;
     }

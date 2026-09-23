@@ -32,6 +32,7 @@ const RENAME_DETAIL: ChangeDetail = {
   symbols: ['Greeter#greet', 'Greeter#salute'],
   files: ['Greeter.java'],
   diff: '- greet()\n+ salute()',
+  testCode: false,
 }
 
 describe('Change detail view rendering', () => {

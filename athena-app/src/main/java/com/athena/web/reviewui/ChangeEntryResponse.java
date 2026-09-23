@@ -16,8 +16,10 @@ import com.athena.semantic.TransformationKind;
  * specific detected transformation (rename, move, add, etc.) — several
  * distinct kinds can share one category, so a Change Map showing only
  * category tells the reviewer nothing beyond "structural" for most rows.
+ *
+ * <p>{@code testCode} is whether the Change is in test code (ticket #285).
  */
 public record ChangeEntryResponse(int id, String changeKey, String description, ChangeCategory category,
                                    TransformationKind kind, ReviewState reviewState, int occurrenceCount,
-                                   int exceptionCount) {
+                                   int exceptionCount, boolean testCode) {
 }

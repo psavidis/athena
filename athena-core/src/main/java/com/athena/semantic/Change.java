@@ -71,6 +71,16 @@ public final class Change {
         return separator < 0 ? description : description.substring(0, separator);
     }
 
+    /**
+     * Whether this Change is in test code (ticket #285): every file its matched occurrences
+     * touch is a {@linkplain TestSources test source}. A Change touching no files at all, or
+     * touching any production file, is not.
+     */
+    public boolean isTestCode() {
+        List<String> files = matchedOccurrences.stream().flatMap(occurrence -> occurrence.filesTouched().stream()).toList();
+        return !files.isEmpty() && files.stream().allMatch(TestSources::isTestSource);
+    }
+
     @Override
     public String toString() {
         return title + " (" + occurrenceCount() + " occurrences, " + exceptionCount() + " exceptions)";

@@ -39,6 +39,7 @@ const TWO_TERRITORIES: ModuleTopology = {
       techStack: 'SPRING_BOOT_JAVA',
       techStackLabel: 'Spring Boot · Java',
       changeKeys: ['change-key-1'],
+      testChangeKeys: [],
     },
     {
       moduleName: 'crowdness-ingestion',
@@ -48,6 +49,7 @@ const TWO_TERRITORIES: ModuleTopology = {
       techStack: 'JAVA',
       techStackLabel: 'Java',
       changeKeys: [],
+      testChangeKeys: [],
     },
   ],
   dependencies: [],

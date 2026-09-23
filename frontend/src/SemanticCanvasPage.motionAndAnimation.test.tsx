@@ -36,6 +36,7 @@ const TWO_TERRITORIES: ModuleTopology = {
       techStack: 'SPRING_BOOT_JAVA',
       techStackLabel: 'Spring Boot · Java',
       changeKeys: [],
+      testChangeKeys: [],
     },
     {
       moduleName: 'crowdness-ingestion',
@@ -45,6 +46,7 @@ const TWO_TERRITORIES: ModuleTopology = {
       techStack: 'JAVA',
       techStackLabel: 'Java',
       changeKeys: [],
+      testChangeKeys: [],
     },
   ],
   dependencies: [{ from: 'crowdness-live', to: 'crowdness-ingestion' }],
@@ -165,6 +167,7 @@ describe('Semantic Canvas — motion and animation pass', () => {
           techStack: 'REACT_TYPESCRIPT',
           techStackLabel: 'React · TypeScript',
           changeKeys: [],
+          testChangeKeys: [],
         },
         {
           moduleName: 'crowdness-management',
@@ -174,6 +177,7 @@ describe('Semantic Canvas — motion and animation pass', () => {
           techStack: 'JAVA',
           techStackLabel: 'Java',
           changeKeys: [],
+          testChangeKeys: [],
         },
       ],
       dependencies: [
@@ -234,6 +238,7 @@ describe('Semantic Canvas — motion and animation pass', () => {
           techStack: 'REACT_TYPESCRIPT',
           techStackLabel: 'React · TypeScript',
           changeKeys: [],
+          testChangeKeys: [],
         },
       ],
       dependencies: [],

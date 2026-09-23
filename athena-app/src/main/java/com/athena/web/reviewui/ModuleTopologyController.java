@@ -1,5 +1,6 @@
 package com.athena.web.reviewui;
 
+import com.athena.semantic.Change;
 import com.athena.semantic.ModuleDependency;
 import com.athena.semantic.ModuleGroup;
 import com.athena.semantic.ModuleGrouper;
@@ -53,8 +54,10 @@ public class ModuleTopologyController {
 
     private static ModuleTerritoryResponse territoryResponse(ModuleTerritory territory) {
         List<String> changeKeys = territory.changes().stream().map(ChangeKey::encode).toList();
+        List<String> testChangeKeys = territory.changes().stream().filter(Change::isTestCode).map(ChangeKey::encode).toList();
         return new ModuleTerritoryResponse(territory.moduleName(), territory.status(), territory.fileCount(),
-                territory.statusSummary(), territory.techStack(), territory.techStack().label(), changeKeys);
+                territory.statusSummary(), territory.techStack(), territory.techStack().label(), changeKeys,
+                testChangeKeys);
     }
 
     private static ModuleDependencyResponse dependencyResponse(ModuleDependency dependency) {

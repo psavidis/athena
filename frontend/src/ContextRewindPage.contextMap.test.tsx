@@ -38,9 +38,9 @@ const BASE: ContextRewind = {
 
 const TOPOLOGY: ModuleTopology = {
   territories: [
-    { moduleName: 'crowdness-live', status: 'TOUCHED', fileCount: 5, statusSummary: '5 files', techStack: 'SPRING_BOOT_JAVA', techStackLabel: 'Spring Boot · Java', changeKeys: [] },
-    { moduleName: 'crowdness-ingestion', status: 'TOUCHED', fileCount: 3, statusSummary: '3 files', techStack: 'JAVA', techStackLabel: 'Java', changeKeys: [] },
-    { moduleName: 'crowdness-payments-api', status: 'TOUCHED', fileCount: 2, statusSummary: '2 files', techStack: 'JAVA', techStackLabel: 'Java', changeKeys: [] },
+    { moduleName: 'crowdness-live', status: 'TOUCHED', fileCount: 5, statusSummary: '5 files', techStack: 'SPRING_BOOT_JAVA', techStackLabel: 'Spring Boot · Java', changeKeys: [], testChangeKeys: [] },
+    { moduleName: 'crowdness-ingestion', status: 'TOUCHED', fileCount: 3, statusSummary: '3 files', techStack: 'JAVA', techStackLabel: 'Java', changeKeys: [], testChangeKeys: [] },
+    { moduleName: 'crowdness-payments-api', status: 'TOUCHED', fileCount: 2, statusSummary: '2 files', techStack: 'JAVA', techStackLabel: 'Java', changeKeys: [], testChangeKeys: [] },
   ],
   dependencies: [
     { from: 'crowdness-live', to: 'crowdness-ingestion' },

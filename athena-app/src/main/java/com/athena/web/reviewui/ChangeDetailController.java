@@ -46,7 +46,7 @@ public class ChangeDetailController {
 
         ChangeDetailView view = ChangeDetailView.of(change);
         return new ChangeDetailResponse(changeKey, view.category(), view.kind(), view.description(), view.symbols(),
-                view.files(), view.textualDiff());
+                view.files(), view.textualDiff(), change.isTestCode());
     }
 
     @PostMapping("/api/review/comments")

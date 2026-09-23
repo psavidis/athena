@@ -20,6 +20,7 @@ const TOPOLOGY: ModuleTopology = {
       techStack: 'JAVA',
       techStackLabel: 'Java',
       changeKeys: ['change-1'],
+      testChangeKeys: [],
     },
   ],
   dependencies: [],

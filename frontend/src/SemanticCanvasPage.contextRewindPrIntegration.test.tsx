@@ -46,6 +46,7 @@ const TOPOLOGY: ModuleTopology = {
       techStack: 'SPRING_BOOT_JAVA',
       techStackLabel: 'Spring Boot · Java',
       changeKeys: ['change-key-1'],
+      testChangeKeys: [],
     },
   ],
   dependencies: [],
