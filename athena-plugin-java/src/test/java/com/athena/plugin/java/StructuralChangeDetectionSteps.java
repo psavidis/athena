@@ -592,6 +592,84 @@ public class StructuralChangeDetectionSteps {
                 "default " + from, "default " + to);
     }
 
+    // ---- field type changes (ticket #267) ----
+
+    @Given("a base revision where class {string} has a private field {string} of type {string}")
+    public void base_class_has_private_field(String className, String fieldName, String type) {
+        write(baseRoot, className, fieldSource(className, "private", type, fieldName, ""));
+    }
+
+    @Given("a head revision where {string} has a private field {string} of type {string}")
+    public void head_class_has_private_field(String className, String fieldName, String type) {
+        write(headRoot, className, fieldSource(className, "private", type, fieldName, ""));
+    }
+
+    @Given("a base revision where class {string} has a protected field {string} of type {string}")
+    public void base_class_has_protected_field(String className, String fieldName, String type) {
+        write(baseRoot, className, fieldSource(className, "protected", type, fieldName, ""));
+    }
+
+    @Given("a head revision where {string} has a protected field {string} of type {string}")
+    public void head_class_has_protected_field(String className, String fieldName, String type) {
+        write(headRoot, className, fieldSource(className, "protected", type, fieldName, ""));
+    }
+
+    @Given("a head revision where {string} has a field {string} of type {string} and no field {string}")
+    public void head_class_has_field_and_no_other(String className, String fieldName, String type, String absentField) {
+        write(headRoot, className, fieldSource(className, "private", type, fieldName, ""));
+    }
+
+    @Given("a base revision where class {string} has a field {string} of type {string} annotated {string}")
+    public void base_class_has_annotated_field(String className, String fieldName, String type, String annotation) {
+        write(baseRoot, className, fieldSource(className, "private", type, fieldName, annotation + " "));
+    }
+
+    @Given("a head revision where {string} on {string} has type {string} and no annotation")
+    public void head_field_has_type_and_no_annotation(String fieldName, String className, String type) {
+        write(headRoot, className, fieldSource(className, "private", type, fieldName, ""));
+    }
+
+    @Then("a field type change is detected involving {string} from {string} to {string}")
+    public void a_field_type_change_is_detected_from_to(String field, String fromType, String toType) {
+        assertThat(fieldTypeChangesInvolving(field))
+                .anyMatch(t -> t.involvedDescriptions().stream().anyMatch(d -> d.contains(fromType + " -> " + toType)));
+    }
+
+    @Then("a field type change is detected involving {string}")
+    public void a_field_type_change_is_detected(String field) {
+        assertThat(fieldTypeChangesInvolving(field)).isNotEmpty();
+    }
+
+    @Then("no field type change is detected involving {string}")
+    public void no_field_type_change_is_detected(String field) {
+        assertThat(fieldTypeChangesInvolving(field)).isEmpty();
+    }
+
+    @Then("the change is described as affecting a protected field")
+    public void the_change_is_described_as_affecting_a_protected_field() {
+        assertThat(transformations).anyMatch(t -> t.kind() == TransformationKind.CHANGE_FIELD_TYPE
+                && t.involvedDescriptions().stream().anyMatch(d -> d.contains("protected")));
+    }
+
+    @Then("no {string} or {string} transformation is detected involving {string}")
+    public void no_transformation_of_either_kind(String firstKind, String secondKind, String symbol) {
+        TransformationKind first = TransformationKind.valueOf(firstKind);
+        TransformationKind second = TransformationKind.valueOf(secondKind);
+        assertThat(transformations).noneMatch(t -> (t.kind() == first || t.kind() == second)
+                && t.involvedDescriptions().stream().anyMatch(d -> d.contains(symbol)));
+    }
+
+    private List<DetectedTransformation> fieldTypeChangesInvolving(String field) {
+        return transformations.stream()
+                .filter(t -> t.kind() == TransformationKind.CHANGE_FIELD_TYPE)
+                .filter(t -> t.involvedDescriptions().get(0).equals(field))
+                .toList();
+    }
+
+    private static String fieldSource(String className, String visibility, String type, String fieldName, String annotation) {
+        return "public class " + className + " {\n    " + annotation + visibility + " " + type + " " + fieldName + ";\n}\n";
+    }
+
     // ---- helpers ----
 
     private String readBase(String topLevelClassName) {

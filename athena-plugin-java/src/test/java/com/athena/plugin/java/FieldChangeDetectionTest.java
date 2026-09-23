@@ -47,7 +47,7 @@ class FieldChangeDetectionTest {
     }
 
     @Test
-    void aSameNameFieldWhoseTypeChangedIsReportedAsRemoveAndAdd() {
+    void aSameNameFieldWhoseTypeChangedIsReportedAsAFieldTypeChange() {
         write(baseRoot, "Config", "public class Config {\n"
                 + "    private OldThing setting;\n"
                 + "}\n");
@@ -60,8 +60,10 @@ class FieldChangeDetectionTest {
         // Also picked up by mechanical-replacement detection (OldThing -> BrandNewThing is a
         // consistent whole-identifier substitution across the file) — an independent, correct
         // detector step, not something this assertion needs to rule out.
+        // Ticket #267: one field whose type changed, not an unrelated remove + add.
         assertThat(transformations).extracting(DetectedTransformation::kind)
-                .contains(TransformationKind.REMOVE_FIELD, TransformationKind.ADD_FIELD);
+                .contains(TransformationKind.CHANGE_FIELD_TYPE)
+                .doesNotContain(TransformationKind.REMOVE_FIELD, TransformationKind.ADD_FIELD);
     }
 
     @Test

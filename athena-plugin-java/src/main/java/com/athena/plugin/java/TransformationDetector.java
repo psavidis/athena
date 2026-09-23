@@ -219,10 +219,10 @@ public final class TransformationDetector {
         // 1-3, 5), minus signature-change/extract/formatting concepts a field doesn't have.
         // A field's "body" equivalent for rename/move matching is its declared type: same
         // enclosing type + different name + same type is a rename; different enclosing type
-        // + same name + same type is a move. A same-name field whose type also changed isn't
-        // fuzzy-matched into either shape — same no-confidence-score policy as the rest of
-        // this detector — so it's currently left unclassified rather than reported as some
-        // kind of "change field type" (not in this detector's covered kind set).
+        // + same name + same type is a move. A same-name field in the same enclosing type whose
+        // type changed is a CHANGE_FIELD_TYPE (ticket #267); a field whose name AND type both
+        // changed is never fuzzy-matched — same no-confidence-score policy as the rest of this
+        // detector — and stays a remove + add.
         List<FieldInfo> baseFields = baseParsed.fields().stream()
                 .filter(f -> !classMatch.excludedBaseTypes().contains(f.enclosingType)).toList();
         List<FieldInfo> headFields = headParsed.fields().stream()
@@ -350,9 +350,8 @@ public final class TransformationDetector {
 
         // 1. Exact match: same enclosing type + same name + same declared type — this is
         // what makes it genuinely "the same field" rather than an unrelated field that
-        // happens to reuse the name (a same-name field whose type also changed falls through
-        // to steps 2/3/5 below like any other unmatched pair, same policy as methods: no
-        // fuzzy match across two differing dimensions at once).
+        // happens to reuse the name (a same-name field whose type changed is handled by step
+        // 1b below as a field type change).
         for (FieldInfo base : baseFields) {
             List<FieldInfo> candidates = headByKey.get(new FieldKey(base.enclosingType, base.name));
             FieldInfo head = candidates == null ? null : candidates.stream()
@@ -371,6 +370,24 @@ public final class TransformationDetector {
                         List.of(base.description()), List.of(base.file, head.file),
                         base.rawDeclaration, head.rawDeclaration));
             }
+        }
+
+        // 1b. Same enclosing type + same name, different declared type (ticket #267): one field
+        // whose type changed, not an unrelated remove + add. Its visibility is part of the
+        // description when it isn't private — a non-private field's type change can break
+        // subclasses and callers, which is exactly what a reviewer needs to see here.
+        for (FieldInfo base : baseFields) {
+            if (matchedBase.contains(base)) continue;
+            List<FieldInfo> candidates = headByKey.get(new FieldKey(base.enclosingType, base.name));
+            FieldInfo head = candidates == null ? null : candidates.stream()
+                    .filter(h -> !matchedHead.contains(h)).findFirst().orElse(null);
+            if (head == null) continue;
+            matchedBase.add(base);
+            matchedHead.add(head);
+            String visibilityNote = head.visibility.equals("private") ? "" : " (" + head.visibility + ")";
+            results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_FIELD_TYPE,
+                    List.of(base.description(), base.type + " -> " + head.type + visibilityNote),
+                    List.of(base.file, head.file), base.rawDeclaration, head.rawDeclaration));
         }
 
         List<FieldInfo> unmatchedBase = baseFields.stream().filter(f -> !matchedBase.contains(f)).toList();
@@ -829,7 +846,7 @@ public final class TransformationDetector {
             for (VariableDeclarator variable : field.getVariables()) {
                 String typeAsString = variable.getType().asString();
                 collected.fields.add(new FieldInfo(qualifiedName, variable.getNameAsString(), typeAsString,
-                        annotationNames, rawDeclaration, relativePath));
+                        annotationNames, visibilityOf(field), rawDeclaration, relativePath));
                 memberSignatures.add("field:" + variable.getNameAsString() + ":" + typeAsString);
             }
         }
@@ -887,6 +904,15 @@ public final class TransformationDetector {
                 collectType(nested, qualifiedName + "." + nested.getNameAsString(), relativePath, sourceLines, collected);
             }
         }
+    }
+
+    private static String visibilityOf(FieldDeclaration field) {
+        return switch (field.getAccessSpecifier()) {
+            case PUBLIC -> "public";
+            case PROTECTED -> "protected";
+            case PRIVATE -> "private";
+            case NONE -> "package-private";
+        };
     }
 
     /**
@@ -959,8 +985,9 @@ public final class TransformationDetector {
     private record ClassInfo(String simpleName, String file, Set<String> memberSignatures, String headerText) {
     }
 
+    /** {@code visibility} is the declared access level: public, protected, package-private or private. */
     private record FieldInfo(String enclosingType, String name, String type, Set<String> annotationNames,
-                              String rawDeclaration, String file) {
+                              String visibility, String rawDeclaration, String file) {
         String description() {
             return enclosingType + "#" + name;
         }

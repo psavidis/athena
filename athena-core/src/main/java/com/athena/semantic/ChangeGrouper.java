@@ -93,6 +93,8 @@ public final class ChangeGrouper {
             case ADD_ANNOTATION_ELEMENT -> "Add annotation element " + key.involvedDescriptions.get(0);
             case REMOVE_ANNOTATION_ELEMENT -> "Remove annotation element " + key.involvedDescriptions.get(0);
             case CHANGE_ANNOTATION_ELEMENT_DEFAULT -> "Change default of annotation element " + key.involvedDescriptions.get(0);
+            case CHANGE_FIELD_TYPE -> "Change type of field " + key.involvedDescriptions.get(0)
+                    + ": " + key.involvedDescriptions.get(1);
         };
     }
 

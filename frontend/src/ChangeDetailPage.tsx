@@ -28,6 +28,7 @@ const KIND_LABELS: Record<TransformationKind, string> = {
   ADD_ANNOTATION_ELEMENT: 'Add annotation element',
   REMOVE_ANNOTATION_ELEMENT: 'Remove annotation element',
   CHANGE_ANNOTATION_ELEMENT_DEFAULT: 'Annotation default change',
+  CHANGE_FIELD_TYPE: 'Field type change',
 }
 
 const CATEGORY_LABELS = {

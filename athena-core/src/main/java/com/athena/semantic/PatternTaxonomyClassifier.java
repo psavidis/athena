@@ -67,7 +67,9 @@ public final class PatternTaxonomyClassifier {
      *
      * <ul>
      *   <li>a {@code REMOVE_FIELD} Change for the same name — the field declaration was
-     *       deleted outright; or</li>
+     *       deleted outright; or a {@code CHANGE_FIELD_TYPE} Change for the same name — the
+     *       field was re-declared with a different type (ticket #267 reports that as one
+     *       type change rather than a remove + add); or</li>
      *   <li>a {@code CHANGE_FIELD_ANNOTATIONS} Change for the same name whose diff drops
      *       an injection annotation ({@code @Autowired}/{@code @Inject}/{@code @Resource})
      *       — the field stayed declared, only its annotation and the constructor changed
@@ -95,6 +97,7 @@ public final class PatternTaxonomyClassifier {
         Map<String, Change> correlatingChangesByDescription = new HashMap<>();
         for (Change change : changes) {
             if (change.kind() == TransformationKind.REMOVE_FIELD
+                    || change.kind() == TransformationKind.CHANGE_FIELD_TYPE
                     || (change.kind() == TransformationKind.CHANGE_FIELD_ANNOTATIONS && droppedInjectionAnnotation(change))) {
                 for (String description : descriptionsOf(change)) {
                     correlatingChangesByDescription.put(description, change);
