@@ -960,6 +960,69 @@ public class StructuralChangeDetectionSteps {
                 .allMatch(file -> file.endsWith(firstFile) || file.endsWith(secondFile)));
     }
 
+    // ---- mechanical replacement scoped to the change (ticket #270) ----
+
+    @Given("a base and head revision where identifier {string} is replaced by {string} consistently in three changed files")
+    public void identifier_replaced_in_three_changed_files(String oldIdentifier, String newIdentifier) {
+        for (int i = 0; i < 3; i++) {
+            writeReference(i, oldIdentifier);
+            writeReferenceHead(i, newIdentifier);
+        }
+    }
+
+    @Given("a base and head revision where identifier {string} appears only in files that are identical in both revisions")
+    public void identifier_only_in_unchanged_files(String identifier) {
+        writeReference(0, identifier);
+        writeReferenceHead(0, identifier);
+        write(world.baseRoot(), "Changed", "public class Changed {\n    int size() {\n        return 1;\n    }\n}\n");
+        write(world.headRoot(), "Changed", "public class Changed {\n    int size() {\n        return 2;\n    }\n}\n");
+    }
+
+    @Given("a base and head revision where {string} is replaced by {string} in one changed file and by {string} in another")
+    public void identifier_replaced_inconsistently(String oldIdentifier, String firstNew, String secondNew) {
+        writeReference(0, oldIdentifier);
+        writeReferenceHead(0, firstNew);
+        writeReference(1, oldIdentifier);
+        writeReferenceHead(1, secondNew);
+    }
+
+    @Given("a base and head revision where {string} is replaced by {string} in two changed files")
+    public void identifier_replaced_in_two_changed_files(String oldIdentifier, String newIdentifier) {
+        for (int i = 0; i < 2; i++) {
+            writeReference(i, oldIdentifier);
+            writeReferenceHead(i, newIdentifier);
+        }
+    }
+
+    @Given("{string} is still referenced unchanged in a third file")
+    public void identifier_still_referenced_in_third_file(String identifier) {
+        writeReference(2, identifier);
+        writeReferenceHead(2, identifier);
+    }
+
+    @Then("a {string} transformation is detected involving {string} with {int} occurrences")
+    public void a_transformation_involving_with_occurrences(String kind, String replacement, int occurrences) {
+        TransformationKind expectedKind = TransformationKind.valueOf(kind);
+        assertThat(transformations).anyMatch(t -> t.kind() == expectedKind
+                && t.involvedDescriptions().contains(replacement)
+                && t.occurrenceCount() == occurrences);
+    }
+
+    /** {@code Ref<i>} in the base revision, referencing {@code identifier}. */
+    private void writeReference(int index, String identifier) {
+        write(world.baseRoot(), "Ref" + index, referenceSource(index, identifier));
+    }
+
+    /** {@code Ref<i>} in the head revision, referencing {@code identifier}. */
+    private void writeReferenceHead(int index, String identifier) {
+        write(world.headRoot(), "Ref" + index, referenceSource(index, identifier));
+    }
+
+    private static String referenceSource(int index, String identifier) {
+        return "public class Ref" + index + " {\n    public " + identifier + " make() {\n        return new " + identifier
+                + "();\n    }\n}\n";
+    }
+
     // ---- helpers ----
 
     private String readBase(String topLevelClassName) {
