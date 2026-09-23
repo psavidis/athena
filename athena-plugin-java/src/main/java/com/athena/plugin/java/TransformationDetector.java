@@ -142,7 +142,8 @@ public final class TransformationDetector {
                                 base.rawWholeDeclaration, head.rawWholeDeclaration));
                     } else if (!base.normalizedBody.equals(head.normalizedBody)) {
                         unexplainedBodyEdits.add(new BodyEdit(base.description(), base.file, head.file,
-                                base.normalizedBody, head.normalizedBody, base.rawWholeDeclaration, head.rawWholeDeclaration));
+                                base.normalizedBody, head.normalizedBody, base.rawWholeDeclaration, head.rawWholeDeclaration,
+                                base.bodySummary.describeChangeTo(head.bodySummary)));
                     }
                 }
             } else {
@@ -311,7 +312,8 @@ public final class TransformationDetector {
                     .filter(head -> !head.normalizedBody.equals(base.normalizedBody))
                     .findFirst()
                     .ifPresent(head -> edits.add(new BodyEdit(base.enclosingType + "#<init>", base.file, head.file,
-                            base.normalizedBody, head.normalizedBody, base.rawDeclaration, head.rawDeclaration)));
+                            base.normalizedBody, head.normalizedBody, base.rawDeclaration, head.rawDeclaration,
+                            base.bodySummary.describeChangeTo(head.bodySummary))));
         }
         return edits;
     }
@@ -328,16 +330,19 @@ public final class TransformationDetector {
             }
             if (!replaced.equals(edit.headBody())) {
                 results.add(DetectedTransformation.withDiff(TransformationKind.MODIFY_METHOD_BODY,
-                        List.of(edit.description()), List.of(edit.baseFile(), edit.headFile()),
+                        List.of(edit.description(), edit.summary()), List.of(edit.baseFile(), edit.headFile()),
                         edit.baseDeclaration(), edit.headDeclaration()));
             }
         }
         return results;
     }
 
-    /** A matched method's or constructor's body change, pending the mechanical-replacement check. */
+    /**
+     * A matched method's or constructor's body change, pending the mechanical-replacement check.
+     * {@code summary} says what changed inside it (ticket #288, see {@link BodySummary}).
+     */
     private record BodyEdit(String description, String baseFile, String headFile, String baseBody, String headBody,
-                            String baseDeclaration, String headDeclaration) {
+                            String baseDeclaration, String headDeclaration, String summary) {
     }
 
     private static <T> List<T> excluding(List<T> declarations, Function<T, String> enclosingType, Set<String> excludedTypes) {
@@ -949,7 +954,7 @@ public final class TransformationDetector {
                     paramTypes, method.getTypeAsString(),
                     wholeDeclarationText, normalize(wholeDeclarationText),
                     normalize(bodyOnlyText), relativePath, parameterAnnotationsOf(method.getParameters()),
-                    methodAnnotationsOf(method), ControlFlow.of(method)));
+                    methodAnnotationsOf(method), ControlFlow.of(method), BodySummary.of(method)));
             memberSignatures.add("method:" + method.getNameAsString() + "(" + String.join(",", paramTypes) + "):"
                     + method.getTypeAsString());
         }
@@ -982,7 +987,8 @@ public final class TransformationDetector {
                     .orElse(initializer.getBody().toString());
             collected.methods.add(new MethodInfo(qualifiedName, name, List.of(), "void",
                     rawDeclaration, normalize(rawDeclaration), normalize(bodyText), relativePath,
-                    new ParameterAnnotations(List.of(), List.of()), Set.of(), ControlFlow.of(initializer.getBody())));
+                    new ParameterAnnotations(List.of(), List.of()), Set.of(), ControlFlow.of(initializer.getBody()),
+                    BodySummary.of(initializer.getBody())));
         }
         for (ConstructorDeclaration constructor : type.getConstructors()) {
             String rawDeclaration = constructor.getRange()
@@ -1000,7 +1006,7 @@ public final class TransformationDetector {
                     .collect(java.util.stream.Collectors.toCollection(LinkedHashSet::new));
             collected.constructors.add(new ConstructorInfo(qualifiedName, paramTypes, paramNames,
                     assignedFieldNames, rawDeclaration, relativePath, parameterAnnotationsOf(constructor.getParameters()),
-                    normalize(bodyText)));
+                    normalize(bodyText), BodySummary.of(constructor.getBody())));
         }
         if (type instanceof EnumDeclaration enumDeclaration) {
             for (EnumConstantDeclaration constant : enumDeclaration.getEntries()) {
@@ -1136,7 +1142,8 @@ public final class TransformationDetector {
      */
     private record ConstructorInfo(String enclosingType, List<String> parameterTypes, List<String> parameterNames,
                                     Set<String> assignedFieldNames, String rawDeclaration, String file,
-                                    ParameterAnnotations parameterAnnotations, String normalizedBody) {
+                                    ParameterAnnotations parameterAnnotations, String normalizedBody,
+                                    BodySummary bodySummary) {
     }
 
     /**
@@ -1222,7 +1229,7 @@ public final class TransformationDetector {
     private record MethodInfo(String enclosingType, String name, List<String> parameterTypes, String returnType,
                                String rawWholeDeclaration, String normalizedWholeDeclaration,
                                String normalizedBody, String file, ParameterAnnotations parameterAnnotations,
-                               Set<String> methodAnnotations, ControlFlow controlFlow) {
+                               Set<String> methodAnnotations, ControlFlow controlFlow, BodySummary bodySummary) {
         String description() {
             return enclosingType + "#" + name;
         }

@@ -101,7 +101,8 @@ public final class ChangeGrouper {
                     + ": " + key.involvedDescriptions.get(1);
             case CHANGE_CONTROL_FLOW -> "Change control flow of " + key.involvedDescriptions.get(0)
                     + ": " + key.involvedDescriptions.get(1);
-            case MODIFY_METHOD_BODY -> "Modify body of " + key.involvedDescriptions.get(0);
+            case MODIFY_METHOD_BODY -> "Modify body of " + key.involvedDescriptions.get(0)
+                    + (key.involvedDescriptions.size() > 1 ? ": " + key.involvedDescriptions.get(1) : "");
         };
     }
 

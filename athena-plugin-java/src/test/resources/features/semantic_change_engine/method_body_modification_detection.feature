@@ -44,3 +44,47 @@ Feature: Method-body modification detection
     Given a base and head revision where method "format" on class "Printer" is identical
     When the semantic engine detects transformations between the revisions
     Then no transformation is detected involving "Printer#format"
+
+  # Ticket #288: a body modification says what changed inside the method.
+
+  Scenario: A body edit that adds a call names the call
+    Given a base revision where method "exchange" on class "TokenExchange" returns its token
+    And a head revision where "exchange" on "TokenExchange" calls "triggerOnEvent" before returning its token
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "TokenExchange#exchange" is described as "Modify body of TokenExchange#exchange: +triggerOnEvent"
+
+  Scenario: A body edit that removes a call names the call
+    Given a base revision where method "exchange" on class "TokenExchange" calls "audit" before returning its token
+    And a head revision where "exchange" on "TokenExchange" returns its token
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "TokenExchange#exchange" is described as "Modify body of TokenExchange#exchange: -audit"
+
+  Scenario: A body edit that starts throwing an exception names the exception type
+    Given a base revision where method "exchange" on class "TokenExchange" returns its token
+    And a head revision where "exchange" on "TokenExchange" throws "IllegalStateException" on failure
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "TokenExchange#exchange" is described as "Modify body of TokenExchange#exchange: +throw IllegalStateException"
+
+  Scenario: A body edit that changes how many values are returned says so
+    Given a base revision where method "exchange" on class "TokenExchange" returns its token
+    And a head revision where "exchange" on "TokenExchange" returns a fallback token on failure
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "TokenExchange#exchange" is described as "Modify body of TokenExchange#exchange: return statements 1 → 2"
+
+  Scenario: A long summary is cut after five items
+    Given a base revision where method "exchange" on class "TokenExchange" returns its token
+    And a head revision where "exchange" on "TokenExchange" calls "a", "b", "c", "d", "e", "f" and "g" before returning its token
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "TokenExchange#exchange" is described as "Modify body of TokenExchange#exchange: +a, +b, +c, +d, +e …and 2 more"
+
+  Scenario: A body edit with no call, throw or return difference reads as other statements
+    Given a base revision where method "combine" on class "Calculator" returns "a + b"
+    And a head revision where "combine" on "Calculator" returns "a - b" with the same signature
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "Calculator#combine" is described as "Modify body of Calculator#combine: other statements changed"
+
+  Scenario: Changed arguments to an existing call are not a call added or removed
+    Given a base revision where method "exchange" on class "TokenExchange" calls "audit" before returning its token
+    And a head revision where "exchange" on "TokenExchange" calls "audit" with a different argument before returning its token
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "TokenExchange#exchange" is described as "Modify body of TokenExchange#exchange: other statements changed"
