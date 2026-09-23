@@ -68,6 +68,84 @@ class ControlFlowTest {
         assertThat(ControlFlow.of(abstractMethod).describeChangeTo(controlFlowOf("x();"))).isEmpty();
     }
 
+    // ---- switch (ticket #289) ----
+
+    @Test
+    void anIfChainRewrittenAsASwitchWithTheSameConditionsIsDescribedAsSuch() {
+        ControlFlow ifChain = controlFlowOf("if (s == A) { a(); } else if (s == B) { b(); } else { c(); }");
+        ControlFlow switchStatement = controlFlowOf("switch (s) { case A: a(); break; case B: b(); break; default: c(); }");
+
+        assertThat(ifChain.describeChangeTo(switchStatement)).contains("if-chain rewritten as switch");
+    }
+
+    @Test
+    void aSwitchRewrittenAsAnIfChainIsDescribedAsSuch() {
+        ControlFlow switchStatement = controlFlowOf("switch (s) { case A: a(); break; default: c(); }");
+        ControlFlow ifChain = controlFlowOf("if (s == A) { a(); } else { c(); }");
+
+        assertThat(switchStatement.describeChangeTo(ifChain)).contains("switch rewritten as if-chain");
+    }
+
+    @Test
+    void fallThroughCasesAreOneBranchMatchingAnOrCondition() {
+        ControlFlow ifChain = controlFlowOf("if (s == A || s == B) { a(); } else { c(); }");
+        ControlFlow switchStatement = controlFlowOf("switch (s) { case A: case B: a(); break; default: c(); }");
+
+        assertThat(ifChain.describeChangeTo(switchStatement)).contains("if-chain rewritten as switch");
+    }
+
+    @Test
+    void aMultiLabelArrowCaseMatchesAnOrCondition() {
+        ControlFlow ifChain = controlFlowOf("if (s == A || s == B) { a(); } else { c(); }");
+        ControlFlow switchStatement = controlFlowOf("switch (s) { case A, B -> a(); default -> c(); }");
+
+        assertThat(ifChain.describeChangeTo(switchStatement)).contains("if-chain rewritten as switch");
+    }
+
+    @Test
+    void anIfChainRewrittenAsASwitchWithDifferentConditionsIsAChangedCondition() {
+        ControlFlow ifChain = controlFlowOf("if (s == A) { a(); } else { c(); }");
+        ControlFlow switchStatement = controlFlowOf("switch (s) { case B: a(); break; default: c(); }");
+
+        assertThat(ifChain.describeChangeTo(switchStatement)).contains("condition changed");
+    }
+
+    @Test
+    void aStatementAfterAnIfChainBecomingTheSwitchDefaultIsStillARewrite() {
+        ControlFlow ifChain = controlFlowOf("if (s == A) { return a; } else if (s == B) { return b; } throw error();");
+        ControlFlow switchStatement = controlFlowOf("switch (s) { case A: return a; case B: return b; default: throw error(); }");
+
+        assertThat(ifChain.describeChangeTo(switchStatement)).contains("if-chain rewritten as switch");
+    }
+
+    @Test
+    void anAddedCaseIsAnAddedBranch() {
+        assertThat(controlFlowOf("switch (s) { case A: a(); break; default: c(); }")
+                .describeChangeTo(controlFlowOf("switch (s) { case A: a(); break; case B: b(); break; default: c(); }")))
+                .contains("branch added");
+    }
+
+    @Test
+    void aRemovedCaseInASwitchExpressionIsARemovedBranch() {
+        assertThat(controlFlowOf("int x = switch (s) { case A -> 1; case B -> 2; default -> 0; };")
+                .describeChangeTo(controlFlowOf("int x = switch (s) { case A -> 1; default -> 0; };")))
+                .contains("branch removed");
+    }
+
+    @Test
+    void aChangedCaseLabelIsAChangedCondition() {
+        assertThat(controlFlowOf("switch (s) { case A: a(); break; default: c(); }")
+                .describeChangeTo(controlFlowOf("switch (s) { case B: a(); break; default: c(); }")))
+                .contains("condition changed");
+    }
+
+    @Test
+    void aChangedCaseBodyIsNoControlFlowChange() {
+        assertThat(controlFlowOf("switch (s) { case A: a(); break; default: c(); }")
+                .describeChangeTo(controlFlowOf("switch (s) { case A: b(); break; default: c(); }")))
+                .isEmpty();
+    }
+
     private static ControlFlow controlFlowOf(String statements) {
         MethodDeclaration method = new JavaParser(JavaParserConfigurations.currentJava())
                 .parseMethodDeclaration("void m() { " + statements + " }").getResult().orElseThrow();
