@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change parameter annotations of BDDMockito#given: methodCall +@Nullable",
+  "entity" : "BDDMockito"
+}, {
+  "description" : "Change parameter annotations of BDDMockito.BDDMyOngoingStubbing#willReturn: value +@Nullable",
+  "entity" : "BDDMockito.BDDMyOngoingStubbing"
+}, {
+  "description" : "Change parameter annotations of BDDMockito.BDDMyOngoingStubbing#willReturn: value +@Nullable, values +@Nullable",
+  "entity" : "BDDMockito.BDDMyOngoingStubbing"
+}, {
+  "description" : "Change parameter annotations of BDDMockito.BDDOngoingStubbingImpl#willReturn: value +@Nullable",
+  "entity" : "BDDMockito.BDDOngoingStubbingImpl"
+} ]

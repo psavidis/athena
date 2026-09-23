@@ -1,0 +1,13 @@
+[ {
+  "description" : "Add SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_auto_created_instance",
+  "entity" : "SpyAnnotationTest"
+}, {
+  "description" : "Add SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_injected_field",
+  "entity" : "SpyAnnotationTest"
+}, {
+  "description" : "Add SpyAnnotationTest#should_create_spy_with_specified_mock_maker_for_provided_instance",
+  "entity" : "SpyAnnotationTest"
+}, {
+  "description" : "Add SpyAnnotationTest#should_not_set_mock_maker_when_unspecified",
+  "entity" : "SpyAnnotationTest"
+} ]

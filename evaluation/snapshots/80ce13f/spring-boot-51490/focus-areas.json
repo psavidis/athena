@@ -1,0 +1,13 @@
+[ {
+  "entity" : "ArchitectureRules",
+  "description" : "Add ArchitectureRules#areImportParticipants"
+}, {
+  "entity" : "ArchitectureRules",
+  "description" : "Add ArchitectureRules#importParticipantsShouldOnlyImplementAwareInterfacesIfTheyArePublic"
+}, {
+  "entity" : "ArchitectureRules",
+  "description" : "Add ArchitectureRules#notDirectlyImplementAwareInterfaces"
+}, {
+  "entity" : "IntegrationAutoConfigurationScanRegistrar",
+  "description" : "Add constructor parameter IntegrationAutoConfigurationScanRegistrar#beanFactory"
+} ]

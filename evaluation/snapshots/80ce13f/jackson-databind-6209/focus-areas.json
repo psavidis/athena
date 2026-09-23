@@ -1,0 +1,13 @@
+[ {
+  "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodCallOnBuildsOnlyUnaryInvoker",
+  "entity" : "AnnotatedMemberEqualityTest"
+}, {
+  "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodCallOnWithBuildsOnlyFixedArityInvoker",
+  "entity" : "AnnotatedMemberEqualityTest"
+}, {
+  "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodDoesNotEagerlyConstructInvokers",
+  "entity" : "AnnotatedMemberEqualityTest"
+}, {
+  "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodNullaryCallBuildsOnlyNullaryInvoker",
+  "entity" : "AnnotatedMemberEqualityTest"
+} ]

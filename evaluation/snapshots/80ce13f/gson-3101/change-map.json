@@ -1,0 +1,179 @@
+{
+  "prTitle" : "Use `switch` statements instead of if-chains.",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 9,
+    "STRUCTURAL" : 0,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI2RvUGVlawpicmFuY2ggcmVtb3ZlZA",
+    "description" : "Change control flow of JsonReader#doPeek: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI3BlZWtLZXl3b3JkCmJyYW5jaCByZW1vdmVk",
+    "description" : "Change control flow of JsonReader#peekKeyword: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHROYW1lCmJyYW5jaCByZW1vdmVk",
+    "description" : "Change control flow of JsonReader#nextName: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRTdHJpbmcKYnJhbmNoIHJlbW92ZWQ",
+    "description" : "Change control flow of JsonReader#nextString: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 4,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRCb29sZWFuCmJyYW5jaCByZW1vdmVk",
+    "description" : "Change control flow of JsonReader#nextBoolean: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 5,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHREb3VibGUKYnJhbmNoIHJlbW92ZWQ",
+    "description" : "Change control flow of JsonReader#nextDouble: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 6,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRMb25nCmJyYW5jaCByZW1vdmVk",
+    "description" : "Change control flow of JsonReader#nextLong: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 7,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyIzxjbGluaXQ-CmJyYW5jaCByZW1vdmVk",
+    "description" : "Change control flow of JsonReader#<clinit>: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 8,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyVGVzdCNhc3NlcnREb2N1bWVudApicmFuY2ggcmVtb3ZlZA",
+    "description" : "Change control flow of JsonReaderTest#assertDocument: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "JsonReader",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI2RvUGVlawpicmFuY2ggcmVtb3ZlZA",
+      "description" : "Change control flow of JsonReader#doPeek: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI3BlZWtLZXl3b3JkCmJyYW5jaCByZW1vdmVk",
+      "description" : "Change control flow of JsonReader#peekKeyword: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHROYW1lCmJyYW5jaCByZW1vdmVk",
+      "description" : "Change control flow of JsonReader#nextName: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRTdHJpbmcKYnJhbmNoIHJlbW92ZWQ",
+      "description" : "Change control flow of JsonReader#nextString: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 4,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRCb29sZWFuCmJyYW5jaCByZW1vdmVk",
+      "description" : "Change control flow of JsonReader#nextBoolean: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 5,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHREb3VibGUKYnJhbmNoIHJlbW92ZWQ",
+      "description" : "Change control flow of JsonReader#nextDouble: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 6,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRMb25nCmJyYW5jaCByZW1vdmVk",
+      "description" : "Change control flow of JsonReader#nextLong: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 7,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyIzxjbGluaXQ-CmJyYW5jaCByZW1vdmVk",
+      "description" : "Change control flow of JsonReader#<clinit>: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "JsonReaderTest",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyVGVzdCNhc3NlcnREb2N1bWVudApicmFuY2ggcmVtb3ZlZA",
+      "description" : "Change control flow of JsonReaderTest#assertDocument: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  } ]
+}

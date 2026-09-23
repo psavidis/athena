@@ -1,0 +1,28 @@
+{
+  "territories" : [ {
+    "moduleName" : "core",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 2 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "UkVNT1ZFX1NZTUJPTApJbXBvcnRzQ29udGV4dEN1c3RvbWl6ZXIuSW1wb3J0c1NlbGVjdG9yI3NldEJlYW5GYWN0b3J5", "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCkltcG9ydHNDb250ZXh0Q3VzdG9taXplci5JbXBvcnRzU2VsZWN0b3IjYmVhbkZhY3Rvcnk" ]
+  }, {
+    "moduleName" : "module",
+    "status" : "TOUCHED",
+    "fileCount" : 6,
+    "statusSummary" : "6 files · 11 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "UkVNT1ZFX1NZTUJPTApNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvciNzZXRCZWFuQ2xhc3NMb2FkZXI", "UkVNT1ZFX1NZTUJPTApJbnRlZ3JhdGlvbkF1dG9Db25maWd1cmF0aW9uU2NhblJlZ2lzdHJhciNzZXRCZWFuRmFjdG9yeQ", "UkVNT1ZFX1NZTUJPTApQcmltYXJ5RGVmYXVsdFZhbGlkYXRvclBvc3RQcm9jZXNzb3Ijc2V0QmVhbkZhY3Rvcnk", "UkVNT1ZFX1NZTUJPTApSZWFjdGl2ZVdlYlNlcnZlckNvbmZpZ3VyYXRpb24uQmVhblBvc3RQcm9jZXNzb3JzUmVnaXN0cmFyI3NldEJlYW5GYWN0b3J5", "UkVNT1ZFX1NZTUJPTApTZXJ2bGV0V2ViU2VydmVyQ29uZmlndXJhdGlvbi5CZWFuUG9zdFByb2Nlc3NvcnNSZWdpc3RyYXIjc2V0QmVhbkZhY3Rvcnk", "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbkltcG9ydFNlbGVjdG9yVGVzdHMjc2VsZWN0SW1wb3J0c0xvYWRzRnJvbVJlc291cmNlcw", "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbkltcG9ydFNlbGVjdG9yVGVzdHMuVGVzdE1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbnNJbXBvcnRTZWxlY3RvciM8aW5pdD4", "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCk1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbkltcG9ydFNlbGVjdG9yI2NsYXNzTG9hZGVy", "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCkludGVncmF0aW9uQXV0b0NvbmZpZ3VyYXRpb25TY2FuUmVnaXN0cmFyI2JlYW5GYWN0b3J5", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvciNjbGFzc0xvYWRlcg", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpJbnRlZ3JhdGlvbkF1dG9Db25maWd1cmF0aW9uU2NhblJlZ2lzdHJhciNiZWFuRmFjdG9yeQ" ]
+  }, {
+    "moduleName" : "buildSrc",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 4 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNpbXBvcnRQYXJ0aWNpcGFudHNTaG91bGRPbmx5SW1wbGVtZW50QXdhcmVJbnRlcmZhY2VzSWZUaGV5QXJlUHVibGlj", "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNhcmVJbXBvcnRQYXJ0aWNpcGFudHM", "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNub3REaXJlY3RseUltcGxlbWVudEF3YXJlSW50ZXJmYWNlcw", "TU9ESUZZX01FVEhPRF9CT0RZCkFyY2hpdGVjdHVyZVJ1bGVzI3N0YW5kYXJk" ]
+  } ],
+  "dependencies" : [ ]
+}

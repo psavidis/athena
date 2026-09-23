@@ -13,7 +13,7 @@ instead of judging from a single PR (issue #258).
 | `tools/coverage.py` | Derives `metrics.json` (diff-vs-Athena coverage) for a snapshot. |
 | `tools/summarize.py` | Prints a snapshot as plain text: Change Map, Explorer cards, Canvas, focus areas. Used for the protocol's Athena pass. |
 | `snapshots/<athena-sha>/` | Raw evidence per Athena version: `pr.diff` plus every view Athena would render. |
-| `reports/` | Dated evaluation reports, written against a specific snapshot directory. The first is `reports/2026-09-23-baseline-a5bb763.md`. |
+| `reports/` | Dated evaluation reports, written against a specific snapshot directory. The first is `reports/2026-09-23-baseline-a5bb763.md`; the re-run after #260–#271 is `reports/2026-09-24-rerun-80ce13f.md`. |
 
 ## Re-running against a newer Athena
 

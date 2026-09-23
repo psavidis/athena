@@ -1,0 +1,12 @@
+{
+  "territories" : [ {
+    "moduleName" : "module",
+    "status" : "TOUCHED",
+    "fileCount" : 3,
+    "statusSummary" : "3 files · 5 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "QUREX1NZTUJPTApLYWZrYVByb3BlcnRpZXMuTGlzdGVuZXIjaXNBd2FpdEFzeW5jUmVzdWx0c09uU3RvcA", "QUREX1NZTUJPTApLYWZrYVByb3BlcnRpZXMuTGlzdGVuZXIjc2V0QXdhaXRBc3luY1Jlc3VsdHNPblN0b3A", "TU9ESUZZX01FVEhPRF9CT0RZCkNvbmN1cnJlbnRLYWZrYUxpc3RlbmVyQ29udGFpbmVyRmFjdG9yeUNvbmZpZ3VyZXIjY29uZmlndXJlQ29udGFpbmVy", "TU9ESUZZX01FVEhPRF9CT0RZCkthZmthQXV0b0NvbmZpZ3VyYXRpb25UZXN0cyNsaXN0ZW5lclByb3BlcnRpZXM", "QUREX0ZJRUxECkthZmthUHJvcGVydGllcy5MaXN0ZW5lciNhd2FpdEFzeW5jUmVzdWx0c09uU3RvcA" ]
+  } ],
+  "dependencies" : [ ]
+}

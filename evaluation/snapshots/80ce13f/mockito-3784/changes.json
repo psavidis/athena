@@ -1,0 +1,82 @@
+[ {
+  "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpCRERNb2NraXRvI2dpdmVuCm1ldGhvZENhbGwgK0BOdWxsYWJsZQ",
+  "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change parameter annotations of BDDMockito#given: methodCall +@Nullable",
+  "files" : [ "mockito-core/src/main/java/org/mockito/BDDMockito.java" ],
+  "symbols" : [ "BDDMockito#given", "methodCall +@Nullable" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpCRERNb2NraXRvLkJERE15T25nb2luZ1N0dWJiaW5nI3dpbGxSZXR1cm4KdmFsdWUgK0BOdWxsYWJsZQ",
+  "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change parameter annotations of BDDMockito.BDDMyOngoingStubbing#willReturn: value +@Nullable",
+  "files" : [ "mockito-core/src/main/java/org/mockito/BDDMockito.java" ],
+  "symbols" : [ "BDDMockito.BDDMyOngoingStubbing#willReturn", "value +@Nullable" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpCRERNb2NraXRvLkJERE15T25nb2luZ1N0dWJiaW5nI3dpbGxSZXR1cm4KdmFsdWUgK0BOdWxsYWJsZSwgdmFsdWVzICtATnVsbGFibGU",
+  "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change parameter annotations of BDDMockito.BDDMyOngoingStubbing#willReturn: value +@Nullable, values +@Nullable",
+  "files" : [ "mockito-core/src/main/java/org/mockito/BDDMockito.java" ],
+  "symbols" : [ "BDDMockito.BDDMyOngoingStubbing#willReturn", "value +@Nullable, values +@Nullable" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpCRERNb2NraXRvLkJERE9uZ29pbmdTdHViYmluZ0ltcGwjd2lsbFJldHVybgp2YWx1ZSArQE51bGxhYmxl",
+  "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change parameter annotations of BDDMockito.BDDOngoingStubbingImpl#willReturn: value +@Nullable",
+  "files" : [ "mockito-core/src/main/java/org/mockito/BDDMockito.java" ],
+  "symbols" : [ "BDDMockito.BDDOngoingStubbingImpl#willReturn", "value +@Nullable" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpCRERNb2NraXRvLkJERE9uZ29pbmdTdHViYmluZ0ltcGwjd2lsbFJldHVybgp2YWx1ZSArQE51bGxhYmxlLCB2YWx1ZXMgK0BOdWxsYWJsZQ",
+  "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change parameter annotations of BDDMockito.BDDOngoingStubbingImpl#willReturn: value +@Nullable, values +@Nullable",
+  "files" : [ "mockito-core/src/main/java/org/mockito/BDDMockito.java" ],
+  "symbols" : [ "BDDMockito.BDDOngoingStubbingImpl#willReturn", "value +@Nullable, values +@Nullable" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpNb2NraXRvI3doZW4KbWV0aG9kQ2FsbCArQE51bGxhYmxl",
+  "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change parameter annotations of Mockito#when: methodCall +@Nullable",
+  "files" : [ "mockito-core/src/main/java/org/mockito/Mockito.java" ],
+  "symbols" : [ "Mockito#when", "methodCall +@Nullable" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpNb2NraXRvQ29yZSN3aGVuCm1ldGhvZENhbGwgK0BOdWxsYWJsZQ",
+  "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change parameter annotations of MockitoCore#when: methodCall +@Nullable",
+  "files" : [ "mockito-core/src/main/java/org/mockito/internal/MockitoCore.java" ],
+  "symbols" : [ "MockitoCore#when", "methodCall +@Nullable" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpPbmdvaW5nU3R1YmJpbmcjdGhlblJldHVybgp2YWx1ZSArQE51bGxhYmxl",
+  "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change parameter annotations of OngoingStubbing#thenReturn: value +@Nullable",
+  "files" : [ "mockito-core/src/main/java/org/mockito/stubbing/OngoingStubbing.java" ],
+  "symbols" : [ "OngoingStubbing#thenReturn", "value +@Nullable" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpPbmdvaW5nU3R1YmJpbmcjdGhlblJldHVybgp2YWx1ZSArQE51bGxhYmxlLCB2YWx1ZXMgK0BOdWxsYWJsZQ",
+  "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change parameter annotations of OngoingStubbing#thenReturn: value +@Nullable, values +@Nullable",
+  "files" : [ "mockito-core/src/main/java/org/mockito/stubbing/OngoingStubbing.java" ],
+  "symbols" : [ "OngoingStubbing#thenReturn", "value +@Nullable, values +@Nullable" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+} ]

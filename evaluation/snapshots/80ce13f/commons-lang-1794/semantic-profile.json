@@ -1,0 +1,47 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Control Flow",
+    "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " public static Fraction getReducedFraction(int numerator, int denominator) {\n         checkDenominator(denominator);\n         if (numerator == 0) {\n             return ZERO; // normalize zero.\n         }\n-        // allow 2^k/-2^31 as a valid fraction (where k>0)\n-        if (denominator == Integer.MIN_VALUE && (numerator & 1) == 0) {\n+        // Reduce common powers of two before sign normalization to avoid negating Integer.MIN_VALUE.\n+        while ((numerator & 1) == 0 && (denominator & 1) == 0) {\n             numerator /= 2;\n             denominator /= 2;\n         }\n         if (denominator < 0) {\n             if (numerator == Integer.MIN_VALUE || denominator == Integer.MIN_VALUE) {\n                 throw new ArithmeticException(\"overflow: can't negate\");\n             }\n             numerator = -numerator;\n             denominator = -denominator;\n         }\n         // simplify fraction.\n         final int gcd = greatestCommonDivisor(numerator, denominator);\n         numerator /= gcd;\n         denominator /= gcd;\n         return new Fraction(numerator, denominator);\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "src/main/java/org/apache/commons/lang3/math/Fraction.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+@Test\n+    void testReducedFactoryIntegerMinValue() {\n+        Fraction f = Fraction.getReducedFraction(Integer.MIN_VALUE, -2);\n+        assertEquals(1073741824, f.getNumerator());\n+        assertEquals(1, f.getDenominator());\n \n+        f = Fraction.getReducedFraction(Integer.MIN_VALUE, -6);\n+        assertEquals(1073741824, f.getNumerator());\n+        assertEquals(3, f.getDenominator());\n+\n+        f = Fraction.getReducedFraction(Integer.MIN_VALUE, Integer.MIN_VALUE);\n+        assertEquals(1, f.getNumerator());\n+        assertEquals(1, f.getDenominator());\n+\n+        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(Integer.MIN_VALUE, -1));\n+        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(Integer.MIN_VALUE, -3));\n+\n+        f = Fraction.getReducedFraction(-2, Integer.MIN_VALUE);\n+        assertEquals(1, f.getNumerator());\n+        assertEquals(1073741824, f.getDenominator());\n+\n+        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(-7, Integer.MIN_VALUE));\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "src/test/java/org/apache/commons/lang3/math/FractionTest.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Modify Capability",
+    "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ " public static Fraction getReducedFraction(int numerator, int denominator) {\n         checkDenominator(denominator);\n         if (numerator == 0) {\n             return ZERO; // normalize zero.\n         }\n-        // allow 2^k/-2^31 as a valid fraction (where k>0)\n-        if (denominator == Integer.MIN_VALUE && (numerator & 1) == 0) {\n+        // Reduce common powers of two before sign normalization to avoid negating Integer.MIN_VALUE.\n+        while ((numerator & 1) == 0 && (denominator & 1) == 0) {\n             numerator /= 2;\n             denominator /= 2;\n         }\n         if (denominator < 0) {\n             if (numerator == Integer.MIN_VALUE || denominator == Integer.MIN_VALUE) {\n                 throw new ArithmeticException(\"overflow: can't negate\");\n             }\n             numerator = -numerator;\n             denominator = -denominator;\n         }\n         // simplify fraction.\n         final int gcd = greatestCommonDivisor(numerator, denominator);\n         numerator /= gcd;\n         denominator /= gcd;\n         return new Fraction(numerator, denominator);\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "src/main/java/org/apache/commons/lang3/math/Fraction.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Add Capability",
+    "conceptDescription" : "A new business-meaningful capability was introduced.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "+@Test\n+    void testReducedFactoryIntegerMinValue() {\n+        Fraction f = Fraction.getReducedFraction(Integer.MIN_VALUE, -2);\n+        assertEquals(1073741824, f.getNumerator());\n+        assertEquals(1, f.getDenominator());\n \n+        f = Fraction.getReducedFraction(Integer.MIN_VALUE, -6);\n+        assertEquals(1073741824, f.getNumerator());\n+        assertEquals(3, f.getDenominator());\n+\n+        f = Fraction.getReducedFraction(Integer.MIN_VALUE, Integer.MIN_VALUE);\n+        assertEquals(1, f.getNumerator());\n+        assertEquals(1, f.getDenominator());\n+\n+        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(Integer.MIN_VALUE, -1));\n+        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(Integer.MIN_VALUE, -3));\n+\n+        f = Fraction.getReducedFraction(-2, Integer.MIN_VALUE);\n+        assertEquals(1, f.getNumerator());\n+        assertEquals(1073741824, f.getDenominator());\n+\n+        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(-7, Integer.MIN_VALUE));\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "src/test/java/org/apache/commons/lang3/math/FractionTest.java" ],
+    "groupedMoveCount" : 0
+  } ]
+}

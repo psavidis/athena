@@ -1,0 +1,54 @@
+{
+  "diff": {
+    "files": 22,
+    "java_files": 21,
+    "non_java_files": 1,
+    "substantive_java_files": 21,
+    "copyright_only_java_files": 0,
+    "production_java_files": 18,
+    "java_hunks": 47,
+    "java_lines_changed": 877
+  },
+  "athena": {
+    "changes": 112,
+    "changes_by_kind": {
+      "ADD_CLASS": 7,
+      "CHANGE_METHOD_ANNOTATIONS": 1,
+      "CHANGE_CONTROL_FLOW": 2,
+      "CHANGE_METHOD_SIGNATURE": 1,
+      "MOVE_SYMBOL": 2,
+      "REMOVE_SYMBOL": 11,
+      "ADD_SYMBOL": 42,
+      "MODIFY_METHOD_BODY": 12,
+      "MOVE_FIELD": 2,
+      "REMOVE_FIELD": 10,
+      "ADD_FIELD": 12,
+      "ADD_CONSTRUCTOR_PARAMETER": 8,
+      "ADD_ENUM_CONSTANT": 2
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 98,
+      "BEHAVIORAL": 2,
+      "UNKNOWN": 12
+    },
+    "semantic_entries": 126,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 112,
+      "PATTERN": 1,
+      "FRAMEWORK": 5,
+      "RESPONSIBILITY": 8
+    },
+    "inferred_entries": 14,
+    "module_territories": 3,
+    "module_dependencies": 0,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 21,
+    "substantive_java_file_coverage": 1.0,
+    "production_java_files_represented": 18,
+    "production_java_file_coverage": 1.0,
+    "unrepresented_production_java_files": [],
+    "unrepresented_test_java_files": []
+  }
+}

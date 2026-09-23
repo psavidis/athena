@@ -1,0 +1,344 @@
+{
+  "prTitle" : "Use constructor injection in classes that participate in @Import",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 14,
+    "UNKNOWN" : 3,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApJbXBvcnRzQ29udGV4dEN1c3RvbWl6ZXIuSW1wb3J0c1NlbGVjdG9yI3NldEJlYW5GYWN0b3J5",
+    "description" : "Remove ImportsContextCustomizer.ImportsSelector#setBeanFactory",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 1,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvciNzZXRCZWFuQ2xhc3NMb2FkZXI",
+    "description" : "Remove ManagementContextConfigurationImportSelector#setBeanClassLoader",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 2,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApJbnRlZ3JhdGlvbkF1dG9Db25maWd1cmF0aW9uU2NhblJlZ2lzdHJhciNzZXRCZWFuRmFjdG9yeQ",
+    "description" : "Remove IntegrationAutoConfigurationScanRegistrar#setBeanFactory",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 3,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQcmltYXJ5RGVmYXVsdFZhbGlkYXRvclBvc3RQcm9jZXNzb3Ijc2V0QmVhbkZhY3Rvcnk",
+    "description" : "Remove PrimaryDefaultValidatorPostProcessor#setBeanFactory",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 4,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFjdGl2ZVdlYlNlcnZlckNvbmZpZ3VyYXRpb24uQmVhblBvc3RQcm9jZXNzb3JzUmVnaXN0cmFyI3NldEJlYW5GYWN0b3J5",
+    "description" : "Remove ReactiveWebServerConfiguration.BeanPostProcessorsRegistrar#setBeanFactory",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 5,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApTZXJ2bGV0V2ViU2VydmVyQ29uZmlndXJhdGlvbi5CZWFuUG9zdFByb2Nlc3NvcnNSZWdpc3RyYXIjc2V0QmVhbkZhY3Rvcnk",
+    "description" : "Remove ServletWebServerConfiguration.BeanPostProcessorsRegistrar#setBeanFactory",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNpbXBvcnRQYXJ0aWNpcGFudHNTaG91bGRPbmx5SW1wbGVtZW50QXdhcmVJbnRlcmZhY2VzSWZUaGV5QXJlUHVibGlj",
+    "description" : "Add ArchitectureRules#importParticipantsShouldOnlyImplementAwareInterfacesIfTheyArePublic",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNhcmVJbXBvcnRQYXJ0aWNpcGFudHM",
+    "description" : "Add ArchitectureRules#areImportParticipants",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNub3REaXJlY3RseUltcGxlbWVudEF3YXJlSW50ZXJmYWNlcw",
+    "description" : "Add ArchitectureRules#notDirectlyImplementAwareInterfaces",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 9,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFyY2hpdGVjdHVyZVJ1bGVzI3N0YW5kYXJk",
+    "description" : "Modify body of ArchitectureRules#standard",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 10,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbkltcG9ydFNlbGVjdG9yVGVzdHMjc2VsZWN0SW1wb3J0c0xvYWRzRnJvbVJlc291cmNlcw",
+    "description" : "Modify body of ManagementContextConfigurationImportSelectorTests#selectImportsLoadsFromResources",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 11,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbkltcG9ydFNlbGVjdG9yVGVzdHMuVGVzdE1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbnNJbXBvcnRTZWxlY3RvciM8aW5pdD4",
+    "description" : "Modify body of ManagementContextConfigurationImportSelectorTests.TestManagementContextConfigurationsImportSelector#<init>",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 12,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCkltcG9ydHNDb250ZXh0Q3VzdG9taXplci5JbXBvcnRzU2VsZWN0b3IjYmVhbkZhY3Rvcnk",
+    "description" : "Change annotations on field ImportsContextCustomizer.ImportsSelector#beanFactory",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_FIELD_ANNOTATIONS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 13,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCk1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbkltcG9ydFNlbGVjdG9yI2NsYXNzTG9hZGVy",
+    "description" : "Change annotations on field ManagementContextConfigurationImportSelector#classLoader",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_FIELD_ANNOTATIONS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 14,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCkludGVncmF0aW9uQXV0b0NvbmZpZ3VyYXRpb25TY2FuUmVnaXN0cmFyI2JlYW5GYWN0b3J5",
+    "description" : "Change annotations on field IntegrationAutoConfigurationScanRegistrar#beanFactory",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_FIELD_ANNOTATIONS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvciNjbGFzc0xvYWRlcg",
+    "description" : "Add constructor parameter ManagementContextConfigurationImportSelector#classLoader",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpJbnRlZ3JhdGlvbkF1dG9Db25maWd1cmF0aW9uU2NhblJlZ2lzdHJhciNiZWFuRmFjdG9yeQ",
+    "description" : "Add constructor parameter IntegrationAutoConfigurationScanRegistrar#beanFactory",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ImportsContextCustomizer.ImportsSelector",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApJbXBvcnRzQ29udGV4dEN1c3RvbWl6ZXIuSW1wb3J0c1NlbGVjdG9yI3NldEJlYW5GYWN0b3J5",
+      "description" : "Remove ImportsContextCustomizer.ImportsSelector#setBeanFactory",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 12,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCkltcG9ydHNDb250ZXh0Q3VzdG9taXplci5JbXBvcnRzU2VsZWN0b3IjYmVhbkZhY3Rvcnk",
+      "description" : "Change annotations on field ImportsContextCustomizer.ImportsSelector#beanFactory",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_FIELD_ANNOTATIONS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "ManagementContextConfigurationImportSelector",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvciNzZXRCZWFuQ2xhc3NMb2FkZXI",
+      "description" : "Remove ManagementContextConfigurationImportSelector#setBeanClassLoader",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 13,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCk1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbkltcG9ydFNlbGVjdG9yI2NsYXNzTG9hZGVy",
+      "description" : "Change annotations on field ManagementContextConfigurationImportSelector#classLoader",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_FIELD_ANNOTATIONS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvciNjbGFzc0xvYWRlcg",
+      "description" : "Add constructor parameter ManagementContextConfigurationImportSelector#classLoader",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "IntegrationAutoConfigurationScanRegistrar",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApJbnRlZ3JhdGlvbkF1dG9Db25maWd1cmF0aW9uU2NhblJlZ2lzdHJhciNzZXRCZWFuRmFjdG9yeQ",
+      "description" : "Remove IntegrationAutoConfigurationScanRegistrar#setBeanFactory",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 14,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCkludGVncmF0aW9uQXV0b0NvbmZpZ3VyYXRpb25TY2FuUmVnaXN0cmFyI2JlYW5GYWN0b3J5",
+      "description" : "Change annotations on field IntegrationAutoConfigurationScanRegistrar#beanFactory",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_FIELD_ANNOTATIONS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 16,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpJbnRlZ3JhdGlvbkF1dG9Db25maWd1cmF0aW9uU2NhblJlZ2lzdHJhciNiZWFuRmFjdG9yeQ",
+      "description" : "Add constructor parameter IntegrationAutoConfigurationScanRegistrar#beanFactory",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "PrimaryDefaultValidatorPostProcessor",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQcmltYXJ5RGVmYXVsdFZhbGlkYXRvclBvc3RQcm9jZXNzb3Ijc2V0QmVhbkZhY3Rvcnk",
+      "description" : "Remove PrimaryDefaultValidatorPostProcessor#setBeanFactory",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "ReactiveWebServerConfiguration.BeanPostProcessorsRegistrar",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFjdGl2ZVdlYlNlcnZlckNvbmZpZ3VyYXRpb24uQmVhblBvc3RQcm9jZXNzb3JzUmVnaXN0cmFyI3NldEJlYW5GYWN0b3J5",
+      "description" : "Remove ReactiveWebServerConfiguration.BeanPostProcessorsRegistrar#setBeanFactory",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "ServletWebServerConfiguration.BeanPostProcessorsRegistrar",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApTZXJ2bGV0V2ViU2VydmVyQ29uZmlndXJhdGlvbi5CZWFuUG9zdFByb2Nlc3NvcnNSZWdpc3RyYXIjc2V0QmVhbkZhY3Rvcnk",
+      "description" : "Remove ServletWebServerConfiguration.BeanPostProcessorsRegistrar#setBeanFactory",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "ArchitectureRules",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNpbXBvcnRQYXJ0aWNpcGFudHNTaG91bGRPbmx5SW1wbGVtZW50QXdhcmVJbnRlcmZhY2VzSWZUaGV5QXJlUHVibGlj",
+      "description" : "Add ArchitectureRules#importParticipantsShouldOnlyImplementAwareInterfacesIfTheyArePublic",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNhcmVJbXBvcnRQYXJ0aWNpcGFudHM",
+      "description" : "Add ArchitectureRules#areImportParticipants",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNub3REaXJlY3RseUltcGxlbWVudEF3YXJlSW50ZXJmYWNlcw",
+      "description" : "Add ArchitectureRules#notDirectlyImplementAwareInterfaces",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    }, {
+      "id" : 9,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFyY2hpdGVjdHVyZVJ1bGVzI3N0YW5kYXJk",
+      "description" : "Modify body of ArchitectureRules#standard",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "ManagementContextConfigurationImportSelectorTests",
+    "entries" : [ {
+      "id" : 10,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbkltcG9ydFNlbGVjdG9yVGVzdHMjc2VsZWN0SW1wb3J0c0xvYWRzRnJvbVJlc291cmNlcw",
+      "description" : "Modify body of ManagementContextConfigurationImportSelectorTests#selectImportsLoadsFromResources",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  }, {
+    "enclosingType" : "ManagementContextConfigurationImportSelectorTests.TestManagementContextConfigurationsImportSelector",
+    "entries" : [ {
+      "id" : 11,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbkltcG9ydFNlbGVjdG9yVGVzdHMuVGVzdE1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbnNJbXBvcnRTZWxlY3RvciM8aW5pdD4",
+      "description" : "Modify body of ManagementContextConfigurationImportSelectorTests.TestManagementContextConfigurationsImportSelector#<init>",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0
+    } ]
+  } ]
+}
