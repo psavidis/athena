@@ -99,6 +99,8 @@ public final class ChangeGrouper {
                     + ": " + key.involvedDescriptions.get(1);
             case CHANGE_METHOD_ANNOTATIONS -> "Change annotations of " + key.involvedDescriptions.get(0)
                     + ": " + key.involvedDescriptions.get(1);
+            case CHANGE_CONTROL_FLOW -> "Change control flow of " + key.involvedDescriptions.get(0)
+                    + ": " + key.involvedDescriptions.get(1);
         };
     }
 

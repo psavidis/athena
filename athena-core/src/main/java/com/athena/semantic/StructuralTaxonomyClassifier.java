@@ -43,6 +43,7 @@ public final class StructuralTaxonomyClassifier {
             case FORMATTING_ONLY -> "formatting-only";
             case ADD_CONSTRUCTOR_PARAMETER -> "add-constructor-parameter";
             case CHANGE_FIELD_ANNOTATIONS -> "change-field-annotations";
+            case CHANGE_CONTROL_FLOW -> "change-control-flow";
         };
     }
 

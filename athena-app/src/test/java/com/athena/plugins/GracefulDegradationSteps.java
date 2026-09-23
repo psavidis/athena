@@ -1,7 +1,10 @@
 package com.athena.plugins;
 
+import com.athena.reviewui.PrUnderstandingView;
 import com.athena.semantic.AnalysisResult;
 import com.athena.semantic.AnalysisStatus;
+import com.athena.semantic.Change;
+import com.athena.semantic.ChangeCategory;
 import com.athena.semantic.PrAnalyzer;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -22,6 +25,7 @@ public class GracefulDegradationSteps {
     private Path headRoot;
     private String brokenFileName;
     private AnalysisResult result;
+    private PrUnderstandingView understanding;
 
     @Before
     public void createTempRoots() throws IOException {
@@ -151,6 +155,85 @@ public class GracefulDegradationSteps {
                 + "}\n");
     }
 
+    // ---- behavioral changes in the analysis (ticket #263) ----
+
+    @Given("a base revision where method {string} on class {string} checks {string}")
+    public void base_method_checks_condition(String method, String className, String condition) {
+        write(baseRoot, className, guardSource(className, method, condition));
+    }
+
+    @Given("a head revision where {string} on {string} checks {string}")
+    public void head_method_checks_condition(String method, String className, String condition) {
+        write(headRoot, className, guardSource(className, method, condition));
+    }
+
+    @Given("a base revision where method {string} on class {string} always decrements the size")
+    public void base_method_always_decrements(String method, String className) {
+        write(baseRoot, className, "public class " + className + " {\n"
+                + "    private int size;\n"
+                + "    void " + method + "(Node node) {\n"
+                + "        size--;\n"
+                + "    }\n"
+                + "}\n");
+    }
+
+    @Given("a head revision where {string} on {string} first returns early when the entry is already removed")
+    public void head_method_returns_early(String method, String className) {
+        write(headRoot, className, "public class " + className + " {\n"
+                + "    private int size;\n"
+                + "    void " + method + "(Node node) {\n"
+                + "        if (node.isRemoved()) {\n"
+                + "            return;\n"
+                + "        }\n"
+                + "        size--;\n"
+                + "    }\n"
+                + "}\n");
+    }
+
+    @Given("a base revision where method {string} on class {string} halves both values once under an if")
+    public void base_method_halves_once(String method, String className) {
+        write(baseRoot, className, "public class " + className + " {\n"
+                + "    int[] " + method + "(int n, int d) {\n"
+                + "        if ((n & 1) == 0 && (d & 1) == 0) {\n"
+                + "            n /= 2;\n"
+                + "            d /= 2;\n"
+                + "        }\n"
+                + "        return new int[] {n, d};\n"
+                + "    }\n"
+                + "}\n");
+    }
+
+    @Given("a head revision where {string} on {string} halves both values in a while loop")
+    public void head_method_halves_in_loop(String method, String className) {
+        write(headRoot, className, "public class " + className + " {\n"
+                + "    int[] " + method + "(int n, int d) {\n"
+                + "        while ((n & 1) == 0 && (d & 1) == 0) {\n"
+                + "            n /= 2;\n"
+                + "            d /= 2;\n"
+                + "        }\n"
+                + "        return new int[] {n, d};\n"
+                + "    }\n"
+                + "}\n");
+    }
+
+    @Given("a revision pair with one changed condition and one renamed method")
+    public void a_revision_pair_with_changed_condition_and_renamed_method() {
+        base_method_checks_condition("isAllowed", "Guard", "user.isActive()");
+        head_method_checks_condition("isAllowed", "Guard", "user.isActive() && user.hasPermission()");
+        write(baseRoot, "Greeter", "public class Greeter {\n    public String greet() {\n        return \"hi\";\n    }\n}\n");
+        write(headRoot, "Greeter", "public class Greeter {\n    public String salute() {\n        return \"hi\";\n    }\n}\n");
+    }
+
+    @Given("a base revision where method {string} on class {string} calls {string}")
+    public void base_method_calls(String method, String className, String call) {
+        write(baseRoot, className, callerSource(className, method, call));
+    }
+
+    @Given("a head revision where {string} on {string} instead calls {string} with no condition or branch change")
+    public void head_method_instead_calls(String method, String className, String call) {
+        write(headRoot, className, callerSource(className, method, call));
+    }
+
     @When("the engine analyzes the revision pair")
     public void the_engine_analyzes_the_revision_pair() {
         PrAnalyzer prAnalyzer = new PrAnalyzer(PluginRegistry.languagePlugins(), PluginRegistry.frameworkPlugins());
@@ -199,6 +282,81 @@ public class GracefulDegradationSteps {
     public void the_analysis_reports_changes_in_that_file() {
         assertThat(result.changes())
                 .anyMatch(change -> change.title().contains("Describer#label"));
+    }
+
+    @Then("the analysis reports a Behavioral Change on {string} described as a changed condition")
+    public void a_behavioral_change_described_as_changed_condition(String method) {
+        assertThat(behavioralChangeOn(method).title()).contains("condition changed");
+    }
+
+    @Then("the analysis reports a Behavioral Change on {string} described as an added branch")
+    public void a_behavioral_change_described_as_added_branch(String method) {
+        assertThat(behavioralChangeOn(method).title()).contains("branch added");
+    }
+
+    @Then("the analysis reports a Behavioral Change on {string}")
+    public void a_behavioral_change_on(String method) {
+        behavioralChangeOn(method);
+    }
+
+    @Then("that Change shows the method before and after the edit")
+    public void that_change_shows_before_and_after() {
+        Change change = result.changes().stream()
+                .filter(c -> ChangeCategory.of(c.kind()) == ChangeCategory.BEHAVIORAL)
+                .findFirst().orElseThrow();
+        String diff = change.matchedOccurrences().get(0).diffText();
+        assertThat(diff.lines()).anyMatch(line -> line.startsWith("-") && line.contains("user.isActive()"));
+        assertThat(diff.lines()).anyMatch(line -> line.startsWith("+") && line.contains("user.hasPermission()"));
+    }
+
+    @When("the reviewer views the Change Map for it")
+    public void the_reviewer_views_the_change_map() {
+        the_engine_analyzes_the_revision_pair();
+        understanding = PrUnderstandingView.of("Behavioral PR", result.changes());
+    }
+
+    @Then("the summary shows {int} Behavioral and {int} Structural Change")
+    public void the_summary_shows_behavioral_and_structural(int behavioral, int structural) {
+        assertThat(understanding.countFor(ChangeCategory.BEHAVIORAL)).isEqualTo(behavioral);
+        assertThat(understanding.countFor(ChangeCategory.STRUCTURAL)).isEqualTo(structural);
+    }
+
+    @Then("the analysis reports no Behavioral Change on {string}")
+    public void no_behavioral_change_on(String method) {
+        assertThat(result.changes()).noneMatch(c -> ChangeCategory.of(c.kind()) == ChangeCategory.BEHAVIORAL
+                && c.title().contains(method));
+    }
+
+    private Change behavioralChangeOn(String method) {
+        return result.changes().stream()
+                .filter(c -> ChangeCategory.of(c.kind()) == ChangeCategory.BEHAVIORAL && c.title().contains(method))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("No Behavioral Change on " + method + " in " + result.changes()));
+    }
+
+    private static String guardSource(String className, String method, String condition) {
+        return "public class " + className + " {\n"
+                + "    public boolean " + method + "(User user) {\n"
+                + "        if (" + condition + ") {\n"
+                + "            return true;\n"
+                + "        }\n"
+                + "        return false;\n"
+                + "    }\n"
+                + "}\n";
+    }
+
+    private static String callerSource(String className, String method, String call) {
+        return "public class " + className + " {\n"
+                + "    public String " + method + "() {\n"
+                + "        return " + call + ";\n"
+                + "    }\n"
+                + "    private String formatA() {\n"
+                + "        return \"a\";\n"
+                + "    }\n"
+                + "    private String formatB() {\n"
+                + "        return \"b\";\n"
+                + "    }\n"
+                + "}\n";
     }
 
     @Then("the raw textual diff is still available")

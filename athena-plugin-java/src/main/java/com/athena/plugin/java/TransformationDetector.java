@@ -119,10 +119,15 @@ public final class TransformationDetector {
                                 base.rawWholeDeclaration, head.rawWholeDeclaration));
                     }
                     // else: truly identical, nothing to report.
+                } else {
+                    // Body differs with the same signature. A changed condition, branch or loop
+                    // is a behavioral change (tickets #18, #263); any other body edit (e.g. only a
+                    // call target changed) is deliberately left unclassified here.
+                    base.controlFlow.describeChangeTo(head.controlFlow).ifPresent(controlFlowChange ->
+                            results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_CONTROL_FLOW,
+                                    List.of(base.description(), controlFlowChange), List.of(base.file, head.file),
+                                    base.rawWholeDeclaration, head.rawWholeDeclaration)));
                 }
-                // else: body differs but signature is the same and structure isn't AST-equal —
-                // out of scope for this detector (behavioral changes are ticket #18; a changed
-                // method call with no other structural change is deliberately left unclassified).
             } else {
                 results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_METHOD_SIGNATURE,
                         List.of(base.description()), List.of(base.file, head.file),
@@ -868,7 +873,7 @@ public final class TransformationDetector {
                     paramTypes, method.getTypeAsString(),
                     wholeDeclarationText, normalize(wholeDeclarationText),
                     normalize(bodyOnlyText), relativePath, parameterAnnotationsOf(method.getParameters()),
-                    methodAnnotationsOf(method)));
+                    methodAnnotationsOf(method), ControlFlow.of(method)));
             memberSignatures.add("method:" + method.getNameAsString() + "(" + String.join(",", paramTypes) + "):"
                     + method.getTypeAsString());
         }
@@ -1121,7 +1126,7 @@ public final class TransformationDetector {
     private record MethodInfo(String enclosingType, String name, List<String> parameterTypes, String returnType,
                                String rawWholeDeclaration, String normalizedWholeDeclaration,
                                String normalizedBody, String file, ParameterAnnotations parameterAnnotations,
-                               Set<String> methodAnnotations) {
+                               Set<String> methodAnnotations, ControlFlow controlFlow) {
         String description() {
             return enclosingType + "#" + name;
         }

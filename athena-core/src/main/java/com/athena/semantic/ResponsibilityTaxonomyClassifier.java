@@ -39,6 +39,7 @@ public final class ResponsibilityTaxonomyClassifier {
                  ADD_ANNOTATION_ELEMENT, REMOVE_ANNOTATION_ELEMENT, CHANGE_ANNOTATION_ELEMENT_DEFAULT ->
                     Optional.of("change-api-responsibility");
             case EXTRACT_METHOD -> Optional.of("split-responsibility");
+            case CHANGE_CONTROL_FLOW -> Optional.of("modify-capability");
             case RENAME_SYMBOL, RENAME_CLASS, RENAME_FIELD, MECHANICAL_REPLACEMENT, FORMATTING_ONLY,
                  CHANGE_FIELD_ANNOTATIONS, CHANGE_FIELD_TYPE, CHANGE_PARAMETER_ANNOTATIONS,
                  CHANGE_METHOD_ANNOTATIONS -> Optional.empty();

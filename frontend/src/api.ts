@@ -50,6 +50,7 @@ export type TransformationKind =
   | 'CHANGE_FIELD_TYPE'
   | 'CHANGE_PARAMETER_ANNOTATIONS'
   | 'CHANGE_METHOD_ANNOTATIONS'
+  | 'CHANGE_CONTROL_FLOW'
 
 export type ReviewState = 'UNSEEN' | 'UNDERSTANDING' | 'REVIEWED' | 'CONCERN' | 'SKIPPED'
 
