@@ -73,6 +73,22 @@ class PatternTaxonomyClassifierTest {
     }
 
     @Test
+    void correlatesAFieldTypeChangeWithAnAddedConstructorParameterOfTheSameNameAsDependencyInjection() {
+        // Ticket #267: a same-name field re-declared with a different type is one
+        // CHANGE_FIELD_TYPE Change now, not REMOVE_FIELD + ADD_FIELD — it's still the field
+        // half of a field -> constructor injection move.
+        Change retypedField = changeOf(TransformationKind.CHANGE_FIELD_TYPE,
+                "UserService#userRepository", "OldRepository -> UserRepository");
+        Change addedParameter = changeOf(TransformationKind.ADD_CONSTRUCTOR_PARAMETER, "UserService#userRepository");
+
+        Map<Change, SemanticClassification> matches =
+                classifier.classifyDependencyInjection(List.of(retypedField, addedParameter));
+
+        assertThat(matches).containsOnlyKeys(addedParameter);
+        assertThat(matches.get(addedParameter).concept().id()).isEqualTo("dependency-injection");
+    }
+
+    @Test
     void namesTheAddedParameterAndTheRemovedFieldAsSupportForDependencyInjection() {
         // Ticket #96: the DI Pattern entry's "supported by" list must name both halves of the
         // correlation — the Change's own structural change and the one it correlated with.
