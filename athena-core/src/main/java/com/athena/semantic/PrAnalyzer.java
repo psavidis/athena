@@ -84,12 +84,21 @@ public final class PrAnalyzer {
         Map<String, String> rawDiffsByFile = new LinkedHashMap<>();
         List<SymbolAwareDiffEntry> degradedEntries = new ArrayList<>();
         boolean anyParseable = false;
+        int changedFileCount = 0;
 
         for (String relativePath : relativePaths) {
             Optional<String> baseText = readIfExists(baseRoot.resolve(relativePath));
             Optional<String> headText = readIfExists(headRoot.resolve(relativePath));
             rawDiffsByFile.put(relativePath,
                     unifiedDiff(relativePath, baseText.orElse(""), headText.orElse("")));
+
+            // The status and the symbol-aware fallback describe the change under review, not
+            // the rest of the repository (ticket #262): a file identical in both revisions
+            // can't be part of the review, so whether it parses is irrelevant here.
+            if (baseText.equals(headText)) {
+                continue;
+            }
+            changedFileCount++;
 
             Optional<LanguagePlugin> plugin = pluginFor(baseRoot.resolve(relativePath), headRoot.resolve(relativePath));
             Optional<ParseOutcome> baseParse = baseText.flatMap(text -> plugin.map(p -> p.checkParses(text)));
@@ -112,7 +121,7 @@ public final class PrAnalyzer {
                 .map(change -> classify(change, dependencyInjectionMatches.get(change), frameworkCorrelationMatches.get(change)))
                 .toList();
 
-        AnalysisStatus status = status(relativePaths.size(), degradedEntries.size());
+        AnalysisStatus status = status(changedFileCount, degradedEntries.size());
         List<ExternalFinding> externalFindings = runExternalProviders(headRoot, relativePaths);
 
         return new AnalysisResult(status, changes, semanticProfiles, degradedEntries, rawDiffsByFile, externalFindings);
