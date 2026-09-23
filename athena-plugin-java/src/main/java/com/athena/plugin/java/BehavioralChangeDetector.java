@@ -2,15 +2,9 @@ package com.athena.plugin.java;
 
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.BodyDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
-import com.github.javaparser.ast.stmt.BlockStmt;
-import com.github.javaparser.ast.stmt.DoStmt;
-import com.github.javaparser.ast.stmt.ForEachStmt;
-import com.github.javaparser.ast.stmt.ForStmt;
-import com.github.javaparser.ast.stmt.IfStmt;
-import com.github.javaparser.ast.stmt.Statement;
-import com.github.javaparser.ast.stmt.WhileStmt;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -36,74 +30,14 @@ public final class BehavioralChangeDetector {
         List<MethodBody> headMethods = methodBodies(headRoot);
 
         List<DetectedBehavioralChange> changes = new ArrayList<>();
-
         for (MethodBody base : baseMethods) {
-            for (MethodBody head : headMethods) {
-                if (!base.enclosingType.equals(head.enclosingType) || !base.name.equals(head.name)) {
-                    continue;
-                }
-
-                List<String> baseConditions = conditions(base.body);
-                List<String> headConditions = conditions(head.body);
-                if (!baseConditions.equals(headConditions)) {
-                    changes.add(new DetectedBehavioralChange(base.description(), "condition changed"));
-                    break;
-                }
-
-                int baseBranchCount = branchCount(base.body);
-                int headBranchCount = branchCount(head.body);
-                if (baseBranchCount != headBranchCount) {
-                    changes.add(new DetectedBehavioralChange(base.description(),
-                            headBranchCount > baseBranchCount ? "branch added" : "branch removed"));
-                    break;
-                }
-
-                int baseLoopCount = loopCount(base.body);
-                int headLoopCount = loopCount(head.body);
-                if (baseLoopCount != headLoopCount) {
-                    changes.add(new DetectedBehavioralChange(base.description(),
-                            headLoopCount > baseLoopCount ? "loop added" : "loop removed"));
-                    break;
-                }
-
-                // Otherwise: body may differ (e.g. a changed method call or return
-                // expression), but that is not a condition/control-flow change and is
-                // out of scope for this detector.
-                break;
-            }
+            headMethods.stream()
+                    .filter(head -> head.enclosingType.equals(base.enclosingType) && head.name.equals(base.name))
+                    .findFirst()
+                    .flatMap(head -> base.controlFlow.describeChangeTo(head.controlFlow))
+                    .ifPresent(reason -> changes.add(new DetectedBehavioralChange(base.description(), reason)));
         }
-
         return changes;
-    }
-
-    private List<String> conditions(BlockStmt body) {
-        return body.findAll(IfStmt.class).stream()
-                .map(ifStmt -> ifStmt.getCondition().toString())
-                .toList();
-    }
-
-    private int branchCount(BlockStmt body) {
-        int count = 0;
-        for (IfStmt ifStmt : body.findAll(IfStmt.class)) {
-            count++; // the "if" itself
-            Statement current = ifStmt.getElseStmt().orElse(null);
-            while (current != null) {
-                count++;
-                if (current instanceof IfStmt elseIf) {
-                    current = elseIf.getElseStmt().orElse(null);
-                } else {
-                    current = null;
-                }
-            }
-        }
-        return count;
-    }
-
-    private int loopCount(BlockStmt body) {
-        return body.findAll(ForStmt.class).size()
-                + body.findAll(ForEachStmt.class).size()
-                + body.findAll(WhileStmt.class).size()
-                + body.findAll(DoStmt.class).size();
     }
 
     private List<MethodBody> methodBodies(Path root) {
@@ -117,10 +51,7 @@ public final class BehavioralChangeDetector {
                 continue;
             }
             for (TypeDeclaration<?> type : cu.getTypes()) {
-                for (MethodDeclaration method : type.getMethods()) {
-                    method.getBody().ifPresent(body ->
-                            infos.add(new MethodBody(type.getNameAsString(), method.getNameAsString(), body)));
-                }
+                collectMethods(type, type.getNameAsString(), infos);
             }
         }
         return infos;
@@ -134,7 +65,19 @@ public final class BehavioralChangeDetector {
         }
     }
 
-    private record MethodBody(String enclosingType, String name, BlockStmt body) {
+    /** Nested and inner types included, keyed by qualified name like {@link TransformationDetector} (#265). */
+    private void collectMethods(TypeDeclaration<?> type, String qualifiedName, List<MethodBody> infos) {
+        for (MethodDeclaration method : type.getMethods()) {
+            infos.add(new MethodBody(qualifiedName, method.getNameAsString(), ControlFlow.of(method)));
+        }
+        for (BodyDeclaration<?> member : type.getMembers()) {
+            if (member instanceof TypeDeclaration<?> nested) {
+                collectMethods(nested, qualifiedName + "." + nested.getNameAsString(), infos);
+            }
+        }
+    }
+
+    private record MethodBody(String enclosingType, String name, ControlFlow controlFlow) {
         String description() {
             return enclosingType + "#" + name;
         }

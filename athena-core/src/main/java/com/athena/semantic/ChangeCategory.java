@@ -30,6 +30,7 @@ public enum ChangeCategory {
 
     public static ChangeCategory of(TransformationKind kind) {
         return switch (kind) {
+            case CHANGE_CONTROL_FLOW -> BEHAVIORAL;
             case MECHANICAL_REPLACEMENT, FORMATTING_ONLY -> MECHANICAL;
             case RENAME_SYMBOL, MOVE_SYMBOL, ADD_SYMBOL, REMOVE_SYMBOL,
                  CHANGE_METHOD_SIGNATURE, EXTRACT_METHOD,
