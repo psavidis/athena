@@ -8,6 +8,8 @@ import com.athena.semantic.ModuleGroup;
 import com.athena.semantic.ModuleGrouper;
 import com.athena.semantic.RepeatedClassificationGroup;
 import com.athena.semantic.RepeatedClassificationGrouper;
+import com.athena.semantic.RepeatedStructuralChange;
+import com.athena.semantic.RepeatedStructuralChangeGrouper;
 import com.athena.semantic.SemanticClassification;
 import com.athena.semantic.SemanticDimension;
 import com.athena.semantic.SemanticProfile;
@@ -120,7 +122,8 @@ public class SemanticProfileController {
 
     /**
      * @param groupTestChanges whether to fold test-code Structural entries per test class
-     *        (ticket #287) — for the PR- and module-level Explorer, not a single Change's own profile.
+     *        (ticket #287) and repeated production Structural changes across classes (ticket
+     *        #291) — for the PR- and module-level Explorer, not a single Change's own profile.
      */
     private SemanticProfileResponse toResponse(List<SemanticProfile> profiles, boolean groupTestChanges) {
         List<CapabilitySplitGroup> splitGroups = new CapabilitySplitDetector(
@@ -128,10 +131,15 @@ public class SemanticProfileController {
         List<RepeatedClassificationGroup> repeatedGroups =
                 new RepeatedClassificationGrouper().detect(profiles, SemanticDimension.RESPONSIBILITY);
         List<TestChangeGroup> testGroups = groupTestChanges ? new TestChangeGrouper().group(profiles) : List.of();
+        List<RepeatedStructuralChange> repeatedStructural = groupTestChanges
+                ? new RepeatedStructuralChangeGrouper().group(
+                        profiles.stream().filter(profile -> !profile.change().isTestCode()).toList())
+                : List.of();
         Set<SemanticClassification> groupedAway = Stream.of(
                         splitGroups.stream().flatMap(group -> group.mergedClassifications().stream()),
                         repeatedGroups.stream().flatMap(group -> group.mergedClassifications().stream()),
-                        testGroups.stream().flatMap(group -> group.mergedClassifications().stream()))
+                        testGroups.stream().flatMap(group -> group.mergedClassifications().stream()),
+                        repeatedStructural.stream().flatMap(group -> group.mergedClassifications().stream()))
                 .flatMap(merged -> merged)
                 .collect(Collectors.toCollection(LinkedHashSet::new));
 
@@ -147,8 +155,10 @@ public class SemanticProfileController {
                     entries.add(toEntry(dimension, classification, rank));
                 }
             }
-            // Test groups follow every production Structural entry (ticket #287).
+            // Repeated production changes (ticket #291), then test groups (ticket #287), follow
+            // every other production Structural entry.
             if (dimension == SemanticDimension.STRUCTURAL) {
+                repeatedStructural.forEach(group -> entries.add(toRepeatedStructuralEntry(group)));
                 testGroups.forEach(group -> entries.add(toTestGroupEntry(group)));
             }
         }
@@ -213,6 +223,18 @@ public class SemanticProfileController {
         return new SemanticDimensionEntryResponse(SemanticDimension.RESPONSIBILITY, classification.concept().name(),
                 classification.concept().description(), true, confidenceFor(SemanticDimension.RESPONSIBILITY, 0),
                 evidence, classification.supportingConceptNames(), 0, filesTouched, group.occurrenceCount());
+    }
+
+    /**
+     * A {@link RepeatedStructuralChange} rendered as one Structural entry (ticket #291): "Remove
+     * setBeanFactory in 5 classes", naming the classes, with the count and every folded evidence.
+     */
+    private SemanticDimensionEntryResponse toRepeatedStructuralEntry(RepeatedStructuralChange group) {
+        String name = group.concept().name() + " " + group.member() + " in " + group.classes().size() + " classes";
+        String description = group.concept().description() + " Same change in: " + String.join(", ", group.classes()) + ".";
+        List<String> evidence = group.evidence().stream().map(DetectedTransformation::diffText).toList();
+        return new SemanticDimensionEntryResponse(SemanticDimension.STRUCTURAL, name, description, false, 100,
+                evidence, List.of(), 0, group.filesTouched(), group.classes().size());
     }
 
     /**

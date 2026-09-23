@@ -27,7 +27,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Steps for {@code test_code_changes.feature} (ticket #285): Changes in test sources are
  * marked as test code in the Change Map, Change detail and Canvas topology, and never
- * inferred as a new capability — exercised through the controllers the web UI calls.
+ * inferred as a new capability — exercised through the controllers the web UI calls. Also
+ * the PR-/module-level grouping built on top of it: {@code test_change_grouping.feature}
+ * (ticket #287) and {@code repeated_structural_change_grouping.feature} (ticket #291). One
+ * glue class, since they share the selected-PR fixture and Cucumber here has no shared world.
  */
 public class TestCodeChangesSteps {
 
@@ -269,5 +272,86 @@ public class TestCodeChangesSteps {
             body.append("    void check").append(i).append("() {\n    }\n");
         }
         return body.append(extraMembers).append("}\n").toString();
+    }
+
+    // --- Ticket #291: the same structural change repeated across classes ---
+
+    @Given("the reviewer has selected a PR where method {string} was removed from classes {string}, {string} and {string}")
+    public void a_pr_where_a_method_was_removed_from_three_classes(String method, String a, String b, String c)
+            throws IOException {
+        repository = GitRepositoryFixture.create();
+        for (String className : List.of(a, b, c)) {
+            repository.write(MAIN + className + ".java", classDeclaring(className, List.of(method)));
+        }
+        String base = repository.commit("base");
+        for (String className : List.of(a, b, c)) {
+            repository.write(MAIN + className + ".java", classDeclaring(className, List.of()));
+        }
+        select(base, repository.commit("head"));
+    }
+
+    @Given("the reviewer has selected a PR where method {string} was removed from classes {string}, {string} and {string}, and method {string} from {string} only")
+    public void a_pr_where_a_method_was_removed_from_three_classes_and_another_from_one(
+            String method, String a, String b, String c, String other, String onlyClass) throws IOException {
+        repository = GitRepositoryFixture.create();
+        for (String className : List.of(a, b, c)) {
+            List<String> setters = className.equals(onlyClass) ? List.of(method, other) : List.of(method);
+            repository.write(MAIN + className + ".java", classDeclaring(className, setters));
+        }
+        String base = repository.commit("base");
+        for (String className : List.of(a, b, c)) {
+            repository.write(MAIN + className + ".java", classDeclaring(className, List.of()));
+        }
+        select(base, repository.commit("head"));
+    }
+
+    @Given("the reviewer has selected a PR where constructor parameter {string} was added to classes {string} and {string}")
+    public void a_pr_where_a_constructor_parameter_was_added(String parameter, String a, String b) throws IOException {
+        repository = GitRepositoryFixture.create();
+        for (String className : List.of(a, b)) {
+            repository.write(MAIN + className + ".java", "package com.acme;\n\npublic class " + className + " {\n"
+                    + "    public " + className + "() {\n    }\n}\n");
+        }
+        String base = repository.commit("base");
+        for (String className : List.of(a, b)) {
+            repository.write(MAIN + className + ".java", "package com.acme;\n\npublic class " + className + " {\n"
+                    + "    private final Object " + parameter + ";\n"
+                    + "    public " + className + "(Object " + parameter + ") {\n        this." + parameter + " = "
+                    + parameter + ";\n    }\n}\n");
+        }
+        select(base, repository.commit("head"));
+    }
+
+    @Given("the reviewer has selected a PR where method {string} was removed from class {string} and added to class {string}")
+    public void a_pr_where_a_method_was_removed_from_one_class_and_added_to_another(String method, String from, String to)
+            throws IOException {
+        repository = GitRepositoryFixture.create();
+        repository.write(MAIN + from + ".java", classDeclaring(from, List.of(method)));
+        repository.write(MAIN + to + ".java", classDeclaring(to, List.of()));
+        String base = repository.commit("base");
+        repository.write(MAIN + from + ".java", classDeclaring(from, List.of()));
+        // A different body, so this isn't matched as a move of the same method.
+        repository.write(MAIN + to + ".java", "package com.acme;\n\npublic class " + to + " {\n"
+                + "    public void " + method + "(Object value) {\n        System.out.println(value);\n    }\n}\n");
+        select(base, repository.commit("head"));
+    }
+
+    @Then("that entry names the classes {string}")
+    public void that_entry_names_the_classes(String classes) {
+        assertThat(lastGroup.conceptDescription()).contains(classes);
+    }
+
+    @Then("no Structural entry mentions {string}")
+    public void no_structural_entry_mentions(String text) {
+        assertThat(structuralEntries()).extracting(SemanticDimensionEntryResponse::conceptName)
+                .noneMatch(name -> name.contains(text));
+    }
+
+    private static String classDeclaring(String className, List<String> setters) {
+        StringBuilder body = new StringBuilder("package com.acme;\n\npublic class " + className + " {\n");
+        for (String setter : setters) {
+            body.append("    public void ").append(setter).append("(Object value) {\n    }\n");
+        }
+        return body.append("}\n").toString();
     }
 }
