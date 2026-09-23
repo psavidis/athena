@@ -5,6 +5,7 @@ import com.athena.semantic.TransformationKind;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.body.BodyDeclaration;
 import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
@@ -712,80 +713,100 @@ public final class TransformationDetector {
                 continue;
             }
             for (TypeDeclaration<?> type : cu.getTypes()) {
-                Set<String> memberSignatures = new TreeSet<>();
-                for (MethodDeclaration method : type.getMethods()) {
-                    // Two different textual views, both from *original source text* (via
-                    // Range), not JavaParser's re-printed toString() (which normalizes
-                    // formatting and would defeat both comparisons below):
-                    //  - wholeDeclarationText: signature + body, used only to detect
-                    //    formatting-only changes between two methods already matched by
-                    //    name + enclosing type.
-                    //  - bodyOnlyText: just the body, name-independent, used to match
-                    //    renames/moves/extractions where the method's name itself changes.
-                    String wholeDeclarationText = method.getRange()
-                            .map(range -> sourceSlice(sourceLines, range))
-                            .orElse(method.toString());
-                    String bodyOnlyText = method.getBody()
-                            .flatMap(Node::getRange)
-                            .map(range -> sourceSlice(sourceLines, range))
-                            .orElse(method.getBody().map(Node::toString).orElse(""));
-                    List<String> paramTypes = method.getParameters().stream()
-                            .map(Parameter::getTypeAsString).toList();
-                    methods.add(new MethodInfo(type.getNameAsString(), method.getNameAsString(),
-                            paramTypes, method.getTypeAsString(),
-                            wholeDeclarationText, normalize(wholeDeclarationText),
-                            normalize(bodyOnlyText), relativePath));
-                    memberSignatures.add("method:" + method.getNameAsString() + "(" + String.join(",", paramTypes) + "):"
-                            + method.getTypeAsString());
-                }
-                for (FieldDeclaration field : type.getMembers().stream()
-                        .filter(FieldDeclaration.class::isInstance).map(FieldDeclaration.class::cast).toList()) {
-                    String rawDeclaration = field.getRange()
-                            .map(range -> sourceSlice(sourceLines, range))
-                            .orElse(field.toString());
-                    Set<String> annotationNames = field.getAnnotations().stream()
-                            .map(a -> a.getName().getIdentifier())
-                            .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
-                    for (VariableDeclarator variable : field.getVariables()) {
-                        String typeAsString = variable.getType().asString();
-                        fields.add(new FieldInfo(type.getNameAsString(), variable.getNameAsString(), typeAsString,
-                                annotationNames, rawDeclaration, relativePath));
-                        memberSignatures.add("field:" + variable.getNameAsString() + ":" + typeAsString);
-                    }
-                }
-                for (ConstructorDeclaration constructor : type.getConstructors()) {
-                    String rawDeclaration = constructor.getRange()
-                            .map(range -> sourceSlice(sourceLines, range))
-                            .orElse(constructor.toString());
-                    String bodyText = constructor.getBody().getRange()
-                            .map(range -> sourceSlice(sourceLines, range))
-                            .orElse(constructor.getBody().toString());
-                    List<String> paramTypes = constructor.getParameters().stream()
-                            .map(Parameter::getTypeAsString).toList();
-                    List<String> paramNames = constructor.getParameters().stream()
-                            .map(Parameter::getNameAsString).toList();
-                    Set<String> assignedFieldNames = paramNames.stream()
-                            .filter(name -> assignsParameterToSameNamedField(bodyText, name))
-                            .collect(java.util.stream.Collectors.toCollection(LinkedHashSet::new));
-                    constructors.add(new ConstructorInfo(type.getNameAsString(), paramTypes, paramNames,
-                            assignedFieldNames, rawDeclaration, relativePath));
-                }
-                if (type instanceof RecordDeclaration record) {
-                    List<String> componentTypes = record.getParameters().stream()
-                            .map(Parameter::getTypeAsString).toList();
-                    String headerText = "record " + record.getNameAsString() + "("
-                            + String.join(", ", record.getParameters().stream()
-                                    .map(p -> p.getTypeAsString() + " " + p.getNameAsString()).toList())
-                            + ")";
-                    records.put(type.getNameAsString(), new RecordInfo(componentTypes, relativePath, headerText));
-                } else {
-                    String headerText = type.getRange().map(range -> sourceSlice(sourceLines, range))
-                            .orElse(type.toString());
-                    classes.add(new ClassInfo(type.getNameAsString(), relativePath, memberSignatures, headerText));
-                }
+                collectType(type, type.getNameAsString(), relativePath, sourceLines,
+                        methods, fields, classes, constructors, records);
             }
         }
         return new ParsedRoot(methods, fields, classes, constructors, records);
+    }
+
+    /**
+     * Collects one type's own members, then recurses into its member types (ticket #265):
+     * nested and inner classes are analyzed like top-level ones, keyed by their qualified
+     * name ({@code Outer.Inner}) so same-named nested types in different outer classes
+     * never collide. A type's member signatures cover its own members only — a nested
+     * type is a separate {@link ClassInfo}, not part of its outer class's identity.
+     */
+    private void collectType(TypeDeclaration<?> type, String qualifiedName, String relativePath, List<String> sourceLines,
+                             List<MethodInfo> methods, List<FieldInfo> fields, List<ClassInfo> classes,
+                             List<ConstructorInfo> constructors, Map<String, RecordInfo> records) {
+        Set<String> memberSignatures = new TreeSet<>();
+        for (MethodDeclaration method : type.getMethods()) {
+            // Two different textual views, both from *original source text* (via
+            // Range), not JavaParser's re-printed toString() (which normalizes
+            // formatting and would defeat both comparisons below):
+            //  - wholeDeclarationText: signature + body, used only to detect
+            //    formatting-only changes between two methods already matched by
+            //    name + enclosing type.
+            //  - bodyOnlyText: just the body, name-independent, used to match
+            //    renames/moves/extractions where the method's name itself changes.
+            String wholeDeclarationText = method.getRange()
+                    .map(range -> sourceSlice(sourceLines, range))
+                    .orElse(method.toString());
+            String bodyOnlyText = method.getBody()
+                    .flatMap(Node::getRange)
+                    .map(range -> sourceSlice(sourceLines, range))
+                    .orElse(method.getBody().map(Node::toString).orElse(""));
+            List<String> paramTypes = method.getParameters().stream()
+                    .map(Parameter::getTypeAsString).toList();
+            methods.add(new MethodInfo(qualifiedName, method.getNameAsString(),
+                    paramTypes, method.getTypeAsString(),
+                    wholeDeclarationText, normalize(wholeDeclarationText),
+                    normalize(bodyOnlyText), relativePath));
+            memberSignatures.add("method:" + method.getNameAsString() + "(" + String.join(",", paramTypes) + "):"
+                    + method.getTypeAsString());
+        }
+        for (FieldDeclaration field : type.getMembers().stream()
+                .filter(FieldDeclaration.class::isInstance).map(FieldDeclaration.class::cast).toList()) {
+            String rawDeclaration = field.getRange()
+                    .map(range -> sourceSlice(sourceLines, range))
+                    .orElse(field.toString());
+            Set<String> annotationNames = field.getAnnotations().stream()
+                    .map(a -> a.getName().getIdentifier())
+                    .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
+            for (VariableDeclarator variable : field.getVariables()) {
+                String typeAsString = variable.getType().asString();
+                fields.add(new FieldInfo(qualifiedName, variable.getNameAsString(), typeAsString,
+                        annotationNames, rawDeclaration, relativePath));
+                memberSignatures.add("field:" + variable.getNameAsString() + ":" + typeAsString);
+            }
+        }
+        for (ConstructorDeclaration constructor : type.getConstructors()) {
+            String rawDeclaration = constructor.getRange()
+                    .map(range -> sourceSlice(sourceLines, range))
+                    .orElse(constructor.toString());
+            String bodyText = constructor.getBody().getRange()
+                    .map(range -> sourceSlice(sourceLines, range))
+                    .orElse(constructor.getBody().toString());
+            List<String> paramTypes = constructor.getParameters().stream()
+                    .map(Parameter::getTypeAsString).toList();
+            List<String> paramNames = constructor.getParameters().stream()
+                    .map(Parameter::getNameAsString).toList();
+            Set<String> assignedFieldNames = paramNames.stream()
+                    .filter(name -> assignsParameterToSameNamedField(bodyText, name))
+                    .collect(java.util.stream.Collectors.toCollection(LinkedHashSet::new));
+            constructors.add(new ConstructorInfo(qualifiedName, paramTypes, paramNames,
+                    assignedFieldNames, rawDeclaration, relativePath));
+        }
+        if (type instanceof RecordDeclaration record) {
+            List<String> componentTypes = record.getParameters().stream()
+                    .map(Parameter::getTypeAsString).toList();
+            String headerText = "record " + record.getNameAsString() + "("
+                    + String.join(", ", record.getParameters().stream()
+                            .map(p -> p.getTypeAsString() + " " + p.getNameAsString()).toList())
+                    + ")";
+            records.put(qualifiedName, new RecordInfo(componentTypes, relativePath, headerText));
+        } else {
+            String headerText = type.getRange().map(range -> sourceSlice(sourceLines, range))
+                    .orElse(type.toString());
+            classes.add(new ClassInfo(qualifiedName, relativePath, memberSignatures, headerText));
+        }
+        for (BodyDeclaration<?> member : type.getMembers()) {
+            if (member instanceof TypeDeclaration<?> nested) {
+                collectType(nested, qualifiedName + "." + nested.getNameAsString(), relativePath, sourceLines,
+                        methods, fields, classes, constructors, records);
+            }
+        }
     }
 
     /**
