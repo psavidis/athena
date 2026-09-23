@@ -99,6 +99,58 @@ public class GracefulDegradationSteps {
                 + "    public void n( { also not valid java\n");
     }
 
+    @Given("a base and head revision where the only changed file parses cleanly")
+    public void the_only_changed_file_parses_cleanly() {
+        write(baseRoot, "Greeter", "public class Greeter {\n"
+                + "    public String greet() {\n"
+                + "        return \"hello\";\n"
+                + "    }\n"
+                + "}\n");
+        write(headRoot, "Greeter", "public class Greeter {\n"
+                + "    public String greet() {\n"
+                + "        return \"hello\";\n"
+                + "    }\n"
+                + "    public String farewell() {\n"
+                + "        return \"bye\";\n"
+                + "    }\n"
+                + "}\n");
+    }
+
+    @Given("an unchanged file elsewhere in the repository fails to parse in both revisions")
+    public void an_unchanged_file_fails_to_parse_in_both_revisions() {
+        brokenFileName = "legacy/Unparseable.java";
+        String unparseable = "public class Unparseable {\n"
+                + "    public void m( { this is not valid java\n";
+        writeRaw(baseRoot, brokenFileName, unparseable);
+        writeRaw(headRoot, brokenFileName, unparseable);
+    }
+
+    @Given("a base and head revision where one changed file fails to parse and the other changed files parse cleanly")
+    public void one_changed_file_fails_to_parse() {
+        one_file_fails_to_parse();
+    }
+
+    @Given("a base and head revision where a changed file uses a switch with type patterns and an unnamed pattern variable")
+    public void a_changed_file_uses_modern_switch_syntax() {
+        write(baseRoot, "Describer", "public class Describer {\n"
+                + "    public String describe(Object value) {\n"
+                + "        return \"unknown\";\n"
+                + "    }\n"
+                + "}\n");
+        write(headRoot, "Describer", "public class Describer {\n"
+                + "    public String describe(Object value) {\n"
+                + "        return switch (value) {\n"
+                + "            case Integer number -> \"number \" + number;\n"
+                + "            case String _ -> \"text\";\n"
+                + "            default -> \"unknown\";\n"
+                + "        };\n"
+                + "    }\n"
+                + "    public String label() {\n"
+                + "        return \"describer\";\n"
+                + "    }\n"
+                + "}\n");
+    }
+
     @When("the engine analyzes the revision pair")
     public void the_engine_analyzes_the_revision_pair() {
         PrAnalyzer prAnalyzer = new PrAnalyzer(PluginRegistry.languagePlugins(), PluginRegistry.frameworkPlugins());
@@ -132,6 +184,23 @@ public class GracefulDegradationSteps {
                 .anyMatch(entry -> entry.filePath().equals(brokenFileName));
     }
 
+    @Then("no symbol-aware diff entry is reported for the unchanged file")
+    public void no_symbol_aware_diff_entry_for_the_unchanged_file() {
+        assertThat(result.symbolAwareDiffEntries())
+                .noneMatch(entry -> entry.filePath().equals(brokenFileName));
+    }
+
+    @Then("a symbol-aware diff entry is reported for the changed file that failed to parse")
+    public void a_symbol_aware_diff_entry_for_the_changed_file() {
+        the_analysis_reports_symbol_aware_diff_entry();
+    }
+
+    @Then("the analysis reports the Changes detected in that file")
+    public void the_analysis_reports_changes_in_that_file() {
+        assertThat(result.changes())
+                .anyMatch(change -> change.title().contains("Describer#label"));
+    }
+
     @Then("the raw textual diff is still available")
     public void the_raw_textual_diff_is_still_available() {
         assertThat(result.rawDiff()).isNotBlank();
@@ -153,7 +222,9 @@ public class GracefulDegradationSteps {
 
     private void writeRaw(Path root, String fileName, String content) {
         try {
-            Files.writeString(root.resolve(fileName), content);
+            Path target = root.resolve(fileName);
+            Files.createDirectories(target.getParent());
+            Files.writeString(target, content);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }

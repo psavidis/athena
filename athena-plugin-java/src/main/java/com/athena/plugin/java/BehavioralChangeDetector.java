@@ -1,7 +1,6 @@
 package com.athena.plugin.java;
 
 import com.github.javaparser.StaticJavaParser;
-import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
@@ -112,8 +111,7 @@ public final class BehavioralChangeDetector {
         for (Path file : javaFiles(root)) {
             CompilationUnit cu;
             try {
-                StaticJavaParser.setConfiguration(new ParserConfiguration()
-                        .setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_17));
+                StaticJavaParser.setConfiguration(JavaParserConfigurations.currentJava());
                 cu = StaticJavaParser.parse(file);
             } catch (IOException | RuntimeException e) {
                 continue;

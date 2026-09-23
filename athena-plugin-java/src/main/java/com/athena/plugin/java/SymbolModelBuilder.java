@@ -41,8 +41,7 @@ public final class SymbolModelBuilder {
         typeSolver.add(new JavaParserTypeSolver(sourceRoot.toFile()));
         JavaSymbolSolver symbolSolver = new JavaSymbolSolver(typeSolver);
 
-        ParserConfiguration configuration = new ParserConfiguration()
-                .setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_17)
+        ParserConfiguration configuration = JavaParserConfigurations.currentJava()
                 .setSymbolResolver(symbolSolver);
         StaticJavaParser.setConfiguration(configuration);
 

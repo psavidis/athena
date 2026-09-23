@@ -32,9 +32,10 @@ import java.util.stream.Stream;
  * <ol>
  *   <li><b>Semantic Change Model</b> — full detection + grouping, for files
  *       that parse cleanly on both sides.</li>
- *   <li><b>Symbol-aware diff</b> — a file that fails to parse still gets an
- *       entry (rather than being silently dropped), even without a
- *       classified Change.</li>
+ *   <li><b>Symbol-aware diff</b> — a changed file that fails to parse still
+ *       gets an entry (rather than being silently dropped), even without a
+ *       classified Change. Files identical in both revisions are never
+ *       parse-checked: they aren't part of the change (ticket #262).</li>
  *   <li><b>Traditional textual diff</b> — always computed for every file,
  *       regardless of whether it reached level 1 or 2 (§44: raw diff access
  *       must never be blocked by analysis outcome).</li>
@@ -84,12 +85,21 @@ public final class PrAnalyzer {
         Map<String, String> rawDiffsByFile = new LinkedHashMap<>();
         List<SymbolAwareDiffEntry> degradedEntries = new ArrayList<>();
         boolean anyParseable = false;
+        int changedFileCount = 0;
 
         for (String relativePath : relativePaths) {
             Optional<String> baseText = readIfExists(baseRoot.resolve(relativePath));
             Optional<String> headText = readIfExists(headRoot.resolve(relativePath));
             rawDiffsByFile.put(relativePath,
                     unifiedDiff(relativePath, baseText.orElse(""), headText.orElse("")));
+
+            // The status and the symbol-aware fallback describe the change under review, not
+            // the rest of the repository (ticket #262): a file identical in both revisions
+            // can't be part of the review, so whether it parses is irrelevant here.
+            if (baseText.equals(headText)) {
+                continue;
+            }
+            changedFileCount++;
 
             Optional<LanguagePlugin> plugin = pluginFor(baseRoot.resolve(relativePath), headRoot.resolve(relativePath));
             Optional<ParseOutcome> baseParse = baseText.flatMap(text -> plugin.map(p -> p.checkParses(text)));
@@ -112,7 +122,7 @@ public final class PrAnalyzer {
                 .map(change -> classify(change, dependencyInjectionMatches.get(change), frameworkCorrelationMatches.get(change)))
                 .toList();
 
-        AnalysisStatus status = status(relativePaths.size(), degradedEntries.size());
+        AnalysisStatus status = status(changedFileCount, degradedEntries.size());
         List<ExternalFinding> externalFindings = runExternalProviders(headRoot, relativePaths);
 
         return new AnalysisResult(status, changes, semanticProfiles, degradedEntries, rawDiffsByFile, externalFindings);

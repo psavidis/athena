@@ -36,7 +36,7 @@
     <junit.jupiter.version>5.10.2</junit.jupiter.version>
     <assertj.version>3.26.3</assertj.version>
     <jackson.version>2.17.2</jackson.version>
-    <javaparser.version>3.26.2</javaparser.version>
+    <javaparser.version>3.28.2</javaparser.version>
     <spring-boot.version>3.3.4</spring-boot.version>
     <testcontainers.version>1.21.4</testcontainers.version>
     <archunit.version>1.4.2</archunit.version>

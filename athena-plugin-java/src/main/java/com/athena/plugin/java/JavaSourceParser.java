@@ -2,7 +2,6 @@ package com.athena.plugin.java;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParseProblemException;
-import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.ast.CompilationUnit;
 
 /**
@@ -20,9 +19,7 @@ public final class JavaSourceParser {
     private final JavaParser parser;
 
     public JavaSourceParser() {
-        ParserConfiguration configuration = new ParserConfiguration()
-                .setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_17);
-        this.parser = new JavaParser(configuration);
+        this.parser = new JavaParser(JavaParserConfigurations.currentJava());
     }
 
     /**

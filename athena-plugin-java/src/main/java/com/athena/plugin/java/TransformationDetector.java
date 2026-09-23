@@ -3,7 +3,6 @@ package com.athena.plugin.java;
 import com.athena.semantic.DetectedTransformation;
 import com.athena.semantic.TransformationKind;
 import com.github.javaparser.StaticJavaParser;
-import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.ConstructorDeclaration;
@@ -706,8 +705,7 @@ public final class TransformationDetector {
             CompilationUnit cu;
             List<String> sourceLines;
             try {
-                StaticJavaParser.setConfiguration(new ParserConfiguration()
-                        .setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_17));
+                StaticJavaParser.setConfiguration(JavaParserConfigurations.currentJava());
                 cu = StaticJavaParser.parse(file);
                 sourceLines = Files.readAllLines(file);
             } catch (IOException | RuntimeException e) {
