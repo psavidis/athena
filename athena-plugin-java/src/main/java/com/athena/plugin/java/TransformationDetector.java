@@ -860,7 +860,7 @@ public final class TransformationDetector {
 
     /** True if {@code callerHead} existed in base (same enclosing type + name) with a different body. */
     private boolean bodyChanged(Map<MethodKey, List<MethodInfo>> baseByKey, MethodInfo callerHead) {
-        List<MethodInfo> candidates = baseByKey.get(new MethodKey(callerHead.enclosingType, callerHead.name));
+        List<MethodInfo> candidates = baseByKey.get(new MethodKey(callerHead.file, callerHead.enclosingType, callerHead.name));
         return candidates != null && candidates.stream().noneMatch(base -> base.normalizedBody.equals(callerHead.normalizedBody));
     }
 
