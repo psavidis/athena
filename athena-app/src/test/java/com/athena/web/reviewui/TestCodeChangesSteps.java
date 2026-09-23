@@ -174,4 +174,100 @@ public class TestCodeChangesSteps {
         String name = file.substring(file.lastIndexOf('/') + 1);
         return name.substring(0, name.length() - ".java".length());
     }
+
+    // --- Ticket #287: test changes grouped per test class ---
+
+    private static final String MAIN = "core/src/main/java/com/acme/";
+    private static final String TEST = "core/src/test/java/com/acme/";
+
+    private SemanticDimensionEntryResponse lastGroup;
+
+    @Given("the reviewer has selected a PR where {int} methods were added to test class {string} and {int} to production class {string}")
+    public void a_pr_with_test_and_production_methods(int testMethods, String testClass, int productionMethods,
+                                                      String productionClass) throws IOException {
+        repository = GitRepositoryFixture.create();
+        repository.write(TEST + testClass + ".java", classWithMethods(testClass, 0, ""));
+        repository.write(MAIN + productionClass + ".java", classWithMethods(productionClass, 0, ""));
+        String base = repository.commit("base");
+        repository.write(TEST + testClass + ".java", classWithMethods(testClass, testMethods, ""));
+        repository.write(MAIN + productionClass + ".java", classWithMethods(productionClass, productionMethods, ""));
+        select(base, repository.commit("head"));
+    }
+
+    @Given("the reviewer has selected a PR where methods were added to test class {string} and to its nested class {string}")
+    public void a_pr_with_methods_added_to_a_test_class_and_its_nested_class(String testClass, String nestedClass)
+            throws IOException {
+        repository = GitRepositoryFixture.create();
+        String nestedBefore = "    static class " + nestedClass + " {\n    }\n";
+        String nestedAfter = "    static class " + nestedClass + " {\n        void make() {\n        }\n    }\n";
+        repository.write(TEST + testClass + ".java", classWithMethods(testClass, 0, nestedBefore));
+        String base = repository.commit("base");
+        repository.write(TEST + testClass + ".java", classWithMethods(testClass, 1, nestedAfter));
+        select(base, repository.commit("head"));
+    }
+
+    @Given("the reviewer has selected a PR where methods were added to test classes {string} and {string}")
+    public void a_pr_with_methods_added_to_two_test_classes(String first, String second) throws IOException {
+        repository = GitRepositoryFixture.create();
+        repository.write(TEST + first + ".java", classWithMethods(first, 0, ""));
+        repository.write(TEST + second + ".java", classWithMethods(second, 0, ""));
+        String base = repository.commit("base");
+        repository.write(TEST + first + ".java", classWithMethods(first, 1, ""));
+        repository.write(TEST + second + ".java", classWithMethods(second, 1, ""));
+        select(base, repository.commit("head"));
+    }
+
+    @When("the reviewer opens the PR-level semantic profile")
+    public void the_reviewer_opens_the_pr_level_semantic_profile() {
+        profile = profileController.pullRequestSemanticProfile();
+    }
+
+    @When("the reviewer opens the semantic profile of module {string}")
+    public void the_reviewer_opens_the_semantic_profile_of_module(String moduleName) {
+        profile = profileController.moduleSemanticProfile(moduleName);
+    }
+
+    @Then("the Structural entries include one {string} entry folding {int} change(s)")
+    public void the_structural_entries_include_a_group(String name, int count) {
+        assertThat(structuralEntries()).filteredOn(entry -> entry.conceptName().equals(name))
+                .singleElement()
+                .satisfies(entry -> assertThat(entry.groupedMoveCount()).isEqualTo(count));
+        lastGroup = structuralEntries().stream().filter(entry -> entry.conceptName().equals(name)).findFirst().orElseThrow();
+    }
+
+    @Then("that entry lists the file {string}")
+    public void that_entry_lists_the_file(String file) {
+        assertThat(lastGroup.filesTouched()).containsExactly(file);
+    }
+
+    @Then("no other Structural entry is a change in {string}")
+    public void no_other_structural_entry_is_a_change_in(String testClass) {
+        assertThat(structuralEntries()).filteredOn(entry -> entry != lastGroup)
+                .noneMatch(entry -> entry.filesTouched().stream().anyMatch(file -> file.endsWith(testClass + ".java")));
+    }
+
+    @Then("every production Structural entry comes before every test group")
+    public void production_entries_come_before_test_groups() {
+        List<Boolean> isTestGroup = structuralEntries().stream()
+                .map(entry -> entry.conceptName().startsWith("Test changes in ")).toList();
+        assertThat(isTestGroup).contains(false, true);
+        assertThat(isTestGroup.subList(isTestGroup.indexOf(true), isTestGroup.size())).containsOnly(true);
+    }
+
+    @Then("the Change Map lists {int} Changes")
+    public void the_change_map_lists_n_changes(int count) {
+        assertThat(changeMap.changes()).hasSize(count);
+    }
+
+    private List<SemanticDimensionEntryResponse> structuralEntries() {
+        return profile.dimensions().stream().filter(entry -> entry.dimension() == SemanticDimension.STRUCTURAL).toList();
+    }
+
+    private static String classWithMethods(String className, int methods, String extraMembers) {
+        StringBuilder body = new StringBuilder("package com.acme;\n\npublic class " + className + " {\n");
+        for (int i = 0; i < methods; i++) {
+            body.append("    void check").append(i).append("() {\n    }\n");
+        }
+        return body.append(extraMembers).append("}\n").toString();
+    }
 }

@@ -12,6 +12,8 @@ import com.athena.semantic.SemanticClassification;
 import com.athena.semantic.SemanticDimension;
 import com.athena.semantic.SemanticProfile;
 import com.athena.semantic.TaxonomyLoader;
+import com.athena.semantic.TestChangeGroup;
+import com.athena.semantic.TestChangeGrouper;
 import com.athena.web.ChangeKey;
 import com.athena.web.Diff;
 import com.athena.web.WebSession;
@@ -79,7 +81,7 @@ public class SemanticProfileController {
     public SemanticProfileResponse semanticProfile(@PathVariable String changeKey) {
         Diff diff = requireSelection();
         Change change = requireChange(changeKey, diff.changes());
-        return toResponse(List.of(diff.semanticProfileFor(change)));
+        return toResponse(List.of(diff.semanticProfileFor(change)), false);
     }
 
     /**
@@ -98,7 +100,7 @@ public class SemanticProfileController {
         Diff diff = requireSelection();
         ModuleGroup group = requireModule(moduleName, diff.changes());
         List<SemanticProfile> profiles = group.changes().stream().map(diff::semanticProfileFor).toList();
-        return toResponse(profiles);
+        return toResponse(profiles, true);
     }
 
     /**
@@ -113,17 +115,24 @@ public class SemanticProfileController {
     public SemanticProfileResponse pullRequestSemanticProfile() {
         Diff diff = requireSelection();
         List<SemanticProfile> profiles = diff.changes().stream().map(diff::semanticProfileFor).toList();
-        return toResponse(profiles);
+        return toResponse(profiles, true);
     }
 
-    private SemanticProfileResponse toResponse(List<SemanticProfile> profiles) {
+    /**
+     * @param groupTestChanges whether to fold test-code Structural entries per test class
+     *        (ticket #287) — for the PR- and module-level Explorer, not a single Change's own profile.
+     */
+    private SemanticProfileResponse toResponse(List<SemanticProfile> profiles, boolean groupTestChanges) {
         List<CapabilitySplitGroup> splitGroups = new CapabilitySplitDetector(
                 new TaxonomyLoader().load(SemanticDimension.RESPONSIBILITY)).detect(profiles);
         List<RepeatedClassificationGroup> repeatedGroups =
                 new RepeatedClassificationGrouper().detect(profiles, SemanticDimension.RESPONSIBILITY);
-        Set<SemanticClassification> groupedAway = Stream.concat(
+        List<TestChangeGroup> testGroups = groupTestChanges ? new TestChangeGrouper().group(profiles) : List.of();
+        Set<SemanticClassification> groupedAway = Stream.of(
                         splitGroups.stream().flatMap(group -> group.mergedClassifications().stream()),
-                        repeatedGroups.stream().flatMap(group -> group.mergedClassifications().stream()))
+                        repeatedGroups.stream().flatMap(group -> group.mergedClassifications().stream()),
+                        testGroups.stream().flatMap(group -> group.mergedClassifications().stream()))
+                .flatMap(merged -> merged)
                 .collect(Collectors.toCollection(LinkedHashSet::new));
 
         List<SemanticDimensionEntryResponse> entries = new ArrayList<>();
@@ -137,6 +146,10 @@ public class SemanticProfileController {
                     }
                     entries.add(toEntry(dimension, classification, rank));
                 }
+            }
+            // Test groups follow every production Structural entry (ticket #287).
+            if (dimension == SemanticDimension.STRUCTURAL) {
+                testGroups.forEach(group -> entries.add(toTestGroupEntry(group)));
             }
         }
         for (CapabilitySplitGroup group : splitGroups) {
@@ -200,6 +213,21 @@ public class SemanticProfileController {
         return new SemanticDimensionEntryResponse(SemanticDimension.RESPONSIBILITY, classification.concept().name(),
                 classification.concept().description(), true, confidenceFor(SemanticDimension.RESPONSIBILITY, 0),
                 evidence, classification.supportingConceptNames(), 0, filesTouched, group.occurrenceCount());
+    }
+
+    /**
+     * A {@link TestChangeGroup} rendered as one Structural entry (ticket #287): "Test changes in
+     * SpyAnnotationTest" with the number of Changes it folds, standing in for each test Change's
+     * own Structural entry. Observed, like every Structural entry — which Changes are test code is
+     * read straight from their paths.
+     */
+    private SemanticDimensionEntryResponse toTestGroupEntry(TestChangeGroup group) {
+        String name = "Test changes in " + group.testClass();
+        String description = group.changeCount() + (group.changeCount() == 1 ? " change" : " changes")
+                + " in test code of " + group.testClass() + ".";
+        List<String> evidence = group.evidence().stream().map(DetectedTransformation::diffText).toList();
+        return new SemanticDimensionEntryResponse(SemanticDimension.STRUCTURAL, name, description, false, 100,
+                evidence, List.of(), 0, group.filesTouched(), group.changeCount());
     }
 
     /**

@@ -58,3 +58,10 @@ Feature: Semantic Change Explorer — Structure and Pattern level views
     Given the reviewer is viewing the Semantic Change Explorer for a Change whose Pattern level is classified as both "Dependency Injection" and "Factory"
     When the reviewer selects the Pattern level on the spine
     Then the center stage shows a hero card for "Dependency Injection" and a hero card for "Factory"
+
+  # Ticket #287: test changes grouped per test class.
+
+  Scenario: A grouped test entry shows how many changes it folds
+    Given the reviewer is viewing the Semantic Change Explorer for a PR whose Structure level has the grouped entry "Test changes in GreeterTest" folding 3 changes
+    When the reviewer selects the Structure level on the spine
+    Then the "Test changes in GreeterTest" chip shows that it folds 3 changes

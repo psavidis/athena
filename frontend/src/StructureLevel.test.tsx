@@ -65,4 +65,23 @@ describe('StructureLevel', () => {
     expect(screen.getByText('No Structure classification for this Change yet.')).toBeVisible()
     expect(screen.queryByRole('list', { name: 'Structural changes' })).not.toBeInTheDocument()
   })
+
+  it('shows the folded change count on a grouped entry', () => {
+    render(
+      <StructureLevel
+        entries={[entry('Test changes in GreeterTest', { groupedMoveCount: 3 })]}
+        selectedConceptName={undefined}
+        onSelect={vi.fn()}
+      />,
+    )
+
+    const chip = screen.getByRole('button', { name: 'Test changes in GreeterTest' }).closest('li')!
+    expect(within(chip).getByText('3 changes')).toBeVisible()
+  })
+
+  it('shows no count on an ungrouped entry', () => {
+    render(<StructureLevel entries={[entry('Rename')]} selectedConceptName={undefined} onSelect={vi.fn()} />)
+
+    expect(screen.queryByText(/changes$/)).not.toBeInTheDocument()
+  })
 })

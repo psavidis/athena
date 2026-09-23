@@ -30,7 +30,9 @@ import java.util.List;
  *        com.athena.semantic.CapabilitySplitDetector}) folding several {@code
  *        move-responsibility} moves between the same two modules, or any other
  *        RESPONSIBILITY concept (e.g. {@code add-capability}) recurring across several
- *        Changes (see {@link com.athena.semantic.RepeatedClassificationGrouper}). Zero
+ *        Changes (see {@link com.athena.semantic.RepeatedClassificationGrouper}); or, for a Structural
+ *        "Test changes in X" entry, the test Changes of one test class (see {@link
+ *        com.athena.semantic.TestChangeGrouper}, ticket #287). Zero
  *        for every entry that represents just one Change, including a lone occurrence
  *        that didn't recur often enough to count as a group.
  */

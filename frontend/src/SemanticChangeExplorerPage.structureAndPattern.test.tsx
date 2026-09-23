@@ -283,4 +283,31 @@ describe('Semantic Change Explorer — Structure and Pattern level views', () =>
       'Factory',
     ])
   })
+
+  it('shows how many changes a grouped test entry folds', async () => {
+    // Given ... whose Structure level has the grouped entry "Test changes in GreeterTest" folding 3 changes
+    mockSemanticProfile('test-change-key', {
+      dimensions: [
+        {
+          dimension: 'STRUCTURAL',
+          conceptName: 'Test changes in GreeterTest',
+          conceptDescription: '3 changes in test code of GreeterTest.',
+          inferred: false,
+          confidencePercent: 100,
+          evidence: ['+ void a()', '+ void b()', '+ void c()'],
+          supportingConceptNames: [],
+          groupedMoveCount: 3,
+        },
+      ],
+    })
+    renderExplorer()
+    await screen.findByRole('list', { name: 'Structural changes' })
+
+    // When the reviewer selects the Structure level on the spine
+    await selectLevel('Structure')
+
+    // Then the "Test changes in GreeterTest" chip shows that it folds 3 changes
+    const chip = screen.getByRole('button', { name: 'Test changes in GreeterTest' }).closest('li')!
+    expect(within(chip).getByText('3 changes')).toBeVisible()
+  })
 })
