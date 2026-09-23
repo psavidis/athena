@@ -6,7 +6,6 @@ import com.athena.repository.ImportedPullRequest;
 import com.athena.semantic.AnalysisResult;
 import com.athena.semantic.Change;
 import com.athena.semantic.ModuleGroup;
-import com.athena.semantic.ModuleGrouper;
 import com.athena.semantic.PrAnalyzer;
 import com.athena.semantic.SemanticProfile;
 import com.athena.semantic.SymbolAwareDiffEntry;
@@ -80,7 +79,7 @@ public class AthenaSnapshot {
         json.writeValue(out.resolve("unrepresented-files.json").toFile(),
                 new RepresentationCoverageController(session).unrepresentedFiles());
 
-        List<ModuleGroup> modules = new ModuleGrouper().group(changes);
+        List<ModuleGroup> modules = prDiff.moduleGroups();
         Map<String, Object> moduleProfiles = new LinkedHashMap<>();
         for (ModuleGroup module : modules) {
             moduleProfiles.put(module.moduleName(),

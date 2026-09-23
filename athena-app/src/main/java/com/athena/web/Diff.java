@@ -4,10 +4,14 @@ import com.athena.reviewcontext.ReviewSubmission;
 import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.AnalysisResult;
 import com.athena.semantic.Change;
+import com.athena.semantic.ModuleGroup;
+import com.athena.semantic.ModuleGrouper;
+import com.athena.semantic.ModuleLayout;
 import com.athena.semantic.PrAnalyzer;
 import com.athena.semantic.RepresentationCoverage;
 import com.athena.semantic.ReviewStateStore;
 import com.athena.semantic.SemanticProfile;
+
 
 import java.nio.file.Path;
 import java.util.List;
@@ -52,6 +56,7 @@ public final class Diff {
     // selection: base/head are immutable checkouts, so the result never changes while this
     // selection is current.
     private AnalysisResult cachedAnalysis;
+    private ModuleLayout moduleLayout;
 
     // AI-generated module narratives are billed, real network calls — computed on demand
     // (never eagerly for every module) and cached per module name for the rest of this
@@ -116,6 +121,23 @@ public final class Diff {
             cachedAnalysis = prAnalyzer.analyze(baseRoot, headRoot);
         }
         return cachedAnalysis;
+    }
+
+    /**
+     * Where this Diff's modules begin and end, read from the build descriptors of both
+     * revisions (ticket #292) — the one module identity every territory, module group and
+     * module-level profile shares. Created once; it caches what it reads.
+     */
+    public synchronized ModuleLayout moduleLayout() {
+        if (moduleLayout == null) {
+            moduleLayout = ModuleLayout.of(baseRoot, headRoot);
+        }
+        return moduleLayout;
+    }
+
+    /** This Diff's Changes grouped by module under {@link #moduleLayout()}. */
+    public List<ModuleGroup> moduleGroups() {
+        return new ModuleGrouper(moduleLayout()).group(changes());
     }
 
     /** The cached narrative for a module, computing it via {@code generator} on first request. */

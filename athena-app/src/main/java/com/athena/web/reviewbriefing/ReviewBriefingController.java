@@ -20,6 +20,7 @@ import com.athena.reviewbriefing.SemanticChangeSummaryProvider;
 import com.athena.reviewbriefing.UncertaintyAndQuestionsGenerator;
 import com.athena.reviewbriefing.UncertaintyAndQuestionsProvider;
 import com.athena.semantic.Change;
+import com.athena.semantic.ModuleGrouper;
 import com.athena.semantic.SemanticProfile;
 import com.athena.web.Diff;
 import com.athena.web.WebSession;
@@ -98,7 +99,7 @@ public class ReviewBriefingController {
                 new HistoricalContextGenerator(contextRewindService));
 
         ReviewBriefing briefing = service.generate(changes, profiles, selection.headRoot(), selection.repositoryFullName());
-        return ReviewBriefingResponse.of(briefing, changes);
+        return ReviewBriefingResponse.of(briefing, changes, new ModuleGrouper(diff.moduleLayout()));
     }
 
     private SemanticChangeSummaryProvider summaryProvider() {

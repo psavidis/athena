@@ -70,7 +70,7 @@ public class ModuleNarrativeController {
     @GetMapping("/api/review/modules")
     public List<ModuleNarrativeResponse> modules() {
         WebSession.SelectedPullRequest selection = requireSelection();
-        List<ModuleGroup> groups = new ModuleGrouper().group(selection.changes());
+        List<ModuleGroup> groups = selection.diff().moduleGroups();
         return groups.stream()
                 .map(group -> new ModuleNarrativeResponse(group.moduleName(), changeKeysOf(group), null))
                 .toList();
@@ -80,7 +80,7 @@ public class ModuleNarrativeController {
     public ModuleNarrativeResponse narrativeFor(@PathVariable String moduleName) {
         ModuleNarrativeProvider provider = requireProviderConfigured();
         WebSession.SelectedPullRequest selection = requireSelection();
-        ModuleGroup group = new ModuleGrouper().group(selection.changes()).stream()
+        ModuleGroup group = selection.diff().moduleGroups().stream()
                 .filter(g -> g.moduleName().equals(moduleName))
                 .findFirst()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Module not found"));

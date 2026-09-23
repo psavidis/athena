@@ -3,7 +3,6 @@ package com.athena.web.reviewui;
 import com.athena.semantic.Change;
 import com.athena.semantic.ModuleDependency;
 import com.athena.semantic.ModuleGroup;
-import com.athena.semantic.ModuleGrouper;
 import com.athena.semantic.ModuleTerritory;
 import com.athena.semantic.ModuleTopology;
 import com.athena.semantic.ModuleTopologyBuilder;
@@ -39,7 +38,7 @@ public class ModuleTopologyController {
     public ModuleTopologyResponse topology() {
         Diff diff = requireSelection();
 
-        List<ModuleGroup> changedGroups = new ModuleGrouper().group(diff.changes());
+        List<ModuleGroup> changedGroups = diff.moduleGroups();
         ModuleTopology topology = new ModuleTopologyBuilder()
                 .build(changedGroups, diff.baseRoot(), diff.headRoot());
 

@@ -27,11 +27,20 @@ public final class EntityModuleResolver {
 
     /** The module the entity named {@code entityName} lives in, if a Change in {@code changes} concerns it. */
     public static Optional<String> resolve(String entityName, List<Change> changes) {
+        return resolve(entityName, changes, new ModuleGrouper());
+    }
+
+    /**
+     * As {@link #resolve(String, List)}, naming the module the way {@code grouper} does — pass
+     * the Diff's own {@code new ModuleGrouper(diff.moduleLayout())} so the name matches the
+     * Canvas territories (ticket #292).
+     */
+    public static Optional<String> resolve(String entityName, List<Change> changes, ModuleGrouper grouper) {
         return changes.stream()
                 .filter(change -> entityName.equals(change.enclosingType()))
                 .findFirst()
                 .flatMap(EntityModuleResolver::firstTouchedFile)
-                .map(ModuleGrouper::moduleOf);
+                .map(grouper::moduleNameOf);
     }
 
     private static Optional<String> firstTouchedFile(Change change) {

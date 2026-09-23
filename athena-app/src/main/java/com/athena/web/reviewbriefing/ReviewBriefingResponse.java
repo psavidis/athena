@@ -2,6 +2,7 @@ package com.athena.web.reviewbriefing;
 
 import com.athena.reviewbriefing.ReviewBriefing;
 import com.athena.semantic.Change;
+import com.athena.semantic.ModuleGrouper;
 
 import java.util.List;
 
@@ -18,14 +19,14 @@ public record ReviewBriefingResponse(
         List<BriefingItemResponse> relevantKnowledge,
         BriefingItemResponse recommendedStartingPoint) {
 
-    static ReviewBriefingResponse of(ReviewBriefing briefing, List<Change> changes) {
+    static ReviewBriefingResponse of(ReviewBriefing briefing, List<Change> changes, ModuleGrouper grouper) {
         return new ReviewBriefingResponse(
-                briefing.changeSummary().map(item -> BriefingItemResponse.of(item, changes)).orElse(null),
-                briefing.focusAreas().stream().map(item -> BriefingItemResponse.of(item, changes)).toList(),
-                briefing.uncertainties().stream().map(item -> BriefingItemResponse.of(item, changes)).toList(),
-                briefing.questions().stream().map(item -> BriefingItemResponse.of(item, changes)).toList(),
-                briefing.historicalContext().stream().map(item -> BriefingItemResponse.of(item, changes)).toList(),
-                briefing.relevantKnowledge().stream().map(item -> BriefingItemResponse.of(item, changes)).toList(),
-                briefing.recommendedStartingPoint().map(item -> BriefingItemResponse.of(item, changes)).orElse(null));
+                briefing.changeSummary().map(item -> BriefingItemResponse.of(item, changes, grouper)).orElse(null),
+                briefing.focusAreas().stream().map(item -> BriefingItemResponse.of(item, changes, grouper)).toList(),
+                briefing.uncertainties().stream().map(item -> BriefingItemResponse.of(item, changes, grouper)).toList(),
+                briefing.questions().stream().map(item -> BriefingItemResponse.of(item, changes, grouper)).toList(),
+                briefing.historicalContext().stream().map(item -> BriefingItemResponse.of(item, changes, grouper)).toList(),
+                briefing.relevantKnowledge().stream().map(item -> BriefingItemResponse.of(item, changes, grouper)).toList(),
+                briefing.recommendedStartingPoint().map(item -> BriefingItemResponse.of(item, changes, grouper)).orElse(null));
     }
 }

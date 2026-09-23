@@ -1,6 +1,7 @@
 package com.athena.reviewreplay;
 
 import com.athena.semantic.Change;
+import com.athena.semantic.ModuleGrouper;
 
 import java.util.List;
 import java.util.Objects;
@@ -18,13 +19,20 @@ import java.util.function.Supplier;
 public final class KnownEntityModuleResolver implements ReplayModuleResolver {
 
     private final Supplier<List<Change>> currentChanges;
+    private final Supplier<ModuleGrouper> grouper;
 
     public KnownEntityModuleResolver(Supplier<List<Change>> currentChanges) {
+        this(currentChanges, ModuleGrouper::new);
+    }
+
+    /** {@code grouper} names modules the way the Canvas does (ticket #292). */
+    public KnownEntityModuleResolver(Supplier<List<Change>> currentChanges, Supplier<ModuleGrouper> grouper) {
         this.currentChanges = Objects.requireNonNull(currentChanges, "currentChanges");
+        this.grouper = Objects.requireNonNull(grouper, "grouper");
     }
 
     @Override
     public Optional<String> resolveModule(String entityName) {
-        return EntityModuleResolver.resolve(entityName, currentChanges.get());
+        return EntityModuleResolver.resolve(entityName, currentChanges.get(), grouper.get());
     }
 }

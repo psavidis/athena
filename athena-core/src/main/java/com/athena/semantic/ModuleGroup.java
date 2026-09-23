@@ -13,15 +13,22 @@ import java.util.List;
 public final class ModuleGroup {
 
     private final String moduleName;
+    private final String directory;
     private final List<Change> changes;
 
-    ModuleGroup(String moduleName, List<Change> changes) {
+    ModuleGroup(String moduleName, String directory, List<Change> changes) {
         this.moduleName = moduleName;
+        this.directory = directory;
         this.changes = List.copyOf(changes);
     }
 
     public String moduleName() {
         return moduleName;
+    }
+
+    /** The module's directory relative to the repository root, "" for the root (ticket #292). */
+    public String directory() {
+        return directory;
     }
 
     public List<Change> changes() {

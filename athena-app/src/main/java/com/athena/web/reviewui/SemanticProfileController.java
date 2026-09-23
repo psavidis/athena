@@ -5,7 +5,6 @@ import com.athena.semantic.CapabilitySplitGroup;
 import com.athena.semantic.Change;
 import com.athena.semantic.DetectedTransformation;
 import com.athena.semantic.ModuleGroup;
-import com.athena.semantic.ModuleGrouper;
 import com.athena.semantic.RepeatedClassificationGroup;
 import com.athena.semantic.RepeatedClassificationGrouper;
 import com.athena.semantic.RepeatedStructuralChange;
@@ -100,7 +99,7 @@ public class SemanticProfileController {
     @GetMapping("/api/review/modules/{moduleName}/semantic-profile")
     public SemanticProfileResponse moduleSemanticProfile(@PathVariable String moduleName) {
         Diff diff = requireSelection();
-        ModuleGroup group = requireModule(moduleName, diff.changes());
+        ModuleGroup group = requireModule(moduleName, diff);
         List<SemanticProfile> profiles = group.changes().stream().map(diff::semanticProfileFor).toList();
         return toResponse(profiles, true);
     }
@@ -284,8 +283,8 @@ public class SemanticProfileController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Change not found"));
     }
 
-    private ModuleGroup requireModule(String moduleName, List<Change> changes) {
-        return new ModuleGrouper().group(changes).stream()
+    private ModuleGroup requireModule(String moduleName, Diff diff) {
+        return diff.moduleGroups().stream()
                 .filter(group -> group.moduleName().equals(moduleName))
                 .findFirst()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Module not found"));
