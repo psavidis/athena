@@ -5,6 +5,7 @@ import com.athena.reviewui.AnnotationBoard;
 import com.athena.semantic.AnalysisResult;
 import com.athena.semantic.Change;
 import com.athena.semantic.PrAnalyzer;
+import com.athena.semantic.RepresentationCoverage;
 import com.athena.semantic.ReviewStateStore;
 import com.athena.semantic.SemanticProfile;
 
@@ -103,6 +104,11 @@ public final class Diff {
     /** This Change's Semantic Profile (ticket #94), from the same cached analysis as {@link #changes()}. */
     public SemanticProfile semanticProfileFor(Change change) {
         return analysisResult().semanticProfileFor(change);
+    }
+
+    /** Every changed file of this Diff and which of them no Change represents (ticket #260), from the cached analysis. */
+    public RepresentationCoverage representationCoverage() {
+        return analysisResult().representationCoverage();
     }
 
     private synchronized AnalysisResult analysisResult() {

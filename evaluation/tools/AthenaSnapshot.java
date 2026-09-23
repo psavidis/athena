@@ -17,6 +17,7 @@ import com.athena.web.WebSession;
 import com.athena.web.diff.DiffSelectionController;
 import com.athena.web.reviewui.ChangeMapController;
 import com.athena.web.reviewui.ModuleTopologyController;
+import com.athena.web.reviewui.RepresentationCoverageController;
 import com.athena.web.reviewui.SemanticProfileController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -76,6 +77,8 @@ public class AthenaSnapshot {
         json.writeValue(out.resolve("semantic-profile.json").toFile(),
                 new SemanticProfileController(session).pullRequestSemanticProfile());
         json.writeValue(out.resolve("topology.json").toFile(), new ModuleTopologyController(session).topology());
+        json.writeValue(out.resolve("unrepresented-files.json").toFile(),
+                new RepresentationCoverageController(session).unrepresentedFiles());
 
         List<ModuleGroup> modules = new ModuleGrouper().group(changes);
         Map<String, Object> moduleProfiles = new LinkedHashMap<>();

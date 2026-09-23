@@ -59,8 +59,14 @@ public final class TransformationDetector {
         // Only files that differ between the revisions are parsed and compared (ticket #271):
         // an identical file can't be the source or target of any change reported here.
         ChangedJavaFiles changedFiles = ChangedJavaFiles.between(baseRoot, headRoot);
-        ParsedRoot baseParsed = parseRoot(baseRoot, changedFiles.relativePaths());
-        ParsedRoot headParsed = parseRoot(headRoot, changedFiles.relativePaths());
+        // A file that fails to parse in either revision is left out of detection on both sides
+        // (#260): parsing only its other side would report every declaration in it as removed or
+        // added. It stays visible through the symbol-aware fallback and raw diff instead.
+        Set<String> unparseable = new LinkedHashSet<>();
+        Map<String, ParsedFile> baseFiles = parseFiles(baseRoot, changedFiles.relativePaths(), unparseable);
+        Map<String, ParsedFile> headFiles = parseFiles(headRoot, changedFiles.relativePaths(), unparseable);
+        ParsedRoot baseParsed = collectDeclarations(baseFiles, unparseable);
+        ParsedRoot headParsed = collectDeclarations(headFiles, unparseable);
 
         List<DetectedTransformation> results = new ArrayList<>();
 
@@ -877,33 +883,38 @@ public final class TransformationDetector {
     }
 
     /**
-     * Parses each of {@code relativePaths} (the changed files, ticket #271) that exists
-     * under {@code root} exactly once and extracts both
-     * {@link MethodInfo}s and {@link RecordInfo}s from the same
-     * {@link CompilationUnit} — methodInfos and recordInfos used to each
-     * independently re-parse every file, doubling the tree's parse cost
-     * (parsing dominates; extracting two different views from an
-     * already-parsed AST is cheap).
+     * Parses each of {@code relativePaths} (the changed files, ticket #271) that exists under
+     * {@code root}, exactly once, recording the ones that fail in {@code unparseable}. Every
+     * declaration view is later extracted from the same {@link CompilationUnit} — parsing
+     * dominates the cost; extracting several views from one AST is cheap.
      */
-    private ParsedRoot parseRoot(Path root, List<String> relativePaths) {
-        DeclarationCollector collected = new DeclarationCollector();
+    private Map<String, ParsedFile> parseFiles(Path root, List<String> relativePaths, Set<String> unparseable) {
+        Map<String, ParsedFile> parsed = new LinkedHashMap<>();
         for (String relativePath : relativePaths) {
             Path file = root.resolve(relativePath);
             if (!Files.isRegularFile(file)) continue;
-            CompilationUnit cu;
-            List<String> sourceLines;
             try {
                 StaticJavaParser.setConfiguration(JavaParserConfigurations.currentJava());
-                cu = StaticJavaParser.parse(file);
-                sourceLines = Files.readAllLines(file);
+                parsed.put(relativePath, new ParsedFile(StaticJavaParser.parse(file), Files.readAllLines(file)));
             } catch (IOException | RuntimeException e) {
-                continue;
+                unparseable.add(relativePath);
             }
-            for (TypeDeclaration<?> type : cu.getTypes()) {
-                collectType(type, type.getNameAsString(), relativePath, sourceLines, collected);
+        }
+        return parsed;
+    }
+
+    private ParsedRoot collectDeclarations(Map<String, ParsedFile> files, Set<String> excluded) {
+        DeclarationCollector collected = new DeclarationCollector();
+        for (Map.Entry<String, ParsedFile> file : files.entrySet()) {
+            if (excluded.contains(file.getKey())) continue;
+            for (TypeDeclaration<?> type : file.getValue().unit().getTypes()) {
+                collectType(type, type.getNameAsString(), file.getKey(), file.getValue().sourceLines(), collected);
             }
         }
         return collected.toParsedRoot();
+    }
+
+    private record ParsedFile(CompilationUnit unit, List<String> sourceLines) {
     }
 
     /**

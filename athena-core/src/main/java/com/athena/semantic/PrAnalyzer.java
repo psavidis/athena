@@ -124,8 +124,11 @@ public final class PrAnalyzer {
 
         AnalysisStatus status = status(changedFileCount, degradedEntries.size());
         List<ExternalFinding> externalFindings = runExternalProviders(headRoot, relativePaths);
+        RepresentationCoverage coverage = RepresentationCoverage.of(ChangedFiles.between(baseRoot, headRoot), changes,
+                degradedEntries, path -> languagePlugins.stream().anyMatch(plugin -> plugin.supports(Path.of(path))));
 
-        return new AnalysisResult(status, changes, semanticProfiles, degradedEntries, rawDiffsByFile, externalFindings);
+        return new AnalysisResult(status, changes, semanticProfiles, degradedEntries, rawDiffsByFile, externalFindings,
+                coverage);
     }
 
     /**
