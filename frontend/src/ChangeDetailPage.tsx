@@ -33,6 +33,8 @@ const KIND_LABELS: Record<TransformationKind, string> = {
   CHANGE_METHOD_ANNOTATIONS: 'Method annotations',
   CHANGE_CONTROL_FLOW: 'Control flow change',
   MODIFY_METHOD_BODY: 'Body modified',
+  PULL_UP_FIELD: 'Pull up field',
+  PULL_UP_SYMBOL: 'Pull up',
 }
 
 const CATEGORY_LABELS = {

@@ -103,7 +103,23 @@ public final class ChangeGrouper {
                     + ": " + key.involvedDescriptions.get(1);
             case MODIFY_METHOD_BODY -> "Modify body of " + key.involvedDescriptions.get(0)
                     + (key.involvedDescriptions.size() > 1 ? ": " + key.involvedDescriptions.get(1) : "");
+            case PULL_UP_FIELD -> "Pull up field " + pullUp(key.involvedDescriptions);
+            case PULL_UP_SYMBOL -> "Pull up " + pullUp(key.involvedDescriptions);
         };
+    }
+
+    /**
+     * "member into Base (from SubA, SubB)" for a pull-up's "Base#member", "SubA#member", ...
+     * involved descriptions (ticket #290).
+     */
+    private String pullUp(List<String> descriptions) {
+        String target = descriptions.get(0);
+        int separator = target.indexOf('#');
+        List<String> sources = descriptions.subList(1, descriptions.size()).stream()
+                .map(source -> source.substring(0, source.indexOf('#')))
+                .toList();
+        return target.substring(separator + 1) + " into " + target.substring(0, separator)
+                + " (from " + String.join(", ", sources) + ")";
     }
 
     /**
