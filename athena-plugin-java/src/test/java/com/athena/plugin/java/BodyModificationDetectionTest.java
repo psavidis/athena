@@ -78,6 +78,20 @@ class BodyModificationDetectionTest {
     }
 
     @Test
+    void sameNamedConstructorsInDifferentFilesAreNeverCompared() throws IOException {
+        String first = "package a;\npublic class Person {\n    Person(String n) { this.n = n; }\n    String n;\n}\n";
+        String second = "package b;\npublic class Person {\n    Person(String n) { this.n = n.trim(); }\n    String n;\n}\n";
+        for (Path root : List.of(baseRoot, headRoot)) {
+            Files.createDirectories(root.resolve("a"));
+            Files.createDirectories(root.resolve("b"));
+            Files.writeString(root.resolve("a/Person.java"), first);
+            Files.writeString(root.resolve("b/Person.java"), second);
+        }
+
+        assertThat(detect()).isEmpty();
+    }
+
+    @Test
     void anUnchangedMethodIsNotReported() throws IOException {
         String source = "public class Printer {\n    String format(String name) { return name; }\n}\n";
         write(baseRoot, "Printer", source);

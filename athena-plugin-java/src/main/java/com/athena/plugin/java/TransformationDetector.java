@@ -290,7 +290,8 @@ public final class TransformationDetector {
         List<BodyEdit> edits = new ArrayList<>();
         for (ConstructorInfo base : baseConstructors) {
             headConstructors.stream()
-                    .filter(head -> head.enclosingType.equals(base.enclosingType) && head.parameterTypes.equals(base.parameterTypes))
+                    .filter(head -> head.file.equals(base.file) && head.enclosingType.equals(base.enclosingType)
+                            && head.parameterTypes.equals(base.parameterTypes))
                     .filter(head -> !head.normalizedBody.equals(base.normalizedBody))
                     .findFirst()
                     .ifPresent(head -> edits.add(new BodyEdit(base.enclosingType + "#<init>", base.file, head.file,
