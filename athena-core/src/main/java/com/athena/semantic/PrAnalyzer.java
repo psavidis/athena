@@ -32,9 +32,10 @@ import java.util.stream.Stream;
  * <ol>
  *   <li><b>Semantic Change Model</b> — full detection + grouping, for files
  *       that parse cleanly on both sides.</li>
- *   <li><b>Symbol-aware diff</b> — a file that fails to parse still gets an
- *       entry (rather than being silently dropped), even without a
- *       classified Change.</li>
+ *   <li><b>Symbol-aware diff</b> — a changed file that fails to parse still
+ *       gets an entry (rather than being silently dropped), even without a
+ *       classified Change. Files identical in both revisions are never
+ *       parse-checked: they aren't part of the change (ticket #262).</li>
  *   <li><b>Traditional textual diff</b> — always computed for every file,
  *       regardless of whether it reached level 1 or 2 (§44: raw diff access
  *       must never be blocked by analysis outcome).</li>
