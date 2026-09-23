@@ -1,5 +1,6 @@
 package com.athena.plugin.java;
 
+import com.athena.semantic.ChangeCategory;
 import com.athena.semantic.DetectedTransformation;
 import com.athena.semantic.TransformationKind;
 import com.github.javaparser.JavaParser;
@@ -27,27 +28,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class StructuralChangeDetectionSteps {
 
-    private Path baseRoot;
-    private Path headRoot;
+    private final DetectionWorld world;
     private List<DetectedTransformation> transformations;
 
-    @Before
-    public void createTempRoots() throws IOException {
-        baseRoot = Files.createTempDirectory("athena-base");
-        headRoot = Files.createTempDirectory("athena-head");
+    public StructuralChangeDetectionSteps(DetectionWorld world) {
+        this.world = world;
     }
 
     @After
-    public void cleanUpTempRoots() throws IOException {
-        deleteRecursively(baseRoot);
-        deleteRecursively(headRoot);
+    public void cleanUpRoots() {
+        world.cleanUp();
     }
 
     // ---- base revision setups ----
 
     @Given("a base revision where class {string} has a method {string}")
     public void base_class_has_method(String className, String methodName) {
-        write(baseRoot, className, "public class " + className + " {\n"
+        write(world.baseRoot(), className, "public class " + className + " {\n"
                 + "    public String " + methodName + "() {\n"
                 + "        return \"greeting\";\n"
                 + "    }\n"
@@ -56,22 +53,22 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a base revision where class {string} has a method {string} and class {string} is empty")
     public void base_class_has_method_and_other_class_empty(String classA, String methodName, String classB) {
-        write(baseRoot, classA, "public class " + classA + " {\n"
+        write(world.baseRoot(), classA, "public class " + classA + " {\n"
                 + "    public String " + methodName + "() {\n"
                 + "        return \"greeting\";\n"
                 + "    }\n"
                 + "}\n");
-        write(baseRoot, classB, "public class " + classB + " {\n}\n");
+        write(world.baseRoot(), classB, "public class " + classB + " {\n}\n");
     }
 
     @Given("a base revision where class {string} has no method {string}")
     public void base_class_has_no_method(String className, String methodName) {
-        write(baseRoot, className, "public class " + className + " {\n}\n");
+        write(world.baseRoot(), className, "public class " + className + " {\n}\n");
     }
 
     @Given("a base revision where class {string} has a method {string} taking no parameters")
     public void base_class_has_method_no_params(String className, String methodName) {
-        write(baseRoot, className, "public class " + className + " {\n"
+        write(world.baseRoot(), className, "public class " + className + " {\n"
                 + "    public String " + methodName + "() {\n"
                 + "        return \"greeting\";\n"
                 + "    }\n"
@@ -80,12 +77,12 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a base revision where record {string} has components {string}")
     public void base_revision_record_has_components(String recordName, String components) {
-        write(baseRoot, recordName, "public record " + recordName + "(" + components + ") {\n}\n");
+        write(world.baseRoot(), recordName, "public record " + recordName + "(" + components + ") {\n}\n");
     }
 
     @Given("a base revision where class {string} has a method {string} with an inline fragment")
     public void base_class_has_method_with_inline_fragment(String className, String methodName) {
-        write(baseRoot, className, "public class " + className + " {\n"
+        write(world.baseRoot(), className, "public class " + className + " {\n"
                 + "    public String " + methodName + "() {\n"
                 + "        String greeting = \"Hello, \" + \"world\" + \"!\";\n"
                 + "        return greeting;\n"
@@ -97,7 +94,7 @@ public class StructuralChangeDetectionSteps {
     public void base_revision_with_files_referencing_identifier(int fileCount, String identifier) {
         for (int i = 0; i < fileCount; i++) {
             String className = "Ref" + i;
-            write(baseRoot, className, "public class " + className + " {\n"
+            write(world.baseRoot(), className, "public class " + className + " {\n"
                     + "    public " + identifier + " make() {\n"
                     + "        return new " + identifier + "();\n"
                     + "    }\n"
@@ -105,13 +102,13 @@ public class StructuralChangeDetectionSteps {
             // A minimal stand-in declaration for the referenced identifier, so
             // each file is independently parseable/compilable in spirit.
         }
-        write(baseRoot, identifier, "public class " + identifier + " {\n}\n");
+        write(world.baseRoot(), identifier, "public class " + identifier + " {\n}\n");
     }
 
     @Given("a base revision where class {string} has a method {string} that calls {string}")
     public void base_class_has_method_calling(String className, String methodName, String call) {
         String calleeName = call.replace("()", "");
-        write(baseRoot, className, "public class " + className + " {\n"
+        write(world.baseRoot(), className, "public class " + className + " {\n"
                 + "    public String " + methodName + "() {\n"
                 + "        return " + calleeName + "();\n"
                 + "    }\n"
@@ -126,7 +123,7 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a base revision where class {string} has a method {string} and a field {string}")
     public void base_class_has_method_and_field(String className, String methodName, String fieldName) {
-        write(baseRoot, className, "public class " + className + " {\n"
+        write(world.baseRoot(), className, "public class " + className + " {\n"
                 + "    private String " + fieldName + ";\n"
                 + "    public String " + methodName + "() {\n"
                 + "        return \"greeting\";\n"
@@ -136,7 +133,7 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a base revision where class {string} has a method {string} and a field {string} in file {string}")
     public void base_class_has_method_and_field_in_file(String className, String methodName, String fieldName, String file) {
-        writeFile(baseRoot, file, "public class " + className + " {\n"
+        writeFile(world.baseRoot(), file, "public class " + className + " {\n"
                 + "    private String " + fieldName + ";\n"
                 + "    public String " + methodName + "() {\n"
                 + "        return \"greeting\";\n"
@@ -146,27 +143,27 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a base revision with no class {string}")
     public void base_revision_with_no_class(String className) {
-        write(baseRoot, "Placeholder", "public class Placeholder {\n}\n");
+        write(world.baseRoot(), "Placeholder", "public class Placeholder {\n}\n");
     }
 
     @Given("a base revision where class {string} has a field {string} of type {string}")
     public void base_class_has_field_of_type(String className, String fieldName, String type) {
-        write(baseRoot, className, "public class " + className + " {\n"
+        write(world.baseRoot(), className, "public class " + className + " {\n"
                 + "    private " + type + " " + fieldName + ";\n"
                 + "}\n");
     }
 
     @Given("a base revision where class {string} has a field {string} of type {string} and class {string} is empty")
     public void base_class_has_field_and_other_class_empty(String classA, String fieldName, String type, String classB) {
-        write(baseRoot, classA, "public class " + classA + " {\n"
+        write(world.baseRoot(), classA, "public class " + classA + " {\n"
                 + "    private " + type + " " + fieldName + ";\n"
                 + "}\n");
-        write(baseRoot, classB, "public class " + classB + " {\n}\n");
+        write(world.baseRoot(), classB, "public class " + classB + " {\n}\n");
     }
 
     @Given("a base revision where class {string} has no field {string}")
     public void base_class_has_no_field(String className, String fieldName) {
-        write(baseRoot, className, "public class " + className + " {\n}\n");
+        write(world.baseRoot(), className, "public class " + className + " {\n}\n");
     }
 
     // ---- head revision setups ----
@@ -179,7 +176,7 @@ public class StructuralChangeDetectionSteps {
         // filename in sync with the class name too, but the detector matches by AST
         // content, not filename, so this fixture only needs the two to diverge here to
         // exercise the "same file, different class name" match condition directly.
-        writeFile(headRoot, "Greeter.java", "public class " + newClassName + " {\n"
+        writeFile(world.headRoot(), "Greeter.java", "public class " + newClassName + " {\n"
                 + "    private String prefix;\n"
                 + "    public String greet() {\n"
                 + "        return \"greeting\";\n"
@@ -189,7 +186,7 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a head revision where the same class has been moved to file {string} unchanged")
     public void head_class_moved_to_file(String newFile) {
-        writeFile(headRoot, newFile, "public class Greeter {\n"
+        writeFile(world.headRoot(), newFile, "public class Greeter {\n"
                 + "    private String prefix;\n"
                 + "    public String greet() {\n"
                 + "        return \"greeting\";\n"
@@ -199,7 +196,7 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a head revision where class {string} has a method {string}")
     public void head_revision_class_has_method(String className, String methodName) {
-        write(headRoot, className, "public class " + className + " {\n"
+        write(world.headRoot(), className, "public class " + className + " {\n"
                 + "    public String " + methodName + "() {\n"
                 + "        return \"bye\";\n"
                 + "    }\n"
@@ -208,39 +205,39 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a head revision with no class {string}")
     public void head_revision_with_no_class(String className) {
-        write(headRoot, "Placeholder", "public class Placeholder {\n}\n");
+        write(world.headRoot(), "Placeholder", "public class Placeholder {\n}\n");
     }
 
     @Given("a head revision where class {string} has a field {string} of type {string} instead")
     public void head_class_has_renamed_field(String className, String fieldName, String type) {
-        write(headRoot, className, "public class " + className + " {\n"
+        write(world.headRoot(), className, "public class " + className + " {\n"
                 + "    private " + type + " " + fieldName + ";\n"
                 + "}\n");
     }
 
     @Given("a head revision where class {string} has a field {string} of type {string} and class {string} is empty")
     public void head_class_has_field_and_other_empty(String classWithField, String fieldName, String type, String emptyClass) {
-        write(headRoot, classWithField, "public class " + classWithField + " {\n"
+        write(world.headRoot(), classWithField, "public class " + classWithField + " {\n"
                 + "    private " + type + " " + fieldName + ";\n"
                 + "}\n");
-        write(headRoot, emptyClass, "public class " + emptyClass + " {\n}\n");
+        write(world.headRoot(), emptyClass, "public class " + emptyClass + " {\n}\n");
     }
 
     @Given("a head revision where class {string} has an additional field {string} of type {string}")
     public void head_class_has_additional_field(String className, String fieldName, String type) {
-        write(headRoot, className, "public class " + className + " {\n"
+        write(world.headRoot(), className, "public class " + className + " {\n"
                 + "    private " + type + " " + fieldName + ";\n"
                 + "}\n");
     }
 
     @Given("a head revision where class {string} no longer has the field {string}")
     public void head_class_no_longer_has_field(String className, String fieldName) {
-        write(headRoot, className, "public class " + className + " {\n}\n");
+        write(world.headRoot(), className, "public class " + className + " {\n}\n");
     }
 
     @Given("a head revision where class {string} has a method {string} with the same body")
     public void head_class_has_renamed_method(String className, String methodName) {
-        write(headRoot, className, "public class " + className + " {\n"
+        write(world.headRoot(), className, "public class " + className + " {\n"
                 + "    public String " + methodName + "() {\n"
                 + "        return \"greeting\";\n"
                 + "    }\n"
@@ -249,17 +246,17 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a head revision where class {string} has a method {string} with the same body and class {string} is empty")
     public void head_class_has_method_and_other_empty(String classWithMethod, String methodName, String emptyClass) {
-        write(headRoot, classWithMethod, "public class " + classWithMethod + " {\n"
+        write(world.headRoot(), classWithMethod, "public class " + classWithMethod + " {\n"
                 + "    public String " + methodName + "() {\n"
                 + "        return \"greeting\";\n"
                 + "    }\n"
                 + "}\n");
-        write(headRoot, emptyClass, "public class " + emptyClass + " {\n}\n");
+        write(world.headRoot(), emptyClass, "public class " + emptyClass + " {\n}\n");
     }
 
     @Given("a head revision where class {string} has an additional method {string}")
     public void head_class_has_additional_method(String className, String methodName) {
-        write(headRoot, className, "public class " + className + " {\n"
+        write(world.headRoot(), className, "public class " + className + " {\n"
                 + "    public String " + methodName + "() {\n"
                 + "        return \"farewell\";\n"
                 + "    }\n"
@@ -268,12 +265,12 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a head revision where class {string} no longer has the method {string}")
     public void head_class_no_longer_has_method(String className, String methodName) {
-        write(headRoot, className, "public class " + className + " {\n}\n");
+        write(world.headRoot(), className, "public class " + className + " {\n}\n");
     }
 
     @Given("a head revision where class {string} has a method {string} taking a {string} parameter")
     public void head_class_has_method_with_parameter(String className, String methodName, String paramType) {
-        write(headRoot, className, "public class " + className + " {\n"
+        write(world.headRoot(), className, "public class " + className + " {\n"
                 + "    public String " + methodName + "(" + paramType + " arg) {\n"
                 + "        return \"greeting\" + arg;\n"
                 + "    }\n"
@@ -282,12 +279,12 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a head revision where record {string} has components {string}")
     public void head_revision_record_has_components(String recordName, String components) {
-        write(headRoot, recordName, "public record " + recordName + "(" + components + ") {\n}\n");
+        write(world.headRoot(), recordName, "public record " + recordName + "(" + components + ") {\n}\n");
     }
 
     @Given("a head revision where that fragment has been extracted into a new method {string} called from {string}")
     public void head_class_has_extracted_method(String extractedMethod, String callingMethod) {
-        write(headRoot, "Greeter", "public class Greeter {\n"
+        write(world.headRoot(), "Greeter", "public class Greeter {\n"
                 + "    public String " + callingMethod + "() {\n"
                 + "        return " + extractedMethod + "();\n"
                 + "    }\n"
@@ -304,18 +301,18 @@ public class StructuralChangeDetectionSteps {
         long refCount = countBaseRefFiles();
         for (int i = 0; i < refCount; i++) {
             String className = "Ref" + i;
-            write(headRoot, className, "public class " + className + " {\n"
+            write(world.headRoot(), className, "public class " + className + " {\n"
                     + "    public " + newIdentifier + " make() {\n"
                     + "        return new " + newIdentifier + "();\n"
                     + "    }\n"
                     + "}\n");
         }
-        write(headRoot, newIdentifier, "public class " + newIdentifier + " {\n}\n");
+        write(world.headRoot(), newIdentifier, "public class " + newIdentifier + " {\n}\n");
     }
 
     @Given("a head revision where the same method is reformatted with different whitespace but identical structure")
     public void head_class_reformatted() {
-        write(headRoot, "Greeter", "public class Greeter\n{\n"
+        write(world.headRoot(), "Greeter", "public class Greeter\n{\n"
                 + "    public String greet()\n    {\n"
                 + "        return \"greeting\";\n"
                 + "    }\n"
@@ -325,7 +322,7 @@ public class StructuralChangeDetectionSteps {
     @Given("a head revision where {string} instead calls {string} with no other structural change")
     public void head_class_calls_different_method(String callingMethod, String call) {
         String calleeName = call.replace("()", "");
-        write(headRoot, "Greeter", "public class Greeter {\n"
+        write(world.headRoot(), "Greeter", "public class Greeter {\n"
                 + "    public String " + callingMethod + "() {\n"
                 + "        return " + calleeName + "();\n"
                 + "    }\n"
@@ -342,38 +339,38 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a base revision where nested class {string} inside {string} has no field {string}")
     public void base_nested_class_has_no_field(String nested, String outer, String fieldName) {
-        write(baseRoot, outer, nestedSource(outer + "." + nested, ""));
+        write(world.baseRoot(), outer, nestedSource(outer + "." + nested, ""));
     }
 
     @Given("a head revision where {string} has a field {string}")
     public void head_nested_class_has_field(String qualifiedName, String fieldName) {
-        write(headRoot, topLevelOf(qualifiedName), nestedSource(qualifiedName, "private boolean " + fieldName + ";\n"));
+        write(world.headRoot(), topLevelOf(qualifiedName), nestedSource(qualifiedName, "private boolean " + fieldName + ";\n"));
     }
 
     @Given("a base revision where nested class {string} inside {string} has no method {string}")
     public void base_nested_class_has_no_method(String nested, String outer, String methodName) {
-        write(baseRoot, outer, nestedSource(outer + "." + nested, ""));
+        write(world.baseRoot(), outer, nestedSource(outer + "." + nested, ""));
     }
 
     @Given("a head revision where {string} has a method {string}")
     public void head_nested_class_has_method(String qualifiedName, String methodName) {
-        write(headRoot, topLevelOf(qualifiedName), nestedSource(qualifiedName, method(methodName)));
+        write(world.headRoot(), topLevelOf(qualifiedName), nestedSource(qualifiedName, method(methodName)));
     }
 
     @Given("a base revision where inner class {string} inside {string} has a method {string}")
     public void base_inner_class_has_method(String inner, String outer, String methodName) {
-        write(baseRoot, outer, nestedSource(outer + "." + inner, method(methodName), false));
+        write(world.baseRoot(), outer, nestedSource(outer + "." + inner, method(methodName), false));
     }
 
     @Given("a head revision where {string} no longer has {string}")
     public void head_type_no_longer_has_member(String qualifiedName, String memberName) {
         String topLevel = topLevelOf(qualifiedName);
-        write(headRoot, topLevel, withoutMember(readBase(topLevel), qualifiedName, memberName));
+        write(world.headRoot(), topLevel, withoutMember(readBase(topLevel), qualifiedName, memberName));
     }
 
     @Given("a base revision where nested class {string} inside {string} gets its bean factory through a setter")
     public void base_nested_class_setter_injection(String nested, String outer) {
-        write(baseRoot, outer, nestedSource(outer + "." + nested,
+        write(world.baseRoot(), outer, nestedSource(outer + "." + nested,
                 "private Object beanFactory;\n"
                         + "public void setBeanFactory(Object beanFactory) {\n"
                         + "    this.beanFactory = beanFactory;\n"
@@ -383,7 +380,7 @@ public class StructuralChangeDetectionSteps {
     @Given("a head revision where {string} takes the bean factory as a constructor parameter assigned to a same-named field")
     public void head_nested_class_constructor_injection(String qualifiedName) {
         String simpleName = qualifiedName.substring(qualifiedName.lastIndexOf('.') + 1);
-        write(headRoot, topLevelOf(qualifiedName), nestedSource(qualifiedName,
+        write(world.headRoot(), topLevelOf(qualifiedName), nestedSource(qualifiedName,
                 "private final Object beanFactory;\n"
                         + simpleName + "(Object beanFactory) {\n"
                         + "    this.beanFactory = beanFactory;\n"
@@ -392,20 +389,20 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a base revision where both {string} and {string} have a nested class {string} with a method {string}")
     public void base_two_outers_with_same_nested_class(String outerA, String outerB, String nested, String methodName) {
-        write(baseRoot, outerA, nestedSource(outerA + "." + nested, method(methodName)));
-        write(baseRoot, outerB, nestedSource(outerB + "." + nested, method(methodName)));
+        write(world.baseRoot(), outerA, nestedSource(outerA + "." + nested, method(methodName)));
+        write(world.baseRoot(), outerB, nestedSource(outerB + "." + nested, method(methodName)));
     }
 
     @Given("a head revision where only {string} no longer has {string}")
     public void head_only_one_nested_class_loses_method(String qualifiedName, String methodName) {
         String changedOuter = topLevelOf(qualifiedName);
         String nested = qualifiedName.substring(qualifiedName.indexOf('.') + 1);
-        write(headRoot, changedOuter, nestedSource(qualifiedName, ""));
-        try (var files = Files.list(baseRoot)) {
+        write(world.headRoot(), changedOuter, nestedSource(qualifiedName, ""));
+        try (var files = Files.list(world.baseRoot())) {
             for (Path baseFile : files.toList()) {
                 String outer = baseFile.getFileName().toString().replace(".java", "");
                 if (!outer.equals(changedOuter)) {
-                    write(headRoot, outer, nestedSource(outer + "." + nested, method(methodName)));
+                    write(world.headRoot(), outer, nestedSource(outer + "." + nested, method(methodName)));
                 }
             }
         } catch (IOException e) {
@@ -415,30 +412,32 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a base revision where class {string} has no nested class {string}")
     public void base_class_has_no_nested_class(String outer, String nested) {
-        write(baseRoot, outer, "public class " + outer + " {\n}\n");
+        write(world.baseRoot(), outer, "public class " + outer + " {\n}\n");
     }
 
     @Given("a head revision where {string} has a nested class {string}")
     public void head_class_has_nested_class(String outer, String nested) {
-        write(headRoot, outer, nestedSource(outer + "." + nested, method("attempts")));
+        write(world.headRoot(), outer, nestedSource(outer + "." + nested, method("attempts")));
     }
 
     @Given("a base and head revision where class {string} gains a method {string}")
     public void base_and_head_where_deeply_nested_class_gains_method(String qualifiedName, String methodName) {
-        write(baseRoot, topLevelOf(qualifiedName), nestedSource(qualifiedName, ""));
-        write(headRoot, topLevelOf(qualifiedName), nestedSource(qualifiedName, method(methodName)));
+        write(world.baseRoot(), topLevelOf(qualifiedName), nestedSource(qualifiedName, ""));
+        write(world.headRoot(), topLevelOf(qualifiedName), nestedSource(qualifiedName, method(methodName)));
     }
 
     @Then("no transformation is detected involving {string}")
     public void no_transformation_is_detected_involving(String symbol) {
-        no_structural_transformation_involving(symbol);
+        assertThat(transformations)
+                .noneMatch(t -> t.involvedDescriptions().stream().anyMatch(d -> d.contains(symbol)));
     }
 
     // ---- action ----
 
     @When("the semantic engine detects transformations between the revisions")
     public void detect_transformations() {
-        transformations = new TransformationDetector().detect(baseRoot, headRoot);
+        transformations = new TransformationDetector().detect(world.baseRoot(), world.headRoot());
+        world.recordTransformations(transformations);
     }
 
     // ---- assertions ----
@@ -479,8 +478,11 @@ public class StructuralChangeDetectionSteps {
 
     @Then("no structural transformation is detected involving {string}")
     public void no_structural_transformation_involving(String symbol) {
+        // STRUCTURAL category only: since ticket #264 a body edit no structural detector
+        // explains is still reported, as an UNKNOWN-category body modification.
         assertThat(transformations)
-                .noneMatch(t -> t.involvedDescriptions().stream().anyMatch(d -> d.contains(symbol)));
+                .noneMatch(t -> ChangeCategory.of(t.kind()) == ChangeCategory.STRUCTURAL
+                        && t.involvedDescriptions().stream().anyMatch(d -> d.contains(symbol)));
     }
 
     @Then("the {string} transformation involving {string} has a diff showing removed text {string} and added text {string}")
@@ -498,58 +500,58 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a base revision where enum {string} has constants {string} and {string}")
     public void base_enum_has_two_constants(String enumName, String first, String second) {
-        write(baseRoot, enumName, "public enum " + enumName + " {\n    " + first + ",\n    " + second + "\n}\n");
+        write(world.baseRoot(), enumName, "public enum " + enumName + " {\n    " + first + ",\n    " + second + "\n}\n");
     }
 
     @Given("a base revision where enum {string} has constants {string}, {string} and {string}")
     public void base_enum_has_three_constants(String enumName, String first, String second, String third) {
-        write(baseRoot, enumName, "public enum " + enumName + " {\n    " + first + ",\n    " + second + ",\n    "
+        write(world.baseRoot(), enumName, "public enum " + enumName + " {\n    " + first + ",\n    " + second + ",\n    "
                 + third + "\n}\n");
     }
 
     @Given("a head revision where {string} also has {string}")
     public void head_enum_also_has_constant(String enumName, String constant) {
         String base = readBase(enumName);
-        write(headRoot, enumName, base.replace("\n}", ",\n    " + constant + "\n}"));
+        write(world.headRoot(), enumName, base.replace("\n}", ",\n    " + constant + "\n}"));
     }
 
     @Given("a base and head revision where enum {string} has the same constants in a different order")
     public void enum_constants_reordered(String enumName) {
-        write(baseRoot, enumName, "public enum " + enumName + " {\n    ACTIVE,\n    DISABLED\n}\n");
-        write(headRoot, enumName, "public enum " + enumName + " {\n    DISABLED,\n    ACTIVE\n}\n");
+        write(world.baseRoot(), enumName, "public enum " + enumName + " {\n    ACTIVE,\n    DISABLED\n}\n");
+        write(world.headRoot(), enumName, "public enum " + enumName + " {\n    DISABLED,\n    ACTIVE\n}\n");
     }
 
     @Given("a base revision where annotation {string} has no elements")
     public void base_annotation_has_no_elements(String annotation) {
-        write(baseRoot, annotation, "public @interface " + annotation + " {\n}\n");
+        write(world.baseRoot(), annotation, "public @interface " + annotation + " {\n}\n");
     }
 
     @Given("a head revision where annotation {string} has element {string} of type {string} with default {string}")
     public void head_annotation_has_element_with_default(String annotation, String element, String type, String defaultValue) {
-        write(headRoot, annotation, "public @interface " + annotation + " {\n    " + type + " " + element
+        write(world.headRoot(), annotation, "public @interface " + annotation + " {\n    " + type + " " + element
                 + "() default \"" + defaultValue + "\";\n}\n");
     }
 
     @Given("a base revision where annotation {string} has elements {string} and {string}")
     public void base_annotation_has_two_elements(String annotation, String first, String second) {
-        write(baseRoot, annotation, "public @interface " + annotation + " {\n    int " + first + "();\n    int "
+        write(world.baseRoot(), annotation, "public @interface " + annotation + " {\n    int " + first + "();\n    int "
                 + second + "();\n}\n");
     }
 
     @Given("a head revision where annotation {string} only has {string}")
     public void head_annotation_only_has_element(String annotation, String element) {
-        write(headRoot, annotation, "public @interface " + annotation + " {\n    int " + element + "();\n}\n");
+        write(world.headRoot(), annotation, "public @interface " + annotation + " {\n    int " + element + "();\n}\n");
     }
 
     @Given("a base revision where annotation {string} has element {string} with default {int}")
     public void base_annotation_element_with_default(String annotation, String element, int defaultValue) {
-        write(baseRoot, annotation, "public @interface " + annotation + " {\n    int " + element + "() default "
+        write(world.baseRoot(), annotation, "public @interface " + annotation + " {\n    int " + element + "() default "
                 + defaultValue + ";\n}\n");
     }
 
     @Given("a head revision where {string} on {string} has default {int}")
     public void head_annotation_element_default_changed(String element, String annotation, int defaultValue) {
-        write(headRoot, annotation, "public @interface " + annotation + " {\n    int " + element + "() default "
+        write(world.headRoot(), annotation, "public @interface " + annotation + " {\n    int " + element + "() default "
                 + defaultValue + ";\n}\n");
     }
 
@@ -596,37 +598,37 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a base revision where class {string} has a private field {string} of type {string}")
     public void base_class_has_private_field(String className, String fieldName, String type) {
-        write(baseRoot, className, fieldSource(className, "private", type, fieldName, ""));
+        write(world.baseRoot(), className, fieldSource(className, "private", type, fieldName, ""));
     }
 
     @Given("a head revision where {string} has a private field {string} of type {string}")
     public void head_class_has_private_field(String className, String fieldName, String type) {
-        write(headRoot, className, fieldSource(className, "private", type, fieldName, ""));
+        write(world.headRoot(), className, fieldSource(className, "private", type, fieldName, ""));
     }
 
     @Given("a base revision where class {string} has a protected field {string} of type {string}")
     public void base_class_has_protected_field(String className, String fieldName, String type) {
-        write(baseRoot, className, fieldSource(className, "protected", type, fieldName, ""));
+        write(world.baseRoot(), className, fieldSource(className, "protected", type, fieldName, ""));
     }
 
     @Given("a head revision where {string} has a protected field {string} of type {string}")
     public void head_class_has_protected_field(String className, String fieldName, String type) {
-        write(headRoot, className, fieldSource(className, "protected", type, fieldName, ""));
+        write(world.headRoot(), className, fieldSource(className, "protected", type, fieldName, ""));
     }
 
     @Given("a head revision where {string} has a field {string} of type {string} and no field {string}")
     public void head_class_has_field_and_no_other(String className, String fieldName, String type, String absentField) {
-        write(headRoot, className, fieldSource(className, "private", type, fieldName, ""));
+        write(world.headRoot(), className, fieldSource(className, "private", type, fieldName, ""));
     }
 
     @Given("a base revision where class {string} has a field {string} of type {string} annotated {string}")
     public void base_class_has_annotated_field(String className, String fieldName, String type, String annotation) {
-        write(baseRoot, className, fieldSource(className, "private", type, fieldName, annotation + " "));
+        write(world.baseRoot(), className, fieldSource(className, "private", type, fieldName, annotation + " "));
     }
 
     @Given("a head revision where {string} on {string} has type {string} and no annotation")
     public void head_field_has_type_and_no_annotation(String fieldName, String className, String type) {
-        write(headRoot, className, fieldSource(className, "private", type, fieldName, ""));
+        write(world.headRoot(), className, fieldSource(className, "private", type, fieldName, ""));
     }
 
     @Then("a field type change is detected involving {string} from {string} to {string}")
@@ -674,31 +676,31 @@ public class StructuralChangeDetectionSteps {
 
     @Given("a base revision where method {string} on class {string} takes parameter {string} with no annotation")
     public void base_method_takes_unannotated_parameter(String method, String className, String parameter) {
-        write(baseRoot, className, methodSource("class", className, "", method, "Object " + parameter));
+        write(world.baseRoot(), className, methodSource("class", className, "", method, "Object " + parameter));
     }
 
     @Given("a head revision where parameter {string} of {string} is annotated {string}")
     public void head_parameter_is_annotated(String parameter, String qualifiedMethod, String annotation) {
         String className = qualifiedMethod.substring(0, qualifiedMethod.indexOf('#'));
         String method = qualifiedMethod.substring(qualifiedMethod.indexOf('#') + 1);
-        write(headRoot, className, methodSource("class", className, "", method, annotation + " Object " + parameter));
+        write(world.headRoot(), className, methodSource("class", className, "", method, annotation + " Object " + parameter));
     }
 
     @Given("a base revision where method {string} on class {string} takes parameter {string} annotated {string}")
     public void base_method_takes_annotated_parameter(String method, String className, String parameter, String annotation) {
-        write(baseRoot, className, methodSource("class", className, "", method, annotation + " Object " + parameter));
+        write(world.baseRoot(), className, methodSource("class", className, "", method, annotation + " Object " + parameter));
     }
 
     @Given("a head revision where parameter {string} of {string} has no annotation")
     public void head_parameter_has_no_annotation(String parameter, String qualifiedMethod) {
         String className = qualifiedMethod.substring(0, qualifiedMethod.indexOf('#'));
         String method = qualifiedMethod.substring(qualifiedMethod.indexOf('#') + 1);
-        write(headRoot, className, methodSource("class", className, "", method, "Object " + parameter));
+        write(world.headRoot(), className, methodSource("class", className, "", method, "Object " + parameter));
     }
 
     @Given("a base revision where method {string} on interface {string} takes parameters {string} and {string} with no annotations")
     public void base_interface_method_takes_two_parameters(String method, String interfaceName, String first, String second) {
-        write(baseRoot, interfaceName, "public interface " + interfaceName + "<T> {\n    " + interfaceName + "<T> "
+        write(world.baseRoot(), interfaceName, "public interface " + interfaceName + "<T> {\n    " + interfaceName + "<T> "
                 + method + "(T " + first + ", T... " + second + ");\n}\n");
     }
 
@@ -706,38 +708,38 @@ public class StructuralChangeDetectionSteps {
     public void head_both_parameters_annotated(String qualifiedMethod, String annotation) {
         String interfaceName = qualifiedMethod.substring(0, qualifiedMethod.indexOf('#'));
         String method = qualifiedMethod.substring(qualifiedMethod.indexOf('#') + 1);
-        write(headRoot, interfaceName, "public interface " + interfaceName + "<T> {\n    " + interfaceName + "<T> "
+        write(world.headRoot(), interfaceName, "public interface " + interfaceName + "<T> {\n    " + interfaceName + "<T> "
                 + method + "(" + annotation + " T value, " + annotation + " T... values);\n}\n");
     }
 
     @Given("a base revision where the constructor of class {string} takes parameter {string} with no annotation")
     public void base_constructor_takes_unannotated_parameter(String className, String parameter) {
-        write(baseRoot, className, "public class " + className + " {\n    public " + className + "(Object " + parameter
+        write(world.baseRoot(), className, "public class " + className + " {\n    public " + className + "(Object " + parameter
                 + ") {\n    }\n}\n");
     }
 
     @Given("a head revision where parameter {string} of the {string} constructor is annotated {string}")
     public void head_constructor_parameter_annotated(String parameter, String className, String annotation) {
-        write(headRoot, className, "public class " + className + " {\n    public " + className + "(" + annotation
+        write(world.headRoot(), className, "public class " + className + " {\n    public " + className + "(" + annotation
                 + " Object " + parameter + ") {\n    }\n}\n");
     }
 
     @Given("a base revision where method {string} on class {string} has no annotation on its return type")
     public void base_method_without_return_annotation(String method, String className) {
-        write(baseRoot, className, methodSource("class", className, "", method, ""));
+        write(world.baseRoot(), className, methodSource("class", className, "", method, ""));
     }
 
     @Given("a head revision where {string} is annotated {string} on its return type")
     public void head_method_with_return_annotation(String qualifiedMethod, String annotation) {
         String className = qualifiedMethod.substring(0, qualifiedMethod.indexOf('#'));
         String method = qualifiedMethod.substring(qualifiedMethod.indexOf('#') + 1);
-        write(headRoot, className, methodSource("class", className, annotation + " ", method, ""));
+        write(world.headRoot(), className, methodSource("class", className, annotation + " ", method, ""));
     }
 
     @Given("a base and head revision where the only difference in method {string} on class {string} is {string} on its parameter")
     public void only_parameter_annotation_differs(String method, String className, String annotation) {
-        write(baseRoot, className, methodSource("class", className, "", method, "Object methodCall"));
-        write(headRoot, className, methodSource("class", className, "", method, annotation + " Object methodCall"));
+        write(world.baseRoot(), className, methodSource("class", className, "", method, "Object methodCall"));
+        write(world.headRoot(), className, methodSource("class", className, "", method, annotation + " Object methodCall"));
     }
 
     @Then("a parameter annotation change is detected involving {string}")
@@ -795,11 +797,117 @@ public class StructuralChangeDetectionSteps {
                 + "(" + parameters + ") {\n        return null;\n    }\n}\n";
     }
 
+    // ---- method body modifications (ticket #264) ----
+
+    @Given("a head revision where {string} on {string} returns {string} with the same signature")
+    public void head_method_returns_expression(String method, String className, String expression) {
+        write(world.headRoot(), className, "public class " + className + " {\n    public String " + method
+                + "() {\n        return " + expression + ";\n    }\n}\n");
+    }
+
+    @Given("a base revision where the constructor of class {string} assigns {string} directly")
+    public void base_constructor_assigns_directly(String className, String field) {
+        write(world.baseRoot(), className, "public class " + className + " {\n    private final long " + field + ";\n    public "
+                + className + "(long " + field + ") {\n        this." + field + " = " + field + ";\n    }\n}\n");
+    }
+
+    @Given("a head revision where the constructor of {string} validates {string} before assigning it")
+    public void head_constructor_validates(String className, String field) {
+        write(world.headRoot(), className, "public class " + className + " {\n    private final long " + field + ";\n    public "
+                + className + "(long " + field + ") {\n        this." + field + " = Math.max(0, " + field + ");\n    }\n}\n");
+    }
+
+    @Given("a base and head revision where methods {string}, {string} and {string} on class {string} each had their bodies restructured")
+    public void methods_had_bodies_restructured(String first, String second, String third, String className) {
+        StringBuilder base = new StringBuilder("public class " + className + " {\n");
+        StringBuilder head = new StringBuilder("public class " + className + " {\n");
+        for (String method : List.of(first, second, third)) {
+            base.append("    String ").append(method).append("(String in) {\n        return in.strip();\n    }\n");
+            head.append("    String ").append(method).append("(String in) {\n        String result = in.strip();\n        return result;\n    }\n");
+        }
+        write(world.baseRoot(), className, base.append("}\n").toString());
+        write(world.headRoot(), className, head.append("}\n").toString());
+    }
+
+    @Given("a base revision where method {string} on class {string} checks {string}")
+    public void base_method_checks(String method, String className, String condition) {
+        write(world.baseRoot(), className, guardSource(className, method, condition));
+    }
+
+    @Given("a head revision where {string} on {string} checks {string}")
+    public void head_method_checks(String method, String className, String condition) {
+        write(world.headRoot(), className, guardSource(className, method, condition));
+    }
+
+    @Given("a base and head revision where method {string} on class {string} differs only in whitespace")
+    public void method_differs_only_in_whitespace(String method, String className) {
+        write(world.baseRoot(), className, "public class " + className + " {\n    public String " + method
+                + "() { return \"x\"; }\n}\n");
+        write(world.headRoot(), className, "public class " + className + " {\n    public String " + method
+                + "() {\n        return \"x\";\n    }\n}\n");
+    }
+
+    @Given("a head revision where {string} on {string} takes a {string} parameter and uses it in its body")
+    public void head_method_takes_parameter_and_uses_it(String method, String className, String type) {
+        write(world.headRoot(), className, "public class " + className + " {\n    public String " + method + "(" + type
+                + " name) {\n        return \"greeting \" + name;\n    }\n}\n");
+    }
+
+    @Given("a base and head revision where method {string} on class {string} is identical")
+    public void method_is_identical(String method, String className) {
+        String source = "public class " + className + " {\n    public String " + method + "() {\n        return \"x\";\n    }\n}\n";
+        write(world.baseRoot(), className, source);
+        write(world.headRoot(), className, source);
+    }
+
+    @Then("a body modification is detected involving {string} categorised as Unknown")
+    public void a_body_modification_categorised_as_unknown(String symbol) {
+        assertThat(bodyModificationsInvolving(symbol)).isNotEmpty()
+                .allMatch(t -> ChangeCategory.of(t.kind()) == ChangeCategory.UNKNOWN);
+    }
+
+    @Then("it shows the method before and after the edit")
+    public void it_shows_the_method_before_and_after() {
+        DetectedTransformation modification = transformations.stream()
+                .filter(t -> t.kind() == TransformationKind.MODIFY_METHOD_BODY).findFirst().orElseThrow();
+        assertThat(modification.diffText().lines()).anyMatch(line -> line.startsWith("-"));
+        assertThat(modification.diffText().lines()).anyMatch(line -> line.startsWith("+"));
+    }
+
+    @Then("a body modification is detected involving the constructor of {string}")
+    public void a_body_modification_on_constructor(String className) {
+        assertThat(bodyModificationsInvolving(className + "#<init>")).isNotEmpty();
+    }
+
+    @Then("a body modification is detected involving each of {string}, {string} and {string}")
+    public void a_body_modification_on_each(String first, String second, String third) {
+        assertThat(bodyModificationsInvolving(first)).hasSize(1);
+        assertThat(bodyModificationsInvolving(second)).hasSize(1);
+        assertThat(bodyModificationsInvolving(third)).hasSize(1);
+    }
+
+    @Then("no body modification is detected involving {string}")
+    public void no_body_modification_is_detected(String symbol) {
+        assertThat(bodyModificationsInvolving(symbol)).isEmpty();
+    }
+
+    private List<DetectedTransformation> bodyModificationsInvolving(String symbol) {
+        return transformations.stream()
+                .filter(t -> t.kind() == TransformationKind.MODIFY_METHOD_BODY)
+                .filter(t -> t.involvedDescriptions().get(0).equals(symbol))
+                .toList();
+    }
+
+    private static String guardSource(String className, String method, String condition) {
+        return "public class " + className + " {\n    public boolean " + method + "(User user) {\n        if (" + condition
+                + ") {\n            return true;\n        }\n        return false;\n    }\n}\n";
+    }
+
     // ---- helpers ----
 
     private String readBase(String topLevelClassName) {
         try {
-            return Files.readString(baseRoot.resolve(topLevelClassName + ".java"));
+            return Files.readString(world.baseRoot().resolve(topLevelClassName + ".java"));
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
@@ -874,7 +982,7 @@ public class StructuralChangeDetectionSteps {
     }
 
     private long countBaseRefFiles() {
-        try (var stream = Files.list(baseRoot)) {
+        try (var stream = Files.list(world.baseRoot())) {
             return stream.filter(p -> p.getFileName().toString().startsWith("Ref")).count();
         } catch (IOException e) {
             throw new UncheckedIOException(e);
@@ -899,18 +1007,4 @@ public class StructuralChangeDetectionSteps {
         }
     }
 
-    private void deleteRecursively(Path root) throws IOException {
-        if (root == null || !Files.exists(root)) {
-            return;
-        }
-        try (var walk = Files.walk(root)) {
-            walk.sorted((a, b) -> b.compareTo(a)).forEach(p -> {
-                try {
-                    Files.deleteIfExists(p);
-                } catch (IOException e) {
-                    throw new UncheckedIOException(e);
-                }
-            });
-        }
-    }
 }

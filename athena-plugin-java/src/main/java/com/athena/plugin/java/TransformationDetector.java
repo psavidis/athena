@@ -82,6 +82,9 @@ public final class TransformationDetector {
 
         Set<MethodInfo> matchedBase = new LinkedHashSet<>();
         Set<MethodInfo> matchedHead = new LinkedHashSet<>();
+        // Same-signature methods whose body changed in a way no more specific check in step 1
+        // explained; reported in step 6b unless a mechanical replacement explains them (#264).
+        List<BodyEdit> unexplainedBodyEdits = new ArrayList<>();
 
         // Indexed by (enclosingType, name) so step 1 and step 4's caller lookups are O(1)
         // per method instead of scanning every head/base method — the dominant cost on a
@@ -123,10 +126,15 @@ public final class TransformationDetector {
                     // Body differs with the same signature. A changed condition, branch or loop
                     // is a behavioral change (tickets #18, #263); any other body edit (e.g. only a
                     // call target changed) is deliberately left unclassified here.
-                    base.controlFlow.describeChangeTo(head.controlFlow).ifPresent(controlFlowChange ->
-                            results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_CONTROL_FLOW,
-                                    List.of(base.description(), controlFlowChange), List.of(base.file, head.file),
-                                    base.rawWholeDeclaration, head.rawWholeDeclaration)));
+                    Optional<String> controlFlowChange = base.controlFlow.describeChangeTo(head.controlFlow);
+                    if (controlFlowChange.isPresent()) {
+                        results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_CONTROL_FLOW,
+                                List.of(base.description(), controlFlowChange.get()), List.of(base.file, head.file),
+                                base.rawWholeDeclaration, head.rawWholeDeclaration));
+                    } else if (!base.normalizedBody.equals(head.normalizedBody)) {
+                        unexplainedBodyEdits.add(new BodyEdit(base.description(), base.file, head.file,
+                                base.normalizedBody, head.normalizedBody, base.rawWholeDeclaration, head.rawWholeDeclaration));
+                    }
                 }
             } else {
                 results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_METHOD_SIGNATURE,
@@ -221,7 +229,15 @@ public final class TransformationDetector {
 
         // 6. Mechanical replacement: a whole-identifier textual substitution applied
         //    identically across every file that referenced the old identifier.
-        results.addAll(detectMechanicalReplacements(baseRoot, headRoot));
+        List<DetectedTransformation> mechanicalReplacements = detectMechanicalReplacements(baseRoot, headRoot);
+        results.addAll(mechanicalReplacements);
+
+        // 6b. Body modifications (ticket #264): every same-signature method or constructor whose
+        //     body changed and that nothing above explains is still reported, so an edit inside a
+        //     method is never invisible. One fully explained by the mechanical replacements (e.g. a
+        //     renamed type used in its body) is left to those, not repeated per method.
+        unexplainedBodyEdits.addAll(constructorBodyEdits(baseParsed.constructors(), headParsed.constructors()));
+        results.addAll(bodyModifications(unexplainedBodyEdits, mechanicalReplacements));
 
         // 7. Record signature change: a same-named record's component (canonical constructor)
         //    list differs between revisions. Handled separately from steps 1-5 above, which
@@ -268,6 +284,43 @@ public final class TransformationDetector {
                 excluding(headParsed.annotationElements(), AnnotationElementInfo::enclosingType, classMatch.excludedHeadTypes())));
 
         return results;
+    }
+
+    private List<BodyEdit> constructorBodyEdits(List<ConstructorInfo> baseConstructors, List<ConstructorInfo> headConstructors) {
+        List<BodyEdit> edits = new ArrayList<>();
+        for (ConstructorInfo base : baseConstructors) {
+            headConstructors.stream()
+                    .filter(head -> head.enclosingType.equals(base.enclosingType) && head.parameterTypes.equals(base.parameterTypes))
+                    .filter(head -> !head.normalizedBody.equals(base.normalizedBody))
+                    .findFirst()
+                    .ifPresent(head -> edits.add(new BodyEdit(base.enclosingType + "#<init>", base.file, head.file,
+                            base.normalizedBody, head.normalizedBody, base.rawDeclaration, head.rawDeclaration)));
+        }
+        return edits;
+    }
+
+    private List<DetectedTransformation> bodyModifications(List<BodyEdit> edits, List<DetectedTransformation> mechanicalReplacements) {
+        List<String[]> replacements = mechanicalReplacements.stream()
+                .map(r -> r.involvedDescriptions().get(0).split(" -> "))
+                .toList();
+        List<DetectedTransformation> results = new ArrayList<>();
+        for (BodyEdit edit : edits) {
+            String replaced = edit.baseBody();
+            for (String[] replacement : replacements) {
+                replaced = replaceWholeIdentifier(replaced, replacement[0], replacement[1]);
+            }
+            if (!replaced.equals(edit.headBody())) {
+                results.add(DetectedTransformation.withDiff(TransformationKind.MODIFY_METHOD_BODY,
+                        List.of(edit.description()), List.of(edit.baseFile(), edit.headFile()),
+                        edit.baseDeclaration(), edit.headDeclaration()));
+            }
+        }
+        return results;
+    }
+
+    /** A matched method's or constructor's body change, pending the mechanical-replacement check. */
+    private record BodyEdit(String description, String baseFile, String headFile, String baseBody, String headBody,
+                            String baseDeclaration, String headDeclaration) {
     }
 
     private static <T> List<T> excluding(List<T> declarations, Function<T, String> enclosingType, Set<String> excludedTypes) {
@@ -915,7 +968,8 @@ public final class TransformationDetector {
                     .filter(name -> assignsParameterToSameNamedField(bodyText, name))
                     .collect(java.util.stream.Collectors.toCollection(LinkedHashSet::new));
             collected.constructors.add(new ConstructorInfo(qualifiedName, paramTypes, paramNames,
-                    assignedFieldNames, rawDeclaration, relativePath, parameterAnnotationsOf(constructor.getParameters())));
+                    assignedFieldNames, rawDeclaration, relativePath, parameterAnnotationsOf(constructor.getParameters()),
+                    normalize(bodyText)));
         }
         if (type instanceof EnumDeclaration enumDeclaration) {
             for (EnumConstantDeclaration constant : enumDeclaration.getEntries()) {
@@ -1051,7 +1105,7 @@ public final class TransformationDetector {
      */
     private record ConstructorInfo(String enclosingType, List<String> parameterTypes, List<String> parameterNames,
                                     Set<String> assignedFieldNames, String rawDeclaration, String file,
-                                    ParameterAnnotations parameterAnnotations) {
+                                    ParameterAnnotations parameterAnnotations, String normalizedBody) {
     }
 
     /**
