@@ -711,77 +711,68 @@ public final class TransformationDetector {
     private record RecordInfo(List<String> componentTypes, String file, String headerText) {
     }
 
+    /**
+     * A whole-identifier textual substitution applied identically in every changed file that
+     * referenced the old identifier. Scoped to the change (ticket #270): candidate identifiers
+     * come only from base lines that no longer appear in head, and only files whose content
+     * differs are checked — an identical file can't contribute an occurrence, it only used to
+     * cost a full scan per candidate (every identifier of the repository × every file). A
+     * replacement cites only the files it occurs in.
+     */
     private List<DetectedTransformation> detectMechanicalReplacements(Path baseRoot, Path headRoot) {
-        List<DetectedTransformation> replacements = new ArrayList<>();
-        List<Path> baseFiles = javaFiles(baseRoot);
-
-        // Only consider files present (by relative path) in both revisions.
-        List<String> commonRelativePaths = baseFiles.stream()
-                .map(p -> baseRoot.relativize(p).toString())
-                .filter(rel -> Files.exists(headRoot.resolve(rel)))
-                .toList();
-
-        if (commonRelativePaths.isEmpty()) {
-            return replacements;
-        }
-
-        // Read every common file's text exactly once, from disk, up front — the loop below
-        // previously re-read (and, worse, re-scanned in full) every file once per candidate
-        // identifier, which on a real repo with hundreds of identifiers and files meant
-        // effectively re-reading the whole tree hundreds of times over.
         Map<String, String> baseTextByFile = new LinkedHashMap<>();
         Map<String, String> headTextByFile = new LinkedHashMap<>();
-        for (String rel : commonRelativePaths) {
-            baseTextByFile.put(rel, readFile(baseRoot.resolve(rel)));
-            headTextByFile.put(rel, readFile(headRoot.resolve(rel)));
+        for (Path baseFile : javaFiles(baseRoot)) {
+            String rel = baseRoot.relativize(baseFile).toString();
+            Path headFile = headRoot.resolve(rel);
+            if (!Files.exists(headFile)) continue;
+            String baseText = readFile(baseFile);
+            String headText = readFile(headFile);
+            if (!baseText.equals(headText)) {
+                baseTextByFile.put(rel, baseText);
+                headTextByFile.put(rel, headText);
+            }
         }
 
-        // Candidate identifiers: every simple name used in the base files.
         Set<String> candidateIdentifiers = new LinkedHashSet<>();
-        for (String baseText : baseTextByFile.values()) {
-            candidateIdentifiers.addAll(extractIdentifiers(baseText));
+        for (Map.Entry<String, String> changed : baseTextByFile.entrySet()) {
+            Set<String> headLines = new HashSet<>(headTextByFile.get(changed.getKey()).lines().toList());
+            changed.getValue().lines()
+                    .filter(line -> !headLines.contains(line))
+                    .forEach(removedLine -> candidateIdentifiers.addAll(extractIdentifiers(removedLine)));
         }
 
+        List<DetectedTransformation> replacements = new ArrayList<>();
         for (String oldIdentifier : candidateIdentifiers) {
-            int occurrences = 0;
-            String newIdentifier = null;
-            boolean consistent = true;
-
-            for (String rel : commonRelativePaths) {
-                String baseText = baseTextByFile.get(rel);
-                String headText = headTextByFile.get(rel);
-                if (!containsWholeIdentifier(baseText, oldIdentifier)) {
-                    continue;
-                }
-                String substituted = replaceWholeIdentifier(baseText, oldIdentifier,
-                        newIdentifier == null ? "___PLACEHOLDER___" : newIdentifier);
-
-                if (newIdentifier == null) {
-                    // Infer the replacement from the actual head text by diffing token-for-token
-                    // against the substitution attempt using a placeholder-based structural check.
-                    String inferred = inferReplacement(baseText, headText, oldIdentifier);
-                    if (inferred == null) {
-                        consistent = false;
-                        break;
-                    }
-                    newIdentifier = inferred;
-                    substituted = replaceWholeIdentifier(baseText, oldIdentifier, newIdentifier);
-                }
-
-                if (!substituted.equals(headText)) {
-                    consistent = false;
-                    break;
-                }
-                occurrences++;
-            }
-
-            if (consistent && occurrences > 0 && newIdentifier != null && !newIdentifier.equals(oldIdentifier)) {
-                replacements.add(DetectedTransformation.withOccurrences(TransformationKind.MECHANICAL_REPLACEMENT,
-                        List.of(oldIdentifier + " -> " + newIdentifier), commonRelativePaths, occurrences));
-            }
+            replacementOf(oldIdentifier, baseTextByFile, headTextByFile).ifPresent(replacements::add);
         }
-
         return replacements;
+    }
+
+    /** {@code oldIdentifier}'s replacement, if every changed file referencing it replaced it with the same identifier. */
+    private Optional<DetectedTransformation> replacementOf(String oldIdentifier, Map<String, String> baseTextByFile,
+                                                           Map<String, String> headTextByFile) {
+        String newIdentifier = null;
+        List<String> occurrenceFiles = new ArrayList<>();
+        for (Map.Entry<String, String> changed : baseTextByFile.entrySet()) {
+            String baseText = changed.getValue();
+            String headText = headTextByFile.get(changed.getKey());
+            if (!containsWholeIdentifier(baseText, oldIdentifier)) continue;
+            if (newIdentifier == null) {
+                // Infer the replacement from the actual head text at the first occurrence.
+                newIdentifier = inferReplacement(baseText, headText, oldIdentifier);
+                if (newIdentifier == null) return Optional.empty();
+            }
+            if (!replaceWholeIdentifier(baseText, oldIdentifier, newIdentifier).equals(headText)) {
+                return Optional.empty();
+            }
+            occurrenceFiles.add(changed.getKey());
+        }
+        if (occurrenceFiles.isEmpty() || newIdentifier.equals(oldIdentifier)) {
+            return Optional.empty();
+        }
+        return Optional.of(DetectedTransformation.withOccurrences(TransformationKind.MECHANICAL_REPLACEMENT,
+                List.of(oldIdentifier + " -> " + newIdentifier), occurrenceFiles, occurrenceFiles.size()));
     }
 
     private String inferReplacement(String baseText, String headText, String oldIdentifier) {
