@@ -29,3 +29,36 @@ Feature: Review Briefing focus areas
     Given a PR with 2 detected Changes
     When Athena generates the Review Briefing's focus areas
     Then every focus area references a semantic entity
+
+  # Ticket #286: focus areas point at the production changes that matter most.
+
+  Scenario: Production changes are chosen over test changes
+    Given a PR with 4 added production methods and 3 added test methods
+    When Athena generates the Review Briefing's focus areas
+    Then no focus area is a test change
+
+  Scenario: Test changes fill the focus areas only when there are few production changes
+    Given a PR with 1 added production method and 3 added test methods
+    When Athena generates the Review Briefing's focus areas
+    Then the first focus area is the production change
+    And the generated focus areas number 4
+
+  Scenario: A behavioral change ranks above everything else
+    Given a PR where one method's control flow changed and several classes were added
+    When Athena generates the Review Briefing's focus areas
+    Then the first focus area is the control-flow change
+
+  Scenario: A relocation ranks above additions
+    Given a PR where a method moved to another class and several classes were added
+    When Athena generates the Review Briefing's focus areas
+    Then the move is among the focus areas
+
+  Scenario: A public API change ranks above additions
+    Given a PR where a method's signature changed and several classes were added
+    When Athena generates the Review Briefing's focus areas
+    Then the signature change is among the focus areas
+
+  Scenario: Equally ranked changes keep the order they were detected in, not alphabetical order
+    Given a PR where classes "Zulu", "Mike" and "Alpha" were added, in that detection order
+    When Athena generates the Review Briefing's focus areas
+    Then the focus areas follow the detection order of those classes

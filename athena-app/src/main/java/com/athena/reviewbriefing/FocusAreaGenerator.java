@@ -10,24 +10,27 @@ import java.util.stream.IntStream;
 
 /**
  * Generates {@link ReviewBriefing#focusAreas()}: the 2-4 parts of a PR's
- * Changes that most deserve a reviewer's attention (ticket #220). A new,
- * project-specific ranking heuristic this ticket defines — not an
- * existing Athena capability — kept deliberately conservative and
- * deterministic, reusing only existing {@link SemanticProfile} data
- * rather than adding new classification capability:
+ * Changes that most deserve a reviewer's attention (tickets #220, #286). A
+ * deliberately conservative, deterministic ranking over existing {@link
+ * Change}/{@link SemanticProfile} data:
  *
  * <ol>
- *   <li>Score each Change: +2 per classification under {@link
+ *   <li>Production Changes before {@linkplain Change#isTestCode() test-code}
+ *       Changes — a test only becomes a focus area when there are too few
+ *       production Changes to fill the list.</li>
+ *   <li>Then by kind precedence: BEHAVIORAL Changes, then relocations
+ *       (move/rename), then public API changes (signatures, constructor
+ *       parameters, annotation elements, enum constants, contract annotations),
+ *       then everything else.</li>
+ *   <li>Then by profile score: +2 per classification under {@link
  *       SemanticDimension#RESPONSIBILITY} or {@link
- *       SemanticDimension#ARCHITECTURE} (the ticket's own named examples
- *       of "significant" dimensions), +1 per classification under any
- *       other dimension, +1 more if the Change recurs ({@link
- *       Change#occurrenceCount()} &gt; 1) — a repeated change suggests
- *       wider impact than a one-off.</li>
- *   <li>Sort descending by score; ties broken by occurrence count
- *       descending, then by title, for a deterministic order.</li>
- *   <li>Take the top {@value #MAX_FOCUS_AREAS} — fewer if there are
- *       fewer Changes; never padded to a minimum.</li>
+ *       SemanticDimension#ARCHITECTURE}, +1 per classification under any
+ *       other dimension, +1 more if the Change recurs.</li>
+ *   <li>Ties broken by occurrence count descending, then by detection order —
+ *       never alphabetically, which put "Add …" titles first regardless of
+ *       what they were.</li>
+ *   <li>Take the top {@value #MAX_FOCUS_AREAS} — fewer if there are fewer
+ *       Changes; never padded to a minimum.</li>
  * </ol>
  *
  * <p>Each resulting {@link BriefingItem} references its Change's {@link
@@ -40,13 +43,33 @@ public class FocusAreaGenerator {
     /** The ranked focus-area {@link BriefingItem}s for {@code changes}/{@code profiles}, most significant first. */
     public List<BriefingItem> generate(List<Change> changes, List<SemanticProfile> profiles) {
         return IntStream.range(0, changes.size())
-                .mapToObj(i -> new ScoredChange(changes.get(i), score(profiles.get(i))))
-                .sorted(Comparator.comparingInt(ScoredChange::score).reversed()
+                .mapToObj(i -> new ScoredChange(changes.get(i), score(profiles.get(i)), i))
+                .sorted(Comparator.comparing((ScoredChange sc) -> sc.change().isTestCode())
+                        .thenComparingInt(sc -> precedence(sc.change()))
+                        .thenComparing(Comparator.comparingInt(ScoredChange::score).reversed())
                         .thenComparing(sc -> sc.change().occurrenceCount(), Comparator.reverseOrder())
-                        .thenComparing(sc -> sc.change().title()))
+                        .thenComparingInt(ScoredChange::detectionIndex))
                 .limit(MAX_FOCUS_AREAS)
                 .map(ScoredChange::toBriefingItem)
                 .toList();
+    }
+
+    /**
+     * Lower ranks first: behavioral, relocation, public API, everything else. {@code
+     * CHANGE_FIELD_TYPE} stays in the last tier: a field's visibility isn't known here, and a
+     * private field's type is not API.
+     */
+    private static int precedence(Change change) {
+        return switch (change.kind()) {
+            case CHANGE_CONTROL_FLOW -> 0;
+            case MOVE_CLASS, MOVE_SYMBOL, MOVE_FIELD, RENAME_CLASS, RENAME_SYMBOL, RENAME_FIELD -> 1;
+            case CHANGE_METHOD_SIGNATURE, ADD_CONSTRUCTOR_PARAMETER, ADD_ANNOTATION_ELEMENT, REMOVE_ANNOTATION_ELEMENT,
+                 CHANGE_ANNOTATION_ELEMENT_DEFAULT, ADD_ENUM_CONSTANT, REMOVE_ENUM_CONSTANT,
+                 CHANGE_PARAMETER_ANNOTATIONS, CHANGE_METHOD_ANNOTATIONS -> 2;
+            case ADD_SYMBOL, REMOVE_SYMBOL, ADD_CLASS, REMOVE_CLASS, ADD_FIELD, REMOVE_FIELD, EXTRACT_METHOD,
+                 MECHANICAL_REPLACEMENT, FORMATTING_ONLY, CHANGE_FIELD_ANNOTATIONS, CHANGE_FIELD_TYPE,
+                 MODIFY_METHOD_BODY -> 3;
+        };
     }
 
     private int score(SemanticProfile profile) {
@@ -62,7 +85,7 @@ public class FocusAreaGenerator {
         return score;
     }
 
-    private record ScoredChange(Change change, int score) {
+    private record ScoredChange(Change change, int score, int detectionIndex) {
         BriefingItem toBriefingItem() {
             return BriefingItem.of(change.title(), change.enclosingType());
         }
