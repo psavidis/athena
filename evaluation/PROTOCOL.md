@@ -74,6 +74,8 @@ later one.
      `/api/review/semantic-profile`.
    - `module-profiles.json`: the Explorer for each module.
    - `topology.json`: the Semantic Canvas territory map, as `/api/review/topology`.
+   - `unrepresented-files.json`: the changed files no Change represents, and why, as
+     `/api/review/unrepresented-files` (available from Athena versions with #260).
    - `focus-areas.json`: the deterministic part of the Review Briefing.
    - `changes.json`: each Change's detail (kind, files, symbols).
    - `run.json`: timings and counts.

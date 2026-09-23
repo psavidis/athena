@@ -34,16 +34,33 @@ public final class AnalysisResult {
     private final List<SymbolAwareDiffEntry> symbolAwareDiffEntries;
     private final Map<String, String> rawDiffsByFile;
     private final List<ExternalFinding> externalFindings;
+    private final RepresentationCoverage representationCoverage;
 
     AnalysisResult(AnalysisStatus status, List<Change> changes, List<SemanticProfile> semanticProfiles,
                    List<SymbolAwareDiffEntry> symbolAwareDiffEntries, Map<String, String> rawDiffsByFile,
                    List<ExternalFinding> externalFindings) {
+        this(status, changes, semanticProfiles, symbolAwareDiffEntries, rawDiffsByFile, externalFindings,
+                RepresentationCoverage.empty());
+    }
+
+    AnalysisResult(AnalysisStatus status, List<Change> changes, List<SemanticProfile> semanticProfiles,
+                   List<SymbolAwareDiffEntry> symbolAwareDiffEntries, Map<String, String> rawDiffsByFile,
+                   List<ExternalFinding> externalFindings, RepresentationCoverage representationCoverage) {
+        this.representationCoverage = representationCoverage;
         this.status = status;
         this.changes = List.copyOf(changes);
         this.semanticProfiles = List.copyOf(semanticProfiles);
         this.symbolAwareDiffEntries = List.copyOf(symbolAwareDiffEntries);
         this.rawDiffsByFile = Collections.unmodifiableMap(new LinkedHashMap<>(rawDiffsByFile));
         this.externalFindings = List.copyOf(externalFindings);
+    }
+
+    /**
+     * Every changed file of the revision pair — any file type — and which of them no Change
+     * represents, and why (ticket #260).
+     */
+    public RepresentationCoverage representationCoverage() {
+        return representationCoverage;
     }
 
     public AnalysisStatus status() {
