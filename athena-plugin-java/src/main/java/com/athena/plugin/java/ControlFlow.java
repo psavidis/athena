@@ -42,7 +42,8 @@ final class ControlFlow {
         return method.getBody().map(ControlFlow::of).orElse(NONE);
     }
 
-    private static ControlFlow of(Node body) {
+    /** The control flow of an initializer block ({@code static { ... }}) or any other statement block. */
+    static ControlFlow of(Node body) {
         List<IfStmt> ifs = body.findAll(IfStmt.class);
         List<String> branchConditions = ifs.stream().map(ifStmt -> ifStmt.getCondition().toString()).toList();
         List<String> loopConditions = new ArrayList<>();

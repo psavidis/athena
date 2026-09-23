@@ -92,6 +92,20 @@ class BodyModificationDetectionTest {
     }
 
     @Test
+    void anEditInsideAStaticInitializerIsReportedOnTheInitializer() throws IOException {
+        write(baseRoot, "Reader", "public class Reader {\n    static {\n        Access.INSTANCE = new Access() {\n"
+                + "            public void promote(Reader r) { r.peek(); }\n        };\n    }\n}\n");
+        write(headRoot, "Reader", "public class Reader {\n    static {\n        Access.INSTANCE = new Access() {\n"
+                + "            public void promote(Reader r) { r.peek(); r.flush(); }\n        };\n    }\n}\n");
+
+        assertThat(detect()).singleElement().satisfies(change -> {
+            assertThat(change.kind()).isEqualTo(TransformationKind.MODIFY_METHOD_BODY);
+            assertThat(change.involvedDescriptions()).containsExactly("Reader#<clinit>");
+            assertThat(change.diffText()).contains("r.flush()");
+        });
+    }
+
+    @Test
     void anUnchangedMethodIsNotReported() throws IOException {
         String source = "public class Printer {\n    String format(String name) { return name; }\n}\n";
         write(baseRoot, "Printer", source);

@@ -11,6 +11,7 @@ import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.EnumConstantDeclaration;
 import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
+import com.github.javaparser.ast.body.InitializerDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.RecordDeclaration;
@@ -953,6 +954,22 @@ public final class TransformationDetector {
                         annotationNames, visibilityOf(field), rawDeclaration, relativePath));
                 memberSignatures.add("field:" + variable.getNameAsString() + ":" + typeAsString);
             }
+        }
+        // Initializer blocks are pseudo-members (#264): an edit inside `static { ... }` — e.g.
+        // to an anonymous class registered there — would otherwise be invisible. They take the
+        // JVM's names so each is matched to its counterpart like a method of the same name.
+        for (InitializerDeclaration initializer : type.getMembers().stream()
+                .filter(InitializerDeclaration.class::isInstance).map(InitializerDeclaration.class::cast).toList()) {
+            String name = initializer.isStatic() ? "<clinit>" : "<instance-init>";
+            String rawDeclaration = initializer.getRange()
+                    .map(range -> sourceSlice(sourceLines, range))
+                    .orElse(initializer.toString());
+            String bodyText = initializer.getBody().getRange()
+                    .map(range -> sourceSlice(sourceLines, range))
+                    .orElse(initializer.getBody().toString());
+            collected.methods.add(new MethodInfo(qualifiedName, name, List.of(), "void",
+                    rawDeclaration, normalize(rawDeclaration), normalize(bodyText), relativePath,
+                    new ParameterAnnotations(List.of(), List.of()), Set.of(), ControlFlow.of(initializer.getBody())));
         }
         for (ConstructorDeclaration constructor : type.getConstructors()) {
             String rawDeclaration = constructor.getRange()
