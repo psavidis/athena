@@ -1,0 +1,13 @@
+[ {
+  "entity" : "RejectMayActClaimExecutor",
+  "description" : "Add class RejectMayActClaimExecutor"
+}, {
+  "entity" : "RejectMayActClaimExecutor.Configuration",
+  "description" : "Add class RejectMayActClaimExecutor.Configuration"
+}, {
+  "entity" : "RejectMayActClaimExecutorFactory",
+  "description" : "Add class RejectMayActClaimExecutorFactory"
+}, {
+  "entity" : "RejectMayActClaimExecutor.Configuration",
+  "description" : "Add field RejectMayActClaimExecutor.Configuration#avoidConsentCheck"
+} ]

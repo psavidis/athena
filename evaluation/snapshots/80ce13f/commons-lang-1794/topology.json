@@ -1,0 +1,12 @@
+{
+  "territories" : [ {
+    "moduleName" : "src",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 2 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpGcmFjdGlvbiNnZXRSZWR1Y2VkRnJhY3Rpb24KYnJhbmNoIHJlbW92ZWQsIGxvb3AgYWRkZWQ", "QUREX1NZTUJPTApGcmFjdGlvblRlc3QjdGVzdFJlZHVjZWRGYWN0b3J5SW50ZWdlck1pblZhbHVl" ]
+  } ],
+  "dependencies" : [ ]
+}

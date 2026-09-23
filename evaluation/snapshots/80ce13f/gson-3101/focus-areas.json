@@ -1,0 +1,13 @@
+[ {
+  "entity" : "JsonReader",
+  "description" : "Change control flow of JsonReader#<clinit>: branch removed"
+}, {
+  "entity" : "JsonReader",
+  "description" : "Change control flow of JsonReader#doPeek: branch removed"
+}, {
+  "entity" : "JsonReader",
+  "description" : "Change control flow of JsonReader#nextBoolean: branch removed"
+}, {
+  "entity" : "JsonReader",
+  "description" : "Change control flow of JsonReader#nextDouble: branch removed"
+} ]

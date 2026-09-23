@@ -1,0 +1,47 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Control Flow",
+    "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " private void markAsRemoved(Node<K, V> node) {\n \t\tfor (; ; ) {\n \t\t\tCacheEntry<V> current = node.get();\n+\t\t\tif (current.state == CacheEntryState.REMOVED) {\n+\t\t\t\treturn;\n+\t\t\t}\n \t\t\tCacheEntry<V> removed = new CacheEntry<>(current.value, CacheEntryState.REMOVED);\n \t\t\tif (node.compareAndSet(current, removed)) {\n \t\t\t\tthis.currentSize.lazySet(this.currentSize.get() - 1);\n \t\t\t\treturn;\n \t\t\t}\n \t\t}\n \t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+@Test\n+\tvoid removeRacingWithEvictionDoesNotExceedCapacity() throws Exception {\n+\t\tConcurrentLruCache<Integer, String> cache = new ConcurrentLruCache<>(2, key -> \"value\" + key);\n+\t\tAtomicBoolean stop = new AtomicBoolean();\n+\t\tAtomicInteger removals = new AtomicInteger();\n+\t\tAtomicReference<Throwable> failure = new AtomicReference<>();\n+\t\tThread remover = new Thread(() -> {\n+\t\t\ttry {\n+\t\t\t\twhile (!stop.get()) {\n+\t\t\t\t\tcache.get(0);\n+\t\t\t\t\tif (cache.remove(0)) {\n+\t\t\t\t\t\tremovals.incrementAndGet();\n+\t\t\t\t\t}\n+\t\t\t\t}\n+\t\t\t}\n+\t\t\tcatch (Throwable ex) {\n+\t\t\t\tfailure.set(ex);\n+\t\t\t}\n+\t\t});\n+\t\tremover.start();\n+\t\ttry {\n+\t\t\tfor (int i = 1; i <= 50_000; i++) {\n+\t\t\t\tcache.get(i);\n+\t\t\t}\n+\t\t}\n+\t\tfinally {\n+\t\t\tstop.set(true);\n+\t\t\tremover.join(5000);\n+\t\t}\n+\t\tint budget = 50_000;\n+\t\tint key = 100_000;\n+\t\twhile (cache.size() > cache.capacity() && budget-- > 0) {\n+\t\t\tcache.get(key++);\n+\t\t}\n \n+\t\tassertThat(remover.isAlive()).isFalse();\n+\t\tassertThat(failure.get()).isNull();\n+\t\tassertThat(removals.get()).isGreaterThan(0);\n+\t\tassertThat(cache.size()).isLessThanOrEqualTo(cache.capacity());\n+\t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "spring-core/src/test/java/org/springframework/util/ConcurrentLruCacheTests.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Modify Capability",
+    "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ " private void markAsRemoved(Node<K, V> node) {\n \t\tfor (; ; ) {\n \t\t\tCacheEntry<V> current = node.get();\n+\t\t\tif (current.state == CacheEntryState.REMOVED) {\n+\t\t\t\treturn;\n+\t\t\t}\n \t\t\tCacheEntry<V> removed = new CacheEntry<>(current.value, CacheEntryState.REMOVED);\n \t\t\tif (node.compareAndSet(current, removed)) {\n \t\t\t\tthis.currentSize.lazySet(this.currentSize.get() - 1);\n \t\t\t\treturn;\n \t\t\t}\n \t\t}\n \t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Add Capability",
+    "conceptDescription" : "A new business-meaningful capability was introduced.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "+@Test\n+\tvoid removeRacingWithEvictionDoesNotExceedCapacity() throws Exception {\n+\t\tConcurrentLruCache<Integer, String> cache = new ConcurrentLruCache<>(2, key -> \"value\" + key);\n+\t\tAtomicBoolean stop = new AtomicBoolean();\n+\t\tAtomicInteger removals = new AtomicInteger();\n+\t\tAtomicReference<Throwable> failure = new AtomicReference<>();\n+\t\tThread remover = new Thread(() -> {\n+\t\t\ttry {\n+\t\t\t\twhile (!stop.get()) {\n+\t\t\t\t\tcache.get(0);\n+\t\t\t\t\tif (cache.remove(0)) {\n+\t\t\t\t\t\tremovals.incrementAndGet();\n+\t\t\t\t\t}\n+\t\t\t\t}\n+\t\t\t}\n+\t\t\tcatch (Throwable ex) {\n+\t\t\t\tfailure.set(ex);\n+\t\t\t}\n+\t\t});\n+\t\tremover.start();\n+\t\ttry {\n+\t\t\tfor (int i = 1; i <= 50_000; i++) {\n+\t\t\t\tcache.get(i);\n+\t\t\t}\n+\t\t}\n+\t\tfinally {\n+\t\t\tstop.set(true);\n+\t\t\tremover.join(5000);\n+\t\t}\n+\t\tint budget = 50_000;\n+\t\tint key = 100_000;\n+\t\twhile (cache.size() > cache.capacity() && budget-- > 0) {\n+\t\t\tcache.get(key++);\n+\t\t}\n \n+\t\tassertThat(remover.isAlive()).isFalse();\n+\t\tassertThat(failure.get()).isNull();\n+\t\tassertThat(removals.get()).isGreaterThan(0);\n+\t\tassertThat(cache.size()).isLessThanOrEqualTo(cache.capacity());\n+\t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "spring-core/src/test/java/org/springframework/util/ConcurrentLruCacheTests.java" ],
+    "groupedMoveCount" : 0
+  } ]
+}

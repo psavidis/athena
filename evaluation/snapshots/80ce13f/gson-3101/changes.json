@@ -1,0 +1,82 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI2RvUGVlawpicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#doPeek: branch removed",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#doPeek", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI3BlZWtLZXl3b3JkCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#peekKeyword: branch removed",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#peekKeyword", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHROYW1lCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#nextName: branch removed",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#nextName", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRTdHJpbmcKYnJhbmNoIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#nextString: branch removed",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#nextString", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRCb29sZWFuCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#nextBoolean: branch removed",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#nextBoolean", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHREb3VibGUKYnJhbmNoIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#nextDouble: branch removed",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#nextDouble", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRMb25nCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#nextLong: branch removed",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#nextLong", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyIzxjbGluaXQ-CmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#<clinit>: branch removed",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#<clinit>", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyVGVzdCNhc3NlcnREb2N1bWVudApicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReaderTest#assertDocument: branch removed",
+  "files" : [ "gson/src/test/java/com/google/gson/stream/JsonReaderTest.java" ],
+  "symbols" : [ "JsonReaderTest#assertDocument", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0
+} ]
