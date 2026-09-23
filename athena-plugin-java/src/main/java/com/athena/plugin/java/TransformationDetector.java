@@ -94,7 +94,7 @@ public final class TransformationDetector {
         // 1. Exact match: same enclosing type + same name -> unchanged, changed signature,
         //    formatting-only, or "no structural transformation" (e.g. only a call target changed).
         for (MethodInfo base : baseMethods) {
-            MethodInfo head = firstUnmatched(headByKey.get(new MethodKey(base.enclosingType, base.name)), matchedHead);
+            MethodInfo head = firstUnmatched(headByKey.get(new MethodKey(base.file, base.enclosingType, base.name)), matchedHead);
             if (head == null) continue;
 
             matchedBase.add(base);
@@ -157,7 +157,7 @@ public final class TransformationDetector {
             MethodInfo moveMatch = null;
             for (MethodInfo head : candidates) {
                 if (!stillUnmatchedHead.contains(head)) continue;
-                if (base.enclosingType.equals(head.enclosingType) && !base.name.equals(head.name)) {
+                if (base.file.equals(head.file) && base.enclosingType.equals(head.enclosingType) && !base.name.equals(head.name)) {
                     renameMatch = head;
                     break;
                 }
@@ -189,7 +189,7 @@ public final class TransformationDetector {
                 if (callerHead.name.equals(head.name)) continue;
                 if (callsMethod(callerHead.normalizedBody, head.name) && baseHasInlineEquivalent(baseByKey, callerHead, head)) {
                     MethodInfo callerBase = firstUnmatched(
-                            baseByKey.get(new MethodKey(callerHead.enclosingType, callerHead.name)), Set.of());
+                            baseByKey.get(new MethodKey(callerHead.file, callerHead.enclosingType, callerHead.name)), Set.of());
                     // Two methods' before/after concatenated with a blank-line separator, rather
                     // than combining two already-computed diffs: UnifiedDiff.of is a line-based
                     // LCS, so this still produces a correct combined diff, and keeps the actual
@@ -276,17 +276,17 @@ public final class TransformationDetector {
 
     private List<DetectedTransformation> detectEnumConstantChanges(List<EnumConstantInfo> baseConstants,
                                                                     List<EnumConstantInfo> headConstants) {
-        Set<String> baseNames = baseConstants.stream().map(EnumConstantInfo::description).collect(Collectors.toSet());
-        Set<String> headNames = headConstants.stream().map(EnumConstantInfo::description).collect(Collectors.toSet());
+        Set<String> baseNames = baseConstants.stream().map(EnumConstantInfo::key).collect(Collectors.toSet());
+        Set<String> headNames = headConstants.stream().map(EnumConstantInfo::key).collect(Collectors.toSet());
         List<DetectedTransformation> results = new ArrayList<>();
         for (EnumConstantInfo base : baseConstants) {
-            if (!headNames.contains(base.description())) {
+            if (!headNames.contains(base.key())) {
                 results.add(DetectedTransformation.withDiff(TransformationKind.REMOVE_ENUM_CONSTANT,
                         List.of(base.description()), List.of(base.file()), base.rawDeclaration(), ""));
             }
         }
         for (EnumConstantInfo head : headConstants) {
-            if (!baseNames.contains(head.description())) {
+            if (!baseNames.contains(head.key())) {
                 results.add(DetectedTransformation.withDiff(TransformationKind.ADD_ENUM_CONSTANT,
                         List.of(head.description()), List.of(head.file()), "", head.rawDeclaration()));
             }
@@ -297,12 +297,12 @@ public final class TransformationDetector {
     private List<DetectedTransformation> detectAnnotationElementChanges(List<AnnotationElementInfo> baseElements,
                                                                          List<AnnotationElementInfo> headElements) {
         Map<String, AnnotationElementInfo> headByDescription = new LinkedHashMap<>();
-        headElements.forEach(head -> headByDescription.put(head.description(), head));
-        Set<String> baseDescriptions = baseElements.stream().map(AnnotationElementInfo::description).collect(Collectors.toSet());
+        headElements.forEach(head -> headByDescription.put(head.key(), head));
+        Set<String> baseDescriptions = baseElements.stream().map(AnnotationElementInfo::key).collect(Collectors.toSet());
 
         List<DetectedTransformation> results = new ArrayList<>();
         for (AnnotationElementInfo base : baseElements) {
-            AnnotationElementInfo head = headByDescription.get(base.description());
+            AnnotationElementInfo head = headByDescription.get(base.key());
             if (head == null) {
                 results.add(DetectedTransformation.withDiff(TransformationKind.REMOVE_ANNOTATION_ELEMENT,
                         List.of(base.description()), List.of(base.file()), base.rawDeclaration(), ""));
@@ -313,7 +313,7 @@ public final class TransformationDetector {
             }
         }
         for (AnnotationElementInfo head : headElements) {
-            if (!baseDescriptions.contains(head.description())) {
+            if (!baseDescriptions.contains(head.key())) {
                 results.add(DetectedTransformation.withDiff(TransformationKind.ADD_ANNOTATION_ELEMENT,
                         List.of(head.description()), List.of(head.file()), "", head.rawDeclaration()));
             }
@@ -327,7 +327,8 @@ public final class TransformationDetector {
         List<DetectedTransformation> results = new ArrayList<>();
         for (ConstructorInfo base : baseConstructors) {
             headConstructors.stream()
-                    .filter(head -> head.enclosingType.equals(base.enclosingType) && head.parameterTypes.equals(base.parameterTypes))
+                    .filter(head -> head.file.equals(base.file) && head.enclosingType.equals(base.enclosingType)
+                            && head.parameterTypes.equals(base.parameterTypes))
                     .findFirst()
                     .flatMap(head -> base.parameterAnnotations.describeChangesTo(head.parameterAnnotations)
                             .map(changes -> DetectedTransformation.withDiff(TransformationKind.CHANGE_PARAMETER_ANNOTATIONS,
@@ -349,14 +350,14 @@ public final class TransformationDetector {
         Map<String, Set<String>> baseParameterNamesByEnclosingType = new LinkedHashMap<>();
         Map<String, ConstructorInfo> representativeBaseByEnclosingType = new LinkedHashMap<>();
         for (ConstructorInfo c : baseConstructors) {
-            baseParameterNamesByEnclosingType.computeIfAbsent(c.enclosingType, k -> new HashSet<>())
+            baseParameterNamesByEnclosingType.computeIfAbsent(c.file + "|" + c.enclosingType, k -> new HashSet<>())
                     .addAll(c.parameterNames);
-            representativeBaseByEnclosingType.putIfAbsent(c.enclosingType, c);
+            representativeBaseByEnclosingType.putIfAbsent(c.file + "|" + c.enclosingType, c);
         }
 
         for (ConstructorInfo head : headConstructors) {
-            Set<String> baseParameterNames = baseParameterNamesByEnclosingType.getOrDefault(head.enclosingType, Set.of());
-            ConstructorInfo representativeBase = representativeBaseByEnclosingType.get(head.enclosingType);
+            Set<String> baseParameterNames = baseParameterNamesByEnclosingType.getOrDefault(head.file + "|" + head.enclosingType, Set.of());
+            ConstructorInfo representativeBase = representativeBaseByEnclosingType.get(head.file + "|" + head.enclosingType);
             for (String parameterName : head.parameterNames) {
                 if (!baseParameterNames.contains(parameterName) && head.assignedFieldNames.contains(parameterName)) {
                     // Description format deliberately matches FieldInfo#description()'s
@@ -379,7 +380,7 @@ public final class TransformationDetector {
 
         Map<FieldKey, List<FieldInfo>> headByKey = new LinkedHashMap<>();
         for (FieldInfo f : headFields) {
-            headByKey.computeIfAbsent(new FieldKey(f.enclosingType, f.name), k -> new ArrayList<>()).add(f);
+            headByKey.computeIfAbsent(new FieldKey(f.file, f.enclosingType, f.name), k -> new ArrayList<>()).add(f);
         }
 
         // 1. Exact match: same enclosing type + same name + same declared type — this is
@@ -387,7 +388,7 @@ public final class TransformationDetector {
         // happens to reuse the name (a same-name field whose type changed is handled by step
         // 1b below as a field type change).
         for (FieldInfo base : baseFields) {
-            List<FieldInfo> candidates = headByKey.get(new FieldKey(base.enclosingType, base.name));
+            List<FieldInfo> candidates = headByKey.get(new FieldKey(base.file, base.enclosingType, base.name));
             FieldInfo head = candidates == null ? null : candidates.stream()
                     .filter(h -> !matchedHead.contains(h) && h.type.equals(base.type)).findFirst().orElse(null);
             if (head == null) continue;
@@ -412,7 +413,7 @@ public final class TransformationDetector {
         // subclasses and callers, which is exactly what a reviewer needs to see here.
         for (FieldInfo base : baseFields) {
             if (matchedBase.contains(base)) continue;
-            List<FieldInfo> candidates = headByKey.get(new FieldKey(base.enclosingType, base.name));
+            List<FieldInfo> candidates = headByKey.get(new FieldKey(base.file, base.enclosingType, base.name));
             FieldInfo head = candidates == null ? null : candidates.stream()
                     .filter(h -> !matchedHead.contains(h)).findFirst().orElse(null);
             if (head == null) continue;
@@ -452,7 +453,7 @@ public final class TransformationDetector {
             FieldInfo moveMatch = null;
             for (FieldInfo head : candidates) {
                 if (!stillUnmatchedHead.contains(head)) continue;
-                if (base.enclosingType.equals(head.enclosingType) && !base.name.equals(head.name)) {
+                if (base.file.equals(head.file) && base.enclosingType.equals(head.enclosingType) && !base.name.equals(head.name)) {
                     renameMatch = head;
                     break;
                 }
@@ -489,13 +490,14 @@ public final class TransformationDetector {
         return results;
     }
 
-    private record FieldKey(String enclosingType, String name) {
+    /** Same file, enclosing type and name — see {@link MethodKey} for why the file is part of it. */
+    private record FieldKey(String file, String enclosingType, String name) {
     }
 
     private Map<MethodKey, List<MethodInfo>> indexByKey(List<MethodInfo> methods) {
         Map<MethodKey, List<MethodInfo>> index = new LinkedHashMap<>();
         for (MethodInfo m : methods) {
-            index.computeIfAbsent(new MethodKey(m.enclosingType, m.name), k -> new ArrayList<>()).add(m);
+            index.computeIfAbsent(new MethodKey(m.file, m.enclosingType, m.name), k -> new ArrayList<>()).add(m);
         }
         return index;
     }
@@ -519,7 +521,13 @@ public final class TransformationDetector {
         return null;
     }
 
-    private record MethodKey(String enclosingType, String name) {
+    /**
+     * "The same method in both revisions": same file, enclosing type and name. The file is
+     * part of the key because unrelated types in different packages can share a simple name
+     * (spring-framework has several {@code Person}s) — without it they were paired across
+     * files and reported as changes in files the PR never touched.
+     */
+    private record MethodKey(String file, String enclosingType, String name) {
     }
 
     private record FileAndName(String file, String simpleName) {
@@ -794,7 +802,7 @@ public final class TransformationDetector {
         // The base version of the calling method (same enclosing type + name) must exist
         // and its body, once the extracted fragment's statements are considered, should
         // contain the same normalized statements the extracted method now holds.
-        List<MethodInfo> candidates = baseByKey.get(new MethodKey(callerHead.enclosingType, callerHead.name));
+        List<MethodInfo> candidates = baseByKey.get(new MethodKey(callerHead.file, callerHead.enclosingType, callerHead.name));
         if (candidates == null) return false;
         return candidates.stream()
                 .anyMatch(baseMethod -> containsNormalizedFragment(baseMethod.normalizedBody, extractedHead.normalizedBody));
@@ -1014,6 +1022,11 @@ public final class TransformationDetector {
         String description() {
             return enclosingType + "#" + name;
         }
+
+        /** Identity across revisions: file + description (see {@link MethodKey}). */
+        String key() {
+            return file + "|" + description();
+        }
     }
 
     /** An annotation-type element ({@code String mockMaker() default "";}); {@code defaultValue} is its source text. */
@@ -1021,6 +1034,11 @@ public final class TransformationDetector {
                                           String rawDeclaration, String file) {
         String description() {
             return enclosingType + "#" + name;
+        }
+
+        /** Identity across revisions: file + description (see {@link MethodKey}). */
+        String key() {
+            return file + "|" + description();
         }
     }
 
