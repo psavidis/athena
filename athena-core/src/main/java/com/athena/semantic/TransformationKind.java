@@ -44,5 +44,11 @@ public enum TransformationKind {
     CHANGE_MODIFIERS,
     // A field's initializer changed (ticket #316). Involved: "Type#field", then a summary,
     // e.g. "+HALF_DAY" or "100 -> 200".
-    CHANGE_FIELD_VALUE
+    CHANGE_FIELD_VALUE,
+    // A build dependency added, removed or changed (ticket #340; the Maven plugin). Involved:
+    // "module#groupId:artifactId" (" [managed]" for dependencyManagement), then for a change
+    // its delta, e.g. "scope test -> compile".
+    ADD_DEPENDENCY,
+    REMOVE_DEPENDENCY,
+    CHANGE_DEPENDENCY
 }

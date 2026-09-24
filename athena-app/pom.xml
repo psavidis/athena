@@ -35,6 +35,11 @@
       <artifactId>athena-plugin-spring</artifactId>
       <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <groupId>com.athena</groupId>
+      <artifactId>athena-plugin-maven</artifactId>
+      <scope>runtime</scope>
+    </dependency>
 
     <!-- Web UI application layer (epic #71) -->
     <dependency>

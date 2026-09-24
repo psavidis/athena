@@ -137,6 +137,7 @@ app.
 | `athena-core`          | The `LanguagePlugin`/`FrameworkPlugin` SPI, the language-agnostic domain model (`Change`, `Taxonomy`, `ReviewState`, ...), and `PrAnalyzer`'s orchestration — no JavaParser or Spring dependency |
 | `athena-plugin-java`   | The Java `LanguagePlugin`: parses Java via JavaParser, detects transformations (rename/move/extract/...), builds the symbol model |
 | `athena-plugin-spring` | The Spring `FrameworkPlugin`: recognizes Spring/JPA/Jackson/JUnit annotation conventions for the FRAMEWORK classification dimension |
+| `athena-plugin-maven`  | The Maven `LanguagePlugin`: reports `pom.xml` dependency additions, removals and scope/version changes |
 | `athena-app`           | The Spring Boot web UI backend + CLI entry point; bundles the plugin jars on its runtime classpath — see "Try it" above |
 | `frontend/`            | The React/TypeScript/Vite/Tailwind/TanStack Query web frontend — see `frontend/README.md` |
 

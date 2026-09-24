@@ -56,6 +56,9 @@ export type TransformationKind =
   | 'PULL_UP_SYMBOL'
   | 'CHANGE_MODIFIERS'
   | 'CHANGE_FIELD_VALUE'
+  | 'ADD_DEPENDENCY'
+  | 'REMOVE_DEPENDENCY'
+  | 'CHANGE_DEPENDENCY'
 
 export type ReviewState = 'UNSEEN' | 'UNDERSTANDING' | 'REVIEWED' | 'CONCERN' | 'SKIPPED'
 

@@ -11,10 +11,10 @@ Feature: Changed files not represented by any Change
     And its listing shows whether it was added, modified or removed, and how many lines and hunks changed
 
   Scenario: A changed file in an unsupported language is listed as unrepresented
-    Given the user has created a standalone Diff where only the build file "pom.xml" and one Java file changed
+    Given the user has created a standalone Diff where only the build file "build.gradle" and one Java file changed
     And a Change was detected for the Java file
     When the user requests the changed files not represented by any Change
-    Then "pom.xml" is listed as unrepresented with reason "unsupported file type"
+    Then "build.gradle" is listed as unrepresented with reason "unsupported file type"
     And the Java file is not listed
 
   Scenario: A changed file that could not be parsed is listed as unrepresented

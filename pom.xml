@@ -23,6 +23,7 @@
     <module>athena-core</module>
     <module>athena-plugin-java</module>
     <module>athena-plugin-spring</module>
+    <module>athena-plugin-maven</module>
     <module>athena-app</module>
   </modules>
 
@@ -73,6 +74,11 @@
       <dependency>
         <groupId>com.athena</groupId>
         <artifactId>athena-plugin-spring</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.athena</groupId>
+        <artifactId>athena-plugin-maven</artifactId>
         <version>${project.version}</version>
       </dependency>
 
