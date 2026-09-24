@@ -12,6 +12,7 @@ import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Collections;
@@ -50,13 +51,25 @@ final class PomDependencies {
 
     /** The parsed pom, or empty when {@code xml} isn't a well-formed Maven project. */
     static Optional<PomDependencies> parse(String xml) {
+        return parse(new InputSource(new StringReader(xml)));
+    }
+
+    /**
+     * The parsed pom, or empty when {@code bytes} aren't a well-formed Maven project. Parsing the raw
+     * bytes lets the XML declaration's encoding (e.g. ISO-8859-1) apply instead of assuming UTF-8.
+     */
+    static Optional<PomDependencies> parse(byte[] bytes) {
+        return parse(new InputSource(new ByteArrayInputStream(bytes)));
+    }
+
+    private static Optional<PomDependencies> parse(InputSource source) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
             factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             DocumentBuilder builder = factory.newDocumentBuilder();
             builder.setErrorHandler(new DefaultHandler());
-            Document document = builder.parse(new InputSource(new StringReader(xml)));
+            Document document = builder.parse(source);
             Element project = document.getDocumentElement();
             if (!"project".equals(project.getLocalName() == null ? project.getTagName() : project.getLocalName())) {
                 return Optional.empty();
