@@ -3,6 +3,7 @@ package com.athena.semantic;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -54,6 +55,18 @@ class TestChangeGrouperTest {
     @Test
     void leavesProductionChangesOut() {
         assertThat(grouper.group(List.of(profileOf("Greeter#a", "core/src/main/java/Greeter.java")))).isEmpty();
+    }
+
+    @Test
+    void foldsATestChangesFrameworkClassificationIntoItsGroupToo() {
+        SemanticProfile profile = profileOf("GreeterTest#setUp", TEST_FILE);
+        TaxonomyConcept junit = TaxonomyConcept.of("junit-lifecycle", SemanticDimension.FRAMEWORK,
+                "JUnit: Lifecycle/Extensions", "JUnit lifecycle annotations.", Optional.empty());
+        SemanticClassification lifecycle = SemanticClassification.of(junit, profile.change().matchedOccurrences());
+        SemanticProfile withLifecycle = profile.with(SemanticDimension.FRAMEWORK, lifecycle);
+
+        assertThat(grouper.group(List.of(withLifecycle))).singleElement()
+                .satisfies(group -> assertThat(group.mergedClassifications()).contains(lifecycle));
     }
 
     private SemanticProfile profileOf(String symbol, String file) {

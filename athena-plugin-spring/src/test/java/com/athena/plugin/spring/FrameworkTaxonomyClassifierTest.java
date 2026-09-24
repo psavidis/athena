@@ -272,6 +272,46 @@ class FrameworkTaxonomyClassifierTest {
         return new ChangeGrouper().group(List.of(t)).get(0);
     }
 
+    // ---- whole-token matching and test code (ticket #315) ----
+
+    @Test
+    void doesNotMistakeAnAnnotationThatStartsLikeAStereotypeForIt() {
+        Change change = changeWithDiff(TransformationKind.ADD_CLASS, "Fixture", "", "@ServiceRegistry\npublic class Fixture { }\n");
+
+        assertThat(classifier.classify(change, frameworkTaxonomy)).isEmpty();
+    }
+
+    @Test
+    void recognizesAFullyQualifiedStereotype() {
+        Change change = changeWithDiff(TransformationKind.ADD_CLASS, "OrderService", "",
+                "@org.springframework.stereotype.Service\npublic class OrderService { }\n");
+
+        assertThat(classifier.classify(change, frameworkTaxonomy)).get()
+                .satisfies(c -> assertThat(c.concept().id()).isEqualTo("spring-service"));
+    }
+
+    @Test
+    void leavesAJpaRelationshipInTestCodeUnclassified() {
+        Change change = testChange(TransformationKind.ADD_FIELD, "LibraryTest.Library#books",
+                "@OneToMany\nList<Book> books;\n");
+
+        assertThat(classifier.classify(change, frameworkTaxonomy)).isEmpty();
+    }
+
+    @Test
+    void stillClassifiesAJunitLifecycleAnnotationInTestCode() {
+        Change change = testChange(TransformationKind.ADD_SYMBOL, "LibraryTest#setUp", "@BeforeEach\nvoid setUp() { }\n");
+
+        assertThat(classifier.classify(change, frameworkTaxonomy)).get()
+                .satisfies(c -> assertThat(c.concept().id()).isEqualTo("junit-lifecycle"));
+    }
+
+    private Change testChange(TransformationKind kind, String involved, String afterText) {
+        DetectedTransformation t = DetectedTransformation.withDiff(kind, List.of(involved),
+                List.of("core/src/test/java/LibraryTest.java"), "", afterText);
+        return new ChangeGrouper().group(List.of(t)).get(0);
+    }
+
     private Change changeWithDiff(TransformationKind kind, String involved, String beforeText, String afterText) {
         return changeWithDiff(kind, List.of(involved), beforeText, afterText);
     }

@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Folds the Structural classifications of {@linkplain Change#isTestCode() test-code} Changes
- * into one {@link TestChangeGroup} per test class (ticket #287). Nested classes count toward
+ * Folds the Structural and Framework classifications of {@linkplain Change#isTestCode()
+ * test-code} Changes into one {@link TestChangeGroup} per test class (tickets #287, #315): a
+ * test's JUnit lifecycle card belongs with the rest of that test's changes. Nested classes count toward
  * their top-level test class. Groups come out in the order their test classes were first seen.
  */
 public final class TestChangeGrouper {
@@ -31,6 +32,7 @@ public final class TestChangeGrouper {
         for (SemanticProfile member : members) {
             evidence.addAll(member.change().matchedOccurrences());
             merged.addAll(member.classifications(SemanticDimension.STRUCTURAL));
+            merged.addAll(member.classifications(SemanticDimension.FRAMEWORK));
         }
         return new TestChangeGroup(testClass, members.size(), evidence, merged);
     }

@@ -38,6 +38,11 @@ import java.util.regex.Pattern;
 public final class FrameworkTaxonomyClassifier {
 
     private static final Map<String, String> ANNOTATION_TO_CONCEPT_ID = annotationToConceptId();
+    // Each annotation as a whole token (ticket #315): @Service, or @org.springframework.stereotype.Service,
+    // but never @ServiceRegistry.
+    private static final Map<String, Pattern> ANNOTATION_PATTERNS = annotationPatterns();
+    // The one framework a test-code Change can meaningfully use: the test framework itself.
+    private static final String TEST_FRAMEWORK_CONCEPT_ID = "junit-lifecycle";
 
     /**
      * @param frameworkTaxonomy must be the FRAMEWORK-dimension taxonomy — passed per call
@@ -52,10 +57,18 @@ public final class FrameworkTaxonomyClassifier {
         if (change.matchedOccurrences().isEmpty()) {
             return Optional.empty();
         }
+        if (change.isTestCode()) {
+            return annotationClassification(change, frameworkTaxonomy)
+                    .filter(classification -> classification.concept().id().equals(TEST_FRAMEWORK_CONCEPT_ID));
+        }
         Optional<SemanticClassification> configurationProperty = configurationProperty(change, frameworkTaxonomy);
         if (configurationProperty.isPresent()) {
             return configurationProperty;
         }
+        return annotationClassification(change, frameworkTaxonomy);
+    }
+
+    private Optional<SemanticClassification> annotationClassification(Change change, Taxonomy frameworkTaxonomy) {
         for (DetectedTransformation transformation : change.matchedOccurrences()) {
             Optional<String> conceptId = newlyAddedAnnotationConceptId(transformation.diffText());
             if (conceptId.isPresent()) {
@@ -161,7 +174,8 @@ public final class FrameworkTaxonomyClassifier {
 
         Map<String, Change> droppedInjectionChangesByDescription = new HashMap<>();
         for (Change change : changes) {
-            if (change.kind() == TransformationKind.CHANGE_FIELD_ANNOTATIONS && droppedInjectionAnnotation(change)) {
+            if (change.kind() == TransformationKind.CHANGE_FIELD_ANNOTATIONS && !change.isTestCode()
+                    && droppedInjectionAnnotation(change)) {
                 for (String description : descriptionsOf(change)) {
                     droppedInjectionChangesByDescription.put(description, change);
                 }
@@ -216,7 +230,7 @@ public final class FrameworkTaxonomyClassifier {
             return classifications;
         }
         for (Change removal : changes) {
-            if (removal.kind() != TransformationKind.REMOVE_SYMBOL) {
+            if (removal.kind() != TransformationKind.REMOVE_SYMBOL || removal.isTestCode()) {
                 continue;
             }
             String removed = descriptionsOf(removal).get(0);
@@ -269,7 +283,8 @@ public final class FrameworkTaxonomyClassifier {
                 continue;
             }
             for (Map.Entry<String, String> entry : ANNOTATION_TO_CONCEPT_ID.entrySet()) {
-                if (line.contains(entry.getKey()) && !removedLineAlsoContains(lines, entry.getKey())) {
+                Pattern annotation = ANNOTATION_PATTERNS.get(entry.getKey());
+                if (annotation.matcher(line).find() && !removedLineAlsoContains(lines, annotation)) {
                     return Optional.of(entry.getValue());
                 }
             }
@@ -282,8 +297,16 @@ public final class FrameworkTaxonomyClassifier {
      * already present before the change (its arguments may have changed, or it moved to a
      * different line), so a matching {@code +}-line doesn't mean the annotation is new.
      */
-    private boolean removedLineAlsoContains(List<String> lines, String annotationName) {
-        return lines.stream().anyMatch(line -> line.startsWith("-") && line.contains(annotationName));
+    private boolean removedLineAlsoContains(List<String> lines, Pattern annotation) {
+        return lines.stream().anyMatch(line -> line.startsWith("-") && annotation.matcher(line).find());
+    }
+
+    private static Map<String, Pattern> annotationPatterns() {
+        Map<String, Pattern> patterns = new LinkedHashMap<>();
+        for (String annotation : ANNOTATION_TO_CONCEPT_ID.keySet()) {
+            patterns.put(annotation, Pattern.compile("@(?:[\\w$]+\\.)*" + Pattern.quote(annotation.substring(1)) + "(?![\\w$])"));
+        }
+        return patterns;
     }
 
     private static Map<String, String> annotationToConceptId() {
