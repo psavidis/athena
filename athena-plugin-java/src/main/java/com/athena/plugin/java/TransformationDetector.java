@@ -84,6 +84,9 @@ public final class TransformationDetector {
         // detector here when its match condition isn't met.
         ClassMatchResult classMatch = detectClassChanges(baseParsed.classes(), headParsed.classes());
         results.addAll(classMatch.transformations());
+        // 0b. The modifiers of a class present under the same name in the same file on both
+        // sides (ticket #313): made final, abstract, or more or less visible.
+        results.addAll(classModifierChanges(baseParsed.classes(), headParsed.classes()));
 
         // Once a class is known to be the "same" class under a rename/move (its member set
         // matched exactly), its members are excluded from the flat method/field matching
@@ -125,6 +128,8 @@ public final class TransformationDetector {
                         results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_PARAMETER_ANNOTATIONS,
                                 List.of(base.description(), changes), List.of(base.file, head.file),
                                 base.rawWholeDeclaration, head.rawWholeDeclaration)));
+                base.modifiers.describeChangeTo(head.modifiers).ifPresent(delta -> results.add(modifierChange(
+                        base.description(), delta, base.file, head.file, base.rawWholeDeclaration, head.rawWholeDeclaration)));
                 if (!base.methodAnnotations.equals(head.methodAnnotations)) {
                     results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_METHOD_ANNOTATIONS,
                             List.of(base.description(), ParameterAnnotations.describe(base.methodAnnotations, head.methodAnnotations)),
@@ -293,6 +298,7 @@ public final class TransformationDetector {
         // name/type is decided later by PatternTaxonomyClassifier, which sees the full Change
         // set this detector's single pass through one class's constructors can't.
         results.addAll(detectAddedConstructorParameters(baseParsed.constructors(), headParsed.constructors()));
+        results.addAll(constructorModifierChanges(baseParsed.constructors(), headParsed.constructors()));
         results.addAll(detectConstructorParameterAnnotationChanges(baseParsed.constructors(), headParsed.constructors()));
 
         // 10. Enum constants and annotation-type elements (ticket #266): matched by enclosing
@@ -413,6 +419,43 @@ public final class TransformationDetector {
         return parsed.methods().stream()
                 .filter(m -> m.enclosingType().equals(enclosingType) && m.name().equals(member))
                 .map(MethodInfo::rawWholeDeclaration).findFirst().orElse("");
+    }
+
+    private List<DetectedTransformation> classModifierChanges(List<ClassInfo> baseClasses, List<ClassInfo> headClasses) {
+        List<DetectedTransformation> changes = new ArrayList<>();
+        for (ClassInfo base : baseClasses) {
+            headClasses.stream()
+                    .filter(head -> head.file().equals(base.file()) && head.simpleName().equals(base.simpleName()))
+                    .findFirst()
+                    .flatMap(head -> base.modifiers().describeChangeTo(head.modifiers())
+                            .map(delta -> modifierChange(base.simpleName(), delta, base.file(), head.file(),
+                                    base.headerText(), head.headerText())))
+                    .ifPresent(changes::add);
+        }
+        return changes;
+    }
+
+    private List<DetectedTransformation> constructorModifierChanges(List<ConstructorInfo> baseConstructors,
+                                                                    List<ConstructorInfo> headConstructors) {
+        List<DetectedTransformation> changes = new ArrayList<>();
+        for (ConstructorInfo base : baseConstructors) {
+            headConstructors.stream()
+                    .filter(head -> head.file.equals(base.file) && head.enclosingType.equals(base.enclosingType)
+                            && head.parameterTypes.equals(base.parameterTypes))
+                    .findFirst()
+                    .flatMap(head -> base.modifiers.describeChangeTo(head.modifiers)
+                            .map(delta -> modifierChange(base.enclosingType + "#<init>", delta, base.file, head.file,
+                                    base.rawDeclaration, head.rawDeclaration)))
+                    .ifPresent(changes::add);
+        }
+        return changes;
+    }
+
+    /** A {@code CHANGE_MODIFIERS} of {@code description}, e.g. "+final" or "protected -> package-private" (#313). */
+    private static DetectedTransformation modifierChange(String description, String delta, String baseFile,
+                                                         String headFile, String before, String after) {
+        return DetectedTransformation.withDiff(TransformationKind.CHANGE_MODIFIERS, List.of(description, delta),
+                List.of(baseFile, headFile), before, after);
     }
 
     private List<BodyEdit> constructorBodyEdits(List<ConstructorInfo> baseConstructors, List<ConstructorInfo> headConstructors) {
@@ -583,15 +626,16 @@ public final class TransformationDetector {
             matchedHead.add(head);
             // The field itself (name + declared type) is unchanged, but its annotations may
             // have changed — e.g. @Autowired removed as part of moving to constructor
-            // injection (ticket #86's dependency-injection example). That's the one
-            // declaration-level fact this detector does report for an otherwise-matched
-            // field; anything else about the declaration text (initializer, modifiers) stays
-            // out of scope as behavioral, not structural.
+            // injection (ticket #86's dependency-injection example). Its modifiers are the other
+            // declaration-level fact reported for an otherwise-matched field (ticket #313); its
+            // initializer stays out of scope here.
             if (!base.annotationNames.equals(head.annotationNames)) {
                 results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_FIELD_ANNOTATIONS,
                         List.of(base.description()), List.of(base.file, head.file),
                         base.rawDeclaration, head.rawDeclaration));
             }
+            base.modifiers.describeChangeTo(head.modifiers).ifPresent(delta -> results.add(modifierChange(
+                    base.description(), delta, base.file, head.file, base.rawDeclaration, head.rawDeclaration)));
         }
 
         // 1b. Same enclosing type + same name, different declared type (ticket #267): one field
@@ -617,6 +661,8 @@ public final class TransformationDetector {
                         List.of(base.description()), List.of(base.file, head.file),
                         base.rawDeclaration, head.rawDeclaration));
             }
+            base.modifiers.describeChangeTo(head.modifiers).ifPresent(delta -> results.add(modifierChange(
+                    base.description(), delta, base.file, head.file, base.rawDeclaration, head.rawDeclaration)));
         }
 
         List<FieldInfo> unmatchedBase = baseFields.stream().filter(f -> !matchedBase.contains(f)).toList();
@@ -1074,7 +1120,8 @@ public final class TransformationDetector {
                     paramTypes, method.getTypeAsString(),
                     wholeDeclarationText, normalize(wholeDeclarationText),
                     normalize(bodyOnlyText), relativePath, parameterAnnotationsOf(method.getParameters()),
-                    methodAnnotationsOf(method), ControlFlow.of(method), BodySummary.of(method)));
+                    methodAnnotationsOf(method), ControlFlow.of(method), BodySummary.of(method),
+                    DeclarationModifiers.of(method)));
             memberSignatures.add("method:" + method.getNameAsString() + "(" + String.join(",", paramTypes) + "):"
                     + method.getTypeAsString());
         }
@@ -1089,7 +1136,8 @@ public final class TransformationDetector {
             for (VariableDeclarator variable : field.getVariables()) {
                 String typeAsString = variable.getType().asString();
                 collected.fields.add(new FieldInfo(qualifiedName, variable.getNameAsString(), typeAsString,
-                        annotationNames, visibilityOf(field), rawDeclaration, relativePath, typeAnnotations));
+                        annotationNames, visibilityOf(field), rawDeclaration, relativePath, typeAnnotations,
+                        DeclarationModifiers.of(field)));
                 memberSignatures.add("field:" + variable.getNameAsString() + ":" + typeAsString);
             }
         }
@@ -1108,7 +1156,7 @@ public final class TransformationDetector {
             collected.methods.add(new MethodInfo(qualifiedName, name, List.of(), "void",
                     rawDeclaration, normalize(rawDeclaration), normalize(bodyText), relativePath,
                     new ParameterAnnotations(List.of(), List.of()), Set.of(), ControlFlow.of(initializer.getBody()),
-                    BodySummary.of(initializer.getBody())));
+                    BodySummary.of(initializer.getBody()), DeclarationModifiers.NONE));
         }
         for (ConstructorDeclaration constructor : type.getConstructors()) {
             String rawDeclaration = constructor.getRange()
@@ -1126,7 +1174,7 @@ public final class TransformationDetector {
                     .collect(java.util.stream.Collectors.toCollection(LinkedHashSet::new));
             collected.constructors.add(new ConstructorInfo(qualifiedName, paramTypes, paramNames,
                     assignedFieldNames, rawDeclaration, relativePath, parameterAnnotationsOf(constructor.getParameters()),
-                    normalize(bodyText), BodySummary.of(constructor.getBody())));
+                    normalize(bodyText), BodySummary.of(constructor.getBody()), DeclarationModifiers.of(constructor)));
         }
         if (type instanceof EnumDeclaration enumDeclaration) {
             for (EnumConstantDeclaration constant : enumDeclaration.getEntries()) {
@@ -1161,7 +1209,8 @@ public final class TransformationDetector {
             String superclass = type instanceof ClassOrInterfaceDeclaration declaration && !declaration.isInterface()
                     ? declaration.getExtendedTypes().getFirst().map(ClassOrInterfaceType::getNameAsString).orElse("")
                     : "";
-            collected.classes.add(new ClassInfo(qualifiedName, relativePath, memberSignatures, headerText, superclass));
+            collected.classes.add(new ClassInfo(qualifiedName, relativePath, memberSignatures, headerText, superclass,
+                    DeclarationModifiers.of(type)));
         }
         for (BodyDeclaration<?> member : type.getMembers()) {
             if (member instanceof TypeDeclaration<?> nested) {
@@ -1280,7 +1329,7 @@ public final class TransformationDetector {
     private record ConstructorInfo(String enclosingType, List<String> parameterTypes, List<String> parameterNames,
                                     Set<String> assignedFieldNames, String rawDeclaration, String file,
                                     ParameterAnnotations parameterAnnotations, String normalizedBody,
-                                    BodySummary bodySummary) {
+                                    BodySummary bodySummary, DeclarationModifiers modifiers) {
     }
 
     /**
@@ -1293,7 +1342,7 @@ public final class TransformationDetector {
      * {@code superclass} is the simple name of the class it extends, empty for none (ticket #290).
      */
     private record ClassInfo(String simpleName, String file, Set<String> memberSignatures, String headerText,
-                             String superclass) {
+                             String superclass, DeclarationModifiers modifiers) {
     }
 
     /**
@@ -1302,7 +1351,8 @@ public final class TransformationDetector {
      * DetectedTransformation#ENCLOSING_TYPE_ANNOTATIONS} context of the field (ticket #295).
      */
     private record FieldInfo(String enclosingType, String name, String type, Set<String> annotationNames,
-                              String visibility, String rawDeclaration, String file, String enclosingTypeAnnotations) {
+                              String visibility, String rawDeclaration, String file, String enclosingTypeAnnotations,
+                              DeclarationModifiers modifiers) {
         String description() {
             return enclosingType + "#" + name;
         }
@@ -1372,7 +1422,8 @@ public final class TransformationDetector {
     private record MethodInfo(String enclosingType, String name, List<String> parameterTypes, String returnType,
                                String rawWholeDeclaration, String normalizedWholeDeclaration,
                                String normalizedBody, String file, ParameterAnnotations parameterAnnotations,
-                               Set<String> methodAnnotations, ControlFlow controlFlow, BodySummary bodySummary) {
+                               Set<String> methodAnnotations, ControlFlow controlFlow, BodySummary bodySummary,
+                               DeclarationModifiers modifiers) {
         String description() {
             return enclosingType + "#" + name;
         }

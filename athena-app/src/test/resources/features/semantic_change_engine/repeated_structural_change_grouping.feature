@@ -29,3 +29,10 @@ Feature: The same structural change repeated across classes is shown once
     Given the reviewer has selected a PR where method "setBeanFactory" was removed from classes "RegistrarA", "RegistrarB" and "RegistrarC"
     When the reviewer opens the semantic profile of module "core"
     Then the Structural entries include one "Remove setBeanFactory in 3 classes" entry folding 3 changes
+
+  # Ticket #313: modifier changes fold by the change itself, not by member name.
+
+  Scenario: The same modifier change made in several classes is one entry
+    Given the reviewer has selected a PR where classes "RegistrarA", "RegistrarB" and "RegistrarC" were each made final
+    When the reviewer opens the PR-level semantic profile
+    Then the Structural entries include one "Change Modifiers +final in 3 classes" entry folding 3 changes

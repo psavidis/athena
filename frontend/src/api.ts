@@ -54,6 +54,7 @@ export type TransformationKind =
   | 'MODIFY_METHOD_BODY'
   | 'PULL_UP_FIELD'
   | 'PULL_UP_SYMBOL'
+  | 'CHANGE_MODIFIERS'
 
 export type ReviewState = 'UNSEEN' | 'UNDERSTANDING' | 'REVIEWED' | 'CONCERN' | 'SKIPPED'
 

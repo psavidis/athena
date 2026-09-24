@@ -229,7 +229,7 @@ public class SemanticProfileController {
      * setBeanFactory in 5 classes", naming the classes, with the count and every folded evidence.
      */
     private SemanticDimensionEntryResponse toRepeatedStructuralEntry(RepeatedStructuralChange group) {
-        String name = group.concept().name() + " " + group.member() + " in " + group.classes().size() + " classes";
+        String name = group.concept().name() + " " + group.subject() + " in " + group.classes().size() + " classes";
         String description = group.concept().description() + " Same change in: " + String.join(", ", group.classes()) + ".";
         List<String> evidence = group.evidence().stream().map(DetectedTransformation::diffText).toList();
         return new SemanticDimensionEntryResponse(SemanticDimension.STRUCTURAL, name, description, false, 100,

@@ -336,6 +336,19 @@ public class TestCodeChangesSteps {
         select(base, repository.commit("head"));
     }
 
+    @Given("the reviewer has selected a PR where classes {string}, {string} and {string} were each made final")
+    public void a_pr_where_classes_were_made_final(String a, String b, String c) throws IOException {
+        repository = GitRepositoryFixture.create();
+        for (String className : List.of(a, b, c)) {
+            repository.write(MAIN + className + ".java", "package com.acme;\n\npublic class " + className + " {\n}\n");
+        }
+        String base = repository.commit("base");
+        for (String className : List.of(a, b, c)) {
+            repository.write(MAIN + className + ".java", "package com.acme;\n\npublic final class " + className + " {\n}\n");
+        }
+        select(base, repository.commit("head"));
+    }
+
     @Then("that entry names the classes {string}")
     public void that_entry_names_the_classes(String classes) {
         assertThat(lastGroup.conceptDescription()).contains(classes);
