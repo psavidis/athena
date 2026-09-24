@@ -34,7 +34,7 @@ final class PomDependencies {
 
     private PomDependencies(String artifactId, Map<String, Dependency> dependencies) {
         this.artifactId = artifactId;
-        this.dependencies = Map.copyOf(dependencies);
+        this.dependencies = Collections.unmodifiableMap(new LinkedHashMap<>(dependencies));
     }
 
     /**
