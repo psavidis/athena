@@ -1,0 +1,12 @@
+{
+  "changedFileCount" : 3,
+  "representedFileCount" : 2,
+  "files" : [ {
+    "path" : "logback-core/src/main/java/ch/qos/logback/core/rolling/helper/PeriodicityType.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 3,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  } ]
+}

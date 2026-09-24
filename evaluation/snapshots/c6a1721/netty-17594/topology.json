@@ -1,0 +1,121 @@
+{
+  "territories" : [ {
+    "moduleName" : "codec-http2",
+    "status" : "TOUCHED",
+    "fileCount" : 3,
+    "statusSummary" : "3 files · 24 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX0NMQVNTCkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cw", "QUREX0NMQVNTCkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cy5HbG9iYWxQcm9wZXJ0eUtleQ", "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKRGVmYXVsdEh0dHAyQ29ubmVjdGlvbiN2ZXJpZnlLZXk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0jc2V0UHJvcGVydHkKYnJhbmNoIGFkZGVk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0jZ2V0UHJvcGVydHkKYnJhbmNoIGFkZGVk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0jcmVtb3ZlUHJvcGVydHkKYnJhbmNoIGFkZGVk", "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjYWRkR2xvYmFs", "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjZ2V0R2xvYmFs", "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjcmVtb3ZlR2xvYmFs", "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjcmVzaXplR2xvYmFsSWZOZWNlc3Nhcnk", "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMjbmV3R2xvYmFsS2V5", "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMja2V5Q291bnQ", "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMuR2xvYmFsUHJvcGVydHlLZXkjZXF1YWxz", "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMuR2xvYmFsUHJvcGVydHlLZXkjaGFzaENvZGU", "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNjb25uZWN0aW9uS2V5U2hvdWxkUmVqZWN0VXNlV2l0aE90aGVyQ29ubmVjdGlvbg", "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNjb25uZWN0aW9uS2V5U2hvdWxkV29ya0Fjcm9zc1N0cmVhbXNPZlNhbWVDb25uZWN0aW9u", "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNnbG9iYWxLZXlTaG91bGRXb3JrV2l0aEFueUNvbm5lY3Rpb24", "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNnbG9iYWxLZXlzU2hvdWxkQmVJbmRlcGVuZGVudA", "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCN1bnNldFByb3BlcnR5U2hvdWxkUmV0dXJuTnVsbEZvckJvdGhLZXlLaW5kcw", "QUREX0ZJRUxECkRlZmF1bHRIdHRwMkNvbm5lY3Rpb24uRGVmYXVsdFN0cmVhbS5Qcm9wZXJ0eU1hcCNnbG9iYWxWYWx1ZXM", "QUREX0ZJRUxECkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cyNNQVhfR0xPQkFMX0tFWVM", "QUREX0ZJRUxECkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cyNuZXh0SW5kZXg", "QUREX0ZJRUxECkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cy5HbG9iYWxQcm9wZXJ0eUtleSNpbmRleA", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMuR2xvYmFsUHJvcGVydHlLZXkjaW5kZXg" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNjb25uZWN0aW9uS2V5U2hvdWxkUmVqZWN0VXNlV2l0aE90aGVyQ29ubmVjdGlvbg", "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNjb25uZWN0aW9uS2V5U2hvdWxkV29ya0Fjcm9zc1N0cmVhbXNPZlNhbWVDb25uZWN0aW9u", "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNnbG9iYWxLZXlTaG91bGRXb3JrV2l0aEFueUNvbm5lY3Rpb24", "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNnbG9iYWxLZXlzU2hvdWxkQmVJbmRlcGVuZGVudA", "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCN1bnNldFByb3BlcnR5U2hvdWxkUmV0dXJuTnVsbEZvckJvdGhLZXlLaW5kcw" ]
+  }, {
+    "moduleName" : "common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "buffer",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "transport",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "codec-base",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "codec-compression",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "handler",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "codec-http",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "pkitesting",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "testsuite-common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "codec-http2",
+    "to" : "common"
+  }, {
+    "from" : "codec-http2",
+    "to" : "buffer"
+  }, {
+    "from" : "codec-http2",
+    "to" : "transport"
+  }, {
+    "from" : "codec-http2",
+    "to" : "codec-base"
+  }, {
+    "from" : "codec-http2",
+    "to" : "codec-compression"
+  }, {
+    "from" : "codec-http2",
+    "to" : "handler"
+  }, {
+    "from" : "codec-http2",
+    "to" : "codec-http"
+  }, {
+    "from" : "codec-http2",
+    "to" : "pkitesting"
+  }, {
+    "from" : "codec-http2",
+    "to" : "testsuite-common"
+  } ]
+}

@@ -1,0 +1,38 @@
+{
+  "commons-io" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n     public long skip(final long n) throws IOException {\n-        charsRead += n;\n-        return super.skip(n);\n+        if (n <= 0) {\n+            return super.skip(n);\n+        }\n+        final int remaining = maxCharsFromTargetReader - charsRead;\n+        if (remaining <= 0) {\n+            return 0;\n+        }\n+        final long skipped = super.skip(Math.min(n, remaining));\n+        charsRead += (int) skipped;\n+        return skipped;\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/BoundedReader.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in BoundedReaderTest",
+      "conceptDescription" : "3 changes in test code of BoundedReaderTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Test\n+    void testSkipDoesNotExceedBound() throws IOException {\n+        try (BoundedReader mr = new BoundedReader(new StringReader(\"01234567890\"), 3)) {\n+            assertEquals(3, mr.skip(100));\n+            assertEquals(-1, mr.read());\n+        }\n+    }", "-\n+@Test\n+    void testSkipDoesNotOverflowCharsRead() throws IOException {\n+        try (BoundedReader mr = new BoundedReader(new StringReader(\"01234567890\"), 3)) {\n+            assertEquals(3, mr.skip(Long.MAX_VALUE));\n+            assertEquals(-1, mr.read());\n+        }\n+    }", "-\n+@Test\n+    void testSkipUsesActualSkippedCount() throws IOException {\n+        try (BoundedReader mr = new BoundedReader(new FilterReader(new StringReader(\"01234567890\")) {\n+            @Override\n+            public long skip(final long n) throws IOException {\n+                return super.skip(Math.min(n, 2));\n+            }\n+        }, 5)) {\n+            assertEquals(2, mr.skip(5));\n+            assertEquals('2', mr.read());\n+        }\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/test/java/org/apache/commons/io/input/BoundedReaderTest.java" ],
+      "groupedMoveCount" : 3
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " @Override\n     public long skip(final long n) throws IOException {\n-        charsRead += n;\n-        return super.skip(n);\n+        if (n <= 0) {\n+            return super.skip(n);\n+        }\n+        final int remaining = maxCharsFromTargetReader - charsRead;\n+        if (remaining <= 0) {\n+            return 0;\n+        }\n+        final long skipped = super.skip(Math.min(n, remaining));\n+        charsRead += (int) skipped;\n+        return skipped;\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/BoundedReader.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  }
+}

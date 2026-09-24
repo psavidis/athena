@@ -1,0 +1,1141 @@
+{
+  "prTitle" : "Fix #6198: make AnnotatedMethod InvokerHolder access lazy",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 41,
+    "UNKNOWN" : 14,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "UkVNT1ZFX0NMQVNTCk1ldGhvZFByb3BlcnR5LlNldHRlckhvbGRlcg",
+    "description" : "Remove class MethodProperty.SetterHolder",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "UkVNT1ZFX0NMQVNTCkFubm90YXRlZE1ldGhvZC5NZXRob2RIb2xkZXI",
+    "description" : "Remove class AnnotatedMethod.MethodHolder",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "UkVNT1ZFX0NMQVNTCkJlYW5Qcm9wZXJ0eVdyaXRlci5HZXR0ZXJIb2xkZXI",
+    "description" : "Remove class BeanPropertyWriter.GetterHolder",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "UkVNT1ZFX0NMQVNTClVucmVmbGVjdEhhbmRsZVN1cHBsaWVy",
+    "description" : "Remove class UnreflectHandleSupplier",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX0NMQVNTCkFubm90YXRlZE1lbWJlckVxdWFsaXR5VGVzdC5GYWN0b3J5QmVhbg",
+    "description" : "Add class AnnotatedMemberEqualityTest.FactoryBean",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "TU9WRV9TWU1CT0wKQW5ub3RhdGVkTWV0aG9kI3VucmVmbGVjdApBbm5vdGF0ZWRNZXRob2QuTWV0aG9kSG9sZGVyI3VucmVmbGVjdA",
+    "description" : "Move AnnotatedMethod.MethodHolder#unreflect -> AnnotatedMethod#unreflect",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApNZXRob2RQcm9wZXJ0eS5TZXR0ZXJIb2xkZXIjdW5yZWZsZWN0",
+    "description" : "Remove MethodProperty.SetterHolder#unreflect",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApCZWFuUHJvcGVydHlXcml0ZXIuR2V0dGVySG9sZGVyI3VucmVmbGVjdA",
+    "description" : "Remove BeanPropertyWriter.GetterHolder#unreflect",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNnZXQ",
+    "description" : "Remove UnreflectHandleSupplier#get",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNpbml0aWFsaXpl",
+    "description" : "Remove UnreflectHandleSupplier#initialize",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNwb3N0cHJvY2Vzcw",
+    "description" : "Remove UnreflectHandleSupplier#postprocess",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciN1bnJlZmxlY3Q",
+    "description" : "Remove UnreflectHandleSupplier#unreflect",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciN0b1N0cmluZw",
+    "description" : "Remove UnreflectHandleSupplier#toString",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfc2V0dGVySGFuZGxl",
+    "description" : "Add MethodProperty#_setterHandle",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfc2V0dGVyUmV0dXJuSGFuZGxl",
+    "description" : "Add MethodProperty#_setterReturnHandle",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfdW5yZWZsZWN0U2V0dGVy",
+    "description" : "Add MethodProperty#_unreflectSetter",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlck51bGxhcnk",
+    "description" : "Add AnnotatedMethod#invokerNullary",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlclVuYXJ5",
+    "description" : "Add AnnotatedMethod#invokerUnary",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlckZpeGVkQXJpdHk",
+    "description" : "Add AnnotatedMethod#invokerFixedArity",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 19,
+    "changeKey" : "QUREX1NZTUJPTApCZWFuUHJvcGVydHlXcml0ZXIjX2FjY2Vzc29ySGFuZGxl",
+    "description" : "Add BeanPropertyWriter#_accessorHandle",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 20,
+    "changeKey" : "QUREX1NZTUJPTApCZWFuUHJvcGVydHlXcml0ZXIjX3VucmVmbGVjdEFjY2Vzc29y",
+    "description" : "Add BeanPropertyWriter#_unreflectAccessor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 21,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kRG9lc05vdEVhZ2VybHlDb25zdHJ1Y3RJbnZva2Vycw",
+    "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodDoesNotEagerlyConstructInvokers",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 22,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kQ2FsbE9uQnVpbGRzT25seVVuYXJ5SW52b2tlcg",
+    "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodCallOnBuildsOnlyUnaryInvoker",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 23,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kQ2FsbE9uV2l0aEJ1aWxkc09ubHlGaXhlZEFyaXR5SW52b2tlcg",
+    "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodCallOnWithBuildsOnlyFixedArityInvoker",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 24,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kTnVsbGFyeUNhbGxCdWlsZHNPbmx5TnVsbGFyeUludm9rZXI",
+    "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodNullaryCallBuildsOnlyNullaryInvoker",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 25,
+    "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QuRmFjdG9yeUJlYW4jY3JlYXRl",
+    "description" : "Add AnnotatedMemberEqualityTest.FactoryBean#create",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 26,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfc2V0dGVySGFuZGxlLCAtZ2V0Ck1ldGhvZFByb3BlcnR5I2Rlc2VyaWFsaXplQW5kU2V0",
+    "description" : "Modify body of MethodProperty#deserializeAndSet: +_setterHandle, -get",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 27,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfc2V0dGVyUmV0dXJuSGFuZGxlLCAtZ2V0Ck1ldGhvZFByb3BlcnR5I2Rlc2VyaWFsaXplU2V0QW5kUmV0dXJu",
+    "description" : "Modify body of MethodProperty#deserializeSetAndReturn: +_setterReturnHandle, -get",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 28,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfc2V0dGVySGFuZGxlLCAtZ2V0Ck1ldGhvZFByb3BlcnR5I3NldA",
+    "description" : "Modify body of MethodProperty#set: +_setterHandle, -get",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 29,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfc2V0dGVyUmV0dXJuSGFuZGxlLCAtZ2V0Ck1ldGhvZFByb3BlcnR5I3NldEFuZFJldHVybg",
+    "description" : "Modify body of MethodProperty#setAndReturn: +_setterReturnHandle, -get",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 30,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1tZXRob2RUeXBlCkFubm90YXRlZENvbnN0cnVjdG9yI2ludm9rZXJOdWxsYXJ5",
+    "description" : "Modify body of AnnotatedConstructor#invokerNullary: -methodType",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 31,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1tZXRob2RUeXBlCkFubm90YXRlZENvbnN0cnVjdG9yI2ludm9rZXJVbmFyeQ",
+    "description" : "Modify body of AnnotatedConstructor#invokerUnary: -methodType",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 32,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyTnVsbGFyeSwgLWdldApBbm5vdGF0ZWRNZXRob2QjY2FsbA",
+    "description" : "Modify body of AnnotatedMethod#call: +invokerNullary, -get",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 33,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyRml4ZWRBcml0eSwgLWdldApBbm5vdGF0ZWRNZXRob2QjY2FsbA",
+    "description" : "Modify body of AnnotatedMethod#call: +invokerFixedArity, -get",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 34,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyVW5hcnksIC1nZXQKQW5ub3RhdGVkTWV0aG9kI2NhbGwx",
+    "description" : "Modify body of AnnotatedMethod#call1: +invokerUnary, -get",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 35,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyVW5hcnksIC1nZXQKQW5ub3RhdGVkTWV0aG9kI2NhbGxPbg",
+    "description" : "Modify body of AnnotatedMethod#callOn: +invokerUnary, -get",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 36,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyRml4ZWRBcml0eSwgLWdldApBbm5vdGF0ZWRNZXRob2QjY2FsbE9uV2l0aA",
+    "description" : "Modify body of AnnotatedMethod#callOnWith: +invokerFixedArity, -get",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 37,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfYWNjZXNzb3JIYW5kbGUsIC1nZXQKQmVhblByb3BlcnR5V3JpdGVyI2dldA",
+    "description" : "Modify body of BeanPropertyWriter#get: +_accessorHandle, -get",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 38,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1ldGhvZFByb3BlcnR5Izxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of MethodProperty#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 39,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkJlYW5Qcm9wZXJ0eVdyaXRlciM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of BeanPropertyWriter#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 40,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKTWV0aG9kUHJvcGVydHkjX3NldHRlcgpTZXR0ZXJIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+    "description" : "Change type of field MethodProperty#_setter: SetterHolder -> MethodHandle (protected)",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_FIELD_TYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 41,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKTWV0aG9kUHJvcGVydHkjX3NldHRlclJldHVybgpTZXR0ZXJIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+    "description" : "Change type of field MethodProperty#_setterReturn: SetterHolder -> MethodHandle (protected)",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_FIELD_TYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 42,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKQW5ub3RhdGVkTWV0aG9kI19pbnZva2VyRml4ZWRBcml0eQpNZXRob2RIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+    "description" : "Change type of field AnnotatedMethod#_invokerFixedArity: MethodHolder -> MethodHandle (protected)",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_FIELD_TYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 43,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKQW5ub3RhdGVkTWV0aG9kI19pbnZva2VyTnVsbGFyeQpNZXRob2RIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+    "description" : "Change type of field AnnotatedMethod#_invokerNullary: MethodHolder -> MethodHandle (protected)",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_FIELD_TYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 44,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKQW5ub3RhdGVkTWV0aG9kI19pbnZva2VyVW5hcnkKTWV0aG9kSG9sZGVyIC0-IE1ldGhvZEhhbmRsZSAocHJvdGVjdGVkKQ",
+    "description" : "Change type of field AnnotatedMethod#_invokerUnary: MethodHolder -> MethodHandle (protected)",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_FIELD_TYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 45,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKQmVhblByb3BlcnR5V3JpdGVyI19hY2Nlc3NvcgpHZXR0ZXJIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+    "description" : "Change type of field BeanPropertyWriter#_accessor: GetterHolder -> MethodHandle (protected)",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_FIELD_TYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 46,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClVucmVmbGVjdEhhbmRsZVN1cHBsaWVyI2FzVHlwZQ",
+    "description" : "Remove field UnreflectHandleSupplier#asType",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 47,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClVucmVmbGVjdEhhbmRsZVN1cHBsaWVyI2NhY2hlZEhhbmRsZQ",
+    "description" : "Remove field UnreflectHandleSupplier#cachedHandle",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 48,
+    "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I1NFVFRFUl9UWVBF",
+    "description" : "Add field MethodProperty#SETTER_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 49,
+    "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I1NFVFRFUl9SRVRVUk5fVFlQRQ",
+    "description" : "Add field MethodProperty#SETTER_RETURN_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 50,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZENvbnN0cnVjdG9yI0lOVk9LRVJfTlVMTEFSWV9UWVBF",
+    "description" : "Add field AnnotatedConstructor#INVOKER_NULLARY_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 51,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZENvbnN0cnVjdG9yI0lOVk9LRVJfVU5BUllfVFlQRQ",
+    "description" : "Add field AnnotatedConstructor#INVOKER_UNARY_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 52,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNJTlZPS0VSX05VTExBUllfVFlQRQ",
+    "description" : "Add field AnnotatedMethod#INVOKER_NULLARY_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 53,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNJTlZPS0VSX1VOQVJZX1RZUEU",
+    "description" : "Add field AnnotatedMethod#INVOKER_UNARY_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 54,
+    "changeKey" : "QUREX0ZJRUxECkJlYW5Qcm9wZXJ0eVdyaXRlciNHRVRURVJfVFlQRQ",
+    "description" : "Add field BeanPropertyWriter#GETTER_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "MethodProperty.SetterHolder",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "UkVNT1ZFX0NMQVNTCk1ldGhvZFByb3BlcnR5LlNldHRlckhvbGRlcg",
+      "description" : "Remove class MethodProperty.SetterHolder",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 6,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApNZXRob2RQcm9wZXJ0eS5TZXR0ZXJIb2xkZXIjdW5yZWZsZWN0",
+      "description" : "Remove MethodProperty.SetterHolder#unreflect",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "AnnotatedMethod.MethodHolder",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "UkVNT1ZFX0NMQVNTCkFubm90YXRlZE1ldGhvZC5NZXRob2RIb2xkZXI",
+      "description" : "Remove class AnnotatedMethod.MethodHolder",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 5,
+      "changeKey" : "TU9WRV9TWU1CT0wKQW5ub3RhdGVkTWV0aG9kI3VucmVmbGVjdApBbm5vdGF0ZWRNZXRob2QuTWV0aG9kSG9sZGVyI3VucmVmbGVjdA",
+      "description" : "Move AnnotatedMethod.MethodHolder#unreflect -> AnnotatedMethod#unreflect",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "BeanPropertyWriter.GetterHolder",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "UkVNT1ZFX0NMQVNTCkJlYW5Qcm9wZXJ0eVdyaXRlci5HZXR0ZXJIb2xkZXI",
+      "description" : "Remove class BeanPropertyWriter.GetterHolder",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApCZWFuUHJvcGVydHlXcml0ZXIuR2V0dGVySG9sZGVyI3VucmVmbGVjdA",
+      "description" : "Remove BeanPropertyWriter.GetterHolder#unreflect",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "UnreflectHandleSupplier",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "UkVNT1ZFX0NMQVNTClVucmVmbGVjdEhhbmRsZVN1cHBsaWVy",
+      "description" : "Remove class UnreflectHandleSupplier",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 8,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNnZXQ",
+      "description" : "Remove UnreflectHandleSupplier#get",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 9,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNpbml0aWFsaXpl",
+      "description" : "Remove UnreflectHandleSupplier#initialize",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 10,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNwb3N0cHJvY2Vzcw",
+      "description" : "Remove UnreflectHandleSupplier#postprocess",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciN1bnJlZmxlY3Q",
+      "description" : "Remove UnreflectHandleSupplier#unreflect",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 12,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciN0b1N0cmluZw",
+      "description" : "Remove UnreflectHandleSupplier#toString",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 46,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClVucmVmbGVjdEhhbmRsZVN1cHBsaWVyI2FzVHlwZQ",
+      "description" : "Remove field UnreflectHandleSupplier#asType",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 47,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClVucmVmbGVjdEhhbmRsZVN1cHBsaWVyI2NhY2hlZEhhbmRsZQ",
+      "description" : "Remove field UnreflectHandleSupplier#cachedHandle",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "AnnotatedMemberEqualityTest.FactoryBean",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "QUREX0NMQVNTCkFubm90YXRlZE1lbWJlckVxdWFsaXR5VGVzdC5GYWN0b3J5QmVhbg",
+      "description" : "Add class AnnotatedMemberEqualityTest.FactoryBean",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 25,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QuRmFjdG9yeUJlYW4jY3JlYXRl",
+      "description" : "Add AnnotatedMemberEqualityTest.FactoryBean#create",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "MethodProperty",
+    "entries" : [ {
+      "id" : 13,
+      "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfc2V0dGVySGFuZGxl",
+      "description" : "Add MethodProperty#_setterHandle",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 14,
+      "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfc2V0dGVyUmV0dXJuSGFuZGxl",
+      "description" : "Add MethodProperty#_setterReturnHandle",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfdW5yZWZsZWN0U2V0dGVy",
+      "description" : "Add MethodProperty#_unreflectSetter",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 26,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfc2V0dGVySGFuZGxlLCAtZ2V0Ck1ldGhvZFByb3BlcnR5I2Rlc2VyaWFsaXplQW5kU2V0",
+      "description" : "Modify body of MethodProperty#deserializeAndSet: +_setterHandle, -get",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 27,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfc2V0dGVyUmV0dXJuSGFuZGxlLCAtZ2V0Ck1ldGhvZFByb3BlcnR5I2Rlc2VyaWFsaXplU2V0QW5kUmV0dXJu",
+      "description" : "Modify body of MethodProperty#deserializeSetAndReturn: +_setterReturnHandle, -get",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 28,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfc2V0dGVySGFuZGxlLCAtZ2V0Ck1ldGhvZFByb3BlcnR5I3NldA",
+      "description" : "Modify body of MethodProperty#set: +_setterHandle, -get",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 29,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfc2V0dGVyUmV0dXJuSGFuZGxlLCAtZ2V0Ck1ldGhvZFByb3BlcnR5I3NldEFuZFJldHVybg",
+      "description" : "Modify body of MethodProperty#setAndReturn: +_setterReturnHandle, -get",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 38,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1ldGhvZFByb3BlcnR5Izxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of MethodProperty#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 40,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKTWV0aG9kUHJvcGVydHkjX3NldHRlcgpTZXR0ZXJIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+      "description" : "Change type of field MethodProperty#_setter: SetterHolder -> MethodHandle (protected)",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_FIELD_TYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 41,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKTWV0aG9kUHJvcGVydHkjX3NldHRlclJldHVybgpTZXR0ZXJIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+      "description" : "Change type of field MethodProperty#_setterReturn: SetterHolder -> MethodHandle (protected)",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_FIELD_TYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 48,
+      "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I1NFVFRFUl9UWVBF",
+      "description" : "Add field MethodProperty#SETTER_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 49,
+      "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I1NFVFRFUl9SRVRVUk5fVFlQRQ",
+      "description" : "Add field MethodProperty#SETTER_RETURN_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "AnnotatedMethod",
+    "entries" : [ {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlck51bGxhcnk",
+      "description" : "Add AnnotatedMethod#invokerNullary",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlclVuYXJ5",
+      "description" : "Add AnnotatedMethod#invokerUnary",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 18,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlckZpeGVkQXJpdHk",
+      "description" : "Add AnnotatedMethod#invokerFixedArity",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 32,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyTnVsbGFyeSwgLWdldApBbm5vdGF0ZWRNZXRob2QjY2FsbA",
+      "description" : "Modify body of AnnotatedMethod#call: +invokerNullary, -get",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 33,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyRml4ZWRBcml0eSwgLWdldApBbm5vdGF0ZWRNZXRob2QjY2FsbA",
+      "description" : "Modify body of AnnotatedMethod#call: +invokerFixedArity, -get",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 34,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyVW5hcnksIC1nZXQKQW5ub3RhdGVkTWV0aG9kI2NhbGwx",
+      "description" : "Modify body of AnnotatedMethod#call1: +invokerUnary, -get",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 35,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyVW5hcnksIC1nZXQKQW5ub3RhdGVkTWV0aG9kI2NhbGxPbg",
+      "description" : "Modify body of AnnotatedMethod#callOn: +invokerUnary, -get",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 36,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyRml4ZWRBcml0eSwgLWdldApBbm5vdGF0ZWRNZXRob2QjY2FsbE9uV2l0aA",
+      "description" : "Modify body of AnnotatedMethod#callOnWith: +invokerFixedArity, -get",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 42,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKQW5ub3RhdGVkTWV0aG9kI19pbnZva2VyRml4ZWRBcml0eQpNZXRob2RIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+      "description" : "Change type of field AnnotatedMethod#_invokerFixedArity: MethodHolder -> MethodHandle (protected)",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_FIELD_TYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 43,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKQW5ub3RhdGVkTWV0aG9kI19pbnZva2VyTnVsbGFyeQpNZXRob2RIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+      "description" : "Change type of field AnnotatedMethod#_invokerNullary: MethodHolder -> MethodHandle (protected)",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_FIELD_TYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 44,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKQW5ub3RhdGVkTWV0aG9kI19pbnZva2VyVW5hcnkKTWV0aG9kSG9sZGVyIC0-IE1ldGhvZEhhbmRsZSAocHJvdGVjdGVkKQ",
+      "description" : "Change type of field AnnotatedMethod#_invokerUnary: MethodHolder -> MethodHandle (protected)",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_FIELD_TYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 52,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNJTlZPS0VSX05VTExBUllfVFlQRQ",
+      "description" : "Add field AnnotatedMethod#INVOKER_NULLARY_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 53,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNJTlZPS0VSX1VOQVJZX1RZUEU",
+      "description" : "Add field AnnotatedMethod#INVOKER_UNARY_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "BeanPropertyWriter",
+    "entries" : [ {
+      "id" : 19,
+      "changeKey" : "QUREX1NZTUJPTApCZWFuUHJvcGVydHlXcml0ZXIjX2FjY2Vzc29ySGFuZGxl",
+      "description" : "Add BeanPropertyWriter#_accessorHandle",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 20,
+      "changeKey" : "QUREX1NZTUJPTApCZWFuUHJvcGVydHlXcml0ZXIjX3VucmVmbGVjdEFjY2Vzc29y",
+      "description" : "Add BeanPropertyWriter#_unreflectAccessor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 37,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfYWNjZXNzb3JIYW5kbGUsIC1nZXQKQmVhblByb3BlcnR5V3JpdGVyI2dldA",
+      "description" : "Modify body of BeanPropertyWriter#get: +_accessorHandle, -get",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 39,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkJlYW5Qcm9wZXJ0eVdyaXRlciM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of BeanPropertyWriter#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 45,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKQmVhblByb3BlcnR5V3JpdGVyI19hY2Nlc3NvcgpHZXR0ZXJIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+      "description" : "Change type of field BeanPropertyWriter#_accessor: GetterHolder -> MethodHandle (protected)",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_FIELD_TYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 54,
+      "changeKey" : "QUREX0ZJRUxECkJlYW5Qcm9wZXJ0eVdyaXRlciNHRVRURVJfVFlQRQ",
+      "description" : "Add field BeanPropertyWriter#GETTER_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "AnnotatedMemberEqualityTest",
+    "entries" : [ {
+      "id" : 21,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kRG9lc05vdEVhZ2VybHlDb25zdHJ1Y3RJbnZva2Vycw",
+      "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodDoesNotEagerlyConstructInvokers",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 22,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kQ2FsbE9uQnVpbGRzT25seVVuYXJ5SW52b2tlcg",
+      "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodCallOnBuildsOnlyUnaryInvoker",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 23,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kQ2FsbE9uV2l0aEJ1aWxkc09ubHlGaXhlZEFyaXR5SW52b2tlcg",
+      "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodCallOnWithBuildsOnlyFixedArityInvoker",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 24,
+      "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kTnVsbGFyeUNhbGxCdWlsZHNPbmx5TnVsbGFyeUludm9rZXI",
+      "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodNullaryCallBuildsOnlyNullaryInvoker",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "AnnotatedConstructor",
+    "entries" : [ {
+      "id" : 30,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1tZXRob2RUeXBlCkFubm90YXRlZENvbnN0cnVjdG9yI2ludm9rZXJOdWxsYXJ5",
+      "description" : "Modify body of AnnotatedConstructor#invokerNullary: -methodType",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 31,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1tZXRob2RUeXBlCkFubm90YXRlZENvbnN0cnVjdG9yI2ludm9rZXJVbmFyeQ",
+      "description" : "Modify body of AnnotatedConstructor#invokerUnary: -methodType",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 50,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZENvbnN0cnVjdG9yI0lOVk9LRVJfTlVMTEFSWV9UWVBF",
+      "description" : "Add field AnnotatedConstructor#INVOKER_NULLARY_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 51,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZENvbnN0cnVjdG9yI0lOVk9LRVJfVU5BUllfVFlQRQ",
+      "description" : "Add field AnnotatedConstructor#INVOKER_UNARY_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "jackson-databind",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Change control flow of BeanSerializerBase#_serializePropertiesFiltered: branch added, condition changed",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpCZWFuU2VyaWFsaXplckJhc2UjX3NlcmlhbGl6ZVByb3BlcnRpZXNGaWx0ZXJlZApicmFuY2ggYWRkZWQsIGNvbmRpdGlvbiBjaGFuZ2Vk" ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ ]
+}

@@ -1,0 +1,11 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5I2NyZWF0ZUJvdW5kRmllbGQKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ReflectiveTypeAdapterFactory#createBoundField: branch added",
+  "files" : [ "gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java" ],
+  "symbols" : [ "ReflectiveTypeAdapterFactory#createBoundField", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

@@ -1,0 +1,4 @@
+[ {
+  "entity" : "ReflectiveTypeAdapterFactory",
+  "description" : "Change control flow of ReflectiveTypeAdapterFactory#createBoundField: branch added"
+} ]

@@ -1,0 +1,160 @@
+diff --git a/gradle/libs.versions.toml b/gradle/libs.versions.toml
+index 21615064cc..fdf1f02175 100644
+--- a/gradle/libs.versions.toml
++++ b/gradle/libs.versions.toml
+@@ -30,6 +30,7 @@ errorprone-test-api = { module = "com.google.errorprone:error_prone_test_helpers
+ groovy = { module = "org.codehaus.groovy:groovy", version = "3.0.25" }
+ hamcrest = { module = "org.hamcrest:hamcrest-core", version = "3.0" }
+ junit4 = { module = "junit:junit", version.ref = "junit4" }
++jspecify = { module = "org.jspecify:jspecify", version = "1.0.0" }
+ junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter" }
+ junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter" }
+ junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit-jupiter" }
+diff --git a/mockito-core/build.gradle.kts b/mockito-core/build.gradle.kts
+index 0c15d91275..eb1cba6158 100644
+--- a/mockito-core/build.gradle.kts
++++ b/mockito-core/build.gradle.kts
+@@ -43,6 +43,7 @@ dependencies {
+     compileOnly(libs.junit4)
+     compileOnly(libs.hamcrest)
+     compileOnly(libs.opentest4j)
++    compileOnly(libs.jspecify)
+     implementation(libs.objenesis)
+ 
+     testImplementation(libs.assertj)
+diff --git a/mockito-core/src/main/java/module-info.java b/mockito-core/src/main/java/module-info.java
+index 15fbf51d4d..e59832f89a 100644
+--- a/mockito-core/src/main/java/module-info.java
++++ b/mockito-core/src/main/java/module-info.java
+@@ -12,6 +12,7 @@
+     requires static org.objenesis;
+     requires static org.opentest4j;
+     requires static jdk.unsupported;
++    requires static org.jspecify;
+ 
+     exports org.mockito;
+     exports org.mockito.configuration;
+diff --git a/mockito-core/src/main/java/org/mockito/BDDMockito.java b/mockito-core/src/main/java/org/mockito/BDDMockito.java
+index d37a07ae93..8e34524dc4 100644
+--- a/mockito-core/src/main/java/org/mockito/BDDMockito.java
++++ b/mockito-core/src/main/java/org/mockito/BDDMockito.java
+@@ -4,6 +4,7 @@
+  */
+ package org.mockito;
+ 
++import org.jspecify.annotations.Nullable;
+ import org.mockito.stubbing.Answer;
+ import org.mockito.stubbing.OngoingStubbing;
+ import org.mockito.stubbing.Stubber;
+@@ -102,14 +103,14 @@ public interface BDDMyOngoingStubbing<T> {
+          * See original {@link OngoingStubbing#thenReturn(Object)}
+          * @since 1.8.0
+          */
+-        BDDMyOngoingStubbing<T> willReturn(T value);
++        BDDMyOngoingStubbing<T> willReturn(@Nullable T value);
+ 
+         /**
+          * See original {@link OngoingStubbing#thenReturn(Object, Object[])}
+          * @since 1.8.0
+          */
+         @SuppressWarnings({"unchecked", "varargs"})
+-        BDDMyOngoingStubbing<T> willReturn(T value, T... values);
++        BDDMyOngoingStubbing<T> willReturn(@Nullable T value, @Nullable T... values);
+ 
+         /**
+          * See original {@link OngoingStubbing#thenThrow(Throwable...)}
+@@ -163,11 +164,11 @@ public BDDMyOngoingStubbing<T> will(Answer<?> answer) {
+             return new BDDOngoingStubbingImpl<T>(mockitoOngoingStubbing.then(answer));
+         }
+ 
+-        public BDDMyOngoingStubbing<T> willReturn(T value) {
++        public BDDMyOngoingStubbing<T> willReturn(@Nullable T value) {
+             return new BDDOngoingStubbingImpl<T>(mockitoOngoingStubbing.thenReturn(value));
+         }
+ 
+-        public BDDMyOngoingStubbing<T> willReturn(T value, T... values) {
++        public BDDMyOngoingStubbing<T> willReturn(@Nullable T value, @Nullable T... values) {
+             return new BDDOngoingStubbingImpl<T>(mockitoOngoingStubbing.thenReturn(value, values));
+         }
+ 
+@@ -199,7 +200,7 @@ public <M> M getMock() {
+      * see original {@link Mockito#when(Object)}
+      * @since 1.8.0
+      */
+-    public static <T> BDDMyOngoingStubbing<T> given(T methodCall) {
++    public static <T> BDDMyOngoingStubbing<T> given(@Nullable T methodCall) {
+         return new BDDOngoingStubbingImpl<T>(Mockito.when(methodCall));
+     }
+ 
+diff --git a/mockito-core/src/main/java/org/mockito/Mockito.java b/mockito-core/src/main/java/org/mockito/Mockito.java
+index 58c0e9ec6c..a407954fa0 100644
+--- a/mockito-core/src/main/java/org/mockito/Mockito.java
++++ b/mockito-core/src/main/java/org/mockito/Mockito.java
+@@ -4,6 +4,7 @@
+  */
+ package org.mockito;
+ 
++import org.jspecify.annotations.Nullable;
+ import org.mockito.exceptions.misusing.PotentialStubbingProblem;
+ import org.mockito.exceptions.misusing.UnnecessaryStubbingException;
+ import org.mockito.internal.MockitoCore;
+@@ -2842,7 +2843,7 @@ public static <T> MockedConstruction<T> mockConstruction(
+      * @return OngoingStubbing object used to stub fluently.
+      *         <strong>Do not</strong> create a reference to this returned object.
+      */
+-    public static <T> OngoingStubbing<T> when(T methodCall) {
++    public static <T> OngoingStubbing<T> when(@Nullable T methodCall) {
+         return MOCKITO_CORE.when(methodCall);
+     }
+ 
+diff --git a/mockito-core/src/main/java/org/mockito/internal/MockitoCore.java b/mockito-core/src/main/java/org/mockito/internal/MockitoCore.java
+index 94dbdec711..72bd7239ac 100644
+--- a/mockito-core/src/main/java/org/mockito/internal/MockitoCore.java
++++ b/mockito-core/src/main/java/org/mockito/internal/MockitoCore.java
+@@ -29,6 +29,7 @@
+ import java.util.List;
+ import java.util.function.Function;
+ 
++import org.jspecify.annotations.Nullable;
+ import org.mockito.InOrder;
+ import org.mockito.MockSettings;
+ import org.mockito.MockedConstruction;
+@@ -141,7 +142,7 @@ public <T> MockedConstruction<T> mockConstruction(
+         return new MockedConstructionImpl<>(control);
+     }
+ 
+-    public <T> OngoingStubbing<T> when(T methodCall) {
++    public <T> OngoingStubbing<T> when(@Nullable T methodCall) {
+         MockingProgress mockingProgress = mockingProgress();
+         mockingProgress.stubbingStarted();
+         @SuppressWarnings("unchecked")
+diff --git a/mockito-core/src/main/java/org/mockito/stubbing/OngoingStubbing.java b/mockito-core/src/main/java/org/mockito/stubbing/OngoingStubbing.java
+index 16c5f39098..aba44c7686 100644
+--- a/mockito-core/src/main/java/org/mockito/stubbing/OngoingStubbing.java
++++ b/mockito-core/src/main/java/org/mockito/stubbing/OngoingStubbing.java
+@@ -4,6 +4,7 @@
+  */
+ package org.mockito.stubbing;
+ 
++import org.jspecify.annotations.Nullable;
+ import org.mockito.Mockito;
+ import org.mockito.NotExtensible;
+ 
+@@ -47,7 +48,7 @@ public interface OngoingStubbing<T> {
+      *
+      * @return object that allows stubbing consecutive calls
+      */
+-    OngoingStubbing<T> thenReturn(T value);
++    OngoingStubbing<T> thenReturn(@Nullable T value);
+ 
+     /**
+      * Sets consecutive return values to be returned when the method is called. E.g:
+@@ -67,7 +68,7 @@ public interface OngoingStubbing<T> {
+     // Additional method helps users of JDK7+ to hide heap pollution / unchecked generics array
+     // creation warnings (on call site)
+     @SuppressWarnings({"unchecked", "varargs"})
+-    OngoingStubbing<T> thenReturn(T value, T... values);
++    OngoingStubbing<T> thenReturn(@Nullable  T value, @Nullable  T... values);
+ 
+     /**
+      * Sets Throwable objects to be thrown when the method is called. E.g:

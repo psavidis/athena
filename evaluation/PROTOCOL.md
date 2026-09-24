@@ -33,17 +33,23 @@ at:
 
 - `base_sha` is the merge-base of the PR's base branch and its head, which is what
   GitHub's "Files changed" tab diffs against.
-- `merge_sha` is recorded for reference only.
+- `merge_sha` is recorded for reference only. A `closed-unmerged` entry has none and records
+  `-` (an empty field would shift the columns for the shell tools).
 
 Pinned SHAs keep an entry stable even after the PR's branch is deleted or its base
 branch moves.
 
 **Selection criteria:**
 
-- Public, merged, primarily Java. Athena only has a Java language plugin and a Spring
-  framework plugin today.
-- One entry per change category (below), so recurring themes can be told apart from
-  one-off quirks.
+- Public, primarily Java. Athena only has a Java language plugin and a Spring framework
+  plugin today.
+- Merged, except for the `closed-unmerged` category below.
+- At least one entry per change category (below), so recurring themes can be told apart
+  from one-off quirks.
+- Prefer repositories not yet in the corpus. Improvements are tuned against existing
+  entries, so new repositories are the out-of-sample check.
+- Vary the build: Maven and Gradle, Groovy and Kotlin DSL, custom build-file names, and
+  multi-flavour source trees.
 - A real change, not a bot bump or a docs-only change. Such PRs say nothing about
   understanding code.
 - Understandable from the PR itself plus its description. Avoid PRs whose meaning lives
@@ -51,7 +57,20 @@ branch moves.
 
 **Categories:** `small-bug-fix`, `simple-feature`, `refactoring`, `api-change`,
 `cross-module`, `dependency-framework`, `architectural`, `large`, `mixed-noisy`,
-`complex-behavioral`.
+`complex-behavioral`, `closed-unmerged`.
+
+**`closed-unmerged`:** a PR closed without merging whose review discussion gives a technical
+reason: a regression, a design conflict, an unproven performance claim, or a better approach.
+Abandoned, accidental or administrative closes (retargeting, moving to another repository)
+don't qualify.
+- It is snapshotted at its final head commit. GitHub keeps PR heads under `refs/pull/<N>/head`,
+  even when the fork has been deleted.
+- The entry's rationale in `README.md` states the rejection reason, taken from the review.
+- Where another PR superseded it, that PR goes into the corpus too, so the two can be
+  compared side by side.
+- Its judgement question is different: *would Athena's view have shown the reviewer why this
+  PR wasn't accepted?* It is scored on What/Why/Impact like any entry, and the report also
+  says whether the rejection reason was visible, hinted at, or invisible in Athena's view.
 
 **Growing the corpus:**
 

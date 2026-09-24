@@ -1,0 +1,91 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkuQWNjZXNzaWJsZUNhY2hl",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ReflectiveTypeAdapterFactory.AccessibleCache",
+  "files" : [ "gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java" ],
+  "symbols" : [ "ReflectiveTypeAdapterFactory.AccessibleCache" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5I2dldEluYWNjZXNzaWJsZU1lc3NhZ2U",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ReflectiveTypeAdapterFactory#getInaccessibleMessage",
+  "files" : [ "gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java" ],
+  "symbols" : [ "ReflectiveTypeAdapterFactory#getInaccessibleMessage" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5LkFjY2Vzc2libGVDYWNoZSNjaGVjaw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ReflectiveTypeAdapterFactory.AccessibleCache#check",
+  "files" : [ "gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java" ],
+  "symbols" : [ "ReflectiveTypeAdapterFactory.AccessibleCache#check" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRJbmFjY2Vzc2libGVNZXNzYWdlLCAtZ2V0QWNjZXNzaWJsZU9iamVjdERlc2NyaXB0aW9uClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkjY2hlY2tBY2Nlc3NpYmxl",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ReflectiveTypeAdapterFactory#checkAccessible: +getInaccessibleMessage, -getAccessibleObjectDescription",
+  "files" : [ "gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java" ],
+  "symbols" : [ "ReflectiveTypeAdapterFactory#checkAccessible", "+getInaccessibleMessage, -getAccessibleObjectDescription" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGVjaywgLWNoZWNrQWNjZXNzaWJsZQpSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5I2NyZWF0ZUJvdW5kRmllbGQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ReflectiveTypeAdapterFactory#createBoundField: +check, -checkAccessible",
+  "files" : [ "gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java" ],
+  "symbols" : [ "ReflectiveTypeAdapterFactory#createBoundField", "+check, -checkAccessible" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkuQWNjZXNzaWJsZUNhY2hlI0FDQ0VTU0lCTEU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ReflectiveTypeAdapterFactory.AccessibleCache#ACCESSIBLE",
+  "files" : [ "gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java" ],
+  "symbols" : [ "ReflectiveTypeAdapterFactory.AccessibleCache#ACCESSIBLE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkuQWNjZXNzaWJsZUNhY2hlI21lbWJlcg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ReflectiveTypeAdapterFactory.AccessibleCache#member",
+  "files" : [ "gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java" ],
+  "symbols" : [ "ReflectiveTypeAdapterFactory.AccessibleCache#member" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkuQWNjZXNzaWJsZUNhY2hlI2luYWNjZXNzaWJsZU1lc3NhZ2U",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ReflectiveTypeAdapterFactory.AccessibleCache#inaccessibleMessage",
+  "files" : [ "gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java" ],
+  "symbols" : [ "ReflectiveTypeAdapterFactory.AccessibleCache#inaccessibleMessage" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5LkFjY2Vzc2libGVDYWNoZSNtZW1iZXI",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ReflectiveTypeAdapterFactory.AccessibleCache#member",
+  "files" : [ "gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java" ],
+  "symbols" : [ "ReflectiveTypeAdapterFactory.AccessibleCache#member" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

@@ -13,7 +13,7 @@ instead of judging from a single PR (issue #258).
 | `tools/coverage.py` | Derives `metrics.json` (diff-vs-Athena coverage) for a snapshot. |
 | `tools/summarize.py` | Prints a snapshot as plain text: Change Map, Explorer cards, Canvas, focus areas. Used for the protocol's Athena pass. |
 | `snapshots/<athena-sha>/` | Raw evidence per Athena version: `pr.diff` plus every view Athena would render. |
-| `reports/` | Dated evaluation reports, written against a specific snapshot directory. The first is `reports/2026-09-23-baseline-a5bb763.md`; the re-run after #260–#271 is `reports/2026-09-24-rerun-80ce13f.md`; the third run, after #285–#296, is `reports/2026-09-24-rerun-e2b2780.md`. |
+| `reports/` | Dated evaluation reports, written against a specific snapshot directory. The first is `reports/2026-09-23-baseline-a5bb763.md`; the re-run after #260–#271 is `reports/2026-09-24-rerun-80ce13f.md`; the third run, after #285–#296, is `reports/2026-09-24-rerun-e2b2780.md`; the baseline for the 16 entries added in #311 is `reports/2026-09-24-expansion-baseline-c6a1721.md`. |
 
 ## Re-running against a newer Athena
 
@@ -52,10 +52,27 @@ the entries whose numbers moved, and write a new report under `reports/` using
 | `keycloak-52898` | large | 22 files: new client-policy executor and factory, new SPI events, a token-response context class hierarchy pulled up into two new abstract bases, and 3 large tests. |
 | `spring-petclinic-1913` | mixed-noisy | Spring Boot 3.5 upgrade: 29 copyright-only Java files, HTML/CSS cleanup, build files, and one real responsibility move (`findPetTypes` from `OwnerRepository` to a new `PetTypeRepository`). |
 | `spring-framework-37268` | complex-behavioral | A 3-line guard in a lock-free cache that fixes permanent size drift under a race. A tiny diff with large, non-obvious consequences. |
+| `commons-io-860` | small-bug-fix | `BoundedReader.skip` counted the *requested* skip, not the actual one, and could skip past the bound. A small accounting fix in one method, plus regression tests. |
+| `logback-1051` | simple-feature | `HALF_DAY` periodicity existed but could never be selected. The fix inserts it into an ordered list and adds `switch` branches in `RollingCalendar`. The feature is a one-line list change plus two cases. |
+| `guava-8663` | refactoring | Recursion → iteration in `MultiReader`, mirrored in guava's `android/` flavour. A behavior-preserving rewrite that removes a stack-overflow risk. |
+| `netty-17594` | api-change | New static `PropertyKey.newKey()`, not tied to a connection; `DefaultStream` dispatches on the key type (array fast path vs lazy `IdentityHashMap`). |
+| `junit5-6057` | cross-module | Nanosecond timeout measurement and a new upper bound on timeouts, across `junit-jupiter-api`, `-engine`, tests and docs. Kotlin-DSL Gradle build. |
+| `commons-io-872` | dependency-framework | Calls into `sun.*` internals for byte-buffer cleaning are made optional. The maintainer's re-do of `commons-io-866`. |
+| `guava-8647` | architectural | Removes view caching across `common.collect`, including the whole `ViewCachingAbstractMap`, in both the `guava/` and `android/` flavours. 82 files. |
+| `hibernate-orm-13477` | large | HHH-20905: `@Filter` and `@SQLRestriction` on to-one associations. 34 files, +2.6k lines, most of it tests. The PR description is the template; the meaning is in the title and the Jira key. |
+| `guava-8651` | mixed-noisy | IntelliJ-driven `final` sweep over 148 files, with a few real visibility changes (`LineBuffer` methods to package-private) hidden in the noise. |
+| `netty-17589` | complex-behavioral | A race between executor suspension and scheduled-task cancellation forced an unrequested shutdown. A small state-machine fix in `SingleThreadEventExecutor` plus a regression test. |
+| `gson-3086` | refactoring | Caches a successful reflective accessibility check per `BoundField` with an `AtomicBoolean`. The simpler design the reviewer asked for in `gson-3054`. |
+| `commons-lang-1790` | closed-unmerged | A competing fix for LANG-1834, the bug `commons-lang-1794` fixed. Closed as superseded by #1794 after the author stopped responding. The pair shows two fixes for one bug. |
+| `commons-io-866` | closed-unmerged | Check `sun.misc.Unsafe` access on Java 23+. The review found a regression: the `FileChannel` leaks if cleaning fails. The maintainer re-did it as #872 (`commons-io-872`). |
+| `mockito-3843` | closed-unmerged | Restores multi-classloader lookup for subclass mocks (OSGi). Rejected on design: the lookup was removed on purpose, because restoring it loses package-private mockability. |
+| `jackson-databind-6163` | closed-unmerged | 4× loop unrolling of `_serializePropertiesFiltered`. Not merged: the maintainer's review measured a larger method bytecode, suspected it makes things slower, and asked for a benchmark. |
+| `gson-3054` | closed-unmerged | A per-field `AccessibleCache` class. Closed when the fork was deleted; the reviewer had already asked for a simpler design, merged as #3086 (`gson-3086`). |
 
 Candidates considered and kept in reserve: `keycloak-53012` (cross-module bug fix),
 `mockito-3792` (Android mock maker swap, mostly Gradle/Kotlin), `spring-petclinic-2279`
 (dependency bump mixed with test renames), `jackson-databind-6213` (deferred
-deserialization work), `junit5-6057` (sub-millisecond timeouts). `junit-team/junit5` and
-`spring-projects/spring-data-jpa` were also surveyed, but their recent merged PRs were
-mostly docs or bots, so they aren't represented yet.
+deserialization work), `logback-1060` (caller-data extraction in async appenders),
+`hibernate-orm-13521` (interceptor calls for stateless sessions). Closed PRs left out:
+abandoned or administrative closes (for example `logback-1030`, which moved to another
+repository, and `jackson-databind-6153`, which was retargeted).

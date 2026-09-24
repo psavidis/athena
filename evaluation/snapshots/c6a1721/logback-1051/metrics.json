@@ -1,0 +1,44 @@
+{
+  "diff": {
+    "files": 3,
+    "java_files": 3,
+    "non_java_files": 0,
+    "substantive_java_files": 3,
+    "copyright_only_java_files": 0,
+    "production_java_files": 2,
+    "java_hunks": 8,
+    "java_lines_changed": 52
+  },
+  "athena": {
+    "changes": 7,
+    "changes_by_kind": {
+      "CHANGE_CONTROL_FLOW": 3,
+      "ADD_SYMBOL": 1,
+      "MODIFY_METHOD_BODY": 3
+    },
+    "changes_by_category": {
+      "BEHAVIORAL": 3,
+      "STRUCTURAL": 1,
+      "UNKNOWN": 3
+    },
+    "semantic_entries": 5,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 4,
+      "RESPONSIBILITY": 1
+    },
+    "inferred_entries": 1,
+    "module_territories": 1,
+    "module_dependencies": 0,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 2,
+    "substantive_java_file_coverage": 0.67,
+    "production_java_files_represented": 1,
+    "production_java_file_coverage": 0.5,
+    "unrepresented_production_java_files": [
+      "logback-core/src/main/java/ch/qos/logback/core/rolling/helper/PeriodicityType.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

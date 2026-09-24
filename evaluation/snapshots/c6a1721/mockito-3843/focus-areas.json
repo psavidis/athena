@@ -1,0 +1,13 @@
+[ {
+  "entity" : "ForeignType",
+  "description" : "Add class ForeignType"
+}, {
+  "entity" : "SuperClassReferencingOtherBundle",
+  "description" : "Add class SuperClassReferencingOtherBundle"
+}, {
+  "entity" : "SubClassInTestBundle",
+  "description" : "Add class SubClassInTestBundle"
+}, {
+  "entity" : "SubclassBytecodeGenerator",
+  "description" : "Add SubclassBytecodeGenerator#getAllTypes"
+} ]

@@ -1,0 +1,258 @@
+{
+  "commons-io" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n     public synchronized void close() throws IOException {\n-        try {\n-            fileChannel.close();\n-        } finally {\n-            clean(byteBuffer);\n+        if (!isClosed()) {\n+            try {\n+                fileChannel.close();\n+            } finally {\n+                cleanBuffer();\n+                byteBuffer = EMPTY_BUFFER;\n+                super.close();\n+            }\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Signature",
+      "conceptDescription" : "A method's parameter list and/or return type changed.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-static void clean(final ByteBuffer buffer) {\n+static void clean(final ByteBuffer buffer, final boolean sunClean) {\n         try {\n-            if (buffer.isDirect()) {\n-                Buffers.clearWritable(buffer);\n-                INSTANCE.clean(buffer);\n+            Buffers.clearWritable(buffer);\n+            if (sunClean && buffer.isDirect()) {\n+                sunClean(buffer);\n             }\n         } catch (final Exception e) {\n-            throw new IllegalStateException(\"Failed to clean direct buffer.\", e);\n+            throw new IllegalStateException(\"Failed to clean a direct ByteBuffer.\", e);\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private void cleanBuffer() {\n-        if (ByteBufferCleaner.isSupported()) {\n-            ByteBufferCleaner.clean(buffer);\n-        }\n+        ByteBufferCleaner.clean(buffer, clean);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Remove",
+      "conceptDescription" : "An existing symbol was deleted with no successor.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-private void clean(final ByteBuffer buffer) {\n-        if (!clean && ByteBufferCleaner.isSupported()) {\n-            ByteBufferCleaner.clean(buffer);\n-            clean = true;\n-        }\n-    }\n+" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Remove",
+      "conceptDescription" : "An existing symbol was deleted with no successor.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-boolean isClean() {\n-        return clean;\n-    }\n+" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Remove",
+      "conceptDescription" : "An existing symbol was deleted with no successor.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-static boolean isSupported() {\n-        return INSTANCE != null;\n-    }\n+" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private void cleanBuffer() {\n+        ByteBufferCleaner.clean(byteBuffer, clean);\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+static void sunClean(final ByteBuffer buffer) throws ReflectiveOperationException {\n+        CLEANER.clean(buffer);\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+static ByteBuffer emptyByteBuffer() {\n+        return ByteBuffer.wrap(EMPTY_BYTE_ARRAY).asReadOnlyBuffer();\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/Input.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private static Cleaner getCleaner() {\n         try {\n             return new Java8Cleaner();\n         } catch (final Exception e) {\n             try {\n                 return new Java9Cleaner();\n             } catch (final Exception e1) {\n-                throw new IllegalStateException(\"Failed to initialize a Cleaner.\", e);\n+                throw new IllegalStateException(\"Failed to initialize a direct ByteBuffer Cleaner.\", e);\n             }\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n     public void close() throws IOException {\n         if (!isClosed()) {\n-            cleanBuffer();\n-            buffer = EMPTY_BUFFER;\n-            channel.close();\n-            super.close();\n+            try {\n+                channel.close();\n+            } finally {\n+                cleanBuffer();\n+                buffer = EMPTY_BUFFER;\n+                super.close();\n+            }\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Rename",
+      "conceptDescription" : "A symbol (class, method, or field) kept its behavior but changed name.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-private static final Cleaner INSTANCE = getCleaner();\n+private static final Cleaner CLEANER = getCleaner();" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private static final ByteBuffer EMPTY_BUFFER = Input.emptyByteBuffer();" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add setClean in 2 classes",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart. Same change in: BufferedFileChannelInputStream.Builder, MemoryMappedFileInputStream.Builder.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public Builder setClean(final boolean clean) {\n+            this.clean = clean;\n+            return this;\n+        }", "-\n+public Builder setClean(final boolean clean) {\n+            this.clean = clean;\n+            return this;\n+        }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java", "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body <init> in 2 classes",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains. Same change in: BufferedFileChannelInputStream, MemoryMappedFileInputStream.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @SuppressWarnings(\"resource\")\n     private BufferedFileChannelInputStream(final Builder builder) throws IOException {\n         this.fileChannel = builder.fileChannel != null ? builder.fileChannel : FileChannel.open(builder.getPath(), StandardOpenOption.READ);\n         this.byteBuffer = ByteBuffer.allocateDirect(builder.getBufferSize());\n         this.byteBuffer.flip();\n+        this.clean = builder.clean;\n     }", " private MemoryMappedFileInputStream(final Builder builder) throws IOException {\n         this.bufferSize = builder.getBufferSize();\n         this.channel = FileChannel.open(builder.getPath(), StandardOpenOption.READ);\n+        this.clean = builder.clean;\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java", "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add clean in 3 classes",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart. Same change in: BufferedFileChannelInputStream.Builder, MemoryMappedFileInputStream, MemoryMappedFileInputStream.Builder.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private boolean clean = true;", "-\n+private final boolean clean;", "-\n+private boolean clean = true;" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java", "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+      "groupedMoveCount" : 3
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in ByteBufferCleanerTest",
+      "conceptDescription" : "7 changes in test code of ByteBufferCleanerTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-@Test\n-    void testSupported() {\n-        assertTrue(ByteBufferCleaner.isSupported(), \"ByteBufferCleaner does not work on this platform, please investigate and fix\");\n-    }\n+", "-\n+@Test\n+    void testCleanNonDirectBuffer() {\n+        assertDoesNotThrow(() -> ByteBufferCleaner.clean(ByteBuffer.allocate(10), true));\n+    }", "-\n+@Test\n+    @EnabledForJreRange(max = JAVA_23)\n+    void testCleanNullBuffer() {\n+        assertThrows(IllegalStateException.class, () -> ByteBufferCleaner.clean(null, true));\n+    }", "-\n+@Test\n+    void testCleanWithSunCleanFalseZerosBuffer() {\n+        final ByteBuffer buffer = ByteBuffer.allocateDirect(8);\n+        buffer.putLong(Long.MAX_VALUE);\n+        // clean with sunClean false should still zero the buffer via Buffers.clearWritable\n+        ByteBufferCleaner.clean(buffer, false);\n+        // Buffers.clearWritable resets position to zero and limit to capacity\n+        buffer.position(0);\n+        // The buffer should be zeroed, not contain the original value\n+        assertEquals(0L, buffer.getLong());\n+    }", "-\n+private void verifyUncleared(final ByteBuffer buffer) {\n+        buffer.flip();\n+        assertEquals(Long.MAX_VALUE, buffer.getLong());\n+        buffer.flip();\n+    }", " @Test\n     void testCleanEmpty() {\n-        final ByteBuffer buffer = ByteBuffer.allocateDirect(10);\n-        // There is no way verify that the buffer has been cleaned up, we are just verifying that\n-        // clean() doesn't blow up\n-        ByteBufferCleaner.clean(buffer);\n+        final ByteBuffer buffer = ByteBuffer.allocateDirect(8);\n+        // There is no way verify that the buffer has been cleaned up by inspecting it because a cleaned buffer should\n+        // not be used. We are just verifying that clean() doesn't blow up\n+        ByteBufferCleaner.clean(buffer, true);\n     }", " @Test\n     void testCleanFull() {\n-        final ByteBuffer buffer = ByteBuffer.allocateDirect(10);\n-        buffer.put(RandomUtils.insecure().randomBytes(10), 0, 10);\n-        // There is no way verify that the buffer has been cleaned up, we are just verifying that\n-        // clean() doesn't blow up\n-        ByteBufferCleaner.clean(buffer);\n+        final ByteBuffer buffer = ByteBuffer.allocateDirect(8);\n+        buffer.putLong(Long.MAX_VALUE);\n+        verifyUncleared(buffer);\n+        // There is no way verify that the buffer has been cleaned up by inspecting it because a cleaned buffer should\n+        // not be used. We are just verifying that clean() doesn't blow up\n+        ByteBufferCleaner.clean(buffer, true);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/test/java/org/apache/commons/io/input/ByteBufferCleanerTest.java" ],
+      "groupedMoveCount" : 7
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in BufferedFileChannelInputStreamTest",
+      "conceptDescription" : "3 changes in test code of BufferedFileChannelInputStreamTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Test\n+    void testCleanCalledNever() throws Exception {\n+        // test\n+        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);\n+                InputStream stream = BufferedFileChannelInputStream.builder().setPath(InputPath).setClean(false).get()) {\n+            stream.close();\n+            mocked.verify(() -> ByteBufferCleaner.sunClean(any(ByteBuffer.class)), never());\n+        }\n+    }", "-\n+@Test\n+    void testDefaultCleanIsTrue() throws Exception {\n+        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);\n+                InputStream stream = BufferedFileChannelInputStream.builder().setPath(InputPath).get()) {\n+            stream.close();\n+            mocked.verify(() -> ByteBufferCleaner.clean(any(ByteBuffer.class), eq(true)));\n+        }\n+    }", " @Test\n     void testCleanCalledOnlyOnce() throws Exception {\n-        try (BufferedFileChannelInputStream stream = BufferedFileChannelInputStream.builder().setPath(InputPath).get()) {\n-            assertFalse(stream.isClean());\n+        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);\n+                InputStream stream = BufferedFileChannelInputStream.builder().setPath(InputPath).setClean(true).get()) {\n             stream.close();\n-            assertTrue(stream.isClean());\n             stream.close();\n-            assertTrue(stream.isClean());\n+            mocked.verify(() -> ByteBufferCleaner.clean(any(ByteBuffer.class), eq(true)), Mockito.times(1));\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/test/java/org/apache/commons/io/input/BufferedFileChannelInputStreamTest.java" ],
+      "groupedMoveCount" : 3
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in MemoryMappedFileInputStreamTest",
+      "conceptDescription" : "4 changes in test code of MemoryMappedFileInputStreamTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Test\n+    void testCleanCalled() throws Exception {\n+        // setup\n+        final Path file = createTestFile(100);\n+        // test\n+        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);\n+             InputStream stream = MemoryMappedFileInputStream.builder().setPath(file).setClean(true).get()) {\n+            stream.close();\n+            mocked.verify(() -> ByteBufferCleaner.clean(any(ByteBuffer.class), eq(true)));\n+        }\n+    }", "-\n+@Test\n+    void testCleanCalledNever() throws Exception {\n+        // setup\n+        final Path file = createTestFile(100);\n+        // test\n+        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);\n+                InputStream stream = MemoryMappedFileInputStream.builder().setPath(file).setClean(false).get()) {\n+            stream.close();\n+            mocked.verify(() -> ByteBufferCleaner.sunClean(any(ByteBuffer.class)), never());\n+        }\n+    }", "-\n+@Test\n+    void testCleanCalledOnlyOnce() throws Exception {\n+        // setup\n+        final Path file = createTestFile(100);\n+        // test\n+        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);\n+             InputStream stream = MemoryMappedFileInputStream.builder().setPath(file).setClean(true).get()) {\n+            stream.close();\n+            stream.close();\n+            mocked.verify(() -> ByteBufferCleaner.clean(any(ByteBuffer.class), eq(true)), Mockito.times(1));\n+        }\n+    }", "-\n+@Test\n+    void testDefaultCleanIsTrue() throws Exception {\n+        // setup\n+        final Path file = createTestFile(100);\n+        // test\n+        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);\n+             InputStream stream = MemoryMappedFileInputStream.builder().setPath(file).get()) {\n+            stream.close();\n+            mocked.verify(() -> ByteBufferCleaner.clean(any(ByteBuffer.class), eq(true)));\n+        }\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/test/java/org/apache/commons/io/input/MemoryMappedFileInputStreamTest.java" ],
+      "groupedMoveCount" : 4
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Change API Responsibility",
+      "conceptDescription" : "What a public API is responsible for doing changed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-static void clean(final ByteBuffer buffer) {\n+static void clean(final ByteBuffer buffer, final boolean sunClean) {\n         try {\n-            if (buffer.isDirect()) {\n-                Buffers.clearWritable(buffer);\n-                INSTANCE.clean(buffer);\n+            Buffers.clearWritable(buffer);\n+            if (sunClean && buffer.isDirect()) {\n+                sunClean(buffer);\n             }\n         } catch (final Exception e) {\n-            throw new IllegalStateException(\"Failed to clean direct buffer.\", e);\n+            throw new IllegalStateException(\"Failed to clean a direct ByteBuffer.\", e);\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " @Override\n     public synchronized void close() throws IOException {\n-        try {\n-            fileChannel.close();\n-        } finally {\n-            clean(byteBuffer);\n+        if (!isClosed()) {\n+            try {\n+                fileChannel.close();\n+            } finally {\n+                cleanBuffer();\n+                byteBuffer = EMPTY_BUFFER;\n+                super.close();\n+            }\n         }\n     }", " private void cleanBuffer() {\n-        if (ByteBufferCleaner.isSupported()) {\n-            ByteBufferCleaner.clean(buffer);\n-        }\n+        ByteBufferCleaner.clean(buffer, clean);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java", "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Remove Capability",
+      "conceptDescription" : "An existing business-meaningful capability was removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-private void clean(final ByteBuffer buffer) {\n-        if (!clean && ByteBufferCleaner.isSupported()) {\n-            ByteBufferCleaner.clean(buffer);\n-            clean = true;\n-        }\n-    }\n+", "-boolean isClean() {\n-        return clean;\n-    }\n+", "-static boolean isSupported() {\n-        return INSTANCE != null;\n-    }\n+" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java", "src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java" ],
+      "groupedMoveCount" : 3
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+private void cleanBuffer() {\n+        ByteBufferCleaner.clean(byteBuffer, clean);\n+    }", "-\n+public Builder setClean(final boolean clean) {\n+            this.clean = clean;\n+            return this;\n+        }", "-\n+static void sunClean(final ByteBuffer buffer) throws ReflectiveOperationException {\n+        CLEANER.clean(buffer);\n+    }", "-\n+static ByteBuffer emptyByteBuffer() {\n+        return ByteBuffer.wrap(EMPTY_BYTE_ARRAY).asReadOnlyBuffer();\n+    }", "-\n+public Builder setClean(final boolean clean) {\n+            this.clean = clean;\n+            return this;\n+        }", "-\n+private static final ByteBuffer EMPTY_BUFFER = Input.emptyByteBuffer();", "-\n+private boolean clean = true;", "-\n+private final boolean clean;", "-\n+private boolean clean = true;" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java", "src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java", "src/main/java/org/apache/commons/io/input/Input.java", "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+      "groupedMoveCount" : 9
+    } ]
+  }
+}

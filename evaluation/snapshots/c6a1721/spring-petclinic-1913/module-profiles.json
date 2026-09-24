@@ -1,0 +1,192 @@
+{
+  "spring-petclinic" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+public interface PetTypeRepository extends JpaRepository<PetType, Integer> {\n \n+\t/**\n+\t * Retrieve all {@link PetType}s from the data store.\n+\t * @return a Collection of {@link PetType}s.\n+\t */\n+\t@Query(\"SELECT ptype FROM PetType ptype ORDER BY ptype.name\")\n+\tList<PetType> findPetTypes();\n+\n+}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeRepository.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Move",
+      "conceptDescription" : "A symbol kept its behavior and name but changed its enclosing type/location.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/springframework/samples/petclinic/owner/OwnerRepository.java", "src/main/java/org/springframework/samples/petclinic/owner/PetTypeRepository.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @ModelAttribute(\"types\")\n \tpublic Collection<PetType> populatePetTypes() {\n-\t\treturn this.owners.findPetTypes();\n+\t\treturn this.types.findPetTypes();\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetController.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n \tpublic PetType parse(String text, Locale locale) throws ParseException {\n-\t\tCollection<PetType> findPetTypes = this.owners.findPetTypes();\n+\t\tCollection<PetType> findPetTypes = this.types.findPetTypes();\n \t\tfor (PetType type : findPetTypes) {\n \t\t\tif (type.getName().equals(text)) {\n \t\t\t\treturn type;\n \t\t\t}\n \t\t}\n \t\tthrow new ParseException(\"type not found: \" + text, 0);\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Remove",
+      "conceptDescription" : "An existing symbol was deleted with no successor.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-private final OwnerRepository owners;\n+" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add types in 2 classes",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart. Same change in: PetController, PetTypeFormatter.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private final PetTypeRepository types;", "-\n+private final PetTypeRepository types;" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetController.java", "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add Constructor Parameter types in 2 classes",
+      "conceptDescription" : "A constructor gained a parameter that it assigns straight to a same-named field. Same change in: PetController, PetTypeFormatter.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-public PetController(OwnerRepository owners) {\n+public PetController(OwnerRepository owners, PetTypeRepository types) {\n \t\tthis.owners = owners;\n+\t\tthis.types = types;\n \t}", "-public PetTypeFormatter(OwnerRepository owners) {\n-\t\tthis.owners = owners;\n+public PetTypeFormatter(PetTypeRepository types) {\n+\t\tthis.types = types;\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetController.java", "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in MysqlTestApplication",
+      "conceptDescription" : "1 change in test code of MysqlTestApplication.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @ServiceConnection\n \t@Profile(\"mysql\")\n \t@Bean\n \tstatic MySQLContainer<?> container() {\n-\t\treturn new MySQLContainer<>(\"mysql:9.1\");\n+\t\treturn new MySQLContainer<>(DockerImageName.parse(\"mysql:9.2\"));\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/test/java/org/springframework/samples/petclinic/MysqlTestApplication.java" ],
+      "groupedMoveCount" : 1
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in PetControllerTests",
+      "conceptDescription" : "2 changes in test code of PetControllerTests.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @BeforeEach\n \tvoid setup() {\n \t\tPetType cat = new PetType();\n \t\tcat.setId(3);\n \t\tcat.setName(\"hamster\");\n-\t\tgiven(this.owners.findPetTypes()).willReturn(List.of(cat));\n+\t\tgiven(this.types.findPetTypes()).willReturn(List.of(cat));\n \n \t\tOwner owner = new Owner();\n \t\tPet pet = new Pet();\n \t\tPet dog = new Pet();\n \t\towner.addPet(pet);\n \t\towner.addPet(dog);\n \t\tpet.setId(TEST_PET_ID);\n \t\tdog.setId(TEST_PET_ID + 1);\n \t\tpet.setName(\"petty\");\n \t\tdog.setName(\"doggy\");\n \t\tgiven(this.owners.findById(TEST_OWNER_ID)).willReturn(Optional.of(owner));\n \t}", "-\n+@MockitoBean\n+\tprivate PetTypeRepository types;" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in PetTypeFormatterTests",
+      "conceptDescription" : "5 changes in test code of PetTypeFormatterTests.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @BeforeEach\n \tvoid setup() {\n-\t\tthis.petTypeFormatter = new PetTypeFormatter(pets);\n+\t\tthis.petTypeFormatter = new PetTypeFormatter(types);\n \t}", " @Test\n \tvoid shouldParse() throws ParseException {\n-\t\tgiven(this.pets.findPetTypes()).willReturn(makePetTypes());\n+\t\tgiven(types.findPetTypes()).willReturn(makePetTypes());\n \t\tPetType petType = petTypeFormatter.parse(\"Bird\", Locale.ENGLISH);\n \t\tassertThat(petType.getName()).isEqualTo(\"Bird\");\n \t}", " @Test\n \tvoid shouldThrowParseException() {\n-\t\tgiven(this.pets.findPetTypes()).willReturn(makePetTypes());\n+\t\tgiven(types.findPetTypes()).willReturn(makePetTypes());\n \t\tAssertions.assertThrows(ParseException.class, () -> {\n \t\t\tpetTypeFormatter.parse(\"Fish\", Locale.ENGLISH);\n \t\t});\n \t}", "-@Mock\n-\tprivate OwnerRepository pets;\n+", "-\n+@Mock\n+\tprivate PetTypeRepository types;" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/test/java/org/springframework/samples/petclinic/owner/PetTypeFormatterTests.java" ],
+      "groupedMoveCount" : 5
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in ClinicServiceTests",
+      "conceptDescription" : "3 changes in test code of ClinicServiceTests.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Test\n \tvoid shouldFindAllPetTypes() {\n-\t\tCollection<PetType> petTypes = this.owners.findPetTypes();\n+\t\tCollection<PetType> petTypes = this.types.findPetTypes();\n \n \t\tPetType petType1 = EntityUtils.getById(petTypes, PetType.class, 1);\n \t\tassertThat(petType1.getName()).isEqualTo(\"cat\");\n \t\tPetType petType4 = EntityUtils.getById(petTypes, PetType.class, 4);\n \t\tassertThat(petType4.getName()).isEqualTo(\"snake\");\n \t}", " @Test\n \t@Transactional\n \tvoid shouldInsertPetIntoDatabaseAndGenerateId() {\n \t\tOptional<Owner> optionalOwner = this.owners.findById(6);\n \t\tassertThat(optionalOwner).isPresent();\n \t\tOwner owner6 = optionalOwner.get();\n \n \t\tint found = owner6.getPets().size();\n \n \t\tPet pet = new Pet();\n \t\tpet.setName(\"bowser\");\n-\t\tCollection<PetType> types = this.owners.findPetTypes();\n+\t\tCollection<PetType> types = this.types.findPetTypes();\n \t\tpet.setType(EntityUtils.getById(types, PetType.class, 2));\n \t\tpet.setBirthDate(LocalDate.now());\n \t\towner6.addPet(pet);\n \t\tassertThat(owner6.getPets()).hasSize(found + 1);\n \n \t\tthis.owners.save(owner6);\n \n \t\toptionalOwner = this.owners.findById(6);\n \t\tassertThat(optionalOwner).isPresent();\n \t\towner6 = optionalOwner.get();\n \t\tassertThat(owner6.getPets()).hasSize(found + 1);\n \t\t// checks that id has been generated\n \t\tpet = owner6.getPet(\"bowser\");\n \t\tassertThat(pet.getId()).isNotNull();\n \t}", "-\n+@Autowired\n+\tprotected PetTypeRepository types;" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java" ],
+      "groupedMoveCount" : 3
+    }, {
+      "dimension" : "PATTERN",
+      "conceptName" : "Repository",
+      "conceptDescription" : "Collection-like access to domain objects is abstracted behind a dedicated type.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "+public interface PetTypeRepository extends JpaRepository<PetType, Integer> {\n \n+\t/**\n+\t * Retrieve all {@link PetType}s from the data store.\n+\t * @return a Collection of {@link PetType}s.\n+\t */\n+\t@Query(\"SELECT ptype FROM PetType ptype ORDER BY ptype.name\")\n+\tList<PetType> findPetTypes();\n+\n+}" ],
+      "supportingConceptNames" : [ "Add" ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeRepository.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Move Responsibility",
+      "conceptDescription" : "A responsibility moved from one type/module to another.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/springframework/samples/petclinic/owner/OwnerRepository.java", "src/main/java/org/springframework/samples/petclinic/owner/PetTypeRepository.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Remove Capability",
+      "conceptDescription" : "An existing business-meaningful capability was removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-private final OwnerRepository owners;\n+" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "ARCHITECTURE",
+      "conceptName" : "Outbound Port",
+      "conceptDescription" : "An interface through which the application reaches an external system.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "+public interface PetTypeRepository extends JpaRepository<PetType, Integer> {\n \n+\t/**\n+\t * Retrieve all {@link PetType}s from the data store.\n+\t * @return a Collection of {@link PetType}s.\n+\t */\n+\t@Query(\"SELECT ptype FROM PetType ptype ORDER BY ptype.name\")\n+\tList<PetType> findPetTypes();\n+\n+}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeRepository.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "+public interface PetTypeRepository extends JpaRepository<PetType, Integer> {\n \n+\t/**\n+\t * Retrieve all {@link PetType}s from the data store.\n+\t * @return a Collection of {@link PetType}s.\n+\t */\n+\t@Query(\"SELECT ptype FROM PetType ptype ORDER BY ptype.name\")\n+\tList<PetType> findPetTypes();\n+\n+}", "-\n+private final PetTypeRepository types;", "-\n+private final PetTypeRepository types;" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeRepository.java", "src/main/java/org/springframework/samples/petclinic/owner/PetController.java", "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+      "groupedMoveCount" : 3
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Change API Responsibility",
+      "conceptDescription" : "What a public API is responsible for doing changed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-public PetController(OwnerRepository owners) {\n+public PetController(OwnerRepository owners, PetTypeRepository types) {\n \t\tthis.owners = owners;\n+\t\tthis.types = types;\n \t}", "-public PetTypeFormatter(OwnerRepository owners) {\n-\t\tthis.owners = owners;\n+public PetTypeFormatter(PetTypeRepository types) {\n+\t\tthis.types = types;\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetController.java", "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+      "groupedMoveCount" : 2
+    } ]
+  }
+}
