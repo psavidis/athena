@@ -165,7 +165,7 @@ class BodySummaryTest {
     @Test
     void aPartThatEndsInAnOperatorIsAChangedValue() {
         assertThat(describe("return t != null ? t.port : port;", "return ref == null ? 0 : ref.get().port;"))
-                .isEqualTo("return value changed");
+                .isEqualTo("+get, return value changed");
     }
 
     @Test

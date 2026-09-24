@@ -1,7 +1,10 @@
 package com.athena.plugin.java;
 
 import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.body.CallableDeclaration;
+import com.github.javaparser.ast.body.InitializerDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.expr.LambdaExpr;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.stmt.BlockStmt;
@@ -33,6 +36,7 @@ final class BodySummary {
     private static final BodySummary NONE = new BodySummary(Map.of(), Map.of(), List.of(), List.of());
     private static final int MAX_ITEMS = 5;
     private static final int MAX_SNIPPET_LENGTH = 40;
+    private static final String RETURN_VALUE_CHANGED = "return value changed";
     private static final Pattern TOKEN = Pattern.compile("\\w+|\"(?:[^\"\\\\]|\\\\.)*\"|\\S");
     static final String OTHER_STATEMENTS = "other statements changed";
 
@@ -69,6 +73,7 @@ final class BodySummary {
         Map<String, Integer> thrownTypes = new LinkedHashMap<>();
         body.findAll(ThrowStmt.class).forEach(throwStmt -> thrownTypes.merge(thrownName(throwStmt), 1, Integer::sum));
         List<String> returns = body.findAll(ReturnStmt.class).stream()
+                .filter(returnStmt -> returnsFrom(returnStmt, body))
                 .sorted(Comparator.comparing(returnStmt -> returnStmt.getBegin().orElseThrow()))
                 .map(returnStmt -> returnStmt.getExpression().map(Node::toString).orElse(""))
                 .toList();
@@ -169,12 +174,90 @@ final class BodySummary {
         if ((prefix == beforeTokens.size() - suffix || prefix == afterTokens.size() - suffix) && prefix > 0) {
             prefix--;
         }
-        String removed = span(before, beforeTokens, prefix, beforeTokens.size() - suffix);
-        String added = span(after, afterTokens, prefix, afterTokens.size() - suffix);
-        if (removed.length() > MAX_SNIPPET_LENGTH || added.length() > MAX_SNIPPET_LENGTH) {
-            return "return value changed";
+        List<String> removed = texts(before, beforeTokens.subList(prefix, beforeTokens.size() - suffix));
+        List<String> added = texts(after, afterTokens.subList(prefix, afterTokens.size() - suffix));
+        String removedText = span(before, beforeTokens, prefix, beforeTokens.size() - suffix);
+        String addedText = span(after, afterTokens, prefix, afterTokens.size() - suffix);
+        if (removedText.length() > MAX_SNIPPET_LENGTH || addedText.length() > MAX_SNIPPET_LENGTH
+                || !outsideBlocks(texts(before, beforeTokens.subList(0, prefix)))
+                || !wholeExpression(removed) || !wholeExpression(added)) {
+            return RETURN_VALUE_CHANGED;
         }
-        return "return " + (removed.isEmpty() ? "nothing" : removed) + " -> " + (added.isEmpty() ? "nothing" : added);
+        return "return " + removedText + " -> " + addedText;
+    }
+
+    /**
+     * Whether {@code returnStmt} returns from {@code body} itself (ticket #351), rather than from a
+     * lambda, an anonymous or local class's method, or an initializer nested inside it.
+     */
+    private static boolean returnsFrom(ReturnStmt returnStmt, Node body) {
+        Optional<Node> node = returnStmt.getParentNode();
+        while (node.isPresent() && node.get() != body) {
+            if (node.get() instanceof LambdaExpr || node.get() instanceof CallableDeclaration<?>
+                    || node.get() instanceof InitializerDeclaration) {
+                return false;
+            }
+            node = node.get().getParentNode();
+        }
+        return true;
+    }
+
+    /** Whether a span starting after {@code prefix} lies outside any {@code {…}} body (ticket #351). */
+    private static boolean outsideBlocks(List<String> prefix) {
+        return prefix.stream().filter("{"::equals).count() == prefix.stream().filter("}"::equals).count();
+    }
+
+    /**
+     * Whether {@code tokens} read as one complete expression (ticket #351): non-empty, starting and
+     * ending on an operand, balanced brackets and conditionals, and no lambda arrow, block or
+     * top-level comma that would make "before -> after" ambiguous.
+     */
+    private static boolean wholeExpression(List<String> tokens) {
+        if (tokens.isEmpty() || !startsOperand(tokens.get(0)) || !endsOperand(tokens.get(tokens.size() - 1))) {
+            return false;
+        }
+        int depth = 0;
+        int conditionals = 0;
+        for (int i = 0; i < tokens.size(); i++) {
+            String token = tokens.get(i);
+            boolean methodReference = token.equals(":") && ((i + 1 < tokens.size() && tokens.get(i + 1).equals(":"))
+                    || (i > 0 && tokens.get(i - 1).equals(":")));
+            if (token.equals("{") || token.equals("}")
+                    || (token.equals("-") && i + 1 < tokens.size() && tokens.get(i + 1).equals(">"))) {
+                return false;
+            }
+            if (token.equals("(") || token.equals("[")) {
+                depth++;
+            } else if (token.equals(")") || token.equals("]")) {
+                depth--;
+            } else if (token.equals(",") && depth == 0) {
+                return false;
+            } else if (token.equals("?")) {
+                conditionals++;
+            } else if (token.equals(":") && !methodReference) {
+                conditionals--;
+            }
+            if (depth < 0 || conditionals < 0) {
+                return false;
+            }
+        }
+        return depth == 0 && conditionals == 0;
+    }
+
+    private static boolean startsOperand(String token) {
+        return isWord(token) || token.startsWith("\"") || token.equals("(") || token.equals("!") || token.equals("-");
+    }
+
+    private static boolean endsOperand(String token) {
+        return isWord(token) || token.startsWith("\"") || token.equals(")") || token.equals("]");
+    }
+
+    private static boolean isWord(String token) {
+        return Character.isLetterOrDigit(token.charAt(0)) || token.charAt(0) == '_' || token.charAt(0) == '$';
+    }
+
+    private static List<String> texts(String text, List<int[]> tokens) {
+        return tokens.stream().map(bounds -> token(text, bounds)).toList();
     }
 
     private static List<int[]> tokens(String text) {
