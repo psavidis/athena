@@ -221,6 +221,57 @@ class FrameworkTaxonomyClassifierTest {
         assertThat(classifier.classifySpringAwareToConstructorInjection(List.of(removedSetter), frameworkTaxonomy)).isEmpty();
     }
 
+    // ---- @ConfigurationProperties property keys (ticket #295) ----
+
+    @Test
+    void namesTheKeyOfAFieldAddedToANestedClassOfAConfigurationPropertiesClass() {
+        Change added = fieldChange(TransformationKind.ADD_FIELD, "KafkaProperties.Listener#awaitAsyncResultsOnStop",
+                "KafkaProperties\t@ConfigurationProperties(\"spring.kafka\")\nListener\t");
+
+        assertThat(classifier.classify(added, frameworkTaxonomy)).get().satisfies(classification -> {
+            assertThat(classification.concept().id()).isEqualTo("spring-configuration-property");
+            assertThat(classification.concept().name())
+                    .isEqualTo("Spring: Configuration Property spring.kafka.listener.await-async-results-on-stop");
+        });
+    }
+
+    @Test
+    void readsThePrefixFromThePrefixOrValueAttribute() {
+        assertThat(FrameworkTaxonomyClassifier.propertyKey(
+                "ServerProperties\t@ConfigurationProperties(prefix = \"server\")", "port")).contains("server.port");
+        assertThat(FrameworkTaxonomyClassifier.propertyKey(
+                "ServerProperties\t@ConfigurationProperties(value = \"server\")", "port")).contains("server.port");
+    }
+
+    @Test
+    void usesTheInnermostConfigurationPropertiesType() {
+        assertThat(FrameworkTaxonomyClassifier.propertyKey(
+                "Outer\t@ConfigurationProperties(\"outer\")\nInnerProperties\t@ConfigurationProperties(\"inner\")\nDeepSettings\t",
+                "maxSize")).contains("inner.deep-settings.max-size");
+    }
+
+    @Test
+    void namesARemovedPropertyAsRemoved() {
+        Change removed = fieldChange(TransformationKind.REMOVE_FIELD, "ServerProperties#legacyMode",
+                "ServerProperties\t@ConfigurationProperties(\"server\")");
+
+        assertThat(classifier.classify(removed, frameworkTaxonomy)).get()
+                .satisfies(c -> assertThat(c.concept().name()).isEqualTo("Spring: Removed Configuration Property server.legacy-mode"));
+    }
+
+    @Test
+    void leavesAFieldOfAnOrdinaryClassUnclassified() {
+        Change added = fieldChange(TransformationKind.ADD_FIELD, "Settings.Listener#timeout", "Settings\t@Component\nListener\t");
+
+        assertThat(classifier.classify(added, frameworkTaxonomy)).isEmpty();
+    }
+
+    private Change fieldChange(TransformationKind kind, String involved, String enclosingTypes) {
+        DetectedTransformation t = DetectedTransformation.withDiff(kind, List.of(involved), List.of(), "", "private int x;\n")
+                .withContext(DetectedTransformation.ENCLOSING_TYPE_ANNOTATIONS, enclosingTypes);
+        return new ChangeGrouper().group(List.of(t)).get(0);
+    }
+
     private Change changeWithDiff(TransformationKind kind, String involved, String beforeText, String afterText) {
         return changeWithDiff(kind, List.of(involved), beforeText, afterText);
     }
