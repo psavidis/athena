@@ -78,8 +78,8 @@ Feature: Method-body modification detection
     Then the body modification of "TokenExchange#exchange" is described as "Modify body of TokenExchange#exchange: +a, +b, +c, +d, +e …and 2 more"
 
   Scenario: A body edit with no call, throw or return difference reads as other statements
-    Given a base revision where method "combine" on class "Calculator" returns "a + b"
-    And a head revision where "combine" on "Calculator" returns "a - b" with the same signature
+    Given a base revision where method "combine" on class "Calculator" stores "a + b" before returning it
+    And a head revision where "combine" on "Calculator" stores "a - b" before returning it
     When the semantic engine detects transformations between the revisions
     Then the body modification of "Calculator#combine" is described as "Modify body of Calculator#combine: other statements changed"
 
@@ -88,3 +88,17 @@ Feature: Method-body modification detection
     And a head revision where "exchange" on "TokenExchange" calls "audit" with a different argument before returning its token
     When the semantic engine detects transformations between the revisions
     Then the body modification of "TokenExchange#exchange" is described as "Modify body of TokenExchange#exchange: other statements changed"
+
+  # Ticket #339: reordered statements and changed return values are named.
+
+  Scenario: A statement moved below another is named
+    Given a base revision where method "add" on class "TreeList" increments "modCount" before checking the index
+    And a head revision where "add" on "TreeList" checks the index before incrementing "modCount"
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "TreeList#add" is described as "Modify body of TreeList#add: moved modCount++ after checkInterval(index, 0, size())"
+
+  Scenario: A changed part of a returned expression is named
+    Given a base revision where static method "substringAfter" on class "Strings" returns "index == NOT_FOUND ? str : str.substring(index + 1)"
+    And a head revision where static method "substringAfter" on "Strings" returns "index == NOT_FOUND ? EMPTY : str.substring(index + 1)"
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "Strings#substringAfter" is described as "Modify body of Strings#substringAfter: return str -> EMPTY"
