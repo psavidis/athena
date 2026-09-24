@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change modifiers of LineBuffer#add: protected -> package-private, +final",
+  "entity" : "LineBuffer"
+}, {
+  "description" : "Change modifiers of LineBuffer#finish: protected -> package-private, +final",
+  "entity" : "LineBuffer"
+}, {
+  "description" : "Change modifiers of LineBuffer#handleLine: protected -> package-private",
+  "entity" : "LineBuffer"
+}, {
+  "description" : "Change modifiers of Collections2.FilteredCollection#toArray: +final",
+  "entity" : "Collections2.FilteredCollection"
+} ]

@@ -1,0 +1,13 @@
+[ {
+  "description" : "Add constructor parameter ReflectiveTypeAdapterFactory.AccessibleCache#member",
+  "entity" : "ReflectiveTypeAdapterFactory.AccessibleCache"
+}, {
+  "description" : "Add class ReflectiveTypeAdapterFactory.AccessibleCache",
+  "entity" : "ReflectiveTypeAdapterFactory.AccessibleCache"
+}, {
+  "description" : "Add ReflectiveTypeAdapterFactory#getInaccessibleMessage",
+  "entity" : "ReflectiveTypeAdapterFactory"
+}, {
+  "description" : "Add ReflectiveTypeAdapterFactory.AccessibleCache#check",
+  "entity" : "ReflectiveTypeAdapterFactory.AccessibleCache"
+} ]

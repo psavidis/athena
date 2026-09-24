@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/spring-projects/spring-framework.git",
+  "base" : "8c1b366bda849b381e236de663ea0bb7bbc8d0cd",
+  "head" : "b8c1e8c07058bc063e674198e64a91929969747b",
+  "changeCount" : 2,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 15.99
+}

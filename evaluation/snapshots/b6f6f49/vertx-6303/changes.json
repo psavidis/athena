@@ -1,0 +1,11 @@
+[ {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzdWNjZWVkZWRGdXR1cmUKQ2xlYW5hYmxlT2JqZWN0I3NodXRkb3du",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CleanableObject#shutdown: +succeededFuture",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java" ],
+  "symbols" : [ "CleanableObject#shutdown", "+succeededFuture" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

@@ -1,0 +1,13 @@
+[ {
+  "entity" : "AssertTimeout",
+  "description" : "Change control flow of AssertTimeout#assertTimeout: condition changed"
+}, {
+  "entity" : "TimeoutDuration",
+  "description" : "Change control flow of TimeoutDuration#toString: branch removed"
+}, {
+  "entity" : "AssertTimeoutPreemptively",
+  "description" : "Change parameter annotations of AssertTimeoutPreemptively#assertTimeoutPreemptively: messageSupplier +@Nullable"
+}, {
+  "entity" : "DurationUtils",
+  "description" : "Add class DurationUtils"
+} ]

@@ -1,0 +1,91 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTCkZvcmVpZ25UeXBl",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ForeignType",
+  "files" : [ "mockito-integration-tests/osgi-tests/src/depBundle/java/org/mockito/osgitest/depbundle/ForeignType.java" ],
+  "symbols" : [ "ForeignType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NMQVNTClN1cGVyQ2xhc3NSZWZlcmVuY2luZ090aGVyQnVuZGxl",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SuperClassReferencingOtherBundle",
+  "files" : [ "mockito-integration-tests/osgi-tests/src/otherBundle/java/org/mockito/osgitest/otherbundle/SuperClassReferencingOtherBundle.java" ],
+  "symbols" : [ "SuperClassReferencingOtherBundle" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NMQVNTCk1vY2tTdWJjbGFzc0Fjcm9zc0J1bmRsZXNUZXN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class MockSubclassAcrossBundlesTest",
+  "files" : [ "mockito-integration-tests/osgi-tests/src/testBundle/java/org/mockito/osgitest/testbundle/MockSubclassAcrossBundlesTest.java" ],
+  "symbols" : [ "MockSubclassAcrossBundlesTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClN1YkNsYXNzSW5UZXN0QnVuZGxl",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SubClassInTestBundle",
+  "files" : [ "mockito-integration-tests/osgi-tests/src/testBundle/java/org/mockito/osgitest/testbundle/SubClassInTestBundle.java" ],
+  "symbols" : [ "SubClassInTestBundle" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTdWJjbGFzc0J5dGVjb2RlR2VuZXJhdG9yI2dldEFsbFR5cGVz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SubclassBytecodeGenerator#getAllTypes",
+  "files" : [ "mockito-core/src/main/java/org/mockito/internal/creation/bytebuddy/SubclassBytecodeGenerator.java" ],
+  "symbols" : [ "SubclassBytecodeGenerator#getAllTypes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTdXBlckNsYXNzUmVmZXJlbmNpbmdPdGhlckJ1bmRsZSNmb3JlaWduVHlwZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SuperClassReferencingOtherBundle#foreignType",
+  "files" : [ "mockito-integration-tests/osgi-tests/src/otherBundle/java/org/mockito/osgitest/otherbundle/SuperClassReferencingOtherBundle.java" ],
+  "symbols" : [ "SuperClassReferencingOtherBundle#foreignType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb2NrU3ViY2xhc3NBY3Jvc3NCdW5kbGVzVGVzdCNjYW5fbW9ja19zdWJjbGFzc193aG9zZV9zdXBlcmNsYXNzX2xpdmVzX2luX2Fub3RoZXJfYnVuZGxl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MockSubclassAcrossBundlesTest#can_mock_subclass_whose_superclass_lives_in_another_bundle",
+  "files" : [ "mockito-integration-tests/osgi-tests/src/testBundle/java/org/mockito/osgitest/testbundle/MockSubclassAcrossBundlesTest.java" ],
+  "symbols" : [ "MockSubclassAcrossBundlesTest#can_mock_subclass_whose_superclass_lives_in_another_bundle" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRBbGxUeXBlcwpTdWJjbGFzc0J5dGVjb2RlR2VuZXJhdG9yI21vY2tDbGFzcw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SubclassBytecodeGenerator#mockClass: +getAllTypes",
+  "files" : [ "mockito-core/src/main/java/org/mockito/internal/creation/bytebuddy/SubclassBytecodeGenerator.java" ],
+  "symbols" : [ "SubclassBytecodeGenerator#mockClass", "+getAllTypes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2FkVGVzdENsYXNzCk9zZ2lUZXN0I2dldFRlc3RDbGFzc2Vz",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of OsgiTest#getTestClasses: +loadTestClass",
+  "files" : [ "mockito-integration-tests/osgi-tests/src/test/java/org/mockito/osgitest/OsgiTest.java" ],
+  "symbols" : [ "OsgiTest#getTestClasses", "+loadTestClass" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/google/guava.git",
+  "base" : "12b08072aeed8023cbdddf029b23b675ed416485",
+  "head" : "4afb1e04a4246c261be4742e1f2e2c39ebaf6266",
+  "changeCount" : 2,
+  "moduleCount" : 2,
+  "checkoutAndAnalysisSeconds" : 5.68
+}

@@ -1,0 +1,10 @@
+[ {
+  "entity" : "TreeList",
+  "description" : "Modify body of TreeList#add: other statements changed"
+}, {
+  "entity" : "TreeList",
+  "description" : "Modify body of TreeList#remove: other statements changed"
+}, {
+  "entity" : "TreeListTest",
+  "description" : "Add TreeListTest#testFailedIndexedChangeKeepsIteratorValid"
+} ]

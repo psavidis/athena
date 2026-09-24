@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/apache/commons-collections.git",
+  "base" : "3272cab7ed300d53bf40aa0073dc49d2234d49bf",
+  "head" : "15457bc13db0ce102962ac632f03d274fd192553",
+  "changeCount" : 5,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 3.84
+}

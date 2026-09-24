@@ -1,0 +1,1371 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTCkZsYXRWZWN0b3JzV3JpdGVyLk1lcmdlU2NvcmVyRGF0YQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class FlatVectorsWriter.MergeScorerData",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/hnsw/FlatVectorsWriter.java" ],
+  "symbols" : [ "FlatVectorsWriter.MergeScorerData" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NMQVNTCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGE",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlcg",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class TestLucene104ScalarQuantizedMergeScorer",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5SZWFkQ291bnRpbmdEaXJlY3Rvcnk",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5Db3VudGluZ0luZGV4SW5wdXQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5IbnN3T3ZlckZsYXRGb3JtYXQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5Ob1ByZXBhcmVGbGF0Rm9ybWF0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5DYXB0dXJpbmdGbGF0Rm9ybWF0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5XcmFwcGluZ0ZsYXRGb3JtYXQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5XcmFwcGluZ0ZsYXRSZWFkZXI",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3dyaXRlVmVjdG9ycwpicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#writeVectors: branch removed",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#writeVectors", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3dyaXRlU29ydGVkVmVjdG9ycwpicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#writeSortedVectors: branch removed",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#writeSortedVectors", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlZFF1YW50aXplZFZlY3RvclZhbHVlcwpicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#mergedQuantizedVectorValues: branch removed",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#mergedQuantizedVectorValues", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlT25lRmxhdFZlY3RvckZpZWxkCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorField: branch removed",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorField", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTHVjZW5lMTA0U2NhbGFyUXVhbnRpemVkVmVjdG9yc1dyaXRlciNtZXJnZU9uZUZsYXRWZWN0b3JGaWVsZENlbnRlcmVk",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorFieldCentered",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorFieldCentered" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlF1YW50aXplZEZsb2F0VmVjdG9yVmFsdWVzI3F1YW50aXplCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter.QuantizedFloatVectorValues#quantize: branch removed",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.QuantizedFloatVectorValues#quantize", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmU5OUhuc3dWZWN0b3JzV3JpdGVyI21lcmdlT25lRmllbGQKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Lucene99HnswVectorsWriter#mergeOneField: branch added",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene99/Lucene99HnswVectorsWriter.java" ],
+  "symbols" : [ "Lucene99HnswVectorsWriter#mergeOneField", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUZXN0SG5zd01lcmdlQWJvcnQjZG9UZXN0Um9sbGJhY2tEdXJpbmdNZXJnZQpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of TestHnswMergeAbort#doTestRollbackDuringMerge: branch added",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/index/TestHnswMergeAbort.java" ],
+  "symbols" : [ "TestHnswMergeAbort#doTestRollbackDuringMerge", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "RVhUUkFDVF9NRVRIT0QKTHVjZW5lMTA0U2NhbGFyUXVhbnRpemVkVmVjdG9yc0Zvcm1hdCN3cml0ZUNvcnJlY3Rpb25zCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIjd3JpdGVWZWN0b3JEYXRh",
+  "kind" : "EXTRACT_METHOD",
+  "category" : "STRUCTURAL",
+  "description" : "Extract Lucene104ScalarQuantizedVectorsFormat#writeCorrections",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java", "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsFormat.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#writeVectorData", "Lucene104ScalarQuantizedVectorsFormat#writeCorrections" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3dyaXRlQmluYXJpemVkUXVlcnlEYXRh",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Lucene104ScalarQuantizedVectorsWriter#writeBinarizedQueryData",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#writeBinarizedQueryData" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApGbGF0VmVjdG9yc1dyaXRlciNtZXJnZU9uZUZsYXRWZWN0b3JGaWVsZEZvck1lcmdlU2NvcmVy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add FlatVectorsWriter#mergeOneFlatVectorFieldForMergeScorer",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/hnsw/FlatVectorsWriter.java" ],
+  "symbols" : [ "FlatVectorsWriter#mergeOneFlatVectorFieldForMergeScorer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApGbGF0VmVjdG9yc1dyaXRlci5NZXJnZVNjb3JlckRhdGEjc2NvcmVyU3VwcGxpZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add FlatVectorsWriter.MergeScorerData#scorerSupplier",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/hnsw/FlatVectorsWriter.java" ],
+  "symbols" : [ "FlatVectorsWriter.MergeScorerData#scorerSupplier" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzRm9ybWF0I3dyaXRlUXVlcnlSZWNvcmQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Lucene104ScalarQuantizedVectorsFormat#writeQueryRecord",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsFormat.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsFormat#writeQueryRecord" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzUmVhZGVyI21lcmdlU2NvcmVyU3VwcGxpZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Lucene104ScalarQuantizedVectorsReader#mergeScorerSupplier",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsReader.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsReader#mergeScorerSupplier" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlZEZsb2F0VmVjdG9yVmFsdWVz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Lucene104ScalarQuantizedVectorsWriter#mergedFloatVectorValues",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#mergedFloatVectorValues" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlT25lRmxhdFZlY3RvckZpZWxkRm9yTWVyZ2VTY29yZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorFieldForMergeScorer",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorFieldForMergeScorer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlT25lRmxhdFZlY3RvckZpZWxk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorField",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorField" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3dyaXRlVmVjdG9yQW5kUXVlcnlEYXRh",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Lucene104ScalarQuantizedVectorsWriter#writeVectorAndQueryData",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#writeVectorAndQueryData" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3BhY2tJbmRleFJlY29yZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Lucene104ScalarQuantizedVectorsWriter#packIndexRecord",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#packIndexRecord" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI3Njb3JlclN1cHBsaWVy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#scorerSupplier",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#scorerSupplier" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2Nsb3Nl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#close",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#close" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMdWNlbmU5OUhuc3dWZWN0b3JzV3JpdGVyI21lcmdlU2NvcmVyU3VwcGxpZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Lucene99HnswVectorsWriter#mergeScorerSupplier",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene99/Lucene99HnswVectorsWriter.java" ],
+  "symbols" : [ "Lucene99HnswVectorsWriter#mergeScorerSupplier" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMdWNlbmU5OUhuc3dWZWN0b3JzV3JpdGVyI2J1aWxkc0dyYXBo",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Lucene99HnswVectorsWriter#buildsGraph",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene99/Lucene99HnswVectorsWriter.java" ],
+  "symbols" : [ "Lucene99HnswVectorsWriter#buildsGraph" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjYXN5bW1ldHJpY0VuY29kaW5ncw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#asymmetricEncodings",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#asymmetricEncodings" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjd3JpdGVyUGF0aEZvcm1hdA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#writerPathFormat",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#writerPathFormat" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcmVhZGVyUGF0aEZvcm1hdA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#readerPathFormat",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#readerPathFormat" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE1lcmdlRG9lc05vdFJlYWRNZXJnZWRWZWN0b3JzQmFjaw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testMergeDoesNotReadMergedVectorsBack",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#testMergeDoesNotReadMergedVectorsBack" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdEhhbmRPZmZTZXJ2ZXNBV3JhcHBpbmdSZWFkZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testHandOffServesAWrappingReader",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#testHandOffServesAWrappingReader" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdEdyYXBoSXNJZGVudGljYWxUb1RoZVJlYWRlckZhbGxiYWNr",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testGraphIsIdenticalToTheReaderFallback",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#testGraphIsIdenticalToTheReaderFallback" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE1lcmdlZFJlY29yZHNBcmVJZGVudGljYWxXaXRoRGVsZXRpb25z",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testMergedRecordsAreIdenticalWithDeletions",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#testMergedRecordsAreIdenticalWithDeletions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjYXNzZXJ0Qm90aFBhdGhzV3JpdGVUaGVTYW1lRmlsZXM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#assertBothPathsWriteTheSameFiles",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#assertBothPathsWriteTheSameFiles" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE5vSGFuZE9mZldoZW5Ob0dyYXBoSXNCdWlsdA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testNoHandOffWhenNoGraphIsBuilt",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#testNoHandOffWhenNoGraphIsBuilt" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdERhdGFCbGluZE1vZGVzS2VlcFRoZVJlYWRlclBhdGg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testDataBlindModesKeepTheReaderPath",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#testDataBlindModesKeepTheReaderPath" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE1lcmdlT2ZSZW51bWJlcmVkQ29kZWNSZWFkZXJz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testMergeOfRenumberedCodecReaders",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#testMergeOfRenumberedCodecReaders" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdEhhbmRPZmZJc1NpbmdsZVVzZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testHandOffIsSingleUse",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#testHandOffIsSingleUse" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdFBoYXNlT25lRmFpbHVyZUxlYXZlc05vSGFuZE9mZg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testPhaseOneFailureLeavesNoHandOff",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#testPhaseOneFailureLeavesNoHandOff" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdEhhbmRPZmZJc1JlbGVhc2VkV2hlbkl0SXNOZXZlckNvbnN1bWVk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testHandOffIsReleasedWhenItIsNeverConsumed",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#testHandOffIsReleasedWhenItIsNeverConsumed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdFBoYXNlVHdvRmFpbHVyZUxlYXZlc05vSGFuZE9mZg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testPhaseTwoFailureLeavesNoHandOff",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#testPhaseTwoFailureLeavesNoHandOff" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE1ldGFGYWlsdXJlTGVhdmVzTm9IYW5kT2Zm",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testMetaFailureLeavesNoHandOff",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#testMetaFailureLeavesNoHandOff" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjYXNzZXJ0TWVyZ2VGYWlsc1dpdGhvdXRMZWZ0b3ZlcnM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#assertMergeFailsWithoutLeftovers",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#assertMergeFailsWithoutLeftovers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcmFuZG9tQXN5bW1ldHJpY0VuY29kaW5n",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#randomAsymmetricEncoding",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#randomAsymmetricEncoding" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjYXNzZXJ0Tm9UZW1wRmlsZXM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#assertNoTempFiles",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#assertNoTempFiles" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcmVudW1iZXJlZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#renumbered",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#renumbered" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcnVuTWVyZ2U",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#runMerge",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#runMerge" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjbWVyZ2VkVmVjdG9yRmlsZXM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#mergedVectorFiles",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#mergedVectorFiles" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjZmlsZUJvZHk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#fileBody",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#fileBody" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcmFuZG9tVmVjdG9ycw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer#randomVectors",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#randomVectors" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I29wZW5JbnB1dA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#openInput",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#openInput" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I2NyZWF0ZU91dHB1dA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#createOutput",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#createOutput" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I2NyZWF0ZVRlbXBPdXRwdXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#createTempOutput",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#createTempOutput" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I3Jlc2V0Q291bnRz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#resetCounts",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#resetCounts" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I2J5dGVzUmVhZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#bytesRead",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#bytesRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I2hhbmRPZmZzQ3JlYXRlZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#handOffsCreated",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#handOffsCreated" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I2Nsb25l",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#clone",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#clone" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I3NsaWNl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#slice",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#slice" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I3JlYWRCeXRl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#readByte",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#readByte" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I3JlYWRCeXRlcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#readBytes",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#readBytes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I2ZpZWxkc1dyaXRlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#fieldsWriter",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#fieldsWriter" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I2ZpZWxkc1JlYWRlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#fieldsReader",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#fieldsReader" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I2dldE1heERpbWVuc2lvbnM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#getMaxDimensions",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#getMaxDimensions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuTm9QcmVwYXJlRmxhdEZvcm1hdCNmaWVsZHNXcml0ZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat#fieldsWriter",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat#fieldsWriter" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ2FwdHVyaW5nRmxhdEZvcm1hdCNmaWVsZHNXcml0ZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#fieldsWriter",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#fieldsWriter" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0Rm9ybWF0I2ZpZWxkc1dyaXRlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#fieldsWriter",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#fieldsWriter" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0Rm9ybWF0I2ZpZWxkc1JlYWRlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#fieldsReader",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#fieldsReader" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0Rm9ybWF0I2dldE1heERpbWVuc2lvbnM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#getMaxDimensions",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#getMaxDimensions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI3Vud3JhcFJlYWRlckZvckZpZWxk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#unwrapReaderForField",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#unwrapReaderForField" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldEZsYXRWZWN0b3JTY29yZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getFlatVectorScorer",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getFlatVectorScorer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldFJhbmRvbVZlY3RvclNjb3Jlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getRandomVectorScorer",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getRandomVectorScorer" ],
+  "occurrences" : 3,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2NoZWNrSW50ZWdyaXR5",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#checkIntegrity",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#checkIntegrity" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldEZsb2F0VmVjdG9yVmFsdWVz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getFloatVectorValues",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getFloatVectorValues" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldEJ5dGVWZWN0b3JWYWx1ZXM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getByteVectorValues",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getByteVectorValues" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldEZsb2F0MTZWZWN0b3JWYWx1ZXM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getFloat16VectorValues",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getFloat16VectorValues" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2Nsb3Nl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#close",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#close" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI3JhbUJ5dGVzVXNlZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#ramBytesUsed",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#ramBytesUsed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0SG5zd01lcmdlQWJvcnQjdGVzdFJvbGxiYWNrRHVyaW5nUXVhbnRpemVkTWVyZ2U",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestHnswMergeAbort#testRollbackDuringQuantizedMerge",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/index/TestHnswMergeAbort.java" ],
+  "symbols" : [ "TestHnswMergeAbort#testRollbackDuringQuantizedMerge" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0SG5zd01lcmdlQWJvcnQjdGVtcEZpbGVz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestHnswMergeAbort#tempFiles",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/index/TestHnswMergeAbort.java" ],
+  "symbols" : [ "TestHnswMergeAbort#tempFiles" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0T3B0aW1pemVkU2NhbGFyUXVhbnRpemVyI3Rlc3RNdWx0aVNjYWxhclF1YW50aXplTWF0Y2hlc1NjYWxhclF1YW50aXpl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestOptimizedScalarQuantizer#testMultiScalarQuantizeMatchesScalarQuantize",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/util/quantization/TestOptimizedScalarQuantizer.java" ],
+  "symbols" : [ "TestOptimizedScalarQuantizer#testMultiScalarQuantizeMatchesScalarQuantize" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0T3B0aW1pemVkU2NhbGFyUXVhbnRpemVyI2Fzc2VydElkZW50aWNhbFJlc3VsdHM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestOptimizedScalarQuantizer#assertIdenticalResults",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/util/quantization/TestOptimizedScalarQuantizer.java" ],
+  "symbols" : [ "TestOptimizedScalarQuantizer#assertIdenticalResults" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCittZXJnZVNjb3JlclN1cHBsaWVyLCAtZ2V0UmFuZG9tVmVjdG9yU2NvcmVyU3VwcGxpZXIsIC1nZXRWZWN0b3JTaW1pbGFyaXR5RnVuY3Rpb24sIC1jcmVhdGUsIC1vcGVuSW5wdXQg4oCmYW5kIDcgbW9yZQpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzUmVhZGVyI2dldFJhbmRvbVZlY3RvclNjb3JlclN1cHBsaWVyRm9yTWVyZ2U",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Lucene104ScalarQuantizedVectorsReader#getRandomVectorScorerSupplierForMerge: +mergeScorerSupplier, -getRandomVectorScorerSupplier, -getVectorSimilarityFunction, -create, -openInput …and 7 more",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsReader.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsReader#getRandomVectorScorerSupplierForMerge", "+mergeScorerSupplier, -getRandomVectorScorerSupplier, -getVectorSimilarityFunction, -create, -openInput …and 7 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZVF1ZXJ5UmVjb3JkLCAtdHJhbnNwb3NlSGFsZkJ5dGUsIC13cml0ZUJ5dGVzLCAtd3JpdGVJbnQsIC1mbG9hdFRvSW50Qml0cyDigKZhbmQgNCBtb3JlCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNSZWFkZXIjd3JpdGVCaW5hcml6ZWRRdWVyeURhdGE",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Lucene104ScalarQuantizedVectorsReader#writeBinarizedQueryData: +writeQueryRecord, -transposeHalfByte, -writeBytes, -writeInt, -floatToIntBits …and 4 more",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsReader.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsReader#writeBinarizedQueryData", "+writeQueryRecord, -transposeHalfByte, -writeBytes, -writeInt, -floatToIntBits …and 4 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZUNvcnJlY3Rpb25zLCAtd3JpdGVJbnQsIC1mbG9hdFRvSW50Qml0cywgLWxvd2VySW50ZXJ2YWwsIC11cHBlckludGVydmFsIOKApmFuZCAyIG1vcmUKTHVjZW5lMTA0U2NhbGFyUXVhbnRpemVkVmVjdG9yc1dyaXRlciN3cml0ZVZlY3RvckRhdGE",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Lucene104ScalarQuantizedVectorsWriter#writeVectorData: +writeCorrections, -writeInt, -floatToIntBits, -lowerInterval, -upperInterval …and 2 more",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#writeVectorData", "+writeCorrections, -writeInt, -floatToIntBits, -lowerInterval, -upperInterval …and 2 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIjY2xvc2UKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Lucene104ScalarQuantizedVectorsWriter#close: other statements changed",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#close", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbG9zZQpMdWNlbmU5OUhuc3dWZWN0b3JzV3JpdGVyI2Nsb3Nl",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Lucene99HnswVectorsWriter#close: +close",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene99/Lucene99HnswVectorsWriter.java" ],
+  "symbols" : [ "Lucene99HnswVectorsWriter#close", "+close" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Lucene104ScalarQuantizedVectorsWriter#<init>: other statements changed",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#<init>", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIjdmVjdG9yU2NvcmVy",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field Lucene104ScalarQuantizedVectorsWriter#vectorScorer",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter#vectorScorer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjZGlyZWN0b3J5",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#directory",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#directory" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjY29udGV4dA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#context",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#context" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjZmllbGRJbmZv",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fieldInfo",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fieldInfo" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjdmVjdG9yU2NvcmVy",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#vectorScorer",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#vectorScorer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjZmlsZU5hbWU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fileName",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fileName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjc3BlbnQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#spent",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#spent" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTk5SG5zd1ZlY3RvcnNXcml0ZXIjcHJlcGFyZWRNZXJnZVNjb3JlcnM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field Lucene99HnswVectorsWriter#preparedMergeScorers",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene99/Lucene99HnswVectorsWriter.java" ],
+  "symbols" : [ "Lucene99HnswVectorsWriter#preparedMergeScorers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNESU0",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#DIM",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#DIM" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNET0NTX1BFUl9TRUdNRU5U",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#DOCS_PER_SEGMENT",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#DOCS_PER_SEGMENT" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNUSU5ZX1NFR01FTlRfRE9DUw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#TINY_SEGMENT_DOCS",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#TINY_SEGMENT_DOCS" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNNQVhfQ09OTg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#MAX_CONN",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#MAX_CONN" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNCRUFNX1dJRFRI",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#BEAM_WIDTH",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#BEAM_WIDTH" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNBTFdBWVNfR1JBUEg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#ALWAYS_GRAPH",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#ALWAYS_GRAPH" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNSQVdfRk9STUFU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#RAW_FORMAT",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#RAW_FORMAT" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNRVUFOVElaRURfU0NPUkVS",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#QUANTIZED_SCORER",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#QUANTIZED_SCORER" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNSRUNPUkRfRVhURU5TSU9OUw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#RECORD_EXTENSIONS",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#RECORD_EXTENSIONS" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNWRUNUT1JfRVhURU5TSU9OUw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#VECTOR_EXTENSIONS",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer#VECTOR_EXTENSIONS" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5SZWFkQ291bnRpbmdEaXJlY3RvcnkjYnl0ZXNSZWFk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#bytesRead",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#bytesRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5SZWFkQ291bnRpbmdEaXJlY3RvcnkjY3JlYXRlZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#created",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#created" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5Db3VudGluZ0luZGV4SW5wdXQjYnl0ZXNSZWFk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#bytesRead",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#bytesRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5IbnN3T3ZlckZsYXRGb3JtYXQjUkVBRF9GT1JNQVQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#READ_FORMAT",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#READ_FORMAT" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5IbnN3T3ZlckZsYXRGb3JtYXQjZmxhdFZlY3RvcnNGb3JtYXQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#flatVectorsFormat",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#flatVectorsFormat" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5IbnN3T3ZlckZsYXRGb3JtYXQjdGlueVNlZ21lbnRzVGhyZXNob2xk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#tinySegmentsThreshold",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#tinySegmentsThreshold" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5Ob1ByZXBhcmVGbGF0Rm9ybWF0I2VuY29kaW5n",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat#encoding",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat#encoding" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5DYXB0dXJpbmdGbGF0Rm9ybWF0I2VuY29kaW5n",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#encoding",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#encoding" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5DYXB0dXJpbmdGbGF0Rm9ybWF0I21vZGU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#mode",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#mode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5DYXB0dXJpbmdGbGF0Rm9ybWF0I2hhbmRsZXM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#handles",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#handles" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5XcmFwcGluZ0ZsYXRGb3JtYXQjZGVsZWdhdGU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#delegate",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#delegate" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5XcmFwcGluZ0ZsYXRSZWFkZXIjZGVsZWdhdGU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#delegate",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#delegate" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2RpcmVjdG9yeQ",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#directory",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#directory" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2NvbnRleHQ",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#context",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#context" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2ZpZWxkSW5mbw",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fieldInfo",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fieldInfo" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI3ZlY3RvclNjb3Jlcg",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#vectorScorer",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#vectorScorer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2ZpbGVOYW1l",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fileName",
+  "files" : [ "lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104ScalarQuantizedVectorsWriter.java" ],
+  "symbols" : [ "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fileName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I2J5dGVzUmVhZA",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#bytesRead",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#bytesRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I2ZsYXRWZWN0b3JzRm9ybWF0",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#flatVectorsFormat",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#flatVectorsFormat" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I3RpbnlTZWdtZW50c1RocmVzaG9sZA",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#tinySegmentsThreshold",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#tinySegmentsThreshold" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuTm9QcmVwYXJlRmxhdEZvcm1hdCNlbmNvZGluZw",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat#encoding",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat#encoding" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ2FwdHVyaW5nRmxhdEZvcm1hdCNlbmNvZGluZw",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#encoding",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#encoding" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ2FwdHVyaW5nRmxhdEZvcm1hdCNtb2Rl",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#mode",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#mode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ2FwdHVyaW5nRmxhdEZvcm1hdCNoYW5kbGVz",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#handles",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#handles" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2RlbGVnYXRl",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#delegate",
+  "files" : [ "lucene/core/src/test/org/apache/lucene/codecs/lucene104/TestLucene104ScalarQuantizedMergeScorer.java" ],
+  "symbols" : [ "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#delegate" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

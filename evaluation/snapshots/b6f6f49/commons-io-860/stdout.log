@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/apache/commons-io.git",
+  "base" : "0c547ad99c6d7ab84a72d60462867cc4edafd13d",
+  "head" : "9b8dae331e95266628c1dc39d2cafc3c4ba4205a",
+  "changeCount" : 4,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 3.49
+}

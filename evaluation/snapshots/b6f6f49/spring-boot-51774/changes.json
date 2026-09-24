@@ -1,0 +1,51 @@
+[ {
+  "changeKey" : "QUREX1NZTUJPTApLYWZrYVByb3BlcnRpZXMuTGlzdGVuZXIjaXNBd2FpdEFzeW5jUmVzdWx0c09uU3RvcA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add KafkaProperties.Listener#isAwaitAsyncResultsOnStop",
+  "files" : [ "module/spring-boot-kafka/src/main/java/org/springframework/boot/kafka/autoconfigure/KafkaProperties.java" ],
+  "symbols" : [ "KafkaProperties.Listener#isAwaitAsyncResultsOnStop" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApLYWZrYVByb3BlcnRpZXMuTGlzdGVuZXIjc2V0QXdhaXRBc3luY1Jlc3VsdHNPblN0b3A",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add KafkaProperties.Listener#setAwaitAsyncResultsOnStop",
+  "files" : [ "module/spring-boot-kafka/src/main/java/org/springframework/boot/kafka/autoconfigure/KafkaProperties.java" ],
+  "symbols" : [ "KafkaProperties.Listener#setAwaitAsyncResultsOnStop" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmcm9tLCArdG8KQ29uY3VycmVudEthZmthTGlzdGVuZXJDb250YWluZXJGYWN0b3J5Q29uZmlndXJlciNjb25maWd1cmVDb250YWluZXI",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConcurrentKafkaListenerContainerFactoryConfigurer#configureContainer: +from, +to",
+  "files" : [ "module/spring-boot-kafka/src/main/java/org/springframework/boot/kafka/autoconfigure/ConcurrentKafkaListenerContainerFactoryConfigurer.java" ],
+  "symbols" : [ "ConcurrentKafkaListenerContainerFactoryConfigurer#configureContainer", "+from, +to" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCAraXNUcnVlLCAraXNBd2FpdEFzeW5jUmVzdWx0c09uU3RvcApLYWZrYUF1dG9Db25maWd1cmF0aW9uVGVzdHMjbGlzdGVuZXJQcm9wZXJ0aWVz",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of KafkaAutoConfigurationTests#listenerProperties: +assertThat, +isTrue, +isAwaitAsyncResultsOnStop",
+  "files" : [ "module/spring-boot-kafka/src/test/java/org/springframework/boot/kafka/autoconfigure/KafkaAutoConfigurationTests.java" ],
+  "symbols" : [ "KafkaAutoConfigurationTests#listenerProperties", "+assertThat, +isTrue, +isAwaitAsyncResultsOnStop" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkthZmthUHJvcGVydGllcy5MaXN0ZW5lciNhd2FpdEFzeW5jUmVzdWx0c09uU3RvcA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field KafkaProperties.Listener#awaitAsyncResultsOnStop",
+  "files" : [ "module/spring-boot-kafka/src/main/java/org/springframework/boot/kafka/autoconfigure/KafkaProperties.java" ],
+  "symbols" : [ "KafkaProperties.Listener#awaitAsyncResultsOnStop" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

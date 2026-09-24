@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/apache/dubbo.git",
+  "base" : "b75adde95997f6fdd195e8dd8ed5986ceefcd7de",
+  "head" : "5a0b52b73464d73b03e5aa06373e6e3e5fc9105d",
+  "changeCount" : 2,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 7.86
+}

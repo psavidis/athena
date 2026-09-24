@@ -1,0 +1,57 @@
+{
+  "prTitle" : "Fix LANG-1834: getReducedFraction throws for reducible Integer.MIN_VALUE numerator",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpGcmFjdGlvbiNnZXRSZWR1Y2VkRnJhY3Rpb24KYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz",
+    "description" : "Change control flow of Fraction#getReducedFraction: branch added; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApGcmFjdGlvblRlc3QjdGVzdE15UmVkdWNlZEZyYWN0aW9uRml4",
+    "description" : "Add FractionTest#testMyReducedFractionFix",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "Fraction",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpGcmFjdGlvbiNnZXRSZWR1Y2VkRnJhY3Rpb24KYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz",
+      "description" : "Change control flow of Fraction#getReducedFraction: branch added; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "FractionTest",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApGcmFjdGlvblRlc3QjdGVzdE15UmVkdWNlZEZyYWN0aW9uRml4",
+      "description" : "Add FractionTest#testMyReducedFractionFix",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

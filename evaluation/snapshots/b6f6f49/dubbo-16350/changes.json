@@ -1,0 +1,21 @@
+[ {
+  "changeKey" : "QUREX1NZTUJPTApTdHJpbmdVdGlsc1Rlc3QjdGVzdFN1YnN0cmluZ0FmdGVy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add StringUtilsTest#testSubstringAfter",
+  "files" : [ "dubbo-common/src/test/java/org/apache/dubbo/common/utils/StringUtilsTest.java" ],
+  "symbols" : [ "StringUtilsTest#testSubstringAfter" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClN0cmluZ1V0aWxzI3N1YnN0cmluZ0FmdGVyCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of StringUtils#substringAfter: other statements changed",
+  "files" : [ "dubbo-common/src/main/java/org/apache/dubbo/common/utils/StringUtils.java" ],
+  "symbols" : [ "StringUtils#substringAfter", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

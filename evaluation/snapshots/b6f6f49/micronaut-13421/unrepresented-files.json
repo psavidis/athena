@@ -1,0 +1,12 @@
+{
+  "changedFileCount" : 2,
+  "representedFileCount" : 1,
+  "files" : [ {
+    "path" : "http-client/src/test/groovy/io/micronaut/http/client/StreamErrorResponseConnectionSpec.groovy",
+    "status" : "ADDED",
+    "linesChanged" : 117,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

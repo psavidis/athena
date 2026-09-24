@@ -1,0 +1,73 @@
+{
+  "territories" : [ {
+    "moduleName" : "core",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 7 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApJbXBvc3NpYmxlTnVsbENvbXBhcmlzb25UZXN0I2NsYXNzRm9yTmFtZQ", "QUREX1NZTUJPTApJbXBvc3NpYmxlTnVsbENvbXBhcmlzb25UZXN0I2NsYXNzRm9yTmFtZV9mbGFnRGlzYWJsZWQ", "TU9ESUZZX01FVEhPRF9CT0RZCitmaWx0ZXIsICtlcXVhbHMKSW1wb3NzaWJsZU51bGxDb21wYXJpc29uLk51bGxDb21wYXJpc29uU2Nhbm5lciNnZXRGaXhlcg", "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRCb29sZWFuLCArb3JFbHNlCkltcG9zc2libGVOdWxsQ29tcGFyaXNvbiM8aW5pdD4", "QUREX0ZJRUxECkltcG9zc2libGVOdWxsQ29tcGFyaXNvbiNjaGVja0NsYXNzRm9yTmFtZQ", "QUREX0ZJRUxECkltcG9zc2libGVOdWxsQ29tcGFyaXNvbiNDTEFTU19GT1JfTkFNRV9NQVRDSEVS", "QUREX0VOVU1fQ09OU1RBTlQKSW1wb3NzaWJsZU51bGxDb21wYXJpc29uLkdldHRlclR5cGVzI0NMQVNTX0ZPUl9OQU1F" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApJbXBvc3NpYmxlTnVsbENvbXBhcmlzb25UZXN0I2NsYXNzRm9yTmFtZQ", "QUREX1NZTUJPTApJbXBvc3NpYmxlTnVsbENvbXBhcmlzb25UZXN0I2NsYXNzRm9yTmFtZV9mbGFnRGlzYWJsZWQ" ]
+  }, {
+    "moduleName" : "annotation",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "check_api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "test_helpers",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "annotations",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "docgen_processor",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "core",
+    "to" : "annotation"
+  }, {
+    "from" : "core",
+    "to" : "check_api"
+  }, {
+    "from" : "core",
+    "to" : "test_helpers"
+  }, {
+    "from" : "core",
+    "to" : "annotations"
+  }, {
+    "from" : "core",
+    "to" : "docgen_processor"
+  } ]
+}

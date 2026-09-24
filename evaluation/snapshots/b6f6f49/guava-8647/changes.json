@@ -1,0 +1,2451 @@
+[ {
+  "changeKey" : "UkVNT1ZFX0NMQVNTCk1hcHMuVmlld0NhY2hpbmdBYnN0cmFjdE1hcA",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class Maps.ViewCachingAbstractMap",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.ViewCachingAbstractMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdEJpTWFwI2tleVNldApicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of AbstractBiMap#keySet: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractBiMap.java", "guava/src/com/google/common/collect/AbstractBiMap.java" ],
+  "symbols" : [ "AbstractBiMap#keySet", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdEJpTWFwI3ZhbHVlcwpicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of AbstractBiMap#values: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractBiMap.java", "guava/src/com/google/common/collect/AbstractBiMap.java" ],
+  "symbols" : [ "AbstractBiMap#values", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdEJpTWFwI2VudHJ5U2V0CmJyYW5jaCByZW1vdmVkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of AbstractBiMap#entrySet: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractBiMap.java", "guava/src/com/google/common/collect/AbstractBiMap.java" ],
+  "symbols" : [ "AbstractBiMap#entrySet", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01PRElGSUVSUwotZmluYWwKQWJzdHJhY3RMaXN0TXVsdGltYXAjYXNNYXA",
+  "kind" : "CHANGE_MODIFIERS",
+  "category" : "STRUCTURAL",
+  "description" : "Change modifiers of AbstractListMultimap#asMap: -final",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractListMultimap.java", "guava/src/com/google/common/collect/AbstractListMultimap.java" ],
+  "symbols" : [ "AbstractListMultimap#asMap", "-final" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdE1hcEJhc2VkTXVsdGltYXAjZW50cmllcwpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of AbstractMapBasedMultimap#entries: branch added",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMapBasedMultimap.java", "guava/src/com/google/common/collect/AbstractMapBasedMultimap.java" ],
+  "symbols" : [ "AbstractMapBasedMultimap#entries", "branch added" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdE1hcEJhc2VkTXVsdGltYXAuU29ydGVkQXNNYXAja2V5U2V0CmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of AbstractMapBasedMultimap.SortedAsMap#keySet: branch removed",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMapBasedMultimap.java", "guava/src/com/google/common/collect/AbstractMapBasedMultimap.java" ],
+  "symbols" : [ "AbstractMapBasedMultimap.SortedAsMap#keySet", "branch removed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdE11bHRpc2V0I2VsZW1lbnRTZXQKYnJhbmNoIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of AbstractMultiset#elementSet: branch removed",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultiset.java", "guava/src/com/google/common/collect/AbstractMultiset.java" ],
+  "symbols" : [ "AbstractMultiset#elementSet", "branch removed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdE11bHRpc2V0I2VudHJ5U2V0CmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of AbstractMultiset#entrySet: branch removed",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultiset.java", "guava/src/com/google/common/collect/AbstractMultiset.java" ],
+  "symbols" : [ "AbstractMultiset#entrySet", "branch removed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdFRhYmxlI2NlbGxTZXQKYnJhbmNoIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of AbstractTable#cellSet: branch removed",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractTable.java", "guava/src/com/google/common/collect/AbstractTable.java" ],
+  "symbols" : [ "AbstractTable#cellSet", "branch removed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdFRhYmxlI3ZhbHVlcwpicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of AbstractTable#values: branch removed",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractTable.java", "guava/src/com/google/common/collect/AbstractTable.java" ],
+  "symbols" : [ "AbstractTable#values", "branch removed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBcnJheVRhYmxlI2NvbHVtbk1hcApicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ArrayTable#columnMap: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/ArrayTable.java", "guava/src/com/google/common/collect/ArrayTable.java" ],
+  "symbols" : [ "ArrayTable#columnMap", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBcnJheVRhYmxlI3Jvd01hcApicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ArrayTable#rowMap: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/ArrayTable.java", "guava/src/com/google/common/collect/ArrayTable.java" ],
+  "symbols" : [ "ArrayTable#rowMap", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZXNjZW5kaW5nTXVsdGlzZXQjZWxlbWVudFNldApicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of DescendingMultiset#elementSet: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/DescendingMultiset.java", "guava/src/com/google/common/collect/DescendingMultiset.java" ],
+  "symbols" : [ "DescendingMultiset#elementSet", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZXNjZW5kaW5nTXVsdGlzZXQjZW50cnlTZXQKYnJhbmNoIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of DescendingMultiset#entrySet: branch removed",
+  "files" : [ "android/guava/src/com/google/common/collect/DescendingMultiset.java", "guava/src/com/google/common/collect/DescendingMultiset.java" ],
+  "symbols" : [ "DescendingMultiset#entrySet", "branch removed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpJbW11dGFibGVNdWx0aXNldCNlbnRyeVNldApicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ImmutableMultiset#entrySet: branch removed",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableMultiset.java", "guava/src/com/google/common/collect/ImmutableMultiset.java" ],
+  "symbols" : [ "ImmutableMultiset#entrySet", "branch removed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpJbW11dGFibGVTZXRNdWx0aW1hcCNlbnRyaWVzCmJyYW5jaCByZW1vdmVkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ImmutableSetMultimap#entries: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableSetMultimap.java", "guava/src/com/google/common/collect/ImmutableSetMultimap.java" ],
+  "symbols" : [ "ImmutableSetMultimap#entries", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01PRElGSUVSUworYWJzdHJhY3QKSW1tdXRhYmxlVGFibGUjY2VsbFNldA",
+  "kind" : "CHANGE_MODIFIERS",
+  "category" : "STRUCTURAL",
+  "description" : "Change modifiers of ImmutableTable#cellSet: +abstract",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableTable.java", "guava/src/com/google/common/collect/ImmutableTable.java" ],
+  "symbols" : [ "ImmutableTable#cellSet", "+abstract" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01PRElGSUVSUworYWJzdHJhY3QsIC1maW5hbApJbW11dGFibGVUYWJsZSN2YWx1ZXM",
+  "kind" : "CHANGE_MODIFIERS",
+  "category" : "STRUCTURAL",
+  "description" : "Change modifiers of ImmutableTable#values: +abstract, -final",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableTable.java", "guava/src/com/google/common/collect/ImmutableTable.java" ],
+  "symbols" : [ "ImmutableTable#values", "+abstract, -final" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYXBNYWtlckludGVybmFsTWFwI2tleVNldApicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of MapMakerInternalMap#keySet: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/MapMakerInternalMap.java", "guava/src/com/google/common/collect/MapMakerInternalMap.java" ],
+  "symbols" : [ "MapMakerInternalMap#keySet", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYXBNYWtlckludGVybmFsTWFwI3ZhbHVlcwpicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of MapMakerInternalMap#values: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/MapMakerInternalMap.java", "guava/src/com/google/common/collect/MapMakerInternalMap.java" ],
+  "symbols" : [ "MapMakerInternalMap#values", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYXBNYWtlckludGVybmFsTWFwI2VudHJ5U2V0CmJyYW5jaCByZW1vdmVkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of MapMakerInternalMap#entrySet: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/MapMakerInternalMap.java", "guava/src/com/google/common/collect/MapMakerInternalMap.java" ],
+  "symbols" : [ "MapMakerInternalMap#entrySet", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYXBzLlVubW9kaWZpYWJsZUJpTWFwI3ZhbHVlcwpicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Maps.UnmodifiableBiMap#values: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.UnmodifiableBiMap#values", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYXBzLkRlc2NlbmRpbmdNYXAjZW50cnlTZXQKYnJhbmNoIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Maps.DescendingMap#entrySet: branch removed",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.DescendingMap#entrySet", "branch removed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYXBzLkRlc2NlbmRpbmdNYXAjbmF2aWdhYmxlS2V5U2V0CmJyYW5jaCByZW1vdmVkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Maps.DescendingMap#navigableKeySet: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.DescendingMap#navigableKeySet", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNdWx0aW1hcHMuVW5tb2RpZmlhYmxlTXVsdGltYXAjYXNNYXAKYnJhbmNoIHJlbW92ZWQ7IHNhbWUgY2FsbHM",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Multimaps.UnmodifiableMultimap#asMap: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.UnmodifiableMultimap#asMap", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNdWx0aW1hcHMuVW5tb2RpZmlhYmxlTXVsdGltYXAjZW50cmllcwpicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Multimaps.UnmodifiableMultimap#entries: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.UnmodifiableMultimap#entries", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNdWx0aW1hcHMuVW5tb2RpZmlhYmxlTXVsdGltYXAja2V5cwpicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Multimaps.UnmodifiableMultimap#keys: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.UnmodifiableMultimap#keys", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNdWx0aW1hcHMuVW5tb2RpZmlhYmxlTXVsdGltYXAja2V5U2V0CmJyYW5jaCByZW1vdmVkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Multimaps.UnmodifiableMultimap#keySet: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.UnmodifiableMultimap#keySet", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNdWx0aW1hcHMuVW5tb2RpZmlhYmxlTXVsdGltYXAjdmFsdWVzCmJyYW5jaCByZW1vdmVkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Multimaps.UnmodifiableMultimap#values: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.UnmodifiableMultimap#values", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNdWx0aXNldHMuVW5tb2RpZmlhYmxlTXVsdGlzZXQjZWxlbWVudFNldApicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Multisets.UnmodifiableMultiset#elementSet: branch removed",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets.UnmodifiableMultiset#elementSet", "branch removed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNdWx0aXNldHMuVW5tb2RpZmlhYmxlTXVsdGlzZXQjZW50cnlTZXQKYnJhbmNoIHJlbW92ZWQ7IHNhbWUgY2FsbHM",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Multisets.UnmodifiableMultiset#entrySet: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets.UnmodifiableMultiset#entrySet", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZWd1bGFySW1tdXRhYmxlTXVsdGlzZXQjZWxlbWVudFNldApicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of RegularImmutableMultiset#elementSet: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/RegularImmutableMultiset.java" ],
+  "symbols" : [ "RegularImmutableMultiset#elementSet", "branch removed; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdGFuZGFyZFRhYmxlI2NvbHVtbktleVNldApicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StandardTable#columnKeySet: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardTable.java", "guava/src/com/google/common/collect/StandardTable.java" ],
+  "symbols" : [ "StandardTable#columnKeySet", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdGFuZGFyZFRhYmxlI3Jvd01hcApicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StandardTable#rowMap: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardTable.java", "guava/src/com/google/common/collect/StandardTable.java" ],
+  "symbols" : [ "StandardTable#rowMap", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdGFuZGFyZFRhYmxlI2NvbHVtbk1hcApicmFuY2ggcmVtb3ZlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StandardTable#columnMap: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardTable.java", "guava/src/com/google/common/collect/StandardTable.java" ],
+  "symbols" : [ "StandardTable#columnMap", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUcmVlUmFuZ2VTZXQjYXNSYW5nZXMKYnJhbmNoIHJlbW92ZWQ7IHNhbWUgY2FsbHM",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of TreeRangeSet#asRanges: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/TreeRangeSet.java", "guava/src/com/google/common/collect/TreeRangeSet.java" ],
+  "symbols" : [ "TreeRangeSet#asRanges", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUcmVlUmFuZ2VTZXQjYXNEZXNjZW5kaW5nU2V0T2ZSYW5nZXMKYnJhbmNoIHJlbW92ZWQ7IHNhbWUgY2FsbHM",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of TreeRangeSet#asDescendingSetOfRanges: branch removed; same calls",
+  "files" : [ "android/guava/src/com/google/common/collect/TreeRangeSet.java", "guava/src/com/google/common/collect/TreeRangeSet.java" ],
+  "symbols" : [ "TreeRangeSet#asDescendingSetOfRanges", "branch removed; same calls" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKZGtCYWNrZWRJbW11dGFibGVNdWx0aXNldCNlbGVtZW50U2V0CmJyYW5jaCByZW1vdmVkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JdkBackedImmutableMultiset#elementSet: branch removed; same calls",
+  "files" : [ "guava/src/com/google/common/collect/JdkBackedImmutableMultiset.java" ],
+  "symbols" : [ "JdkBackedImmutableMultiset#elementSet", "branch removed; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMaW5rZWRMaXN0TXVsdGltYXAjZW50cmllcwpsb29wIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of LinkedListMultimap#entries: loop added",
+  "files" : [ "guava/src/com/google/common/collect/LinkedListMultimap.java" ],
+  "symbols" : [ "LinkedListMultimap#entries", "loop added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZWd1bGFySW1tdXRhYmxlTXVsdGlzZXQjZWxlbWVudFNldApicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of RegularImmutableMultiset#elementSet: branch removed",
+  "files" : [ "guava/src/com/google/common/collect/RegularImmutableMultiset.java" ],
+  "symbols" : [ "RegularImmutableMultiset#elementSet", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApDb25jdXJyZW50SGFzaE11bHRpc2V0QmVuY2htYXJrLk9sZENvbmN1cnJlbnRIYXNoTXVsdGlzZXQjY3JlYXRlRWxlbWVudFNldApDb25jdXJyZW50SGFzaE11bHRpc2V0QmVuY2htYXJrLk9sZENvbmN1cnJlbnRIYXNoTXVsdGlzZXQjZWxlbWVudFNldA",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename ConcurrentHashMultisetBenchmark.OldConcurrentHashMultiset#createElementSet -> elementSet",
+  "files" : [ "android/guava-tests/benchmark/com/google/common/collect/ConcurrentHashMultisetBenchmark.java", "guava-tests/benchmark/com/google/common/collect/ConcurrentHashMultisetBenchmark.java" ],
+  "symbols" : [ "ConcurrentHashMultisetBenchmark.OldConcurrentHashMultiset#createElementSet", "ConcurrentHashMultisetBenchmark.OldConcurrentHashMultiset#elementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApBYnN0cmFjdE1hcEJhc2VkTXVsdGltYXAjY3JlYXRlS2V5U2V0CkFic3RyYWN0TWFwQmFzZWRNdWx0aW1hcCNrZXlTZXQ",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename AbstractMapBasedMultimap#createKeySet -> keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMapBasedMultimap.java", "guava/src/com/google/common/collect/AbstractMapBasedMultimap.java" ],
+  "symbols" : [ "AbstractMapBasedMultimap#createKeySet", "AbstractMapBasedMultimap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApBYnN0cmFjdE1hcEJhc2VkTXVsdGltYXAjY3JlYXRlS2V5cwpBYnN0cmFjdE1hcEJhc2VkTXVsdGltYXAja2V5cw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename AbstractMapBasedMultimap#createKeys -> keys",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMapBasedMultimap.java", "guava/src/com/google/common/collect/AbstractMapBasedMultimap.java" ],
+  "symbols" : [ "AbstractMapBasedMultimap#createKeys", "AbstractMapBasedMultimap#keys" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApBYnN0cmFjdE1hcEJhc2VkTXVsdGltYXAjYXNNYXAKQWJzdHJhY3RNYXBCYXNlZE11bHRpbWFwI2NyZWF0ZUFzTWFw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename AbstractMapBasedMultimap#createAsMap -> asMap",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMapBasedMultimap.java", "guava/src/com/google/common/collect/AbstractMapBasedMultimap.java" ],
+  "symbols" : [ "AbstractMapBasedMultimap#createAsMap", "AbstractMapBasedMultimap#asMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApBYnN0cmFjdE1hcEJhc2VkTXVsdGltYXAuQXNNYXAjY3JlYXRlRW50cnlTZXQKQWJzdHJhY3RNYXBCYXNlZE11bHRpbWFwLkFzTWFwI2VudHJ5U2V0",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename AbstractMapBasedMultimap.AsMap#createEntrySet -> entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMapBasedMultimap.java", "guava/src/com/google/common/collect/AbstractMapBasedMultimap.java" ],
+  "symbols" : [ "AbstractMapBasedMultimap.AsMap#createEntrySet", "AbstractMapBasedMultimap.AsMap#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApDb25jdXJyZW50SGFzaE11bHRpc2V0I2NyZWF0ZUVsZW1lbnRTZXQKQ29uY3VycmVudEhhc2hNdWx0aXNldCNlbGVtZW50U2V0",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename ConcurrentHashMultiset#createElementSet -> elementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/ConcurrentHashMultiset.java", "guava/src/com/google/common/collect/ConcurrentHashMultiset.java" ],
+  "symbols" : [ "ConcurrentHashMultiset#createElementSet", "ConcurrentHashMultiset#elementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApGaWx0ZXJlZEVudHJ5TXVsdGltYXAjY3JlYXRlRW50cmllcwpGaWx0ZXJlZEVudHJ5TXVsdGltYXAjZW50cmllcw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename FilteredEntryMultimap#createEntries -> entries",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredEntryMultimap.java", "guava/src/com/google/common/collect/FilteredEntryMultimap.java" ],
+  "symbols" : [ "FilteredEntryMultimap#createEntries", "FilteredEntryMultimap#entries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApGaWx0ZXJlZEVudHJ5TXVsdGltYXAjY3JlYXRlVmFsdWVzCkZpbHRlcmVkRW50cnlNdWx0aW1hcCN2YWx1ZXM",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename FilteredEntryMultimap#createValues -> values",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredEntryMultimap.java", "guava/src/com/google/common/collect/FilteredEntryMultimap.java" ],
+  "symbols" : [ "FilteredEntryMultimap#createValues", "FilteredEntryMultimap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApGaWx0ZXJlZEVudHJ5TXVsdGltYXAjYXNNYXAKRmlsdGVyZWRFbnRyeU11bHRpbWFwI2NyZWF0ZUFzTWFw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename FilteredEntryMultimap#createAsMap -> asMap",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredEntryMultimap.java", "guava/src/com/google/common/collect/FilteredEntryMultimap.java" ],
+  "symbols" : [ "FilteredEntryMultimap#createAsMap", "FilteredEntryMultimap#asMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApGaWx0ZXJlZEVudHJ5TXVsdGltYXAjY3JlYXRlS2V5U2V0CkZpbHRlcmVkRW50cnlNdWx0aW1hcCNrZXlTZXQ",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename FilteredEntryMultimap#createKeySet -> keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredEntryMultimap.java", "guava/src/com/google/common/collect/FilteredEntryMultimap.java" ],
+  "symbols" : [ "FilteredEntryMultimap#createKeySet", "FilteredEntryMultimap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApGaWx0ZXJlZEVudHJ5TXVsdGltYXAjY3JlYXRlS2V5cwpGaWx0ZXJlZEVudHJ5TXVsdGltYXAja2V5cw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename FilteredEntryMultimap#createKeys -> keys",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredEntryMultimap.java", "guava/src/com/google/common/collect/FilteredEntryMultimap.java" ],
+  "symbols" : [ "FilteredEntryMultimap#createKeys", "FilteredEntryMultimap#keys" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApGaWx0ZXJlZEtleU11bHRpbWFwI2NyZWF0ZUtleVNldApGaWx0ZXJlZEtleU11bHRpbWFwI2tleVNldA",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename FilteredKeyMultimap#createKeySet -> keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredKeyMultimap.java", "guava/src/com/google/common/collect/FilteredKeyMultimap.java" ],
+  "symbols" : [ "FilteredKeyMultimap#createKeySet", "FilteredKeyMultimap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApGaWx0ZXJlZEtleU11bHRpbWFwI2NyZWF0ZUVudHJpZXMKRmlsdGVyZWRLZXlNdWx0aW1hcCNlbnRyaWVz",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename FilteredKeyMultimap#createEntries -> entries",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredKeyMultimap.java", "guava/src/com/google/common/collect/FilteredKeyMultimap.java" ],
+  "symbols" : [ "FilteredKeyMultimap#createEntries", "FilteredKeyMultimap#entries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApGaWx0ZXJlZEtleU11bHRpbWFwI2NyZWF0ZVZhbHVlcwpGaWx0ZXJlZEtleU11bHRpbWFwI3ZhbHVlcw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename FilteredKeyMultimap#createValues -> values",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredKeyMultimap.java", "guava/src/com/google/common/collect/FilteredKeyMultimap.java" ],
+  "symbols" : [ "FilteredKeyMultimap#createValues", "FilteredKeyMultimap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApGaWx0ZXJlZEtleU11bHRpbWFwI2FzTWFwCkZpbHRlcmVkS2V5TXVsdGltYXAjY3JlYXRlQXNNYXA",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename FilteredKeyMultimap#createAsMap -> asMap",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredKeyMultimap.java", "guava/src/com/google/common/collect/FilteredKeyMultimap.java" ],
+  "symbols" : [ "FilteredKeyMultimap#createAsMap", "FilteredKeyMultimap#asMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApGaWx0ZXJlZEtleU11bHRpbWFwI2NyZWF0ZUtleXMKRmlsdGVyZWRLZXlNdWx0aW1hcCNrZXlz",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename FilteredKeyMultimap#createKeys -> keys",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredKeyMultimap.java", "guava/src/com/google/common/collect/FilteredKeyMultimap.java" ],
+  "symbols" : [ "FilteredKeyMultimap#createKeys", "FilteredKeyMultimap#keys" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApMaW5rZWRMaXN0TXVsdGltYXAjY3JlYXRlS2V5cwpMaW5rZWRMaXN0TXVsdGltYXAja2V5cw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename LinkedListMultimap#createKeys -> keys",
+  "files" : [ "android/guava/src/com/google/common/collect/LinkedListMultimap.java", "guava/src/com/google/common/collect/LinkedListMultimap.java" ],
+  "symbols" : [ "LinkedListMultimap#createKeys", "LinkedListMultimap#keys" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApMaW5rZWRMaXN0TXVsdGltYXAjYXNNYXAKTGlua2VkTGlzdE11bHRpbWFwI2NyZWF0ZUFzTWFw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename LinkedListMultimap#createAsMap -> asMap",
+  "files" : [ "android/guava/src/com/google/common/collect/LinkedListMultimap.java", "guava/src/com/google/common/collect/LinkedListMultimap.java" ],
+  "symbols" : [ "LinkedListMultimap#createAsMap", "LinkedListMultimap#asMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNYXBzLkFzTWFwVmlldyNjcmVhdGVLZXlTZXQKTWFwcy5Bc01hcFZpZXcja2V5U2V0",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Maps.AsMapView#createKeySet -> keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.AsMapView#createKeySet", "Maps.AsMapView#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNYXBzLkFzTWFwVmlldyNjcmVhdGVWYWx1ZXMKTWFwcy5Bc01hcFZpZXcjdmFsdWVz",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Maps.AsMapView#createValues -> values",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.AsMapView#createValues", "Maps.AsMapView#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNYXBzLkFic3RyYWN0RmlsdGVyZWRNYXAjY3JlYXRlVmFsdWVzCk1hcHMuQWJzdHJhY3RGaWx0ZXJlZE1hcCN2YWx1ZXM",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Maps.AbstractFilteredMap#createValues -> values",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.AbstractFilteredMap#createValues", "Maps.AbstractFilteredMap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNYXBzLkZpbHRlcmVkS2V5TWFwI2NyZWF0ZUVudHJ5U2V0Ck1hcHMuRmlsdGVyZWRLZXlNYXAjZW50cnlTZXQ",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Maps.FilteredKeyMap#createEntrySet -> entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.FilteredKeyMap#createEntrySet", "Maps.FilteredKeyMap#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNYXBzLkZpbHRlcmVkS2V5TWFwI2NyZWF0ZUtleVNldApNYXBzLkZpbHRlcmVkS2V5TWFwI2tleVNldA",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Maps.FilteredKeyMap#createKeySet -> keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.FilteredKeyMap#createKeySet", "Maps.FilteredKeyMap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNYXBzLkZpbHRlcmVkRW50cnlNYXAjY3JlYXRlRW50cnlTZXQKTWFwcy5GaWx0ZXJlZEVudHJ5TWFwI2VudHJ5U2V0",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Maps.FilteredEntryMap#createEntrySet -> entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.FilteredEntryMap#createEntrySet", "Maps.FilteredEntryMap#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNYXBzLkZpbHRlcmVkRW50cnlNYXAjY3JlYXRlS2V5U2V0Ck1hcHMuRmlsdGVyZWRFbnRyeU1hcCNrZXlTZXQ",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Maps.FilteredEntryMap#createKeySet -> keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.FilteredEntryMap#createKeySet", "Maps.FilteredEntryMap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuQ3VzdG9tTXVsdGltYXAjY3JlYXRlS2V5U2V0Ck11bHRpbWFwcy5DdXN0b21NdWx0aW1hcCNrZXlTZXQ",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.CustomMultimap#createKeySet -> keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.CustomMultimap#createKeySet", "Multimaps.CustomMultimap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuQ3VzdG9tTXVsdGltYXAjYXNNYXAKTXVsdGltYXBzLkN1c3RvbU11bHRpbWFwI2NyZWF0ZUFzTWFw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.CustomMultimap#createAsMap -> asMap",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.CustomMultimap#createAsMap", "Multimaps.CustomMultimap#asMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuQ3VzdG9tTGlzdE11bHRpbWFwI2NyZWF0ZUtleVNldApNdWx0aW1hcHMuQ3VzdG9tTGlzdE11bHRpbWFwI2tleVNldA",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.CustomListMultimap#createKeySet -> keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.CustomListMultimap#createKeySet", "Multimaps.CustomListMultimap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuQ3VzdG9tTGlzdE11bHRpbWFwI2FzTWFwCk11bHRpbWFwcy5DdXN0b21MaXN0TXVsdGltYXAjY3JlYXRlQXNNYXA",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.CustomListMultimap#createAsMap -> asMap",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.CustomListMultimap#createAsMap", "Multimaps.CustomListMultimap#asMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuQ3VzdG9tU2V0TXVsdGltYXAjY3JlYXRlS2V5U2V0Ck11bHRpbWFwcy5DdXN0b21TZXRNdWx0aW1hcCNrZXlTZXQ",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.CustomSetMultimap#createKeySet -> keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.CustomSetMultimap#createKeySet", "Multimaps.CustomSetMultimap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuQ3VzdG9tU2V0TXVsdGltYXAjYXNNYXAKTXVsdGltYXBzLkN1c3RvbVNldE11bHRpbWFwI2NyZWF0ZUFzTWFw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.CustomSetMultimap#createAsMap -> asMap",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.CustomSetMultimap#createAsMap", "Multimaps.CustomSetMultimap#asMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuQ3VzdG9tU29ydGVkU2V0TXVsdGltYXAjY3JlYXRlS2V5U2V0Ck11bHRpbWFwcy5DdXN0b21Tb3J0ZWRTZXRNdWx0aW1hcCNrZXlTZXQ",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.CustomSortedSetMultimap#createKeySet -> keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.CustomSortedSetMultimap#createKeySet", "Multimaps.CustomSortedSetMultimap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuQ3VzdG9tU29ydGVkU2V0TXVsdGltYXAjYXNNYXAKTXVsdGltYXBzLkN1c3RvbVNvcnRlZFNldE11bHRpbWFwI2NyZWF0ZUFzTWFw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.CustomSortedSetMultimap#createAsMap -> asMap",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.CustomSortedSetMultimap#createAsMap", "Multimaps.CustomSortedSetMultimap#asMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuTWFwTXVsdGltYXAjY3JlYXRlS2V5U2V0Ck11bHRpbWFwcy5NYXBNdWx0aW1hcCNrZXlTZXQ",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.MapMultimap#createKeySet -> keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.MapMultimap#createKeySet", "Multimaps.MapMultimap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuTWFwTXVsdGltYXAjY3JlYXRlVmFsdWVzCk11bHRpbWFwcy5NYXBNdWx0aW1hcCN2YWx1ZXM",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.MapMultimap#createValues -> values",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.MapMultimap#createValues", "Multimaps.MapMultimap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuTWFwTXVsdGltYXAjY3JlYXRlS2V5cwpNdWx0aW1hcHMuTWFwTXVsdGltYXAja2V5cw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.MapMultimap#createKeys -> keys",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.MapMultimap#createKeys", "Multimaps.MapMultimap#keys" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuTWFwTXVsdGltYXAjYXNNYXAKTXVsdGltYXBzLk1hcE11bHRpbWFwI2NyZWF0ZUFzTWFw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.MapMultimap#createAsMap -> asMap",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.MapMultimap#createAsMap", "Multimaps.MapMultimap#asMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuVHJhbnNmb3JtZWRFbnRyaWVzTXVsdGltYXAjYXNNYXAKTXVsdGltYXBzLlRyYW5zZm9ybWVkRW50cmllc011bHRpbWFwI2NyZWF0ZUFzTWFw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.TransformedEntriesMultimap#createAsMap -> asMap",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.TransformedEntriesMultimap#createAsMap", "Multimaps.TransformedEntriesMultimap#asMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuVHJhbnNmb3JtZWRFbnRyaWVzTXVsdGltYXAjY3JlYXRlRW50cmllcwpNdWx0aW1hcHMuVHJhbnNmb3JtZWRFbnRyaWVzTXVsdGltYXAjZW50cmllcw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.TransformedEntriesMultimap#createEntries -> entries",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.TransformedEntriesMultimap#createEntries", "Multimaps.TransformedEntriesMultimap#entries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuVHJhbnNmb3JtZWRFbnRyaWVzTXVsdGltYXAjY3JlYXRlS2V5U2V0Ck11bHRpbWFwcy5UcmFuc2Zvcm1lZEVudHJpZXNNdWx0aW1hcCNrZXlTZXQ",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.TransformedEntriesMultimap#createKeySet -> keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.TransformedEntriesMultimap#createKeySet", "Multimaps.TransformedEntriesMultimap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuVHJhbnNmb3JtZWRFbnRyaWVzTXVsdGltYXAjY3JlYXRlS2V5cwpNdWx0aW1hcHMuVHJhbnNmb3JtZWRFbnRyaWVzTXVsdGltYXAja2V5cw",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.TransformedEntriesMultimap#createKeys -> keys",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.TransformedEntriesMultimap#createKeys", "Multimaps.TransformedEntriesMultimap#keys" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuVHJhbnNmb3JtZWRFbnRyaWVzTXVsdGltYXAjY3JlYXRlVmFsdWVzCk11bHRpbWFwcy5UcmFuc2Zvcm1lZEVudHJpZXNNdWx0aW1hcCN2YWx1ZXM",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.TransformedEntriesMultimap#createValues -> values",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.TransformedEntriesMultimap#createValues", "Multimaps.TransformedEntriesMultimap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aW1hcHMuQXNNYXAjY3JlYXRlRW50cnlTZXQKTXVsdGltYXBzLkFzTWFwI2VudHJ5U2V0",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multimaps.AsMap#createEntrySet -> entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.AsMap#createEntrySet", "Multimaps.AsMap#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aXNldHMuRmlsdGVyZWRNdWx0aXNldCNjcmVhdGVFbGVtZW50U2V0Ck11bHRpc2V0cy5GaWx0ZXJlZE11bHRpc2V0I2VsZW1lbnRTZXQ",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multisets.FilteredMultiset#createElementSet -> elementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets.FilteredMultiset#createElementSet", "Multisets.FilteredMultiset#elementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApNdWx0aXNldHMuRmlsdGVyZWRNdWx0aXNldCNjcmVhdGVFbnRyeVNldApNdWx0aXNldHMuRmlsdGVyZWRNdWx0aXNldCNlbnRyeVNldA",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Multisets.FilteredMultiset#createEntrySet -> entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets.FilteredMultiset#createEntrySet", "Multisets.FilteredMultiset#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApSZWd1bGFySW1tdXRhYmxlVGFibGUjY2VsbFNldApSZWd1bGFySW1tdXRhYmxlVGFibGUjY3JlYXRlQ2VsbFNldA",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename RegularImmutableTable#createCellSet -> cellSet",
+  "files" : [ "android/guava/src/com/google/common/collect/RegularImmutableTable.java", "guava/src/com/google/common/collect/RegularImmutableTable.java" ],
+  "symbols" : [ "RegularImmutableTable#createCellSet", "RegularImmutableTable#cellSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApSZWd1bGFySW1tdXRhYmxlVGFibGUjY3JlYXRlVmFsdWVzClJlZ3VsYXJJbW11dGFibGVUYWJsZSN2YWx1ZXM",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename RegularImmutableTable#createValues -> values",
+  "files" : [ "android/guava/src/com/google/common/collect/RegularImmutableTable.java", "guava/src/com/google/common/collect/RegularImmutableTable.java" ],
+  "symbols" : [ "RegularImmutableTable#createValues", "RegularImmutableTable#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApTaW5nbGV0b25JbW11dGFibGVUYWJsZSNjZWxsU2V0ClNpbmdsZXRvbkltbXV0YWJsZVRhYmxlI2NyZWF0ZUNlbGxTZXQ",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename SingletonImmutableTable#createCellSet -> cellSet",
+  "files" : [ "android/guava/src/com/google/common/collect/SingletonImmutableTable.java", "guava/src/com/google/common/collect/SingletonImmutableTable.java" ],
+  "symbols" : [ "SingletonImmutableTable#createCellSet", "SingletonImmutableTable#cellSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApTaW5nbGV0b25JbW11dGFibGVUYWJsZSNjcmVhdGVWYWx1ZXMKU2luZ2xldG9uSW1tdXRhYmxlVGFibGUjdmFsdWVz",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename SingletonImmutableTable#createValues -> values",
+  "files" : [ "android/guava/src/com/google/common/collect/SingletonImmutableTable.java", "guava/src/com/google/common/collect/SingletonImmutableTable.java" ],
+  "symbols" : [ "SingletonImmutableTable#createValues", "SingletonImmutableTable#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApTdGFuZGFyZFRhYmxlLkNvbHVtbiNjcmVhdGVFbnRyeVNldApTdGFuZGFyZFRhYmxlLkNvbHVtbiNlbnRyeVNldA",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename StandardTable.Column#createEntrySet -> entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardTable.java", "guava/src/com/google/common/collect/StandardTable.java" ],
+  "symbols" : [ "StandardTable.Column#createEntrySet", "StandardTable.Column#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApTdGFuZGFyZFRhYmxlLkNvbHVtbiNjcmVhdGVLZXlTZXQKU3RhbmRhcmRUYWJsZS5Db2x1bW4ja2V5U2V0",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename StandardTable.Column#createKeySet -> keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardTable.java", "guava/src/com/google/common/collect/StandardTable.java" ],
+  "symbols" : [ "StandardTable.Column#createKeySet", "StandardTable.Column#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApTdGFuZGFyZFRhYmxlLkNvbHVtbiNjcmVhdGVWYWx1ZXMKU3RhbmRhcmRUYWJsZS5Db2x1bW4jdmFsdWVz",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename StandardTable.Column#createValues -> values",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardTable.java", "guava/src/com/google/common/collect/StandardTable.java" ],
+  "symbols" : [ "StandardTable.Column#createValues", "StandardTable.Column#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApTdGFuZGFyZFRhYmxlLlJvd01hcCNjcmVhdGVFbnRyeVNldApTdGFuZGFyZFRhYmxlLlJvd01hcCNlbnRyeVNldA",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename StandardTable.RowMap#createEntrySet -> entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardTable.java", "guava/src/com/google/common/collect/StandardTable.java" ],
+  "symbols" : [ "StandardTable.RowMap#createEntrySet", "StandardTable.RowMap#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApTdGFuZGFyZFRhYmxlLkNvbHVtbk1hcCNjcmVhdGVFbnRyeVNldApTdGFuZGFyZFRhYmxlLkNvbHVtbk1hcCNlbnRyeVNldA",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename StandardTable.ColumnMap#createEntrySet -> entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardTable.java", "guava/src/com/google/common/collect/StandardTable.java" ],
+  "symbols" : [ "StandardTable.ColumnMap#createEntrySet", "StandardTable.ColumnMap#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApTdGFuZGFyZFRhYmxlLkNvbHVtbk1hcCNjcmVhdGVWYWx1ZXMKU3RhbmRhcmRUYWJsZS5Db2x1bW5NYXAjdmFsdWVz",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename StandardTable.ColumnMap#createValues -> values",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardTable.java", "guava/src/com/google/common/collect/StandardTable.java" ],
+  "symbols" : [ "StandardTable.ColumnMap#createValues", "StandardTable.ColumnMap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApUYWJsZXMuVHJhbnNmb3JtZWRUYWJsZSNjcmVhdGVWYWx1ZXMKVGFibGVzLlRyYW5zZm9ybWVkVGFibGUjdmFsdWVz",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename Tables.TransformedTable#createValues -> values",
+  "files" : [ "android/guava/src/com/google/common/collect/Tables.java", "guava/src/com/google/common/collect/Tables.java" ],
+  "symbols" : [ "Tables.TransformedTable#createValues", "Tables.TransformedTable#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "RVhUUkFDVF9NRVRIT0QKQ29uY3VycmVudEhhc2hNdWx0aXNldCNjcmVhdGVFbnRyeVNldApDb25jdXJyZW50SGFzaE11bHRpc2V0I2VudHJ5U2V0",
+  "kind" : "EXTRACT_METHOD",
+  "category" : "STRUCTURAL",
+  "description" : "Extract ConcurrentHashMultiset#entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/ConcurrentHashMultiset.java", "guava/src/com/google/common/collect/ConcurrentHashMultiset.java" ],
+  "symbols" : [ "ConcurrentHashMultiset#createEntrySet", "ConcurrentHashMultiset#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE1hcEJhc2VkTXVsdGltYXAjY3JlYXRlVmFsdWVz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMapBasedMultimap#createValues",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMapBasedMultimap.java", "guava/src/com/google/common/collect/AbstractMapBasedMultimap.java" ],
+  "symbols" : [ "AbstractMapBasedMultimap#createValues" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE1hcEJhc2VkTXVsdGltYXAjY3JlYXRlRW50cmllcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMapBasedMultimap#createEntries",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMapBasedMultimap.java", "guava/src/com/google/common/collect/AbstractMapBasedMultimap.java" ],
+  "symbols" : [ "AbstractMapBasedMultimap#createEntries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE1hcEJhc2VkTXVsdGltYXAuU29ydGVkQXNNYXAjY3JlYXRlS2V5U2V0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMapBasedMultimap.SortedAsMap#createKeySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMapBasedMultimap.java", "guava/src/com/google/common/collect/AbstractMapBasedMultimap.java" ],
+  "symbols" : [ "AbstractMapBasedMultimap.SortedAsMap#createKeySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE1hcEJhc2VkTXVsdGltYXAuTmF2aWdhYmxlQXNNYXAjY3JlYXRlS2V5U2V0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMapBasedMultimap.NavigableAsMap#createKeySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMapBasedMultimap.java", "guava/src/com/google/common/collect/AbstractMapBasedMultimap.java" ],
+  "symbols" : [ "AbstractMapBasedMultimap.NavigableAsMap#createKeySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE11bHRpbWFwI2VudHJpZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMultimap#entries",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#entries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE11bHRpbWFwI2NyZWF0ZUVudHJpZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMultimap#createEntries",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#createEntries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE11bHRpbWFwI2tleVNldA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMultimap#keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE11bHRpbWFwI2NyZWF0ZUtleVNldA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMultimap#createKeySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#createKeySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE11bHRpbWFwI2tleXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMultimap#keys",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#keys" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE11bHRpbWFwI2NyZWF0ZUtleXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMultimap#createKeys",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#createKeys" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE11bHRpbWFwI3ZhbHVlcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMultimap#values",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE11bHRpbWFwI2NyZWF0ZVZhbHVlcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMultimap#createValues",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#createValues" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE11bHRpbWFwI2FzTWFw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMultimap#asMap",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#asMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE11bHRpbWFwI2NyZWF0ZUFzTWFw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMultimap#createAsMap",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#createAsMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE11bHRpc2V0I2NyZWF0ZUVsZW1lbnRTZXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMultiset#createElementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultiset.java", "guava/src/com/google/common/collect/AbstractMultiset.java" ],
+  "symbols" : [ "AbstractMultiset#createElementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdE11bHRpc2V0I2NyZWF0ZUVudHJ5U2V0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractMultiset#createEntrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultiset.java", "guava/src/com/google/common/collect/AbstractMultiset.java" ],
+  "symbols" : [ "AbstractMultiset#createEntrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdFNvcnRlZEtleVNvcnRlZFNldE11bHRpbWFwI2NyZWF0ZUtleVNldA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractSortedKeySortedSetMultimap#createKeySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractSortedKeySortedSetMultimap.java", "guava/src/com/google/common/collect/AbstractSortedKeySortedSetMultimap.java" ],
+  "symbols" : [ "AbstractSortedKeySortedSetMultimap#createKeySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdFNvcnRlZE11bHRpc2V0I2NyZWF0ZUVsZW1lbnRTZXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractSortedMultiset#createElementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractSortedMultiset.java", "guava-gwt/src-super/com/google/common/collect/super/com/google/common/collect/AbstractSortedMultiset.java", "guava/src/com/google/common/collect/AbstractSortedMultiset.java" ],
+  "symbols" : [ "AbstractSortedMultiset#createElementSet" ],
+  "occurrences" : 3,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdFRhYmxlI2NyZWF0ZUNlbGxTZXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractTable#createCellSet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractTable.java", "guava/src/com/google/common/collect/AbstractTable.java" ],
+  "symbols" : [ "AbstractTable#createCellSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdFRhYmxlI2NyZWF0ZVZhbHVlcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractTable#createValues",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractTable.java", "guava/src/com/google/common/collect/AbstractTable.java" ],
+  "symbols" : [ "AbstractTable#createValues" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApEZXNjZW5kaW5nTXVsdGlzZXQjY3JlYXRlRW50cnlTZXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove DescendingMultiset#createEntrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/DescendingMultiset.java", "guava/src/com/google/common/collect/DescendingMultiset.java" ],
+  "symbols" : [ "DescendingMultiset#createEntrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApGaWx0ZXJlZEVudHJ5TXVsdGltYXAuQXNNYXAjY3JlYXRlS2V5U2V0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove FilteredEntryMultimap.AsMap#createKeySet",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredEntryMultimap.java", "guava/src/com/google/common/collect/FilteredEntryMultimap.java" ],
+  "symbols" : [ "FilteredEntryMultimap.AsMap#createKeySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApGaWx0ZXJlZEVudHJ5TXVsdGltYXAuQXNNYXAjY3JlYXRlRW50cnlTZXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove FilteredEntryMultimap.AsMap#createEntrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredEntryMultimap.java", "guava/src/com/google/common/collect/FilteredEntryMultimap.java" ],
+  "symbols" : [ "FilteredEntryMultimap.AsMap#createEntrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApGaWx0ZXJlZEVudHJ5TXVsdGltYXAuQXNNYXAjY3JlYXRlVmFsdWVz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove FilteredEntryMultimap.AsMap#createValues",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredEntryMultimap.java", "guava/src/com/google/common/collect/FilteredEntryMultimap.java" ],
+  "symbols" : [ "FilteredEntryMultimap.AsMap#createValues" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApGaWx0ZXJlZEVudHJ5U2V0TXVsdGltYXAjY3JlYXRlRW50cmllcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove FilteredEntrySetMultimap#createEntries",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredEntrySetMultimap.java", "guava/src/com/google/common/collect/FilteredEntrySetMultimap.java" ],
+  "symbols" : [ "FilteredEntrySetMultimap#createEntries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApGaWx0ZXJlZEtleVNldE11bHRpbWFwI2NyZWF0ZUVudHJpZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove FilteredKeySetMultimap#createEntries",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredKeySetMultimap.java", "guava/src/com/google/common/collect/FilteredKeySetMultimap.java" ],
+  "symbols" : [ "FilteredKeySetMultimap#createEntries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApJbW11dGFibGVNdWx0aW1hcCNjcmVhdGVLZXlTZXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ImmutableMultimap#createKeySet",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableMultimap.java", "guava/src/com/google/common/collect/ImmutableMultimap.java" ],
+  "symbols" : [ "ImmutableMultimap#createKeySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApJbW11dGFibGVNdWx0aW1hcCNjcmVhdGVBc01hcA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ImmutableMultimap#createAsMap",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableMultimap.java", "guava/src/com/google/common/collect/ImmutableMultimap.java" ],
+  "symbols" : [ "ImmutableMultimap#createAsMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApJbW11dGFibGVNdWx0aW1hcCNjcmVhdGVFbnRyaWVz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ImmutableMultimap#createEntries",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableMultimap.java", "guava/src/com/google/common/collect/ImmutableMultimap.java" ],
+  "symbols" : [ "ImmutableMultimap#createEntries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApJbW11dGFibGVNdWx0aW1hcCNjcmVhdGVLZXlz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ImmutableMultimap#createKeys",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableMultimap.java", "guava/src/com/google/common/collect/ImmutableMultimap.java" ],
+  "symbols" : [ "ImmutableMultimap#createKeys" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApJbW11dGFibGVNdWx0aW1hcCNjcmVhdGVWYWx1ZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ImmutableMultimap#createValues",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableMultimap.java", "guava/src/com/google/common/collect/ImmutableMultimap.java" ],
+  "symbols" : [ "ImmutableMultimap#createValues" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApJbW11dGFibGVNdWx0aXNldCNjcmVhdGVFbnRyeVNldA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ImmutableMultiset#createEntrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableMultiset.java", "guava/src/com/google/common/collect/ImmutableMultiset.java" ],
+  "symbols" : [ "ImmutableMultiset#createEntrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApJbW11dGFibGVUYWJsZSNjcmVhdGVDZWxsU2V0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ImmutableTable#createCellSet",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableTable.java", "guava/src/com/google/common/collect/ImmutableTable.java" ],
+  "symbols" : [ "ImmutableTable#createCellSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApJbW11dGFibGVUYWJsZSNjcmVhdGVWYWx1ZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ImmutableTable#createValues",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableTable.java", "guava/src/com/google/common/collect/ImmutableTable.java" ],
+  "symbols" : [ "ImmutableTable#createValues" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApMaW5rZWRMaXN0TXVsdGltYXAjY3JlYXRlS2V5U2V0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove LinkedListMultimap#createKeySet",
+  "files" : [ "android/guava/src/com/google/common/collect/LinkedListMultimap.java", "guava/src/com/google/common/collect/LinkedListMultimap.java" ],
+  "symbols" : [ "LinkedListMultimap#createKeySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApMaW5rZWRMaXN0TXVsdGltYXAjY3JlYXRlVmFsdWVz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove LinkedListMultimap#createValues",
+  "files" : [ "android/guava/src/com/google/common/collect/LinkedListMultimap.java", "guava/src/com/google/common/collect/LinkedListMultimap.java" ],
+  "symbols" : [ "LinkedListMultimap#createValues" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApMaW5rZWRMaXN0TXVsdGltYXAjY3JlYXRlRW50cmllcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove LinkedListMultimap#createEntries",
+  "files" : [ "android/guava/src/com/google/common/collect/LinkedListMultimap.java", "guava/src/com/google/common/collect/LinkedListMultimap.java" ],
+  "symbols" : [ "LinkedListMultimap#createEntries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNYXBzLkFzTWFwVmlldyNjcmVhdGVFbnRyeVNldA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Maps.AsMapView#createEntrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.AsMapView#createEntrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNYXBzLkZpbHRlcmVkRW50cnlTb3J0ZWRNYXAjY3JlYXRlS2V5U2V0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Maps.FilteredEntrySortedMap#createKeySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.FilteredEntrySortedMap#createKeySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNYXBzLlZpZXdDYWNoaW5nQWJzdHJhY3RNYXAjY3JlYXRlRW50cnlTZXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Maps.ViewCachingAbstractMap#createEntrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.ViewCachingAbstractMap#createEntrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNYXBzLlZpZXdDYWNoaW5nQWJzdHJhY3RNYXAjZW50cnlTZXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Maps.ViewCachingAbstractMap#entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.ViewCachingAbstractMap#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNYXBzLlZpZXdDYWNoaW5nQWJzdHJhY3RNYXAja2V5U2V0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Maps.ViewCachingAbstractMap#keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.ViewCachingAbstractMap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNYXBzLlZpZXdDYWNoaW5nQWJzdHJhY3RNYXAjY3JlYXRlS2V5U2V0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Maps.ViewCachingAbstractMap#createKeySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.ViewCachingAbstractMap#createKeySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNYXBzLlZpZXdDYWNoaW5nQWJzdHJhY3RNYXAjdmFsdWVz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Maps.ViewCachingAbstractMap#values",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.ViewCachingAbstractMap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNYXBzLlZpZXdDYWNoaW5nQWJzdHJhY3RNYXAjY3JlYXRlVmFsdWVz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Maps.ViewCachingAbstractMap#createValues",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.ViewCachingAbstractMap#createValues" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNYXBzLkRlc2NlbmRpbmdNYXAjY3JlYXRlRW50cnlTZXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Maps.DescendingMap#createEntrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.DescendingMap#createEntrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNdWx0aW1hcHMuTWFwTXVsdGltYXAjY3JlYXRlRW50cmllcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Multimaps.MapMultimap#createEntries",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.MapMultimap#createEntries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNdWx0aXNldHMuVW5tb2RpZmlhYmxlTXVsdGlzZXQjY3JlYXRlRWxlbWVudFNldA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Multisets.UnmodifiableMultiset#createElementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets.UnmodifiableMultiset#createElementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTdGFuZGFyZFJvd1NvcnRlZFRhYmxlLlJvd1NvcnRlZE1hcCNjcmVhdGVLZXlTZXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove StandardRowSortedTable.RowSortedMap#createKeySet",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardRowSortedTable.java", "guava/src/com/google/common/collect/StandardRowSortedTable.java" ],
+  "symbols" : [ "StandardRowSortedTable.RowSortedMap#createKeySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApUcmVlTXVsdGltYXAjY3JlYXRlQXNNYXA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove TreeMultimap#createAsMap",
+  "files" : [ "android/guava/src/com/google/common/collect/TreeMultimap.java", "guava/src/com/google/common/collect/TreeMultimap.java" ],
+  "symbols" : [ "TreeMultimap#createAsMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApVbm1vZGlmaWFibGVTb3J0ZWRNdWx0aXNldCNjcmVhdGVFbGVtZW50U2V0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove UnmodifiableSortedMultiset#createElementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/UnmodifiableSortedMultiset.java", "guava-gwt/src-super/com/google/common/collect/super/com/google/common/collect/UnmodifiableSortedMultiset.java", "guava/src/com/google/common/collect/UnmodifiableSortedMultiset.java" ],
+  "symbols" : [ "UnmodifiableSortedMultiset#createElementSet" ],
+  "occurrences" : 3,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApGaWx0ZXJlZEVudHJ5TXVsdGltYXAuQXNNYXAja2V5U2V0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add FilteredEntryMultimap.AsMap#keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredEntryMultimap.java", "guava/src/com/google/common/collect/FilteredEntryMultimap.java" ],
+  "symbols" : [ "FilteredEntryMultimap.AsMap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApGaWx0ZXJlZEVudHJ5TXVsdGltYXAuQXNNYXAjZW50cnlTZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add FilteredEntryMultimap.AsMap#entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredEntryMultimap.java", "guava/src/com/google/common/collect/FilteredEntryMultimap.java" ],
+  "symbols" : [ "FilteredEntryMultimap.AsMap#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApGaWx0ZXJlZEVudHJ5TXVsdGltYXAuQXNNYXAjdmFsdWVz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add FilteredEntryMultimap.AsMap#values",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredEntryMultimap.java", "guava/src/com/google/common/collect/FilteredEntryMultimap.java" ],
+  "symbols" : [ "FilteredEntryMultimap.AsMap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMaW5rZWRMaXN0TXVsdGltYXAja2V5U2V0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add LinkedListMultimap#keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/LinkedListMultimap.java", "guava/src/com/google/common/collect/LinkedListMultimap.java" ],
+  "symbols" : [ "LinkedListMultimap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNYXBNYWtlckludGVybmFsTWFwI2VxdWFscw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MapMakerInternalMap#equals",
+  "files" : [ "android/guava/src/com/google/common/collect/MapMakerInternalMap.java", "guava/src/com/google/common/collect/MapMakerInternalMap.java" ],
+  "symbols" : [ "MapMakerInternalMap#equals" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNYXBNYWtlckludGVybmFsTWFwI2hhc2hDb2Rl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MapMakerInternalMap#hashCode",
+  "files" : [ "android/guava/src/com/google/common/collect/MapMakerInternalMap.java", "guava/src/com/google/common/collect/MapMakerInternalMap.java" ],
+  "symbols" : [ "MapMakerInternalMap#hashCode" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNYXBNYWtlckludGVybmFsTWFwI3RvU3RyaW5n",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MapMakerInternalMap#toString",
+  "files" : [ "android/guava/src/com/google/common/collect/MapMakerInternalMap.java", "guava/src/com/google/common/collect/MapMakerInternalMap.java" ],
+  "symbols" : [ "MapMakerInternalMap#toString" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNYXBzLkFzTWFwVmlldyNlbnRyeVNldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Maps.AsMapView#entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.AsMapView#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0VxdWFsVG8sIC1pc1NhbWVJbnN0YW5jZUFzCk11bHRpbWFwc1Rlc3QjdGVzdEFzTWFwX211bHRpbWFw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MultimapsTest#testAsMap_multimap: +isEqualTo, -isSameInstanceAs",
+  "files" : [ "android/guava-tests/test/com/google/common/collect/MultimapsTest.java", "guava-tests/test/com/google/common/collect/MultimapsTest.java" ],
+  "symbols" : [ "MultimapsTest#testAsMap_multimap", "+isEqualTo, -isSameInstanceAs" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0VxdWFsVG8sIC1pc1NhbWVJbnN0YW5jZUFzCk11bHRpbWFwc1Rlc3QjdGVzdEFzTWFwX2xpc3RNdWx0aW1hcA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MultimapsTest#testAsMap_listMultimap: +isEqualTo, -isSameInstanceAs",
+  "files" : [ "android/guava-tests/test/com/google/common/collect/MultimapsTest.java", "guava-tests/test/com/google/common/collect/MultimapsTest.java" ],
+  "symbols" : [ "MultimapsTest#testAsMap_listMultimap", "+isEqualTo, -isSameInstanceAs" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0VxdWFsVG8sIC1pc1NhbWVJbnN0YW5jZUFzCk11bHRpbWFwc1Rlc3QjdGVzdEFzTWFwX3NldE11bHRpbWFw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MultimapsTest#testAsMap_setMultimap: +isEqualTo, -isSameInstanceAs",
+  "files" : [ "android/guava-tests/test/com/google/common/collect/MultimapsTest.java", "guava-tests/test/com/google/common/collect/MultimapsTest.java" ],
+  "symbols" : [ "MultimapsTest#testAsMap_setMultimap", "+isEqualTo, -isSameInstanceAs" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0VxdWFsVG8sIC1pc1NhbWVJbnN0YW5jZUFzCk11bHRpbWFwc1Rlc3QjdGVzdEFzTWFwX3NvcnRlZFNldE11bHRpbWFw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MultimapsTest#testAsMap_sortedSetMultimap: +isEqualTo, -isSameInstanceAs",
+  "files" : [ "android/guava-tests/test/com/google/common/collect/MultimapsTest.java", "guava-tests/test/com/google/common/collect/MultimapsTest.java" ],
+  "symbols" : [ "MultimapsTest#testAsMap_sortedSetMultimap", "+isEqualTo, -isSameInstanceAs" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0VxdWFsVG8sICtjb250YWluc0V4YWN0bHlFbGVtZW50c0luLCAtaXNTYW1lSW5zdGFuY2VBcwpUcmFuc3Bvc2VkVGFibGVUZXN0I3Rlc3RUcmFuc3Bvc2VkVmlld3M",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TransposedTableTest#testTransposedViews: +isEqualTo, +containsExactlyElementsIn, -isSameInstanceAs",
+  "files" : [ "android/guava-tests/test/com/google/common/collect/TransposedTableTest.java", "guava-tests/test/com/google/common/collect/TransposedTableTest.java" ],
+  "symbols" : [ "TransposedTableTest#testTransposedViews", "+isEqualTo, +containsExactlyElementsIn, -isSameInstanceAs" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi12YWx1ZXMKQWJzdHJhY3RNYXBCYXNlZE11bHRpbWFwI3ZhbHVlcw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AbstractMapBasedMultimap#values: -values",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMapBasedMultimap.java", "guava/src/com/google/common/collect/AbstractMapBasedMultimap.java" ],
+  "symbols" : [ "AbstractMapBasedMultimap#values", "-values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzb3J0ZWRNYXAsIC1rZXlTZXQKQWJzdHJhY3RNYXBCYXNlZE11bHRpbWFwLk5hdmlnYWJsZUFzTWFwI2tleVNldA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AbstractMapBasedMultimap.NavigableAsMap#keySet: +sortedMap, -keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMapBasedMultimap.java", "guava/src/com/google/common/collect/AbstractMapBasedMultimap.java" ],
+  "symbols" : [ "AbstractMapBasedMultimap.NavigableAsMap#keySet", "+sortedMap, -keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGVNYXliZU5hdmlnYWJsZUFzTWFwLCAtYXNNYXAKQWJzdHJhY3RTb3J0ZWRLZXlTb3J0ZWRTZXRNdWx0aW1hcCNhc01hcA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AbstractSortedKeySortedSetMultimap#asMap: +createMaybeNavigableAsMap, -asMap",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractSortedKeySortedSetMultimap.java", "guava/src/com/google/common/collect/AbstractSortedKeySortedSetMultimap.java" ],
+  "symbols" : [ "AbstractSortedKeySortedSetMultimap#asMap", "+createMaybeNavigableAsMap, -asMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGVNYXliZU5hdmlnYWJsZUtleVNldCwgLWtleVNldApBYnN0cmFjdFNvcnRlZEtleVNvcnRlZFNldE11bHRpbWFwI2tleVNldA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AbstractSortedKeySortedSetMultimap#keySet: +createMaybeNavigableKeySet, -keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractSortedKeySortedSetMultimap.java", "guava/src/com/google/common/collect/AbstractSortedKeySortedSetMultimap.java" ],
+  "symbols" : [ "AbstractSortedKeySortedSetMultimap#keySet", "+createMaybeNavigableKeySet, -keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1lbGVtZW50U2V0CkFic3RyYWN0U29ydGVkTXVsdGlzZXQjZWxlbWVudFNldA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AbstractSortedMultiset#elementSet: -elementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractSortedMultiset.java", "guava-gwt/src-super/com/google/common/collect/super/com/google/common/collect/AbstractSortedMultiset.java", "guava/src/com/google/common/collect/AbstractSortedMultiset.java" ],
+  "symbols" : [ "AbstractSortedMultiset#elementSet", "-elementSet" ],
+  "occurrences" : 3,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitlbnRyeVNldApDb25jdXJyZW50SGFzaE11bHRpc2V0I2NyZWF0ZUVudHJ5U2V0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConcurrentHashMultiset#createEntrySet: +entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/ConcurrentHashMultiset.java", "guava/src/com/google/common/collect/ConcurrentHashMultiset.java" ],
+  "symbols" : [ "ConcurrentHashMultiset#createEntrySet", "+entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmaWx0ZXIsICt1bmZpbHRlcmVkLCArZW50cnlQcmVkaWNhdGUKRmlsdGVyZWRFbnRyeVNldE11bHRpbWFwI2VudHJpZXM",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of FilteredEntrySetMultimap#entries: +filter, +unfiltered, +entryPredicate",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredEntrySetMultimap.java", "guava/src/com/google/common/collect/FilteredEntrySetMultimap.java" ],
+  "symbols" : [ "FilteredEntrySetMultimap#entries", "+filter, +unfiltered, +entryPredicate" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1lbnRyaWVzCkZpbHRlcmVkS2V5U2V0TXVsdGltYXAjZW50cmllcw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of FilteredKeySetMultimap#entries: -entries",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredKeySetMultimap.java", "guava/src/com/google/common/collect/FilteredKeySetMultimap.java" ],
+  "symbols" : [ "FilteredKeySetMultimap#entries", "-entries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1lbnRyaWVzCkltbXV0YWJsZU11bHRpbWFwI2VudHJpZXM",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ImmutableMultimap#entries: -entries",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableMultimap.java", "guava/src/com/google/common/collect/ImmutableMultimap.java" ],
+  "symbols" : [ "ImmutableMultimap#entries", "-entries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1rZXlzCkltbXV0YWJsZU11bHRpbWFwI2tleXM",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ImmutableMultimap#keys: -keys",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableMultimap.java", "guava/src/com/google/common/collect/ImmutableMultimap.java" ],
+  "symbols" : [ "ImmutableMultimap#keys", "-keys" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi12YWx1ZXMKSW1tdXRhYmxlTXVsdGltYXAjdmFsdWVz",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ImmutableMultimap#values: -values",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableMultimap.java", "guava/src/com/google/common/collect/ImmutableMultimap.java" ],
+  "symbols" : [ "ImmutableMultimap#values", "-values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1jZWxsU2V0LCByZXR1cm4gc3RhdGVtZW50cyAxIOKGkiAwCkltbXV0YWJsZVRhYmxlI2NlbGxTZXQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ImmutableTable#cellSet: -cellSet, return statements 1 → 0",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableTable.java", "guava/src/com/google/common/collect/ImmutableTable.java" ],
+  "symbols" : [ "ImmutableTable#cellSet", "-cellSet, return statements 1 → 0" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi12YWx1ZXMsIHJldHVybiBzdGF0ZW1lbnRzIDEg4oaSIDAKSW1tdXRhYmxlVGFibGUjdmFsdWVz",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ImmutableTable#values: -values, return statements 1 → 0",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableTable.java", "guava/src/com/google/common/collect/ImmutableTable.java" ],
+  "symbols" : [ "ImmutableTable#values", "-values, return statements 1 → 0" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRWYWx1ZSwgK3NldFZhbHVlLCAtdmFsdWVzLCByZXR1cm4gc3RhdGVtZW50cyAxIOKGkiA0CkxpbmtlZExpc3RNdWx0aW1hcCN2YWx1ZXM",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of LinkedListMultimap#values: +getValue, +setValue, -values, return statements 1 → 4",
+  "files" : [ "android/guava/src/com/google/common/collect/LinkedListMultimap.java", "guava/src/com/google/common/collect/LinkedListMultimap.java" ],
+  "symbols" : [ "LinkedListMultimap#values", "+getValue, +setValue, -values, return statements 1 → 4" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1lbnRyaWVzLCByZXR1cm4gc3RhdGVtZW50cyAxIOKGkiAzCkxpbmtlZExpc3RNdWx0aW1hcCNlbnRyaWVz",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of LinkedListMultimap#entries: -entries, return statements 1 → 3",
+  "files" : [ "android/guava/src/com/google/common/collect/LinkedListMultimap.java" ],
+  "symbols" : [ "LinkedListMultimap#entries", "-entries, return statements 1 → 3" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1rZXlTZXQKTWFwcy5GaWx0ZXJlZEVudHJ5U29ydGVkTWFwI2tleVNldA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Maps.FilteredEntrySortedMap#keySet: -keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.FilteredEntrySortedMap#keySet", "-keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk11bHRpc2V0cyN1bmlvbgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Multisets#union: other statements changed",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets#union", "other statements changed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk11bHRpc2V0cyNpbnRlcnNlY3Rpb24Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Multisets#intersection: other statements changed",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets#intersection", "other statements changed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk11bHRpc2V0cyNzdW0Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Multisets#sum: other statements changed",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets#sum", "other statements changed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1rZXlTZXQKU3RhbmRhcmRSb3dTb3J0ZWRUYWJsZS5Sb3dTb3J0ZWRNYXAja2V5U2V0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of StandardRowSortedTable.RowSortedMap#keySet: -keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardRowSortedTable.java", "guava/src/com/google/common/collect/StandardRowSortedTable.java" ],
+  "symbols" : [ "StandardRowSortedTable.RowSortedMap#keySet", "-keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClN0YW5kYXJkVGFibGUuQ29sdW1uLkVudHJ5U2V0SXRlcmF0b3IjY29tcHV0ZU5leHQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of StandardTable.Column.EntrySetIterator#computeNext: other statements changed",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardTable.java", "guava/src/com/google/common/collect/StandardTable.java" ],
+  "symbols" : [ "StandardTable.Column.EntrySetIterator#computeNext", "other statements changed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit1bm1vZGlmaWFibGVOYXZpZ2FibGVTZXQsICtkZWxlZ2F0ZQpVbm1vZGlmaWFibGVTb3J0ZWRNdWx0aXNldCNlbGVtZW50U2V0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UnmodifiableSortedMultiset#elementSet: +unmodifiableNavigableSet, +delegate",
+  "files" : [ "android/guava/src/com/google/common/collect/UnmodifiableSortedMultiset.java", "guava/src/com/google/common/collect/UnmodifiableSortedMultiset.java" ],
+  "symbols" : [ "UnmodifiableSortedMultiset#elementSet", "+unmodifiableNavigableSet, +delegate" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit1bm1vZGlmaWFibGVTb3J0ZWRTZXQsICtkZWxlZ2F0ZQpVbm1vZGlmaWFibGVTb3J0ZWRNdWx0aXNldCNlbGVtZW50U2V0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UnmodifiableSortedMultiset#elementSet: +unmodifiableSortedSet, +delegate",
+  "files" : [ "guava-gwt/src-super/com/google/common/collect/super/com/google/common/collect/UnmodifiableSortedMultiset.java" ],
+  "symbols" : [ "UnmodifiableSortedMultiset#elementSet", "+unmodifiableSortedSet, +delegate" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbXBhY3RMaW5rZWRIYXNoTWFwI2VudHJ5U2V0Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CompactLinkedHashMap#entrySet: other statements changed",
+  "files" : [ "guava/src/com/google/common/collect/CompactLinkedHashMap.java" ],
+  "symbols" : [ "CompactLinkedHashMap#entrySet", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbXBhY3RMaW5rZWRIYXNoTWFwI2tleVNldApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CompactLinkedHashMap#keySet: other statements changed",
+  "files" : [ "guava/src/com/google/common/collect/CompactLinkedHashMap.java" ],
+  "symbols" : [ "CompactLinkedHashMap#keySet", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbXBhY3RMaW5rZWRIYXNoTWFwI3ZhbHVlcwpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CompactLinkedHashMap#values: other statements changed",
+  "files" : [ "guava/src/com/google/common/collect/CompactLinkedHashMap.java" ],
+  "symbols" : [ "CompactLinkedHashMap#values", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1vZgpSZWd1bGFySW1tdXRhYmxlTXVsdGlzZXQjY3JlYXRl",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of RegularImmutableMultiset#create: -of",
+  "files" : [ "guava/src/com/google/common/collect/RegularImmutableMultiset.java" ],
+  "symbols" : [ "RegularImmutableMultiset#create", "-of" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCkZpbHRlcmVkTXVsdGltYXBWYWx1ZXMjbXVsdGltYXA",
+  "kind" : "CHANGE_FIELD_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change annotations on field FilteredMultimapValues#multimap",
+  "files" : [ "android/guava/src/com/google/common/collect/FilteredMultimapValues.java", "guava/src/com/google/common/collect/FilteredMultimapValues.java" ],
+  "symbols" : [ "FilteredMultimapValues#multimap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCkltbXV0YWJsZU11bHRpbWFwLkVudHJ5Q29sbGVjdGlvbiNtdWx0aW1hcA",
+  "kind" : "CHANGE_FIELD_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change annotations on field ImmutableMultimap.EntryCollection#multimap",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableMultimap.java", "guava/src/com/google/common/collect/ImmutableMultimap.java" ],
+  "symbols" : [ "ImmutableMultimap.EntryCollection#multimap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCkltbXV0YWJsZU11bHRpbWFwLlZhbHVlcyNtdWx0aW1hcA",
+  "kind" : "CHANGE_FIELD_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change annotations on field ImmutableMultimap.Values#multimap",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableMultimap.java", "guava/src/com/google/common/collect/ImmutableMultimap.java" ],
+  "symbols" : [ "ImmutableMultimap.Values#multimap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCk1hcHMuS2V5U2V0I21hcA",
+  "kind" : "CHANGE_FIELD_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change annotations on field Maps.KeySet#map",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.KeySet#map" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCk1hcHMuVmFsdWVzI21hcA",
+  "kind" : "CHANGE_FIELD_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change annotations on field Maps.Values#map",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.Values#map" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCk11bHRpbWFwcy5LZXlzI211bHRpbWFw",
+  "kind" : "CHANGE_FIELD_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change annotations on field Multimaps.Keys#multimap",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.Keys#multimap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCk11bHRpbWFwcy5Bc01hcCNtdWx0aW1hcA",
+  "kind" : "CHANGE_FIELD_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change annotations on field Multimaps.AsMap#multimap",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.AsMap#multimap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TClNvcnRlZE11bHRpc2V0cy5FbGVtZW50U2V0I211bHRpc2V0",
+  "kind" : "CHANGE_FIELD_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change annotations on field SortedMultisets.ElementSet#multiset",
+  "files" : [ "android/guava/src/com/google/common/collect/SortedMultisets.java", "guava/src/com/google/common/collect/SortedMultisets.java" ],
+  "symbols" : [ "SortedMultisets.ElementSet#multiset" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFic3RyYWN0QmlNYXAja2V5U2V0",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AbstractBiMap#keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractBiMap.java", "guava/src/com/google/common/collect/AbstractBiMap.java" ],
+  "symbols" : [ "AbstractBiMap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFic3RyYWN0QmlNYXAjdmFsdWVTZXQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AbstractBiMap#valueSet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractBiMap.java", "guava/src/com/google/common/collect/AbstractBiMap.java" ],
+  "symbols" : [ "AbstractBiMap#valueSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFic3RyYWN0QmlNYXAjZW50cnlTZXQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AbstractBiMap#entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractBiMap.java", "guava/src/com/google/common/collect/AbstractBiMap.java" ],
+  "symbols" : [ "AbstractBiMap#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFic3RyYWN0TWFwQmFzZWRNdWx0aW1hcC5Tb3J0ZWRBc01hcCNzb3J0ZWRLZXlTZXQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AbstractMapBasedMultimap.SortedAsMap#sortedKeySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMapBasedMultimap.java", "guava/src/com/google/common/collect/AbstractMapBasedMultimap.java" ],
+  "symbols" : [ "AbstractMapBasedMultimap.SortedAsMap#sortedKeySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFic3RyYWN0TXVsdGltYXAjZW50cmllcw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AbstractMultimap#entries",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#entries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFic3RyYWN0TXVsdGltYXAja2V5U2V0",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AbstractMultimap#keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFic3RyYWN0TXVsdGltYXAja2V5cw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AbstractMultimap#keys",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#keys" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFic3RyYWN0TXVsdGltYXAjdmFsdWVz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AbstractMultimap#values",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFic3RyYWN0TXVsdGltYXAjYXNNYXA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AbstractMultimap#asMap",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultimap.java", "guava/src/com/google/common/collect/AbstractMultimap.java" ],
+  "symbols" : [ "AbstractMultimap#asMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFic3RyYWN0TXVsdGlzZXQjZWxlbWVudFNldA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AbstractMultiset#elementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultiset.java", "guava/src/com/google/common/collect/AbstractMultiset.java" ],
+  "symbols" : [ "AbstractMultiset#elementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFic3RyYWN0TXVsdGlzZXQjZW50cnlTZXQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AbstractMultiset#entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractMultiset.java", "guava/src/com/google/common/collect/AbstractMultiset.java" ],
+  "symbols" : [ "AbstractMultiset#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFic3RyYWN0VGFibGUjY2VsbFNldA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AbstractTable#cellSet",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractTable.java", "guava/src/com/google/common/collect/AbstractTable.java" ],
+  "symbols" : [ "AbstractTable#cellSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFic3RyYWN0VGFibGUjdmFsdWVz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AbstractTable#values",
+  "files" : [ "android/guava/src/com/google/common/collect/AbstractTable.java", "guava/src/com/google/common/collect/AbstractTable.java" ],
+  "symbols" : [ "AbstractTable#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFycmF5VGFibGUjY29sdW1uTWFw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ArrayTable#columnMap",
+  "files" : [ "android/guava/src/com/google/common/collect/ArrayTable.java", "guava/src/com/google/common/collect/ArrayTable.java" ],
+  "symbols" : [ "ArrayTable#columnMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFycmF5VGFibGUjcm93TWFw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ArrayTable#rowMap",
+  "files" : [ "android/guava/src/com/google/common/collect/ArrayTable.java", "guava/src/com/google/common/collect/ArrayTable.java" ],
+  "symbols" : [ "ArrayTable#rowMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkRlc2NlbmRpbmdNdWx0aXNldCNlbGVtZW50U2V0",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field DescendingMultiset#elementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/DescendingMultiset.java", "guava/src/com/google/common/collect/DescendingMultiset.java" ],
+  "symbols" : [ "DescendingMultiset#elementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkRlc2NlbmRpbmdNdWx0aXNldCNlbnRyeVNldA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field DescendingMultiset#entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/DescendingMultiset.java", "guava/src/com/google/common/collect/DescendingMultiset.java" ],
+  "symbols" : [ "DescendingMultiset#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkltbXV0YWJsZU11bHRpc2V0I2VudHJ5U2V0",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ImmutableMultiset#entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableMultiset.java", "guava/src/com/google/common/collect/ImmutableMultiset.java" ],
+  "symbols" : [ "ImmutableMultiset#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkltbXV0YWJsZVNldE11bHRpbWFwI2VudHJpZXM",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ImmutableSetMultimap#entries",
+  "files" : [ "android/guava/src/com/google/common/collect/ImmutableSetMultimap.java", "guava/src/com/google/common/collect/ImmutableSetMultimap.java" ],
+  "symbols" : [ "ImmutableSetMultimap#entries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk1hcE1ha2VySW50ZXJuYWxNYXAja2V5U2V0",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field MapMakerInternalMap#keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/MapMakerInternalMap.java", "guava/src/com/google/common/collect/MapMakerInternalMap.java" ],
+  "symbols" : [ "MapMakerInternalMap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk1hcE1ha2VySW50ZXJuYWxNYXAjdmFsdWVz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field MapMakerInternalMap#values",
+  "files" : [ "android/guava/src/com/google/common/collect/MapMakerInternalMap.java", "guava/src/com/google/common/collect/MapMakerInternalMap.java" ],
+  "symbols" : [ "MapMakerInternalMap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk1hcE1ha2VySW50ZXJuYWxNYXAjZW50cnlTZXQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field MapMakerInternalMap#entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/MapMakerInternalMap.java", "guava/src/com/google/common/collect/MapMakerInternalMap.java" ],
+  "symbols" : [ "MapMakerInternalMap#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk1hcHMuVW5tb2RpZmlhYmxlQmlNYXAjdmFsdWVz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Maps.UnmodifiableBiMap#values",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.UnmodifiableBiMap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk1hcHMuVmlld0NhY2hpbmdBYnN0cmFjdE1hcCNlbnRyeVNldA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Maps.ViewCachingAbstractMap#entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.ViewCachingAbstractMap#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk1hcHMuVmlld0NhY2hpbmdBYnN0cmFjdE1hcCNrZXlTZXQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Maps.ViewCachingAbstractMap#keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.ViewCachingAbstractMap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk1hcHMuVmlld0NhY2hpbmdBYnN0cmFjdE1hcCN2YWx1ZXM",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Maps.ViewCachingAbstractMap#values",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.ViewCachingAbstractMap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk1hcHMuRGVzY2VuZGluZ01hcCNlbnRyeVNldA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Maps.DescendingMap#entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.DescendingMap#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk1hcHMuRGVzY2VuZGluZ01hcCNuYXZpZ2FibGVLZXlTZXQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Maps.DescendingMap#navigableKeySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Maps.java", "guava/src/com/google/common/collect/Maps.java" ],
+  "symbols" : [ "Maps.DescendingMap#navigableKeySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk11bHRpbWFwcy5Vbm1vZGlmaWFibGVNdWx0aW1hcCNlbnRyaWVz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Multimaps.UnmodifiableMultimap#entries",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.UnmodifiableMultimap#entries" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk11bHRpbWFwcy5Vbm1vZGlmaWFibGVNdWx0aW1hcCNrZXlz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Multimaps.UnmodifiableMultimap#keys",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.UnmodifiableMultimap#keys" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk11bHRpbWFwcy5Vbm1vZGlmaWFibGVNdWx0aW1hcCNrZXlTZXQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Multimaps.UnmodifiableMultimap#keySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.UnmodifiableMultimap#keySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk11bHRpbWFwcy5Vbm1vZGlmaWFibGVNdWx0aW1hcCN2YWx1ZXM",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Multimaps.UnmodifiableMultimap#values",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.UnmodifiableMultimap#values" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk11bHRpbWFwcy5Vbm1vZGlmaWFibGVNdWx0aW1hcCNtYXA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Multimaps.UnmodifiableMultimap#map",
+  "files" : [ "android/guava/src/com/google/common/collect/Multimaps.java", "guava/src/com/google/common/collect/Multimaps.java" ],
+  "symbols" : [ "Multimaps.UnmodifiableMultimap#map" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk11bHRpc2V0cy5Vbm1vZGlmaWFibGVNdWx0aXNldCNlbGVtZW50U2V0",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Multisets.UnmodifiableMultiset#elementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets.UnmodifiableMultiset#elementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk11bHRpc2V0cy5Vbm1vZGlmaWFibGVNdWx0aXNldCNlbnRyeVNldA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Multisets.UnmodifiableMultiset#entrySet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets.UnmodifiableMultiset#entrySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClJlZ3VsYXJJbW11dGFibGVNdWx0aXNldCNlbGVtZW50U2V0",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field RegularImmutableMultiset#elementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/RegularImmutableMultiset.java", "guava/src/com/google/common/collect/RegularImmutableMultiset.java" ],
+  "symbols" : [ "RegularImmutableMultiset#elementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClN0YW5kYXJkVGFibGUjY29sdW1uS2V5U2V0",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field StandardTable#columnKeySet",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardTable.java", "guava/src/com/google/common/collect/StandardTable.java" ],
+  "symbols" : [ "StandardTable#columnKeySet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClN0YW5kYXJkVGFibGUjcm93TWFw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field StandardTable#rowMap",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardTable.java", "guava/src/com/google/common/collect/StandardTable.java" ],
+  "symbols" : [ "StandardTable#rowMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClN0YW5kYXJkVGFibGUjY29sdW1uTWFw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field StandardTable#columnMap",
+  "files" : [ "android/guava/src/com/google/common/collect/StandardTable.java", "guava/src/com/google/common/collect/StandardTable.java" ],
+  "symbols" : [ "StandardTable#columnMap" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClRyZWVSYW5nZVNldCNhc1Jhbmdlcw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field TreeRangeSet#asRanges",
+  "files" : [ "android/guava/src/com/google/common/collect/TreeRangeSet.java", "guava/src/com/google/common/collect/TreeRangeSet.java" ],
+  "symbols" : [ "TreeRangeSet#asRanges" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClRyZWVSYW5nZVNldCNhc0Rlc2NlbmRpbmdTZXRPZlJhbmdlcw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field TreeRangeSet#asDescendingSetOfRanges",
+  "files" : [ "android/guava/src/com/google/common/collect/TreeRangeSet.java", "guava/src/com/google/common/collect/TreeRangeSet.java" ],
+  "symbols" : [ "TreeRangeSet#asDescendingSetOfRanges" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkpka0JhY2tlZEltbXV0YWJsZU11bHRpc2V0I2VsZW1lbnRTZXQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field JdkBackedImmutableMultiset#elementSet",
+  "files" : [ "guava/src/com/google/common/collect/JdkBackedImmutableMultiset.java" ],
+  "symbols" : [ "JdkBackedImmutableMultiset#elementSet" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNdWx0aXNldHMjdW5pb24oYW5vbnltb3VzIFZpZXdNdWx0aXNldCkjY3JlYXRlRWxlbWVudFNldA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Multisets#union(anonymous ViewMultiset)#createElementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets#union(anonymous ViewMultiset)#createElementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNdWx0aXNldHMjaW50ZXJzZWN0aW9uKGFub255bW91cyBWaWV3TXVsdGlzZXQpI2NyZWF0ZUVsZW1lbnRTZXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Multisets#intersection(anonymous ViewMultiset)#createElementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets#intersection(anonymous ViewMultiset)#createElementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNdWx0aXNldHMjc3VtKGFub255bW91cyBWaWV3TXVsdGlzZXQpI2NyZWF0ZUVsZW1lbnRTZXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Multisets#sum(anonymous ViewMultiset)#createElementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets#sum(anonymous ViewMultiset)#createElementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNdWx0aXNldHMjdW5pb24oYW5vbnltb3VzIFZpZXdNdWx0aXNldCkjZWxlbWVudFNldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Multisets#union(anonymous ViewMultiset)#elementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets#union(anonymous ViewMultiset)#elementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNdWx0aXNldHMjaW50ZXJzZWN0aW9uKGFub255bW91cyBWaWV3TXVsdGlzZXQpI2VsZW1lbnRTZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Multisets#intersection(anonymous ViewMultiset)#elementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets#intersection(anonymous ViewMultiset)#elementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNdWx0aXNldHMjc3VtKGFub255bW91cyBWaWV3TXVsdGlzZXQpI2VsZW1lbnRTZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Multisets#sum(anonymous ViewMultiset)#elementSet",
+  "files" : [ "android/guava/src/com/google/common/collect/Multisets.java", "guava/src/com/google/common/collect/Multisets.java" ],
+  "symbols" : [ "Multisets#sum(anonymous ViewMultiset)#elementSet" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

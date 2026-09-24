@@ -1,0 +1,7 @@
+[ {
+  "description" : "Change control flow of MultiReader#read: branch removed, loop added",
+  "entity" : "MultiReader"
+}, {
+  "description" : "Add MultiReaderTest#testRead_noStackOverflow_manyEmptySources",
+  "entity" : "MultiReaderTest"
+} ]

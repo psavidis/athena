@@ -1,0 +1,85 @@
+{
+  "territories" : [ {
+    "moduleName" : "dubbo-rpc-dubbo",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpEdWJib1Byb3RvY29sI2dldEludm9rZXIKYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz", "QUREX1NZTUJPTApEdWJib1Byb3RvY29sVGVzdCN0ZXN0R2V0SW52b2tlclRocm93c09uTnVsbFBhdGg" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApEdWJib1Byb3RvY29sVGVzdCN0ZXN0R2V0SW52b2tlclRocm93c09uTnVsbFBhdGg" ]
+  }, {
+    "moduleName" : "dubbo-rpc-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dubbo-remoting-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dubbo-cluster",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dubbo-remoting-netty4",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dubbo-serialization-hessian2",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dubbo-serialization-fastjson2",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "dubbo-rpc-dubbo",
+    "to" : "dubbo-rpc-api"
+  }, {
+    "from" : "dubbo-rpc-dubbo",
+    "to" : "dubbo-remoting-api"
+  }, {
+    "from" : "dubbo-rpc-dubbo",
+    "to" : "dubbo-cluster"
+  }, {
+    "from" : "dubbo-rpc-dubbo",
+    "to" : "dubbo-remoting-netty4"
+  }, {
+    "from" : "dubbo-rpc-dubbo",
+    "to" : "dubbo-serialization-hessian2"
+  }, {
+    "from" : "dubbo-rpc-dubbo",
+    "to" : "dubbo-serialization-fastjson2"
+  } ]
+}

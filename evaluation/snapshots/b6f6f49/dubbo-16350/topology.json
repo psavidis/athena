@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "dubbo-common",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApTdHJpbmdVdGlsc1Rlc3QjdGVzdFN1YnN0cmluZ0FmdGVy", "TU9ESUZZX01FVEhPRF9CT0RZClN0cmluZ1V0aWxzI3N1YnN0cmluZ0FmdGVyCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApTdHJpbmdVdGlsc1Rlc3QjdGVzdFN1YnN0cmluZ0FmdGVy" ]
+  } ],
+  "dependencies" : [ ]
+}

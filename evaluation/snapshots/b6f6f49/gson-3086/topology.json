@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "gson",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5I2NyZWF0ZUJvdW5kRmllbGQKYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz", "QUREX0ZJRUxEClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkjY3JlYXRlQm91bmRGaWVsZChhbm9ueW1vdXMgQm91bmRGaWVsZCkja25vd25BY2Nlc3NpYmxl" ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ ]
+}

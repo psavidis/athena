@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/apache/maven.git",
+  "base" : "ee9c2a37b232fbdd01d01969e6bc90b4d0d4ee1f",
+  "head" : "e3edf2d3b2c7a0c3dee4277cb11b035ce9a92558",
+  "changeCount" : 8,
+  "moduleCount" : 2,
+  "checkoutAndAnalysisSeconds" : 16.86
+}
