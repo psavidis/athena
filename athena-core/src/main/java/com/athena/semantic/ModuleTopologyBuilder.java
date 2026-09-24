@@ -2,11 +2,8 @@ package com.athena.semantic;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -45,8 +42,6 @@ public final class ModuleTopologyBuilder {
             Pattern.compile("project\\(\\s*(?:path\\s*[:=]\\s*)?['\"](:[^'\"]+)['\"]");
     // projects.module.springBootCore — Gradle's type-safe project accessors.
     private static final Pattern GRADLE_PROJECT_ACCESSOR = Pattern.compile("\\bprojects((?:\\.\\w+)+)");
-    private static final Set<String> NEVER_MODULE_DIRECTORIES = Set.of("node_modules", "target", "build", "src", "out", "bin");
-    private static final int MAX_MODULE_DEPTH = 5;
 
     public ModuleTopology build(List<ModuleGroup> changedGroups, Path baseRoot, Path headRoot) {
         List<RepositoryModule> allModules = discoverModules(baseRoot, headRoot);
@@ -123,37 +118,20 @@ public final class ModuleTopologyBuilder {
     }
 
     /**
-     * Every module of the repository at head (ticket #293): each directory, up to {@value
-     * #MAX_MODULE_DEPTH} levels down, holding a build descriptor — named as {@link ModuleLayout}
-     * names it, so a dependency target matches its territory's name. Source, build-output and
-     * hidden directories are never searched.
+     * Every module of the repository present at head (ticket #293), as {@link
+     * ModuleLayout#moduleDirectories()} discovers them and named as it names them (#317), so a
+     * dependency target matches its territory's name.
      */
     private List<RepositoryModule> discoverModules(Path baseRoot, Path headRoot) {
-        List<RepositoryModule> modules = new ArrayList<>();
         if (headRoot == null || !Files.isDirectory(headRoot)) {
-            return modules;
+            return List.of();
         }
         ModuleLayout layout = ModuleLayout.of(baseRoot, headRoot);
-        try {
-            Files.walkFileTree(headRoot, Set.of(), MAX_MODULE_DEPTH, new SimpleFileVisitor<>() {
-                @Override
-                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attributes) {
-                    String name = dir.getFileName() == null ? "" : dir.getFileName().toString();
-                    if (!dir.equals(headRoot) && (name.startsWith(".") || NEVER_MODULE_DIRECTORIES.contains(name))) {
-                        return FileVisitResult.SKIP_SUBTREE;
-                    }
-                    String directory = headRoot.relativize(dir).toString().replace('\\', '/');
-                    if (ModuleLayout.buildDescriptorNames(directory).stream()
-                            .anyMatch(descriptor -> Files.isRegularFile(dir.resolve(descriptor)))) {
-                        modules.add(new RepositoryModule(directory, layout.nameOf(directory), mavenArtifactId(dir)));
-                    }
-                    return FileVisitResult.CONTINUE;
-                }
-            });
-        } catch (IOException e) {
-            throw new UncheckedIOException("Could not discover modules under " + headRoot, e);
-        }
-        return modules;
+        return layout.moduleDirectories().stream()
+                .filter(directory -> Files.isDirectory(headRoot.resolve(directory)))
+                .map(directory -> new RepositoryModule(directory, layout.nameOf(directory),
+                        mavenArtifactId(headRoot.resolve(directory))))
+                .toList();
     }
 
     private String mavenArtifactId(Path moduleDir) {

@@ -106,6 +106,38 @@ class ModuleLayoutTest {
         assertThat(ModuleLayout.buildDescriptorNames("core")).doesNotContain("other.gradle");
     }
 
+    @Test
+    void sameNamedModulesGetDistinguishingNames() throws IOException {
+        write(headRoot, "guava/pom.xml", "<project/>");
+        write(headRoot, "android/guava/pom.xml", "<project/>");
+        ModuleLayout layout = ModuleLayout.of(baseRoot, headRoot);
+
+        assertThat(layout.nameOf("guava")).isEqualTo("guava");
+        assertThat(layout.nameOf("android/guava")).isEqualTo("guava (android)");
+    }
+
+    @Test
+    void nestedNamesakesAreDistinguishedByTheirShortestDifferingParents() throws IOException {
+        write(headRoot, "a/x/core/pom.xml", "<project/>");
+        write(headRoot, "b/x/core/pom.xml", "<project/>");
+        write(headRoot, "web/pom.xml", "<project/>");
+        ModuleLayout layout = ModuleLayout.of(baseRoot, headRoot);
+
+        assertThat(layout.nameOf("a/x/core")).isEqualTo("core (a:x)");
+        assertThat(layout.nameOf("b/x/core")).isEqualTo("core (b:x)");
+        assertThat(layout.nameOf("web")).isEqualTo("web");
+    }
+
+    @Test
+    void discoversModulesButNeverInsideSourceOrHiddenDirectories() throws IOException {
+        write(headRoot, "core/pom.xml", "<project/>");
+        write(headRoot, "core/src/test/resources/fixture/pom.xml", "<project/>");
+        write(headRoot, ".github/pom.xml", "<project/>");
+        write(baseRoot, "legacy/build.gradle", "");
+
+        assertThat(ModuleLayout.of(baseRoot, headRoot).moduleDirectories()).containsExactly("core", "legacy");
+    }
+
     private static void write(Path root, String relativePath, String content) throws IOException {
         Path file = root.resolve(relativePath);
         Files.createDirectories(file.getParent());
