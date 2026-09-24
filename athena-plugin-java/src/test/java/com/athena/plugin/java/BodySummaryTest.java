@@ -81,7 +81,7 @@ class BodySummaryTest {
 
     @Test
     void anEditWithNoSuchDifferenceIsOtherStatements() {
-        assertThat(describe("return a + b;", "return a - b;")).isEqualTo("other statements changed");
+        assertThat(describe("int x = a + b; return x;", "int x = a - b; return x;")).isEqualTo("other statements changed");
     }
 
     @Test
@@ -106,6 +106,35 @@ class BodySummaryTest {
     void aNewThrowOrAnExtraReturnIsNotTheSameCalls() {
         assertThat(summaryOf("return t;").makesSameCallsAs(summaryOf("if (a == 0) { throw new X(); } return t;"))).isFalse();
         assertThat(summaryOf("return t;").makesSameCallsAs(summaryOf("if (a == 0) { return null; } return t;"))).isFalse();
+    }
+
+    @Test
+    void aMovedStatementIsNamedAfterItsNewPredecessor() {
+        assertThat(describe("modCount++; check(index); size++; return t;", "check(index); modCount++; size++; return t;"))
+                .isEqualTo("moved modCount++ after check(index)");
+    }
+
+    @Test
+    void aStatementMovedToTheTopIsNamedBeforeItsNewSuccessor() {
+        assertThat(describe("a = 1; b = 2; check(); return t;", "check(); a = 1; b = 2; return t;"))
+                .isEqualTo("moved check() before a = 1");
+    }
+
+    @Test
+    void aChangedReturnedValueIsTrimmedToTheDifferingPart() {
+        assertThat(describe("return a == 0 ? t : t.toString();", "return a == 0 ? null : t.toString();"))
+                .isEqualTo("return t -> null");
+    }
+
+    @Test
+    void aLongDifferingReturnValueIsSummarized() {
+        assertThat(describe("return compute(\"a very long first argument\", t);", "return compute(\"an entirely different argument\", t, a, b);"))
+                .isEqualTo("return value changed");
+    }
+
+    @Test
+    void anInsertionIntoAReturnedValueIsAnchoredOnThePrecedingToken() {
+        assertThat(describe("return name;", "return name.trim();")).isEqualTo("+trim, return name -> name.trim()");
     }
 
     private static String describe(String baseBody, String headBody) {
