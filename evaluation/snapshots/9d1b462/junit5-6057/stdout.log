@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/junit-team/junit5.git",
+  "base" : "59a5523f697148cd044339a14f76819c1a231815",
+  "head" : "0f627af0db35dd5cc24781b37978620f297f8687",
+  "changeCount" : 51,
+  "moduleCount" : 3,
+  "checkoutAndAnalysisSeconds" : 5.28
+}

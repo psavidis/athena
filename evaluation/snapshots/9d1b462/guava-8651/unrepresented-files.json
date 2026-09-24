@@ -1,0 +1,33 @@
+{
+  "changedFileCount" : 148,
+  "representedFileCount" : 144,
+  "files" : [ {
+    "path" : "android/guava-testlib/src/com/google/common/util/concurrent/testing/SameThreadScheduledExecutorService.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 39,
+    "hunkCount" : 17,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/eventbus/SubscriberExceptionContext.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava-testlib/src/com/google/common/util/concurrent/testing/SameThreadScheduledExecutorService.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 39,
+    "hunkCount" : 17,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/eventbus/SubscriberExceptionContext.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  } ]
+}

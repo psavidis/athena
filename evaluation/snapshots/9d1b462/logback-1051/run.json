@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/qos-ch/logback.git",
+  "base" : "94ba1a07acb6ebfa15043c1bbf701b4c3a634616",
+  "head" : "3c7d2ea2697677f96b36fa13f000c0096958b6be",
+  "changeCount" : 8,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 4.31
+}

@@ -1,0 +1,341 @@
+{
+  "jupiter-tests" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in PreemptiveTimeoutUtilsTest",
+      "conceptDescription" : "8 changes in test code of PreemptiveTimeoutUtilsTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-class PreemptiveTimeoutUtilsTest {\n \n-\tprivate static final Duration PREEMPTIVE_TIMEOUT = ofMillis(WINDOWS.isCurrentOs() ? 1000 : 100);\n-\tprivate static final PreemptiveTimeoutUtils.TimeoutFailureFactory<TimeoutException> TIMEOUT_EXCEPTION_FACTORY = (__,\n-\t\t\t___, ____, _____) -> new TimeoutException();\n-\n-\t@Test\n-\tvoid executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatCompletesAfterTheTimeout() {\n-\t\tassertThrows(TimeoutException.class, () -> executeWithPreemptiveTimeout(PREEMPTIVE_TIMEOUT, () -> {\n-\t\t\twaitForInterrupt();\n-\t\t\treturn \"Tempus Fugit\";\n-\t\t}, () -> \"Tempus Fugit\", TIMEOUT_EXCEPTION_FACTORY));\n-\t}\n-\n-\t@Test\n-\tvoid executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatThrowsAnAssertionFailedError() {\n-\t\tAssertionFailedError exception = assertThrows(AssertionFailedError.class,\n-\t\t\t() -> executeWithPreemptiveTimeout(ofMillis(500), () -> fail(\"enigma\"), () -> \"Tempus Fugit\",\n-\t\t\t\tTIMEOUT_EXCEPTION_FACTORY));\n-\t\tassertThat(exception).hasMessage(\"enigma\");\n-\t}\n-\n-\t@Test\n-\tvoid executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatThrowsAnException() {\n-\t\tRuntimeException exception = assertThrows(RuntimeException.class,\n-\t\t\t() -> executeWithPreemptiveTimeout(ofMillis(500),\n-\t\t\t\t() -> ExceptionUtils.throwAsUncheckedException(new RuntimeException(\":(\")), () -> \"Tempus Fugit\",\n-\t\t\t\tTIMEOUT_EXCEPTION_FACTORY));\n-\t\tassertThat(exception).hasMessage(\":(\");\n-\t}\n-\n-\t@Test\n-\tvoid executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatCompletesBeforeTimeout()\n-\t\t\tthrows Exception {\n-\t\tvar result = executeWithPreemptiveTimeout(PREEMPTIVE_TIMEOUT, () -> \"Tempus Fugit\", () -> \"Tempus Fugit\",\n-\t\t\tTIMEOUT_EXCEPTION_FACTORY);\n-\n-\t\tassertThat(result).isEqualTo(\"Tempus Fugit\");\n-\t}\n-\n-\tprivate void waitForInterrupt() {\n-\t\ttry {\n-\t\t\tassertFalse(Thread.interrupted(), \"Already interrupted\");\n-\t\t\tnew CountDownLatch(1).await();\n-\t\t}\n-\t\tcatch (InterruptedException ignore) {\n-\t\t\t// ignore\n-\t\t}\n-\t}\n-\n-}", "", "", "", "", "", "", "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "jupiter-tests/src/test/java/org/junit/jupiter/api/timeout/PreemptiveTimeoutUtilsTest.java", "jupiter-tests/src/test/java/org/junit/jupiter/api/timeout/PreemptiveDurationUtilsTest.java" ],
+      "groupedMoveCount" : 8
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in AssertTimeoutAssertionsTests",
+      "conceptDescription" : "14 changes in test code of AssertTimeoutAssertionsTests.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@Nested\n+\tclass ExecutablePreconditions {\n \n+\t\t@Test\n+\t\t@SuppressWarnings(\"DataFlowIssue\")\n+\t\tvoid nonNullDuration() {\n+\t\t\tassertPreconditionViolationNotNullFor(\"timeout\",\n+\t\t\t\t() -> assertTimeout(null, (Executable) () -> fail(\"enigma\")));\n+\t\t}\n+\n+\t\t@Test\n+\t\tvoid positiveDuration() {\n+\t\t\tassertPreconditionViolationFor(() -> assertTimeout(ofNanos(-1), (Executable) () -> fail(\"enigma\"))) //\n+\t\t\t\t\t.withMessage(\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t\tassertPreconditionViolationFor(() -> assertTimeout(ofNanos(0), (Executable) () -> fail(\"enigma\"))) //\n+\t\t\t\t\t.withMessage(\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t}\n+\n+\t\t@Test\n+\t\tvoid timeoutrepresentableInNanos() {\n+\t\t\tassertPreconditionViolationFor(\n+\t\t\t\t() -> assertTimeout(ofNanos(Long.MAX_VALUE).plusNanos(1), (Executable) () -> fail(\"enigma\"))) //\n+\t\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\t\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t}\n+\t}", "+@Nested\n+\tclass SupplierPreconditions {\n \n+\t\t@Test\n+\t\t@SuppressWarnings(\"DataFlowIssue\")\n+\t\tvoid nonNullDuration() {\n+\t\t\tassertPreconditionViolationNotNullFor(\"timeout\", () -> assertTimeout(null, () -> fail(\"enigma\")));\n+\t\t}\n+\n+\t\t@Test\n+\t\tvoid positiveDuration() {\n+\t\t\tassertPreconditionViolationFor(() -> assertTimeout(ofNanos(-1), () -> fail(\"enigma\"))) //\n+\t\t\t\t\t.withMessage(\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t\tassertPreconditionViolationFor(() -> assertTimeout(ofNanos(0), () -> fail(\"enigma\"))) //\n+\t\t\t\t\t.withMessage(\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t}\n+\n+\t\t@Test\n+\t\tvoid timeoutRepresentableInNanos() {\n+\t\t\tassertPreconditionViolationFor(\n+\t\t\t\t() -> assertTimeout(ofNanos(Long.MAX_VALUE).plusNanos(1), () -> fail(\"enigma\"))) //\n+\t\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\t\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t}\n+\t}", "-\n+@Test\n+\tvoid assertTimeoutForExecutableThatCompletesAfterTheNanoTimeout() {\n+\t\tAssertionFailedError error = assertThrows(AssertionFailedError.class,\n+\t\t\t() -> assertTimeout(ofNanos(999999), this::nap));\n+\t\tassertMessageMatches(error, \"execution exceeded timeout of 0\\\\.999999 ms by \\\\d{2}\\\\d*\\\\.\\\\d{6} ms\");\n+\t}", "-\n+@Test\n+\tvoid assertTimeoutForSupplierThatCompletesAfterTheNanoTimeout() {\n+\t\tAssertionFailedError error = assertThrows(AssertionFailedError.class, () -> {\n+\t\t\tassertTimeout(ofNanos(1), () -> {\n+\t\t\t\tnap();\n+\t\t\t\treturn \"Tempus Fugit\";\n+\t\t\t});\n+\t\t});\n+\t\tassertMessageMatches(error, \"execution exceeded timeout of 0\\\\.000001 ms by \\\\d{2}\\\\d*\\\\.\\\\d{6} ms\");\n+\t}", "-\n+@Test\n+\t\t@SuppressWarnings(\"DataFlowIssue\")\n+\t\tvoid nonNullDuration() {\n+\t\t\tassertPreconditionViolationNotNullFor(\"timeout\",\n+\t\t\t\t() -> assertTimeout(null, (Executable) () -> fail(\"enigma\")));\n+\t\t}", "-\n+@Test\n+\t\tvoid positiveDuration() {\n+\t\t\tassertPreconditionViolationFor(() -> assertTimeout(ofNanos(-1), (Executable) () -> fail(\"enigma\"))) //\n+\t\t\t\t\t.withMessage(\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t\tassertPreconditionViolationFor(() -> assertTimeout(ofNanos(0), (Executable) () -> fail(\"enigma\"))) //\n+\t\t\t\t\t.withMessage(\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t}", "-\n+@Test\n+\t\tvoid timeoutrepresentableInNanos() {\n+\t\t\tassertPreconditionViolationFor(\n+\t\t\t\t() -> assertTimeout(ofNanos(Long.MAX_VALUE).plusNanos(1), (Executable) () -> fail(\"enigma\"))) //\n+\t\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\t\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t}", "-\n+@Test\n+\t\t@SuppressWarnings(\"DataFlowIssue\")\n+\t\tvoid nonNullDuration() {\n+\t\t\tassertPreconditionViolationNotNullFor(\"timeout\", () -> assertTimeout(null, () -> fail(\"enigma\")));\n+\t\t}", "-\n+@Test\n+\t\tvoid positiveDuration() {\n+\t\t\tassertPreconditionViolationFor(() -> assertTimeout(ofNanos(-1), () -> fail(\"enigma\"))) //\n+\t\t\t\t\t.withMessage(\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t\tassertPreconditionViolationFor(() -> assertTimeout(ofNanos(0), () -> fail(\"enigma\"))) //\n+\t\t\t\t\t.withMessage(\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t}", "-\n+@Test\n+\t\tvoid timeoutRepresentableInNanos() {\n+\t\t\tassertPreconditionViolationFor(\n+\t\t\t\t() -> assertTimeout(ofNanos(Long.MAX_VALUE).plusNanos(1), () -> fail(\"enigma\"))) //\n+\t\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\t\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t}", " @Test\n \tvoid assertTimeoutForExecutableThatThrowsAnException() {\n-\t\tRuntimeException exception = assertThrows(RuntimeException.class, () -> assertTimeout(ofMillis(500), () -> {\n-\t\t\tthrow new RuntimeException(\"not this time\");\n-\t\t}));\n+\t\tRuntimeException exception = assertThrows(RuntimeException.class,\n+\t\t\t() -> assertTimeout(ofMillis(500), (Executable) () -> {\n+\t\t\t\tthrow new RuntimeException(\"not this time\");\n+\t\t\t}));\n \t\tassertMessageEquals(exception, \"not this time\");\n \t}", " @Test\n \tvoid assertTimeoutForExecutableThatThrowsAnAssertionFailedError() {\n \t\tAssertionFailedError exception = assertThrows(AssertionFailedError.class,\n-\t\t\t() -> assertTimeout(ofMillis(500), () -> fail(\"enigma\")));\n+\t\t\t() -> assertTimeout(ofMillis(500), (Executable) () -> fail(\"enigma\")));\n \t\tassertMessageEquals(exception, \"enigma\");\n \t}", " @Test\n \tvoid assertTimeoutForExecutableThatCompletesAfterTheTimeout() {\n \t\tAssertionFailedError error = assertThrows(AssertionFailedError.class,\n \t\t\t() -> assertTimeout(ofMillis(10), this::nap));\n-\t\tassertMessageStartsWith(error, \"execution exceeded timeout of 10 ms by\");\n+\t\tassertMessageMatches(error, \"execution exceeded timeout of 10 ms by \\\\d{2}\\\\d* ms\");\n \t}", " @Test\n \tvoid assertTimeoutForSupplierThatCompletesAfterTheTimeout() {\n \t\tAssertionFailedError error = assertThrows(AssertionFailedError.class, () -> {\n \t\t\tassertTimeout(ofMillis(10), () -> {\n \t\t\t\tnap();\n \t\t\t\treturn \"Tempus Fugit\";\n \t\t\t});\n \t\t});\n-\t\tassertMessageStartsWith(error, \"execution exceeded timeout of 10 ms by\");\n+\t\tassertMessageMatches(error, \"execution exceeded timeout of 10 ms by \\\\d{2}\\\\d* ms\");\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "jupiter-tests/src/test/java/org/junit/jupiter/api/AssertTimeoutAssertionsTests.java" ],
+      "groupedMoveCount" : 14
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in PreemptiveDurationUtilsTest",
+      "conceptDescription" : "4 changes in test code of PreemptiveDurationUtilsTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+class PreemptiveDurationUtilsTest {\n \n+\tprivate static final Duration PREEMPTIVE_TIMEOUT = ofMillis(WINDOWS.isCurrentOs() ? 1000 : 100);\n+\tprivate static final PreemptiveTimeoutUtils.TimeoutFailureFactory<TimeoutException> TIMEOUT_EXCEPTION_FACTORY = (__,\n+\t\t\t___, ____, _____) -> new TimeoutException();\n+\n+\t@Test\n+\tvoid executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatCompletesAfterTheTimeout() {\n+\t\tassertThrows(TimeoutException.class, () -> executeWithPreemptiveTimeout(PREEMPTIVE_TIMEOUT, () -> {\n+\t\t\twaitForInterrupt();\n+\t\t\treturn \"Tempus Fugit\";\n+\t\t}, () -> \"Tempus Fugit\", TIMEOUT_EXCEPTION_FACTORY));\n+\t}\n+\n+\t@Test\n+\tvoid executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatThrowsAnAssertionFailedError() {\n+\t\tAssertionFailedError exception = assertThrows(AssertionFailedError.class,\n+\t\t\t() -> executeWithPreemptiveTimeout(ofMillis(500), () -> fail(\"enigma\"), () -> \"Tempus Fugit\",\n+\t\t\t\tTIMEOUT_EXCEPTION_FACTORY));\n+\t\tassertThat(exception).hasMessage(\"enigma\");\n+\t}\n+\n+\t@Test\n+\tvoid executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatThrowsAnException() {\n+\t\tRuntimeException exception = assertThrows(RuntimeException.class,\n+\t\t\t() -> executeWithPreemptiveTimeout(ofMillis(500),\n+\t\t\t\t() -> ExceptionUtils.throwAsUncheckedException(new RuntimeException(\":(\")), () -> \"Tempus Fugit\",\n+\t\t\t\tTIMEOUT_EXCEPTION_FACTORY));\n+\t\tassertThat(exception).hasMessage(\":(\");\n+\t}\n+\n+\t@Test\n+\tvoid executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatCompletesBeforeTimeout()\n+\t\t\tthrows Exception {\n+\t\tvar result = executeWithPreemptiveTimeout(PREEMPTIVE_TIMEOUT, () -> \"Tempus Fugit\", () -> \"Tempus Fugit\",\n+\t\t\tTIMEOUT_EXCEPTION_FACTORY);\n+\n+\t\tassertThat(result).isEqualTo(\"Tempus Fugit\");\n+\t}\n+\n+\tprivate void waitForInterrupt() {\n+\t\ttry {\n+\t\t\tassertFalse(Thread.interrupted(), \"Already interrupted\");\n+\t\t\tnew CountDownLatch(1).await();\n+\t\t}\n+\t\tcatch (InterruptedException ignore) {\n+\t\t\t// ignore\n+\t\t}\n+\t}\n+\n+\t@Nested\n+\tclass Preconditions {\n+\n+\t\t@Test\n+\t\tvoid positiveDuration() {\n+\t\t\tassertPreconditionViolationFor( //\n+\t\t\t\t() -> PreemptiveTimeoutUtils.executeWithPreemptiveTimeout(Duration.ofNanos(-1), //\n+\t\t\t\t\t() -> fail(\"enigma\"), //\n+\t\t\t\t\t() -> \"Tempus Fugit\", TIMEOUT_EXCEPTION_FACTORY)) //\n+\t\t\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\t\t\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\n+\t\t\tassertPreconditionViolationFor( //\n+\t\t\t\t() -> PreemptiveTimeoutUtils.executeWithPreemptiveTimeout(Duration.ofNanos(0), //\n+\t\t\t\t\t() -> fail(\"enigma\"), //\n+\t\t\t\t\t() -> \"Tempus Fugit\", TIMEOUT_EXCEPTION_FACTORY)) //\n+\t\t\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\t\t\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\n+\t\t}\n+\n+\t\t@Test\n+\t\tvoid timeoutRepresentableInNanos() {\n+\t\t\tassertPreconditionViolationFor( //\n+\t\t\t\t() -> PreemptiveTimeoutUtils.executeWithPreemptiveTimeout(Duration.ofNanos(Long.MAX_VALUE).plusNanos(1),\n+\t\t\t\t\t() -> fail(\"enigma\"), //\n+\t\t\t\t\t() -> \"Tempus Fugit\", TIMEOUT_EXCEPTION_FACTORY)) //\n+\t\t\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\t\t\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t}\n+\n+\t}\n+\n+}", "+@Nested\n+\tclass Preconditions {\n \n+\t\t@Test\n+\t\tvoid positiveDuration() {\n+\t\t\tassertPreconditionViolationFor( //\n+\t\t\t\t() -> PreemptiveTimeoutUtils.executeWithPreemptiveTimeout(Duration.ofNanos(-1), //\n+\t\t\t\t\t() -> fail(\"enigma\"), //\n+\t\t\t\t\t() -> \"Tempus Fugit\", TIMEOUT_EXCEPTION_FACTORY)) //\n+\t\t\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\t\t\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\n+\t\t\tassertPreconditionViolationFor( //\n+\t\t\t\t() -> PreemptiveTimeoutUtils.executeWithPreemptiveTimeout(Duration.ofNanos(0), //\n+\t\t\t\t\t() -> fail(\"enigma\"), //\n+\t\t\t\t\t() -> \"Tempus Fugit\", TIMEOUT_EXCEPTION_FACTORY)) //\n+\t\t\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\t\t\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\n+\t\t}\n+\n+\t\t@Test\n+\t\tvoid timeoutRepresentableInNanos() {\n+\t\t\tassertPreconditionViolationFor( //\n+\t\t\t\t() -> PreemptiveTimeoutUtils.executeWithPreemptiveTimeout(Duration.ofNanos(Long.MAX_VALUE).plusNanos(1),\n+\t\t\t\t\t() -> fail(\"enigma\"), //\n+\t\t\t\t\t() -> \"Tempus Fugit\", TIMEOUT_EXCEPTION_FACTORY)) //\n+\t\t\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\t\t\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t}\n+\n+\t}", "+@Test\n+\t\tvoid positiveDuration() {\n+\t\t\tassertPreconditionViolationFor( //\n+\t\t\t\t() -> PreemptiveTimeoutUtils.executeWithPreemptiveTimeout(Duration.ofNanos(-1), //\n+\t\t\t\t\t() -> fail(\"enigma\"), //\n+\t\t\t\t\t() -> \"Tempus Fugit\", TIMEOUT_EXCEPTION_FACTORY)) //\n+\t\t\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\t\t\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n \n+\t\t\tassertPreconditionViolationFor( //\n+\t\t\t\t() -> PreemptiveTimeoutUtils.executeWithPreemptiveTimeout(Duration.ofNanos(0), //\n+\t\t\t\t\t() -> fail(\"enigma\"), //\n+\t\t\t\t\t() -> \"Tempus Fugit\", TIMEOUT_EXCEPTION_FACTORY)) //\n+\t\t\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\t\t\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\n+\t\t}", "-\n+@Test\n+\t\tvoid timeoutRepresentableInNanos() {\n+\t\t\tassertPreconditionViolationFor( //\n+\t\t\t\t() -> PreemptiveTimeoutUtils.executeWithPreemptiveTimeout(Duration.ofNanos(Long.MAX_VALUE).plusNanos(1),\n+\t\t\t\t\t() -> fail(\"enigma\"), //\n+\t\t\t\t\t() -> \"Tempus Fugit\", TIMEOUT_EXCEPTION_FACTORY)) //\n+\t\t\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\t\t\"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "jupiter-tests/src/test/java/org/junit/jupiter/api/timeout/PreemptiveDurationUtilsTest.java" ],
+      "groupedMoveCount" : 4
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in TimeoutDurationTests",
+      "conceptDescription" : "4 changes in test code of TimeoutDurationTests.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@Nested\n+\tclass Preconditions {\n \n+\t\t@Test\n+\t\tvoid positiveDuration() {\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(0, SECONDS)).withMessage(\n+\t\t\t\t\"timeout duration must be a positive number less than approximately 9223372036 seconds (2^63 nanoseconds): 0 seconds\");\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(-1, SECONDS)).withMessage(\n+\t\t\t\t\"timeout duration must be a positive number less than approximately 9223372036 seconds (2^63 nanoseconds): -1 seconds\");\n+\t\t}\n+\n+\t\t@Test\n+\t\t@SuppressWarnings(\"DataFlowIssue\")\n+\t\tvoid nonNullUnit() {\n+\t\t\tassertPreconditionViolationNotNullFor(\"timeout unit\", () -> new TimeoutDuration(1, null));\n+\t\t}\n+\n+\t\t@Test\n+\t\tvoid representableInNanos() {\n+\t\t\tvar maxRepresentableDuration = Duration.ofNanos(Long.MAX_VALUE);\n+\n+\t\t\tvar maxNanoRepresentableDays = maxRepresentableDuration.toDays();\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(maxNanoRepresentableDays + 1, DAYS)) //\n+\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\"timeout duration must be a positive number less than approximately 106751 days (2^63 nanoseconds): 106752 days\");\n+\n+\t\t\tvar maxNanoRepresentableHours = maxRepresentableDuration.toHours();\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(maxNanoRepresentableHours + 1, HOURS)) //\n+\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\"timeout duration must be a positive number less than approximately 2562047 hours (2^63 nanoseconds): 2562048 hours\");\n+\n+\t\t\tvar maxNanoRepresentableMinutes = maxRepresentableDuration.toMinutes();\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(maxNanoRepresentableMinutes + 1, MINUTES)) //\n+\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\"timeout duration must be a positive number less than approximately 153722867 minutes (2^63 nanoseconds): 153722868 minutes\");\n+\n+\t\t\tvar maxNanoRepresentableSeconds = maxRepresentableDuration.toSeconds();\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(maxNanoRepresentableSeconds + 1, SECONDS)) //\n+\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\"timeout duration must be a positive number less than approximately 9223372036 seconds (2^63 nanoseconds): 9223372037 seconds\");\n+\n+\t\t\tvar maxNanoRepresentableMillis = maxRepresentableDuration.toMillis();\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(maxNanoRepresentableMillis + 1, MILLISECONDS)) //\n+\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\"timeout duration must be a positive number less than approximately 9223372036854 milliseconds (2^63 nanoseconds): 9223372036855 milliseconds\");\n+\n+\t\t\tvar maxNanoRepresentableNanos = maxRepresentableDuration.toNanos();\n+\t\t\tassertDoesNotThrow(() -> new TimeoutDuration(maxNanoRepresentableNanos, NANOSECONDS));\n+\n+\t\t}\n+\t}", "-\n+@Test\n+\t\tvoid positiveDuration() {\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(0, SECONDS)).withMessage(\n+\t\t\t\t\"timeout duration must be a positive number less than approximately 9223372036 seconds (2^63 nanoseconds): 0 seconds\");\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(-1, SECONDS)).withMessage(\n+\t\t\t\t\"timeout duration must be a positive number less than approximately 9223372036 seconds (2^63 nanoseconds): -1 seconds\");\n+\t\t}", "-\n+@Test\n+\t\t@SuppressWarnings(\"DataFlowIssue\")\n+\t\tvoid nonNullUnit() {\n+\t\t\tassertPreconditionViolationNotNullFor(\"timeout unit\", () -> new TimeoutDuration(1, null));\n+\t\t}", "+@Test\n+\t\tvoid representableInNanos() {\n+\t\t\tvar maxRepresentableDuration = Duration.ofNanos(Long.MAX_VALUE);\n \n+\t\t\tvar maxNanoRepresentableDays = maxRepresentableDuration.toDays();\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(maxNanoRepresentableDays + 1, DAYS)) //\n+\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\"timeout duration must be a positive number less than approximately 106751 days (2^63 nanoseconds): 106752 days\");\n+\n+\t\t\tvar maxNanoRepresentableHours = maxRepresentableDuration.toHours();\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(maxNanoRepresentableHours + 1, HOURS)) //\n+\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\"timeout duration must be a positive number less than approximately 2562047 hours (2^63 nanoseconds): 2562048 hours\");\n+\n+\t\t\tvar maxNanoRepresentableMinutes = maxRepresentableDuration.toMinutes();\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(maxNanoRepresentableMinutes + 1, MINUTES)) //\n+\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\"timeout duration must be a positive number less than approximately 153722867 minutes (2^63 nanoseconds): 153722868 minutes\");\n+\n+\t\t\tvar maxNanoRepresentableSeconds = maxRepresentableDuration.toSeconds();\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(maxNanoRepresentableSeconds + 1, SECONDS)) //\n+\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\"timeout duration must be a positive number less than approximately 9223372036 seconds (2^63 nanoseconds): 9223372037 seconds\");\n+\n+\t\t\tvar maxNanoRepresentableMillis = maxRepresentableDuration.toMillis();\n+\t\t\tassertPreconditionViolationFor(() -> new TimeoutDuration(maxNanoRepresentableMillis + 1, MILLISECONDS)) //\n+\t\t\t\t\t.withMessage(\n+\t\t\t\t\t\t\"timeout duration must be a positive number less than approximately 9223372036854 milliseconds (2^63 nanoseconds): 9223372036855 milliseconds\");\n+\n+\t\t\tvar maxNanoRepresentableNanos = maxRepresentableDuration.toNanos();\n+\t\t\tassertDoesNotThrow(() -> new TimeoutDuration(maxNanoRepresentableNanos, NANOSECONDS));\n+\n+\t\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "jupiter-tests/src/test/java/org/junit/jupiter/engine/extension/TimeoutDurationTests.java" ],
+      "groupedMoveCount" : 4
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in AssertTimeoutPreemptivelyAssertionsTests",
+      "conceptDescription" : "1 change in test code of AssertTimeoutPreemptivelyAssertionsTests.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@Test\n+\tvoid assertNanosecondTimeoutForSupplier() {\n+\t\tAssertionFailedError error = assertThrows(AssertionFailedError.class, () -> {\n+\t\t\tassertTimeoutPreemptively(Duration.ofNanos(1), () -> {\n+\t\t\t\tThread.sleep(1000);\n+\t\t\t\treturn \"Tempus Fugit\";\n+\t\t\t});\n+\t\t});\n \n+\t\tassertMessageEquals(error, \"execution timed out after 0.000001 ms\");\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "jupiter-tests/src/test/java/org/junit/jupiter/api/AssertTimeoutPreemptivelyAssertionsTests.java" ],
+      "groupedMoveCount" : 1
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in TimeoutExtensionTests",
+      "conceptDescription" : "1 change in test code of TimeoutExtensionTests.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Test\n \t@DisplayName(\"reports illegal timeout durations\")\n \tvoid reportsIllegalTimeoutDurations() {\n \t\tEngineExecutionResults results = executeTestsForClass(IllegalTimeoutDurationTestCase.class);\n \n \t\tExecution execution = findExecution(results.testEvents(), \"testMethod()\");\n \t\tassertThat(execution.getTerminationInfo().getExecutionResult().getThrowable().orElseThrow()) //\n \t\t\t\t.isInstanceOf(PreconditionViolationException.class) //\n-\t\t\t\t.hasMessage(\"timeout duration must be a positive number: 0\");\n+\t\t\t\t.hasMessage(\n+\t\t\t\t\t\"timeout duration must be a positive number less than approximately 9223372036 seconds (2^63 nanoseconds): 0 seconds\");\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "jupiter-tests/src/test/java/org/junit/jupiter/engine/extension/TimeoutExtensionTests.java" ],
+      "groupedMoveCount" : 1
+    } ]
+  },
+  "junit-jupiter-api" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@API(status = INTERNAL, since = \"6.2\")\n+public final class DurationUtils {\n \n+\tprivate static final Duration MAX_NANO_DURATION = Duration.ofNanos(Long.MAX_VALUE);\n+\n+\tprivate DurationUtils() {\n+\t\t/* no-op */\n+\t}\n+\n+\tpublic static boolean isPositiveAndRepresentableInNanos(Duration duration) {\n+\t\treturn isPositive(duration) && duration.compareTo(MAX_NANO_DURATION) <= 0;\n+\t}\n+\n+\tprivate static boolean isPositive(Duration timeout) {\n+\t\treturn !timeout.isNegative() && !timeout.isZero();\n+\t}\n+\n+\tpublic static String formatDurationInFractionalMs(Duration duration) {\n+\t\treturn formatDurationInMs(duration, hasSignificantNanoFraction(duration));\n+\t}\n+\n+\tpublic static String formatDurationInMs(Duration duration, boolean includeNanoSecondFraction) {\n+\t\tlong milliseconds = duration.toMillis();\n+\t\tif (!includeNanoSecondFraction) {\n+\t\t\treturn \"%d ms\".formatted(milliseconds);\n+\t\t}\n+\t\tlong nanoFraction = duration.toNanos() - MILLISECONDS.toNanos(milliseconds);\n+\t\treturn \"%d.%06d ms\".formatted(milliseconds, nanoFraction);\n+\t}\n+\n+\tpublic static boolean hasSignificantNanoFraction(Duration timeout) {\n+\t\treturn nanoFraction(timeout) != 0;\n+\t}\n+\n+\tprivate static long nanoFraction(Duration timeout) {\n+\t\treturn timeout.toNanos() - MILLISECONDS.toNanos(timeout.toMillis());\n+\t}\n+}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/timeout/DurationUtils.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private static <T extends @Nullable Object> T assertTimeout(Duration timeout, ThrowingSupplier<T> supplier,\n \t\t\t@Nullable Object messageOrSupplier) {\n-\t\tlong timeoutInMillis = timeout.toMillis();\n-\t\tlong start = System.currentTimeMillis();\n+\n+\t\tlong start = System.nanoTime();\n \t\tT result;\n \t\ttry {\n \t\t\tresult = supplier.get();\n \t\t}\n \t\tcatch (Throwable ex) {\n \t\t\tthrow throwAsUncheckedException(ex);\n \t\t}\n-\n-\t\tlong timeElapsed = System.currentTimeMillis() - start;\n-\t\tif (timeElapsed > timeoutInMillis) {\n+\t\t// Creates a false positive if the tests runs for more than 292 years.\n+\t\tvar timeElapsed = Duration.ofNanos(System.nanoTime() - start);\n+\t\tif (timeElapsed.compareTo(timeout) > 0) {\n \t\t\tassertionFailure() //\n \t\t\t\t\t.message(messageOrSupplier) //\n-\t\t\t\t\t.reason(\"execution exceeded timeout of \" + timeoutInMillis + \" ms by \"\n-\t\t\t\t\t\t\t+ (timeElapsed - timeoutInMillis) + \" ms\") //\n+\t\t\t\t\t.reason(createExecutionExceededTimeoutMessage(timeout, timeElapsed)) //\n \t\t\t\t\t.trimStacktrace(Assertions.class) //\n \t\t\t\t\t.buildAndThrow();\n \t\t}\n \t\treturn result;\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/AssertTimeout.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Contract Annotations",
+      "conceptDescription" : "Annotations on a method, its return type or its parameters changed (e.g. nullness), changing its contract but not its signature.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " static <T extends @Nullable Object> T assertTimeoutPreemptively(Duration timeout, ThrowingSupplier<T> supplier,\n-\t\t\tSupplier<@Nullable String> messageSupplier) {\n+\t\t\t@Nullable Supplier<@Nullable String> messageSupplier) {\n+\t\tPreconditions.notNull(timeout, () -> \"timeout must not be null\");\n+\t\tPreconditions.condition(isPositiveAndRepresentableInNanos(timeout),\n+\t\t\t() -> \"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\tPreconditions.notNull(supplier, () -> \"supplier must not be null\");\n \t\treturn executeWithPreemptiveTimeout(timeout, supplier, messageSupplier,\n \t\t\tAssertTimeoutPreemptively::createAssertionFailure);\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/AssertTimeoutPreemptively.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private static String createExecutionExceededTimeoutMessage(Duration timeout, Duration timeElapsed) {\n+\t\tvar timeoutHasSignificantNanoFraction = hasSignificantNanoFraction(timeout);\n+\t\tvar timeoutExceeded = timeElapsed.minus(timeout);\n+\t\tboolean timeoutExceededOnlyByNanoSeconds = timeoutExceeded.toMillis() == 0;\n+\t\treturn \"execution exceeded timeout of %s by %s\" //\n+\t\t\t\t.formatted(formatDurationInMs(timeout, timeoutHasSignificantNanoFraction), //\n+\t\t\t\t\tformatDurationInMs(timeoutExceeded,\n+\t\t\t\t\t\ttimeoutHasSignificantNanoFraction || timeoutExceededOnlyByNanoSeconds));\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/AssertTimeout.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public static boolean isPositiveAndRepresentableInNanos(Duration duration) {\n+\t\treturn isPositive(duration) && duration.compareTo(MAX_NANO_DURATION) <= 0;\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/timeout/DurationUtils.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private static boolean isPositive(Duration timeout) {\n+\t\treturn !timeout.isNegative() && !timeout.isZero();\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/timeout/DurationUtils.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public static String formatDurationInFractionalMs(Duration duration) {\n+\t\treturn formatDurationInMs(duration, hasSignificantNanoFraction(duration));\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/timeout/DurationUtils.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public static String formatDurationInMs(Duration duration, boolean includeNanoSecondFraction) {\n+\t\tlong milliseconds = duration.toMillis();\n+\t\tif (!includeNanoSecondFraction) {\n+\t\t\treturn \"%d ms\".formatted(milliseconds);\n+\t\t}\n+\t\tlong nanoFraction = duration.toNanos() - MILLISECONDS.toNanos(milliseconds);\n+\t\treturn \"%d.%06d ms\".formatted(milliseconds, nanoFraction);\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/timeout/DurationUtils.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public static boolean hasSignificantNanoFraction(Duration timeout) {\n+\t\treturn nanoFraction(timeout) != 0;\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/timeout/DurationUtils.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private static long nanoFraction(Duration timeout) {\n+\t\treturn timeout.toNanos() - MILLISECONDS.toNanos(timeout.toMillis());\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/timeout/DurationUtils.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " static void assertTimeout(Duration timeout, Executable executable) {\n+\t\tPreconditions.notNull(timeout, () -> \"timeout must not be null\");\n+\t\tPreconditions.condition(isPositiveAndRepresentableInNanos(timeout),\n+\t\t\t() -> \"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\tPreconditions.notNull(executable, () -> \"executable must not be null\");\n \t\tassertTimeout(timeout, executable, (String) null);\n \t}", " static void assertTimeout(Duration timeout, Executable executable, @Nullable String message) {\n+\t\tPreconditions.notNull(timeout, () -> \"timeout must not be null\");\n+\t\tPreconditions.condition(isPositiveAndRepresentableInNanos(timeout),\n+\t\t\t() -> \"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\tPreconditions.notNull(executable, () -> \"executable must not be null\");\n \t\tAssertTimeout.<@Nullable Object> assertTimeout(timeout, () -> {\n \t\t\texecutable.execute();\n \t\t\treturn null;\n \t\t}, message);\n \t}", " static void assertTimeout(Duration timeout, Executable executable, Supplier<@Nullable String> messageSupplier) {\n+\t\tPreconditions.notNull(timeout, () -> \"timeout must not be null\");\n+\t\tPreconditions.condition(isPositiveAndRepresentableInNanos(timeout),\n+\t\t\t() -> \"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\tPreconditions.notNull(executable, () -> \"executable must not be null\");\n \t\tAssertTimeout.<@Nullable Object> assertTimeout(timeout, () -> {\n \t\t\texecutable.execute();\n \t\t\treturn null;\n \t\t}, messageSupplier);\n \t}", " static <T extends @Nullable Object> T assertTimeout(Duration timeout, ThrowingSupplier<T> supplier) {\n+\t\tPreconditions.notNull(timeout, () -> \"timeout must not be null\");\n+\t\tPreconditions.condition(isPositiveAndRepresentableInNanos(timeout),\n+\t\t\t() -> \"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\tPreconditions.notNull(supplier, () -> \"supplier must not be null\");\n \t\treturn assertTimeout(timeout, supplier, (Object) null);\n \t}", " static <T extends @Nullable Object> T assertTimeout(Duration timeout, ThrowingSupplier<T> supplier,\n \t\t\t@Nullable String message) {\n+\t\tPreconditions.notNull(timeout, () -> \"timeout must not be null\");\n+\t\tPreconditions.condition(isPositiveAndRepresentableInNanos(timeout),\n+\t\t\t() -> \"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\tPreconditions.notNull(supplier, () -> \"supplier must not be null\");\n \t\treturn assertTimeout(timeout, supplier, (Object) message);\n \t}", " static <T extends @Nullable Object> T assertTimeout(Duration timeout, ThrowingSupplier<T> supplier,\n \t\t\tSupplier<@Nullable String> messageSupplier) {\n+\t\tPreconditions.notNull(timeout, () -> \"timeout must not be null\");\n+\t\tPreconditions.condition(isPositiveAndRepresentableInNanos(timeout),\n+\t\t\t() -> \"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\tPreconditions.notNull(supplier, () -> \"supplier must not be null\");\n \t\treturn assertTimeout(timeout, supplier, (Object) messageSupplier);\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/AssertTimeout.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " static void assertTimeoutPreemptively(Duration timeout, Executable executable) {\n+\t\tPreconditions.notNull(timeout, () -> \"timeout must not be null\");\n+\t\tPreconditions.condition(isPositiveAndRepresentableInNanos(timeout),\n+\t\t\t() -> \"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\tPreconditions.notNull(executable, () -> \"executable must not be null\");\n \t\tassertTimeoutPreemptively(timeout, executable, (String) null);\n \t}", " static <T extends @Nullable Object> T assertTimeoutPreemptively(Duration timeout, ThrowingSupplier<T> supplier) {\n+\t\tPreconditions.notNull(timeout, () -> \"timeout must not be null\");\n+\t\tPreconditions.condition(isPositiveAndRepresentableInNanos(timeout),\n+\t\t\t() -> \"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\tPreconditions.notNull(supplier, () -> \"supplier must not be null\");\n \t\treturn executeWithPreemptiveTimeout(timeout, supplier, null, AssertTimeoutPreemptively::createAssertionFailure);\n \t}", " static <T extends @Nullable Object> T assertTimeoutPreemptively(Duration timeout, ThrowingSupplier<T> supplier,\n \t\t\t@Nullable String message) {\n+\t\tPreconditions.notNull(timeout, () -> \"timeout must not be null\");\n+\t\tPreconditions.condition(isPositiveAndRepresentableInNanos(timeout),\n+\t\t\t() -> \"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\tPreconditions.notNull(supplier, () -> \"supplier must not be null\");\n \t\treturn executeWithPreemptiveTimeout(timeout, supplier, message == null ? null : () -> message,\n \t\t\tAssertTimeoutPreemptively::createAssertionFailure);\n \t}", " static <T extends @Nullable Object> T assertTimeoutPreemptively(Duration timeout, ThrowingSupplier<T> supplier,\n-\t\t\tSupplier<@Nullable String> messageSupplier) {\n+\t\t\t@Nullable Supplier<@Nullable String> messageSupplier) {\n+\t\tPreconditions.notNull(timeout, () -> \"timeout must not be null\");\n+\t\tPreconditions.condition(isPositiveAndRepresentableInNanos(timeout),\n+\t\t\t() -> \"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n+\t\tPreconditions.notNull(supplier, () -> \"supplier must not be null\");\n \t\treturn executeWithPreemptiveTimeout(timeout, supplier, messageSupplier,\n \t\t\tAssertTimeoutPreemptively::createAssertionFailure);\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/AssertTimeoutPreemptively.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private static AssertionFailedError createAssertionFailure(Duration timeout,\n \t\t\t@Nullable Supplier<@Nullable String> messageSupplier, @Nullable Throwable cause, @Nullable Thread thread) {\n \t\treturn assertionFailure() //\n \t\t\t\t.message(messageSupplier) //\n-\t\t\t\t.reason(\"execution timed out after \" + timeout.toMillis() + \" ms\") //\n+\t\t\t\t.reason(\"execution timed out after %s\".formatted(formatDurationInFractionalMs(timeout))) //\n \t\t\t\t.cause(cause) //\n \t\t\t\t.trimStacktrace(Assertions.class) //\n \t\t\t\t.build();\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/AssertTimeoutPreemptively.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " public static <T extends @Nullable Object, E extends Throwable> T executeWithPreemptiveTimeout(Duration timeout,\n \t\t\tThrowingSupplier<T> supplier, @Nullable Supplier<@Nullable String> messageSupplier,\n \t\t\tTimeoutFailureFactory<E> failureFactory) throws E {\n+\t\tPreconditions.notNull(timeout, () -> \"timeout must not be null\");\n+\t\tPreconditions.condition(isPositiveAndRepresentableInNanos(timeout),\n+\t\t\t() -> \"timeout must be positive and less than approximately 292 years (2^63 nanoseconds)\");\n \n \t\tAtomicReference<@Nullable Thread> threadReference = new AtomicReference<>();\n \t\tExecutorService executorService = Executors.newSingleThreadExecutor(new TimeoutThreadFactory());\n \n \t\ttry {\n \t\t\tFuture<T> future = submitTask(supplier, threadReference, executorService);\n \t\t\treturn resolveFutureAndHandleException(future, timeout, messageSupplier, threadReference::get,\n \t\t\t\tfailureFactory);\n \t\t}\n \t\tfinally {\n \t\t\texecutorService.shutdownNow();\n \t\t}\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/timeout/PreemptiveTimeoutUtils.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private static <T extends @Nullable Object, E extends Throwable> T resolveFutureAndHandleException(Future<T> future,\n \t\t\tDuration timeout, @Nullable Supplier<@Nullable String> messageSupplier,\n \t\t\tSupplier<@Nullable Thread> threadSupplier, TimeoutFailureFactory<E> failureFactory)\n \t\t\tthrows E, RuntimeException {\n \t\ttry {\n-\t\t\treturn future.get(timeout.toMillis(), TimeUnit.MILLISECONDS);\n+\t\t\treturn future.get(timeout.toNanos(), TimeUnit.NANOSECONDS);\n \t\t}\n \t\tcatch (TimeoutException ex) {\n \t\t\tThread thread = threadSupplier.get();\n \t\t\tExecutionTimeoutException cause = null;\n \t\t\tif (thread != null) {\n \t\t\t\tcause = new ExecutionTimeoutException(\"Execution timed out in thread \" + thread.getName());\n \t\t\t\tcause.setStackTrace(thread.getStackTrace());\n \t\t\t}\n \t\t\tthrow failureFactory.createTimeoutFailure(timeout, messageSupplier, cause, thread);\n \t\t}\n \t\tcatch (ExecutionException ex) {\n \t\t\tthrow throwAsUncheckedException(requireNonNullElse(ex.getCause(), ex));\n \t\t}\n \t\tcatch (Throwable ex) {\n \t\t\tthrow throwAsUncheckedException(ex);\n \t\t}\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/timeout/PreemptiveTimeoutUtils.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private static final Duration MAX_NANO_DURATION = Duration.ofNanos(Long.MAX_VALUE);" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/timeout/DurationUtils.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " private static <T extends @Nullable Object> T assertTimeout(Duration timeout, ThrowingSupplier<T> supplier,\n \t\t\t@Nullable Object messageOrSupplier) {\n-\t\tlong timeoutInMillis = timeout.toMillis();\n-\t\tlong start = System.currentTimeMillis();\n+\n+\t\tlong start = System.nanoTime();\n \t\tT result;\n \t\ttry {\n \t\t\tresult = supplier.get();\n \t\t}\n \t\tcatch (Throwable ex) {\n \t\t\tthrow throwAsUncheckedException(ex);\n \t\t}\n-\n-\t\tlong timeElapsed = System.currentTimeMillis() - start;\n-\t\tif (timeElapsed > timeoutInMillis) {\n+\t\t// Creates a false positive if the tests runs for more than 292 years.\n+\t\tvar timeElapsed = Duration.ofNanos(System.nanoTime() - start);\n+\t\tif (timeElapsed.compareTo(timeout) > 0) {\n \t\t\tassertionFailure() //\n \t\t\t\t\t.message(messageOrSupplier) //\n-\t\t\t\t\t.reason(\"execution exceeded timeout of \" + timeoutInMillis + \" ms by \"\n-\t\t\t\t\t\t\t+ (timeElapsed - timeoutInMillis) + \" ms\") //\n+\t\t\t\t\t.reason(createExecutionExceededTimeoutMessage(timeout, timeElapsed)) //\n \t\t\t\t\t.trimStacktrace(Assertions.class) //\n \t\t\t\t\t.buildAndThrow();\n \t\t}\n \t\treturn result;\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/AssertTimeout.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "+@API(status = INTERNAL, since = \"6.2\")\n+public final class DurationUtils {\n \n+\tprivate static final Duration MAX_NANO_DURATION = Duration.ofNanos(Long.MAX_VALUE);\n+\n+\tprivate DurationUtils() {\n+\t\t/* no-op */\n+\t}\n+\n+\tpublic static boolean isPositiveAndRepresentableInNanos(Duration duration) {\n+\t\treturn isPositive(duration) && duration.compareTo(MAX_NANO_DURATION) <= 0;\n+\t}\n+\n+\tprivate static boolean isPositive(Duration timeout) {\n+\t\treturn !timeout.isNegative() && !timeout.isZero();\n+\t}\n+\n+\tpublic static String formatDurationInFractionalMs(Duration duration) {\n+\t\treturn formatDurationInMs(duration, hasSignificantNanoFraction(duration));\n+\t}\n+\n+\tpublic static String formatDurationInMs(Duration duration, boolean includeNanoSecondFraction) {\n+\t\tlong milliseconds = duration.toMillis();\n+\t\tif (!includeNanoSecondFraction) {\n+\t\t\treturn \"%d ms\".formatted(milliseconds);\n+\t\t}\n+\t\tlong nanoFraction = duration.toNanos() - MILLISECONDS.toNanos(milliseconds);\n+\t\treturn \"%d.%06d ms\".formatted(milliseconds, nanoFraction);\n+\t}\n+\n+\tpublic static boolean hasSignificantNanoFraction(Duration timeout) {\n+\t\treturn nanoFraction(timeout) != 0;\n+\t}\n+\n+\tprivate static long nanoFraction(Duration timeout) {\n+\t\treturn timeout.toNanos() - MILLISECONDS.toNanos(timeout.toMillis());\n+\t}\n+}", "-\n+private static String createExecutionExceededTimeoutMessage(Duration timeout, Duration timeElapsed) {\n+\t\tvar timeoutHasSignificantNanoFraction = hasSignificantNanoFraction(timeout);\n+\t\tvar timeoutExceeded = timeElapsed.minus(timeout);\n+\t\tboolean timeoutExceededOnlyByNanoSeconds = timeoutExceeded.toMillis() == 0;\n+\t\treturn \"execution exceeded timeout of %s by %s\" //\n+\t\t\t\t.formatted(formatDurationInMs(timeout, timeoutHasSignificantNanoFraction), //\n+\t\t\t\t\tformatDurationInMs(timeoutExceeded,\n+\t\t\t\t\t\ttimeoutHasSignificantNanoFraction || timeoutExceededOnlyByNanoSeconds));\n+\t}", "-\n+public static boolean isPositiveAndRepresentableInNanos(Duration duration) {\n+\t\treturn isPositive(duration) && duration.compareTo(MAX_NANO_DURATION) <= 0;\n+\t}", "-\n+private static boolean isPositive(Duration timeout) {\n+\t\treturn !timeout.isNegative() && !timeout.isZero();\n+\t}", "-\n+public static String formatDurationInFractionalMs(Duration duration) {\n+\t\treturn formatDurationInMs(duration, hasSignificantNanoFraction(duration));\n+\t}", "-\n+public static String formatDurationInMs(Duration duration, boolean includeNanoSecondFraction) {\n+\t\tlong milliseconds = duration.toMillis();\n+\t\tif (!includeNanoSecondFraction) {\n+\t\t\treturn \"%d ms\".formatted(milliseconds);\n+\t\t}\n+\t\tlong nanoFraction = duration.toNanos() - MILLISECONDS.toNanos(milliseconds);\n+\t\treturn \"%d.%06d ms\".formatted(milliseconds, nanoFraction);\n+\t}", "-\n+public static boolean hasSignificantNanoFraction(Duration timeout) {\n+\t\treturn nanoFraction(timeout) != 0;\n+\t}", "-\n+private static long nanoFraction(Duration timeout) {\n+\t\treturn timeout.toNanos() - MILLISECONDS.toNanos(timeout.toMillis());\n+\t}", "-\n+private static final Duration MAX_NANO_DURATION = Duration.ofNanos(Long.MAX_VALUE);" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-api/src/main/java/org/junit/jupiter/api/timeout/DurationUtils.java", "junit-jupiter-api/src/main/java/org/junit/jupiter/api/AssertTimeout.java" ],
+      "groupedMoveCount" : 9
+    } ]
+  },
+  "junit-jupiter-engine" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n \tpublic String toString() {\n-\t\tString label = unit.name().toLowerCase(Locale.ROOT);\n-\t\tif (value == 1 && label.endsWith(\"s\")) {\n-\t\t\tlabel = label.substring(0, label.length() - 1);\n-\t\t}\n-\t\treturn value + \" \" + label;\n+\t\treturn formatTimeoutDuration(value, unit);\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/extension/TimeoutDuration.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Extract Method",
+      "conceptDescription" : "A fragment of an existing method's body was pulled out into a new method.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n \tpublic String toString() {\n+\t\treturn formatTimeoutDuration(value, unit);\n+\t}\n+\n+private static String formatTimeoutDuration(long value, TimeUnit unit) {\n \t\tString label = unit.name().toLowerCase(Locale.ROOT);\n \t\tif (value == 1 && label.endsWith(\"s\")) {\n \t\t\tlabel = label.substring(0, label.length() - 1);\n \t\t}\n \t\treturn value + \" \" + label;\n \t}\n-\n-" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/extension/TimeoutDuration.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private static long maxRepresentableValueFor(TimeUnit unit) {\n+\t\treturn unit.convert(Long.MAX_VALUE, NANOSECONDS);\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/extension/TimeoutDuration.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " @Override\n \tpublic String toString() {\n-\t\tString label = unit.name().toLowerCase(Locale.ROOT);\n-\t\tif (value == 1 && label.endsWith(\"s\")) {\n-\t\t\tlabel = label.substring(0, label.length() - 1);\n-\t\t}\n-\t\treturn value + \" \" + label;\n+\t\treturn formatTimeoutDuration(value, unit);\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/extension/TimeoutDuration.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Split Responsibility",
+      "conceptDescription" : "One type/module's responsibility was divided across multiple types/modules.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " @Override\n \tpublic String toString() {\n+\t\treturn formatTimeoutDuration(value, unit);\n+\t}\n+\n+private static String formatTimeoutDuration(long value, TimeUnit unit) {\n \t\tString label = unit.name().toLowerCase(Locale.ROOT);\n \t\tif (value == 1 && label.endsWith(\"s\")) {\n \t\t\tlabel = label.substring(0, label.length() - 1);\n \t\t}\n \t\treturn value + \" \" + label;\n \t}\n-\n-" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/extension/TimeoutDuration.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+private static long maxRepresentableValueFor(TimeUnit unit) {\n+\t\treturn unit.convert(Long.MAX_VALUE, NANOSECONDS);\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/extension/TimeoutDuration.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  }
+}

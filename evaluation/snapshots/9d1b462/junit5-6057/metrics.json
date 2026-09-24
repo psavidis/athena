@@ -1,0 +1,52 @@
+{
+  "diff": {
+    "files": 13,
+    "java_files": 12,
+    "non_java_files": 1,
+    "substantive_java_files": 12,
+    "copyright_only_java_files": 0,
+    "production_java_files": 7,
+    "java_hunks": 37,
+    "java_lines_changed": 386
+  },
+  "athena": {
+    "changes": 51,
+    "changes_by_kind": {
+      "REMOVE_CLASS": 1,
+      "ADD_CLASS": 6,
+      "CHANGE_CONTROL_FLOW": 2,
+      "CHANGE_PARAMETER_ANNOTATIONS": 1,
+      "MOVE_SYMBOL": 5,
+      "EXTRACT_METHOD": 1,
+      "ADD_SYMBOL": 22,
+      "MODIFY_METHOD_BODY": 10,
+      "MOVE_FIELD": 2,
+      "ADD_FIELD": 1
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 39,
+      "BEHAVIORAL": 2,
+      "UNKNOWN": 10
+    },
+    "semantic_entries": 28,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 25,
+      "RESPONSIBILITY": 3
+    },
+    "inferred_entries": 3,
+    "module_territories": 13,
+    "module_dependencies": 19,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 10,
+    "substantive_java_file_coverage": 0.83,
+    "production_java_files_represented": 5,
+    "production_java_file_coverage": 0.71,
+    "unrepresented_production_java_files": [
+      "junit-jupiter-api/src/main/java/org/junit/jupiter/api/Assertions.java",
+      "junit-jupiter-api/src/main/java/org/junit/jupiter/api/Timeout.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

@@ -1,0 +1,91 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI2RvUGVlawppZi1jaGFpbiByZXdyaXR0ZW4gYXMgc3dpdGNo",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#doPeek: if-chain rewritten as switch",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#doPeek", "if-chain rewritten as switch" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI3BlZWtLZXl3b3JkCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#peekKeyword: if-chain rewritten as switch; same calls",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#peekKeyword", "if-chain rewritten as switch; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHROYW1lCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#nextName: if-chain rewritten as switch; same calls",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#nextName", "if-chain rewritten as switch; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRTdHJpbmcKaWYtY2hhaW4gcmV3cml0dGVuIGFzIHN3aXRjaDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#nextString: if-chain rewritten as switch; same calls",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#nextString", "if-chain rewritten as switch; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRCb29sZWFuCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#nextBoolean: if-chain rewritten as switch; same calls",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#nextBoolean", "if-chain rewritten as switch; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHREb3VibGUKYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#nextDouble: branch added; same calls",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#nextDouble", "branch added; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRMb25nCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#nextLong: if-chain rewritten as switch; same calls",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#nextLong", "if-chain rewritten as switch; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyIzxjbGluaXQ-CmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReader#<clinit>: if-chain rewritten as switch; same calls",
+  "files" : [ "gson/src/main/java/com/google/gson/stream/JsonReader.java" ],
+  "symbols" : [ "JsonReader#<clinit>", "if-chain rewritten as switch; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyVGVzdCNhc3NlcnREb2N1bWVudApicmFuY2ggYWRkZWQ7IHNhbWUgY2FsbHM",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of JsonReaderTest#assertDocument: branch added; same calls",
+  "files" : [ "gson/src/test/java/com/google/gson/stream/JsonReaderTest.java" ],
+  "symbols" : [ "JsonReaderTest#assertDocument", "branch added; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

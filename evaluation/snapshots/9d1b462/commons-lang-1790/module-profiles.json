@@ -1,0 +1,38 @@
+{
+  "commons-lang3" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " public static Fraction getReducedFraction(int numerator, int denominator) {\n         checkDenominator(denominator);\n         if (numerator == 0) {\n             return ZERO; // normalize zero.\n         }\n         // allow 2^k/-2^31 as a valid fraction (where k>0)\n         if (denominator == Integer.MIN_VALUE && (numerator & 1) == 0) {\n             numerator /= 2;\n             denominator /= 2;\n         }\n+        // allow -2^31/2^k as a valid fraction (where k>0)\n+        if (numerator == Integer.MIN_VALUE && (denominator & 1) == 0) {\n+            numerator /= 2;\n+            denominator /= 2;\n+        }\n         if (denominator < 0) {\n             if (numerator == Integer.MIN_VALUE || denominator == Integer.MIN_VALUE) {\n                 throw new ArithmeticException(\"overflow: can't negate\");\n             }\n             numerator = -numerator;\n             denominator = -denominator;\n         }\n         // simplify fraction.\n         final int gcd = greatestCommonDivisor(numerator, denominator);\n         numerator /= gcd;\n         denominator /= gcd;\n         return new Fraction(numerator, denominator);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/lang3/math/Fraction.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in FractionTest",
+      "conceptDescription" : "1 change in test code of FractionTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Test\n+    public void testMyReducedFractionFix() {\n+        Fraction f = Fraction.getReducedFraction(Integer.MIN_VALUE, -2);\n+        assertEquals(1073741824, f.getNumerator());\n+        assertEquals(1, f.getDenominator());\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/test/java/org/apache/commons/lang3/math/FractionTest.java" ],
+      "groupedMoveCount" : 1
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " public static Fraction getReducedFraction(int numerator, int denominator) {\n         checkDenominator(denominator);\n         if (numerator == 0) {\n             return ZERO; // normalize zero.\n         }\n         // allow 2^k/-2^31 as a valid fraction (where k>0)\n         if (denominator == Integer.MIN_VALUE && (numerator & 1) == 0) {\n             numerator /= 2;\n             denominator /= 2;\n         }\n+        // allow -2^31/2^k as a valid fraction (where k>0)\n+        if (numerator == Integer.MIN_VALUE && (denominator & 1) == 0) {\n+            numerator /= 2;\n+            denominator /= 2;\n+        }\n         if (denominator < 0) {\n             if (numerator == Integer.MIN_VALUE || denominator == Integer.MIN_VALUE) {\n                 throw new ArithmeticException(\"overflow: can't negate\");\n             }\n             numerator = -numerator;\n             denominator = -denominator;\n         }\n         // simplify fraction.\n         final int gcd = greatestCommonDivisor(numerator, denominator);\n         numerator /= gcd;\n         denominator /= gcd;\n         return new Fraction(numerator, denominator);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/lang3/math/Fraction.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  }
+}

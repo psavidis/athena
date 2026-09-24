@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/hibernate/hibernate-orm.git",
+  "base" : "b715bc3198e2f3bfa61c0182520656dff22573ca",
+  "head" : "430e7e4b6774a33aad50128108601288cbd9522d",
+  "changeCount" : 365,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 20.55
+}
