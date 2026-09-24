@@ -170,11 +170,7 @@ public final class ModuleTopologyBuilder {
             }
         }
 
-        for (String buildFile : ModuleLayout.gradleBuildFileNames(moduleDirectory)) {
-            Path gradleFile = moduleDir.resolve(buildFile);
-            if (!Files.isRegularFile(gradleFile)) {
-                continue;
-            }
+        for (Path gradleFile : ModuleLayout.gradleBuildFiles(moduleDir, moduleDirectory)) {
             String content = readQuietly(gradleFile);
             Matcher projectMatcher = GRADLE_PROJECT_DEPENDENCY.matcher(content);
             while (projectMatcher.find()) {
@@ -241,12 +237,10 @@ public final class ModuleTopologyBuilder {
             String content = readQuietly(moduleDir.resolve("pom.xml"));
             return content.contains("spring-boot") ? TechStack.SPRING_BOOT_JAVA : TechStack.JAVA;
         }
-        for (String buildFile : ModuleLayout.gradleBuildFileNames(moduleDirectory)) {
-            if (Files.isRegularFile(moduleDir.resolve(buildFile))) {
-                String content = readQuietly(moduleDir.resolve(buildFile));
-                return content.contains("spring-boot") || content.contains("org.springframework.boot")
-                        ? TechStack.SPRING_BOOT_JAVA : TechStack.JAVA;
-            }
+        for (Path gradleFile : ModuleLayout.gradleBuildFiles(moduleDir, moduleDirectory)) {
+            String content = readQuietly(gradleFile);
+            return content.contains("spring-boot") || content.contains("org.springframework.boot")
+                    ? TechStack.SPRING_BOOT_JAVA : TechStack.JAVA;
         }
         if (hasPackageJson) {
             String content = readQuietly(moduleDir.resolve("package.json"));

@@ -126,7 +126,7 @@ public final class ModuleLayout {
                         return FileVisitResult.SKIP_SUBTREE;
                     }
                     String directory = root.relativize(dir).toString().replace('\\', '/');
-                    if (buildDescriptorNames(directory).stream().anyMatch(descriptor -> Files.isRegularFile(dir.resolve(descriptor)))) {
+                    if (isModuleDirectory(dir, directory)) {
                         directories.add(directory);
                     }
                     return FileVisitResult.CONTINUE;
@@ -160,8 +160,37 @@ public final class ModuleLayout {
     }
 
     private boolean hasDescriptor(String directory) {
-        return roots.stream().anyMatch(root -> buildDescriptorNames(directory).stream()
-                .anyMatch(descriptor -> Files.isRegularFile(root.resolve(directory).resolve(descriptor))));
+        return roots.stream().anyMatch(root -> isModuleDirectory(root.resolve(directory), directory));
+    }
+
+    /** Whether {@code dir} (relative path {@code directory}) holds a build descriptor, by name or as its lone Gradle file. */
+    public static boolean isModuleDirectory(Path dir, String directory) {
+        return buildDescriptorNames(directory).stream().anyMatch(descriptor -> Files.isRegularFile(dir.resolve(descriptor)))
+                || !gradleBuildFiles(dir, directory).isEmpty();
+    }
+
+    /**
+     * The Gradle build files of the module in {@code dir}: {@code build.gradle[.kts]} or one named
+     * after the directory (ticket #314); failing those, the directory's only {@code *.gradle[.kts]}
+     * file other than {@code settings.gradle[.kts]} — builds that name a module's build file after
+     * the project, like spring-security's {@code web/spring-security-web.gradle} (ticket #338).
+     */
+    public static List<Path> gradleBuildFiles(Path dir, String directory) {
+        List<Path> named = gradleBuildFileNames(directory).stream().map(dir::resolve).filter(Files::isRegularFile).toList();
+        if (!named.isEmpty() || !Files.isDirectory(dir)) {
+            return named;
+        }
+        try (var entries = Files.list(dir)) {
+            List<Path> gradleFiles = entries.filter(Files::isRegularFile)
+                    .filter(file -> {
+                        String name = file.getFileName().toString();
+                        return (name.endsWith(".gradle") || name.endsWith(".gradle.kts")) && !name.startsWith("settings.gradle");
+                    })
+                    .toList();
+            return gradleFiles.size() == 1 ? gradleFiles : List.of();
+        } catch (IOException e) {
+            throw new UncheckedIOException("Could not list " + dir, e);
+        }
     }
 
     /**
