@@ -78,8 +78,10 @@ public final class ChangeGrouper {
             case REMOVE_SYMBOL -> "Remove " + key.involvedDescriptions.get(0);
             case CHANGE_METHOD_SIGNATURE -> "Change signature of " + key.involvedDescriptions.get(0);
             case FORMATTING_ONLY -> "Formatting: " + key.involvedDescriptions.get(0);
-            case MOVE_CLASS -> "Move class " + classMove(key.involvedDescriptions, representative);
-            case RENAME_CLASS -> "Rename class " + classMove(key.involvedDescriptions, representative);
+            case MOVE_CLASS -> "Move class " + classMove(key.involvedDescriptions, representative)
+                    + importFollowOns(representative);
+            case RENAME_CLASS -> "Rename class " + classMove(key.involvedDescriptions, representative)
+                    + importFollowOns(representative);
             case ADD_CLASS -> "Add class " + key.involvedDescriptions.get(0);
             case REMOVE_CLASS -> "Remove class " + key.involvedDescriptions.get(0);
             case RENAME_FIELD -> "Rename field " + arrowJoin(key.involvedDescriptions);
@@ -145,6 +147,15 @@ public final class ChangeGrouper {
             shared++;
         }
         return distinguishing(from, shared) + descriptions.get(0) + " -> " + distinguishing(to, shared) + descriptions.get(1);
+    }
+
+    /** " (imports updated in N files)" for a class move or rename with follow-on import edits (ticket #337). */
+    private static String importFollowOns(DetectedTransformation representative) {
+        String count = representative.context().get(DetectedTransformation.IMPORT_FOLLOW_ONS);
+        if (count == null) {
+            return "";
+        }
+        return " (imports updated in " + count + ("1".equals(count) ? " file)" : " files)");
     }
 
     /** The package segments needed to tell {@code segments} apart, plus any shared trailing ones, as "a.b." ("" at the root). */

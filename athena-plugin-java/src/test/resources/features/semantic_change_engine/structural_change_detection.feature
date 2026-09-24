@@ -152,3 +152,27 @@ Feature: Structural and mechanical change detection
     And a head revision where it is renamed "CleanableResource" with type parameter "R" in package "io.vertx.core.internal" and gains a method
     When the semantic engine detects transformations between the revisions
     Then no class rename is reported
+
+  # Ticket #337: files that only update their imports to follow a moved class belong to the move.
+
+  Scenario: A file that only updates its import to follow a moved class is part of the move
+    Given a base revision where class "ServiceResource" lives in package "io.vertx.core.impl"
+    And a head revision where "ServiceResource" lives unchanged in package "io.vertx.core.internal"
+    And a class "DatagramSocketImpl" whose only change is importing "ServiceResource" from its new package
+    When the semantic engine detects transformations between the revisions
+    Then the change "Move class impl.ServiceResource -> internal.ServiceResource (imports updated in 1 file)" is detected
+    And that move touches the file of "DatagramSocketImpl"
+
+  Scenario: An import-only edit unrelated to any move is not attached to one
+    Given a base revision where class "ServiceResource" lives in package "io.vertx.core.impl"
+    And a head revision where "ServiceResource" lives unchanged in package "io.vertx.core.internal"
+    And a class "Unrelated" whose only change is an added import of "java.util.List"
+    When the semantic engine detects transformations between the revisions
+    Then the change "Move class impl.ServiceResource -> internal.ServiceResource" is detected
+
+  Scenario: A file that only switches to a renamed class's new name is part of the rename
+    Given a base revision where generic class "CleanableObject" with type parameter "T" lives in package "io.vertx.core.impl"
+    And a head revision where it is renamed "CleanableResource" with type parameter "R" in package "io.vertx.core.internal"
+    And a class "WorkerExecutorImpl" whose only change is extending "CleanableResource" instead of "CleanableObject"
+    When the semantic engine detects transformations between the revisions
+    Then the change "Rename class impl.CleanableObject -> internal.CleanableResource (imports updated in 1 file)" is detected
