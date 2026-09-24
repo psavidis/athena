@@ -102,3 +102,41 @@ Feature: Method-body modification detection
     And a head revision where static method "substringAfter" on "Strings" returns "index == NOT_FOUND ? EMPTY : str.substring(index + 1)"
     When the semantic engine detects transformations between the revisions
     Then the body modification of "Strings#substringAfter" is described as "Modify body of Strings#substringAfter: return str -> EMPTY"
+
+  # Ticket #351: a return summary names only the method's own return, and only whole expressions.
+
+  Scenario: A return inside a lambda in the body is not the method's return
+    Given a base revision where static method "firstName" on class "Names" defines a supplier returning "first" and returns "str"
+    And a head revision where static method "firstName" on "Names" defines a supplier returning "last" and returns "str"
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "Names#firstName" is described as "Modify body of Names#firstName: other statements changed"
+
+  Scenario: A returned anonymous class that changed reads as a changed return value
+    Given a base revision where static method "view" on class "Sets" returns "new Object() { public String toString() { return str; } }"
+    And a head revision where static method "view" on "Sets" returns "new Object() { public String toString() { return str.trim(); } }"
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "Sets#view" is described as "Modify body of Sets#view: +trim, return value changed"
+
+  Scenario: A changed lambda in the returned expression reads as a changed return value
+    Given a base revision where static method "present" on class "Strings" returns "Stream.of(str).filter(x -> x != null).findFirst().get()"
+    And a head revision where static method "present" on "Strings" returns "Stream.of(str).filter(Objects::nonNull).findFirst().get()"
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "Strings#present" is described as "Modify body of Strings#present: return value changed"
+
+  Scenario: A difference that isn't a whole expression reads as a changed return value
+    Given a base revision where static method "actualPort" on class "Server" returns "server != null ? server.actualPort : actualPort"
+    And a head revision where static method "actualPort" on "Server" returns "ref == null ? 0 : ref.get().actualPort"
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "Server#actualPort" is described as "Modify body of Server#actualPort: +get, return value changed"
+
+  Scenario: A return wrapped in new code doesn't read as returning nothing before
+    Given a base revision where static method "sniEntrySize" on class "Server" returns "sniEntrySize()"
+    And a head revision where static method "sniEntrySize" on "Server" returns "ref == null ? 0 : ref.get().sniEntrySize()"
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "Server#sniEntrySize" is described as "Modify body of Server#sniEntrySize: +get, return value changed"
+
+  Scenario: A whole changed expression is still named
+    Given a base revision where static method "matcher" on class "RequestCache" returns "str.isEmpty() ? str : fallback"
+    And a head revision where static method "matcher" on "RequestCache" returns "str.isEmpty() ? str : defaultValue(index)"
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "RequestCache#matcher" is described as "Modify body of RequestCache#matcher: +defaultValue, return fallback -> defaultValue(index)"
