@@ -21,6 +21,10 @@ public final class DetectedTransformation {
      */
     public static final String ENCLOSING_TYPE_ANNOTATIONS = "enclosingTypeAnnotations";
 
+    /** Context keys: the packages a moved class left and entered (ticket #335). */
+    public static final String FROM_PACKAGE = "fromPackage";
+    public static final String TO_PACKAGE = "toPackage";
+
     private final TransformationKind kind;
     private final List<String> involvedDescriptions;
     private final List<String> filesTouched;
