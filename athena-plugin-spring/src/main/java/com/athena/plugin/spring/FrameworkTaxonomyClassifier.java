@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 /**
  * Classifies a {@link Change} along the {@link SemanticDimension#FRAMEWORK}
@@ -123,6 +124,68 @@ public final class FrameworkTaxonomyClassifier {
             });
         }
         return classifications;
+    }
+
+    /** Each Spring *Aware callback setter, by method name, and the type it hands over. */
+    private static final Map<String, String> AWARE_SETTER_TYPES = Map.of(
+            "setBeanFactory", "BeanFactory",
+            "setBeanClassLoader", "ClassLoader",
+            "setEnvironment", "Environment",
+            "setResourceLoader", "ResourceLoader");
+
+    /**
+     * Correlates a removed {@code *Aware} callback setter ({@code setBeanFactory}, {@code
+     * setBeanClassLoader}, {@code setEnvironment}, {@code setResourceLoader}) with an {@code
+     * ADD_CONSTRUCTOR_PARAMETER} Change in the same class whose added constructor receives the
+     * type that setter handed over — the "Aware callback -> constructor injection" migration
+     * (ticket #294). A removed setter with no such constructor parameter isn't classified: the
+     * dependency may simply no longer be needed.
+     *
+     * @return a classification for each correlating {@code ADD_CONSTRUCTOR_PARAMETER} Change;
+     *         its evidence lists the removed setter (before) first, then the added parameter (after)
+     */
+    public Map<Change, SemanticClassification> classifySpringAwareToConstructorInjection(List<Change> changes,
+                                                                                           Taxonomy frameworkTaxonomy) {
+        if (frameworkTaxonomy.dimension() != SemanticDimension.FRAMEWORK) {
+            throw new IllegalArgumentException("Expected a FRAMEWORK taxonomy, got " + frameworkTaxonomy.dimension());
+        }
+        Map<Change, SemanticClassification> classifications = new HashMap<>();
+        Optional<TaxonomyConcept> concept = frameworkTaxonomy.find("spring-aware-to-constructor-injection");
+        if (concept.isEmpty()) {
+            return classifications;
+        }
+        for (Change removal : changes) {
+            if (removal.kind() != TransformationKind.REMOVE_SYMBOL) {
+                continue;
+            }
+            String removed = descriptionsOf(removal).get(0);
+            String type = AWARE_SETTER_TYPES.get(removed.substring(removed.indexOf('#') + 1));
+            if (type == null) {
+                continue;
+            }
+            String enclosingType = removal.enclosingType();
+            changes.stream()
+                    .filter(change -> change.kind() == TransformationKind.ADD_CONSTRUCTOR_PARAMETER)
+                    .filter(change -> change.enclosingType().equals(enclosingType))
+                    .filter(change -> receivesType(change, type))
+                    .findFirst()
+                    .ifPresent(addition -> {
+                        List<DetectedTransformation> evidence = new ArrayList<>(removal.matchedOccurrences());
+                        int beforeEvidenceCount = evidence.size();
+                        evidence.addAll(addition.matchedOccurrences());
+                        classifications.put(addition,
+                                SemanticClassification.of(concept.get(), evidence, List.of(), beforeEvidenceCount));
+                    });
+        }
+        return classifications;
+    }
+
+    /** Whether the added constructor's declaration takes a parameter of {@code type}. */
+    private boolean receivesType(Change constructorParameter, String type) {
+        Pattern parameterOfType = Pattern.compile("[(,]\\s*(?:final\\s+)?(?:[\\w.]+\\.)?" + type + "\\s+\\w+\\s*[,)]");
+        return constructorParameter.matchedOccurrences().stream().anyMatch(t -> t.diffText().lines()
+                .filter(line -> line.startsWith("+"))
+                .anyMatch(line -> parameterOfType.matcher(line).find()));
     }
 
     private boolean droppedInjectionAnnotation(Change change) {

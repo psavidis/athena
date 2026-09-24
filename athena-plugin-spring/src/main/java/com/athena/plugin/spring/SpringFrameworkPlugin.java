@@ -5,6 +5,7 @@ import com.athena.semantic.SemanticClassification;
 import com.athena.semantic.Taxonomy;
 import com.athena.semantic.spi.FrameworkPlugin;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -38,6 +39,9 @@ public final class SpringFrameworkPlugin implements FrameworkPlugin {
 
     @Override
     public Map<Change, SemanticClassification> classifyCorrelated(List<Change> changes, Taxonomy frameworkTaxonomy) {
-        return classifier.classifySpringFieldToConstructorInjection(changes, frameworkTaxonomy);
+        Map<Change, SemanticClassification> correlated =
+                new LinkedHashMap<>(classifier.classifySpringFieldToConstructorInjection(changes, frameworkTaxonomy));
+        classifier.classifySpringAwareToConstructorInjection(changes, frameworkTaxonomy).forEach(correlated::putIfAbsent);
+        return correlated;
     }
 }

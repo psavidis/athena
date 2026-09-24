@@ -1,5 +1,6 @@
 [
   {"id": "spring-field-to-constructor-injection", "name": "Spring: Field to Constructor Injection", "description": "A Spring-managed dependency moved from an @Autowired field to a constructor parameter."},
+  {"id": "spring-aware-to-constructor-injection", "name": "Spring: Aware Callback to Constructor Injection", "description": "A dependency a Spring *Aware setter callback used to hand over (BeanFactory, ClassLoader, Environment, ResourceLoader) is now received through the constructor."},
   {"id": "spring-component", "name": "Spring: @Component", "description": "A type registered as a generic Spring-managed bean."},
   {"id": "spring-service", "name": "Spring: @Service", "description": "A type registered as a Spring-managed application service bean."},
   {"id": "spring-repository", "name": "Spring: @Repository", "description": "A type registered as a Spring-managed persistence/repository bean."},
