@@ -1183,10 +1183,16 @@ public final class TransformationDetector {
         return new ParameterAnnotations(names, annotations);
     }
 
+    /**
+     * The method's contract annotations: its own and its return type's. {@code @Override} is left
+     * out (ticket #296) — a compiler check, not part of the contract, so adding or removing it
+     * alone is never an annotation change.
+     */
     private static Set<String> methodAnnotationsOf(MethodDeclaration method) {
         Set<String> names = new TreeSet<>();
         method.getAnnotations().forEach(a -> names.add("@" + a.getName().getIdentifier()));
         method.getType().getAnnotations().forEach(a -> names.add("@" + a.getName().getIdentifier()));
+        names.remove("@Override");
         return names;
     }
 
