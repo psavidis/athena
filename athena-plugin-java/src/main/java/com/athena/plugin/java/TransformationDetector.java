@@ -665,13 +665,18 @@ public final class TransformationDetector {
         }
 
         // 5 (no step 4 - no field equivalent of extract-method). Remaining fields -> removed/added.
+        // The enclosing types' annotations travel with an added/removed field (ticket #295): a
+        // framework plugin sees only Changes, yet e.g. a @ConfigurationProperties prefix decides
+        // which configuration property the field is.
         for (FieldInfo base : stillUnmatchedBase) {
             results.add(DetectedTransformation.withDiff(TransformationKind.REMOVE_FIELD,
-                    List.of(base.description()), List.of(base.file), base.rawDeclaration, ""));
+                    List.of(base.description()), List.of(base.file), base.rawDeclaration, "")
+                    .withContext(DetectedTransformation.ENCLOSING_TYPE_ANNOTATIONS, base.enclosingTypeAnnotations()));
         }
         for (FieldInfo head : stillUnmatchedHead) {
             results.add(DetectedTransformation.withDiff(TransformationKind.ADD_FIELD,
-                    List.of(head.description()), List.of(head.file), "", head.rawDeclaration));
+                    List.of(head.description()), List.of(head.file), "", head.rawDeclaration)
+                    .withContext(DetectedTransformation.ENCLOSING_TYPE_ANNOTATIONS, head.enclosingTypeAnnotations()));
         }
 
         return results;
@@ -1025,7 +1030,7 @@ public final class TransformationDetector {
         for (Map.Entry<String, ParsedFile> file : files.entrySet()) {
             if (excluded.contains(file.getKey())) continue;
             for (TypeDeclaration<?> type : file.getValue().unit().getTypes()) {
-                collectType(type, type.getNameAsString(), file.getKey(), file.getValue().sourceLines(), collected);
+                collectType(type, type.getNameAsString(), "", file.getKey(), file.getValue().sourceLines(), collected);
             }
         }
         return collected.toParsedRoot();
@@ -1041,8 +1046,11 @@ public final class TransformationDetector {
      * never collide. A type's member signatures cover its own members only — a nested
      * type is a separate {@link ClassInfo}, not part of its outer class's identity.
      */
-    private void collectType(TypeDeclaration<?> type, String qualifiedName, String relativePath, List<String> sourceLines,
-                             DeclarationCollector collected) {
+    private void collectType(TypeDeclaration<?> type, String qualifiedName, String outerTypeAnnotations,
+                             String relativePath, List<String> sourceLines, DeclarationCollector collected) {
+        String typeAnnotations = (outerTypeAnnotations.isEmpty() ? "" : outerTypeAnnotations + "\n")
+                + type.getNameAsString() + "\t"
+                + type.getAnnotations().stream().map(Node::toString).collect(Collectors.joining(" "));
         Set<String> memberSignatures = new TreeSet<>();
         for (MethodDeclaration method : type.getMethods()) {
             // Two different textual views, both from *original source text* (via
@@ -1081,7 +1089,7 @@ public final class TransformationDetector {
             for (VariableDeclarator variable : field.getVariables()) {
                 String typeAsString = variable.getType().asString();
                 collected.fields.add(new FieldInfo(qualifiedName, variable.getNameAsString(), typeAsString,
-                        annotationNames, visibilityOf(field), rawDeclaration, relativePath));
+                        annotationNames, visibilityOf(field), rawDeclaration, relativePath, typeAnnotations));
                 memberSignatures.add("field:" + variable.getNameAsString() + ":" + typeAsString);
             }
         }
@@ -1157,7 +1165,8 @@ public final class TransformationDetector {
         }
         for (BodyDeclaration<?> member : type.getMembers()) {
             if (member instanceof TypeDeclaration<?> nested) {
-                collectType(nested, qualifiedName + "." + nested.getNameAsString(), relativePath, sourceLines, collected);
+                collectType(nested, qualifiedName + "." + nested.getNameAsString(), typeAnnotations, relativePath,
+                        sourceLines, collected);
             }
         }
     }
@@ -1281,9 +1290,13 @@ public final class TransformationDetector {
                              String superclass) {
     }
 
-    /** {@code visibility} is the declared access level: public, protected, package-private or private. */
+    /**
+     * {@code visibility} is the declared access level: public, protected, package-private or
+     * private. {@code enclosingTypeAnnotations} is the {@link
+     * DetectedTransformation#ENCLOSING_TYPE_ANNOTATIONS} context of the field (ticket #295).
+     */
     private record FieldInfo(String enclosingType, String name, String type, Set<String> annotationNames,
-                              String visibility, String rawDeclaration, String file) {
+                              String visibility, String rawDeclaration, String file, String enclosingTypeAnnotations) {
         String description() {
             return enclosingType + "#" + name;
         }

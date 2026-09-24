@@ -12,9 +12,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -50,6 +52,10 @@ public final class FrameworkTaxonomyClassifier {
         if (change.matchedOccurrences().isEmpty()) {
             return Optional.empty();
         }
+        Optional<SemanticClassification> configurationProperty = configurationProperty(change, frameworkTaxonomy);
+        if (configurationProperty.isPresent()) {
+            return configurationProperty;
+        }
         for (DetectedTransformation transformation : change.matchedOccurrences()) {
             Optional<String> conceptId = newlyAddedAnnotationConceptId(transformation.diffText());
             if (conceptId.isPresent()) {
@@ -61,6 +67,61 @@ public final class FrameworkTaxonomyClassifier {
     }
 
     private static final List<String> INJECTION_ANNOTATIONS = List.of("@Autowired", "@Inject", "@Resource");
+    private static final Pattern CONFIGURATION_PROPERTIES_PREFIX = Pattern.compile(
+            "@ConfigurationProperties\\s*\\(\\s*(?:(?:prefix|value)\\s*=\\s*)?\"([^\"]*)\"");
+
+    /**
+     * An added or removed field of a {@code @ConfigurationProperties} class — or of a class nested
+     * in one — is the configuration property a user sets (ticket #295). Its key is the annotation's
+     * prefix, then each nested class's name, then the field's name, all in kebab case (Spring
+     * Boot's relaxed binding; nested classes by class name only). The enclosing types come from
+     * the {@link DetectedTransformation#ENCLOSING_TYPE_ANNOTATIONS} context the Java plugin records.
+     */
+    private Optional<SemanticClassification> configurationProperty(Change change, Taxonomy frameworkTaxonomy) {
+        boolean added = change.kind() == TransformationKind.ADD_FIELD;
+        if (!added && change.kind() != TransformationKind.REMOVE_FIELD) {
+            return Optional.empty();
+        }
+        DetectedTransformation field = change.matchedOccurrences().get(0);
+        String enclosingTypes = field.context().get(DetectedTransformation.ENCLOSING_TYPE_ANNOTATIONS);
+        if (enclosingTypes == null) {
+            return Optional.empty();
+        }
+        String description = field.involvedDescriptions().get(0);
+        return propertyKey(enclosingTypes, description.substring(description.indexOf('#') + 1))
+                .flatMap(key -> frameworkTaxonomy.find("spring-configuration-property").map(concept -> TaxonomyConcept.of(
+                        concept.id(), SemanticDimension.FRAMEWORK,
+                        (added ? "Spring: Configuration Property " : "Spring: Removed Configuration Property ") + key,
+                        concept.description(), concept.parentId())))
+                .map(concept -> SemanticClassification.of(concept, List.copyOf(change.matchedOccurrences())));
+    }
+
+    /** The property key, if one of {@code enclosingTypes} (outermost first) is {@code @ConfigurationProperties}. */
+    static Optional<String> propertyKey(String enclosingTypes, String fieldName) {
+        List<String> types = List.of(enclosingTypes.split("\n"));
+        for (int i = types.size() - 1; i >= 0; i--) {
+            String annotations = types.get(i).substring(types.get(i).indexOf('\t') + 1);
+            if (!annotations.contains("@ConfigurationProperties")) {
+                continue;
+            }
+            Matcher prefix = CONFIGURATION_PROPERTIES_PREFIX.matcher(annotations);
+            List<String> segments = new ArrayList<>();
+            if (prefix.find() && !prefix.group(1).isEmpty()) {
+                segments.add(prefix.group(1));
+            }
+            for (String nested : types.subList(i + 1, types.size())) {
+                segments.add(kebabCase(nested.substring(0, nested.indexOf('\t'))));
+            }
+            segments.add(kebabCase(fieldName));
+            return Optional.of(String.join(".", segments));
+        }
+        return Optional.empty();
+    }
+
+    /** "awaitAsyncResultsOnStop" -> "await-async-results-on-stop"; "Listener" -> "listener". */
+    private static String kebabCase(String name) {
+        return name.replaceAll("([a-z0-9])([A-Z])", "$1-$2").toLowerCase(Locale.ROOT);
+    }
 
     /**
      * Correlates an {@code ADD_CONSTRUCTOR_PARAMETER} Change with a {@code

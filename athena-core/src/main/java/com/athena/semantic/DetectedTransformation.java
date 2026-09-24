@@ -1,6 +1,8 @@
 package com.athena.semantic;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * One deterministically-detected transformation between a base and head
@@ -12,12 +14,20 @@ import java.util.List;
  */
 public final class DetectedTransformation {
 
+    /**
+     * Context key: the member's enclosing types, outermost first, one per line as
+     * {@code SimpleName<TAB>annotations} (the annotations' source text, space-separated;
+     * empty when the type has none).
+     */
+    public static final String ENCLOSING_TYPE_ANNOTATIONS = "enclosingTypeAnnotations";
+
     private final TransformationKind kind;
     private final List<String> involvedDescriptions;
     private final List<String> filesTouched;
     private final int occurrenceCount;
     private final String beforeText;
     private final String afterText;
+    private final Map<String, String> context;
 
     // The diff is real algorithmic work (an LCS over full method source, not
     // just a signature line) — computed lazily and memoized here rather than
@@ -34,12 +44,19 @@ public final class DetectedTransformation {
 
     private DetectedTransformation(TransformationKind kind, List<String> involvedDescriptions,
                             List<String> filesTouched, int occurrenceCount, String beforeText, String afterText) {
+        this(kind, involvedDescriptions, filesTouched, occurrenceCount, beforeText, afterText, Map.of());
+    }
+
+    private DetectedTransformation(TransformationKind kind, List<String> involvedDescriptions,
+                            List<String> filesTouched, int occurrenceCount, String beforeText, String afterText,
+                            Map<String, String> context) {
         this.kind = kind;
         this.involvedDescriptions = List.copyOf(involvedDescriptions);
         this.filesTouched = List.copyOf(filesTouched);
         this.occurrenceCount = occurrenceCount;
         this.beforeText = beforeText;
         this.afterText = afterText;
+        this.context = Map.copyOf(context);
     }
 
     /**
@@ -67,6 +84,24 @@ public final class DetectedTransformation {
     public static DetectedTransformation withDiff(TransformationKind kind, List<String> involved,
                                             List<String> files, String beforeText, String afterText) {
         return new DetectedTransformation(kind, involved, files, 1, beforeText, afterText);
+    }
+
+    /**
+     * This transformation with one more piece of source context a language plugin knows and a
+     * {@link com.athena.semantic.spi.FrameworkPlugin} may need — which only sees Changes, never
+     * the source (ticket #295: the annotations on a field's enclosing types). Keys are
+     * documented by the plugin that writes them, e.g. {@link #ENCLOSING_TYPE_ANNOTATIONS}.
+     */
+    public DetectedTransformation withContext(String key, String value) {
+        Map<String, String> extended = new LinkedHashMap<>(context);
+        extended.put(key, value);
+        return new DetectedTransformation(kind, involvedDescriptions, filesTouched, occurrenceCount, beforeText,
+                afterText, extended);
+    }
+
+    /** Source context recorded with this transformation (see {@link #withContext}); empty if none. */
+    public Map<String, String> context() {
+        return context;
     }
 
     public TransformationKind kind() {
