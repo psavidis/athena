@@ -430,6 +430,39 @@ public final class TransformationDetector {
                 .map(MethodInfo::rawWholeDeclaration).findFirst().orElse("");
     }
 
+    /**
+     * A class's member signatures with its own names (each enclosing class name, by nesting
+     * depth) and its type parameters (by position) replaced by placeholders (ticket #336), so a
+     * class renamed from {@code CleanableObject<T>} to {@code CleanableResource<R>} has the same
+     * normalized members when nothing else changed.
+     */
+    private Set<String> selfNormalizedSignatures(ClassInfo type) {
+        Map<String, String> placeholders = new LinkedHashMap<>();
+        String[] names = type.simpleName().split("\\.");
+        for (int i = 0; i < names.length; i++) {
+            placeholders.put(names[i], "#C" + i);
+        }
+        for (int i = 0; i < type.typeParameters().size(); i++) {
+            placeholders.putIfAbsent(type.typeParameters().get(i), "#T" + i);
+        }
+        Set<String> normalized = new TreeSet<>();
+        for (String signature : type.memberSignatures()) {
+            String result = signature;
+            for (Map.Entry<String, String> placeholder : placeholders.entrySet()) {
+                result = replaceWholeIdentifier(result, placeholder.getKey(), placeholder.getValue());
+            }
+            normalized.add(result);
+        }
+        return normalized;
+    }
+
+    /** {@code Outer.Nested} with its outer class renamed as {@code renamedTypes} records, or "" if it wasn't. */
+    private static String renamedOuter(String nestedName, Map<String, String> renamedTypes) {
+        int lastDot = nestedName.lastIndexOf('.');
+        String outer = renamedTypes.get(nestedName.substring(0, lastDot));
+        return outer == null ? "" : outer + nestedName.substring(lastDot);
+    }
+
     private List<DetectedTransformation> classModifierChanges(List<ClassInfo> baseClasses, List<ClassInfo> headClasses) {
         List<DetectedTransformation> changes = new ArrayList<>();
         for (ClassInfo base : baseClasses) {
@@ -989,6 +1022,35 @@ public final class TransformationDetector {
             }
         }
 
+        // 3b. A rename, possibly together with a move, whose members only differ by the class's own
+        // names and its type parameters' names (ticket #336): CleanableObject<T> -> CleanableResource<R>.
+        // Top-level classes need a unique candidate; a nested class follows its renamed outer class.
+        Map<String, String> renamedTypes = new LinkedHashMap<>();
+        for (boolean nested : List.of(false, true)) {
+            for (ClassInfo base : new ArrayList<>(stillUnmatchedBase)) {
+                if (base.simpleName.contains(".") != nested || base.memberSignatures.isEmpty()) continue;
+                Set<String> signature = selfNormalizedSignatures(base);
+                List<ClassInfo> candidates = stillUnmatchedHead.stream()
+                        .filter(head -> !head.simpleName.equals(base.simpleName))
+                        .filter(head -> head.simpleName.contains(".") == nested)
+                        .filter(head -> !nested || head.simpleName.equals(renamedOuter(base.simpleName, renamedTypes)))
+                        .filter(head -> selfNormalizedSignatures(head).equals(signature))
+                        .toList();
+                if (candidates.size() != 1) continue;
+                ClassInfo head = candidates.get(0);
+                results.add(DetectedTransformation.withDiff(TransformationKind.RENAME_CLASS,
+                                List.of(base.simpleName, head.simpleName), List.of(base.file, head.file),
+                                base.headerText, head.headerText)
+                        .withContext(DetectedTransformation.FROM_PACKAGE, base.packageName)
+                        .withContext(DetectedTransformation.TO_PACKAGE, head.packageName));
+                renamedTypes.put(base.simpleName, head.simpleName);
+                stillUnmatchedBase.remove(base);
+                stillUnmatchedHead.remove(head);
+                excludedBaseTypes.add(base.simpleName);
+                excludedHeadTypes.add(head.simpleName);
+            }
+        }
+
         // 5 (no step 4 - no class equivalent of extract-method here). Remaining -> removed/added.
         for (ClassInfo base : stillUnmatchedBase) {
             results.add(DetectedTransformation.withDiff(TransformationKind.REMOVE_CLASS,
@@ -1348,8 +1410,11 @@ public final class TransformationDetector {
             String superclass = type instanceof ClassOrInterfaceDeclaration declaration && !declaration.isInterface()
                     ? declaration.getExtendedTypes().getFirst().map(ClassOrInterfaceType::getNameAsString).orElse("")
                     : "";
+            List<String> typeParameters = type instanceof ClassOrInterfaceDeclaration declaration
+                    ? declaration.getTypeParameters().stream().map(p -> p.getNameAsString()).toList()
+                    : List.of();
             collected.classes.add(new ClassInfo(qualifiedName, relativePath, memberSignatures, headerText, superclass,
-                    DeclarationModifiers.of(type), packageName));
+                    DeclarationModifiers.of(type), packageName, typeParameters));
         }
         collectAnonymousMembers(type, qualifiedName, relativePath, sourceLines, collected);
         for (BodyDeclaration<?> member : type.getMembers()) {
@@ -1502,7 +1567,8 @@ public final class TransformationDetector {
      * {@code superclass} is the simple name of the class it extends, empty for none (ticket #290).
      */
     private record ClassInfo(String simpleName, String file, Set<String> memberSignatures, String headerText,
-                             String superclass, DeclarationModifiers modifiers, String packageName) {
+                             String superclass, DeclarationModifiers modifiers, String packageName,
+                             List<String> typeParameters) {
     }
 
     /**

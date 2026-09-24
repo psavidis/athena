@@ -131,3 +131,24 @@ Feature: Structural and mechanical change detection
     And a head revision where "ServiceResource" lives unchanged in package "io.vertx.core.internal"
     When the semantic engine detects transformations between the revisions
     Then the change "Move class impl.ServiceResource -> internal.ServiceResource" is detected
+
+  # Ticket #336: a class renamed (and moved) whose members only refer to its own new name.
+
+  Scenario: A class renamed and moved between packages is one rename
+    Given a base revision where generic class "CleanableObject" with type parameter "T" lives in package "io.vertx.core.impl"
+    And a head revision where it is renamed "CleanableResource" with type parameter "R" in package "io.vertx.core.internal"
+    When the semantic engine detects transformations between the revisions
+    Then the change "Rename class impl.CleanableObject -> internal.CleanableResource" is detected
+    And no class removal or addition is reported
+
+  Scenario: A nested class follows its renamed outer class
+    Given a base revision where generic class "CleanableObject" with type parameter "T" lives in package "io.vertx.core.impl"
+    And a head revision where it is renamed "CleanableResource" with type parameter "R" in package "io.vertx.core.internal"
+    When the semantic engine detects transformations between the revisions
+    Then the change "Rename class impl.CleanableObject.Action -> internal.CleanableResource.Action" is detected
+
+  Scenario: A renamed class whose members also changed stays a removal and an addition
+    Given a base revision where generic class "CleanableObject" with type parameter "T" lives in package "io.vertx.core.impl"
+    And a head revision where it is renamed "CleanableResource" with type parameter "R" in package "io.vertx.core.internal" and gains a method
+    When the semantic engine detects transformations between the revisions
+    Then no class rename is reported
