@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -52,6 +53,19 @@ class MavenLanguagePluginTest {
         assertThat(detect()).containsExactlyInAnyOrder(
                 "CHANGE_DEPENDENCY [app#a:x, exclusion junit:junit removed]",
                 "CHANGE_DEPENDENCY [app#a:y, exclusion junit:junit added]");
+    }
+
+    @Test
+    void readsAPomInTheEncodingItsXmlDeclarationNames() throws IOException {
+        String latin1 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><project><artifactId>legacy</artifactId>"
+                + "<name>Caf\u00e9</name><dependencies>%s</dependencies></project>";
+        Files.createDirectories(baseRoot.resolve("legacy"));
+        Files.createDirectories(headRoot.resolve("legacy"));
+        Files.write(baseRoot.resolve("legacy/pom.xml"), latin1.formatted("").getBytes(StandardCharsets.ISO_8859_1));
+        Files.write(headRoot.resolve("legacy/pom.xml"),
+                latin1.formatted(dep("g", "a", null, null)).getBytes(StandardCharsets.ISO_8859_1));
+
+        assertThat(detect()).containsExactly("ADD_DEPENDENCY [legacy#g:a]");
     }
 
     @Test

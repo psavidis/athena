@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -54,9 +55,9 @@ public final class MavenLanguagePlugin implements LanguagePlugin {
         poms.addAll(pomsUnder(headRoot));
         List<DetectedTransformation> results = new ArrayList<>();
         for (String pom : poms) {
-            Optional<String> baseText = read(baseRoot.resolve(pom));
-            Optional<String> headText = read(headRoot.resolve(pom));
-            if (baseText.equals(headText)) continue;
+            Optional<byte[]> baseText = read(baseRoot.resolve(pom));
+            Optional<byte[]> headText = read(headRoot.resolve(pom));
+            if (sameContent(baseText, headText)) continue;
             Optional<PomDependencies> base = baseText.flatMap(PomDependencies::parse);
             Optional<PomDependencies> head = headText.flatMap(PomDependencies::parse);
             if ((baseText.isPresent() && base.isEmpty()) || (headText.isPresent() && head.isEmpty())) continue;
@@ -148,11 +149,21 @@ public final class MavenLanguagePlugin implements LanguagePlugin {
         return poms;
     }
 
-    private static Optional<String> read(Path file) {
+    private static boolean sameContent(Optional<byte[]> base, Optional<byte[]> head) {
+        return base.isPresent() == head.isPresent()
+                && (base.isEmpty() || Arrays.equals(base.get(), head.get()));
+    }
+
+    /**
+     * The pom's raw bytes (its XML declaration names the encoding), or empty when the file is absent
+     * or can't be read: one unreadable pom leaves its dependencies unreported rather than failing the
+     * whole analysis.
+     */
+    private static Optional<byte[]> read(Path file) {
         try {
-            return Files.isRegularFile(file) ? Optional.of(Files.readString(file)) : Optional.empty();
+            return Files.isRegularFile(file) ? Optional.of(Files.readAllBytes(file)) : Optional.empty();
         } catch (IOException e) {
-            throw new UncheckedIOException("Could not read " + file, e);
+            return Optional.empty();
         }
     }
 }
