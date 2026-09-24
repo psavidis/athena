@@ -34,3 +34,11 @@ Feature: Tech stack and dependency rails for Gradle and Maven modules
     Given the user has created a standalone Diff changing a class under "src/main/java" of a Gradle project named "petclinic"
     When the user requests the Semantic Canvas topology
     Then territory "petclinic" has tech stack "Java"
+
+  # Ticket #314: tech stack and rails from build files named after their module.
+
+  Scenario: A dependency declared in a build file named after its module is a dependency rail
+    Given the user has created a standalone Diff changing a class in module "spring-webmvc" whose build file "spring-webmvc.gradle" depends on project ":spring-core"
+    When the user requests the Semantic Canvas topology
+    Then a dependency rail runs from "spring-webmvc" to "spring-core"
+    And territory "spring-webmvc" has tech stack "Java"

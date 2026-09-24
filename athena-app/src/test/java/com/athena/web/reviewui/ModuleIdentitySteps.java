@@ -186,6 +186,29 @@ public class ModuleIdentitySteps {
         changeClasses(List.of(module + "/src/main/java/com/acme/Service.java"));
     }
 
+    // --- Ticket #314: build files named after their module ---
+
+    @Given("the user has created a standalone Diff changing classes in modules {string} and {string} whose build files are named {string}")
+    public void a_diff_with_custom_named_build_files(String first, String second, String pattern) {
+        repository = GitRepositoryFixture.create();
+        repository.write("settings.gradle", "rootProject.name = 'framework'\n");
+        for (String module : List.of(first, second)) {
+            repository.write(module + "/" + pattern.replace("<module>", module), "plugins { id 'java' }\n");
+        }
+        changeClasses(List.of(first + "/src/main/java/com/acme/FirstService.java",
+                second + "/src/main/java/com/acme/SecondService.java"));
+    }
+
+    @Given("the user has created a standalone Diff changing a class in module {string} whose build file {string} depends on project {string}")
+    public void a_diff_with_a_custom_named_build_file_dependency(String module, String buildFile, String projectPath) {
+        repository = GitRepositoryFixture.create();
+        repository.write("settings.gradle", "rootProject.name = 'spring'\n");
+        String dependency = projectPath.substring(1);
+        repository.write(dependency + "/" + dependency + ".gradle", "description = \"core\"\n");
+        repository.write(module + "/" + buildFile, "dependencies {\n    api(project(\"" + projectPath + "\"))\n}\n");
+        changeClasses(List.of(module + "/src/main/java/com/acme/Service.java"));
+    }
+
     @Then("territory {string} has tech stack {string}")
     public void territory_has_tech_stack(String name, String label) {
         assertThat(territory(name).techStackLabel()).isEqualTo(label);

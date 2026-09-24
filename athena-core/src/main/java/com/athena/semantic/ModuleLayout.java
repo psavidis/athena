@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -13,8 +14,10 @@ import java.util.regex.Pattern;
 
 /**
  * Which module a changed file belongs to (ticket #292): the nearest directory above it that
- * holds a build descriptor ({@code pom.xml}, {@code build.gradle}, {@code build.gradle.kts} or
- * {@code package.json}), in head or — for a file only in base — in base. The module is named
+ * holds a build descriptor ({@code pom.xml}, {@code build.gradle}, {@code build.gradle.kts},
+ * {@code package.json}, or a Gradle build file named after the directory itself —
+ * {@code hibernate-core/hibernate-core.gradle}, ticket #314), in head or — for a file only in
+ * base — in base. The module is named
  * after that directory; a descriptor at the repository root names it after the project
  * ({@code artifactId}, {@code rootProject.name} or {@code "name"}), or {@code "(root)"}.
  * With no descriptor anywhere above a file, the file's leading path segment names its module,
@@ -88,8 +91,37 @@ public final class ModuleLayout {
     }
 
     private boolean hasDescriptor(String directory) {
-        return roots.stream().anyMatch(root -> BUILD_DESCRIPTORS.stream()
+        return roots.stream().anyMatch(root -> buildDescriptorNames(directory).stream()
                 .anyMatch(descriptor -> Files.isRegularFile(root.resolve(directory).resolve(descriptor))));
+    }
+
+    /**
+     * The build descriptor file names a module directory may hold: the fixed names, plus Gradle
+     * build files named after the directory ({@code <name>.gradle}, {@code <name>.gradle.kts}),
+     * as builds setting {@code project.buildFileName} use (ticket #314).
+     */
+    public static List<String> buildDescriptorNames(String directory) {
+        String name = directory.substring(directory.lastIndexOf('/') + 1);
+        if (name.isEmpty()) {
+            return BUILD_DESCRIPTORS;
+        }
+        List<String> names = new ArrayList<>(BUILD_DESCRIPTORS);
+        names.addAll(gradleBuildFileNamesFor(name));
+        return names;
+    }
+
+    /** The Gradle build file names {@code directory} may hold: the fixed names, then ones named after it. */
+    public static List<String> gradleBuildFileNames(String directory) {
+        String name = directory.substring(directory.lastIndexOf('/') + 1);
+        List<String> names = new ArrayList<>(List.of("build.gradle", "build.gradle.kts"));
+        if (!name.isEmpty()) {
+            names.addAll(gradleBuildFileNamesFor(name));
+        }
+        return names;
+    }
+
+    private static List<String> gradleBuildFileNamesFor(String name) {
+        return List.of(name + ".gradle", name + ".gradle.kts");
     }
 
     private static String leadingSegment(String filePath) {

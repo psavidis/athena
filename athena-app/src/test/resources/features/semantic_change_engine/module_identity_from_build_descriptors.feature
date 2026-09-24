@@ -43,3 +43,15 @@ Feature: Module identity comes from build descriptors
     Given the user has created a standalone Diff changing classes in Gradle modules "module/web-server" and "module/validation"
     When the user requests the semantic profile of module "web-server"
     Then the module's semantic profile has at least one entry
+
+  # Ticket #314: Gradle builds that name each module's build file after the module.
+
+  Scenario: A module whose build file is named after its directory is a module
+    Given the user has created a standalone Diff changing classes in modules "junit-jupiter-api" and "junit-jupiter-engine" whose build files are named "<module>.gradle.kts"
+    When the user requests the Semantic Canvas topology
+    Then the territories are "junit-jupiter-api" and "junit-jupiter-engine"
+
+  Scenario: A Groovy build file named after its directory is a module too
+    Given the user has created a standalone Diff changing classes in modules "hibernate-core" and "hibernate-envers" whose build files are named "<module>.gradle"
+    When the user requests the Semantic Canvas topology
+    Then the territories are "hibernate-core" and "hibernate-envers"
