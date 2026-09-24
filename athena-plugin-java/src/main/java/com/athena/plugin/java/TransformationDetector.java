@@ -19,6 +19,7 @@ import com.github.javaparser.ast.body.RecordDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.Expression;
+import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 
 import java.io.IOException;
@@ -295,6 +296,7 @@ public final class TransformationDetector {
                 .filter(f -> !classMatch.excludedHeadTypes().contains(f.enclosingType)).toList();
         results.addAll(detectFieldChanges(baseFields, headFields));
         results.addAll(fieldValueChanges(baseFields, headFields, mechanicalReplacements));
+        results.addAll(anonymousMemberChanges(baseParsed, headParsed));
 
         // 9. Constructor parameter added and assigned to a same-named field — the structural
         // half of "field injection -> constructor injection" (ticket #86's dependency-injection
@@ -490,6 +492,92 @@ public final class TransformationDetector {
                 changes.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_FIELD_VALUE,
                         List.of(base.description(), FieldValues.describeChange(base.initializer, head.initializer)),
                         List.of(base.file, head.file), base.rawDeclaration, head.rawDeclaration));
+            }
+        }
+        return changes;
+    }
+
+    /**
+     * Collects the fields and methods of every anonymous class a member of {@code type} creates
+     * (ticket #320). Nested types are left to their own {@link #collectType} pass.
+     */
+    private void collectAnonymousMembers(TypeDeclaration<?> type, String qualifiedName, String relativePath,
+                                         List<String> sourceLines, DeclarationCollector collected) {
+        for (BodyDeclaration<?> member : type.getMembers()) {
+            if (member instanceof TypeDeclaration<?>) {
+                continue;
+            }
+            String memberName = anonymousCreatorName(member);
+            Map<String, Integer> seenPerType = new HashMap<>();
+            for (ObjectCreationExpr creation : member.findAll(ObjectCreationExpr.class)) {
+                if (creation.getAnonymousClassBody().isEmpty()) {
+                    continue;
+                }
+                String typeName = creation.getType().getNameAsString();
+                int ordinal = seenPerType.merge(typeName, 1, Integer::sum);
+                String owner = qualifiedName + "#" + memberName + "(anonymous " + typeName
+                        + (ordinal > 1 ? " #" + ordinal : "") + ")";
+                collected.anonymousClasses.add(relativePath + "|" + owner);
+                for (BodyDeclaration<?> anonymousMember : creation.getAnonymousClassBody().get()) {
+                    String raw = anonymousMember.getRange().map(range -> sourceSlice(sourceLines, range))
+                            .orElse(anonymousMember.toString());
+                    if (anonymousMember instanceof FieldDeclaration field) {
+                        for (VariableDeclarator variable : field.getVariables()) {
+                            collected.anonymousMembers.add(new AnonymousMember(relativePath, owner, true,
+                                    variable.getNameAsString(), variable.getNameAsString() + ":" + variable.getTypeAsString(), raw));
+                        }
+                    } else if (anonymousMember instanceof MethodDeclaration method) {
+                        String signature = method.getNameAsString() + "(" + method.getParameters().stream()
+                                .map(Parameter::getTypeAsString).collect(Collectors.joining(",")) + ")";
+                        collected.anonymousMembers.add(new AnonymousMember(relativePath, owner, false,
+                                method.getNameAsString(), signature, raw));
+                    }
+                }
+            }
+        }
+    }
+
+    private static String anonymousCreatorName(BodyDeclaration<?> member) {
+        if (member instanceof MethodDeclaration method) {
+            return method.getNameAsString();
+        }
+        if (member instanceof ConstructorDeclaration) {
+            return "<init>";
+        }
+        if (member instanceof InitializerDeclaration initializer) {
+            return initializer.isStatic() ? "<clinit>" : "<instance-init>";
+        }
+        if (member instanceof FieldDeclaration field) {
+            return field.getVariable(0).getNameAsString();
+        }
+        return "<member>";
+    }
+
+    /**
+     * Fields and methods added to or removed from an anonymous class present in both revisions
+     * (ticket #320). A whole new or removed anonymous class isn't listed member by member: the
+     * body change of the member that creates it already reports it.
+     */
+    private List<DetectedTransformation> anonymousMemberChanges(ParsedRoot baseParsed, ParsedRoot headParsed) {
+        List<AnonymousMember> baseMembers = baseParsed.anonymousMembers();
+        List<AnonymousMember> headMembers = headParsed.anonymousMembers();
+        Set<String> baseOwners = baseParsed.anonymousClasses();
+        Set<String> headOwners = headParsed.anonymousClasses();
+        Set<String> baseKeys = baseMembers.stream().map(AnonymousMember::key).collect(Collectors.toSet());
+        Set<String> headKeys = headMembers.stream().map(AnonymousMember::key).collect(Collectors.toSet());
+        List<DetectedTransformation> changes = new ArrayList<>();
+        for (AnonymousMember base : baseMembers) {
+            if (headOwners.contains(base.file() + "|" + base.owner()) && !headKeys.contains(base.key())) {
+                changes.add(DetectedTransformation.withDiff(
+                        base.field() ? TransformationKind.REMOVE_FIELD : TransformationKind.REMOVE_SYMBOL,
+                        List.of(base.description()), List.of(base.file()), base.rawDeclaration(), ""));
+            }
+        }
+        for (AnonymousMember head : headMembers) {
+            if (baseOwners.contains(head.file() + "|" + head.owner()) && !baseKeys.contains(head.key())) {
+                changes.add(DetectedTransformation.withDiff(
+                        head.field() ? TransformationKind.ADD_FIELD : TransformationKind.ADD_SYMBOL,
+                        List.of(head.description()), List.of(head.file()), "", head.rawDeclaration()));
             }
         }
         return changes;
@@ -1256,6 +1344,7 @@ public final class TransformationDetector {
             collected.classes.add(new ClassInfo(qualifiedName, relativePath, memberSignatures, headerText, superclass,
                     DeclarationModifiers.of(type)));
         }
+        collectAnonymousMembers(type, qualifiedName, relativePath, sourceLines, collected);
         for (BodyDeclaration<?> member : type.getMembers()) {
             if (member instanceof TypeDeclaration<?> nested) {
                 collectType(nested, qualifiedName + "." + nested.getNameAsString(), typeAnnotations, relativePath,
@@ -1319,7 +1408,24 @@ public final class TransformationDetector {
 
     private record ParsedRoot(List<MethodInfo> methods, List<FieldInfo> fields, List<ClassInfo> classes,
                                List<ConstructorInfo> constructors, Map<String, RecordInfo> records,
-                               List<EnumConstantInfo> enumConstants, List<AnnotationElementInfo> annotationElements) {
+                               List<EnumConstantInfo> enumConstants, List<AnnotationElementInfo> annotationElements,
+                               List<AnonymousMember> anonymousMembers, Set<String> anonymousClasses) {
+    }
+
+    /**
+     * A field or method declared in an anonymous class body (ticket #320). {@code owner} names
+     * the anonymous class by the member that creates it: {@code Outer#method(anonymous Type)},
+     * with a {@code #2}, {@code #3}… suffix for further anonymous classes of the same type there.
+     */
+    private record AnonymousMember(String file, String owner, boolean field, String name, String signature,
+                                   String rawDeclaration) {
+        String description() {
+            return owner + "#" + name;
+        }
+
+        String key() {
+            return file + "|" + owner + "|" + (field ? "field:" : "method:") + signature;
+        }
     }
 
     /** Accumulates one root's declarations while {@link #collectType} walks its types. */
@@ -1331,11 +1437,14 @@ public final class TransformationDetector {
         private final Map<String, RecordInfo> records = new LinkedHashMap<>();
         private final List<EnumConstantInfo> enumConstants = new ArrayList<>();
         private final List<AnnotationElementInfo> annotationElements = new ArrayList<>();
+        private final List<AnonymousMember> anonymousMembers = new ArrayList<>();
+        // "file|owner" of every anonymous class, including ones with no fields or methods.
+        private final Set<String> anonymousClasses = new LinkedHashSet<>();
 
         ParsedRoot toParsedRoot() {
             return new ParsedRoot(List.copyOf(methods), List.copyOf(fields), List.copyOf(classes),
                     List.copyOf(constructors), Map.copyOf(records), List.copyOf(enumConstants),
-                    List.copyOf(annotationElements));
+                    List.copyOf(annotationElements), List.copyOf(anonymousMembers), Set.copyOf(anonymousClasses));
         }
     }
 
