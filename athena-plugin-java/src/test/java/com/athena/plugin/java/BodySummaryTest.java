@@ -137,6 +137,47 @@ class BodySummaryTest {
         assertThat(describe("return name;", "return name.trim();")).isEqualTo("+trim, return name -> name.trim()");
     }
 
+    @Test
+    void aReturnInsideALambdaIsNotTheMethodsReturn() {
+        assertThat(describe("Supplier<Object> s = () -> { return a; }; return t;",
+                "Supplier<Object> s = () -> { return b; }; return t;")).isEqualTo("other statements changed");
+    }
+
+    @Test
+    void aReturnInsideAnAnonymousClassIsNotTheMethodsReturn() {
+        assertThat(describe("Runnable r = new Runnable() { public void run() { } Object v() { return a; } }; return t;",
+                "Runnable r = new Runnable() { public void run() { } Object v() { return b; } }; return t;"))
+                .isEqualTo("other statements changed");
+    }
+
+    @Test
+    void aChangedReturnedAnonymousClassIsAChangedValue() {
+        assertThat(describe("return new Object() { public String toString() { return \"a\"; } };",
+                "return new Object() { public String describe() { return \"a\"; } };")).isEqualTo("return value changed");
+    }
+
+    @Test
+    void aChangedPartContainingALambdaIsAChangedValue() {
+        assertThat(describe("return java.util.stream.Stream.of(t).filter(x -> x != null).count();",
+                "return java.util.stream.Stream.of(t).filter(java.util.Objects::nonNull).count();")).isEqualTo("return value changed");
+    }
+
+    @Test
+    void aPartThatEndsInAnOperatorIsAChangedValue() {
+        assertThat(describe("return t != null ? t.port : port;", "return ref == null ? 0 : ref.get().port;"))
+                .isEqualTo("return value changed");
+    }
+
+    @Test
+    void aValueWrappedInNewCodeIsAChangedValueNotNothing() {
+        assertThat(describe("return size();", "return ref == null ? 0 : ref.get().size();")).isEqualTo("+get, return value changed");
+    }
+
+    @Test
+    void aWholeChangedOperandIsStillNamed() {
+        assertThat(describe("return f(a, t);", "return f(b, t);")).isEqualTo("return a -> b");
+    }
+
     private static String describe(String baseBody, String headBody) {
         return summaryOf(baseBody).describeChangeTo(summaryOf(headBody));
     }

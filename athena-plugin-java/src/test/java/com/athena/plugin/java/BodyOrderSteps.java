@@ -7,7 +7,7 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-/** Steps for the reorder and return-value scenarios of {@code method_body_modification_detection.feature} (ticket #339). */
+/** Steps for the reorder and return-value scenarios of {@code method_body_modification_detection.feature} (tickets #339, #351). */
 public class BodyOrderSteps {
 
     private final DetectionWorld world;
@@ -38,6 +38,16 @@ public class BodyOrderSteps {
         write(world.headRoot(), className, strings(className, method, expression));
     }
 
+    @Given("a base revision where static method {string} on class {string} defines a supplier returning {string} and returns {string}")
+    public void base_defines_supplier(String method, String className, String supplied, String returned) {
+        write(world.baseRoot(), className, supplier(className, method, supplied, returned));
+    }
+
+    @Given("a head revision where static method {string} on {string} defines a supplier returning {string} and returns {string}")
+    public void head_defines_supplier(String method, String className, String supplied, String returned) {
+        write(world.headRoot(), className, supplier(className, method, supplied, returned));
+    }
+
     @Given("a base revision where method {string} on class {string} stores {string} before returning it")
     public void base_stores_before_returning(String method, String className, String expression) {
         write(world.baseRoot(), className, calculator(className, method, expression));
@@ -51,6 +61,12 @@ public class BodyOrderSteps {
     private static String calculator(String className, String method, String expression) {
         return "public class " + className + " {\n    int " + method + "(int a, int b) {\n"
                 + "        int result = " + expression + ";\n        return result;\n    }\n}\n";
+    }
+
+    private static String supplier(String className, String method, String supplied, String returned) {
+        return "public class " + className + " {\n    public static String " + method + "(String str, String first, String last) {\n"
+                + "        java.util.function.Supplier<String> s = () -> { return " + supplied + "; };\n"
+                + "        return " + returned + ";\n    }\n}\n";
     }
 
     private static String list(String className, String method, String body) {
