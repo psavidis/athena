@@ -79,7 +79,7 @@ public final class ChangeGrouper {
             case CHANGE_METHOD_SIGNATURE -> "Change signature of " + key.involvedDescriptions.get(0);
             case FORMATTING_ONLY -> "Formatting: " + key.involvedDescriptions.get(0);
             case RENAME_CLASS -> "Rename class " + arrowJoin(key.involvedDescriptions);
-            case MOVE_CLASS -> "Move class " + arrowJoin(key.involvedDescriptions);
+            case MOVE_CLASS -> "Move class " + classMove(key.involvedDescriptions, representative);
             case ADD_CLASS -> "Add class " + key.involvedDescriptions.get(0);
             case REMOVE_CLASS -> "Remove class " + key.involvedDescriptions.get(0);
             case RENAME_FIELD -> "Rename field " + arrowJoin(key.involvedDescriptions);
@@ -124,6 +124,34 @@ public final class ChangeGrouper {
                 .toList();
         return target.substring(separator + 1) + " into " + target.substring(0, separator)
                 + " (from " + String.join(", ", sources) + ")";
+    }
+
+    /**
+     * A class move's "before -> after" (ticket #335): when the class keeps its name and moves
+     * between packages, each side is prefixed with its shortest distinguishing package suffix,
+     * "impl.ServiceResource -> internal.ServiceResource", instead of reading "X -> X".
+     */
+    private String classMove(List<String> descriptions, DetectedTransformation representative) {
+        String fromPackage = representative.context().getOrDefault(DetectedTransformation.FROM_PACKAGE, "");
+        String toPackage = representative.context().getOrDefault(DetectedTransformation.TO_PACKAGE, "");
+        if (descriptions.size() != 2 || !descriptions.get(0).equals(descriptions.get(1)) || fromPackage.equals(toPackage)) {
+            return arrowJoin(descriptions);
+        }
+        List<String> from = List.of(fromPackage.isEmpty() ? new String[0] : fromPackage.split("\\."));
+        List<String> to = List.of(toPackage.isEmpty() ? new String[0] : toPackage.split("\\."));
+        int shared = 0;
+        while (shared < Math.min(from.size(), to.size())
+                && from.get(from.size() - 1 - shared).equals(to.get(to.size() - 1 - shared))) {
+            shared++;
+        }
+        return distinguishing(from, shared) + descriptions.get(0) + " -> " + distinguishing(to, shared) + descriptions.get(1);
+    }
+
+    /** The package segments needed to tell {@code segments} apart, plus any shared trailing ones, as "a.b." ("" at the root). */
+    private static String distinguishing(List<String> segments, int sharedTrailing) {
+        int start = Math.max(0, segments.size() - sharedTrailing - 1);
+        List<String> suffix = segments.subList(start, segments.size());
+        return suffix.isEmpty() ? "" : String.join(".", suffix) + ".";
     }
 
     /**

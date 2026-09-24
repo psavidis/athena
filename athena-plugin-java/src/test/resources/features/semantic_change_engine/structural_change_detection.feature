@@ -123,3 +123,11 @@ Feature: Structural and mechanical change detection
     And a head revision where class "Account" no longer has the field "balance"
     When the semantic engine detects transformations between the revisions
     Then a "REMOVE_FIELD" transformation is detected involving "Account#balance"
+
+  # Ticket #335: a class moved between packages names both packages.
+
+  Scenario: A class moved between packages under the same name names both packages
+    Given a base revision where class "ServiceResource" lives in package "io.vertx.core.impl"
+    And a head revision where "ServiceResource" lives unchanged in package "io.vertx.core.internal"
+    When the semantic engine detects transformations between the revisions
+    Then the change "Move class impl.ServiceResource -> internal.ServiceResource" is detected

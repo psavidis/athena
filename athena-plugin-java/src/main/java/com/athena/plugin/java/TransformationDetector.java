@@ -975,9 +975,13 @@ public final class TransformationDetector {
                 excludedBaseTypes.add(base.simpleName);
                 excludedHeadTypes.add(renameMatch.simpleName);
             } else if (moveMatch != null) {
+                // The packages travel with the move (ticket #335), so a move between packages that
+                // keeps the class name can name both instead of reading "X -> X".
                 results.add(DetectedTransformation.withDiff(TransformationKind.MOVE_CLASS,
                         List.of(base.simpleName, moveMatch.simpleName), List.of(base.file, moveMatch.file),
-                        base.headerText, moveMatch.headerText));
+                        base.headerText, moveMatch.headerText)
+                        .withContext(DetectedTransformation.FROM_PACKAGE, base.packageName)
+                        .withContext(DetectedTransformation.TO_PACKAGE, moveMatch.packageName));
                 stillUnmatchedBase.remove(base);
                 stillUnmatchedHead.remove(moveMatch);
                 excludedBaseTypes.add(base.simpleName);
@@ -1208,7 +1212,9 @@ public final class TransformationDetector {
         for (Map.Entry<String, ParsedFile> file : files.entrySet()) {
             if (excluded.contains(file.getKey())) continue;
             for (TypeDeclaration<?> type : file.getValue().unit().getTypes()) {
-                collectType(type, type.getNameAsString(), "", file.getKey(), file.getValue().sourceLines(), collected);
+                String packageName = file.getValue().unit().getPackageDeclaration().map(p -> p.getNameAsString()).orElse("");
+                collectType(type, type.getNameAsString(), "", packageName, file.getKey(), file.getValue().sourceLines(),
+                        collected);
             }
         }
         return collected.toParsedRoot();
@@ -1225,7 +1231,8 @@ public final class TransformationDetector {
      * type is a separate {@link ClassInfo}, not part of its outer class's identity.
      */
     private void collectType(TypeDeclaration<?> type, String qualifiedName, String outerTypeAnnotations,
-                             String relativePath, List<String> sourceLines, DeclarationCollector collected) {
+                             String packageName, String relativePath, List<String> sourceLines,
+                             DeclarationCollector collected) {
         String typeAnnotations = (outerTypeAnnotations.isEmpty() ? "" : outerTypeAnnotations + "\n")
                 + type.getNameAsString() + "\t"
                 + type.getAnnotations().stream().map(Node::toString).collect(Collectors.joining(" "));
@@ -1342,13 +1349,13 @@ public final class TransformationDetector {
                     ? declaration.getExtendedTypes().getFirst().map(ClassOrInterfaceType::getNameAsString).orElse("")
                     : "";
             collected.classes.add(new ClassInfo(qualifiedName, relativePath, memberSignatures, headerText, superclass,
-                    DeclarationModifiers.of(type)));
+                    DeclarationModifiers.of(type), packageName));
         }
         collectAnonymousMembers(type, qualifiedName, relativePath, sourceLines, collected);
         for (BodyDeclaration<?> member : type.getMembers()) {
             if (member instanceof TypeDeclaration<?> nested) {
-                collectType(nested, qualifiedName + "." + nested.getNameAsString(), typeAnnotations, relativePath,
-                        sourceLines, collected);
+                collectType(nested, qualifiedName + "." + nested.getNameAsString(), typeAnnotations, packageName,
+                        relativePath, sourceLines, collected);
             }
         }
     }
@@ -1495,7 +1502,7 @@ public final class TransformationDetector {
      * {@code superclass} is the simple name of the class it extends, empty for none (ticket #290).
      */
     private record ClassInfo(String simpleName, String file, Set<String> memberSignatures, String headerText,
-                             String superclass, DeclarationModifiers modifiers) {
+                             String superclass, DeclarationModifiers modifiers, String packageName) {
     }
 
     /**
