@@ -96,6 +96,13 @@ class BodySummaryTest {
     }
 
     @Test
+    void throwingAnAlreadyThrownTypeMoreOftenIsNotTheSameCalls() {
+        assertThat(summaryOf("if (k == 0) { throw new X(); } return t;")
+                .makesSameCallsAs(summaryOf("if (t == null) { throw new X(); } if (k == 0) { throw new X(); } return t;")))
+                .isFalse();
+    }
+
+    @Test
     void aNewThrowOrAnExtraReturnIsNotTheSameCalls() {
         assertThat(summaryOf("return t;").makesSameCallsAs(summaryOf("if (a == 0) { throw new X(); } return t;"))).isFalse();
         assertThat(summaryOf("return t;").makesSameCallsAs(summaryOf("if (a == 0) { return null; } return t;"))).isFalse();

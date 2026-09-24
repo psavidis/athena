@@ -84,11 +84,13 @@ final class BodySummary {
 
     /**
      * Whether {@code head} makes the same calls: the same distinct methods, the same thrown types
-     * and as many return statements (ticket #319). How often a call appears doesn't matter, so
+     * the same number of times (#334), and as many return statements (ticket #319). How often a call appears doesn't matter, so
      * an unrolled loop still makes the same calls. It says nothing about conditions.
      */
     boolean makesSameCallsAs(BodySummary head) {
-        return calls.keySet().equals(head.calls.keySet()) && thrownTypes.keySet().equals(head.thrownTypes.keySet())
+        // Calls by distinct name (an unrolled loop repeats them); throws by count (ticket #334): a
+        // new throw of a type the method already throws is a real change, not a restructuring.
+        return calls.keySet().equals(head.calls.keySet()) && thrownTypes.equals(head.thrownTypes)
                 && returnCount == head.returnCount;
     }
 
