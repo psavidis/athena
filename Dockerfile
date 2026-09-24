@@ -6,10 +6,12 @@ COPY pom.xml .
 COPY athena-core/pom.xml athena-core/pom.xml
 COPY athena-plugin-java/pom.xml athena-plugin-java/pom.xml
 COPY athena-plugin-spring/pom.xml athena-plugin-spring/pom.xml
+COPY athena-plugin-maven/pom.xml athena-plugin-maven/pom.xml
 COPY athena-app/pom.xml athena-app/pom.xml
 COPY athena-core/src ./athena-core/src
 COPY athena-plugin-java/src ./athena-plugin-java/src
 COPY athena-plugin-spring/src ./athena-plugin-spring/src
+COPY athena-plugin-maven/src ./athena-plugin-maven/src
 COPY athena-app/src ./athena-app/src
 RUN mvn -q -DskipTests package -pl athena-app -am
 

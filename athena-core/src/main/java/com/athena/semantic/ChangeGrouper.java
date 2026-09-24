@@ -107,6 +107,10 @@ public final class ChangeGrouper {
                     + (key.involvedDescriptions.size() > 1 ? ": " + key.involvedDescriptions.get(1) : "");
             case PULL_UP_FIELD -> "Pull up field " + pullUp(key.involvedDescriptions);
             case PULL_UP_SYMBOL -> "Pull up " + pullUp(key.involvedDescriptions);
+            case ADD_DEPENDENCY -> "Add " + dependency(key.involvedDescriptions.get(0));
+            case REMOVE_DEPENDENCY -> "Remove " + dependency(key.involvedDescriptions.get(0));
+            case CHANGE_DEPENDENCY -> "Change " + dependency(key.involvedDescriptions.get(0))
+                    + ": " + key.involvedDescriptions.get(1);
             case CHANGE_FIELD_VALUE -> "Change value of " + key.involvedDescriptions.get(0)
                     + ": " + key.involvedDescriptions.get(1);
             case CHANGE_MODIFIERS -> "Change modifiers of " + key.involvedDescriptions.get(0)
@@ -147,6 +151,19 @@ public final class ChangeGrouper {
             shared++;
         }
         return distinguishing(from, shared) + descriptions.get(0) + " -> " + distinguishing(to, shared) + descriptions.get(1);
+    }
+
+    /**
+     * "dependency g:a (module)", or "managed dependency g:a (module)", from a dependency
+     * change's "module#g:a" description, with " [managed]" marking dependencyManagement (#340).
+     */
+    private static String dependency(String description) {
+        int separator = description.indexOf('#');
+        String module = description.substring(0, separator);
+        String coordinate = description.substring(separator + 1);
+        boolean managed = coordinate.endsWith(" [managed]");
+        return (managed ? "managed dependency " + coordinate.substring(0, coordinate.length() - " [managed]".length())
+                : "dependency " + coordinate) + " (" + module + ")";
     }
 
     /** " (imports updated in N files)" for a class move or rename with follow-on import edits (ticket #337). */

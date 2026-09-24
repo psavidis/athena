@@ -37,6 +37,9 @@ const KIND_LABELS: Record<TransformationKind, string> = {
   PULL_UP_SYMBOL: 'Pull up',
   CHANGE_MODIFIERS: 'Modifiers',
   CHANGE_FIELD_VALUE: 'Value changed',
+  ADD_DEPENDENCY: 'Add dependency',
+  REMOVE_DEPENDENCY: 'Remove dependency',
+  CHANGE_DEPENDENCY: 'Dependency change',
 }
 
 const CATEGORY_LABELS = {
