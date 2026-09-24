@@ -22,6 +22,7 @@ Feature: Semantic Canvas — pan/zoom shell and module territory map
 
   Scenario: A territory only referenced by the PR, not changed, is shown as idle
     Given the reviewer is viewing the Semantic Canvas for a PR whose changed modules call into the unmodified "crowdness-common" module
+    When the reviewer shows the unchanged dependencies
     Then the "crowdness-common" territory is marked as idle
     And the "crowdness-common" territory is not marked as touched or new
 
@@ -71,3 +72,20 @@ Feature: Semantic Canvas — pan/zoom shell and module territory map
     Given the reviewer is viewing the Semantic Canvas territory map
     When the reviewer zooms in repeatedly past the maximum scale
     Then the canvas scale does not exceed the maximum allowed scale
+
+  # Ticket #318: the first view is the modules the PR touches.
+
+  Scenario: The Canvas opens on the touched modules and the rails between them
+    Given the reviewer is viewing the Semantic Canvas for a PR touching two modules that also depend on two unchanged modules
+    Then only the two touched territories are shown, with the rail between them
+    And a control offers to show 2 unchanged dependencies
+
+  Scenario: Unchanged dependencies are shown on request and hidden again
+    Given the reviewer is viewing the Semantic Canvas for a PR touching two modules that also depend on two unchanged modules
+    When the reviewer shows the unchanged dependencies
+    Then the unchanged territories are shown as idle, with their rails
+    And hiding them again returns to the touched modules only
+
+  Scenario: No control is offered when nothing unchanged is involved
+    Given the reviewer is viewing the Semantic Canvas for a PR touching only modules with no unchanged dependencies
+    Then no control for unchanged dependencies is offered

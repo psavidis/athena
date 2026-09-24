@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -121,6 +124,8 @@ describe('Semantic Canvas — pan/zoom shell and territory map', () => {
       dependencies: [{ from: 'crowdness-live', to: 'crowdness-common' }],
     })
     renderCanvas()
+    // Unchanged dependencies appear on request (ticket #318).
+    await userEvent.setup().click(await screen.findByRole('button', { name: 'Show 1 unchanged dependency' }))
 
     // Then the "crowdness-common" territory is marked idle, not touched or new
     const territory = await screen.findByRole('button', { name: 'crowdness-common territory' })
@@ -173,7 +178,8 @@ describe('Semantic Canvas — pan/zoom shell and territory map', () => {
       dependencies: [{ from: 'crowdness-live', to: 'crowdness-connect' }],
     })
     renderCanvas()
-    await screen.findByRole('button', { name: 'crowdness-live territory' })
+    await userEvent.setup().click(await screen.findByRole('button', { name: 'Show 1 unchanged dependency' }))
+    await screen.findByRole('button', { name: 'crowdness-connect territory' })
 
     // Then a dependency rail is drawn between the two territories
     const rail = document.querySelector('[data-testid="dependency-rail"][data-from="crowdness-live"][data-to="crowdness-connect"]')
@@ -288,5 +294,78 @@ describe('Semantic Canvas — pan/zoom shell and territory map', () => {
 
     // Then the canvas scale does not exceed the maximum allowed scale
     expect(surface.style.transform).toContain('scale(2.5)')
+  })
+})
+
+describe('Semantic Canvas — first view (ticket #318)', () => {
+  const idle = (moduleName: string): ModuleTopology['territories'][number] => ({
+    moduleName,
+    status: 'IDLE',
+    fileCount: 0,
+    statusSummary: 'unchanged',
+    techStack: 'JAVA',
+    techStackLabel: 'Java',
+    changeKeys: [],
+    testChangeKeys: [],
+  })
+  const WITH_UNCHANGED_DEPENDENCIES: ModuleTopology = {
+    territories: [...TWO_TOUCHED_MODULES.territories, idle('crowdness-common'), idle('crowdness-connect')],
+    dependencies: [
+      { from: 'crowdness-live', to: 'crowdness-ingestion' },
+      { from: 'crowdness-live', to: 'crowdness-common' },
+      { from: 'crowdness-ingestion', to: 'crowdness-connect' },
+    ],
+  }
+
+  it('opens on the touched modules and the rails between them only', async () => {
+    mockTopology(WITH_UNCHANGED_DEPENDENCIES)
+    renderCanvas()
+
+    await screen.findByRole('button', { name: 'crowdness-live territory' })
+    expect(screen.getByRole('button', { name: 'crowdness-ingestion territory' })).toBeVisible()
+    expect(screen.queryByRole('button', { name: 'crowdness-common territory' })).not.toBeInTheDocument()
+    expect(document.querySelectorAll('[data-testid="dependency-rail"]')).toHaveLength(1)
+    expect(screen.getByRole('button', { name: 'Show 2 unchanged dependencies' })).toHaveAttribute('aria-pressed', 'false')
+  })
+
+  it('shows the unchanged dependencies and their rails on request, and hides them again', async () => {
+    mockTopology(WITH_UNCHANGED_DEPENDENCIES)
+    renderCanvas()
+    const user = userEvent.setup()
+
+    await user.click(await screen.findByRole('button', { name: 'Show 2 unchanged dependencies' }))
+
+    expect(await screen.findByRole('button', { name: 'crowdness-common territory' })).toHaveAttribute('data-status', 'IDLE')
+    expect(document.querySelectorAll('[data-testid="dependency-rail"]')).toHaveLength(3)
+
+    await user.click(screen.getByRole('button', { name: 'Hide unchanged dependencies' }))
+
+    expect(screen.queryByRole('button', { name: 'crowdness-common territory' })).not.toBeInTheDocument()
+    expect(document.querySelectorAll('[data-testid="dependency-rail"]')).toHaveLength(1)
+  })
+
+  it('offers no control when there are no unchanged dependencies', async () => {
+    mockTopology(TWO_TOUCHED_MODULES)
+    renderCanvas()
+
+    await screen.findByRole('button', { name: 'crowdness-live territory' })
+    expect(screen.queryByRole('button', { name: /unchanged dependenc/ })).not.toBeInTheDocument()
+  })
+
+  it('opens the keycloak-52898 corpus topology on its 3 touched modules instead of 35', async () => {
+    // The corpus snapshot (evaluation/snapshots/c6a1721/keycloak-52898/topology.json), copied as a fixture.
+    const keycloak = JSON.parse(
+      readFileSync(resolve(dirname(fileURLToPath(import.meta.url)), 'test/fixtures/keycloak-52898-topology.json'), 'utf-8'),
+    ) as ModuleTopology
+    mockTopology(keycloak)
+    renderCanvas()
+    const user = userEvent.setup()
+
+    await screen.findByRole('button', { name: 'services territory' })
+    expect(screen.getAllByTestId('territory')).toHaveLength(3)
+
+    await user.click(screen.getByRole('button', { name: 'Show 32 unchanged dependencies' }))
+
+    expect(screen.getAllByTestId('territory')).toHaveLength(35)
   })
 })
