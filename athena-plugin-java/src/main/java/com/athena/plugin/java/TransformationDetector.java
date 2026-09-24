@@ -150,8 +150,12 @@ public final class TransformationDetector {
                     // call target changed) is deliberately left unclassified here.
                     Optional<String> controlFlowChange = base.controlFlow.describeChangeTo(head.controlFlow);
                     if (controlFlowChange.isPresent()) {
+                        // Still behavioral, but a reviewer should know when the body makes the same
+                        // calls, only structured differently (ticket #319).
+                        String description = controlFlowChange.get()
+                                + (base.bodySummary.makesSameCallsAs(head.bodySummary) ? "; same calls" : "");
                         results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_CONTROL_FLOW,
-                                List.of(base.description(), controlFlowChange.get()), List.of(base.file, head.file),
+                                List.of(base.description(), description), List.of(base.file, head.file),
                                 base.rawWholeDeclaration, head.rawWholeDeclaration));
                     } else if (!base.normalizedBody.equals(head.normalizedBody)) {
                         unexplainedBodyEdits.add(new BodyEdit(base.description(), base.file, head.file,
