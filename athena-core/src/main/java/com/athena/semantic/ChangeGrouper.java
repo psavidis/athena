@@ -78,8 +78,8 @@ public final class ChangeGrouper {
             case REMOVE_SYMBOL -> "Remove " + key.involvedDescriptions.get(0);
             case CHANGE_METHOD_SIGNATURE -> "Change signature of " + key.involvedDescriptions.get(0);
             case FORMATTING_ONLY -> "Formatting: " + key.involvedDescriptions.get(0);
-            case RENAME_CLASS -> "Rename class " + arrowJoin(key.involvedDescriptions);
             case MOVE_CLASS -> "Move class " + classMove(key.involvedDescriptions, representative);
+            case RENAME_CLASS -> "Rename class " + classMove(key.involvedDescriptions, representative);
             case ADD_CLASS -> "Add class " + key.involvedDescriptions.get(0);
             case REMOVE_CLASS -> "Remove class " + key.involvedDescriptions.get(0);
             case RENAME_FIELD -> "Rename field " + arrowJoin(key.involvedDescriptions);
@@ -127,14 +127,14 @@ public final class ChangeGrouper {
     }
 
     /**
-     * A class move's "before -> after" (ticket #335): when the class keeps its name and moves
-     * between packages, each side is prefixed with its shortest distinguishing package suffix,
+     * A class move's or rename's "before -> after" (tickets #335, #336): when the class changes
+     * package, each side is prefixed with its shortest distinguishing package suffix,
      * "impl.ServiceResource -> internal.ServiceResource", instead of reading "X -> X".
      */
     private String classMove(List<String> descriptions, DetectedTransformation representative) {
         String fromPackage = representative.context().getOrDefault(DetectedTransformation.FROM_PACKAGE, "");
         String toPackage = representative.context().getOrDefault(DetectedTransformation.TO_PACKAGE, "");
-        if (descriptions.size() != 2 || !descriptions.get(0).equals(descriptions.get(1)) || fromPackage.equals(toPackage)) {
+        if (descriptions.size() != 2 || fromPackage.equals(toPackage)) {
             return arrowJoin(descriptions);
         }
         List<String> from = List.of(fromPackage.isEmpty() ? new String[0] : fromPackage.split("\\."));
