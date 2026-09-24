@@ -164,6 +164,63 @@ class FrameworkTaxonomyClassifierTest {
         assertThat(matches).isEmpty();
     }
 
+    // ---- Aware callback -> constructor injection (ticket #294) ----
+
+    @Test
+    void correlatesARemovedSetBeanFactoryWithAConstructorReceivingABeanFactory() {
+        Change removedSetter = changeWithDiff(TransformationKind.REMOVE_SYMBOL, "Registrar#setBeanFactory",
+                "public void setBeanFactory(BeanFactory beanFactory) { this.beanFactory = beanFactory; }\n", "");
+        Change addedParameter = changeWithDiff(TransformationKind.ADD_CONSTRUCTOR_PARAMETER, "Registrar#beanFactory",
+                "", "Registrar(BeanFactory beanFactory) { this.beanFactory = beanFactory; }\n");
+
+        Map<Change, SemanticClassification> matches =
+                classifier.classifySpringAwareToConstructorInjection(List.of(removedSetter, addedParameter), frameworkTaxonomy);
+
+        assertThat(matches).containsOnlyKeys(addedParameter);
+        SemanticClassification classification = matches.get(addedParameter);
+        assertThat(classification.concept().id()).isEqualTo("spring-aware-to-constructor-injection");
+        assertThat(classification.beforeEvidenceCount()).isEqualTo(1);
+        assertThat(classification.evidence()).containsExactly(removedSetter.matchedOccurrences().get(0),
+                addedParameter.matchedOccurrences().get(0));
+    }
+
+    @Test
+    void correlatesEachAwareCallbackWithItsOwnType() {
+        Change removedSetter = changeWithDiff(TransformationKind.REMOVE_SYMBOL, "Selector#setBeanClassLoader", "x\n", "");
+        Change addedParameter = changeWithDiff(TransformationKind.ADD_CONSTRUCTOR_PARAMETER, "Selector#classLoader",
+                "", "Selector(ClassLoader classLoader) { this.classLoader = classLoader; }\n");
+
+        assertThat(classifier.classifySpringAwareToConstructorInjection(List.of(removedSetter, addedParameter), frameworkTaxonomy))
+                .containsOnlyKeys(addedParameter);
+    }
+
+    @Test
+    void doesNotCorrelateAConstructorReceivingADifferentType() {
+        Change removedSetter = changeWithDiff(TransformationKind.REMOVE_SYMBOL, "Registrar#setBeanFactory", "x\n", "");
+        Change addedParameter = changeWithDiff(TransformationKind.ADD_CONSTRUCTOR_PARAMETER, "Registrar#environment",
+                "", "Registrar(Environment environment) { this.environment = environment; }\n");
+
+        assertThat(classifier.classifySpringAwareToConstructorInjection(List.of(removedSetter, addedParameter), frameworkTaxonomy))
+                .isEmpty();
+    }
+
+    @Test
+    void doesNotCorrelateAcrossClasses() {
+        Change removedSetter = changeWithDiff(TransformationKind.REMOVE_SYMBOL, "Other#setBeanFactory", "x\n", "");
+        Change addedParameter = changeWithDiff(TransformationKind.ADD_CONSTRUCTOR_PARAMETER, "Registrar#beanFactory",
+                "", "Registrar(BeanFactory beanFactory) { this.beanFactory = beanFactory; }\n");
+
+        assertThat(classifier.classifySpringAwareToConstructorInjection(List.of(removedSetter, addedParameter), frameworkTaxonomy))
+                .isEmpty();
+    }
+
+    @Test
+    void doesNotClassifyARemovedSetterAlone() {
+        Change removedSetter = changeWithDiff(TransformationKind.REMOVE_SYMBOL, "Registrar#setBeanFactory", "x\n", "");
+
+        assertThat(classifier.classifySpringAwareToConstructorInjection(List.of(removedSetter), frameworkTaxonomy)).isEmpty();
+    }
+
     private Change changeWithDiff(TransformationKind kind, String involved, String beforeText, String afterText) {
         return changeWithDiff(kind, List.of(involved), beforeText, afterText);
     }

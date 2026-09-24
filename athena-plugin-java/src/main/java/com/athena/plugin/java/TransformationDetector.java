@@ -25,9 +25,9 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Comparator;
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -36,6 +36,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -1189,15 +1191,22 @@ public final class TransformationDetector {
     }
 
     /**
-     * True if {@code body} contains an assignment of the form
-     * {@code this.<name> = <name>} (whitespace-insensitive around the {@code =}) — the
-     * canonical "constructor-injected field" shape. A text check rather than a full AST
-     * walk of assignment statements, consistent with this detector's existing lightweight
-     * checks for similar structural questions (see {@link #callsMethod}).
+     * True if {@code body} assigns the same-named field an expression that uses the parameter:
+     * {@code this.<name> = <name>}, or a cast or conditional of it ({@code this.<name> =
+     * (Type) <name>}, ticket #294) — the "constructor-injected field" shape. A text check
+     * rather than a full AST walk of assignment statements, consistent with this detector's
+     * existing lightweight checks for similar structural questions (see {@link #callsMethod}).
      */
     private boolean assignsParameterToSameNamedField(String body, String parameterName) {
-        String normalizedBody = body.replaceAll("\\s+", "");
-        return normalizedBody.contains("this." + parameterName + "=" + parameterName + ";");
+        String name = Pattern.quote(parameterName);
+        Matcher assignment = Pattern.compile("this\\s*\\.\\s*" + name + "\\s*=([^;]*);").matcher(body);
+        Pattern usesParameter = Pattern.compile("\\b" + name + "\\b");
+        while (assignment.find()) {
+            if (usesParameter.matcher(assignment.group(1)).find()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private record ParsedRoot(List<MethodInfo> methods, List<FieldInfo> fields, List<ClassInfo> classes,

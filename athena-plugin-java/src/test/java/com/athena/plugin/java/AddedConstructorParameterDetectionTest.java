@@ -54,6 +54,32 @@ class AddedConstructorParameterDetectionTest {
     }
 
     @Test
+    void detectsAConstructorParameterStoredThroughACastOrConditional() {
+        write(baseRoot, "Registrar", "public class Registrar {\n    private Object beanFactory;\n    private Object loader;\n}\n");
+        write(headRoot, "Registrar", "public class Registrar {\n"
+                + "    private Object beanFactory;\n    private Object loader;\n"
+                + "    Registrar(BeanFactory beanFactory, ResourceLoader loader) {\n"
+                + "        this.beanFactory = (ListableBeanFactory) beanFactory;\n"
+                + "        this.loader = (loader instanceof DefaultResourceLoader d) ? d : null;\n"
+                + "    }\n}\n");
+
+        assertThat(new TransformationDetector().detect(baseRoot, headRoot))
+                .filteredOn(t -> t.kind() == TransformationKind.ADD_CONSTRUCTOR_PARAMETER)
+                .extracting(t -> t.involvedDescriptions().get(0))
+                .containsExactlyInAnyOrder("Registrar#beanFactory", "Registrar#loader");
+    }
+
+    @Test
+    void doesNotDetectAParameterWhoseFieldIsAssignedSomethingElse() {
+        write(baseRoot, "Registrar", "public class Registrar {\n    private Object beanFactory;\n}\n");
+        write(headRoot, "Registrar", "public class Registrar {\n    private Object beanFactory;\n"
+                + "    Registrar(BeanFactory beanFactory) {\n        this.beanFactory = null;\n        beanFactory.toString();\n    }\n}\n");
+
+        assertThat(new TransformationDetector().detect(baseRoot, headRoot)).extracting(DetectedTransformation::kind)
+                .doesNotContain(TransformationKind.ADD_CONSTRUCTOR_PARAMETER);
+    }
+
+    @Test
     void doesNotDetectAConstructorParameterThatIsNotAssignedToAField() {
         write(baseRoot, "Calculator", "public class Calculator {\n"
                 + "    public Calculator() {\n"
