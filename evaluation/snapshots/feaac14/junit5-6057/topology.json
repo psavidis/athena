@@ -1,0 +1,178 @@
+{
+  "territories" : [ {
+    "moduleName" : "jupiter-tests",
+    "status" : "TOUCHED",
+    "fileCount" : 6,
+    "statusSummary" : "6 files · 24 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "UkVOQU1FX0NMQVNTClByZWVtcHRpdmVEdXJhdGlvblV0aWxzVGVzdApQcmVlbXB0aXZlVGltZW91dFV0aWxzVGVzdA", "QUREX0NMQVNTCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMuRXhlY3V0YWJsZVByZWNvbmRpdGlvbnM", "QUREX0NMQVNTCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMuU3VwcGxpZXJQcmVjb25kaXRpb25z", "QUREX0NMQVNTClByZWVtcHRpdmVEdXJhdGlvblV0aWxzVGVzdC5QcmVjb25kaXRpb25z", "QUREX0NMQVNTClRpbWVvdXREdXJhdGlvblRlc3RzLlByZWNvbmRpdGlvbnM", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzI2Fzc2VydFRpbWVvdXRGb3JFeGVjdXRhYmxlVGhhdENvbXBsZXRlc0FmdGVyVGhlTmFub1RpbWVvdXQ", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzI2Fzc2VydFRpbWVvdXRGb3JTdXBwbGllclRoYXRDb21wbGV0ZXNBZnRlclRoZU5hbm9UaW1lb3V0", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLkV4ZWN1dGFibGVQcmVjb25kaXRpb25zI25vbk51bGxEdXJhdGlvbg", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLkV4ZWN1dGFibGVQcmVjb25kaXRpb25zI3Bvc2l0aXZlRHVyYXRpb24", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLkV4ZWN1dGFibGVQcmVjb25kaXRpb25zI3RpbWVvdXRyZXByZXNlbnRhYmxlSW5OYW5vcw", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLlN1cHBsaWVyUHJlY29uZGl0aW9ucyNub25OdWxsRHVyYXRpb24", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLlN1cHBsaWVyUHJlY29uZGl0aW9ucyNwb3NpdGl2ZUR1cmF0aW9u", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLlN1cHBsaWVyUHJlY29uZGl0aW9ucyN0aW1lb3V0UmVwcmVzZW50YWJsZUluTmFub3M", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0UHJlZW1wdGl2ZWx5QXNzZXJ0aW9uc1Rlc3RzI2Fzc2VydE5hbm9zZWNvbmRUaW1lb3V0Rm9yU3VwcGxpZXI", "QUREX1NZTUJPTApQcmVlbXB0aXZlRHVyYXRpb25VdGlsc1Rlc3QuUHJlY29uZGl0aW9ucyNwb3NpdGl2ZUR1cmF0aW9u", "QUREX1NZTUJPTApQcmVlbXB0aXZlRHVyYXRpb25VdGlsc1Rlc3QuUHJlY29uZGl0aW9ucyN0aW1lb3V0UmVwcmVzZW50YWJsZUluTmFub3M", "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb25UZXN0cy5QcmVjb25kaXRpb25zI3Bvc2l0aXZlRHVyYXRpb24", "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb25UZXN0cy5QcmVjb25kaXRpb25zI25vbk51bGxVbml0", "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb25UZXN0cy5QcmVjb25kaXRpb25zI3JlcHJlc2VudGFibGVJbk5hbm9z", "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvckV4ZWN1dGFibGVUaGF0VGhyb3dzQW5FeGNlcHRpb24Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk", "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvckV4ZWN1dGFibGVUaGF0VGhyb3dzQW5Bc3NlcnRpb25GYWlsZWRFcnJvcgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRNZXNzYWdlTWF0Y2hlcywgLWFzc2VydE1lc3NhZ2VTdGFydHNXaXRoCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvckV4ZWN1dGFibGVUaGF0Q29tcGxldGVzQWZ0ZXJUaGVUaW1lb3V0", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRNZXNzYWdlTWF0Y2hlcywgLWFzc2VydE1lc3NhZ2VTdGFydHNXaXRoCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvclN1cHBsaWVyVGhhdENvbXBsZXRlc0FmdGVyVGhlVGltZW91dA", "TU9ESUZZX01FVEhPRF9CT0RZClRpbWVvdXRFeHRlbnNpb25UZXN0cyNyZXBvcnRzSWxsZWdhbFRpbWVvdXREdXJhdGlvbnMKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk" ],
+    "testChangeKeys" : [ "UkVOQU1FX0NMQVNTClByZWVtcHRpdmVEdXJhdGlvblV0aWxzVGVzdApQcmVlbXB0aXZlVGltZW91dFV0aWxzVGVzdA", "QUREX0NMQVNTCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMuRXhlY3V0YWJsZVByZWNvbmRpdGlvbnM", "QUREX0NMQVNTCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMuU3VwcGxpZXJQcmVjb25kaXRpb25z", "QUREX0NMQVNTClByZWVtcHRpdmVEdXJhdGlvblV0aWxzVGVzdC5QcmVjb25kaXRpb25z", "QUREX0NMQVNTClRpbWVvdXREdXJhdGlvblRlc3RzLlByZWNvbmRpdGlvbnM", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzI2Fzc2VydFRpbWVvdXRGb3JFeGVjdXRhYmxlVGhhdENvbXBsZXRlc0FmdGVyVGhlTmFub1RpbWVvdXQ", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzI2Fzc2VydFRpbWVvdXRGb3JTdXBwbGllclRoYXRDb21wbGV0ZXNBZnRlclRoZU5hbm9UaW1lb3V0", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLkV4ZWN1dGFibGVQcmVjb25kaXRpb25zI25vbk51bGxEdXJhdGlvbg", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLkV4ZWN1dGFibGVQcmVjb25kaXRpb25zI3Bvc2l0aXZlRHVyYXRpb24", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLkV4ZWN1dGFibGVQcmVjb25kaXRpb25zI3RpbWVvdXRyZXByZXNlbnRhYmxlSW5OYW5vcw", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLlN1cHBsaWVyUHJlY29uZGl0aW9ucyNub25OdWxsRHVyYXRpb24", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLlN1cHBsaWVyUHJlY29uZGl0aW9ucyNwb3NpdGl2ZUR1cmF0aW9u", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLlN1cHBsaWVyUHJlY29uZGl0aW9ucyN0aW1lb3V0UmVwcmVzZW50YWJsZUluTmFub3M", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0UHJlZW1wdGl2ZWx5QXNzZXJ0aW9uc1Rlc3RzI2Fzc2VydE5hbm9zZWNvbmRUaW1lb3V0Rm9yU3VwcGxpZXI", "QUREX1NZTUJPTApQcmVlbXB0aXZlRHVyYXRpb25VdGlsc1Rlc3QuUHJlY29uZGl0aW9ucyNwb3NpdGl2ZUR1cmF0aW9u", "QUREX1NZTUJPTApQcmVlbXB0aXZlRHVyYXRpb25VdGlsc1Rlc3QuUHJlY29uZGl0aW9ucyN0aW1lb3V0UmVwcmVzZW50YWJsZUluTmFub3M", "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb25UZXN0cy5QcmVjb25kaXRpb25zI3Bvc2l0aXZlRHVyYXRpb24", "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb25UZXN0cy5QcmVjb25kaXRpb25zI25vbk51bGxVbml0", "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb25UZXN0cy5QcmVjb25kaXRpb25zI3JlcHJlc2VudGFibGVJbk5hbm9z", "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvckV4ZWN1dGFibGVUaGF0VGhyb3dzQW5FeGNlcHRpb24Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk", "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvckV4ZWN1dGFibGVUaGF0VGhyb3dzQW5Bc3NlcnRpb25GYWlsZWRFcnJvcgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRNZXNzYWdlTWF0Y2hlcywgLWFzc2VydE1lc3NhZ2VTdGFydHNXaXRoCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvckV4ZWN1dGFibGVUaGF0Q29tcGxldGVzQWZ0ZXJUaGVUaW1lb3V0", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRNZXNzYWdlTWF0Y2hlcywgLWFzc2VydE1lc3NhZ2VTdGFydHNXaXRoCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvclN1cHBsaWVyVGhhdENvbXBsZXRlc0FmdGVyVGhlVGltZW91dA", "TU9ESUZZX01FVEhPRF9CT0RZClRpbWVvdXRFeHRlbnNpb25UZXN0cyNyZXBvcnRzSWxsZWdhbFRpbWVvdXREdXJhdGlvbnMKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk" ]
+  }, {
+    "moduleName" : "junit-jupiter-api",
+    "status" : "TOUCHED",
+    "fileCount" : 4,
+    "statusSummary" : "4 files · 16 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX0NMQVNTCkR1cmF0aW9uVXRpbHM", "Q0hBTkdFX0NPTlRST0xfRkxPVwpBc3NlcnRUaW1lb3V0I2Fzc2VydFRpbWVvdXQKY29uZGl0aW9uIGNoYW5nZWQ", "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpBc3NlcnRUaW1lb3V0UHJlZW1wdGl2ZWx5I2Fzc2VydFRpbWVvdXRQcmVlbXB0aXZlbHkKbWVzc2FnZVN1cHBsaWVyICtATnVsbGFibGU", "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0I2NyZWF0ZUV4ZWN1dGlvbkV4Y2VlZGVkVGltZW91dE1lc3NhZ2U", "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2lzUG9zaXRpdmVBbmRSZXByZXNlbnRhYmxlSW5OYW5vcw", "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2lzUG9zaXRpdmU", "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2Zvcm1hdER1cmF0aW9uSW5GcmFjdGlvbmFsTXM", "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2Zvcm1hdER1cmF0aW9uSW5Ncw", "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2hhc1NpZ25pZmljYW50TmFub0ZyYWN0aW9u", "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI25hbm9GcmFjdGlvbg", "TU9ESUZZX01FVEhPRF9CT0RZCitub3ROdWxsLCArY29uZGl0aW9uLCAraXNQb3NpdGl2ZUFuZFJlcHJlc2VudGFibGVJbk5hbm9zCkFzc2VydFRpbWVvdXQjYXNzZXJ0VGltZW91dA", "TU9ESUZZX01FVEhPRF9CT0RZCitub3ROdWxsLCArY29uZGl0aW9uLCAraXNQb3NpdGl2ZUFuZFJlcHJlc2VudGFibGVJbk5hbm9zCkFzc2VydFRpbWVvdXRQcmVlbXB0aXZlbHkjYXNzZXJ0VGltZW91dFByZWVtcHRpdmVseQ", "TU9ESUZZX01FVEhPRF9CT0RZCitmb3JtYXR0ZWQsICtmb3JtYXREdXJhdGlvbkluRnJhY3Rpb25hbE1zLCAtdG9NaWxsaXMsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCkFzc2VydFRpbWVvdXRQcmVlbXB0aXZlbHkjY3JlYXRlQXNzZXJ0aW9uRmFpbHVyZQ", "TU9ESUZZX01FVEhPRF9CT0RZCitub3ROdWxsLCArY29uZGl0aW9uLCAraXNQb3NpdGl2ZUFuZFJlcHJlc2VudGFibGVJbk5hbm9zClByZWVtcHRpdmVUaW1lb3V0VXRpbHMjZXhlY3V0ZVdpdGhQcmVlbXB0aXZlVGltZW91dA", "TU9ESUZZX01FVEhPRF9CT0RZCit0b05hbm9zLCAtdG9NaWxsaXMsIHJldHVybiB0b01pbGxpcygpLCBUaW1lVW5pdC5NSUxMSVNFQ09ORFMgLT4gdG9OYW5vcygpLCBUaW1lVW5pdC5OQU5PU0VDT05EUwpQcmVlbXB0aXZlVGltZW91dFV0aWxzI3Jlc29sdmVGdXR1cmVBbmRIYW5kbGVFeGNlcHRpb24", "QUREX0ZJRUxECkR1cmF0aW9uVXRpbHMjTUFYX05BTk9fRFVSQVRJT04" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "junit-jupiter-engine",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpUaW1lb3V0RHVyYXRpb24jdG9TdHJpbmcKYnJhbmNoIHJlbW92ZWQ", "RVhUUkFDVF9NRVRIT0QKVGltZW91dER1cmF0aW9uI2Zvcm1hdFRpbWVvdXREdXJhdGlvbgpUaW1lb3V0RHVyYXRpb24jdG9TdHJpbmc", "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb24jbWF4UmVwcmVzZW50YWJsZVZhbHVlRm9y" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "junit-jupiter",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "junit-jupiter-migrationsupport",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "junit-platform-launcher",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "junit-platform-suite-engine",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "junit-platform-testkit",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "junit-platform-commons",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "junit-platform-reporting",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "junit-bom",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "junit-platform-engine",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "junit-jupiter-params",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "jupiter-tests",
+    "to" : "junit-jupiter"
+  }, {
+    "from" : "jupiter-tests",
+    "to" : "junit-jupiter-migrationsupport"
+  }, {
+    "from" : "jupiter-tests",
+    "to" : "junit-platform-launcher"
+  }, {
+    "from" : "jupiter-tests",
+    "to" : "junit-platform-suite-engine"
+  }, {
+    "from" : "jupiter-tests",
+    "to" : "junit-platform-testkit"
+  }, {
+    "from" : "jupiter-tests",
+    "to" : "junit-platform-commons"
+  }, {
+    "from" : "jupiter-tests",
+    "to" : "junit-jupiter-api"
+  }, {
+    "from" : "jupiter-tests",
+    "to" : "junit-jupiter-engine"
+  }, {
+    "from" : "jupiter-tests",
+    "to" : "junit-platform-reporting"
+  }, {
+    "from" : "junit-jupiter-api",
+    "to" : "junit-bom"
+  }, {
+    "from" : "junit-jupiter-api",
+    "to" : "junit-platform-commons"
+  }, {
+    "from" : "junit-jupiter-api",
+    "to" : "junit-jupiter-engine"
+  }, {
+    "from" : "junit-jupiter-api",
+    "to" : "junit-platform-launcher"
+  }, {
+    "from" : "junit-jupiter-api",
+    "to" : "junit-platform-engine"
+  }, {
+    "from" : "junit-jupiter-api",
+    "to" : "junit-jupiter-params"
+  }, {
+    "from" : "junit-jupiter-engine",
+    "to" : "junit-bom"
+  }, {
+    "from" : "junit-jupiter-engine",
+    "to" : "junit-platform-engine"
+  }, {
+    "from" : "junit-jupiter-engine",
+    "to" : "junit-jupiter-api"
+  }, {
+    "from" : "junit-jupiter-engine",
+    "to" : "junit-platform-launcher"
+  } ]
+}

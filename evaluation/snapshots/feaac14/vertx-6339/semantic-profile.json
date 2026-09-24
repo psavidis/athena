@@ -1,0 +1,201 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Move",
+    "conceptDescription" : "A symbol kept its behavior and name but changed its enclosing type/location.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-public class ServiceResource<A, R> {\n+public abstract class ServiceResource<A, R> {\n \n   private boolean started;\n   private CloseableResource<?> hook;\n   private final Lock lock;\n \n   private Task<?> head;\n   private Task<?> tail;\n   private boolean inProgress;\n \n   public ServiceResource() {\n     this.started = false;\n     this.lock = new ReentrantLock();\n   }\n \n   // Testing purpose\n-  public boolean hasPendingTasks() {\n+  protected final boolean hasPendingTasks() {\n     lock.lock();\n     try {\n       return tail != null;\n     } finally {\n       lock.unlock();\n     }\n   }\n \n   private void checkPendingTask() {\n     lock.lock();\n     Task<?> task;\n     if (!inProgress && (task = head) != null) {\n       inProgress = true;\n       lock.unlock();\n       task.begin();\n     } else {\n       lock.unlock();\n     }\n   }\n \n   private void addLast(Task<?> update) {\n     if (tail == null) {\n       head = tail = update;\n     } else {\n       tail.next = update;\n       tail = update;\n     }\n   }\n \n   private abstract class Task<T> {\n     final Promise<T> completion;\n     Task<?> next;\n \n     Task(Promise<T> completion) {\n       this.completion = completion;\n     }\n \n     abstract void begin();\n \n     final void end() {\n       lock.lock();\n       Task<?> n = next;\n       if (n != null) {\n         head = n;\n         lock.unlock();\n         n.begin();\n       } else {\n         head = tail = null;\n         inProgress = false;\n         lock.unlock();\n       }\n     }\n   }\n \n   /**\n    * Start the service with the provided {@code context} and {@code args}\n    * @param context the start context\n    * @param args the start arguments\n    * @return a future signaling the completion\n    */\n   public final Future<R> start(ContextInternal context, A args) {\n     try {\n       lock.lock();\n       if (!inProgress) {\n         if (started) {\n           return context.failedFuture(new IllegalStateException());\n         } else {\n           Promise<R> completion = context.promise();\n           Start start = new Start(completion, context, args);\n           addLast(start);\n           return completion.future();\n         }\n       } else {\n         Promise<R> completion = context.promise();\n         Start start = new Start(completion, context, args);\n         addLast(start);\n         return completion.future();\n       }\n     } finally {\n       lock.unlock();\n       checkPendingTask();\n     }\n   }\n \n   /**\n    * Calls {@code stop(context, Duration.ZERO, result)}.\n    */\n   public final Future<?> stop(ContextInternal context) {\n     return stop(context, Duration.ZERO);\n   }\n \n   /**\n    * Stop the service, the provided {@code context} is used to signal the return, the {@code timeout}\n    * argument is transmitted to the underlying shutdown operation.\n    *\n    * @param context factory for creating the return future\n    * @param timeout the stop timeout\n    * @return a future signaling the completion\n    */\n   public final Future<Void> stop(ContextInternal context, Duration timeout) {\n     try {\n       lock.lock();\n       if (!inProgress) {\n         if (!started) {\n           return context.succeededFuture();\n         } else {\n           Promise<Void> completion = context.promise();\n           Stop stop = new Stop(completion, timeout);\n           addLast(stop);\n           return completion.future();\n         }\n       } else {\n         Promise<Void> completion = context.promise();\n         Stop stop = new Stop(completion, timeout);\n         addLast(stop);\n         return completion.future();\n       }\n     } finally {\n       lock.unlock();\n       checkPendingTask();\n     }\n   }\n \n   private class Start extends Task<R> {\n \n     private final ContextInternal context;\n     private final A args;\n \n     Start(Promise<R> completion, ContextInternal context, A args) {\n       super(completion);\n       this.context = context;\n       this.args = args;\n     }\n \n     @Override\n     void begin() {\n       lock.lock();\n       if (started) {\n         lock.unlock();\n         completion.fail(new IllegalStateException());\n         end();\n       } else {\n         lock.unlock();\n         Future<R> f = safeStart(context, args);\n         f.onComplete(ar -> {\n           if (ar.succeeded()) {\n             // Remove map empty ????\n             var res = context.registerResource(timeout -> safeStop(context, args, timeout));\n             if (res == null) {\n               // Owner stopped: we close immediately since we will not be able to receive close signal\n               Future<Void> result2 = safeStop(context, args, Duration.ZERO);\n               result2.onComplete(ar2 -> {\n                 completion.fail(new IllegalStateException(\"Owner undeployed or closed\"));\n                 end();\n               });\n             } else {\n               lock.lock();\n               hook = res;\n               started = true;\n               lock.unlock();\n               completion.succeed(ar.result());\n               end();\n             }\n           } else {\n             completion.fail(ar.cause());\n             end();\n           }\n         });\n       }\n     }\n   }\n \n   private class Stop extends Task<Void> {\n \n     private final Duration timeout;\n \n     Stop(Promise<Void> completion, Duration timeout) {\n       super(completion);\n       this.timeout = timeout;\n     }\n \n     @Override\n     void begin() {\n       lock.lock();\n       if (started) {\n         Future<Void> f;\n         Future<Void> h = hook.shutdown(timeout);\n         hook = null;\n         lock.unlock();\n         f = h;\n         f.onComplete(ar -> {\n           lock.lock();\n           started = false;\n           lock.unlock();\n           completion.succeed();\n           end();\n         });\n       } else {\n         lock.unlock();\n         completion.succeed();\n         end();\n       }\n     }\n   }\n \n   private Future<R> safeStart(ContextInternal context, A args) {\n     try {\n       return startImpl(context, args);\n     } catch (Throwable failure) {\n       return context.failedFuture(failure);\n     }\n   }\n \n   private Future<Void> safeStop(ContextInternal context,  A args, Duration timeout) {\n     try {\n       return stopImpl(context, args, timeout).mapEmpty();\n     } catch (Throwable failure) {\n       return context.failedFuture(failure);\n     }\n   }\n \n   /**\n    * Implementation of start.\n    *\n    * @implSpec this returns a succeeded future\n    * @param context the start context\n    * @param args the start arguments\n    * @return the future result\n    */\n   protected Future<R> startImpl(ContextInternal context, A args) {\n     return context.succeededFuture();\n   }\n \n   /**\n    * Implementation of stop.\n    *\n    * @implNote the provided {@code  context} is the context used to start the service\n    * @implSpec this returns a succeeded future\n    * @param context the stop context\n    * @param args start args\n    * @param timeout the stop timeout\n    * @return the future result\n    */\n   protected Future<?> stopImpl(ContextInternal context, A args, Duration timeout) {\n     return context.succeededFuture();\n   }\n }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/datagram/impl/DatagramSocketImpl.java", "vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpServer.java", "vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicClient.java", "vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicServer.java", "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetServer.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Move",
+    "conceptDescription" : "A symbol kept its behavior and name but changed its enclosing type/location.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Move",
+    "conceptDescription" : "A symbol kept its behavior and name but changed its enclosing type/location.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Move",
+    "conceptDescription" : "A symbol kept its behavior and name but changed its enclosing type/location.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Rename",
+    "conceptDescription" : "A symbol (class, method, or field) kept its behavior but changed name.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-public class CleanableObject<T> {\n+public class CleanableResource<R> {\n \n   public static final Duration DEFAULT_CLEAN_TIMEOUT = Duration.ofSeconds(30);\n \n   private static class Action<T> extends WeakReference<CloseableResource<? extends T>> implements Runnable {\n \n     private Duration timeout = DEFAULT_CLEAN_TIMEOUT;\n     private Future<Void> closeFuture;\n \n     public Action(CloseableResource<? extends T> resource) {\n       super(resource);\n     }\n \n     @Override\n     public void run() {\n       CloseableResource<? extends T> d = get();\n       if (d != null) {\n         closeFuture = d.shutdown(timeout);\n       } else {\n         closeFuture = Future.succeededFuture();\n       }\n     }\n   }\n \n   private Cleaner.Cleanable cleanable;\n-  private Action<T> action;\n+  private Action<R> action;\n \n-  public CleanableObject(Cleaner cleaner, CloseableResource<? extends T> dispose) {\n+  public CleanableResource(Cleaner cleaner, CloseableResource<? extends R> dispose) {\n     this.action = new Action<>(dispose);\n     this.cleanable = cleaner.register(this, action);\n   }\n \n-  protected final T get() {\n-    Action<T> action = this.action;\n-    CloseableResource<? extends T> resource;\n+  /**\n+   * @return the actual resource or {@code null} when not available\n+   */\n+  protected final R get() {\n+    Action<R> action = this.action;\n+    CloseableResource<? extends R> resource;\n     return action != null && (resource = action.get()) != null ? resource.get() : null;\n   }\n \n-  protected final T getOrDie() {\n-    T resource = get();\n+  /**\n+   * @return the actual resource or throws an {@link IllegalStateException} when not available\n+   */\n+  protected final R getOrDie() {\n+    R resource = get();\n     if (resource == null) {\n       throw new IllegalStateException();\n     } else {\n       return resource;\n     }\n   }\n \n   public final Future<Void> shutdown(Duration timeout) {\n     if (timeout.isNegative()) {\n       throw new IllegalArgumentException();\n     }\n-    Action<T> action;\n+    Action<R> action;\n     Cleaner.Cleanable cleanable;\n     synchronized (this) {\n       action = this.action;\n       cleanable = this.cleanable;\n       this.action = null;\n       this.cleanable = null;\n     }\n     if (action != null) {\n       assert cleanable != null;\n       action.timeout = timeout;\n       cleanable.clean();\n       return action.closeFuture;\n     } else {\n       return Future.succeededFuture();\n     }\n   }\n }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java", "vertx-core/src/main/java/io/vertx/core/internal/CleanableResource.java", "vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpClient.java", "vertx-core/src/main/java/io/vertx/core/http/impl/CleanableWebSocketClient.java", "vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutorImpl.java", "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetClient.java", "vertx-core/src/test/java/io/vertx/tests/vertx/CleanableObjectTest.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Rename",
+    "conceptDescription" : "A symbol (class, method, or field) kept its behavior but changed name.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java", "vertx-core/src/main/java/io/vertx/core/internal/CleanableResource.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add Constructor Parameter",
+    "conceptDescription" : "A constructor gained a parameter that it assigns straight to a same-named field.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+Task(Promise<T> completion) {\n+      this.completion = completion;\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add Constructor Parameter",
+    "conceptDescription" : "A constructor gained a parameter that it assigns straight to a same-named field.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+Start(Promise<R> completion, ContextInternal context, A args) {\n+      super(completion);\n+      this.context = context;\n+      this.args = args;\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add Constructor Parameter",
+    "conceptDescription" : "A constructor gained a parameter that it assigns straight to a same-named field.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+Start(Promise<R> completion, ContextInternal context, A args) {\n+      super(completion);\n+      this.context = context;\n+      this.args = args;\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add Constructor Parameter",
+    "conceptDescription" : "A constructor gained a parameter that it assigns straight to a same-named field.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+Stop(Promise<Void> completion, Duration timeout) {\n+      super(completion);\n+      this.timeout = timeout;\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in ServiceResourceTest",
+    "conceptDescription" : "5 changes in test code of ServiceResourceTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+public boolean isDone() {\n+      return !super.hasPendingTasks();\n+    }", " @Test\n   public void startServiceAfterUndeploy(Checkpoint checkpoint) {\n     AtomicInteger stop = new AtomicInteger();\n     Promise<Void> continuation = context.promise();\n     TestResource resource = new TestResource() {\n       @Override\n       protected Future<Void> startImpl(ContextInternal context, Void args) {\n         checkpoint.succeed();\n         return continuation.future();\n       }\n       @Override\n       protected Future<Void> stopImpl(ContextInternal context, Void args, Duration timeout) {\n         stop.incrementAndGet();\n         return context.succeededFuture();\n       }\n     };\n     Future<Void> start = resource.start(context, null);\n     checkpoint.awaitSuccess();\n     vertx.undeploy(context.deploymentID()).await();\n     assertEquals(0, stop.get());\n     continuation.succeed();\n     try {\n       start.await();\n       fail();\n     } catch (IllegalStateException expected) {\n     }\n     assertEquals(1, stop.get());\n-    TestUtils.assertWaitUntil(() -> !resource.hasPendingTasks());\n+    TestUtils.assertWaitUntil(() -> resource.isDone());\n   }", " @Test\n   public void testStopSuccess() {\n     ContextInternal context = (ContextInternal) vertx.getOrCreateContext();\n     AtomicInteger stop = new AtomicInteger();\n     AtomicReference<Duration> timeoutRef = new AtomicReference<>();\n     Promise<Void> continuation = context.promise();\n     TestResource resource = new TestResource() {\n       @Override\n       protected Future<Void> stopImpl(ContextInternal context, Void args, Duration timeout) {\n         timeoutRef.set(timeout);\n         stop.incrementAndGet();\n         return continuation.future();\n       }\n     };\n     resource.start(context, null).await();\n     Duration timeout = Duration.ofSeconds(1);\n     Future<?> stopped = resource.stop((ContextInternal) vertx.getOrCreateContext(), timeout);\n     TestUtils.assertWaitUntil(() -> stop.get() == 1);\n     continuation.succeed();\n     stopped.await();\n-    TestUtils.assertWaitUntil(() -> !resource.hasPendingTasks());\n+    TestUtils.assertWaitUntil(() -> resource.isDone());\n     assertEquals(timeout, timeoutRef.get());\n   }", " @Repeat(times = 1000)\n   @Test\n   public void testStartingStop() {\n     ContextInternal context = (ContextInternal) vertx.getOrCreateContext();\n     Promise<Void> startContinuation = context.promise();\n     Promise<Void> stopContinuation = context.promise();\n     AtomicInteger stop = new AtomicInteger();\n     TestResource resource = new TestResource() {\n       @Override\n       public Future<Void> startImpl(ContextInternal context, Void args) {\n         return startContinuation.future();\n       }\n       @Override\n       protected Future<Void> stopImpl(ContextInternal context, Void args, Duration timeout) {\n         stop.incrementAndGet();\n         return stopContinuation.future();\n       }\n     };\n     Future<Void> started = resource.start(context, null);\n     Future<?> stopped = resource.stop((ContextInternal) vertx.getOrCreateContext());\n     startContinuation.succeed();\n     TestUtils.assertWaitUntil(() -> stop.get() == 1);\n     assertTrue(started.isComplete());\n     assertFalse(stopped.isComplete());\n     stopContinuation.succeed();\n     started.await();\n     stopped.await();\n-    TestUtils.assertWaitUntil(() -> !resource.hasPendingTasks());\n+    TestUtils.assertWaitUntil(() -> resource.isDone());\n   }", " @Repeat(times = 1000)\n   @Test\n   public void testStopAfterStartFailure() {\n     AtomicInteger stop = new AtomicInteger();\n     VertxException failure = new VertxException(\"\");\n     Promise<Void> continuation = context.promise();\n     TestResource resource = new TestResource() {\n       @Override\n       protected Future<Void> startImpl(ContextInternal context, Void args) {\n         return continuation.future();\n       }\n       @Override\n       protected Future<Void> stopImpl(ContextInternal context, Void args, Duration timeout) {\n         stop.incrementAndGet();\n         return context.promise();\n       }\n     };\n     Future<Void> started = resource.start((ContextInternal) vertx.getOrCreateContext(), null);\n     Future<?> stopped = resource.stop((ContextInternal) vertx.getOrCreateContext());\n     continuation.fail(failure);\n     try {\n       started.await();\n       fail();\n     } catch (VertxException expected) {\n     }\n     stopped.await();\n     assertEquals(0, stop.get());\n-    TestUtils.assertWaitUntil(() -> !resource.hasPendingTasks());\n+    TestUtils.assertWaitUntil(() -> resource.isDone());\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/test/java/io/vertx/tests/vertx/ServiceResourceTest.java" ],
+    "groupedMoveCount" : 5
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in CleanableObjectTest",
+    "conceptDescription" : "1 change in test code of CleanableObjectTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Test\n   public void testCloseCollectedResource() {\n     AtomicBoolean actuallyShutdown = new AtomicBoolean();\n     CloseableResource<Object> resource = new CloseableResource<>() {\n       @Override\n       public Object get() {\n         return null;\n       }\n       @Override\n       public Future<Void> shutdown(Duration timeout) {\n         actuallyShutdown.set(true);\n         return Future.succeededFuture();\n       }\n     };\n-    CleanableObject<Object> object = new CleanableObject<>(cleaner, resource);\n+    CleanableResource<Object> object = new CleanableResource<>(cleaner, resource);\n     WeakReference<CloseableResource<Object>> reference = new WeakReference<>(resource);\n     resource = null;\n     runGC(() -> reference.get() == null);\n     Future<Void> shutdown = object.shutdown(Duration.ZERO);\n     assertNotNull(shutdown);\n     assertTrue(shutdown.succeeded());\n     assertFalse(actuallyShutdown.get());\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/test/java/io/vertx/tests/vertx/CleanableObjectTest.java" ],
+    "groupedMoveCount" : 1
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Move Responsibility",
+    "conceptDescription" : "A responsibility moved from one type/module to another.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-public class ServiceResource<A, R> {\n+public abstract class ServiceResource<A, R> {\n \n   private boolean started;\n   private CloseableResource<?> hook;\n   private final Lock lock;\n \n   private Task<?> head;\n   private Task<?> tail;\n   private boolean inProgress;\n \n   public ServiceResource() {\n     this.started = false;\n     this.lock = new ReentrantLock();\n   }\n \n   // Testing purpose\n-  public boolean hasPendingTasks() {\n+  protected final boolean hasPendingTasks() {\n     lock.lock();\n     try {\n       return tail != null;\n     } finally {\n       lock.unlock();\n     }\n   }\n \n   private void checkPendingTask() {\n     lock.lock();\n     Task<?> task;\n     if (!inProgress && (task = head) != null) {\n       inProgress = true;\n       lock.unlock();\n       task.begin();\n     } else {\n       lock.unlock();\n     }\n   }\n \n   private void addLast(Task<?> update) {\n     if (tail == null) {\n       head = tail = update;\n     } else {\n       tail.next = update;\n       tail = update;\n     }\n   }\n \n   private abstract class Task<T> {\n     final Promise<T> completion;\n     Task<?> next;\n \n     Task(Promise<T> completion) {\n       this.completion = completion;\n     }\n \n     abstract void begin();\n \n     final void end() {\n       lock.lock();\n       Task<?> n = next;\n       if (n != null) {\n         head = n;\n         lock.unlock();\n         n.begin();\n       } else {\n         head = tail = null;\n         inProgress = false;\n         lock.unlock();\n       }\n     }\n   }\n \n   /**\n    * Start the service with the provided {@code context} and {@code args}\n    * @param context the start context\n    * @param args the start arguments\n    * @return a future signaling the completion\n    */\n   public final Future<R> start(ContextInternal context, A args) {\n     try {\n       lock.lock();\n       if (!inProgress) {\n         if (started) {\n           return context.failedFuture(new IllegalStateException());\n         } else {\n           Promise<R> completion = context.promise();\n           Start start = new Start(completion, context, args);\n           addLast(start);\n           return completion.future();\n         }\n       } else {\n         Promise<R> completion = context.promise();\n         Start start = new Start(completion, context, args);\n         addLast(start);\n         return completion.future();\n       }\n     } finally {\n       lock.unlock();\n       checkPendingTask();\n     }\n   }\n \n   /**\n    * Calls {@code stop(context, Duration.ZERO, result)}.\n    */\n   public final Future<?> stop(ContextInternal context) {\n     return stop(context, Duration.ZERO);\n   }\n \n   /**\n    * Stop the service, the provided {@code context} is used to signal the return, the {@code timeout}\n    * argument is transmitted to the underlying shutdown operation.\n    *\n    * @param context factory for creating the return future\n    * @param timeout the stop timeout\n    * @return a future signaling the completion\n    */\n   public final Future<Void> stop(ContextInternal context, Duration timeout) {\n     try {\n       lock.lock();\n       if (!inProgress) {\n         if (!started) {\n           return context.succeededFuture();\n         } else {\n           Promise<Void> completion = context.promise();\n           Stop stop = new Stop(completion, timeout);\n           addLast(stop);\n           return completion.future();\n         }\n       } else {\n         Promise<Void> completion = context.promise();\n         Stop stop = new Stop(completion, timeout);\n         addLast(stop);\n         return completion.future();\n       }\n     } finally {\n       lock.unlock();\n       checkPendingTask();\n     }\n   }\n \n   private class Start extends Task<R> {\n \n     private final ContextInternal context;\n     private final A args;\n \n     Start(Promise<R> completion, ContextInternal context, A args) {\n       super(completion);\n       this.context = context;\n       this.args = args;\n     }\n \n     @Override\n     void begin() {\n       lock.lock();\n       if (started) {\n         lock.unlock();\n         completion.fail(new IllegalStateException());\n         end();\n       } else {\n         lock.unlock();\n         Future<R> f = safeStart(context, args);\n         f.onComplete(ar -> {\n           if (ar.succeeded()) {\n             // Remove map empty ????\n             var res = context.registerResource(timeout -> safeStop(context, args, timeout));\n             if (res == null) {\n               // Owner stopped: we close immediately since we will not be able to receive close signal\n               Future<Void> result2 = safeStop(context, args, Duration.ZERO);\n               result2.onComplete(ar2 -> {\n                 completion.fail(new IllegalStateException(\"Owner undeployed or closed\"));\n                 end();\n               });\n             } else {\n               lock.lock();\n               hook = res;\n               started = true;\n               lock.unlock();\n               completion.succeed(ar.result());\n               end();\n             }\n           } else {\n             completion.fail(ar.cause());\n             end();\n           }\n         });\n       }\n     }\n   }\n \n   private class Stop extends Task<Void> {\n \n     private final Duration timeout;\n \n     Stop(Promise<Void> completion, Duration timeout) {\n       super(completion);\n       this.timeout = timeout;\n     }\n \n     @Override\n     void begin() {\n       lock.lock();\n       if (started) {\n         Future<Void> f;\n         Future<Void> h = hook.shutdown(timeout);\n         hook = null;\n         lock.unlock();\n         f = h;\n         f.onComplete(ar -> {\n           lock.lock();\n           started = false;\n           lock.unlock();\n           completion.succeed();\n           end();\n         });\n       } else {\n         lock.unlock();\n         completion.succeed();\n         end();\n       }\n     }\n   }\n \n   private Future<R> safeStart(ContextInternal context, A args) {\n     try {\n       return startImpl(context, args);\n     } catch (Throwable failure) {\n       return context.failedFuture(failure);\n     }\n   }\n \n   private Future<Void> safeStop(ContextInternal context,  A args, Duration timeout) {\n     try {\n       return stopImpl(context, args, timeout).mapEmpty();\n     } catch (Throwable failure) {\n       return context.failedFuture(failure);\n     }\n   }\n \n   /**\n    * Implementation of start.\n    *\n    * @implSpec this returns a succeeded future\n    * @param context the start context\n    * @param args the start arguments\n    * @return the future result\n    */\n   protected Future<R> startImpl(ContextInternal context, A args) {\n     return context.succeededFuture();\n   }\n \n   /**\n    * Implementation of stop.\n    *\n    * @implNote the provided {@code  context} is the context used to start the service\n    * @implSpec this returns a succeeded future\n    * @param context the stop context\n    * @param args start args\n    * @param timeout the stop timeout\n    * @return the future result\n    */\n   protected Future<?> stopImpl(ContextInternal context, A args, Duration timeout) {\n     return context.succeededFuture();\n   }\n }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/datagram/impl/DatagramSocketImpl.java", "vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpServer.java", "vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicClient.java", "vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicServer.java", "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetServer.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Move Responsibility",
+    "conceptDescription" : "A responsibility moved from one type/module to another.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Move Responsibility",
+    "conceptDescription" : "A responsibility moved from one type/module to another.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Move Responsibility",
+    "conceptDescription" : "A responsibility moved from one type/module to another.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "ARCHITECTURE",
+    "conceptName" : "Driving Adapter",
+    "conceptDescription" : "An adapter that invokes the application through an inbound port.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-public class CleanableObject<T> {\n+public class CleanableResource<R> {\n \n   public static final Duration DEFAULT_CLEAN_TIMEOUT = Duration.ofSeconds(30);\n \n   private static class Action<T> extends WeakReference<CloseableResource<? extends T>> implements Runnable {\n \n     private Duration timeout = DEFAULT_CLEAN_TIMEOUT;\n     private Future<Void> closeFuture;\n \n     public Action(CloseableResource<? extends T> resource) {\n       super(resource);\n     }\n \n     @Override\n     public void run() {\n       CloseableResource<? extends T> d = get();\n       if (d != null) {\n         closeFuture = d.shutdown(timeout);\n       } else {\n         closeFuture = Future.succeededFuture();\n       }\n     }\n   }\n \n   private Cleaner.Cleanable cleanable;\n-  private Action<T> action;\n+  private Action<R> action;\n \n-  public CleanableObject(Cleaner cleaner, CloseableResource<? extends T> dispose) {\n+  public CleanableResource(Cleaner cleaner, CloseableResource<? extends R> dispose) {\n     this.action = new Action<>(dispose);\n     this.cleanable = cleaner.register(this, action);\n   }\n \n-  protected final T get() {\n-    Action<T> action = this.action;\n-    CloseableResource<? extends T> resource;\n+  /**\n+   * @return the actual resource or {@code null} when not available\n+   */\n+  protected final R get() {\n+    Action<R> action = this.action;\n+    CloseableResource<? extends R> resource;\n     return action != null && (resource = action.get()) != null ? resource.get() : null;\n   }\n \n-  protected final T getOrDie() {\n-    T resource = get();\n+  /**\n+   * @return the actual resource or throws an {@link IllegalStateException} when not available\n+   */\n+  protected final R getOrDie() {\n+    R resource = get();\n     if (resource == null) {\n       throw new IllegalStateException();\n     } else {\n       return resource;\n     }\n   }\n \n   public final Future<Void> shutdown(Duration timeout) {\n     if (timeout.isNegative()) {\n       throw new IllegalArgumentException();\n     }\n-    Action<T> action;\n+    Action<R> action;\n     Cleaner.Cleanable cleanable;\n     synchronized (this) {\n       action = this.action;\n       cleanable = this.cleanable;\n       this.action = null;\n       this.cleanable = null;\n     }\n     if (action != null) {\n       assert cleanable != null;\n       action.timeout = timeout;\n       cleanable.clean();\n       return action.closeFuture;\n     } else {\n       return Future.succeededFuture();\n     }\n   }\n }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java", "vertx-core/src/main/java/io/vertx/core/internal/CleanableResource.java", "vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpClient.java", "vertx-core/src/main/java/io/vertx/core/http/impl/CleanableWebSocketClient.java", "vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutorImpl.java", "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetClient.java", "vertx-core/src/test/java/io/vertx/tests/vertx/CleanableObjectTest.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Change API Responsibility",
+    "conceptDescription" : "What a public API is responsible for doing changed.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-\n+Task(Promise<T> completion) {\n+      this.completion = completion;\n+    }", "-\n+Start(Promise<R> completion, ContextInternal context, A args) {\n+      super(completion);\n+      this.context = context;\n+      this.args = args;\n+    }", "-\n+Start(Promise<R> completion, ContextInternal context, A args) {\n+      super(completion);\n+      this.context = context;\n+      this.args = args;\n+    }", "-\n+Stop(Promise<Void> completion, Duration timeout) {\n+      super(completion);\n+      this.timeout = timeout;\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+    "groupedMoveCount" : 4
+  } ]
+}

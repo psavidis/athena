@@ -1,0 +1,7 @@
+[ {
+  "entity" : "StringUtils",
+  "description" : "Modify body of StringUtils#substringAfter: return str -> EMPTY_STRING"
+}, {
+  "entity" : "StringUtilsTest",
+  "description" : "Add StringUtilsTest#testSubstringAfter"
+} ]

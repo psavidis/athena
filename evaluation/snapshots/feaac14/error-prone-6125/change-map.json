@@ -1,0 +1,675 @@
+{
+  "prTitle" : "Add `allowedPaths` to `@RestrictedApi` and `@RestrictedInheritance`",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 2,
+    "STRUCTURAL" : 26,
+    "UNKNOWN" : 4,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTb3VyY2VQYXRoTWF0Y2hlciNjYW5vbmljYWxpemVQYXRoCmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of SourcePathMatcher#canonicalizePath: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZXN0cmljdGVkQXBpQ2hlY2tlciNtYXRjaEFubm90YXRpb24KYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of RestrictedApiChecker#matchAnnotation: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUmVzdHJpY3RlZEFwaUNoZWNrZXIjY2hlY2tSZXN0cmljdGlvbg",
+    "description" : "Change signature of RestrictedApiChecker#checkRestriction",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUmVzdHJpY3RlZEFwaUNoZWNrZXIjc2hvdWxkQWxsb3dXaXRoV2FybmluZw",
+    "description" : "Change signature of RestrictedApiChecker#shouldAllowWithWarning",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZXN0cmljdGVkQXBpQ2hlY2tlciNzaG91bGRBbGxvdw",
+    "description" : "Remove RestrictedApiChecker#shouldAllow",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VQYXRoTWF0Y2hlclRlc3QjbmVzdGVkUGF0aF9leGVjcm9vdF9ub3RFeGVtcHRlZA",
+    "description" : "Add SourcePathMatcherTest#nestedPath_execroot_notExempted",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiN2YWxpZGF0ZUFubm90YXRpb24",
+    "description" : "Add Restriction#validateAnnotation",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNmcm9t",
+    "description" : "Add Restriction#from",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNpc1BhdGhPclRlc3Rvbmx5RXhlbXB0",
+    "description" : "Add Restriction#isPathOrTestonlyExempt",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNpc0FsbG93bGlzdGVk",
+    "description" : "Add Restriction#isAllowlisted",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNpc0FsbG93ZWQ",
+    "description" : "Add Restriction#isAllowed",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNzZWxmT3JFbmNsb3Npbmc",
+    "description" : "Add Restriction#selfOrEnclosing",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbi5QYXRoUmVzdHJpY3Rpb25zI2Zyb20",
+    "description" : "Add Restriction.PathRestrictions#from",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbi5QYXRoUmVzdHJpY3Rpb25zI2hhc0NvbmZsaWN0",
+    "description" : "Add Restriction.PathRestrictions#hasConflict",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGVkQXBpQ2hlY2tlclRlc3QjYWxsb3dlZFBhdGhz",
+    "description" : "Add RestrictedApiCheckerTest#allowedPaths",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGVkQXBpQ2hlY2tlclRlc3QjYWxsb3dlZFBhdGhzQW5kQWxsb3dlZE9uUGF0aEJvdGhTcGVjaWZpZWQ",
+    "description" : "Add RestrictedApiCheckerTest#allowedPathsAndAllowedOnPathBothSpecified",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGVkQXBpQ2hlY2tlclRlc3QjYWxsb3dlZFBhdGhzX25lc3RlZFJ1bmZpbGVzX3JlamVjdGVk",
+    "description" : "Add RestrictedApiCheckerTest#allowedPaths_nestedRunfiles_rejected",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGVja0FyZ3VtZW50LCArc3RhcnRzV2l0aCwgK2NvbnRhaW5zLCArZW5kc1dpdGgKU291cmNlUGF0aE1hdGNoZXIjcGFyc2VQYXRo",
+    "description" : "Modify body of SourcePathMatcher#parsePath: +checkArgument, +startsWith, +contains, +endsWith",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 18,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCArbWF0Y2hlcywgK2lzVHJ1ZQpTb3VyY2VQYXRoTWF0Y2hlclRlc3QjZXhhY3RQYXRoTWF0Y2g",
+    "description" : "Modify body of SourcePathMatcherTest#exactPathMatch: +assertThat, +matches, +isTrue",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 19,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaHJvd3MsICtjcmVhdGUKU291cmNlUGF0aE1hdGNoZXJUZXN0I2ludmFsaWRQYXR0ZXJuc19yZWplY3RlZA",
+    "description" : "Modify body of SourcePathMatcherTest#invalidPatterns_rejected: +assertThrows, +create",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 20,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClJlc3RyaWN0ZWRBcGlDaGVja2VyI2NoZWNrTWV0aG9kVXNlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of RestrictedApiChecker#checkMethodUse: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 21,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI0JBWkVMX1JVTkZJTEVT",
+    "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#BAZEL_RUNFILES",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 22,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI0JBWkVMX1JVTkZJTEVTX1NMQVNI",
+    "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#BAZEL_RUNFILES_SLASH",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 23,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI0ZJTEVfVVJJ",
+    "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#FILE_URI",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 24,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1JFTEFUSVZFX1JVTkZJTEVTX1BBQ0tBR0U",
+    "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_RUNFILES_PACKAGE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 25,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1JFTEFUSVZFX0VYRUNST09UX1BBQ0tBR0U",
+    "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_EXECROOT_PACKAGE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 26,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1JFTEFUSVZFX0VYRUNST09UX1RPUF9MRVZFTA",
+    "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_EXECROOT_TOP_LEVEL",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 27,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1JFTEFUSVZFX1JVTkZJTEVTX1RPUF9MRVZFTA",
+    "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_RUNFILES_TOP_LEVEL",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 28,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1VOQU5DSE9SRURfUlVORklMRVM",
+    "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#UNANCHORED_RUNFILES",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 29,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI05FU1RFRF9SVU5GSUxFU19ESVI",
+    "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#NESTED_RUNFILES_DIR",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 30,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI05FU1RFRF9FWEVDUk9PVF9ESVI",
+    "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#NESTED_EXECROOT_DIR",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 31,
+    "changeKey" : "QUREX0FOTk9UQVRJT05fRUxFTUVOVApSZXN0cmljdGVkQXBpI2FsbG93ZWRQYXRocw",
+    "description" : "Add annotation element RestrictedApi#allowedPaths",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ANNOTATION_ELEMENT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "SourcePathMatcher",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTb3VyY2VQYXRoTWF0Y2hlciNjYW5vbmljYWxpemVQYXRoCmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of SourcePathMatcher#canonicalizePath: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 17,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGVja0FyZ3VtZW50LCArc3RhcnRzV2l0aCwgK2NvbnRhaW5zLCArZW5kc1dpdGgKU291cmNlUGF0aE1hdGNoZXIjcGFyc2VQYXRo",
+      "description" : "Modify body of SourcePathMatcher#parsePath: +checkArgument, +startsWith, +contains, +endsWith",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RestrictedApiChecker",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZXN0cmljdGVkQXBpQ2hlY2tlciNtYXRjaEFubm90YXRpb24KYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of RestrictedApiChecker#matchAnnotation: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUmVzdHJpY3RlZEFwaUNoZWNrZXIjY2hlY2tSZXN0cmljdGlvbg",
+      "description" : "Change signature of RestrictedApiChecker#checkRestriction",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUmVzdHJpY3RlZEFwaUNoZWNrZXIjc2hvdWxkQWxsb3dXaXRoV2FybmluZw",
+      "description" : "Change signature of RestrictedApiChecker#shouldAllowWithWarning",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 4,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZXN0cmljdGVkQXBpQ2hlY2tlciNzaG91bGRBbGxvdw",
+      "description" : "Remove RestrictedApiChecker#shouldAllow",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 20,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClJlc3RyaWN0ZWRBcGlDaGVja2VyI2NoZWNrTWV0aG9kVXNlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of RestrictedApiChecker#checkMethodUse: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SourcePathMatcherTest",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VQYXRoTWF0Y2hlclRlc3QjbmVzdGVkUGF0aF9leGVjcm9vdF9ub3RFeGVtcHRlZA",
+      "description" : "Add SourcePathMatcherTest#nestedPath_execroot_notExempted",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 18,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCArbWF0Y2hlcywgK2lzVHJ1ZQpTb3VyY2VQYXRoTWF0Y2hlclRlc3QjZXhhY3RQYXRoTWF0Y2g",
+      "description" : "Modify body of SourcePathMatcherTest#exactPathMatch: +assertThat, +matches, +isTrue",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 19,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaHJvd3MsICtjcmVhdGUKU291cmNlUGF0aE1hdGNoZXJUZXN0I2ludmFsaWRQYXR0ZXJuc19yZWplY3RlZA",
+      "description" : "Modify body of SourcePathMatcherTest#invalidPatterns_rejected: +assertThrows, +create",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "Restriction",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiN2YWxpZGF0ZUFubm90YXRpb24",
+      "description" : "Add Restriction#validateAnnotation",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNmcm9t",
+      "description" : "Add Restriction#from",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNpc1BhdGhPclRlc3Rvbmx5RXhlbXB0",
+      "description" : "Add Restriction#isPathOrTestonlyExempt",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 9,
+      "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNpc0FsbG93bGlzdGVk",
+      "description" : "Add Restriction#isAllowlisted",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNpc0FsbG93ZWQ",
+      "description" : "Add Restriction#isAllowed",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNzZWxmT3JFbmNsb3Npbmc",
+      "description" : "Add Restriction#selfOrEnclosing",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "Restriction.PathRestrictions",
+    "entries" : [ {
+      "id" : 12,
+      "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbi5QYXRoUmVzdHJpY3Rpb25zI2Zyb20",
+      "description" : "Add Restriction.PathRestrictions#from",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbi5QYXRoUmVzdHJpY3Rpb25zI2hhc0NvbmZsaWN0",
+      "description" : "Add Restriction.PathRestrictions#hasConflict",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RestrictedApiCheckerTest",
+    "entries" : [ {
+      "id" : 14,
+      "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGVkQXBpQ2hlY2tlclRlc3QjYWxsb3dlZFBhdGhz",
+      "description" : "Add RestrictedApiCheckerTest#allowedPaths",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGVkQXBpQ2hlY2tlclRlc3QjYWxsb3dlZFBhdGhzQW5kQWxsb3dlZE9uUGF0aEJvdGhTcGVjaWZpZWQ",
+      "description" : "Add RestrictedApiCheckerTest#allowedPathsAndAllowedOnPathBothSpecified",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGVkQXBpQ2hlY2tlclRlc3QjYWxsb3dlZFBhdGhzX25lc3RlZFJ1bmZpbGVzX3JlamVjdGVk",
+      "description" : "Add RestrictedApiCheckerTest#allowedPaths_nestedRunfiles_rejected",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "SourcePathMatcherTest.CanonicalizeTestCase",
+    "entries" : [ {
+      "id" : 21,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI0JBWkVMX1JVTkZJTEVT",
+      "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#BAZEL_RUNFILES",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 22,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI0JBWkVMX1JVTkZJTEVTX1NMQVNI",
+      "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#BAZEL_RUNFILES_SLASH",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 23,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI0ZJTEVfVVJJ",
+      "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#FILE_URI",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 24,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1JFTEFUSVZFX1JVTkZJTEVTX1BBQ0tBR0U",
+      "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_RUNFILES_PACKAGE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 25,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1JFTEFUSVZFX0VYRUNST09UX1BBQ0tBR0U",
+      "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_EXECROOT_PACKAGE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 26,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1JFTEFUSVZFX0VYRUNST09UX1RPUF9MRVZFTA",
+      "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_EXECROOT_TOP_LEVEL",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 27,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1JFTEFUSVZFX1JVTkZJTEVTX1RPUF9MRVZFTA",
+      "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_RUNFILES_TOP_LEVEL",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 28,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1VOQU5DSE9SRURfUlVORklMRVM",
+      "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#UNANCHORED_RUNFILES",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 29,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI05FU1RFRF9SVU5GSUxFU19ESVI",
+      "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#NESTED_RUNFILES_DIR",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 30,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI05FU1RFRF9FWEVDUk9PVF9ESVI",
+      "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#NESTED_EXECROOT_DIR",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "RestrictedApi",
+    "entries" : [ {
+      "id" : 31,
+      "changeKey" : "QUREX0FOTk9UQVRJT05fRUxFTUVOVApSZXN0cmljdGVkQXBpI2FsbG93ZWRQYXRocw",
+      "description" : "Add annotation element RestrictedApi#allowedPaths",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ANNOTATION_ELEMENT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

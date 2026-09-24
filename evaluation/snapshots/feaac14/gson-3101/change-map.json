@@ -1,0 +1,197 @@
+{
+  "prTitle" : "Use `switch` statements instead of if-chains.",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 9,
+    "STRUCTURAL" : 0,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI2RvUGVlawppZi1jaGFpbiByZXdyaXR0ZW4gYXMgc3dpdGNo",
+    "description" : "Change control flow of JsonReader#doPeek: if-chain rewritten as switch",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI3BlZWtLZXl3b3JkCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+    "description" : "Change control flow of JsonReader#peekKeyword: if-chain rewritten as switch; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHROYW1lCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+    "description" : "Change control flow of JsonReader#nextName: if-chain rewritten as switch; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRTdHJpbmcKaWYtY2hhaW4gcmV3cml0dGVuIGFzIHN3aXRjaDsgc2FtZSBjYWxscw",
+    "description" : "Change control flow of JsonReader#nextString: if-chain rewritten as switch; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRCb29sZWFuCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+    "description" : "Change control flow of JsonReader#nextBoolean: if-chain rewritten as switch; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHREb3VibGUKYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz",
+    "description" : "Change control flow of JsonReader#nextDouble: branch added; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRMb25nCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+    "description" : "Change control flow of JsonReader#nextLong: if-chain rewritten as switch; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyIzxjbGluaXQ-CmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+    "description" : "Change control flow of JsonReader#<clinit>: if-chain rewritten as switch; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyVGVzdCNhc3NlcnREb2N1bWVudApicmFuY2ggYWRkZWQ",
+    "description" : "Change control flow of JsonReaderTest#assertDocument: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "JsonReader",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI2RvUGVlawppZi1jaGFpbiByZXdyaXR0ZW4gYXMgc3dpdGNo",
+      "description" : "Change control flow of JsonReader#doPeek: if-chain rewritten as switch",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI3BlZWtLZXl3b3JkCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+      "description" : "Change control flow of JsonReader#peekKeyword: if-chain rewritten as switch; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHROYW1lCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+      "description" : "Change control flow of JsonReader#nextName: if-chain rewritten as switch; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRTdHJpbmcKaWYtY2hhaW4gcmV3cml0dGVuIGFzIHN3aXRjaDsgc2FtZSBjYWxscw",
+      "description" : "Change control flow of JsonReader#nextString: if-chain rewritten as switch; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 4,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRCb29sZWFuCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+      "description" : "Change control flow of JsonReader#nextBoolean: if-chain rewritten as switch; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 5,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHREb3VibGUKYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz",
+      "description" : "Change control flow of JsonReader#nextDouble: branch added; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 6,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRMb25nCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+      "description" : "Change control flow of JsonReader#nextLong: if-chain rewritten as switch; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyIzxjbGluaXQ-CmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM",
+      "description" : "Change control flow of JsonReader#<clinit>: if-chain rewritten as switch; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "JsonReaderTest",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyVGVzdCNhc3NlcnREb2N1bWVudApicmFuY2ggYWRkZWQ",
+      "description" : "Change control flow of JsonReaderTest#assertDocument: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

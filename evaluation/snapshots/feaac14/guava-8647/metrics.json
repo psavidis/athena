@@ -1,0 +1,52 @@
+{
+  "diff": {
+    "files": 82,
+    "java_files": 82,
+    "non_java_files": 0,
+    "substantive_java_files": 82,
+    "copyright_only_java_files": 0,
+    "production_java_files": 82,
+    "java_hunks": 365,
+    "java_lines_changed": 1725
+  },
+  "athena": {
+    "changes": 246,
+    "changes_by_kind": {
+      "REMOVE_CLASS": 1,
+      "CHANGE_CONTROL_FLOW": 37,
+      "CHANGE_MODIFIERS": 3,
+      "RENAME_SYMBOL": 56,
+      "EXTRACT_METHOD": 1,
+      "REMOVE_SYMBOL": 54,
+      "ADD_SYMBOL": 11,
+      "MODIFY_METHOD_BODY": 33,
+      "CHANGE_FIELD_ANNOTATIONS": 8,
+      "REMOVE_FIELD": 42
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 176,
+      "BEHAVIORAL": 37,
+      "UNKNOWN": 33
+    },
+    "semantic_entries": 88,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 84,
+      "RESPONSIBILITY": 4
+    },
+    "inferred_entries": 4,
+    "module_territories": 7,
+    "module_dependencies": 12,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 80,
+    "substantive_java_file_coverage": 0.98,
+    "production_java_files_represented": 80,
+    "production_java_file_coverage": 0.98,
+    "unrepresented_production_java_files": [
+      "android/guava/src/com/google/common/collect/CompactHashMap.java",
+      "guava/src/com/google/common/collect/CompactHashMap.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

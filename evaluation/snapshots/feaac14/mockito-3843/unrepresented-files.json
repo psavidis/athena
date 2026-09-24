@@ -1,0 +1,12 @@
+{
+  "changedFileCount" : 7,
+  "representedFileCount" : 6,
+  "files" : [ {
+    "path" : "mockito-integration-tests/osgi-tests/build.gradle.kts",
+    "status" : "MODIFIED",
+    "linesChanged" : 10,
+    "hunkCount" : 3,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

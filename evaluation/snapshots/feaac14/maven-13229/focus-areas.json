@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of MavenCli#calculateDegreeOfConcurrency: branch added",
+  "entity" : "MavenCli"
+}, {
+  "description" : "Change control flow of LookupInvoker#calculateDegreeOfConcurrency: branch added",
+  "entity" : "LookupInvoker"
+}, {
+  "description" : "Modify body of CommonsCliMavenOptions.CLIManager#prepareOptions: other statements changed",
+  "entity" : "CommonsCliMavenOptions.CLIManager"
+}, {
+  "description" : "Modify body of CLIManager#<init>: other statements changed",
+  "entity" : "CLIManager"
+} ]

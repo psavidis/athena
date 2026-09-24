@@ -1,0 +1,13 @@
+[ {
+  "entity" : "AnnotatedMethod.MethodHolder",
+  "description" : "Move AnnotatedMethod.MethodHolder#unreflect -> AnnotatedMethod#unreflect"
+}, {
+  "entity" : "MethodProperty.SetterHolder",
+  "description" : "Remove class MethodProperty.SetterHolder"
+}, {
+  "entity" : "AnnotatedMethod.MethodHolder",
+  "description" : "Remove class AnnotatedMethod.MethodHolder"
+}, {
+  "entity" : "BeanPropertyWriter.GetterHolder",
+  "description" : "Remove class BeanPropertyWriter.GetterHolder"
+} ]

@@ -1,0 +1,55 @@
+{
+  "diff": {
+    "files": 10,
+    "java_files": 10,
+    "non_java_files": 0,
+    "substantive_java_files": 10,
+    "copyright_only_java_files": 0,
+    "production_java_files": 7,
+    "java_hunks": 39,
+    "java_lines_changed": 813
+  },
+  "athena": {
+    "changes": 93,
+    "changes_by_kind": {
+      "REMOVE_CLASS": 1,
+      "ADD_CLASS": 2,
+      "CHANGE_MODIFIERS": 3,
+      "CHANGE_CONTROL_FLOW": 11,
+      "CHANGE_METHOD_SIGNATURE": 3,
+      "CHANGE_METHOD_ANNOTATIONS": 1,
+      "MOVE_SYMBOL": 6,
+      "REMOVE_SYMBOL": 8,
+      "ADD_SYMBOL": 10,
+      "MODIFY_METHOD_BODY": 12,
+      "MOVE_FIELD": 12,
+      "REMOVE_FIELD": 9,
+      "ADD_FIELD": 6,
+      "ADD_CONSTRUCTOR_PARAMETER": 9
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 70,
+      "BEHAVIORAL": 11,
+      "UNKNOWN": 12
+    },
+    "semantic_entries": 108,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 86,
+      "RESPONSIBILITY": 22
+    },
+    "inferred_entries": 22,
+    "module_territories": 2,
+    "module_dependencies": 1,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 9,
+    "substantive_java_file_coverage": 0.9,
+    "production_java_files_represented": 6,
+    "production_java_file_coverage": 0.86,
+    "unrepresented_production_java_files": [
+      "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/ServerChannelLoadBalancer.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

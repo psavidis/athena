@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of TaskQueue.ContinuationTask#suspend: condition changed; same calls",
+  "entity" : "TaskQueue.ContinuationTask"
+}, {
+  "description" : "Rename field TaskQueue.ContinuationTask#ST_RESUMED -> ST_DONE",
+  "entity" : "TaskQueue.ContinuationTask"
+}, {
+  "description" : "Change signature of TaskQueue.ContinuationTask#resume",
+  "entity" : "TaskQueue.ContinuationTask"
+}, {
+  "description" : "Change signature of WorkerExecutor.Execution#resume",
+  "entity" : "WorkerExecutor.Execution"
+} ]

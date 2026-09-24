@@ -1,0 +1,109 @@
+{
+  "territories" : [ {
+    "moduleName" : "spring-boot-kafka",
+    "status" : "TOUCHED",
+    "fileCount" : 3,
+    "statusSummary" : "3 files · 5 changes",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApLYWZrYVByb3BlcnRpZXMuTGlzdGVuZXIjaXNBd2FpdEFzeW5jUmVzdWx0c09uU3RvcA", "QUREX1NZTUJPTApLYWZrYVByb3BlcnRpZXMuTGlzdGVuZXIjc2V0QXdhaXRBc3luY1Jlc3VsdHNPblN0b3A", "TU9ESUZZX01FVEhPRF9CT0RZCitmcm9tLCArdG8KQ29uY3VycmVudEthZmthTGlzdGVuZXJDb250YWluZXJGYWN0b3J5Q29uZmlndXJlciNjb25maWd1cmVDb250YWluZXI", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCAraXNUcnVlLCAraXNBd2FpdEFzeW5jUmVzdWx0c09uU3RvcApLYWZrYUF1dG9Db25maWd1cmF0aW9uVGVzdHMjbGlzdGVuZXJQcm9wZXJ0aWVz", "QUREX0ZJRUxECkthZmthUHJvcGVydGllcy5MaXN0ZW5lciNhd2FpdEFzeW5jUmVzdWx0c09uU3RvcA" ],
+    "testChangeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCAraXNUcnVlLCAraXNBd2FpdEFzeW5jUmVzdWx0c09uU3RvcApLYWZrYUF1dG9Db25maWd1cmF0aW9uVGVzdHMjbGlzdGVuZXJQcm9wZXJ0aWVz" ]
+  }, {
+    "moduleName" : "spring-boot",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-transaction",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-autoconfigure",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-testcontainers",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-micrometer-metrics",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-test",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-docker-test-support",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-test-support",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "spring-boot-kafka",
+    "to" : "spring-boot"
+  }, {
+    "from" : "spring-boot-kafka",
+    "to" : "spring-boot-transaction"
+  }, {
+    "from" : "spring-boot-kafka",
+    "to" : "spring-boot-autoconfigure"
+  }, {
+    "from" : "spring-boot-kafka",
+    "to" : "spring-boot-testcontainers"
+  }, {
+    "from" : "spring-boot-kafka",
+    "to" : "spring-boot-micrometer-metrics"
+  }, {
+    "from" : "spring-boot-kafka",
+    "to" : "spring-boot-test"
+  }, {
+    "from" : "spring-boot-kafka",
+    "to" : "spring-boot-docker-test-support"
+  }, {
+    "from" : "spring-boot-kafka",
+    "to" : "spring-boot-test-support"
+  } ]
+}

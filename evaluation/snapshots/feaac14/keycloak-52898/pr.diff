@@ -1,0 +1,1387 @@
+diff --git a/server-spi/src/main/java/org/keycloak/services/clientpolicy/ClientPolicyEvent.java b/server-spi/src/main/java/org/keycloak/services/clientpolicy/ClientPolicyEvent.java
+index deca1f5d3cd9..cdc51880fc8e 100644
+--- a/server-spi/src/main/java/org/keycloak/services/clientpolicy/ClientPolicyEvent.java
++++ b/server-spi/src/main/java/org/keycloak/services/clientpolicy/ClientPolicyEvent.java
+@@ -53,9 +53,11 @@ public enum ClientPolicyEvent {
+     DEVICE_TOKEN_REQUEST,
+     DEVICE_TOKEN_RESPONSE,
+     TOKEN_EXCHANGE_REQUEST,
++    TOKEN_EXCHANGE_RESPONSE,
+     RESOURCE_OWNER_PASSWORD_CREDENTIALS_REQUEST,
+     RESOURCE_OWNER_PASSWORD_CREDENTIALS_RESPONSE,
+     JWT_AUTHORIZATION_GRANT,
++    JWT_AUTHORIZATION_GRANT_RESPONSE,
+     IDENTITY_BROKERING_API,
+ 
+     SAML_AUTHN_REQUEST,
+diff --git a/services/src/main/java/org/keycloak/protocol/oidc/grants/ClientCredentialsGrantType.java b/services/src/main/java/org/keycloak/protocol/oidc/grants/ClientCredentialsGrantType.java
+index bd8002ccd6b1..297d556cfdc2 100644
+--- a/services/src/main/java/org/keycloak/protocol/oidc/grants/ClientCredentialsGrantType.java
++++ b/services/src/main/java/org/keycloak/protocol/oidc/grants/ClientCredentialsGrantType.java
+@@ -150,7 +150,7 @@ public Response process(Context context) {
+         // client credentials grant always removes the online session
+         clientSessionCtx.getClientSession().setNote(AuthenticationProcessor.FIRST_OFFLINE_ACCESS, Boolean.TRUE.toString());
+         return createTokenResponse(clientUser, userSession, clientSessionCtx, scope, true,
+-                responseBuilder -> new ServiceAccountTokenResponseContext(formParams, clientSessionCtx.getClientSession(), responseBuilder));
++                responseBuilder -> new ServiceAccountTokenResponseContext(formParams, clientSessionCtx, responseBuilder));
+     }
+ 
+     @Override
+diff --git a/services/src/main/java/org/keycloak/protocol/oidc/grants/JWTAuthorizationGrantType.java b/services/src/main/java/org/keycloak/protocol/oidc/grants/JWTAuthorizationGrantType.java
+index 17cf983dd60c..1ed565035ff0 100644
+--- a/services/src/main/java/org/keycloak/protocol/oidc/grants/JWTAuthorizationGrantType.java
++++ b/services/src/main/java/org/keycloak/protocol/oidc/grants/JWTAuthorizationGrantType.java
+@@ -49,6 +49,7 @@
+ import org.keycloak.services.Urls;
+ import org.keycloak.services.clientpolicy.ClientPolicyException;
+ import org.keycloak.services.clientpolicy.context.JWTAuthorizationGrantContext;
++import org.keycloak.services.clientpolicy.context.JWTAuthorizationGrantResponseContext;
+ import org.keycloak.services.managers.AuthenticationSessionManager;
+ import org.keycloak.services.managers.UserSessionManager;
+ import org.keycloak.services.resources.IdentityBrokerService;
+@@ -190,7 +191,8 @@ public Response process(Context context) {
+             event.session(userSession);
+             ClientSessionContext clientSessionCtx = TokenManager.attachAuthenticationSession(this.session, userSession,
+                     authSession, authorizationGrantContext.getRestrictedScopes(), false);
+-            TokenManager.AccessTokenResponseBuilder responseBuilder = createTokenResponseBuilder(user, userSession, clientSessionCtx, scopeParam, null);
++            TokenManager.AccessTokenResponseBuilder responseBuilder = createTokenResponseBuilder(user, userSession, clientSessionCtx, scopeParam,
++                    accessTokenResponseBuilder -> new JWTAuthorizationGrantResponseContext(formParams, clientSessionCtx, accessTokenResponseBuilder));
+             if (jwtAuthorizationGrantProvider.isLimitAccessTokenExpiration()) {
+                 if (authorizationGrantContext.getJWT().getExp() < responseBuilder.getAccessToken().getExp()) {
+                     responseBuilder.getAccessToken().exp(authorizationGrantContext.getJWT().getExp());
+diff --git a/services/src/main/java/org/keycloak/protocol/oidc/grants/ciba/clientpolicy/context/BackchannelTokenResponseContext.java b/services/src/main/java/org/keycloak/protocol/oidc/grants/ciba/clientpolicy/context/BackchannelTokenResponseContext.java
+index ea59349cd956..162c84160203 100644
+--- a/services/src/main/java/org/keycloak/protocol/oidc/grants/ciba/clientpolicy/context/BackchannelTokenResponseContext.java
++++ b/services/src/main/java/org/keycloak/protocol/oidc/grants/ciba/clientpolicy/context/BackchannelTokenResponseContext.java
+@@ -19,29 +19,28 @@
+ 
+ import jakarta.ws.rs.core.MultivaluedMap;
+ 
++import org.keycloak.models.ClientModel;
+ import org.keycloak.models.ClientSessionContext;
+ import org.keycloak.protocol.oidc.TokenManager;
+ import org.keycloak.protocol.oidc.grants.ciba.channel.CIBAAuthenticationRequest;
+ import org.keycloak.services.clientpolicy.ClientPolicyEvent;
++import org.keycloak.services.clientpolicy.context.AbstractClientSessionCtxTokenResponseContext;
+ 
+ /**
+  * @author <a href="mailto:takashi.norimatsu.ws@hitachi.com">Takashi Norimatsu</a>
+  */
+-public class BackchannelTokenResponseContext implements CIBAContext {
++public class BackchannelTokenResponseContext extends AbstractClientSessionCtxTokenResponseContext implements CIBAContext {
+ 
+     private final CIBAAuthenticationRequest parsedRequest;
+     private final MultivaluedMap<String, String> requestParameters;
+-    private final ClientSessionContext clientSessionCtx;
+-    private final TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder;
+ 
+     public BackchannelTokenResponseContext(CIBAAuthenticationRequest parsedRequest,
+             MultivaluedMap<String, String> requestParameters,
+             ClientSessionContext clientSessionCtx,
+             TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder) {
++        super(clientSessionCtx, accessTokenResponseBuilder);
+         this.parsedRequest = parsedRequest;
+         this.requestParameters = requestParameters;
+-        this.clientSessionCtx = clientSessionCtx;
+-        this.accessTokenResponseBuilder = accessTokenResponseBuilder;
+     }
+ 
+     @Override
+@@ -54,16 +53,19 @@ public CIBAAuthenticationRequest getParsedRequest() {
+         return parsedRequest;
+     }
+ 
+-    public MultivaluedMap<String, String> getRequestParameters() {
+-        return requestParameters;
++    @Override
++    public ClientModel getClient() {
++        if (getParsedRequest() == null) return null;
++        return getParsedRequest().getClient();
+     }
+ 
+-    public TokenManager.AccessTokenResponseBuilder getAccessTokenResponseBuilder() {
+-        return accessTokenResponseBuilder;
++    @Override
++    public String getScopeParameter() {
++        if (getParsedRequest() == null) return null;
++        return getParsedRequest().getScope();
+     }
+ 
+-    public ClientSessionContext getClientSessionContext() {
+-        return clientSessionCtx;
++    public MultivaluedMap<String, String> getRequestParameters() {
++        return requestParameters;
+     }
+-
+ }
+diff --git a/services/src/main/java/org/keycloak/protocol/oidc/grants/device/clientpolicy/context/DeviceTokenResponseContext.java b/services/src/main/java/org/keycloak/protocol/oidc/grants/device/clientpolicy/context/DeviceTokenResponseContext.java
+index f2322e440a52..2c7232742cb0 100644
+--- a/services/src/main/java/org/keycloak/protocol/oidc/grants/device/clientpolicy/context/DeviceTokenResponseContext.java
++++ b/services/src/main/java/org/keycloak/protocol/oidc/grants/device/clientpolicy/context/DeviceTokenResponseContext.java
+@@ -24,25 +24,25 @@
+ import org.keycloak.protocol.oidc.TokenManager;
+ import org.keycloak.services.clientpolicy.ClientPolicyContext;
+ import org.keycloak.services.clientpolicy.ClientPolicyEvent;
++import org.keycloak.services.clientpolicy.context.AbstractTokenResponseContext;
+ 
+ /**
+  * @author <a href="mailto:takashi.norimatsu.ws@hitachi.com">Takashi Norimatsu</a>
+  */
+-public class DeviceTokenResponseContext implements ClientPolicyContext {
++public class DeviceTokenResponseContext extends AbstractTokenResponseContext implements ClientPolicyContext {
+ 
+     private final OAuth2DeviceCodeModel deviceCodeModel;
+     private final MultivaluedMap<String, String> requestParameters;
+     private final AuthenticatedClientSessionModel clientSession;
+-    private final TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder;
+ 
+     public DeviceTokenResponseContext(OAuth2DeviceCodeModel deviceCodeModel,
+             MultivaluedMap<String, String> requestParameters,
+             AuthenticatedClientSessionModel clientSession,
+             TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder) {
++        super(accessTokenResponseBuilder);
+         this.deviceCodeModel = deviceCodeModel;
+         this.requestParameters = requestParameters;
+         this.clientSession = clientSession;
+-        this.accessTokenResponseBuilder = accessTokenResponseBuilder;
+     }
+ 
+     @Override
+@@ -58,10 +58,7 @@ public MultivaluedMap<String, String> getRequestParameters() {
+         return requestParameters;
+     }
+ 
+-    public TokenManager.AccessTokenResponseBuilder getAccessTokenResponseBuilder() {
+-        return accessTokenResponseBuilder;
+-    }
+-
++    @Override
+     public AuthenticatedClientSessionModel getClientSession() {
+         return clientSession;
+     }
+diff --git a/services/src/main/java/org/keycloak/protocol/oidc/tokenexchange/StandardTokenExchangeProvider.java b/services/src/main/java/org/keycloak/protocol/oidc/tokenexchange/StandardTokenExchangeProvider.java
+index 40914b30d596..4e00024889e9 100644
+--- a/services/src/main/java/org/keycloak/protocol/oidc/tokenexchange/StandardTokenExchangeProvider.java
++++ b/services/src/main/java/org/keycloak/protocol/oidc/tokenexchange/StandardTokenExchangeProvider.java
+@@ -50,6 +50,8 @@
+ import org.keycloak.representations.IDToken;
+ import org.keycloak.representations.dpop.DPoP;
+ import org.keycloak.services.CorsErrorResponseException;
++import org.keycloak.services.clientpolicy.ClientPolicyException;
++import org.keycloak.services.clientpolicy.context.TokenExchangeResponseContext;
+ import org.keycloak.services.managers.AuthenticationManager;
+ import org.keycloak.services.managers.AuthenticationSessionManager;
+ import org.keycloak.services.util.DPoPUtil;
+@@ -339,6 +341,16 @@ protected Response exchangeClientToOIDCClient(UserModel targetUser, UserSessionM
+                 responseBuilder.generateRefreshToken();
+             }
+ 
++            try {
++                session.clientPolicy().triggerOnEvent(new TokenExchangeResponseContext(formParams, clientSessionCtx, responseBuilder));
++            } catch (ClientPolicyException cpe) {
++                event.detail(Details.REASON, Details.CLIENT_POLICY_ERROR);
++                event.detail(Details.CLIENT_POLICY_ERROR, cpe.getError());
++                event.detail(Details.CLIENT_POLICY_ERROR_DETAIL, cpe.getErrorDetail());
++                event.error(cpe.getError());
++                throw new CorsErrorResponseException(cors, cpe.getError(), cpe.getErrorDetail(), cpe.getErrorStatus());
++            }
++
+             AccessTokenResponse res;
+             if (OAuth2Constants.ID_TOKEN_TYPE.equals(requestedTokenType)) {
+                 // Using the id-token inside "access_token" parameter as per description of "access_token" parameter under https://datatracker.ietf.org/doc/html/rfc8693#name-successful-response
+@@ -359,6 +371,7 @@ protected Response exchangeClientToOIDCClient(UserModel targetUser, UserSessionM
+             if (responseBuilder.getAccessToken().getAudience() != null) {
+                 event.detail(Details.AUDIENCE, CollectionUtil.join(List.of(responseBuilder.getAccessToken().getAudience()), " "));
+             }
++
+             event.success();
+ 
+             return cors.add(Response.ok(res, MediaType.APPLICATION_JSON_TYPE));
+diff --git a/services/src/main/java/org/keycloak/services/clientpolicy/condition/GrantTypeCondition.java b/services/src/main/java/org/keycloak/services/clientpolicy/condition/GrantTypeCondition.java
+index c77e1e741c5a..e8c68d172c0d 100644
+--- a/services/src/main/java/org/keycloak/services/clientpolicy/condition/GrantTypeCondition.java
++++ b/services/src/main/java/org/keycloak/services/clientpolicy/condition/GrantTypeCondition.java
+@@ -21,12 +21,14 @@
+ 
+ import org.keycloak.OAuth2Constants;
+ import org.keycloak.models.KeycloakSession;
++import org.keycloak.protocol.oidc.OIDCLoginProtocol;
+ import org.keycloak.protocol.oidc.utils.OIDCResponseType;
+ import org.keycloak.representations.idm.ClientPolicyConditionConfigurationRepresentation;
+ import org.keycloak.services.clientpolicy.ClientPolicyContext;
+ import org.keycloak.services.clientpolicy.ClientPolicyException;
+ import org.keycloak.services.clientpolicy.ClientPolicyVote;
+ import org.keycloak.services.clientpolicy.context.AuthorizationRequestContext;
++import org.keycloak.services.clientpolicy.context.ImplicitHybridTokenResponse;
+ 
+ import com.fasterxml.jackson.annotation.JsonProperty;
+ import org.jboss.logging.Logger;
+@@ -74,23 +76,40 @@ public ClientPolicyVote applyPolicy(ClientPolicyContext context) throws ClientPo
+                 if (isGrantMatching((AuthorizationRequestContext)context)) return ClientPolicyVote.YES;
+                 return ClientPolicyVote.NO;
+             case TOKEN_REFRESH:
++            case TOKEN_REFRESH_RESPONSE:
+                 if (isGrantMatching(OAuth2Constants.REFRESH_TOKEN)) return ClientPolicyVote.YES;
+                 return ClientPolicyVote.NO;
+             case RESOURCE_OWNER_PASSWORD_CREDENTIALS_REQUEST:
++            case RESOURCE_OWNER_PASSWORD_CREDENTIALS_RESPONSE:
+                 if (isGrantMatching(OAuth2Constants.PASSWORD)) return ClientPolicyVote.YES;
+                 return ClientPolicyVote.NO;
+             case SERVICE_ACCOUNT_TOKEN_REQUEST:
++            case SERVICE_ACCOUNT_TOKEN_RESPONSE:
+                 if (isGrantMatching(OAuth2Constants.CLIENT_CREDENTIALS)) return ClientPolicyVote.YES;
+                 return ClientPolicyVote.NO;
+             case TOKEN_EXCHANGE_REQUEST:
++            case TOKEN_EXCHANGE_RESPONSE:
+                 if (isGrantMatching(OAuth2Constants.TOKEN_EXCHANGE_GRANT_TYPE)) return ClientPolicyVote.YES;
+                 return ClientPolicyVote.NO;
+             case DEVICE_TOKEN_REQUEST:
++            case DEVICE_TOKEN_RESPONSE:
+                 if (isGrantMatching(OAuth2Constants.DEVICE_CODE_GRANT_TYPE)) return ClientPolicyVote.YES;
+                 return ClientPolicyVote.NO;
+             case JWT_AUTHORIZATION_GRANT:
++            case JWT_AUTHORIZATION_GRANT_RESPONSE:
+                 if (isGrantMatching(OAuth2Constants.JWT_AUTHORIZATION_GRANT)) return ClientPolicyVote.YES;
+                 return ClientPolicyVote.NO;
++            case BACKCHANNEL_AUTHENTICATION_REQUEST:
++            case BACKCHANNEL_TOKEN_REQUEST:
++            case BACKCHANNEL_TOKEN_RESPONSE:
++                if (isGrantMatching(OAuth2Constants.CIBA_GRANT_TYPE)) return ClientPolicyVote.YES;
++                return ClientPolicyVote.NO;
++            case TOKEN_RESPONSE:
++                if (isGrantMatching(OAuth2Constants.AUTHORIZATION_CODE)) return ClientPolicyVote.YES;
++                return ClientPolicyVote.NO;
++            case IMPLICIT_HYBRID_TOKEN_RESPONSE:
++                if (isGrantMatching((ImplicitHybridTokenResponse) context))  return ClientPolicyVote.YES;
++                return ClientPolicyVote.NO;
+             default:
+                 return ClientPolicyVote.ABSTAIN;
+         }
+@@ -98,8 +117,18 @@ public ClientPolicyVote applyPolicy(ClientPolicyContext context) throws ClientPo
+ 
+     private boolean isGrantMatching(AuthorizationRequestContext request) {
+         if (request == null) return false;
++        return isGrantMatchingResponseType(request.getAuthorizationEndpointRequest().getResponseType());
++    }
++
++    private boolean isGrantMatching(ImplicitHybridTokenResponse response) {
++        if (response == null) return false;
++        return isGrantMatchingResponseType(response.getAuthenticationSession().getClientNote(OIDCLoginProtocol.RESPONSE_TYPE_PARAM));
++    }
++
++    private boolean isGrantMatchingResponseType(String responseType) {
++        if (responseType == null) return false;
+         try {
+-            OIDCResponseType parsedResponseType = OIDCResponseType.parse(request.getAuthorizationEndpointRequest().getResponseType());
++            OIDCResponseType parsedResponseType = OIDCResponseType.parse(responseType);
+             if (parsedResponseType.hasResponseType(OIDCResponseType.CODE)) {
+                 return isGrantMatching(OAuth2Constants.AUTHORIZATION_CODE);
+             }
+diff --git a/services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractClientSessionCtxTokenResponseContext.java b/services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractClientSessionCtxTokenResponseContext.java
+new file mode 100644
+index 000000000000..afe64e14a53a
+--- /dev/null
++++ b/services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractClientSessionCtxTokenResponseContext.java
+@@ -0,0 +1,29 @@
++package org.keycloak.services.clientpolicy.context;
++
++import org.keycloak.models.AuthenticatedClientSessionModel;
++import org.keycloak.models.ClientSessionContext;
++import org.keycloak.protocol.oidc.TokenManager;
++
++/**
++ *
++ * @author rmartinc
++ */
++public abstract class AbstractClientSessionCtxTokenResponseContext extends AbstractTokenResponseContext {
++
++    private final ClientSessionContext clientSessionCtx;
++
++    public AbstractClientSessionCtxTokenResponseContext(ClientSessionContext clientSessionCtx,
++            TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder) {
++        super(accessTokenResponseBuilder);
++        this.clientSessionCtx = clientSessionCtx;
++    }
++
++    @Override
++    public AuthenticatedClientSessionModel getClientSession() {
++        return clientSessionCtx.getClientSession();
++    }
++
++    public ClientSessionContext getClientSessionContext() {
++        return clientSessionCtx;
++    }
++}
+diff --git a/services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractTokenResponseContext.java b/services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractTokenResponseContext.java
+new file mode 100644
+index 000000000000..09d591e13898
+--- /dev/null
++++ b/services/src/main/java/org/keycloak/services/clientpolicy/context/AbstractTokenResponseContext.java
+@@ -0,0 +1,20 @@
++package org.keycloak.services.clientpolicy.context;
++
++import org.keycloak.protocol.oidc.TokenManager;
++
++/**
++ *
++ * @author rmartinc
++ */
++public abstract class AbstractTokenResponseContext implements ClientPolicyClientSessionContext {
++
++    private final TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder;
++
++    public AbstractTokenResponseContext(TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder) {
++        this.accessTokenResponseBuilder = accessTokenResponseBuilder;
++    }
++
++    public TokenManager.AccessTokenResponseBuilder getAccessTokenResponseBuilder() {
++        return accessTokenResponseBuilder;
++    }
++}
+diff --git a/services/src/main/java/org/keycloak/services/clientpolicy/context/ImplicitHybridTokenResponse.java b/services/src/main/java/org/keycloak/services/clientpolicy/context/ImplicitHybridTokenResponse.java
+index 8ba5c9165d74..0c02b30c14ac 100644
+--- a/services/src/main/java/org/keycloak/services/clientpolicy/context/ImplicitHybridTokenResponse.java
++++ b/services/src/main/java/org/keycloak/services/clientpolicy/context/ImplicitHybridTokenResponse.java
+@@ -18,25 +18,21 @@
+ 
+ import org.keycloak.models.ClientSessionContext;
+ import org.keycloak.protocol.oidc.TokenManager;
+-import org.keycloak.services.clientpolicy.ClientPolicyContext;
+ import org.keycloak.services.clientpolicy.ClientPolicyEvent;
+ import org.keycloak.sessions.AuthenticationSessionModel;
+ 
+ /**
+  * @author <a href="mailto:takashi.norimatsu.ws@hitachi.com">Takashi Norimatsu</a>
+  */
+-public class ImplicitHybridTokenResponse implements ClientPolicyContext {
++public class ImplicitHybridTokenResponse extends AbstractClientSessionCtxTokenResponseContext {
+ 
+     private final AuthenticationSessionModel authSession;
+-    private final ClientSessionContext clientSessionCtx;
+-    private final TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder;
+ 
+     public ImplicitHybridTokenResponse(AuthenticationSessionModel authSession,
+             ClientSessionContext clientSessionCtx,
+             TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder) {
++        super(clientSessionCtx, accessTokenResponseBuilder);
+         this.authSession = authSession;
+-        this.clientSessionCtx = clientSessionCtx;
+-        this.accessTokenResponseBuilder = accessTokenResponseBuilder;
+     }
+ 
+     @Override
+@@ -44,17 +40,7 @@ public ClientPolicyEvent getEvent() {
+         return ClientPolicyEvent.IMPLICIT_HYBRID_TOKEN_RESPONSE;
+     }
+ 
+-
+     public AuthenticationSessionModel getAuthenticationSession() {
+         return authSession;
+     }
+-
+-    public TokenManager.AccessTokenResponseBuilder getAccessTokenResponseBuilder() {
+-        return accessTokenResponseBuilder;
+-    }
+-
+-    public ClientSessionContext getClientSessionContext() {
+-        return clientSessionCtx;
+-    }
+-
+ }
+diff --git a/services/src/main/java/org/keycloak/services/clientpolicy/context/JWTAuthorizationGrantResponseContext.java b/services/src/main/java/org/keycloak/services/clientpolicy/context/JWTAuthorizationGrantResponseContext.java
+new file mode 100644
+index 000000000000..acdc7b8e2433
+--- /dev/null
++++ b/services/src/main/java/org/keycloak/services/clientpolicy/context/JWTAuthorizationGrantResponseContext.java
+@@ -0,0 +1,32 @@
++package org.keycloak.services.clientpolicy.context;
++
++import jakarta.ws.rs.core.MultivaluedMap;
++
++import org.keycloak.models.ClientSessionContext;
++import org.keycloak.protocol.oidc.TokenManager;
++import org.keycloak.services.clientpolicy.ClientPolicyEvent;
++
++/**
++ *
++ * @author rmartinc
++ */
++public class JWTAuthorizationGrantResponseContext extends AbstractClientSessionCtxTokenResponseContext {
++
++    private final MultivaluedMap<String, String> params;
++
++    public JWTAuthorizationGrantResponseContext(MultivaluedMap<String, String> params,
++            ClientSessionContext clientSessionCtx,
++            TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder) {
++        super(clientSessionCtx, accessTokenResponseBuilder);
++        this.params = params;
++    }
++
++    public MultivaluedMap<String, String> getParams() {
++        return params;
++    }
++
++    @Override
++    public ClientPolicyEvent getEvent() {
++        return ClientPolicyEvent.JWT_AUTHORIZATION_GRANT_RESPONSE;
++    }
++}
+diff --git a/services/src/main/java/org/keycloak/services/clientpolicy/context/ResourceOwnerPasswordCredentialsResponseContext.java b/services/src/main/java/org/keycloak/services/clientpolicy/context/ResourceOwnerPasswordCredentialsResponseContext.java
+index f160356f0b88..40c760435b2b 100644
+--- a/services/src/main/java/org/keycloak/services/clientpolicy/context/ResourceOwnerPasswordCredentialsResponseContext.java
++++ b/services/src/main/java/org/keycloak/services/clientpolicy/context/ResourceOwnerPasswordCredentialsResponseContext.java
+@@ -27,18 +27,15 @@
+ /**
+  * @author <a href="mailto:takashi.norimatsu.ws@hitachi.com">Takashi Norimatsu</a>
+  */
+-public class ResourceOwnerPasswordCredentialsResponseContext implements ClientPolicyContext {
++public class ResourceOwnerPasswordCredentialsResponseContext extends AbstractClientSessionCtxTokenResponseContext implements ClientPolicyContext {
+ 
+     private final MultivaluedMap<String, String> params;
+-    private final ClientSessionContext clientSessionCtx;
+-    private final TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder;
+ 
+     public ResourceOwnerPasswordCredentialsResponseContext(MultivaluedMap<String, String> params,
+                                                            ClientSessionContext clientSessionCtx,
+                                                            TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder) {
++        super(clientSessionCtx, accessTokenResponseBuilder);
+         this.params = params;
+-        this.clientSessionCtx = clientSessionCtx;
+-        this.accessTokenResponseBuilder = accessTokenResponseBuilder;
+     }
+ 
+     @Override
+@@ -49,13 +46,4 @@ public ClientPolicyEvent getEvent() {
+     public MultivaluedMap<String, String> getParams() {
+         return params;
+     }
+-
+-    public TokenManager.AccessTokenResponseBuilder getAccessTokenResponseBuilder() {
+-        return accessTokenResponseBuilder;
+-    }
+-
+-    public ClientSessionContext getClientSessionContext() {
+-        return clientSessionCtx;
+-    }
+-
+ }
+diff --git a/services/src/main/java/org/keycloak/services/clientpolicy/context/ServiceAccountTokenResponseContext.java b/services/src/main/java/org/keycloak/services/clientpolicy/context/ServiceAccountTokenResponseContext.java
+index fd185195f6b9..fec2f7cd9a80 100644
+--- a/services/src/main/java/org/keycloak/services/clientpolicy/context/ServiceAccountTokenResponseContext.java
++++ b/services/src/main/java/org/keycloak/services/clientpolicy/context/ServiceAccountTokenResponseContext.java
+@@ -20,25 +20,22 @@
+ 
+ import jakarta.ws.rs.core.MultivaluedMap;
+ 
+-import org.keycloak.models.AuthenticatedClientSessionModel;
++import org.keycloak.models.ClientSessionContext;
+ import org.keycloak.protocol.oidc.TokenManager;
+ import org.keycloak.services.clientpolicy.ClientPolicyEvent;
+ 
+ /**
+  * @author <a href="mailto:takashi.norimatsu.ws@hitachi.com">Takashi Norimatsu</a>
+  */
+-public class ServiceAccountTokenResponseContext implements ClientPolicyClientSessionContext {
++public class ServiceAccountTokenResponseContext extends AbstractClientSessionCtxTokenResponseContext {
+ 
+     private final MultivaluedMap<String, String> params;
+-    private final AuthenticatedClientSessionModel clientSession;
+-    private final TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder;
+ 
+     public ServiceAccountTokenResponseContext(MultivaluedMap<String, String> params,
+-                                              AuthenticatedClientSessionModel clientSession,
++                                              ClientSessionContext clientSessionCtx,
+                                               TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder) {
++        super(clientSessionCtx, accessTokenResponseBuilder);
+         this.params = params;
+-        this.clientSession = clientSession;
+-        this.accessTokenResponseBuilder = accessTokenResponseBuilder;
+     }
+ 
+     @Override
+@@ -49,13 +46,4 @@ public ClientPolicyEvent getEvent() {
+     public MultivaluedMap<String, String> getParams() {
+         return params;
+     }
+-
+-    @Override
+-    public AuthenticatedClientSessionModel getClientSession() {
+-        return clientSession;
+-    }
+-
+-    public TokenManager.AccessTokenResponseBuilder getAccessTokenResponseBuilder() {
+-        return accessTokenResponseBuilder;
+-    }
+ }
+diff --git a/services/src/main/java/org/keycloak/services/clientpolicy/context/TokenExchangeResponseContext.java b/services/src/main/java/org/keycloak/services/clientpolicy/context/TokenExchangeResponseContext.java
+new file mode 100644
+index 000000000000..e29f3dccfe80
+--- /dev/null
++++ b/services/src/main/java/org/keycloak/services/clientpolicy/context/TokenExchangeResponseContext.java
+@@ -0,0 +1,32 @@
++package org.keycloak.services.clientpolicy.context;
++
++import jakarta.ws.rs.core.MultivaluedMap;
++
++import org.keycloak.models.ClientSessionContext;
++import org.keycloak.protocol.oidc.TokenManager;
++import org.keycloak.services.clientpolicy.ClientPolicyEvent;
++
++/**
++ *
++ * @author rmartinc
++ */
++public class TokenExchangeResponseContext extends AbstractClientSessionCtxTokenResponseContext {
++
++    private final MultivaluedMap<String, String> params;
++
++    public TokenExchangeResponseContext(MultivaluedMap<String, String> params,
++            ClientSessionContext clientSessionCtx,
++            TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder) {
++        super(clientSessionCtx, accessTokenResponseBuilder);
++        this.params = params;
++    }
++
++    public MultivaluedMap<String, String> getParams() {
++        return params;
++    }
++
++    @Override
++    public ClientPolicyEvent getEvent() {
++        return ClientPolicyEvent.TOKEN_EXCHANGE_RESPONSE;
++    }
++}
+diff --git a/services/src/main/java/org/keycloak/services/clientpolicy/context/TokenRefreshResponseContext.java b/services/src/main/java/org/keycloak/services/clientpolicy/context/TokenRefreshResponseContext.java
+index 61e85d05f4a3..3ee419d3423a 100644
+--- a/services/src/main/java/org/keycloak/services/clientpolicy/context/TokenRefreshResponseContext.java
++++ b/services/src/main/java/org/keycloak/services/clientpolicy/context/TokenRefreshResponseContext.java
+@@ -27,15 +27,14 @@
+ /**
+  * @author <a href="mailto:takashi.norimatsu.ws@hitachi.com">Takashi Norimatsu</a>
+  */
+-public class TokenRefreshResponseContext implements ClientPolicyContext, ClientPolicyClientSessionContext {
++public class TokenRefreshResponseContext extends AbstractTokenResponseContext implements ClientPolicyContext, ClientPolicyClientSessionContext {
+ 
+     private final MultivaluedMap<String, String> params;
+-    private final TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder;
+ 
+     public TokenRefreshResponseContext(MultivaluedMap<String, String> params,
+             TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder) {
++        super(accessTokenResponseBuilder);
+         this.params = params;
+-        this.accessTokenResponseBuilder = accessTokenResponseBuilder;
+     }
+ 
+     @Override
+@@ -47,12 +46,8 @@ public MultivaluedMap<String, String> getParams() {
+         return params;
+     }
+ 
+-    public TokenManager.AccessTokenResponseBuilder getAccessTokenResponseBuilder() {
+-        return accessTokenResponseBuilder;
+-    }
+-
+     @Override
+     public AuthenticatedClientSessionModel getClientSession() {
+-        return this.accessTokenResponseBuilder.getClientSessionCtx().getClientSession();
++        return getAccessTokenResponseBuilder().getClientSessionCtx().getClientSession();
+     }
+ }
+diff --git a/services/src/main/java/org/keycloak/services/clientpolicy/context/TokenResponseContext.java b/services/src/main/java/org/keycloak/services/clientpolicy/context/TokenResponseContext.java
+index a284e6ad5c33..3bdf346dab6f 100644
+--- a/services/src/main/java/org/keycloak/services/clientpolicy/context/TokenResponseContext.java
++++ b/services/src/main/java/org/keycloak/services/clientpolicy/context/TokenResponseContext.java
+@@ -18,7 +18,6 @@
+ 
+ import jakarta.ws.rs.core.MultivaluedMap;
+ 
+-import org.keycloak.models.AuthenticatedClientSessionModel;
+ import org.keycloak.models.ClientSessionContext;
+ import org.keycloak.protocol.oidc.TokenManager;
+ import org.keycloak.protocol.oidc.utils.OAuth2CodeParser;
+@@ -27,21 +26,18 @@
+ /**
+  * @author <a href="mailto:takashi.norimatsu.ws@hitachi.com">Takashi Norimatsu</a>
+  */
+-public class TokenResponseContext implements ClientPolicyClientSessionContext {
++public class TokenResponseContext extends AbstractClientSessionCtxTokenResponseContext {
+ 
+     private final MultivaluedMap<String, String> params;
+     private final OAuth2CodeParser.ParseResult parseResult;
+-    private final ClientSessionContext clientSessionCtx;
+-    private final TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder;
+ 
+     public TokenResponseContext(MultivaluedMap<String, String> params,
+             OAuth2CodeParser.ParseResult parseResult,
+             ClientSessionContext clientSessionCtx,
+             TokenManager.AccessTokenResponseBuilder accessTokenResponseBuilder) {
++        super(clientSessionCtx, accessTokenResponseBuilder);
+         this.params = params;
+         this.parseResult = parseResult;
+-        this.clientSessionCtx = clientSessionCtx;
+-        this.accessTokenResponseBuilder = accessTokenResponseBuilder;
+     }
+ 
+     @Override
+@@ -56,18 +52,4 @@ public MultivaluedMap<String, String> getParams() {
+     public OAuth2CodeParser.ParseResult getParseResult() {
+         return parseResult;
+     }
+-
+-    public TokenManager.AccessTokenResponseBuilder getAccessTokenResponseBuilder() {
+-        return accessTokenResponseBuilder;
+-    }
+-
+-    @Override
+-    public AuthenticatedClientSessionModel getClientSession() {
+-        return getParseResult().getClientSession();
+-    }
+-
+-    public ClientSessionContext getClientSessionContext() {
+-        return clientSessionCtx;
+-    }
+-
+ }
+diff --git a/services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutor.java b/services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutor.java
+new file mode 100644
+index 000000000000..8ec3a4bb9160
+--- /dev/null
++++ b/services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutor.java
+@@ -0,0 +1,170 @@
++package org.keycloak.services.clientpolicy.executor;
++
++import java.util.Map;
++
++import org.keycloak.OAuthErrorException;
++import org.keycloak.models.ClientModel;
++import org.keycloak.models.ClientScopeModel;
++import org.keycloak.models.KeycloakSession;
++import org.keycloak.models.RealmModel;
++import org.keycloak.models.UserModel;
++import org.keycloak.protocol.oidc.OIDCLoginProtocol;
++import org.keycloak.protocol.oidc.OIDCLoginProtocolFactory;
++import org.keycloak.protocol.oidc.TokenManager;
++import org.keycloak.representations.IDToken;
++import org.keycloak.representations.JsonWebToken;
++import org.keycloak.representations.idm.ClientPolicyExecutorConfigurationRepresentation;
++import org.keycloak.services.Urls;
++import org.keycloak.services.clientpolicy.ClientPolicyContext;
++import org.keycloak.services.clientpolicy.ClientPolicyException;
++import org.keycloak.services.clientpolicy.context.AbstractTokenResponseContext;
++import org.keycloak.services.resources.admin.fgap.AdminPermissionEvaluator;
++import org.keycloak.services.resources.admin.fgap.AdminPermissions;
++
++import com.fasterxml.jackson.annotation.JsonProperty;
++import org.jboss.logging.Logger;
++
++/**
++ *
++ * @author rmartinc
++ */
++public class RejectMayActClaimExecutor implements ClientPolicyExecutorProvider<RejectMayActClaimExecutor.Configuration> {
++
++    private static final Logger logger = Logger.getLogger(RejectMayActClaimExecutor.class);
++    private final KeycloakSession session;
++    private Configuration configuration;
++
++    public static class Configuration extends ClientPolicyExecutorConfigurationRepresentation {
++
++        @JsonProperty(RejectMayActClaimExecutorFactory.REJECT_ANY_MAY_ACT)
++        protected Boolean rejectAny;
++        @JsonProperty(RejectMayActClaimExecutorFactory.AVOID_PERMISSION_CHECK)
++        protected Boolean avoidPermissionCheck;
++        @JsonProperty(RejectMayActClaimExecutorFactory.AVOID_CONSENT_CHECK)
++        protected Boolean avoidConsentCheck;
++
++        public Configuration() {
++            // empty
++        }
++
++        public Configuration (boolean rejectAny, boolean avoidPermissionCheck, boolean avoidConsentCheck) {
++            this.rejectAny = rejectAny;
++            this.avoidPermissionCheck = avoidPermissionCheck;
++            this.avoidConsentCheck = avoidConsentCheck;
++        }
++
++        public Boolean isRejectAny() {
++            return rejectAny;
++        }
++
++        public void setRejectAny(Boolean rejectAny) {
++            this.rejectAny = rejectAny;
++        }
++
++        public Boolean isAvoidPermissionCheck() {
++            return avoidPermissionCheck;
++        }
++
++        public void setAvoidPermissionCheck(Boolean avoidPermissionCheck) {
++            this.avoidPermissionCheck = avoidPermissionCheck;
++        }
++
++        public Boolean isAvoidConsentCheck() {
++            return avoidConsentCheck;
++        }
++
++        public void setAvoidConsentCheck(Boolean avoidConsentCheck) {
++            this.avoidConsentCheck = avoidConsentCheck;
++        }
++    }
++
++    public RejectMayActClaimExecutor(KeycloakSession session) {
++        this.session = session;
++    }
++
++    @Override
++    public String getProviderId() {
++        return RejectMayActClaimExecutorFactory.PROVIDER_ID;
++    }
++
++    @Override
++    public void setupConfiguration(Configuration config) {
++        this.configuration = config != null ? config : new Configuration();
++    }
++
++    @Override
++    public Class<Configuration> getExecutorConfigurationClass() {
++        return Configuration.class;
++    }
++
++    @Override
++    public void executeOnEvent(ClientPolicyContext context) throws ClientPolicyException {
++        if (context instanceof AbstractTokenResponseContext tokenResponseContext) {
++            validate(tokenResponseContext);
++        }
++    }
++
++    private void validate(AbstractTokenResponseContext context) throws ClientPolicyException {
++        Object mayActObject = context.getAccessTokenResponseBuilder().getAccessToken().getOtherClaims().get(IDToken.MAY_ACT);
++        if (mayActObject == null) {
++            return; // no may_act claim, just allow the token
++        }
++
++        if (Boolean.TRUE.equals(configuration.isRejectAny())) {
++            throw new ClientPolicyException(OAuthErrorException.INVALID_REQUEST, "The may_act claim is rejected for this client");
++        }
++
++        if (!(mayActObject instanceof Map mayActMap)) {
++            throw new ClientPolicyException(OAuthErrorException.INVALID_REQUEST, "Invalid may_act claim in the token");
++        }
++
++        Object issObject = mayActMap.get(OIDCLoginProtocol.ISSUER);
++        if (issObject != null && !issObject.equals(Urls.realmIssuer(session.getContext().getUri().getBaseUri(), session.getContext().getRealm().getName()))) {
++            throw new ClientPolicyException(OAuthErrorException.INVALID_REQUEST,  "Invalid issuer in the may_act claim in the token");
++        }
++
++        Object subjectObject = mayActMap.get(JsonWebToken.SUBJECT);
++        if (!(subjectObject instanceof String subject)) {
++            throw new ClientPolicyException(OAuthErrorException.INVALID_REQUEST,  "Invalid may_act claim in the token");
++        }
++
++        // check the sub in the may_act is a valid user
++        RealmModel realm = session.getContext().getRealm();
++        UserModel user = context.getClientSession().getUserSession().getUser();
++        UserModel admin = session.users().getUserById(realm, subject);
++        if (admin == null || !admin.isEnabled() || admin.getId().equals(user.getId())) {
++            throw new ClientPolicyException(OAuthErrorException.INVALID_REQUEST, "Invalid may_act sub in the token");
++        }
++        ClientModel client = null;
++        if (admin.getServiceAccountClientLink() != null) {
++            client = session.clients().getClientById(realm, admin.getServiceAccountClientLink());
++            if (client == null || !client.isEnabled()) {
++                logger.debugf("Invalid service account '%s' for user '%s' in realm '%s' in the may_act sub", admin.getUsername(), user.getUsername(), realm.getName());
++                throw new ClientPolicyException(OAuthErrorException.INVALID_REQUEST, "Invalid may_act sub in the token");
++            }
++        }
++
++        // check if the admin in sub has delegation permission over the user
++        if (!Boolean.TRUE.equals(configuration.isAvoidPermissionCheck())) {
++            AdminPermissionEvaluator evaluator = AdminPermissions.evaluator(session, realm, realm, admin);
++            if (!evaluator.users().canDelegate(user)) {
++                logger.debugf("Admin '%s' is not allowed to delegate as user '%s' in realm '%s'", admin.getUsername(), user.getUsername(), realm.getName());
++                throw new ClientPolicyException(OAuthErrorException.INVALID_REQUEST, "Invalid may_act sub in the token");
++            }
++        }
++
++        // check the consent is granted for the scope requested
++        if (!Boolean.TRUE.equals(configuration.isAvoidConsentCheck())) {
++            String scope = client != null
++                    ? OIDCLoginProtocolFactory.CLIENT_DELEGATION_SCOPE + ClientScopeModel.VALUE_SEPARATOR + client.getClientId()
++                    : OIDCLoginProtocolFactory.USER_DELEGATION_SCOPE + ClientScopeModel.VALUE_SEPARATOR + admin.getUsername();
++            if (!TokenManager.isValidScope(session, scope, context.getClient())
++                    || !TokenManager.verifyConsentStillAvailable(session, user, context.getClient(), context.getClientSession(), scope)) {
++                logger.debugf("Consent '%s' is not granted for the may_act sub claim", scope);
++                throw new ClientPolicyException(OAuthErrorException.INVALID_REQUEST, "Invalid may_act sub in the token");
++            }
++        }
++
++        // it should be OK now, let the may_act pass
++    }
++}
+diff --git a/services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java b/services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java
+new file mode 100644
+index 000000000000..a8cffd89e5e8
+--- /dev/null
++++ b/services/src/main/java/org/keycloak/services/clientpolicy/executor/RejectMayActClaimExecutorFactory.java
+@@ -0,0 +1,94 @@
++package org.keycloak.services.clientpolicy.executor;
++
++import java.util.List;
++
++import org.keycloak.Config;
++import org.keycloak.common.Profile;
++import org.keycloak.common.Profile.Feature;
++import org.keycloak.models.KeycloakSession;
++import org.keycloak.models.KeycloakSessionFactory;
++import org.keycloak.provider.EnvironmentDependentProviderFactory;
++import org.keycloak.provider.ProviderConfigProperty;
++import org.keycloak.provider.ProviderConfigurationBuilder;
++
++/**
++ *
++ * @author rmartinc
++ */
++public class RejectMayActClaimExecutorFactory implements ClientPolicyExecutorProviderFactory, EnvironmentDependentProviderFactory {
++
++    public static final String PROVIDER_ID = "may-act";
++
++    public static final String REJECT_ANY_MAY_ACT = "reject-any";
++    public static final String AVOID_PERMISSION_CHECK = "avoid-permission-check";
++    public static final String AVOID_CONSENT_CHECK = "avoid-consent-check";
++
++    @Override
++    public String getHelpText() {
++        return """
++               Checks the 'may_act' claim in token responses and rejects tokens with missing or invalid
++               'may_act' values based on issuer, subject, permission, or consent validation
++               """;
++    }
++
++    @Override
++    public List<ProviderConfigProperty> getConfigProperties() {
++        return ProviderConfigurationBuilder.create()
++
++                .property()
++                .name(REJECT_ANY_MAY_ACT)
++                .label("Reject any may_act claim")
++                .helpText("If ON, any token with a may_act claim is rejected. If OFF, the may_act claim is checked using the other conditions")
++                .type(ProviderConfigProperty.BOOLEAN_TYPE)
++                .defaultValue(false)
++                .add()
++
++                .property()
++                .name(AVOID_PERMISSION_CHECK)
++                .label("Avoid permission check")
++                .helpText("If ON, permission check is not executed. If OFF, the subject in the may_act claim is checked to have the correct delegation permission.")
++                .type(ProviderConfigProperty.BOOLEAN_TYPE)
++                .defaultValue(false)
++                .add()
++
++                .property()
++                .name(AVOID_CONSENT_CHECK)
++                .label("Avoid consent check")
++                .helpText("If ON, consent check is not executed. If OFF, the expected user or client scope is checked to be consented by the final user.")
++                .type(ProviderConfigProperty.BOOLEAN_TYPE)
++                .defaultValue(false)
++                .add()
++
++                .build();
++    }
++
++    @Override
++    public ClientPolicyExecutorProvider create(KeycloakSession session) {
++        return new RejectMayActClaimExecutor(session);
++    }
++
++    @Override
++    public void init(Config.Scope config) {
++
++    }
++
++    @Override
++    public void postInit(KeycloakSessionFactory factory) {
++
++    }
++
++    @Override
++    public void close() {
++
++    }
++
++    @Override
++    public String getId() {
++        return PROVIDER_ID;
++    }
++
++    @Override
++    public boolean isSupported(Config.Scope config) {
++        return Profile.isFeatureEnabled(Feature.TOKEN_EXCHANGE_DELEGATION);
++    }
++}
+diff --git a/services/src/main/resources/META-INF/services/org.keycloak.services.clientpolicy.executor.ClientPolicyExecutorProviderFactory b/services/src/main/resources/META-INF/services/org.keycloak.services.clientpolicy.executor.ClientPolicyExecutorProviderFactory
+index f0b9a0a81281..7cd92784416d 100644
+--- a/services/src/main/resources/META-INF/services/org.keycloak.services.clientpolicy.executor.ClientPolicyExecutorProviderFactory
++++ b/services/src/main/resources/META-INF/services/org.keycloak.services.clientpolicy.executor.ClientPolicyExecutorProviderFactory
+@@ -36,4 +36,5 @@ org.keycloak.services.clientpolicy.executor.DownscopeAssertionGrantEnforcerExecu
+ org.keycloak.services.clientpolicy.executor.JWTClaimEnforcerExecutorFactory
+ org.keycloak.services.clientpolicy.executor.TlsClientAuthCASubjectDNExecutorFactory
+ org.keycloak.services.clientpolicy.executor.AllowedProtocolMappersExecutorFactory
++org.keycloak.services.clientpolicy.executor.RejectMayActClaimExecutorFactory
+ org.keycloak.protocol.oauth2.cimd.clientpolicy.executor.ClientIdMetadataDocumentExecutorFactory
+diff --git a/tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientAgentDelegationTest.java b/tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientAgentDelegationTest.java
+index 9310107a2161..700179a5e017 100644
+--- a/tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientAgentDelegationTest.java
++++ b/tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientAgentDelegationTest.java
+@@ -1,6 +1,7 @@
+ package org.keycloak.tests.oauth.tokenexchange;
+ 
+ import java.util.Arrays;
++import java.util.HashMap;
+ import java.util.List;
+ import java.util.Map;
+ import java.util.Set;
+@@ -20,12 +21,18 @@
+ import org.keycloak.protocol.oidc.OIDCConfigAttributes;
+ import org.keycloak.protocol.oidc.OIDCLoginProtocol;
+ import org.keycloak.protocol.oidc.OIDCLoginProtocolFactory;
++import org.keycloak.protocol.oidc.mappers.HardcodedClaim;
++import org.keycloak.protocol.oidc.mappers.OIDCAttributeMapperHelper;
+ import org.keycloak.representations.AccessToken;
+ import org.keycloak.representations.idm.ClientScopeRepresentation;
+ import org.keycloak.representations.idm.EventRepresentation;
++import org.keycloak.representations.idm.ProtocolMapperRepresentation;
+ import org.keycloak.representations.idm.RoleRepresentation;
+ import org.keycloak.representations.idm.authorization.ClientPolicyRepresentation;
+ import org.keycloak.representations.idm.authorization.ScopePermissionRepresentation;
++import org.keycloak.services.clientpolicy.condition.AnyClientConditionFactory;
++import org.keycloak.services.clientpolicy.executor.RejectMayActClaimExecutor;
++import org.keycloak.services.clientpolicy.executor.RejectMayActClaimExecutorFactory;
+ import org.keycloak.testframework.annotations.InjectClient;
+ import org.keycloak.testframework.annotations.InjectEvents;
+ import org.keycloak.testframework.annotations.InjectRealm;
+@@ -37,6 +44,8 @@
+ import org.keycloak.testframework.oauth.annotations.InjectOAuthClient;
+ import org.keycloak.testframework.realm.ClientBuilder;
+ import org.keycloak.testframework.realm.ClientConfig;
++import org.keycloak.testframework.realm.ClientPolicyBuilder;
++import org.keycloak.testframework.realm.ClientProfileBuilder;
+ import org.keycloak.testframework.realm.ManagedClient;
+ import org.keycloak.testframework.realm.ManagedRealm;
+ import org.keycloak.testframework.realm.RealmBuilder;
+@@ -315,8 +324,125 @@ public void exchangeWithScopeReduction() {
+         logout(loginRes.getRefreshToken());
+     }
+ 
++    @Test
++    public void rejectMayActClientPolicySuccess() {
++        // add default client policy
++        realm.updateWithCleanup(r -> r.clientProfile(ClientProfileBuilder.create().name("executor").executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, null).build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        // normal request should be OK when using common client scopes
++        AccessTokenResponse res = loginWithDelegation();
++        assertMayActPresent(oauth.verifyToken(res.getAccessToken()), getServiceAccountUserId(), ACTOR_CLIENT_ID);
++        logout(res.getRefreshToken());
++    }
++
++    @Test
++    public void rejectMayActClientPolicyRejectAny() {
++        // add client policy that denies any may_act
++        realm.updateWithCleanup(r -> r
++                .clientProfile(ClientProfileBuilder.create().name("executor")
++                        .executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, new RejectMayActClaimExecutor.Configuration(true, false, false))
++                        .build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        // normal request should be rejected as may_act is not allowed by the policy
++        AccessTokenResponse res = loginWithDelegationNoEvent(DELEGATION_SCOPE, grants -> MatcherAssert.assertThat(grants,
++                Matchers.hasItem("Allow " + ACTOR_CLIENT_ID + " to act on your behalf?")));
++        Assertions.assertEquals(Errors.INVALID_REQUEST, res.getError());
++        Assertions.assertEquals("The may_act claim is rejected for this client", res.getErrorDescription());
++        EventAssertion.assertError(events.poll())
++                .type(EventType.CODE_TO_TOKEN_ERROR)
++                .clientId(SUBJECT_CLIENT_ID)
++                .hasUserId()
++                .error(Errors.INVALID_REQUEST)
++                .details(Details.REASON, Details.CLIENT_POLICY_ERROR)
++                .details(Details.CLIENT_POLICY_ERROR_DETAIL, "The may_act claim is rejected for this client");
++
++        AccountHelper.logout(realm.admin(), USERNAME);
++    }
++
++    @Test
++    public void rejectMayActClientPolicyPermission() {
++        createHardcodedSubMapperForClientId();
++        removeDelegationPermission();
++
++        // default config checks permission is not granted
++        realm.updateWithCleanup(r -> r.clientProfile(ClientProfileBuilder.create().name("executor").executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, null).build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        AccessTokenResponse res = loginWithDelegationNoEvent(null, grants -> MatcherAssert.assertThat(grants,
++                Matchers.not(Matchers.hasItem("Allow " + ACTOR_CLIENT_ID + " to act on your behalf?"))));
++        Assertions.assertEquals(Errors.INVALID_REQUEST, res.getError());
++        Assertions.assertEquals("Invalid may_act sub in the token", res.getErrorDescription());
++
++        AccountHelper.logout(realm.admin(), USERNAME);
++
++        // explicitly do not check permissions and consents
++        realm.updateWithCleanup(r -> r.resetClientProfiles().resetClientPolicies()
++                .clientProfile(ClientProfileBuilder.create().name("executor")
++                        .executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, new RejectMayActClaimExecutor.Configuration(false, true, true))
++                        .build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        oauth.scope(null).openLoginForm();
++        oauth.fillLoginForm(USERNAME, PASSWORD);
++        res = oauth.doAccessTokenRequest(oauth.parseLoginResponse().getCode());
++        Assertions.assertTrue(res.isSuccess(), res.getError() + " - " + res.getErrorDescription());
++        assertMayActPresent(oauth.verifyToken(res.getAccessToken()), getServiceAccountUserId(), null, null);
++
++        logout(res.getRefreshToken());
++    }
++
++    @Test
++    public void rejectMayActClientPolicyConsent() {
++        createHardcodedSubMapperForClientId();
++
++        // default config checks consent is not granted
++        realm.updateWithCleanup(r -> r.clientProfile(ClientProfileBuilder.create().name("executor").executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, null).build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        AccessTokenResponse res = loginWithDelegationNoEvent(null, grants -> MatcherAssert.assertThat(grants,
++                Matchers.not(Matchers.hasItem("Allow " + ACTOR_CLIENT_ID + " to act on your behalf?"))));
++        Assertions.assertEquals(Errors.INVALID_REQUEST, res.getError());
++        Assertions.assertEquals("Invalid may_act sub in the token", res.getErrorDescription());
++
++        AccountHelper.logout(realm.admin(), USERNAME);
++
++        // explicitly do not check consents
++        realm.updateWithCleanup(r -> r.resetClientProfiles().resetClientPolicies()
++                .clientProfile(ClientProfileBuilder.create().name("executor")
++                        .executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, new RejectMayActClaimExecutor.Configuration(false, false, true))
++                        .build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        oauth.scope(null).openLoginForm();
++        oauth.fillLoginForm(USERNAME, PASSWORD);
++        res = oauth.doAccessTokenRequest(oauth.parseLoginResponse().getCode());
++        Assertions.assertTrue(res.isSuccess(), res.getError() + " - " + res.getErrorDescription());
++        assertMayActPresent(oauth.verifyToken(res.getAccessToken()), getServiceAccountUserId(), null, null);
++
++        logout(res.getRefreshToken());
++    }
++
+     // ===== Setup helpers =====
+ 
++    private void createHardcodedSubMapperForClientId() {
++        ProtocolMapperRepresentation subMapper = new ProtocolMapperRepresentation();
++        subMapper.setName("may-act-sub-mapper");
++        subMapper.setProtocol("openid-connect");
++        subMapper.setProtocolMapper("oidc-hardcoded-claim-mapper");
++        Map<String, String> config = new HashMap<>();
++        config.put(OIDCAttributeMapperHelper.TOKEN_CLAIM_NAME, "may_act.sub");
++        config.put(HardcodedClaim.CLAIM_VALUE, getServiceAccountUserId());
++        config.put(OIDCAttributeMapperHelper.JSON_TYPE, "String");
++        config.put(OIDCAttributeMapperHelper.INCLUDE_IN_ACCESS_TOKEN, Boolean.TRUE.toString());
++        subMapper.setConfig(config);
++        try (Response response = AdminApiUtil.findClientByClientId(realm.admin(), SUBJECT_CLIENT_ID).getProtocolMappers().createMapper(subMapper)) {
++            subMapper.setId(ApiUtil.getCreatedId(response));
++        }
++        realm.cleanup().add(r -> AdminApiUtil.findClientByClientId(r, SUBJECT_CLIENT_ID).getProtocolMappers().delete(subMapper.getId()));
++    }
++
+     private void createResourceApiRoles() {
+         for (String roleName : List.of(READ_DATA_ROLE, WRITE_DATA_ROLE)) {
+             RoleRepresentation role = new RoleRepresentation();
+@@ -393,8 +519,14 @@ private AccessTokenResponse loginWithDelegation() {
+     }
+ 
+     private AccessTokenResponse loginWithDelegation(Consumer<List<String>> grantsValidator) {
++        AccessTokenResponse res = loginWithDelegationNoEvent(DELEGATION_SCOPE, grantsValidator);
++        EventAssertion.assertSuccess(events.poll()).type(EventType.CODE_TO_TOKEN);
++        return res;
++    }
++
++    private AccessTokenResponse loginWithDelegationNoEvent(String scope, Consumer<List<String>> grantsValidator) {
+         oauth.client(SUBJECT_CLIENT_ID);
+-        oauth.scope(DELEGATION_SCOPE).openLoginForm();
++        oauth.scope(scope).openLoginForm();
+         oauth.fillLoginForm(USERNAME, PASSWORD);
+         grantPage.assertCurrent();
+         List<String> grants = grantPage.getDisplayedGrants();
+@@ -409,9 +541,7 @@ private AccessTokenResponse loginWithDelegation(Consumer<List<String>> grantsVal
+                 .details(Details.CONSENT, Details.CONSENT_VALUE_CONSENT_GRANTED);
+ 
+         String code = oauth.parseLoginResponse().getCode();
+-        AccessTokenResponse res = oauth.doAccessTokenRequest(code);
+-        EventAssertion.assertSuccess(events.poll()).type(EventType.CODE_TO_TOKEN);
+-        return res;
++        return oauth.doAccessTokenRequest(code);
+     }
+ 
+     private String getActorToken() {
+diff --git a/tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientDelegationCibaTest.java b/tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientDelegationCibaTest.java
+index 5075b7779101..320cc44d816f 100644
+--- a/tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientDelegationCibaTest.java
++++ b/tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/ClientDelegationCibaTest.java
+@@ -10,6 +10,7 @@
+ import org.keycloak.authorization.fgap.AdminPermissionsSchema;
+ import org.keycloak.common.Profile;
+ import org.keycloak.events.Details;
++import org.keycloak.events.Errors;
+ import org.keycloak.events.EventType;
+ import org.keycloak.models.CibaConfig;
+ import org.keycloak.models.Constants;
+@@ -19,6 +20,9 @@
+ import org.keycloak.representations.AccessToken;
+ import org.keycloak.representations.idm.authorization.ClientPolicyRepresentation;
+ import org.keycloak.representations.idm.authorization.ScopePermissionRepresentation;
++import org.keycloak.services.clientpolicy.condition.AnyClientConditionFactory;
++import org.keycloak.services.clientpolicy.executor.RejectMayActClaimExecutor;
++import org.keycloak.services.clientpolicy.executor.RejectMayActClaimExecutorFactory;
+ import org.keycloak.testframework.annotations.InjectClient;
+ import org.keycloak.testframework.annotations.InjectEvents;
+ import org.keycloak.testframework.annotations.InjectRealm;
+@@ -31,6 +35,8 @@
+ import org.keycloak.testframework.oauth.annotations.InjectCibaProvider;
+ import org.keycloak.testframework.oauth.annotations.InjectOAuthClient;
+ import org.keycloak.testframework.realm.ClientBuilder;
++import org.keycloak.testframework.realm.ClientPolicyBuilder;
++import org.keycloak.testframework.realm.ClientProfileBuilder;
+ import org.keycloak.testframework.realm.ManagedClient;
+ import org.keycloak.testframework.realm.ManagedRealm;
+ import org.keycloak.testframework.realm.RealmBuilder;
+@@ -155,6 +161,47 @@ public void consentDenied() throws Exception {
+         Assertions.assertEquals(OAuthErrorException.ACCESS_DENIED, res.getError());
+     }
+ 
++    @Test
++    public void rejectMayActClientPolicySuccess() throws Exception {
++        // add default client policy
++        realm.updateWithCleanup(r -> r.clientProfile(ClientProfileBuilder.create().name("executor").executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, null).build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        // normal request should be OK when using common client scopes
++        AccessTokenResponse res = cibaLogin(AGENT_DELEGATION_SCOPE, "client-policy-success", true);
++        assertMayActPresent(oauth.verifyToken(res.getAccessToken()), getServiceAccountUserId(), AGENT_CLIENT_ID);
++        logout(res.getRefreshToken());
++    }
++
++    @Test
++    public void rejectMayActClientPolicyRejectAny() throws Exception {
++        // add client policy that denies any may_act
++        realm.updateWithCleanup(r -> r
++                .clientProfile(ClientProfileBuilder.create().name("executor")
++                        .executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, new RejectMayActClaimExecutor.Configuration(true, false, false))
++                        .build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        // normal request should be rejected as may_act is not allowed by the policy
++        AuthenticationRequestAcknowledgement response = sendBackchannelAuthRequest(AGENT_DELEGATION_SCOPE, "client-policy-reject-any");
++
++        CibaProvider.CibaAuthenticationChannelRequest channelReq = ciba.getAuthChannel("client-policy-reject-any");
++        Assertions.assertTrue(channelReq.getRequest().getConsentRequired());
++        assertScopeContains(channelReq.getRequest().getScope(), AGENT_DELEGATION_SCOPE);
++
++        Assertions.assertEquals(Response.Status.OK.getStatusCode(),
++                oauth.ciba().doAuthenticationChannelCallback(channelReq.getBearerToken(), AuthenticationChannelResponse.Status.SUCCEED));
++
++        ClientNotificationEndpointRequest notification = ciba.getPushedCibaClientNotification("client-notification-token");
++        Assertions.assertEquals(notification.getAuthReqId(), response.getAuthReqId());
++
++        AccessTokenResponse res = oauth.ciba().doBackchannelAuthenticationTokenRequest(response.getAuthReqId());
++        Assertions.assertEquals(Errors.INVALID_REQUEST, res.getError());
++        Assertions.assertEquals("The may_act claim is rejected for this client", res.getErrorDescription());
++
++        AccountHelper.logout(realm.admin(), USERNAME);
++    }
++
+     private AuthenticationRequestAcknowledgement sendBackchannelAuthRequest(String scope, String bindingMessage) {
+         oauth.scope(scope);
+         AuthenticationRequestAcknowledgement response = oauth.ciba().backchannelAuthenticationRequest(USERNAME)
+diff --git a/tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/TokenExchangeDelegationTest.java b/tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/TokenExchangeDelegationTest.java
+index 4cd4d02691a1..2fbc8a57d8f6 100644
+--- a/tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/TokenExchangeDelegationTest.java
++++ b/tests/base/src/test/java/org/keycloak/tests/oauth/tokenexchange/TokenExchangeDelegationTest.java
+@@ -42,6 +42,9 @@
+ import org.keycloak.representations.idm.authorization.ScopePermissionRepresentation;
+ import org.keycloak.representations.idm.authorization.UserPolicyRepresentation;
+ import org.keycloak.representations.oidc.TokenMetadataRepresentation;
++import org.keycloak.services.clientpolicy.condition.AnyClientConditionFactory;
++import org.keycloak.services.clientpolicy.executor.RejectMayActClaimExecutor;
++import org.keycloak.services.clientpolicy.executor.RejectMayActClaimExecutorFactory;
+ import org.keycloak.testframework.annotations.InjectClient;
+ import org.keycloak.testframework.annotations.InjectEvents;
+ import org.keycloak.testframework.annotations.InjectRealm;
+@@ -56,6 +59,8 @@
+ import org.keycloak.testframework.oauth.annotations.InjectOAuthClient;
+ import org.keycloak.testframework.realm.ClientBuilder;
+ import org.keycloak.testframework.realm.ClientConfig;
++import org.keycloak.testframework.realm.ClientPolicyBuilder;
++import org.keycloak.testframework.realm.ClientProfileBuilder;
+ import org.keycloak.testframework.realm.ManagedClient;
+ import org.keycloak.testframework.realm.ManagedRealm;
+ import org.keycloak.testframework.realm.ManagedUser;
+@@ -706,6 +711,113 @@ public void issuerInMayAct() {
+         Assertions.assertTrue(logout.isSuccess(), logout.getError() + " - " + logout.getErrorDescription());
+     }
+ 
++    @Test
++    public void rejectMayActClientPolicySuccess() {
++        addDelegationPermission();
++
++        realm.updateWithCleanup(r -> r.clientProfile(ClientProfileBuilder.create().name("executor").executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, null).build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        // normal request should be OK when using common client scopes
++        final String scope = OIDCLoginProtocolFactory.USER_DELEGATION_SCOPE + ClientScopeModel.VALUE_SEPARATOR + administrator.getUsername();
++        AccessTokenResponse res = loginWithDelegation(scope);
++        assertMayActPresent(oauth.verifyToken(res.getAccessToken()), administrator.getId(), null, null);
++        LogoutResponse logout = oauth.doLogout(res.getRefreshToken());
++        Assertions.assertTrue(logout.isSuccess(), logout.getError() + " - " + logout.getErrorDescription());
++    }
++
++    @Test
++    public void rejectMayActClientPolicyRejectAny() {
++        addDelegationPermission();
++
++        realm.updateWithCleanup(r -> r
++                .clientProfile(ClientProfileBuilder.create().name("executor")
++                        .executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, new RejectMayActClaimExecutor.Configuration(true, false, false))
++                        .build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        // normal request should be rejected as may_act is not allowed by the policy
++        final String scope = OIDCLoginProtocolFactory.USER_DELEGATION_SCOPE + ClientScopeModel.VALUE_SEPARATOR + administrator.getUsername();
++        AccessTokenResponse res = loginWithDelegationNoEvent(scope, grants -> MatcherAssert.assertThat(grants,
++                Matchers.hasItem("Delegate token to administrator administrator?")));
++        Assertions.assertEquals(Errors.INVALID_REQUEST, res.getError());
++        Assertions.assertEquals("The may_act claim is rejected for this client", res.getErrorDescription());
++        EventAssertion.assertError(events.poll())
++                .type(EventType.CODE_TO_TOKEN_ERROR)
++                .clientId("test-app")
++                .hasUserId()
++                .error(Errors.INVALID_REQUEST)
++                .details(Details.REASON, Details.CLIENT_POLICY_ERROR)
++                .details(Details.CLIENT_POLICY_ERROR_DETAIL, "The may_act claim is rejected for this client");
++
++        AccountHelper.logout(realm.admin(), USERNAME);
++    }
++
++    @Test
++    public void rejectMayActClientPolicyPermission() {
++        createHardcodedSubMapperForAdministrator();
++
++        // default config checks permission is not granted
++        realm.updateWithCleanup(r -> r.clientProfile(ClientProfileBuilder.create().name("executor").executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, null).build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        AccessTokenResponse res = loginWithDelegationNoEvent(null, grants -> MatcherAssert.assertThat(grants,
++                Matchers.not(Matchers.hasItem(Matchers.containsString("Delegate token")))));
++        Assertions.assertEquals(Errors.INVALID_REQUEST, res.getError());
++        Assertions.assertEquals("Invalid may_act sub in the token", res.getErrorDescription());
++
++        AccountHelper.logout(realm.admin(), USERNAME);
++
++        // explicitly do not check permissions and consents
++        realm.updateWithCleanup(r -> r.resetClientProfiles().resetClientPolicies()
++                .clientProfile(ClientProfileBuilder.create().name("executor")
++                        .executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, new RejectMayActClaimExecutor.Configuration(false, true, true))
++                        .build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        oauth.scope(null).openLoginForm();
++        oauth.fillLoginForm(USERNAME, PASSWORD);
++        res = oauth.doAccessTokenRequest(oauth.parseLoginResponse().getCode());
++        Assertions.assertTrue(res.isSuccess(), res.getError() + " - " + res.getErrorDescription());
++        assertMayActPresent(oauth.verifyToken(res.getAccessToken()), administrator.getId(), null, null);
++
++        LogoutResponse logout = oauth.doLogout(res.getRefreshToken());
++        Assertions.assertTrue(logout.isSuccess(), logout.getError() + " - " + logout.getErrorDescription());
++    }
++
++    @Test
++    public void rejectMayActClientPolicyConsent() {
++        addDelegationPermission();
++        createHardcodedSubMapperForAdministrator();
++
++        // default config checks consent is not granted
++        realm.updateWithCleanup(r -> r.clientProfile(ClientProfileBuilder.create().name("executor").executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, null).build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        AccessTokenResponse res = loginWithDelegationNoEvent(null, grants -> MatcherAssert.assertThat(grants,
++                Matchers.not(Matchers.hasItem(Matchers.containsString("Delegate token")))));
++        Assertions.assertEquals(Errors.INVALID_REQUEST, res.getError());
++        Assertions.assertEquals("Invalid may_act sub in the token", res.getErrorDescription());
++
++        AccountHelper.logout(realm.admin(), USERNAME);
++
++        // explicitly do not check consents
++        realm.updateWithCleanup(r -> r.resetClientProfiles().resetClientPolicies()
++                .clientProfile(ClientProfileBuilder.create().name("executor")
++                        .executor(RejectMayActClaimExecutorFactory.PROVIDER_ID, new RejectMayActClaimExecutor.Configuration(false, false, true))
++                        .build())
++                .clientPolicy(ClientPolicyBuilder.create().name("policy").condition(AnyClientConditionFactory.PROVIDER_ID, null).profile("executor").build()));
++
++        oauth.scope(null).openLoginForm();
++        oauth.fillLoginForm(USERNAME, PASSWORD);
++        res = oauth.doAccessTokenRequest(oauth.parseLoginResponse().getCode());
++        Assertions.assertTrue(res.isSuccess(), res.getError() + " - " + res.getErrorDescription());
++        assertMayActPresent(oauth.verifyToken(res.getAccessToken()), administrator.getId(), null, null);
++
++        LogoutResponse logout = oauth.doLogout(res.getRefreshToken());
++        Assertions.assertTrue(logout.isSuccess(), logout.getError() + " - " + logout.getErrorDescription());
++    }
++
+     private ScopePermissionRepresentation addDelegationPermission() {
+         ClientResource adminPerms = AdminApiUtil.findClientByClientId(realm.admin(), Constants.ADMIN_PERMISSIONS_CLIENT_ID);
+         UserPolicyRepresentation policy = PermissionTestUtils.createUserPolicy(realm, adminPerms, "Administrator Policy", administrator.getId());
+@@ -772,6 +884,12 @@ private AccessTokenResponse loginWithDelegation(String scope) {
+     }
+ 
+     private AccessTokenResponse loginWithDelegation(String scope, Consumer<List<String>> grantsValidator) {
++        AccessTokenResponse res = loginWithDelegationNoEvent(scope, grantsValidator);
++        EventAssertion.assertSuccess(events.poll()).type(EventType.CODE_TO_TOKEN);
++        return res;
++    }
++
++    private AccessTokenResponse loginWithDelegationNoEvent(String scope, Consumer<List<String>> grantsValidator) {
+         oauth.scope(scope).openLoginForm();
+         oauth.fillLoginForm(USERNAME, PASSWORD);
+         grantPage.assertCurrent();
+@@ -787,9 +905,7 @@ private AccessTokenResponse loginWithDelegation(String scope, Consumer<List<Stri
+                 .details(Details.CONSENT, Details.CONSENT_VALUE_CONSENT_GRANTED);
+ 
+         String code = oauth.parseLoginResponse().getCode();
+-        AccessTokenResponse res = oauth.doAccessTokenRequest(code);
+-        EventAssertion.assertSuccess(events.poll()).type(EventType.CODE_TO_TOKEN);
+-        return res;
++        return oauth.doAccessTokenRequest(code);
+     }
+ 
+     private String getActorToken() {
+@@ -811,6 +927,23 @@ private String findDelegationScopeId() {
+                 .orElseThrow(() -> new AssertionError("delegation client scope not found"));
+     }
+ 
++    private void createHardcodedSubMapperForAdministrator() {
++        ProtocolMapperRepresentation subMapper = new ProtocolMapperRepresentation();
++        subMapper.setName("may-act-sub-mapper");
++        subMapper.setProtocol("openid-connect");
++        subMapper.setProtocolMapper("oidc-hardcoded-claim-mapper");
++        Map<String, String> config = new HashMap<>();
++        config.put(OIDCAttributeMapperHelper.TOKEN_CLAIM_NAME, "may_act.sub");
++        config.put(HardcodedClaim.CLAIM_VALUE, administrator.getId());
++        config.put(OIDCAttributeMapperHelper.JSON_TYPE, "String");
++        config.put(OIDCAttributeMapperHelper.INCLUDE_IN_ACCESS_TOKEN, Boolean.TRUE.toString());
++        subMapper.setConfig(config);
++        try (Response response = oauth.clientResource().getProtocolMappers().createMapper(subMapper)) {
++            subMapper.setId(ApiUtil.getCreatedId(response));
++        }
++        realm.cleanup().add(r -> AdminApiUtil.findClientByClientId(r, oauth.getClientId()).getProtocolMappers().delete(subMapper.getId()));
++    }
++
+     static class TokenExchangeDelegationServerConfig implements KeycloakServerConfig {
+ 
+         @Override

@@ -1,0 +1,25 @@
+{
+  "territories" : [ {
+    "moduleName" : "common",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW5nbGVUaHJlYWRFdmVudEV4ZWN1dG9yI2RvU3RhcnRUaHJlYWQKYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz", "QUREX1NZTUJPTApTaW5nbGVUaHJlYWRFdmVudEV4ZWN1dG9yVGVzdCN0ZXN0U3VzcGVuZERvZXNOb3RSYWNlV2l0aENhbmNlbGxlZFNjaGVkdWxlZFRhc2s" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApTaW5nbGVUaHJlYWRFdmVudEV4ZWN1dG9yVGVzdCN0ZXN0U3VzcGVuZERvZXNOb3RSYWNlV2l0aENhbmNlbGxlZFNjaGVkdWxlZFRhc2s" ]
+  }, {
+    "moduleName" : "dev-tools",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "common",
+    "to" : "dev-tools"
+  } ]
+}

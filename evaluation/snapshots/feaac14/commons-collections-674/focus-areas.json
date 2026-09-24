@@ -1,0 +1,13 @@
+[ {
+  "description" : "Modify body of ConcurrentReferenceHashMap#remove: +requireNonNull",
+  "entity" : "ConcurrentReferenceHashMap"
+}, {
+  "description" : "Modify body of ConcurrentReferenceHashMap#replace: +requireNonNull",
+  "entity" : "ConcurrentReferenceHashMap"
+}, {
+  "description" : "Formatting: ConcurrentReferenceHashMapTest#testBuilderAll",
+  "entity" : "ConcurrentReferenceHashMapTest"
+}, {
+  "description" : "Add ConcurrentReferenceHashMapTest#testRemoveNullKeyThrowsWithoutIdentityComparisons",
+  "entity" : "ConcurrentReferenceHashMapTest"
+} ]
