@@ -71,6 +71,13 @@ class ResponsibilityTaxonomyClassifierTest {
                 .isEqualTo("add-capability");
     }
 
+    @Test
+    void classifiesAVisibilityChangeAsAnApiChangeButNotAKeywordOnlyChange() {
+        assertThat(classifier.classify(changeOf(TransformationKind.CHANGE_MODIFIERS, "A#m", "protected -> private"))
+                .get().concept().id()).isEqualTo("change-api-responsibility");
+        assertThat(classifier.classify(changeOf(TransformationKind.CHANGE_MODIFIERS, "A#m", "+final"))).isEmpty();
+    }
+
     private Change changeOf(TransformationKind kind, String... involved) {
         DetectedTransformation t = DetectedTransformation.of(kind, List.of(involved), List.of());
         return new ChangeGrouper().group(List.of(t)).get(0);

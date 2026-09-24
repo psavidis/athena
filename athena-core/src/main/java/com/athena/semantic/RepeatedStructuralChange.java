@@ -11,15 +11,15 @@ import java.util.List;
 public final class RepeatedStructuralChange {
 
     private final TaxonomyConcept concept;
-    private final String member;
+    private final String subject;
     private final List<String> classes;
     private final List<DetectedTransformation> evidence;
     private final List<SemanticClassification> mergedClassifications;
 
-    RepeatedStructuralChange(TaxonomyConcept concept, String member, List<String> classes,
+    RepeatedStructuralChange(TaxonomyConcept concept, String subject, List<String> classes,
                              List<DetectedTransformation> evidence, List<SemanticClassification> mergedClassifications) {
         this.concept = concept;
-        this.member = member;
+        this.subject = subject;
         this.classes = List.copyOf(classes);
         this.evidence = List.copyOf(evidence);
         this.mergedClassifications = List.copyOf(mergedClassifications);
@@ -29,8 +29,9 @@ public final class RepeatedStructuralChange {
         return concept;
     }
 
-    public String member() {
-        return member;
+    /** The member name the change repeats on, or for a modifier change its delta, e.g. "+final". */
+    public String subject() {
+        return subject;
     }
 
     /** The classes the change was made in, in first-seen order. */

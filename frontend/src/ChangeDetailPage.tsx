@@ -35,6 +35,7 @@ const KIND_LABELS: Record<TransformationKind, string> = {
   MODIFY_METHOD_BODY: 'Body modified',
   PULL_UP_FIELD: 'Pull up field',
   PULL_UP_SYMBOL: 'Pull up',
+  CHANGE_MODIFIERS: 'Modifiers',
 }
 
 const CATEGORY_LABELS = {

@@ -38,5 +38,8 @@ public enum TransformationKind {
     // A field/method several existing classes lost to a newly added common base class that
     // gained it (ticket #290). Involved: "Base#member" first, then each source "Sub#member".
     PULL_UP_FIELD,
-    PULL_UP_SYMBOL
+    PULL_UP_SYMBOL,
+    // A declaration's visibility or modifier keywords changed (ticket #313). Involved:
+    // "Type#member" (or "Type" for a class), then the delta, e.g. "+final".
+    CHANGE_MODIFIERS
 }

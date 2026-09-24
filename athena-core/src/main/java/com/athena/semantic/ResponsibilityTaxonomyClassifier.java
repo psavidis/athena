@@ -43,7 +43,18 @@ public final class ResponsibilityTaxonomyClassifier {
             case RENAME_SYMBOL, RENAME_CLASS, RENAME_FIELD, MECHANICAL_REPLACEMENT, FORMATTING_ONLY,
                  CHANGE_FIELD_ANNOTATIONS, CHANGE_FIELD_TYPE, CHANGE_PARAMETER_ANNOTATIONS,
                  CHANGE_METHOD_ANNOTATIONS, MODIFY_METHOD_BODY -> Optional.empty();
+            // Only a visibility change alters the contract (ticket #313); see conceptIdFor(Change).
+            case CHANGE_MODIFIERS -> Optional.empty();
         };
+    }
+
+    /** As {@link #conceptIdFor(TransformationKind)}, except that a visibility change is an API change. */
+    private Optional<String> conceptIdFor(Change change) {
+        if (change.kind() == TransformationKind.CHANGE_MODIFIERS && change.matchedOccurrences().stream()
+                .anyMatch(occurrence -> occurrence.involvedDescriptions().get(1).contains(" -> "))) {
+            return Optional.of("change-api-responsibility");
+        }
+        return conceptIdFor(change.kind());
     }
 
     public Optional<SemanticClassification> classify(Change change) {
@@ -51,7 +62,7 @@ public final class ResponsibilityTaxonomyClassifier {
         if (change.matchedOccurrences().isEmpty() || change.isTestCode()) {
             return Optional.empty();
         }
-        return conceptIdFor(change.kind())
+        return conceptIdFor(change)
                 .flatMap(responsibilityTaxonomy::find)
                 .map(concept -> SemanticClassification.of(concept, List.copyOf(change.matchedOccurrences())));
     }
