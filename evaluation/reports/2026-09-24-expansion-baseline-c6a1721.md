@@ -85,7 +85,7 @@ which is correct. logback's and guava-8651's are real misses (F1, F2).
 | hibernate-orm-13477 | 4 | **7** | **better** | The new `ToOneVisibilityLoader`/`ToOneRestrictions`, binder methods and behavioral loader changes stand out of 2.6k lines, under 133 framework false positives (F3). |
 | guava-8651 | 5 | **1** | worse | Almost nothing is shown, and "no semantic change detected" on 146 files is wrong (F1). |
 | netty-17589 | 8 | 7 | within 1 | `doStartThread` "branch added" plus a test named for the race. |
-| gson-3086 | 10 | 4 | worse | One behavioral "branch added". The `AtomicBoolean` parameter, the point of the change, isn't surfaced. |
+| gson-3086 | 10 | 4 | worse | One behavioral "branch added" on `createBoundField`, which is the new guard and correct. The `knownAccessible` field it reads lives in an anonymous class and isn't shown (F7). |
 | **Merged total** | **83** | **66** | | |
 | commons-lang-1790 | 10 | 6 | worse | Rejection reason: *hinted* (the approach differs from 1794's; the close was administrative). |
 | commons-io-866 | 7 | 6 | within 1 | Rejection reason: *hinted* (the leaking `close` path is flagged, not the leak). |
@@ -118,10 +118,11 @@ which is correct. logback's and guava-8651's are real misses (F1, F2).
 - **F6: Restructured loops read as behavioral.** jackson-databind-6163's 4× unrolling changes
   loop and branch counts without changing behavior, and is flagged BEHAVIORAL. It's the same
   class of false positive #289 fixed for if → switch.
-- **F7: A small signature change inside a body edit can be the whole point.** gson-3086 adds an
-  `AtomicBoolean` parameter to a private helper. Athena reports only the caller's control-flow
-  change. The helper's signature change isn't among the Changes, so it's worth checking whether
-  private-method signature changes are suppressed.
+- **F7: Anonymous-class members aren't collected.** gson-3086 adds a `knownAccessible` field to
+  an anonymous `BoundField` and guards the reflective checks with it. Athena reports the guard
+  (a "branch added" on the enclosing `createBoundField`) but not the cached state it reads.
+  *(Corrected after publication: an earlier version of this finding described an `AtomicBoolean`
+  parameter. That was the PR description's first design, not the merged code.)*
 
 ## Prioritized next improvements
 
@@ -133,7 +134,7 @@ which is correct. logback's and guava-8651's are real misses (F1, F2).
 | 4 | **Compare field initializers** (F2). | 1+ | Constant tables and registries are common feature switches. |
 | 5 | **Unique module names** (F5): fall back to the relative path when names collide. | 1 | Correctness of module-level views. |
 | 6 | **Bound the Canvas's first view** (N6, from the third run). | 5 | Still open. The expansion adds netty (+9 idle) and guava (+3). |
-| 7 | **Loop-restructuring awareness** (F6) and **helper signature changes** (F7). | 2 | False BEHAVIORAL labels erode trust in the top category. |
+| 7 | **Loop-restructuring awareness** (F6) and **anonymous-class members** (F7). | 2 | Say when a behavioral change keeps the same operations, and show cached state added in anonymous classes. |
 
 Outside the deterministic engine: the closed-unmerged entries show that the questions
 reviewers reject PRs over (leaks, performance, design trade-offs) need reasoning about
