@@ -1,0 +1,163 @@
+{
+  "prTitle" : "Flag comparisons of `Class.forName(...)` to `null`.",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 5,
+    "UNKNOWN" : 2,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX1NZTUJPTApJbXBvc3NpYmxlTnVsbENvbXBhcmlzb25UZXN0I2NsYXNzRm9yTmFtZQ",
+    "description" : "Add ImpossibleNullComparisonTest#classForName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApJbXBvc3NpYmxlTnVsbENvbXBhcmlzb25UZXN0I2NsYXNzRm9yTmFtZV9mbGFnRGlzYWJsZWQ",
+    "description" : "Add ImpossibleNullComparisonTest#classForName_flagDisabled",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmaWx0ZXIsICtlcXVhbHMKSW1wb3NzaWJsZU51bGxDb21wYXJpc29uLk51bGxDb21wYXJpc29uU2Nhbm5lciNnZXRGaXhlcg",
+    "description" : "Modify body of ImpossibleNullComparison.NullComparisonScanner#getFixer: +filter, +equals",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRCb29sZWFuLCArb3JFbHNlCkltcG9zc2libGVOdWxsQ29tcGFyaXNvbiM8aW5pdD4",
+    "description" : "Modify body of ImpossibleNullComparison#<init>: +getBoolean, +orElse",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX0ZJRUxECkltcG9zc2libGVOdWxsQ29tcGFyaXNvbiNjaGVja0NsYXNzRm9yTmFtZQ",
+    "description" : "Add field ImpossibleNullComparison#checkClassForName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX0ZJRUxECkltcG9zc2libGVOdWxsQ29tcGFyaXNvbiNDTEFTU19GT1JfTkFNRV9NQVRDSEVS",
+    "description" : "Add field ImpossibleNullComparison#CLASS_FOR_NAME_MATCHER",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKSW1wb3NzaWJsZU51bGxDb21wYXJpc29uLkdldHRlclR5cGVzI0NMQVNTX0ZPUl9OQU1F",
+    "description" : "Add enum constant ImpossibleNullComparison.GetterTypes#CLASS_FOR_NAME",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ImpossibleNullComparisonTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX1NZTUJPTApJbXBvc3NpYmxlTnVsbENvbXBhcmlzb25UZXN0I2NsYXNzRm9yTmFtZQ",
+      "description" : "Add ImpossibleNullComparisonTest#classForName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApJbXBvc3NpYmxlTnVsbENvbXBhcmlzb25UZXN0I2NsYXNzRm9yTmFtZV9mbGFnRGlzYWJsZWQ",
+      "description" : "Add ImpossibleNullComparisonTest#classForName_flagDisabled",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ImpossibleNullComparison.NullComparisonScanner",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmaWx0ZXIsICtlcXVhbHMKSW1wb3NzaWJsZU51bGxDb21wYXJpc29uLk51bGxDb21wYXJpc29uU2Nhbm5lciNnZXRGaXhlcg",
+      "description" : "Modify body of ImpossibleNullComparison.NullComparisonScanner#getFixer: +filter, +equals",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ImpossibleNullComparison",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRCb29sZWFuLCArb3JFbHNlCkltcG9zc2libGVOdWxsQ29tcGFyaXNvbiM8aW5pdD4",
+      "description" : "Modify body of ImpossibleNullComparison#<init>: +getBoolean, +orElse",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX0ZJRUxECkltcG9zc2libGVOdWxsQ29tcGFyaXNvbiNjaGVja0NsYXNzRm9yTmFtZQ",
+      "description" : "Add field ImpossibleNullComparison#checkClassForName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX0ZJRUxECkltcG9zc2libGVOdWxsQ29tcGFyaXNvbiNDTEFTU19GT1JfTkFNRV9NQVRDSEVS",
+      "description" : "Add field ImpossibleNullComparison#CLASS_FOR_NAME_MATCHER",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ImpossibleNullComparison.GetterTypes",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKSW1wb3NzaWJsZU51bGxDb21wYXJpc29uLkdldHRlclR5cGVzI0NMQVNTX0ZPUl9OQU1F",
+      "description" : "Add enum constant ImpossibleNullComparison.GetterTypes#CLASS_FOR_NAME",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

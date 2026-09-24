@@ -1,0 +1,187 @@
+diff --git a/mockito-core/src/main/java/org/mockito/internal/creation/bytebuddy/SubclassBytecodeGenerator.java b/mockito-core/src/main/java/org/mockito/internal/creation/bytebuddy/SubclassBytecodeGenerator.java
+index 21193e82da..aa628f1a9f 100644
+--- a/mockito-core/src/main/java/org/mockito/internal/creation/bytebuddy/SubclassBytecodeGenerator.java
++++ b/mockito-core/src/main/java/org/mockito/internal/creation/bytebuddy/SubclassBytecodeGenerator.java
+@@ -120,11 +120,25 @@ private static boolean hasNonPublicTypeReference(Class<?> iface) {
+         return false;
+     }
+ 
++    private static Collection<Class<?>> getAllTypes(Class<?> type) {
++        // Include the mocked type and all of its superclasses so that the generated mock is
++        // defined by a class loader that can reach the defining loader of every supertype. If a
++        // superclass lives in a different class loader than the mocked type (for example, in a
++        // separate OSGi bundle) and references a type only that loader can see, omitting it makes
++        // the mock fail to load with a NoClassDefFoundError. When all supertypes share one class
++        // loader, appendMostSpecific collapses them back to it, so this is free in the common case.
++        Collection<Class<?>> types = new LinkedHashSet<>();
++        for (Class<?> superType = type; superType != null; superType = superType.getSuperclass()) {
++            types.add(superType);
++        }
++        return types;
++    }
++
+     @Override
+     public <T> Class<? extends T> mockClass(MockFeatures<T> features) {
+         MultipleParentClassLoader.Builder loaderBuilder =
+                 new MultipleParentClassLoader.Builder()
+-                        .appendMostSpecific(features.mockedType)
++                        .appendMostSpecific(getAllTypes(features.mockedType))
+                         .appendMostSpecific(features.interfaces)
+                         .appendMostSpecific(
+                                 MockAccess.class, DispatcherDefaultingToRealMethod.class)
+diff --git a/mockito-integration-tests/osgi-tests/build.gradle.kts b/mockito-integration-tests/osgi-tests/build.gradle.kts
+index d53aa47a10..35c380dd8f 100644
+--- a/mockito-integration-tests/osgi-tests/build.gradle.kts
++++ b/mockito-integration-tests/osgi-tests/build.gradle.kts
+@@ -18,7 +18,10 @@ dependencies {
+ 
+ val testRuntimeBundles: Configuration by configurations.creating
+ 
+-val (otherBundle, otherBundleTask) = configureOsgiBundle(project, "otherBundle")
++val (depBundle, depBundleTask) = configureOsgiBundle(project, "depBundle")
++val (otherBundle, otherBundleTask) = configureOsgiBundle(project, "otherBundle") {
++    add("otherBundleImplementation", depBundle.output)
++}
+ val (testBundle, testBundleTask) = configureOsgiBundle(project, "testBundle") {
+     add("testBundleImplementation", project(":mockito-core"))
+     add("testBundleImplementation", project.libs.junit4)
+@@ -32,6 +35,7 @@ dependencies {
+ 
+     testRuntimeBundles(testBundleTask.map { it.outputs.files })
+     testRuntimeBundles(otherBundleTask.map { it.outputs.files })
++    testRuntimeBundles(depBundleTask.map { it.outputs.files })
+ }
+ 
+ tasks {
+@@ -46,6 +50,10 @@ tasks {
+         inputs.files(otherBundle.allSource)
+             .withPathSensitivity(PathSensitivity.RELATIVE)
+             .withPropertyName("otherBundleSources")
++
++        inputs.files(depBundle.allSource)
++            .withPathSensitivity(PathSensitivity.RELATIVE)
++            .withPropertyName("depBundleSources")
+         useJUnit()
+     }
+ }
+diff --git a/mockito-integration-tests/osgi-tests/src/depBundle/java/org/mockito/osgitest/depbundle/ForeignType.java b/mockito-integration-tests/osgi-tests/src/depBundle/java/org/mockito/osgitest/depbundle/ForeignType.java
+new file mode 100644
+index 0000000000..d64b05b9ca
+--- /dev/null
++++ b/mockito-integration-tests/osgi-tests/src/depBundle/java/org/mockito/osgitest/depbundle/ForeignType.java
+@@ -0,0 +1,11 @@
++/*
++ * Copyright (c) 2026 Mockito contributors
++ * This program is made available under the terms of the MIT License.
++ */
++package org.mockito.osgitest.depbundle;
++
++/**
++ * A type that only lives in this bundle. It is referenced by a superclass in another bundle but is
++ * not imported by the bundle that defines the mocked subclass, reproducing issue #2694.
++ */
++public class ForeignType {}
+diff --git a/mockito-integration-tests/osgi-tests/src/otherBundle/java/org/mockito/osgitest/otherbundle/SuperClassReferencingOtherBundle.java b/mockito-integration-tests/osgi-tests/src/otherBundle/java/org/mockito/osgitest/otherbundle/SuperClassReferencingOtherBundle.java
+new file mode 100644
+index 0000000000..d9d076d363
+--- /dev/null
++++ b/mockito-integration-tests/osgi-tests/src/otherBundle/java/org/mockito/osgitest/otherbundle/SuperClassReferencingOtherBundle.java
+@@ -0,0 +1,18 @@
++/*
++ * Copyright (c) 2026 Mockito contributors
++ * This program is made available under the terms of the MIT License.
++ */
++package org.mockito.osgitest.otherbundle;
++
++import org.mockito.osgitest.depbundle.ForeignType;
++
++/**
++ * A superclass that exposes {@link ForeignType} from a third bundle. This bundle imports the
++ * package of {@code ForeignType}, but the bundle that defines the mocked subclass does not.
++ */
++public class SuperClassReferencingOtherBundle {
++
++    public ForeignType foreignType() {
++        return null;
++    }
++}
+diff --git a/mockito-integration-tests/osgi-tests/src/test/java/org/mockito/osgitest/OsgiTest.java b/mockito-integration-tests/osgi-tests/src/test/java/org/mockito/osgitest/OsgiTest.java
+index 5f96b4a3d9..766f1f2825 100644
+--- a/mockito-integration-tests/osgi-tests/src/test/java/org/mockito/osgitest/OsgiTest.java
++++ b/mockito-integration-tests/osgi-tests/src/test/java/org/mockito/osgitest/OsgiTest.java
+@@ -98,13 +98,15 @@ private static Class<?>[] getTestClasses() throws Exception {
+             return new Class<?>[] {
+                 loadTestClass("SimpleMockTest"),
+                 loadTestClass("MockNonPublicClassTest"),
+-                loadTestClass("MockClassInOtherBundleTest")
++                loadTestClass("MockClassInOtherBundleTest"),
++                loadTestClass("MockSubclassAcrossBundlesTest")
+             };
+         } else {
+             return new Class<?>[] {
+                 loadTestClass("SimpleMockTest"),
+                 loadTestClass("MockNonPublicClassFailsTest"),
+-                loadTestClass("MockClassInOtherBundleTest")
++                loadTestClass("MockClassInOtherBundleTest"),
++                loadTestClass("MockSubclassAcrossBundlesTest")
+             };
+         }
+     }
+diff --git a/mockito-integration-tests/osgi-tests/src/testBundle/java/org/mockito/osgitest/testbundle/MockSubclassAcrossBundlesTest.java b/mockito-integration-tests/osgi-tests/src/testBundle/java/org/mockito/osgitest/testbundle/MockSubclassAcrossBundlesTest.java
+new file mode 100644
+index 0000000000..02340f2f25
+--- /dev/null
++++ b/mockito-integration-tests/osgi-tests/src/testBundle/java/org/mockito/osgitest/testbundle/MockSubclassAcrossBundlesTest.java
+@@ -0,0 +1,32 @@
++/*
++ * Copyright (c) 2026 Mockito contributors
++ * This program is made available under the terms of the MIT License.
++ */
++package org.mockito.osgitest.testbundle;
++
++import static org.junit.Assert.assertNotNull;
++import static org.mockito.Mockito.mock;
++import static org.mockito.Mockito.withSettings;
++
++import org.junit.Test;
++import org.mockito.MockMakers;
++
++public class MockSubclassAcrossBundlesTest {
++
++    // Regression test for issue #2694. The mocked subclass lives in this bundle, but its superclass
++    // lives in another bundle and exposes a type from a third bundle that this bundle does not
++    // import. The subclass mock maker must define the generated mock with a class loader that can
++    // also reach the superclass' bundle; otherwise resolving the mock's members fails with
++    // NoClassDefFoundError. The regression only affects the subclass mock maker, so it is selected
++    // explicitly here.
++    @Test
++    public void can_mock_subclass_whose_superclass_lives_in_another_bundle() {
++        SubClassInTestBundle mock =
++                mock(SubClassInTestBundle.class, withSettings().mockMaker(MockMakers.SUBCLASS));
++
++        // Resolving the inherited foreignType() method loads its return type through the mock's
++        // class loader. Reflection-based frameworks do this routinely; before the fix it threw
++        // NoClassDefFoundError: org/mockito/osgitest/depbundle/ForeignType.
++        assertNotNull(mock.getClass().getMethods());
++    }
++}
+diff --git a/mockito-integration-tests/osgi-tests/src/testBundle/java/org/mockito/osgitest/testbundle/SubClassInTestBundle.java b/mockito-integration-tests/osgi-tests/src/testBundle/java/org/mockito/osgitest/testbundle/SubClassInTestBundle.java
+new file mode 100644
+index 0000000000..b844c32d7f
+--- /dev/null
++++ b/mockito-integration-tests/osgi-tests/src/testBundle/java/org/mockito/osgitest/testbundle/SubClassInTestBundle.java
+@@ -0,0 +1,14 @@
++/*
++ * Copyright (c) 2026 Mockito contributors
++ * This program is made available under the terms of the MIT License.
++ */
++package org.mockito.osgitest.testbundle;
++
++import org.mockito.osgitest.otherbundle.SuperClassReferencingOtherBundle;
++
++/**
++ * A subclass whose superclass lives in another bundle. This bundle does not import the bundle that
++ * owns {@code ForeignType}, so mocking this type only works if the generated mock's class loader
++ * also reaches the superclass' bundle.
++ */
++public class SubClassInTestBundle extends SuperClassReferencingOtherBundle {}

@@ -1,0 +1,7 @@
+[ {
+  "entity" : "DubboProtocol",
+  "description" : "Change control flow of DubboProtocol#getInvoker: branch added; same calls"
+}, {
+  "entity" : "DubboProtocolTest",
+  "description" : "Add DubboProtocolTest#testGetInvokerThrowsOnNullPath"
+} ]

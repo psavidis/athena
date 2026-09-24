@@ -1,0 +1,29 @@
+diff --git a/vertx-core/src/main/java/io/vertx/core/dns/impl/DnsClientImpl.java b/vertx-core/src/main/java/io/vertx/core/dns/impl/DnsClientImpl.java
+index b5b062c041d..1213c85cf6d 100644
+--- a/vertx-core/src/main/java/io/vertx/core/dns/impl/DnsClientImpl.java
++++ b/vertx-core/src/main/java/io/vertx/core/dns/impl/DnsClientImpl.java
+@@ -56,7 +56,7 @@ public DnsClientImpl(VertxInternal vertx, DnsClientOptions options) {
+     }
+ 
+     DnsAddressResolverProvider provider = DnsAddressResolverProvider.create(vertx, vertx.nameResolver().options()
+-      .setServers(Collections.singletonList(dnsServer.getHostString() + ":" + dnsServer.getPort()))
++      .setServers(Collections.singletonList(dnsServer.getAddress().getHostAddress() + ":" + dnsServer.getPort()))
+       .setOptResourceEnabled(false));
+ 
+     this.options = new DnsClientOptions(options);
+diff --git a/vertx-core/src/test/java/io/vertx/tests/dns/DNSTest.java b/vertx-core/src/test/java/io/vertx/tests/dns/DNSTest.java
+index 1e75eb4aa6d..ce5438327ad 100644
+--- a/vertx-core/src/test/java/io/vertx/tests/dns/DNSTest.java
++++ b/vertx-core/src/test/java/io/vertx/tests/dns/DNSTest.java
+@@ -614,6 +614,11 @@ public void testIpv6NameServer() {
+     vertx.createDnsClient(new DnsClientOptions().setPort(53).setHost("::1"));
+   }
+ 
++  @Test
++  public void testLocalhostNameServer() {
++    vertx.createDnsClient(new DnsClientOptions().setPort(53).setHost("localhost"));
++  }
++
+   private DnsClient prepareDns() {
+     return prepareDns(new DnsClientOptions().setQueryTimeout(15000));
+   }

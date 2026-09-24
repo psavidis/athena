@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/dropwizard/dropwizard.git",
+  "base" : "284fdf830fb0743b478048123e7ca57fdc2029e6",
+  "head" : "76c224609baf11bde84cfef894ddddeb31246d36",
+  "changeCount" : 0,
+  "moduleCount" : 0,
+  "checkoutAndAnalysisSeconds" : 4.32
+}

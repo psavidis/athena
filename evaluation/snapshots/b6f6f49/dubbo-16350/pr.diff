@@ -1,0 +1,38 @@
+diff --git a/dubbo-common/src/main/java/org/apache/dubbo/common/utils/StringUtils.java b/dubbo-common/src/main/java/org/apache/dubbo/common/utils/StringUtils.java
+index 477e5508228e..d140ed4454ef 100644
+--- a/dubbo-common/src/main/java/org/apache/dubbo/common/utils/StringUtils.java
++++ b/dubbo-common/src/main/java/org/apache/dubbo/common/utils/StringUtils.java
+@@ -1308,7 +1308,7 @@ public static String substringAfter(String str, int separator) {
+             return str;
+         }
+         int index = str.indexOf(separator);
+-        return index == INDEX_NOT_FOUND ? str : str.substring(index + 1);
++        return index == INDEX_NOT_FOUND ? EMPTY_STRING : str.substring(index + 1);
+     }
+ 
+     /**
+diff --git a/dubbo-common/src/test/java/org/apache/dubbo/common/utils/StringUtilsTest.java b/dubbo-common/src/test/java/org/apache/dubbo/common/utils/StringUtilsTest.java
+index 65317f38d8fc..b8250019dea5 100644
+--- a/dubbo-common/src/test/java/org/apache/dubbo/common/utils/StringUtilsTest.java
++++ b/dubbo-common/src/test/java/org/apache/dubbo/common/utils/StringUtilsTest.java
+@@ -505,6 +505,20 @@ void testStartsWithIgnoreCase() {
+         assertTrue(startsWithIgnoreCase("Dubbo.application.name", "dubbo.application."));
+     }
+ 
++    @Test
++    void testSubstringAfter() {
++        // null or empty input is returned as-is
++        assertThat(StringUtils.substringAfter(null, ':'), is(nullValue()));
++        assertEquals("", StringUtils.substringAfter("", ':'));
++        // returns the substring after the first occurrence of the separator
++        assertEquals("b", StringUtils.substringAfter("a:b", ':'));
++        assertEquals("b:c", StringUtils.substringAfter("a:b:c", ':'));
++        // separator at the end leaves nothing after it
++        assertEquals("", StringUtils.substringAfter("ab:", ':'));
++        // when the separator is absent the Javadoc promises an empty string
++        assertEquals("", StringUtils.substringAfter("abc", ':'));
++    }
++
+     @Test
+     void testToBoolean() {
+         // true representations

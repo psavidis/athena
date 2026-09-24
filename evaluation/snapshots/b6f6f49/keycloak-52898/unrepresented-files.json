@@ -1,0 +1,12 @@
+{
+  "changedFileCount" : 22,
+  "representedFileCount" : 21,
+  "files" : [ {
+    "path" : "services/src/main/resources/META-INF/services/org.keycloak.services.clientpolicy.executor.ClientPolicyExecutorProviderFactory",
+    "status" : "MODIFIED",
+    "linesChanged" : 1,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

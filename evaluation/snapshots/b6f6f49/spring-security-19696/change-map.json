@@ -1,0 +1,609 @@
+{
+  "prTitle" : "Modernize the default RequestCache background-request ignore list",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 26,
+    "UNKNOWN" : 3,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyI2dldEZhdmljb25SZXF1ZXN0TWF0Y2hlcg",
+    "description" : "Remove RequestCacheConfigurer#getFaviconRequestMatcher",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyI2dldElnbm9yZWRCYWNrZ3JvdW5kUmVxdWVzdE1hdGNoZXI",
+    "description" : "Add RequestCacheConfigurer#getIgnoredBackgroundRequestMatcher",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0FwcGxlVG91Y2hJY29uVGhlblBvc3RBdXRoZW50aWNhdGlvblJlZGlyZWN0c1RvUm9vdA",
+    "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsAppleTouchIconThenPostAuthenticationRedirectsToRoot",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0FwcGxlVG91Y2hJY29uUHJlY29tcG9zZWRUaGVuUG9zdEF1dGhlbnRpY2F0aW9uUmVkaXJlY3RzVG9Sb290",
+    "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsAppleTouchIconPrecomposedThenPostAuthenticationRedirectsToRoot",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0FwcGxlVG91Y2hJY29uU2l6ZWRQcmVjb21wb3NlZFRoZW5Qb3N0QXV0aGVudGljYXRpb25SZWRpcmVjdHNUb1Jvb3Q",
+    "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsAppleTouchIconSizedPrecomposedThenPostAuthenticationRedirectsToRoot",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc01hbmlmZXN0SnNvblRoZW5Qb3N0QXV0aGVudGljYXRpb25SZWRpcmVjdHNUb1Jvb3Q",
+    "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsManifestJsonThenPostAuthenticationRedirectsToRoot",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc01hbmlmZXN0V2VibWFuaWZlc3RUaGVuUG9zdEF1dGhlbnRpY2F0aW9uUmVkaXJlY3RzVG9Sb290",
+    "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsManifestWebmanifestThenPostAuthenticationRedirectsToRoot",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0Jyb3dzZXJDb25maWdYbWxUaGVuUG9zdEF1dGhlbnRpY2F0aW9uUmVkaXJlY3RzVG9Sb290",
+    "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsBrowserConfigXmlThenPostAuthenticationRedirectsToRoot",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0Nocm9tZURldnRvb2xzSnNvblRoZW5Qb3N0QXV0aGVudGljYXRpb25SZWRpcmVjdHNUb1Jvb3Q",
+    "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsChromeDevtoolsJsonThenPostAuthenticationRedirectsToRoot",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0QXBwbGVUb3VjaEljb25UaGVuTm9Db29raWU",
+    "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestAppleTouchIconThenNoCookie",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0QXBwbGVUb3VjaEljb25QcmVjb21wb3NlZFRoZW5Ob0Nvb2tpZQ",
+    "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestAppleTouchIconPrecomposedThenNoCookie",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0QXBwbGVUb3VjaEljb25TaXplZFByZWNvbXBvc2VkVGhlbk5vQ29va2ll",
+    "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestAppleTouchIconSizedPrecomposedThenNoCookie",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0TWFuaWZlc3RKc29uVGhlbk5vQ29va2ll",
+    "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestManifestJsonThenNoCookie",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0TWFuaWZlc3RXZWJtYW5pZmVzdFRoZW5Ob0Nvb2tpZQ",
+    "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestManifestWebmanifestThenNoCookie",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0QnJvd3NlckNvbmZpZ1htbFRoZW5Ob0Nvb2tpZQ",
+    "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestBrowserConfigXmlThenNoCookie",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0Q2hyb21lRGV2dG9vbHNKc29uVGhlbk5vQ29va2ll",
+    "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestChromeDevtoolsJsonThenNoCookie",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkFwcGxlVG91Y2hJY29uVGhlbk5vdEZvdW5k",
+    "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenAppleTouchIconThenNotFound",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkFwcGxlVG91Y2hJY29uUHJlY29tcG9zZWRUaGVuTm90Rm91bmQ",
+    "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenAppleTouchIconPrecomposedThenNotFound",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkFwcGxlVG91Y2hJY29uU2l6ZWRQcmVjb21wb3NlZFRoZW5Ob3RGb3VuZA",
+    "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenAppleTouchIconSizedPrecomposedThenNotFound",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 19,
+    "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbk1hbmlmZXN0SnNvblRoZW5Ob3RGb3VuZA",
+    "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenManifestJsonThenNotFound",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 20,
+    "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbk1hbmlmZXN0V2VibWFuaWZlc3RUaGVuTm90Rm91bmQ",
+    "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenManifestWebmanifestThenNotFound",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 21,
+    "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkJyb3dzZXJDb25maWdYbWxUaGVuTm90Rm91bmQ",
+    "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenBrowserConfigXmlThenNotFound",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 22,
+    "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkNocm9tZURldnRvb2xzSnNvblRoZW5Ob3RGb3VuZA",
+    "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenChromeDevtoolsJsonThenNotFound",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 23,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRJZ25vcmVkQmFja2dyb3VuZFJlcXVlc3RNYXRjaGVyLCAtZ2V0RmF2aWNvblJlcXVlc3RNYXRjaGVyClJlcXVlc3RDYWNoZUNvbmZpZ3VyZXIjY3JlYXRlRGVmYXVsdFNhdmVkUmVxdWVzdE1hdGNoZXI",
+    "description" : "Modify body of RequestCacheConfigurer#createDefaultSavedRequestMatcher: +getIgnoredBackgroundRequestMatcher, -getFaviconRequestMatcher",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 24,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvb2tpZVNlcnZlclJlcXVlc3RDYWNoZSNjcmVhdGVEZWZhdWx0UmVxdWVzdE1hdGNoZXIKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of CookieServerRequestCache#createDefaultRequestMatcher: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 25,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCldlYlNlc3Npb25TZXJ2ZXJSZXF1ZXN0Q2FjaGUjY3JlYXRlRGVmYXVsdFJlcXVlc3RNYXRjaGVyCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of WebSessionServerRequestCache#createDefaultRequestMatcher: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 26,
+    "changeKey" : "QUREX0ZJRUxEClJlcXVlc3RDYWNoZUNvbmZpZ3VyZXIjSUdOT1JFRF9CQUNLR1JPVU5EX1JFUVVFU1RfUEFUVEVSTlM",
+    "description" : "Add field RequestCacheConfigurer#IGNORED_BACKGROUND_REQUEST_PATTERNS",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 27,
+    "changeKey" : "QUREX0ZJRUxECkNvb2tpZVNlcnZlclJlcXVlc3RDYWNoZSNJR05PUkVEX0JBQ0tHUk9VTkRfUkVRVUVTVF9QQVRURVJOUw",
+    "description" : "Add field CookieServerRequestCache#IGNORED_BACKGROUND_REQUEST_PATTERNS",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 28,
+    "changeKey" : "QUREX0ZJRUxECldlYlNlc3Npb25TZXJ2ZXJSZXF1ZXN0Q2FjaGUjSUdOT1JFRF9CQUNLR1JPVU5EX1JFUVVFU1RfUEFUVEVSTlM",
+    "description" : "Add field WebSessionServerRequestCache#IGNORED_BACKGROUND_REQUEST_PATTERNS",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "RequestCacheConfigurer",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyI2dldEZhdmljb25SZXF1ZXN0TWF0Y2hlcg",
+      "description" : "Remove RequestCacheConfigurer#getFaviconRequestMatcher",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyI2dldElnbm9yZWRCYWNrZ3JvdW5kUmVxdWVzdE1hdGNoZXI",
+      "description" : "Add RequestCacheConfigurer#getIgnoredBackgroundRequestMatcher",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 23,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRJZ25vcmVkQmFja2dyb3VuZFJlcXVlc3RNYXRjaGVyLCAtZ2V0RmF2aWNvblJlcXVlc3RNYXRjaGVyClJlcXVlc3RDYWNoZUNvbmZpZ3VyZXIjY3JlYXRlRGVmYXVsdFNhdmVkUmVxdWVzdE1hdGNoZXI",
+      "description" : "Modify body of RequestCacheConfigurer#createDefaultSavedRequestMatcher: +getIgnoredBackgroundRequestMatcher, -getFaviconRequestMatcher",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 26,
+      "changeKey" : "QUREX0ZJRUxEClJlcXVlc3RDYWNoZUNvbmZpZ3VyZXIjSUdOT1JFRF9CQUNLR1JPVU5EX1JFUVVFU1RfUEFUVEVSTlM",
+      "description" : "Add field RequestCacheConfigurer#IGNORED_BACKGROUND_REQUEST_PATTERNS",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RequestCacheConfigurerTests",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0FwcGxlVG91Y2hJY29uVGhlblBvc3RBdXRoZW50aWNhdGlvblJlZGlyZWN0c1RvUm9vdA",
+      "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsAppleTouchIconThenPostAuthenticationRedirectsToRoot",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0FwcGxlVG91Y2hJY29uUHJlY29tcG9zZWRUaGVuUG9zdEF1dGhlbnRpY2F0aW9uUmVkaXJlY3RzVG9Sb290",
+      "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsAppleTouchIconPrecomposedThenPostAuthenticationRedirectsToRoot",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0FwcGxlVG91Y2hJY29uU2l6ZWRQcmVjb21wb3NlZFRoZW5Qb3N0QXV0aGVudGljYXRpb25SZWRpcmVjdHNUb1Jvb3Q",
+      "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsAppleTouchIconSizedPrecomposedThenPostAuthenticationRedirectsToRoot",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc01hbmlmZXN0SnNvblRoZW5Qb3N0QXV0aGVudGljYXRpb25SZWRpcmVjdHNUb1Jvb3Q",
+      "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsManifestJsonThenPostAuthenticationRedirectsToRoot",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc01hbmlmZXN0V2VibWFuaWZlc3RUaGVuUG9zdEF1dGhlbnRpY2F0aW9uUmVkaXJlY3RzVG9Sb290",
+      "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsManifestWebmanifestThenPostAuthenticationRedirectsToRoot",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0Jyb3dzZXJDb25maWdYbWxUaGVuUG9zdEF1dGhlbnRpY2F0aW9uUmVkaXJlY3RzVG9Sb290",
+      "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsBrowserConfigXmlThenPostAuthenticationRedirectsToRoot",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0Nocm9tZURldnRvb2xzSnNvblRoZW5Qb3N0QXV0aGVudGljYXRpb25SZWRpcmVjdHNUb1Jvb3Q",
+      "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsChromeDevtoolsJsonThenPostAuthenticationRedirectsToRoot",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "CookieServerRequestCacheTests",
+    "entries" : [ {
+      "id" : 9,
+      "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0QXBwbGVUb3VjaEljb25UaGVuTm9Db29raWU",
+      "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestAppleTouchIconThenNoCookie",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0QXBwbGVUb3VjaEljb25QcmVjb21wb3NlZFRoZW5Ob0Nvb2tpZQ",
+      "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestAppleTouchIconPrecomposedThenNoCookie",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0QXBwbGVUb3VjaEljb25TaXplZFByZWNvbXBvc2VkVGhlbk5vQ29va2ll",
+      "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestAppleTouchIconSizedPrecomposedThenNoCookie",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0TWFuaWZlc3RKc29uVGhlbk5vQ29va2ll",
+      "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestManifestJsonThenNoCookie",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0TWFuaWZlc3RXZWJtYW5pZmVzdFRoZW5Ob0Nvb2tpZQ",
+      "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestManifestWebmanifestThenNoCookie",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 14,
+      "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0QnJvd3NlckNvbmZpZ1htbFRoZW5Ob0Nvb2tpZQ",
+      "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestBrowserConfigXmlThenNoCookie",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0Q2hyb21lRGV2dG9vbHNKc29uVGhlbk5vQ29va2ll",
+      "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestChromeDevtoolsJsonThenNoCookie",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "WebSessionServerRequestCacheTests",
+    "entries" : [ {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkFwcGxlVG91Y2hJY29uVGhlbk5vdEZvdW5k",
+      "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenAppleTouchIconThenNotFound",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkFwcGxlVG91Y2hJY29uUHJlY29tcG9zZWRUaGVuTm90Rm91bmQ",
+      "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenAppleTouchIconPrecomposedThenNotFound",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 18,
+      "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkFwcGxlVG91Y2hJY29uU2l6ZWRQcmVjb21wb3NlZFRoZW5Ob3RGb3VuZA",
+      "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenAppleTouchIconSizedPrecomposedThenNotFound",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 19,
+      "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbk1hbmlmZXN0SnNvblRoZW5Ob3RGb3VuZA",
+      "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenManifestJsonThenNotFound",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 20,
+      "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbk1hbmlmZXN0V2VibWFuaWZlc3RUaGVuTm90Rm91bmQ",
+      "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenManifestWebmanifestThenNotFound",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 21,
+      "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkJyb3dzZXJDb25maWdYbWxUaGVuTm90Rm91bmQ",
+      "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenBrowserConfigXmlThenNotFound",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 22,
+      "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkNocm9tZURldnRvb2xzSnNvblRoZW5Ob3RGb3VuZA",
+      "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenChromeDevtoolsJsonThenNotFound",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "CookieServerRequestCache",
+    "entries" : [ {
+      "id" : 24,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvb2tpZVNlcnZlclJlcXVlc3RDYWNoZSNjcmVhdGVEZWZhdWx0UmVxdWVzdE1hdGNoZXIKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of CookieServerRequestCache#createDefaultRequestMatcher: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 27,
+      "changeKey" : "QUREX0ZJRUxECkNvb2tpZVNlcnZlclJlcXVlc3RDYWNoZSNJR05PUkVEX0JBQ0tHUk9VTkRfUkVRVUVTVF9QQVRURVJOUw",
+      "description" : "Add field CookieServerRequestCache#IGNORED_BACKGROUND_REQUEST_PATTERNS",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "WebSessionServerRequestCache",
+    "entries" : [ {
+      "id" : 25,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCldlYlNlc3Npb25TZXJ2ZXJSZXF1ZXN0Q2FjaGUjY3JlYXRlRGVmYXVsdFJlcXVlc3RNYXRjaGVyCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of WebSessionServerRequestCache#createDefaultRequestMatcher: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 28,
+      "changeKey" : "QUREX0ZJRUxECldlYlNlc3Npb25TZXJ2ZXJSZXF1ZXN0Q2FjaGUjSUdOT1JFRF9CQUNLR1JPVU5EX1JFUVVFU1RfUEFUVEVSTlM",
+      "description" : "Add field WebSessionServerRequestCache#IGNORED_BACKGROUND_REQUEST_PATTERNS",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

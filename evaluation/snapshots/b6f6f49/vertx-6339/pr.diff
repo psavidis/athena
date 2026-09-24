@@ -1,0 +1,359 @@
+diff --git a/vertx-core/src/main/java/io/vertx/core/datagram/impl/DatagramSocketImpl.java b/vertx-core/src/main/java/io/vertx/core/datagram/impl/DatagramSocketImpl.java
+index fd14cc90747..78ceb605aa9 100644
+--- a/vertx-core/src/main/java/io/vertx/core/datagram/impl/DatagramSocketImpl.java
++++ b/vertx-core/src/main/java/io/vertx/core/datagram/impl/DatagramSocketImpl.java
+@@ -23,7 +23,7 @@
+ import io.netty.util.concurrent.GenericFutureListener;
+ import io.vertx.codegen.annotations.Nullable;
+ import io.vertx.core.*;
+-import io.vertx.core.impl.ServiceResource;
++import io.vertx.core.internal.ServiceResource;
+ import io.vertx.core.internal.Closeable;
+ import io.vertx.core.buffer.Buffer;
+ import io.vertx.core.internal.buffer.BufferInternal;
+diff --git a/vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpClient.java b/vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpClient.java
+index 39e4cf1428e..78e2eab8c2d 100644
+--- a/vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpClient.java
++++ b/vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpClient.java
+@@ -14,7 +14,7 @@
+ import io.vertx.core.Handler;
+ import io.vertx.core.http.*;
+ import io.vertx.core.http.HttpClientConnection;
+-import io.vertx.core.impl.CleanableObject;
++import io.vertx.core.internal.CleanableResource;
+ import io.vertx.core.internal.CloseableResource;
+ import io.vertx.core.internal.VertxInternal;
+ import io.vertx.core.internal.http.HttpClientTransport;
+@@ -32,7 +32,7 @@
+  *
+  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+  */
+-public class CleanableHttpClient extends CleanableObject<HttpClientInternal> implements HttpClientInternal {
++public class CleanableHttpClient extends CleanableResource<HttpClientInternal> implements HttpClientInternal {
+ 
+   public CleanableHttpClient(Cleaner cleaner, CloseableResource<? extends HttpClientInternal> dispose) {
+     super(cleaner, dispose);
+diff --git a/vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpServer.java b/vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpServer.java
+index b2884392ec7..e1bc6b33782 100644
+--- a/vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpServer.java
++++ b/vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpServer.java
+@@ -13,7 +13,7 @@
+ import io.vertx.core.Future;
+ import io.vertx.core.Handler;
+ import io.vertx.core.http.*;
+-import io.vertx.core.impl.ServiceResource;
++import io.vertx.core.internal.ServiceResource;
+ import io.vertx.core.internal.ContextInternal;
+ import io.vertx.core.internal.VertxInternal;
+ import io.vertx.core.internal.http.HttpServerInternal;
+diff --git a/vertx-core/src/main/java/io/vertx/core/http/impl/CleanableWebSocketClient.java b/vertx-core/src/main/java/io/vertx/core/http/impl/CleanableWebSocketClient.java
+index e80f7430cb7..cbb4ae5f303 100644
+--- a/vertx-core/src/main/java/io/vertx/core/http/impl/CleanableWebSocketClient.java
++++ b/vertx-core/src/main/java/io/vertx/core/http/impl/CleanableWebSocketClient.java
+@@ -12,7 +12,7 @@
+ 
+ import io.vertx.core.Future;
+ import io.vertx.core.http.*;
+-import io.vertx.core.impl.CleanableObject;
++import io.vertx.core.internal.CleanableResource;
+ import io.vertx.core.internal.CloseableResource;
+ import io.vertx.core.net.ClientSSLOptions;
+ import io.vertx.core.spi.metrics.Metrics;
+@@ -26,7 +26,7 @@
+  *
+  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+  */
+-public class CleanableWebSocketClient extends CleanableObject<WebSocketClient> implements WebSocketClient, MetricsProvider {
++public class CleanableWebSocketClient extends CleanableResource<WebSocketClient> implements WebSocketClient, MetricsProvider {
+ 
+   public CleanableWebSocketClient(Cleaner cleaner, CloseableResource<? extends WebSocketClient> resource) {
+     super(cleaner, resource);
+diff --git a/vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutorImpl.java b/vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutorImpl.java
+index 967fd38bb52..5f4f42a26cf 100644
+--- a/vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutorImpl.java
++++ b/vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutorImpl.java
+@@ -24,7 +24,7 @@
+ /**
+  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+  */
+-class WorkerExecutorImpl extends CleanableObject<WorkerPool> implements MetricsProvider, WorkerExecutorInternal {
++class WorkerExecutorImpl extends CleanableResource<WorkerPool> implements MetricsProvider, WorkerExecutorInternal {
+ 
+   private final VertxInternal vertx;
+ 
+diff --git a/vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java b/vertx-core/src/main/java/io/vertx/core/internal/CleanableResource.java
+similarity index 72%
+rename from vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java
+rename to vertx-core/src/main/java/io/vertx/core/internal/CleanableResource.java
+index 0aaeffcb755..63a33e5f52a 100644
+--- a/vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java
++++ b/vertx-core/src/main/java/io/vertx/core/internal/CleanableResource.java
+@@ -8,19 +8,21 @@
+  *
+  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
+  */
+-package io.vertx.core.impl;
++package io.vertx.core.internal;
+ 
+ import io.vertx.core.Future;
+-import io.vertx.core.internal.CloseableResource;
+ 
+ import java.lang.ref.Cleaner;
+ import java.lang.ref.WeakReference;
+ import java.time.Duration;
+ 
+ /**
+- * Base object for cleanable proxies.
++ * Base object for cleanable resource proxies, that means proxies that can be collected and if they do will release
++ * the actual underlying resource.
++ *
++ * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+  */
+-public class CleanableObject<T> {
++public class CleanableResource<R> {
+ 
+   public static final Duration DEFAULT_CLEAN_TIMEOUT = Duration.ofSeconds(30);
+ 
+@@ -45,21 +47,27 @@ public void run() {
+   }
+ 
+   private Cleaner.Cleanable cleanable;
+-  private Action<T> action;
++  private Action<R> action;
+ 
+-  public CleanableObject(Cleaner cleaner, CloseableResource<? extends T> dispose) {
++  public CleanableResource(Cleaner cleaner, CloseableResource<? extends R> dispose) {
+     this.action = new Action<>(dispose);
+     this.cleanable = cleaner.register(this, action);
+   }
+ 
+-  protected final T get() {
+-    Action<T> action = this.action;
+-    CloseableResource<? extends T> resource;
++  /**
++   * @return the actual resource or {@code null} when not available
++   */
++  protected final R get() {
++    Action<R> action = this.action;
++    CloseableResource<? extends R> resource;
+     return action != null && (resource = action.get()) != null ? resource.get() : null;
+   }
+ 
+-  protected final T getOrDie() {
+-    T resource = get();
++  /**
++   * @return the actual resource or throws an {@link IllegalStateException} when not available
++   */
++  protected final R getOrDie() {
++    R resource = get();
+     if (resource == null) {
+       throw new IllegalStateException();
+     } else {
+@@ -71,7 +79,7 @@ public final Future<Void> shutdown(Duration timeout) {
+     if (timeout.isNegative()) {
+       throw new IllegalArgumentException();
+     }
+-    Action<T> action;
++    Action<R> action;
+     Cleaner.Cleanable cleanable;
+     synchronized (this) {
+       action = this.action;
+diff --git a/vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java b/vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java
+similarity index 96%
+rename from vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java
+rename to vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java
+index 1181c263ff7..ec6c15172e0 100644
+--- a/vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java
++++ b/vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java
+@@ -8,12 +8,10 @@
+  *
+  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
+  */
+-package io.vertx.core.impl;
++package io.vertx.core.internal;
+ 
+ import io.vertx.core.Future;
+ import io.vertx.core.Promise;
+-import io.vertx.core.internal.CloseableResource;
+-import io.vertx.core.internal.ContextInternal;
+ 
+ import java.time.Duration;
+ import java.util.concurrent.locks.Lock;
+@@ -24,11 +22,14 @@
+  * a bindable service interacting with a Vert.x context for cleanup purpose. This class makes this
+  * reusable and testable independently.</p>
+  *
++ * <p>This class aims to be subclassed and implementors should implement {@link #startImpl(ContextInternal, Object)} and
++ * {@link #stopImpl(ContextInternal, Object, Duration)}.</p>
++ *
+  * <p>The implementation serializes service operations.</p>
+  *
+  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+  */
+-public class ServiceResource<A, R> {
++public abstract class ServiceResource<A, R> {
+ 
+   private boolean started;
+   private CloseableResource<?> hook;
+@@ -44,7 +45,7 @@ public ServiceResource() {
+   }
+ 
+   // Testing purpose
+-  public boolean hasPendingTasks() {
++  protected final boolean hasPendingTasks() {
+     lock.lock();
+     try {
+       return tail != null;
+diff --git a/vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicClient.java b/vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicClient.java
+index 142e44ce55f..01fdbd44f44 100644
+--- a/vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicClient.java
++++ b/vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicClient.java
+@@ -11,7 +11,7 @@
+ package io.vertx.core.net.impl.quic;
+ 
+ import io.vertx.core.Future;
+-import io.vertx.core.impl.ServiceResource;
++import io.vertx.core.internal.ServiceResource;
+ import io.vertx.core.internal.ContextInternal;
+ import io.vertx.core.internal.VertxInternal;
+ import io.vertx.core.net.*;
+diff --git a/vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicServer.java b/vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicServer.java
+index c6a3e208dd4..ccb28a7fcdd 100644
+--- a/vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicServer.java
++++ b/vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicServer.java
+@@ -11,7 +11,7 @@
+ package io.vertx.core.net.impl.quic;
+ 
+ import io.vertx.core.Future;
+-import io.vertx.core.impl.ServiceResource;
++import io.vertx.core.internal.ServiceResource;
+ import io.vertx.core.internal.ContextInternal;
+ import io.vertx.core.internal.VertxInternal;
+ import io.vertx.core.net.QuicServerConfig;
+diff --git a/vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetClient.java b/vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetClient.java
+index b019bc66ad4..790e1446a12 100644
+--- a/vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetClient.java
++++ b/vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetClient.java
+@@ -12,7 +12,7 @@
+ 
+ import io.vertx.core.Future;
+ import io.vertx.core.Promise;
+-import io.vertx.core.impl.CleanableObject;
++import io.vertx.core.internal.CleanableResource;
+ import io.vertx.core.internal.CloseableResource;
+ import io.vertx.core.internal.ContextInternal;
+ import io.vertx.core.internal.net.NetClientInternal;
+@@ -27,7 +27,7 @@
+  *
+  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+  */
+-public class CleanableNetClient extends CleanableObject<NetClientInternal> implements NetClientInternal {
++public class CleanableNetClient extends CleanableResource<NetClientInternal> implements NetClientInternal {
+ 
+   public CleanableNetClient(Cleaner cleaner, CloseableResource<NetClientInternal> resource) {
+     super(cleaner, resource);
+diff --git a/vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetServer.java b/vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetServer.java
+index 885d6e923ef..de393b058ed 100644
+--- a/vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetServer.java
++++ b/vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetServer.java
+@@ -1,7 +1,7 @@
+ package io.vertx.core.net.impl.tcp;
+ 
+ import io.vertx.core.*;
+-import io.vertx.core.impl.ServiceResource;
++import io.vertx.core.internal.ServiceResource;
+ import io.vertx.core.internal.ContextInternal;
+ import io.vertx.core.internal.VertxInternal;
+ import io.vertx.core.net.*;
+diff --git a/vertx-core/src/test/java/io/vertx/tests/vertx/CleanableObjectTest.java b/vertx-core/src/test/java/io/vertx/tests/vertx/CleanableObjectTest.java
+index 79a63df0e42..5f9742a11bb 100644
+--- a/vertx-core/src/test/java/io/vertx/tests/vertx/CleanableObjectTest.java
++++ b/vertx-core/src/test/java/io/vertx/tests/vertx/CleanableObjectTest.java
+@@ -12,7 +12,7 @@
+ 
+ import io.vertx.core.Future;
+ import io.vertx.core.Promise;
+-import io.vertx.core.impl.CleanableObject;
++import io.vertx.core.internal.CleanableResource;
+ import io.vertx.core.internal.CloseableResource;
+ import io.vertx.core.internal.VertxInternal;
+ import io.vertx.test.core.VertxTestBase;
+@@ -102,7 +102,7 @@ public Future<Void> shutdown(Duration timeout) {
+         return Future.succeededFuture();
+       }
+     };
+-    CleanableObject<Object> object = new CleanableObject<>(cleaner, resource);
++    CleanableResource<Object> object = new CleanableResource<>(cleaner, resource);
+     WeakReference<CloseableResource<Object>> reference = new WeakReference<>(resource);
+     resource = null;
+     runGC(() -> reference.get() == null);
+@@ -128,7 +128,7 @@ public Future<Void> shutdown(Duration timeout) {
+     }
+   }
+ 
+-  private static class CleanableTest extends CleanableObject<TestResource> {
++  private static class CleanableTest extends CleanableResource<TestResource> {
+     public CleanableTest(Cleaner cleaner, TestResource resource) {
+       super(cleaner, resource);
+     }
+diff --git a/vertx-core/src/test/java/io/vertx/tests/vertx/ServiceResourceTest.java b/vertx-core/src/test/java/io/vertx/tests/vertx/ServiceResourceTest.java
+index 2385837e013..5cbd066e8ff 100644
+--- a/vertx-core/src/test/java/io/vertx/tests/vertx/ServiceResourceTest.java
++++ b/vertx-core/src/test/java/io/vertx/tests/vertx/ServiceResourceTest.java
+@@ -13,7 +13,7 @@
+ import io.vertx.core.Future;
+ import io.vertx.core.Promise;
+ import io.vertx.core.VertxException;
+-import io.vertx.core.impl.ServiceResource;
++import io.vertx.core.internal.ServiceResource;
+ import io.vertx.core.internal.ContextInternal;
+ import io.vertx.test.core.*;
+ import org.junit.Before;
+@@ -28,6 +28,11 @@
+ public class ServiceResourceTest extends VertxTestBase2 {
+ 
+   static class TestResource extends ServiceResource<Void, Void> {
++
++    public boolean isDone() {
++      return !super.hasPendingTasks();
++    }
++
+   }
+ 
+   private ContextInternal context;
+@@ -149,7 +154,7 @@ protected Future<Void> stopImpl(ContextInternal context, Void args, Duration tim
+     } catch (IllegalStateException expected) {
+     }
+     assertEquals(1, stop.get());
+-    TestUtils.assertWaitUntil(() -> !resource.hasPendingTasks());
++    TestUtils.assertWaitUntil(() -> resource.isDone());
+   }
+ 
+   @Test
+@@ -172,7 +177,7 @@ protected Future<Void> stopImpl(ContextInternal context, Void args, Duration tim
+     TestUtils.assertWaitUntil(() -> stop.get() == 1);
+     continuation.succeed();
+     stopped.await();
+-    TestUtils.assertWaitUntil(() -> !resource.hasPendingTasks());
++    TestUtils.assertWaitUntil(() -> resource.isDone());
+     assertEquals(timeout, timeoutRef.get());
+   }
+ 
+@@ -221,7 +226,7 @@ protected Future<Void> stopImpl(ContextInternal context, Void args, Duration tim
+     stopContinuation.succeed();
+     started.await();
+     stopped.await();
+-    TestUtils.assertWaitUntil(() -> !resource.hasPendingTasks());
++    TestUtils.assertWaitUntil(() -> resource.isDone());
+   }
+ 
+   @Repeat(times = 1000)
+@@ -251,7 +256,7 @@ protected Future<Void> stopImpl(ContextInternal context, Void args, Duration tim
+     }
+     stopped.await();
+     assertEquals(0, stop.get());
+-    TestUtils.assertWaitUntil(() -> !resource.hasPendingTasks());
++    TestUtils.assertWaitUntil(() -> resource.isDone());
+   }
+ 
+   @Repeat(times = 1000)

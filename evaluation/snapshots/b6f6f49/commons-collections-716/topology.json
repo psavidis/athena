@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "commons-collections4",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApUcmVlTGlzdFRlc3QjdGVzdEZhaWxlZEluZGV4ZWRDaGFuZ2VLZWVwc0l0ZXJhdG9yVmFsaWQ", "TU9ESUZZX01FVEhPRF9CT0RZClRyZWVMaXN0I2FkZApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ", "TU9ESUZZX01FVEhPRF9CT0RZClRyZWVMaXN0I3JlbW92ZQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApUcmVlTGlzdFRlc3QjdGVzdEZhaWxlZEluZGV4ZWRDaGFuZ2VLZWVwc0l0ZXJhdG9yVmFsaWQ" ]
+  } ],
+  "dependencies" : [ ]
+}

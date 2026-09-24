@@ -1,0 +1,47 @@
+{
+  "changedFileCount" : 34,
+  "representedFileCount" : 28,
+  "files" : [ {
+    "path" : "documentation/src/main/asciidoc/userguide/chapters/pc/PersistenceContext.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 44,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "hibernate-core/src/main/java/org/hibernate/annotations/Filter.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 12,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "hibernate-core/src/main/java/org/hibernate/annotations/FilterDef.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 12,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "hibernate-core/src/main/java/org/hibernate/annotations/SQLRestriction.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "migration-guide.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 40,
+    "hunkCount" : 5,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "whats-new.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 11,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

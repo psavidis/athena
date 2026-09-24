@@ -1,0 +1,91 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " private Optional<Fixer> getFixer(ExpressionTree tree, VisitorState state) {\n       ExpressionTree resolvedTree = getEffectiveTree(tree);\n       if (resolvedTree == null) {\n         return Optional.empty();\n       }\n       return stream(GetterTypes.values())\n           .filter(gt -> !gt.equals(GetterTypes.PRIMITIVE) || checkPrimitives)\n           .filter(gt -> !gt.equals(GetterTypes.VALUE_OF) || checkValueOf)\n+          .filter(gt -> !gt.equals(GetterTypes.CLASS_FOR_NAME) || checkClassForName)\n           .map(type -> type.match(resolvedTree, state, checkOrBuilder))\n           .filter(Objects::nonNull)\n           .findFirst();\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Inject\n   ImpossibleNullComparison(ErrorProneFlags flags) {\n     this.matchTestAssertions =\n         flags.getBoolean(\"ProtoFieldNullComparison:MatchTestAssertions\").orElse(true);\n     this.checkPrimitives = flags.getBoolean(\"ImmutableNullComparison:CheckPrimitives\").orElse(true);\n     this.checkValueOf = flags.getBoolean(\"ImpossibleNullComparison:CheckValueOf\").orElse(true);\n     this.checkOrBuilder = flags.getBoolean(\"ImpossibleNullComparison:CheckOrBuilder\").orElse(true);\n+    this.checkClassForName =\n+        flags.getBoolean(\"ImpossibleNullComparison:CheckClassForName\").orElse(true);\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+private final boolean checkClassForName;" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+private static final Matcher<ExpressionTree> CLASS_FOR_NAME_MATCHER =\n+      anyOf(\n+          staticMethod()\n+              .onClass(\"java.lang.Class\")\n+              .named(\"forName\")\n+              .withParameters(\"java.lang.String\"),\n+          staticMethod()\n+              .onClass(\"java.lang.Class\")\n+              .named(\"forName\")\n+              .withParameters(\"java.lang.String\", \"boolean\", \"java.lang.ClassLoader\"));" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+CLASS_FOR_NAME {\n+      @Override\n+      @Nullable Fixer match(ExpressionTree tree, VisitorState state, boolean checkOrBuilder) {\n+        if (!CLASS_FOR_NAME_MATCHER.matches(tree, state)) {\n+          return null;\n+        }\n+        return GetterTypes::emptyFix;\n+      }\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in ImpossibleNullComparisonTest",
+    "conceptDescription" : "2 changes in test code of ImpossibleNullComparisonTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+@Test\n+  public void classForName() {\n+    compilationHelper\n+        .addSourceLines(\n+            \"Test.java\",\n+            \"\"\"\n+            import static com.google.common.base.Preconditions.checkNotNull;\n+            import static com.google.common.truth.Truth.assertThat;\n+            import static org.junit.Assert.assertNotNull;\n \n+            class Test {\n+              void o(String s, ClassLoader loader, Module m) throws Exception {\n+                // BUG: Diagnostic contains:\n+                if (Class.forName(s) == null) {}\n+                // BUG: Diagnostic contains:\n+                if (Class.forName(s) != null) {}\n+                // BUG: Diagnostic contains:\n+                if (null == Class.forName(s)) {}\n+                // BUG: Diagnostic contains:\n+                if (null != Class.forName(s)) {}\n+                // BUG: Diagnostic contains:\n+                if (Class.forName(s, true, loader) == null) {}\n+                // BUG: Diagnostic contains:\n+                assertThat(Class.forName(s)).isNotNull();\n+                // BUG: Diagnostic contains:\n+                assertNotNull(Class.forName(s));\n+                // BUG: Diagnostic contains:\n+                checkNotNull(Class.forName(s));\n+                if (Class.forName(m, s) == null) {}\n+              }\n+            }\n+            \"\"\")\n+        .doTest();\n+  }", "-\n+@Test\n+  public void classForName_flagDisabled() {\n+    compilationHelper\n+        .setArgs(\"-XepOpt:ImpossibleNullComparison:CheckClassForName=false\")\n+        .addSourceLines(\n+            \"Test.java\",\n+            \"\"\"\n+            class Test {\n+              void o(String s) throws Exception {\n+                if (Class.forName(s) == null) {}\n+              }\n+            }\n+            \"\"\")\n+        .doTest();\n+  }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "core/src/test/java/com/google/errorprone/bugpatterns/ImpossibleNullComparisonTest.java" ],
+    "groupedMoveCount" : 2
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Change API Responsibility",
+    "conceptDescription" : "What a public API is responsible for doing changed.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-\n+CLASS_FOR_NAME {\n+      @Override\n+      @Nullable Fixer match(ExpressionTree tree, VisitorState state, boolean checkOrBuilder) {\n+        if (!CLASS_FOR_NAME_MATCHER.matches(tree, state)) {\n+          return null;\n+        }\n+        return GetterTypes::emptyFix;\n+      }\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Add Capability",
+    "conceptDescription" : "A new business-meaningful capability was introduced.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-\n+private final boolean checkClassForName;", "-\n+private static final Matcher<ExpressionTree> CLASS_FOR_NAME_MATCHER =\n+      anyOf(\n+          staticMethod()\n+              .onClass(\"java.lang.Class\")\n+              .named(\"forName\")\n+              .withParameters(\"java.lang.String\"),\n+          staticMethod()\n+              .onClass(\"java.lang.Class\")\n+              .named(\"forName\")\n+              .withParameters(\"java.lang.String\", \"boolean\", \"java.lang.ClassLoader\"));" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java" ],
+    "groupedMoveCount" : 2
+  } ]
+}

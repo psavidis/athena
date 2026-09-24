@@ -1,0 +1,208 @@
+{
+  "changedFileCount" : 29,
+  "representedFileCount" : 0,
+  "files" : [ {
+    "path" : "docs/source/examples/core/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-auth/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 48,
+    "hunkCount" : 8,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-benchmarks/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 12,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-client/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 39,
+    "hunkCount" : 6,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-core/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 45,
+    "hunkCount" : 8,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-dependencies/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 28,
+    "hunkCount" : 4,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-e2e/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 50,
+    "hunkCount" : 9,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-example/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 26,
+    "hunkCount" : 3,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-forms/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 9,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-health/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 24,
+    "hunkCount" : 4,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-hibernate/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 72,
+    "hunkCount" : 11,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-http2/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 39,
+    "hunkCount" : 8,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-jdbi3/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 28,
+    "hunkCount" : 4,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-jersey/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 61,
+    "hunkCount" : 10,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-jetty/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 18,
+    "hunkCount" : 3,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-json-logging/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 18,
+    "hunkCount" : 3,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-lifecycle/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-metrics/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 9,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-migrations/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 32,
+    "hunkCount" : 4,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-parent/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 14,
+    "hunkCount" : 3,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-request-logging/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 47,
+    "hunkCount" : 5,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-servlets/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-testing/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 96,
+    "hunkCount" : 13,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-unix-socket/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-validation/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 9,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-views-freemarker/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 52,
+    "hunkCount" : 12,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-views-mustache/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 51,
+    "hunkCount" : 4,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "dropwizard-views/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 24,
+    "hunkCount" : 4,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 7,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

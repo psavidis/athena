@@ -1,0 +1,209 @@
+diff --git a/vertx-core-java21-tests/src/test/java/io/vertx/tests/virtualthread/ContextTest.java b/vertx-core-java21-tests/src/test/java/io/vertx/tests/virtualthread/ContextTest.java
+index 046a37f96e7..44189d359e9 100644
+--- a/vertx-core-java21-tests/src/test/java/io/vertx/tests/virtualthread/ContextTest.java
++++ b/vertx-core-java21-tests/src/test/java/io/vertx/tests/virtualthread/ContextTest.java
+@@ -459,21 +459,23 @@ public void start() {
+         Promise<String> promise = Promise.promise();
+         new Thread(() -> {
+           while (current.getState() != Thread.State.WAITING) {
+-            try {
+-              Thread.sleep(10);
+-            } catch (InterruptedException e) {
+-              throw new RuntimeException(e);
+-            }
++            Thread.yield();
+           }
+           current.interrupt();
++          while (current.getState() != Thread.State.TERMINATED) {
++            Thread.yield();
++          }
++          promise.succeed();
++          context.runOnContext(v -> {
++            testComplete();
++          });
+         }).start();
+         try {
+-          Future.await(promise.future());
++          promise.future().await();
+           fail();
+         } catch (Exception expected) {
+           assertFalse(current.isInterrupted());
+           assertEquals(expected.getClass(), InterruptedException.class);
+-          testComplete();
+         }
+       }
+     }, new DeploymentOptions().setThreadingModel(ThreadingModel.VIRTUAL_THREAD));
+diff --git a/vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java b/vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java
+index ec0df34a1e2..79fe2d8e93d 100644
+--- a/vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java
++++ b/vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java
+@@ -18,6 +18,7 @@
+ import java.util.concurrent.CountDownLatch;
+ import java.util.concurrent.Executor;
+ import java.util.concurrent.RejectedExecutionException;
++import java.util.concurrent.TimeUnit;
+ 
+ /**
+  * A task queue that always run all tasks in order. The executor to run the tasks is passed
+@@ -241,7 +242,7 @@ public CloseResult close() {
+ 
+   private class ContinuationTask extends CountDownLatch implements Task, WorkerExecutor.Execution {
+ 
+-    private static final int ST_CREATED = 0, ST_SUSPENDED = 1, ST_RESUMED = 2;
++    private static final int ST_CREATED = 0, ST_SUSPENDED = 1, ST_DONE = 2;
+ 
+     private final ExecuteTask task;
+     private final Thread thread;
+@@ -258,27 +259,30 @@ public ContinuationTask(ExecuteTask task, Thread thread, Executor executor) {
+     }
+ 
+     @Override
+-    public void resume() {
+-      resume(() -> {});
++    public boolean resume() {
++      return resume(() -> {});
+     }
+ 
+     @Override
+-    public void resume(Runnable callback) {
++    public boolean resume(Runnable callback) {
+       synchronized (tasks) {
+         if (closed) {
+-          return;
++          return false;
+         }
+         switch (status) {
+           case ST_SUSPENDED:
+             boolean removed = continuations.remove(this);
+             assert removed;
+             latch = () -> {
+-              callback.run();
+-              countDown();
++              try {
++                callback.run();
++              } finally {
++                countDown();
++              }
+             };
+             if (currentExecutor != null) {
+               tasks.addFirst(this);
+-              return;
++              return true;
+             }
+             currentExecutor = executor;
+             currentThread = thread;
+@@ -291,12 +295,44 @@ public void resume(Runnable callback) {
+             assert currentTask == task;
+             latch = callback;
+             break;
++          case ST_DONE:
++            return false;
+           default:
+             throw new IllegalStateException();
+         }
+-        status = ST_RESUMED;
++        status = ST_DONE;
+       }
+       latch.run();
++      return true;
++    }
++
++    @Override
++    public void await() throws InterruptedException {
++      try {
++        super.await();
++      } catch (InterruptedException e) {
++        interrupted();
++        throw e;
++      }
++    }
++
++    @Override
++    public boolean await(long timeout, TimeUnit unit) throws InterruptedException {
++      try {
++        return super.await(timeout, unit);
++      } catch (InterruptedException e) {
++        interrupted();
++        throw e;
++      }
++    }
++
++    private void interrupted() {
++      synchronized (tasks) {
++        if (status == ST_SUSPENDED) {
++          continuations.remove(this);
++          status = ST_DONE;
++        }
++      }
+     }
+ 
+     @Override
+@@ -320,7 +356,7 @@ private boolean suspend() {
+           throw new IllegalStateException();
+         }
+         switch (status) {
+-          case ST_RESUMED:
++          case ST_DONE:
+             countDown();
+             return false;
+           case ST_SUSPENDED:
+diff --git a/vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutor.java b/vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutor.java
+index 15b464eb24f..e80bf68bb76 100644
+--- a/vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutor.java
++++ b/vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutor.java
+@@ -105,15 +105,16 @@ public interface Execution {
+     /**
+      * Like {@link #resume(Runnable)}.
+      */
+-    void resume();
++    boolean resume();
+ 
+     /**
+      * Resume the task, the {@code callback} will be executed when the task is resumed, before the task thread
+      * is un-parked.
+      *
+      * @param callback called after the task is resumed
++     * @return whether the continuation was actually resumed
+      */
+-    void resume(Runnable callback);
++    boolean resume(Runnable callback);
+ 
+   }
+ }
+diff --git a/vertx-core/src/test/java/io/vertx/tests/context/TaskQueueTest.java b/vertx-core/src/test/java/io/vertx/tests/context/TaskQueueTest.java
+index f7a67a6ea2a..47eddcfec57 100644
+--- a/vertx-core/src/test/java/io/vertx/tests/context/TaskQueueTest.java
++++ b/vertx-core/src/test/java/io/vertx/tests/context/TaskQueueTest.java
+@@ -152,6 +152,32 @@ public void testResumeWhenIdle() {
+     await();
+   }
+ 
++  @Test
++  public void testInterruptSuspended() {
++    disableThreadChecks();
++    taskQueue.execute(() -> {
++      WorkerExecutor.Execution execution = taskQueue.current();
++      CountDownLatch latch = execution.trySuspend();
++      Thread current = Thread.currentThread();
++      new Thread(() -> {
++        while (current.getState() != Thread.State.WAITING) {
++          Thread.yield();
++        }
++        current.interrupt();
++        while (current.getState() != Thread.State.TERMINATED) {
++          Thread.yield();
++        }
++        assertFalse(execution.resume());
++        taskQueue.execute(this::testComplete, executor);
++      }).start();
++      try {
++        latch.await();
++      } catch (InterruptedException expected) {
++      }
++    }, executor);
++    await();
++  }
++
+   // Need to do unschedule when nested test!
+ 
+   @Test

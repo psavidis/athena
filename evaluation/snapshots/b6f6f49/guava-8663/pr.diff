@@ -1,0 +1,104 @@
+diff --git a/android/guava-tests/test/com/google/common/io/MultiReaderTest.java b/android/guava-tests/test/com/google/common/io/MultiReaderTest.java
+index ead484a666d1..e34492c8b815 100644
+--- a/android/guava-tests/test/com/google/common/io/MultiReaderTest.java
++++ b/android/guava-tests/test/com/google/common/io/MultiReaderTest.java
+@@ -17,6 +17,7 @@
+ package com.google.common.io;
+ 
+ import static com.google.common.truth.Truth.assertThat;
++import static java.util.Collections.nCopies;
+ 
+ import com.google.common.collect.ImmutableList;
+ import java.io.FilterReader;
+@@ -79,6 +80,13 @@ public void testSimple() throws Exception {
+     assertThat(CharStreams.toString(joinedReader)).isEqualTo(expectedString);
+   }
+ 
++  public void testRead_noStackOverflow_manyEmptySources() throws IOException {
++    try (Reader joinedReader =
++        CharSource.concat(nCopies(100_000, CharSource.empty())).openStream()) {
++      assertEquals(-1, joinedReader.read());
++    }
++  }
++
+   private static CharSource newCharSource(String text) {
+     return new CharSource() {
+       @Override
+diff --git a/android/guava/src/com/google/common/io/MultiReader.java b/android/guava/src/com/google/common/io/MultiReader.java
+index 380445ad5f26..5e618544a75b 100644
+--- a/android/guava/src/com/google/common/io/MultiReader.java
++++ b/android/guava/src/com/google/common/io/MultiReader.java
+@@ -52,15 +52,14 @@ private void advance() throws IOException {
+   @Override
+   public int read(char[] cbuf, int off, int len) throws IOException {
+     checkNotNull(cbuf);
+-    if (current == null) {
+-      return -1;
+-    }
+-    int result = current.read(cbuf, off, len);
+-    if (result == -1) {
++    while (current != null) {
++      int result = current.read(cbuf, off, len);
++      if (result != -1) {
++        return result;
++      }
+       advance();
+-      return read(cbuf, off, len);
+     }
+-    return result;
++    return -1;
+   }
+ 
+   @Override
+diff --git a/guava-tests/test/com/google/common/io/MultiReaderTest.java b/guava-tests/test/com/google/common/io/MultiReaderTest.java
+index ead484a666d1..e34492c8b815 100644
+--- a/guava-tests/test/com/google/common/io/MultiReaderTest.java
++++ b/guava-tests/test/com/google/common/io/MultiReaderTest.java
+@@ -17,6 +17,7 @@
+ package com.google.common.io;
+ 
+ import static com.google.common.truth.Truth.assertThat;
++import static java.util.Collections.nCopies;
+ 
+ import com.google.common.collect.ImmutableList;
+ import java.io.FilterReader;
+@@ -79,6 +80,13 @@ public void testSimple() throws Exception {
+     assertThat(CharStreams.toString(joinedReader)).isEqualTo(expectedString);
+   }
+ 
++  public void testRead_noStackOverflow_manyEmptySources() throws IOException {
++    try (Reader joinedReader =
++        CharSource.concat(nCopies(100_000, CharSource.empty())).openStream()) {
++      assertEquals(-1, joinedReader.read());
++    }
++  }
++
+   private static CharSource newCharSource(String text) {
+     return new CharSource() {
+       @Override
+diff --git a/guava/src/com/google/common/io/MultiReader.java b/guava/src/com/google/common/io/MultiReader.java
+index 380445ad5f26..5e618544a75b 100644
+--- a/guava/src/com/google/common/io/MultiReader.java
++++ b/guava/src/com/google/common/io/MultiReader.java
+@@ -52,15 +52,14 @@ private void advance() throws IOException {
+   @Override
+   public int read(char[] cbuf, int off, int len) throws IOException {
+     checkNotNull(cbuf);
+-    if (current == null) {
+-      return -1;
+-    }
+-    int result = current.read(cbuf, off, len);
+-    if (result == -1) {
++    while (current != null) {
++      int result = current.read(cbuf, off, len);
++      if (result != -1) {
++        return result;
++      }
+       advance();
+-      return read(cbuf, off, len);
+     }
+-    return result;
++    return -1;
+   }
+ 
+   @Override

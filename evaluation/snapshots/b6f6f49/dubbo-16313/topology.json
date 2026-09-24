@@ -1,0 +1,85 @@
+{
+  "territories" : [ {
+    "moduleName" : "dubbo-spring-boot",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 3 changes",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yI2FkZE9yUmVwbGFjZQpjb25kaXRpb24gY2hhbmdlZA", "QUREX1NZTUJPTApEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yVGVzdCN0ZXN0UG9zdFByb2Nlc3NFbnZpcm9ubWVudE9uSW1tdXRhYmxlRGVmYXVsdFByb3BlcnRpZXM", "QUREX1NZTUJPTApEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yVGVzdCN0ZXN0SW1tdXRhYmxlRGVmYXVsdFByb3BlcnRpZXNEb2VzTm90T3ZlcnJpZGVFeGlzdGluZ0tleQ" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yVGVzdCN0ZXN0UG9zdFByb2Nlc3NFbnZpcm9ubWVudE9uSW1tdXRhYmxlRGVmYXVsdFByb3BlcnRpZXM", "QUREX1NZTUJPTApEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yVGVzdCN0ZXN0SW1tdXRhYmxlRGVmYXVsdFByb3BlcnRpZXNEb2VzTm90T3ZlcnJpZGVFeGlzdGluZ0tleQ" ]
+  }, {
+    "moduleName" : "dubbo-all",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dubbo-common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dubbo-rpc-triple",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dubbo-rpc-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dubbo-config-spring",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dubbo-test-check",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "dubbo-spring-boot",
+    "to" : "dubbo-all"
+  }, {
+    "from" : "dubbo-spring-boot",
+    "to" : "dubbo-common"
+  }, {
+    "from" : "dubbo-spring-boot",
+    "to" : "dubbo-rpc-triple"
+  }, {
+    "from" : "dubbo-spring-boot",
+    "to" : "dubbo-rpc-api"
+  }, {
+    "from" : "dubbo-spring-boot",
+    "to" : "dubbo-config-spring"
+  }, {
+    "from" : "dubbo-spring-boot",
+    "to" : "dubbo-test-check"
+  } ]
+}

@@ -1,0 +1,13 @@
+[ {
+  "description" : "Move class ServiceResource -> ServiceResource",
+  "entity" : "ServiceResource"
+}, {
+  "description" : "Move class ServiceResource.Task -> ServiceResource.Task",
+  "entity" : "ServiceResource.Task"
+}, {
+  "description" : "Move class ServiceResource.Start -> ServiceResource.Start",
+  "entity" : "ServiceResource.Start"
+}, {
+  "description" : "Move class ServiceResource.Stop -> ServiceResource.Stop",
+  "entity" : "ServiceResource.Stop"
+} ]

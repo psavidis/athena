@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/micronaut-projects/micronaut-core.git",
+  "base" : "733ff0ded334bd3f0e4d11e254e6f539e6d50bbe",
+  "head" : "133f1308b83304b8f8f85fe962d0b65eea5404b2",
+  "changeCount" : 4,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 10.86
+}

@@ -1,0 +1,1464 @@
+{
+  "prTitle" : "Refactor Error Prone check APIs to use annotation mirrors and centralize annotation names",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 4,
+    "STRUCTURAL" : 54,
+    "UNKNOWN" : 10,
+    "MECHANICAL" : 3
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTCk1vcmVBbm5vdGF0aW9uc1Rlc3Q",
+    "description" : "Add class MoreAnnotationsTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdXBwcmVzc2lvbkluZm8jd2l0aEV4dGVuZGVkU3VwcHJlc3Npb25zCmJyYW5jaCByZW1vdmVkLCBsb29wIHJlbW92ZWQ",
+    "description" : "Change control flow of SuppressionInfo#withExtendedSuppressions: branch removed, loop removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdWdnZXN0ZWRGaXhlcyNhZGRTdXBwcmVzc1dhcm5pbmdzCmJyYW5jaCByZW1vdmVk",
+    "description" : "Change control flow of SuggestedFixes#addSuppressWarnings: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdWdnZXN0ZWRGaXhlcyNzdXBwb3J0ZWRUcmVlVHlwZXMKY29uZGl0aW9uIGNoYW5nZWQ",
+    "description" : "Change control flow of SuggestedFixes#supportedTreeTypes: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQVNUSGVscGVycyNnZW5lcmF0ZWRWYWx1ZXM",
+    "description" : "Change signature of ASTHelpers#generatedValues",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTW9yZUFubm90YXRpb25zI2dldFZhbHVl",
+    "description" : "Change signature of MoreAnnotations#getValue",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTW9yZUFubm90YXRpb25zI2dldEFubm90YXRpb25WYWx1ZQ",
+    "description" : "Change signature of MoreAnnotations#getAnnotationValue",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "Rk9STUFUVElOR19PTkxZCk1vcmVBbm5vdGF0aW9ucyNhc0ludGVnZXJWYWx1ZQ",
+    "description" : "Formatting: MoreAnnotations#asIntegerValue",
+    "category" : "MECHANICAL",
+    "kind" : "FORMATTING_ONLY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "Rk9STUFUVElOR19PTkxZCk1vcmVBbm5vdGF0aW9ucyNhc1N0cmluZ1ZhbHVl",
+    "description" : "Formatting: MoreAnnotations#asStringValue",
+    "category" : "MECHANICAL",
+    "kind" : "FORMATTING_ONLY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTW9yZUFubm90YXRpb25zI2FzRW51bVZhbHVl",
+    "description" : "Change signature of MoreAnnotations#asEnumValue",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTW9yZUFubm90YXRpb25zI2FzRW51bVZhbHVlcw",
+    "description" : "Change signature of MoreAnnotations#asEnumValues",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "Rk9STUFUVElOR19PTkxZCk1vcmVBbm5vdGF0aW9ucyNhc1R5cGVWYWx1ZQ",
+    "description" : "Formatting: MoreAnnotations#asTypeValue",
+    "category" : "MECHANICAL",
+    "kind" : "FORMATTING_ONLY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUGxhY2Vob2xkZXJNZXRob2QjY3JlYXRl",
+    "description" : "Change signature of PlaceholderMethod#create",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVVGVtcGxhdGVyI3Zpc2l0SWRlbnRpZmllcgpjb25kaXRpb24gY2hhbmdlZA",
+    "description" : "Change control flow of UTemplater#visitIdentifier: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 14,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKVVRlbXBsYXRlciNjbGFzc05hbWVGcm9t",
+    "description" : "Change signature of UTemplater#classNameFrom",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 15,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNBcnJheQ",
+    "description" : "Remove MoreAnnotations#asArray",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 16,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVVGVtcGxhdGVyI2dldFZhbHVl",
+    "description" : "Remove UTemplater#getValue",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0QW5ub3RhdGlvbg",
+    "description" : "Add MoreAnnotations#getAnnotation",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0QW5ub3RhdGlvbldpdGhTaW1wbGVOYW1l",
+    "description" : "Add MoreAnnotations#getAnnotationWithSimpleName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 19,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0VmFsdWU",
+    "description" : "Add MoreAnnotations#getValue",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 20,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0U3RyaW5nVmFsdWU",
+    "description" : "Add MoreAnnotations#getStringValue",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 21,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0Qm9vbGVhblZhbHVl",
+    "description" : "Add MoreAnnotations#getBooleanValue",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 22,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0RW51bVZhbHVl",
+    "description" : "Add MoreAnnotations#getEnumValue",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 23,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0RW51bVZhbHVlcw",
+    "description" : "Add MoreAnnotations#getEnumValues",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 24,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0U3RyaW5ncw",
+    "description" : "Add MoreAnnotations#getStrings",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 25,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0VHlwZXM",
+    "description" : "Add MoreAnnotations#getTypes",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 26,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0VHlwZVZhbHVl",
+    "description" : "Add MoreAnnotations#getTypeValue",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 27,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNCb29sZWFuVmFsdWU",
+    "description" : "Add MoreAnnotations#asBooleanValue",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 28,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNFbnVtVmFsdWU",
+    "description" : "Add MoreAnnotations#asEnumValue",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 29,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNFbnVtVmFsdWVz",
+    "description" : "Add MoreAnnotations#asEnumValues",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 30,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNBbm5vdGF0aW9uVmFsdWU",
+    "description" : "Add MoreAnnotations#asAnnotationValue",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 31,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0QW5ub3RhdGlvblZhbHVl",
+    "description" : "Add MoreAnnotations#getAnnotationValue",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 32,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNFbGVtZW50",
+    "description" : "Add MoreAnnotations#asElement",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 33,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0VGFyZ2V0RWxlbWVudFR5cGVz",
+    "description" : "Add MoreAnnotations#getTargetElementTypes",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 34,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjaXNUeXBlQW5ub3RhdGlvbg",
+    "description" : "Add MoreAnnotations#isTypeAnnotation",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 35,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0UmV0ZW50aW9uUG9saWN5",
+    "description" : "Add MoreAnnotations#getRetentionPolicy",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 36,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNSZXRlbnRpb25Qb2xpY3k",
+    "description" : "Add MoreAnnotations#asRetentionPolicy",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 37,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjdGFyZ2V0c0VsZW1lbnQ",
+    "description" : "Add MoreAnnotations#targetsElement",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 38,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnNUZXN0I2Fubm90YXRpb25BY2Nlc3NvcnM",
+    "description" : "Add MoreAnnotationsTest#annotationAccessors",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 39,
+    "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnNUZXN0I3RhcmdldEFuZFJldGVudGlvbkhlbHBlcnM",
+    "description" : "Add MoreAnnotationsTest#targetAndRetentionHelpers",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 40,
+    "changeKey" : "QUREX1NZTUJPTApVVGVtcGxhdGVyI2dldE1hdGNoZXJDbGFzcw",
+    "description" : "Add UTemplater#getMatcherClass",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 41,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRBbm5vdGF0aW9uTWlycm9yLCArZ2V0U3RyaW5ncywgK29mLCAtZ2V0U2ltcGxlTmFtZSwgLWdldEFubm90YXRpb24g4oCmYW5kIDEgbW9yZQpTdWdnZXN0ZWRGaXhlcyNyZW1vdmVTdXBwcmVzc1dhcm5pbmdz",
+    "description" : "Modify body of SuggestedFixes#removeSuppressWarnings: +getAnnotationMirror, +getStrings, +of, -getSimpleName, -getAnnotation …and 1 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 42,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRUeXBlVmFsdWUsIC1mbGF0TWFwLCAtZ2V0QW5ub3RhdGlvblZhbHVlClVudXNlZFJldHVyblZhbHVlTWF0Y2hlciNpc1Rlc3RFeHBlY3RlZEV4Y2VwdGlvbk1ldGhvZA",
+    "description" : "Modify body of UnusedReturnValueMatcher#isTestExpectedExceptionMethod: +getTypeValue, -flatMap, -getAnnotationValue",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 43,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1nZXRBbm5vdGF0aW9uVHlwZQpBU1RIZWxwZXJzI2hhc0RpcmVjdEFubm90YXRpb25XaXRoU2ltcGxlTmFtZQ",
+    "description" : "Modify body of ASTHelpers#hasDirectAnnotationWithSimpleName: -getAnnotationType",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 44,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1nZXRBbm5vdGF0aW9uVHlwZQpBU1RIZWxwZXJzI2hhc0RpcmVjdEFubm90YXRpb24",
+    "description" : "Modify body of ASTHelpers#hasDirectAnnotation: -getAnnotationType",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 45,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1vcmVBbm5vdGF0aW9ucyNhc1N0cmluZ3MKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of MoreAnnotations#asStrings: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 46,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithY2NlcHQsICtlbXB0eSwgK29mLCArc3RyZWFtLCArZmxhdE1hcCDigKZhbmQgMiBtb3JlCk1vcmVBbm5vdGF0aW9ucyNhc1R5cGVz",
+    "description" : "Modify body of MoreAnnotations#asTypes: +accept, +empty, +of, +stream, +flatMap …and 2 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 47,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClJlZmFzdGVyUnVsZUJ1aWxkZXJTY2FubmVyI3Zpc2l0TWV0aG9kCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of RefasterRuleBuilderScanner#visitMethod: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 48,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1nZXRBbm5vdGF0aW9uVHlwZQpVVGVtcGxhdGVyI2Fubm90YXRpb25NYXA",
+    "description" : "Modify body of UTemplater#annotationMap: -getAnnotationType",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 49,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRBbm5vdGF0aW9uLCArZ2V0U3RyaW5ncywgLWdldEFubm90YXRpb25NaXJyb3JzLCAtc3RyZWFtLCAtZmlsdGVyIOKApmFuZCA2IG1vcmUKSW1wb3J0U3RhdGVtZW50c1Rlc3QuSW1wb3J0c1RvQWRkQ2hlY2tlciNtYXRjaENsYXNz",
+    "description" : "Modify body of ImportStatementsTest.ImportsToAddChecker#matchClass: +getAnnotation, +getStrings, -getAnnotationMirrors, -stream, -filter …and 6 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 50,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClN1cHByZXNzaW9uSW5mbyNWQUxVRQ",
+    "description" : "Remove field SuppressionInfo#VALUE",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 51,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNBVVRPX0JVSUxERVJfQU5OT1RBVElPTg",
+    "description" : "Add field AnnotationNames#AUTO_BUILDER_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 52,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNBVVRPX0ZBQ1RPUllfQU5OT1RBVElPTg",
+    "description" : "Add field AnnotationNames#AUTO_FACTORY_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 53,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNBVVRPX1ZBTFVFX0FOTk9UQVRJT04",
+    "description" : "Add field AnnotationNames#AUTO_VALUE_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 54,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNDSEVDS19SRVRVUk5fVkFMVUVfQU5OT1RBVElPTg",
+    "description" : "Add field AnnotationNames#CHECK_RETURN_VALUE_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 55,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNERVBSRUNBVEVEX0FOTk9UQVRJT04",
+    "description" : "Add field AnnotationNames#DEPRECATED_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 56,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNJTkNPTVBBVElCTEVfTU9ESUZJRVJTX0FOTk9UQVRJT04",
+    "description" : "Add field AnnotationNames#INCOMPATIBLE_MODIFIERS_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 57,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNJTkxJTkVfTUVfQU5OT1RBVElPTg",
+    "description" : "Add field AnnotationNames#INLINE_ME_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 58,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNJTkxJTkVfTUVfVkFMSURBVElPTl9ESVNBQkxFRF9BTk5PVEFUSU9O",
+    "description" : "Add field AnnotationNames#INLINE_ME_VALIDATION_DISABLED_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 59,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNNQVRDSEVTX0FOTk9UQVRJT04",
+    "description" : "Add field AnnotationNames#MATCHES_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 60,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNOT1RfTUFUQ0hFU19BTk5PVEFUSU9O",
+    "description" : "Add field AnnotationNames#NOT_MATCHES_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 61,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNOVUxMX01BUktFRF9BTk5PVEFUSU9O",
+    "description" : "Add field AnnotationNames#NULL_MARKED_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 62,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNOVUxMX1VOTUFSS0VEX0FOTk9UQVRJT04",
+    "description" : "Add field AnnotationNames#NULL_UNMARKED_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 63,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNPRl9LSU5EX0FOTk9UQVRJT04",
+    "description" : "Add field AnnotationNames#OF_KIND_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 64,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNPVkVSUklERV9BTk5PVEFUSU9O",
+    "description" : "Add field AnnotationNames#OVERRIDE_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 65,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNSRVBFQVRBQkxFX0FOTk9UQVRJT04",
+    "description" : "Add field AnnotationNames#REPEATABLE_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 66,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNSRVFVSVJFRF9NT0RJRklFUlNfQU5OT1RBVElPTg",
+    "description" : "Add field AnnotationNames#REQUIRED_MODIFIERS_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 67,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNSRVRFTlRJT05fQU5OT1RBVElPTg",
+    "description" : "Add field AnnotationNames#RETENTION_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 68,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNTVVBQUkVTU19XQVJOSU5HU19BTk5PVEFUSU9O",
+    "description" : "Add field AnnotationNames#SUPPRESS_WARNINGS_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 69,
+    "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNUQVJHRVRfQU5OT1RBVElPTg",
+    "description" : "Add field AnnotationNames#TARGET_ANNOTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 70,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCkFTVEhlbHBlcnMjTlVMTF9NQVJLRURfTkFNRQp2YWx1ZSBjaGFuZ2Vk",
+    "description" : "Change value of ASTHelpers#NULL_MARKED_NAME: value changed",
+    "category" : "UNKNOWN",
+    "kind" : "CHANGE_FIELD_VALUE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "MoreAnnotationsTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTCk1vcmVBbm5vdGF0aW9uc1Rlc3Q",
+      "description" : "Add class MoreAnnotationsTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 38,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnNUZXN0I2Fubm90YXRpb25BY2Nlc3NvcnM",
+      "description" : "Add MoreAnnotationsTest#annotationAccessors",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 39,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnNUZXN0I3RhcmdldEFuZFJldGVudGlvbkhlbHBlcnM",
+      "description" : "Add MoreAnnotationsTest#targetAndRetentionHelpers",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "SuppressionInfo",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdXBwcmVzc2lvbkluZm8jd2l0aEV4dGVuZGVkU3VwcHJlc3Npb25zCmJyYW5jaCByZW1vdmVkLCBsb29wIHJlbW92ZWQ",
+      "description" : "Change control flow of SuppressionInfo#withExtendedSuppressions: branch removed, loop removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 50,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClN1cHByZXNzaW9uSW5mbyNWQUxVRQ",
+      "description" : "Remove field SuppressionInfo#VALUE",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SuggestedFixes",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdWdnZXN0ZWRGaXhlcyNhZGRTdXBwcmVzc1dhcm5pbmdzCmJyYW5jaCByZW1vdmVk",
+      "description" : "Change control flow of SuggestedFixes#addSuppressWarnings: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdWdnZXN0ZWRGaXhlcyNzdXBwb3J0ZWRUcmVlVHlwZXMKY29uZGl0aW9uIGNoYW5nZWQ",
+      "description" : "Change control flow of SuggestedFixes#supportedTreeTypes: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 41,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRBbm5vdGF0aW9uTWlycm9yLCArZ2V0U3RyaW5ncywgK29mLCAtZ2V0U2ltcGxlTmFtZSwgLWdldEFubm90YXRpb24g4oCmYW5kIDEgbW9yZQpTdWdnZXN0ZWRGaXhlcyNyZW1vdmVTdXBwcmVzc1dhcm5pbmdz",
+      "description" : "Modify body of SuggestedFixes#removeSuppressWarnings: +getAnnotationMirror, +getStrings, +of, -getSimpleName, -getAnnotation …and 1 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ASTHelpers",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQVNUSGVscGVycyNnZW5lcmF0ZWRWYWx1ZXM",
+      "description" : "Change signature of ASTHelpers#generatedValues",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 43,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1nZXRBbm5vdGF0aW9uVHlwZQpBU1RIZWxwZXJzI2hhc0RpcmVjdEFubm90YXRpb25XaXRoU2ltcGxlTmFtZQ",
+      "description" : "Modify body of ASTHelpers#hasDirectAnnotationWithSimpleName: -getAnnotationType",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 44,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1nZXRBbm5vdGF0aW9uVHlwZQpBU1RIZWxwZXJzI2hhc0RpcmVjdEFubm90YXRpb24",
+      "description" : "Modify body of ASTHelpers#hasDirectAnnotation: -getAnnotationType",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 70,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCkFTVEhlbHBlcnMjTlVMTF9NQVJLRURfTkFNRQp2YWx1ZSBjaGFuZ2Vk",
+      "description" : "Change value of ASTHelpers#NULL_MARKED_NAME: value changed",
+      "category" : "UNKNOWN",
+      "kind" : "CHANGE_FIELD_VALUE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "MoreAnnotations",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTW9yZUFubm90YXRpb25zI2dldFZhbHVl",
+      "description" : "Change signature of MoreAnnotations#getValue",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 6,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTW9yZUFubm90YXRpb25zI2dldEFubm90YXRpb25WYWx1ZQ",
+      "description" : "Change signature of MoreAnnotations#getAnnotationValue",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "Rk9STUFUVElOR19PTkxZCk1vcmVBbm5vdGF0aW9ucyNhc0ludGVnZXJWYWx1ZQ",
+      "description" : "Formatting: MoreAnnotations#asIntegerValue",
+      "category" : "MECHANICAL",
+      "kind" : "FORMATTING_ONLY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 8,
+      "changeKey" : "Rk9STUFUVElOR19PTkxZCk1vcmVBbm5vdGF0aW9ucyNhc1N0cmluZ1ZhbHVl",
+      "description" : "Formatting: MoreAnnotations#asStringValue",
+      "category" : "MECHANICAL",
+      "kind" : "FORMATTING_ONLY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 9,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTW9yZUFubm90YXRpb25zI2FzRW51bVZhbHVl",
+      "description" : "Change signature of MoreAnnotations#asEnumValue",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 10,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTW9yZUFubm90YXRpb25zI2FzRW51bVZhbHVlcw",
+      "description" : "Change signature of MoreAnnotations#asEnumValues",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "Rk9STUFUVElOR19PTkxZCk1vcmVBbm5vdGF0aW9ucyNhc1R5cGVWYWx1ZQ",
+      "description" : "Formatting: MoreAnnotations#asTypeValue",
+      "category" : "MECHANICAL",
+      "kind" : "FORMATTING_ONLY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 15,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNBcnJheQ",
+      "description" : "Remove MoreAnnotations#asArray",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0QW5ub3RhdGlvbg",
+      "description" : "Add MoreAnnotations#getAnnotation",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 18,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0QW5ub3RhdGlvbldpdGhTaW1wbGVOYW1l",
+      "description" : "Add MoreAnnotations#getAnnotationWithSimpleName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 19,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0VmFsdWU",
+      "description" : "Add MoreAnnotations#getValue",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 20,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0U3RyaW5nVmFsdWU",
+      "description" : "Add MoreAnnotations#getStringValue",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 21,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0Qm9vbGVhblZhbHVl",
+      "description" : "Add MoreAnnotations#getBooleanValue",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 22,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0RW51bVZhbHVl",
+      "description" : "Add MoreAnnotations#getEnumValue",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 23,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0RW51bVZhbHVlcw",
+      "description" : "Add MoreAnnotations#getEnumValues",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 24,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0U3RyaW5ncw",
+      "description" : "Add MoreAnnotations#getStrings",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 25,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0VHlwZXM",
+      "description" : "Add MoreAnnotations#getTypes",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 26,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0VHlwZVZhbHVl",
+      "description" : "Add MoreAnnotations#getTypeValue",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 27,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNCb29sZWFuVmFsdWU",
+      "description" : "Add MoreAnnotations#asBooleanValue",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 28,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNFbnVtVmFsdWU",
+      "description" : "Add MoreAnnotations#asEnumValue",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 29,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNFbnVtVmFsdWVz",
+      "description" : "Add MoreAnnotations#asEnumValues",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 30,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNBbm5vdGF0aW9uVmFsdWU",
+      "description" : "Add MoreAnnotations#asAnnotationValue",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 31,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0QW5ub3RhdGlvblZhbHVl",
+      "description" : "Add MoreAnnotations#getAnnotationValue",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 32,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNFbGVtZW50",
+      "description" : "Add MoreAnnotations#asElement",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 33,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0VGFyZ2V0RWxlbWVudFR5cGVz",
+      "description" : "Add MoreAnnotations#getTargetElementTypes",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 34,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjaXNUeXBlQW5ub3RhdGlvbg",
+      "description" : "Add MoreAnnotations#isTypeAnnotation",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 35,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0UmV0ZW50aW9uUG9saWN5",
+      "description" : "Add MoreAnnotations#getRetentionPolicy",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 36,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNSZXRlbnRpb25Qb2xpY3k",
+      "description" : "Add MoreAnnotations#asRetentionPolicy",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 37,
+      "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjdGFyZ2V0c0VsZW1lbnQ",
+      "description" : "Add MoreAnnotations#targetsElement",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 45,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1vcmVBbm5vdGF0aW9ucyNhc1N0cmluZ3MKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of MoreAnnotations#asStrings: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 46,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithY2NlcHQsICtlbXB0eSwgK29mLCArc3RyZWFtLCArZmxhdE1hcCDigKZhbmQgMiBtb3JlCk1vcmVBbm5vdGF0aW9ucyNhc1R5cGVz",
+      "description" : "Modify body of MoreAnnotations#asTypes: +accept, +empty, +of, +stream, +flatMap …and 2 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "PlaceholderMethod",
+    "entries" : [ {
+      "id" : 12,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUGxhY2Vob2xkZXJNZXRob2QjY3JlYXRl",
+      "description" : "Change signature of PlaceholderMethod#create",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "UTemplater",
+    "entries" : [ {
+      "id" : 13,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVVGVtcGxhdGVyI3Zpc2l0SWRlbnRpZmllcgpjb25kaXRpb24gY2hhbmdlZA",
+      "description" : "Change control flow of UTemplater#visitIdentifier: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 14,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKVVRlbXBsYXRlciNjbGFzc05hbWVGcm9t",
+      "description" : "Change signature of UTemplater#classNameFrom",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 16,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVVGVtcGxhdGVyI2dldFZhbHVl",
+      "description" : "Remove UTemplater#getValue",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 40,
+      "changeKey" : "QUREX1NZTUJPTApVVGVtcGxhdGVyI2dldE1hdGNoZXJDbGFzcw",
+      "description" : "Add UTemplater#getMatcherClass",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 48,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1nZXRBbm5vdGF0aW9uVHlwZQpVVGVtcGxhdGVyI2Fubm90YXRpb25NYXA",
+      "description" : "Modify body of UTemplater#annotationMap: -getAnnotationType",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "UnusedReturnValueMatcher",
+    "entries" : [ {
+      "id" : 42,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRUeXBlVmFsdWUsIC1mbGF0TWFwLCAtZ2V0QW5ub3RhdGlvblZhbHVlClVudXNlZFJldHVyblZhbHVlTWF0Y2hlciNpc1Rlc3RFeHBlY3RlZEV4Y2VwdGlvbk1ldGhvZA",
+      "description" : "Modify body of UnusedReturnValueMatcher#isTestExpectedExceptionMethod: +getTypeValue, -flatMap, -getAnnotationValue",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RefasterRuleBuilderScanner",
+    "entries" : [ {
+      "id" : 47,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClJlZmFzdGVyUnVsZUJ1aWxkZXJTY2FubmVyI3Zpc2l0TWV0aG9kCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of RefasterRuleBuilderScanner#visitMethod: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ImportStatementsTest.ImportsToAddChecker",
+    "entries" : [ {
+      "id" : 49,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRBbm5vdGF0aW9uLCArZ2V0U3RyaW5ncywgLWdldEFubm90YXRpb25NaXJyb3JzLCAtc3RyZWFtLCAtZmlsdGVyIOKApmFuZCA2IG1vcmUKSW1wb3J0U3RhdGVtZW50c1Rlc3QuSW1wb3J0c1RvQWRkQ2hlY2tlciNtYXRjaENsYXNz",
+      "description" : "Modify body of ImportStatementsTest.ImportsToAddChecker#matchClass: +getAnnotation, +getStrings, -getAnnotationMirrors, -stream, -filter …and 6 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "AnnotationNames",
+    "entries" : [ {
+      "id" : 51,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNBVVRPX0JVSUxERVJfQU5OT1RBVElPTg",
+      "description" : "Add field AnnotationNames#AUTO_BUILDER_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 52,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNBVVRPX0ZBQ1RPUllfQU5OT1RBVElPTg",
+      "description" : "Add field AnnotationNames#AUTO_FACTORY_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 53,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNBVVRPX1ZBTFVFX0FOTk9UQVRJT04",
+      "description" : "Add field AnnotationNames#AUTO_VALUE_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 54,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNDSEVDS19SRVRVUk5fVkFMVUVfQU5OT1RBVElPTg",
+      "description" : "Add field AnnotationNames#CHECK_RETURN_VALUE_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 55,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNERVBSRUNBVEVEX0FOTk9UQVRJT04",
+      "description" : "Add field AnnotationNames#DEPRECATED_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 56,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNJTkNPTVBBVElCTEVfTU9ESUZJRVJTX0FOTk9UQVRJT04",
+      "description" : "Add field AnnotationNames#INCOMPATIBLE_MODIFIERS_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 57,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNJTkxJTkVfTUVfQU5OT1RBVElPTg",
+      "description" : "Add field AnnotationNames#INLINE_ME_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 58,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNJTkxJTkVfTUVfVkFMSURBVElPTl9ESVNBQkxFRF9BTk5PVEFUSU9O",
+      "description" : "Add field AnnotationNames#INLINE_ME_VALIDATION_DISABLED_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 59,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNNQVRDSEVTX0FOTk9UQVRJT04",
+      "description" : "Add field AnnotationNames#MATCHES_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 60,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNOT1RfTUFUQ0hFU19BTk5PVEFUSU9O",
+      "description" : "Add field AnnotationNames#NOT_MATCHES_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 61,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNOVUxMX01BUktFRF9BTk5PVEFUSU9O",
+      "description" : "Add field AnnotationNames#NULL_MARKED_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 62,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNOVUxMX1VOTUFSS0VEX0FOTk9UQVRJT04",
+      "description" : "Add field AnnotationNames#NULL_UNMARKED_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 63,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNPRl9LSU5EX0FOTk9UQVRJT04",
+      "description" : "Add field AnnotationNames#OF_KIND_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 64,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNPVkVSUklERV9BTk5PVEFUSU9O",
+      "description" : "Add field AnnotationNames#OVERRIDE_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 65,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNSRVBFQVRBQkxFX0FOTk9UQVRJT04",
+      "description" : "Add field AnnotationNames#REPEATABLE_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 66,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNSRVFVSVJFRF9NT0RJRklFUlNfQU5OT1RBVElPTg",
+      "description" : "Add field AnnotationNames#REQUIRED_MODIFIERS_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 67,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNSRVRFTlRJT05fQU5OT1RBVElPTg",
+      "description" : "Add field AnnotationNames#RETENTION_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 68,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNTVVBQUkVTU19XQVJOSU5HU19BTk5PVEFUSU9O",
+      "description" : "Add field AnnotationNames#SUPPRESS_WARNINGS_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 69,
+      "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNUQVJHRVRfQU5OT1RBVElPTg",
+      "description" : "Add field AnnotationNames#TARGET_ANNOTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

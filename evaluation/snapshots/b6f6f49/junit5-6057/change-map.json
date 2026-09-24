@@ -1,0 +1,1073 @@
+{
+  "prTitle" : "Assert timeout with sub millisecond precision",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 2,
+    "STRUCTURAL" : 39,
+    "UNKNOWN" : 10,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "UkVNT1ZFX0NMQVNTClByZWVtcHRpdmVUaW1lb3V0VXRpbHNUZXN0",
+    "description" : "Remove class PreemptiveTimeoutUtilsTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0NMQVNTCkR1cmF0aW9uVXRpbHM",
+    "description" : "Add class DurationUtils",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX0NMQVNTCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMuRXhlY3V0YWJsZVByZWNvbmRpdGlvbnM",
+    "description" : "Add class AssertTimeoutAssertionsTests.ExecutablePreconditions",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX0NMQVNTCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMuU3VwcGxpZXJQcmVjb25kaXRpb25z",
+    "description" : "Add class AssertTimeoutAssertionsTests.SupplierPreconditions",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX0NMQVNTClByZWVtcHRpdmVEdXJhdGlvblV0aWxzVGVzdA",
+    "description" : "Add class PreemptiveDurationUtilsTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX0NMQVNTClByZWVtcHRpdmVEdXJhdGlvblV0aWxzVGVzdC5QcmVjb25kaXRpb25z",
+    "description" : "Add class PreemptiveDurationUtilsTest.Preconditions",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX0NMQVNTClRpbWVvdXREdXJhdGlvblRlc3RzLlByZWNvbmRpdGlvbnM",
+    "description" : "Add class TimeoutDurationTests.Preconditions",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBc3NlcnRUaW1lb3V0I2Fzc2VydFRpbWVvdXQKY29uZGl0aW9uIGNoYW5nZWQ",
+    "description" : "Change control flow of AssertTimeout#assertTimeout: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpBc3NlcnRUaW1lb3V0UHJlZW1wdGl2ZWx5I2Fzc2VydFRpbWVvdXRQcmVlbXB0aXZlbHkKbWVzc2FnZVN1cHBsaWVyICtATnVsbGFibGU",
+    "description" : "Change parameter annotations of AssertTimeoutPreemptively#assertTimeoutPreemptively: messageSupplier +@Nullable",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUaW1lb3V0RHVyYXRpb24jdG9TdHJpbmcKYnJhbmNoIHJlbW92ZWQ",
+    "description" : "Change control flow of TimeoutDuration#toString: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "TU9WRV9TWU1CT0wKUHJlZW1wdGl2ZUR1cmF0aW9uVXRpbHNUZXN0I2V4ZWN1dGVXaXRoUHJlZW1wdGl2ZVRpbWVvdXRUaHJvd2luZ1RpbWVvdXRFeGNlcHRpb25XaXRoTWVzc2FnZUZvclN1cHBsaWVyVGhhdENvbXBsZXRlc0FmdGVyVGhlVGltZW91dApQcmVlbXB0aXZlVGltZW91dFV0aWxzVGVzdCNleGVjdXRlV2l0aFByZWVtcHRpdmVUaW1lb3V0VGhyb3dpbmdUaW1lb3V0RXhjZXB0aW9uV2l0aE1lc3NhZ2VGb3JTdXBwbGllclRoYXRDb21wbGV0ZXNBZnRlclRoZVRpbWVvdXQ",
+    "description" : "Move PreemptiveTimeoutUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatCompletesAfterTheTimeout -> PreemptiveDurationUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatCompletesAfterTheTimeout",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "TU9WRV9TWU1CT0wKUHJlZW1wdGl2ZUR1cmF0aW9uVXRpbHNUZXN0I2V4ZWN1dGVXaXRoUHJlZW1wdGl2ZVRpbWVvdXRUaHJvd2luZ1RpbWVvdXRFeGNlcHRpb25XaXRoTWVzc2FnZUZvclN1cHBsaWVyVGhhdFRocm93c0FuQXNzZXJ0aW9uRmFpbGVkRXJyb3IKUHJlZW1wdGl2ZVRpbWVvdXRVdGlsc1Rlc3QjZXhlY3V0ZVdpdGhQcmVlbXB0aXZlVGltZW91dFRocm93aW5nVGltZW91dEV4Y2VwdGlvbldpdGhNZXNzYWdlRm9yU3VwcGxpZXJUaGF0VGhyb3dzQW5Bc3NlcnRpb25GYWlsZWRFcnJvcg",
+    "description" : "Move PreemptiveTimeoutUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatThrowsAnAssertionFailedError -> PreemptiveDurationUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatThrowsAnAssertionFailedError",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 12,
+    "changeKey" : "TU9WRV9TWU1CT0wKUHJlZW1wdGl2ZUR1cmF0aW9uVXRpbHNUZXN0I2V4ZWN1dGVXaXRoUHJlZW1wdGl2ZVRpbWVvdXRUaHJvd2luZ1RpbWVvdXRFeGNlcHRpb25XaXRoTWVzc2FnZUZvclN1cHBsaWVyVGhhdFRocm93c0FuRXhjZXB0aW9uClByZWVtcHRpdmVUaW1lb3V0VXRpbHNUZXN0I2V4ZWN1dGVXaXRoUHJlZW1wdGl2ZVRpbWVvdXRUaHJvd2luZ1RpbWVvdXRFeGNlcHRpb25XaXRoTWVzc2FnZUZvclN1cHBsaWVyVGhhdFRocm93c0FuRXhjZXB0aW9u",
+    "description" : "Move PreemptiveTimeoutUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatThrowsAnException -> PreemptiveDurationUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatThrowsAnException",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 13,
+    "changeKey" : "TU9WRV9TWU1CT0wKUHJlZW1wdGl2ZUR1cmF0aW9uVXRpbHNUZXN0I2V4ZWN1dGVXaXRoUHJlZW1wdGl2ZVRpbWVvdXRUaHJvd2luZ1RpbWVvdXRFeGNlcHRpb25XaXRoTWVzc2FnZUZvclN1cHBsaWVyVGhhdENvbXBsZXRlc0JlZm9yZVRpbWVvdXQKUHJlZW1wdGl2ZVRpbWVvdXRVdGlsc1Rlc3QjZXhlY3V0ZVdpdGhQcmVlbXB0aXZlVGltZW91dFRocm93aW5nVGltZW91dEV4Y2VwdGlvbldpdGhNZXNzYWdlRm9yU3VwcGxpZXJUaGF0Q29tcGxldGVzQmVmb3JlVGltZW91dA",
+    "description" : "Move PreemptiveTimeoutUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatCompletesBeforeTimeout -> PreemptiveDurationUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatCompletesBeforeTimeout",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "TU9WRV9TWU1CT0wKUHJlZW1wdGl2ZUR1cmF0aW9uVXRpbHNUZXN0I3dhaXRGb3JJbnRlcnJ1cHQKUHJlZW1wdGl2ZVRpbWVvdXRVdGlsc1Rlc3Qjd2FpdEZvckludGVycnVwdA",
+    "description" : "Move PreemptiveTimeoutUtilsTest#waitForInterrupt -> PreemptiveDurationUtilsTest#waitForInterrupt",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "RVhUUkFDVF9NRVRIT0QKVGltZW91dER1cmF0aW9uI2Zvcm1hdFRpbWVvdXREdXJhdGlvbgpUaW1lb3V0RHVyYXRpb24jdG9TdHJpbmc",
+    "description" : "Extract TimeoutDuration#formatTimeoutDuration",
+    "category" : "STRUCTURAL",
+    "kind" : "EXTRACT_METHOD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0I2NyZWF0ZUV4ZWN1dGlvbkV4Y2VlZGVkVGltZW91dE1lc3NhZ2U",
+    "description" : "Add AssertTimeout#createExecutionExceededTimeoutMessage",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2lzUG9zaXRpdmVBbmRSZXByZXNlbnRhYmxlSW5OYW5vcw",
+    "description" : "Add DurationUtils#isPositiveAndRepresentableInNanos",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2lzUG9zaXRpdmU",
+    "description" : "Add DurationUtils#isPositive",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 19,
+    "changeKey" : "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2Zvcm1hdER1cmF0aW9uSW5GcmFjdGlvbmFsTXM",
+    "description" : "Add DurationUtils#formatDurationInFractionalMs",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 20,
+    "changeKey" : "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2Zvcm1hdER1cmF0aW9uSW5Ncw",
+    "description" : "Add DurationUtils#formatDurationInMs",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 21,
+    "changeKey" : "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2hhc1NpZ25pZmljYW50TmFub0ZyYWN0aW9u",
+    "description" : "Add DurationUtils#hasSignificantNanoFraction",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 22,
+    "changeKey" : "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI25hbm9GcmFjdGlvbg",
+    "description" : "Add DurationUtils#nanoFraction",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 23,
+    "changeKey" : "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb24jbWF4UmVwcmVzZW50YWJsZVZhbHVlRm9y",
+    "description" : "Add TimeoutDuration#maxRepresentableValueFor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 24,
+    "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzI2Fzc2VydFRpbWVvdXRGb3JFeGVjdXRhYmxlVGhhdENvbXBsZXRlc0FmdGVyVGhlTmFub1RpbWVvdXQ",
+    "description" : "Add AssertTimeoutAssertionsTests#assertTimeoutForExecutableThatCompletesAfterTheNanoTimeout",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 25,
+    "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzI2Fzc2VydFRpbWVvdXRGb3JTdXBwbGllclRoYXRDb21wbGV0ZXNBZnRlclRoZU5hbm9UaW1lb3V0",
+    "description" : "Add AssertTimeoutAssertionsTests#assertTimeoutForSupplierThatCompletesAfterTheNanoTimeout",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 26,
+    "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLkV4ZWN1dGFibGVQcmVjb25kaXRpb25zI25vbk51bGxEdXJhdGlvbg",
+    "description" : "Add AssertTimeoutAssertionsTests.ExecutablePreconditions#nonNullDuration",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 27,
+    "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLkV4ZWN1dGFibGVQcmVjb25kaXRpb25zI3Bvc2l0aXZlRHVyYXRpb24",
+    "description" : "Add AssertTimeoutAssertionsTests.ExecutablePreconditions#positiveDuration",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 28,
+    "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLkV4ZWN1dGFibGVQcmVjb25kaXRpb25zI3RpbWVvdXRyZXByZXNlbnRhYmxlSW5OYW5vcw",
+    "description" : "Add AssertTimeoutAssertionsTests.ExecutablePreconditions#timeoutrepresentableInNanos",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 29,
+    "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLlN1cHBsaWVyUHJlY29uZGl0aW9ucyNub25OdWxsRHVyYXRpb24",
+    "description" : "Add AssertTimeoutAssertionsTests.SupplierPreconditions#nonNullDuration",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 30,
+    "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLlN1cHBsaWVyUHJlY29uZGl0aW9ucyNwb3NpdGl2ZUR1cmF0aW9u",
+    "description" : "Add AssertTimeoutAssertionsTests.SupplierPreconditions#positiveDuration",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 31,
+    "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLlN1cHBsaWVyUHJlY29uZGl0aW9ucyN0aW1lb3V0UmVwcmVzZW50YWJsZUluTmFub3M",
+    "description" : "Add AssertTimeoutAssertionsTests.SupplierPreconditions#timeoutRepresentableInNanos",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 32,
+    "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0UHJlZW1wdGl2ZWx5QXNzZXJ0aW9uc1Rlc3RzI2Fzc2VydE5hbm9zZWNvbmRUaW1lb3V0Rm9yU3VwcGxpZXI",
+    "description" : "Add AssertTimeoutPreemptivelyAssertionsTests#assertNanosecondTimeoutForSupplier",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 33,
+    "changeKey" : "QUREX1NZTUJPTApQcmVlbXB0aXZlRHVyYXRpb25VdGlsc1Rlc3QuUHJlY29uZGl0aW9ucyNwb3NpdGl2ZUR1cmF0aW9u",
+    "description" : "Add PreemptiveDurationUtilsTest.Preconditions#positiveDuration",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 34,
+    "changeKey" : "QUREX1NZTUJPTApQcmVlbXB0aXZlRHVyYXRpb25VdGlsc1Rlc3QuUHJlY29uZGl0aW9ucyN0aW1lb3V0UmVwcmVzZW50YWJsZUluTmFub3M",
+    "description" : "Add PreemptiveDurationUtilsTest.Preconditions#timeoutRepresentableInNanos",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 35,
+    "changeKey" : "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb25UZXN0cy5QcmVjb25kaXRpb25zI3Bvc2l0aXZlRHVyYXRpb24",
+    "description" : "Add TimeoutDurationTests.Preconditions#positiveDuration",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 36,
+    "changeKey" : "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb25UZXN0cy5QcmVjb25kaXRpb25zI25vbk51bGxVbml0",
+    "description" : "Add TimeoutDurationTests.Preconditions#nonNullUnit",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 37,
+    "changeKey" : "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb25UZXN0cy5QcmVjb25kaXRpb25zI3JlcHJlc2VudGFibGVJbk5hbm9z",
+    "description" : "Add TimeoutDurationTests.Preconditions#representableInNanos",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 38,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitub3ROdWxsLCArY29uZGl0aW9uLCAraXNQb3NpdGl2ZUFuZFJlcHJlc2VudGFibGVJbk5hbm9zCkFzc2VydFRpbWVvdXQjYXNzZXJ0VGltZW91dA",
+    "description" : "Modify body of AssertTimeout#assertTimeout: +notNull, +condition, +isPositiveAndRepresentableInNanos",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 6,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 39,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitub3ROdWxsLCArY29uZGl0aW9uLCAraXNQb3NpdGl2ZUFuZFJlcHJlc2VudGFibGVJbk5hbm9zCkFzc2VydFRpbWVvdXRQcmVlbXB0aXZlbHkjYXNzZXJ0VGltZW91dFByZWVtcHRpdmVseQ",
+    "description" : "Modify body of AssertTimeoutPreemptively#assertTimeoutPreemptively: +notNull, +condition, +isPositiveAndRepresentableInNanos",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 4,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 40,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmb3JtYXR0ZWQsICtmb3JtYXREdXJhdGlvbkluRnJhY3Rpb25hbE1zLCAtdG9NaWxsaXMKQXNzZXJ0VGltZW91dFByZWVtcHRpdmVseSNjcmVhdGVBc3NlcnRpb25GYWlsdXJl",
+    "description" : "Modify body of AssertTimeoutPreemptively#createAssertionFailure: +formatted, +formatDurationInFractionalMs, -toMillis",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 41,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitub3ROdWxsLCArY29uZGl0aW9uLCAraXNQb3NpdGl2ZUFuZFJlcHJlc2VudGFibGVJbk5hbm9zClByZWVtcHRpdmVUaW1lb3V0VXRpbHMjZXhlY3V0ZVdpdGhQcmVlbXB0aXZlVGltZW91dA",
+    "description" : "Modify body of PreemptiveTimeoutUtils#executeWithPreemptiveTimeout: +notNull, +condition, +isPositiveAndRepresentableInNanos",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 42,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b05hbm9zLCAtdG9NaWxsaXMKUHJlZW1wdGl2ZVRpbWVvdXRVdGlscyNyZXNvbHZlRnV0dXJlQW5kSGFuZGxlRXhjZXB0aW9u",
+    "description" : "Modify body of PreemptiveTimeoutUtils#resolveFutureAndHandleException: +toNanos, -toMillis",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 43,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvckV4ZWN1dGFibGVUaGF0VGhyb3dzQW5FeGNlcHRpb24Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of AssertTimeoutAssertionsTests#assertTimeoutForExecutableThatThrowsAnException: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 44,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvckV4ZWN1dGFibGVUaGF0VGhyb3dzQW5Bc3NlcnRpb25GYWlsZWRFcnJvcgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of AssertTimeoutAssertionsTests#assertTimeoutForExecutableThatThrowsAnAssertionFailedError: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 45,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRNZXNzYWdlTWF0Y2hlcywgLWFzc2VydE1lc3NhZ2VTdGFydHNXaXRoCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvckV4ZWN1dGFibGVUaGF0Q29tcGxldGVzQWZ0ZXJUaGVUaW1lb3V0",
+    "description" : "Modify body of AssertTimeoutAssertionsTests#assertTimeoutForExecutableThatCompletesAfterTheTimeout: +assertMessageMatches, -assertMessageStartsWith",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 46,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRNZXNzYWdlTWF0Y2hlcywgLWFzc2VydE1lc3NhZ2VTdGFydHNXaXRoCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvclN1cHBsaWVyVGhhdENvbXBsZXRlc0FmdGVyVGhlVGltZW91dA",
+    "description" : "Modify body of AssertTimeoutAssertionsTests#assertTimeoutForSupplierThatCompletesAfterTheTimeout: +assertMessageMatches, -assertMessageStartsWith",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 47,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRpbWVvdXRFeHRlbnNpb25UZXN0cyNyZXBvcnRzSWxsZWdhbFRpbWVvdXREdXJhdGlvbnMKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of TimeoutExtensionTests#reportsIllegalTimeoutDurations: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 48,
+    "changeKey" : "TU9WRV9GSUVMRApQcmVlbXB0aXZlRHVyYXRpb25VdGlsc1Rlc3QjUFJFRU1QVElWRV9USU1FT1VUClByZWVtcHRpdmVUaW1lb3V0VXRpbHNUZXN0I1BSRUVNUFRJVkVfVElNRU9VVA",
+    "description" : "Move field PreemptiveTimeoutUtilsTest#PREEMPTIVE_TIMEOUT -> PreemptiveDurationUtilsTest#PREEMPTIVE_TIMEOUT",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 49,
+    "changeKey" : "TU9WRV9GSUVMRApQcmVlbXB0aXZlRHVyYXRpb25VdGlsc1Rlc3QjVElNRU9VVF9FWENFUFRJT05fRkFDVE9SWQpQcmVlbXB0aXZlVGltZW91dFV0aWxzVGVzdCNUSU1FT1VUX0VYQ0VQVElPTl9GQUNUT1JZ",
+    "description" : "Move field PreemptiveTimeoutUtilsTest#TIMEOUT_EXCEPTION_FACTORY -> PreemptiveDurationUtilsTest#TIMEOUT_EXCEPTION_FACTORY",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 50,
+    "changeKey" : "QUREX0ZJRUxECkR1cmF0aW9uVXRpbHMjTUFYX05BTk9fRFVSQVRJT04",
+    "description" : "Add field DurationUtils#MAX_NANO_DURATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "PreemptiveTimeoutUtilsTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "UkVNT1ZFX0NMQVNTClByZWVtcHRpdmVUaW1lb3V0VXRpbHNUZXN0",
+      "description" : "Remove class PreemptiveTimeoutUtilsTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 10,
+      "changeKey" : "TU9WRV9TWU1CT0wKUHJlZW1wdGl2ZUR1cmF0aW9uVXRpbHNUZXN0I2V4ZWN1dGVXaXRoUHJlZW1wdGl2ZVRpbWVvdXRUaHJvd2luZ1RpbWVvdXRFeGNlcHRpb25XaXRoTWVzc2FnZUZvclN1cHBsaWVyVGhhdENvbXBsZXRlc0FmdGVyVGhlVGltZW91dApQcmVlbXB0aXZlVGltZW91dFV0aWxzVGVzdCNleGVjdXRlV2l0aFByZWVtcHRpdmVUaW1lb3V0VGhyb3dpbmdUaW1lb3V0RXhjZXB0aW9uV2l0aE1lc3NhZ2VGb3JTdXBwbGllclRoYXRDb21wbGV0ZXNBZnRlclRoZVRpbWVvdXQ",
+      "description" : "Move PreemptiveTimeoutUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatCompletesAfterTheTimeout -> PreemptiveDurationUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatCompletesAfterTheTimeout",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 11,
+      "changeKey" : "TU9WRV9TWU1CT0wKUHJlZW1wdGl2ZUR1cmF0aW9uVXRpbHNUZXN0I2V4ZWN1dGVXaXRoUHJlZW1wdGl2ZVRpbWVvdXRUaHJvd2luZ1RpbWVvdXRFeGNlcHRpb25XaXRoTWVzc2FnZUZvclN1cHBsaWVyVGhhdFRocm93c0FuQXNzZXJ0aW9uRmFpbGVkRXJyb3IKUHJlZW1wdGl2ZVRpbWVvdXRVdGlsc1Rlc3QjZXhlY3V0ZVdpdGhQcmVlbXB0aXZlVGltZW91dFRocm93aW5nVGltZW91dEV4Y2VwdGlvbldpdGhNZXNzYWdlRm9yU3VwcGxpZXJUaGF0VGhyb3dzQW5Bc3NlcnRpb25GYWlsZWRFcnJvcg",
+      "description" : "Move PreemptiveTimeoutUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatThrowsAnAssertionFailedError -> PreemptiveDurationUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatThrowsAnAssertionFailedError",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 12,
+      "changeKey" : "TU9WRV9TWU1CT0wKUHJlZW1wdGl2ZUR1cmF0aW9uVXRpbHNUZXN0I2V4ZWN1dGVXaXRoUHJlZW1wdGl2ZVRpbWVvdXRUaHJvd2luZ1RpbWVvdXRFeGNlcHRpb25XaXRoTWVzc2FnZUZvclN1cHBsaWVyVGhhdFRocm93c0FuRXhjZXB0aW9uClByZWVtcHRpdmVUaW1lb3V0VXRpbHNUZXN0I2V4ZWN1dGVXaXRoUHJlZW1wdGl2ZVRpbWVvdXRUaHJvd2luZ1RpbWVvdXRFeGNlcHRpb25XaXRoTWVzc2FnZUZvclN1cHBsaWVyVGhhdFRocm93c0FuRXhjZXB0aW9u",
+      "description" : "Move PreemptiveTimeoutUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatThrowsAnException -> PreemptiveDurationUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatThrowsAnException",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 13,
+      "changeKey" : "TU9WRV9TWU1CT0wKUHJlZW1wdGl2ZUR1cmF0aW9uVXRpbHNUZXN0I2V4ZWN1dGVXaXRoUHJlZW1wdGl2ZVRpbWVvdXRUaHJvd2luZ1RpbWVvdXRFeGNlcHRpb25XaXRoTWVzc2FnZUZvclN1cHBsaWVyVGhhdENvbXBsZXRlc0JlZm9yZVRpbWVvdXQKUHJlZW1wdGl2ZVRpbWVvdXRVdGlsc1Rlc3QjZXhlY3V0ZVdpdGhQcmVlbXB0aXZlVGltZW91dFRocm93aW5nVGltZW91dEV4Y2VwdGlvbldpdGhNZXNzYWdlRm9yU3VwcGxpZXJUaGF0Q29tcGxldGVzQmVmb3JlVGltZW91dA",
+      "description" : "Move PreemptiveTimeoutUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatCompletesBeforeTimeout -> PreemptiveDurationUtilsTest#executeWithPreemptiveTimeoutThrowingTimeoutExceptionWithMessageForSupplierThatCompletesBeforeTimeout",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 14,
+      "changeKey" : "TU9WRV9TWU1CT0wKUHJlZW1wdGl2ZUR1cmF0aW9uVXRpbHNUZXN0I3dhaXRGb3JJbnRlcnJ1cHQKUHJlZW1wdGl2ZVRpbWVvdXRVdGlsc1Rlc3Qjd2FpdEZvckludGVycnVwdA",
+      "description" : "Move PreemptiveTimeoutUtilsTest#waitForInterrupt -> PreemptiveDurationUtilsTest#waitForInterrupt",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 48,
+      "changeKey" : "TU9WRV9GSUVMRApQcmVlbXB0aXZlRHVyYXRpb25VdGlsc1Rlc3QjUFJFRU1QVElWRV9USU1FT1VUClByZWVtcHRpdmVUaW1lb3V0VXRpbHNUZXN0I1BSRUVNUFRJVkVfVElNRU9VVA",
+      "description" : "Move field PreemptiveTimeoutUtilsTest#PREEMPTIVE_TIMEOUT -> PreemptiveDurationUtilsTest#PREEMPTIVE_TIMEOUT",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 49,
+      "changeKey" : "TU9WRV9GSUVMRApQcmVlbXB0aXZlRHVyYXRpb25VdGlsc1Rlc3QjVElNRU9VVF9FWENFUFRJT05fRkFDVE9SWQpQcmVlbXB0aXZlVGltZW91dFV0aWxzVGVzdCNUSU1FT1VUX0VYQ0VQVElPTl9GQUNUT1JZ",
+      "description" : "Move field PreemptiveTimeoutUtilsTest#TIMEOUT_EXCEPTION_FACTORY -> PreemptiveDurationUtilsTest#TIMEOUT_EXCEPTION_FACTORY",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "DurationUtils",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX0NMQVNTCkR1cmF0aW9uVXRpbHM",
+      "description" : "Add class DurationUtils",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2lzUG9zaXRpdmVBbmRSZXByZXNlbnRhYmxlSW5OYW5vcw",
+      "description" : "Add DurationUtils#isPositiveAndRepresentableInNanos",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 18,
+      "changeKey" : "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2lzUG9zaXRpdmU",
+      "description" : "Add DurationUtils#isPositive",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 19,
+      "changeKey" : "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2Zvcm1hdER1cmF0aW9uSW5GcmFjdGlvbmFsTXM",
+      "description" : "Add DurationUtils#formatDurationInFractionalMs",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 20,
+      "changeKey" : "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2Zvcm1hdER1cmF0aW9uSW5Ncw",
+      "description" : "Add DurationUtils#formatDurationInMs",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 21,
+      "changeKey" : "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI2hhc1NpZ25pZmljYW50TmFub0ZyYWN0aW9u",
+      "description" : "Add DurationUtils#hasSignificantNanoFraction",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 22,
+      "changeKey" : "QUREX1NZTUJPTApEdXJhdGlvblV0aWxzI25hbm9GcmFjdGlvbg",
+      "description" : "Add DurationUtils#nanoFraction",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 50,
+      "changeKey" : "QUREX0ZJRUxECkR1cmF0aW9uVXRpbHMjTUFYX05BTk9fRFVSQVRJT04",
+      "description" : "Add field DurationUtils#MAX_NANO_DURATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "AssertTimeoutAssertionsTests.ExecutablePreconditions",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX0NMQVNTCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMuRXhlY3V0YWJsZVByZWNvbmRpdGlvbnM",
+      "description" : "Add class AssertTimeoutAssertionsTests.ExecutablePreconditions",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 26,
+      "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLkV4ZWN1dGFibGVQcmVjb25kaXRpb25zI25vbk51bGxEdXJhdGlvbg",
+      "description" : "Add AssertTimeoutAssertionsTests.ExecutablePreconditions#nonNullDuration",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 27,
+      "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLkV4ZWN1dGFibGVQcmVjb25kaXRpb25zI3Bvc2l0aXZlRHVyYXRpb24",
+      "description" : "Add AssertTimeoutAssertionsTests.ExecutablePreconditions#positiveDuration",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 28,
+      "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLkV4ZWN1dGFibGVQcmVjb25kaXRpb25zI3RpbWVvdXRyZXByZXNlbnRhYmxlSW5OYW5vcw",
+      "description" : "Add AssertTimeoutAssertionsTests.ExecutablePreconditions#timeoutrepresentableInNanos",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "AssertTimeoutAssertionsTests.SupplierPreconditions",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "QUREX0NMQVNTCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMuU3VwcGxpZXJQcmVjb25kaXRpb25z",
+      "description" : "Add class AssertTimeoutAssertionsTests.SupplierPreconditions",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 29,
+      "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLlN1cHBsaWVyUHJlY29uZGl0aW9ucyNub25OdWxsRHVyYXRpb24",
+      "description" : "Add AssertTimeoutAssertionsTests.SupplierPreconditions#nonNullDuration",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 30,
+      "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLlN1cHBsaWVyUHJlY29uZGl0aW9ucyNwb3NpdGl2ZUR1cmF0aW9u",
+      "description" : "Add AssertTimeoutAssertionsTests.SupplierPreconditions#positiveDuration",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 31,
+      "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzLlN1cHBsaWVyUHJlY29uZGl0aW9ucyN0aW1lb3V0UmVwcmVzZW50YWJsZUluTmFub3M",
+      "description" : "Add AssertTimeoutAssertionsTests.SupplierPreconditions#timeoutRepresentableInNanos",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "PreemptiveDurationUtilsTest",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "QUREX0NMQVNTClByZWVtcHRpdmVEdXJhdGlvblV0aWxzVGVzdA",
+      "description" : "Add class PreemptiveDurationUtilsTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "PreemptiveDurationUtilsTest.Preconditions",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "QUREX0NMQVNTClByZWVtcHRpdmVEdXJhdGlvblV0aWxzVGVzdC5QcmVjb25kaXRpb25z",
+      "description" : "Add class PreemptiveDurationUtilsTest.Preconditions",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 33,
+      "changeKey" : "QUREX1NZTUJPTApQcmVlbXB0aXZlRHVyYXRpb25VdGlsc1Rlc3QuUHJlY29uZGl0aW9ucyNwb3NpdGl2ZUR1cmF0aW9u",
+      "description" : "Add PreemptiveDurationUtilsTest.Preconditions#positiveDuration",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 34,
+      "changeKey" : "QUREX1NZTUJPTApQcmVlbXB0aXZlRHVyYXRpb25VdGlsc1Rlc3QuUHJlY29uZGl0aW9ucyN0aW1lb3V0UmVwcmVzZW50YWJsZUluTmFub3M",
+      "description" : "Add PreemptiveDurationUtilsTest.Preconditions#timeoutRepresentableInNanos",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TimeoutDurationTests.Preconditions",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX0NMQVNTClRpbWVvdXREdXJhdGlvblRlc3RzLlByZWNvbmRpdGlvbnM",
+      "description" : "Add class TimeoutDurationTests.Preconditions",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 35,
+      "changeKey" : "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb25UZXN0cy5QcmVjb25kaXRpb25zI3Bvc2l0aXZlRHVyYXRpb24",
+      "description" : "Add TimeoutDurationTests.Preconditions#positiveDuration",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 36,
+      "changeKey" : "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb25UZXN0cy5QcmVjb25kaXRpb25zI25vbk51bGxVbml0",
+      "description" : "Add TimeoutDurationTests.Preconditions#nonNullUnit",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 37,
+      "changeKey" : "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb25UZXN0cy5QcmVjb25kaXRpb25zI3JlcHJlc2VudGFibGVJbk5hbm9z",
+      "description" : "Add TimeoutDurationTests.Preconditions#representableInNanos",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "AssertTimeout",
+    "entries" : [ {
+      "id" : 7,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBc3NlcnRUaW1lb3V0I2Fzc2VydFRpbWVvdXQKY29uZGl0aW9uIGNoYW5nZWQ",
+      "description" : "Change control flow of AssertTimeout#assertTimeout: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0I2NyZWF0ZUV4ZWN1dGlvbkV4Y2VlZGVkVGltZW91dE1lc3NhZ2U",
+      "description" : "Add AssertTimeout#createExecutionExceededTimeoutMessage",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 38,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitub3ROdWxsLCArY29uZGl0aW9uLCAraXNQb3NpdGl2ZUFuZFJlcHJlc2VudGFibGVJbk5hbm9zCkFzc2VydFRpbWVvdXQjYXNzZXJ0VGltZW91dA",
+      "description" : "Modify body of AssertTimeout#assertTimeout: +notNull, +condition, +isPositiveAndRepresentableInNanos",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 6,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "AssertTimeoutPreemptively",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpBc3NlcnRUaW1lb3V0UHJlZW1wdGl2ZWx5I2Fzc2VydFRpbWVvdXRQcmVlbXB0aXZlbHkKbWVzc2FnZVN1cHBsaWVyICtATnVsbGFibGU",
+      "description" : "Change parameter annotations of AssertTimeoutPreemptively#assertTimeoutPreemptively: messageSupplier +@Nullable",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 39,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitub3ROdWxsLCArY29uZGl0aW9uLCAraXNQb3NpdGl2ZUFuZFJlcHJlc2VudGFibGVJbk5hbm9zCkFzc2VydFRpbWVvdXRQcmVlbXB0aXZlbHkjYXNzZXJ0VGltZW91dFByZWVtcHRpdmVseQ",
+      "description" : "Modify body of AssertTimeoutPreemptively#assertTimeoutPreemptively: +notNull, +condition, +isPositiveAndRepresentableInNanos",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 4,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 40,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmb3JtYXR0ZWQsICtmb3JtYXREdXJhdGlvbkluRnJhY3Rpb25hbE1zLCAtdG9NaWxsaXMKQXNzZXJ0VGltZW91dFByZWVtcHRpdmVseSNjcmVhdGVBc3NlcnRpb25GYWlsdXJl",
+      "description" : "Modify body of AssertTimeoutPreemptively#createAssertionFailure: +formatted, +formatDurationInFractionalMs, -toMillis",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TimeoutDuration",
+    "entries" : [ {
+      "id" : 9,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUaW1lb3V0RHVyYXRpb24jdG9TdHJpbmcKYnJhbmNoIHJlbW92ZWQ",
+      "description" : "Change control flow of TimeoutDuration#toString: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 15,
+      "changeKey" : "RVhUUkFDVF9NRVRIT0QKVGltZW91dER1cmF0aW9uI2Zvcm1hdFRpbWVvdXREdXJhdGlvbgpUaW1lb3V0RHVyYXRpb24jdG9TdHJpbmc",
+      "description" : "Extract TimeoutDuration#formatTimeoutDuration",
+      "category" : "STRUCTURAL",
+      "kind" : "EXTRACT_METHOD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 23,
+      "changeKey" : "QUREX1NZTUJPTApUaW1lb3V0RHVyYXRpb24jbWF4UmVwcmVzZW50YWJsZVZhbHVlRm9y",
+      "description" : "Add TimeoutDuration#maxRepresentableValueFor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "AssertTimeoutAssertionsTests",
+    "entries" : [ {
+      "id" : 24,
+      "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzI2Fzc2VydFRpbWVvdXRGb3JFeGVjdXRhYmxlVGhhdENvbXBsZXRlc0FmdGVyVGhlTmFub1RpbWVvdXQ",
+      "description" : "Add AssertTimeoutAssertionsTests#assertTimeoutForExecutableThatCompletesAfterTheNanoTimeout",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 25,
+      "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0QXNzZXJ0aW9uc1Rlc3RzI2Fzc2VydFRpbWVvdXRGb3JTdXBwbGllclRoYXRDb21wbGV0ZXNBZnRlclRoZU5hbm9UaW1lb3V0",
+      "description" : "Add AssertTimeoutAssertionsTests#assertTimeoutForSupplierThatCompletesAfterTheNanoTimeout",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 43,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvckV4ZWN1dGFibGVUaGF0VGhyb3dzQW5FeGNlcHRpb24Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of AssertTimeoutAssertionsTests#assertTimeoutForExecutableThatThrowsAnException: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 44,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvckV4ZWN1dGFibGVUaGF0VGhyb3dzQW5Bc3NlcnRpb25GYWlsZWRFcnJvcgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of AssertTimeoutAssertionsTests#assertTimeoutForExecutableThatThrowsAnAssertionFailedError: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 45,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRNZXNzYWdlTWF0Y2hlcywgLWFzc2VydE1lc3NhZ2VTdGFydHNXaXRoCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvckV4ZWN1dGFibGVUaGF0Q29tcGxldGVzQWZ0ZXJUaGVUaW1lb3V0",
+      "description" : "Modify body of AssertTimeoutAssertionsTests#assertTimeoutForExecutableThatCompletesAfterTheTimeout: +assertMessageMatches, -assertMessageStartsWith",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 46,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRNZXNzYWdlTWF0Y2hlcywgLWFzc2VydE1lc3NhZ2VTdGFydHNXaXRoCkFzc2VydFRpbWVvdXRBc3NlcnRpb25zVGVzdHMjYXNzZXJ0VGltZW91dEZvclN1cHBsaWVyVGhhdENvbXBsZXRlc0FmdGVyVGhlVGltZW91dA",
+      "description" : "Modify body of AssertTimeoutAssertionsTests#assertTimeoutForSupplierThatCompletesAfterTheTimeout: +assertMessageMatches, -assertMessageStartsWith",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "AssertTimeoutPreemptivelyAssertionsTests",
+    "entries" : [ {
+      "id" : 32,
+      "changeKey" : "QUREX1NZTUJPTApBc3NlcnRUaW1lb3V0UHJlZW1wdGl2ZWx5QXNzZXJ0aW9uc1Rlc3RzI2Fzc2VydE5hbm9zZWNvbmRUaW1lb3V0Rm9yU3VwcGxpZXI",
+      "description" : "Add AssertTimeoutPreemptivelyAssertionsTests#assertNanosecondTimeoutForSupplier",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "PreemptiveTimeoutUtils",
+    "entries" : [ {
+      "id" : 41,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitub3ROdWxsLCArY29uZGl0aW9uLCAraXNQb3NpdGl2ZUFuZFJlcHJlc2VudGFibGVJbk5hbm9zClByZWVtcHRpdmVUaW1lb3V0VXRpbHMjZXhlY3V0ZVdpdGhQcmVlbXB0aXZlVGltZW91dA",
+      "description" : "Modify body of PreemptiveTimeoutUtils#executeWithPreemptiveTimeout: +notNull, +condition, +isPositiveAndRepresentableInNanos",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 42,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b05hbm9zLCAtdG9NaWxsaXMKUHJlZW1wdGl2ZVRpbWVvdXRVdGlscyNyZXNvbHZlRnV0dXJlQW5kSGFuZGxlRXhjZXB0aW9u",
+      "description" : "Modify body of PreemptiveTimeoutUtils#resolveFutureAndHandleException: +toNanos, -toMillis",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TimeoutExtensionTests",
+    "entries" : [ {
+      "id" : 47,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRpbWVvdXRFeHRlbnNpb25UZXN0cyNyZXBvcnRzSWxsZWdhbFRpbWVvdXREdXJhdGlvbnMKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of TimeoutExtensionTests#reportsIllegalTimeoutDurations: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

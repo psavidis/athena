@@ -13,7 +13,7 @@ instead of judging from a single PR (issue #258).
 | `tools/coverage.py` | Derives `metrics.json` (diff-vs-Athena coverage) for a snapshot. |
 | `tools/summarize.py` | Prints a snapshot as plain text: Change Map, Explorer cards, Canvas, focus areas. Used for the protocol's Athena pass. |
 | `snapshots/<athena-sha>/` | Raw evidence per Athena version: `pr.diff` plus every view Athena would render. |
-| `reports/` | Dated evaluation reports, written against a specific snapshot directory. The first is `reports/2026-09-23-baseline-a5bb763.md`; the re-run after #260–#271 is `reports/2026-09-24-rerun-80ce13f.md`; the third run, after #285–#296, is `reports/2026-09-24-rerun-e2b2780.md`; the baseline for the 16 entries added in #311 is `reports/2026-09-24-expansion-baseline-c6a1721.md`; the 26-entry run after #313–#320 is `reports/2026-09-24-rerun-9d1b462.md`. |
+| `reports/` | Dated evaluation reports, written against a specific snapshot directory. The first is `reports/2026-09-23-baseline-a5bb763.md`; the re-run after #260–#271 is `reports/2026-09-24-rerun-80ce13f.md`; the third run, after #285–#296, is `reports/2026-09-24-rerun-e2b2780.md`; the baseline for the 16 entries added in #311 is `reports/2026-09-24-expansion-baseline-c6a1721.md`; the 26-entry run after #313–#320 is `reports/2026-09-24-rerun-9d1b462.md`; the baseline for the 19 entries added in #332 is `reports/2026-09-24-expansion2-baseline-b6f6f49.md`. |
 
 ## Re-running against a newer Athena
 
@@ -68,6 +68,25 @@ the entries whose numbers moved, and write a new report under `reports/` using
 | `mockito-3843` | closed-unmerged | Restores multi-classloader lookup for subclass mocks (OSGi). Rejected on design: the lookup was removed on purpose, because restoring it loses package-private mockability. |
 | `jackson-databind-6163` | closed-unmerged | 4× loop unrolling of `_serializePropertiesFiltered`. Not merged: the maintainer's review measured a larger method bytecode, suspected it makes things slower, and asked for a benchmark. |
 | `gson-3054` | closed-unmerged | A per-field `AccessibleCache` class. Closed when the fork was deleted; the reviewer had already asked for a simpler design, merged as #3086 (`gson-3086`). |
+| `commons-collections-716` | small-bug-fix | `TreeList` add/remove incremented `modCount` before the bounds check, so a rejected call still invalidated iterators. A statement-order fix. |
+| `dubbo-16350` | small-bug-fix | `StringUtils.substringAfter` returns an empty string when the separator is absent. A tiny return-value fix. |
+| `dubbo-16299` | small-bug-fix | A clear exception when a request parameter isn't `Serializable`, instead of a misleading NPE. The merged pair of `dubbo-16298`. |
+| `error-prone-6093` | simple-feature | A new check flagging `Class.forName(...)` compared with `null`. A self-contained new class plus its test. |
+| `spring-security-19696` | simple-feature | Modernizes the default `RequestCache` list of background requests to ignore, across `web` and `config`. Constant-list and matcher changes. |
+| `error-prone-6105` | refactoring | Check APIs move to annotation mirrors, with centralized annotation names, across `check_api` and `core`. |
+| `error-prone-6125` | api-change | Adds an `allowedPaths` element to `@RestrictedApi` and `@RestrictedInheritance`, and enforces it. |
+| `maven-13229` | cross-module | Max-thread configuration across `api/maven-api-cli`, `impl/maven-cli` and `compat/maven-embedder`. |
+| `dubbo-16313` | dependency-framework | Spring Boot integration: `addOrReplace` must not throw on an immutable property source. |
+| `dropwizard-11325` | dependency-framework | Dependency-tree cleanup across 29 `pom.xml` files, with no Java at all. Tests how Athena presents a change it can't model. |
+| `vertx-6367` | architectural | Shared servers are reimplemented on the shared-resource feature (10 files, ±400 lines in `vertx-core`). |
+| `lucene-16696` | large | The HNSW merge scorer stops reading merged float vectors back (9 files, +1.7k lines). A large performance change. |
+| `vertx-6339` | mixed-noisy | `ServiceResource` and `CleanableObject` exposed as internals across 13 files. Visibility and package moves amid small edits. |
+| `vertx-6352` | complex-behavioral | Interrupting a suspended virtual thread must leave its task queue consistent. A concurrency state fix. |
+| `micronaut-13421` | complex-behavioral | Releases the connection when a streaming client call fails with an error status. A resource-leak fix. |
+| `vertx-6308` | closed-unmerged | Host names in DNS client setup. Not merged: it relied on a blocking Java resolution API; the maintainer re-did it lazily with the Vert.x name resolver. |
+| `vertx-6303` | closed-unmerged | `CleanableObject.shutdown()` returning null after GC. Not merged: without a test it was a speculative fix, and a different fix with a test was merged. |
+| `dubbo-16298` | closed-unmerged | A clear error for non-`Serializable` parameters. Not merged: the reviewer saw a risk of swallowing other exceptions and couldn't reproduce the NPE; `dubbo-16299` was preferred. |
+| `commons-collections-674` | closed-unmerged | Null-key checks in `ConcurrentReferenceHashMap`. Not merged: the maintainer committed a different, better solution. |
 
 Candidates considered and kept in reserve: `keycloak-53012` (cross-module bug fix),
 `mockito-3792` (Android mock maker swap, mostly Gradle/Kotlin), `spring-petclinic-2279`

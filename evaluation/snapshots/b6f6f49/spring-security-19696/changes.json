@@ -1,0 +1,291 @@
+[ {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyI2dldEZhdmljb25SZXF1ZXN0TWF0Y2hlcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove RequestCacheConfigurer#getFaviconRequestMatcher",
+  "files" : [ "config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java" ],
+  "symbols" : [ "RequestCacheConfigurer#getFaviconRequestMatcher" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyI2dldElnbm9yZWRCYWNrZ3JvdW5kUmVxdWVzdE1hdGNoZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RequestCacheConfigurer#getIgnoredBackgroundRequestMatcher",
+  "files" : [ "config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java" ],
+  "symbols" : [ "RequestCacheConfigurer#getIgnoredBackgroundRequestMatcher" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0FwcGxlVG91Y2hJY29uVGhlblBvc3RBdXRoZW50aWNhdGlvblJlZGlyZWN0c1RvUm9vdA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsAppleTouchIconThenPostAuthenticationRedirectsToRoot",
+  "files" : [ "config/src/test/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurerTests.java" ],
+  "symbols" : [ "RequestCacheConfigurerTests#getWhenBookmarkedUrlIsAppleTouchIconThenPostAuthenticationRedirectsToRoot" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0FwcGxlVG91Y2hJY29uUHJlY29tcG9zZWRUaGVuUG9zdEF1dGhlbnRpY2F0aW9uUmVkaXJlY3RzVG9Sb290",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsAppleTouchIconPrecomposedThenPostAuthenticationRedirectsToRoot",
+  "files" : [ "config/src/test/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurerTests.java" ],
+  "symbols" : [ "RequestCacheConfigurerTests#getWhenBookmarkedUrlIsAppleTouchIconPrecomposedThenPostAuthenticationRedirectsToRoot" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0FwcGxlVG91Y2hJY29uU2l6ZWRQcmVjb21wb3NlZFRoZW5Qb3N0QXV0aGVudGljYXRpb25SZWRpcmVjdHNUb1Jvb3Q",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsAppleTouchIconSizedPrecomposedThenPostAuthenticationRedirectsToRoot",
+  "files" : [ "config/src/test/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurerTests.java" ],
+  "symbols" : [ "RequestCacheConfigurerTests#getWhenBookmarkedUrlIsAppleTouchIconSizedPrecomposedThenPostAuthenticationRedirectsToRoot" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc01hbmlmZXN0SnNvblRoZW5Qb3N0QXV0aGVudGljYXRpb25SZWRpcmVjdHNUb1Jvb3Q",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsManifestJsonThenPostAuthenticationRedirectsToRoot",
+  "files" : [ "config/src/test/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurerTests.java" ],
+  "symbols" : [ "RequestCacheConfigurerTests#getWhenBookmarkedUrlIsManifestJsonThenPostAuthenticationRedirectsToRoot" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc01hbmlmZXN0V2VibWFuaWZlc3RUaGVuUG9zdEF1dGhlbnRpY2F0aW9uUmVkaXJlY3RzVG9Sb290",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsManifestWebmanifestThenPostAuthenticationRedirectsToRoot",
+  "files" : [ "config/src/test/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurerTests.java" ],
+  "symbols" : [ "RequestCacheConfigurerTests#getWhenBookmarkedUrlIsManifestWebmanifestThenPostAuthenticationRedirectsToRoot" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0Jyb3dzZXJDb25maWdYbWxUaGVuUG9zdEF1dGhlbnRpY2F0aW9uUmVkaXJlY3RzVG9Sb290",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsBrowserConfigXmlThenPostAuthenticationRedirectsToRoot",
+  "files" : [ "config/src/test/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurerTests.java" ],
+  "symbols" : [ "RequestCacheConfigurerTests#getWhenBookmarkedUrlIsBrowserConfigXmlThenPostAuthenticationRedirectsToRoot" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXF1ZXN0Q2FjaGVDb25maWd1cmVyVGVzdHMjZ2V0V2hlbkJvb2ttYXJrZWRVcmxJc0Nocm9tZURldnRvb2xzSnNvblRoZW5Qb3N0QXV0aGVudGljYXRpb25SZWRpcmVjdHNUb1Jvb3Q",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RequestCacheConfigurerTests#getWhenBookmarkedUrlIsChromeDevtoolsJsonThenPostAuthenticationRedirectsToRoot",
+  "files" : [ "config/src/test/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurerTests.java" ],
+  "symbols" : [ "RequestCacheConfigurerTests#getWhenBookmarkedUrlIsChromeDevtoolsJsonThenPostAuthenticationRedirectsToRoot" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0QXBwbGVUb3VjaEljb25UaGVuTm9Db29raWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestAppleTouchIconThenNoCookie",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCacheTests.java" ],
+  "symbols" : [ "CookieServerRequestCacheTests#saveRequestWhenGetRequestAppleTouchIconThenNoCookie" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0QXBwbGVUb3VjaEljb25QcmVjb21wb3NlZFRoZW5Ob0Nvb2tpZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestAppleTouchIconPrecomposedThenNoCookie",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCacheTests.java" ],
+  "symbols" : [ "CookieServerRequestCacheTests#saveRequestWhenGetRequestAppleTouchIconPrecomposedThenNoCookie" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0QXBwbGVUb3VjaEljb25TaXplZFByZWNvbXBvc2VkVGhlbk5vQ29va2ll",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestAppleTouchIconSizedPrecomposedThenNoCookie",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCacheTests.java" ],
+  "symbols" : [ "CookieServerRequestCacheTests#saveRequestWhenGetRequestAppleTouchIconSizedPrecomposedThenNoCookie" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0TWFuaWZlc3RKc29uVGhlbk5vQ29va2ll",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestManifestJsonThenNoCookie",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCacheTests.java" ],
+  "symbols" : [ "CookieServerRequestCacheTests#saveRequestWhenGetRequestManifestJsonThenNoCookie" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0TWFuaWZlc3RXZWJtYW5pZmVzdFRoZW5Ob0Nvb2tpZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestManifestWebmanifestThenNoCookie",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCacheTests.java" ],
+  "symbols" : [ "CookieServerRequestCacheTests#saveRequestWhenGetRequestManifestWebmanifestThenNoCookie" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0QnJvd3NlckNvbmZpZ1htbFRoZW5Ob0Nvb2tpZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestBrowserConfigXmlThenNoCookie",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCacheTests.java" ],
+  "symbols" : [ "CookieServerRequestCacheTests#saveRequestWhenGetRequestBrowserConfigXmlThenNoCookie" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb29raWVTZXJ2ZXJSZXF1ZXN0Q2FjaGVUZXN0cyNzYXZlUmVxdWVzdFdoZW5HZXRSZXF1ZXN0Q2hyb21lRGV2dG9vbHNKc29uVGhlbk5vQ29va2ll",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add CookieServerRequestCacheTests#saveRequestWhenGetRequestChromeDevtoolsJsonThenNoCookie",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCacheTests.java" ],
+  "symbols" : [ "CookieServerRequestCacheTests#saveRequestWhenGetRequestChromeDevtoolsJsonThenNoCookie" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkFwcGxlVG91Y2hJY29uVGhlbk5vdEZvdW5k",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenAppleTouchIconThenNotFound",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCacheTests.java" ],
+  "symbols" : [ "WebSessionServerRequestCacheTests#saveRequestGetRequestWhenAppleTouchIconThenNotFound" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkFwcGxlVG91Y2hJY29uUHJlY29tcG9zZWRUaGVuTm90Rm91bmQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenAppleTouchIconPrecomposedThenNotFound",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCacheTests.java" ],
+  "symbols" : [ "WebSessionServerRequestCacheTests#saveRequestGetRequestWhenAppleTouchIconPrecomposedThenNotFound" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkFwcGxlVG91Y2hJY29uU2l6ZWRQcmVjb21wb3NlZFRoZW5Ob3RGb3VuZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenAppleTouchIconSizedPrecomposedThenNotFound",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCacheTests.java" ],
+  "symbols" : [ "WebSessionServerRequestCacheTests#saveRequestGetRequestWhenAppleTouchIconSizedPrecomposedThenNotFound" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbk1hbmlmZXN0SnNvblRoZW5Ob3RGb3VuZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenManifestJsonThenNotFound",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCacheTests.java" ],
+  "symbols" : [ "WebSessionServerRequestCacheTests#saveRequestGetRequestWhenManifestJsonThenNotFound" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbk1hbmlmZXN0V2VibWFuaWZlc3RUaGVuTm90Rm91bmQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenManifestWebmanifestThenNotFound",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCacheTests.java" ],
+  "symbols" : [ "WebSessionServerRequestCacheTests#saveRequestGetRequestWhenManifestWebmanifestThenNotFound" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkJyb3dzZXJDb25maWdYbWxUaGVuTm90Rm91bmQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenBrowserConfigXmlThenNotFound",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCacheTests.java" ],
+  "symbols" : [ "WebSessionServerRequestCacheTests#saveRequestGetRequestWhenBrowserConfigXmlThenNotFound" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApXZWJTZXNzaW9uU2VydmVyUmVxdWVzdENhY2hlVGVzdHMjc2F2ZVJlcXVlc3RHZXRSZXF1ZXN0V2hlbkNocm9tZURldnRvb2xzSnNvblRoZW5Ob3RGb3VuZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add WebSessionServerRequestCacheTests#saveRequestGetRequestWhenChromeDevtoolsJsonThenNotFound",
+  "files" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCacheTests.java" ],
+  "symbols" : [ "WebSessionServerRequestCacheTests#saveRequestGetRequestWhenChromeDevtoolsJsonThenNotFound" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRJZ25vcmVkQmFja2dyb3VuZFJlcXVlc3RNYXRjaGVyLCAtZ2V0RmF2aWNvblJlcXVlc3RNYXRjaGVyClJlcXVlc3RDYWNoZUNvbmZpZ3VyZXIjY3JlYXRlRGVmYXVsdFNhdmVkUmVxdWVzdE1hdGNoZXI",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of RequestCacheConfigurer#createDefaultSavedRequestMatcher: +getIgnoredBackgroundRequestMatcher, -getFaviconRequestMatcher",
+  "files" : [ "config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java" ],
+  "symbols" : [ "RequestCacheConfigurer#createDefaultSavedRequestMatcher", "+getIgnoredBackgroundRequestMatcher, -getFaviconRequestMatcher" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvb2tpZVNlcnZlclJlcXVlc3RDYWNoZSNjcmVhdGVEZWZhdWx0UmVxdWVzdE1hdGNoZXIKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CookieServerRequestCache#createDefaultRequestMatcher: other statements changed",
+  "files" : [ "web/src/main/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCache.java" ],
+  "symbols" : [ "CookieServerRequestCache#createDefaultRequestMatcher", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCldlYlNlc3Npb25TZXJ2ZXJSZXF1ZXN0Q2FjaGUjY3JlYXRlRGVmYXVsdFJlcXVlc3RNYXRjaGVyCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of WebSessionServerRequestCache#createDefaultRequestMatcher: other statements changed",
+  "files" : [ "web/src/main/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCache.java" ],
+  "symbols" : [ "WebSessionServerRequestCache#createDefaultRequestMatcher", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlcXVlc3RDYWNoZUNvbmZpZ3VyZXIjSUdOT1JFRF9CQUNLR1JPVU5EX1JFUVVFU1RfUEFUVEVSTlM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RequestCacheConfigurer#IGNORED_BACKGROUND_REQUEST_PATTERNS",
+  "files" : [ "config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java" ],
+  "symbols" : [ "RequestCacheConfigurer#IGNORED_BACKGROUND_REQUEST_PATTERNS" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkNvb2tpZVNlcnZlclJlcXVlc3RDYWNoZSNJR05PUkVEX0JBQ0tHUk9VTkRfUkVRVUVTVF9QQVRURVJOUw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field CookieServerRequestCache#IGNORED_BACKGROUND_REQUEST_PATTERNS",
+  "files" : [ "web/src/main/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCache.java" ],
+  "symbols" : [ "CookieServerRequestCache#IGNORED_BACKGROUND_REQUEST_PATTERNS" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECldlYlNlc3Npb25TZXJ2ZXJSZXF1ZXN0Q2FjaGUjSUdOT1JFRF9CQUNLR1JPVU5EX1JFUVVFU1RfUEFUVEVSTlM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field WebSessionServerRequestCache#IGNORED_BACKGROUND_REQUEST_PATTERNS",
+  "files" : [ "web/src/main/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCache.java" ],
+  "symbols" : [ "WebSessionServerRequestCache#IGNORED_BACKGROUND_REQUEST_PATTERNS" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

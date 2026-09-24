@@ -1,0 +1,7 @@
+[ {
+  "description" : "Modify body of StringUtils#substringAfter: other statements changed",
+  "entity" : "StringUtils"
+}, {
+  "description" : "Add StringUtilsTest#testSubstringAfter",
+  "entity" : "StringUtilsTest"
+} ]

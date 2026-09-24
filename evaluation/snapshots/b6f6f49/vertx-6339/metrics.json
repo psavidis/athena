@@ -1,0 +1,60 @@
+{
+  "diff": {
+    "files": 13,
+    "java_files": 13,
+    "non_java_files": 0,
+    "substantive_java_files": 13,
+    "copyright_only_java_files": 0,
+    "production_java_files": 11,
+    "java_hunks": 27,
+    "java_lines_changed": 88
+  },
+  "athena": {
+    "changes": 31,
+    "changes_by_kind": {
+      "MOVE_CLASS": 4,
+      "REMOVE_CLASS": 2,
+      "ADD_CLASS": 2,
+      "MOVE_SYMBOL": 1,
+      "REMOVE_SYMBOL": 3,
+      "ADD_SYMBOL": 4,
+      "MODIFY_METHOD_BODY": 5,
+      "MOVE_FIELD": 4,
+      "REMOVE_FIELD": 1,
+      "ADD_FIELD": 1,
+      "ADD_CONSTRUCTOR_PARAMETER": 4
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 26,
+      "UNKNOWN": 5
+    },
+    "semantic_entries": 40,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 27,
+      "RESPONSIBILITY": 12,
+      "ARCHITECTURE": 1
+    },
+    "inferred_entries": 13,
+    "module_territories": 2,
+    "module_dependencies": 1,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 4,
+    "substantive_java_file_coverage": 0.31,
+    "production_java_files_represented": 2,
+    "production_java_file_coverage": 0.18,
+    "unrepresented_production_java_files": [
+      "vertx-core/src/main/java/io/vertx/core/datagram/impl/DatagramSocketImpl.java",
+      "vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpClient.java",
+      "vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpServer.java",
+      "vertx-core/src/main/java/io/vertx/core/http/impl/CleanableWebSocketClient.java",
+      "vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutorImpl.java",
+      "vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicClient.java",
+      "vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicServer.java",
+      "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetClient.java",
+      "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetServer.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

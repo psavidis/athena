@@ -1,0 +1,63 @@
+diff --git a/dubbo-rpc/dubbo-rpc-dubbo/src/main/java/org/apache/dubbo/rpc/protocol/dubbo/DubboProtocol.java b/dubbo-rpc/dubbo-rpc-dubbo/src/main/java/org/apache/dubbo/rpc/protocol/dubbo/DubboProtocol.java
+index fda55e5667c5..562367e93adb 100644
+--- a/dubbo-rpc/dubbo-rpc-dubbo/src/main/java/org/apache/dubbo/rpc/protocol/dubbo/DubboProtocol.java
++++ b/dubbo-rpc/dubbo-rpc-dubbo/src/main/java/org/apache/dubbo/rpc/protocol/dubbo/DubboProtocol.java
+@@ -290,6 +290,15 @@ Invoker<?> getInvoker(Channel channel, Invocation inv) throws RemotingException
+         boolean isStubServiceInvoke;
+         int port = channel.getLocalAddress().getPort();
+         String path = (String) inv.getObjectAttachmentWithoutConvert(PATH_KEY);
++        if (path == null) {
++            throw new RemotingException(
++                    channel,
++                    "Service path is missing from the invocation, which indicates the invocation metadata is "
++                            + "missing or corrupted. Possible causes include a request decode failure "
++                            + "(e.g. parameter types that failed to deserialize), an incompatible protocol "
++                            + "version, or a custom codec/invocation implementation that does not set the path, "
++                            + "channel: " + channel.getRemoteAddress() + " --> " + channel.getLocalAddress());
++        }
+ 
+         // if it's stub service on client side(after enable stubevent, usually is set up onconnect or ondisconnect
+         // method)
+diff --git a/dubbo-rpc/dubbo-rpc-dubbo/src/test/java/org/apache/dubbo/rpc/protocol/dubbo/DubboProtocolTest.java b/dubbo-rpc/dubbo-rpc-dubbo/src/test/java/org/apache/dubbo/rpc/protocol/dubbo/DubboProtocolTest.java
+index adfb29a10f77..4cb386dd54e2 100644
+--- a/dubbo-rpc/dubbo-rpc-dubbo/src/test/java/org/apache/dubbo/rpc/protocol/dubbo/DubboProtocolTest.java
++++ b/dubbo-rpc/dubbo-rpc-dubbo/src/test/java/org/apache/dubbo/rpc/protocol/dubbo/DubboProtocolTest.java
+@@ -19,6 +19,8 @@
+ import org.apache.dubbo.common.URL;
+ import org.apache.dubbo.common.extension.ExtensionLoader;
+ import org.apache.dubbo.common.utils.NetUtils;
++import org.apache.dubbo.remoting.Channel;
++import org.apache.dubbo.remoting.RemotingException;
+ import org.apache.dubbo.rpc.Invocation;
+ import org.apache.dubbo.rpc.Invoker;
+ import org.apache.dubbo.rpc.Protocol;
+@@ -38,6 +40,7 @@
+ import org.apache.dubbo.rpc.protocol.dubbo.support.Type;
+ import org.apache.dubbo.rpc.service.EchoService;
+ 
++import java.net.InetSocketAddress;
+ import java.util.Arrays;
+ import java.util.HashMap;
+ import java.util.List;
+@@ -281,6 +284,21 @@ public void testReturnNonSerialized() {
+         }
+     }
+ 
++    @Test
++    void testGetInvokerThrowsOnNullPath() {
++        DubboProtocol dubboProtocol = DubboProtocol.getDubboProtocol();
++        Channel channel = Mockito.mock(Channel.class);
++        InetSocketAddress localAddress = new InetSocketAddress("127.0.0.1", 20880);
++        InetSocketAddress remoteAddress = new InetSocketAddress("127.0.0.1", 12345);
++        Mockito.when(channel.getLocalAddress()).thenReturn(localAddress);
++        Mockito.when(channel.getRemoteAddress()).thenReturn(remoteAddress);
++
++        Invocation inv = Mockito.mock(Invocation.class);
++        Mockito.when(inv.getObjectAttachmentWithoutConvert("path")).thenReturn(null);
++
++        Assertions.assertThrows(RemotingException.class, () -> dubboProtocol.getInvoker(channel, inv));
++    }
++
+     @Disabled
+     @Test
+     void testRemoteApplicationName() throws Exception {

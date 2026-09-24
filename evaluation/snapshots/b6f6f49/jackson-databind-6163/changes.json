@@ -1,0 +1,11 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCZWFuU2VyaWFsaXplckJhc2UjX3NlcmlhbGl6ZVByb3BlcnRpZXNGaWx0ZXJlZApicmFuY2ggYWRkZWQsIGNvbmRpdGlvbiBjaGFuZ2VkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of BeanSerializerBase#_serializePropertiesFiltered: branch added, condition changed; same calls",
+  "files" : [ "src/main/java/tools/jackson/databind/ser/bean/BeanSerializerBase.java" ],
+  "symbols" : [ "BeanSerializerBase#_serializePropertiesFiltered", "branch added, condition changed; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

@@ -1,0 +1,11 @@
+{
+  "prTitle" : "Issue #11319: Dependency tree cleanups (fixing scopes, removing pointless exclusions, etc)",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 0,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ ],
+  "classGroups" : [ ]
+}
