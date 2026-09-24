@@ -138,6 +138,25 @@ class ModuleLayoutTest {
         assertThat(ModuleLayout.of(baseRoot, headRoot).moduleDirectories()).containsExactly("core", "legacy");
     }
 
+    @Test
+    void aDirectorysOnlyGradleFileMakesItAModuleWhateverItsName() throws IOException {
+        write(headRoot, "settings.gradle", "");
+        write(headRoot, "web/spring-security-web.gradle", "");
+        write(headRoot, "config/spring-security-config.gradle", "");
+        ModuleLayout layout = ModuleLayout.of(baseRoot, headRoot);
+
+        assertThat(layout.directoryOf("web/src/main/java/A.java")).isEqualTo("web");
+        assertThat(layout.directoryOf("config/src/main/java/B.java")).isEqualTo("config");
+    }
+
+    @Test
+    void twoUnrelatedGradleFilesDoNotMakeAModule() throws IOException {
+        write(headRoot, "scripts/a.gradle", "");
+        write(headRoot, "scripts/b.gradle", "");
+
+        assertThat(ModuleLayout.of(baseRoot, headRoot).moduleDirectories()).doesNotContain("scripts");
+    }
+
     private static void write(Path root, String relativePath, String content) throws IOException {
         Path file = root.resolve(relativePath);
         Files.createDirectories(file.getParent());

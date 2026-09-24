@@ -227,6 +227,16 @@ public class ModuleIdentitySteps {
                 .allSatisfy(entry -> assertThat(entry.filesTouched()).allMatch(file -> file.startsWith(directory + "/")));
     }
 
+    @Given("the user has created a standalone Diff changing classes in modules {string} and {string} whose only build files are {string} and {string}")
+    public void a_diff_with_project_named_build_files(String first, String second, String firstFile, String secondFile) {
+        repository = GitRepositoryFixture.create();
+        repository.write("settings.gradle", "rootProject.name = 'spring-security'\n");
+        repository.write(first + "/" + firstFile, "plugins { id 'java' }\n");
+        repository.write(second + "/" + secondFile, "plugins { id 'java' }\n");
+        changeClasses(List.of(first + "/src/main/java/com/acme/FirstService.java",
+                second + "/src/main/java/com/acme/SecondService.java"));
+    }
+
     @Then("territory {string} has tech stack {string}")
     public void territory_has_tech_stack(String name, String label) {
         assertThat(territory(name).techStackLabel()).isEqualTo(label);

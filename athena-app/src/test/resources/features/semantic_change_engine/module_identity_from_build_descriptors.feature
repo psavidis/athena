@@ -67,3 +67,10 @@ Feature: Module identity comes from build descriptors
     Given the user has created a standalone Diff changing classes in Maven modules "guava" and "android/guava"
     When the user requests the semantic profile of module "guava (android)"
     Then the module's semantic profile covers only files under "android/guava"
+
+  # Ticket #338: a module's only Gradle build file may be named after the project.
+
+  Scenario: A module whose only build file is named after the project is a module
+    Given the user has created a standalone Diff changing classes in modules "web" and "config" whose only build files are "spring-security-web.gradle" and "spring-security-config.gradle"
+    When the user requests the Semantic Canvas topology
+    Then the territories are "web" and "config"
