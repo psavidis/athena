@@ -62,6 +62,43 @@ public class PackageMoveSteps {
                 .doesNotContain(TransformationKind.RENAME_CLASS);
     }
 
+    @Given("a class {string} whose only change is importing {string} from its new package")
+    public void a_class_following_the_move(String className, String movedClass) {
+        writeSource(world.baseRoot(), "io.vertx.core.datagram", className, consumer(className,
+                "import io.vertx.core.impl." + movedClass + ";\n", movedClass));
+        writeSource(world.headRoot(), "io.vertx.core.datagram", className, consumer(className,
+                "import io.vertx.core.internal." + movedClass + ";\n", movedClass));
+    }
+
+    @Given("a class {string} whose only change is an added import of {string}")
+    public void a_class_with_an_unrelated_import(String className, String imported) {
+        writeSource(world.baseRoot(), "io.vertx.core.other", className, consumer(className, "", "Object"));
+        writeSource(world.headRoot(), "io.vertx.core.other", className, consumer(className,
+                "import " + imported + ";\n", "Object"));
+    }
+
+    @Given("a class {string} whose only change is extending {string} instead of {string}")
+    public void a_class_following_the_rename(String className, String newName, String oldName) {
+        writeSource(world.baseRoot(), "io.vertx.core.impl", className, "package io.vertx.core.impl;\n\n"
+                + "class " + className + " extends " + oldName + "<Object> {\n  " + className + "() {\n    super(null);\n  }\n}\n");
+        writeSource(world.headRoot(), "io.vertx.core.impl", className, "package io.vertx.core.impl;\n\n"
+                + "import io.vertx.core.internal." + newName + ";\n\n"
+                + "class " + className + " extends " + newName + "<Object> {\n  " + className + "() {\n    super(null);\n  }\n}\n");
+    }
+
+    @Then("that move touches the file of {string}")
+    public void that_move_touches_the_file_of(String className) {
+        assertThat(world.transformations().orElseThrow())
+                .filteredOn(t -> t.kind() == TransformationKind.MOVE_CLASS)
+                .singleElement()
+                .satisfies(move -> assertThat(move.filesTouched()).anyMatch(file -> file.endsWith("/" + className + ".java")));
+    }
+
+    private static String consumer(String className, String imports, String usedType) {
+        return "package io.vertx.core.x;\n\n" + imports + "\npublic class " + className + " {\n"
+                + "  private " + usedType + " resource;\n}\n";
+    }
+
     private static String cleanable(String packageName, String className, String t, String extra) {
         return "package " + packageName + ";\n\npublic class " + className + "<" + t + "> {\n"
                 + "  private Action<" + t + "> action;\n"

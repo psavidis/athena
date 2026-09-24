@@ -1,5 +1,6 @@
 package com.athena.semantic;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,9 @@ public final class DetectedTransformation {
      * empty when the type has none).
      */
     public static final String ENCLOSING_TYPE_ANNOTATIONS = "enclosingTypeAnnotations";
+
+    /** Context key: how many files only updated their imports to follow this class move or rename (ticket #337). */
+    public static final String IMPORT_FOLLOW_ONS = "importFollowOns";
 
     /** Context keys: the packages a moved class left and entered (ticket #335). */
     public static final String FROM_PACKAGE = "fromPackage";
@@ -101,6 +105,16 @@ public final class DetectedTransformation {
         extended.put(key, value);
         return new DetectedTransformation(kind, involvedDescriptions, filesTouched, occurrenceCount, beforeText,
                 afterText, extended);
+    }
+
+    /**
+     * This transformation touching {@code files} too (ticket #337): follow-on edits that belong to
+     * it, such as imports updated for a moved class. Context is kept.
+     */
+    public DetectedTransformation withAdditionalFiles(List<String> files) {
+        List<String> all = new ArrayList<>(filesTouched);
+        files.stream().filter(file -> !all.contains(file)).forEach(all::add);
+        return new DetectedTransformation(kind, involvedDescriptions, all, occurrenceCount, beforeText, afterText, context);
     }
 
     /** Source context recorded with this transformation (see {@link #withContext}); empty if none. */

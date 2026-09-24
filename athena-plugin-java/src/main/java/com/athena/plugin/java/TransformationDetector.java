@@ -324,7 +324,101 @@ public final class TransformationDetector {
         // 11. Pull-ups (ticket #290): a member several existing classes lost to a new common
         // base class that gained it. Runs last, since it replaces the move/remove/add rows the
         // steps above already reported for those same members.
-        return withPullUps(baseParsed, headParsed, results);
+        return withImportFollowOns(baseFiles, headFiles, unparseable, withPullUps(baseParsed, headParsed, results));
+    }
+
+    /**
+     * Attaches every changed file that only follows a class this Diff moves or renames (ticket
+     * #337): its imports changed only to name moved or renamed classes, and any other difference
+     * is the renamed classes' new names replacing their old ones. Such a file is a consequence of
+     * the move or rename, not a change of its own; it then counts as represented.
+     */
+    private List<DetectedTransformation> withImportFollowOns(Map<String, ParsedFile> baseFiles,
+                                                             Map<String, ParsedFile> headFiles, Set<String> unparseable,
+                                                             List<DetectedTransformation> results) {
+        Map<String, Integer> classChangeByName = new LinkedHashMap<>();
+        for (int i = 0; i < results.size(); i++) {
+            DetectedTransformation t = results.get(i);
+            if (t.kind() == TransformationKind.MOVE_CLASS || t.kind() == TransformationKind.RENAME_CLASS) {
+                for (String name : t.involvedDescriptions()) {
+                    classChangeByName.putIfAbsent(name.substring(name.lastIndexOf('.') + 1), i);
+                }
+            }
+        }
+        if (classChangeByName.isEmpty()) {
+            return results;
+        }
+        // A renamed class's simple name, old -> new: references to it by name follow the rename too.
+        Map<String, String> renames = new LinkedHashMap<>();
+        for (DetectedTransformation t : results) {
+            if (t.kind() == TransformationKind.RENAME_CLASS && t.involvedDescriptions().size() == 2) {
+                String from = t.involvedDescriptions().get(0);
+                String to = t.involvedDescriptions().get(1);
+                renames.putIfAbsent(from.substring(from.lastIndexOf('.') + 1), to.substring(to.lastIndexOf('.') + 1));
+            }
+        }
+        Map<Integer, List<String>> followOns = new LinkedHashMap<>();
+        for (Map.Entry<String, ParsedFile> base : baseFiles.entrySet()) {
+            ParsedFile head = headFiles.get(base.getKey());
+            if (head == null || unparseable.contains(base.getKey())) continue;
+            Set<String> baseImports = importNames(base.getValue().unit());
+            Set<String> headImports = importNames(head.unit());
+            String baseBody = withoutImports(base.getValue().unit());
+            String headBody = withoutImports(head.unit());
+            Set<Integer> owners = new LinkedHashSet<>();
+            if (!baseBody.equals(headBody)) {
+                String renamed = baseBody;
+                for (Map.Entry<String, String> rename : renames.entrySet()) {
+                    if (Pattern.compile("\\b" + Pattern.quote(rename.getKey()) + "\\b").matcher(renamed).find()) {
+                        owners.add(classChangeByName.get(rename.getKey()));
+                    }
+                    renamed = replaceWholeIdentifier(renamed, rename.getKey(), rename.getValue());
+                }
+                if (!renamed.equals(headBody)) {
+                    continue;
+                }
+            } else if (baseImports.equals(headImports)) {
+                continue;
+            }
+            boolean allFollow = true;
+            for (String changed : symmetricDifference(baseImports, headImports)) {
+                Integer owner = classChangeByName.get(changed.substring(changed.lastIndexOf('.') + 1));
+                if (owner == null) {
+                    allFollow = false;
+                    break;
+                }
+                owners.add(owner);
+            }
+            if (allFollow && !owners.isEmpty()) {
+                followOns.computeIfAbsent(owners.iterator().next(), k -> new ArrayList<>()).add(base.getKey());
+            }
+        }
+        List<DetectedTransformation> attached = new ArrayList<>(results);
+        followOns.forEach((index, files) -> attached.set(index, results.get(index).withAdditionalFiles(files)
+                .withContext(DetectedTransformation.IMPORT_FOLLOW_ONS, String.valueOf(files.size()))));
+        return attached;
+    }
+
+    private static Set<String> importNames(CompilationUnit unit) {
+        return unit.getImports().stream()
+                .filter(declaration -> !declaration.isAsterisk() && !declaration.isStatic())
+                .map(declaration -> declaration.getNameAsString())
+                .collect(Collectors.toCollection(TreeSet::new));
+    }
+
+    private static String withoutImports(CompilationUnit unit) {
+        CompilationUnit copy = unit.clone();
+        copy.getImports().clear();
+        return copy.toString();
+    }
+
+    private static Set<String> symmetricDifference(Set<String> a, Set<String> b) {
+        Set<String> difference = new TreeSet<>(a);
+        difference.addAll(b);
+        Set<String> common = new TreeSet<>(a);
+        common.retainAll(b);
+        difference.removeAll(common);
+        return difference;
     }
 
     /**
