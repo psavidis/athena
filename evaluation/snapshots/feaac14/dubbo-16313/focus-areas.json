@@ -1,0 +1,10 @@
+[ {
+  "entity" : "DubboDefaultPropertiesEnvironmentPostProcessor",
+  "description" : "Change control flow of DubboDefaultPropertiesEnvironmentPostProcessor#addOrReplace: condition changed"
+}, {
+  "entity" : "DubboDefaultPropertiesEnvironmentPostProcessorTest",
+  "description" : "Add DubboDefaultPropertiesEnvironmentPostProcessorTest#testPostProcessEnvironmentOnImmutableDefaultProperties"
+}, {
+  "entity" : "DubboDefaultPropertiesEnvironmentPostProcessorTest",
+  "description" : "Add DubboDefaultPropertiesEnvironmentPostProcessorTest#testImmutableDefaultPropertiesDoesNotOverrideExistingKey"
+} ]

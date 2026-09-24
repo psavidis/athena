@@ -13,7 +13,7 @@ instead of judging from a single PR (issue #258).
 | `tools/coverage.py` | Derives `metrics.json` (diff-vs-Athena coverage) for a snapshot. |
 | `tools/summarize.py` | Prints a snapshot as plain text: Change Map, Explorer cards, Canvas, focus areas. Used for the protocol's Athena pass. |
 | `snapshots/<athena-sha>/` | Raw evidence per Athena version: `pr.diff` plus every view Athena would render. |
-| `reports/` | Dated evaluation reports, written against a specific snapshot directory. The first is `reports/2026-09-23-baseline-a5bb763.md`; the re-run after #260–#271 is `reports/2026-09-24-rerun-80ce13f.md`; the third run, after #285–#296, is `reports/2026-09-24-rerun-e2b2780.md`; the baseline for the 16 entries added in #311 is `reports/2026-09-24-expansion-baseline-c6a1721.md`; the 26-entry run after #313–#320 is `reports/2026-09-24-rerun-9d1b462.md`; the baseline for the 19 entries added in #332 is `reports/2026-09-24-expansion2-baseline-b6f6f49.md`. |
+| `reports/` | Dated evaluation reports, written against a specific snapshot directory. The first is `reports/2026-09-23-baseline-a5bb763.md`; the re-run after #260–#271 is `reports/2026-09-24-rerun-80ce13f.md`; the third run, after #285–#296, is `reports/2026-09-24-rerun-e2b2780.md`; the baseline for the 16 entries added in #311 is `reports/2026-09-24-expansion-baseline-c6a1721.md`; the 26-entry run after #313–#320 is `reports/2026-09-24-rerun-9d1b462.md`; the baseline for the 19 entries added in #332 is `reports/2026-09-24-expansion2-baseline-b6f6f49.md`; the 45-entry run after #334–#340 is `reports/2026-09-25-rerun-feaac14.md`. |
 
 ## Re-running against a newer Athena
 

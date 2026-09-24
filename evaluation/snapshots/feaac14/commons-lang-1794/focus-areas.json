@@ -1,0 +1,7 @@
+[ {
+  "entity" : "Fraction",
+  "description" : "Change control flow of Fraction#getReducedFraction: branch removed, loop added; same calls"
+}, {
+  "entity" : "FractionTest",
+  "description" : "Add FractionTest#testReducedFactoryIntegerMinValue"
+} ]

@@ -1,0 +1,197 @@
+{
+  "prTitle" : "Cache reflective accessibility check result per BoundField",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 7,
+    "UNKNOWN" : 2,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkuQWNjZXNzaWJsZUNhY2hl",
+    "description" : "Add class ReflectiveTypeAdapterFactory.AccessibleCache",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5I2dldEluYWNjZXNzaWJsZU1lc3NhZ2U",
+    "description" : "Add ReflectiveTypeAdapterFactory#getInaccessibleMessage",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5LkFjY2Vzc2libGVDYWNoZSNjaGVjaw",
+    "description" : "Add ReflectiveTypeAdapterFactory.AccessibleCache#check",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRJbmFjY2Vzc2libGVNZXNzYWdlLCAtZ2V0QWNjZXNzaWJsZU9iamVjdERlc2NyaXB0aW9uClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkjY2hlY2tBY2Nlc3NpYmxl",
+    "description" : "Modify body of ReflectiveTypeAdapterFactory#checkAccessible: +getInaccessibleMessage, -getAccessibleObjectDescription",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGVjaywgLWNoZWNrQWNjZXNzaWJsZSwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKUmVmbGVjdGl2ZVR5cGVBZGFwdGVyRmFjdG9yeSNjcmVhdGVCb3VuZEZpZWxk",
+    "description" : "Modify body of ReflectiveTypeAdapterFactory#createBoundField: +check, -checkAccessible, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX0ZJRUxEClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkuQWNjZXNzaWJsZUNhY2hlI0FDQ0VTU0lCTEU",
+    "description" : "Add field ReflectiveTypeAdapterFactory.AccessibleCache#ACCESSIBLE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX0ZJRUxEClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkuQWNjZXNzaWJsZUNhY2hlI21lbWJlcg",
+    "description" : "Add field ReflectiveTypeAdapterFactory.AccessibleCache#member",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX0ZJRUxEClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkuQWNjZXNzaWJsZUNhY2hlI2luYWNjZXNzaWJsZU1lc3NhZ2U",
+    "description" : "Add field ReflectiveTypeAdapterFactory.AccessibleCache#inaccessibleMessage",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5LkFjY2Vzc2libGVDYWNoZSNtZW1iZXI",
+    "description" : "Add constructor parameter ReflectiveTypeAdapterFactory.AccessibleCache#member",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ReflectiveTypeAdapterFactory.AccessibleCache",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkuQWNjZXNzaWJsZUNhY2hl",
+      "description" : "Add class ReflectiveTypeAdapterFactory.AccessibleCache",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5LkFjY2Vzc2libGVDYWNoZSNjaGVjaw",
+      "description" : "Add ReflectiveTypeAdapterFactory.AccessibleCache#check",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX0ZJRUxEClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkuQWNjZXNzaWJsZUNhY2hlI0FDQ0VTU0lCTEU",
+      "description" : "Add field ReflectiveTypeAdapterFactory.AccessibleCache#ACCESSIBLE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX0ZJRUxEClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkuQWNjZXNzaWJsZUNhY2hlI21lbWJlcg",
+      "description" : "Add field ReflectiveTypeAdapterFactory.AccessibleCache#member",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX0ZJRUxEClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkuQWNjZXNzaWJsZUNhY2hlI2luYWNjZXNzaWJsZU1lc3NhZ2U",
+      "description" : "Add field ReflectiveTypeAdapterFactory.AccessibleCache#inaccessibleMessage",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5LkFjY2Vzc2libGVDYWNoZSNtZW1iZXI",
+      "description" : "Add constructor parameter ReflectiveTypeAdapterFactory.AccessibleCache#member",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ReflectiveTypeAdapterFactory",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5I2dldEluYWNjZXNzaWJsZU1lc3NhZ2U",
+      "description" : "Add ReflectiveTypeAdapterFactory#getInaccessibleMessage",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 3,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRJbmFjY2Vzc2libGVNZXNzYWdlLCAtZ2V0QWNjZXNzaWJsZU9iamVjdERlc2NyaXB0aW9uClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkjY2hlY2tBY2Nlc3NpYmxl",
+      "description" : "Modify body of ReflectiveTypeAdapterFactory#checkAccessible: +getInaccessibleMessage, -getAccessibleObjectDescription",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 4,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGVjaywgLWNoZWNrQWNjZXNzaWJsZSwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKUmVmbGVjdGl2ZVR5cGVBZGFwdGVyRmFjdG9yeSNjcmVhdGVCb3VuZEZpZWxk",
+      "description" : "Modify body of ReflectiveTypeAdapterFactory#createBoundField: +check, -checkAccessible, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

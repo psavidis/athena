@@ -1,0 +1,711 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTCk1vcmVBbm5vdGF0aW9uc1Rlc3Q",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class MoreAnnotationsTest",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/MoreAnnotationsTest.java" ],
+  "symbols" : [ "MoreAnnotationsTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdXBwcmVzc2lvbkluZm8jd2l0aEV4dGVuZGVkU3VwcHJlc3Npb25zCmJyYW5jaCByZW1vdmVkLCBsb29wIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SuppressionInfo#withExtendedSuppressions: branch removed, loop removed",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/SuppressionInfo.java" ],
+  "symbols" : [ "SuppressionInfo#withExtendedSuppressions", "branch removed, loop removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdWdnZXN0ZWRGaXhlcyNhZGRTdXBwcmVzc1dhcm5pbmdzCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SuggestedFixes#addSuppressWarnings: branch removed",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/fixes/SuggestedFixes.java" ],
+  "symbols" : [ "SuggestedFixes#addSuppressWarnings", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdWdnZXN0ZWRGaXhlcyNzdXBwb3J0ZWRUcmVlVHlwZXMKY29uZGl0aW9uIGNoYW5nZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SuggestedFixes#supportedTreeTypes: condition changed",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/fixes/SuggestedFixes.java" ],
+  "symbols" : [ "SuggestedFixes#supportedTreeTypes", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQVNUSGVscGVycyNnZW5lcmF0ZWRWYWx1ZXM",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of ASTHelpers#generatedValues",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/ASTHelpers.java" ],
+  "symbols" : [ "ASTHelpers#generatedValues" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTW9yZUFubm90YXRpb25zI2dldFZhbHVl",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of MoreAnnotations#getValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTW9yZUFubm90YXRpb25zI2dldEFubm90YXRpb25WYWx1ZQ",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of MoreAnnotations#getAnnotationValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getAnnotationValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Rk9STUFUVElOR19PTkxZCk1vcmVBbm5vdGF0aW9ucyNhc0ludGVnZXJWYWx1ZQ",
+  "kind" : "FORMATTING_ONLY",
+  "category" : "MECHANICAL",
+  "description" : "Formatting: MoreAnnotations#asIntegerValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asIntegerValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Rk9STUFUVElOR19PTkxZCk1vcmVBbm5vdGF0aW9ucyNhc1N0cmluZ1ZhbHVl",
+  "kind" : "FORMATTING_ONLY",
+  "category" : "MECHANICAL",
+  "description" : "Formatting: MoreAnnotations#asStringValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asStringValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTW9yZUFubm90YXRpb25zI2FzRW51bVZhbHVl",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of MoreAnnotations#asEnumValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asEnumValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTW9yZUFubm90YXRpb25zI2FzRW51bVZhbHVlcw",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of MoreAnnotations#asEnumValues",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asEnumValues" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Rk9STUFUVElOR19PTkxZCk1vcmVBbm5vdGF0aW9ucyNhc1R5cGVWYWx1ZQ",
+  "kind" : "FORMATTING_ONLY",
+  "category" : "MECHANICAL",
+  "description" : "Formatting: MoreAnnotations#asTypeValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asTypeValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUGxhY2Vob2xkZXJNZXRob2QjY3JlYXRl",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of PlaceholderMethod#create",
+  "files" : [ "core/src/main/java/com/google/errorprone/refaster/PlaceholderMethod.java" ],
+  "symbols" : [ "PlaceholderMethod#create" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVVGVtcGxhdGVyI3Zpc2l0SWRlbnRpZmllcgpjb25kaXRpb24gY2hhbmdlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of UTemplater#visitIdentifier: condition changed",
+  "files" : [ "core/src/main/java/com/google/errorprone/refaster/UTemplater.java" ],
+  "symbols" : [ "UTemplater#visitIdentifier", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKVVRlbXBsYXRlciNjbGFzc05hbWVGcm9t",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of UTemplater#classNameFrom",
+  "files" : [ "core/src/main/java/com/google/errorprone/refaster/UTemplater.java" ],
+  "symbols" : [ "UTemplater#classNameFrom" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNBcnJheQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove MoreAnnotations#asArray",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asArray" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApVVGVtcGxhdGVyI2dldFZhbHVl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove UTemplater#getValue",
+  "files" : [ "core/src/main/java/com/google/errorprone/refaster/UTemplater.java" ],
+  "symbols" : [ "UTemplater#getValue" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0QW5ub3RhdGlvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#getAnnotation",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getAnnotation" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0QW5ub3RhdGlvbldpdGhTaW1wbGVOYW1l",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#getAnnotationWithSimpleName",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getAnnotationWithSimpleName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0VmFsdWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#getValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0U3RyaW5nVmFsdWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#getStringValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getStringValue" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0Qm9vbGVhblZhbHVl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#getBooleanValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getBooleanValue" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0RW51bVZhbHVl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#getEnumValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getEnumValue" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0RW51bVZhbHVlcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#getEnumValues",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getEnumValues" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0U3RyaW5ncw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#getStrings",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getStrings" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0VHlwZXM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#getTypes",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getTypes" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0VHlwZVZhbHVl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#getTypeValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getTypeValue" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNCb29sZWFuVmFsdWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#asBooleanValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asBooleanValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNFbnVtVmFsdWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#asEnumValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asEnumValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNFbnVtVmFsdWVz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#asEnumValues",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asEnumValues" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNBbm5vdGF0aW9uVmFsdWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#asAnnotationValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asAnnotationValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0QW5ub3RhdGlvblZhbHVl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#getAnnotationValue",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getAnnotationValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNFbGVtZW50",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#asElement",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asElement" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0VGFyZ2V0RWxlbWVudFR5cGVz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#getTargetElementTypes",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getTargetElementTypes" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjaXNUeXBlQW5ub3RhdGlvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#isTypeAnnotation",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#isTypeAnnotation" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjZ2V0UmV0ZW50aW9uUG9saWN5",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#getRetentionPolicy",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#getRetentionPolicy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjYXNSZXRlbnRpb25Qb2xpY3k",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#asRetentionPolicy",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asRetentionPolicy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnMjdGFyZ2V0c0VsZW1lbnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotations#targetsElement",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#targetsElement" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnNUZXN0I2Fubm90YXRpb25BY2Nlc3NvcnM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotationsTest#annotationAccessors",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/MoreAnnotationsTest.java" ],
+  "symbols" : [ "MoreAnnotationsTest#annotationAccessors" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNb3JlQW5ub3RhdGlvbnNUZXN0I3RhcmdldEFuZFJldGVudGlvbkhlbHBlcnM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MoreAnnotationsTest#targetAndRetentionHelpers",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/MoreAnnotationsTest.java" ],
+  "symbols" : [ "MoreAnnotationsTest#targetAndRetentionHelpers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApVVGVtcGxhdGVyI2dldE1hdGNoZXJDbGFzcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add UTemplater#getMatcherClass",
+  "files" : [ "core/src/main/java/com/google/errorprone/refaster/UTemplater.java" ],
+  "symbols" : [ "UTemplater#getMatcherClass" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRBbm5vdGF0aW9uTWlycm9yLCArZ2V0U3RyaW5ncywgK29mLCAtZ2V0U2ltcGxlTmFtZSwgLWdldEFubm90YXRpb24g4oCmYW5kIDEgbW9yZQpTdWdnZXN0ZWRGaXhlcyNyZW1vdmVTdXBwcmVzc1dhcm5pbmdz",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SuggestedFixes#removeSuppressWarnings: +getAnnotationMirror, +getStrings, +of, -getSimpleName, -getAnnotation …and 1 more",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/fixes/SuggestedFixes.java" ],
+  "symbols" : [ "SuggestedFixes#removeSuppressWarnings", "+getAnnotationMirror, +getStrings, +of, -getSimpleName, -getAnnotation …and 1 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRUeXBlVmFsdWUsIC1mbGF0TWFwLCAtZ2V0QW5ub3RhdGlvblZhbHVlLCByZXR1cm4gdmFsdWUgY2hhbmdlZApVbnVzZWRSZXR1cm5WYWx1ZU1hdGNoZXIjaXNUZXN0RXhwZWN0ZWRFeGNlcHRpb25NZXRob2Q",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UnusedReturnValueMatcher#isTestExpectedExceptionMethod: +getTypeValue, -flatMap, -getAnnotationValue, return value changed",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/matchers/UnusedReturnValueMatcher.java" ],
+  "symbols" : [ "UnusedReturnValueMatcher#isTestExpectedExceptionMethod", "+getTypeValue, -flatMap, -getAnnotationValue, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1nZXRBbm5vdGF0aW9uVHlwZSwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKQVNUSGVscGVycyNoYXNEaXJlY3RBbm5vdGF0aW9uV2l0aFNpbXBsZU5hbWU",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ASTHelpers#hasDirectAnnotationWithSimpleName: -getAnnotationType, return value changed",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/ASTHelpers.java" ],
+  "symbols" : [ "ASTHelpers#hasDirectAnnotationWithSimpleName", "-getAnnotationType, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1nZXRBbm5vdGF0aW9uVHlwZSwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKQVNUSGVscGVycyNoYXNEaXJlY3RBbm5vdGF0aW9u",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ASTHelpers#hasDirectAnnotation: -getAnnotationType, return value changed",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/ASTHelpers.java" ],
+  "symbols" : [ "ASTHelpers#hasDirectAnnotation", "-getAnnotationType, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1vcmVBbm5vdGF0aW9ucyNhc1N0cmluZ3MKcmV0dXJuIHggLT4geCAhPSBudWxsIC0-IE9iamVjdHM6Om5vbk51bGwsIHJldHVybiB4IC0-IHggIT0gbnVsbCAtPiBPYmplY3RzOjpub25OdWxs",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MoreAnnotations#asStrings: return x -> x != null -> Objects::nonNull, return x -> x != null -> Objects::nonNull",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asStrings", "return x -> x != null -> Objects::nonNull, return x -> x != null -> Objects::nonNull" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithY2NlcHQsICtlbXB0eSwgK29mLCArc3RyZWFtLCArZmxhdE1hcCDigKZhbmQgMiBtb3JlCk1vcmVBbm5vdGF0aW9ucyNhc1R5cGVz",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MoreAnnotations#asTypes: +accept, +empty, +of, +stream, +flatMap …and 2 more",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java" ],
+  "symbols" : [ "MoreAnnotations#asTypes", "+accept, +empty, +of, +stream, +flatMap …and 2 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClJlZmFzdGVyUnVsZUJ1aWxkZXJTY2FubmVyI3Zpc2l0TWV0aG9kCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of RefasterRuleBuilderScanner#visitMethod: other statements changed",
+  "files" : [ "core/src/main/java/com/google/errorprone/refaster/RefasterRuleBuilderScanner.java" ],
+  "symbols" : [ "RefasterRuleBuilderScanner#visitMethod", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1nZXRBbm5vdGF0aW9uVHlwZQpVVGVtcGxhdGVyI2Fubm90YXRpb25NYXA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UTemplater#annotationMap: -getAnnotationType",
+  "files" : [ "core/src/main/java/com/google/errorprone/refaster/UTemplater.java" ],
+  "symbols" : [ "UTemplater#annotationMap", "-getAnnotationType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRBbm5vdGF0aW9uLCArZ2V0U3RyaW5ncywgLWdldEFubm90YXRpb25NaXJyb3JzLCAtc3RyZWFtLCAtZmlsdGVyIOKApmFuZCA2IG1vcmUKSW1wb3J0U3RhdGVtZW50c1Rlc3QuSW1wb3J0c1RvQWRkQ2hlY2tlciNtYXRjaENsYXNz",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ImportStatementsTest.ImportsToAddChecker#matchClass: +getAnnotation, +getStrings, -getAnnotationMirrors, -stream, -filter …and 6 more",
+  "files" : [ "core/src/test/java/com/google/errorprone/apply/ImportStatementsTest.java" ],
+  "symbols" : [ "ImportStatementsTest.ImportsToAddChecker#matchClass", "+getAnnotation, +getStrings, -getAnnotationMirrors, -stream, -filter …and 6 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClN1cHByZXNzaW9uSW5mbyNWQUxVRQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field SuppressionInfo#VALUE",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/SuppressionInfo.java" ],
+  "symbols" : [ "SuppressionInfo#VALUE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNBVVRPX0JVSUxERVJfQU5OT1RBVElPTg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#AUTO_BUILDER_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#AUTO_BUILDER_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNBVVRPX0ZBQ1RPUllfQU5OT1RBVElPTg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#AUTO_FACTORY_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#AUTO_FACTORY_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNBVVRPX1ZBTFVFX0FOTk9UQVRJT04",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#AUTO_VALUE_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#AUTO_VALUE_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNDSEVDS19SRVRVUk5fVkFMVUVfQU5OT1RBVElPTg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#CHECK_RETURN_VALUE_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#CHECK_RETURN_VALUE_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNERVBSRUNBVEVEX0FOTk9UQVRJT04",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#DEPRECATED_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#DEPRECATED_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNJTkNPTVBBVElCTEVfTU9ESUZJRVJTX0FOTk9UQVRJT04",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#INCOMPATIBLE_MODIFIERS_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#INCOMPATIBLE_MODIFIERS_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNJTkxJTkVfTUVfQU5OT1RBVElPTg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#INLINE_ME_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#INLINE_ME_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNJTkxJTkVfTUVfVkFMSURBVElPTl9ESVNBQkxFRF9BTk5PVEFUSU9O",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#INLINE_ME_VALIDATION_DISABLED_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#INLINE_ME_VALIDATION_DISABLED_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNNQVRDSEVTX0FOTk9UQVRJT04",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#MATCHES_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#MATCHES_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNOT1RfTUFUQ0hFU19BTk5PVEFUSU9O",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#NOT_MATCHES_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#NOT_MATCHES_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNOVUxMX01BUktFRF9BTk5PVEFUSU9O",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#NULL_MARKED_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#NULL_MARKED_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNOVUxMX1VOTUFSS0VEX0FOTk9UQVRJT04",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#NULL_UNMARKED_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#NULL_UNMARKED_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNPRl9LSU5EX0FOTk9UQVRJT04",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#OF_KIND_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#OF_KIND_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNPVkVSUklERV9BTk5PVEFUSU9O",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#OVERRIDE_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#OVERRIDE_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNSRVBFQVRBQkxFX0FOTk9UQVRJT04",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#REPEATABLE_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#REPEATABLE_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNSRVFVSVJFRF9NT0RJRklFUlNfQU5OT1RBVElPTg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#REQUIRED_MODIFIERS_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#REQUIRED_MODIFIERS_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNSRVRFTlRJT05fQU5OT1RBVElPTg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#RETENTION_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#RETENTION_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNTVVBQUkVTU19XQVJOSU5HU19BTk5PVEFUSU9O",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#SUPPRESS_WARNINGS_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#SUPPRESS_WARNINGS_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRpb25OYW1lcyNUQVJHRVRfQU5OT1RBVElPTg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotationNames#TARGET_ANNOTATION",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java" ],
+  "symbols" : [ "AnnotationNames#TARGET_ANNOTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCkFTVEhlbHBlcnMjTlVMTF9NQVJLRURfTkFNRQp2YWx1ZSBjaGFuZ2Vk",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of ASTHelpers#NULL_MARKED_NAME: value changed",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/ASTHelpers.java" ],
+  "symbols" : [ "ASTHelpers#NULL_MARKED_NAME", "value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

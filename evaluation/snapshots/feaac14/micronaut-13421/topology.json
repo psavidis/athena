@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "http-client",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 4 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXR0eUh0dHBDbGllbnQjYnVpbGRTdHJlYW1FeGNoYW5nZQpicmFuY2ggYWRkZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXR0eUh0dHBDbGllbnQjcmVhZEJvZHlPbkVycm9yCmNvbmRpdGlvbiBjaGFuZ2Vk", "QUREX1NZTUJPTApOZXR0eUh0dHBDbGllbnQjc2hvdWxkQnVmZmVyRXJyb3JCb2R5", "TU9ESUZZX01FVEhPRF9CT0RZCk5ldHR5SHR0cENsaWVudCNoYW5kbGVTdHJlYW1IdHRwRXJyb3IKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk" ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ ]
+}

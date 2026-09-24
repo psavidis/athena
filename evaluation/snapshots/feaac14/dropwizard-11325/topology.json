@@ -1,0 +1,730 @@
+{
+  "territories" : [ {
+    "moduleName" : "core",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Change dependency io.dropwizard:dropwizard-testing (examples-core): exclusion junit:junit removed",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZXhhbXBsZXMtY29yZSNpby5kcm9wd2l6YXJkOmRyb3B3aXphcmQtdGVzdGluZwpleGNsdXNpb24ganVuaXQ6anVuaXQgcmVtb3ZlZA" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-auth",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 7 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvcmU6amVyc2V5LWNvbW1vbgpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvcmU6amVyc2V5LXNlcnZlcgpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZlcgpleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LWpha2FydGEtc2VydmxldC1hcGkgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrOmplcnNleS10ZXN0LWZyYW1ld29yay1jb3JlCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrLnByb3ZpZGVyczpqZXJzZXktdGVzdC1mcmFtZXdvcmstcHJvdmlkZXItZ3JpenpseTIKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvbnRhaW5lcnM6amVyc2V5LWNvbnRhaW5lci1zZXJ2bGV0LWNvcmUKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5jb3JlOmphY2tzb24tYW5ub3RhdGlvbnMKc2NvcGUgdGVzdCAtPiBjb21waWxl" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-benchmarks",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1iZW5jaG1hcmtzI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvcmU6amVyc2V5LXNlcnZlcgpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1iZW5jaG1hcmtzI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrOmplcnNleS10ZXN0LWZyYW1ld29yay1jb3JlCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-client",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 5 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jbGllbnQjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY2xpZW50CmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jbGllbnQjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY29tbW9uCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jbGllbnQjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWphY2tzb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jbGllbnQjaW8uZHJvcHdpemFyZC5tZXRyaWNzOm1ldHJpY3MtaGVhbHRoY2hlY2tzCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jbGllbnQjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWNvbmZpZ3VyYXRpb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-core",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 7 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlY3VyaXR5CmV4Y2x1c2lvbiBvcmcuZWNsaXBzZS5qZXR0eS50b29sY2hhaW46amV0dHktamFrYXJ0YS1zZXJ2bGV0LWFwaSByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZlcgpleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LWpha2FydGEtc2VydmxldC1hcGkgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0CmV4Y2x1c2lvbiBvcmcuZWNsaXBzZS5qZXR0eS50b29sY2hhaW46amV0dHktamFrYXJ0YS1zZXJ2bGV0LWFwaSByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvcmU6amVyc2V5LWNvbW1vbgpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5nbGFzc2Zpc2guamVyc2V5LmV4dDpqZXJzZXktYmVhbi12YWxpZGF0aW9uCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrLnByb3ZpZGVyczpqZXJzZXktdGVzdC1mcmFtZXdvcmstcHJvdmlkZXItaW5tZW1vcnkKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5oaWJlcm5hdGUudmFsaWRhdG9yOmhpYmVybmF0ZS12YWxpZGF0b3IKc2NvcGUgdGVzdCAtPiBjb21waWxl" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-dependencies",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 4 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1kZXBlbmRlbmNpZXMjY29tLmdvb2dsZS5ndWF2YTpndWF2YSBbbWFuYWdlZF0KZXhjbHVzaW9uIGNvbS5nb29nbGUuY29kZS5maW5kYnVnczpqc3IzMDUgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1kZXBlbmRlbmNpZXMjY29tLm1hdHRiZXJ0b2xpbmk6bGlxdWliYXNlLXNsZjRqIFttYW5hZ2VkXQpleGNsdXNpb25zIG9yZy5saXF1aWJhc2U6bGlxdWliYXNlLWNvcmUsIG9yZy5zbGY0ajpzbGY0ai1hcGkgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1kZXBlbmRlbmNpZXMjb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluLnNldHVpZDpqZXR0eS1zZXR1aWQtam5hIFttYW5hZ2VkXQpleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHk6amV0dHktc2VydmVyIHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1kZXBlbmRlbmNpZXMjY2gucW9zLmxvZ2JhY2s6bG9nYmFjay1jbGFzc2ljIFttYW5hZ2VkXQpleGNsdXNpb24gb3JnLnNsZjRqOnNsZjRqLWFwaSByZW1vdmVk" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-e2e",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 5 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1lMmUjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY29tbW9uCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1lMmUjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWNvbmZpZ3VyYXRpb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1lMmUjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY2xpZW50CnNjb3BlIHRlc3QgLT4gY29tcGlsZSwgZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1lMmUjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWphY2tzb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1lMmUjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWxvZ2dpbmcKc2NvcGUgdGVzdCAtPiBjb21waWxl" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-example",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1leGFtcGxlI2lvLmRyb3B3aXphcmQ6ZHJvcHdpemFyZC10ZXN0aW5nCmV4Y2x1c2lvbiBqdW5pdDpqdW5pdCByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1leGFtcGxlI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrLnByb3ZpZGVyczpqZXJzZXktdGVzdC1mcmFtZXdvcmstcHJvdmlkZXItaW5tZW1vcnkKZXhjbHVzaW9ucyBqYXZheC5zZXJ2bGV0OmphdmF4LnNlcnZsZXQtYXBpLCBqdW5pdDpqdW5pdCByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1leGFtcGxlI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrLnByb3ZpZGVyczpqZXJzZXktdGVzdC1mcmFtZXdvcmstcHJvdmlkZXItZ3JpenpseTIKZXhjbHVzaW9ucyBqYXZheC5zZXJ2bGV0OmphdmF4LnNlcnZsZXQtYXBpLCBqdW5pdDpqdW5pdCByZW1vdmVk" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-forms",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Change dependency io.dropwizard:dropwizard-logging (dropwizard-forms): scope test -> compile",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1mb3JtcyNpby5kcm9wd2l6YXJkOmRyb3B3aXphcmQtbG9nZ2luZwpzY29wZSB0ZXN0IC0-IGNvbXBpbGU" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-health",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oZWFsdGgjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY2xpZW50CmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oZWFsdGgjb3JnLmVjbGlwc2UuamV0dHkuZWUxMDpqZXR0eS1lZTEwLXNlcnZsZXQKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oZWFsdGgjb3JnLmVjbGlwc2UuamV0dHk6amV0dHktaHR0cApzY29wZSB0ZXN0IC0-IGNvbXBpbGU" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-hibernate",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 9 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktc2VydmVyCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjb3JnLmhpYmVybmF0ZS5vcm06aGliZXJuYXRlLWNvcmUKZXhjbHVzaW9uIGpha2FydGEueG1sLmJpbmQ6amFrYXJ0YS54bWwuYmluZC1hcGkgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWNvbmZpZ3VyYXRpb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjb3JnLmdsYXNzZmlzaC5qZXJzZXkudGVzdC1mcmFtZXdvcms6amVyc2V5LXRlc3QtZnJhbWV3b3JrLWNvcmUKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWphY2tzb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjY29tLmZhc3RlcnhtbC5qYWNrc29uLmNvcmU6amFja3Nvbi1hbm5vdGF0aW9ucwpzY29wZSB0ZXN0IC0-IGNvbXBpbGU", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjb3JnLmFwYWNoZS50b21jYXQ6dG9tY2F0LWpkYmMKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWxvZ2dpbmcKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY2xpZW50CnNjb3BlIHRlc3QgLT4gY29tcGlsZQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-http2",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 6 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1odHRwMiNpby5kcm9wd2l6YXJkLm1ldHJpY3M6bWV0cmljcy1qZXR0eTEyCmV4Y2x1c2lvbiBvcmcuZWNsaXBzZS5qZXR0eS50b29sY2hhaW46amV0dHktamFrYXJ0YS1zZXJ2bGV0LWFwaSByZW1vdmVk", "UkVNT1ZFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1odHRwMiNqYWthcnRhLnNlcnZsZXQ6amFrYXJ0YS5zZXJ2bGV0LWFwaQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1odHRwMiNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1hbHBuLXNlcnZlcgpleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LWpha2FydGEtc2VydmxldC1hcGkgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1odHRwMiNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2ZXIKZXhjbHVzaW9uIG9yZy5lY2xpcHNlLmpldHR5LnRvb2xjaGFpbjpqZXR0eS1qYWthcnRhLXNlcnZsZXQtYXBpIHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1odHRwMiNvcmcuZWNsaXBzZS5qZXR0eS5odHRwMjpqZXR0eS1odHRwMi1zZXJ2ZXIKZXhjbHVzaW9uIG9yZy5lY2xpcHNlLmpldHR5LnRvb2xjaGFpbjpqZXR0eS1qYWthcnRhLXNlcnZsZXQtYXBpIHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1odHRwMiNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1odHRwCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-jdbi3",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZGJpMyNvcmcuanNwZWNpZnk6anNwZWNpZnkKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZGJpMyNpby5kcm9wd2l6YXJkLm1ldHJpY3M6bWV0cmljcy1hbm5vdGF0aW9uCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZGJpMyNpby5kcm9wd2l6YXJkOmRyb3B3aXphcmQtbG9nZ2luZwpzY29wZSB0ZXN0IC0-IGNvbXBpbGU" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-jersey",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 9 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktc2VydmVyCmV4Y2x1c2lvbiBqYWthcnRhLmluamVjdDpqYWthcnRhLmluamVjdC1hcGkgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkuaW5qZWN0OmplcnNleS1oazIKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5oazI6aGsyLWFwaQpleGNsdXNpb24gamFrYXJ0YS5pbmplY3Q6amFrYXJ0YS5pbmplY3QtYXBpIHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29udGFpbmVyczpqZXJzZXktY29udGFpbmVyLXNlcnZsZXQtY29yZQpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY29tbW9uCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkudGVzdC1mcmFtZXdvcms6amVyc2V5LXRlc3QtZnJhbWV3b3JrLWNvcmUKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkudGVzdC1mcmFtZXdvcmsucHJvdmlkZXJzOmplcnNleS10ZXN0LWZyYW1ld29yay1wcm92aWRlci1ncml6emx5MgpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkudGVzdC1mcmFtZXdvcmsucHJvdmlkZXJzOmplcnNleS10ZXN0LWZyYW1ld29yay1wcm92aWRlci1qZXR0eQpleGNsdXNpb25zIG9yZy5lY2xpcHNlLmpldHR5LnRvb2xjaGFpbjpqZXR0eS1qYWthcnRhLXNlcnZsZXQtYXBpLCBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY2xpZW50CnNjb3BlIHRlc3QgLT4gY29tcGlsZQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-jetty",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXR0eSNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZWN1cml0eQpleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LWpha2FydGEtc2VydmxldC1hcGkgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXR0eSNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2ZXIKZXhjbHVzaW9uIG9yZy5lY2xpcHNlLmpldHR5LnRvb2xjaGFpbjpqZXR0eS1qYWthcnRhLXNlcnZsZXQtYXBpIHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXR0eSNvcmcuZWNsaXBzZS5qZXR0eS5lZTEwOmpldHR5LWVlMTAtc2VydmxldApleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LWpha2FydGEtc2VydmxldC1hcGkgcmVtb3ZlZA" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-json-logging",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qc29uLWxvZ2dpbmcjaW8uZHJvcHdpemFyZC5tZXRyaWNzOm1ldHJpY3MtY29yZQpzY29wZSB0ZXN0IC0-IGNvbXBpbGU", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qc29uLWxvZ2dpbmcjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLXZhbGlkYXRpb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-lifecycle",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Change dependency org.eclipse.jetty:jetty-server (dropwizard-lifecycle): exclusion org.eclipse.jetty.toolchain:jetty-servlet-api removed",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1saWZlY3ljbGUjb3JnLmVjbGlwc2UuamV0dHk6amV0dHktc2VydmVyCmV4Y2x1c2lvbiBvcmcuZWNsaXBzZS5qZXR0eS50b29sY2hhaW46amV0dHktc2VydmxldC1hcGkgcmVtb3ZlZA" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-metrics",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Change dependency com.fasterxml.jackson.core:jackson-databind (dropwizard-metrics): scope test -> compile",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1tZXRyaWNzI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5jb3JlOmphY2tzb24tZGF0YWJpbmQKc2NvcGUgdGVzdCAtPiBjb21waWxl" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-migrations",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1taWdyYXRpb25zI29yZy5saXF1aWJhc2U6bGlxdWliYXNlLWNvcmUKZXhjbHVzaW9uIGphdmF4LmFjdGl2YXRpb246amF2YXguYWN0aXZhdGlvbi1hcGkgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1taWdyYXRpb25zI29yZy5hcGFjaGUudG9tY2F0OnRvbWNhdC1qZGJjCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-request-logging",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 6 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1yZXF1ZXN0LWxvZ2dpbmcjb3JnLmVjbGlwc2UuamV0dHk6amV0dHktc2VydmVyCmV4Y2x1c2lvbiBvcmcuZWNsaXBzZS5qZXR0eS50b29sY2hhaW46amV0dHktamFrYXJ0YS1zZXJ2bGV0LWFwaSByZW1vdmVk", "UkVNT1ZFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1yZXF1ZXN0LWxvZ2dpbmcjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLXV0aWw", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1yZXF1ZXN0LWxvZ2dpbmcjb3JnLmVjbGlwc2UuamV0dHk6amV0dHktc2VjdXJpdHkKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1yZXF1ZXN0LWxvZ2dpbmcjb3JnLmVjbGlwc2UuamV0dHk6amV0dHktc2Vzc2lvbgpzY29wZSB0ZXN0IC0-IGNvbXBpbGU", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1yZXF1ZXN0LWxvZ2dpbmcjY29tLmZhc3RlcnhtbC5qYWNrc29uLmNvcmU6amFja3Nvbi1kYXRhYmluZApzY29wZSB0ZXN0IC0-IGNvbXBpbGU", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1yZXF1ZXN0LWxvZ2dpbmcjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLXZhbGlkYXRpb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-servlets",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Change dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (dropwizard-servlets): exclusion org.eclipse.jetty.toolchain:jetty-servlet-api removed",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1zZXJ2bGV0cyNvcmcuZWNsaXBzZS5qZXR0eS5lZTEwOmpldHR5LWVlMTAtc2VydmxldApleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LXNlcnZsZXQtYXBpIHJlbW92ZWQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-testing",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 13 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZlcgpleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LWpha2FydGEtc2VydmxldC1hcGkgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvbnRhaW5lcnM6amVyc2V5LWNvbnRhaW5lci1zZXJ2bGV0LWNvcmUKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvcmU6amVyc2V5LWNsaWVudApleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrOmplcnNleS10ZXN0LWZyYW1ld29yay1jb3JlCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrLnByb3ZpZGVyczpqZXJzZXktdGVzdC1mcmFtZXdvcmstcHJvdmlkZXItZ3JpenpseTIKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrLnByb3ZpZGVyczpqZXJzZXktdGVzdC1mcmFtZXdvcmstcHJvdmlkZXItamV0dHkKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5oaWJlcm5hdGUub3JtOmhpYmVybmF0ZS1jb3JlCmV4Y2x1c2lvbiBqYWthcnRhLnhtbC5iaW5kOmpha2FydGEueG1sLmJpbmQtYXBpIHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LWlvCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5jb3JlOmphY2tzb24tYW5ub3RhdGlvbnMKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI2lvLmRyb3B3aXphcmQubWV0cmljczptZXRyaWNzLWFubm90YXRpb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5kYXRhdHlwZTpqYWNrc29uLWRhdGF0eXBlLWd1YXZhCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI2lvLmRyb3B3aXphcmQ6ZHJvcHdpemFyZC12YWxpZGF0aW9uCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI2lvLmRyb3B3aXphcmQ6ZHJvcHdpemFyZC1zZXJ2bGV0cwpzY29wZSB0ZXN0IC0-IGNvbXBpbGU" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-unix-socket",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Change dependency org.eclipse.jetty:jetty-server (dropwizard-unix-socket): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC11bml4LXNvY2tldCNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2ZXIKZXhjbHVzaW9uIG9yZy5lY2xpcHNlLmpldHR5LnRvb2xjaGFpbjpqZXR0eS1qYWthcnRhLXNlcnZsZXQtYXBpIHJlbW92ZWQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-validation",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Change dependency com.fasterxml.jackson.core:jackson-annotations (dropwizard-validation): scope test -> compile",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12YWxpZGF0aW9uI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5jb3JlOmphY2tzb24tYW5ub3RhdGlvbnMKc2NvcGUgdGVzdCAtPiBjb21waWxl" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-views-freemarker",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 9 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2lvLmRyb3B3aXphcmQ6ZHJvcHdpemFyZC1qYWNrc29uCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2lvLmRyb3B3aXphcmQ6ZHJvcHdpemFyZC1qZXJzZXkKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2lvLmRyb3B3aXphcmQ6ZHJvcHdpemFyZC1sb2dnaW5nCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2lvLmRyb3B3aXphcmQubWV0cmljczptZXRyaWNzLWNvcmUKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5jb3JlOmphY2tzb24tYW5ub3RhdGlvbnMKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5jb3JlOmphY2tzb24tZGF0YWJpbmQKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2pha2FydGEud3MucnM6amFrYXJ0YS53cy5ycy1hcGkKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvcmU6amVyc2V5LXNlcnZlcgpzY29wZSB0ZXN0IC0-IGNvbXBpbGUsIGV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrOmplcnNleS10ZXN0LWZyYW1ld29yay1jb3JlCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-views-mustache",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 6 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1tdXN0YWNoZSNvcmcuZ2xhc3NmaXNoLmplcnNleS50ZXN0LWZyYW1ld29yazpqZXJzZXktdGVzdC1mcmFtZXdvcmstY29yZQpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1tdXN0YWNoZSNqYWthcnRhLndzLnJzOmpha2FydGEud3MucnMtYXBpCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1tdXN0YWNoZSNvcmcuZ2xhc3NmaXNoLmplcnNleS5jb3JlOmplcnNleS1zZXJ2ZXIKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1tdXN0YWNoZSNpby5kcm9wd2l6YXJkOmRyb3B3aXphcmQtamVyc2V5CnNjb3BlIHRlc3QgLT4gY29tcGlsZQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1tdXN0YWNoZSNpby5kcm9wd2l6YXJkOmRyb3B3aXphcmQtbG9nZ2luZwpzY29wZSB0ZXN0IC0-IGNvbXBpbGU", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1tdXN0YWNoZSNpby5kcm9wd2l6YXJkLm1ldHJpY3M6bWV0cmljcy1jb3JlCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-views",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cyNvcmcuZ2xhc3NmaXNoLmplcnNleS5jb3JlOmplcnNleS1jb21tb24KZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cyNvcmcuZ2xhc3NmaXNoLmplcnNleS5jb3JlOmplcnNleS1zZXJ2ZXIKc2NvcGUgdGVzdCAtPiBjb21waWxl", "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cyNqYWthcnRhLnZhbGlkYXRpb246amFrYXJ0YS52YWxpZGF0aW9uLWFwaQpzY29wZSB0ZXN0IC0-IGNvbXBpbGU" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-assets",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-logging",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-util",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-configuration",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-jackson",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-metrics-graphite",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dropwizard-db",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "core",
+    "to" : "dropwizard-core"
+  }, {
+    "from" : "core",
+    "to" : "dropwizard-assets"
+  }, {
+    "from" : "core",
+    "to" : "dropwizard-http2"
+  }, {
+    "from" : "core",
+    "to" : "dropwizard-testing"
+  }, {
+    "from" : "dropwizard-auth",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-auth",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-benchmarks",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-benchmarks",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-benchmarks",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-benchmarks",
+    "to" : "dropwizard-validation"
+  }, {
+    "from" : "dropwizard-client",
+    "to" : "dropwizard-configuration"
+  }, {
+    "from" : "dropwizard-client",
+    "to" : "dropwizard-core"
+  }, {
+    "from" : "dropwizard-client",
+    "to" : "dropwizard-jackson"
+  }, {
+    "from" : "dropwizard-client",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-client",
+    "to" : "dropwizard-lifecycle"
+  }, {
+    "from" : "dropwizard-client",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-client",
+    "to" : "dropwizard-validation"
+  }, {
+    "from" : "dropwizard-client",
+    "to" : "dropwizard-testing"
+  }, {
+    "from" : "dropwizard-core",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-core",
+    "to" : "dropwizard-jackson"
+  }, {
+    "from" : "dropwizard-core",
+    "to" : "dropwizard-validation"
+  }, {
+    "from" : "dropwizard-core",
+    "to" : "dropwizard-configuration"
+  }, {
+    "from" : "dropwizard-core",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-core",
+    "to" : "dropwizard-metrics"
+  }, {
+    "from" : "dropwizard-core",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-core",
+    "to" : "dropwizard-servlets"
+  }, {
+    "from" : "dropwizard-core",
+    "to" : "dropwizard-jetty"
+  }, {
+    "from" : "dropwizard-core",
+    "to" : "dropwizard-lifecycle"
+  }, {
+    "from" : "dropwizard-core",
+    "to" : "dropwizard-health"
+  }, {
+    "from" : "dropwizard-core",
+    "to" : "dropwizard-request-logging"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-configuration"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-core"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-forms"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-health"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-jackson"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-jetty"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-validation"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-views"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-views-mustache"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-auth"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-testing"
+  }, {
+    "from" : "dropwizard-e2e",
+    "to" : "dropwizard-client"
+  }, {
+    "from" : "dropwizard-example",
+    "to" : "dropwizard-dependencies"
+  }, {
+    "from" : "dropwizard-example",
+    "to" : "dropwizard-core"
+  }, {
+    "from" : "dropwizard-example",
+    "to" : "dropwizard-auth"
+  }, {
+    "from" : "dropwizard-example",
+    "to" : "dropwizard-assets"
+  }, {
+    "from" : "dropwizard-example",
+    "to" : "dropwizard-http2"
+  }, {
+    "from" : "dropwizard-example",
+    "to" : "dropwizard-hibernate"
+  }, {
+    "from" : "dropwizard-example",
+    "to" : "dropwizard-migrations"
+  }, {
+    "from" : "dropwizard-example",
+    "to" : "dropwizard-views-freemarker"
+  }, {
+    "from" : "dropwizard-example",
+    "to" : "dropwizard-views-mustache"
+  }, {
+    "from" : "dropwizard-example",
+    "to" : "dropwizard-metrics-graphite"
+  }, {
+    "from" : "dropwizard-example",
+    "to" : "dropwizard-testing"
+  }, {
+    "from" : "dropwizard-forms",
+    "to" : "dropwizard-core"
+  }, {
+    "from" : "dropwizard-forms",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-forms",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-health",
+    "to" : "dropwizard-lifecycle"
+  }, {
+    "from" : "dropwizard-health",
+    "to" : "dropwizard-jackson"
+  }, {
+    "from" : "dropwizard-health",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-health",
+    "to" : "dropwizard-jetty"
+  }, {
+    "from" : "dropwizard-health",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-health",
+    "to" : "dropwizard-configuration"
+  }, {
+    "from" : "dropwizard-hibernate",
+    "to" : "dropwizard-configuration"
+  }, {
+    "from" : "dropwizard-hibernate",
+    "to" : "dropwizard-core"
+  }, {
+    "from" : "dropwizard-hibernate",
+    "to" : "dropwizard-db"
+  }, {
+    "from" : "dropwizard-hibernate",
+    "to" : "dropwizard-jackson"
+  }, {
+    "from" : "dropwizard-hibernate",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-hibernate",
+    "to" : "dropwizard-lifecycle"
+  }, {
+    "from" : "dropwizard-hibernate",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-hibernate",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-hibernate",
+    "to" : "dropwizard-testing"
+  }, {
+    "from" : "dropwizard-http2",
+    "to" : "dropwizard-jetty"
+  }, {
+    "from" : "dropwizard-http2",
+    "to" : "dropwizard-configuration"
+  }, {
+    "from" : "dropwizard-http2",
+    "to" : "dropwizard-testing"
+  }, {
+    "from" : "dropwizard-http2",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-http2",
+    "to" : "dropwizard-core"
+  }, {
+    "from" : "dropwizard-http2",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-jdbi3",
+    "to" : "dropwizard-core"
+  }, {
+    "from" : "dropwizard-jdbi3",
+    "to" : "dropwizard-db"
+  }, {
+    "from" : "dropwizard-jdbi3",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-jdbi3",
+    "to" : "dropwizard-lifecycle"
+  }, {
+    "from" : "dropwizard-jdbi3",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-jdbi3",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-jersey",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-jersey",
+    "to" : "dropwizard-validation"
+  }, {
+    "from" : "dropwizard-jersey",
+    "to" : "dropwizard-jackson"
+  }, {
+    "from" : "dropwizard-jersey",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-jetty",
+    "to" : "dropwizard-jackson"
+  }, {
+    "from" : "dropwizard-jetty",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-jetty",
+    "to" : "dropwizard-validation"
+  }, {
+    "from" : "dropwizard-jetty",
+    "to" : "dropwizard-configuration"
+  }, {
+    "from" : "dropwizard-jetty",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-json-logging",
+    "to" : "dropwizard-jackson"
+  }, {
+    "from" : "dropwizard-json-logging",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-json-logging",
+    "to" : "dropwizard-validation"
+  }, {
+    "from" : "dropwizard-json-logging",
+    "to" : "dropwizard-configuration"
+  }, {
+    "from" : "dropwizard-json-logging",
+    "to" : "dropwizard-request-logging"
+  }, {
+    "from" : "dropwizard-lifecycle",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-metrics",
+    "to" : "dropwizard-lifecycle"
+  }, {
+    "from" : "dropwizard-metrics",
+    "to" : "dropwizard-jackson"
+  }, {
+    "from" : "dropwizard-metrics",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-metrics",
+    "to" : "dropwizard-validation"
+  }, {
+    "from" : "dropwizard-metrics",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-metrics",
+    "to" : "dropwizard-configuration"
+  }, {
+    "from" : "dropwizard-migrations",
+    "to" : "dropwizard-core"
+  }, {
+    "from" : "dropwizard-migrations",
+    "to" : "dropwizard-db"
+  }, {
+    "from" : "dropwizard-request-logging",
+    "to" : "dropwizard-jackson"
+  }, {
+    "from" : "dropwizard-request-logging",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-request-logging",
+    "to" : "dropwizard-validation"
+  }, {
+    "from" : "dropwizard-request-logging",
+    "to" : "dropwizard-configuration"
+  }, {
+    "from" : "dropwizard-servlets",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-testing",
+    "to" : "dropwizard-configuration"
+  }, {
+    "from" : "dropwizard-testing",
+    "to" : "dropwizard-core"
+  }, {
+    "from" : "dropwizard-testing",
+    "to" : "dropwizard-jackson"
+  }, {
+    "from" : "dropwizard-testing",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-testing",
+    "to" : "dropwizard-jetty"
+  }, {
+    "from" : "dropwizard-testing",
+    "to" : "dropwizard-lifecycle"
+  }, {
+    "from" : "dropwizard-testing",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-testing",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-testing",
+    "to" : "dropwizard-servlets"
+  }, {
+    "from" : "dropwizard-testing",
+    "to" : "dropwizard-validation"
+  }, {
+    "from" : "dropwizard-unix-socket",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-unix-socket",
+    "to" : "dropwizard-jetty"
+  }, {
+    "from" : "dropwizard-unix-socket",
+    "to" : "dropwizard-testing"
+  }, {
+    "from" : "dropwizard-unix-socket",
+    "to" : "dropwizard-core"
+  }, {
+    "from" : "dropwizard-unix-socket",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-validation",
+    "to" : "dropwizard-util"
+  }, {
+    "from" : "dropwizard-views-freemarker",
+    "to" : "dropwizard-jackson"
+  }, {
+    "from" : "dropwizard-views-freemarker",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-views-freemarker",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-views-freemarker",
+    "to" : "dropwizard-views"
+  }, {
+    "from" : "dropwizard-views-mustache",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-views-mustache",
+    "to" : "dropwizard-logging"
+  }, {
+    "from" : "dropwizard-views-mustache",
+    "to" : "dropwizard-views"
+  }, {
+    "from" : "dropwizard-views",
+    "to" : "dropwizard-core"
+  }, {
+    "from" : "dropwizard-views",
+    "to" : "dropwizard-jersey"
+  }, {
+    "from" : "dropwizard-views",
+    "to" : "dropwizard-util"
+  } ]
+}

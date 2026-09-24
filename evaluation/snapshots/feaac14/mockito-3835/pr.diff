@@ -1,0 +1,346 @@
+diff --git a/mockito-core/src/main/java/org/mockito/Spy.java b/mockito-core/src/main/java/org/mockito/Spy.java
+index fa5e6e5ad0..920a3ad6d2 100644
+--- a/mockito-core/src/main/java/org/mockito/Spy.java
++++ b/mockito-core/src/main/java/org/mockito/Spy.java
+@@ -12,6 +12,7 @@
+ import java.lang.annotation.Target;
+ 
+ import org.mockito.junit.MockitoJUnitRunner;
++import org.mockito.plugins.MockMaker;
+ 
+ /**
+  * Allows shorthand wrapping of field instances in a spy object.
+@@ -89,6 +90,25 @@
+  * </ol>
+  *
+  * <p>
++ * You can choose the {@link org.mockito.plugins.MockMaker} used to create the spy with the
++ * {@link #mockMaker()} option, mirroring {@link Mock#mockMaker()}. This is useful when the default
++ * mock maker is not suitable for a particular field:
++ *
++ * <pre class="code"><code class="java">
++ * &#064;Spy(mockMaker = MockMakers.SUBCLASS) Foo spyOnFoo = new Foo("argument");
++ * </code></pre>
++ *
++ * Same as doing:
++ *
++ * <pre class="code"><code class="java">
++ * Foo spyOnFoo = Mockito.mock(Foo.class, withSettings()
++ *     .spiedInstance(new Foo("argument"))
++ *     .defaultAnswer(CALLS_REAL_METHODS)
++ *     .mockMaker(MockMakers.SUBCLASS));
++ * </code></pre>
++ * </p>
++ *
++ * <p>
+  * <strong>One last warning :</strong> if you call <code>MockitoAnnotations.openMocks(this)</code> in a
+  * super class <strong>constructor</strong> then this will not work. It is because fields
+  * in subclass are only instantiated after super class constructor has returned.
+@@ -111,4 +131,12 @@
+ @Retention(RUNTIME)
+ @Target(FIELD)
+ @Documented
+-public @interface Spy {}
++public @interface Spy {
++
++    /**
++     * Spy will be created by the given {@link MockMaker}, see {@link MockSettings#mockMaker(String)}.
++     *
++     * @since 5.24.0
++     */
++    String mockMaker() default "";
++}
+diff --git a/mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationEngine.java b/mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationEngine.java
+index cd51942581..6218ffe28c 100644
+--- a/mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationEngine.java
++++ b/mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationEngine.java
+@@ -23,7 +23,6 @@
+ import org.mockito.Spy;
+ import org.mockito.exceptions.base.MockitoException;
+ import org.mockito.internal.configuration.plugins.Plugins;
+-import org.mockito.internal.util.MockUtil;
+ import org.mockito.plugins.AnnotationEngine;
+ import org.mockito.plugins.MemberAccessor;
+ 
+@@ -59,15 +58,10 @@ public AutoCloseable process(Class<?> context, Object testInstance) {
+                 Object instance;
+                 try {
+                     instance = accessor.get(field, testInstance);
+-                    if (MockUtil.isMock(instance)) {
+-                        // instance has been spied earlier
+-                        // for example happens when MockitoAnnotations.openMocks is called two
+-                        // times.
+-                        Mockito.reset(instance);
+-                    } else if (instance != null) {
+-                        accessor.set(field, testInstance, spyInstance(field, instance));
+-                    } else {
++                    if (instance == null) {
+                         accessor.set(field, testInstance, spyNewInstance(testInstance, field));
++                    } else {
++                        SpyAnnotationUtil.resetOrCreateSpy(field, instance, accessor, testInstance);
+                     }
+                 } catch (Exception e) {
+                     throw new MockitoException(
+@@ -82,25 +76,14 @@ public AutoCloseable process(Class<?> context, Object testInstance) {
+         return new NoAction();
+     }
+ 
+-    private static Object spyInstance(Field field, Object instance) {
+-        // TODO: Add mockMaker option for @Spy annotation (#2740)
+-        return Mockito.mock(
+-                instance.getClass(),
+-                withSettings()
+-                        .genericTypeToMock(field.getGenericType())
+-                        .spiedInstance(instance)
+-                        .defaultAnswer(CALLS_REAL_METHODS)
+-                        .name(field.getName()));
+-    }
+-
+     private static Object spyNewInstance(Object testInstance, Field field)
+             throws InstantiationException, IllegalAccessException, InvocationTargetException {
+-        // TODO: Add mockMaker option for @Spy annotation (#2740)
+         MockSettings settings =
+                 withSettings()
+                         .genericTypeToMock(field.getGenericType())
+                         .defaultAnswer(CALLS_REAL_METHODS)
+                         .name(field.getName());
++        SpyAnnotationUtil.applyMockMaker(field, settings);
+         Class<?> type = field.getType();
+         if (type.isInterface()) {
+             return Mockito.mock(type, settings.useConstructor());
+diff --git a/mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationUtil.java b/mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationUtil.java
+new file mode 100644
+index 0000000000..b472ea24c3
+--- /dev/null
++++ b/mockito-core/src/main/java/org/mockito/internal/configuration/SpyAnnotationUtil.java
+@@ -0,0 +1,81 @@
++/*
++ * Copyright (c) 2026 Mockito contributors
++ * This program is made available under the terms of the MIT License.
++ */
++package org.mockito.internal.configuration;
++
++import static org.mockito.Mockito.CALLS_REAL_METHODS;
++import static org.mockito.Mockito.withSettings;
++
++import java.lang.reflect.Field;
++
++import org.mockito.MockSettings;
++import org.mockito.Mockito;
++import org.mockito.Spy;
++import org.mockito.internal.util.MockUtil;
++import org.mockito.plugins.MemberAccessor;
++
++/**
++ * Shared logic to turn the value currently held by a &#64;{@link org.mockito.Spy} field into a spy.
++ */
++public final class SpyAnnotationUtil {
++
++    private SpyAnnotationUtil() {}
++
++    /**
++     * Turns the value currently held by the given field into a spy.
++     *
++     * <p>If the value is already a mock (for example because {@code MockitoAnnotations.openMocks}
++     * was called more than once) it is simply reset. Otherwise, a spy of the value is created and
++     * written back into the field.
++     *
++     * @param field the {@code @Spy} annotated field being processed
++     * @param instance the current value held by the field, which must not be {@code null}
++     * @param accessor the accessor used to write the spy back into the field
++     * @param fieldOwner the object on which the field is declared
++     * @throws IllegalAccessException if the spy cannot be written back into the field
++     */
++    public static void resetOrCreateSpy(
++            Field field, Object instance, MemberAccessor accessor, Object fieldOwner)
++            throws IllegalAccessException {
++        if (MockUtil.isMock(instance)) {
++            // instance has been spied earlier, e.g. when MockitoAnnotations.openMocks is called
++            // more than once
++            Mockito.reset(instance);
++        } else {
++            accessor.set(field, fieldOwner, createSpy(field, instance));
++        }
++    }
++
++    /**
++     * Creates a spy of the given instance, deriving the mock settings from the field.
++     *
++     * @param field the {@code @Spy} annotated field, used to derive the mock settings
++     * @param instance the instance to spy on
++     * @return the created spy
++     */
++    private static Object createSpy(Field field, Object instance) {
++        MockSettings settings =
++                withSettings()
++                        .genericTypeToMock(field.getGenericType())
++                        .spiedInstance(instance)
++                        .defaultAnswer(CALLS_REAL_METHODS)
++                        .name(field.getName());
++        applyMockMaker(field, settings);
++        return Mockito.mock(instance.getClass(), settings);
++    }
++
++    /**
++     * Applies the {@link Spy#mockMaker()} of the field, if any, to the given settings so that a spy
++     * can opt into a specific {@link org.mockito.plugins.MockMaker}.
++     *
++     * @param field the {@code @Spy} annotated field
++     * @param settings the settings to apply the mock maker to; untouched if no mock maker specified
++     */
++    static void applyMockMaker(Field field, MockSettings settings) {
++        String mockMaker = field.getAnnotation(Spy.class).mockMaker();
++        if (!mockMaker.isEmpty()) {
++            settings.mockMaker(mockMaker);
++        }
++    }
++}
+diff --git a/mockito-core/src/main/java/org/mockito/internal/configuration/injection/SpyOnInjectedFieldsHandler.java b/mockito-core/src/main/java/org/mockito/internal/configuration/injection/SpyOnInjectedFieldsHandler.java
+index bbfe88b85a..795d65c3ed 100644
+--- a/mockito-core/src/main/java/org/mockito/internal/configuration/injection/SpyOnInjectedFieldsHandler.java
++++ b/mockito-core/src/main/java/org/mockito/internal/configuration/injection/SpyOnInjectedFieldsHandler.java
+@@ -4,16 +4,13 @@
+  */
+ package org.mockito.internal.configuration.injection;
+ 
+-import static org.mockito.Mockito.withSettings;
+-
+ import java.lang.reflect.Field;
+ import java.util.Set;
+ 
+-import org.mockito.Mockito;
+ import org.mockito.Spy;
+ import org.mockito.exceptions.base.MockitoException;
++import org.mockito.internal.configuration.SpyAnnotationUtil;
+ import org.mockito.internal.configuration.plugins.Plugins;
+-import org.mockito.internal.util.MockUtil;
+ import org.mockito.internal.util.reflection.FieldReader;
+ import org.mockito.plugins.MemberAccessor;
+ 
+@@ -33,25 +30,9 @@ public class SpyOnInjectedFieldsHandler extends MockInjectionStrategy {
+     protected boolean processInjection(Field field, Object fieldOwner, Set<Object> mockCandidates) {
+         FieldReader fieldReader = new FieldReader(fieldOwner, field);
+ 
+-        // TODO refactor : code duplicated in SpyAnnotationEngine
+         if (!fieldReader.isNull() && field.isAnnotationPresent(Spy.class)) {
+             try {
+-                Object instance = fieldReader.read();
+-                if (MockUtil.isMock(instance)) {
+-                    // A. instance has been spied earlier
+-                    // B. protect against multiple use of MockitoAnnotations.openMocks()
+-                    Mockito.reset(instance);
+-                } else {
+-                    // TODO: Add mockMaker option for @Spy annotation (#2740)
+-                    Object mock =
+-                            Mockito.mock(
+-                                    instance.getClass(),
+-                                    withSettings()
+-                                            .spiedInstance(instance)
+-                                            .defaultAnswer(Mockito.CALLS_REAL_METHODS)
+-                                            .name(field.getName()));
+-                    accessor.set(field, fieldOwner, mock);
+-                }
++                SpyAnnotationUtil.resetOrCreateSpy(field, fieldReader.read(), accessor, fieldOwner);
+             } catch (Exception e) {
+                 throw new MockitoException("Problems initiating spied field " + field.getName(), e);
+             }
+diff --git a/mockito-core/src/test/java/org/mockitousage/annotation/SpyAnnotationTest.java b/mockito-core/src/test/java/org/mockitousage/annotation/SpyAnnotationTest.java
+index daa71bed33..bc14b33cee 100644
+--- a/mockito-core/src/test/java/org/mockitousage/annotation/SpyAnnotationTest.java
++++ b/mockito-core/src/test/java/org/mockitousage/annotation/SpyAnnotationTest.java
+@@ -14,6 +14,7 @@
+ import static org.junit.Assert.fail;
+ import static org.mockito.Mockito.doReturn;
+ import static org.mockito.Mockito.eq;
++import static org.mockito.Mockito.mockingDetails;
+ import static org.mockito.Mockito.never;
+ import static org.mockito.Mockito.verify;
+ import static org.mockito.Mockito.when;
+@@ -28,7 +29,9 @@
+ import org.junit.Rule;
+ import org.junit.Test;
+ import org.junit.rules.ExpectedException;
++import org.mockito.InjectMocks;
+ import org.mockito.Mock;
++import org.mockito.MockMakers;
+ import org.mockito.Mockito;
+ import org.mockito.MockitoAnnotations;
+ import org.mockito.Spy;
+@@ -284,6 +287,77 @@ public void should_be_able_to_stub_and_verify_via_varargs_of_matchers_for_list_p
+         verify(translator).translate(eq("hello"));
+     }
+ 
++    @Test
++    public void should_create_spy_with_specified_mock_maker_for_provided_instance()
++            throws Exception {
++        WithMockMakerSpies holder = new WithMockMakerSpies();
++
++        try (AutoCloseable ignored = MockitoAnnotations.openMocks(holder)) {
++            assertThat(mockingDetails(holder.instanceSpy).getMockCreationSettings().getMockMaker())
++                    .isEqualTo(MockMakers.SUBCLASS);
++
++            // spy is still functional
++            doReturn(10).when(holder.instanceSpy).size();
++            assertEquals(10, holder.instanceSpy.size());
++        }
++    }
++
++    @Test
++    public void should_create_spy_with_specified_mock_maker_for_auto_created_instance()
++            throws Exception {
++        WithMockMakerSpies holder = new WithMockMakerSpies();
++
++        try (AutoCloseable ignored = MockitoAnnotations.openMocks(holder)) {
++            assertThat(
++                            mockingDetails(holder.autoCreatedSpy)
++                                    .getMockCreationSettings()
++                                    .getMockMaker())
++                    .isEqualTo(MockMakers.SUBCLASS);
++        }
++    }
++
++    @Test
++    public void should_not_set_mock_maker_when_unspecified() throws Exception {
++        WithMockMakerSpies holder = new WithMockMakerSpies();
++
++        try (AutoCloseable ignored = MockitoAnnotations.openMocks(holder)) {
++            assertThat(mockingDetails(holder.defaultSpy).getMockCreationSettings().getMockMaker())
++                    .isNull();
++        }
++    }
++
++    @Test
++    public void should_create_spy_with_specified_mock_maker_for_injected_field() throws Exception {
++        WithInjectedMockMakerSpy holder = new WithInjectedMockMakerSpy();
++
++        try (AutoCloseable ignored = MockitoAnnotations.openMocks(holder)) {
++            assertThat(mockingDetails(holder.service).getMockCreationSettings().getMockMaker())
++                    .isEqualTo(MockMakers.SUBCLASS);
++        }
++    }
++
++    static class WithMockMakerSpies {
++        @Spy(mockMaker = MockMakers.SUBCLASS)
++        List<String> instanceSpy = new ArrayList<String>();
++
++        @Spy(mockMaker = MockMakers.SUBCLASS)
++        InnerStaticClassWithNoArgConstructor autoCreatedSpy;
++
++        @Spy List<String> defaultSpy = new ArrayList<String>();
++    }
++
++    static class WithInjectedMockMakerSpy {
++        @Mock List<String> dependency;
++
++        @InjectMocks
++        @Spy(mockMaker = MockMakers.SUBCLASS)
++        HasDependency service = new HasDependency();
++    }
++
++    static class HasDependency {
++        List<String> dependency;
++    }
++
+     static class WithInnerPrivateStaticAbstract {
+         @Spy private InnerPrivateStaticAbstract spy_field;
+ 

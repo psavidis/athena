@@ -1,0 +1,14 @@
+diff --git a/vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java b/vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java
+index b5cdeeb3583..e7af7f593a0 100644
+--- a/vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java
++++ b/vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java
+@@ -81,7 +81,8 @@ public final Future<Void> shutdown(Duration timeout) {
+       assert cleanable != null;
+       action.timeout = timeout;
+       cleanable.clean();
+-      return action.closeFuture;
++      Future<Void> closeFuture = action.closeFuture;
++      return closeFuture != null ? closeFuture : Future.succeededFuture();
+     } else {
+       return Future.succeededFuture();
+     }

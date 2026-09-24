@@ -1,0 +1,371 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0jY2xvc2UKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of BufferedFileChannelInputStream#close: branch added",
+  "files" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+  "symbols" : [ "BufferedFileChannelInputStream#close", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQnl0ZUJ1ZmZlckNsZWFuZXIjY2xlYW4",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of ByteBufferCleaner#clean",
+  "files" : [ "src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java" ],
+  "symbols" : [ "ByteBufferCleaner#clean" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW0jY2xlYW5CdWZmZXIKYnJhbmNoIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of MemoryMappedFileInputStream#cleanBuffer: branch removed",
+  "files" : [ "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+  "symbols" : [ "MemoryMappedFileInputStream#cleanBuffer", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0jY2xlYW4",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove BufferedFileChannelInputStream#clean",
+  "files" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+  "symbols" : [ "BufferedFileChannelInputStream#clean" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0jaXNDbGVhbg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove BufferedFileChannelInputStream#isClean",
+  "files" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+  "symbols" : [ "BufferedFileChannelInputStream#isClean" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lciNpc1N1cHBvcnRlZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ByteBufferCleaner#isSupported",
+  "files" : [ "src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java" ],
+  "symbols" : [ "ByteBufferCleaner#isSupported" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdFN1cHBvcnRlZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ByteBufferCleanerTest#testSupported",
+  "files" : [ "src/test/java/org/apache/commons/io/input/ByteBufferCleanerTest.java" ],
+  "symbols" : [ "ByteBufferCleanerTest#testSupported" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0jY2xlYW5CdWZmZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BufferedFileChannelInputStream#cleanBuffer",
+  "files" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+  "symbols" : [ "BufferedFileChannelInputStream#cleanBuffer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0uQnVpbGRlciNzZXRDbGVhbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BufferedFileChannelInputStream.Builder#setClean",
+  "files" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+  "symbols" : [ "BufferedFileChannelInputStream.Builder#setClean" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lciNzdW5DbGVhbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ByteBufferCleaner#sunClean",
+  "files" : [ "src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java" ],
+  "symbols" : [ "ByteBufferCleaner#sunClean" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApJbnB1dCNlbXB0eUJ5dGVCdWZmZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Input#emptyByteBuffer",
+  "files" : [ "src/main/java/org/apache/commons/io/input/Input.java" ],
+  "symbols" : [ "Input#emptyByteBuffer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW0uQnVpbGRlciNzZXRDbGVhbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MemoryMappedFileInputStream.Builder#setClean",
+  "files" : [ "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+  "symbols" : [ "MemoryMappedFileInputStream.Builder#setClean" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW1UZXN0I3Rlc3RDbGVhbkNhbGxlZE5ldmVy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BufferedFileChannelInputStreamTest#testCleanCalledNever",
+  "files" : [ "src/test/java/org/apache/commons/io/input/BufferedFileChannelInputStreamTest.java" ],
+  "symbols" : [ "BufferedFileChannelInputStreamTest#testCleanCalledNever" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW1UZXN0I3Rlc3REZWZhdWx0Q2xlYW5Jc1RydWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BufferedFileChannelInputStreamTest#testDefaultCleanIsTrue",
+  "files" : [ "src/test/java/org/apache/commons/io/input/BufferedFileChannelInputStreamTest.java" ],
+  "symbols" : [ "BufferedFileChannelInputStreamTest#testDefaultCleanIsTrue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdENsZWFuTm9uRGlyZWN0QnVmZmVy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ByteBufferCleanerTest#testCleanNonDirectBuffer",
+  "files" : [ "src/test/java/org/apache/commons/io/input/ByteBufferCleanerTest.java" ],
+  "symbols" : [ "ByteBufferCleanerTest#testCleanNonDirectBuffer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdENsZWFuTnVsbEJ1ZmZlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ByteBufferCleanerTest#testCleanNullBuffer",
+  "files" : [ "src/test/java/org/apache/commons/io/input/ByteBufferCleanerTest.java" ],
+  "symbols" : [ "ByteBufferCleanerTest#testCleanNullBuffer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdENsZWFuV2l0aFN1bkNsZWFuRmFsc2VaZXJvc0J1ZmZlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ByteBufferCleanerTest#testCleanWithSunCleanFalseZerosBuffer",
+  "files" : [ "src/test/java/org/apache/commons/io/input/ByteBufferCleanerTest.java" ],
+  "symbols" : [ "ByteBufferCleanerTest#testCleanWithSunCleanFalseZerosBuffer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdmVyaWZ5VW5jbGVhcmVk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ByteBufferCleanerTest#verifyUncleared",
+  "files" : [ "src/test/java/org/apache/commons/io/input/ByteBufferCleanerTest.java" ],
+  "symbols" : [ "ByteBufferCleanerTest#verifyUncleared" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW1UZXN0I3Rlc3RDbGVhbkNhbGxlZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MemoryMappedFileInputStreamTest#testCleanCalled",
+  "files" : [ "src/test/java/org/apache/commons/io/input/MemoryMappedFileInputStreamTest.java" ],
+  "symbols" : [ "MemoryMappedFileInputStreamTest#testCleanCalled" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW1UZXN0I3Rlc3RDbGVhbkNhbGxlZE5ldmVy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MemoryMappedFileInputStreamTest#testCleanCalledNever",
+  "files" : [ "src/test/java/org/apache/commons/io/input/MemoryMappedFileInputStreamTest.java" ],
+  "symbols" : [ "MemoryMappedFileInputStreamTest#testCleanCalledNever" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW1UZXN0I3Rlc3RDbGVhbkNhbGxlZE9ubHlPbmNl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MemoryMappedFileInputStreamTest#testCleanCalledOnlyOnce",
+  "files" : [ "src/test/java/org/apache/commons/io/input/MemoryMappedFileInputStreamTest.java" ],
+  "symbols" : [ "MemoryMappedFileInputStreamTest#testCleanCalledOnlyOnce" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW1UZXN0I3Rlc3REZWZhdWx0Q2xlYW5Jc1RydWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MemoryMappedFileInputStreamTest#testDefaultCleanIsTrue",
+  "files" : [ "src/test/java/org/apache/commons/io/input/MemoryMappedFileInputStreamTest.java" ],
+  "symbols" : [ "MemoryMappedFileInputStreamTest#testDefaultCleanIsTrue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkJ5dGVCdWZmZXJDbGVhbmVyI2dldENsZWFuZXIKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ByteBufferCleaner#getCleaner: other statements changed",
+  "files" : [ "src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java" ],
+  "symbols" : [ "ByteBufferCleaner#getCleaner", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1lbW9yeU1hcHBlZEZpbGVJbnB1dFN0cmVhbSNjbG9zZQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MemoryMappedFileInputStream#close: other statements changed",
+  "files" : [ "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+  "symbols" : [ "MemoryMappedFileInputStream#close", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCittb2NrU3RhdGljLCArc2V0Q2xlYW4sICt2ZXJpZnksICtjbGVhbiwgK2FueSDigKZhbmQgNSBtb3JlCkJ1ZmZlcmVkRmlsZUNoYW5uZWxJbnB1dFN0cmVhbVRlc3QjdGVzdENsZWFuQ2FsbGVkT25seU9uY2U",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BufferedFileChannelInputStreamTest#testCleanCalledOnlyOnce: +mockStatic, +setClean, +verify, +clean, +any …and 5 more",
+  "files" : [ "src/test/java/org/apache/commons/io/input/BufferedFileChannelInputStreamTest.java" ],
+  "symbols" : [ "BufferedFileChannelInputStreamTest#testCleanCalledOnlyOnce", "+mockStatic, +setClean, +verify, +clean, +any …and 5 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkJ5dGVCdWZmZXJDbGVhbmVyVGVzdCN0ZXN0Q2xlYW5FbXB0eQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ByteBufferCleanerTest#testCleanEmpty: other statements changed",
+  "files" : [ "src/test/java/org/apache/commons/io/input/ByteBufferCleanerTest.java" ],
+  "symbols" : [ "ByteBufferCleanerTest#testCleanEmpty", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdXRMb25nLCArdmVyaWZ5VW5jbGVhcmVkLCAtcHV0LCAtaW5zZWN1cmUsIC1yYW5kb21CeXRlcwpCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdENsZWFuRnVsbA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ByteBufferCleanerTest#testCleanFull: +putLong, +verifyUncleared, -put, -insecure, -randomBytes",
+  "files" : [ "src/test/java/org/apache/commons/io/input/ByteBufferCleanerTest.java" ],
+  "symbols" : [ "ByteBufferCleanerTest#testCleanFull", "+putLong, +verifyUncleared, -put, -insecure, -randomBytes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkJ1ZmZlcmVkRmlsZUNoYW5uZWxJbnB1dFN0cmVhbSM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BufferedFileChannelInputStream#<init>: other statements changed",
+  "files" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+  "symbols" : [ "BufferedFileChannelInputStream#<init>", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1lbW9yeU1hcHBlZEZpbGVJbnB1dFN0cmVhbSM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MemoryMappedFileInputStream#<init>: other statements changed",
+  "files" : [ "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+  "symbols" : [ "MemoryMappedFileInputStream#<init>", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01PRElGSUVSUwotZmluYWwKQnVmZmVyZWRGaWxlQ2hhbm5lbElucHV0U3RyZWFtI2J5dGVCdWZmZXI",
+  "kind" : "CHANGE_MODIFIERS",
+  "category" : "STRUCTURAL",
+  "description" : "Change modifiers of BufferedFileChannelInputStream#byteBuffer: -final",
+  "files" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+  "symbols" : [ "BufferedFileChannelInputStream#byteBuffer", "-final" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01PRElGSUVSUworZmluYWwKQnVmZmVyZWRGaWxlQ2hhbm5lbElucHV0U3RyZWFtI2NsZWFu",
+  "kind" : "CHANGE_MODIFIERS",
+  "category" : "STRUCTURAL",
+  "description" : "Change modifiers of BufferedFileChannelInputStream#clean: +final",
+  "files" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+  "symbols" : [ "BufferedFileChannelInputStream#clean", "+final" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX0ZJRUxECkJ5dGVCdWZmZXJDbGVhbmVyI0NMRUFORVIKQnl0ZUJ1ZmZlckNsZWFuZXIjSU5TVEFOQ0U",
+  "kind" : "RENAME_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Rename field ByteBufferCleaner#INSTANCE -> CLEANER",
+  "files" : [ "src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java" ],
+  "symbols" : [ "ByteBufferCleaner#INSTANCE", "ByteBufferCleaner#CLEANER" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkJ1ZmZlcmVkRmlsZUNoYW5uZWxJbnB1dFN0cmVhbSNFTVBUWV9CVUZGRVI",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field BufferedFileChannelInputStream#EMPTY_BUFFER",
+  "files" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+  "symbols" : [ "BufferedFileChannelInputStream#EMPTY_BUFFER" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkJ1ZmZlcmVkRmlsZUNoYW5uZWxJbnB1dFN0cmVhbS5CdWlsZGVyI2NsZWFu",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field BufferedFileChannelInputStream.Builder#clean",
+  "files" : [ "src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java" ],
+  "symbols" : [ "BufferedFileChannelInputStream.Builder#clean" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECk1lbW9yeU1hcHBlZEZpbGVJbnB1dFN0cmVhbSNjbGVhbg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field MemoryMappedFileInputStream#clean",
+  "files" : [ "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+  "symbols" : [ "MemoryMappedFileInputStream#clean" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECk1lbW9yeU1hcHBlZEZpbGVJbnB1dFN0cmVhbS5CdWlsZGVyI2NsZWFu",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field MemoryMappedFileInputStream.Builder#clean",
+  "files" : [ "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+  "symbols" : [ "MemoryMappedFileInputStream.Builder#clean" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCk1lbW9yeU1hcHBlZEZpbGVJbnB1dFN0cmVhbSNFTVBUWV9CVUZGRVIKdmFsdWUgY2hhbmdlZA",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of MemoryMappedFileInputStream#EMPTY_BUFFER: value changed",
+  "files" : [ "src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java" ],
+  "symbols" : [ "MemoryMappedFileInputStream#EMPTY_BUFFER", "value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

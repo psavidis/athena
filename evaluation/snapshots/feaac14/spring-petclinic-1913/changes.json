@@ -1,0 +1,211 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTClBldFR5cGVSZXBvc2l0b3J5",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class PetTypeRepository",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeRepository.java" ],
+  "symbols" : [ "PetTypeRepository" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9TWU1CT0wKT3duZXJSZXBvc2l0b3J5I2ZpbmRQZXRUeXBlcwpQZXRUeXBlUmVwb3NpdG9yeSNmaW5kUGV0VHlwZXM",
+  "kind" : "MOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Move OwnerRepository#findPetTypes -> PetTypeRepository#findPetTypes",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/OwnerRepository.java", "src/main/java/org/springframework/samples/petclinic/owner/PetTypeRepository.java" ],
+  "symbols" : [ "OwnerRepository#findPetTypes", "PetTypeRepository#findPetTypes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClBldENvbnRyb2xsZXIjcG9wdWxhdGVQZXRUeXBlcwpyZXR1cm4gb3duZXJzIC0-IHR5cGVz",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of PetController#populatePetTypes: return owners -> types",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetController.java" ],
+  "symbols" : [ "PetController#populatePetTypes", "return owners -> types" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClBldFR5cGVGb3JtYXR0ZXIjcGFyc2UKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of PetTypeFormatter#parse: other statements changed",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+  "symbols" : [ "PetTypeFormatter#parse", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwYXJzZSwgcmV0dXJuICJteXNxbDo5LjEiIC0-IERvY2tlckltYWdlTmFtZS5wYXJzZSgibXlzcWw6OS4yIikKTXlzcWxUZXN0QXBwbGljYXRpb24jY29udGFpbmVy",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MysqlTestApplication#container: +parse, return \"mysql:9.1\" -> DockerImageName.parse(\"mysql:9.2\")",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/MysqlTestApplication.java" ],
+  "symbols" : [ "MysqlTestApplication#container", "+parse, return \"mysql:9.1\" -> DockerImageName.parse(\"mysql:9.2\")" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClBldENvbnRyb2xsZXJUZXN0cyNzZXR1cApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of PetControllerTests#setup: other statements changed",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java" ],
+  "symbols" : [ "PetControllerTests#setup", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClBldFR5cGVGb3JtYXR0ZXJUZXN0cyNzZXR1cApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of PetTypeFormatterTests#setup: other statements changed",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/owner/PetTypeFormatterTests.java" ],
+  "symbols" : [ "PetTypeFormatterTests#setup", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClBldFR5cGVGb3JtYXR0ZXJUZXN0cyNzaG91bGRQYXJzZQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of PetTypeFormatterTests#shouldParse: other statements changed",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/owner/PetTypeFormatterTests.java" ],
+  "symbols" : [ "PetTypeFormatterTests#shouldParse", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClBldFR5cGVGb3JtYXR0ZXJUZXN0cyNzaG91bGRUaHJvd1BhcnNlRXhjZXB0aW9uCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of PetTypeFormatterTests#shouldThrowParseException: other statements changed",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/owner/PetTypeFormatterTests.java" ],
+  "symbols" : [ "PetTypeFormatterTests#shouldThrowParseException", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsaW5pY1NlcnZpY2VUZXN0cyNzaG91bGRGaW5kQWxsUGV0VHlwZXMKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ClinicServiceTests#shouldFindAllPetTypes: other statements changed",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java" ],
+  "symbols" : [ "ClinicServiceTests#shouldFindAllPetTypes", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsaW5pY1NlcnZpY2VUZXN0cyNzaG91bGRJbnNlcnRQZXRJbnRvRGF0YWJhc2VBbmRHZW5lcmF0ZUlkCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ClinicServiceTests#shouldInsertPetIntoDatabaseAndGenerateId: other statements changed",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java" ],
+  "symbols" : [ "ClinicServiceTests#shouldInsertPetIntoDatabaseAndGenerateId", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXIjb3duZXJz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PetTypeFormatter#owners",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+  "symbols" : [ "PetTypeFormatter#owners" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXJUZXN0cyNwZXRz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PetTypeFormatterTests#pets",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/owner/PetTypeFormatterTests.java" ],
+  "symbols" : [ "PetTypeFormatterTests#pets" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClBldENvbnRyb2xsZXIjdHlwZXM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field PetController#types",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetController.java" ],
+  "symbols" : [ "PetController#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXIjdHlwZXM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field PetTypeFormatter#types",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+  "symbols" : [ "PetTypeFormatter#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClBldENvbnRyb2xsZXJUZXN0cyN0eXBlcw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field PetControllerTests#types",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java" ],
+  "symbols" : [ "PetControllerTests#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClBldFR5cGVGb3JtYXR0ZXJUZXN0cyN0eXBlcw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field PetTypeFormatterTests#types",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/owner/PetTypeFormatterTests.java" ],
+  "symbols" : [ "PetTypeFormatterTests#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkNsaW5pY1NlcnZpY2VUZXN0cyN0eXBlcw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ClinicServiceTests#types",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java" ],
+  "symbols" : [ "ClinicServiceTests#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCk15U3FsSW50ZWdyYXRpb25UZXN0cyNjb250YWluZXIKdmFsdWUgY2hhbmdlZA",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of MySqlIntegrationTests#container: value changed",
+  "files" : [ "src/test/java/org/springframework/samples/petclinic/MySqlIntegrationTests.java" ],
+  "symbols" : [ "MySqlIntegrationTests#container", "value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpQZXRDb250cm9sbGVyI3R5cGVz",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter PetController#types",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetController.java" ],
+  "symbols" : [ "PetController#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpQZXRUeXBlRm9ybWF0dGVyI3R5cGVz",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter PetTypeFormatter#types",
+  "files" : [ "src/main/java/org/springframework/samples/petclinic/owner/PetTypeFormatter.java" ],
+  "symbols" : [ "PetTypeFormatter#types" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

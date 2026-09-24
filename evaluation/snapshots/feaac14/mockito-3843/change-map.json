@@ -1,0 +1,209 @@
+{
+  "prTitle" : "Include superclass class loaders when defining subclass mocks",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 7,
+    "UNKNOWN" : 2,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTCkZvcmVpZ25UeXBl",
+    "description" : "Add class ForeignType",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0NMQVNTClN1cGVyQ2xhc3NSZWZlcmVuY2luZ090aGVyQnVuZGxl",
+    "description" : "Add class SuperClassReferencingOtherBundle",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX0NMQVNTCk1vY2tTdWJjbGFzc0Fjcm9zc0J1bmRsZXNUZXN0",
+    "description" : "Add class MockSubclassAcrossBundlesTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX0NMQVNTClN1YkNsYXNzSW5UZXN0QnVuZGxl",
+    "description" : "Add class SubClassInTestBundle",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApTdWJjbGFzc0J5dGVjb2RlR2VuZXJhdG9yI2dldEFsbFR5cGVz",
+    "description" : "Add SubclassBytecodeGenerator#getAllTypes",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApTdXBlckNsYXNzUmVmZXJlbmNpbmdPdGhlckJ1bmRsZSNmb3JlaWduVHlwZQ",
+    "description" : "Add SuperClassReferencingOtherBundle#foreignType",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApNb2NrU3ViY2xhc3NBY3Jvc3NCdW5kbGVzVGVzdCNjYW5fbW9ja19zdWJjbGFzc193aG9zZV9zdXBlcmNsYXNzX2xpdmVzX2luX2Fub3RoZXJfYnVuZGxl",
+    "description" : "Add MockSubclassAcrossBundlesTest#can_mock_subclass_whose_superclass_lives_in_another_bundle",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRBbGxUeXBlcwpTdWJjbGFzc0J5dGVjb2RlR2VuZXJhdG9yI21vY2tDbGFzcw",
+    "description" : "Modify body of SubclassBytecodeGenerator#mockClass: +getAllTypes",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2FkVGVzdENsYXNzLCByZXR1cm4gdmFsdWUgY2hhbmdlZCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKT3NnaVRlc3QjZ2V0VGVzdENsYXNzZXM",
+    "description" : "Modify body of OsgiTest#getTestClasses: +loadTestClass, return value changed, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ForeignType",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTCkZvcmVpZ25UeXBl",
+      "description" : "Add class ForeignType",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SuperClassReferencingOtherBundle",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX0NMQVNTClN1cGVyQ2xhc3NSZWZlcmVuY2luZ090aGVyQnVuZGxl",
+      "description" : "Add class SuperClassReferencingOtherBundle",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApTdXBlckNsYXNzUmVmZXJlbmNpbmdPdGhlckJ1bmRsZSNmb3JlaWduVHlwZQ",
+      "description" : "Add SuperClassReferencingOtherBundle#foreignType",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "MockSubclassAcrossBundlesTest",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX0NMQVNTCk1vY2tTdWJjbGFzc0Fjcm9zc0J1bmRsZXNUZXN0",
+      "description" : "Add class MockSubclassAcrossBundlesTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApNb2NrU3ViY2xhc3NBY3Jvc3NCdW5kbGVzVGVzdCNjYW5fbW9ja19zdWJjbGFzc193aG9zZV9zdXBlcmNsYXNzX2xpdmVzX2luX2Fub3RoZXJfYnVuZGxl",
+      "description" : "Add MockSubclassAcrossBundlesTest#can_mock_subclass_whose_superclass_lives_in_another_bundle",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "SubClassInTestBundle",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "QUREX0NMQVNTClN1YkNsYXNzSW5UZXN0QnVuZGxl",
+      "description" : "Add class SubClassInTestBundle",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SubclassBytecodeGenerator",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApTdWJjbGFzc0J5dGVjb2RlR2VuZXJhdG9yI2dldEFsbFR5cGVz",
+      "description" : "Add SubclassBytecodeGenerator#getAllTypes",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRBbGxUeXBlcwpTdWJjbGFzc0J5dGVjb2RlR2VuZXJhdG9yI21vY2tDbGFzcw",
+      "description" : "Modify body of SubclassBytecodeGenerator#mockClass: +getAllTypes",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "OsgiTest",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2FkVGVzdENsYXNzLCByZXR1cm4gdmFsdWUgY2hhbmdlZCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKT3NnaVRlc3QjZ2V0VGVzdENsYXNzZXM",
+      "description" : "Modify body of OsgiTest#getTestClasses: +loadTestClass, return value changed, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

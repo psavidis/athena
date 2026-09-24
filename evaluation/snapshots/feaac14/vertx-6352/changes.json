@@ -1,0 +1,81 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpDb250ZXh0VGVzdCN0ZXN0SW50ZXJydXB0VGhyZWFkT25Bd2FpdApsb29wIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ContextTest#testInterruptThreadOnAwait: loop added",
+  "files" : [ "vertx-core-java21-tests/src/test/java/io/vertx/tests/virtualthread/ContextTest.java" ],
+  "symbols" : [ "ContextTest#testInterruptThreadOnAwait", "loop added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKVGFza1F1ZXVlLkNvbnRpbnVhdGlvblRhc2sjcmVzdW1l",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of TaskQueue.ContinuationTask#resume",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java" ],
+  "symbols" : [ "TaskQueue.ContinuationTask#resume" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUYXNrUXVldWUuQ29udGludWF0aW9uVGFzayNzdXNwZW5kCmNvbmRpdGlvbiBjaGFuZ2VkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of TaskQueue.ContinuationTask#suspend: condition changed; same calls",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java" ],
+  "symbols" : [ "TaskQueue.ContinuationTask#suspend", "condition changed; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKV29ya2VyRXhlY3V0b3IuRXhlY3V0aW9uI3Jlc3VtZQ",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of WorkerExecutor.Execution#resume",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutor.java" ],
+  "symbols" : [ "WorkerExecutor.Execution#resume" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUYXNrUXVldWUuQ29udGludWF0aW9uVGFzayNhd2FpdA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TaskQueue.ContinuationTask#await",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java" ],
+  "symbols" : [ "TaskQueue.ContinuationTask#await" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUYXNrUXVldWUuQ29udGludWF0aW9uVGFzayNpbnRlcnJ1cHRlZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TaskQueue.ContinuationTask#interrupted",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java" ],
+  "symbols" : [ "TaskQueue.ContinuationTask#interrupted" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUYXNrUXVldWVUZXN0I3Rlc3RJbnRlcnJ1cHRTdXNwZW5kZWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TaskQueueTest#testInterruptSuspended",
+  "files" : [ "vertx-core/src/test/java/io/vertx/tests/context/TaskQueueTest.java" ],
+  "symbols" : [ "TaskQueueTest#testInterruptSuspended" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVOQU1FX0ZJRUxEClRhc2tRdWV1ZS5Db250aW51YXRpb25UYXNrI1NUX0RPTkUKVGFza1F1ZXVlLkNvbnRpbnVhdGlvblRhc2sjU1RfUkVTVU1FRA",
+  "kind" : "RENAME_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Rename field TaskQueue.ContinuationTask#ST_RESUMED -> ST_DONE",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java" ],
+  "symbols" : [ "TaskQueue.ContinuationTask#ST_RESUMED", "TaskQueue.ContinuationTask#ST_DONE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

@@ -1,0 +1,46 @@
+{
+  "diff": {
+    "files": 148,
+    "java_files": 148,
+    "non_java_files": 0,
+    "substantive_java_files": 148,
+    "copyright_only_java_files": 0,
+    "production_java_files": 148,
+    "java_hunks": 594,
+    "java_lines_changed": 1856
+  },
+  "athena": {
+    "changes": 437,
+    "changes_by_kind": {
+      "CHANGE_MODIFIERS": 435,
+      "MODIFY_METHOD_BODY": 1,
+      "CHANGE_FIELD_VALUE": 1
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 435,
+      "UNKNOWN": 2
+    },
+    "semantic_entries": 9,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 8,
+      "RESPONSIBILITY": 1
+    },
+    "inferred_entries": 1,
+    "module_territories": 6,
+    "module_dependencies": 9,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 144,
+    "substantive_java_file_coverage": 0.97,
+    "production_java_files_represented": 144,
+    "production_java_file_coverage": 0.97,
+    "unrepresented_production_java_files": [
+      "android/guava-testlib/src/com/google/common/util/concurrent/testing/SameThreadScheduledExecutorService.java",
+      "android/guava/src/com/google/common/eventbus/SubscriberExceptionContext.java",
+      "guava-testlib/src/com/google/common/util/concurrent/testing/SameThreadScheduledExecutorService.java",
+      "guava/src/com/google/common/eventbus/SubscriberExceptionContext.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

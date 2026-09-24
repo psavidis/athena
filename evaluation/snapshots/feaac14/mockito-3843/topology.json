@@ -1,0 +1,25 @@
+{
+  "territories" : [ {
+    "moduleName" : "osgi-tests",
+    "status" : "TOUCHED",
+    "fileCount" : 5,
+    "statusSummary" : "5 files · 7 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX0NMQVNTCkZvcmVpZ25UeXBl", "QUREX0NMQVNTClN1cGVyQ2xhc3NSZWZlcmVuY2luZ090aGVyQnVuZGxl", "QUREX0NMQVNTCk1vY2tTdWJjbGFzc0Fjcm9zc0J1bmRsZXNUZXN0", "QUREX0NMQVNTClN1YkNsYXNzSW5UZXN0QnVuZGxl", "QUREX1NZTUJPTApTdXBlckNsYXNzUmVmZXJlbmNpbmdPdGhlckJ1bmRsZSNmb3JlaWduVHlwZQ", "QUREX1NZTUJPTApNb2NrU3ViY2xhc3NBY3Jvc3NCdW5kbGVzVGVzdCNjYW5fbW9ja19zdWJjbGFzc193aG9zZV9zdXBlcmNsYXNzX2xpdmVzX2luX2Fub3RoZXJfYnVuZGxl", "TU9ESUZZX01FVEhPRF9CT0RZCitsb2FkVGVzdENsYXNzLCByZXR1cm4gdmFsdWUgY2hhbmdlZCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKT3NnaVRlc3QjZ2V0VGVzdENsYXNzZXM" ],
+    "testChangeKeys" : [ "QUREX0NMQVNTCk1vY2tTdWJjbGFzc0Fjcm9zc0J1bmRsZXNUZXN0", "QUREX1NZTUJPTApNb2NrU3ViY2xhc3NBY3Jvc3NCdW5kbGVzVGVzdCNjYW5fbW9ja19zdWJjbGFzc193aG9zZV9zdXBlcmNsYXNzX2xpdmVzX2luX2Fub3RoZXJfYnVuZGxl", "TU9ESUZZX01FVEhPRF9CT0RZCitsb2FkVGVzdENsYXNzLCByZXR1cm4gdmFsdWUgY2hhbmdlZCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKT3NnaVRlc3QjZ2V0VGVzdENsYXNzZXM" ]
+  }, {
+    "moduleName" : "mockito-core",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApTdWJjbGFzc0J5dGVjb2RlR2VuZXJhdG9yI2dldEFsbFR5cGVz", "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRBbGxUeXBlcwpTdWJjbGFzc0J5dGVjb2RlR2VuZXJhdG9yI21vY2tDbGFzcw" ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "osgi-tests",
+    "to" : "mockito-core"
+  } ]
+}

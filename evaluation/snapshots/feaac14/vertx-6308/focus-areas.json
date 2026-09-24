@@ -1,0 +1,7 @@
+[ {
+  "entity" : "DnsClientImpl",
+  "description" : "Modify body of DnsClientImpl#<init>: +getAddress, +getHostAddress, -getHostString"
+}, {
+  "entity" : "DNSTest",
+  "description" : "Add DNSTest#testLocalhostNameServer"
+} ]

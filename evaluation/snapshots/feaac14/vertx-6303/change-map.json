@@ -1,0 +1,34 @@
+{
+  "prTitle" : "fix: CleanableObject.shutdown() returns null when resource was GC'd",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 0,
+    "UNKNOWN" : 1,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzdWNjZWVkZWRGdXR1cmUsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCkNsZWFuYWJsZU9iamVjdCNzaHV0ZG93bg",
+    "description" : "Modify body of CleanableObject#shutdown: +succeededFuture, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "CleanableObject",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzdWNjZWVkZWRGdXR1cmUsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCkNsZWFuYWJsZU9iamVjdCNzaHV0ZG93bg",
+      "description" : "Modify body of CleanableObject#shutdown: +succeededFuture, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

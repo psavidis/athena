@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/google/error-prone.git",
+  "base" : "80c91b3fe1998bf066aede4edced63019099efc5",
+  "head" : "90a5fa14772f62774d5a453dc0c209848d310fef",
+  "changeCount" : 71,
+  "moduleCount" : 2,
+  "checkoutAndAnalysisSeconds" : 6.4
+}

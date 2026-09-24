@@ -1,0 +1,13 @@
+[ {
+  "description" : "Add enum constant ImpossibleNullComparison.GetterTypes#CLASS_FOR_NAME",
+  "entity" : "ImpossibleNullComparison.GetterTypes"
+}, {
+  "description" : "Add field ImpossibleNullComparison#checkClassForName",
+  "entity" : "ImpossibleNullComparison"
+}, {
+  "description" : "Add field ImpossibleNullComparison#CLASS_FOR_NAME_MATCHER",
+  "entity" : "ImpossibleNullComparison"
+}, {
+  "description" : "Modify body of ImpossibleNullComparison.NullComparisonScanner#getFixer: +filter, +equals, return value changed",
+  "entity" : "ImpossibleNullComparison.NullComparisonScanner"
+} ]

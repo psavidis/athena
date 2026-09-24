@@ -1,0 +1,71 @@
+[ {
+  "changeKey" : "QUREX1NZTUJPTApJbXBvc3NpYmxlTnVsbENvbXBhcmlzb25UZXN0I2NsYXNzRm9yTmFtZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ImpossibleNullComparisonTest#classForName",
+  "files" : [ "core/src/test/java/com/google/errorprone/bugpatterns/ImpossibleNullComparisonTest.java" ],
+  "symbols" : [ "ImpossibleNullComparisonTest#classForName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApJbXBvc3NpYmxlTnVsbENvbXBhcmlzb25UZXN0I2NsYXNzRm9yTmFtZV9mbGFnRGlzYWJsZWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ImpossibleNullComparisonTest#classForName_flagDisabled",
+  "files" : [ "core/src/test/java/com/google/errorprone/bugpatterns/ImpossibleNullComparisonTest.java" ],
+  "symbols" : [ "ImpossibleNullComparisonTest#classForName_flagDisabled" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmaWx0ZXIsICtlcXVhbHMsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCkltcG9zc2libGVOdWxsQ29tcGFyaXNvbi5OdWxsQ29tcGFyaXNvblNjYW5uZXIjZ2V0Rml4ZXI",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ImpossibleNullComparison.NullComparisonScanner#getFixer: +filter, +equals, return value changed",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java" ],
+  "symbols" : [ "ImpossibleNullComparison.NullComparisonScanner#getFixer", "+filter, +equals, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRCb29sZWFuLCArb3JFbHNlCkltcG9zc2libGVOdWxsQ29tcGFyaXNvbiM8aW5pdD4",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ImpossibleNullComparison#<init>: +getBoolean, +orElse",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java" ],
+  "symbols" : [ "ImpossibleNullComparison#<init>", "+getBoolean, +orElse" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkltcG9zc2libGVOdWxsQ29tcGFyaXNvbiNjaGVja0NsYXNzRm9yTmFtZQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ImpossibleNullComparison#checkClassForName",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java" ],
+  "symbols" : [ "ImpossibleNullComparison#checkClassForName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkltcG9zc2libGVOdWxsQ29tcGFyaXNvbiNDTEFTU19GT1JfTkFNRV9NQVRDSEVS",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ImpossibleNullComparison#CLASS_FOR_NAME_MATCHER",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java" ],
+  "symbols" : [ "ImpossibleNullComparison#CLASS_FOR_NAME_MATCHER" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKSW1wb3NzaWJsZU51bGxDb21wYXJpc29uLkdldHRlclR5cGVzI0NMQVNTX0ZPUl9OQU1F",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant ImpossibleNullComparison.GetterTypes#CLASS_FOR_NAME",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java" ],
+  "symbols" : [ "ImpossibleNullComparison.GetterTypes#CLASS_FOR_NAME" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

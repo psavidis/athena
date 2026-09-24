@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/lang3/math/Fraction.java b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+index 95f40dc3453..c4b80922f39 100644
+--- a/src/main/java/org/apache/commons/lang3/math/Fraction.java
++++ b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+@@ -332,6 +332,11 @@ public static Fraction getReducedFraction(int numerator, int denominator) {
+             numerator /= 2;
+             denominator /= 2;
+         }
++        // allow -2^31/2^k as a valid fraction (where k>0)
++        if (numerator == Integer.MIN_VALUE && (denominator & 1) == 0) {
++            numerator /= 2;
++            denominator /= 2;
++        }
+         if (denominator < 0) {
+             if (numerator == Integer.MIN_VALUE || denominator == Integer.MIN_VALUE) {
+                 throw new ArithmeticException("overflow: can't negate");
+diff --git a/src/test/java/org/apache/commons/lang3/math/FractionTest.java b/src/test/java/org/apache/commons/lang3/math/FractionTest.java
+index 7affb71cd67..ef8e7506c5a 100644
+--- a/src/test/java/org/apache/commons/lang3/math/FractionTest.java
++++ b/src/test/java/org/apache/commons/lang3/math/FractionTest.java
+@@ -1274,4 +1274,10 @@ void testToString() {
+         f = Fraction.getFraction(-1, 1, Integer.MAX_VALUE);
+         assertEquals("-2147483648/2147483647", f.toString());
+     }
++    @Test
++    public void testMyReducedFractionFix() {
++        Fraction f = Fraction.getReducedFraction(Integer.MIN_VALUE, -2);
++        assertEquals(1073741824, f.getNumerator());
++        assertEquals(1, f.getDenominator());
++    }
+ }

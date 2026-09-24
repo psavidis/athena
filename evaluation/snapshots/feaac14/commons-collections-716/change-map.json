@@ -1,0 +1,77 @@
+{
+  "prTitle" : "Increment modCount after the bounds check in TreeList add and remove",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 2,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX1NZTUJPTApUcmVlTGlzdFRlc3QjdGVzdEZhaWxlZEluZGV4ZWRDaGFuZ2VLZWVwc0l0ZXJhdG9yVmFsaWQ",
+    "description" : "Add TreeListTest#testFailedIndexedChangeKeepsIteratorValid",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRyZWVMaXN0I2FkZAptb3ZlZCBtb2RDb3VudCsrIGFmdGVyIGNoZWNrSW50ZXJ2YWwoaW5kZXgsIDAsIHNpemUoKSk",
+    "description" : "Modify body of TreeList#add: moved modCount++ after checkInterval(index, 0, size())",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRyZWVMaXN0I3JlbW92ZQptb3ZlZCBtb2RDb3VudCsrIGFmdGVyIGNoZWNrSW50ZXJ2YWwoaW5kZXgsIDAsIHNpemUoKSAtIDEp",
+    "description" : "Modify body of TreeList#remove: moved modCount++ after checkInterval(index, 0, size() - 1)",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "TreeListTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX1NZTUJPTApUcmVlTGlzdFRlc3QjdGVzdEZhaWxlZEluZGV4ZWRDaGFuZ2VLZWVwc0l0ZXJhdG9yVmFsaWQ",
+      "description" : "Add TreeListTest#testFailedIndexedChangeKeepsIteratorValid",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TreeList",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRyZWVMaXN0I2FkZAptb3ZlZCBtb2RDb3VudCsrIGFmdGVyIGNoZWNrSW50ZXJ2YWwoaW5kZXgsIDAsIHNpemUoKSk",
+      "description" : "Modify body of TreeList#add: moved modCount++ after checkInterval(index, 0, size())",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRyZWVMaXN0I3JlbW92ZQptb3ZlZCBtb2RDb3VudCsrIGFmdGVyIGNoZWNrSW50ZXJ2YWwoaW5kZXgsIDAsIHNpemUoKSAtIDEp",
+      "description" : "Modify body of TreeList#remove: moved modCount++ after checkInterval(index, 0, size() - 1)",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}
