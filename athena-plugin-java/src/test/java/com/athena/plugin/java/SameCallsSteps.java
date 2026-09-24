@@ -60,6 +60,23 @@ public class SameCallsSteps {
                         + "        }\n"));
     }
 
+    @Given("a base revision where method {string} on class {string} throws {string} once")
+    public void base_throws_once(String method, String className, String exception) {
+        write(world.baseRoot(), className, invoker(className, method, exception, false));
+    }
+
+    @Given("a head revision where {string} on {string} also throws {string} from a new guard")
+    public void head_throws_from_new_guard(String method, String className, String exception) {
+        write(world.headRoot(), className, invoker(className, method, exception, true));
+    }
+
+    private static String invoker(String className, String method, String exception, boolean guard) {
+        return "public class " + className + " {\n    Object " + method + "(Object path, Object key) {\n"
+                + (guard ? "        if (path == null) {\n            throw new " + exception + "(\"no path\");\n        }\n" : "")
+                + "        if (key == null) {\n            throw new " + exception + "(\"no key\");\n        }\n"
+                + "        return lookup(path, key);\n    }\n}\n";
+    }
+
     @Then("the control-flow change of {string} ends with {string}")
     public void the_control_flow_change_ends_with(String symbol, String suffix) {
         lastSymbol = symbol;

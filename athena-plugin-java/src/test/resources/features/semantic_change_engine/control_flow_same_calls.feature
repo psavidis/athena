@@ -24,3 +24,11 @@ Feature: A control-flow change says when the body makes the same calls
     And a head revision where "serializeAll" on "Serializer" first rejects an empty property list by throwing
     When the semantic engine detects transformations between the revisions
     Then the control-flow change of "Serializer#serializeAll" does not mention "same calls"
+
+  # Ticket #334: throwing more often is not the same calls.
+
+  Scenario: A new guard that throws a type the method already throws does not say so
+    Given a base revision where method "getInvoker" on class "Protocol" throws "RemotingException" once
+    And a head revision where "getInvoker" on "Protocol" also throws "RemotingException" from a new guard
+    When the semantic engine detects transformations between the revisions
+    Then the control-flow change of "Protocol#getInvoker" does not mention "same calls"
