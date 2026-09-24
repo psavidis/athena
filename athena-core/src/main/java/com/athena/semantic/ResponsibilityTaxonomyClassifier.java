@@ -44,7 +44,7 @@ public final class ResponsibilityTaxonomyClassifier {
                  CHANGE_FIELD_ANNOTATIONS, CHANGE_FIELD_TYPE, CHANGE_PARAMETER_ANNOTATIONS,
                  CHANGE_METHOD_ANNOTATIONS, MODIFY_METHOD_BODY -> Optional.empty();
             // Only a visibility change alters the contract (ticket #313); see conceptIdFor(Change).
-            case CHANGE_MODIFIERS -> Optional.empty();
+            case CHANGE_MODIFIERS, CHANGE_FIELD_VALUE -> Optional.empty();
         };
     }
 

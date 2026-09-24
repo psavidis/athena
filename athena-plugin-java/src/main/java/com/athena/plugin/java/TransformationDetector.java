@@ -18,6 +18,7 @@ import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.RecordDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
+import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -288,6 +290,7 @@ public final class TransformationDetector {
         List<FieldInfo> headFields = headParsed.fields().stream()
                 .filter(f -> !classMatch.excludedHeadTypes().contains(f.enclosingType)).toList();
         results.addAll(detectFieldChanges(baseFields, headFields));
+        results.addAll(fieldValueChanges(baseFields, headFields, mechanicalReplacements));
 
         // 9. Constructor parameter added and assigned to a same-named field — the structural
         // half of "field injection -> constructor injection" (ticket #86's dependency-injection
@@ -447,6 +450,43 @@ public final class TransformationDetector {
                             .map(delta -> modifierChange(base.enclosingType + "#<init>", delta, base.file, head.file,
                                     base.rawDeclaration, head.rawDeclaration)))
                     .ifPresent(changes::add);
+        }
+        return changes;
+    }
+
+    /**
+     * A field matched in both revisions by file, enclosing type, name and declared type whose
+     * initializer changed (ticket #316) — unless a mechanical identifier replacement explains the
+     * difference, the same exemption body edits get. Initializers are compared as JavaParser
+     * prints them, so whitespace-only edits never count.
+     */
+    private List<DetectedTransformation> fieldValueChanges(List<FieldInfo> baseFields, List<FieldInfo> headFields,
+                                                           List<DetectedTransformation> mechanicalReplacements) {
+        // Only identifier renames explain a value change; a replaced numeric literal (100 -> 200)
+        // is exactly the value change being reported.
+        List<String[]> replacements = mechanicalReplacements.stream()
+                .map(r -> r.involvedDescriptions().get(0).split(" -> "))
+                .filter(replacement -> Character.isJavaIdentifierStart(replacement[0].charAt(0)))
+                .toList();
+        Map<FieldKey, FieldInfo> headByKey = new HashMap<>();
+        headFields.forEach(head -> headByKey.putIfAbsent(new FieldKey(head.file, head.enclosingType, head.name), head));
+        List<DetectedTransformation> changes = new ArrayList<>();
+        for (FieldInfo base : baseFields) {
+            FieldInfo head = headByKey.get(new FieldKey(base.file, base.enclosingType, base.name));
+            if (head == null || !head.type.equals(base.type)) {
+                continue;
+            }
+            String before = base.initializer.map(Node::toString).orElse("");
+            String after = head.initializer.map(Node::toString).orElse("");
+            String replaced = before;
+            for (String[] replacement : replacements) {
+                replaced = replaceWholeIdentifier(replaced, replacement[0], replacement[1]);
+            }
+            if (!before.equals(after) && !replaced.equals(after)) {
+                changes.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_FIELD_VALUE,
+                        List.of(base.description(), FieldValues.describeChange(base.initializer, head.initializer)),
+                        List.of(base.file, head.file), base.rawDeclaration, head.rawDeclaration));
+            }
         }
         return changes;
     }
@@ -1137,7 +1177,7 @@ public final class TransformationDetector {
                 String typeAsString = variable.getType().asString();
                 collected.fields.add(new FieldInfo(qualifiedName, variable.getNameAsString(), typeAsString,
                         annotationNames, visibilityOf(field), rawDeclaration, relativePath, typeAnnotations,
-                        DeclarationModifiers.of(field)));
+                        DeclarationModifiers.of(field), variable.getInitializer()));
                 memberSignatures.add("field:" + variable.getNameAsString() + ":" + typeAsString);
             }
         }
@@ -1352,7 +1392,7 @@ public final class TransformationDetector {
      */
     private record FieldInfo(String enclosingType, String name, String type, Set<String> annotationNames,
                               String visibility, String rawDeclaration, String file, String enclosingTypeAnnotations,
-                              DeclarationModifiers modifiers) {
+                              DeclarationModifiers modifiers, Optional<Expression> initializer) {
         String description() {
             return enclosingType + "#" + name;
         }

@@ -12,6 +12,7 @@
   {"id": "change-field-annotations", "name": "Change Field Annotations", "description": "A field kept its name and declared type but the set of annotations on it changed."},
   {"id": "change-control-flow", "name": "Change Control Flow", "description": "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ."},
   {"id": "change-modifiers", "name": "Change Modifiers", "description": "A declaration's visibility or modifier keywords (final, static, abstract, …) changed; its name, signature and body did not."},
+  {"id": "change-field-value", "name": "Change Field Value", "description": "A field kept its name and type but its initializer changed, e.g. an element added to a constant table."},
   {"id": "pull-up", "name": "Pull Up", "description": "A member several classes declared moved up into a new common base class they now extend."},
   {"id": "modify-body", "name": "Modify Body", "description": "A method or constructor kept its signature but its body changed in a way no more specific transformation explains."}
 ]
