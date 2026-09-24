@@ -1,0 +1,57 @@
+{
+  "prTitle" : "LANG-1834 Fix Fraction reduction for Integer.MIN_VALUE",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpGcmFjdGlvbiNnZXRSZWR1Y2VkRnJhY3Rpb24KYnJhbmNoIHJlbW92ZWQsIGxvb3AgYWRkZWQ",
+    "description" : "Change control flow of Fraction#getReducedFraction: branch removed, loop added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApGcmFjdGlvblRlc3QjdGVzdFJlZHVjZWRGYWN0b3J5SW50ZWdlck1pblZhbHVl",
+    "description" : "Add FractionTest#testReducedFactoryIntegerMinValue",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "Fraction",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpGcmFjdGlvbiNnZXRSZWR1Y2VkRnJhY3Rpb24KYnJhbmNoIHJlbW92ZWQsIGxvb3AgYWRkZWQ",
+      "description" : "Change control flow of Fraction#getReducedFraction: branch removed, loop added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "FractionTest",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApGcmFjdGlvblRlc3QjdGVzdFJlZHVjZWRGYWN0b3J5SW50ZWdlck1pblZhbHVl",
+      "description" : "Add FractionTest#testReducedFactoryIntegerMinValue",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

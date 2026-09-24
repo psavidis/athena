@@ -1,0 +1,390 @@
+{
+  "changedFileCount" : 63,
+  "representedFileCount" : 8,
+  "files" : [ {
+    "path" : "README.md",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "build.gradle",
+    "status" : "MODIFIED",
+    "linesChanged" : 20,
+    "hunkCount" : 4,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "docker-compose.yml",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "gradle/wrapper/gradle-wrapper.jar",
+    "status" : "MODIFIED",
+    "linesChanged" : 0,
+    "hunkCount" : 0,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "gradle/wrapper/gradle-wrapper.properties",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "gradlew",
+    "status" : "MODIFIED",
+    "linesChanged" : 9,
+    "hunkCount" : 4,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "gradlew.bat",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "k8s/db.yml",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 23,
+    "hunkCount" : 7,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 3,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/PetClinicRuntimeHints.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/model/BaseEntity.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/model/NamedEntity.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/model/Person.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/model/package-info.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/owner/Owner.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/owner/Pet.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/owner/PetType.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/owner/PetValidator.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/owner/Visit.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/system/CacheConfiguration.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/system/CrashController.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/system/WelcomeController.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/vet/Specialty.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/vet/Vet.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/vet/VetRepository.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/java/org/springframework/samples/petclinic/vet/Vets.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/main/resources/application-postgres.properties",
+    "status" : "MODIFIED",
+    "linesChanged" : 1,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/resources/static/resources/css/petclinic.css",
+    "status" : "MODIFIED",
+    "linesChanged" : 252,
+    "hunkCount" : 77,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/resources/templates/error.html",
+    "status" : "MODIFIED",
+    "linesChanged" : 11,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/resources/templates/fragments/inputField.html",
+    "status" : "MODIFIED",
+    "linesChanged" : 24,
+    "hunkCount" : 7,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/resources/templates/fragments/layout.html",
+    "status" : "MODIFIED",
+    "linesChanged" : 18,
+    "hunkCount" : 7,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/resources/templates/fragments/selectField.html",
+    "status" : "MODIFIED",
+    "linesChanged" : 19,
+    "hunkCount" : 8,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/resources/templates/owners/createOrUpdateOwnerForm.html",
+    "status" : "MODIFIED",
+    "linesChanged" : 28,
+    "hunkCount" : 6,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/resources/templates/owners/findOwners.html",
+    "status" : "MODIFIED",
+    "linesChanged" : 15,
+    "hunkCount" : 7,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/resources/templates/owners/ownerDetails.html",
+    "status" : "MODIFIED",
+    "linesChanged" : 157,
+    "hunkCount" : 14,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/resources/templates/owners/ownersList.html",
+    "status" : "MODIFIED",
+    "linesChanged" : 80,
+    "hunkCount" : 12,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/resources/templates/pets/createOrUpdatePetForm.html",
+    "status" : "MODIFIED",
+    "linesChanged" : 20,
+    "hunkCount" : 5,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/resources/templates/pets/createOrUpdateVisitForm.html",
+    "status" : "MODIFIED",
+    "linesChanged" : 19,
+    "hunkCount" : 7,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/resources/templates/vets/vetList.html",
+    "status" : "MODIFIED",
+    "linesChanged" : 77,
+    "hunkCount" : 14,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/main/resources/templates/welcome.html",
+    "status" : "MODIFIED",
+    "linesChanged" : 14,
+    "hunkCount" : 4,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "src/test/java/org/springframework/samples/petclinic/MySqlIntegrationTests.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 5,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/test/java/org/springframework/samples/petclinic/PetClinicIntegrationTests.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/test/java/org/springframework/samples/petclinic/PostgresIntegrationTests.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/test/java/org/springframework/samples/petclinic/model/ValidatorTests.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/test/java/org/springframework/samples/petclinic/owner/VisitControllerTests.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/test/java/org/springframework/samples/petclinic/service/EntityUtils.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/test/java/org/springframework/samples/petclinic/system/CrashControllerIntegrationTests.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 14,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/test/java/org/springframework/samples/petclinic/system/CrashControllerTests.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/test/java/org/springframework/samples/petclinic/vet/VetControllerTests.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "src/test/java/org/springframework/samples/petclinic/vet/VetTests.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  } ]
+}
