@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of JsonReader#doPeek: if-chain rewritten as switch",
+  "entity" : "JsonReader"
+}, {
+  "description" : "Change control flow of JsonReader#peekKeyword: if-chain rewritten as switch; same calls",
+  "entity" : "JsonReader"
+}, {
+  "description" : "Change control flow of JsonReader#nextName: if-chain rewritten as switch; same calls",
+  "entity" : "JsonReader"
+}, {
+  "description" : "Change control flow of JsonReader#nextString: if-chain rewritten as switch; same calls",
+  "entity" : "JsonReader"
+} ]

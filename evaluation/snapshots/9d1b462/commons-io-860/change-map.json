@@ -1,0 +1,97 @@
+{
+  "prTitle" : "[IO-891] Fix BoundedReader.skip(long) accounting and bounds handling",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 3,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCb3VuZGVkUmVhZGVyI3NraXAKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of BoundedReader#skip: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcERvZXNOb3RFeGNlZWRCb3VuZA",
+    "description" : "Add BoundedReaderTest#testSkipDoesNotExceedBound",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcERvZXNOb3RPdmVyZmxvd0NoYXJzUmVhZA",
+    "description" : "Add BoundedReaderTest#testSkipDoesNotOverflowCharsRead",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcFVzZXNBY3R1YWxTa2lwcGVkQ291bnQ",
+    "description" : "Add BoundedReaderTest#testSkipUsesActualSkippedCount",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "BoundedReader",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCb3VuZGVkUmVhZGVyI3NraXAKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of BoundedReader#skip: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "BoundedReaderTest",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcERvZXNOb3RFeGNlZWRCb3VuZA",
+      "description" : "Add BoundedReaderTest#testSkipDoesNotExceedBound",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcERvZXNOb3RPdmVyZmxvd0NoYXJzUmVhZA",
+      "description" : "Add BoundedReaderTest#testSkipDoesNotOverflowCharsRead",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcFVzZXNBY3R1YWxTa2lwcGVkQ291bnQ",
+      "description" : "Add BoundedReaderTest#testSkipUsesActualSkippedCount",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

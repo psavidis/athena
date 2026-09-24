@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of DefaultHttp2Connection.DefaultStream#setProperty: branch added",
+  "entity" : "DefaultHttp2Connection.DefaultStream"
+}, {
+  "description" : "Change control flow of DefaultHttp2Connection.DefaultStream#getProperty: branch added",
+  "entity" : "DefaultHttp2Connection.DefaultStream"
+}, {
+  "description" : "Change control flow of DefaultHttp2Connection.DefaultStream#removeProperty: branch added",
+  "entity" : "DefaultHttp2Connection.DefaultStream"
+}, {
+  "description" : "Change signature of DefaultHttp2Connection#verifyKey",
+  "entity" : "DefaultHttp2Connection"
+} ]

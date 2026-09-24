@@ -1,0 +1,4 @@
+[ {
+  "entity" : "BeanSerializerBase",
+  "description" : "Change control flow of BeanSerializerBase#_serializePropertiesFiltered: branch added, condition changed; same calls"
+} ]

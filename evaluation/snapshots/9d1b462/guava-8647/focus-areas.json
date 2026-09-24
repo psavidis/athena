@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of AbstractBiMap#keySet: branch removed; same calls",
+  "entity" : "AbstractBiMap"
+}, {
+  "description" : "Change control flow of AbstractBiMap#values: branch removed; same calls",
+  "entity" : "AbstractBiMap"
+}, {
+  "description" : "Change control flow of AbstractBiMap#entrySet: branch removed; same calls",
+  "entity" : "AbstractBiMap"
+}, {
+  "description" : "Change control flow of AbstractMapBasedMultimap#entries: branch added",
+  "entity" : "AbstractMapBasedMultimap"
+} ]
