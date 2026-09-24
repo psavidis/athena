@@ -1,0 +1,551 @@
+[ {
+  "changeKey" : "UkVNT1ZFX0NMQVNTCk1ldGhvZFByb3BlcnR5LlNldHRlckhvbGRlcg",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class MethodProperty.SetterHolder",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty.SetterHolder" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTCkFubm90YXRlZE1ldGhvZC5NZXRob2RIb2xkZXI",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class AnnotatedMethod.MethodHolder",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod.MethodHolder" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTCkJlYW5Qcm9wZXJ0eVdyaXRlci5HZXR0ZXJIb2xkZXI",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class BeanPropertyWriter.GetterHolder",
+  "files" : [ "src/main/java/tools/jackson/databind/ser/BeanPropertyWriter.java" ],
+  "symbols" : [ "BeanPropertyWriter.GetterHolder" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTClVucmVmbGVjdEhhbmRsZVN1cHBsaWVy",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class UnreflectHandleSupplier",
+  "files" : [ "src/main/java/tools/jackson/databind/util/internal/UnreflectHandleSupplier.java" ],
+  "symbols" : [ "UnreflectHandleSupplier" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFubm90YXRlZE1lbWJlckVxdWFsaXR5VGVzdC5GYWN0b3J5QmVhbg",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AnnotatedMemberEqualityTest.FactoryBean",
+  "files" : [ "src/test/java/tools/jackson/databind/introspect/AnnotatedMemberEqualityTest.java" ],
+  "symbols" : [ "AnnotatedMemberEqualityTest.FactoryBean" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9WRV9TWU1CT0wKQW5ub3RhdGVkTWV0aG9kI3VucmVmbGVjdApBbm5vdGF0ZWRNZXRob2QuTWV0aG9kSG9sZGVyI3VucmVmbGVjdA",
+  "kind" : "MOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Move AnnotatedMethod.MethodHolder#unreflect -> AnnotatedMethod#unreflect",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod.MethodHolder#unreflect", "AnnotatedMethod#unreflect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNZXRob2RQcm9wZXJ0eS5TZXR0ZXJIb2xkZXIjdW5yZWZsZWN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove MethodProperty.SetterHolder#unreflect",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty.SetterHolder#unreflect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApCZWFuUHJvcGVydHlXcml0ZXIuR2V0dGVySG9sZGVyI3VucmVmbGVjdA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove BeanPropertyWriter.GetterHolder#unreflect",
+  "files" : [ "src/main/java/tools/jackson/databind/ser/BeanPropertyWriter.java" ],
+  "symbols" : [ "BeanPropertyWriter.GetterHolder#unreflect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNnZXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove UnreflectHandleSupplier#get",
+  "files" : [ "src/main/java/tools/jackson/databind/util/internal/UnreflectHandleSupplier.java" ],
+  "symbols" : [ "UnreflectHandleSupplier#get" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNpbml0aWFsaXpl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove UnreflectHandleSupplier#initialize",
+  "files" : [ "src/main/java/tools/jackson/databind/util/internal/UnreflectHandleSupplier.java" ],
+  "symbols" : [ "UnreflectHandleSupplier#initialize" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciNwb3N0cHJvY2Vzcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove UnreflectHandleSupplier#postprocess",
+  "files" : [ "src/main/java/tools/jackson/databind/util/internal/UnreflectHandleSupplier.java" ],
+  "symbols" : [ "UnreflectHandleSupplier#postprocess" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciN1bnJlZmxlY3Q",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove UnreflectHandleSupplier#unreflect",
+  "files" : [ "src/main/java/tools/jackson/databind/util/internal/UnreflectHandleSupplier.java" ],
+  "symbols" : [ "UnreflectHandleSupplier#unreflect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApVbnJlZmxlY3RIYW5kbGVTdXBwbGllciN0b1N0cmluZw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove UnreflectHandleSupplier#toString",
+  "files" : [ "src/main/java/tools/jackson/databind/util/internal/UnreflectHandleSupplier.java" ],
+  "symbols" : [ "UnreflectHandleSupplier#toString" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfc2V0dGVySGFuZGxl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MethodProperty#_setterHandle",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty#_setterHandle" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfc2V0dGVyUmV0dXJuSGFuZGxl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MethodProperty#_setterReturnHandle",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty#_setterReturnHandle" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNZXRob2RQcm9wZXJ0eSNfdW5yZWZsZWN0U2V0dGVy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MethodProperty#_unreflectSetter",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty#_unreflectSetter" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlck51bGxhcnk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AnnotatedMethod#invokerNullary",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod#invokerNullary" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlclVuYXJ5",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AnnotatedMethod#invokerUnary",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod#invokerUnary" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZXRob2QjaW52b2tlckZpeGVkQXJpdHk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AnnotatedMethod#invokerFixedArity",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod#invokerFixedArity" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCZWFuUHJvcGVydHlXcml0ZXIjX2FjY2Vzc29ySGFuZGxl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BeanPropertyWriter#_accessorHandle",
+  "files" : [ "src/main/java/tools/jackson/databind/ser/BeanPropertyWriter.java" ],
+  "symbols" : [ "BeanPropertyWriter#_accessorHandle" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCZWFuUHJvcGVydHlXcml0ZXIjX3VucmVmbGVjdEFjY2Vzc29y",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BeanPropertyWriter#_unreflectAccessor",
+  "files" : [ "src/main/java/tools/jackson/databind/ser/BeanPropertyWriter.java" ],
+  "symbols" : [ "BeanPropertyWriter#_unreflectAccessor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kRG9lc05vdEVhZ2VybHlDb25zdHJ1Y3RJbnZva2Vycw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodDoesNotEagerlyConstructInvokers",
+  "files" : [ "src/test/java/tools/jackson/databind/introspect/AnnotatedMemberEqualityTest.java" ],
+  "symbols" : [ "AnnotatedMemberEqualityTest#annotatedMethodDoesNotEagerlyConstructInvokers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kQ2FsbE9uQnVpbGRzT25seVVuYXJ5SW52b2tlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodCallOnBuildsOnlyUnaryInvoker",
+  "files" : [ "src/test/java/tools/jackson/databind/introspect/AnnotatedMemberEqualityTest.java" ],
+  "symbols" : [ "AnnotatedMemberEqualityTest#annotatedMethodCallOnBuildsOnlyUnaryInvoker" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kQ2FsbE9uV2l0aEJ1aWxkc09ubHlGaXhlZEFyaXR5SW52b2tlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodCallOnWithBuildsOnlyFixedArityInvoker",
+  "files" : [ "src/test/java/tools/jackson/databind/introspect/AnnotatedMemberEqualityTest.java" ],
+  "symbols" : [ "AnnotatedMemberEqualityTest#annotatedMethodCallOnWithBuildsOnlyFixedArityInvoker" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QjYW5ub3RhdGVkTWV0aG9kTnVsbGFyeUNhbGxCdWlsZHNPbmx5TnVsbGFyeUludm9rZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AnnotatedMemberEqualityTest#annotatedMethodNullaryCallBuildsOnlyNullaryInvoker",
+  "files" : [ "src/test/java/tools/jackson/databind/introspect/AnnotatedMemberEqualityTest.java" ],
+  "symbols" : [ "AnnotatedMemberEqualityTest#annotatedMethodNullaryCallBuildsOnlyNullaryInvoker" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBbm5vdGF0ZWRNZW1iZXJFcXVhbGl0eVRlc3QuRmFjdG9yeUJlYW4jY3JlYXRl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AnnotatedMemberEqualityTest.FactoryBean#create",
+  "files" : [ "src/test/java/tools/jackson/databind/introspect/AnnotatedMemberEqualityTest.java" ],
+  "symbols" : [ "AnnotatedMemberEqualityTest.FactoryBean#create" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfc2V0dGVySGFuZGxlLCAtZ2V0Ck1ldGhvZFByb3BlcnR5I2Rlc2VyaWFsaXplQW5kU2V0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MethodProperty#deserializeAndSet: +_setterHandle, -get",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty#deserializeAndSet", "+_setterHandle, -get" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfc2V0dGVyUmV0dXJuSGFuZGxlLCAtZ2V0Ck1ldGhvZFByb3BlcnR5I2Rlc2VyaWFsaXplU2V0QW5kUmV0dXJu",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MethodProperty#deserializeSetAndReturn: +_setterReturnHandle, -get",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty#deserializeSetAndReturn", "+_setterReturnHandle, -get" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfc2V0dGVySGFuZGxlLCAtZ2V0Ck1ldGhvZFByb3BlcnR5I3NldA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MethodProperty#set: +_setterHandle, -get",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty#set", "+_setterHandle, -get" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfc2V0dGVyUmV0dXJuSGFuZGxlLCAtZ2V0Ck1ldGhvZFByb3BlcnR5I3NldEFuZFJldHVybg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MethodProperty#setAndReturn: +_setterReturnHandle, -get",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty#setAndReturn", "+_setterReturnHandle, -get" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1tZXRob2RUeXBlCkFubm90YXRlZENvbnN0cnVjdG9yI2ludm9rZXJOdWxsYXJ5",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AnnotatedConstructor#invokerNullary: -methodType",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedConstructor.java" ],
+  "symbols" : [ "AnnotatedConstructor#invokerNullary", "-methodType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1tZXRob2RUeXBlCkFubm90YXRlZENvbnN0cnVjdG9yI2ludm9rZXJVbmFyeQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AnnotatedConstructor#invokerUnary: -methodType",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedConstructor.java" ],
+  "symbols" : [ "AnnotatedConstructor#invokerUnary", "-methodType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyTnVsbGFyeSwgLWdldApBbm5vdGF0ZWRNZXRob2QjY2FsbA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AnnotatedMethod#call: +invokerNullary, -get",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod#call", "+invokerNullary, -get" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyRml4ZWRBcml0eSwgLWdldApBbm5vdGF0ZWRNZXRob2QjY2FsbA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AnnotatedMethod#call: +invokerFixedArity, -get",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod#call", "+invokerFixedArity, -get" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyVW5hcnksIC1nZXQKQW5ub3RhdGVkTWV0aG9kI2NhbGwx",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AnnotatedMethod#call1: +invokerUnary, -get",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod#call1", "+invokerUnary, -get" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyVW5hcnksIC1nZXQKQW5ub3RhdGVkTWV0aG9kI2NhbGxPbg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AnnotatedMethod#callOn: +invokerUnary, -get",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod#callOn", "+invokerUnary, -get" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnZva2VyRml4ZWRBcml0eSwgLWdldApBbm5vdGF0ZWRNZXRob2QjY2FsbE9uV2l0aA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AnnotatedMethod#callOnWith: +invokerFixedArity, -get",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod#callOnWith", "+invokerFixedArity, -get" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitfYWNjZXNzb3JIYW5kbGUsIC1nZXQKQmVhblByb3BlcnR5V3JpdGVyI2dldA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BeanPropertyWriter#get: +_accessorHandle, -get",
+  "files" : [ "src/main/java/tools/jackson/databind/ser/BeanPropertyWriter.java" ],
+  "symbols" : [ "BeanPropertyWriter#get", "+_accessorHandle, -get" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1ldGhvZFByb3BlcnR5Izxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MethodProperty#<init>: other statements changed",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty#<init>", "other statements changed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkJlYW5Qcm9wZXJ0eVdyaXRlciM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BeanPropertyWriter#<init>: other statements changed",
+  "files" : [ "src/main/java/tools/jackson/databind/ser/BeanPropertyWriter.java" ],
+  "symbols" : [ "BeanPropertyWriter#<init>", "other statements changed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKTWV0aG9kUHJvcGVydHkjX3NldHRlcgpTZXR0ZXJIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+  "kind" : "CHANGE_FIELD_TYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change type of field MethodProperty#_setter: SetterHolder -> MethodHandle (protected)",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty#_setter", "SetterHolder -> MethodHandle (protected)" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKTWV0aG9kUHJvcGVydHkjX3NldHRlclJldHVybgpTZXR0ZXJIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+  "kind" : "CHANGE_FIELD_TYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change type of field MethodProperty#_setterReturn: SetterHolder -> MethodHandle (protected)",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty#_setterReturn", "SetterHolder -> MethodHandle (protected)" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKQW5ub3RhdGVkTWV0aG9kI19pbnZva2VyRml4ZWRBcml0eQpNZXRob2RIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+  "kind" : "CHANGE_FIELD_TYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change type of field AnnotatedMethod#_invokerFixedArity: MethodHolder -> MethodHandle (protected)",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod#_invokerFixedArity", "MethodHolder -> MethodHandle (protected)" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKQW5ub3RhdGVkTWV0aG9kI19pbnZva2VyTnVsbGFyeQpNZXRob2RIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+  "kind" : "CHANGE_FIELD_TYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change type of field AnnotatedMethod#_invokerNullary: MethodHolder -> MethodHandle (protected)",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod#_invokerNullary", "MethodHolder -> MethodHandle (protected)" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKQW5ub3RhdGVkTWV0aG9kI19pbnZva2VyVW5hcnkKTWV0aG9kSG9sZGVyIC0-IE1ldGhvZEhhbmRsZSAocHJvdGVjdGVkKQ",
+  "kind" : "CHANGE_FIELD_TYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change type of field AnnotatedMethod#_invokerUnary: MethodHolder -> MethodHandle (protected)",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod#_invokerUnary", "MethodHolder -> MethodHandle (protected)" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKQmVhblByb3BlcnR5V3JpdGVyI19hY2Nlc3NvcgpHZXR0ZXJIb2xkZXIgLT4gTWV0aG9kSGFuZGxlIChwcm90ZWN0ZWQp",
+  "kind" : "CHANGE_FIELD_TYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change type of field BeanPropertyWriter#_accessor: GetterHolder -> MethodHandle (protected)",
+  "files" : [ "src/main/java/tools/jackson/databind/ser/BeanPropertyWriter.java" ],
+  "symbols" : [ "BeanPropertyWriter#_accessor", "GetterHolder -> MethodHandle (protected)" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClVucmVmbGVjdEhhbmRsZVN1cHBsaWVyI2FzVHlwZQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field UnreflectHandleSupplier#asType",
+  "files" : [ "src/main/java/tools/jackson/databind/util/internal/UnreflectHandleSupplier.java" ],
+  "symbols" : [ "UnreflectHandleSupplier#asType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClVucmVmbGVjdEhhbmRsZVN1cHBsaWVyI2NhY2hlZEhhbmRsZQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field UnreflectHandleSupplier#cachedHandle",
+  "files" : [ "src/main/java/tools/jackson/databind/util/internal/UnreflectHandleSupplier.java" ],
+  "symbols" : [ "UnreflectHandleSupplier#cachedHandle" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I1NFVFRFUl9UWVBF",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field MethodProperty#SETTER_TYPE",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty#SETTER_TYPE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECk1ldGhvZFByb3BlcnR5I1NFVFRFUl9SRVRVUk5fVFlQRQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field MethodProperty#SETTER_RETURN_TYPE",
+  "files" : [ "src/main/java/tools/jackson/databind/deser/impl/MethodProperty.java" ],
+  "symbols" : [ "MethodProperty#SETTER_RETURN_TYPE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZENvbnN0cnVjdG9yI0lOVk9LRVJfTlVMTEFSWV9UWVBF",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotatedConstructor#INVOKER_NULLARY_TYPE",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedConstructor.java" ],
+  "symbols" : [ "AnnotatedConstructor#INVOKER_NULLARY_TYPE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZENvbnN0cnVjdG9yI0lOVk9LRVJfVU5BUllfVFlQRQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotatedConstructor#INVOKER_UNARY_TYPE",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedConstructor.java" ],
+  "symbols" : [ "AnnotatedConstructor#INVOKER_UNARY_TYPE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNJTlZPS0VSX05VTExBUllfVFlQRQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotatedMethod#INVOKER_NULLARY_TYPE",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod#INVOKER_NULLARY_TYPE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFubm90YXRlZE1ldGhvZCNJTlZPS0VSX1VOQVJZX1RZUEU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AnnotatedMethod#INVOKER_UNARY_TYPE",
+  "files" : [ "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java" ],
+  "symbols" : [ "AnnotatedMethod#INVOKER_UNARY_TYPE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkJlYW5Qcm9wZXJ0eVdyaXRlciNHRVRURVJfVFlQRQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field BeanPropertyWriter#GETTER_TYPE",
+  "files" : [ "src/main/java/tools/jackson/databind/ser/BeanPropertyWriter.java" ],
+  "symbols" : [ "BeanPropertyWriter#GETTER_TYPE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

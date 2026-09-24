@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "spring",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpDb25jdXJyZW50THJ1Q2FjaGUjbWFya0FzUmVtb3ZlZApicmFuY2ggYWRkZWQ", "QUREX1NZTUJPTApDb25jdXJyZW50THJ1Q2FjaGVUZXN0cyNyZW1vdmVSYWNpbmdXaXRoRXZpY3Rpb25Eb2VzTm90RXhjZWVkQ2FwYWNpdHk" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApDb25jdXJyZW50THJ1Q2FjaGVUZXN0cyNyZW1vdmVSYWNpbmdXaXRoRXZpY3Rpb25Eb2VzTm90RXhjZWVkQ2FwYWNpdHk" ]
+  } ],
+  "dependencies" : [ ]
+}

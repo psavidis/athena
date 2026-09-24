@@ -1,0 +1,57 @@
+{
+  "prTitle" : "Prevent double size decrement in `ConcurrentLruCache`",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpDb25jdXJyZW50THJ1Q2FjaGUjbWFya0FzUmVtb3ZlZApicmFuY2ggYWRkZWQ",
+    "description" : "Change control flow of ConcurrentLruCache#markAsRemoved: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApDb25jdXJyZW50THJ1Q2FjaGVUZXN0cyNyZW1vdmVSYWNpbmdXaXRoRXZpY3Rpb25Eb2VzTm90RXhjZWVkQ2FwYWNpdHk",
+    "description" : "Add ConcurrentLruCacheTests#removeRacingWithEvictionDoesNotExceedCapacity",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ConcurrentLruCache",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpDb25jdXJyZW50THJ1Q2FjaGUjbWFya0FzUmVtb3ZlZApicmFuY2ggYWRkZWQ",
+      "description" : "Change control flow of ConcurrentLruCache#markAsRemoved: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ConcurrentLruCacheTests",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApDb25jdXJyZW50THJ1Q2FjaGVUZXN0cyNyZW1vdmVSYWNpbmdXaXRoRXZpY3Rpb25Eb2VzTm90RXhjZWVkQ2FwYWNpdHk",
+      "description" : "Add ConcurrentLruCacheTests#removeRacingWithEvictionDoesNotExceedCapacity",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}
