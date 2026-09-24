@@ -7,7 +7,7 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-/** Steps for the reorder and return-value scenarios of {@code method_body_modification_detection.feature} (tickets #339, #351). */
+/** Steps for the reorder and return-value scenarios of {@code method_body_modification_detection.feature} (tickets #339, #351, #352). */
 public class BodyOrderSteps {
 
     private final DetectionWorld world;
@@ -48,6 +48,26 @@ public class BodyOrderSteps {
         write(world.headRoot(), className, supplier(className, method, supplied, returned));
     }
 
+    @Given("a base revision where static method {string} on class {string} returns {string} on both paths")
+    public void base_returns_on_both_paths(String method, String className, String expression) {
+        write(world.baseRoot(), className, twoPaths(className, method, expression, expression));
+    }
+
+    @Given("a head revision where static method {string} on {string} returns {string} on both paths")
+    public void head_returns_on_both_paths(String method, String className, String expression) {
+        write(world.headRoot(), className, twoPaths(className, method, expression, expression));
+    }
+
+    @Given("a base revision where static method {string} on class {string} returns {string} on one path and {string} on the other")
+    public void base_returns_on_two_paths(String method, String className, String first, String second) {
+        write(world.baseRoot(), className, twoPaths(className, method, first, second));
+    }
+
+    @Given("a head revision where static method {string} on {string} returns {string} on one path and {string} on the other")
+    public void head_returns_on_two_paths(String method, String className, String first, String second) {
+        write(world.headRoot(), className, twoPaths(className, method, first, second));
+    }
+
     @Given("a base revision where method {string} on class {string} stores {string} before returning it")
     public void base_stores_before_returning(String method, String className, String expression) {
         write(world.baseRoot(), className, calculator(className, method, expression));
@@ -67,6 +87,12 @@ public class BodyOrderSteps {
         return "public class " + className + " {\n    public static String " + method + "(String str, String first, String last) {\n"
                 + "        java.util.function.Supplier<String> s = () -> { return " + supplied + "; };\n"
                 + "        return " + returned + ";\n    }\n}\n";
+    }
+
+    private static String twoPaths(String className, String method, String first, String second) {
+        return "public class " + className + " {\n    public static String " + method + "(String str, int index) {\n"
+                + "        if (index < 0) {\n            return " + first + ";\n        }\n"
+                + "        return " + second + ";\n    }\n}\n";
     }
 
     private static String list(String className, String method, String body) {

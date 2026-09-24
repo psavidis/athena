@@ -87,8 +87,8 @@ final class BodySummary {
      * What changed between this (base) body and {@code head}'s: calls added ({@code +name}),
      * calls removed ({@code -name}), thrown types added and removed ({@code +throw Type}), a
      * moved statement, and a changed number of return statements or changed returned values
-     * (ticket #339) — at most {@value #MAX_ITEMS} items, then
-     * "…and N more". {@value #OTHER_STATEMENTS} when none of those differ.
+     * (ticket #339), each repeated item listed once as "item ×N" (ticket #352) — at most
+     * {@value #MAX_ITEMS} items, then "…and N more". {@value #OTHER_STATEMENTS} when none of those differ.
      */
     String describeChangeTo(BodySummary head) {
         List<String> items = new ArrayList<>();
@@ -109,10 +109,11 @@ final class BodySummary {
         if (items.isEmpty()) {
             return OTHER_STATEMENTS;
         }
-        if (items.size() <= MAX_ITEMS) {
-            return String.join(", ", items);
+        List<String> distinct = counted(items);
+        if (distinct.size() <= MAX_ITEMS) {
+            return String.join(", ", distinct);
         }
-        return String.join(", ", items.subList(0, MAX_ITEMS)) + " …and " + (items.size() - MAX_ITEMS) + " more";
+        return String.join(", ", distinct.subList(0, MAX_ITEMS)) + " …and " + (distinct.size() - MAX_ITEMS) + " more";
     }
 
     /**
@@ -184,6 +185,15 @@ final class BodySummary {
             return RETURN_VALUE_CHANGED;
         }
         return "return " + removedText + " -> " + addedText;
+    }
+
+    /** {@code items} with each repeated item listed once, at its first position, as "item ×N" (ticket #352). */
+    private static List<String> counted(List<String> items) {
+        Map<String, Integer> counts = new LinkedHashMap<>();
+        items.forEach(item -> counts.merge(item, 1, Integer::sum));
+        return counts.entrySet().stream()
+                .map(entry -> entry.getValue() == 1 ? entry.getKey() : entry.getKey() + " ×" + entry.getValue())
+                .toList();
     }
 
     /**

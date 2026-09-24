@@ -140,3 +140,23 @@ Feature: Method-body modification detection
     And a head revision where static method "matcher" on "RequestCache" returns "str.isEmpty() ? str : defaultValue(index)"
     When the semantic engine detects transformations between the revisions
     Then the body modification of "RequestCache#matcher" is described as "Modify body of RequestCache#matcher: +defaultValue, return fallback -> defaultValue(index)"
+
+  # Ticket #352: an item that repeats is listed once, with a count.
+
+  Scenario: The same changed return value on two paths is listed once with a count
+    Given a base revision where static method "matcher" on class "RequestCache" returns "str.isEmpty() ? str : fallback" on both paths
+    And a head revision where static method "matcher" on "RequestCache" returns "str.isEmpty() ? str : defaultValue(index)" on both paths
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "RequestCache#matcher" is described as "Modify body of RequestCache#matcher: +defaultValue, return fallback -> defaultValue(index) ×2"
+
+  Scenario: Two returns that both changed beyond summary read as one counted item
+    Given a base revision where static method "present" on class "Strings" returns "Stream.of(str).filter(x -> x != null).findFirst().get()" on both paths
+    And a head revision where static method "present" on "Strings" returns "Stream.of(str).filter(Objects::nonNull).findFirst().get()" on both paths
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "Strings#present" is described as "Modify body of Strings#present: return value changed ×2"
+
+  Scenario: Different changed return values are each listed
+    Given a base revision where static method "pick" on class "Strings" returns "first" on one path and "str" on the other
+    And a head revision where static method "pick" on "Strings" returns "first.trim()" on one path and "str.strip()" on the other
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "Strings#pick" is described as "Modify body of Strings#pick: +trim, +strip, return first -> first.trim(), return str -> str.strip()"

@@ -178,6 +178,27 @@ class BodySummaryTest {
         assertThat(describe("return f(a, t);", "return f(b, t);")).isEqualTo("return a -> b");
     }
 
+    @Test
+    void identicalItemsAreListedOnceWithACount() {
+        assertThat(describe("if (a > 0) { return f(a, t); } return f(a, t);", "if (a > 0) { return f(b, t); } return f(b, t);"))
+                .isEqualTo("return a -> b ×2");
+    }
+
+    @Test
+    void differentItemsAreEachListedInOrder() {
+        assertThat(describe("if (a > 0) { return f(a, t); } return g(a, t);", "if (a > 0) { return f(b, t); } return g(b, t);"))
+                .isEqualTo("return a -> b ×2");
+        assertThat(describe("if (a > 0) { return f(a, t); } return g(t);", "if (a > 0) { return f(b, t); } return g(null);"))
+                .isEqualTo("return a -> b, return t -> null");
+    }
+
+    @Test
+    void aCountedItemTakesOneSlotTowardTheLimit() {
+        assertThat(describe("if (a > 0) { return f(a); } return f(a);",
+                "p(); q(); r(); s(); if (a > 0) { return f(b); } return f(b);"))
+                .isEqualTo("+p, +q, +r, +s, return a -> b ×2");
+    }
+
     private static String describe(String baseBody, String headBody) {
         return summaryOf(baseBody).describeChangeTo(summaryOf(headBody));
     }
