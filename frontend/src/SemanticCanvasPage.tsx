@@ -63,6 +63,24 @@ const TERRITORY_GAP_X = 380
 const TERRITORY_GAP_Y = 230
 const COLUMNS = 3
 
+/**
+ * The territory map the Canvas shows (ticket #318): at first only the touched and new modules
+ * and the rails between them. A well-connected repository can pull in dozens of unchanged
+ * dependencies. Those, and the rails to them, appear only when the reviewer asks. A map made
+ * only of unchanged modules is shown whole.
+ */
+function visibleTerritoryMap(topology: ModuleTopology, showUnchangedDependencies: boolean): ModuleTopology {
+  const changed = topology.territories.filter((territory) => territory.status !== 'IDLE')
+  if (showUnchangedDependencies || changed.length === 0) {
+    return topology
+  }
+  const shown = new Set(changed.map((territory) => territory.moduleName))
+  return {
+    territories: changed,
+    dependencies: topology.dependencies.filter((dependency) => shown.has(dependency.from) && shown.has(dependency.to)),
+  }
+}
+
 function layoutTerritories(topology: ModuleTopology): TerritoryBox[] {
   return topology.territories.map((territory, index) => {
     const column = index % COLUMNS
@@ -157,11 +175,17 @@ export default function SemanticCanvasPage({
   // the same way `picker` already is.
   liveSessionPanel?: React.ReactNode
 }) {
-  const { data, isLoading, isError, error } = useQuery({
+  const { data: fullTopology, isLoading, isError, error } = useQuery({
     queryKey: ['module-topology'],
     queryFn: getModuleTopology,
     retry: false,
   })
+  const [showUnchangedDependencies, setShowUnchangedDependencies] = useState(false)
+  const data = useMemo(
+    () => fullTopology && visibleTerritoryMap(fullTopology, showUnchangedDependencies),
+    [fullTopology, showUnchangedDependencies],
+  )
+  const unchangedDependencyCount = fullTopology?.territories.filter((territory) => territory.status === 'IDLE').length ?? 0
   const [camera, setCamera] = useState<Camera>(INITIAL_CAMERA)
   const [focusedTerritory, setFocusedTerritory] = useState<string | undefined>(undefined)
   // Context Rewind (ticket #187), opened from the detail drawer's own Rewind affordance for a
@@ -823,6 +847,18 @@ export default function SemanticCanvasPage({
                 Reset
               </button>
             </div>
+            {!focusedTerritory && unchangedDependencyCount > 0 && (
+              <button
+                type="button"
+                aria-pressed={showUnchangedDependencies}
+                className="absolute bottom-6 left-6 rounded-full border border-canvas-line-strong bg-canvas-paper-raised px-3 py-2 text-sm text-canvas-ink-soft shadow-[var(--shadow-canvas)] hover:border-canvas-gold"
+                onClick={() => setShowUnchangedDependencies((current) => !current)}
+              >
+                {showUnchangedDependencies
+                  ? 'Hide unchanged dependencies'
+                  : `Show ${unchangedDependencyCount} unchanged ${unchangedDependencyCount === 1 ? 'dependency' : 'dependencies'}`}
+              </button>
+            )}
             {!focusedTerritory && (
               <button
                 type="button"

@@ -171,7 +171,7 @@ describe('Semantic Canvas — motion and animation pass', () => {
         },
         {
           moduleName: 'crowdness-management',
-          status: 'IDLE',
+          status: 'TOUCHED',
           fileCount: 0,
           statusSummary: 'unchanged',
           techStack: 'JAVA',
