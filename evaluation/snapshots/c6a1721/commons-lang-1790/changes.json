@@ -1,0 +1,21 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpGcmFjdGlvbiNnZXRSZWR1Y2VkRnJhY3Rpb24KYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Fraction#getReducedFraction: branch added",
+  "files" : [ "src/main/java/org/apache/commons/lang3/math/Fraction.java" ],
+  "symbols" : [ "Fraction#getReducedFraction", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApGcmFjdGlvblRlc3QjdGVzdE15UmVkdWNlZEZyYWN0aW9uRml4",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add FractionTest#testMyReducedFractionFix",
+  "files" : [ "src/test/java/org/apache/commons/lang3/math/FractionTest.java" ],
+  "symbols" : [ "FractionTest#testMyReducedFractionFix" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

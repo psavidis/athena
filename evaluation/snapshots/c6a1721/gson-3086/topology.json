@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "gson",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Change control flow of ReflectiveTypeAdapterFactory#createBoundField: branch added",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5I2NyZWF0ZUJvdW5kRmllbGQKYnJhbmNoIGFkZGVk" ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ ]
+}

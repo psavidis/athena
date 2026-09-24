@@ -1,0 +1,1027 @@
+{
+  "changedFileCount" : 148,
+  "representedFileCount" : 2,
+  "files" : [ {
+    "path" : "android/guava-testlib/src/com/google/common/collect/testing/AbstractIteratorTester.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava-testlib/src/com/google/common/collect/testing/DerivedCollectionGenerators.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava-testlib/src/com/google/common/collect/testing/google/ListMultimapTestSuiteBuilder.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava-testlib/src/com/google/common/collect/testing/google/MultimapTestSuiteBuilder.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava-testlib/src/com/google/common/collect/testing/google/MultisetNavigationTester.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava-testlib/src/com/google/common/collect/testing/google/SortedMultisetTestSuiteBuilder.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava-testlib/src/com/google/common/testing/AbstractClassInitializationTest.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava-testlib/src/com/google/common/testing/AbstractPackageSanityTests.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava-testlib/src/com/google/common/testing/FreshValueGenerator.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 28,
+    "hunkCount" : 14,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava-testlib/src/com/google/common/util/concurrent/testing/SameThreadScheduledExecutorService.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 39,
+    "hunkCount" : 17,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/base/CharMatcher.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/base/FinalizableReferenceQueue.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/base/Joiner.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 3,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/base/Optional.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/base/Predicates.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/cache/LocalCache.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 53,
+    "hunkCount" : 26,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/AbstractBiMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 24,
+    "hunkCount" : 12,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/AbstractMapEntry.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/AbstractNavigableMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 34,
+    "hunkCount" : 17,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/ArrayTable.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 18,
+    "hunkCount" : 9,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/Collections2.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 28,
+    "hunkCount" : 14,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/CompactHashMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 50,
+    "hunkCount" : 25,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/CompactHashSet.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 18,
+    "hunkCount" : 9,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/ContiguousSet.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 12,
+    "hunkCount" : 6,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/Cut.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/DenseImmutableTable.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/EnumMultiset.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/FilteredEntryMultimap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 8,
+    "hunkCount" : 4,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/FilteredKeyMultimap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 8,
+    "hunkCount" : 4,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/ForwardingMultiset.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/ImmutableMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 10,
+    "hunkCount" : 5,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/ImmutableMultimap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/ImmutableMultiset.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/ImmutableRangeSet.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/ImmutableSortedMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/Iterators.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/Lists.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 42,
+    "hunkCount" : 21,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/MapMakerInternalMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 78,
+    "hunkCount" : 39,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/Maps.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 72,
+    "hunkCount" : 36,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/MultimapBuilder.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 23,
+    "hunkCount" : 10,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/Multimaps.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 20,
+    "hunkCount" : 10,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/Multisets.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 20,
+    "hunkCount" : 10,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/Ordering.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/RegularImmutableAsList.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/Sets.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 17,
+    "hunkCount" : 8,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/Streams.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/Synchronized.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 84,
+    "hunkCount" : 42,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/Tables.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/TransformedListIterator.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/TreeRangeMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 14,
+    "hunkCount" : 7,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/collect/TreeTraverser.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/eventbus/EventBus.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/eventbus/SubscriberExceptionContext.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/graph/AbstractUndirectedNetworkConnections.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/graph/ImmutableGraph.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/graph/ImmutableNetwork.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/graph/ImmutableValueGraph.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/graph/IncidentEdgeSet.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/graph/MultiEdgesConnecting.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/graph/StandardNetwork.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 8,
+    "hunkCount" : 4,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/graph/StandardValueGraph.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/hash/AbstractNonStreamingHashFunction.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/io/BaseEncoding.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 10,
+    "hunkCount" : 5,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/io/ByteSource.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/io/LineBuffer.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/io/LineReader.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/reflect/ClassPath.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/reflect/Invokable.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/reflect/TypeToken.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/util/concurrent/CycleDetectingLockFactory.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/util/concurrent/ListenableFutureTask.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/util/concurrent/RateLimiter.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "android/guava/src/com/google/common/util/concurrent/SmoothRateLimiter.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava-testlib/src/com/google/common/collect/testing/AbstractIteratorTester.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava-testlib/src/com/google/common/collect/testing/DerivedCollectionGenerators.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava-testlib/src/com/google/common/collect/testing/google/ListMultimapTestSuiteBuilder.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava-testlib/src/com/google/common/collect/testing/google/MultimapTestSuiteBuilder.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava-testlib/src/com/google/common/collect/testing/google/MultisetNavigationTester.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava-testlib/src/com/google/common/collect/testing/google/SortedMultisetTestSuiteBuilder.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava-testlib/src/com/google/common/testing/AbstractClassInitializationTest.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava-testlib/src/com/google/common/testing/AbstractPackageSanityTests.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava-testlib/src/com/google/common/testing/FreshValueGenerator.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 28,
+    "hunkCount" : 14,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava-testlib/src/com/google/common/util/concurrent/testing/SameThreadScheduledExecutorService.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 39,
+    "hunkCount" : 17,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/base/CharMatcher.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/base/FinalizableReferenceQueue.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/base/Joiner.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 3,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/base/Optional.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/base/Predicates.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/cache/LocalCache.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 55,
+    "hunkCount" : 27,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/AbstractBiMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 26,
+    "hunkCount" : 13,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/AbstractMapEntry.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/AbstractNavigableMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 34,
+    "hunkCount" : 17,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/ArrayTable.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 18,
+    "hunkCount" : 9,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/Collections2.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 32,
+    "hunkCount" : 16,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/CompactHashMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 62,
+    "hunkCount" : 31,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/CompactHashSet.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 20,
+    "hunkCount" : 10,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/ContiguousSet.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 12,
+    "hunkCount" : 6,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/Cut.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/DenseImmutableTable.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/EnumMultiset.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/FilteredEntryMultimap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 8,
+    "hunkCount" : 4,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/FilteredKeyMultimap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 8,
+    "hunkCount" : 4,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/ForwardingMultiset.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/ImmutableMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 10,
+    "hunkCount" : 5,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/ImmutableMultimap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/ImmutableMultiset.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/ImmutableRangeSet.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/ImmutableSortedMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/Iterators.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/Lists.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 42,
+    "hunkCount" : 21,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/MapMakerInternalMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 78,
+    "hunkCount" : 39,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/Maps.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 78,
+    "hunkCount" : 39,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/MultimapBuilder.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 23,
+    "hunkCount" : 10,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/Multimaps.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 24,
+    "hunkCount" : 12,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/Multisets.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 22,
+    "hunkCount" : 11,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/Ordering.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/RegularImmutableAsList.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/Sets.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 17,
+    "hunkCount" : 8,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/Streams.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/Synchronized.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 120,
+    "hunkCount" : 60,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/Tables.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/TransformedListIterator.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/TreeRangeMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 14,
+    "hunkCount" : 7,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/TreeTraverser.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/eventbus/EventBus.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/eventbus/SubscriberExceptionContext.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/graph/AbstractUndirectedNetworkConnections.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/graph/ImmutableGraph.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/graph/ImmutableNetwork.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/graph/ImmutableValueGraph.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/graph/IncidentEdgeSet.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/graph/MultiEdgesConnecting.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/graph/StandardNetwork.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 8,
+    "hunkCount" : 4,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/graph/StandardValueGraph.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/hash/AbstractNonStreamingHashFunction.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/io/BaseEncoding.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 10,
+    "hunkCount" : 5,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/io/ByteSource.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/io/LineBuffer.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/io/LineReader.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/reflect/ClassPath.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/reflect/Invokable.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/reflect/TypeToken.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/util/concurrent/CycleDetectingLockFactory.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/util/concurrent/ListenableFutureTask.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/util/concurrent/RateLimiter.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/util/concurrent/SmoothRateLimiter.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  } ]
+}

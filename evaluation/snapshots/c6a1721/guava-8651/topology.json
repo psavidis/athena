@@ -1,0 +1,49 @@
+{
+  "territories" : [ {
+    "moduleName" : "guava-tests",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · Modify body of LineBufferTest#bufferHelper: other statements changed",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCkxpbmVCdWZmZXJUZXN0I2J1ZmZlckhlbHBlcgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ" ],
+    "testChangeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCkxpbmVCdWZmZXJUZXN0I2J1ZmZlckhlbHBlcgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ" ]
+  }, {
+    "moduleName" : "guava",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "guava-testlib",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "failureaccess",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "guava-tests",
+    "to" : "guava"
+  }, {
+    "from" : "guava-tests",
+    "to" : "guava-testlib"
+  }, {
+    "from" : "guava-tests",
+    "to" : "failureaccess"
+  } ]
+}

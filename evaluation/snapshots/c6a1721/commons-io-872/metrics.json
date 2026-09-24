@@ -1,0 +1,48 @@
+{
+  "diff": {
+    "files": 8,
+    "java_files": 8,
+    "non_java_files": 0,
+    "substantive_java_files": 8,
+    "copyright_only_java_files": 0,
+    "production_java_files": 5,
+    "java_hunks": 28,
+    "java_lines_changed": 301
+  },
+  "athena": {
+    "changes": 34,
+    "changes_by_kind": {
+      "CHANGE_CONTROL_FLOW": 2,
+      "CHANGE_METHOD_SIGNATURE": 1,
+      "REMOVE_SYMBOL": 4,
+      "ADD_SYMBOL": 15,
+      "MODIFY_METHOD_BODY": 7,
+      "RENAME_FIELD": 1,
+      "ADD_FIELD": 4
+    },
+    "changes_by_category": {
+      "BEHAVIORAL": 2,
+      "STRUCTURAL": 25,
+      "UNKNOWN": 7
+    },
+    "semantic_entries": 23,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 19,
+      "RESPONSIBILITY": 4
+    },
+    "inferred_entries": 4,
+    "module_territories": 1,
+    "module_dependencies": 0,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 7,
+    "substantive_java_file_coverage": 0.88,
+    "production_java_files_represented": 4,
+    "production_java_file_coverage": 0.8,
+    "unrepresented_production_java_files": [
+      "src/main/java/org/apache/commons/io/Buffers.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

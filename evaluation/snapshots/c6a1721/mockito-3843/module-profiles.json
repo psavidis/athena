@@ -1,0 +1,118 @@
+{
+  "osgi-tests" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public class ForeignType {}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "mockito-integration-tests/osgi-tests/src/depBundle/java/org/mockito/osgitest/depbundle/ForeignType.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+public class SuperClassReferencingOtherBundle {\n \n+    public ForeignType foreignType() {\n+        return null;\n+    }\n+}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "mockito-integration-tests/osgi-tests/src/otherBundle/java/org/mockito/osgitest/otherbundle/SuperClassReferencingOtherBundle.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public class SubClassInTestBundle extends SuperClassReferencingOtherBundle {}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "mockito-integration-tests/osgi-tests/src/testBundle/java/org/mockito/osgitest/testbundle/SubClassInTestBundle.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public ForeignType foreignType() {\n+        return null;\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "mockito-integration-tests/osgi-tests/src/otherBundle/java/org/mockito/osgitest/otherbundle/SuperClassReferencingOtherBundle.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in MockSubclassAcrossBundlesTest",
+      "conceptDescription" : "2 changes in test code of MockSubclassAcrossBundlesTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+public class MockSubclassAcrossBundlesTest {\n \n+    // Regression test for issue #2694. The mocked subclass lives in this bundle, but its superclass\n+    // lives in another bundle and exposes a type from a third bundle that this bundle does not\n+    // import. The subclass mock maker must define the generated mock with a class loader that can\n+    // also reach the superclass' bundle; otherwise resolving the mock's members fails with\n+    // NoClassDefFoundError. The regression only affects the subclass mock maker, so it is selected\n+    // explicitly here.\n+    @Test\n+    public void can_mock_subclass_whose_superclass_lives_in_another_bundle() {\n+        SubClassInTestBundle mock =\n+                mock(SubClassInTestBundle.class, withSettings().mockMaker(MockMakers.SUBCLASS));\n+\n+        // Resolving the inherited foreignType() method loads its return type through the mock's\n+        // class loader. Reflection-based frameworks do this routinely; before the fix it threw\n+        // NoClassDefFoundError: org/mockito/osgitest/depbundle/ForeignType.\n+        assertNotNull(mock.getClass().getMethods());\n+    }\n+}", "+@Test\n+    public void can_mock_subclass_whose_superclass_lives_in_another_bundle() {\n+        SubClassInTestBundle mock =\n+                mock(SubClassInTestBundle.class, withSettings().mockMaker(MockMakers.SUBCLASS));\n \n+        // Resolving the inherited foreignType() method loads its return type through the mock's\n+        // class loader. Reflection-based frameworks do this routinely; before the fix it threw\n+        // NoClassDefFoundError: org/mockito/osgitest/depbundle/ForeignType.\n+        assertNotNull(mock.getClass().getMethods());\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "mockito-integration-tests/osgi-tests/src/testBundle/java/org/mockito/osgitest/testbundle/MockSubclassAcrossBundlesTest.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in OsgiTest",
+      "conceptDescription" : "1 change in test code of OsgiTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private static Class<?>[] getTestClasses() throws Exception {\n         // The tests could not use 'Plugins' since 'org.mockito.internal' package is not exported.\n         // Making the decision which tests to run depending on mock maker instance.\n         if (Plugins.getMockMaker() instanceof InlineMockMaker) {\n             return new Class<?>[] {\n                 loadTestClass(\"SimpleMockTest\"),\n                 loadTestClass(\"MockNonPublicClassTest\"),\n-                loadTestClass(\"MockClassInOtherBundleTest\")\n+                loadTestClass(\"MockClassInOtherBundleTest\"),\n+                loadTestClass(\"MockSubclassAcrossBundlesTest\")\n             };\n         } else {\n             return new Class<?>[] {\n                 loadTestClass(\"SimpleMockTest\"),\n                 loadTestClass(\"MockNonPublicClassFailsTest\"),\n-                loadTestClass(\"MockClassInOtherBundleTest\")\n+                loadTestClass(\"MockClassInOtherBundleTest\"),\n+                loadTestClass(\"MockSubclassAcrossBundlesTest\")\n             };\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "mockito-integration-tests/osgi-tests/src/test/java/org/mockito/osgitest/OsgiTest.java" ],
+      "groupedMoveCount" : 1
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+public class ForeignType {}", "+public class SuperClassReferencingOtherBundle {\n \n+    public ForeignType foreignType() {\n+        return null;\n+    }\n+}", "-\n+public class SubClassInTestBundle extends SuperClassReferencingOtherBundle {}", "-\n+public ForeignType foreignType() {\n+        return null;\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "mockito-integration-tests/osgi-tests/src/depBundle/java/org/mockito/osgitest/depbundle/ForeignType.java", "mockito-integration-tests/osgi-tests/src/otherBundle/java/org/mockito/osgitest/otherbundle/SuperClassReferencingOtherBundle.java", "mockito-integration-tests/osgi-tests/src/testBundle/java/org/mockito/osgitest/testbundle/SubClassInTestBundle.java" ],
+      "groupedMoveCount" : 4
+    } ]
+  },
+  "mockito-core" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private static Collection<Class<?>> getAllTypes(Class<?> type) {\n+        // Include the mocked type and all of its superclasses so that the generated mock is\n+        // defined by a class loader that can reach the defining loader of every supertype. If a\n+        // superclass lives in a different class loader than the mocked type (for example, in a\n+        // separate OSGi bundle) and references a type only that loader can see, omitting it makes\n+        // the mock fail to load with a NoClassDefFoundError. When all supertypes share one class\n+        // loader, appendMostSpecific collapses them back to it, so this is free in the common case.\n+        Collection<Class<?>> types = new LinkedHashSet<>();\n+        for (Class<?> superType = type; superType != null; superType = superType.getSuperclass()) {\n+            types.add(superType);\n+        }\n+        return types;\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "mockito-core/src/main/java/org/mockito/internal/creation/bytebuddy/SubclassBytecodeGenerator.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n     public <T> Class<? extends T> mockClass(MockFeatures<T> features) {\n         MultipleParentClassLoader.Builder loaderBuilder =\n                 new MultipleParentClassLoader.Builder()\n-                        .appendMostSpecific(features.mockedType)\n+                        .appendMostSpecific(getAllTypes(features.mockedType))\n                         .appendMostSpecific(features.interfaces)\n                         .appendMostSpecific(\n                                 MockAccess.class, DispatcherDefaultingToRealMethod.class)\n                         .appendMostSpecific(\n                                 MockMethodInterceptor.class,\n                                 MockMethodInterceptor.ForHashCode.class,\n                                 MockMethodInterceptor.ForEquals.class);\n         ClassLoader contextLoader = currentThread().getContextClassLoader();\n         boolean shouldIncludeContextLoader = true;\n         if (needsSamePackageClassLoader(features)) {\n             // For the generated class to access package-private methods, it must be defined by the\n             // same classloader as its type. All the other added classloaders are required to load\n             // the type; if the context classloader is a child of the mocked type's defining\n             // classloader, it will break a mock that would have worked. Check if the context class\n             // loader is a child of the classloader we'd otherwise use, and possibly skip it.\n             ClassLoader candidateLoader = loaderBuilder.build();\n             for (ClassLoader parent = contextLoader; parent != null; parent = parent.getParent()) {\n                 if (parent == candidateLoader) {\n                     shouldIncludeContextLoader = false;\n                     break;\n                 }\n             }\n         }\n         if (shouldIncludeContextLoader) {\n             loaderBuilder = loaderBuilder.appendMostSpecific(contextLoader);\n         }\n         ClassLoader classLoader = loaderBuilder.build();\n \n         // If Mockito does not need to create a new class loader and if a mock is not based on a JDK\n         // type, we attempt to define the mock class in the user runtime package to allow for\n         // mocking package private types and methods.\n         // This also requires that we are able to access the package of the mocked class either by\n         // override or explicit privilege given by the target package being opened to Mockito.\n         boolean localMock =\n                 classLoader == features.mockedType.getClassLoader()\n                         && features.serializableMode != SerializableMode.ACROSS_CLASSLOADERS\n                         && !isComingFromJDK(features.mockedType)\n                         && !GraalImageCode.getCurrent().isDefined()\n                         && handler.canOpen(features.mockedType)\n                         && handler.canAddRead(features.mockedType);\n         String typeName;\n         if (localMock) {\n             typeName = features.mockedType.getName();\n         } else {\n             typeName = CODEGEN_PACKAGE + features.mockedType.getSimpleName();\n         }\n         String name =\n                 String.format(\n                         \"%s$%s$%s\",\n                         typeName,\n                         \"MockitoMock\",\n                         GraalImageCode.getCurrent().isDefined()\n                                 ? suffix(features)\n                                 : RandomString.make());\n \n         if (localMock) {\n             handler.openFromTo(features.mockedType, MockAccess.class);\n             handler.readFromTo(features.mockedType, MockAccess.class);\n             handler.exportFromTo(features.mockedType, MockAccess.class);\n             handler.exportFromTo(MockAccess.class, features.mockedType);\n             for (Class<?> iFace : features.interfaces) {\n                 handler.exportFromTo(iFace, features.mockedType);\n             }\n         } else {\n             assertVisibility(features.mockedType);\n             for (Class<?> iFace : features.interfaces) {\n                 assertVisibility(iFace);\n             }\n             classLoader = handler.toCodegenLoader(classLoader);\n             handler.exportFromTo(MockAccess.class, classLoader);\n             handler.exportFromTo(features.mockedType, classLoader);\n             for (Class<?> iFace : features.interfaces) {\n                 handler.exportFromTo(iFace, classLoader);\n             }\n         }\n         // Graal requires that the byte code of classes is identical what requires that interfaces\n         // are always defined in the exact same order. Therefore, we add an interface to the\n         // interface set if not mocking a class when Graal is active.\n         @SuppressWarnings(\"unchecked\")\n         Class<T> target =\n                 GraalImageCode.getCurrent().isDefined() && features.mockedType.isInterface()\n                         ? (Class<T>) Object.class\n                         : features.mockedType;\n         // If we create a mock for an interface with additional interfaces implemented, we do not\n         // want to preserve the annotations of either interface. The caching mechanism does not\n         // consider the order of these interfaces and the same mock class might be reused for\n         // either order. Also, it does not have clean semantics as annotations are not normally\n         // preserved for interfaces in Java.\n         Annotation[] annotationsOnType;\n         if (features.stripAnnotations) {\n             annotationsOnType = new Annotation[0];\n         } else if (!features.mockedType.isInterface() || features.interfaces.isEmpty()) {\n             annotationsOnType = features.mockedType.getAnnotations();\n         } else {\n             annotationsOnType = new Annotation[0];\n         }\n         DynamicType.Builder<T> builder =\n                 byteBuddy\n                         .subclass(target)\n                         .name(name)\n                         .ignoreAlso(BytecodeGenerator.isGroovyMethod(false))\n                         .annotateType(annotationsOnType)\n                         .implement(\n                                 new ArrayList<>(\n                                         GraalImageCode.getCurrent().isDefined()\n                                                 ? sortedSerializable(\n                                                         features.interfaces,\n                                                         GraalImageCode.getCurrent().isDefined()\n                                                                         && features.mockedType\n                                                                                 .isInterface()\n                                                                 ? features.mockedType\n                                                                 : void.class)\n                                                 : features.interfaces))\n                         .method(matcher)\n                         .intercept(dispatcher)\n                         .transform(withModifiers(SynchronizationState.PLAIN))\n                         .attribute(\n                                 features.stripAnnotations\n                                         ? MethodAttributeAppender.NoOp.INSTANCE\n                                         : INCLUDING_RECEIVER)\n                         .serialVersionUid(42L)\n                         .defineField(\"mockitoInterceptor\", MockMethodInterceptor.class, PRIVATE)\n                         .implement(MockAccess.class)\n                         .intercept(FieldAccessor.ofBeanProperty())\n                         .method(isHashCode())\n                         .intercept(hashCode)\n                         .method(isEquals())\n                         .intercept(equals);\n         if (features.serializableMode == SerializableMode.ACROSS_CLASSLOADERS) {\n             builder =\n                     builder.implement(CrossClassLoaderSerializableMock.class)\n                             .intercept(writeReplace);\n         }\n         if (readReplace != null) {\n             builder =\n                     builder.defineMethod(\"readObject\", void.class, Visibility.PRIVATE)\n                             .withParameters(ObjectInputStream.class)\n                             .throwing(ClassNotFoundException.class, IOException.class)\n                             .intercept(readReplace);\n         }\n         if (name.startsWith(CODEGEN_PACKAGE) || classLoader instanceof MultipleParentClassLoader) {\n             builder =\n                     builder.ignoreAlso(\n                             isPackagePrivate()\n                                     .or(returns(isPackagePrivate()))\n                                     .or(hasParameters(whereAny(hasType(isPackagePrivate())))));\n         }\n         ClassLoadingStrategy<ClassLoader> strategy;\n         if (GraalImageCode.getCurrent().isDefined()) {\n             strategy = Default.WRAPPER;\n         } else if (localMock) {\n             strategy = handler.classLoadingStrategy(features.mockedType);\n         } else if (classLoader == MockAccess.class.getClassLoader()) {\n             strategy = handler.classLoadingStrategy(InjectionBase.class);\n         } else {\n             strategy = handler.classLoadingStrategy();\n         }\n         return builder.make().load(classLoader, strategy).getLoaded();\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "mockito-core/src/main/java/org/mockito/internal/creation/bytebuddy/SubclassBytecodeGenerator.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+private static Collection<Class<?>> getAllTypes(Class<?> type) {\n+        // Include the mocked type and all of its superclasses so that the generated mock is\n+        // defined by a class loader that can reach the defining loader of every supertype. If a\n+        // superclass lives in a different class loader than the mocked type (for example, in a\n+        // separate OSGi bundle) and references a type only that loader can see, omitting it makes\n+        // the mock fail to load with a NoClassDefFoundError. When all supertypes share one class\n+        // loader, appendMostSpecific collapses them back to it, so this is free in the common case.\n+        Collection<Class<?>> types = new LinkedHashSet<>();\n+        for (Class<?> superType = type; superType != null; superType = superType.getSuperclass()) {\n+            types.add(superType);\n+        }\n+        return types;\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "mockito-core/src/main/java/org/mockito/internal/creation/bytebuddy/SubclassBytecodeGenerator.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  }
+}

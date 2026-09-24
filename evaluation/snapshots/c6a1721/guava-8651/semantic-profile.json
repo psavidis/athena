@@ -1,0 +1,14 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in LineBufferTest",
+    "conceptDescription" : "1 change in test code of LineBufferTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " private static List<String> bufferHelper(String input, int chunk) throws IOException {\n     List<String> lines = new ArrayList<>();\n     LineBuffer lineBuf =\n         new LineBuffer() {\n           @Override\n-          protected void handleLine(String line, String end) {\n+          void handleLine(String line, String end) {\n             lines.add(line + end);\n           }\n         };\n     char[] chars = input.toCharArray();\n     int off = 0;\n     while (off < chars.length) {\n       int len = min(chars.length, off + chunk) - off;\n       lineBuf.add(chars, off, len);\n       off += len;\n     }\n     lineBuf.finish();\n     return lines;\n   }", " private static List<String> bufferHelper(String input, int chunk) throws IOException {\n     List<String> lines = new ArrayList<>();\n     LineBuffer lineBuf =\n         new LineBuffer() {\n           @Override\n-          protected void handleLine(String line, String end) {\n+          void handleLine(String line, String end) {\n             lines.add(line + end);\n           }\n         };\n     char[] chars = input.toCharArray();\n     int off = 0;\n     while (off < chars.length) {\n       int len = min(chars.length, off + chunk) - off;\n       lineBuf.add(chars, off, len);\n       off += len;\n     }\n     lineBuf.finish();\n     return lines;\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "android/guava-tests/test/com/google/common/io/LineBufferTest.java", "guava-tests/test/com/google/common/io/LineBufferTest.java" ],
+    "groupedMoveCount" : 1
+  } ]
+}

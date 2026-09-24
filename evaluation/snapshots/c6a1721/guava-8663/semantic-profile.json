@@ -1,0 +1,36 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Control Flow",
+    "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Override\n   public int read(char[] cbuf, int off, int len) throws IOException {\n     checkNotNull(cbuf);\n-    if (current == null) {\n-      return -1;\n-    }\n-    int result = current.read(cbuf, off, len);\n-    if (result == -1) {\n+    while (current != null) {\n+      int result = current.read(cbuf, off, len);\n+      if (result != -1) {\n+        return result;\n+      }\n       advance();\n-      return read(cbuf, off, len);\n     }\n-    return result;\n+    return -1;\n   }", " @Override\n   public int read(char[] cbuf, int off, int len) throws IOException {\n     checkNotNull(cbuf);\n-    if (current == null) {\n-      return -1;\n-    }\n-    int result = current.read(cbuf, off, len);\n-    if (result == -1) {\n+    while (current != null) {\n+      int result = current.read(cbuf, off, len);\n+      if (result != -1) {\n+        return result;\n+      }\n       advance();\n-      return read(cbuf, off, len);\n     }\n-    return result;\n+    return -1;\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "android/guava/src/com/google/common/io/MultiReader.java", "guava/src/com/google/common/io/MultiReader.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in MultiReaderTest",
+    "conceptDescription" : "1 change in test code of MultiReaderTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+public void testRead_noStackOverflow_manyEmptySources() throws IOException {\n+    try (Reader joinedReader =\n+        CharSource.concat(nCopies(100_000, CharSource.empty())).openStream()) {\n+      assertEquals(-1, joinedReader.read());\n+    }\n+  }", "-\n+public void testRead_noStackOverflow_manyEmptySources() throws IOException {\n+    try (Reader joinedReader =\n+        CharSource.concat(nCopies(100_000, CharSource.empty())).openStream()) {\n+      assertEquals(-1, joinedReader.read());\n+    }\n+  }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "android/guava-tests/test/com/google/common/io/MultiReaderTest.java", "guava-tests/test/com/google/common/io/MultiReaderTest.java" ],
+    "groupedMoveCount" : 1
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Modify Capability",
+    "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ " @Override\n   public int read(char[] cbuf, int off, int len) throws IOException {\n     checkNotNull(cbuf);\n-    if (current == null) {\n-      return -1;\n-    }\n-    int result = current.read(cbuf, off, len);\n-    if (result == -1) {\n+    while (current != null) {\n+      int result = current.read(cbuf, off, len);\n+      if (result != -1) {\n+        return result;\n+      }\n       advance();\n-      return read(cbuf, off, len);\n     }\n-    return result;\n+    return -1;\n   }", " @Override\n   public int read(char[] cbuf, int off, int len) throws IOException {\n     checkNotNull(cbuf);\n-    if (current == null) {\n-      return -1;\n-    }\n-    int result = current.read(cbuf, off, len);\n-    if (result == -1) {\n+    while (current != null) {\n+      int result = current.read(cbuf, off, len);\n+      if (result != -1) {\n+        return result;\n+      }\n       advance();\n-      return read(cbuf, off, len);\n     }\n-    return result;\n+    return -1;\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "android/guava/src/com/google/common/io/MultiReader.java", "guava/src/com/google/common/io/MultiReader.java" ],
+    "groupedMoveCount" : 0
+  } ]
+}

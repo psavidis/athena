@@ -1,0 +1,13 @@
+[ {
+  "entity" : "RollingCalendar",
+  "description" : "Change control flow of RollingCalendar#isCollisionFree: branch added"
+}, {
+  "entity" : "RollingCalendar",
+  "description" : "Change control flow of RollingCalendar#periodBarriersCrossed: branch added"
+}, {
+  "entity" : "RollingCalendar",
+  "description" : "Change control flow of RollingCalendar#innerGetEndOfNextNthPeriod: branch added"
+}, {
+  "entity" : "RollingCalendarTest",
+  "description" : "Add RollingCalendarTest#testVaryingNumberOfHalfDailyPeriods"
+} ]

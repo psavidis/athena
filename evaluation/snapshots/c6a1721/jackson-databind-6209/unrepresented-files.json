@@ -1,0 +1,19 @@
+{
+  "changedFileCount" : 8,
+  "representedFileCount" : 6,
+  "files" : [ {
+    "path" : "release-notes/CREDITS",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "release-notes/VERSION",
+    "status" : "MODIFIED",
+    "linesChanged" : 3,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

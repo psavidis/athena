@@ -1,0 +1,157 @@
+{
+  "prTitle" : "Support HALF_DAY periodicity for AM/PM date patterns",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 3,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 3,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSb2xsaW5nQ2FsZW5kYXIjaXNDb2xsaXNpb25GcmVlCmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of RollingCalendar#isCollisionFree: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSb2xsaW5nQ2FsZW5kYXIjcGVyaW9kQmFycmllcnNDcm9zc2VkCmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of RollingCalendar#periodBarriersCrossed: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSb2xsaW5nQ2FsZW5kYXIjaW5uZXJHZXRFbmRPZk5leHROdGhQZXJpb2QKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of RollingCalendar#innerGetEndOfNextNthPeriod: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApSb2xsaW5nQ2FsZW5kYXJUZXN0I3Rlc3RWYXJ5aW5nTnVtYmVyT2ZIYWxmRGFpbHlQZXJpb2Rz",
+    "description" : "Add RollingCalendarTest#testVaryingNumberOfHalfDailyPeriods",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRFcXVhbHMsICtnZXRQZXJpb2RpY2l0eVR5cGUKUm9sbGluZ0NhbGVuZGFyVGVzdCN0ZXN0UGVyaW9kaWNpdHk",
+    "description" : "Modify body of RollingCalendarTest#testPeriodicity: +assertEquals, +getPeriodicityType",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGVja1BlcmlvZEJhcnJpZXJzQ3Jvc3NlZApSb2xsaW5nQ2FsZW5kYXJUZXN0I3Rlc3RCYXJyaWVyQ3Jvc3NpbmdDb21wdXRhdGlvbg",
+    "description" : "Modify body of RollingCalendarTest#testBarrierCrossingComputation: +checkPeriodBarriersCrossed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGVja0NvbGxpc2lvbkZyZWVuZXNzClJvbGxpbmdDYWxlbmRhclRlc3QjdGVzdENvbGxpc2lvbkZyZWVuZXM",
+    "description" : "Modify body of RollingCalendarTest#testCollisionFreenes: +checkCollisionFreeness",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "RollingCalendar",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSb2xsaW5nQ2FsZW5kYXIjaXNDb2xsaXNpb25GcmVlCmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of RollingCalendar#isCollisionFree: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSb2xsaW5nQ2FsZW5kYXIjcGVyaW9kQmFycmllcnNDcm9zc2VkCmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of RollingCalendar#periodBarriersCrossed: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSb2xsaW5nQ2FsZW5kYXIjaW5uZXJHZXRFbmRPZk5leHROdGhQZXJpb2QKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of RollingCalendar#innerGetEndOfNextNthPeriod: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RollingCalendarTest",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApSb2xsaW5nQ2FsZW5kYXJUZXN0I3Rlc3RWYXJ5aW5nTnVtYmVyT2ZIYWxmRGFpbHlQZXJpb2Rz",
+      "description" : "Add RollingCalendarTest#testVaryingNumberOfHalfDailyPeriods",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRFcXVhbHMsICtnZXRQZXJpb2RpY2l0eVR5cGUKUm9sbGluZ0NhbGVuZGFyVGVzdCN0ZXN0UGVyaW9kaWNpdHk",
+      "description" : "Modify body of RollingCalendarTest#testPeriodicity: +assertEquals, +getPeriodicityType",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGVja1BlcmlvZEJhcnJpZXJzQ3Jvc3NlZApSb2xsaW5nQ2FsZW5kYXJUZXN0I3Rlc3RCYXJyaWVyQ3Jvc3NpbmdDb21wdXRhdGlvbg",
+      "description" : "Modify body of RollingCalendarTest#testBarrierCrossingComputation: +checkPeriodBarriersCrossed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGVja0NvbGxpc2lvbkZyZWVuZXNzClJvbGxpbmdDYWxlbmRhclRlc3QjdGVzdENvbGxpc2lvbkZyZWVuZXM",
+      "description" : "Modify body of RollingCalendarTest#testCollisionFreenes: +checkCollisionFreeness",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}
