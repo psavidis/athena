@@ -105,6 +105,8 @@ public final class ChangeGrouper {
                     + (key.involvedDescriptions.size() > 1 ? ": " + key.involvedDescriptions.get(1) : "");
             case PULL_UP_FIELD -> "Pull up field " + pullUp(key.involvedDescriptions);
             case PULL_UP_SYMBOL -> "Pull up " + pullUp(key.involvedDescriptions);
+            case CHANGE_FIELD_VALUE -> "Change value of " + key.involvedDescriptions.get(0)
+                    + ": " + key.involvedDescriptions.get(1);
             case CHANGE_MODIFIERS -> "Change modifiers of " + key.involvedDescriptions.get(0)
                     + ": " + key.involvedDescriptions.get(1);
         };

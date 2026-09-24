@@ -47,6 +47,7 @@ public final class StructuralTaxonomyClassifier {
             case MODIFY_METHOD_BODY -> "modify-body";
             case PULL_UP_FIELD, PULL_UP_SYMBOL -> "pull-up";
             case CHANGE_MODIFIERS -> "change-modifiers";
+            case CHANGE_FIELD_VALUE -> "change-field-value";
         };
     }
 

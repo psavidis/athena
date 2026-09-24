@@ -41,5 +41,8 @@ public enum TransformationKind {
     PULL_UP_SYMBOL,
     // A declaration's visibility or modifier keywords changed (ticket #313). Involved:
     // "Type#member" (or "Type" for a class), then the delta, e.g. "+final".
-    CHANGE_MODIFIERS
+    CHANGE_MODIFIERS,
+    // A field's initializer changed (ticket #316). Involved: "Type#field", then a summary,
+    // e.g. "+HALF_DAY" or "100 -> 200".
+    CHANGE_FIELD_VALUE
 }
