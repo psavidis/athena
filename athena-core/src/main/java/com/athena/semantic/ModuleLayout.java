@@ -2,12 +2,17 @@ package com.athena.semantic;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,6 +35,8 @@ public final class ModuleLayout {
 
     public static final String ROOT = "(root)";
 
+    private static final Set<String> NEVER_MODULE_DIRECTORIES = Set.of("node_modules", "target", "build", "src", "out", "bin");
+    private static final int MAX_MODULE_DEPTH = 5;
     private static final List<String> BUILD_DESCRIPTORS = List.of("pom.xml", "build.gradle", "build.gradle.kts", "package.json");
     private static final Pattern MAVEN_PARENT = Pattern.compile("<parent>.*?</parent>", Pattern.DOTALL);
     private static final Pattern MAVEN_ARTIFACT_ID = Pattern.compile("<artifactId>\\s*([\\w.-]+)\\s*</artifactId>");
@@ -38,6 +45,7 @@ public final class ModuleLayout {
 
     private final List<Path> roots;
     private final Map<String, Optional<String>> descriptorDirectoryCache = new ConcurrentHashMap<>();
+    private List<String> moduleDirectories;
 
     private ModuleLayout(List<Path> roots) {
         this.roots = List.copyOf(roots);
@@ -61,12 +69,73 @@ public final class ModuleLayout {
         return nearestDescriptorDirectory(directory).orElseGet(() -> leadingSegment(normalized));
     }
 
-    /** The name of the module whose directory is {@code directory}, as {@link #directoryOf} returns it. */
+    /**
+     * The name of the module whose directory is {@code directory}, as {@link #directoryOf} returns
+     * it: the directory's own name, unique within the repository (ticket #317). When another
+     * module directory has the same name, the one whose whole path is that name keeps it, and
+     * each other one gets its shortest distinguishing parent path in parentheses —
+     * {@code guava} and {@code guava (android)}. Parent segments are joined with {@code :}, never
+     * {@code /}, since module names appear in URL paths.
+     */
     public String nameOf(String directory) {
         if (directory.isEmpty()) {
             return projectName().orElse(ROOT);
         }
-        return directory.substring(directory.lastIndexOf('/') + 1);
+        List<String> segments = List.of(directory.split("/"));
+        String name = segments.get(segments.size() - 1);
+        List<String> namesakes = moduleDirectories().stream()
+                .filter(other -> !other.equals(directory) && (other.equals(name) || other.endsWith("/" + name)))
+                .toList();
+        if (namesakes.isEmpty() || segments.size() == 1) {
+            return name;
+        }
+        for (int parents = 1; parents < segments.size(); parents++) {
+            String suffix = String.join("/", segments.subList(segments.size() - 1 - parents, segments.size()));
+            if (namesakes.stream().noneMatch(other -> other.equals(suffix) || other.endsWith("/" + suffix))) {
+                return name + " (" + String.join(":", segments.subList(segments.size() - 1 - parents, segments.size() - 1)) + ")";
+            }
+        }
+        return name + " (" + String.join(":", segments.subList(0, segments.size() - 1)) + ")";
+    }
+
+    /**
+     * Every module directory of the repository (ticket #317; discovery from #293): each
+     * directory, up to {@value #MAX_MODULE_DEPTH} levels down in either revision, holding a build
+     * descriptor. Source, build-output and hidden directories are never searched. Computed once.
+     */
+    public synchronized List<String> moduleDirectories() {
+        if (moduleDirectories == null) {
+            Set<String> found = new TreeSet<>();
+            roots.forEach(root -> found.addAll(discoverModuleDirectories(root)));
+            moduleDirectories = List.copyOf(found);
+        }
+        return moduleDirectories;
+    }
+
+    private static List<String> discoverModuleDirectories(Path root) {
+        List<String> directories = new ArrayList<>();
+        if (root == null || !Files.isDirectory(root)) {
+            return directories;
+        }
+        try {
+            Files.walkFileTree(root, Set.of(), MAX_MODULE_DEPTH, new SimpleFileVisitor<>() {
+                @Override
+                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attributes) {
+                    String name = dir.getFileName() == null ? "" : dir.getFileName().toString();
+                    if (!dir.equals(root) && (name.startsWith(".") || NEVER_MODULE_DIRECTORIES.contains(name))) {
+                        return FileVisitResult.SKIP_SUBTREE;
+                    }
+                    String directory = root.relativize(dir).toString().replace('\\', '/');
+                    if (buildDescriptorNames(directory).stream().anyMatch(descriptor -> Files.isRegularFile(dir.resolve(descriptor)))) {
+                        directories.add(directory);
+                    }
+                    return FileVisitResult.CONTINUE;
+                }
+            });
+        } catch (IOException e) {
+            throw new UncheckedIOException("Could not discover modules under " + root, e);
+        }
+        return directories;
     }
 
     private Optional<String> nearestDescriptorDirectory(String directory) {

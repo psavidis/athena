@@ -209,6 +209,24 @@ public class ModuleIdentitySteps {
         changeClasses(List.of(module + "/src/main/java/com/acme/Service.java"));
     }
 
+    // --- Ticket #317: unique module names ---
+
+    @Given("the user has created a standalone Diff changing classes in Maven modules {string} and {string}")
+    public void a_diff_in_two_maven_modules(String first, String second) {
+        repository = GitRepositoryFixture.create();
+        for (String module : List.of(first, second)) {
+            repository.write(module + "/pom.xml", "<project><artifactId>" + module.replace('/', '-') + "</artifactId></project>\n");
+        }
+        changeClasses(List.of(first + "/src/main/java/com/acme/FirstService.java",
+                second + "/src/main/java/com/acme/SecondService.java"));
+    }
+
+    @Then("the module's semantic profile covers only files under {string}")
+    public void the_module_profile_covers_only(String directory) {
+        assertThat(moduleProfile.dimensions()).isNotEmpty()
+                .allSatisfy(entry -> assertThat(entry.filesTouched()).allMatch(file -> file.startsWith(directory + "/")));
+    }
+
     @Then("territory {string} has tech stack {string}")
     public void territory_has_tech_stack(String name, String label) {
         assertThat(territory(name).techStackLabel()).isEqualTo(label);

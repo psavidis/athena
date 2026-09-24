@@ -55,3 +55,15 @@ Feature: Module identity comes from build descriptors
     Given the user has created a standalone Diff changing classes in modules "hibernate-core" and "hibernate-envers" whose build files are named "<module>.gradle"
     When the user requests the Semantic Canvas topology
     Then the territories are "hibernate-core" and "hibernate-envers"
+
+  # Ticket #317: module names are unique within a repository.
+
+  Scenario: Module directories that share a name get distinguishing names
+    Given the user has created a standalone Diff changing classes in Maven modules "guava" and "android/guava"
+    When the user requests the Semantic Canvas topology
+    Then the territories are "guava" and "guava (android)"
+
+  Scenario: Each same-named module's profile is its own
+    Given the user has created a standalone Diff changing classes in Maven modules "guava" and "android/guava"
+    When the user requests the semantic profile of module "guava (android)"
+    Then the module's semantic profile covers only files under "android/guava"
