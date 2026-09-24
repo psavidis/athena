@@ -84,6 +84,23 @@ class BodySummaryTest {
         assertThat(describe("return a + b;", "return a - b;")).isEqualTo("other statements changed");
     }
 
+    @Test
+    void anUnrolledLoopMakesTheSameCalls() {
+        assertThat(summaryOf("for (Object p : ps) { write(p); } return t;")
+                .makesSameCallsAs(summaryOf("int i = 0; while (i < 2) { write(a); write(b); i++; } return t;"))).isTrue();
+    }
+
+    @Test
+    void aNewCallIsNotTheSameCalls() {
+        assertThat(summaryOf("write(t); return t;").makesSameCallsAs(summaryOf("write(t); log(t); return t;"))).isFalse();
+    }
+
+    @Test
+    void aNewThrowOrAnExtraReturnIsNotTheSameCalls() {
+        assertThat(summaryOf("return t;").makesSameCallsAs(summaryOf("if (a == 0) { throw new X(); } return t;"))).isFalse();
+        assertThat(summaryOf("return t;").makesSameCallsAs(summaryOf("if (a == 0) { return null; } return t;"))).isFalse();
+    }
+
     private static String describe(String baseBody, String headBody) {
         return summaryOf(baseBody).describeChangeTo(summaryOf(headBody));
     }

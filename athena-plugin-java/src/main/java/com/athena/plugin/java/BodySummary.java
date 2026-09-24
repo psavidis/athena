@@ -82,6 +82,16 @@ final class BodySummary {
         return String.join(", ", items.subList(0, MAX_ITEMS)) + " …and " + (items.size() - MAX_ITEMS) + " more";
     }
 
+    /**
+     * Whether {@code head} makes the same calls: the same distinct methods, the same thrown types
+     * and as many return statements (ticket #319). How often a call appears doesn't matter, so
+     * an unrolled loop still makes the same calls. It says nothing about conditions.
+     */
+    boolean makesSameCallsAs(BodySummary head) {
+        return calls.keySet().equals(head.calls.keySet()) && thrownTypes.keySet().equals(head.thrownTypes.keySet())
+                && returnCount == head.returnCount;
+    }
+
     /** The names {@code after} has more of than {@code before}, in {@code after}'s order. */
     private static List<String> increased(Map<String, Integer> before, Map<String, Integer> after) {
         return after.entrySet().stream()
