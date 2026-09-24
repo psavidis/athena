@@ -88,6 +88,20 @@ class ModuleTopologyBuilderTest {
         assertThat(topology.dependencies()).isEmpty();
     }
 
+    @Test
+    void readsRailsAndTechStackFromABuildFileNamedAfterItsModule(@TempDir Path base, @TempDir Path head)
+            throws IOException {
+        write(head, "spring-core/spring-core.gradle", "");
+        write(head, "spring-webmvc/spring-webmvc.gradle",
+                "plugins { id 'org.springframework.boot' }\ndependencies {\n    api(project(\":spring-core\"))\n}\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "spring-webmvc/src/main/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).containsExactly(new ModuleDependency("spring-webmvc", "spring-core"));
+        assertThat(territoryFor(topology, "spring-webmvc").techStack()).isEqualTo(TechStack.SPRING_BOOT_JAVA);
+        assertThat(territoryFor(topology, "spring-core").techStack()).isEqualTo(TechStack.JAVA);
+    }
+
     private List<ModuleGroup> layoutGroupsFor(Path base, Path head, String file) {
         return new ModuleGrouper(ModuleLayout.of(base, head)).group(new ChangeGrouper().group(List.of(
                 DetectedTransformation.of(TransformationKind.ADD_SYMBOL, List.of("A#m"), List.of(file)))));

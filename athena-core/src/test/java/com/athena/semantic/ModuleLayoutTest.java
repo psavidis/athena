@@ -88,6 +88,24 @@ class ModuleLayoutTest {
         assertThat(ModuleLayout.pathBased().directoryOf("module/web-server/src/Server.java")).isEqualTo("module");
     }
 
+    @Test
+    void aGradleBuildFileNamedAfterItsDirectoryMakesItAModule() throws IOException {
+        write(headRoot, "hibernate-core/hibernate-core.gradle", "");
+        write(headRoot, "junit-jupiter-api/junit-jupiter-api.gradle.kts", "");
+        ModuleLayout layout = ModuleLayout.of(baseRoot, headRoot);
+
+        assertThat(layout.directoryOf("hibernate-core/src/main/java/A.java")).isEqualTo("hibernate-core");
+        assertThat(layout.directoryOf("junit-jupiter-api/src/main/java/A.java")).isEqualTo("junit-jupiter-api");
+    }
+
+    @Test
+    void aGradleFileNamedAfterAnotherDirectoryDoesNotMakeAModule() throws IOException {
+        write(headRoot, "core/other.gradle", "");
+
+        assertThat(ModuleLayout.of(baseRoot, headRoot).directoryOf("core/src/main/java/A.java")).isEqualTo("core");
+        assertThat(ModuleLayout.buildDescriptorNames("core")).doesNotContain("other.gradle");
+    }
+
     private static void write(Path root, String relativePath, String content) throws IOException {
         Path file = root.resolve(relativePath);
         Files.createDirectories(file.getParent());

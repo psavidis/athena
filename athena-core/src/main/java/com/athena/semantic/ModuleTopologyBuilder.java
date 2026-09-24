@@ -45,8 +45,6 @@ public final class ModuleTopologyBuilder {
             Pattern.compile("project\\(\\s*(?:path\\s*[:=]\\s*)?['\"](:[^'\"]+)['\"]");
     // projects.module.springBootCore — Gradle's type-safe project accessors.
     private static final Pattern GRADLE_PROJECT_ACCESSOR = Pattern.compile("\\bprojects((?:\\.\\w+)+)");
-    private static final List<String> GRADLE_BUILD_FILES = List.of("build.gradle", "build.gradle.kts");
-    private static final List<String> BUILD_DESCRIPTORS = List.of("pom.xml", "build.gradle", "build.gradle.kts", "package.json");
     private static final Set<String> NEVER_MODULE_DIRECTORIES = Set.of("node_modules", "target", "build", "src", "out", "bin");
     private static final int MAX_MODULE_DEPTH = 5;
 
@@ -144,8 +142,9 @@ public final class ModuleTopologyBuilder {
                     if (!dir.equals(headRoot) && (name.startsWith(".") || NEVER_MODULE_DIRECTORIES.contains(name))) {
                         return FileVisitResult.SKIP_SUBTREE;
                     }
-                    if (BUILD_DESCRIPTORS.stream().anyMatch(descriptor -> Files.isRegularFile(dir.resolve(descriptor)))) {
-                        String directory = headRoot.relativize(dir).toString().replace('\\', '/');
+                    String directory = headRoot.relativize(dir).toString().replace('\\', '/');
+                    if (ModuleLayout.buildDescriptorNames(directory).stream()
+                            .anyMatch(descriptor -> Files.isRegularFile(dir.resolve(descriptor)))) {
                         modules.add(new RepositoryModule(directory, layout.nameOf(directory), mavenArtifactId(dir)));
                     }
                     return FileVisitResult.CONTINUE;
@@ -193,7 +192,7 @@ public final class ModuleTopologyBuilder {
             }
         }
 
-        for (String buildFile : GRADLE_BUILD_FILES) {
+        for (String buildFile : ModuleLayout.gradleBuildFileNames(moduleDirectory)) {
             Path gradleFile = moduleDir.resolve(buildFile);
             if (!Files.isRegularFile(gradleFile)) {
                 continue;
@@ -264,7 +263,7 @@ public final class ModuleTopologyBuilder {
             String content = readQuietly(moduleDir.resolve("pom.xml"));
             return content.contains("spring-boot") ? TechStack.SPRING_BOOT_JAVA : TechStack.JAVA;
         }
-        for (String buildFile : GRADLE_BUILD_FILES) {
+        for (String buildFile : ModuleLayout.gradleBuildFileNames(moduleDirectory)) {
             if (Files.isRegularFile(moduleDir.resolve(buildFile))) {
                 String content = readQuietly(moduleDir.resolve(buildFile));
                 return content.contains("spring-boot") || content.contains("org.springframework.boot")
