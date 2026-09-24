@@ -44,6 +44,18 @@ class StructuralTaxonomyClassifierTest {
                 .isEqualTo("extract-method");
     }
 
+    @Test
+    void classifiesContractAnnotationChangesAsTheirOwnConceptNotASignatureChange() {
+        for (TransformationKind kind : List.of(TransformationKind.CHANGE_PARAMETER_ANNOTATIONS,
+                TransformationKind.CHANGE_METHOD_ANNOTATIONS)) {
+            Change change = new ChangeGrouper().group(List.of(
+                    DetectedTransformation.of(kind, List.of("Repository#find", "+@Nullable"), List.of()))).get(0);
+
+            assertThat(classifier.classify(change).get().concept().id()).as(kind.name())
+                    .isEqualTo("change-contract-annotations");
+        }
+    }
+
     private Change changeOf(TransformationKind kind, String... involved) {
         DetectedTransformation t = DetectedTransformation.of(kind, List.of(involved), List.of());
         return new ChangeGrouper().group(List.of(t)).get(0);

@@ -102,6 +102,23 @@ class ContractAnnotationChangeDetectionTest {
         assertThat(detect()).noneMatch(t -> t.kind() == TransformationKind.CHANGE_METHOD_SIGNATURE);
     }
 
+    @Test
+    void anOverrideAddedOrRemovedAloneIsNotReported() throws IOException {
+        write(baseRoot, "Repo", "public class Repo extends Base {\n    Object find() { return null; }\n}\n");
+        write(headRoot, "Repo", "public class Repo extends Base {\n    @Override\n    Object find() { return null; }\n}\n");
+
+        assertThat(detect()).extracting(DetectedTransformation::kind).doesNotContain(TransformationKind.CHANGE_METHOD_ANNOTATIONS);
+    }
+
+    @Test
+    void anOverrideAddedWithAContractAnnotationIsLeftOutOfTheDescription() throws IOException {
+        write(baseRoot, "Repo", "public class Repo extends Base {\n    Object find() { return null; }\n}\n");
+        write(headRoot, "Repo", "public class Repo extends Base {\n    @Override @Deprecated\n    Object find() { return null; }\n}\n");
+
+        assertThat(detect()).filteredOn(t -> t.kind() == TransformationKind.CHANGE_METHOD_ANNOTATIONS).singleElement()
+                .satisfies(t -> assertThat(t.involvedDescriptions()).containsExactly("Repo#find", "+@Deprecated"));
+    }
+
     private List<DetectedTransformation> detect() {
         return new TransformationDetector().detect(baseRoot, headRoot);
     }
