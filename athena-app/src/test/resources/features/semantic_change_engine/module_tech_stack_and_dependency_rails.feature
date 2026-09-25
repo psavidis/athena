@@ -42,3 +42,31 @@ Feature: Tech stack and dependency rails for Gradle and Maven modules
     When the user requests the Semantic Canvas topology
     Then a dependency rail runs from "spring-webmvc" to "spring-core"
     And territory "spring-webmvc" has tech stack "Java"
+
+  # Ticket #376: kafka-style builds configure each project from the root build file.
+
+  Scenario: A dependency in a root project block is a rail from that project
+    Given the user has created a standalone Diff of Gradle project "kafka" including "clients, streams" whose root build file reads "project(':streams') {\n  dependencies {\n    implementation project(':clients')\n  }\n}", changing a class in "streams"
+    When the user requests the Semantic Canvas topology
+    Then a dependency rail runs from "streams" to "clients"
+    And territory "clients" is idle
+
+  Scenario: A root project block for a nested project is a rail from that nested module
+    Given the user has created a standalone Diff of Gradle project "kafka" including "streams, streams:integration-tests" whose root build file reads "project(':streams:integration-tests') {\n  dependencies {\n    testImplementation project(':streams')\n  }\n}", changing a class in "streams/integration-tests"
+    When the user requests the Semantic Canvas topology
+    Then a dependency rail runs from "integration-tests" to "streams"
+
+  Scenario: Another project's block gives no rail to the changed module
+    Given the user has created a standalone Diff of Gradle project "kafka" including "clients, core, streams" whose root build file reads "project(':core') {\n  dependencies {\n    implementation project(':clients')\n  }\n}", changing a class in "streams"
+    When the user requests the Semantic Canvas topology
+    Then no dependency rail is drawn
+
+  Scenario: A dependency in a subprojects block is no rail
+    Given the user has created a standalone Diff of Gradle project "kafka" including "clients, streams" whose root build file reads "subprojects {\n  dependencies {\n    implementation project(':clients')\n  }\n}", changing a class in "streams"
+    When the user requests the Semantic Canvas topology
+    Then no dependency rail is drawn
+
+  Scenario: A change to the root project doesn't draw rails from the other projects' blocks
+    Given the user has created a standalone Diff of Gradle project "kafka" including "clients, streams" whose root build file reads "project(':streams') {\n  dependencies {\n    implementation project(':clients')\n  }\n}", changing a class in "src/main/java"
+    When the user requests the Semantic Canvas topology
+    Then no dependency rail is drawn
