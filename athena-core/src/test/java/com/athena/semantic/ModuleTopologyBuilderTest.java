@@ -102,6 +102,70 @@ class ModuleTopologyBuilderTest {
         assertThat(territoryFor(topology, "spring-core").techStack()).isEqualTo(TechStack.JAVA);
     }
 
+    // ---- Root project blocks (ticket #376) ----
+
+    private static final String KAFKA_SETTINGS = "rootProject.name = 'kafka'\ninclude 'clients', 'core', 'streams', 'streams:integration-tests'\n";
+
+    @Test
+    void readsARailFromTheChangedProjectsBlockInTheRootBuildFile(@TempDir Path base, @TempDir Path head) throws IOException {
+        writeKafka(head, "project(':streams') {\n  dependencies {\n    implementation project(':clients')\n"
+                + "    implementation(project(\":core\")) { exclude module: 'x' }\n  }\n}\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "streams/src/main/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).containsExactly(
+                new ModuleDependency("streams", "clients"), new ModuleDependency("streams", "core"));
+        assertThat(territoryFor(topology, "clients").status()).isEqualTo(ModuleStatus.IDLE);
+    }
+
+    @Test
+    void readsANestedProjectsBlock(@TempDir Path base, @TempDir Path head) throws IOException {
+        writeKafka(head, "project(':streams:integration-tests') {\n  dependencies {\n    testImplementation project(':streams')\n  }\n}\n");
+
+        ModuleTopology topology = builder.build(
+                layoutGroupsFor(base, head, "streams/integration-tests/src/test/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).containsExactly(new ModuleDependency("integration-tests", "streams"));
+    }
+
+    @Test
+    void ignoresOtherProjectsBlocksAndSubprojects(@TempDir Path base, @TempDir Path head) throws IOException {
+        writeKafka(head, "subprojects {\n  dependencies { implementation project(':clients') }\n}\n"
+                + "project(':core') {\n  dependencies { implementation project(':clients') }\n}\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "streams/src/main/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).isEmpty();
+    }
+
+    @Test
+    void theRootModuleDoesNotInheritItsProjectsBlocks(@TempDir Path base, @TempDir Path head) throws IOException {
+        writeKafka(head, "dependencies { implementation project(':core') }\n"
+                + "project(':streams') {\n  dependencies { implementation project(':clients') }\n}\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "src/main/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).containsExactly(new ModuleDependency("kafka", "core"));
+    }
+
+    @Test
+    void aBraceInsideAStringDoesNotEndTheBlock(@TempDir Path base, @TempDir Path head) throws IOException {
+        writeKafka(head, "project(':streams') {\n  description = 'uses } braces {'\n"
+                + "  dependencies { implementation project(':clients') }\n}\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "streams/src/main/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).containsExactly(new ModuleDependency("streams", "clients"));
+    }
+
+    private static void writeKafka(Path head, String rootBuildFile) throws IOException {
+        write(head, "settings.gradle", KAFKA_SETTINGS);
+        write(head, "build.gradle", rootBuildFile);
+        for (String project : List.of("clients", "core", "streams", "streams/integration-tests")) {
+            write(head, project + "/src/main/java/Placeholder.java", "");
+        }
+    }
+
     private List<ModuleGroup> layoutGroupsFor(Path base, Path head, String file) {
         return new ModuleGrouper(ModuleLayout.of(base, head)).group(new ChangeGrouper().group(List.of(
                 DetectedTransformation.of(TransformationKind.ADD_SYMBOL, List.of("A#m"), List.of(file)))));

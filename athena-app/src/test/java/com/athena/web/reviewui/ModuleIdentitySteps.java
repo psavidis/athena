@@ -251,6 +251,27 @@ public class ModuleIdentitySteps {
                 second + "/src/main/java/com/acme/SecondService.java"));
     }
 
+    // --- Ticket #376: rails from root project blocks ---
+
+    @Given("the user has created a standalone Diff of Gradle project {string} including {string} whose root build file reads {string}, changing a class in {string}")
+    public void a_diff_with_root_project_blocks(String project, String includes, String rootBuildFile, String directory) {
+        repository = GitRepositoryFixture.create();
+        List<String> projects = List.of(includes.split(",\\s*"));
+        repository.write("settings.gradle", "rootProject.name = '" + project + "'\ninclude "
+                + String.join(", ", projects.stream().map(path -> "'" + path + "'").toList()) + "\n");
+        repository.write("build.gradle", rootBuildFile.replace("\\n", "\n") + "\n");
+        for (String path : projects) {
+            repository.write(path.replace(':', '/') + "/src/main/java/com/acme/Placeholder.java", classSource("Placeholder.java", ""));
+        }
+        String sourceRoot = directory.startsWith("src/") ? directory : directory + "/src/main/java";
+        changeClasses(List.of(sourceRoot + "/com/acme/FirstService.java"));
+    }
+
+    @Then("no dependency rail is drawn")
+    public void no_dependency_rail_is_drawn() {
+        assertThat(topology.dependencies()).isEmpty();
+    }
+
     @Then("territory {string} has tech stack {string}")
     public void territory_has_tech_stack(String name, String label) {
         assertThat(territory(name).techStackLabel()).isEqualTo(label);
