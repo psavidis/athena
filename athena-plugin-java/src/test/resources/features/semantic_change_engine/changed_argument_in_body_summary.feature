@@ -28,10 +28,10 @@ Feature: A body summary names a changed argument
     Then the body modification of "Audit#log" is described as "Modify body of Audit#log: arguments of record changed"
 
   Scenario: The same argument change on two calls is listed once with a count
-    Given a base revision where method "log" on class "Audit" has the body "record(\"a\"); size = 1; record(\"a\");"
-    And a head revision where "log" on "Audit" has the body "record(\"b\"); size = 1; record(\"b\");"
+    Given a base revision where method "log" on class "Audit" has the body "record(count); size = 1; record(count);"
+    And a head revision where "log" on "Audit" has the body "record(count + 1); size = 1; record(count + 1);"
     When the semantic engine detects transformations between the revisions
-    Then the body modification of "Audit#log" is described as "Modify body of Audit#log: record(…): \"a\" -> \"b\" ×2"
+    Then the body modification of "Audit#log" is described as "Modify body of Audit#log: record(…): count -> count + 1 ×2"
 
   Scenario: A statement that changed beyond a call's arguments is not named as one
     Given a base revision where method "log" on class "Audit" has the body "int count = record(event);"

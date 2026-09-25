@@ -87,7 +87,7 @@ Feature: Method-body modification detection
     Given a base revision where method "exchange" on class "TokenExchange" calls "audit" before returning its token
     And a head revision where "exchange" on "TokenExchange" calls "audit" with a different argument before returning its token
     When the semantic engine detects transformations between the revisions
-    Then the body modification of "TokenExchange#exchange" is described as "Modify body of TokenExchange#exchange: other statements changed"
+    Then the body modification of "TokenExchange#exchange" is described as "Modify body of TokenExchange#exchange: audit(…): token -> \"other\""
 
   # Ticket #339: reordered statements and changed return values are named.
 
