@@ -44,7 +44,7 @@ Feature: A body summary names a changed argument
 
   Scenario: An argument whose only change is a call's receiver is not listed again
     Given a base revision where method "setup" on class "PetControllerTests" has the body "given(owners.findPetTypes()).willReturn(petTypes);"
-    And a head revision where "setup" on "PetControllerTests" has the body "given(types.findPetTypes()).willReturn(petTypes);"
+    And a head revision where "setup" on "PetControllerTests" has the body "given(types.findPetTypes()).willReturn(petTypes); size = 1;"
     When the semantic engine detects transformations between the revisions
     Then the body modification of "PetControllerTests#setup" is described as "Modify body of PetControllerTests#setup: +types.findPetTypes, -owners.findPetTypes"
 
@@ -56,6 +56,6 @@ Feature: A body summary names a changed argument
 
   Scenario: A changed plain argument is still listed
     Given a base revision where method "setup" on class "PetControllerTests" has the body "given(owners).willReturn(petTypes);"
-    And a head revision where "setup" on "PetControllerTests" has the body "given(types).willReturn(petTypes);"
+    And a head revision where "setup" on "PetControllerTests" has the body "given(types).willReturn(petTypes); size = 1;"
     When the semantic engine detects transformations between the revisions
     Then the body modification of "PetControllerTests#setup" is described as "Modify body of PetControllerTests#setup: given(…): owners -> types"

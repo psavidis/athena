@@ -95,6 +95,31 @@ class BodySummaryTest {
         assertThat(describe("int c = record(e); return t;", "long c = record(u); return t;")).isEqualTo("other statements changed");
     }
 
+    // Ticket #375: a receiver change shown as a call added and removed isn't repeated as an argument.
+
+    @Test
+    void anArgumentThatOnlyChangesAReceiverIsNotRepeated() {
+        assertThat(describe("given(owners.findPetTypes()); return t;", "given(types.findPetTypes()); return t;"))
+                .isEqualTo("+types.findPetTypes, -owners.findPetTypes");
+    }
+
+    @Test
+    void aFieldReceiverChangeIsNotRepeatedEither() {
+        assertThat(describe("given(this.pets.findPetTypes()); return t;", "given(types.findPetTypes()); return t;"))
+                .isEqualTo("+types.findPetTypes, -pets.findPetTypes");
+    }
+
+    @Test
+    void anArgumentThatChangesBeyondTheReceiverIsStillListed() {
+        assertThat(describe("given(owners.find(1)); return t;", "given(types.find(2)); return t;"))
+                .isEqualTo("+types.find, -owners.find, types.find(…): 1 -> 2");
+    }
+
+    @Test
+    void aPlainArgumentChangeIsStillListed() {
+        assertThat(describe("given(owners); return t;", "given(types); return t;")).isEqualTo("given(…): owners -> types");
+    }
+
     @Test
     void theSameArgumentChangeTwiceIsCounted() {
         assertThat(describe("record(\"a\"); x = 1; record(\"a\"); return t;", "record(\"b\"); x = 1; record(\"b\"); return t;"))
