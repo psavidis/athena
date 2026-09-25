@@ -69,6 +69,29 @@ class TestChangeGrouperTest {
                 .satisfies(group -> assertThat(group.mergedClassifications()).contains(lifecycle));
     }
 
+    // Ticket #363: a test change folded into a repeated change across test classes gets no group of its own.
+
+    @Test
+    void leavesOutTestChangesFoldedIntoARepeatedChange() {
+        SemanticProfile first = profileOf("GreeterTest#afterEachTest", TEST_FILE);
+        SemanticProfile second = profileOf("ParserTest#afterEachTest", "core/src/test/java/ParserTest.java");
+        SemanticProfile leftover = profileOf("GreeterTest#setUp", TEST_FILE);
+        List<RepeatedStructuralChange> repeated = new RepeatedStructuralChangeGrouper().group(List.of(first, second, leftover));
+
+        assertThat(grouper.group(List.of(first, second, leftover), repeated)).singleElement().satisfies(group -> {
+            assertThat(group.testClass()).isEqualTo("GreeterTest");
+            assertThat(group.changeCount()).isEqualTo(1);
+        });
+    }
+
+    @Test
+    void keepsATestChangeWithoutAStructuralClassificationInItsGroup() {
+        SemanticProfile unclassified = SemanticProfile.empty(profileOf("GreeterTest#a", TEST_FILE).change());
+
+        assertThat(grouper.group(List.of(unclassified), List.of())).singleElement()
+                .satisfies(group -> assertThat(group.changeCount()).isEqualTo(1));
+    }
+
     private SemanticProfile profileOf(String symbol, String file) {
         Change change = new ChangeGrouper().group(List.of(
                 DetectedTransformation.of(TransformationKind.ADD_SYMBOL, List.of(symbol), List.of(file)))).get(0);

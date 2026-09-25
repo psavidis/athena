@@ -3,6 +3,7 @@ package com.athena.semantic;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -72,6 +73,56 @@ class RepeatedStructuralChangeGrouperTest {
             assertThat(group.subject()).isEqualTo("+final");
             assertThat(group.classes()).containsExactly("A", "B", "C");
         });
+    }
+
+    // Ticket #363: a folded test change's JUnit lifecycle card folds with it, as in its test group (#315).
+
+    @Test
+    void foldsATestChangesFrameworkClassificationWithIt() {
+        SemanticProfile first = testProfile("FirstTest#afterEachTest");
+        SemanticClassification lifecycle = lifecycleOf(first);
+        List<RepeatedStructuralChange> groups = grouper.group(List.of(
+                first.with(SemanticDimension.FRAMEWORK, lifecycle), testProfile("SecondTest#afterEachTest")));
+
+        assertThat(groups).singleElement().satisfies(group -> {
+            assertThat(group.classes()).containsExactly("FirstTest", "SecondTest");
+            assertThat(group.mergedClassifications()).contains(lifecycle).hasSize(3);
+        });
+    }
+
+    @Test
+    void leavesAProductionChangesFrameworkClassificationOut() {
+        SemanticProfile first = profileOf(TransformationKind.REMOVE_SYMBOL, "A#afterEachTest");
+        SemanticClassification lifecycle = lifecycleOf(first);
+        List<RepeatedStructuralChange> groups = grouper.group(List.of(
+                first.with(SemanticDimension.FRAMEWORK, lifecycle), profileOf(TransformationKind.REMOVE_SYMBOL, "B#afterEachTest")));
+
+        assertThat(groups).singleElement().satisfies(group -> assertThat(group.mergedClassifications()).doesNotContain(lifecycle));
+    }
+
+    @Test
+    void doesNotFoldTheSameChangeInNestedClassesOfOneTestClass() {
+        assertThat(grouper.group(List.of(
+                testProfile("SpyAnnotationTest.WithSpy#dependency", "SpyAnnotationTest"),
+                testProfile("SpyAnnotationTest.WithMock#dependency", "SpyAnnotationTest")))).isEmpty();
+    }
+
+    private static SemanticClassification lifecycleOf(SemanticProfile profile) {
+        TaxonomyConcept junit = TaxonomyConcept.of("junit-lifecycle", SemanticDimension.FRAMEWORK,
+                "JUnit: Lifecycle/Extensions", "JUnit lifecycle annotations.", Optional.empty());
+        return SemanticClassification.of(junit, profile.change().matchedOccurrences());
+    }
+
+    private SemanticProfile testProfile(String symbol) {
+        return testProfile(symbol, symbol.split("#")[0]);
+    }
+
+    private SemanticProfile testProfile(String symbol, String fileName) {
+        String file = "core/src/test/java/" + fileName + ".java";
+        Change change = new ChangeGrouper().group(List.of(DetectedTransformation.of(
+                TransformationKind.REMOVE_SYMBOL, List.of(symbol), List.of(file)))).get(0);
+        SemanticProfile profile = SemanticProfile.empty(change);
+        return structural.classify(change).map(c -> profile.with(SemanticDimension.STRUCTURAL, c)).orElse(profile);
     }
 
     private SemanticProfile modifierProfile(String symbol, String delta) {

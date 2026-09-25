@@ -19,6 +19,7 @@ import io.cucumber.java.en.When;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -216,7 +217,8 @@ public class TestCodeChangesSteps {
         repository.write(TEST + second + ".java", classWithMethods(second, 0, ""));
         String base = repository.commit("base");
         repository.write(TEST + first + ".java", classWithMethods(first, 1, ""));
-        repository.write(TEST + second + ".java", classWithMethods(second, 1, ""));
+        // A differently named method: the same one in both would fold into one entry (ticket #363).
+        repository.write(TEST + second + ".java", classWithMethods(second, 0, "    void verify() {\n    }\n"));
         select(base, repository.commit("head"));
     }
 
@@ -403,5 +405,43 @@ public class TestCodeChangesSteps {
             body.append("    public void ").append(setter).append("(Object value) {\n    }\n");
         }
         return body.append("}\n").toString();
+    }
+
+    // --- Ticket #363: the same change repeated across test classes ---
+
+    @Given("the reviewer has selected a PR where method {string} was removed from test classes {string}, {string} and {string}")
+    public void a_pr_where_a_method_was_removed_from_three_test_classes(String method, String a, String b, String c)
+            throws IOException {
+        Map<String, List<String>> removed = new LinkedHashMap<>();
+        List.of(a, b, c).forEach(className -> removed.put(TEST + className, List.of(method)));
+        removeFrom(removed);
+    }
+
+    @Given("the reviewer has selected a PR where method {string} was removed from test classes {string}, {string} and {string}, and method {string} from {string} only")
+    public void a_pr_where_a_method_was_removed_from_three_test_classes_and_another_from_one(
+            String method, String a, String b, String c, String other, String onlyClass) throws IOException {
+        Map<String, List<String>> removed = new LinkedHashMap<>();
+        for (String className : List.of(a, b, c)) {
+            removed.put(TEST + className, className.equals(onlyClass) ? List.of(method, other) : List.of(method));
+        }
+        removeFrom(removed);
+    }
+
+    @Given("the reviewer has selected a PR where method {string} was removed from production class {string} and test class {string}")
+    public void a_pr_where_a_method_was_removed_from_a_production_and_a_test_class(String method, String production,
+                                                                                String test) throws IOException {
+        Map<String, List<String>> removed = new LinkedHashMap<>();
+        removed.put(MAIN + production, List.of(method));
+        removed.put(TEST + test, List.of(method));
+        removeFrom(removed);
+    }
+
+    /** Commits each class (a path prefix plus the class name) declaring its methods, then without them. */
+    private void removeFrom(Map<String, List<String>> methodsByClass) throws IOException {
+        repository = GitRepositoryFixture.create();
+        methodsByClass.forEach((path, methods) -> repository.write(path + ".java", classDeclaring(className(path + ".java"), methods)));
+        String base = repository.commit("base");
+        methodsByClass.keySet().forEach(path -> repository.write(path + ".java", classDeclaring(className(path + ".java"), List.of())));
+        select(base, repository.commit("head"));
     }
 }

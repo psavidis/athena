@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Folds the Structural and Framework classifications of {@linkplain Change#isTestCode()
@@ -24,6 +26,23 @@ public final class TestChangeGrouper {
         List<TestChangeGroup> groups = new ArrayList<>();
         byTestClass.forEach((testClass, members) -> groups.add(toGroup(testClass, members)));
         return groups;
+    }
+
+    /**
+     * As {@link #group(List)}, leaving out each test Change whose every Structural classification
+     * one of {@code repeated} already folds (ticket #363): that Change is shown by the repeated
+     * change's entry, not again in its test class's.
+     */
+    public List<TestChangeGroup> group(List<SemanticProfile> profiles, List<RepeatedStructuralChange> repeated) {
+        Set<SemanticClassification> folded = repeated.stream()
+                .flatMap(change -> change.mergedClassifications().stream())
+                .collect(Collectors.toSet());
+        return group(profiles.stream().filter(profile -> !isFolded(profile, folded)).toList());
+    }
+
+    private static boolean isFolded(SemanticProfile profile, Set<SemanticClassification> folded) {
+        List<SemanticClassification> structural = profile.classifications(SemanticDimension.STRUCTURAL);
+        return !structural.isEmpty() && folded.containsAll(structural);
     }
 
     private static TestChangeGroup toGroup(String testClass, List<SemanticProfile> members) {

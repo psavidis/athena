@@ -129,16 +129,24 @@ public class SemanticProfileController {
                 new TaxonomyLoader().load(SemanticDimension.RESPONSIBILITY)).detect(profiles);
         List<RepeatedClassificationGroup> repeatedGroups =
                 new RepeatedClassificationGrouper().detect(profiles, SemanticDimension.RESPONSIBILITY);
-        List<TestChangeGroup> testGroups = groupTestChanges ? new TestChangeGrouper().group(profiles) : List.of();
         List<RepeatedStructuralChange> repeatedStructural = groupTestChanges
                 ? new RepeatedStructuralChangeGrouper().group(
                         profiles.stream().filter(profile -> !profile.change().isTestCode()).toList())
+                : List.of();
+        // Ticket #363: the same change across test classes folds too, ahead of the per-class test groups.
+        List<RepeatedStructuralChange> repeatedTest = groupTestChanges
+                ? new RepeatedStructuralChangeGrouper().group(
+                        profiles.stream().filter(profile -> profile.change().isTestCode()).toList())
+                : List.of();
+        List<TestChangeGroup> testGroups = groupTestChanges
+                ? new TestChangeGrouper().group(profiles, repeatedTest)
                 : List.of();
         Set<SemanticClassification> groupedAway = Stream.of(
                         splitGroups.stream().flatMap(group -> group.mergedClassifications().stream()),
                         repeatedGroups.stream().flatMap(group -> group.mergedClassifications().stream()),
                         testGroups.stream().flatMap(group -> group.mergedClassifications().stream()),
-                        repeatedStructural.stream().flatMap(group -> group.mergedClassifications().stream()))
+                        repeatedStructural.stream().flatMap(group -> group.mergedClassifications().stream()),
+                        repeatedTest.stream().flatMap(group -> group.mergedClassifications().stream()))
                 .flatMap(merged -> merged)
                 .collect(Collectors.toCollection(LinkedHashSet::new));
 
@@ -154,10 +162,11 @@ public class SemanticProfileController {
                     entries.add(toEntry(dimension, classification, rank));
                 }
             }
-            // Repeated production changes (ticket #291), then test groups (ticket #287), follow
-            // every other production Structural entry.
+            // Repeated production changes (ticket #291), repeated test changes (ticket #363), then
+            // test groups (ticket #287), follow every other production Structural entry.
             if (dimension == SemanticDimension.STRUCTURAL) {
-                repeatedStructural.forEach(group -> entries.add(toRepeatedStructuralEntry(group)));
+                repeatedStructural.forEach(group -> entries.add(toRepeatedStructuralEntry(group, false)));
+                repeatedTest.forEach(group -> entries.add(toRepeatedStructuralEntry(group, true)));
                 testGroups.forEach(group -> entries.add(toTestGroupEntry(group)));
             }
         }
@@ -226,11 +235,12 @@ public class SemanticProfileController {
 
     /**
      * A {@link RepeatedStructuralChange} rendered as one Structural entry (ticket #291): "Remove
-     * setBeanFactory in 5 classes", naming the classes, with the count and every folded evidence.
+     * setBeanFactory in 5 classes", naming the classes, with the count and every folded evidence;
+     * "in 12 test classes" for test code (ticket #363).
      */
-    private SemanticDimensionEntryResponse toRepeatedStructuralEntry(RepeatedStructuralChange group) {
+    private SemanticDimensionEntryResponse toRepeatedStructuralEntry(RepeatedStructuralChange group, boolean testCode) {
         // A dependency change repeats across modules, not classes (ticket #340).
-        String unit = group.concept().id().endsWith("-dependency") ? " modules" : " classes";
+        String unit = group.concept().id().endsWith("-dependency") ? " modules" : testCode ? " test classes" : " classes";
         String name = group.concept().name() + " " + group.subject() + " in " + group.classes().size() + unit;
         String description = group.concept().description() + " Same change in: " + String.join(", ", group.classes()) + ".";
         List<String> evidence = group.evidence().stream().map(DetectedTransformation::diffText).toList();

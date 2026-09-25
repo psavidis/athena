@@ -13,8 +13,10 @@ import java.util.Set;
  * across two or more distinct classes become one {@link RepeatedStructuralChange}. The member
  * name is read from the Change's first involved description ("Type#member"); a Change with no
  * member (e.g. an added class) is never folded. A modifier change (ticket #313) is keyed by
- * its delta instead ("+final"), whatever the member: that's the repeated operation. Groups
- * come out in first-seen order.
+ * its delta instead ("+final"), whatever the member: that's the repeated operation. A test
+ * Change's Framework classifications (its JUnit lifecycle card, ticket #315) fold with it
+ * (ticket #363), and a test's nested classes count as their top-level test class, as in the
+ * per-class test groups (ticket #287). Groups come out in first-seen order.
  */
 public final class RepeatedStructuralChangeGrouper {
 
@@ -35,7 +37,7 @@ public final class RepeatedStructuralChangeGrouper {
         List<RepeatedStructuralChange> groups = new ArrayList<>();
         for (List<SemanticProfile> members : byConceptAndMember.values()) {
             Set<String> classes = new LinkedHashSet<>();
-            members.forEach(member -> classes.add(member.change().enclosingType()));
+            members.forEach(member -> classes.add(classOf(member.change())));
             if (classes.size() >= MINIMUM_CLASSES) {
                 groups.add(toGroup(members, List.copyOf(classes)));
             }
@@ -49,10 +51,19 @@ public final class RepeatedStructuralChangeGrouper {
         for (SemanticProfile member : members) {
             List<SemanticClassification> structural = member.classifications(SemanticDimension.STRUCTURAL);
             merged.addAll(structural);
+            if (member.change().isTestCode()) {
+                merged.addAll(member.classifications(SemanticDimension.FRAMEWORK));
+            }
             structural.forEach(classification -> evidence.addAll(classification.evidence()));
         }
         TaxonomyConcept concept = merged.get(0).concept();
         return new RepeatedStructuralChange(concept, subjectOf(members.get(0).change()), classes, evidence, merged);
+    }
+
+    private static String classOf(Change change) {
+        String type = change.enclosingType();
+        int nested = type.indexOf('.');
+        return change.isTestCode() && nested >= 0 ? type.substring(0, nested) : type;
     }
 
     /** What the repeated change is about: the delta for a modifier or supertype change (#358), else the member name. */
