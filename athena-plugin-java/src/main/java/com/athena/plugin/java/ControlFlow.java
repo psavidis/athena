@@ -90,12 +90,32 @@ final class ControlFlow {
      * condition list.
      */
     Optional<String> describeChangeTo(ControlFlow head) {
-        List<String> changes = new ArrayList<>();
-        // The same conditions moved between if/else and switch. The branch count may differ by
-        // one: a statement after an if-chain becomes a switch's default, and vice versa.
-        boolean rewritten = head.switchBranchCount != switchBranchCount
+        List<String> changes = changesTo(head);
+        return changes.isEmpty() ? Optional.empty() : Optional.of(String.join(", ", changes));
+    }
+
+    /**
+     * Whether {@code head} restructures this control flow rather than adding, removing or
+     * changing a single piece of it (ticket #357): an if-chain rewritten as a switch (or back), or
+     * two or more kinds of change together, such as an unrolled loop's "branch added, condition
+     * changed". A lone added guard, removed branch or changed condition is a behavior change in
+     * itself, so "same calls" never softens it.
+     */
+    boolean restructures(ControlFlow head) {
+        return rewrittenAs(head) || changesTo(head).size() >= 2;
+    }
+
+    // The same conditions moved between if/else and switch. The branch count may differ by
+    // one: a statement after an if-chain becomes a switch's default, and vice versa.
+    private boolean rewrittenAs(ControlFlow head) {
+        return head.switchBranchCount != switchBranchCount
                 && Math.abs(head.branchCount - branchCount) <= 1
                 && head.conditionAlternatives.equals(conditionAlternatives);
+    }
+
+    private List<String> changesTo(ControlFlow head) {
+        List<String> changes = new ArrayList<>();
+        boolean rewritten = rewrittenAs(head);
         if (rewritten) {
             changes.add(head.switchBranchCount > switchBranchCount ? "if-chain rewritten as switch" : "switch rewritten as if-chain");
         } else if (head.branchCount != branchCount) {
@@ -110,7 +130,7 @@ final class ControlFlow {
         if (head.loopCount != loopCount) {
             changes.add(head.loopCount > loopCount ? "loop added" : "loop removed");
         }
-        return changes.isEmpty() ? Optional.empty() : Optional.of(String.join(", ", changes));
+        return changes;
     }
 
     /** A condition's {@code ||}-alternatives: {@code a == 1 || a == 2} is {@code [a == 1, a == 2]}. */
