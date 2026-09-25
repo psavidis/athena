@@ -1,0 +1,58 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Contract Annotations",
+    "conceptDescription" : "Annotations on a method, its return type or its parameters changed (e.g. nullness), changing its contract but not its signature.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-public static <T> BDDMyOngoingStubbing<T> given(T methodCall) {\n+public static <T> BDDMyOngoingStubbing<T> given(@Nullable T methodCall) {\n         return new BDDOngoingStubbingImpl<T>(Mockito.when(methodCall));\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/main/java/org/mockito/BDDMockito.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Contract Annotations",
+    "conceptDescription" : "Annotations on a method, its return type or its parameters changed (e.g. nullness), changing its contract but not its signature.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-OngoingStubbing<T> thenReturn(T value);\n+OngoingStubbing<T> thenReturn(@Nullable T value);" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/main/java/org/mockito/stubbing/OngoingStubbing.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Contract Annotations",
+    "conceptDescription" : "Annotations on a method, its return type or its parameters changed (e.g. nullness), changing its contract but not its signature.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @SuppressWarnings({\"unchecked\", \"varargs\"})\n-    OngoingStubbing<T> thenReturn(T value, T... values);\n+    OngoingStubbing<T> thenReturn(@Nullable  T value, @Nullable  T... values);" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/main/java/org/mockito/stubbing/OngoingStubbing.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Contract Annotations willReturn in 2 classes",
+    "conceptDescription" : "Annotations on a method, its return type or its parameters changed (e.g. nullness), changing its contract but not its signature. Same change in: BDDMockito.BDDMyOngoingStubbing, BDDMockito.BDDOngoingStubbingImpl.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-BDDMyOngoingStubbing<T> willReturn(T value);\n+BDDMyOngoingStubbing<T> willReturn(@Nullable T value);", " @SuppressWarnings({\"unchecked\", \"varargs\"})\n-        BDDMyOngoingStubbing<T> willReturn(T value, T... values);\n+        BDDMyOngoingStubbing<T> willReturn(@Nullable T value, @Nullable T... values);", "-public BDDMyOngoingStubbing<T> willReturn(T value) {\n+public BDDMyOngoingStubbing<T> willReturn(@Nullable T value) {\n             return new BDDOngoingStubbingImpl<T>(mockitoOngoingStubbing.thenReturn(value));\n         }", "-public BDDMyOngoingStubbing<T> willReturn(T value, T... values) {\n+public BDDMyOngoingStubbing<T> willReturn(@Nullable T value, @Nullable T... values) {\n             return new BDDOngoingStubbingImpl<T>(mockitoOngoingStubbing.thenReturn(value, values));\n         }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/main/java/org/mockito/BDDMockito.java" ],
+    "groupedMoveCount" : 2
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Contract Annotations when in 2 classes",
+    "conceptDescription" : "Annotations on a method, its return type or its parameters changed (e.g. nullness), changing its contract but not its signature. Same change in: Mockito, MockitoCore.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-public static <T> OngoingStubbing<T> when(T methodCall) {\n+public static <T> OngoingStubbing<T> when(@Nullable T methodCall) {\n         return MOCKITO_CORE.when(methodCall);\n     }", "-public <T> OngoingStubbing<T> when(T methodCall) {\n+public <T> OngoingStubbing<T> when(@Nullable T methodCall) {\n         MockingProgress mockingProgress = mockingProgress();\n         mockingProgress.stubbingStarted();\n         @SuppressWarnings(\"unchecked\")\n         OngoingStubbing<T> stubbing = (OngoingStubbing<T>) mockingProgress.pullOngoingStubbing();\n         if (stubbing == null) {\n             mockingProgress.reset();\n             throw missingMethodInvocation();\n         }\n         return stubbing;\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "mockito-core/src/main/java/org/mockito/Mockito.java", "mockito-core/src/main/java/org/mockito/internal/MockitoCore.java" ],
+    "groupedMoveCount" : 2
+  } ]
+}

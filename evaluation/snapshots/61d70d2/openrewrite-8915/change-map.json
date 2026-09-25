@@ -1,0 +1,969 @@
+{
+  "prTitle" : "Write services.gradle.org distribution URLs again, matching `gradle wrapper`",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 4,
+    "STRUCTURAL" : 5,
+    "UNKNOWN" : 38,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNkb05vdERvd25ncmFkZQpjb25kaXRpb24gY2hhbmdlZDsgc2FtZSBjYWxscw",
+    "description" : "Change control flow of UpdateGradleWrapperTest#doNotDowngrade: condition changed; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNwcmVmZXJFeGlzdGluZ0Rpc3RyaWJ1dGlvblNvdXJjZVdoZW5TZXJ2aWNlc0dyYWRsZU9yZ1VuYXZhaWxhYmxlCmNvbmRpdGlvbiBjaGFuZ2VkOyBzYW1lIGNhbGxz",
+    "description" : "Change control flow of UpdateGradleWrapperTest#preferExistingDistributionSourceWhenServicesGradleOrgUnavailable: condition changed; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNzZXJ2aWNlc0dyYWRsZU9yZ1VuYXZhaWxhYmxlRm9yQ3VzdG9tRGlzdHJpYnV0aW9uVXJpCmNvbmRpdGlvbiBjaGFuZ2VkOyBzYW1lIGNhbGxz",
+    "description" : "Change control flow of UpdateGradleWrapperTest#servicesGradleOrgUnavailableForCustomDistributionUri: condition changed; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNkb05vdERvd25ncmFkZVdpdGhvdXRCdWlsZFRvb2xNYXJrZXIKY29uZGl0aW9uIGNoYW5nZWQ7IHNhbWUgY2FsbHM",
+    "description" : "Change control flow of UpdateGradleWrapperTest#doNotDowngradeWithoutBuildToolMarker: condition changed; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "UkVOQU1FX1NZTUJPTApHcmFkbGVXcmFwcGVyI21pZ3JhdGVUb0Rvd25sb2Fkc1VybApHcmFkbGVXcmFwcGVyI3RvRG93bmxvYWRzSG9zdA",
+    "description" : "Rename GradleWrapper#migrateToDownloadsUrl -> toDownloadsHost",
+    "category" : "STRUCTURAL",
+    "kind" : "RENAME_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApHcmFkbGVXcmFwcGVyI3dpdGhIb3N0T2Y",
+    "description" : "Add GradleWrapper#withHostOf",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNwcmVzZXJ2ZURvd25sb2Fkc0dyYWRsZU9yZ0hvc3Q",
+    "description" : "Add UpdateGradleWrapperTest#preserveDownloadsGradleOrgHost",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNwcmVzZXJ2ZURvd25sb2Fkc0dyYWRsZU9yZ0hvc3RGb3JWZXJzaW9uU2VsZWN0b3I",
+    "description" : "Add UpdateGradleWrapperTest#preserveDownloadsGradleOrgHostForVersionSelector",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydGlvbnNUZXN0I2N1c3RvbUluaXRTY3JpcHQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of AssertionsTest#customInitScript: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydGlvbnNUZXN0I211bHRpbW9kdWxlU3VicHJvamVjdEdldHNJdHNPd25HcmFkbGVQcm9qZWN0T25HcmFkbGU5Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of AssertionsTest#multimoduleSubprojectGetsItsOwnGradleProjectOnGradle9: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydGlvbnNUZXN0I211bHRpbW9kdWxlUmVzb2x2ZXNBZ2FpbnN0QnVpbGRSb290Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of AssertionsTest#multimoduleResolvesAgainstBuildRoot: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXIjZ2V0U2Nhbm5lcgpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+    "description" : "Modify body of UpdateGradleWrapper#getScanner: return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3aXRoSG9zdE9mLCAtZ2V0RmlsZVN1ZmZpeCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQgw5cyCkdyYWRsZVdyYXBwZXIjZGV0ZXJtaW5lR3JhZGxlVmVyc2lvbg",
+    "description" : "Modify body of GradleWrapper#determineGradleVersion: +withHostOf, -getFileSuffix, return value changed ×2",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0Rvd25sb2Fkc0hvc3QsIC1taWdyYXRlVG9Eb3dubG9hZHNVcmwKR3JhZGxlV3JhcHBlciNsaXN0QWxsUHVibGljVmVyc2lvbnM",
+    "description" : "Modify body of GradleWrapper#listAllPublicVersions: +toDownloadsHost, -migrateToDownloadsUrl",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 14,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXIKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateWrapper: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I2FkZEdyYWRsZVdyYXBwZXIKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of UpdateGradleWrapperTest#addGradleWrapper: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVZlcnNpb25BbmREaXN0cmlidXRpb24Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateVersionAndDistribution: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZUNoZWNrc3VtQWxyZWFkeVNldApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateChecksumAlreadySet: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 18,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZU11bHRpcGxlV3JhcHBlcnMKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateMultipleWrappers: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 19,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I29sZGVyVGhhbjZfNgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of UpdateGradleWrapperTest#olderThan6_6: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 20,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I2FsbG93VXBkYXRpbmdEaXN0cmlidXRpb25UeXBlV2hlblNhbWVWZXJzaW9uCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of UpdateGradleWrapperTest#allowUpdatingDistributionTypeWhenSameVersion: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 21,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3ByZXNlcnZlRXhpc3RpbmdEaXN0cmlidXRpb25UeXBlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of UpdateGradleWrapperTest#preserveExistingDistributionType: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 22,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I2RlZmF1bHRzVG9MYXRlc3RSZWxlYXNlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of UpdateGradleWrapperTest#defaultsToLatestRelease: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 23,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3NraXBXb3JrSWZVcGRhdGVkRWFybGllcgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of UpdateGradleWrapperTest#skipWorkIfUpdatedEarlier: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 24,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I2dldEV4YWN0VmVyc2lvbldpdGhQYXR0ZXJuRnJvbUdyYWRsZVNlcnZpY2VzCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of UpdateGradleWrapperTest#getExactVersionWithPatternFromGradleServices: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 25,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I21pZ3JhdGVUb0N1c3RvbURpc3RyaWJ1dGlvblVyaQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of UpdateGradleWrapperTest#migrateToCustomDistributionUri: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 26,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3JlbW92ZVNoYUR1cmluZ01pZ3JhdGlvblRvQ3VzdG9tRGlzdHJpYnV0aW9uVXJpCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of UpdateGradleWrapperTest#removeShaDuringMigrationToCustomDistributionUri: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 27,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJJblN1YkRpcmVjdG9yeQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperInSubDirectory: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 28,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VzZXNFeGVjdXRhYmxlSmFyRnJvbThfMTQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of UpdateGradleWrapperTest#usesExecutableJarFrom8_14: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 29,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uQW5kRGlzdHJpYnV0aW9uVHlwZUluR3Jvb3Z5RFNMCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionAndDistributionTypeInGroovyDSL: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 30,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uQW5kRGlzdHJpYnV0aW9uVHlwZUluS290bGluRFNMCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionAndDistributionTypeInKotlinDSL: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 31,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJEaXN0cmlidXRpb25VUkxJbkdyb292eURzbApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperDistributionURLInGroovyDsl: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 32,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJEaXN0cmlidXRpb25VUkxJbktvdGxpbkRzbApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperDistributionURLInKotlinDsl: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 33,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uVmlhVGFza3NQcm9wZXJ0eUFjY2Vzc0luR3Jvb3Z5RFNMCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionViaTasksPropertyAccessInGroovyDSL: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 34,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uVmlhVGFza3NQcm9wZXJ0eUFjY2Vzc0luS290bGluRFNMCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionViaTasksPropertyAccessInKotlinDSL: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 35,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uVmlhVGFza3NXaXRoVHlwZUluR3Jvb3Z5RFNMCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionViaTasksWithTypeInGroovyDSL: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 36,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uVmlhVGFza3NXaXRoVHlwZUluS290bGluRFNMCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionViaTasksWithTypeInKotlinDSL: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 37,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJXaXRob3V0QnVpbGRUb29sTWFya2VyCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperWithoutBuildToolMarker: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 38,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJXaXRoTW9kZXJuZUNsaUJ1aWxkVG9vbE1hcmtlcgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperWithModerneCliBuildToolMarker: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 39,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJJblN1YkRpcmVjdG9yeVdpdGhvdXRCdWlsZFRvb2xNYXJrZXIKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperInSubDirectoryWithoutBuildToolMarker: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 40,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkRpc3RyaWJ1dGlvbkluZm9zVGVzdCNmZXRjaApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of DistributionInfosTest#fetch: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 41,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkZpbmRHcmFkbGVXcmFwcGVyVGVzdCNmaW5kR3JhZGxlV3JhcHBlclZlcnNpb24Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of FindGradleWrapperTest#findGradleWrapperVersion: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 42,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkZpbmRHcmFkbGVXcmFwcGVyVGVzdCNmaW5kR3JhZGxlV3JhcHBlckRpc3RyaWJ1dGlvbgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of FindGradleWrapperTest#findGradleWrapperDistribution: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 43,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkZpbmRHcmFkbGVXcmFwcGVyVGVzdCNmaW5kR3JhZGxlV3JhcHBlclZlcnNpb25BbmREaXN0cmlidXRpb24Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of FindGradleWrapperTest#findGradleWrapperVersionAndDistribution: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 44,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkZpbmRHcmFkbGVXcmFwcGVyVGVzdCNmaW5kV3JhcHBlckRlZmF1bHRzCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of FindGradleWrapperTest#findWrapperDefaults: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 45,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkdyYWRsZVdyYXBwZXIjR1JBRExFX0RJU1RSSUJVVElPTlNfVVJM",
+    "description" : "Remove field GradleWrapper#GRADLE_DISTRIBUTIONS_URL",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 46,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFClVwZGF0ZUdyYWRsZVdyYXBwZXIjZGVzY3JpcHRpb24KdmFsdWUgY2hhbmdlZA",
+    "description" : "Change value of UpdateGradleWrapper#description: value changed",
+    "category" : "UNKNOWN",
+    "kind" : "CHANGE_FIELD_VALUE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "UpdateGradleWrapperTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNkb05vdERvd25ncmFkZQpjb25kaXRpb24gY2hhbmdlZDsgc2FtZSBjYWxscw",
+      "description" : "Change control flow of UpdateGradleWrapperTest#doNotDowngrade: condition changed; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNwcmVmZXJFeGlzdGluZ0Rpc3RyaWJ1dGlvblNvdXJjZVdoZW5TZXJ2aWNlc0dyYWRsZU9yZ1VuYXZhaWxhYmxlCmNvbmRpdGlvbiBjaGFuZ2VkOyBzYW1lIGNhbGxz",
+      "description" : "Change control flow of UpdateGradleWrapperTest#preferExistingDistributionSourceWhenServicesGradleOrgUnavailable: condition changed; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNzZXJ2aWNlc0dyYWRsZU9yZ1VuYXZhaWxhYmxlRm9yQ3VzdG9tRGlzdHJpYnV0aW9uVXJpCmNvbmRpdGlvbiBjaGFuZ2VkOyBzYW1lIGNhbGxz",
+      "description" : "Change control flow of UpdateGradleWrapperTest#servicesGradleOrgUnavailableForCustomDistributionUri: condition changed; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNkb05vdERvd25ncmFkZVdpdGhvdXRCdWlsZFRvb2xNYXJrZXIKY29uZGl0aW9uIGNoYW5nZWQ7IHNhbWUgY2FsbHM",
+      "description" : "Change control flow of UpdateGradleWrapperTest#doNotDowngradeWithoutBuildToolMarker: condition changed; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNwcmVzZXJ2ZURvd25sb2Fkc0dyYWRsZU9yZ0hvc3Q",
+      "description" : "Add UpdateGradleWrapperTest#preserveDownloadsGradleOrgHost",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNwcmVzZXJ2ZURvd25sb2Fkc0dyYWRsZU9yZ0hvc3RGb3JWZXJzaW9uU2VsZWN0b3I",
+      "description" : "Add UpdateGradleWrapperTest#preserveDownloadsGradleOrgHostForVersionSelector",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 14,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXIKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateWrapper: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I2FkZEdyYWRsZVdyYXBwZXIKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of UpdateGradleWrapperTest#addGradleWrapper: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 16,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVZlcnNpb25BbmREaXN0cmlidXRpb24Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateVersionAndDistribution: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 17,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZUNoZWNrc3VtQWxyZWFkeVNldApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateChecksumAlreadySet: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 18,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZU11bHRpcGxlV3JhcHBlcnMKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateMultipleWrappers: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 19,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I29sZGVyVGhhbjZfNgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of UpdateGradleWrapperTest#olderThan6_6: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 20,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I2FsbG93VXBkYXRpbmdEaXN0cmlidXRpb25UeXBlV2hlblNhbWVWZXJzaW9uCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of UpdateGradleWrapperTest#allowUpdatingDistributionTypeWhenSameVersion: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 21,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3ByZXNlcnZlRXhpc3RpbmdEaXN0cmlidXRpb25UeXBlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of UpdateGradleWrapperTest#preserveExistingDistributionType: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 22,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I2RlZmF1bHRzVG9MYXRlc3RSZWxlYXNlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of UpdateGradleWrapperTest#defaultsToLatestRelease: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 23,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3NraXBXb3JrSWZVcGRhdGVkRWFybGllcgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of UpdateGradleWrapperTest#skipWorkIfUpdatedEarlier: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 24,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I2dldEV4YWN0VmVyc2lvbldpdGhQYXR0ZXJuRnJvbUdyYWRsZVNlcnZpY2VzCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of UpdateGradleWrapperTest#getExactVersionWithPatternFromGradleServices: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 25,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I21pZ3JhdGVUb0N1c3RvbURpc3RyaWJ1dGlvblVyaQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of UpdateGradleWrapperTest#migrateToCustomDistributionUri: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 26,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3JlbW92ZVNoYUR1cmluZ01pZ3JhdGlvblRvQ3VzdG9tRGlzdHJpYnV0aW9uVXJpCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of UpdateGradleWrapperTest#removeShaDuringMigrationToCustomDistributionUri: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 27,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJJblN1YkRpcmVjdG9yeQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperInSubDirectory: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 28,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VzZXNFeGVjdXRhYmxlSmFyRnJvbThfMTQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of UpdateGradleWrapperTest#usesExecutableJarFrom8_14: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 29,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uQW5kRGlzdHJpYnV0aW9uVHlwZUluR3Jvb3Z5RFNMCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionAndDistributionTypeInGroovyDSL: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 30,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uQW5kRGlzdHJpYnV0aW9uVHlwZUluS290bGluRFNMCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionAndDistributionTypeInKotlinDSL: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 31,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJEaXN0cmlidXRpb25VUkxJbkdyb292eURzbApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperDistributionURLInGroovyDsl: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 32,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJEaXN0cmlidXRpb25VUkxJbktvdGxpbkRzbApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperDistributionURLInKotlinDsl: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 33,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uVmlhVGFza3NQcm9wZXJ0eUFjY2Vzc0luR3Jvb3Z5RFNMCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionViaTasksPropertyAccessInGroovyDSL: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 34,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uVmlhVGFza3NQcm9wZXJ0eUFjY2Vzc0luS290bGluRFNMCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionViaTasksPropertyAccessInKotlinDSL: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 35,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uVmlhVGFza3NXaXRoVHlwZUluR3Jvb3Z5RFNMCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionViaTasksWithTypeInGroovyDSL: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 36,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uVmlhVGFza3NXaXRoVHlwZUluS290bGluRFNMCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionViaTasksWithTypeInKotlinDSL: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 37,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJXaXRob3V0QnVpbGRUb29sTWFya2VyCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperWithoutBuildToolMarker: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 38,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJXaXRoTW9kZXJuZUNsaUJ1aWxkVG9vbE1hcmtlcgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperWithModerneCliBuildToolMarker: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 39,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJJblN1YkRpcmVjdG9yeVdpdGhvdXRCdWlsZFRvb2xNYXJrZXIKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperInSubDirectoryWithoutBuildToolMarker: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "GradleWrapper",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "UkVOQU1FX1NZTUJPTApHcmFkbGVXcmFwcGVyI21pZ3JhdGVUb0Rvd25sb2Fkc1VybApHcmFkbGVXcmFwcGVyI3RvRG93bmxvYWRzSG9zdA",
+      "description" : "Rename GradleWrapper#migrateToDownloadsUrl -> toDownloadsHost",
+      "category" : "STRUCTURAL",
+      "kind" : "RENAME_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApHcmFkbGVXcmFwcGVyI3dpdGhIb3N0T2Y",
+      "description" : "Add GradleWrapper#withHostOf",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 12,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3aXRoSG9zdE9mLCAtZ2V0RmlsZVN1ZmZpeCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQgw5cyCkdyYWRsZVdyYXBwZXIjZGV0ZXJtaW5lR3JhZGxlVmVyc2lvbg",
+      "description" : "Modify body of GradleWrapper#determineGradleVersion: +withHostOf, -getFileSuffix, return value changed ×2",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 13,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0Rvd25sb2Fkc0hvc3QsIC1taWdyYXRlVG9Eb3dubG9hZHNVcmwKR3JhZGxlV3JhcHBlciNsaXN0QWxsUHVibGljVmVyc2lvbnM",
+      "description" : "Modify body of GradleWrapper#listAllPublicVersions: +toDownloadsHost, -migrateToDownloadsUrl",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 45,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkdyYWRsZVdyYXBwZXIjR1JBRExFX0RJU1RSSUJVVElPTlNfVVJM",
+      "description" : "Remove field GradleWrapper#GRADLE_DISTRIBUTIONS_URL",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "AssertionsTest",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydGlvbnNUZXN0I2N1c3RvbUluaXRTY3JpcHQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of AssertionsTest#customInitScript: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 9,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydGlvbnNUZXN0I211bHRpbW9kdWxlU3VicHJvamVjdEdldHNJdHNPd25HcmFkbGVQcm9qZWN0T25HcmFkbGU5Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of AssertionsTest#multimoduleSubprojectGetsItsOwnGradleProjectOnGradle9: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 10,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydGlvbnNUZXN0I211bHRpbW9kdWxlUmVzb2x2ZXNBZ2FpbnN0QnVpbGRSb290Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of AssertionsTest#multimoduleResolvesAgainstBuildRoot: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "UpdateGradleWrapper",
+    "entries" : [ {
+      "id" : 11,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXIjZ2V0U2Nhbm5lcgpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+      "description" : "Modify body of UpdateGradleWrapper#getScanner: return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 46,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFClVwZGF0ZUdyYWRsZVdyYXBwZXIjZGVzY3JpcHRpb24KdmFsdWUgY2hhbmdlZA",
+      "description" : "Change value of UpdateGradleWrapper#description: value changed",
+      "category" : "UNKNOWN",
+      "kind" : "CHANGE_FIELD_VALUE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DistributionInfosTest",
+    "entries" : [ {
+      "id" : 40,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkRpc3RyaWJ1dGlvbkluZm9zVGVzdCNmZXRjaApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of DistributionInfosTest#fetch: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "FindGradleWrapperTest",
+    "entries" : [ {
+      "id" : 41,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkZpbmRHcmFkbGVXcmFwcGVyVGVzdCNmaW5kR3JhZGxlV3JhcHBlclZlcnNpb24Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of FindGradleWrapperTest#findGradleWrapperVersion: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 42,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkZpbmRHcmFkbGVXcmFwcGVyVGVzdCNmaW5kR3JhZGxlV3JhcHBlckRpc3RyaWJ1dGlvbgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of FindGradleWrapperTest#findGradleWrapperDistribution: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 43,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkZpbmRHcmFkbGVXcmFwcGVyVGVzdCNmaW5kR3JhZGxlV3JhcHBlclZlcnNpb25BbmREaXN0cmlidXRpb24Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of FindGradleWrapperTest#findGradleWrapperVersionAndDistribution: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 44,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkZpbmRHcmFkbGVXcmFwcGVyVGVzdCNmaW5kV3JhcHBlckRlZmF1bHRzCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of FindGradleWrapperTest#findWrapperDefaults: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

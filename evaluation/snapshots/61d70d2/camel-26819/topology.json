@@ -1,0 +1,481 @@
+{
+  "territories" : [ {
+    "moduleName" : "camel-core",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 4 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX0NMQVNTCkRlZmF1bHRNb2RlbENvbmN1cnJlbnRUZXN0", "QUREX1NZTUJPTApEZWZhdWx0TW9kZWxDb25jdXJyZW50VGVzdCN0ZXN0Q29uY3VycmVudEFkZEN1c3RvbUJlYW4", "QUREX1NZTUJPTApEZWZhdWx0TW9kZWxDb25jdXJyZW50VGVzdCN0ZXN0Q29uY3VycmVudEFkZEN1c3RvbUJlYW5XaXRoU2FtZU5hbWU", "QUREX1NZTUJPTApTaW1wbGVSZWdpc3RyeVRlc3QjdGVzdENvbmN1cnJlbnRCaW5k" ],
+    "testChangeKeys" : [ "QUREX0NMQVNTCkRlZmF1bHRNb2RlbENvbmN1cnJlbnRUZXN0", "QUREX1NZTUJPTApEZWZhdWx0TW9kZWxDb25jdXJyZW50VGVzdCN0ZXN0Q29uY3VycmVudEFkZEN1c3RvbUJlYW4", "QUREX1NZTUJPTApEZWZhdWx0TW9kZWxDb25jdXJyZW50VGVzdCN0ZXN0Q29uY3VycmVudEFkZEN1c3RvbUJlYW5XaXRoU2FtZU5hbWU", "QUREX1NZTUJPTApTaW1wbGVSZWdpc3RyeVRlc3QjdGVzdENvbmN1cnJlbnRCaW5k" ]
+  }, {
+    "moduleName" : "camel-core-engine",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NrLCArdW5sb2NrCkRlZmF1bHRNb2RlbCNhZGRDdXN0b21CZWFu", "QUREX0ZJRUxECkRlZmF1bHRNb2RlbCNsb2c" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-support",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Modify body of SimpleRegistry#bind: other statements changed",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZClNpbXBsZVJlZ2lzdHJ5I2JpbmQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-core-languages",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-bean",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-browse",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-cluster",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-controlbus",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-dataformat",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-dataset",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-direct",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-file",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-health",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-language",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-log",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-mock",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-ref",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-rest",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-saga",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-scheduler",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-seda",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-stub",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-timer",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-validator",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-xpath",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-xslt",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-xml-io",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-xml-jaxb",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-xml-jaxp",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-yaml-io",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-core-catalog",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-package-maven-plugin",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-base-engine",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-core-reifier",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-management-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-util",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-util-json",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-xml-jaxp-util",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "camel-core",
+    "to" : "camel-core-engine"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-core-languages"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-bean"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-browse"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-cluster"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-controlbus"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-dataformat"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-dataset"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-direct"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-file"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-health"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-language"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-log"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-mock"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-ref"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-rest"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-saga"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-scheduler"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-seda"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-stub"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-timer"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-validator"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-xpath"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-xslt"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-xml-io"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-xml-jaxb"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-xml-jaxp"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-yaml-io"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-core-catalog"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-package-maven-plugin"
+  }, {
+    "from" : "camel-core-engine",
+    "to" : "camel-api"
+  }, {
+    "from" : "camel-core-engine",
+    "to" : "camel-base-engine"
+  }, {
+    "from" : "camel-core-engine",
+    "to" : "camel-core-reifier"
+  }, {
+    "from" : "camel-core-engine",
+    "to" : "camel-management-api"
+  }, {
+    "from" : "camel-core-engine",
+    "to" : "camel-support"
+  }, {
+    "from" : "camel-core-engine",
+    "to" : "camel-util"
+  }, {
+    "from" : "camel-core-engine",
+    "to" : "camel-package-maven-plugin"
+  }, {
+    "from" : "camel-support",
+    "to" : "camel-api"
+  }, {
+    "from" : "camel-support",
+    "to" : "camel-management-api"
+  }, {
+    "from" : "camel-support",
+    "to" : "camel-util"
+  }, {
+    "from" : "camel-support",
+    "to" : "camel-util-json"
+  }, {
+    "from" : "camel-support",
+    "to" : "camel-xml-jaxp-util"
+  } ]
+}

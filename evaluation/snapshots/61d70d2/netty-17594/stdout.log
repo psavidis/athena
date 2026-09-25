@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/netty/netty.git",
+  "base" : "bb3eb5f1c82c0abb1f8fa14b1a82001e5cd330dc",
+  "head" : "6f073c6b5667c986b88f6eed392d572010f1798e",
+  "changeCount" : 24,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 7.82
+}

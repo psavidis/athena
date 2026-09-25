@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "commons-collections4",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 5 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Rk9STUFUVElOR19PTkxZCkNvbmN1cnJlbnRSZWZlcmVuY2VIYXNoTWFwVGVzdCN0ZXN0QnVpbGRlckFsbA", "QUREX1NZTUJPTApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcFRlc3QjdGVzdFJlbW92ZU51bGxLZXlUaHJvd3NXaXRob3V0SWRlbnRpdHlDb21wYXJpc29ucw", "QUREX1NZTUJPTApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcFRlc3QjdGVzdFJlbW92ZU51bGxLZXlUaHJvd3NXaXRoSWRlbnRpdHlDb21wYXJpc29ucw", "TU9ESUZZX01FVEhPRF9CT0RZCityZXF1aXJlTm9uTnVsbApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcCNyZW1vdmU", "TU9ESUZZX01FVEhPRF9CT0RZCityZXF1aXJlTm9uTnVsbApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcCNyZXBsYWNl" ],
+    "testChangeKeys" : [ "Rk9STUFUVElOR19PTkxZCkNvbmN1cnJlbnRSZWZlcmVuY2VIYXNoTWFwVGVzdCN0ZXN0QnVpbGRlckFsbA", "QUREX1NZTUJPTApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcFRlc3QjdGVzdFJlbW92ZU51bGxLZXlUaHJvd3NXaXRob3V0SWRlbnRpdHlDb21wYXJpc29ucw", "QUREX1NZTUJPTApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcFRlc3QjdGVzdFJlbW92ZU51bGxLZXlUaHJvd3NXaXRoSWRlbnRpdHlDb21wYXJpc29ucw" ]
+  } ],
+  "dependencies" : [ ]
+}

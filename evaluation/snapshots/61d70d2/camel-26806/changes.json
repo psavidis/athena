@@ -1,0 +1,1791 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTClNpbXBsZUZ1bmN0aW9uQXJndW1lbnRzVGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SimpleFunctionArgumentsTest",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleFunctionArgumentsTest.java" ],
+  "symbols" : [ "SimpleFunctionArgumentsTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClNpbXBsZUZ1bmN0aW9uQXJndW1lbnRzVGVzdC5NeVN0YXRpYw",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SimpleFunctionArgumentsTest.MyStatic",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleFunctionArgumentsTest.java" ],
+  "symbols" : [ "SimpleFunctionArgumentsTest.MyStatic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClNpbXBsZUluaXRCbG9ja0VkZ2VDYXNlc1Rlc3Q",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SimpleInitBlockEdgeCasesTest",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleInitBlockEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleInitBlockEdgeCasesTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClNpbXBsZU9wZXJhdG9yVGVzdC5NeUNvdW50ZXI",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SimpleOperatorTest.MyCounter",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleOperatorTest.java" ],
+  "symbols" : [ "SimpleOperatorTest.MyCounter" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClNpbXBsZVBhcnNlckVkZ2VDYXNlc1Rlc3Q",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SimpleParserEdgeCasesTest",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleParserEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleParserEdgeCasesTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClNpbXBsZVBhcnNlckVkZ2VDYXNlc1Rlc3QuTXlTZXJ2aWNl",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SimpleParserEdgeCasesTest.MyService",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleParserEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleParserEdgeCasesTest.MyService" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClNpbXBsZVN0cmluZ01hdGhEYXRlRnVuY3Rpb25zVGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SimpleStringMathDateFunctionsTest",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleStringMathDateFunctionsTest.java" ],
+  "symbols" : [ "SimpleStringMathDateFunctionsTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpDb2xsZWN0aW9uRXhwcmVzc2lvbkJ1aWxkZXIjcmFuZ2VFeHByZXNzaW9uCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of CollectionExpressionBuilder#rangeExpression: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/CollectionExpressionBuilder.java" ],
+  "symbols" : [ "CollectionExpressionBuilder#rangeExpression", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNaXNjRXhwcmVzc2lvbkJ1aWxkZXIjY29sbGF0ZUV4cHJlc3Npb24KYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of MiscExpressionBuilder#collateExpression: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/MiscExpressionBuilder.java" ],
+  "symbols" : [ "MiscExpressionBuilder#collateExpression", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNaXNjRXhwcmVzc2lvbkJ1aWxkZXIja2luZE9mVHlwZUV4cHJlc3Npb24KYnJhbmNoIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of MiscExpressionBuilder#kindOfTypeExpression: branch removed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/MiscExpressionBuilder.java" ],
+  "symbols" : [ "MiscExpressionBuilder#kindOfTypeExpression", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNaXNjRXhwcmVzc2lvbkJ1aWxkZXIjcmFuZG9tRXhwcmVzc2lvbgpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of MiscExpressionBuilder#randomExpression: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/MiscExpressionBuilder.java" ],
+  "symbols" : [ "MiscExpressionBuilder#randomExpression", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNaXNjRXhwcmVzc2lvbkJ1aWxkZXIjdXVpZEV4cHJlc3Npb24KY29uZGl0aW9uIGNoYW5nZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of MiscExpressionBuilder#uuidExpression: condition changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/MiscExpressionBuilder.java" ],
+  "symbols" : [ "MiscExpressionBuilder#uuidExpression", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVFeHByZXNzaW9uUGFyc2VyI3BhcnNlRXhwcmVzc2lvbgpicmFuY2ggcmVtb3ZlZCwgbG9vcCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SimpleExpressionParser#parseExpression: branch removed, loop removed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleExpressionParser.java" ],
+  "symbols" : [ "SimpleExpressionParser#parseExpression", "branch removed, loop removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVMYW5ndWFnZSNzdGFydApicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SimpleLanguage#start: branch removed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleLanguage.java" ],
+  "symbols" : [ "SimpleLanguage#start", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVQcmVkaWNhdGVQYXJzZXIjcGFyc2VQcmVkaWNhdGUKYnJhbmNoIHJlbW92ZWQsIGxvb3AgcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SimplePredicateParser#parsePredicate: branch removed, loop removed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimplePredicateParser.java" ],
+  "symbols" : [ "SimplePredicateParser#parsePredicate", "branch removed, loop removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVQcmVkaWNhdGVQYXJzZXIjcmVtb3ZlSWdub3JhYmxlV2hpdGVTcGFjZVRva2VucwpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SimplePredicateParser#removeIgnorableWhiteSpaceTokens: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimplePredicateParser.java" ],
+  "symbols" : [ "SimplePredicateParser#removeIgnorableWhiteSpaceTokens", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVTeW50YXhIaW50cyN3cmFwQ29tcGFyaXNvbgpicmFuY2ggYWRkZWQsIGxvb3AgYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SimpleSyntaxHints#wrapComparison: branch added, loop added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleSyntaxHints.java" ],
+  "symbols" : [ "SimpleSyntaxHints#wrapComparison", "branch added, loop added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVTeW50YXhIaW50cyNvcGVyYXRvcnNPdXRzaWRlCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SimpleSyntaxHints#operatorsOutside: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleSyntaxHints.java" ],
+  "symbols" : [ "SimpleSyntaxHints#operatorsOutside", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVTeW50YXhIaW50cyN1bmtub3duRnVuY3Rpb24KYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SimpleSyntaxHints#unknownFunction: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleSyntaxHints.java" ],
+  "symbols" : [ "SimpleSyntaxHints#unknownFunction", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVUb2tlbml6ZXIjYWNjZXB0VG9rZW4KYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SimpleTokenizer#acceptToken: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleTokenizer.java" ],
+  "symbols" : [ "SimpleTokenizer#acceptToken", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzYWZlUXVvdGVFeHByZXNzaW9uCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StringExpressionBuilder#safeQuoteExpression: branch removed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/StringExpressionBuilder.java" ],
+  "symbols" : [ "StringExpressionBuilder#safeQuoteExpression", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNwYWRFeHByZXNzaW9uCmNvbmRpdGlvbiBjaGFuZ2Vk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StringExpressionBuilder#padExpression: condition changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/StringExpressionBuilder.java" ],
+  "symbols" : [ "StringExpressionBuilder#padExpression", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNjb25jYXRFeHByZXNzaW9uCmJyYW5jaCBhZGRlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StringExpressionBuilder#concatExpression: branch added; same calls",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/StringExpressionBuilder.java" ],
+  "symbols" : [ "StringExpressionBuilder#concatExpression", "branch added; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzaXplRXhwcmVzc2lvbgpicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StringExpressionBuilder#sizeExpression: branch removed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/StringExpressionBuilder.java" ],
+  "symbols" : [ "StringExpressionBuilder#sizeExpression", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNsZW5ndGhFeHByZXNzaW9uCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StringExpressionBuilder#lengthExpression: branch removed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/StringExpressionBuilder.java" ],
+  "symbols" : [ "StringExpressionBuilder#lengthExpression", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzdWJzdHJpbmdFeHByZXNzaW9uCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StringExpressionBuilder#substringExpression: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/StringExpressionBuilder.java" ],
+  "symbols" : [ "StringExpressionBuilder#substringExpression", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzdWJzdHJpbmdCZWZvcmVFeHByZXNzaW9uCmJyYW5jaCBhZGRlZDsgc2FtZSBjYWxscw",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StringExpressionBuilder#substringBeforeExpression: branch added; same calls",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/StringExpressionBuilder.java" ],
+  "symbols" : [ "StringExpressionBuilder#substringBeforeExpression", "branch added; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzdWJzdHJpbmdBZnRlckV4cHJlc3Npb24KYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StringExpressionBuilder#substringAfterExpression: branch added; same calls",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/StringExpressionBuilder.java" ],
+  "symbols" : [ "StringExpressionBuilder#substringAfterExpression", "branch added; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzdWJzdHJpbmdCZXR3ZWVuRXhwcmVzc2lvbgpicmFuY2ggYWRkZWQ7IHNhbWUgY2FsbHM",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StringExpressionBuilder#substringBetweenExpression: branch added; same calls",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/StringExpressionBuilder.java" ],
+  "symbols" : [ "StringExpressionBuilder#substringBetweenExpression", "branch added; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCaW5hcnlFeHByZXNzaW9uI2NyZWF0ZVJhbmdlRXhwcmVzc2lvbgpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of BinaryExpression#createRangeExpression: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/BinaryExpression.java" ],
+  "symbols" : [ "BinaryExpression#createRangeExpression", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOdW1lcmljRXhwcmVzc2lvbiNjcmVhdGVFeHByZXNzaW9uCmNvbmRpdGlvbiBjaGFuZ2Vk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of NumericExpression#createExpression: condition changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/NumericExpression.java" ],
+  "symbols" : [ "NumericExpression#createExpression", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpPdGhlckV4cHJlc3Npb24jY3JlYXRlRWx2aXNFeHByZXNzaW9uCmNvbmRpdGlvbiBjaGFuZ2Vk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of OtherExpression#createElvisExpression: condition changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/OtherExpression.java" ],
+  "symbols" : [ "OtherExpression#createElvisExpression", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVGdW5jdGlvbkV4cHJlc3Npb24jY3JlYXRlRXhwcmVzc2lvbgpjb25kaXRpb24gY2hhbmdlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SimpleFunctionExpression#createExpression: condition changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/SimpleFunctionExpression.java" ],
+  "symbols" : [ "SimpleFunctionExpression#createExpression", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2ltcGxlRnVuY3Rpb25FeHByZXNzaW9uI2NyZWF0ZVNpbXBsZUV4cHJlc3Npb24",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of SimpleFunctionExpression#createSimpleExpression",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/SimpleFunctionExpression.java" ],
+  "symbols" : [ "SimpleFunctionExpression#createSimpleExpression" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2ltcGxlRnVuY3Rpb25FeHByZXNzaW9uI2RvQ3JlYXRlU2ltcGxlRXhwcmVzc2lvbg",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of SimpleFunctionExpression#doCreateSimpleExpression",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/SimpleFunctionExpression.java" ],
+  "symbols" : [ "SimpleFunctionExpression#doCreateSimpleExpression" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2ltcGxlRnVuY3Rpb25FeHByZXNzaW9uI2NyZWF0ZVNpbXBsZUZpbGVFeHByZXNzaW9u",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of SimpleFunctionExpression#createSimpleFileExpression",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/SimpleFunctionExpression.java" ],
+  "symbols" : [ "SimpleFunctionExpression#createSimpleFileExpression" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVGdW5jdGlvblN0YXJ0I2ZpbmRUZXJuYXJ5T3BlcmF0b3IKY29uZGl0aW9uIGNoYW5nZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SimpleFunctionStart#findTernaryOperator: condition changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/SimpleFunctionStart.java" ],
+  "symbols" : [ "SimpleFunctionStart#findTernaryOperator", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCZWFuRnVuY3Rpb25GYWN0b3J5I3BhcnNlQmVhblJlbWFpbmRlcgpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of BeanFunctionFactory#parseBeanRemainder: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/functions/BeanFunctionFactory.java" ],
+  "symbols" : [ "BeanFunctionFactory#parseBeanRemainder", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5I2NyZWF0ZUZ1bmN0aW9uCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of CollectionFunctionFactory#createFunction: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/functions/CollectionFunctionFactory.java" ],
+  "symbols" : [ "CollectionFunctionFactory#createFunction", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEYXRlRnVuY3Rpb25GYWN0b3J5I2NyZWF0ZUZ1bmN0aW9uCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of DateFunctionFactory#createFunction: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/functions/DateFunctionFactory.java" ],
+  "symbols" : [ "DateFunctionFactory#createFunction", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpFeGNoYW5nZUZ1bmN0aW9uRmFjdG9yeSNjcmVhdGVGdW5jdGlvbgpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ExchangeFunctionFactory#createFunction: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/functions/ExchangeFunctionFactory.java" ],
+  "symbols" : [ "ExchangeFunctionFactory#createFunction", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpIZWFkZXJGdW5jdGlvbkZhY3RvcnkjY3JlYXRlRnVuY3Rpb24KYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of HeaderFunctionFactory#createFunction: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/functions/HeaderFunctionFactory.java" ],
+  "symbols" : [ "HeaderFunctionFactory#createFunction", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNaXNjRnVuY3Rpb25GYWN0b3J5I2NyZWF0ZUZ1bmN0aW9uCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of MiscFunctionFactory#createFunction: branch removed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/functions/MiscFunctionFactory.java" ],
+  "symbols" : [ "MiscFunctionFactory#createFunction", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdGdW5jdGlvbkZhY3RvcnkjY3JlYXRlRnVuY3Rpb24KY29uZGl0aW9uIGNoYW5nZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StringFunctionFactory#createFunction: condition changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/functions/StringFunctionFactory.java" ],
+  "symbols" : [ "StringFunctionFactory#createFunction", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpWYXJpYWJsZUZ1bmN0aW9uRmFjdG9yeSNjcmVhdGVGdW5jdGlvbgpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of VariableFunctionFactory#createFunction: branch added",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/functions/VariableFunctionFactory.java" ],
+  "symbols" : [ "VariableFunctionFactory#createFunction", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpGaWxlVXRpbCNvbmx5RXh0CmNvbmRpdGlvbiBjaGFuZ2VkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of FileUtil#onlyExt: condition changed; same calls",
+  "files" : [ "core/camel-util/src/main/java/org/apache/camel/util/FileUtil.java" ],
+  "symbols" : [ "FileUtil#onlyExt", "condition changed; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdIZWxwZXIjc3BsaXRPbkNoYXJhY3RlckFzSXRlcmF0b3IKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StringHelper#splitOnCharacterAsIterator: branch added",
+  "files" : [ "core/camel-util/src/main/java/org/apache/camel/util/StringHelper.java" ],
+  "symbols" : [ "StringHelper#splitOnCharacterAsIterator", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdIZWxwZXIjc3BsaXRPbkNoYXJhY3RlckFzTGlzdApicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StringHelper#splitOnCharacterAsList: branch added",
+  "files" : [ "core/camel-util/src/main/java/org/apache/camel/util/StringHelper.java" ],
+  "symbols" : [ "StringHelper#splitOnCharacterAsList", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdIZWxwZXIjZG9DYXBpdGFsaXplCmNvbmRpdGlvbiBjaGFuZ2Vk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StringHelper#doCapitalize: condition changed",
+  "files" : [ "core/camel-util/src/main/java/org/apache/camel/util/StringHelper.java" ],
+  "symbols" : [ "StringHelper#doCapitalize", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTaW1wbGVJbml0QmxvY2tQYXJzZXIjcHJlcGFyZUluaXRCbG9ja3M",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove SimpleInitBlockParser#prepareInitBlocks",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleInitBlockParser.java" ],
+  "symbols" : [ "SimpleInitBlockParser#prepareInitBlocks" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApMb2dpY2FsRXhwcmVzc2lvbiNjcmVhdGVBbmRFeHByZXNzaW9u",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove LogicalExpression#createAndExpression",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/LogicalExpression.java" ],
+  "symbols" : [ "LogicalExpression#createAndExpression" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApMb2dpY2FsRXhwcmVzc2lvbiNjcmVhdGVPckV4cHJlc3Npb24",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove LogicalExpression#createOrExpression",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/LogicalExpression.java" ],
+  "symbols" : [ "LogicalExpression#createOrExpression" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmFyeUV4cHJlc3Npb24jY3JlYXRlSW5jRXhwcmVzc2lvbg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove UnaryExpression#createIncExpression",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/UnaryExpression.java" ],
+  "symbols" : [ "UnaryExpression#createIncExpression" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmFyeUV4cHJlc3Npb24jY3JlYXRlRGVjRXhwcmVzc2lvbg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove UnaryExpression#createDecExpression",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/UnaryExpression.java" ],
+  "symbols" : [ "UnaryExpression#createDecExpression" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNaXNjRXhwcmVzc2lvbkJ1aWxkZXIja2luZE9mVHlwZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MiscExpressionBuilder#kindOfType",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/MiscExpressionBuilder.java" ],
+  "symbols" : [ "MiscExpressionBuilder#kindOfType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkhlbHBlciNrZXlSZW1haW5kZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleFunctionHelper#keyRemainder",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleFunctionHelper.java" ],
+  "symbols" : [ "SimpleFunctionHelper#keyRemainder" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkhlbHBlciNpbmRleE9mQ2xvc2luZ1BhcmVudGhlc2lz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleFunctionHelper#indexOfClosingParenthesis",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleFunctionHelper.java" ],
+  "symbols" : [ "SimpleFunctionHelper#indexOfClosingParenthesis" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tQYXJzZXIjbm9ybWFsaXpl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleInitBlockParser#normalize",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleInitBlockParser.java" ],
+  "symbols" : [ "SimpleInitBlockParser#normalize" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tQYXJzZXIjcmV3cml0ZUV4cHJlc3Npb25BZnRlckluaXRCbG9jaw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleInitBlockParser#rewriteExpressionAfterInitBlock",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleInitBlockParser.java" ],
+  "symbols" : [ "SimpleInitBlockParser#rewriteExpressionAfterInitBlock" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTeW50YXhIaW50cyN3cmFwQ29tcGFyaXNvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleSyntaxHints#wrapComparison",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleSyntaxHints.java" ],
+  "symbols" : [ "SimpleSyntaxHints#wrapComparison" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTeW50YXhIaW50cyNpbmRleE91dHNpZGVRdW90ZXM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleSyntaxHints#indexOutsideQuotes",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleSyntaxHints.java" ],
+  "symbols" : [ "SimpleSyntaxHints#indexOutsideQuotes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMb2dpY2FsRXhwcmVzc2lvbiNjcmVhdGVFeHByZXNzaW9u",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add LogicalExpression#createExpression",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/LogicalExpression.java" ],
+  "symbols" : [ "LogicalExpression#createExpression" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApPdGhlckV4cHJlc3Npb24jaXNaZXJv",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add OtherExpression#isZero",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/OtherExpression.java" ],
+  "symbols" : [ "OtherExpression#isZero" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvblN0YXJ0I3N1cnJvdW5kZWRCeVdoaXRlc3BhY2U",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleFunctionStart#surroundedByWhitespace",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/SimpleFunctionStart.java" ],
+  "symbols" : [ "SimpleFunctionStart#surroundedByWhitespace" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApVbmFyeUV4cHJlc3Npb24jY3JlYXRlSW5jRGVjRXhwcmVzc2lvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add UnaryExpression#createIncDecExpression",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/UnaryExpression.java" ],
+  "symbols" : [ "UnaryExpression#createIncDecExpression" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5I3NwbGl0QXJndW1lbnRz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add CollectionFunctionFactory#splitArguments",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/functions/CollectionFunctionFactory.java" ],
+  "symbols" : [ "CollectionFunctionFactory#splitArguments" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeGNoYW5nZUZ1bmN0aW9uRmFjdG9yeSNzdGFydHNPZ25s",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExchangeFunctionFactory#startsOgnl",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/functions/ExchangeFunctionFactory.java" ],
+  "symbols" : [ "ExchangeFunctionFactory#startsOgnl" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjZ2V0TGFuZ3VhZ2VOYW1l",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleFunctionArgumentsTest#getLanguageName",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleFunctionArgumentsTest.java" ],
+  "symbols" : [ "SimpleFunctionArgumentsTest#getLanguageName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdFF1b3Rlc0luc2lkZUFOZXN0ZWRGdW5jdGlvbkFyZUtlcHQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleFunctionArgumentsTest#testQuotesInsideANestedFunctionAreKept",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleFunctionArgumentsTest.java" ],
+  "symbols" : [ "SimpleFunctionArgumentsTest#testQuotesInsideANestedFunctionAreKept" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdENvbnZlcnRUb1dpdGhQYXJlbnRoZXNlc0luVGhlRXhwcmVzc2lvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleFunctionArgumentsTest#testConvertToWithParenthesesInTheExpression",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleFunctionArgumentsTest.java" ],
+  "symbols" : [ "SimpleFunctionArgumentsTest#testConvertToWithParenthesesInTheExpression" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdENvbW1hSW5zaWRlUXVvdGVz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleFunctionArgumentsTest#testCommaInsideQuotes",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleFunctionArgumentsTest.java" ],
+  "symbols" : [ "SimpleFunctionArgumentsTest#testCommaInsideQuotes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdFRvb0Zld0FyZ3VtZW50cw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleFunctionArgumentsTest#testTooFewArguments",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleFunctionArgumentsTest.java" ],
+  "symbols" : [ "SimpleFunctionArgumentsTest#testTooFewArguments" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdEJlYW5UeXBlV2l0aFBhY2thZ2U",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleFunctionArgumentsTest#testBeanTypeWithPackage",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleFunctionArgumentsTest.java" ],
+  "symbols" : [ "SimpleFunctionArgumentsTest#testBeanTypeWithPackage" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdFF1b3RlZEtleUlzTm90T2dubA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleFunctionArgumentsTest#testQuotedKeyIsNotOgnl",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleFunctionArgumentsTest.java" ],
+  "symbols" : [ "SimpleFunctionArgumentsTest#testQuotedKeyIsNotOgnl" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdE5hbWVzTXVzdE5vdEJlR2x1ZWRUb0FQcmVmaXg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleFunctionArgumentsTest#testNamesMustNotBeGluedToAPrefix",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleFunctionArgumentsTest.java" ],
+  "symbols" : [ "SimpleFunctionArgumentsTest#testNamesMustNotBeGluedToAPrefix" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QuTXlTdGF0aWMjaGVsbG8",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleFunctionArgumentsTest.MyStatic#hello",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleFunctionArgumentsTest.java" ],
+  "symbols" : [ "SimpleFunctionArgumentsTest.MyStatic#hello" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I2dldExhbmd1YWdlTmFtZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleInitBlockEdgeCasesTest#getLanguageName",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleInitBlockEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleInitBlockEdgeCasesTest#getLanguageName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RDb21tZW50ZWRPdXRBc3NpZ25tZW50RG9lc05vdFJ1bg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleInitBlockEdgeCasesTest#testCommentedOutAssignmentDoesNotRun",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleInitBlockEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleInitBlockEdgeCasesTest#testCommentedOutAssignmentDoesNotRun" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RDb21tZW50V2l0aERvbGxhcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleInitBlockEdgeCasesTest#testCommentWithDollar",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleInitBlockEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleInitBlockEdgeCasesTest#testCommentWithDollar" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RDb21tZW50SW5zaWRlUXVvdGVzSXNUZXh0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleInitBlockEdgeCasesTest#testCommentInsideQuotesIsText",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleInitBlockEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleInitBlockEdgeCasesTest#testCommentInsideQuotesIsText" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RPbmVMaW5lcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleInitBlockEdgeCasesTest#testOneLiner",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleInitBlockEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleInitBlockEdgeCasesTest#testOneLiner" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RXaW5kb3dzTGluZUVuZGluZ3M",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleInitBlockEdgeCasesTest#testWindowsLineEndings",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleInitBlockEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleInitBlockEdgeCasesTest#testWindowsLineEndings" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RQcmVkaWNhdGVXaXRoT25seUZ1bmN0aW9ucw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleInitBlockEdgeCasesTest#testPredicateWithOnlyFunctions",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleInitBlockEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleInitBlockEdgeCasesTest#testPredicateWithOnlyFunctions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RDdXN0b21GdW5jdGlvbklzTG9jYWxUb1RoZUV4cHJlc3Npb24",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleInitBlockEdgeCasesTest#testCustomFunctionIsLocalToTheExpression",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleInitBlockEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleInitBlockEdgeCasesTest#testCustomFunctionIsLocalToTheExpression" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RFcnJvclBvaW50c0ludG9UaGVJbml0QmxvY2s",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleInitBlockEdgeCasesTest#testErrorPointsIntoTheInitBlock",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleInitBlockEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleInitBlockEdgeCasesTest#testErrorPointsIntoTheInitBlock" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdE51bWVyaWNMaXRlcmFsQXNPdGhlck51bWJlclR5cGU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleOperatorTest#testNumericLiteralAsOtherNumberType",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleOperatorTest.java" ],
+  "symbols" : [ "SimpleOperatorTest#testNumericLiteralAsOtherNumberType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdE5lZ2F0aXZlTG9uZ0xpdGVyYWw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleOperatorTest#testNegativeLongLiteral",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleOperatorTest.java" ],
+  "symbols" : [ "SimpleOperatorTest#testNegativeLongLiteral" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdEVsdmlzQW55WmVybw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleOperatorTest#testElvisAnyZero",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleOperatorTest.java" ],
+  "symbols" : [ "SimpleOperatorTest#testElvisAnyZero" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdExvZ2ljYWxFeHByZXNzaW9uVG9TdHJpbmc",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleOperatorTest#testLogicalExpressionToString",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleOperatorTest.java" ],
+  "symbols" : [ "SimpleOperatorTest#testLogicalExpressionToString" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdEVsdmlzRXZhbHVhdGVzTGVmdE9uY2U",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleOperatorTest#testElvisEvaluatesLeftOnce",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleOperatorTest.java" ],
+  "symbols" : [ "SimpleOperatorTest#testElvisEvaluatesLeftOnce" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdFVuYXJ5SW5jRGVjS2VlcHNEZWNpbWFscw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleOperatorTest#testUnaryIncDecKeepsDecimals",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleOperatorTest.java" ],
+  "symbols" : [ "SimpleOperatorTest#testUnaryIncDecKeepsDecimals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdFJlZ2V4QW5kUmFuZ2VXaXRoTnVsbFJpZ2h0SGFuZFNpZGU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleOperatorTest#testRegexAndRangeWithNullRightHandSide",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleOperatorTest.java" ],
+  "symbols" : [ "SimpleOperatorTest#testRegexAndRangeWithNullRightHandSide" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QuTXlDb3VudGVyI25leHQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleOperatorTest.MyCounter#next",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleOperatorTest.java" ],
+  "symbols" : [ "SimpleOperatorTest.MyCounter#next" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I2dldExhbmd1YWdlTmFtZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleParserEdgeCasesTest#getLanguageName",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleParserEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleParserEdgeCasesTest#getLanguageName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RTaW5nbGVRdW90ZUluc2lkZURvdWJsZVF1b3Rlc0luRnVuY3Rpb24",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleParserEdgeCasesTest#testSingleQuoteInsideDoubleQuotesInFunction",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleParserEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleParserEdgeCasesTest#testSingleQuoteInsideDoubleQuotesInFunction" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RCcmFjZUluc2lkZURvdWJsZVF1b3Rlcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleParserEdgeCasesTest#testBraceInsideDoubleQuotes",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleParserEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleParserEdgeCasesTest#testBraceInsideDoubleQuotes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RDaGFpbkZvbGxvd2VkQnlOdW1iZXJPck51bGw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleParserEdgeCasesTest#testChainFollowedByNumberOrNull",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleParserEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleParserEdgeCasesTest#testChainFollowedByNumberOrNull" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RDaGFpbk5lZWRzU3BhY2Vz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleParserEdgeCasesTest#testChainNeedsSpaces",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleParserEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleParserEdgeCasesTest#testChainNeedsSpaces" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RPcGVyYXRvckluc2lkZVF1b3Rlc0luQnJhY2Vz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleParserEdgeCasesTest#testOperatorInsideQuotesInBraces",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleParserEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleParserEdgeCasesTest#testOperatorInsideQuotesInBraces" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RVbnF1b3RlZFRleHRXaXRoRGlnaXRJc0xlbmllbnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleParserEdgeCasesTest#testUnquotedTextWithDigitIsLenient",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleParserEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleParserEdgeCasesTest#testUnquotedTextWithDigitIsLenient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RDb2xvbldpdGhvdXRTcGFjZXNJc05vdEFUZXJuYXJ5",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleParserEdgeCasesTest#testColonWithoutSpacesIsNotATernary",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleParserEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleParserEdgeCasesTest#testColonWithoutSpacesIsNotATernary" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0Lk15U2VydmljZSNlY2hv",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleParserEdgeCasesTest.MyService#echo",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleParserEdgeCasesTest.java" ],
+  "symbols" : [ "SimpleParserEdgeCasesTest.MyService#echo" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVQcmVkaWNhdGVJbkJyYWNlc1Rlc3QjdGVzdEFuT3BlcmF0b3JXb3JkSW5BVmFsdWVJc05vdEFQcmVkaWNhdGU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimplePredicateInBracesTest#testAnOperatorWordInAValueIsNotAPredicate",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimplePredicateInBracesTest.java" ],
+  "symbols" : [ "SimplePredicateInBracesTest#testAnOperatorWordInAValueIsNotAPredicate" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjZ2V0TGFuZ3VhZ2VOYW1l",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleStringMathDateFunctionsTest#getLanguageName",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleStringMathDateFunctionsTest.java" ],
+  "symbols" : [ "SimpleStringMathDateFunctionsTest#getLanguageName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdENhcGl0YWxpemVFbXB0eQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleStringMathDateFunctionsTest#testCapitalizeEmpty",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleStringMathDateFunctionsTest.java" ],
+  "symbols" : [ "SimpleStringMathDateFunctionsTest#testCapitalizeEmpty" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdE1hdGhXaXRob3V0QXJndW1lbnRzVXNlc1RoZUJvZHk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleStringMathDateFunctionsTest#testMathWithoutArgumentsUsesTheBody",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleStringMathDateFunctionsTest.java" ],
+  "symbols" : [ "SimpleStringMathDateFunctionsTest#testMathWithoutArgumentsUsesTheBody" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdERhdGVIZWFkZXJXaXRoRGFzaE9yRG90",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleStringMathDateFunctionsTest#testDateHeaderWithDashOrDot",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleStringMathDateFunctionsTest.java" ],
+  "symbols" : [ "SimpleStringMathDateFunctionsTest#testDateHeaderWithDashOrDot" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdERhdGVXaXRoVGltZXpvbmVPZmZzZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleStringMathDateFunctionsTest#testDateWithTimezoneOffset",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleStringMathDateFunctionsTest.java" ],
+  "symbols" : [ "SimpleStringMathDateFunctionsTest#testDateWithTimezoneOffset" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdFNhZmVRdW90ZUlzVmFsaWRKc29u",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleStringMathDateFunctionsTest#testSafeQuoteIsValidJson",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleStringMathDateFunctionsTest.java" ],
+  "symbols" : [ "SimpleStringMathDateFunctionsTest#testSafeQuoteIsValidJson" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdEtpbmRPZlR5cGU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleStringMathDateFunctionsTest#testKindOfType",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleStringMathDateFunctionsTest.java" ],
+  "symbols" : [ "SimpleStringMathDateFunctionsTest#testKindOfType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdFN1YnN0cmluZ1dpdGhOdWxsQXJndW1lbnRz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleStringMathDateFunctionsTest#testSubstringWithNullArguments",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleStringMathDateFunctionsTest.java" ],
+  "symbols" : [ "SimpleStringMathDateFunctionsTest#testSubstringWithNullArguments" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdFBhZFdpdGhTZXZlcmFsQ2hhcmFjdGVycw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleStringMathDateFunctionsTest#testPadWithSeveralCharacters",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleStringMathDateFunctionsTest.java" ],
+  "symbols" : [ "SimpleStringMathDateFunctionsTest#testPadWithSeveralCharacters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdFNpemVBbmRMZW5ndGhPZkFueUFycmF5",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleStringMathDateFunctionsTest#testSizeAndLengthOfAnyArray",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleStringMathDateFunctionsTest.java" ],
+  "symbols" : [ "SimpleStringMathDateFunctionsTest#testSizeAndLengthOfAnyArray" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdEhpZGRlbkZpbGVOYW1l",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleStringMathDateFunctionsTest#testHiddenFileName",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleStringMathDateFunctionsTest.java" ],
+  "symbols" : [ "SimpleStringMathDateFunctionsTest#testHiddenFileName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjZXZhbHVhdGU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleStringMathDateFunctionsTest#evaluate",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleStringMathDateFunctionsTest.java" ],
+  "symbols" : [ "SimpleStringMathDateFunctionsTest#evaluate" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVUZXN0I3Rlc3RDb2xsZWN0aW9uRnVuY3Rpb25zT25BU2luZ2xlQ29tbWE",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleTest#testCollectionFunctionsOnASingleComma",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleTest.java" ],
+  "symbols" : [ "SimpleTest#testCollectionFunctionsOnASingleComma" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVUZXN0I3Rlc3ROdWxsTnVtYmVyQXJndW1lbnRz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleTest#testNullNumberArguments",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleTest.java" ],
+  "symbols" : [ "SimpleTest#testNullNumberArguments" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW1wbGVUZXN0I2V2YWx1YXRl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SimpleTest#evaluate",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleTest.java" ],
+  "symbols" : [ "SimpleTest#evaluate" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5VGVzdCN0ZXN0UmFuZ2VOZWdhdGl2ZVN0YXJ0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add CollectionFunctionFactoryTest#testRangeNegativeStart",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/functions/CollectionFunctionFactoryTest.java" ],
+  "symbols" : [ "CollectionFunctionFactoryTest#testRangeNegativeStart" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5VGVzdCN0ZXN0U3BsaXRTZXBhcmF0b3JJc05vdEFSZWdleA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add CollectionFunctionFactoryTest#testSplitSeparatorIsNotARegex",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/functions/CollectionFunctionFactoryTest.java" ],
+  "symbols" : [ "CollectionFunctionFactoryTest#testSplitSeparatorIsNotARegex" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5VGVzdCN0ZXN0U29ydE9ubHlBcmd1bWVudElzV2hhdFRvU29ydA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add CollectionFunctionFactoryTest#testSortOnlyArgumentIsWhatToSort",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/functions/CollectionFunctionFactoryTest.java" ],
+  "symbols" : [ "CollectionFunctionFactoryTest#testSortOnlyArgumentIsWhatToSort" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5VGVzdCN0ZXN0U3BhY2VBZnRlckNvbW1h",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add CollectionFunctionFactoryTest#testSpaceAfterComma",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/functions/CollectionFunctionFactoryTest.java" ],
+  "symbols" : [ "CollectionFunctionFactoryTest#testSpaceAfterComma" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25FeHByZXNzaW9uQnVpbGRlciNkaXN0aW5jdEV4cHJlc3Npb24KcmV0dXJuIHZhbHVlIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CollectionExpressionBuilder#distinctExpression: return value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/CollectionExpressionBuilder.java" ],
+  "symbols" : [ "CollectionExpressionBuilder#distinctExpression", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25FeHByZXNzaW9uQnVpbGRlciNyZXZlcnNlRXhwcmVzc2lvbgpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CollectionExpressionBuilder#reverseExpression: return value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/CollectionExpressionBuilder.java" ],
+  "symbols" : [ "CollectionExpressionBuilder#reverseExpression", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25FeHByZXNzaW9uQnVpbGRlciNzaHVmZmxlRXhwcmVzc2lvbgpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CollectionExpressionBuilder#shuffleExpression: return value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/CollectionExpressionBuilder.java" ],
+  "symbols" : [ "CollectionExpressionBuilder#shuffleExpression", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb21waWxlLCArcXVvdGUsICtyZXBsYWNlLCByZXR1cm4gdmFsdWUgY2hhbmdlZApDb2xsZWN0aW9uRXhwcmVzc2lvbkJ1aWxkZXIjc3BsaXRTdHJpbmdFeHByZXNzaW9u",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CollectionExpressionBuilder#splitStringExpression: +compile, +quote, +replace, return value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/CollectionExpressionBuilder.java" ],
+  "symbols" : [ "CollectionExpressionBuilder#splitStringExpression", "+compile, +quote, +replace, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25FeHByZXNzaW9uQnVpbGRlciNzb3J0RXhwcmVzc2lvbgpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CollectionExpressionBuilder#sortExpression: return value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/CollectionExpressionBuilder.java" ],
+  "symbols" : [ "CollectionExpressionBuilder#sortExpression", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25FeHByZXNzaW9uQnVpbGRlciNmb3JFYWNoRXhwcmVzc2lvbgpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CollectionExpressionBuilder#forEachExpression: return value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/CollectionExpressionBuilder.java" ],
+  "symbols" : [ "CollectionExpressionBuilder#forEachExpression", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25FeHByZXNzaW9uQnVpbGRlciNmaWx0ZXJFeHByZXNzaW9uCnJldHVybiB2YWx1ZSBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CollectionExpressionBuilder#filterExpression: return value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/CollectionExpressionBuilder.java" ],
+  "symbols" : [ "CollectionExpressionBuilder#filterExpression", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCittYXRjaGVyLCArZmluZCwgK3N1YnN0cmluZywgK3N0YXJ0LCAtc3BsaXQKRGF0ZUV4cHJlc3Npb25CdWlsZGVyI2RhdGVFeHByZXNzaW9u",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of DateExpressionBuilder#dateExpression: +matcher, +find, +substring, +start, -split",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/DateExpressionBuilder.java" ],
+  "symbols" : [ "DateExpressionBuilder#dateExpression", "+matcher, +find, +substring, +start, -split" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hdGhFeHByZXNzaW9uQnVpbGRlciNzdW1FeHByZXNzaW9uCnJldHVybiB2YWx1ZSBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MathExpressionBuilder#sumExpression: return value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/MathExpressionBuilder.java" ],
+  "symbols" : [ "MathExpressionBuilder#sumExpression", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hdGhFeHByZXNzaW9uQnVpbGRlciNtYXhFeHByZXNzaW9uCnJldHVybiB2YWx1ZSBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MathExpressionBuilder#maxExpression: return value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/MathExpressionBuilder.java" ],
+  "symbols" : [ "MathExpressionBuilder#maxExpression", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hdGhFeHByZXNzaW9uQnVpbGRlciNtaW5FeHByZXNzaW9uCnJldHVybiB2YWx1ZSBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MathExpressionBuilder#minExpression: return value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/MathExpressionBuilder.java" ],
+  "symbols" : [ "MathExpressionBuilder#minExpression", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hdGhFeHByZXNzaW9uQnVpbGRlciNhdmVyYWdlRXhwcmVzc2lvbgpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MathExpressionBuilder#averageExpression: return value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/MathExpressionBuilder.java" ],
+  "symbols" : [ "MathExpressionBuilder#averageExpression", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitrZXlSZW1haW5kZXIsIHJldHVybiByZW1haW5kZXIgLT4ga2V5UmVtYWluZGVyKHJlbWFpbmRlcikKU2ltcGxlRnVuY3Rpb25IZWxwZXIjcGFyc2VJbkhlYWRlcg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SimpleFunctionHelper#parseInHeader: +keyRemainder, return remainder -> keyRemainder(remainder)",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleFunctionHelper.java" ],
+  "symbols" : [ "SimpleFunctionHelper#parseInHeader", "+keyRemainder, return remainder -> keyRemainder(remainder)" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitrZXlSZW1haW5kZXIsIHJldHVybiByZW1haW5kZXIgLT4ga2V5UmVtYWluZGVyKHJlbWFpbmRlcikKU2ltcGxlRnVuY3Rpb25IZWxwZXIjcGFyc2VWYXJpYWJsZQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SimpleFunctionHelper#parseVariable: +keyRemainder, return remainder -> keyRemainder(remainder)",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleFunctionHelper.java" ],
+  "symbols" : [ "SimpleFunctionHelper#parseVariable", "+keyRemainder, return remainder -> keyRemainder(remainder)" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRNZXNzYWdlLCArZ2V0SW5kZXgsICtsZW5ndGgsICt0aHJvdyBTaW1wbGVQYXJzZXJFeGNlcHRpb24KU2ltcGxlSW5pdEJsb2NrUGFyc2VyI3BhcnNlRXhwcmVzc2lvbg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SimpleInitBlockParser#parseExpression: +getMessage, +getIndex, +length, +throw SimpleParserException",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleInitBlockParser.java" ],
+  "symbols" : [ "SimpleInitBlockParser#parseExpression", "+getMessage, +getIndex, +length, +throw SimpleParserException" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClNpbXBsZVByZWRpY2F0ZVBhcnNlciNiaW5hcnlPcGVyYXRvcgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SimplePredicateParser#binaryOperator: other statements changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimplePredicateParser.java" ],
+  "symbols" : [ "SimplePredicateParser#binaryOperator", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitleHBlY3QsIC1leHBlY3RBbmRBY2NlcHRNb3JlClNpbXBsZVByZWRpY2F0ZVBhcnNlciNjaGFpbk9wZXJhdG9y",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SimplePredicateParser#chainOperator: +expect, -expectAndAcceptMore",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimplePredicateParser.java" ],
+  "symbols" : [ "SimplePredicateParser#chainOperator", "+expect, -expectAndAcceptMore" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClNpbXBsZVByZWRpY2F0ZVBhcnNlciNtaW51c1ZhbHVlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SimplePredicateParser#minusValue: other statements changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimplePredicateParser.java" ],
+  "symbols" : [ "SimplePredicateParser#minusValue", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb25zdGFudCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKQmluYXJ5RXhwcmVzc2lvbiNjcmVhdGVSZWdleEV4cHJlc3Npb24",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BinaryExpression#createRegexExpression: +constant, return value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/BinaryExpression.java" ],
+  "symbols" : [ "BinaryExpression#createRegexExpression", "+constant, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNoYWluRXhwcmVzc2lvbiNwcmVwYXJlQ2hhaW5Ob2RlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ChainExpression#prepareChainNode: other statements changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/ChainExpression.java" ],
+  "symbols" : [ "ChainExpression#prepareChainNode", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGVFeHByZXNzaW9uLCArdG9QcmVkaWNhdGUsICthbmQsICtvciwgLWNyZWF0ZUFuZEV4cHJlc3Npb24g4oCmYW5kIDIgbW9yZQpMb2dpY2FsRXhwcmVzc2lvbiNjcmVhdGVFeHByZXNzaW9u",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of LogicalExpression#createExpression: +createExpression, +toPredicate, +and, +or, -createAndExpression …and 2 more",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/LogicalExpression.java" ],
+  "symbols" : [ "LogicalExpression#createExpression", "+createExpression, +toPredicate, +and, +or, -createAndExpression …and 2 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGVJbmNEZWNFeHByZXNzaW9uLCAtY3JlYXRlSW5jRXhwcmVzc2lvbiwgLWNyZWF0ZURlY0V4cHJlc3Npb24sIHJldHVybiB2YWx1ZSBjaGFuZ2VkIMOXMgpVbmFyeUV4cHJlc3Npb24jY3JlYXRlRXhwcmVzc2lvbg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UnaryExpression#createExpression: +createIncDecExpression, -createIncExpression, -createDecExpression, return value changed ×2",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/UnaryExpression.java" ],
+  "symbols" : [ "UnaryExpression#createExpression", "+createIncDecExpression, -createIncExpression, -createDecExpression, return value changed ×2" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZW1vdmVMZWFkaW5nQW5kRW5kaW5nUXVvdGVzLCAtcmVtb3ZlUXVvdGVzLCByZXR1cm4gcmVtb3ZlUXVvdGVzIC0-IHJlbW92ZUxlYWRpbmdBbmRFbmRpbmdRdW90ZXMgw5czCk1hdGhGdW5jdGlvbkZhY3RvcnkjY3JlYXRlRnVuY3Rpb24",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MathFunctionFactory#createFunction: +removeLeadingAndEndingQuotes, -removeQuotes, return removeQuotes -> removeLeadingAndEndingQuotes ×3",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/functions/MathFunctionFactory.java" ],
+  "symbols" : [ "MathFunctionFactory#createFunction", "+removeLeadingAndEndingQuotes, -removeQuotes, return removeQuotes -> removeLeadingAndEndingQuotes ×3" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hdGhGdW5jdGlvbkZhY3RvcnkjcGFyc2VWYXJpYWRpY1Rva2VucwpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MathFunctionFactory#parseVariadicTokens: return value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/functions/MathFunctionFactory.java" ],
+  "symbols" : [ "MathFunctionFactory#parseVariadicTokens", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCArZXhwcmVzc2lvbkVycm9yLCArY29udGFpbnMKU2ltcGxlU3ludGF4SGludHNUZXN0I3Rlc3RVbmtub3duRnVuY3Rpb25TdWdnZXN0aW9ucw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SimpleSyntaxHintsTest#testUnknownFunctionSuggestions: +assertThat, +expressionError, +contains",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleSyntaxHintsTest.java" ],
+  "symbols" : [ "SimpleSyntaxHintsTest#testUnknownFunctionSuggestions", "+assertThat, +expressionError, +contains" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClNpbXBsZVRlc3QjdGVzdEdsb2JhbFZhcmlhYmxlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SimpleTest#testGlobalVariable: other statements changed",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleTest.java" ],
+  "symbols" : [ "SimpleTest#testGlobalVariable", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRNZXNzYWdlLCArc2V0Qm9keSwgK2Fzc2VydEV4cHJlc3Npb24KU2ltcGxlVGVzdCN0ZXN0U3Vic3RyaW5nRXhwcmVzc2lvbg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SimpleTest#testSubstringExpression: +getMessage, +setBody, +assertExpression",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleTest.java" ],
+  "symbols" : [ "SimpleTest#testSubstringExpression", "+getMessage, +setBody, +assertExpression" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXNvbHZlTGFuZ3VhZ2UsICtjcmVhdGVFeHByZXNzaW9uLCArZXZhbHVhdGUsICthc3NlcnROb3ROdWxsClNpbXBsZVRlc3QjdGVzdFV1aWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SimpleTest#testUuid: +resolveLanguage, +createExpression, +evaluate, +assertNotNull",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleTest.java" ],
+  "symbols" : [ "SimpleTest#testUuid", "+resolveLanguage, +createExpression, +evaluate, +assertNotNull" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25GdW5jdGlvbkZhY3RvcnlUZXN0I3Rlc3RSYW5nZU1heApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CollectionFunctionFactoryTest#testRangeMax: other statements changed",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/functions/CollectionFunctionFactoryTest.java" ],
+  "symbols" : [ "CollectionFunctionFactoryTest#testRangeMax", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzdHJpcEV4dCwgK2Fzc2VydEVxdWFscwpGaWxlVXRpbFRlc3QjdGVzdFN0cmlwRXh0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of FileUtilTest#testStripExt: +stripExt, +assertEquals",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/util/FileUtilTest.java" ],
+  "symbols" : [ "FileUtilTest#testStripExt", "+stripExt, +assertEquals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnROdWxsLCArb25seUV4dCwgK2Fzc2VydEVxdWFscwpGaWxlVXRpbFRlc3QjdGVzdE9ubHlFeHQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of FileUtilTest#testOnlyExt: +assertNull, +onlyExt, +assertEquals",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/util/FileUtilTest.java" ],
+  "symbols" : [ "FileUtilTest#testOnlyExt", "+assertNull, +onlyExt, +assertEquals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbmRleE9mLCAtbGFzdEluZGV4T2YKTGFuZ3VhZ2VIZWxwZXIjZGF0ZUZyb21FeGNoYW5nZVByb3BlcnR5",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of LanguageHelper#dateFromExchangeProperty: +indexOf, -lastIndexOf",
+  "files" : [ "core/camel-support/src/main/java/org/apache/camel/support/LanguageHelper.java" ],
+  "symbols" : [ "LanguageHelper#dateFromExchangeProperty", "+indexOf, -lastIndexOf" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbmRleE9mLCAtbGFzdEluZGV4T2YKTGFuZ3VhZ2VIZWxwZXIjZGF0ZUZyb21IZWFkZXI",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of LanguageHelper#dateFromHeader: +indexOf, -lastIndexOf",
+  "files" : [ "core/camel-support/src/main/java/org/apache/camel/support/LanguageHelper.java" ],
+  "symbols" : [ "LanguageHelper#dateFromHeader", "+indexOf, -lastIndexOf" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbmRleE9mLCAtbGFzdEluZGV4T2YKTGFuZ3VhZ2VIZWxwZXIjZGF0ZUZyb21WYXJpYWJsZQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of LanguageHelper#dateFromVariable: +indexOf, -lastIndexOf",
+  "files" : [ "core/camel-support/src/main/java/org/apache/camel/support/LanguageHelper.java" ],
+  "symbols" : [ "LanguageHelper#dateFromVariable", "+indexOf, -lastIndexOf" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkZpbGVVdGlsI3N0cmlwRXh0Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of FileUtil#stripExt: other statements changed",
+  "files" : [ "core/camel-util/src/main/java/org/apache/camel/util/FileUtil.java" ],
+  "symbols" : [ "FileUtil#stripExt", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzcGxpdE9uQ2hhcmFjdGVyQXNMaXN0LCArYXNzZXJ0RXF1YWxzLCArc2l6ZQpTdHJpbmdIZWxwZXJUZXN0I3Rlc3RTcGxpdE9uQ2hhcmFjdGVyQXNMaXN0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of StringHelperTest#testSplitOnCharacterAsList: +splitOnCharacterAsList, +assertEquals, +size",
+  "files" : [ "core/camel-util/src/test/java/org/apache/camel/util/StringHelperTest.java" ],
+  "symbols" : [ "StringHelperTest#testSplitOnCharacterAsList", "+splitOnCharacterAsList, +assertEquals, +size" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzcGxpdE9uQ2hhcmFjdGVyQXNJdGVyYXRvciwgK2Fzc2VydEZhbHNlLCAraGFzTmV4dApTdHJpbmdIZWxwZXJUZXN0I3Rlc3RTcGxpdE9uQ2hhcmFjdGVyQXNJdGVyYXRvcg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of StringHelperTest#testSplitOnCharacterAsIterator: +splitOnCharacterAsIterator, +assertFalse, +hasNext",
+  "files" : [ "core/camel-util/src/test/java/org/apache/camel/util/StringHelperTest.java" ],
+  "symbols" : [ "StringHelperTest#testSplitOnCharacterAsIterator", "+splitOnCharacterAsIterator, +assertFalse, +hasNext" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjYXBpdGFsaXplQWxsLCArYXNzZXJ0RXF1YWxzLCArY2FwaXRhbGl6ZQpTdHJpbmdIZWxwZXJUZXN0I3Rlc3RDYXBpdGFsaXplQWxs",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of StringHelperTest#testCapitalizeAll: +capitalizeAll, +assertEquals, +capitalize",
+  "files" : [ "core/camel-util/src/test/java/org/apache/camel/util/StringHelperTest.java" ],
+  "symbols" : [ "StringHelperTest#testCapitalizeAll", "+capitalizeAll, +assertEquals, +capitalize" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitub3JtYWxpemUKU2ltcGxlSW5pdEJsb2NrUGFyc2VyIzxpbml0Pg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SimpleInitBlockParser#<init>: +normalize",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleInitBlockParser.java" ],
+  "symbols" : [ "SimpleInitBlockParser#<init>", "+normalize" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi12YWx1ZU9mCk51bWVyaWNFeHByZXNzaW9uIzxpbml0Pg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of NumericExpression#<init>: -valueOf",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/ast/NumericExpression.java" ],
+  "symbols" : [ "NumericExpression#<init>", "-valueOf" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClNpbXBsZUxhbmd1YWdlI1NJTVBMRQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field SimpleLanguage#SIMPLE",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleLanguage.java" ],
+  "symbols" : [ "SimpleLanguage#SIMPLE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkRhdGVFeHByZXNzaW9uQnVpbGRlciNPRkZTRVRfU1RBUlQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field DateExpressionBuilder#OFFSET_START",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/DateExpressionBuilder.java" ],
+  "symbols" : [ "DateExpressionBuilder#OFFSET_START" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNpbXBsZUNvbnN0YW50cyNMT0dfRVhDSEFOR0U",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SimpleConstants#LOG_EXCHANGE",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleConstants.java" ],
+  "symbols" : [ "SimpleConstants#LOG_EXCHANGE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNpbXBsZVN5bnRheEhpbnRzI0NBTExFRF9XSVRIX1BBUkVOVEhFU0VT",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SimpleSyntaxHints#CALLED_WITH_PARENTHESES",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleSyntaxHints.java" ],
+  "symbols" : [ "SimpleSyntaxHints#CALLED_WITH_PARENTHESES" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkRhdGVGdW5jdGlvbkZhY3RvcnkjVElNRVpPTkVfV0lUSF9DT0xPTg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field DateFunctionFactory#TIMEZONE_WITH_COLON",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/functions/DateFunctionFactory.java" ],
+  "symbols" : [ "DateFunctionFactory#TIMEZONE_WITH_COLON" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNpbXBsZU9wZXJhdG9yVGVzdC5NeUNvdW50ZXIjY291bnQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SimpleOperatorTest.MyCounter#count",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/language/simple/SimpleOperatorTest.java" ],
+  "symbols" : [ "SimpleOperatorTest.MyCounter#count" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCkRhdGVFeHByZXNzaW9uQnVpbGRlciNPRkZTRVRfUEFUVEVSTgpQYXR0ZXJuLmNvbXBpbGUoIihbKy1dKShbXistXSspIikgLT4gUGF0dGVybi5jb21waWxlKCIoWystXSlcXHMqKFxcZFteKy1dKikiKQ",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of DateExpressionBuilder#OFFSET_PATTERN: Pattern.compile(\"([+-])([^+-]+)\") -> Pattern.compile(\"([+-])\\\\s*(\\\\d[^+-]*)\")",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/DateExpressionBuilder.java" ],
+  "symbols" : [ "DateExpressionBuilder#OFFSET_PATTERN", "Pattern.compile(\"([+-])([^+-]+)\") -> Pattern.compile(\"([+-])\\\\s*(\\\\d[^+-]*)\")" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCiJleGNlcHRpb24uc3RhY2tUcmFjZSIgLT4gImV4Y2VwdGlvbi5zdGFja3RyYWNlIgpTaW1wbGVDb25zdGFudHMjRVhDRVBUSU9OX1NUQUNLVFJBQ0U",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of SimpleConstants#EXCEPTION_STACKTRACE: \"exception.stackTrace\" -> \"exception.stacktrace\"",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleConstants.java" ],
+  "symbols" : [ "SimpleConstants#EXCEPTION_STACKTRACE", "\"exception.stackTrace\" -> \"exception.stacktrace\"" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCiJob3N0TmFtZSIgLT4gImhvc3RuYW1lIgpTaW1wbGVDb25zdGFudHMjSE9TVF9OQU1F",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of SimpleConstants#HOST_NAME: \"hostName\" -> \"hostname\"",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleConstants.java" ],
+  "symbols" : [ "SimpleConstants#HOST_NAME", "\"hostName\" -> \"hostname\"" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCiJub3QiIC0-ICJub3QoZXhwKSIKU2ltcGxlQ29uc3RhbnRzI05PVA",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of SimpleConstants#NOT: \"not\" -> \"not(exp)\"",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleConstants.java" ],
+  "symbols" : [ "SimpleConstants#NOT", "\"not\" -> \"not(exp)\"" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCiJzZXRWYXJpYWJsZShrZXksZXhwKSIgLT4gInNldEF0dGFjaG1lbnQoa2V5LGV4cCkiClNpbXBsZUNvbnN0YW50cyNTRVRfQVRUQUNITUVOVA",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of SimpleConstants#SET_ATTACHMENT: \"setVariable(key,exp)\" -> \"setAttachment(key,exp)\"",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleConstants.java" ],
+  "symbols" : [ "SimpleConstants#SET_ATTACHMENT", "\"setVariable(key,exp)\" -> \"setAttachment(key,exp)\"" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCiJ0aHJvd0V4Y2VwdGlvbih0eXBlLG1zZykiIC0-ICJ0aHJvd0V4Y2VwdGlvbihtc2csdHlwZSkiClNpbXBsZUNvbnN0YW50cyNUSFJPV19FWENFUFRJT04",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of SimpleConstants#THROW_EXCEPTION: \"throwException(type,msg)\" -> \"throwException(msg,type)\"",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleConstants.java" ],
+  "symbols" : [ "SimpleConstants#THROW_EXCEPTION", "\"throwException(type,msg)\" -> \"throwException(msg,type)\"" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCisiYXZlcmFnZSIsICsiYWJzIiwgKyJjZWlsIiwgKyJmbG9vciIsICsic2l6ZSIg4oCmYW5kIDI0IG1vcmUKU2ltcGxlU3ludGF4SGludHMjRlVOQ1RJT05T",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of SimpleSyntaxHints#FUNCTIONS: +\"average\", +\"abs\", +\"ceil\", +\"floor\", +\"size\" …and 24 more",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleSyntaxHints.java" ],
+  "symbols" : [ "SimpleSyntaxHints#FUNCTIONS", "+\"average\", +\"abs\", +\"ceil\", +\"floor\", +\"size\" …and 24 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFClNpbXBsZVN5bnRheEhpbnRzI0FMSUFTRVMKdmFsdWUgY2hhbmdlZA",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of SimpleSyntaxHints#ALIASES: value changed",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/SimpleSyntaxHints.java" ],
+  "symbols" : [ "SimpleSyntaxHints#ALIASES", "value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFClNpbXBsZVV0aWxzI1NJTVBMRV9GVU5DVElPTlMKdmFsdWUgY2hhbmdlZA",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of SimpleUtils#SIMPLE_FUNCTIONS: value changed",
+  "files" : [ "core/camel-util/src/main/java/org/apache/camel/util/SimpleUtils.java" ],
+  "symbols" : [ "SimpleUtils#SIMPLE_FUNCTIONS", "value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzYWZlUXVvdGVFeHByZXNzaW9uKGFub255bW91cyBFeHByZXNzaW9uQWRhcHRlcikja2luZE9mVHlwZQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove StringExpressionBuilder#safeQuoteExpression(anonymous ExpressionAdapter)#kindOfType",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/StringExpressionBuilder.java" ],
+  "symbols" : [ "StringExpressionBuilder#safeQuoteExpression(anonymous ExpressionAdapter)#kindOfType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzYWZlUXVvdGVFeHByZXNzaW9uKGFub255bW91cyBFeHByZXNzaW9uQWRhcHRlcikjaXNRdW90ZWRPbmNl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add StringExpressionBuilder#safeQuoteExpression(anonymous ExpressionAdapter)#isQuotedOnce",
+  "files" : [ "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/StringExpressionBuilder.java" ],
+  "symbols" : [ "StringExpressionBuilder#safeQuoteExpression(anonymous ExpressionAdapter)#isQuotedOnce" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

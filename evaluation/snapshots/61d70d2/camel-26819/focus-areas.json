@@ -1,0 +1,13 @@
+[ {
+  "entity" : "DefaultModel",
+  "description" : "Add field DefaultModel#log"
+}, {
+  "entity" : "DefaultModel",
+  "description" : "Modify body of DefaultModel#addCustomBean: +lock, +unlock"
+}, {
+  "entity" : "SimpleRegistry",
+  "description" : "Modify body of SimpleRegistry#bind: other statements changed"
+}, {
+  "entity" : "DefaultModelConcurrentTest",
+  "description" : "Add class DefaultModelConcurrentTest"
+} ]

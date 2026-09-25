@@ -1,0 +1,487 @@
+{
+  "territories" : [ {
+    "moduleName" : "consistency",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 14 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsI2NvbnZlcnRUb1dyaXRlUmVxdWVzdA", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsI2NvbnZlcnRUb1JlYWRSZXF1ZXN0", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UHJvdG8", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSZWFkUmVxdWVzdA", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXcml0ZVJlcXVlc3Q", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvUmVhZFJlcXVlc3Q", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvV3JpdGVSZXF1ZXN0", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSYXdSZWFkUmVxdWVzdFRocm93c0V4Y2VwdGlvbg", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSYXdXcml0ZVJlcXVlc3RUaHJvd3NFeGNlcHRpb24", "TU9ESUZZX01FVEhPRF9CT0RZCitkZWJ1ZywgLXBhcnNlRnJvbSwgLWNvbnZlcnRUb1JlYWRSZXF1ZXN0LCAtY29udmVydFRvV3JpdGVSZXF1ZXN0LCByZXR1cm4gc3RhdGVtZW50cyAzIOKGkiAyClByb3RvTWVzc2FnZVV0aWwjcGFyc2U", "TU9ESUZZX01FVEhPRF9CT0RZCitmYWlsLCArYXNzZXJ0VHJ1ZQpQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXaXRoQ29ycnVwdFJlcXVlc3RUeXBlRmllbGQ", "TU9ESUZZX01FVEhPRF9CT0RZClByb3RvTWVzc2FnZVV0aWxUZXN0I3Rlc3RQYXJzZVJlYWRSZXF1ZXN0V2l0aFJlcXVlc3RUeXBlRmllbGQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk", "TU9ESUZZX01FVEhPRF9CT0RZClByb3RvTWVzc2FnZVV0aWxUZXN0I3Rlc3RQYXJzZVdyaXRlUmVxdWVzdFdpdGhSZXF1ZXN0VHlwZUZpZWxkCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA", "QUREX0ZJRUxEClByb3RvTWVzc2FnZVV0aWwjTE9HR0VS" ],
+    "testChangeKeys" : [ "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UHJvdG8", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSZWFkUmVxdWVzdA", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXcml0ZVJlcXVlc3Q", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvUmVhZFJlcXVlc3Q", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvV3JpdGVSZXF1ZXN0", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSYXdSZWFkUmVxdWVzdFRocm93c0V4Y2VwdGlvbg", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSYXdXcml0ZVJlcXVlc3RUaHJvd3NFeGNlcHRpb24", "TU9ESUZZX01FVEhPRF9CT0RZCitmYWlsLCArYXNzZXJ0VHJ1ZQpQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXaXRoQ29ycnVwdFJlcXVlc3RUeXBlRmllbGQ", "TU9ESUZZX01FVEhPRF9CT0RZClByb3RvTWVzc2FnZVV0aWxUZXN0I3Rlc3RQYXJzZVJlYWRSZXF1ZXN0V2l0aFJlcXVlc3RUeXBlRmllbGQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk", "TU9ESUZZX01FVEhPRF9CT0RZClByb3RvTWVzc2FnZVV0aWxUZXN0I3Rlc3RQYXJzZVdyaXRlUmVxdWVzdFdpdGhSZXF1ZXN0VHlwZUZpZWxkCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA" ]
+  }, {
+    "moduleName" : "ai",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Remove dependency org.mockito:mockito-inline (nacos-ai)",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ "UkVNT1ZFX0RFUEVOREVOQ1kKbmFjb3MtYWkjb3JnLm1vY2tpdG86bW9ja2l0by1pbmxpbmU" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "nacos-all",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Remove dependency org.mockito:mockito-inline (nacos-all)",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ "UkVNT1ZFX0RFUEVOREVOQ1kKbmFjb3MtYWxsI29yZy5tb2NraXRvOm1vY2tpdG8taW5saW5l" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "naming",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "config",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "ai (plugin)",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "visibility",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "core",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "lock",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "persistence",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "client",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "maintainer-client",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "logback-adapter-12",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "log4j2-adapter",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "test",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "cmdb",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "console",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "nacos-default-auth-plugin",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "server",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "bootstrap",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "distribution",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "example",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "address",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "istio",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "k8s-sync",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "prometheus",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "auth (plugin)",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "encryption",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "config (plugin)",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "control",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trace",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "datasource",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "environment",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "auth",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "sys",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "client-basic",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "ai-registry-adaptor",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "consistency",
+    "to" : "common"
+  }, {
+    "from" : "ai",
+    "to" : "common"
+  }, {
+    "from" : "ai",
+    "to" : "naming"
+  }, {
+    "from" : "ai",
+    "to" : "config"
+  }, {
+    "from" : "ai",
+    "to" : "ai (plugin)"
+  }, {
+    "from" : "ai",
+    "to" : "visibility"
+  }, {
+    "from" : "nacos-all",
+    "to" : "config"
+  }, {
+    "from" : "nacos-all",
+    "to" : "core"
+  }, {
+    "from" : "nacos-all",
+    "to" : "lock"
+  }, {
+    "from" : "nacos-all",
+    "to" : "persistence"
+  }, {
+    "from" : "nacos-all",
+    "to" : "naming"
+  }, {
+    "from" : "nacos-all",
+    "to" : "ai"
+  }, {
+    "from" : "nacos-all",
+    "to" : "api"
+  }, {
+    "from" : "nacos-all",
+    "to" : "client"
+  }, {
+    "from" : "nacos-all",
+    "to" : "maintainer-client"
+  }, {
+    "from" : "nacos-all",
+    "to" : "logback-adapter-12"
+  }, {
+    "from" : "nacos-all",
+    "to" : "log4j2-adapter"
+  }, {
+    "from" : "nacos-all",
+    "to" : "test"
+  }, {
+    "from" : "nacos-all",
+    "to" : "common"
+  }, {
+    "from" : "nacos-all",
+    "to" : "cmdb"
+  }, {
+    "from" : "nacos-all",
+    "to" : "console"
+  }, {
+    "from" : "nacos-all",
+    "to" : "nacos-default-auth-plugin"
+  }, {
+    "from" : "nacos-all",
+    "to" : "server"
+  }, {
+    "from" : "nacos-all",
+    "to" : "bootstrap"
+  }, {
+    "from" : "nacos-all",
+    "to" : "distribution"
+  }, {
+    "from" : "nacos-all",
+    "to" : "example"
+  }, {
+    "from" : "nacos-all",
+    "to" : "address"
+  }, {
+    "from" : "nacos-all",
+    "to" : "istio"
+  }, {
+    "from" : "nacos-all",
+    "to" : "k8s-sync"
+  }, {
+    "from" : "nacos-all",
+    "to" : "prometheus"
+  }, {
+    "from" : "nacos-all",
+    "to" : "consistency"
+  }, {
+    "from" : "nacos-all",
+    "to" : "auth (plugin)"
+  }, {
+    "from" : "nacos-all",
+    "to" : "encryption"
+  }, {
+    "from" : "nacos-all",
+    "to" : "config (plugin)"
+  }, {
+    "from" : "nacos-all",
+    "to" : "control"
+  }, {
+    "from" : "nacos-all",
+    "to" : "trace"
+  }, {
+    "from" : "nacos-all",
+    "to" : "datasource"
+  }, {
+    "from" : "nacos-all",
+    "to" : "environment"
+  }, {
+    "from" : "nacos-all",
+    "to" : "ai (plugin)"
+  }, {
+    "from" : "nacos-all",
+    "to" : "visibility"
+  }, {
+    "from" : "nacos-all",
+    "to" : "auth"
+  }, {
+    "from" : "nacos-all",
+    "to" : "sys"
+  }, {
+    "from" : "nacos-all",
+    "to" : "client-basic"
+  }, {
+    "from" : "nacos-all",
+    "to" : "ai-registry-adaptor"
+  } ]
+}

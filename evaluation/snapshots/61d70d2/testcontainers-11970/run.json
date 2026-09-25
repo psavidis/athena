@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/testcontainers/testcontainers-java.git",
+  "base" : "3a621f5cc964668fe0bdfda3fff33d23b23c25c6",
+  "head" : "cc99f819c2c84897eda8379ba6e46fd6dbb854b7",
+  "changeCount" : 10,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 4.05
+}

@@ -1,0 +1,7 @@
+[ {
+  "entity" : "SingleThreadEventExecutor",
+  "description" : "Change control flow of SingleThreadEventExecutor#doStartThread: branch added; same calls"
+}, {
+  "entity" : "SingleThreadEventExecutorTest",
+  "description" : "Add SingleThreadEventExecutorTest#testSuspendDoesNotRaceWithCancelledScheduledTask"
+} ]

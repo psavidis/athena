@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/quarkusio/quarkus.git",
+  "base" : "7e57cd992ae5517a570c9ee04e29bcbb84a04e87",
+  "head" : "2f5948e3834594e646dcc9a28d35ae305f41d39a",
+  "changeCount" : 18,
+  "moduleCount" : 2,
+  "checkoutAndAnalysisSeconds" : 34.2
+}

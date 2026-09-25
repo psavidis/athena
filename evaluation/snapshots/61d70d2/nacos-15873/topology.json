@@ -1,0 +1,49 @@
+{
+  "territories" : [ {
+    "moduleName" : "naming",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 3 changes",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpEaXN0cm9DbGllbnREYXRhUHJvY2Vzc29yI2dldERhdHVtU25hcHNob3QKYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz", "QUREX1NZTUJPTApEaXN0cm9DbGllbnREYXRhUHJvY2Vzc29yVGVzdCN0ZXN0R2V0RGF0dW1TbmFwc2hvdEluY2x1ZGVOb25Db25uZWN0aW9uQmFzZWRDbGllbnQ", "TU9ESUZZX01FVEhPRF9CT0RZCitmb3JDbGFzcywgK3ZlcmlmeSwgK3NlcmlhbGl6ZSwgK2NhcHR1cmUsICthc3NlcnRUcnVlIOKApmFuZCAzIG1vcmUKRGlzdHJvQ2xpZW50RGF0YVByb2Nlc3NvclRlc3QjdGVzdEdldERhdHVtU25hcHNob3Q" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApEaXN0cm9DbGllbnREYXRhUHJvY2Vzc29yVGVzdCN0ZXN0R2V0RGF0dW1TbmFwc2hvdEluY2x1ZGVOb25Db25uZWN0aW9uQmFzZWRDbGllbnQ", "TU9ESUZZX01FVEhPRF9CT0RZCitmb3JDbGFzcywgK3ZlcmlmeSwgK3NlcmlhbGl6ZSwgK2NhcHR1cmUsICthc3NlcnRUcnVlIOKApmFuZCAzIG1vcmUKRGlzdHJvQ2xpZW50RGF0YVByb2Nlc3NvclRlc3QjdGVzdEdldERhdHVtU25hcHNob3Q" ]
+  }, {
+    "moduleName" : "core",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "cmdb",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "naming",
+    "to" : "core"
+  }, {
+    "from" : "naming",
+    "to" : "api"
+  }, {
+    "from" : "naming",
+    "to" : "cmdb"
+  } ]
+}

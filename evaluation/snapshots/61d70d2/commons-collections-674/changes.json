@@ -1,0 +1,51 @@
+[ {
+  "changeKey" : "Rk9STUFUVElOR19PTkxZCkNvbmN1cnJlbnRSZWZlcmVuY2VIYXNoTWFwVGVzdCN0ZXN0QnVpbGRlckFsbA",
+  "kind" : "FORMATTING_ONLY",
+  "category" : "MECHANICAL",
+  "description" : "Formatting: ConcurrentReferenceHashMapTest#testBuilderAll",
+  "files" : [ "src/test/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMapTest.java" ],
+  "symbols" : [ "ConcurrentReferenceHashMapTest#testBuilderAll" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcFRlc3QjdGVzdFJlbW92ZU51bGxLZXlUaHJvd3NXaXRob3V0SWRlbnRpdHlDb21wYXJpc29ucw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConcurrentReferenceHashMapTest#testRemoveNullKeyThrowsWithoutIdentityComparisons",
+  "files" : [ "src/test/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMapTest.java" ],
+  "symbols" : [ "ConcurrentReferenceHashMapTest#testRemoveNullKeyThrowsWithoutIdentityComparisons" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcFRlc3QjdGVzdFJlbW92ZU51bGxLZXlUaHJvd3NXaXRoSWRlbnRpdHlDb21wYXJpc29ucw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConcurrentReferenceHashMapTest#testRemoveNullKeyThrowsWithIdentityComparisons",
+  "files" : [ "src/test/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMapTest.java" ],
+  "symbols" : [ "ConcurrentReferenceHashMapTest#testRemoveNullKeyThrowsWithIdentityComparisons" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXF1aXJlTm9uTnVsbApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcCNyZW1vdmU",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConcurrentReferenceHashMap#remove: +requireNonNull",
+  "files" : [ "src/main/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMap.java" ],
+  "symbols" : [ "ConcurrentReferenceHashMap#remove", "+requireNonNull" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXF1aXJlTm9uTnVsbApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcCNyZXBsYWNl",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConcurrentReferenceHashMap#replace: +requireNonNull",
+  "files" : [ "src/main/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMap.java" ],
+  "symbols" : [ "ConcurrentReferenceHashMap#replace", "+requireNonNull" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

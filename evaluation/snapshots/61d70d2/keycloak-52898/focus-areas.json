@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of GrantTypeCondition#applyPolicy: branch added",
+  "entity" : "GrantTypeCondition"
+}, {
+  "description" : "Change control flow of GrantTypeCondition#isGrantMatching: branch removed",
+  "entity" : "GrantTypeCondition"
+}, {
+  "description" : "Pull up field clientSessionCtx into AbstractClientSessionCtxTokenResponseContext (from BackchannelTokenResponseContext, ImplicitHybridTokenResponse, ResourceOwnerPasswordCredentialsResponseContext, TokenResponseContext)",
+  "entity" : "AbstractClientSessionCtxTokenResponseContext"
+}, {
+  "description" : "Pull up getClientSession into AbstractClientSessionCtxTokenResponseContext (from ServiceAccountTokenResponseContext, TokenResponseContext)",
+  "entity" : "AbstractClientSessionCtxTokenResponseContext"
+} ]

@@ -1,0 +1,161 @@
+[ {
+  "changeKey" : "TU9WRV9DTEFTUwpTZXJ2aWNlUmVzb3VyY2U",
+  "kind" : "MOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Move class impl.ServiceResource -> internal.ServiceResource (imports updated in 5 files)",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/datagram/impl/DatagramSocketImpl.java", "vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpServer.java", "vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicClient.java", "vertx-core/src/main/java/io/vertx/core/net/impl/quic/CleanableQuicServer.java", "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetServer.java" ],
+  "symbols" : [ "ServiceResource" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9DTEFTUwpTZXJ2aWNlUmVzb3VyY2UuVGFzaw",
+  "kind" : "MOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Move class impl.ServiceResource.Task -> internal.ServiceResource.Task",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+  "symbols" : [ "ServiceResource.Task" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9DTEFTUwpTZXJ2aWNlUmVzb3VyY2UuU3RhcnQ",
+  "kind" : "MOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Move class impl.ServiceResource.Start -> internal.ServiceResource.Start",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+  "symbols" : [ "ServiceResource.Start" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9DTEFTUwpTZXJ2aWNlUmVzb3VyY2UuU3RvcA",
+  "kind" : "MOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Move class impl.ServiceResource.Stop -> internal.ServiceResource.Stop",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/ServiceResource.java", "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+  "symbols" : [ "ServiceResource.Stop" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX0NMQVNTCkNsZWFuYWJsZU9iamVjdApDbGVhbmFibGVSZXNvdXJjZQ",
+  "kind" : "RENAME_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Rename class impl.CleanableObject -> internal.CleanableResource (imports updated in 5 files)",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java", "vertx-core/src/main/java/io/vertx/core/internal/CleanableResource.java", "vertx-core/src/main/java/io/vertx/core/http/impl/CleanableHttpClient.java", "vertx-core/src/main/java/io/vertx/core/http/impl/CleanableWebSocketClient.java", "vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutorImpl.java", "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/CleanableNetClient.java", "vertx-core/src/test/java/io/vertx/tests/vertx/CleanableObjectTest.java" ],
+  "symbols" : [ "CleanableObject", "CleanableResource" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVOQU1FX0NMQVNTCkNsZWFuYWJsZU9iamVjdC5BY3Rpb24KQ2xlYW5hYmxlUmVzb3VyY2UuQWN0aW9u",
+  "kind" : "RENAME_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Rename class impl.CleanableObject.Action -> internal.CleanableResource.Action",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java", "vertx-core/src/main/java/io/vertx/core/internal/CleanableResource.java" ],
+  "symbols" : [ "CleanableObject.Action", "CleanableResource.Action" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTZXJ2aWNlUmVzb3VyY2VUZXN0LlRlc3RSZXNvdXJjZSNpc0RvbmU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ServiceResourceTest.TestResource#isDone",
+  "files" : [ "vertx-core/src/test/java/io/vertx/tests/vertx/ServiceResourceTest.java" ],
+  "symbols" : [ "ServiceResourceTest.TestResource#isDone" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsZWFuYWJsZU9iamVjdFRlc3QjdGVzdENsb3NlQ29sbGVjdGVkUmVzb3VyY2UKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CleanableObjectTest#testCloseCollectedResource: other statements changed",
+  "files" : [ "vertx-core/src/test/java/io/vertx/tests/vertx/CleanableObjectTest.java" ],
+  "symbols" : [ "CleanableObjectTest#testCloseCollectedResource", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0RvbmUsIC1oYXNQZW5kaW5nVGFza3MKU2VydmljZVJlc291cmNlVGVzdCNzdGFydFNlcnZpY2VBZnRlclVuZGVwbG95",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ServiceResourceTest#startServiceAfterUndeploy: +isDone, -hasPendingTasks",
+  "files" : [ "vertx-core/src/test/java/io/vertx/tests/vertx/ServiceResourceTest.java" ],
+  "symbols" : [ "ServiceResourceTest#startServiceAfterUndeploy", "+isDone, -hasPendingTasks" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0RvbmUsIC1oYXNQZW5kaW5nVGFza3MKU2VydmljZVJlc291cmNlVGVzdCN0ZXN0U3RvcFN1Y2Nlc3M",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ServiceResourceTest#testStopSuccess: +isDone, -hasPendingTasks",
+  "files" : [ "vertx-core/src/test/java/io/vertx/tests/vertx/ServiceResourceTest.java" ],
+  "symbols" : [ "ServiceResourceTest#testStopSuccess", "+isDone, -hasPendingTasks" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0RvbmUsIC1oYXNQZW5kaW5nVGFza3MKU2VydmljZVJlc291cmNlVGVzdCN0ZXN0U3RhcnRpbmdTdG9w",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ServiceResourceTest#testStartingStop: +isDone, -hasPendingTasks",
+  "files" : [ "vertx-core/src/test/java/io/vertx/tests/vertx/ServiceResourceTest.java" ],
+  "symbols" : [ "ServiceResourceTest#testStartingStop", "+isDone, -hasPendingTasks" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0RvbmUsIC1oYXNQZW5kaW5nVGFza3MKU2VydmljZVJlc291cmNlVGVzdCN0ZXN0U3RvcEFmdGVyU3RhcnRGYWlsdXJl",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ServiceResourceTest#testStopAfterStartFailure: +isDone, -hasPendingTasks",
+  "files" : [ "vertx-core/src/test/java/io/vertx/tests/vertx/ServiceResourceTest.java" ],
+  "symbols" : [ "ServiceResourceTest#testStopAfterStartFailure", "+isDone, -hasPendingTasks" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTZXJ2aWNlUmVzb3VyY2UuVGFzayNjb21wbGV0aW9u",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ServiceResource.Task#completion",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+  "symbols" : [ "ServiceResource.Task#completion" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTZXJ2aWNlUmVzb3VyY2UuU3RhcnQjY29udGV4dA",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ServiceResource.Start#context",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+  "symbols" : [ "ServiceResource.Start#context" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTZXJ2aWNlUmVzb3VyY2UuU3RhcnQjYXJncw",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ServiceResource.Start#args",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+  "symbols" : [ "ServiceResource.Start#args" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTZXJ2aWNlUmVzb3VyY2UuU3RvcCN0aW1lb3V0",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ServiceResource.Stop#timeout",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/internal/ServiceResource.java" ],
+  "symbols" : [ "ServiceResource.Stop#timeout" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

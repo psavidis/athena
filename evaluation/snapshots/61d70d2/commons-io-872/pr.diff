@@ -1,0 +1,587 @@
+diff --git a/src/main/java/org/apache/commons/io/Buffers.java b/src/main/java/org/apache/commons/io/Buffers.java
+index bcf643c171c..b2190f32357 100644
+--- a/src/main/java/org/apache/commons/io/Buffers.java
++++ b/src/main/java/org/apache/commons/io/Buffers.java
+@@ -273,7 +273,8 @@ public static <B extends Buffer> B clearDirect(final B buffer) {
+     }
+ 
+     /**
+-     * Clears the given <em>writable</em> buffer by filling it with zeros and resetting the position to zero. The limit is set to the capacity of the buffer.
++     * Clears the given <em>writable</em> buffer by filling it with zeros, the position is set to zero, the limit is set to the capacity, and the mark is
++     * discarded.
+      * <p>
+      * If the buffer is read-only, then nothing happens to that buffer.
+      * </p>
+diff --git a/src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java b/src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java
+index 63c4cda6677..11db6d9b567 100644
+--- a/src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java
++++ b/src/main/java/org/apache/commons/io/input/BufferedFileChannelInputStream.java
+@@ -41,7 +41,7 @@
+  * @see Builder
+  * @since 2.9.0
+  */
+-public final class BufferedFileChannelInputStream extends InputStream {
++public final class BufferedFileChannelInputStream extends AbstractInputStream {
+ 
+     // @formatter:off
+     /**
+@@ -74,6 +74,8 @@ public static class Builder extends AbstractStreamBuilder<BufferedFileChannelInp
+ 
+         private FileChannel fileChannel;
+ 
++        private boolean clean = true;
++
+         /**
+          * Constructs a new builder of {@link BufferedFileChannelInputStream}.
+          */
+@@ -108,6 +110,23 @@ public BufferedFileChannelInputStream get() throws IOException {
+             return new BufferedFileChannelInputStream(this);
+         }
+ 
++        /**
++         * Sets whether to do a complete clean of the internal ByteBuffer on close. Defaults to true.
++         * <p>
++         * Setting to false disables calling the low-level cleaner from the {@code sun.} packages that would be used on garbage collection. Leaving this value
++         * to the true defaults invokes this cleaner on close. Set to false to avoid deprecation warnings on Java version 23 and above, see
++         * <a href="https://openjdk.org/jeps/471">JEP 471: Deprecate the Memory-Access Methods in sun.misc.Unsafe for Removal</a>.
++         * </p>
++         *
++         * @param clean whether to attempt to clean ByteBuffer on close.
++         * @return {@code this} instance.
++         * @since 2.23.0
++         */
++        public Builder setClean(final boolean clean) {
++            this.clean = clean;
++            return this;
++        }
++
+         /**
+          * Sets the file channel.
+          * <p>
+@@ -125,6 +144,8 @@ public Builder setFileChannel(final FileChannel fileChannel) {
+ 
+     }
+ 
++    private static final ByteBuffer EMPTY_BUFFER = Input.emptyByteBuffer();
++
+     /**
+      * Constructs a new {@link Builder}.
+      *
+@@ -135,9 +156,9 @@ public static Builder builder() {
+         return new Builder();
+     }
+ 
+-    private final ByteBuffer byteBuffer;
++    private ByteBuffer byteBuffer;
+ 
+-    private boolean clean;
++    private final boolean clean;
+ 
+     private final FileChannel fileChannel;
+ 
+@@ -146,6 +167,7 @@ private BufferedFileChannelInputStream(final Builder builder) throws IOException
+         this.fileChannel = builder.fileChannel != null ? builder.fileChannel : FileChannel.open(builder.getPath(), StandardOpenOption.READ);
+         this.byteBuffer = ByteBuffer.allocateDirect(builder.getBufferSize());
+         this.byteBuffer.flip();
++        this.clean = builder.clean;
+     }
+ 
+     /**
+@@ -207,38 +229,42 @@ public synchronized int available() throws IOException {
+     }
+ 
+     /**
+-     * Attempts to clean up a ByteBuffer if it is direct or memory-mapped. This uses an *unsafe* Sun API that will cause errors if one attempts to read from the
+-     * disposed buffer. However, neither the bytes allocated to direct buffers nor file descriptors opened for memory-mapped buffers put pressure on the garbage
+-     * collector. Waiting for garbage collection may lead to the depletion of off-heap memory or huge numbers of open files. There's unfortunately no standard
+-     * API to manually dispose of these kinds of buffers.
++     * Cleans up the byte buffer.
++     * <p>
++     * If the buffer is writable, it is zeroed out.
++     * </p>
++     * <p>
++     * If the buffer is direct and {@code clean} is true, it cleaned using the "sun." package.
++     * </p>
++     * <p>
++     * If {@code clean} is true, this uses an unsafe Sun API that will cause errors if one attempts to read from the disposed buffer. However, neither the bytes
++     * allocated to direct buffers nor file descriptors opened for memory-mapped buffers put pressure on the garbage collector. Waiting for garbage collection
++     * may lead to the depletion of off-heap memory or huge numbers of open files. There's unfortunately no standard API to manually dispose of these kinds of
++     * buffers.
+      * <p>
+      * In Java 8, the type of {@code sun.nio.ch.DirectBuffer.cleaner()} was {@code sun.misc.Cleaner}, and it was possible to access the method
+      * {@code sun.misc.Cleaner.clean()} to invoke it. The type changed to {@code jdk.internal.ref.Cleaner} in later JDKs, and the {@code clean()} method is not
+      * accessible even with reflection. However {@code sun.misc.Unsafe} added an {@code invokeCleaner()} method in JDK 9+ and this is still accessible with
+      * reflection.
+      * </p>
+-     * @param buffer The buffer to clean.
+      */
+-    private void clean(final ByteBuffer buffer) {
+-        if (!clean && ByteBufferCleaner.isSupported()) {
+-            ByteBufferCleaner.clean(buffer);
+-            clean = true;
+-        }
++    private void cleanBuffer() {
++        ByteBufferCleaner.clean(byteBuffer, clean);
+     }
+ 
+     @Override
+     public synchronized void close() throws IOException {
+-        try {
+-            fileChannel.close();
+-        } finally {
+-            clean(byteBuffer);
++        if (!isClosed()) {
++            try {
++                fileChannel.close();
++            } finally {
++                cleanBuffer();
++                byteBuffer = EMPTY_BUFFER;
++                super.close();
++            }
+         }
+     }
+ 
+-    boolean isClean() {
+-        return clean;
+-    }
+-
+     @Override
+     public synchronized int read() throws IOException {
+         if (!refill()) {
+diff --git a/src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java b/src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java
+index 6debbfb8449..c99a0590028 100644
+--- a/src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java
++++ b/src/main/java/org/apache/commons/io/input/ByteBufferCleaner.java
+@@ -24,8 +24,8 @@
+ import org.apache.commons.io.Buffers;
+ 
+ /**
+- * Cleans a direct {@link ByteBuffer}. Without manual intervention, direct ByteBuffers will be cleaned eventually upon garbage collection. However, this should
+- * not be relied upon since it may not occur in a timely fashion - especially since off heap ByeBuffers don't put pressure on the garbage collector.
++ * Cleans {@link ByteBuffer} instances. Without manual intervention, direct ByteBuffers are eventually cleaned on garbage collection. However, this should not
++ * be relied upon since it may not occur in a timely fashion, especially since off heap ByeBuffers don't put pressure on the garbage collector.
+  * <p>
+  * <strong>Warning:</strong> Do not attempt to use a direct {@link ByteBuffer} that has been cleaned or bad things will happen. Don't use this class unless you
+  * can ensure that the cleaned buffer will not be accessed anymore.
+@@ -79,22 +79,30 @@ public void clean(final ByteBuffer buffer) throws ReflectiveOperationException {
+         }
+     }
+ 
+-    private static final Cleaner INSTANCE = getCleaner();
++    private static final Cleaner CLEANER = getCleaner();
+ 
+     /**
+      * Releases memory held by the given {@link ByteBuffer}.
++     * <p>
++     * If the buffer is writable, it is cleared by filling it with zeros, the position is set to zero, the limit is set to the capacity, and the mark is
++     * discarded.
++     * </p>
++     * <p>
++     * If the buffer is direct and {@code clean} is true, it cleaned using the "sun." package.
++     * </p>
+      *
+-     * @param buffer to release.
++     * @param buffer   The buffer to release.
++     * @param sunClean Perform additional cleaning using the "sun." package.
+      * @throws IllegalStateException on internal failure.
+      */
+-    static void clean(final ByteBuffer buffer) {
++    static void clean(final ByteBuffer buffer, final boolean sunClean) {
+         try {
+-            if (buffer.isDirect()) {
+-                Buffers.clearWritable(buffer);
+-                INSTANCE.clean(buffer);
++            Buffers.clearWritable(buffer);
++            if (sunClean && buffer.isDirect()) {
++                sunClean(buffer);
+             }
+         } catch (final Exception e) {
+-            throw new IllegalStateException("Failed to clean direct buffer.", e);
++            throw new IllegalStateException("Failed to clean a direct ByteBuffer.", e);
+         }
+     }
+ 
+@@ -105,18 +113,12 @@ private static Cleaner getCleaner() {
+             try {
+                 return new Java9Cleaner();
+             } catch (final Exception e1) {
+-                throw new IllegalStateException("Failed to initialize a Cleaner.", e);
++                throw new IllegalStateException("Failed to initialize a direct ByteBuffer Cleaner.", e);
+             }
+         }
+     }
+ 
+-    /**
+-     * Tests if were able to load a suitable cleaner for the current JVM. Attempting to call {@code ByteBufferCleaner#clean(ByteBuffer)} when this method
+-     * returns false will result in an exception.
+-     *
+-     * @return {@code true} if cleaning is supported, {@code false} otherwise.
+-     */
+-    static boolean isSupported() {
+-        return INSTANCE != null;
++    static void sunClean(final ByteBuffer buffer) throws ReflectiveOperationException {
++        CLEANER.clean(buffer);
+     }
+ }
+diff --git a/src/main/java/org/apache/commons/io/input/Input.java b/src/main/java/org/apache/commons/io/input/Input.java
+index de4d9682ed7..b3e0e56b339 100644
+--- a/src/main/java/org/apache/commons/io/input/Input.java
++++ b/src/main/java/org/apache/commons/io/input/Input.java
+@@ -17,8 +17,11 @@
+ 
+ package org.apache.commons.io.input;
+ 
++import static org.apache.commons.io.IOUtils.EMPTY_BYTE_ARRAY;
++
+ import java.io.IOException;
+ import java.io.InterruptedIOException;
++import java.nio.ByteBuffer;
+ 
+ /**
+  * Package-wide internals for input.
+@@ -37,6 +40,15 @@ static void checkOpen(final boolean isOpen) throws IOException {
+         }
+     }
+ 
++    /**
++     * Creates an empty read-only ByteBuffer.
++     *
++     * @return an empty read-only ByteBuffer.
++     */
++    static ByteBuffer emptyByteBuffer() {
++        return ByteBuffer.wrap(EMPTY_BYTE_ARRAY).asReadOnlyBuffer();
++    }
++
+     /**
+      * Converts an {@link InterruptedException} to an {@link InterruptedIOException}.
+      * <p>
+diff --git a/src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java b/src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java
+index 0ea0eedd964..a1f5d2144b7 100644
+--- a/src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java
++++ b/src/main/java/org/apache/commons/io/input/MemoryMappedFileInputStream.java
+@@ -92,6 +92,8 @@ public final class MemoryMappedFileInputStream extends AbstractInputStream {
+     // @formatter:on
+     public static class Builder extends AbstractStreamBuilder<MemoryMappedFileInputStream, Builder> {
+ 
++        private boolean clean = true;
++
+         /**
+          * Constructs a new builder of {@link MemoryMappedFileInputStream}.
+          */
+@@ -125,6 +127,23 @@ public Builder() {
+         public MemoryMappedFileInputStream get() throws IOException {
+             return new MemoryMappedFileInputStream(this);
+         }
++
++        /**
++         * Sets whether to do a complete clean of the internal ByteBuffer on close. Defaults to true.
++         * <p>
++         * Setting to false disables calling the low-level cleaner from the {@code sun.} packages that would be used on garbage collection. Leaving this value
++         * to the true defaults invokes this cleaner on close. Set to false to avoid deprecation warnings on Java version 23 and above, see
++         * <a href="https://openjdk.org/jeps/471">JEP 471: Deprecate the Memory-Access Methods in sun.misc.Unsafe for Removal</a>.
++         * </p>
++         *
++         * @param clean whether to attempt to clean ByteBuffer on close.
++         * @return {@code this} instance.
++         * @since 2.23.0
++         */
++        public Builder setClean(final boolean clean) {
++            this.clean = clean;
++            return this;
++        }
+     }
+ 
+     /**
+@@ -133,7 +152,7 @@ public MemoryMappedFileInputStream get() throws IOException {
+      */
+     private static final int DEFAULT_BUFFER_SIZE = 256 * 1024;
+ 
+-    private static final ByteBuffer EMPTY_BUFFER = ByteBuffer.wrap(new byte[0]).asReadOnlyBuffer();
++    private static final ByteBuffer EMPTY_BUFFER = Input.emptyByteBuffer();
+ 
+     /**
+      * Constructs a new {@link Builder}.
+@@ -147,6 +166,7 @@ public static Builder builder() {
+ 
+     private final int bufferSize;
+     private final FileChannel channel;
++    private final boolean clean;
+     private ByteBuffer buffer = EMPTY_BUFFER;
+ 
+     /**
+@@ -163,6 +183,7 @@ public static Builder builder() {
+     private MemoryMappedFileInputStream(final Builder builder) throws IOException {
+         this.bufferSize = builder.getBufferSize();
+         this.channel = FileChannel.open(builder.getPath(), StandardOpenOption.READ);
++        this.clean = builder.clean;
+     }
+ 
+     @Override
+@@ -172,18 +193,19 @@ public int available() throws IOException {
+     }
+ 
+     private void cleanBuffer() {
+-        if (ByteBufferCleaner.isSupported()) {
+-            ByteBufferCleaner.clean(buffer);
+-        }
++        ByteBufferCleaner.clean(buffer, clean);
+     }
+ 
+     @Override
+     public void close() throws IOException {
+         if (!isClosed()) {
+-            cleanBuffer();
+-            buffer = EMPTY_BUFFER;
+-            channel.close();
+-            super.close();
++            try {
++                channel.close();
++            } finally {
++                cleanBuffer();
++                buffer = EMPTY_BUFFER;
++                super.close();
++            }
+         }
+     }
+ 
+diff --git a/src/test/java/org/apache/commons/io/input/BufferedFileChannelInputStreamTest.java b/src/test/java/org/apache/commons/io/input/BufferedFileChannelInputStreamTest.java
+index c03e0fb14a5..acb58f717c6 100644
+--- a/src/test/java/org/apache/commons/io/input/BufferedFileChannelInputStreamTest.java
++++ b/src/test/java/org/apache/commons/io/input/BufferedFileChannelInputStreamTest.java
+@@ -17,17 +17,22 @@
+ 
+ package org.apache.commons.io.input;
+ 
+-import static org.junit.jupiter.api.Assertions.assertFalse;
+ import static org.junit.jupiter.api.Assertions.assertThrows;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
++import static org.mockito.ArgumentMatchers.any;
++import static org.mockito.ArgumentMatchers.eq;
++import static org.mockito.Mockito.never;
+ 
+ import java.io.IOException;
+ import java.io.InputStream;
++import java.nio.ByteBuffer;
+ import java.nio.channels.FileChannel;
+ import java.nio.file.StandardOpenOption;
+ 
+ import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.Test;
++import org.mockito.MockedStatic;
++import org.mockito.Mockito;
+ 
+ /**
+  * Tests functionality of {@link BufferedFileChannelInputStream}.
+@@ -67,6 +72,16 @@ void testBuilderGet() {
+         assertThrows(IllegalStateException.class, () -> BufferedFileChannelInputStream.builder().get());
+     }
+ 
++    @Test
++    void testCleanCalledNever() throws Exception {
++        // test
++        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);
++                InputStream stream = BufferedFileChannelInputStream.builder().setPath(InputPath).setClean(false).get()) {
++            stream.close();
++            mocked.verify(() -> ByteBufferCleaner.sunClean(any(ByteBuffer.class)), never());
++        }
++    }
++
+     /**
+      * Tests that the {@code clean(ByteBuffer)} method only performs buffer cleaning once, even when {@link BufferedFileChannelInputStream#close()} is invoked
+      * multiple times. The private {@code clean} boolean field is inspected via reflection: it must be {@code false} before any close, {@code true} after the
+@@ -74,12 +89,20 @@ void testBuilderGet() {
+      */
+     @Test
+     void testCleanCalledOnlyOnce() throws Exception {
+-        try (BufferedFileChannelInputStream stream = BufferedFileChannelInputStream.builder().setPath(InputPath).get()) {
+-            assertFalse(stream.isClean());
++        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);
++                InputStream stream = BufferedFileChannelInputStream.builder().setPath(InputPath).setClean(true).get()) {
+             stream.close();
+-            assertTrue(stream.isClean());
+             stream.close();
+-            assertTrue(stream.isClean());
++            mocked.verify(() -> ByteBufferCleaner.clean(any(ByteBuffer.class), eq(true)), Mockito.times(1));
++        }
++    }
++
++    @Test
++    void testDefaultCleanIsTrue() throws Exception {
++        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);
++                InputStream stream = BufferedFileChannelInputStream.builder().setPath(InputPath).get()) {
++            stream.close();
++            mocked.verify(() -> ByteBufferCleaner.clean(any(ByteBuffer.class), eq(true)));
+         }
+     }
+ 
+diff --git a/src/test/java/org/apache/commons/io/input/ByteBufferCleanerTest.java b/src/test/java/org/apache/commons/io/input/ByteBufferCleanerTest.java
+index 4675cd72b10..e8f1be7163c 100644
+--- a/src/test/java/org/apache/commons/io/input/ByteBufferCleanerTest.java
++++ b/src/test/java/org/apache/commons/io/input/ByteBufferCleanerTest.java
+@@ -16,12 +16,15 @@
+  */
+ package org.apache.commons.io.input;
+ 
+-import static org.junit.jupiter.api.Assertions.assertTrue;
++import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
++import static org.junit.jupiter.api.Assertions.assertEquals;
++import static org.junit.jupiter.api.Assertions.assertThrows;
++import static org.junit.jupiter.api.condition.JRE.JAVA_23;
+ 
+ import java.nio.ByteBuffer;
+ 
+-import org.apache.commons.lang3.RandomUtils;
+ import org.junit.jupiter.api.Test;
++import org.junit.jupiter.api.condition.EnabledForJreRange;
+ 
+ /**
+  * Tests {@code ByteBufferCleaner}.
+@@ -30,24 +33,48 @@ class ByteBufferCleanerTest {
+ 
+     @Test
+     void testCleanEmpty() {
+-        final ByteBuffer buffer = ByteBuffer.allocateDirect(10);
+-        // There is no way verify that the buffer has been cleaned up, we are just verifying that
+-        // clean() doesn't blow up
+-        ByteBufferCleaner.clean(buffer);
++        final ByteBuffer buffer = ByteBuffer.allocateDirect(8);
++        // There is no way verify that the buffer has been cleaned up by inspecting it because a cleaned buffer should
++        // not be used. We are just verifying that clean() doesn't blow up
++        ByteBufferCleaner.clean(buffer, true);
+     }
+ 
+     @Test
+     void testCleanFull() {
+-        final ByteBuffer buffer = ByteBuffer.allocateDirect(10);
+-        buffer.put(RandomUtils.insecure().randomBytes(10), 0, 10);
+-        // There is no way verify that the buffer has been cleaned up, we are just verifying that
+-        // clean() doesn't blow up
+-        ByteBufferCleaner.clean(buffer);
++        final ByteBuffer buffer = ByteBuffer.allocateDirect(8);
++        buffer.putLong(Long.MAX_VALUE);
++        verifyUncleared(buffer);
++        // There is no way verify that the buffer has been cleaned up by inspecting it because a cleaned buffer should
++        // not be used. We are just verifying that clean() doesn't blow up
++        ByteBufferCleaner.clean(buffer, true);
+     }
+ 
+     @Test
+-    void testSupported() {
+-        assertTrue(ByteBufferCleaner.isSupported(), "ByteBufferCleaner does not work on this platform, please investigate and fix");
++    void testCleanNonDirectBuffer() {
++        assertDoesNotThrow(() -> ByteBufferCleaner.clean(ByteBuffer.allocate(10), true));
+     }
+ 
++    @Test
++    @EnabledForJreRange(max = JAVA_23)
++    void testCleanNullBuffer() {
++        assertThrows(IllegalStateException.class, () -> ByteBufferCleaner.clean(null, true));
++    }
++
++    @Test
++    void testCleanWithSunCleanFalseZerosBuffer() {
++        final ByteBuffer buffer = ByteBuffer.allocateDirect(8);
++        buffer.putLong(Long.MAX_VALUE);
++        // clean with sunClean false should still zero the buffer via Buffers.clearWritable
++        ByteBufferCleaner.clean(buffer, false);
++        // Buffers.clearWritable resets position to zero and limit to capacity
++        buffer.position(0);
++        // The buffer should be zeroed, not contain the original value
++        assertEquals(0L, buffer.getLong());
++    }
++
++    private void verifyUncleared(final ByteBuffer buffer) {
++        buffer.flip();
++        assertEquals(Long.MAX_VALUE, buffer.getLong());
++        buffer.flip();
++    }
+ }
+diff --git a/src/test/java/org/apache/commons/io/input/MemoryMappedFileInputStreamTest.java b/src/test/java/org/apache/commons/io/input/MemoryMappedFileInputStreamTest.java
+index 9f7d0d60fe5..471874f1ee3 100644
+--- a/src/test/java/org/apache/commons/io/input/MemoryMappedFileInputStreamTest.java
++++ b/src/test/java/org/apache/commons/io/input/MemoryMappedFileInputStreamTest.java
+@@ -20,9 +20,13 @@
+ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+ import static org.junit.jupiter.api.Assertions.assertThrows;
++import static org.mockito.ArgumentMatchers.any;
++import static org.mockito.ArgumentMatchers.eq;
++import static org.mockito.Mockito.never;
+ 
+ import java.io.IOException;
+ import java.io.InputStream;
++import java.nio.ByteBuffer;
+ import java.nio.file.Files;
+ import java.nio.file.Path;
+ import java.util.Arrays;
+@@ -35,6 +39,8 @@
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.MethodSource;
+ import org.junit.jupiter.params.provider.ValueSource;
++import org.mockito.MockedStatic;
++import org.mockito.Mockito;
+ 
+ /**
+  * Tests {@link MemoryMappedFileInputStream}.
+@@ -111,6 +117,55 @@ void testAvailableAfterOpen(final int len) throws Exception {
+         }
+     }
+ 
++    @Test
++    void testCleanCalled() throws Exception {
++        // setup
++        final Path file = createTestFile(100);
++        // test
++        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);
++             InputStream stream = MemoryMappedFileInputStream.builder().setPath(file).setClean(true).get()) {
++            stream.close();
++            mocked.verify(() -> ByteBufferCleaner.clean(any(ByteBuffer.class), eq(true)));
++        }
++    }
++
++    @Test
++    void testCleanCalledNever() throws Exception {
++        // setup
++        final Path file = createTestFile(100);
++        // test
++        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);
++                InputStream stream = MemoryMappedFileInputStream.builder().setPath(file).setClean(false).get()) {
++            stream.close();
++            mocked.verify(() -> ByteBufferCleaner.sunClean(any(ByteBuffer.class)), never());
++        }
++    }
++
++    @Test
++    void testCleanCalledOnlyOnce() throws Exception {
++        // setup
++        final Path file = createTestFile(100);
++        // test
++        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);
++             InputStream stream = MemoryMappedFileInputStream.builder().setPath(file).setClean(true).get()) {
++            stream.close();
++            stream.close();
++            mocked.verify(() -> ByteBufferCleaner.clean(any(ByteBuffer.class), eq(true)), Mockito.times(1));
++        }
++    }
++
++    @Test
++    void testDefaultCleanIsTrue() throws Exception {
++        // setup
++        final Path file = createTestFile(100);
++        // test
++        try (MockedStatic<ByteBufferCleaner> mocked = Mockito.mockStatic(ByteBufferCleaner.class);
++             InputStream stream = MemoryMappedFileInputStream.builder().setPath(file).get()) {
++            stream.close();
++            mocked.verify(() -> ByteBufferCleaner.clean(any(ByteBuffer.class), eq(true)));
++        }
++    }
++
+     @Test
+     void testEmptyFile() throws IOException {
+         // setup
+@@ -322,5 +377,4 @@ void testSmallPathBuilder() throws IOException {
+             assertArrayEquals(expectedData, IOUtils.toByteArray(inputStream));
+         }
+     }
+-
+ }

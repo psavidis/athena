@@ -1,0 +1,77 @@
+{
+  "prTitle" : "[ISSUE #15857] Exclude connection-based client from distro snapshot to avoid truncating redo registrations on cluster restart",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 1,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEaXN0cm9DbGllbnREYXRhUHJvY2Vzc29yI2dldERhdHVtU25hcHNob3QKYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz",
+    "description" : "Change control flow of DistroClientDataProcessor#getDatumSnapshot: branch added; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApEaXN0cm9DbGllbnREYXRhUHJvY2Vzc29yVGVzdCN0ZXN0R2V0RGF0dW1TbmFwc2hvdEluY2x1ZGVOb25Db25uZWN0aW9uQmFzZWRDbGllbnQ",
+    "description" : "Add DistroClientDataProcessorTest#testGetDatumSnapshotIncludeNonConnectionBasedClient",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmb3JDbGFzcywgK3ZlcmlmeSwgK3NlcmlhbGl6ZSwgK2NhcHR1cmUsICthc3NlcnRUcnVlIOKApmFuZCAzIG1vcmUKRGlzdHJvQ2xpZW50RGF0YVByb2Nlc3NvclRlc3QjdGVzdEdldERhdHVtU25hcHNob3Q",
+    "description" : "Modify body of DistroClientDataProcessorTest#testGetDatumSnapshot: +forClass, +verify, +serialize, +capture, +assertTrue …and 3 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "DistroClientDataProcessor",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEaXN0cm9DbGllbnREYXRhUHJvY2Vzc29yI2dldERhdHVtU25hcHNob3QKYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz",
+      "description" : "Change control flow of DistroClientDataProcessor#getDatumSnapshot: branch added; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DistroClientDataProcessorTest",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApEaXN0cm9DbGllbnREYXRhUHJvY2Vzc29yVGVzdCN0ZXN0R2V0RGF0dW1TbmFwc2hvdEluY2x1ZGVOb25Db25uZWN0aW9uQmFzZWRDbGllbnQ",
+      "description" : "Add DistroClientDataProcessorTest#testGetDatumSnapshotIncludeNonConnectionBasedClient",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 2,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmb3JDbGFzcywgK3ZlcmlmeSwgK3NlcmlhbGl6ZSwgK2NhcHR1cmUsICthc3NlcnRUcnVlIOKApmFuZCAzIG1vcmUKRGlzdHJvQ2xpZW50RGF0YVByb2Nlc3NvclRlc3QjdGVzdEdldERhdHVtU25hcHNob3Q",
+      "description" : "Modify body of DistroClientDataProcessorTest#testGetDatumSnapshot: +forClass, +verify, +serialize, +capture, +assertTrue …and 3 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

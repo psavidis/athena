@@ -1,0 +1,41 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXR0eUh0dHBDbGllbnQjYnVpbGRTdHJlYW1FeGNoYW5nZQpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of NettyHttpClient#buildStreamExchange: branch added",
+  "files" : [ "http-client/src/main/java/io/micronaut/http/client/netty/NettyHttpClient.java" ],
+  "symbols" : [ "NettyHttpClient#buildStreamExchange", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXR0eUh0dHBDbGllbnQjcmVhZEJvZHlPbkVycm9yCmNvbmRpdGlvbiBjaGFuZ2Vk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of NettyHttpClient#readBodyOnError: condition changed",
+  "files" : [ "http-client/src/main/java/io/micronaut/http/client/netty/NettyHttpClient.java" ],
+  "symbols" : [ "NettyHttpClient#readBodyOnError", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApOZXR0eUh0dHBDbGllbnQjc2hvdWxkQnVmZmVyRXJyb3JCb2R5",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add NettyHttpClient#shouldBufferErrorBody",
+  "files" : [ "http-client/src/main/java/io/micronaut/http/client/netty/NettyHttpClient.java" ],
+  "symbols" : [ "NettyHttpClient#shouldBufferErrorBody" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk5ldHR5SHR0cENsaWVudCNoYW5kbGVTdHJlYW1IdHRwRXJyb3IKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of NettyHttpClient#handleStreamHttpError: other statements changed",
+  "files" : [ "http-client/src/main/java/io/micronaut/http/client/netty/NettyHttpClient.java" ],
+  "symbols" : [ "NettyHttpClient#handleStreamHttpError", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

@@ -1,0 +1,19 @@
+{
+  "changedFileCount" : 5,
+  "representedFileCount" : 3,
+  "files" : [ {
+    "path" : "specs/en/design/foundation-cp-consistency-spec.md",
+    "status" : "MODIFIED",
+    "linesChanged" : 23,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "specs/zh-cn/design/foundation-cp-consistency-spec.md",
+    "status" : "MODIFIED",
+    "linesChanged" : 17,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

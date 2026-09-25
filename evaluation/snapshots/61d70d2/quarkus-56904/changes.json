@@ -1,0 +1,181 @@
+[ {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUworQERlcHJlY2F0ZWQKQmNyeXB0VXRpbCNiY3J5cHRIYXNo",
+  "kind" : "CHANGE_METHOD_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change annotations of BcryptUtil#bcryptHash: +@Deprecated",
+  "files" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+  "symbols" : [ "BcryptUtil#bcryptHash", "+@Deprecated" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUworQERlcHJlY2F0ZWQKQmNyeXB0VXRpbCNtYXRjaGVz",
+  "kind" : "CHANGE_METHOD_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change annotations of BcryptUtil#matches: +@Deprecated",
+  "files" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+  "symbols" : [ "BcryptUtil#matches", "+@Deprecated" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsI2JjcnlwdEhhc2g",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BcryptUtil#bcryptHash",
+  "files" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+  "symbols" : [ "BcryptUtil#bcryptHash" ],
+  "occurrences" : 3,
+  "exceptions" : 1,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsI21hdGNoZXM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BcryptUtil#matches",
+  "files" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+  "symbols" : [ "BcryptUtil#matches" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlU2FtZUhhc2hXaXRoQ2hhckFycmF5UGFzc3dvcmQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BcryptUtilTest#testHashesTheSameHashWithCharArrayPassword",
+  "files" : [ "extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java" ],
+  "symbols" : [ "BcryptUtilTest#testHashesTheSameHashWithCharArrayPassword" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0UGFzc3dvcmRNYXRjaGVzV2l0aENoYXJBcnJheVBhc3N3b3Jk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BcryptUtilTest#testPasswordMatchesWithCharArrayPassword",
+  "files" : [ "extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java" ],
+  "symbols" : [ "BcryptUtilTest#testPasswordMatchesWithCharArrayPassword" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0UGFzc3dvcmROb3RNYXRjaGVzV2l0aENoYXJBcnJheVBhc3N3b3Jk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BcryptUtilTest#testPasswordNotMatchesWithCharArrayPassword",
+  "files" : [ "extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java" ],
+  "symbols" : [ "BcryptUtilTest#testPasswordNotMatchesWithCharArrayPassword" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlUmlnaHRQYXNzd29yZFdpdGhDaGFyQXJyYXlQYXNzd29yZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BcryptUtilTest#testHashesTheRightPasswordWithCharArrayPassword",
+  "files" : [ "extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java" ],
+  "symbols" : [ "BcryptUtilTest#testHashesTheRightPasswordWithCharArrayPassword" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlU2FtZUhhc2hXaXRoRGVwcmVjYXRlZFN0cmluZ0l0ZXJhdGlvbkNvdW50T3ZlcmxvYWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BcryptUtilTest#testHashesTheSameHashWithDeprecatedStringIterationCountOverload",
+  "files" : [ "extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java" ],
+  "symbols" : [ "BcryptUtilTest#testHashesTheSameHashWithDeprecatedStringIterationCountOverload" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheSwgcmV0dXJuIHBhc3N3b3JkIC0-IHBhc3N3b3JkLnRvQ2hhckFycmF5KCkKQmNyeXB0VXRpbCNiY3J5cHRIYXNo",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BcryptUtil#bcryptHash: +toCharArray, return password -> password.toCharArray()",
+  "files" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+  "symbols" : [ "BcryptUtil#bcryptHash", "+toCharArray, return password -> password.toCharArray()" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheSwgLW5leHRCeXRlcywgcmV0dXJuIHZhbHVlIGNoYW5nZWQKQmNyeXB0VXRpbCNiY3J5cHRIYXNo",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BcryptUtil#bcryptHash: +toCharArray, -nextBytes, return value changed",
+  "files" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+  "symbols" : [ "BcryptUtil#bcryptHash", "+toCharArray, -nextBytes, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCittYXRjaGVzLCAtZ2V0SW5zdGFuY2UsIC10cmFuc2xhdGUsIC1kZWNvZGUsIC12ZXJpZnkg4oCmYW5kIDQgbW9yZQpCY3J5cHRVdGlsI21hdGNoZXM",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BcryptUtil#matches: +matches, -getInstance, -translate, -decode, -verify …and 4 more",
+  "files" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+  "symbols" : [ "BcryptUtil#matches", "+matches, -getInstance, -translate, -decode, -verify …and 4 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc0FjY2VwdHNUaGVTdXBwb3J0ZWRQcmVmaXhlcw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BcryptUtilTest#testMatchesAcceptsTheSupportedPrefixes: +toCharArray",
+  "files" : [ "extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java" ],
+  "symbols" : [ "BcryptUtilTest#testMatchesAcceptsTheSupportedPrefixes", "+toCharArray" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBSGFzaFRoYXRJc05vdE1vZHVsYXJDcnlwdEZvcm1hdA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BcryptUtilTest#testMatchesRejectsAHashThatIsNotModularCryptFormat: +toCharArray",
+  "files" : [ "extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java" ],
+  "symbols" : [ "BcryptUtilTest#testMatchesRejectsAHashThatIsNotModularCryptFormat", "+toCharArray" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBVHJ1bmNhdGVkQmNyeXB0SGFzaA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BcryptUtilTest#testMatchesRejectsATruncatedBcryptHash: +toCharArray",
+  "files" : [ "extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java" ],
+  "symbols" : [ "BcryptUtilTest#testMatchesRejectsATruncatedBcryptHash", "+toCharArray" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBSGFzaE9mQW5vdGhlckFsZ29yaXRobQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BcryptUtilTest#testMatchesRejectsAHashOfAnotherAlgorithm: +toCharArray",
+  "files" : [ "extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java" ],
+  "symbols" : [ "BcryptUtilTest#testMatchesRejectsAHashOfAnotherAlgorithm", "+toCharArray" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNUaGUyYlByZWZpeA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BcryptUtilTest#testMatchesRejectsThe2bPrefix: +toCharArray",
+  "files" : [ "extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java" ],
+  "symbols" : [ "BcryptUtilTest#testMatchesRejectsThe2bPrefix", "+toCharArray" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpKcGFJZGVudGl0eVByb3ZpZGVyVXRpbCNwYXNzd29yZEFjdGlvbg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of JpaIdentityProviderUtil#passwordAction: +toCharArray",
+  "files" : [ "extensions/security-jpa-common/runtime/src/main/java/io/quarkus/security/jpa/common/runtime/JpaIdentityProviderUtil.java" ],
+  "symbols" : [ "JpaIdentityProviderUtil#passwordAction", "+toCharArray" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

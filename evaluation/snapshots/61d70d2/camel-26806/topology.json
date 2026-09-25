@@ -1,0 +1,460 @@
+{
+  "territories" : [ {
+    "moduleName" : "camel-core",
+    "status" : "TOUCHED",
+    "fileCount" : 10,
+    "statusSummary" : "10 files · 70 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX0NMQVNTClNpbXBsZUZ1bmN0aW9uQXJndW1lbnRzVGVzdA", "QUREX0NMQVNTClNpbXBsZUZ1bmN0aW9uQXJndW1lbnRzVGVzdC5NeVN0YXRpYw", "QUREX0NMQVNTClNpbXBsZUluaXRCbG9ja0VkZ2VDYXNlc1Rlc3Q", "QUREX0NMQVNTClNpbXBsZU9wZXJhdG9yVGVzdC5NeUNvdW50ZXI", "QUREX0NMQVNTClNpbXBsZVBhcnNlckVkZ2VDYXNlc1Rlc3Q", "QUREX0NMQVNTClNpbXBsZVBhcnNlckVkZ2VDYXNlc1Rlc3QuTXlTZXJ2aWNl", "QUREX0NMQVNTClNpbXBsZVN0cmluZ01hdGhEYXRlRnVuY3Rpb25zVGVzdA", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjZ2V0TGFuZ3VhZ2VOYW1l", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdFF1b3Rlc0luc2lkZUFOZXN0ZWRGdW5jdGlvbkFyZUtlcHQ", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdENvbnZlcnRUb1dpdGhQYXJlbnRoZXNlc0luVGhlRXhwcmVzc2lvbg", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdENvbW1hSW5zaWRlUXVvdGVz", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdFRvb0Zld0FyZ3VtZW50cw", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdEJlYW5UeXBlV2l0aFBhY2thZ2U", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdFF1b3RlZEtleUlzTm90T2dubA", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdE5hbWVzTXVzdE5vdEJlR2x1ZWRUb0FQcmVmaXg", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QuTXlTdGF0aWMjaGVsbG8", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I2dldExhbmd1YWdlTmFtZQ", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RDb21tZW50ZWRPdXRBc3NpZ25tZW50RG9lc05vdFJ1bg", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RDb21tZW50V2l0aERvbGxhcg", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RDb21tZW50SW5zaWRlUXVvdGVzSXNUZXh0", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RPbmVMaW5lcg", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RXaW5kb3dzTGluZUVuZGluZ3M", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RQcmVkaWNhdGVXaXRoT25seUZ1bmN0aW9ucw", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RDdXN0b21GdW5jdGlvbklzTG9jYWxUb1RoZUV4cHJlc3Npb24", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RFcnJvclBvaW50c0ludG9UaGVJbml0QmxvY2s", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdE51bWVyaWNMaXRlcmFsQXNPdGhlck51bWJlclR5cGU", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdE5lZ2F0aXZlTG9uZ0xpdGVyYWw", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdEVsdmlzQW55WmVybw", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdExvZ2ljYWxFeHByZXNzaW9uVG9TdHJpbmc", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdEVsdmlzRXZhbHVhdGVzTGVmdE9uY2U", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdFVuYXJ5SW5jRGVjS2VlcHNEZWNpbWFscw", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdFJlZ2V4QW5kUmFuZ2VXaXRoTnVsbFJpZ2h0SGFuZFNpZGU", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QuTXlDb3VudGVyI25leHQ", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I2dldExhbmd1YWdlTmFtZQ", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RTaW5nbGVRdW90ZUluc2lkZURvdWJsZVF1b3Rlc0luRnVuY3Rpb24", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RCcmFjZUluc2lkZURvdWJsZVF1b3Rlcw", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RDaGFpbkZvbGxvd2VkQnlOdW1iZXJPck51bGw", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RDaGFpbk5lZWRzU3BhY2Vz", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RPcGVyYXRvckluc2lkZVF1b3Rlc0luQnJhY2Vz", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RVbnF1b3RlZFRleHRXaXRoRGlnaXRJc0xlbmllbnQ", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RDb2xvbldpdGhvdXRTcGFjZXNJc05vdEFUZXJuYXJ5", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0Lk15U2VydmljZSNlY2hv", "QUREX1NZTUJPTApTaW1wbGVQcmVkaWNhdGVJbkJyYWNlc1Rlc3QjdGVzdEFuT3BlcmF0b3JXb3JkSW5BVmFsdWVJc05vdEFQcmVkaWNhdGU", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjZ2V0TGFuZ3VhZ2VOYW1l", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdENhcGl0YWxpemVFbXB0eQ", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdE1hdGhXaXRob3V0QXJndW1lbnRzVXNlc1RoZUJvZHk", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdERhdGVIZWFkZXJXaXRoRGFzaE9yRG90", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdERhdGVXaXRoVGltZXpvbmVPZmZzZXQ", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdFNhZmVRdW90ZUlzVmFsaWRKc29u", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdEtpbmRPZlR5cGU", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdFN1YnN0cmluZ1dpdGhOdWxsQXJndW1lbnRz", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdFBhZFdpdGhTZXZlcmFsQ2hhcmFjdGVycw", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdFNpemVBbmRMZW5ndGhPZkFueUFycmF5", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdEhpZGRlbkZpbGVOYW1l", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjZXZhbHVhdGU", "QUREX1NZTUJPTApTaW1wbGVUZXN0I3Rlc3RDb2xsZWN0aW9uRnVuY3Rpb25zT25BU2luZ2xlQ29tbWE", "QUREX1NZTUJPTApTaW1wbGVUZXN0I3Rlc3ROdWxsTnVtYmVyQXJndW1lbnRz", "QUREX1NZTUJPTApTaW1wbGVUZXN0I2V2YWx1YXRl", "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5VGVzdCN0ZXN0UmFuZ2VOZWdhdGl2ZVN0YXJ0", "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5VGVzdCN0ZXN0U3BsaXRTZXBhcmF0b3JJc05vdEFSZWdleA", "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5VGVzdCN0ZXN0U29ydE9ubHlBcmd1bWVudElzV2hhdFRvU29ydA", "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5VGVzdCN0ZXN0U3BhY2VBZnRlckNvbW1h", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCArZXhwcmVzc2lvbkVycm9yLCArY29udGFpbnMKU2ltcGxlU3ludGF4SGludHNUZXN0I3Rlc3RVbmtub3duRnVuY3Rpb25TdWdnZXN0aW9ucw", "TU9ESUZZX01FVEhPRF9CT0RZClNpbXBsZVRlc3QjdGVzdEdsb2JhbFZhcmlhYmxlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA", "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRNZXNzYWdlLCArc2V0Qm9keSwgK2Fzc2VydEV4cHJlc3Npb24KU2ltcGxlVGVzdCN0ZXN0U3Vic3RyaW5nRXhwcmVzc2lvbg", "TU9ESUZZX01FVEhPRF9CT0RZCityZXNvbHZlTGFuZ3VhZ2UsICtjcmVhdGVFeHByZXNzaW9uLCArZXZhbHVhdGUsICthc3NlcnROb3ROdWxsClNpbXBsZVRlc3QjdGVzdFV1aWQ", "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25GdW5jdGlvbkZhY3RvcnlUZXN0I3Rlc3RSYW5nZU1heApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ", "TU9ESUZZX01FVEhPRF9CT0RZCitzdHJpcEV4dCwgK2Fzc2VydEVxdWFscwpGaWxlVXRpbFRlc3QjdGVzdFN0cmlwRXh0", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnROdWxsLCArb25seUV4dCwgK2Fzc2VydEVxdWFscwpGaWxlVXRpbFRlc3QjdGVzdE9ubHlFeHQ", "QUREX0ZJRUxEClNpbXBsZU9wZXJhdG9yVGVzdC5NeUNvdW50ZXIjY291bnQ" ],
+    "testChangeKeys" : [ "QUREX0NMQVNTClNpbXBsZUZ1bmN0aW9uQXJndW1lbnRzVGVzdA", "QUREX0NMQVNTClNpbXBsZUZ1bmN0aW9uQXJndW1lbnRzVGVzdC5NeVN0YXRpYw", "QUREX0NMQVNTClNpbXBsZUluaXRCbG9ja0VkZ2VDYXNlc1Rlc3Q", "QUREX0NMQVNTClNpbXBsZU9wZXJhdG9yVGVzdC5NeUNvdW50ZXI", "QUREX0NMQVNTClNpbXBsZVBhcnNlckVkZ2VDYXNlc1Rlc3Q", "QUREX0NMQVNTClNpbXBsZVBhcnNlckVkZ2VDYXNlc1Rlc3QuTXlTZXJ2aWNl", "QUREX0NMQVNTClNpbXBsZVN0cmluZ01hdGhEYXRlRnVuY3Rpb25zVGVzdA", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjZ2V0TGFuZ3VhZ2VOYW1l", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdFF1b3Rlc0luc2lkZUFOZXN0ZWRGdW5jdGlvbkFyZUtlcHQ", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdENvbnZlcnRUb1dpdGhQYXJlbnRoZXNlc0luVGhlRXhwcmVzc2lvbg", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdENvbW1hSW5zaWRlUXVvdGVz", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdFRvb0Zld0FyZ3VtZW50cw", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdEJlYW5UeXBlV2l0aFBhY2thZ2U", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdFF1b3RlZEtleUlzTm90T2dubA", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QjdGVzdE5hbWVzTXVzdE5vdEJlR2x1ZWRUb0FQcmVmaXg", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkFyZ3VtZW50c1Rlc3QuTXlTdGF0aWMjaGVsbG8", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I2dldExhbmd1YWdlTmFtZQ", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RDb21tZW50ZWRPdXRBc3NpZ25tZW50RG9lc05vdFJ1bg", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RDb21tZW50V2l0aERvbGxhcg", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RDb21tZW50SW5zaWRlUXVvdGVzSXNUZXh0", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RPbmVMaW5lcg", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RXaW5kb3dzTGluZUVuZGluZ3M", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RQcmVkaWNhdGVXaXRoT25seUZ1bmN0aW9ucw", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RDdXN0b21GdW5jdGlvbklzTG9jYWxUb1RoZUV4cHJlc3Npb24", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tFZGdlQ2FzZXNUZXN0I3Rlc3RFcnJvclBvaW50c0ludG9UaGVJbml0QmxvY2s", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdE51bWVyaWNMaXRlcmFsQXNPdGhlck51bWJlclR5cGU", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdE5lZ2F0aXZlTG9uZ0xpdGVyYWw", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdEVsdmlzQW55WmVybw", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdExvZ2ljYWxFeHByZXNzaW9uVG9TdHJpbmc", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdEVsdmlzRXZhbHVhdGVzTGVmdE9uY2U", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdFVuYXJ5SW5jRGVjS2VlcHNEZWNpbWFscw", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QjdGVzdFJlZ2V4QW5kUmFuZ2VXaXRoTnVsbFJpZ2h0SGFuZFNpZGU", "QUREX1NZTUJPTApTaW1wbGVPcGVyYXRvclRlc3QuTXlDb3VudGVyI25leHQ", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I2dldExhbmd1YWdlTmFtZQ", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RTaW5nbGVRdW90ZUluc2lkZURvdWJsZVF1b3Rlc0luRnVuY3Rpb24", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RCcmFjZUluc2lkZURvdWJsZVF1b3Rlcw", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RDaGFpbkZvbGxvd2VkQnlOdW1iZXJPck51bGw", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RDaGFpbk5lZWRzU3BhY2Vz", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RPcGVyYXRvckluc2lkZVF1b3Rlc0luQnJhY2Vz", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RVbnF1b3RlZFRleHRXaXRoRGlnaXRJc0xlbmllbnQ", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0I3Rlc3RDb2xvbldpdGhvdXRTcGFjZXNJc05vdEFUZXJuYXJ5", "QUREX1NZTUJPTApTaW1wbGVQYXJzZXJFZGdlQ2FzZXNUZXN0Lk15U2VydmljZSNlY2hv", "QUREX1NZTUJPTApTaW1wbGVQcmVkaWNhdGVJbkJyYWNlc1Rlc3QjdGVzdEFuT3BlcmF0b3JXb3JkSW5BVmFsdWVJc05vdEFQcmVkaWNhdGU", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjZ2V0TGFuZ3VhZ2VOYW1l", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdENhcGl0YWxpemVFbXB0eQ", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdE1hdGhXaXRob3V0QXJndW1lbnRzVXNlc1RoZUJvZHk", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdERhdGVIZWFkZXJXaXRoRGFzaE9yRG90", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdERhdGVXaXRoVGltZXpvbmVPZmZzZXQ", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdFNhZmVRdW90ZUlzVmFsaWRKc29u", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdEtpbmRPZlR5cGU", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdFN1YnN0cmluZ1dpdGhOdWxsQXJndW1lbnRz", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdFBhZFdpdGhTZXZlcmFsQ2hhcmFjdGVycw", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdFNpemVBbmRMZW5ndGhPZkFueUFycmF5", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjdGVzdEhpZGRlbkZpbGVOYW1l", "QUREX1NZTUJPTApTaW1wbGVTdHJpbmdNYXRoRGF0ZUZ1bmN0aW9uc1Rlc3QjZXZhbHVhdGU", "QUREX1NZTUJPTApTaW1wbGVUZXN0I3Rlc3RDb2xsZWN0aW9uRnVuY3Rpb25zT25BU2luZ2xlQ29tbWE", "QUREX1NZTUJPTApTaW1wbGVUZXN0I3Rlc3ROdWxsTnVtYmVyQXJndW1lbnRz", "QUREX1NZTUJPTApTaW1wbGVUZXN0I2V2YWx1YXRl", "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5VGVzdCN0ZXN0UmFuZ2VOZWdhdGl2ZVN0YXJ0", "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5VGVzdCN0ZXN0U3BsaXRTZXBhcmF0b3JJc05vdEFSZWdleA", "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5VGVzdCN0ZXN0U29ydE9ubHlBcmd1bWVudElzV2hhdFRvU29ydA", "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5VGVzdCN0ZXN0U3BhY2VBZnRlckNvbW1h", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCArZXhwcmVzc2lvbkVycm9yLCArY29udGFpbnMKU2ltcGxlU3ludGF4SGludHNUZXN0I3Rlc3RVbmtub3duRnVuY3Rpb25TdWdnZXN0aW9ucw", "TU9ESUZZX01FVEhPRF9CT0RZClNpbXBsZVRlc3QjdGVzdEdsb2JhbFZhcmlhYmxlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA", "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRNZXNzYWdlLCArc2V0Qm9keSwgK2Fzc2VydEV4cHJlc3Npb24KU2ltcGxlVGVzdCN0ZXN0U3Vic3RyaW5nRXhwcmVzc2lvbg", "TU9ESUZZX01FVEhPRF9CT0RZCityZXNvbHZlTGFuZ3VhZ2UsICtjcmVhdGVFeHByZXNzaW9uLCArZXZhbHVhdGUsICthc3NlcnROb3ROdWxsClNpbXBsZVRlc3QjdGVzdFV1aWQ", "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25GdW5jdGlvbkZhY3RvcnlUZXN0I3Rlc3RSYW5nZU1heApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ", "TU9ESUZZX01FVEhPRF9CT0RZCitzdHJpcEV4dCwgK2Fzc2VydEVxdWFscwpGaWxlVXRpbFRlc3QjdGVzdFN0cmlwRXh0", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnROdWxsLCArb25seUV4dCwgK2Fzc2VydEVxdWFscwpGaWxlVXRpbFRlc3QjdGVzdE9ubHlFeHQ", "QUREX0ZJRUxEClNpbXBsZU9wZXJhdG9yVGVzdC5NeUNvdW50ZXIjY291bnQ" ]
+  }, {
+    "moduleName" : "camel-core-languages",
+    "status" : "TOUCHED",
+    "fileCount" : 30,
+    "statusSummary" : "30 files · 97 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpDb2xsZWN0aW9uRXhwcmVzc2lvbkJ1aWxkZXIjcmFuZ2VFeHByZXNzaW9uCmJyYW5jaCBhZGRlZA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpNaXNjRXhwcmVzc2lvbkJ1aWxkZXIjY29sbGF0ZUV4cHJlc3Npb24KYnJhbmNoIGFkZGVk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpNaXNjRXhwcmVzc2lvbkJ1aWxkZXIja2luZE9mVHlwZUV4cHJlc3Npb24KYnJhbmNoIHJlbW92ZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpNaXNjRXhwcmVzc2lvbkJ1aWxkZXIjcmFuZG9tRXhwcmVzc2lvbgpicmFuY2ggYWRkZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpNaXNjRXhwcmVzc2lvbkJ1aWxkZXIjdXVpZEV4cHJlc3Npb24KY29uZGl0aW9uIGNoYW5nZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVFeHByZXNzaW9uUGFyc2VyI3BhcnNlRXhwcmVzc2lvbgpicmFuY2ggcmVtb3ZlZCwgbG9vcCByZW1vdmVk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVMYW5ndWFnZSNzdGFydApicmFuY2ggcmVtb3ZlZA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVQcmVkaWNhdGVQYXJzZXIjcGFyc2VQcmVkaWNhdGUKYnJhbmNoIHJlbW92ZWQsIGxvb3AgcmVtb3ZlZA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVQcmVkaWNhdGVQYXJzZXIjcmVtb3ZlSWdub3JhYmxlV2hpdGVTcGFjZVRva2VucwpicmFuY2ggYWRkZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVTeW50YXhIaW50cyN3cmFwQ29tcGFyaXNvbgpicmFuY2ggYWRkZWQsIGxvb3AgYWRkZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVTeW50YXhIaW50cyNvcGVyYXRvcnNPdXRzaWRlCmJyYW5jaCBhZGRlZA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVTeW50YXhIaW50cyN1bmtub3duRnVuY3Rpb24KYnJhbmNoIGFkZGVk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVUb2tlbml6ZXIjYWNjZXB0VG9rZW4KYnJhbmNoIGFkZGVk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzYWZlUXVvdGVFeHByZXNzaW9uCmJyYW5jaCByZW1vdmVk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNwYWRFeHByZXNzaW9uCmNvbmRpdGlvbiBjaGFuZ2Vk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNjb25jYXRFeHByZXNzaW9uCmJyYW5jaCBhZGRlZDsgc2FtZSBjYWxscw", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzaXplRXhwcmVzc2lvbgpicmFuY2ggcmVtb3ZlZA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNsZW5ndGhFeHByZXNzaW9uCmJyYW5jaCByZW1vdmVk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzdWJzdHJpbmdFeHByZXNzaW9uCmJyYW5jaCBhZGRlZA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzdWJzdHJpbmdCZWZvcmVFeHByZXNzaW9uCmJyYW5jaCBhZGRlZDsgc2FtZSBjYWxscw", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzdWJzdHJpbmdBZnRlckV4cHJlc3Npb24KYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzdWJzdHJpbmdCZXR3ZWVuRXhwcmVzc2lvbgpicmFuY2ggYWRkZWQ7IHNhbWUgY2FsbHM", "Q0hBTkdFX0NPTlRST0xfRkxPVwpCaW5hcnlFeHByZXNzaW9uI2NyZWF0ZVJhbmdlRXhwcmVzc2lvbgpicmFuY2ggYWRkZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpOdW1lcmljRXhwcmVzc2lvbiNjcmVhdGVFeHByZXNzaW9uCmNvbmRpdGlvbiBjaGFuZ2Vk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpPdGhlckV4cHJlc3Npb24jY3JlYXRlRWx2aXNFeHByZXNzaW9uCmNvbmRpdGlvbiBjaGFuZ2Vk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVGdW5jdGlvbkV4cHJlc3Npb24jY3JlYXRlRXhwcmVzc2lvbgpjb25kaXRpb24gY2hhbmdlZA", "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2ltcGxlRnVuY3Rpb25FeHByZXNzaW9uI2NyZWF0ZVNpbXBsZUV4cHJlc3Npb24", "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2ltcGxlRnVuY3Rpb25FeHByZXNzaW9uI2RvQ3JlYXRlU2ltcGxlRXhwcmVzc2lvbg", "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2ltcGxlRnVuY3Rpb25FeHByZXNzaW9uI2NyZWF0ZVNpbXBsZUZpbGVFeHByZXNzaW9u", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGVGdW5jdGlvblN0YXJ0I2ZpbmRUZXJuYXJ5T3BlcmF0b3IKY29uZGl0aW9uIGNoYW5nZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpCZWFuRnVuY3Rpb25GYWN0b3J5I3BhcnNlQmVhblJlbWFpbmRlcgpicmFuY2ggYWRkZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5I2NyZWF0ZUZ1bmN0aW9uCmJyYW5jaCBhZGRlZA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpEYXRlRnVuY3Rpb25GYWN0b3J5I2NyZWF0ZUZ1bmN0aW9uCmJyYW5jaCBhZGRlZA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpFeGNoYW5nZUZ1bmN0aW9uRmFjdG9yeSNjcmVhdGVGdW5jdGlvbgpicmFuY2ggYWRkZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpIZWFkZXJGdW5jdGlvbkZhY3RvcnkjY3JlYXRlRnVuY3Rpb24KYnJhbmNoIGFkZGVk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpNaXNjRnVuY3Rpb25GYWN0b3J5I2NyZWF0ZUZ1bmN0aW9uCmJyYW5jaCByZW1vdmVk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdGdW5jdGlvbkZhY3RvcnkjY3JlYXRlRnVuY3Rpb24KY29uZGl0aW9uIGNoYW5nZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpWYXJpYWJsZUZ1bmN0aW9uRmFjdG9yeSNjcmVhdGVGdW5jdGlvbgpicmFuY2ggYWRkZWQ", "UkVNT1ZFX1NZTUJPTApTaW1wbGVJbml0QmxvY2tQYXJzZXIjcHJlcGFyZUluaXRCbG9ja3M", "UkVNT1ZFX1NZTUJPTApMb2dpY2FsRXhwcmVzc2lvbiNjcmVhdGVBbmRFeHByZXNzaW9u", "UkVNT1ZFX1NZTUJPTApMb2dpY2FsRXhwcmVzc2lvbiNjcmVhdGVPckV4cHJlc3Npb24", "UkVNT1ZFX1NZTUJPTApVbmFyeUV4cHJlc3Npb24jY3JlYXRlSW5jRXhwcmVzc2lvbg", "UkVNT1ZFX1NZTUJPTApVbmFyeUV4cHJlc3Npb24jY3JlYXRlRGVjRXhwcmVzc2lvbg", "QUREX1NZTUJPTApNaXNjRXhwcmVzc2lvbkJ1aWxkZXIja2luZE9mVHlwZQ", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkhlbHBlciNrZXlSZW1haW5kZXI", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvbkhlbHBlciNpbmRleE9mQ2xvc2luZ1BhcmVudGhlc2lz", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tQYXJzZXIjbm9ybWFsaXpl", "QUREX1NZTUJPTApTaW1wbGVJbml0QmxvY2tQYXJzZXIjcmV3cml0ZUV4cHJlc3Npb25BZnRlckluaXRCbG9jaw", "QUREX1NZTUJPTApTaW1wbGVTeW50YXhIaW50cyN3cmFwQ29tcGFyaXNvbg", "QUREX1NZTUJPTApTaW1wbGVTeW50YXhIaW50cyNpbmRleE91dHNpZGVRdW90ZXM", "QUREX1NZTUJPTApMb2dpY2FsRXhwcmVzc2lvbiNjcmVhdGVFeHByZXNzaW9u", "QUREX1NZTUJPTApPdGhlckV4cHJlc3Npb24jaXNaZXJv", "QUREX1NZTUJPTApTaW1wbGVGdW5jdGlvblN0YXJ0I3N1cnJvdW5kZWRCeVdoaXRlc3BhY2U", "QUREX1NZTUJPTApVbmFyeUV4cHJlc3Npb24jY3JlYXRlSW5jRGVjRXhwcmVzc2lvbg", "QUREX1NZTUJPTApDb2xsZWN0aW9uRnVuY3Rpb25GYWN0b3J5I3NwbGl0QXJndW1lbnRz", "QUREX1NZTUJPTApFeGNoYW5nZUZ1bmN0aW9uRmFjdG9yeSNzdGFydHNPZ25s", "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25FeHByZXNzaW9uQnVpbGRlciNkaXN0aW5jdEV4cHJlc3Npb24KcmV0dXJuIHZhbHVlIGNoYW5nZWQ", "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25FeHByZXNzaW9uQnVpbGRlciNyZXZlcnNlRXhwcmVzc2lvbgpyZXR1cm4gdmFsdWUgY2hhbmdlZA", "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25FeHByZXNzaW9uQnVpbGRlciNzaHVmZmxlRXhwcmVzc2lvbgpyZXR1cm4gdmFsdWUgY2hhbmdlZA", "TU9ESUZZX01FVEhPRF9CT0RZCitjb21waWxlLCArcXVvdGUsICtyZXBsYWNlLCByZXR1cm4gdmFsdWUgY2hhbmdlZApDb2xsZWN0aW9uRXhwcmVzc2lvbkJ1aWxkZXIjc3BsaXRTdHJpbmdFeHByZXNzaW9u", "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25FeHByZXNzaW9uQnVpbGRlciNzb3J0RXhwcmVzc2lvbgpyZXR1cm4gdmFsdWUgY2hhbmdlZA", "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25FeHByZXNzaW9uQnVpbGRlciNmb3JFYWNoRXhwcmVzc2lvbgpyZXR1cm4gdmFsdWUgY2hhbmdlZA", "TU9ESUZZX01FVEhPRF9CT0RZCkNvbGxlY3Rpb25FeHByZXNzaW9uQnVpbGRlciNmaWx0ZXJFeHByZXNzaW9uCnJldHVybiB2YWx1ZSBjaGFuZ2Vk", "TU9ESUZZX01FVEhPRF9CT0RZCittYXRjaGVyLCArZmluZCwgK3N1YnN0cmluZywgK3N0YXJ0LCAtc3BsaXQKRGF0ZUV4cHJlc3Npb25CdWlsZGVyI2RhdGVFeHByZXNzaW9u", "TU9ESUZZX01FVEhPRF9CT0RZCk1hdGhFeHByZXNzaW9uQnVpbGRlciNzdW1FeHByZXNzaW9uCnJldHVybiB2YWx1ZSBjaGFuZ2Vk", "TU9ESUZZX01FVEhPRF9CT0RZCk1hdGhFeHByZXNzaW9uQnVpbGRlciNtYXhFeHByZXNzaW9uCnJldHVybiB2YWx1ZSBjaGFuZ2Vk", "TU9ESUZZX01FVEhPRF9CT0RZCk1hdGhFeHByZXNzaW9uQnVpbGRlciNtaW5FeHByZXNzaW9uCnJldHVybiB2YWx1ZSBjaGFuZ2Vk", "TU9ESUZZX01FVEhPRF9CT0RZCk1hdGhFeHByZXNzaW9uQnVpbGRlciNhdmVyYWdlRXhwcmVzc2lvbgpyZXR1cm4gdmFsdWUgY2hhbmdlZA", "TU9ESUZZX01FVEhPRF9CT0RZCitrZXlSZW1haW5kZXIsIHJldHVybiByZW1haW5kZXIgLT4ga2V5UmVtYWluZGVyKHJlbWFpbmRlcikKU2ltcGxlRnVuY3Rpb25IZWxwZXIjcGFyc2VJbkhlYWRlcg", "TU9ESUZZX01FVEhPRF9CT0RZCitrZXlSZW1haW5kZXIsIHJldHVybiByZW1haW5kZXIgLT4ga2V5UmVtYWluZGVyKHJlbWFpbmRlcikKU2ltcGxlRnVuY3Rpb25IZWxwZXIjcGFyc2VWYXJpYWJsZQ", "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRNZXNzYWdlLCArZ2V0SW5kZXgsICtsZW5ndGgsICt0aHJvdyBTaW1wbGVQYXJzZXJFeGNlcHRpb24KU2ltcGxlSW5pdEJsb2NrUGFyc2VyI3BhcnNlRXhwcmVzc2lvbg", "TU9ESUZZX01FVEhPRF9CT0RZClNpbXBsZVByZWRpY2F0ZVBhcnNlciNiaW5hcnlPcGVyYXRvcgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ", "TU9ESUZZX01FVEhPRF9CT0RZCitleHBlY3QsIC1leHBlY3RBbmRBY2NlcHRNb3JlClNpbXBsZVByZWRpY2F0ZVBhcnNlciNjaGFpbk9wZXJhdG9y", "TU9ESUZZX01FVEhPRF9CT0RZClNpbXBsZVByZWRpY2F0ZVBhcnNlciNtaW51c1ZhbHVlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA", "TU9ESUZZX01FVEhPRF9CT0RZCitjb25zdGFudCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKQmluYXJ5RXhwcmVzc2lvbiNjcmVhdGVSZWdleEV4cHJlc3Npb24", "TU9ESUZZX01FVEhPRF9CT0RZCkNoYWluRXhwcmVzc2lvbiNwcmVwYXJlQ2hhaW5Ob2RlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA", "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGVFeHByZXNzaW9uLCArdG9QcmVkaWNhdGUsICthbmQsICtvciwgLWNyZWF0ZUFuZEV4cHJlc3Npb24g4oCmYW5kIDIgbW9yZQpMb2dpY2FsRXhwcmVzc2lvbiNjcmVhdGVFeHByZXNzaW9u", "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGVJbmNEZWNFeHByZXNzaW9uLCAtY3JlYXRlSW5jRXhwcmVzc2lvbiwgLWNyZWF0ZURlY0V4cHJlc3Npb24sIHJldHVybiB2YWx1ZSBjaGFuZ2VkIMOXMgpVbmFyeUV4cHJlc3Npb24jY3JlYXRlRXhwcmVzc2lvbg", "TU9ESUZZX01FVEhPRF9CT0RZCityZW1vdmVMZWFkaW5nQW5kRW5kaW5nUXVvdGVzLCAtcmVtb3ZlUXVvdGVzLCByZXR1cm4gcmVtb3ZlUXVvdGVzIC0-IHJlbW92ZUxlYWRpbmdBbmRFbmRpbmdRdW90ZXMgw5czCk1hdGhGdW5jdGlvbkZhY3RvcnkjY3JlYXRlRnVuY3Rpb24", "TU9ESUZZX01FVEhPRF9CT0RZCk1hdGhGdW5jdGlvbkZhY3RvcnkjcGFyc2VWYXJpYWRpY1Rva2VucwpyZXR1cm4gdmFsdWUgY2hhbmdlZA", "TU9ESUZZX01FVEhPRF9CT0RZCitub3JtYWxpemUKU2ltcGxlSW5pdEJsb2NrUGFyc2VyIzxpbml0Pg", "TU9ESUZZX01FVEhPRF9CT0RZCi12YWx1ZU9mCk51bWVyaWNFeHByZXNzaW9uIzxpbml0Pg", "UkVNT1ZFX0ZJRUxEClNpbXBsZUxhbmd1YWdlI1NJTVBMRQ", "QUREX0ZJRUxECkRhdGVFeHByZXNzaW9uQnVpbGRlciNPRkZTRVRfU1RBUlQ", "QUREX0ZJRUxEClNpbXBsZUNvbnN0YW50cyNMT0dfRVhDSEFOR0U", "QUREX0ZJRUxEClNpbXBsZVN5bnRheEhpbnRzI0NBTExFRF9XSVRIX1BBUkVOVEhFU0VT", "QUREX0ZJRUxECkRhdGVGdW5jdGlvbkZhY3RvcnkjVElNRVpPTkVfV0lUSF9DT0xPTg", "Q0hBTkdFX0ZJRUxEX1ZBTFVFCkRhdGVFeHByZXNzaW9uQnVpbGRlciNPRkZTRVRfUEFUVEVSTgpQYXR0ZXJuLmNvbXBpbGUoIihbKy1dKShbXistXSspIikgLT4gUGF0dGVybi5jb21waWxlKCIoWystXSlcXHMqKFxcZFteKy1dKikiKQ", "Q0hBTkdFX0ZJRUxEX1ZBTFVFCiJleGNlcHRpb24uc3RhY2tUcmFjZSIgLT4gImV4Y2VwdGlvbi5zdGFja3RyYWNlIgpTaW1wbGVDb25zdGFudHMjRVhDRVBUSU9OX1NUQUNLVFJBQ0U", "Q0hBTkdFX0ZJRUxEX1ZBTFVFCiJob3N0TmFtZSIgLT4gImhvc3RuYW1lIgpTaW1wbGVDb25zdGFudHMjSE9TVF9OQU1F", "Q0hBTkdFX0ZJRUxEX1ZBTFVFCiJub3QiIC0-ICJub3QoZXhwKSIKU2ltcGxlQ29uc3RhbnRzI05PVA", "Q0hBTkdFX0ZJRUxEX1ZBTFVFCiJzZXRWYXJpYWJsZShrZXksZXhwKSIgLT4gInNldEF0dGFjaG1lbnQoa2V5LGV4cCkiClNpbXBsZUNvbnN0YW50cyNTRVRfQVRUQUNITUVOVA", "Q0hBTkdFX0ZJRUxEX1ZBTFVFCiJ0aHJvd0V4Y2VwdGlvbih0eXBlLG1zZykiIC0-ICJ0aHJvd0V4Y2VwdGlvbihtc2csdHlwZSkiClNpbXBsZUNvbnN0YW50cyNUSFJPV19FWENFUFRJT04", "Q0hBTkdFX0ZJRUxEX1ZBTFVFCisiYXZlcmFnZSIsICsiYWJzIiwgKyJjZWlsIiwgKyJmbG9vciIsICsic2l6ZSIg4oCmYW5kIDI0IG1vcmUKU2ltcGxlU3ludGF4SGludHMjRlVOQ1RJT05T", "Q0hBTkdFX0ZJRUxEX1ZBTFVFClNpbXBsZVN5bnRheEhpbnRzI0FMSUFTRVMKdmFsdWUgY2hhbmdlZA", "UkVNT1ZFX1NZTUJPTApTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzYWZlUXVvdGVFeHByZXNzaW9uKGFub255bW91cyBFeHByZXNzaW9uQWRhcHRlcikja2luZE9mVHlwZQ", "QUREX1NZTUJPTApTdHJpbmdFeHByZXNzaW9uQnVpbGRlciNzYWZlUXVvdGVFeHByZXNzaW9uKGFub255bW91cyBFeHByZXNzaW9uQWRhcHRlcikjaXNRdW90ZWRPbmNl" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-util",
+    "status" : "TOUCHED",
+    "fileCount" : 4,
+    "statusSummary" : "4 files · 9 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpGaWxlVXRpbCNvbmx5RXh0CmNvbmRpdGlvbiBjaGFuZ2VkOyBzYW1lIGNhbGxz", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdIZWxwZXIjc3BsaXRPbkNoYXJhY3RlckFzSXRlcmF0b3IKYnJhbmNoIGFkZGVk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdIZWxwZXIjc3BsaXRPbkNoYXJhY3RlckFzTGlzdApicmFuY2ggYWRkZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJpbmdIZWxwZXIjZG9DYXBpdGFsaXplCmNvbmRpdGlvbiBjaGFuZ2Vk", "TU9ESUZZX01FVEhPRF9CT0RZCkZpbGVVdGlsI3N0cmlwRXh0Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA", "TU9ESUZZX01FVEhPRF9CT0RZCitzcGxpdE9uQ2hhcmFjdGVyQXNMaXN0LCArYXNzZXJ0RXF1YWxzLCArc2l6ZQpTdHJpbmdIZWxwZXJUZXN0I3Rlc3RTcGxpdE9uQ2hhcmFjdGVyQXNMaXN0", "TU9ESUZZX01FVEhPRF9CT0RZCitzcGxpdE9uQ2hhcmFjdGVyQXNJdGVyYXRvciwgK2Fzc2VydEZhbHNlLCAraGFzTmV4dApTdHJpbmdIZWxwZXJUZXN0I3Rlc3RTcGxpdE9uQ2hhcmFjdGVyQXNJdGVyYXRvcg", "TU9ESUZZX01FVEhPRF9CT0RZCitjYXBpdGFsaXplQWxsLCArYXNzZXJ0RXF1YWxzLCArY2FwaXRhbGl6ZQpTdHJpbmdIZWxwZXJUZXN0I3Rlc3RDYXBpdGFsaXplQWxs", "Q0hBTkdFX0ZJRUxEX1ZBTFVFClNpbXBsZVV0aWxzI1NJTVBMRV9GVU5DVElPTlMKdmFsdWUgY2hhbmdlZA" ],
+    "testChangeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCitzcGxpdE9uQ2hhcmFjdGVyQXNMaXN0LCArYXNzZXJ0RXF1YWxzLCArc2l6ZQpTdHJpbmdIZWxwZXJUZXN0I3Rlc3RTcGxpdE9uQ2hhcmFjdGVyQXNMaXN0", "TU9ESUZZX01FVEhPRF9CT0RZCitzcGxpdE9uQ2hhcmFjdGVyQXNJdGVyYXRvciwgK2Fzc2VydEZhbHNlLCAraGFzTmV4dApTdHJpbmdIZWxwZXJUZXN0I3Rlc3RTcGxpdE9uQ2hhcmFjdGVyQXNJdGVyYXRvcg", "TU9ESUZZX01FVEhPRF9CT0RZCitjYXBpdGFsaXplQWxsLCArYXNzZXJ0RXF1YWxzLCArY2FwaXRhbGl6ZQpTdHJpbmdIZWxwZXJUZXN0I3Rlc3RDYXBpdGFsaXplQWxs" ]
+  }, {
+    "moduleName" : "camel-support",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCitpbmRleE9mLCAtbGFzdEluZGV4T2YKTGFuZ3VhZ2VIZWxwZXIjZGF0ZUZyb21FeGNoYW5nZVByb3BlcnR5", "TU9ESUZZX01FVEhPRF9CT0RZCitpbmRleE9mLCAtbGFzdEluZGV4T2YKTGFuZ3VhZ2VIZWxwZXIjZGF0ZUZyb21IZWFkZXI", "TU9ESUZZX01FVEhPRF9CT0RZCitpbmRleE9mLCAtbGFzdEluZGV4T2YKTGFuZ3VhZ2VIZWxwZXIjZGF0ZUZyb21WYXJpYWJsZQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-core-engine",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-bean",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-browse",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-cluster",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-controlbus",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-dataformat",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-dataset",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-direct",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-file",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-health",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-language",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-log",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-mock",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-ref",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-rest",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-saga",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-scheduler",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-seda",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-stub",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-timer",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-validator",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-xpath",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-xslt",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-xml-io",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-xml-jaxb",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-xml-jaxp",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-yaml-io",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-core-catalog",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-package-maven-plugin",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-core-model",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-xml-jaxp-util",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-management-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-util-json",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "camel-core",
+    "to" : "camel-core-engine"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-core-languages"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-bean"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-browse"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-cluster"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-controlbus"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-dataformat"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-dataset"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-direct"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-file"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-health"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-language"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-log"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-mock"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-ref"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-rest"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-saga"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-scheduler"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-seda"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-stub"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-timer"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-validator"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-xpath"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-xslt"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-xml-io"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-xml-jaxb"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-xml-jaxp"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-yaml-io"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-core-catalog"
+  }, {
+    "from" : "camel-core",
+    "to" : "camel-package-maven-plugin"
+  }, {
+    "from" : "camel-core-languages",
+    "to" : "camel-core-model"
+  }, {
+    "from" : "camel-core-languages",
+    "to" : "camel-support"
+  }, {
+    "from" : "camel-core-languages",
+    "to" : "camel-xml-jaxp-util"
+  }, {
+    "from" : "camel-support",
+    "to" : "camel-api"
+  }, {
+    "from" : "camel-support",
+    "to" : "camel-management-api"
+  }, {
+    "from" : "camel-support",
+    "to" : "camel-util"
+  }, {
+    "from" : "camel-support",
+    "to" : "camel-util-json"
+  }, {
+    "from" : "camel-support",
+    "to" : "camel-xml-jaxp-util"
+  } ]
+}

@@ -1,0 +1,47 @@
+{
+  "diff": {
+    "files": 30,
+    "java_files": 28,
+    "non_java_files": 2,
+    "substantive_java_files": 28,
+    "copyright_only_java_files": 0,
+    "production_java_files": 0,
+    "java_hunks": 46,
+    "java_lines_changed": 364
+  },
+  "athena": {
+    "changes": 46,
+    "changes_by_kind": {
+      "REMOVE_CLASS": 2,
+      "ADD_CLASS": 1,
+      "CHANGE_MODIFIERS": 3,
+      "RENAME_SYMBOL": 1,
+      "REMOVE_SYMBOL": 24,
+      "ADD_SYMBOL": 5,
+      "MODIFY_METHOD_BODY": 4,
+      "REMOVE_FIELD": 6
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 42,
+      "UNKNOWN": 4
+    },
+    "semantic_entries": 25,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 25
+    },
+    "inferred_entries": 0,
+    "module_territories": 2,
+    "module_dependencies": 1,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 27,
+    "substantive_java_file_coverage": 0.96,
+    "production_java_files_represented": 0,
+    "production_java_file_coverage": null,
+    "unrepresented_production_java_files": [],
+    "unrepresented_test_java_files": [
+      "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/module-info.java"
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "vertx-core-java21-tests" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in ContextTest",
+      "conceptDescription" : "1 change in test code of ContextTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Test\n   public void testInterruptThreadOnAwait() {\n     vertx.deployVerticle(() -> new AbstractVerticle() {\n       @Override\n       public void start() {\n         Thread current = Thread.currentThread();\n         Promise<String> promise = Promise.promise();\n         new Thread(() -> {\n           while (current.getState() != Thread.State.WAITING) {\n-            try {\n-              Thread.sleep(10);\n-            } catch (InterruptedException e) {\n-              throw new RuntimeException(e);\n-            }\n+            Thread.yield();\n           }\n           current.interrupt();\n+          while (current.getState() != Thread.State.TERMINATED) {\n+            Thread.yield();\n+          }\n+          promise.succeed();\n+          context.runOnContext(v -> {\n+            testComplete();\n+          });\n         }).start();\n         try {\n-          Future.await(promise.future());\n+          promise.future().await();\n           fail();\n         } catch (Exception expected) {\n           assertFalse(current.isInterrupted());\n           assertEquals(expected.getClass(), InterruptedException.class);\n-          testComplete();\n         }\n       }\n     }, new DeploymentOptions().setThreadingModel(ThreadingModel.VIRTUAL_THREAD));\n     await();\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "vertx-core-java21-tests/src/test/java/io/vertx/tests/virtualthread/ContextTest.java" ],
+      "groupedMoveCount" : 1
+    } ]
+  },
+  "vertx-core" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private boolean suspend() {\n       if (Thread.currentThread() != thread) {\n         throw new IllegalStateException();\n       }\n       synchronized (tasks) {\n         if (closed) {\n           return false;\n         }\n         if (currentThread == null || currentThread != thread) {\n           throw new IllegalStateException();\n         }\n         switch (status) {\n-          case ST_RESUMED:\n+          case ST_DONE:\n             countDown();\n             return false;\n           case ST_SUSPENDED:\n             throw new IllegalStateException();\n         }\n         status = ST_SUSPENDED;\n         boolean added = continuations.add(this);\n         assert added;\n         currentThread = null;\n         currentTask = null;\n       }\n       executor.execute(runner);\n       return true;\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Override\n+    public void await() throws InterruptedException {\n+      try {\n+        super.await();\n+      } catch (InterruptedException e) {\n+        interrupted();\n+        throw e;\n+      }\n+    }", "-\n+@Override\n+    public boolean await(long timeout, TimeUnit unit) throws InterruptedException {\n+      try {\n+        return super.await(timeout, unit);\n+      } catch (InterruptedException e) {\n+        interrupted();\n+        throw e;\n+      }\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private void interrupted() {\n+      synchronized (tasks) {\n+        if (status == ST_SUSPENDED) {\n+          continuations.remove(this);\n+          status = ST_DONE;\n+        }\n+      }\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Rename",
+      "conceptDescription" : "A symbol (class, method, or field) kept its behavior but changed name.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-private static final int ST_CREATED = 0, ST_SUSPENDED = 1, ST_RESUMED = 2;\n+private static final int ST_CREATED = 0, ST_SUSPENDED = 1, ST_DONE = 2;" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Signature resume in 2 classes",
+      "conceptDescription" : "A method's parameter list and/or return type changed. Same change in: TaskQueue.ContinuationTask, WorkerExecutor.Execution.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n-    public void resume() {\n-      resume(() -> {});\n+    public boolean resume() {\n+      return resume(() -> {});\n     }", " @Override\n-    public void resume(Runnable callback) {\n+    public boolean resume(Runnable callback) {\n       synchronized (tasks) {\n         if (closed) {\n-          return;\n+          return false;\n         }\n         switch (status) {\n           case ST_SUSPENDED:\n             boolean removed = continuations.remove(this);\n             assert removed;\n             latch = () -> {\n-              callback.run();\n-              countDown();\n+              try {\n+                callback.run();\n+              } finally {\n+                countDown();\n+              }\n             };\n             if (currentExecutor != null) {\n               tasks.addFirst(this);\n-              return;\n+              return true;\n             }\n             currentExecutor = executor;\n             currentThread = thread;\n             currentTask = task;\n             break;\n           case ST_CREATED:\n             // The current task still owns the queue\n             assert currentExecutor == executor;\n             assert currentThread == thread;\n             assert currentTask == task;\n             latch = callback;\n             break;\n+          case ST_DONE:\n+            return false;\n           default:\n             throw new IllegalStateException();\n         }\n-        status = ST_RESUMED;\n+        status = ST_DONE;\n       }\n       latch.run();\n+      return true;\n     }", "-void resume();\n+boolean resume();", "-void resume(Runnable callback);\n+boolean resume(Runnable callback);" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java", "vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutor.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in TaskQueueTest",
+      "conceptDescription" : "1 change in test code of TaskQueueTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Test\n+  public void testInterruptSuspended() {\n+    disableThreadChecks();\n+    taskQueue.execute(() -> {\n+      WorkerExecutor.Execution execution = taskQueue.current();\n+      CountDownLatch latch = execution.trySuspend();\n+      Thread current = Thread.currentThread();\n+      new Thread(() -> {\n+        while (current.getState() != Thread.State.WAITING) {\n+          Thread.yield();\n+        }\n+        current.interrupt();\n+        while (current.getState() != Thread.State.TERMINATED) {\n+          Thread.yield();\n+        }\n+        assertFalse(execution.resume());\n+        taskQueue.execute(this::testComplete, executor);\n+      }).start();\n+      try {\n+        latch.await();\n+      } catch (InterruptedException expected) {\n+      }\n+    }, executor);\n+    await();\n+  }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "vertx-core/src/test/java/io/vertx/tests/context/TaskQueueTest.java" ],
+      "groupedMoveCount" : 1
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " private boolean suspend() {\n       if (Thread.currentThread() != thread) {\n         throw new IllegalStateException();\n       }\n       synchronized (tasks) {\n         if (closed) {\n           return false;\n         }\n         if (currentThread == null || currentThread != thread) {\n           throw new IllegalStateException();\n         }\n         switch (status) {\n-          case ST_RESUMED:\n+          case ST_DONE:\n             countDown();\n             return false;\n           case ST_SUSPENDED:\n             throw new IllegalStateException();\n         }\n         status = ST_SUSPENDED;\n         boolean added = continuations.add(this);\n         assert added;\n         currentThread = null;\n         currentTask = null;\n       }\n       executor.execute(runner);\n       return true;\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Change API Responsibility",
+      "conceptDescription" : "What a public API is responsible for doing changed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " @Override\n-    public void resume() {\n-      resume(() -> {});\n+    public boolean resume() {\n+      return resume(() -> {});\n     }", " @Override\n-    public void resume(Runnable callback) {\n+    public boolean resume(Runnable callback) {\n       synchronized (tasks) {\n         if (closed) {\n-          return;\n+          return false;\n         }\n         switch (status) {\n           case ST_SUSPENDED:\n             boolean removed = continuations.remove(this);\n             assert removed;\n             latch = () -> {\n-              callback.run();\n-              countDown();\n+              try {\n+                callback.run();\n+              } finally {\n+                countDown();\n+              }\n             };\n             if (currentExecutor != null) {\n               tasks.addFirst(this);\n-              return;\n+              return true;\n             }\n             currentExecutor = executor;\n             currentThread = thread;\n             currentTask = task;\n             break;\n           case ST_CREATED:\n             // The current task still owns the queue\n             assert currentExecutor == executor;\n             assert currentThread == thread;\n             assert currentTask == task;\n             latch = callback;\n             break;\n+          case ST_DONE:\n+            return false;\n           default:\n             throw new IllegalStateException();\n         }\n-        status = ST_RESUMED;\n+        status = ST_DONE;\n       }\n       latch.run();\n+      return true;\n     }", "-void resume();\n+boolean resume();", "-void resume(Runnable callback);\n+boolean resume(Runnable callback);" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java", "vertx-core/src/main/java/io/vertx/core/impl/WorkerExecutor.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+@Override\n+    public void await() throws InterruptedException {\n+      try {\n+        super.await();\n+      } catch (InterruptedException e) {\n+        interrupted();\n+        throw e;\n+      }\n+    }", "-\n+@Override\n+    public boolean await(long timeout, TimeUnit unit) throws InterruptedException {\n+      try {\n+        return super.await(timeout, unit);\n+      } catch (InterruptedException e) {\n+        interrupted();\n+        throw e;\n+      }\n+    }", "-\n+private void interrupted() {\n+      synchronized (tasks) {\n+        if (status == ST_SUSPENDED) {\n+          continuations.remove(this);\n+          status = ST_DONE;\n+        }\n+      }\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/TaskQueue.java" ],
+      "groupedMoveCount" : 2
+    } ]
+  }
+}

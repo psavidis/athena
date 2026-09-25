@@ -1,0 +1,10 @@
+[ {
+  "entity" : "DistroClientDataProcessor",
+  "description" : "Change control flow of DistroClientDataProcessor#getDatumSnapshot: branch added; same calls"
+}, {
+  "entity" : "DistroClientDataProcessorTest",
+  "description" : "Add DistroClientDataProcessorTest#testGetDatumSnapshotIncludeNonConnectionBasedClient"
+}, {
+  "entity" : "DistroClientDataProcessorTest",
+  "description" : "Modify body of DistroClientDataProcessorTest#testGetDatumSnapshot: +forClass, +verify, +serialize, +capture, +assertTrue …and 3 more"
+} ]

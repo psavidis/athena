@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/alibaba/nacos.git",
+  "base" : "842b8ef7d30e59826529d9062ea39ef2efba25a7",
+  "head" : "21277328e9d6e018164f3fa5953cc714bff9dfdc",
+  "changeCount" : 25,
+  "moduleCount" : 2,
+  "checkoutAndAnalysisSeconds" : 12.64
+}

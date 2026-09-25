@@ -1,0 +1,25 @@
+{
+  "territories" : [ {
+    "moduleName" : "kafka",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 15 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlciNyZXNvbHZlUmVzdG9yZUNlaWxpbmdDb21taXR0ZWRPZmZzZXQ", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlciNtYXliZUZhbGxCYWNrVG9aZXJvQ29tbWl0dGVkT2Zmc2V0", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmVzdG9yZUZyZXNoU291cmNlQ2hhbmdlbG9nV2l0aE1pc3NpbmdDb21taXR0ZWRPZmZzZXRJbW1lZGlhdGVseUF0WmVybw", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmV0cnlNaXNzaW5nQ29tbWl0dGVkT2Zmc2V0Rm9yV2lwZWRTb3VyY2VDaGFuZ2Vsb2dUaGVuRmFsbEJhY2tUb1plcm8", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmVjb3ZlcldpcGVkU291cmNlQ2hhbmdlbG9nVG9SZWFsQ29tbWl0dGVkT2Zmc2V0V2hlblRyYW5zaWVudGx5TWlzc2luZ0JlZm9yZVRpbWVvdXQ", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3QjY29tbWl0dGVkT2Y", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2V0dXBXaXBlZFNvdXJjZUNoYW5nZWxvZw", "TU9ESUZZX01FVEhPRF9CT0RZClN0b3JlQ2hhbmdlbG9nUmVhZGVyI2NvbW1pdHRlZE9mZnNldEZvckNoYW5nZWxvZ3MKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk", "TU9ESUZZX01FVEhPRF9CT0RZCittYXgKU3RvcmVDaGFuZ2Vsb2dSZWFkZXIjdXBkYXRlTGltaXRPZmZzZXRzRm9yU3RhbmRieUNoYW5nZWxvZ3M", "TU9ESUZZX01FVEhPRF9CT0RZCitjaGFuZ2Vsb2dQYXJ0aXRpb24sICthZGQsICtyZXNvbHZlUmVzdG9yZUNlaWxpbmdDb21taXR0ZWRPZmZzZXQsICtyZW1vdmUsIC1nZXQg4oCmYW5kIDEgbW9yZQpTdG9yZUNoYW5nZWxvZ1JlYWRlciNpbml0aWFsaXplQ2hhbmdlbG9ncw", "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRMb25nClN0b3JlQ2hhbmdlbG9nUmVhZGVyIzxpbml0Pg", "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI05PX0NPTU1JVFRFRF9PRkZTRVQ", "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI2NvbW1pdHRlZE9mZnNldE1pc3NpbmdTaW5jZU1z", "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI2V2ZXJTdGFydGVkUmVzdG9yaW5nQ2hhbmdlbG9ncw", "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI3Rhc2tUaW1lb3V0TXM" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmVzdG9yZUZyZXNoU291cmNlQ2hhbmdlbG9nV2l0aE1pc3NpbmdDb21taXR0ZWRPZmZzZXRJbW1lZGlhdGVseUF0WmVybw", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmV0cnlNaXNzaW5nQ29tbWl0dGVkT2Zmc2V0Rm9yV2lwZWRTb3VyY2VDaGFuZ2Vsb2dUaGVuRmFsbEJhY2tUb1plcm8", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmVjb3ZlcldpcGVkU291cmNlQ2hhbmdlbG9nVG9SZWFsQ29tbWl0dGVkT2Zmc2V0V2hlblRyYW5zaWVudGx5TWlzc2luZ0JlZm9yZVRpbWVvdXQ", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3QjY29tbWl0dGVkT2Y", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2V0dXBXaXBlZFNvdXJjZUNoYW5nZWxvZw" ]
+  }, {
+    "moduleName" : "core",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "kafka",
+    "to" : "core"
+  } ]
+}

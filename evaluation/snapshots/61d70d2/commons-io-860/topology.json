@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "commons-io",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 4 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpCb3VuZGVkUmVhZGVyI3NraXAKYnJhbmNoIGFkZGVk", "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcERvZXNOb3RFeGNlZWRCb3VuZA", "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcERvZXNOb3RPdmVyZmxvd0NoYXJzUmVhZA", "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcFVzZXNBY3R1YWxTa2lwcGVkQ291bnQ" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcERvZXNOb3RFeGNlZWRCb3VuZA", "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcERvZXNOb3RPdmVyZmxvd0NoYXJzUmVhZA", "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcFVzZXNBY3R1YWxTa2lwcGVkQ291bnQ" ]
+  } ],
+  "dependencies" : [ ]
+}

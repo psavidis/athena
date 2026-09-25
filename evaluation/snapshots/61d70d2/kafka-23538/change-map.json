@@ -1,0 +1,57 @@
+{
+  "prTitle" : "MINOR: Fix inverted offset-commit/txn-offset-commit operation label in ClassicGroup fencing",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 0,
+    "UNKNOWN" : 2,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsYXNzaWNHcm91cCN2YWxpZGF0ZU9mZnNldENvbW1pdApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of ClassicGroup#validateOffsetCommit: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit2YWxpZGF0ZU9mZnNldENvbW1pdCwgK2Fzc2VydFRocm93cywgK2NyZWF0ZUFuZFJlZ2lzdGVyLCArYXNzZXJ0RXF1YWxzLCArZ2V0TWVzc2FnZXMg4oCmYW5kIDQgbW9yZQpDbGFzc2ljR3JvdXBUZXN0I3Rlc3RWYWxpZGF0ZU9mZnNldENvbW1pdA",
+    "description" : "Modify body of ClassicGroupTest#testValidateOffsetCommit: +validateOffsetCommit, +assertThrows, +createAndRegister, +assertEquals, +getMessages …and 4 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ClassicGroup",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsYXNzaWNHcm91cCN2YWxpZGF0ZU9mZnNldENvbW1pdApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of ClassicGroup#validateOffsetCommit: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ClassicGroupTest",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit2YWxpZGF0ZU9mZnNldENvbW1pdCwgK2Fzc2VydFRocm93cywgK2NyZWF0ZUFuZFJlZ2lzdGVyLCArYXNzZXJ0RXF1YWxzLCArZ2V0TWVzc2FnZXMg4oCmYW5kIDQgbW9yZQpDbGFzc2ljR3JvdXBUZXN0I3Rlc3RWYWxpZGF0ZU9mZnNldENvbW1pdA",
+      "description" : "Modify body of ClassicGroupTest#testValidateOffsetCommit: +validateOffsetCommit, +assertThrows, +createAndRegister, +assertEquals, +getMessages …and 4 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

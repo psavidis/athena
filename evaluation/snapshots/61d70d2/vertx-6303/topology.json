@@ -1,0 +1,25 @@
+{
+  "territories" : [ {
+    "moduleName" : "vertx-core",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Modify body of CleanableObject#shutdown: +succeededFuture, return value changed",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCitzdWNjZWVkZWRGdXR1cmUsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCkNsZWFuYWJsZU9iamVjdCNzaHV0ZG93bg" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "vertx-core-logging",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "vertx-core",
+    "to" : "vertx-core-logging"
+  } ]
+}

@@ -1,0 +1,1141 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZXhhbXBsZXMtY29yZSNpby5kcm9wd2l6YXJkOmRyb3B3aXphcmQtdGVzdGluZwpleGNsdXNpb24ganVuaXQ6anVuaXQgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-testing (examples-core): exclusion junit:junit removed",
+  "files" : [ "docs/source/examples/core/pom.xml" ],
+  "symbols" : [ "examples-core#io.dropwizard:dropwizard-testing", "exclusion junit:junit removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvcmU6amVyc2V5LWNvbW1vbgpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-common (dropwizard-auth): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-auth/pom.xml" ],
+  "symbols" : [ "dropwizard-auth#org.glassfish.jersey.core:jersey-common", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvcmU6amVyc2V5LXNlcnZlcgpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-server (dropwizard-auth): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-auth/pom.xml" ],
+  "symbols" : [ "dropwizard-auth#org.glassfish.jersey.core:jersey-server", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZlcgpleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LWpha2FydGEtc2VydmxldC1hcGkgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-server (dropwizard-auth): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-auth/pom.xml" ],
+  "symbols" : [ "dropwizard-auth#org.eclipse.jetty:jetty-server", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrOmplcnNleS10ZXN0LWZyYW1ld29yay1jb3JlCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework:jersey-test-framework-core (dropwizard-auth): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-auth/pom.xml" ],
+  "symbols" : [ "dropwizard-auth#org.glassfish.jersey.test-framework:jersey-test-framework-core", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrLnByb3ZpZGVyczpqZXJzZXktdGVzdC1mcmFtZXdvcmstcHJvdmlkZXItZ3JpenpseTIKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-grizzly2 (dropwizard-auth): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-auth/pom.xml" ],
+  "symbols" : [ "dropwizard-auth#org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-grizzly2", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvbnRhaW5lcnM6amVyc2V5LWNvbnRhaW5lci1zZXJ2bGV0LWNvcmUKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.containers:jersey-container-servlet-core (dropwizard-auth): scope test -> compile",
+  "files" : [ "dropwizard-auth/pom.xml" ],
+  "symbols" : [ "dropwizard-auth#org.glassfish.jersey.containers:jersey-container-servlet-core", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1hdXRoI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5jb3JlOmphY2tzb24tYW5ub3RhdGlvbnMKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency com.fasterxml.jackson.core:jackson-annotations (dropwizard-auth): scope test -> compile",
+  "files" : [ "dropwizard-auth/pom.xml" ],
+  "symbols" : [ "dropwizard-auth#com.fasterxml.jackson.core:jackson-annotations", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1iZW5jaG1hcmtzI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvcmU6amVyc2V5LXNlcnZlcgpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-server (dropwizard-benchmarks): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-benchmarks/pom.xml" ],
+  "symbols" : [ "dropwizard-benchmarks#org.glassfish.jersey.core:jersey-server", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1iZW5jaG1hcmtzI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrOmplcnNleS10ZXN0LWZyYW1ld29yay1jb3JlCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework:jersey-test-framework-core (dropwizard-benchmarks): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-benchmarks/pom.xml" ],
+  "symbols" : [ "dropwizard-benchmarks#org.glassfish.jersey.test-framework:jersey-test-framework-core", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jbGllbnQjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY2xpZW50CmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-client (dropwizard-client): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-client/pom.xml" ],
+  "symbols" : [ "dropwizard-client#org.glassfish.jersey.core:jersey-client", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jbGllbnQjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY29tbW9uCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-common (dropwizard-client): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-client/pom.xml" ],
+  "symbols" : [ "dropwizard-client#org.glassfish.jersey.core:jersey-common", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jbGllbnQjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWphY2tzb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-jackson (dropwizard-client): scope test -> compile",
+  "files" : [ "dropwizard-client/pom.xml" ],
+  "symbols" : [ "dropwizard-client#io.dropwizard:dropwizard-jackson", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jbGllbnQjaW8uZHJvcHdpemFyZC5tZXRyaWNzOm1ldHJpY3MtaGVhbHRoY2hlY2tzCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard.metrics:metrics-healthchecks (dropwizard-client): scope test -> compile",
+  "files" : [ "dropwizard-client/pom.xml" ],
+  "symbols" : [ "dropwizard-client#io.dropwizard.metrics:metrics-healthchecks", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jbGllbnQjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWNvbmZpZ3VyYXRpb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-configuration (dropwizard-client): scope test -> compile",
+  "files" : [ "dropwizard-client/pom.xml" ],
+  "symbols" : [ "dropwizard-client#io.dropwizard:dropwizard-configuration", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlY3VyaXR5CmV4Y2x1c2lvbiBvcmcuZWNsaXBzZS5qZXR0eS50b29sY2hhaW46amV0dHktamFrYXJ0YS1zZXJ2bGV0LWFwaSByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-security (dropwizard-core): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-core/pom.xml" ],
+  "symbols" : [ "dropwizard-core#org.eclipse.jetty:jetty-security", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZlcgpleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LWpha2FydGEtc2VydmxldC1hcGkgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-server (dropwizard-core): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-core/pom.xml" ],
+  "symbols" : [ "dropwizard-core#org.eclipse.jetty:jetty-server", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0CmV4Y2x1c2lvbiBvcmcuZWNsaXBzZS5qZXR0eS50b29sY2hhaW46amV0dHktamFrYXJ0YS1zZXJ2bGV0LWFwaSByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (dropwizard-core): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-core/pom.xml" ],
+  "symbols" : [ "dropwizard-core#org.eclipse.jetty.ee10:jetty-ee10-servlet", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvcmU6amVyc2V5LWNvbW1vbgpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-common (dropwizard-core): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-core/pom.xml" ],
+  "symbols" : [ "dropwizard-core#org.glassfish.jersey.core:jersey-common", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5nbGFzc2Zpc2guamVyc2V5LmV4dDpqZXJzZXktYmVhbi12YWxpZGF0aW9uCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.ext:jersey-bean-validation (dropwizard-core): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-core/pom.xml" ],
+  "symbols" : [ "dropwizard-core#org.glassfish.jersey.ext:jersey-bean-validation", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrLnByb3ZpZGVyczpqZXJzZXktdGVzdC1mcmFtZXdvcmstcHJvdmlkZXItaW5tZW1vcnkKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-inmemory (dropwizard-core): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-core/pom.xml" ],
+  "symbols" : [ "dropwizard-core#org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-inmemory", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1jb3JlI29yZy5oaWJlcm5hdGUudmFsaWRhdG9yOmhpYmVybmF0ZS12YWxpZGF0b3IKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.hibernate.validator:hibernate-validator (dropwizard-core): scope test -> compile",
+  "files" : [ "dropwizard-core/pom.xml" ],
+  "symbols" : [ "dropwizard-core#org.hibernate.validator:hibernate-validator", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1kZXBlbmRlbmNpZXMjY29tLmdvb2dsZS5ndWF2YTpndWF2YSBbbWFuYWdlZF0KZXhjbHVzaW9uIGNvbS5nb29nbGUuY29kZS5maW5kYnVnczpqc3IzMDUgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change managed dependency com.google.guava:guava (dropwizard-dependencies): exclusion com.google.code.findbugs:jsr305 removed",
+  "files" : [ "dropwizard-dependencies/pom.xml" ],
+  "symbols" : [ "dropwizard-dependencies#com.google.guava:guava [managed]", "exclusion com.google.code.findbugs:jsr305 removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1kZXBlbmRlbmNpZXMjY29tLm1hdHRiZXJ0b2xpbmk6bGlxdWliYXNlLXNsZjRqIFttYW5hZ2VkXQpleGNsdXNpb25zIG9yZy5saXF1aWJhc2U6bGlxdWliYXNlLWNvcmUsIG9yZy5zbGY0ajpzbGY0ai1hcGkgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change managed dependency com.mattbertolini:liquibase-slf4j (dropwizard-dependencies): exclusions org.liquibase:liquibase-core, org.slf4j:slf4j-api removed",
+  "files" : [ "dropwizard-dependencies/pom.xml" ],
+  "symbols" : [ "dropwizard-dependencies#com.mattbertolini:liquibase-slf4j [managed]", "exclusions org.liquibase:liquibase-core, org.slf4j:slf4j-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1kZXBlbmRlbmNpZXMjb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluLnNldHVpZDpqZXR0eS1zZXR1aWQtam5hIFttYW5hZ2VkXQpleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHk6amV0dHktc2VydmVyIHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change managed dependency org.eclipse.jetty.toolchain.setuid:jetty-setuid-jna (dropwizard-dependencies): exclusion org.eclipse.jetty:jetty-server removed",
+  "files" : [ "dropwizard-dependencies/pom.xml" ],
+  "symbols" : [ "dropwizard-dependencies#org.eclipse.jetty.toolchain.setuid:jetty-setuid-jna [managed]", "exclusion org.eclipse.jetty:jetty-server removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1kZXBlbmRlbmNpZXMjY2gucW9zLmxvZ2JhY2s6bG9nYmFjay1jbGFzc2ljIFttYW5hZ2VkXQpleGNsdXNpb24gb3JnLnNsZjRqOnNsZjRqLWFwaSByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change managed dependency ch.qos.logback:logback-classic (dropwizard-dependencies): exclusion org.slf4j:slf4j-api removed",
+  "files" : [ "dropwizard-dependencies/pom.xml" ],
+  "symbols" : [ "dropwizard-dependencies#ch.qos.logback:logback-classic [managed]", "exclusion org.slf4j:slf4j-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1lMmUjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY29tbW9uCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-common (dropwizard-e2e): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-e2e/pom.xml" ],
+  "symbols" : [ "dropwizard-e2e#org.glassfish.jersey.core:jersey-common", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1lMmUjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWNvbmZpZ3VyYXRpb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-configuration (dropwizard-e2e): scope test -> compile",
+  "files" : [ "dropwizard-e2e/pom.xml" ],
+  "symbols" : [ "dropwizard-e2e#io.dropwizard:dropwizard-configuration", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1lMmUjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY2xpZW50CnNjb3BlIHRlc3QgLT4gY29tcGlsZSwgZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-client (dropwizard-e2e): scope test -> compile, exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-e2e/pom.xml" ],
+  "symbols" : [ "dropwizard-e2e#org.glassfish.jersey.core:jersey-client", "scope test -> compile, exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1lMmUjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWphY2tzb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-jackson (dropwizard-e2e): scope test -> compile",
+  "files" : [ "dropwizard-e2e/pom.xml" ],
+  "symbols" : [ "dropwizard-e2e#io.dropwizard:dropwizard-jackson", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1lMmUjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWxvZ2dpbmcKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-logging (dropwizard-e2e): scope test -> compile",
+  "files" : [ "dropwizard-e2e/pom.xml" ],
+  "symbols" : [ "dropwizard-e2e#io.dropwizard:dropwizard-logging", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1leGFtcGxlI2lvLmRyb3B3aXphcmQ6ZHJvcHdpemFyZC10ZXN0aW5nCmV4Y2x1c2lvbiBqdW5pdDpqdW5pdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-testing (dropwizard-example): exclusion junit:junit removed",
+  "files" : [ "dropwizard-example/pom.xml" ],
+  "symbols" : [ "dropwizard-example#io.dropwizard:dropwizard-testing", "exclusion junit:junit removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1leGFtcGxlI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrLnByb3ZpZGVyczpqZXJzZXktdGVzdC1mcmFtZXdvcmstcHJvdmlkZXItaW5tZW1vcnkKZXhjbHVzaW9ucyBqYXZheC5zZXJ2bGV0OmphdmF4LnNlcnZsZXQtYXBpLCBqdW5pdDpqdW5pdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-inmemory (dropwizard-example): exclusions javax.servlet:javax.servlet-api, junit:junit removed",
+  "files" : [ "dropwizard-example/pom.xml" ],
+  "symbols" : [ "dropwizard-example#org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-inmemory", "exclusions javax.servlet:javax.servlet-api, junit:junit removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1leGFtcGxlI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrLnByb3ZpZGVyczpqZXJzZXktdGVzdC1mcmFtZXdvcmstcHJvdmlkZXItZ3JpenpseTIKZXhjbHVzaW9ucyBqYXZheC5zZXJ2bGV0OmphdmF4LnNlcnZsZXQtYXBpLCBqdW5pdDpqdW5pdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-grizzly2 (dropwizard-example): exclusions javax.servlet:javax.servlet-api, junit:junit removed",
+  "files" : [ "dropwizard-example/pom.xml" ],
+  "symbols" : [ "dropwizard-example#org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-grizzly2", "exclusions javax.servlet:javax.servlet-api, junit:junit removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1mb3JtcyNpby5kcm9wd2l6YXJkOmRyb3B3aXphcmQtbG9nZ2luZwpzY29wZSB0ZXN0IC0-IGNvbXBpbGU",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-logging (dropwizard-forms): scope test -> compile",
+  "files" : [ "dropwizard-forms/pom.xml" ],
+  "symbols" : [ "dropwizard-forms#io.dropwizard:dropwizard-logging", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oZWFsdGgjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY2xpZW50CmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-client (dropwizard-health): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-health/pom.xml" ],
+  "symbols" : [ "dropwizard-health#org.glassfish.jersey.core:jersey-client", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oZWFsdGgjb3JnLmVjbGlwc2UuamV0dHkuZWUxMDpqZXR0eS1lZTEwLXNlcnZsZXQKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (dropwizard-health): scope test -> compile",
+  "files" : [ "dropwizard-health/pom.xml" ],
+  "symbols" : [ "dropwizard-health#org.eclipse.jetty.ee10:jetty-ee10-servlet", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oZWFsdGgjb3JnLmVjbGlwc2UuamV0dHk6amV0dHktaHR0cApzY29wZSB0ZXN0IC0-IGNvbXBpbGU",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-http (dropwizard-health): scope test -> compile",
+  "files" : [ "dropwizard-health/pom.xml" ],
+  "symbols" : [ "dropwizard-health#org.eclipse.jetty:jetty-http", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktc2VydmVyCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-server (dropwizard-hibernate): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-hibernate/pom.xml" ],
+  "symbols" : [ "dropwizard-hibernate#org.glassfish.jersey.core:jersey-server", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjb3JnLmhpYmVybmF0ZS5vcm06aGliZXJuYXRlLWNvcmUKZXhjbHVzaW9uIGpha2FydGEueG1sLmJpbmQ6amFrYXJ0YS54bWwuYmluZC1hcGkgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.hibernate.orm:hibernate-core (dropwizard-hibernate): exclusion jakarta.xml.bind:jakarta.xml.bind-api removed",
+  "files" : [ "dropwizard-hibernate/pom.xml" ],
+  "symbols" : [ "dropwizard-hibernate#org.hibernate.orm:hibernate-core", "exclusion jakarta.xml.bind:jakarta.xml.bind-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWNvbmZpZ3VyYXRpb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-configuration (dropwizard-hibernate): scope test -> compile",
+  "files" : [ "dropwizard-hibernate/pom.xml" ],
+  "symbols" : [ "dropwizard-hibernate#io.dropwizard:dropwizard-configuration", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjb3JnLmdsYXNzZmlzaC5qZXJzZXkudGVzdC1mcmFtZXdvcms6amVyc2V5LXRlc3QtZnJhbWV3b3JrLWNvcmUKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework:jersey-test-framework-core (dropwizard-hibernate): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-hibernate/pom.xml" ],
+  "symbols" : [ "dropwizard-hibernate#org.glassfish.jersey.test-framework:jersey-test-framework-core", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWphY2tzb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-jackson (dropwizard-hibernate): scope test -> compile",
+  "files" : [ "dropwizard-hibernate/pom.xml" ],
+  "symbols" : [ "dropwizard-hibernate#io.dropwizard:dropwizard-jackson", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjY29tLmZhc3RlcnhtbC5qYWNrc29uLmNvcmU6amFja3Nvbi1hbm5vdGF0aW9ucwpzY29wZSB0ZXN0IC0-IGNvbXBpbGU",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency com.fasterxml.jackson.core:jackson-annotations (dropwizard-hibernate): scope test -> compile",
+  "files" : [ "dropwizard-hibernate/pom.xml" ],
+  "symbols" : [ "dropwizard-hibernate#com.fasterxml.jackson.core:jackson-annotations", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjb3JnLmFwYWNoZS50b21jYXQ6dG9tY2F0LWpkYmMKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.apache.tomcat:tomcat-jdbc (dropwizard-hibernate): scope test -> compile",
+  "files" : [ "dropwizard-hibernate/pom.xml" ],
+  "symbols" : [ "dropwizard-hibernate#org.apache.tomcat:tomcat-jdbc", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLWxvZ2dpbmcKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-logging (dropwizard-hibernate): scope test -> compile",
+  "files" : [ "dropwizard-hibernate/pom.xml" ],
+  "symbols" : [ "dropwizard-hibernate#io.dropwizard:dropwizard-logging", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1oaWJlcm5hdGUjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY2xpZW50CnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-client (dropwizard-hibernate): scope test -> compile",
+  "files" : [ "dropwizard-hibernate/pom.xml" ],
+  "symbols" : [ "dropwizard-hibernate#org.glassfish.jersey.core:jersey-client", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1odHRwMiNpby5kcm9wd2l6YXJkLm1ldHJpY3M6bWV0cmljcy1qZXR0eTEyCmV4Y2x1c2lvbiBvcmcuZWNsaXBzZS5qZXR0eS50b29sY2hhaW46amV0dHktamFrYXJ0YS1zZXJ2bGV0LWFwaSByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard.metrics:metrics-jetty12 (dropwizard-http2): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-http2/pom.xml" ],
+  "symbols" : [ "dropwizard-http2#io.dropwizard.metrics:metrics-jetty12", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1odHRwMiNqYWthcnRhLnNlcnZsZXQ6amFrYXJ0YS5zZXJ2bGV0LWFwaQ",
+  "kind" : "REMOVE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Remove dependency jakarta.servlet:jakarta.servlet-api (dropwizard-http2)",
+  "files" : [ "dropwizard-http2/pom.xml" ],
+  "symbols" : [ "dropwizard-http2#jakarta.servlet:jakarta.servlet-api" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1odHRwMiNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1hbHBuLXNlcnZlcgpleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LWpha2FydGEtc2VydmxldC1hcGkgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-alpn-server (dropwizard-http2): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-http2/pom.xml" ],
+  "symbols" : [ "dropwizard-http2#org.eclipse.jetty:jetty-alpn-server", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1odHRwMiNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2ZXIKZXhjbHVzaW9uIG9yZy5lY2xpcHNlLmpldHR5LnRvb2xjaGFpbjpqZXR0eS1qYWthcnRhLXNlcnZsZXQtYXBpIHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-server (dropwizard-http2): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-http2/pom.xml" ],
+  "symbols" : [ "dropwizard-http2#org.eclipse.jetty:jetty-server", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1odHRwMiNvcmcuZWNsaXBzZS5qZXR0eS5odHRwMjpqZXR0eS1odHRwMi1zZXJ2ZXIKZXhjbHVzaW9uIG9yZy5lY2xpcHNlLmpldHR5LnRvb2xjaGFpbjpqZXR0eS1qYWthcnRhLXNlcnZsZXQtYXBpIHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty.http2:jetty-http2-server (dropwizard-http2): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-http2/pom.xml" ],
+  "symbols" : [ "dropwizard-http2#org.eclipse.jetty.http2:jetty-http2-server", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1odHRwMiNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1odHRwCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-http (dropwizard-http2): scope test -> compile",
+  "files" : [ "dropwizard-http2/pom.xml" ],
+  "symbols" : [ "dropwizard-http2#org.eclipse.jetty:jetty-http", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZGJpMyNvcmcuanNwZWNpZnk6anNwZWNpZnkKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.jspecify:jspecify (dropwizard-jdbi3): scope test -> compile",
+  "files" : [ "dropwizard-jdbi3/pom.xml" ],
+  "symbols" : [ "dropwizard-jdbi3#org.jspecify:jspecify", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZGJpMyNpby5kcm9wd2l6YXJkLm1ldHJpY3M6bWV0cmljcy1hbm5vdGF0aW9uCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard.metrics:metrics-annotation (dropwizard-jdbi3): scope test -> compile",
+  "files" : [ "dropwizard-jdbi3/pom.xml" ],
+  "symbols" : [ "dropwizard-jdbi3#io.dropwizard.metrics:metrics-annotation", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZGJpMyNpby5kcm9wd2l6YXJkOmRyb3B3aXphcmQtbG9nZ2luZwpzY29wZSB0ZXN0IC0-IGNvbXBpbGU",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-logging (dropwizard-jdbi3): scope test -> compile",
+  "files" : [ "dropwizard-jdbi3/pom.xml" ],
+  "symbols" : [ "dropwizard-jdbi3#io.dropwizard:dropwizard-logging", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktc2VydmVyCmV4Y2x1c2lvbiBqYWthcnRhLmluamVjdDpqYWthcnRhLmluamVjdC1hcGkgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-server (dropwizard-jersey): exclusion jakarta.inject:jakarta.inject-api removed",
+  "files" : [ "dropwizard-jersey/pom.xml" ],
+  "symbols" : [ "dropwizard-jersey#org.glassfish.jersey.core:jersey-server", "exclusion jakarta.inject:jakarta.inject-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkuaW5qZWN0OmplcnNleS1oazIKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.inject:jersey-hk2 (dropwizard-jersey): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-jersey/pom.xml" ],
+  "symbols" : [ "dropwizard-jersey#org.glassfish.jersey.inject:jersey-hk2", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5oazI6aGsyLWFwaQpleGNsdXNpb24gamFrYXJ0YS5pbmplY3Q6amFrYXJ0YS5pbmplY3QtYXBpIHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.hk2:hk2-api (dropwizard-jersey): exclusion jakarta.inject:jakarta.inject-api removed",
+  "files" : [ "dropwizard-jersey/pom.xml" ],
+  "symbols" : [ "dropwizard-jersey#org.glassfish.hk2:hk2-api", "exclusion jakarta.inject:jakarta.inject-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29udGFpbmVyczpqZXJzZXktY29udGFpbmVyLXNlcnZsZXQtY29yZQpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.containers:jersey-container-servlet-core (dropwizard-jersey): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-jersey/pom.xml" ],
+  "symbols" : [ "dropwizard-jersey#org.glassfish.jersey.containers:jersey-container-servlet-core", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY29tbW9uCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-common (dropwizard-jersey): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-jersey/pom.xml" ],
+  "symbols" : [ "dropwizard-jersey#org.glassfish.jersey.core:jersey-common", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkudGVzdC1mcmFtZXdvcms6amVyc2V5LXRlc3QtZnJhbWV3b3JrLWNvcmUKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework:jersey-test-framework-core (dropwizard-jersey): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-jersey/pom.xml" ],
+  "symbols" : [ "dropwizard-jersey#org.glassfish.jersey.test-framework:jersey-test-framework-core", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkudGVzdC1mcmFtZXdvcmsucHJvdmlkZXJzOmplcnNleS10ZXN0LWZyYW1ld29yay1wcm92aWRlci1ncml6emx5MgpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-grizzly2 (dropwizard-jersey): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-jersey/pom.xml" ],
+  "symbols" : [ "dropwizard-jersey#org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-grizzly2", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkudGVzdC1mcmFtZXdvcmsucHJvdmlkZXJzOmplcnNleS10ZXN0LWZyYW1ld29yay1wcm92aWRlci1qZXR0eQpleGNsdXNpb25zIG9yZy5lY2xpcHNlLmpldHR5LnRvb2xjaGFpbjpqZXR0eS1qYWthcnRhLXNlcnZsZXQtYXBpLCBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-jetty (dropwizard-jersey): exclusions org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api, org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-jersey/pom.xml" ],
+  "symbols" : [ "dropwizard-jersey#org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-jetty", "exclusions org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api, org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXJzZXkjb3JnLmdsYXNzZmlzaC5qZXJzZXkuY29yZTpqZXJzZXktY2xpZW50CnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-client (dropwizard-jersey): scope test -> compile",
+  "files" : [ "dropwizard-jersey/pom.xml" ],
+  "symbols" : [ "dropwizard-jersey#org.glassfish.jersey.core:jersey-client", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXR0eSNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZWN1cml0eQpleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LWpha2FydGEtc2VydmxldC1hcGkgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-security (dropwizard-jetty): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-jetty/pom.xml" ],
+  "symbols" : [ "dropwizard-jetty#org.eclipse.jetty:jetty-security", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXR0eSNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2ZXIKZXhjbHVzaW9uIG9yZy5lY2xpcHNlLmpldHR5LnRvb2xjaGFpbjpqZXR0eS1qYWthcnRhLXNlcnZsZXQtYXBpIHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-server (dropwizard-jetty): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-jetty/pom.xml" ],
+  "symbols" : [ "dropwizard-jetty#org.eclipse.jetty:jetty-server", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qZXR0eSNvcmcuZWNsaXBzZS5qZXR0eS5lZTEwOmpldHR5LWVlMTAtc2VydmxldApleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LWpha2FydGEtc2VydmxldC1hcGkgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (dropwizard-jetty): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-jetty/pom.xml" ],
+  "symbols" : [ "dropwizard-jetty#org.eclipse.jetty.ee10:jetty-ee10-servlet", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qc29uLWxvZ2dpbmcjaW8uZHJvcHdpemFyZC5tZXRyaWNzOm1ldHJpY3MtY29yZQpzY29wZSB0ZXN0IC0-IGNvbXBpbGU",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard.metrics:metrics-core (dropwizard-json-logging): scope test -> compile",
+  "files" : [ "dropwizard-json-logging/pom.xml" ],
+  "symbols" : [ "dropwizard-json-logging#io.dropwizard.metrics:metrics-core", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1qc29uLWxvZ2dpbmcjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLXZhbGlkYXRpb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-validation (dropwizard-json-logging): scope test -> compile",
+  "files" : [ "dropwizard-json-logging/pom.xml" ],
+  "symbols" : [ "dropwizard-json-logging#io.dropwizard:dropwizard-validation", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1saWZlY3ljbGUjb3JnLmVjbGlwc2UuamV0dHk6amV0dHktc2VydmVyCmV4Y2x1c2lvbiBvcmcuZWNsaXBzZS5qZXR0eS50b29sY2hhaW46amV0dHktc2VydmxldC1hcGkgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-server (dropwizard-lifecycle): exclusion org.eclipse.jetty.toolchain:jetty-servlet-api removed",
+  "files" : [ "dropwizard-lifecycle/pom.xml" ],
+  "symbols" : [ "dropwizard-lifecycle#org.eclipse.jetty:jetty-server", "exclusion org.eclipse.jetty.toolchain:jetty-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1tZXRyaWNzI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5jb3JlOmphY2tzb24tZGF0YWJpbmQKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency com.fasterxml.jackson.core:jackson-databind (dropwizard-metrics): scope test -> compile",
+  "files" : [ "dropwizard-metrics/pom.xml" ],
+  "symbols" : [ "dropwizard-metrics#com.fasterxml.jackson.core:jackson-databind", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1taWdyYXRpb25zI29yZy5saXF1aWJhc2U6bGlxdWliYXNlLWNvcmUKZXhjbHVzaW9uIGphdmF4LmFjdGl2YXRpb246amF2YXguYWN0aXZhdGlvbi1hcGkgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.liquibase:liquibase-core (dropwizard-migrations): exclusion javax.activation:javax.activation-api removed",
+  "files" : [ "dropwizard-migrations/pom.xml" ],
+  "symbols" : [ "dropwizard-migrations#org.liquibase:liquibase-core", "exclusion javax.activation:javax.activation-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1taWdyYXRpb25zI29yZy5hcGFjaGUudG9tY2F0OnRvbWNhdC1qZGJjCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.apache.tomcat:tomcat-jdbc (dropwizard-migrations): scope test -> compile",
+  "files" : [ "dropwizard-migrations/pom.xml" ],
+  "symbols" : [ "dropwizard-migrations#org.apache.tomcat:tomcat-jdbc", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1yZXF1ZXN0LWxvZ2dpbmcjb3JnLmVjbGlwc2UuamV0dHk6amV0dHktc2VydmVyCmV4Y2x1c2lvbiBvcmcuZWNsaXBzZS5qZXR0eS50b29sY2hhaW46amV0dHktamFrYXJ0YS1zZXJ2bGV0LWFwaSByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-server (dropwizard-request-logging): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-request-logging/pom.xml" ],
+  "symbols" : [ "dropwizard-request-logging#org.eclipse.jetty:jetty-server", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1yZXF1ZXN0LWxvZ2dpbmcjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLXV0aWw",
+  "kind" : "REMOVE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Remove dependency io.dropwizard:dropwizard-util (dropwizard-request-logging)",
+  "files" : [ "dropwizard-request-logging/pom.xml" ],
+  "symbols" : [ "dropwizard-request-logging#io.dropwizard:dropwizard-util" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1yZXF1ZXN0LWxvZ2dpbmcjb3JnLmVjbGlwc2UuamV0dHk6amV0dHktc2VjdXJpdHkKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-security (dropwizard-request-logging): scope test -> compile",
+  "files" : [ "dropwizard-request-logging/pom.xml" ],
+  "symbols" : [ "dropwizard-request-logging#org.eclipse.jetty:jetty-security", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1yZXF1ZXN0LWxvZ2dpbmcjb3JnLmVjbGlwc2UuamV0dHk6amV0dHktc2Vzc2lvbgpzY29wZSB0ZXN0IC0-IGNvbXBpbGU",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-session (dropwizard-request-logging): scope test -> compile",
+  "files" : [ "dropwizard-request-logging/pom.xml" ],
+  "symbols" : [ "dropwizard-request-logging#org.eclipse.jetty:jetty-session", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1yZXF1ZXN0LWxvZ2dpbmcjY29tLmZhc3RlcnhtbC5qYWNrc29uLmNvcmU6amFja3Nvbi1kYXRhYmluZApzY29wZSB0ZXN0IC0-IGNvbXBpbGU",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency com.fasterxml.jackson.core:jackson-databind (dropwizard-request-logging): scope test -> compile",
+  "files" : [ "dropwizard-request-logging/pom.xml" ],
+  "symbols" : [ "dropwizard-request-logging#com.fasterxml.jackson.core:jackson-databind", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1yZXF1ZXN0LWxvZ2dpbmcjaW8uZHJvcHdpemFyZDpkcm9wd2l6YXJkLXZhbGlkYXRpb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-validation (dropwizard-request-logging): scope test -> compile",
+  "files" : [ "dropwizard-request-logging/pom.xml" ],
+  "symbols" : [ "dropwizard-request-logging#io.dropwizard:dropwizard-validation", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC1zZXJ2bGV0cyNvcmcuZWNsaXBzZS5qZXR0eS5lZTEwOmpldHR5LWVlMTAtc2VydmxldApleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LXNlcnZsZXQtYXBpIHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (dropwizard-servlets): exclusion org.eclipse.jetty.toolchain:jetty-servlet-api removed",
+  "files" : [ "dropwizard-servlets/pom.xml" ],
+  "symbols" : [ "dropwizard-servlets#org.eclipse.jetty.ee10:jetty-ee10-servlet", "exclusion org.eclipse.jetty.toolchain:jetty-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZlcgpleGNsdXNpb24gb3JnLmVjbGlwc2UuamV0dHkudG9vbGNoYWluOmpldHR5LWpha2FydGEtc2VydmxldC1hcGkgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-server (dropwizard-testing): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-testing/pom.xml" ],
+  "symbols" : [ "dropwizard-testing#org.eclipse.jetty:jetty-server", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvbnRhaW5lcnM6amVyc2V5LWNvbnRhaW5lci1zZXJ2bGV0LWNvcmUKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.containers:jersey-container-servlet-core (dropwizard-testing): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-testing/pom.xml" ],
+  "symbols" : [ "dropwizard-testing#org.glassfish.jersey.containers:jersey-container-servlet-core", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvcmU6amVyc2V5LWNsaWVudApleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-client (dropwizard-testing): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-testing/pom.xml" ],
+  "symbols" : [ "dropwizard-testing#org.glassfish.jersey.core:jersey-client", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrOmplcnNleS10ZXN0LWZyYW1ld29yay1jb3JlCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework:jersey-test-framework-core (dropwizard-testing): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-testing/pom.xml" ],
+  "symbols" : [ "dropwizard-testing#org.glassfish.jersey.test-framework:jersey-test-framework-core", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrLnByb3ZpZGVyczpqZXJzZXktdGVzdC1mcmFtZXdvcmstcHJvdmlkZXItZ3JpenpseTIKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-grizzly2 (dropwizard-testing): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-testing/pom.xml" ],
+  "symbols" : [ "dropwizard-testing#org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-grizzly2", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrLnByb3ZpZGVyczpqZXJzZXktdGVzdC1mcmFtZXdvcmstcHJvdmlkZXItamV0dHkKZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-jetty (dropwizard-testing): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-testing/pom.xml" ],
+  "symbols" : [ "dropwizard-testing#org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-jetty", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5oaWJlcm5hdGUub3JtOmhpYmVybmF0ZS1jb3JlCmV4Y2x1c2lvbiBqYWthcnRhLnhtbC5iaW5kOmpha2FydGEueG1sLmJpbmQtYXBpIHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.hibernate.orm:hibernate-core (dropwizard-testing): exclusion jakarta.xml.bind:jakarta.xml.bind-api removed",
+  "files" : [ "dropwizard-testing/pom.xml" ],
+  "symbols" : [ "dropwizard-testing#org.hibernate.orm:hibernate-core", "exclusion jakarta.xml.bind:jakarta.xml.bind-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LWlvCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-io (dropwizard-testing): scope test -> compile",
+  "files" : [ "dropwizard-testing/pom.xml" ],
+  "symbols" : [ "dropwizard-testing#org.eclipse.jetty:jetty-io", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5jb3JlOmphY2tzb24tYW5ub3RhdGlvbnMKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency com.fasterxml.jackson.core:jackson-annotations (dropwizard-testing): scope test -> compile",
+  "files" : [ "dropwizard-testing/pom.xml" ],
+  "symbols" : [ "dropwizard-testing#com.fasterxml.jackson.core:jackson-annotations", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI2lvLmRyb3B3aXphcmQubWV0cmljczptZXRyaWNzLWFubm90YXRpb24Kc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard.metrics:metrics-annotation (dropwizard-testing): scope test -> compile",
+  "files" : [ "dropwizard-testing/pom.xml" ],
+  "symbols" : [ "dropwizard-testing#io.dropwizard.metrics:metrics-annotation", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5kYXRhdHlwZTpqYWNrc29uLWRhdGF0eXBlLWd1YXZhCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency com.fasterxml.jackson.datatype:jackson-datatype-guava (dropwizard-testing): scope test -> compile",
+  "files" : [ "dropwizard-testing/pom.xml" ],
+  "symbols" : [ "dropwizard-testing#com.fasterxml.jackson.datatype:jackson-datatype-guava", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI2lvLmRyb3B3aXphcmQ6ZHJvcHdpemFyZC12YWxpZGF0aW9uCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-validation (dropwizard-testing): scope test -> compile",
+  "files" : [ "dropwizard-testing/pom.xml" ],
+  "symbols" : [ "dropwizard-testing#io.dropwizard:dropwizard-validation", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC10ZXN0aW5nI2lvLmRyb3B3aXphcmQ6ZHJvcHdpemFyZC1zZXJ2bGV0cwpzY29wZSB0ZXN0IC0-IGNvbXBpbGU",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-servlets (dropwizard-testing): scope test -> compile",
+  "files" : [ "dropwizard-testing/pom.xml" ],
+  "symbols" : [ "dropwizard-testing#io.dropwizard:dropwizard-servlets", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC11bml4LXNvY2tldCNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2ZXIKZXhjbHVzaW9uIG9yZy5lY2xpcHNlLmpldHR5LnRvb2xjaGFpbjpqZXR0eS1qYWthcnRhLXNlcnZsZXQtYXBpIHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-server (dropwizard-unix-socket): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "files" : [ "dropwizard-unix-socket/pom.xml" ],
+  "symbols" : [ "dropwizard-unix-socket#org.eclipse.jetty:jetty-server", "exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12YWxpZGF0aW9uI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5jb3JlOmphY2tzb24tYW5ub3RhdGlvbnMKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency com.fasterxml.jackson.core:jackson-annotations (dropwizard-validation): scope test -> compile",
+  "files" : [ "dropwizard-validation/pom.xml" ],
+  "symbols" : [ "dropwizard-validation#com.fasterxml.jackson.core:jackson-annotations", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2lvLmRyb3B3aXphcmQ6ZHJvcHdpemFyZC1qYWNrc29uCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-jackson (dropwizard-views-freemarker): scope test -> compile",
+  "files" : [ "dropwizard-views-freemarker/pom.xml" ],
+  "symbols" : [ "dropwizard-views-freemarker#io.dropwizard:dropwizard-jackson", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2lvLmRyb3B3aXphcmQ6ZHJvcHdpemFyZC1qZXJzZXkKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-jersey (dropwizard-views-freemarker): scope test -> compile",
+  "files" : [ "dropwizard-views-freemarker/pom.xml" ],
+  "symbols" : [ "dropwizard-views-freemarker#io.dropwizard:dropwizard-jersey", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2lvLmRyb3B3aXphcmQ6ZHJvcHdpemFyZC1sb2dnaW5nCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-logging (dropwizard-views-freemarker): scope test -> compile",
+  "files" : [ "dropwizard-views-freemarker/pom.xml" ],
+  "symbols" : [ "dropwizard-views-freemarker#io.dropwizard:dropwizard-logging", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2lvLmRyb3B3aXphcmQubWV0cmljczptZXRyaWNzLWNvcmUKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard.metrics:metrics-core (dropwizard-views-freemarker): scope test -> compile",
+  "files" : [ "dropwizard-views-freemarker/pom.xml" ],
+  "symbols" : [ "dropwizard-views-freemarker#io.dropwizard.metrics:metrics-core", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5jb3JlOmphY2tzb24tYW5ub3RhdGlvbnMKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency com.fasterxml.jackson.core:jackson-annotations (dropwizard-views-freemarker): scope test -> compile",
+  "files" : [ "dropwizard-views-freemarker/pom.xml" ],
+  "symbols" : [ "dropwizard-views-freemarker#com.fasterxml.jackson.core:jackson-annotations", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2NvbS5mYXN0ZXJ4bWwuamFja3Nvbi5jb3JlOmphY2tzb24tZGF0YWJpbmQKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency com.fasterxml.jackson.core:jackson-databind (dropwizard-views-freemarker): scope test -> compile",
+  "files" : [ "dropwizard-views-freemarker/pom.xml" ],
+  "symbols" : [ "dropwizard-views-freemarker#com.fasterxml.jackson.core:jackson-databind", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI2pha2FydGEud3MucnM6amFrYXJ0YS53cy5ycy1hcGkKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency jakarta.ws.rs:jakarta.ws.rs-api (dropwizard-views-freemarker): scope test -> compile",
+  "files" : [ "dropwizard-views-freemarker/pom.xml" ],
+  "symbols" : [ "dropwizard-views-freemarker#jakarta.ws.rs:jakarta.ws.rs-api", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI29yZy5nbGFzc2Zpc2guamVyc2V5LmNvcmU6amVyc2V5LXNlcnZlcgpzY29wZSB0ZXN0IC0-IGNvbXBpbGUsIGV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-server (dropwizard-views-freemarker): scope test -> compile, exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-views-freemarker/pom.xml" ],
+  "symbols" : [ "dropwizard-views-freemarker#org.glassfish.jersey.core:jersey-server", "scope test -> compile, exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1mcmVlbWFya2VyI29yZy5nbGFzc2Zpc2guamVyc2V5LnRlc3QtZnJhbWV3b3JrOmplcnNleS10ZXN0LWZyYW1ld29yay1jb3JlCmV4Y2x1c2lvbiBvcmcuZ2xhc3NmaXNoLmhrMi5leHRlcm5hbDpqYWthcnRhLmluamVjdCByZW1vdmVk",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework:jersey-test-framework-core (dropwizard-views-freemarker): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-views-freemarker/pom.xml" ],
+  "symbols" : [ "dropwizard-views-freemarker#org.glassfish.jersey.test-framework:jersey-test-framework-core", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1tdXN0YWNoZSNvcmcuZ2xhc3NmaXNoLmplcnNleS50ZXN0LWZyYW1ld29yazpqZXJzZXktdGVzdC1mcmFtZXdvcmstY29yZQpleGNsdXNpb24gb3JnLmdsYXNzZmlzaC5oazIuZXh0ZXJuYWw6amFrYXJ0YS5pbmplY3QgcmVtb3ZlZA",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.test-framework:jersey-test-framework-core (dropwizard-views-mustache): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-views-mustache/pom.xml" ],
+  "symbols" : [ "dropwizard-views-mustache#org.glassfish.jersey.test-framework:jersey-test-framework-core", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1tdXN0YWNoZSNqYWthcnRhLndzLnJzOmpha2FydGEud3MucnMtYXBpCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency jakarta.ws.rs:jakarta.ws.rs-api (dropwizard-views-mustache): scope test -> compile",
+  "files" : [ "dropwizard-views-mustache/pom.xml" ],
+  "symbols" : [ "dropwizard-views-mustache#jakarta.ws.rs:jakarta.ws.rs-api", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1tdXN0YWNoZSNvcmcuZ2xhc3NmaXNoLmplcnNleS5jb3JlOmplcnNleS1zZXJ2ZXIKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-server (dropwizard-views-mustache): scope test -> compile",
+  "files" : [ "dropwizard-views-mustache/pom.xml" ],
+  "symbols" : [ "dropwizard-views-mustache#org.glassfish.jersey.core:jersey-server", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1tdXN0YWNoZSNpby5kcm9wd2l6YXJkOmRyb3B3aXphcmQtamVyc2V5CnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-jersey (dropwizard-views-mustache): scope test -> compile",
+  "files" : [ "dropwizard-views-mustache/pom.xml" ],
+  "symbols" : [ "dropwizard-views-mustache#io.dropwizard:dropwizard-jersey", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1tdXN0YWNoZSNpby5kcm9wd2l6YXJkOmRyb3B3aXphcmQtbG9nZ2luZwpzY29wZSB0ZXN0IC0-IGNvbXBpbGU",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard:dropwizard-logging (dropwizard-views-mustache): scope test -> compile",
+  "files" : [ "dropwizard-views-mustache/pom.xml" ],
+  "symbols" : [ "dropwizard-views-mustache#io.dropwizard:dropwizard-logging", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cy1tdXN0YWNoZSNpby5kcm9wd2l6YXJkLm1ldHJpY3M6bWV0cmljcy1jb3JlCnNjb3BlIHRlc3QgLT4gY29tcGlsZQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency io.dropwizard.metrics:metrics-core (dropwizard-views-mustache): scope test -> compile",
+  "files" : [ "dropwizard-views-mustache/pom.xml" ],
+  "symbols" : [ "dropwizard-views-mustache#io.dropwizard.metrics:metrics-core", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cyNvcmcuZ2xhc3NmaXNoLmplcnNleS5jb3JlOmplcnNleS1jb21tb24KZXhjbHVzaW9uIG9yZy5nbGFzc2Zpc2guaGsyLmV4dGVybmFsOmpha2FydGEuaW5qZWN0IHJlbW92ZWQ",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-common (dropwizard-views): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "files" : [ "dropwizard-views/pom.xml" ],
+  "symbols" : [ "dropwizard-views#org.glassfish.jersey.core:jersey-common", "exclusion org.glassfish.hk2.external:jakarta.inject removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cyNvcmcuZ2xhc3NmaXNoLmplcnNleS5jb3JlOmplcnNleS1zZXJ2ZXIKc2NvcGUgdGVzdCAtPiBjb21waWxl",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-server (dropwizard-views): scope test -> compile",
+  "files" : [ "dropwizard-views/pom.xml" ],
+  "symbols" : [ "dropwizard-views#org.glassfish.jersey.core:jersey-server", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKZHJvcHdpemFyZC12aWV3cyNqYWthcnRhLnZhbGlkYXRpb246amFrYXJ0YS52YWxpZGF0aW9uLWFwaQpzY29wZSB0ZXN0IC0-IGNvbXBpbGU",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency jakarta.validation:jakarta.validation-api (dropwizard-views): scope test -> compile",
+  "files" : [ "dropwizard-views/pom.xml" ],
+  "symbols" : [ "dropwizard-views#jakarta.validation:jakarta.validation-api", "scope test -> compile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

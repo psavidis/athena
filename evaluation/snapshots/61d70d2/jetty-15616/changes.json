@@ -1,0 +1,91 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTClNlcnZlckZDR0lDb25uZWN0aW9uVGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ServerFCGIConnectionTest",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/test/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnectionTest.java" ],
+  "symbols" : [ "ServerFCGIConnectionTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNvbkZpbGxhYmxlCmJyYW5jaCByZW1vdmVkLCBsb29wIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ServerFCGIConnection#onFillable: branch removed, loop removed",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnection.java" ],
+  "symbols" : [ "ServerFCGIConnection#onFillable", "branch removed, loop removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNwYXJzZUFuZEZpbGwKYnJhbmNoIHJlbW92ZWQsIGxvb3AgcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ServerFCGIConnection#parseAndFill: branch removed, loop removed",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnection.java" ],
+  "symbols" : [ "ServerFCGIConnection#parseAndFill", "branch removed, loop removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "RVhUUkFDVF9NRVRIT0QKU2VydmVyRkNHSUNvbm5lY3Rpb24jb25GaWxsYWJsZQpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNvbkZpbGxhYmxlTG9ja2Vk",
+  "kind" : "EXTRACT_METHOD",
+  "category" : "STRUCTURAL",
+  "description" : "Extract ServerFCGIConnection#onFillableLocked",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnection.java" ],
+  "symbols" : [ "ServerFCGIConnection#onFillable", "ServerFCGIConnection#onFillableLocked" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "RVhUUkFDVF9NRVRIT0QKU2VydmVyRkNHSUNvbm5lY3Rpb24jcGFyc2VBbmRGaWxsClNlcnZlckZDR0lDb25uZWN0aW9uI3BhcnNlQW5kRmlsbExvY2tlZA",
+  "kind" : "EXTRACT_METHOD",
+  "category" : "STRUCTURAL",
+  "description" : "Extract ServerFCGIConnection#parseAndFillLocked",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnection.java" ],
+  "symbols" : [ "ServerFCGIConnection#parseAndFill", "ServerFCGIConnection#parseAndFillLocked" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTZXJ2ZXJGQ0dJQ29ubmVjdGlvblRlc3QjdGVzdENvbXBsZXRpb25XYWl0c0ZvckZpbGw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ServerFCGIConnectionTest#testCompletionWaitsForFill",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/test/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnectionTest.java" ],
+  "symbols" : [ "ServerFCGIConnectionTest#testCompletionWaitsForFill" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTZXJ2ZXJGQ0dJQ29ubmVjdGlvblRlc3QjcnVu",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ServerFCGIConnectionTest#run",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/test/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnectionTest.java" ],
+  "symbols" : [ "ServerFCGIConnectionTest#run" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NrClNlcnZlckZDR0lDb25uZWN0aW9uI29uQ29tcGxldGVk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ServerFCGIConnection#onCompleted: +lock",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnection.java" ],
+  "symbols" : [ "ServerFCGIConnection#onCompleted", "+lock" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNlcnZlckZDR0lDb25uZWN0aW9uI2xvY2s",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ServerFCGIConnection#lock",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnection.java" ],
+  "symbols" : [ "ServerFCGIConnection#lock" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

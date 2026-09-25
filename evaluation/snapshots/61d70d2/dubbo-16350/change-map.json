@@ -1,0 +1,57 @@
+{
+  "prTitle" : "Fix StringUtils.substringAfter to return empty string when the separator is absent",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 1,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX1NZTUJPTApTdHJpbmdVdGlsc1Rlc3QjdGVzdFN1YnN0cmluZ0FmdGVy",
+    "description" : "Add StringUtilsTest#testSubstringAfter",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClN0cmluZ1V0aWxzI3N1YnN0cmluZ0FmdGVyCnJldHVybiBzdHIgLT4gRU1QVFlfU1RSSU5H",
+    "description" : "Modify body of StringUtils#substringAfter: return str -> EMPTY_STRING",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "StringUtilsTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX1NZTUJPTApTdHJpbmdVdGlsc1Rlc3QjdGVzdFN1YnN0cmluZ0FmdGVy",
+      "description" : "Add StringUtilsTest#testSubstringAfter",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "StringUtils",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClN0cmluZ1V0aWxzI3N1YnN0cmluZ0FmdGVyCnJldHVybiBzdHIgLT4gRU1QVFlfU1RSSU5H",
+      "description" : "Modify body of StringUtils#substringAfter: return str -> EMPTY_STRING",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

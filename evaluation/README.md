@@ -13,7 +13,7 @@ instead of judging from a single PR (issue #258).
 | `tools/coverage.py` | Derives `metrics.json` (diff-vs-Athena coverage) for a snapshot. |
 | `tools/summarize.py` | Prints a snapshot as plain text: Change Map, Explorer cards, Canvas, focus areas. Used for the protocol's Athena pass. |
 | `snapshots/<athena-sha>/` | Raw evidence per Athena version: `pr.diff` plus every view Athena would render. |
-| `reports/` | Dated evaluation reports, written against a specific snapshot directory. The first is `reports/2026-09-23-baseline-a5bb763.md`; the re-run after #260–#271 is `reports/2026-09-24-rerun-80ce13f.md`; the third run, after #285–#296, is `reports/2026-09-24-rerun-e2b2780.md`; the baseline for the 16 entries added in #311 is `reports/2026-09-24-expansion-baseline-c6a1721.md`; the 26-entry run after #313–#320 is `reports/2026-09-24-rerun-9d1b462.md`; the baseline for the 19 entries added in #332 is `reports/2026-09-24-expansion2-baseline-b6f6f49.md`; the 45-entry run after #334–#340 is `reports/2026-09-25-rerun-feaac14.md`. |
+| `reports/` | Dated evaluation reports, written against a specific snapshot directory. The first is `reports/2026-09-23-baseline-a5bb763.md`; the re-run after #260–#271 is `reports/2026-09-24-rerun-80ce13f.md`; the third run, after #285–#296, is `reports/2026-09-24-rerun-e2b2780.md`; the baseline for the 16 entries added in #311 is `reports/2026-09-24-expansion-baseline-c6a1721.md`; the 26-entry run after #313–#320 is `reports/2026-09-24-rerun-9d1b462.md`; the baseline for the 19 entries added in #332 is `reports/2026-09-24-expansion2-baseline-b6f6f49.md`; the 45-entry run after #334–#340 is `reports/2026-09-25-rerun-feaac14.md`; the baseline for the 21 entries added in #355 is `reports/2026-09-25-expansion3-baseline-61d70d2.md`. |
 
 ## Re-running against a newer Athena
 
@@ -87,6 +87,27 @@ the entries whose numbers moved, and write a new report under `reports/` using
 | `vertx-6303` | closed-unmerged | `CleanableObject.shutdown()` returning null after GC. Not merged: without a test it was a speculative fix, and a different fix with a test was merged. |
 | `dubbo-16298` | closed-unmerged | A clear error for non-`Serializable` parameters. Not merged: the reviewer saw a risk of swallowing other exceptions and couldn't reproduce the NPE; `dubbo-16299` was preferred. |
 | `commons-collections-674` | closed-unmerged | Null-key checks in `ConcurrentReferenceHashMap`. Not merged: the maintainer committed a different, better solution. |
+| `jenkins-27381` | small-bug-fix | `QueryParameterMap` read `kv[1]` unconditionally, so `?flag` or `?rev=` threw `ArrayIndexOutOfBoundsException`. A one-method guard; Maven. |
+| `kafka-23538` | small-bug-fix | An inverted ternary swapped the `offset-commit`/`txn-offset-commit` labels in a fencing log. The smallest possible fix: a swapped condition. Gradle. |
+| `nacos-15873` | small-bug-fix | After a full cluster restart, connection-based clients were in the distro snapshot and lost their instances for good. Skipping them is a two-line guard with a large consequence. |
+| `testcontainers-11970` | simple-feature | `AzuriteContainer.withCommandOptions(...)`, because `configure()` overwrote any `withCommand` flags. A new public method on a builder; Gradle. |
+| `camel-26831` | simple-feature | A REST producer fails with the unresolved path parameter's name instead of sending `%7Bsku%7D` and getting a 404. A new check plus message. |
+| `assertj-4338` | refactoring | Reset of the global AssertJ configuration made consistent across 30 files, replacing an extension that couldn't work without runtime retention. Wide, repetitive test refactoring. |
+| `nacos-15854` | refactoring | Removes the legacy `GetRequest`/`Log` fallback from Raft log parsing and keeps the parse error. The maintainers' follow-up to `nacos-15628`. |
+| `quarkus-56904` | api-change | `char[]` overloads for `BcryptUtil.bcryptHash`/`matches` and deprecation of the `String` ones, so passwords can be zeroed. An additive API with deprecations. |
+| `camel-26805` | cross-module | The inflight, blocked and shutdown views report the node's source line, reading a value core already stored. Changes in core, management and dev consoles. |
+| `nacos-15856` | dependency-framework | Datasource dialect plugins provide their default JDBC driver, with the config property as an override. A plugin SPI extension across modules and properties files. |
+| `jetty-15668` | architectural | Failure handling for connections accepted, not only connected: `ManagedSelector` tasks become `Closeable` and are closed on failure. A lifecycle rework in the selector layer. |
+| `camel-26806` | large | About 45 bugs found in a review of the simple language, one commit per sub-task, across 58 files. |
+| `openrewrite-8915` | mixed-noisy | Write `services.gradle.org` distribution URLs again, as `gradle wrapper` does: a small logic change inside many test-resource and fixture edits. Gradle Kotlin DSL. |
+| `jetty-15648` | complex-behavioral | The FCGI application task is dispatched only after the parser returns, so an inline task can't release the input buffer mid-parse. A concurrency fix by reordering. Supersedes `jetty-15616`. |
+| `camel-26818` | complex-behavioral | A parallel streaming split with a trailing null part completed before its running parts finished. A completion-accounting fix in the Splitter. |
+| `kafka-23570` | complex-behavioral | `consumedOffsets` survived a task's wipe-and-revive under EOS, so a wiped `KTable` store looked fully restored. One line in `close()` plus a long test. The root-cause fix `kafka-23339` didn't find. |
+| `kafka-23542` | complex-behavioral | A static member rejoining with epoch 0 was fenced by its own instance id. A coordinator state-machine fix with 1.2k lines of tests. |
+| `kafka-23339` | closed-unmerged | Retries a missing committed offset during restore. Not merged: the reviewer was "still worried" the root cause wasn't understood; `kafka-23570` fixed the actual cause (stale `consumedOffsets`). |
+| `nacos-15628` | closed-unmerged | Titled "add logging", it also removed the legacy parse fallbacks and a test dependency. Not merged: breaking changes beyond its stated scope. The maintainers re-did it deliberately as `nacos-15854`. |
+| `jetty-15616` | closed-unmerged | A per-connection lock around FCGI input handling. Not merged: the reviewer called it a coarse lock that masks the race rather than a proper fix. Superseded by `jetty-15648`. |
+| `camel-26819` | closed-unmerged | Concurrent bean registration made thread-safe with `ConcurrentHashMap` and a lock. Not merged: the review found a remaining reader-side race and a symptom-masking null guard. |
 
 Candidates considered and kept in reserve: `keycloak-53012` (cross-module bug fix),
 `mockito-3792` (Android mock maker swap, mostly Gradle/Kotlin), `spring-petclinic-2279`

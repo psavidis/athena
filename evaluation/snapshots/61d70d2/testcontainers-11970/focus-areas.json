@@ -1,0 +1,13 @@
+[ {
+  "entity" : "AzuriteContainer",
+  "description" : "Change control flow of AzuriteContainer#getCommandLine: loop added; same calls"
+}, {
+  "entity" : "AzuriteContainer",
+  "description" : "Add AzuriteContainer#withCommandOptions"
+}, {
+  "entity" : "AzuriteContainer",
+  "description" : "Add field AzuriteContainer#commandOptions"
+}, {
+  "entity" : "AzuriteContainerCommandTest",
+  "description" : "Add class AzuriteContainerCommandTest"
+} ]

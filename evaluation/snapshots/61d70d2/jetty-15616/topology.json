@@ -1,0 +1,85 @@
+{
+  "territories" : [ {
+    "moduleName" : "jetty-fcgi-server",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 9 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX0NMQVNTClNlcnZlckZDR0lDb25uZWN0aW9uVGVzdA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNvbkZpbGxhYmxlCmJyYW5jaCByZW1vdmVkLCBsb29wIHJlbW92ZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNwYXJzZUFuZEZpbGwKYnJhbmNoIHJlbW92ZWQsIGxvb3AgcmVtb3ZlZA", "RVhUUkFDVF9NRVRIT0QKU2VydmVyRkNHSUNvbm5lY3Rpb24jb25GaWxsYWJsZQpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNvbkZpbGxhYmxlTG9ja2Vk", "RVhUUkFDVF9NRVRIT0QKU2VydmVyRkNHSUNvbm5lY3Rpb24jcGFyc2VBbmRGaWxsClNlcnZlckZDR0lDb25uZWN0aW9uI3BhcnNlQW5kRmlsbExvY2tlZA", "QUREX1NZTUJPTApTZXJ2ZXJGQ0dJQ29ubmVjdGlvblRlc3QjdGVzdENvbXBsZXRpb25XYWl0c0ZvckZpbGw", "QUREX1NZTUJPTApTZXJ2ZXJGQ0dJQ29ubmVjdGlvblRlc3QjcnVu", "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NrClNlcnZlckZDR0lDb25uZWN0aW9uI29uQ29tcGxldGVk", "QUREX0ZJRUxEClNlcnZlckZDR0lDb25uZWN0aW9uI2xvY2s" ],
+    "testChangeKeys" : [ "QUREX0NMQVNTClNlcnZlckZDR0lDb25uZWN0aW9uVGVzdA", "QUREX1NZTUJPTApTZXJ2ZXJGQ0dJQ29ubmVjdGlvblRlc3QjdGVzdENvbXBsZXRpb25XYWl0c0ZvckZpbGw", "QUREX1NZTUJPTApTZXJ2ZXJGQ0dJQ29ubmVjdGlvblRlc3QjcnVu" ]
+  }, {
+    "moduleName" : "jetty-server",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-fcgi-client",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-alpn-java-server",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-slf4j-impl",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-unixdomain-server",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-http2-server",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "jetty-fcgi-server",
+    "to" : "jetty-server"
+  }, {
+    "from" : "jetty-fcgi-server",
+    "to" : "jetty-fcgi-client"
+  }, {
+    "from" : "jetty-fcgi-server",
+    "to" : "jetty-alpn-java-server"
+  }, {
+    "from" : "jetty-fcgi-server",
+    "to" : "jetty-slf4j-impl"
+  }, {
+    "from" : "jetty-fcgi-server",
+    "to" : "jetty-unixdomain-server"
+  }, {
+    "from" : "jetty-fcgi-server",
+    "to" : "jetty-http2-server"
+  } ]
+}
