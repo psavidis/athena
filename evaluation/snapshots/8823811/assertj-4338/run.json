@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/assertj/assertj.git",
+  "base" : "96de17bce2dfe03dd9bd5b546d9e60ff76e335b4",
+  "head" : "bf7aea231fddc8f1431d50c748dd1f08b159ee47",
+  "changeCount" : 46,
+  "moduleCount" : 2,
+  "checkoutAndAnalysisSeconds" : 6.71
+}

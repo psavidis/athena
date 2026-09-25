@@ -1,0 +1,3661 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTClRvT25lVmlzaWJpbGl0eUxvYWRlcg",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneVisibilityLoader",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lVmlzaWJpbGl0eUxvYWRlci5DYWNoZQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneVisibilityLoader.Cache",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader.Cache" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lUmVzdHJpY3Rpb25z",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneRestrictions",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lQ2FjaGVUZXN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneCacheTest",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneCacheTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneCacheTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lRW11bGF0ZWRVcHNlcnRUZXN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneEmulatedUpsertTest",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneEmulatedUpsertTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneEmulatedUpsertTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lRW5oYW5jZWRUZXN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneEnhancedTest",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneEnhancedTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneEnhancedTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneNotFoundTest",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jU3FsSWdub3Jl",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneNotFoundTest.AssocSqlIgnore",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocSqlIgnore" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jU3FsRXhjZXB0aW9u",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneNotFoundTest.AssocSqlException",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocSqlException" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jRmlsdGVySWdub3Jl",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneNotFoundTest.AssocFilterIgnore",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocFilterIgnore" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jRmlsdGVyRXhjZXB0aW9u",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneNotFoundTest.AssocFilterException",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocFilterException" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lU2hhbGxvd0NhY2hlVGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneShallowCacheTest",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneShallowCacheTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneShallowCacheTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5VbnJlc3RyaWN0ZWRUYXJnZXQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.UnrestrictedTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.UnrestrictedTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEZr",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlFk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlFk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEZrU2VsZWN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlFkSelect",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlFkSelect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEZrTGF6eQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlFkLazy",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlFkLazy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEpvaW4",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlJoin",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlJoin" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEpvaW5TZWxlY3Q",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlJoinSelect",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlJoinSelect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEpvaW5MYXp5",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlJoinLazy",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlJoinLazy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbE9uZUZr",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlOneFk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneFk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbE9uZUZrU2VsZWN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlOneFkSelect",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneFkSelect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbE9uZUZrTGF6eQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlOneFkLazy",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneFkLazy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbE9uZUpvaW4",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlOneJoin",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneJoin" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbE9uZUpvaW5TZWxlY3Q",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlOneJoinSelect",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneJoinSelect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbE9uZUpvaW5MYXp5",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlOneJoinLazy",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneJoinLazy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckZr",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterFk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterFk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckZrU2VsZWN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterFkSelect",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterFkSelect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckZrTGF6eQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterFkLazy",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterFkLazy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckpvaW4",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterJoin",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterJoin" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckpvaW5TZWxlY3Q",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterJoinSelect",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterJoinSelect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckpvaW5MYXp5",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterJoinLazy",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterJoinLazy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlck9uZUZr",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterOneFk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneFk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlck9uZUZrU2VsZWN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterOneFkSelect",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneFkSelect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlck9uZUZrTGF6eQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterOneFkLazy",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneFkLazy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlck9uZUpvaW4",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterOneJoin",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneJoin" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlck9uZUpvaW5TZWxlY3Q",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterOneJoinSelect",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneJoinSelect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlck9uZUpvaW5MYXp5",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterOneJoinLazy",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneJoinLazy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEN1c3RvbUZr",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlCustomFk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlCustomFk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEFsbEZr",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlAllFk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlAllFk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbERpcnR5Rms",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationSqlDirtyFk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlDirtyFk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckN1c3RvbUZr",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterCustomFk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterCustomFk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckFsbEZr",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterAllFk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterAllFk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckRpcnR5Rms",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AssociationRestrictedToOneTest.AssociationFilterDirtyFk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterDirtyFk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClJlc3RyaWN0ZWRTZWNvbmRhcnlUYWJsZVRlc3Q",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class RestrictedSecondaryTableTest",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java" ],
+  "symbols" : [ "RestrictedSecondaryTableTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClJlc3RyaWN0ZWRTZWNvbmRhcnlUYWJsZVRlc3QuUHJvamVjdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class RestrictedSecondaryTableTest.Project",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java" ],
+  "symbols" : [ "RestrictedSecondaryTableTest.Project" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClJlc3RyaWN0ZWRTZWNvbmRhcnlUYWJsZVRlc3QuRG9jdW1lbnQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class RestrictedSecondaryTableTest.Document",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java" ],
+  "symbols" : [ "RestrictedSecondaryTableTest.Document" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3Q",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationCompositionTest",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuQmFzZVRhcmdldA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationCompositionTest.BaseTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.BaseTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuVGFyZ2V0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationCompositionTest.Target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuT3duZXI",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationCompositionTest.Owner",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Owner" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuRGV0YWlscw",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationCompositionTest.Details",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Details" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationKeysTest",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5LZXk",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationKeysTest.Key",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Key" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5UYXJnZXQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationKeysTest.Target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5SZWdpc3RyYXRpb24",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationKeysTest.Registration",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Registration" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5Pd25lcg",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationKeysTest.Owner",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Owner" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3Q",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationVisibilityPlanTest",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3QuVGFyZ2V0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationVisibilityPlanTest.Target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.Target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3QuVXBwZXJCb3VuZA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationVisibilityPlanTest.UpperBound",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.UpperBound" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3QuT3duZXI",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationVisibilityPlanTest.Owner",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.Owner" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3QuSWRPd25lcg",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationVisibilityPlanTest.IdOwner",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.IdOwner" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3QuQ29kZU93bmVy",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationVisibilityPlanTest.CodeOwner",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.CodeOwner" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationVisibilityTest",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5QZXJzb24",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationVisibilityTest.Person",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Person" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Pd25lcg",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationVisibilityTest.Owner",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Owner" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Qcm9maWxl",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationVisibilityTest.Profile",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Profile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5BY2NvdW50",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ToOneAssociationVisibilityTest.Account",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Account" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorRmlsdGVyYWJsZQpUb09uZQ",
+  "kind" : "CHANGE_SUPERTYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change supertype of ToOne: +Filterable",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/mapping/ToOne.java" ],
+  "symbols" : [ "ToOne", "+Filterable" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpFbnRpdHlDYWNoZVJlc3RyaWN0aW9ucyNoYXNTcWxSZXN0cmljdGlvbnMKY29uZGl0aW9uIGNoYW5nZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of EntityCacheRestrictions#hasSqlRestrictions: condition changed",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/engine/internal/EntityCacheRestrictions.java" ],
+  "symbols" : [ "EntityCacheRestrictions#hasSqlRestrictions", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMb2FkZXJTZWxlY3RCdWlsZGVyI2dlbmVyYXRlU2VsZWN0CmJyYW5jaCByZW1vdmVkLCBsb29wIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of LoaderSelectBuilder#generateSelect: branch removed, loop removed",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/LoaderSelectBuilder.java" ],
+  "symbols" : [ "LoaderSelectBuilder#generateSelect", "branch removed, loop removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTG9hZGVyU2VsZWN0QnVpbGRlciNnZW5lcmF0ZVNlbGVjdA",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of LoaderSelectBuilder#generateSelect",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/LoaderSelectBuilder.java" ],
+  "symbols" : [ "LoaderSelectBuilder#generateSelect" ],
+  "occurrences" : 2,
+  "exceptions" : 1,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYW5hZ2VkTWFwcGluZ1R5cGUjYXJlQXR0cmlidXRlc0FmZmVjdGVkQnlFbmFibGVkRmlsdGVycwpjb25kaXRpb24gY2hhbmdlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ManagedMappingType#areAttributesAffectedByEnabledFilters: condition changed",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/ManagedMappingType.java" ],
+  "symbols" : [ "ManagedMappingType#areAttributesAffectedByEnabledFilters", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUb09uZUF0dHJpYnV0ZU1hcHBpbmcjcmVzb2x2ZUNpcmN1bGFyRmV0Y2gKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ToOneAttributeMapping#resolveCircularFetch: branch added",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#resolveCircularFetch", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUb09uZUF0dHJpYnV0ZU1hcHBpbmcjZ2VuZXJhdGVGZXRjaApicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ToOneAttributeMapping#generateFetch: branch removed",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#generateFetch", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUb09uZUF0dHJpYnV0ZU1hcHBpbmcjZ2V0RGVmYXVsdFNxbEFzdEpvaW5UeXBlCmNvbmRpdGlvbiBjaGFuZ2Vk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ToOneAttributeMapping#getDefaultSqlAstJoinType: condition changed",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#getDefaultSqlAstJoinType", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpFbnRpdHlTZWxlY3RGZXRjaEJ5VW5pcXVlS2V5SW5pdGlhbGl6ZXIjaW5pdGlhbGl6ZQpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of EntitySelectFetchByUniqueKeyInitializer#initialize: branch added",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/sql/results/graph/entity/internal/EntitySelectFetchByUniqueKeyInitializer.java" ],
+  "symbols" : [ "EntitySelectFetchByUniqueKeyInitializer#initialize", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpFbnRpdHlTZWxlY3RGZXRjaEluaXRpYWxpemVyI2luaXRpYWxpemUKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of EntitySelectFetchInitializer#initialize: branch added",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/sql/results/graph/entity/internal/EntitySelectFetchInitializer.java" ],
+  "symbols" : [ "EntitySelectFetchInitializer#initialize", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUJpbmRlciNiaW5kUmVzdHJpY3Rpb25z",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneBinder#bindRestrictions",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/boot/model/internal/ToOneBinder.java" ],
+  "symbols" : [ "ToOneBinder#bindRestrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUJpbmRlciNiaW5kRmlsdGVy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneBinder#bindFilter",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/boot/model/internal/ToOneBinder.java" ],
+  "symbols" : [ "ToOneBinder#bindFilter" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMb2FkZXJTZWxlY3RCdWlsZGVyI2NyZWF0ZUFzc29jaWF0aW9uS2V5U2VsZWN0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add LoaderSelectBuilder#createAssociationKeySelect",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/LoaderSelectBuilder.java" ],
+  "symbols" : [ "LoaderSelectBuilder#createAssociationKeySelect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVZpc2liaWxpdHlMb2FkZXIjaXNWaXNpYmxl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneVisibilityLoader#isVisible",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader#isVisible" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVZpc2liaWxpdHlMb2FkZXIjY3JlYXRlUGxhbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneVisibilityLoader#createPlan",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader#createPlan" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVZpc2liaWxpdHlMb2FkZXIuQ2FjaGUjZ2V0UGxhbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneVisibilityLoader.Cache#getPlan",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader.Cache#getPlan" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVZpc2liaWxpdHlMb2FkZXIuUGxhbiNtYXRjaGVz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneVisibilityLoader.Plan#matches",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader.Plan#matches" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVZpc2liaWxpdHlMb2FkZXIuRmlsdGVyU3RhdGUjY2FwdHVyZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneVisibilityLoader.FilterState#capture",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader.FilterState#capture" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVZpc2liaWxpdHlMb2FkZXIuRmlsdGVyU3RhdGUjbWF0Y2hlcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneVisibilityLoader.FilterState#matches",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader.FilterState#matches" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVZpc2liaWxpdHlMb2FkZXIuUGFyYW1ldGVyI2NhcHR1cmU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneVisibilityLoader.Parameter#capture",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader.Parameter#capture" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVZpc2liaWxpdHlMb2FkZXIuUGFyYW1ldGVyI21hdGNoZXM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneVisibilityLoader.Parameter#matches",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader.Parameter#matches" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVZpc2liaWxpdHlMb2FkZXIuUGFyYW1ldGVyI2lzUGx1cmFs",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneVisibilityLoader.Parameter#isPlural",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader.Parameter#isPlural" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZSNnZXRTcWxSZXN0cmljdGlvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOne#getSqlRestriction",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/mapping/ToOne.java" ],
+  "symbols" : [ "ToOne#getSqlRestriction" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZSNzZXRTcWxSZXN0cmljdGlvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOne#setSqlRestriction",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/mapping/ToOne.java" ],
+  "symbols" : [ "ToOne#setSqlRestriction" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZSNhZGRGaWx0ZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOne#addFilter",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/mapping/ToOne.java" ],
+  "symbols" : [ "ToOne#addFilter" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZSNnZXRGaWx0ZXJz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOne#getFilters",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/mapping/ToOne.java" ],
+  "symbols" : [ "ToOne#getFilters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZSNjb3B5UmVzdHJpY3Rpb25z",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOne#copyRestrictions",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/mapping/ToOne.java" ],
+  "symbols" : [ "ToOne#copyRestrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUF0dHJpYnV0ZU1hcHBpbmcjZ2VuZXJhdGVOb25Kb2luZWRGZXRjaA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAttributeMapping#generateNonJoinedFetch",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#generateNonJoinedFetch" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUF0dHJpYnV0ZU1hcHBpbmcjaGFzV2hlcmVSZXN0cmljdGlvbnM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAttributeMapping#hasWhereRestrictions",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#hasWhereRestrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUF0dHJpYnV0ZU1hcHBpbmcjaGFzRmlsdGVyRm9yTG9hZEJ5S2V5",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAttributeMapping#hasFilterForLoadByKey",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#hasFilterForLoadByKey" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUF0dHJpYnV0ZU1hcHBpbmcjaGFzQXNzb2NpYXRpb25TcWxSZXN0cmljdGlvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAttributeMapping#hasAssociationSqlRestriction",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#hasAssociationSqlRestriction" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUF0dHJpYnV0ZU1hcHBpbmcjZ2V0QXNzb2NpYXRpb25GaWx0ZXJOYW1lcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAttributeMapping#getAssociationFilterNames",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#getAssociationFilterNames" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUF0dHJpYnV0ZU1hcHBpbmcjaXNBZmZlY3RlZEJ5QXNzb2NpYXRpb25GaWx0ZXJz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAttributeMapping#isAffectedByAssociationFilters",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#isAffectedByAssociationFilters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUF0dHJpYnV0ZU1hcHBpbmcjaXNBZmZlY3RlZEJ5RW5hYmxlZEZpbHRlcnM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAttributeMapping#isAffectedByEnabledFilters",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#isAffectedByEnabledFilters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUF0dHJpYnV0ZU1hcHBpbmcjaXNBZmZlY3RlZEJ5UmVzdHJpY3Rpb25z",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAttributeMapping#isAffectedByRestrictions",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#isAffectedByRestrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUF0dHJpYnV0ZU1hcHBpbmcjaXNBc3NvY2lhdGlvbktleVZpc2libGU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAttributeMapping#isAssociationKeyVisible",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#isAssociationKeyVisible" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUF0dHJpYnV0ZU1hcHBpbmcjYXBwbHlBc3NvY2lhdGlvblJlc3RyaWN0aW9ucw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAttributeMapping#applyAssociationRestrictions",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#applyAssociationRestrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVJlc3RyaWN0aW9ucyNjcmVhdGU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneRestrictions#create",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions#create" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVJlc3RyaWN0aW9ucyNoYXNTcWxSZXN0cmljdGlvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneRestrictions#hasSqlRestriction",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions#hasSqlRestriction" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVJlc3RyaWN0aW9ucyNoYXNGaWx0ZXJz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneRestrictions#hasFilters",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions#hasFilters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVJlc3RyaWN0aW9ucyNnZXRGaWx0ZXJOYW1lcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneRestrictions#getFilterNames",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions#getFilterNames" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVJlc3RyaWN0aW9ucyNpc0FmZmVjdGVkQnlGaWx0ZXJz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneRestrictions#isAffectedByFilters",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions#isAffectedByFilters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZVJlc3RyaWN0aW9ucyNhcHBseQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneRestrictions#apply",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions#apply" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFbnRpdHlTZWxlY3RGZXRjaEluaXRpYWxpemVyI2lzQXNzb2NpYXRpb25LZXlWaXNpYmxl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add EntitySelectFetchInitializer#isAssociationKeyVisible",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/sql/results/graph/entity/internal/EntitySelectFetchInitializer.java" ],
+  "symbols" : [ "EntitySelectFetchInitializer#isAssociationKeyVisible" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApKZGJjVmFsdWVzU291cmNlUHJvY2Vzc2luZ1N0YXRlU3RhbmRhcmRJbXBsI2dldFRvT25lVmlzaWJpbGl0eVBsYW5DYWNoZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add JdbcValuesSourceProcessingStateStandardImpl#getToOneVisibilityPlanCache",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/sql/results/jdbc/internal/JdbcValuesSourceProcessingStateStandardImpl.java" ],
+  "symbols" : [ "JdbcValuesSourceProcessingStateStandardImpl#getToOneVisibilityPlanCache" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApKZGJjVmFsdWVzU291cmNlUHJvY2Vzc2luZ1N0YXRlI2dldFRvT25lVmlzaWJpbGl0eVBsYW5DYWNoZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add JdbcValuesSourceProcessingState#getToOneVisibilityPlanCache",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/sql/results/jdbc/spi/JdbcValuesSourceProcessingState.java" ],
+  "symbols" : [ "JdbcValuesSourceProcessingState#getToOneVisibilityPlanCache" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZUNhY2hlVGVzdCNjYWNoZWRUYXJnZXRzRG9Ob3RCeXBhc3NBc3NvY2lhdGlvblJlc3RyaWN0aW9ucw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneCacheTest#cachedTargetsDoNotBypassAssociationRestrictions",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneCacheTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneCacheTest#cachedTargetsDoNotBypassAssociationRestrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZUNhY2hlVGVzdCNxdWVyeUNhY2hlUHJlc2VydmVzSGlkZGVuS2V5cw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneCacheTest#queryCachePreservesHiddenKeys",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneCacheTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneCacheTest#queryCachePreservesHiddenKeys" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZUVuaGFuY2VkVGVzdCNlbmhhbmNlZExvYWRpbmdBbmRNdXRhdGlvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneEnhancedTest#enhancedLoadingAndMutation",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneEnhancedTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneEnhancedTest#enhancedLoadingAndMutation" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZU5vdEZvdW5kVGVzdCNjYXNlcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneNotFoundTest#cases",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest#cases" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZU5vdEZvdW5kVGVzdCN0YXJnZXRUYWJsZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneNotFoundTest#targetTable",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest#targetTable" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZU5vdEZvdW5kVGVzdC5Bc3NvY1NxbElnbm9yZSN0YXJnZXRz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneNotFoundTest.AssocSqlIgnore#targets",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocSqlIgnore#targets" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZU5vdEZvdW5kVGVzdC5Bc3NvY1NxbEV4Y2VwdGlvbiN0YXJnZXRz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneNotFoundTest.AssocSqlException#targets",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocSqlException#targets" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZU5vdEZvdW5kVGVzdC5Bc3NvY0ZpbHRlcklnbm9yZSN0YXJnZXRz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneNotFoundTest.AssocFilterIgnore#targets",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocFilterIgnore#targets" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZU5vdEZvdW5kVGVzdC5Bc3NvY0ZpbHRlckV4Y2VwdGlvbiN0YXJnZXRz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneNotFoundTest.AssocFilterException#targets",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocFilterException#targets" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QjbWFwcGluZ3M",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest#mappings",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest#mappings" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QjZmlsdGVyTWFwcGluZ3M",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest#filterMappings",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest#filterMappings" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3Qjb3JwaGFuTWFwcGluZ3M",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest#orphanMappings",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest#orphanMappings" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxGayNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlFk#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlFk#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxGayNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlFk#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlFk#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxGa1NlbGVjdCNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlFkSelect#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlFkSelect#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxGa1NlbGVjdCNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlFkSelect#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlFkSelect#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxGa0xhenkjZ2V0VGFyZ2V0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlFkLazy#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlFkLazy#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxGa0xhenkjc2V0VGFyZ2V0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlFkLazy#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlFkLazy#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxKb2luI2dldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlJoin#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlJoin#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxKb2luI3NldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlJoin#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlJoin#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxKb2luU2VsZWN0I2dldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlJoinSelect#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlJoinSelect#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxKb2luU2VsZWN0I3NldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlJoinSelect#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlJoinSelect#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxKb2luTGF6eSNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlJoinLazy#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlJoinLazy#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxKb2luTGF6eSNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlJoinLazy#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlJoinLazy#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxPbmVGayNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlOneFk#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneFk#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxPbmVGayNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlOneFk#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneFk#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxPbmVGa1NlbGVjdCNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlOneFkSelect#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneFkSelect#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxPbmVGa1NlbGVjdCNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlOneFkSelect#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneFkSelect#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxPbmVGa0xhenkjZ2V0VGFyZ2V0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlOneFkLazy#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneFkLazy#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxPbmVGa0xhenkjc2V0VGFyZ2V0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlOneFkLazy#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneFkLazy#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxPbmVKb2luI2dldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlOneJoin#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneJoin#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxPbmVKb2luI3NldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlOneJoin#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneJoin#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxPbmVKb2luU2VsZWN0I2dldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlOneJoinSelect#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneJoinSelect#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxPbmVKb2luU2VsZWN0I3NldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlOneJoinSelect#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneJoinSelect#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxPbmVKb2luTGF6eSNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlOneJoinLazy#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneJoinLazy#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxPbmVKb2luTGF6eSNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlOneJoinLazy#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneJoinLazy#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJGayNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterFk#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterFk#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJGayNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterFk#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterFk#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJGa1NlbGVjdCNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterFkSelect#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterFkSelect#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJGa1NlbGVjdCNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterFkSelect#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterFkSelect#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJGa0xhenkjZ2V0VGFyZ2V0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterFkLazy#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterFkLazy#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJGa0xhenkjc2V0VGFyZ2V0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterFkLazy#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterFkLazy#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJKb2luI2dldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterJoin#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterJoin#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJKb2luI3NldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterJoin#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterJoin#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJKb2luU2VsZWN0I2dldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterJoinSelect#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterJoinSelect#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJKb2luU2VsZWN0I3NldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterJoinSelect#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterJoinSelect#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJKb2luTGF6eSNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterJoinLazy#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterJoinLazy#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJKb2luTGF6eSNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterJoinLazy#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterJoinLazy#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJPbmVGayNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterOneFk#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneFk#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJPbmVGayNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterOneFk#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneFk#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJPbmVGa1NlbGVjdCNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterOneFkSelect#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneFkSelect#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJPbmVGa1NlbGVjdCNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterOneFkSelect#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneFkSelect#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJPbmVGa0xhenkjZ2V0VGFyZ2V0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterOneFkLazy#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneFkLazy#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJPbmVGa0xhenkjc2V0VGFyZ2V0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterOneFkLazy#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneFkLazy#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJPbmVKb2luI2dldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterOneJoin#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneJoin#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJPbmVKb2luI3NldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterOneJoin#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneJoin#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJPbmVKb2luU2VsZWN0I2dldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterOneJoinSelect#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneJoinSelect#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJPbmVKb2luU2VsZWN0I3NldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterOneJoinSelect#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneJoinSelect#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJPbmVKb2luTGF6eSNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterOneJoinLazy#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneJoinLazy#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJPbmVKb2luTGF6eSNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterOneJoinLazy#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneJoinLazy#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxDdXN0b21GayNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlCustomFk#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlCustomFk#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxDdXN0b21GayNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlCustomFk#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlCustomFk#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxBbGxGayNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlAllFk#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlAllFk#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxBbGxGayNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlAllFk#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlAllFk#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxEaXJ0eUZrI2dldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlDirtyFk#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlDirtyFk#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25TcWxEaXJ0eUZrI3NldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationSqlDirtyFk#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlDirtyFk#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJDdXN0b21GayNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterCustomFk#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterCustomFk#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJDdXN0b21GayNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterCustomFk#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterCustomFk#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJBbGxGayNnZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterAllFk#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterAllFk#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJBbGxGayNzZXRUYXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterAllFk#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterAllFk#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJEaXJ0eUZrI2dldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterDirtyFk#getTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterDirtyFk#getTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3NvY2lhdGlvblJlc3RyaWN0ZWRUb09uZVRlc3QuQXNzb2NpYXRpb25GaWx0ZXJEaXJ0eUZrI3NldFRhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AssociationRestrictedToOneTest.AssociationFilterDirtyFk#setTarget",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterDirtyFk#setTarget" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGVkU2Vjb25kYXJ5VGFibGVUZXN0I3ByZXBhcmU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RestrictedSecondaryTableTest#prepare",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java" ],
+  "symbols" : [ "RestrictedSecondaryTableTest#prepare" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGVkU2Vjb25kYXJ5VGFibGVUZXN0I2NsZWFudXA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RestrictedSecondaryTableTest#cleanup",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java" ],
+  "symbols" : [ "RestrictedSecondaryTableTest#cleanup" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGVkU2Vjb25kYXJ5VGFibGVUZXN0I3NlY29uZGFyeVRhYmxlQ29sdW1uUmVzdHJpY3Rpb24",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RestrictedSecondaryTableTest#secondaryTableColumnRestriction",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java" ],
+  "symbols" : [ "RestrictedSecondaryTableTest#secondaryTableColumnRestriction" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGVkVG9PbmVOb3RGb3VuZFRlc3QjdGFyZ2V0VGFibGU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RestrictedToOneNotFoundTest#targetTable",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "RestrictedToOneNotFoundTest#targetTable" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uQ29tcG9zaXRpb25UZXN0I2NsZWFudXA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationCompositionTest#cleanup",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest#cleanup" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uQ29tcG9zaXRpb25UZXN0I3RhcmdldEFuZEFzc29jaWF0aW9uUHJlZGljYXRlc0NvbXBvc2VBY3Jvc3NUYWJsZXM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationCompositionTest#targetAndAssociationPredicatesComposeAcrossTables",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest#targetAndAssociationPredicatesComposeAcrossTables" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uQ29tcG9zaXRpb25UZXN0LkRldGFpbHMjZ2V0Tm90ZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationCompositionTest.Details#getNote",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Details#getNote" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uQ29tcG9zaXRpb25UZXN0LkRldGFpbHMjc2V0Tm90ZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationCompositionTest.Details#setNote",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Details#setNote" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uQ29tcG9zaXRpb25UZXN0LkRldGFpbHMjZ2V0U3Fs",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationCompositionTest.Details#getSql",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Details#getSql" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uQ29tcG9zaXRpb25UZXN0LkRldGFpbHMjc2V0U3Fs",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationCompositionTest.Details#setSql",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Details#setSql" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uQ29tcG9zaXRpb25UZXN0LkRldGFpbHMjZ2V0RmlsdGVyZWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationCompositionTest.Details#getFiltered",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Details#getFiltered" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uQ29tcG9zaXRpb25UZXN0LkRldGFpbHMjc2V0RmlsdGVyZWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationCompositionTest.Details#setFiltered",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Details#setFiltered" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uS2V5c1Rlc3QjY2xlYW51cA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationKeysTest#cleanup",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest#cleanup" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uS2V5c1Rlc3QjaGlkZGVuQ29tcG9zaXRlQW5kVW5pcXVlS2V5c0FyZVByZXNlcnZlZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationKeysTest#hiddenCompositeAndUniqueKeysArePreserved",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest#hiddenCompositeAndUniqueKeysArePreserved" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uS2V5c1Rlc3QuS2V5I2VxdWFscw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationKeysTest.Key#equals",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Key#equals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uS2V5c1Rlc3QuS2V5I2hhc2hDb2Rl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationKeysTest.Key#hashCode",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Key#hashCode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0I3ByZXBhcmU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest#prepare",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest#prepare" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0I2NsZWFudXA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest#cleanup",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest#cleanup" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0I3N0cmVhbVJlc3BlY3RzQXNzb2NpYXRpb25GaWx0ZXJz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest#streamRespectsAssociationFilters",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest#streamRespectsAssociationFilters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0I3VudXNlZEZpbHRlckFyZ3VtZW50c0RvTm90QWZmZWN0VmlzaWJpbGl0eQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest#unusedFilterArgumentsDoNotAffectVisibility",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest#unusedFilterArgumentsDoNotAffectVisibility" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0I3Njcm9sbGluZ0RldGVjdHNNdXRhYmxlU2NhbGFyc0FuZFJlc29sdmVkQXJndW1lbnRz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest#scrollingDetectsMutableScalarsAndResolvedArguments",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest#scrollingDetectsMutableScalarsAndResolvedArguments" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0I2xpc3RFeGVjdXRpb25zVXNlQ3VycmVudEZpbHRlclBhcmFtZXRlcnM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest#listExecutionsUseCurrentFilterParameters",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest#listExecutionsUseCurrentFilterParameters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0I3Njcm9sbGluZ0RldGVjdHNNdXRhdGVkTGlzdHNBbmRGaWx0ZXJFbmFibGVtZW50",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest#scrollingDetectsMutatedListsAndFilterEnablement",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest#scrollingDetectsMutatedListsAndFilterEnablement" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0I3Njcm9sbGluZ0RldGVjdHNUYXJnZXRGaWx0ZXJzQW5kU2NhbGFyUGFyYW1ldGVycw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest#scrollingDetectsTargetFiltersAndScalarParameters",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest#scrollingDetectsTargetFiltersAndScalarParameters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0I3NxbA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest#sql",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest#sql" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0I3R5cGU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest#type",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest#type" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0LlVwcGVyQm91bmQjZ2V0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest.UpperBound#get",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.UpperBound#get" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0Lk93bmVyI3RhcmdldA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest.Owner#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.Owner#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0LklkT3duZXIjdGFyZ2V0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest.IdOwner#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.IdOwner#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVBsYW5UZXN0LkNvZGVPd25lciN0YXJnZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityPlanTest.CodeOwner#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.CodeOwner#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVRlc3QjcHJlcGFyZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityTest#prepare",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest#prepare" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVRlc3QjY2xlYW51cA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityTest#cleanup",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest#cleanup" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVRlc3QjdmlzaWJpbGl0eUJlbG9uZ3NUb1RoZUFzc29jaWF0aW9u",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityTest#visibilityBelongsToTheAssociation",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest#visibilityBelongsToTheAssociation" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVRlc3QjZW5hYmxlZEZpbHRlcnNBcmVDb21iaW5lZEFuZFBhcmFtZXRlcnNBcmVOb3RDYWNoZWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityTest#enabledFiltersAreCombinedAndParametersAreNotCached",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest#enabledFiltersAreCombinedAndParametersAreNotCached" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVRlc3QjaWRlbnRpZmllck5hdmlnYXRpb25Ib25vcnNBc3NvY2lhdGlvbkZpbHRlcnM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityTest#identifierNavigationHonorsAssociationFilters",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest#identifierNavigationHonorsAssociationFilters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVRlc3QjaW52ZXJzZU9uZVRvT25lUmVzdHJpY3Rpb25zQXJlSW5kZXBlbmRlbnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityTest#inverseOneToOneRestrictionsAreIndependent",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest#inverseOneToOneRestrictionsAreIndependent" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUb09uZUFzc29jaWF0aW9uVmlzaWJpbGl0eVRlc3QjY29sbGVjdGlvbkJhY2tSZWZlcmVuY2VzU3RpbGxDaGVja1Zpc2liaWxpdHk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ToOneAssociationVisibilityTest#collectionBackReferencesStillCheckVisibility",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest#collectionBackReferencesStillCheckVisibility" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCittYW55VG9PbmUuY29weVJlc3RyaWN0aW9ucwpPbmVUb09uZVNlY29uZFBhc3MjY3JlYXRlTWFueVRvT25l",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of OneToOneSecondPass#createManyToOne: +manyToOne.copyRestrictions",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/boot/model/internal/OneToOneSecondPass.java" ],
+  "symbols" : [ "OneToOneSecondPass#createManyToOne", "+manyToOne.copyRestrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitiaW5kUmVzdHJpY3Rpb25zClRvT25lQmluZGVyI2JpbmRNYW55VG9PbmU",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ToOneBinder#bindManyToOne: +bindRestrictions",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/boot/model/internal/ToOneBinder.java" ],
+  "symbols" : [ "ToOneBinder#bindManyToOne", "+bindRestrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitiaW5kUmVzdHJpY3Rpb25zClRvT25lQmluZGVyI2JpbmRUcnVlT25lVG9PbmU",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ToOneBinder#bindTrueOneToOne: +bindRestrictions",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/boot/model/internal/ToOneBinder.java" ],
+  "symbols" : [ "ToOneBinder#bindTrueOneToOne", "+bindRestrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithZGRBbGwsICt0b09uZS5nZXRBc3NvY2lhdGlvbkZpbHRlck5hbWVzCkVudGl0eUNhY2hlUmVzdHJpY3Rpb25zI2NvbGxlY3RBdHRyaWJ1dGVGaWx0ZXJz",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of EntityCacheRestrictions#collectAttributeFilters: +addAll, +toOne.getAssociationFilterNames",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/engine/internal/EntityCacheRestrictions.java" ],
+  "symbols" : [ "EntityCacheRestrictions#collectAttributeFilters", "+addAll, +toOne.getAssociationFilterNames" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NvY2lhdGlvbi5oYXNXaGVyZVJlc3RyaWN0aW9ucywgK2Fzc29jaWF0aW9uLmhhc0ZpbHRlckZvckxvYWRCeUtleSwgLWFzc29jaWF0aW9uLmdldEVudGl0eU1hcHBpbmdUeXBlLCAtZ2V0RW50aXR5UGVyc2lzdGVyLCAtdGFyZ2V0Lmhhc1doZXJlUmVzdHJpY3Rpb25zIOKApmFuZCAyIG1vcmUKRmlsdGVyZWRBc3NvY2lhdGlvbk1hcHBpbmcjaXNSZXN0cmljdGVk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of FilteredAssociationMapping#isRestricted: +association.hasWhereRestrictions, +association.hasFilterForLoadByKey, -association.getEntityMappingType, -getEntityPersister, -target.hasWhereRestrictions …and 2 more",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/engine/internal/FilteredAssociationMapping.java" ],
+  "symbols" : [ "FilteredAssociationMapping#isRestricted", "+association.hasWhereRestrictions, +association.hasFilterForLoadByKey, -association.getEntityMappingType, -getEntityPersister, -target.hasWhereRestrictions …and 2 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitoYXNXaGVyZVJlc3RyaWN0aW9ucywgLWVudGl0eU1hcHBpbmdUeXBlLmhhc1doZXJlUmVzdHJpY3Rpb25zClRvT25lQXR0cmlidXRlTWFwcGluZyNzZXRGb3JlaWduS2V5RGVzY3JpcHRvcg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ToOneAttributeMapping#setForeignKeyDescriptor: +hasWhereRestrictions, -entityMappingType.hasWhereRestrictions",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#setForeignKeyDescriptor", "+hasWhereRestrictions, -entityMappingType.hasWhereRestrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0FmZmVjdGVkQnlSZXN0cmljdGlvbnMsIC1lbnRpdHlNYXBwaW5nVHlwZS5oYXNXaGVyZVJlc3RyaWN0aW9ucywgLWVudGl0eU1hcHBpbmdUeXBlLmlzQWZmZWN0ZWRCeUVuYWJsZWRGaWx0ZXJzLCAtZW50aXR5TWFwcGluZ1R5cGUuZ2V0RW50aXR5UGVyc2lzdGVyLCByZXR1cm4gdmFsdWUgY2hhbmdlZApUb09uZUF0dHJpYnV0ZU1hcHBpbmcjaXNBZmZlY3RlZEJ5UmVzdHJpY3Rpb25z",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ToOneAttributeMapping#isAffectedByRestrictions: +isAffectedByRestrictions, -entityMappingType.hasWhereRestrictions, -entityMappingType.isAffectedByEnabledFilters, -entityMappingType.getEntityPersister, return value changed",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#isAffectedByRestrictions", "+isAffectedByRestrictions, -entityMappingType.hasWhereRestrictions, -entityMappingType.isAffectedByEnabledFilters, -entityMappingType.getEntityPersister, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithcHBseUFzc29jaWF0aW9uUmVzdHJpY3Rpb25zClRvT25lQXR0cmlidXRlTWFwcGluZyNjcmVhdGVUYWJsZUdyb3VwSm9pbg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ToOneAttributeMapping#createTableGroupJoin: +applyAssociationRestrictions",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#createTableGroupJoin", "+applyAssociationRestrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b09uZS5oYXNGaWx0ZXJGb3JMb2FkQnlLZXksICt0b09uZS5pc0FmZmVjdGVkQnlFbmFibGVkRmlsdGVycywgLXRvT25lLmdldEVudGl0eU1hcHBpbmdUeXBlLCAtZ2V0RW50aXR5UGVyc2lzdGVyLCAtaGFzRmlsdGVyRm9yTG9hZEJ5S2V5IOKApmFuZCAyIG1vcmUKU3FtVXRpbCNpc0Fzc29jaWF0aW9uQWZmZWN0ZWRCeUVuYWJsZWRGaWx0ZXJz",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SqmUtil#isAssociationAffectedByEnabledFilters: +toOne.hasFilterForLoadByKey, +toOne.isAffectedByEnabledFilters, -toOne.getEntityMappingType, -getEntityPersister, -hasFilterForLoadByKey …and 2 more",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/query/sqm/internal/SqmUtil.java" ],
+  "symbols" : [ "SqmUtil#isAssociationAffectedByEnabledFilters", "+toOne.hasFilterForLoadByKey, +toOne.isAffectedByEnabledFilters, -toOne.getEntityMappingType, -getEntityPersister, -hasFilterForLoadByKey …and 2 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b09uZU1hcHBpbmcuaXNBZmZlY3RlZEJ5UmVzdHJpY3Rpb25zLCAtY29uY3JldGVEZXNjcmlwdG9yLmhhc1doZXJlUmVzdHJpY3Rpb25zLCAtY29uY3JldGVEZXNjcmlwdG9yLmlzQWZmZWN0ZWRCeUVuYWJsZWRGaWx0ZXJzLCByZXR1cm4gdmFsdWUgY2hhbmdlZApFbnRpdHlTZWxlY3RGZXRjaEluaXRpYWxpemVyI2lzQWZmZWN0ZWRCeVJlc3RyaWN0aW9ucw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of EntitySelectFetchInitializer#isAffectedByRestrictions: +toOneMapping.isAffectedByRestrictions, -concreteDescriptor.hasWhereRestrictions, -concreteDescriptor.isAffectedByEnabledFilters, return value changed",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/sql/results/graph/entity/internal/EntitySelectFetchInitializer.java" ],
+  "symbols" : [ "EntitySelectFetchInitializer#isAffectedByRestrictions", "+toOneMapping.isAffectedByRestrictions, -concreteDescriptor.hasWhereRestrictions, -concreteDescriptor.isAffectedByEnabledFilters, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0YXJnZXRUYWJsZSwgLXRvTG93ZXJDYXNlClJlc3RyaWN0ZWRUb09uZU5vdEZvdW5kVGVzdCNkaXN0aW5ndWlzaE51bGxFeGNsdWRlZEFuZERhbmdsaW5n",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of RestrictedToOneNotFoundTest#distinguishNullExcludedAndDangling: +targetTable, -toLowerCase",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "RestrictedToOneNotFoundTest#distinguishNullExcludedAndDangling", "+targetTable, -toLowerCase" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzY29wZS5nZXRTZXNzaW9uRmFjdG9yeSwgK2dldE1hcHBpbmdNZXRhbW9kZWwsICtnZXRFbnRpdHlEZXNjcmlwdG9yLCArZ2V0TWFwcGVkVGFibGVEZXRhaWxzLCArZ2V0VGFibGVOYW1lClJlc3RyaWN0ZWRUb09uZVRlc3QjYXNzZXJ0SGlkZGVuVGFyZ2V0RXhpc3Rz",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of RestrictedToOneTest#assertHiddenTargetExists: +scope.getSessionFactory, +getMappingMetamodel, +getEntityDescriptor, +getMappedTableDetails, +getTableName",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedToOneTest.java" ],
+  "symbols" : [ "RestrictedToOneTest#assertHiddenTargetExists", "+scope.getSessionFactory, +getMappingMetamodel, +getEntityDescriptor, +getMappedTableDetails, +getTableName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzY29wZS5nZXRTZXNzaW9uRmFjdG9yeSwgK2dldE1hcHBpbmdNZXRhbW9kZWwsICtnZXRFbnRpdHlEZXNjcmlwdG9yLCArZ2V0TWFwcGVkVGFibGVEZXRhaWxzLCArZ2V0VGFibGVOYW1lClJlc3RyaWN0ZWRUb09uZVRlc3Qjb25seVZpc2libGVSZW1vdmFsRGVsZXRlc0FuT3JwaGFu",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of RestrictedToOneTest#onlyVisibleRemovalDeletesAnOrphan: +scope.getSessionFactory, +getMappingMetamodel, +getEntityDescriptor, +getMappedTableDetails, +getTableName",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedToOneTest.java" ],
+  "symbols" : [ "RestrictedToOneTest#onlyVisibleRemovalDeletesAnOrphan", "+scope.getSessionFactory, +getMappingMetamodel, +getEntityDescriptor, +getMappedTableDetails, +getTableName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb3B5UmVzdHJpY3Rpb25zClRvT25lIzxpbml0Pg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ToOne#<init>: +copyRestrictions",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/mapping/ToOne.java" ],
+  "symbols" : [ "ToOne#<init>", "+copyRestrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRvT25lQXR0cmlidXRlTWFwcGluZyM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ToOneAttributeMapping#<init>: other statements changed",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#<init>", "other statements changed" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGUKVG9PbmVBdHRyaWJ1dGVNYXBwaW5nIzxpbml0Pg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ToOneAttributeMapping#<init>: +create",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#<init>", "+create" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lVmlzaWJpbGl0eUxvYWRlciNhc3NvY2lhdGlvbg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneVisibilityLoader#association",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader#association" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lVmlzaWJpbGl0eUxvYWRlciNpZGVudGlmaWVyUGxhbg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneVisibilityLoader#identifierPlan",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader#identifierPlan" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lVmlzaWJpbGl0eUxvYWRlciN1bmlxdWVLZXlQbGFu",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneVisibilityLoader#uniqueKeyPlan",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader#uniqueKeyPlan" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lVmlzaWJpbGl0eUxvYWRlci5DYWNoZSNpZGVudGlmaWVyUGxhbnM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneVisibilityLoader.Cache#identifierPlans",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader.Cache#identifierPlans" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lVmlzaWJpbGl0eUxvYWRlci5DYWNoZSN1bmlxdWVLZXlQbGFucw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneVisibilityLoader.Cache#uniqueKeyPlans",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader.Cache#uniqueKeyPlans" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lI3NxbFJlc3RyaWN0aW9u",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOne#sqlRestriction",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/mapping/ToOne.java" ],
+  "symbols" : [ "ToOne#sqlRestriction" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lI2ZpbHRlcnM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOne#filters",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/mapping/ToOne.java" ],
+  "symbols" : [ "ToOne#filters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXR0cmlidXRlTWFwcGluZyNyZXN0cmljdGlvbnM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAttributeMapping#restrictions",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#restrictions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXR0cmlidXRlTWFwcGluZyN2aXNpYmlsaXR5TG9hZGVy",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAttributeMapping#visibilityLoader",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java" ],
+  "symbols" : [ "ToOneAttributeMapping#visibilityLoader" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lUmVzdHJpY3Rpb25zI05PTkU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneRestrictions#NONE",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions#NONE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lUmVzdHJpY3Rpb25zI05PX0ZJTFRFUlM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneRestrictions#NO_FILTERS",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions#NO_FILTERS" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lUmVzdHJpY3Rpb25zI3NxbFRlbXBsYXRl",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneRestrictions#sqlTemplate",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions#sqlTemplate" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lUmVzdHJpY3Rpb25zI2ZpbHRlcnM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneRestrictions#filters",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions#filters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lUmVzdHJpY3Rpb25zI3NxbFJlbmRlcmluZw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneRestrictions#sqlRendering",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions#sqlRendering" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkpkYmNWYWx1ZXNTb3VyY2VQcm9jZXNzaW5nU3RhdGVTdGFuZGFyZEltcGwjdG9PbmVWaXNpYmlsaXR5UGxhbkNhY2hl",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field JdbcValuesSourceProcessingStateStandardImpl#toOneVisibilityPlanCache",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/sql/results/jdbc/internal/JdbcValuesSourceProcessingStateStandardImpl.java" ],
+  "symbols" : [ "JdbcValuesSourceProcessingStateStandardImpl#toOneVisibilityPlanCache" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jU3FsSWdub3JlI2Zr",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocSqlIgnore#fk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocSqlIgnore#fk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jU3FsSWdub3JlI2pvaW5lZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocSqlIgnore#joined",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocSqlIgnore#joined" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jU3FsSWdub3JlI3NlbGVjdGVk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocSqlIgnore#selected",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocSqlIgnore#selected" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jU3FsSWdub3JlI3NlbGVjdGVkSm9pbg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocSqlIgnore#selectedJoin",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocSqlIgnore#selectedJoin" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jU3FsRXhjZXB0aW9uI2Zr",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocSqlException#fk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocSqlException#fk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jU3FsRXhjZXB0aW9uI2pvaW5lZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocSqlException#joined",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocSqlException#joined" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jU3FsRXhjZXB0aW9uI3NlbGVjdGVk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocSqlException#selected",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocSqlException#selected" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jU3FsRXhjZXB0aW9uI3NlbGVjdGVkSm9pbg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocSqlException#selectedJoin",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocSqlException#selectedJoin" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jRmlsdGVySWdub3JlI2Zr",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocFilterIgnore#fk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocFilterIgnore#fk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jRmlsdGVySWdub3JlI2pvaW5lZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocFilterIgnore#joined",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocFilterIgnore#joined" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jRmlsdGVySWdub3JlI3NlbGVjdGVk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocFilterIgnore#selected",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocFilterIgnore#selected" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jRmlsdGVySWdub3JlI3NlbGVjdGVkSm9pbg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocFilterIgnore#selectedJoin",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocFilterIgnore#selectedJoin" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jRmlsdGVyRXhjZXB0aW9uI2Zr",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocFilterException#fk",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocFilterException#fk" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jRmlsdGVyRXhjZXB0aW9uI2pvaW5lZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocFilterException#joined",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocFilterException#joined" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jRmlsdGVyRXhjZXB0aW9uI3NlbGVjdGVk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocFilterException#selected",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocFilterException#selected" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lTm90Rm91bmRUZXN0LkFzc29jRmlsdGVyRXhjZXB0aW9uI3NlbGVjdGVkSm9pbg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneNotFoundTest.AssocFilterException#selectedJoin",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneNotFoundTest.AssocFilterException#selectedJoin" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEZrI3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlFk#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlFk#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEZrU2VsZWN0I3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlFkSelect#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlFkSelect#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEZrTGF6eSN0YXJnZXQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlFkLazy#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlFkLazy#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEpvaW4jdGFyZ2V0",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlJoin#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlJoin#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEpvaW5TZWxlY3QjdGFyZ2V0",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlJoinSelect#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlJoinSelect#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEpvaW5MYXp5I3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlJoinLazy#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlJoinLazy#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbE9uZUZrI3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlOneFk#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneFk#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbE9uZUZrU2VsZWN0I3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlOneFkSelect#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneFkSelect#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbE9uZUZrTGF6eSN0YXJnZXQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlOneFkLazy#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneFkLazy#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbE9uZUpvaW4jdGFyZ2V0",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlOneJoin#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneJoin#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbE9uZUpvaW5TZWxlY3QjdGFyZ2V0",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlOneJoinSelect#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneJoinSelect#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbE9uZUpvaW5MYXp5I3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlOneJoinLazy#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlOneJoinLazy#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckZrI3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterFk#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterFk#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckZrU2VsZWN0I3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterFkSelect#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterFkSelect#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckZrTGF6eSN0YXJnZXQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterFkLazy#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterFkLazy#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckpvaW4jdGFyZ2V0",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterJoin#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterJoin#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckpvaW5TZWxlY3QjdGFyZ2V0",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterJoinSelect#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterJoinSelect#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckpvaW5MYXp5I3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterJoinLazy#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterJoinLazy#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlck9uZUZrI3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterOneFk#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneFk#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlck9uZUZrU2VsZWN0I3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterOneFkSelect#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneFkSelect#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlck9uZUZrTGF6eSN0YXJnZXQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterOneFkLazy#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneFkLazy#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlck9uZUpvaW4jdGFyZ2V0",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterOneJoin#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneJoin#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlck9uZUpvaW5TZWxlY3QjdGFyZ2V0",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterOneJoinSelect#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneJoinSelect#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlck9uZUpvaW5MYXp5I3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterOneJoinLazy#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterOneJoinLazy#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEN1c3RvbUZrI3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlCustomFk#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlCustomFk#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbEFsbEZrI3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlAllFk#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlAllFk#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvblNxbERpcnR5RmsjdGFyZ2V0",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationSqlDirtyFk#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationSqlDirtyFk#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckN1c3RvbUZrI3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterCustomFk#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterCustomFk#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckFsbEZrI3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterAllFk#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterAllFk#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFzc29jaWF0aW9uUmVzdHJpY3RlZFRvT25lVGVzdC5Bc3NvY2lhdGlvbkZpbHRlckRpcnR5RmsjdGFyZ2V0",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AssociationRestrictedToOneTest.AssociationFilterDirtyFk#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java" ],
+  "symbols" : [ "AssociationRestrictedToOneTest.AssociationFilterDirtyFk#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlc3RyaWN0ZWRTZWNvbmRhcnlUYWJsZVRlc3QuUHJvamVjdCNpZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RestrictedSecondaryTableTest.Project#id",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java" ],
+  "symbols" : [ "RestrictedSecondaryTableTest.Project#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlc3RyaWN0ZWRTZWNvbmRhcnlUYWJsZVRlc3QuUHJvamVjdCNkb2N1bWVudHM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RestrictedSecondaryTableTest.Project#documents",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java" ],
+  "symbols" : [ "RestrictedSecondaryTableTest.Project#documents" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlc3RyaWN0ZWRTZWNvbmRhcnlUYWJsZVRlc3QuUHJvamVjdCNsaW5rZWREb2N1bWVudHM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RestrictedSecondaryTableTest.Project#linkedDocuments",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java" ],
+  "symbols" : [ "RestrictedSecondaryTableTest.Project#linkedDocuments" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlc3RyaWN0ZWRTZWNvbmRhcnlUYWJsZVRlc3QuRG9jdW1lbnQjaWQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RestrictedSecondaryTableTest.Document#id",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java" ],
+  "symbols" : [ "RestrictedSecondaryTableTest.Document#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlc3RyaWN0ZWRTZWNvbmRhcnlUYWJsZVRlc3QuRG9jdW1lbnQjcHJvamVjdA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RestrictedSecondaryTableTest.Document#project",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java" ],
+  "symbols" : [ "RestrictedSecondaryTableTest.Document#project" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlc3RyaWN0ZWRTZWNvbmRhcnlUYWJsZVRlc3QuRG9jdW1lbnQjYWN0aXZl",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RestrictedSecondaryTableTest.Document#active",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java" ],
+  "symbols" : [ "RestrictedSecondaryTableTest.Document#active" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClJlc3RyaWN0ZWRTZWNvbmRhcnlUYWJsZVRlc3QuRG9jdW1lbnQjcHVibGlzaGVk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field RestrictedSecondaryTableTest.Document#published",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java" ],
+  "symbols" : [ "RestrictedSecondaryTableTest.Document#published" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuQmFzZVRhcmdldCNpZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationCompositionTest.BaseTarget#id",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.BaseTarget#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuQmFzZVRhcmdldCNkZWxldGVk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationCompositionTest.BaseTarget#deleted",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.BaseTarget#deleted" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuQmFzZVRhcmdldCNhY3RpdmU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationCompositionTest.BaseTarget#active",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.BaseTarget#active" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuQmFzZVRhcmdldCNjYXRlZ29yeQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationCompositionTest.BaseTarget#category",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.BaseTarget#category" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuVGFyZ2V0I2FwcHJvdmVk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationCompositionTest.Target#approved",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Target#approved" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuT3duZXIjaWQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationCompositionTest.Owner#id",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Owner#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuT3duZXIjZGV0YWlscw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationCompositionTest.Owner#details",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Owner#details" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuRGV0YWlscyNub3Rl",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationCompositionTest.Details#note",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Details#note" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuRGV0YWlscyNzcWw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationCompositionTest.Details#sql",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Details#sql" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25Db21wb3NpdGlvblRlc3QuRGV0YWlscyNmaWx0ZXJlZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationCompositionTest.Details#filtered",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java" ],
+  "symbols" : [ "ToOneAssociationCompositionTest.Details#filtered" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5LZXkjcGFydA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationKeysTest.Key#part",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Key#part" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5LZXkjbnVtYmVy",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationKeysTest.Key#number",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Key#number" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5UYXJnZXQjaWQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationKeysTest.Target#id",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Target#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5UYXJnZXQjY29kZQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationKeysTest.Target#code",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Target#code" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5UYXJnZXQjcmVnaXN0cmF0aW9u",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationKeysTest.Target#registration",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Target#registration" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5UYXJnZXQjYWN0aXZl",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationKeysTest.Target#active",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Target#active" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5SZWdpc3RyYXRpb24jY29kZQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationKeysTest.Registration#code",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Registration#code" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5Pd25lciNpZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationKeysTest.Owner#id",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Owner#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5Pd25lciNuYW1l",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationKeysTest.Owner#name",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Owner#name" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5Pd25lciNjb21wb3NpdGU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationKeysTest.Owner#composite",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Owner#composite" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5Pd25lciN1bmlxdWU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationKeysTest.Owner#unique",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Owner#unique" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25LZXlzVGVzdC5Pd25lciNlbWJlZGRlZFVuaXF1ZQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationKeysTest.Owner#embeddedUnique",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Owner#embeddedUnique" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3QuVGFyZ2V0I2lk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityPlanTest.Target#id",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.Target#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3QuVGFyZ2V0I2NvZGU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityPlanTest.Target#code",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.Target#code" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3QuVGFyZ2V0I3NlZ21lbnQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityPlanTest.Target#segment",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.Target#segment" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3QuVGFyZ2V0I3N0YW1w",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityPlanTest.Target#stamp",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.Target#stamp" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3QuVXBwZXJCb3VuZCN2YWx1ZQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityPlanTest.UpperBound#value",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.UpperBound#value" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3QuT3duZXIjaWQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityPlanTest.Owner#id",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.Owner#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3QuSWRPd25lciN0YXJnZXQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityPlanTest.IdOwner#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.IdOwner#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5UGxhblRlc3QuQ29kZU93bmVyI3RhcmdldA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityPlanTest.CodeOwner#target",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityPlanTest.CodeOwner#target" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5QZXJzb24jaWQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Person#id",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Person#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5QZXJzb24jYWN0aXZl",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Person#active",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Person#active" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5QZXJzb24jY2F0ZWdvcnk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Person#category",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Person#category" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5QZXJzb24jYWxsb3dlZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Person#allowed",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Person#allowed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5QZXJzb24jc3FsT3duZXJz",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Person#sqlOwners",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Person#sqlOwners" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5QZXJzb24jZmlsdGVyZWRPd25lcnM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Person#filteredOwners",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Person#filteredOwners" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Pd25lciNpZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Owner#id",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Owner#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Pd25lciNuYW1l",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Owner#name",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Owner#name" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Pd25lciNzcWw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Owner#sql",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Owner#sql" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Pd25lciNmaWx0ZXJlZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Owner#filtered",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Owner#filtered" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Pd25lciN1bnJlc3RyaWN0ZWQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Owner#unrestricted",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Owner#unrestricted" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Pd25lciNjb21iaW5lZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Owner#combined",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Owner#combined" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Pd25lciNkZXRhaWxz",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Owner#details",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Owner#details" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Qcm9maWxlI2lk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Profile#id",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Profile#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Qcm9maWxlI3NxbA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Profile#sql",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Profile#sql" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Qcm9maWxlI2ZpbHRlcmVk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Profile#filtered",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Profile#filtered" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Qcm9maWxlI3VucmVzdHJpY3RlZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Profile#unrestricted",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Profile#unrestricted" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Qcm9maWxlI3NxbEpvaW4",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Profile#sqlJoin",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Profile#sqlJoin" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Qcm9maWxlI2ZpbHRlcmVkSm9pbg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Profile#filteredJoin",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Profile#filteredJoin" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5Qcm9maWxlI3VucmVzdHJpY3RlZEpvaW4",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Profile#unrestrictedJoin",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Profile#unrestrictedJoin" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5BY2NvdW50I2lk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Account#id",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Account#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5BY2NvdW50I2FjdGl2ZQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Account#active",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Account#active" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5BY2NvdW50I3Byb2ZpbGU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Account#profile",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Account#profile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClRvT25lQXNzb2NpYXRpb25WaXNpYmlsaXR5VGVzdC5BY2NvdW50I2xpbmtlZFByb2ZpbGU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ToOneAssociationVisibilityTest.Account#linkedProfile",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java" ],
+  "symbols" : [ "ToOneAssociationVisibilityTest.Account#linkedProfile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUb09uZVZpc2liaWxpdHlMb2FkZXIjYXNzb2NpYXRpb24",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ToOneVisibilityLoader#association",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java" ],
+  "symbols" : [ "ToOneVisibilityLoader#association" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUb09uZVJlc3RyaWN0aW9ucyNzcWxUZW1wbGF0ZQ",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ToOneRestrictions#sqlTemplate",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions#sqlTemplate" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUb09uZVJlc3RyaWN0aW9ucyNmaWx0ZXJz",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ToOneRestrictions#filters",
+  "files" : [ "hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java" ],
+  "symbols" : [ "ToOneRestrictions#filters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUb09uZUFzc29jaWF0aW9uS2V5c1Rlc3QuS2V5I3BhcnQ",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ToOneAssociationKeysTest.Key#part",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Key#part" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUb09uZUFzc29jaWF0aW9uS2V5c1Rlc3QuS2V5I251bWJlcg",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ToOneAssociationKeysTest.Key#number",
+  "files" : [ "hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java" ],
+  "symbols" : [ "ToOneAssociationKeysTest.Key#number" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

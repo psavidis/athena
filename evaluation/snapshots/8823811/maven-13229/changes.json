@@ -1,0 +1,81 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTCkxvb2t1cEludm9rZXJUZXN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class LookupInvokerTest",
+  "files" : [ "impl/maven-cli/src/test/java/org/apache/maven/cling/invoker/LookupInvokerTest.java" ],
+  "symbols" : [ "LookupInvokerTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYXZlbkNsaSNjYWxjdWxhdGVEZWdyZWVPZkNvbmN1cnJlbmN5CmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of MavenCli#calculateDegreeOfConcurrency: branch added",
+  "files" : [ "compat/maven-embedder/src/main/java/org/apache/maven/cli/MavenCli.java" ],
+  "symbols" : [ "MavenCli#calculateDegreeOfConcurrency", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMb29rdXBJbnZva2VyI2NhbGN1bGF0ZURlZ3JlZU9mQ29uY3VycmVuY3kKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of LookupInvoker#calculateDegreeOfConcurrency: branch added",
+  "files" : [ "impl/maven-cli/src/main/java/org/apache/maven/cling/invoker/LookupInvoker.java" ],
+  "symbols" : [ "LookupInvoker#calculateDegreeOfConcurrency", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApMb29rdXBJbnZva2VyVGVzdCN0ZXN0Q2FsY3VsYXRlRGVncmVlT2ZDb25jdXJyZW5jeQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add LookupInvokerTest#testCalculateDegreeOfConcurrency",
+  "files" : [ "impl/maven-cli/src/test/java/org/apache/maven/cling/invoker/LookupInvokerTest.java" ],
+  "symbols" : [ "LookupInvokerTest#testCalculateDegreeOfConcurrency" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGkuY2FsY3VsYXRlRGVncmVlT2ZDb25jdXJyZW5jeSwgK2Fzc2VydEVxdWFscywgK21heApNYXZlbkNsaVRlc3QjdGVzdENhbGN1bGF0ZURlZ3JlZU9mQ29uY3VycmVuY3k",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MavenCliTest#testCalculateDegreeOfConcurrency: +cli.calculateDegreeOfConcurrency, +assertEquals, +max",
+  "files" : [ "compat/maven-embedder/src/test/java/org/apache/maven/cli/MavenCliTest.java" ],
+  "symbols" : [ "MavenCliTest#testCalculateDegreeOfConcurrency", "+cli.calculateDegreeOfConcurrency, +assertEquals, +max" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbW1vbnNDbGlNYXZlbk9wdGlvbnMuQ0xJTWFuYWdlciNwcmVwYXJlT3B0aW9ucwphcmd1bWVudHMgb2YgZGVzYyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CommonsCliMavenOptions.CLIManager#prepareOptions: arguments of desc changed",
+  "files" : [ "impl/maven-cli/src/main/java/org/apache/maven/cling/invoker/mvn/CommonsCliMavenOptions.java" ],
+  "symbols" : [ "CommonsCliMavenOptions.CLIManager#prepareOptions", "arguments of desc changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNMSU1hbmFnZXIjPGluaXQ-CmFyZ3VtZW50cyBvZiBkZXNjIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CLIManager#<init>: arguments of desc changed",
+  "files" : [ "compat/maven-embedder/src/main/java/org/apache/maven/cli/CLIManager.java" ],
+  "symbols" : [ "CLIManager#<init>", "arguments of desc changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkxvb2t1cEludm9rZXJUZXN0I2ludm9rZXI",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field LookupInvokerTest#invoker",
+  "files" : [ "impl/maven-cli/src/test/java/org/apache/maven/cling/invoker/LookupInvokerTest.java" ],
+  "symbols" : [ "LookupInvokerTest#invoker" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

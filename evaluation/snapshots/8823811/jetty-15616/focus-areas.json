@@ -1,0 +1,13 @@
+[ {
+  "entity" : "ServerFCGIConnection",
+  "description" : "Change control flow of ServerFCGIConnection#onFillable: branch removed, loop removed"
+}, {
+  "entity" : "ServerFCGIConnection",
+  "description" : "Change control flow of ServerFCGIConnection#parseAndFill: branch removed, loop removed"
+}, {
+  "entity" : "ServerFCGIConnection",
+  "description" : "Extract ServerFCGIConnection#onFillableLocked"
+}, {
+  "entity" : "ServerFCGIConnection",
+  "description" : "Extract ServerFCGIConnection#parseAndFillLocked"
+} ]

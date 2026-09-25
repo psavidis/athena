@@ -1,0 +1,27 @@
+{
+  "core" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " public QueryParameterMap(String queryString) {\n         if (queryString == null || queryString.isEmpty())   return;\n         for (String param : queryString.split(\"&\")) {\n-            String[] kv = param.split(\"=\");\n+            if (param.isEmpty()) {\n+                continue;\n+            }\n+            String[] kv = param.split(\"=\", 2);\n             String key = URLDecoder.decode(kv[0], StandardCharsets.UTF_8);\n-            String value = URLDecoder.decode(kv[1], StandardCharsets.UTF_8);\n+            String value = kv.length > 1 ? URLDecoder.decode(kv[1], StandardCharsets.UTF_8) : \"\";\n             List<String> values = store.computeIfAbsent(key, k -> new ArrayList<>());\n             values.add(value);\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/hudson/util/QueryParameterMap.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in QueryParameterMapTest",
+      "conceptDescription" : "5 changes in test code of QueryParameterMapTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+class QueryParameterMapTest {\n \n+    @Test\n+    void basic() {\n+        QueryParameterMap m = new QueryParameterMap(\"a=1&b=x%20y&a=2\");\n+        assertEquals(\"1\", m.get(\"a\"));\n+        assertEquals(List.of(\"1\", \"2\"), m.getAll(\"a\"));\n+        assertEquals(\"x y\", m.get(\"b\"));\n+        assertNull(m.get(\"c\"));\n+        assertEquals(List.of(), m.getAll(\"c\"));\n+    }\n+\n+    @Test\n+    void parameterWithoutValue() {\n+        QueryParameterMap m = new QueryParameterMap(\"flag&rev=&a=1\");\n+        assertEquals(\"\", m.get(\"flag\"));\n+        assertEquals(\"\", m.get(\"rev\"));\n+        assertEquals(\"1\", m.get(\"a\"));\n+    }\n+\n+    @Test\n+    void valueContainingEqualsSign() {\n+        QueryParameterMap m = new QueryParameterMap(\"token=abc==&expr=a=b\");\n+        assertEquals(\"abc==\", m.get(\"token\"));\n+        assertEquals(\"a=b\", m.get(\"expr\"));\n+    }\n+\n+    @Test\n+    void emptyParameters() {\n+        QueryParameterMap m = new QueryParameterMap(\"a=1&&b=2\");\n+        assertEquals(\"1\", m.get(\"a\"));\n+        assertEquals(\"2\", m.get(\"b\"));\n+        assertEquals(List.of(), m.getAll(\"\"));\n+    }\n+}", "-\n+@Test\n+    void basic() {\n+        QueryParameterMap m = new QueryParameterMap(\"a=1&b=x%20y&a=2\");\n+        assertEquals(\"1\", m.get(\"a\"));\n+        assertEquals(List.of(\"1\", \"2\"), m.getAll(\"a\"));\n+        assertEquals(\"x y\", m.get(\"b\"));\n+        assertNull(m.get(\"c\"));\n+        assertEquals(List.of(), m.getAll(\"c\"));\n+    }", "-\n+@Test\n+    void parameterWithoutValue() {\n+        QueryParameterMap m = new QueryParameterMap(\"flag&rev=&a=1\");\n+        assertEquals(\"\", m.get(\"flag\"));\n+        assertEquals(\"\", m.get(\"rev\"));\n+        assertEquals(\"1\", m.get(\"a\"));\n+    }", "-\n+@Test\n+    void valueContainingEqualsSign() {\n+        QueryParameterMap m = new QueryParameterMap(\"token=abc==&expr=a=b\");\n+        assertEquals(\"abc==\", m.get(\"token\"));\n+        assertEquals(\"a=b\", m.get(\"expr\"));\n+    }", "-\n+@Test\n+    void emptyParameters() {\n+        QueryParameterMap m = new QueryParameterMap(\"a=1&&b=2\");\n+        assertEquals(\"1\", m.get(\"a\"));\n+        assertEquals(\"2\", m.get(\"b\"));\n+        assertEquals(List.of(), m.getAll(\"\"));\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/test/java/hudson/util/QueryParameterMapTest.java" ],
+      "groupedMoveCount" : 5
+    } ]
+  }
+}

@@ -1,0 +1,461 @@
+[ {
+  "changeKey" : "UkVNT1ZFX0NMQVNTCk11dGF0ZXNHbG9iYWxDb25maWd1cmF0aW9u",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class MutatesGlobalConfiguration",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/testkit/MutatesGlobalConfiguration.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/MutatesGlobalConfiguration.java" ],
+  "symbols" : [ "MutatesGlobalConfiguration" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTCk11dGF0ZXNHbG9iYWxDb25maWd1cmF0aW9uLkFzc3VtcHRpb25NdXRhdGluZ0V4dGVuc2lvbg",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class MutatesGlobalConfiguration.AssumptionMutatingExtension",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/testkit/MutatesGlobalConfiguration.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/MutatesGlobalConfiguration.java" ],
+  "symbols" : [ "MutatesGlobalConfiguration.AssumptionMutatingExtension" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClJlc2V0R2xvYmFsQ29uZmlndXJhdGlvbkV4dGVuc2lvbg",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ResetGlobalConfigurationExtension",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/ResetGlobalConfigurationExtension.java" ],
+  "symbols" : [ "ResetGlobalConfigurationExtension" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01PRElGSUVSUwpEYXRlQXNzZXJ0QmFzZVRlc3Qjc2V0VXAKcHVibGljIC0-IHByb3RlY3RlZA",
+  "kind" : "CHANGE_MODIFIERS",
+  "category" : "STRUCTURAL",
+  "description" : "Change modifiers of DateAssertBaseTest#setUp: public -> protected",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/DateAssertBaseTest.java" ],
+  "symbols" : [ "DateAssertBaseTest#setUp", "public -> protected" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01PRElGSUVSUwpEYXRlQXNzZXJ0QmFzZVRlc3QjdGVhckRvd24KcHVibGljIC0-IHBhY2thZ2UtcHJpdmF0ZQ",
+  "kind" : "CHANGE_MODIFIERS",
+  "category" : "STRUCTURAL",
+  "description" : "Change modifiers of DateAssertBaseTest#tearDown: public -> package-private",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/DateAssertBaseTest.java" ],
+  "symbols" : [ "DateAssertBaseTest#tearDown", "public -> package-private" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApCYXNlQXNzZXJ0aW9uc1Rlc3QjPGluc3RhbmNlLWluaXQ-CkJhc2VBc3NlcnRpb25zVGVzdCNzZXRVcFN0YWNrVHJhY2VGaWx0ZXJpbmc",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename BaseAssertionsTest#<instance-init> -> setUpStackTraceFiltering",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/BaseAssertionsTest.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/api/BaseAssertionsTest.java" ],
+  "symbols" : [ "BaseAssertionsTest#<instance-init>", "BaseAssertionsTest#setUpStackTraceFiltering" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19yZWdpc3RlckRhdGVGb3JtYXRfVGVzdCNhZnRlckVhY2hUZXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove EntryPointAssertions_registerDateFormat_Test#afterEachTest",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_registerDateFormat_Test.java" ],
+  "symbols" : [ "EntryPointAssertions_registerDateFormat_Test#afterEachTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRBbGxvd0NvbXBhcmluZ1ByaXZhdGVGaWVsZHNfVGVzdCNhZnRlckVhY2hUZXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove EntryPointAssertions_setAllowComparingPrivateFields_Test#afterEachTest",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setAllowComparingPrivateFields_Test.java" ],
+  "symbols" : [ "EntryPointAssertions_setAllowComparingPrivateFields_Test#afterEachTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRBbGxvd0V4dHJhY3RpbmdQcml2YXRlRmllbGRzX1Rlc3QjYWZ0ZXJFYWNoVGVzdA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove EntryPointAssertions_setAllowExtractingPrivateFields_Test#afterEachTest",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setAllowExtractingPrivateFields_Test.java" ],
+  "symbols" : [ "EntryPointAssertions_setAllowExtractingPrivateFields_Test#afterEachTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRFeHRyYWN0QmFyZU5hbWVQcm9wZXJ0eU1ldGhvZHNfVGVzdCNhZnRlckVhY2hUZXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove EntryPointAssertions_setExtractBareNamePropertyMethods_Test#afterEachTest",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setExtractBareNamePropertyMethods_Test.java" ],
+  "symbols" : [ "EntryPointAssertions_setExtractBareNamePropertyMethods_Test#afterEachTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRNYXhFbGVtZW50c0ZvclByaW50aW5nX1Rlc3QjYWZ0ZXJFYWNoVGVzdA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove EntryPointAssertions_setMaxElementsForPrinting_Test#afterEachTest",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxElementsForPrinting_Test.java" ],
+  "symbols" : [ "EntryPointAssertions_setMaxElementsForPrinting_Test#afterEachTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRNYXhMZW5ndGhGb3JTaW5nbGVMaW5lRGVzY3JpcHRpb25fVGVzdCNhZnRlckVhY2hUZXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove EntryPointAssertions_setMaxLengthForSingleLineDescription_Test#afterEachTest",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxLengthForSingleLineDescription_Test.java" ],
+  "symbols" : [ "EntryPointAssertions_setMaxLengthForSingleLineDescription_Test#afterEachTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRNYXhTdGFja1RyYWNlRWxlbWVudHNEaXNwbGF5ZWRfVGVzdCNhZnRlckVhY2hUZXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove EntryPointAssertions_setMaxStackTraceElementsDisplayed_Test#afterEachTest",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxStackTraceElementsDisplayed_Test.java" ],
+  "symbols" : [ "EntryPointAssertions_setMaxStackTraceElementsDisplayed_Test#afterEachTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRQcmludEFzc2VydGlvbnNEZXNjcmlwdGlvbl9UZXN0I2FmdGVyRWFjaFRlc3Q",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove EntryPointAssertions_setPrintAssertionsDescription_Test#afterEachTest",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setPrintAssertionsDescription_Test.java" ],
+  "symbols" : [ "EntryPointAssertions_setPrintAssertionsDescription_Test#afterEachTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRSZW1vdmVBc3NlcnRKUmVsYXRlZEVsZW1lbnRzRnJvbVN0YWNrVHJhY2VfVGVzdCNhZnRlckVhY2hUZXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove EntryPointAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test#afterEachTest",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test.java" ],
+  "symbols" : [ "EntryPointAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test#afterEachTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc191c2VEZWZhdWx0UmVwcmVzZW50YXRpb25fVGVzdCNhZnRlckVhY2hUZXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove EntryPointAssertions_useDefaultRepresentation_Test#afterEachTest",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useDefaultRepresentation_Test.java" ],
+  "symbols" : [ "EntryPointAssertions_useDefaultRepresentation_Test#afterEachTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc191c2VSZXByZXNlbnRhdGlvbl9UZXN0I2FmdGVyRWFjaFRlc3Q",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove EntryPointAssertions_useRepresentation_Test#afterEachTest",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useRepresentation_Test.java" ],
+  "symbols" : [ "EntryPointAssertions_useRepresentation_Test#afterEachTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50X0Fzc3VtcHRpb25zX3NldFByZWZlcnJlZEFzc3VtcHRpb25FeGNlcHRpb25fVGVzdCNhZnRlckVhY2hUZXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove EntryPoint_Assumptions_setPreferredAssumptionException_Test#afterEachTest",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPoint_Assumptions_setPreferredAssumptionException_Test.java" ],
+  "symbols" : [ "EntryPoint_Assumptions_setPreferredAssumptionException_Test#afterEachTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApEYXRlQXNzZXJ0X2lzRXF1YWxUb193aXRoX3N0cmluZ19iYXNlZF9kYXRlX3JlcHJlc2VudGF0aW9uX1Rlc3QjdGVhckRvd24",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove DateAssert_isEqualTo_with_string_based_date_representation_Test#tearDown",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/date/DateAssert_isEqualTo_with_string_based_date_representation_Test.java" ],
+  "symbols" : [ "DateAssert_isEqualTo_with_string_based_date_representation_Test#tearDown" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNdXRhdGVzR2xvYmFsQ29uZmlndXJhdGlvbi5Bc3N1bXB0aW9uTXV0YXRpbmdFeHRlbnNpb24jYWZ0ZXJFYWNo",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove MutatesGlobalConfiguration.AssumptionMutatingExtension#afterEach",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/testkit/MutatesGlobalConfiguration.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/MutatesGlobalConfiguration.java" ],
+  "symbols" : [ "MutatesGlobalConfiguration.AssumptionMutatingExtension#afterEach" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNdXRhdGVzR2xvYmFsQ29uZmlndXJhdGlvbi5Bc3N1bXB0aW9uTXV0YXRpbmdFeHRlbnNpb24jYWZ0ZXJBbGw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove MutatesGlobalConfiguration.AssumptionMutatingExtension#afterAll",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/testkit/MutatesGlobalConfiguration.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/MutatesGlobalConfiguration.java" ],
+  "symbols" : [ "MutatesGlobalConfiguration.AssumptionMutatingExtension#afterAll" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNdXRhdGVzR2xvYmFsQ29uZmlndXJhdGlvbi5Bc3N1bXB0aW9uTXV0YXRpbmdFeHRlbnNpb24jcmVzZXRBbGw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove MutatesGlobalConfiguration.AssumptionMutatingExtension#resetAll",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/testkit/MutatesGlobalConfiguration.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/MutatesGlobalConfiguration.java" ],
+  "symbols" : [ "MutatesGlobalConfiguration.AssumptionMutatingExtension#resetAll" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBc3NlcnRpb25zX3VzZVJlcHJlc2VudGF0aW9uX1Rlc3QjYWZ0ZXJUZXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Assertions_useRepresentation_Test#afterTest",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/api/Assertions_useRepresentation_Test.java" ],
+  "symbols" : [ "Assertions_useRepresentation_Test#afterTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApDb25maWd1cmF0aW9uX2FwcGx5X1Rlc3QjYWZ0ZXJFYWNo",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Configuration_apply_Test#afterEach",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/configuration/Configuration_apply_Test.java" ],
+  "symbols" : [ "Configuration_apply_Test#afterEach" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApDb25maWd1cmF0aW9uX2Rlc2NyaWJlX1Rlc3QjYWZ0ZXJFYWNo",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Configuration_describe_Test#afterEach",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/configuration/Configuration_describe_Test.java" ],
+  "symbols" : [ "Configuration_describe_Test#afterEach" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBc3NlcnRpb25NYXRjaGVyX21hdGNoZXNfVGVzdCN0ZWFyRG93bg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AssertionMatcher_matches_Test#tearDown",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/matcher/AssertionMatcher_matches_Test.java" ],
+  "symbols" : [ "AssertionMatcher_matches_Test#tearDown" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTdGFuZGFyZFJlcHJlc2VudGF0aW9uX3Rocm93YWJsZV9mb3JtYXRfVGVzdCNiZWZvcmVUZXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove StandardRepresentation_throwable_format_Test#beforeTest",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/presentation/StandardRepresentation_throwable_format_Test.java" ],
+  "symbols" : [ "StandardRepresentation_throwable_format_Test#beforeTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTdGFuZGFyZFJlcHJlc2VudGF0aW9uX3Rocm93YWJsZV9mb3JtYXRfVGVzdCNhZnRlclRlc3Q",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove StandardRepresentation_throwable_format_Test#afterTest",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/presentation/StandardRepresentation_throwable_format_Test.java" ],
+  "symbols" : [ "StandardRepresentation_throwable_format_Test#afterTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNdXRhdGVzR2xvYmFsQ29uZmlndXJhdGlvbi5Bc3N1bXB0aW9uTXV0YXRpbmdFeHRlbnNpb24jYmVmb3JlRWFjaA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove MutatesGlobalConfiguration.AssumptionMutatingExtension#beforeEach",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/MutatesGlobalConfiguration.java" ],
+  "symbols" : [ "MutatesGlobalConfiguration.AssumptionMutatingExtension#beforeEach" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZW1vdmVfYXNzZXJ0Sl9zdGFja3RyYWNlX2VsZW1lbnRzX1Rlc3QjYWZ0ZXJUZXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Remove_assertJ_stacktrace_elements_Test#afterTest",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/example/test/Remove_assertJ_stacktrace_elements_Test.java" ],
+  "symbols" : [ "Remove_assertJ_stacktrace_elements_Test#afterTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc0Jhc2VUZXN0I2FmdGVyRWFjaA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add EntryPointAssertionsBaseTest#afterEach",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertionsBaseTest.java" ],
+  "symbols" : [ "EntryPointAssertionsBaseTest#afterEach" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc0Jhc2VUZXN0I3Jlc2V0R2xvYmFsQ29uZmlndXJhdGlvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add EntryPointAssertionsBaseTest#resetGlobalConfiguration",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertionsBaseTest.java" ],
+  "symbols" : [ "EntryPointAssertionsBaseTest#resetGlobalConfiguration" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFbnRyeVBvaW50X0Fzc3VtcHRpb25zX3NldFByZWZlcnJlZEFzc3VtcHRpb25FeGNlcHRpb25fVGVzdCNhZnRlckVhY2g",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add EntryPoint_Assumptions_setPreferredAssumptionException_Test#afterEach",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPoint_Assumptions_setPreferredAssumptionException_Test.java" ],
+  "symbols" : [ "EntryPoint_Assumptions_setPreferredAssumptionException_Test#afterEach" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEYXRlQXNzZXJ0X2lzRXF1YWxUb193aXRoX3N0cmluZ19iYXNlZF9kYXRlX3JlcHJlc2VudGF0aW9uX1Rlc3QjcmVzdG9yZV9kZWZhdWx0X3RpbWVfem9uZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DateAssert_isEqualTo_with_string_based_date_representation_Test#restore_default_time_zone",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/date/DateAssert_isEqualTo_with_string_based_date_representation_Test.java" ],
+  "symbols" : [ "DateAssert_isEqualTo_with_string_based_date_representation_Test#restore_default_time_zone" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXNldEdsb2JhbENvbmZpZ3VyYXRpb25FeHRlbnNpb24jYWZ0ZXJFYWNo",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ResetGlobalConfigurationExtension#afterEach",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/ResetGlobalConfigurationExtension.java" ],
+  "symbols" : [ "ResetGlobalConfigurationExtension#afterEach" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb25maWd1cmF0aW9uLCArY29uZmlndXJhdGlvbi5zZXREZWZhdWx0cywgK2NvbmZpZ3VyYXRpb24uYXBwbHksIC11c2VEZWZhdWx0RGF0ZUZvcm1hdHNPbmx5CkRhdGVBc3NlcnRCYXNlVGVzdCN0ZWFyRG93bg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of DateAssertBaseTest#tearDown: +configuration, +configuration.setDefaults, +configuration.apply, -useDefaultDateFormatsOnly",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/DateAssertBaseTest.java" ],
+  "symbols" : [ "DateAssertBaseTest#tearDown", "+configuration, +configuration.setDefaults, +configuration.apply, -useDefaultDateFormatsOnly" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnN0YW5jZSwgK2lzUmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlLCArc2V0UmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlCldpdGhBc3NlcnRpb25zX2RlbGVnYXRpb25fVGVzdCN3aXRoQXNzZXJ0aW9uc19zZXRSZW1vdmVBc3NlcnRKUmVsYXRlZEVsZW1lbnRzRnJvbVN0YWNrVHJhY2VfVGVzdA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of WithAssertions_delegation_Test#withAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test: +instance, +isRemoveAssertJRelatedElementsFromStackTrace, +setRemoveAssertJRelatedElementsFromStackTrace",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/WithAssertions_delegation_Test.java" ],
+  "symbols" : [ "WithAssertions_delegation_Test#withAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test", "+instance, +isRemoveAssertJRelatedElementsFromStackTrace, +setRemoveAssertJRelatedElementsFromStackTrace" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1pbnN0YW5jZSwgLWlzUmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlCkFzc2VydGlvbk1hdGNoZXJfbWF0Y2hlc19UZXN0I3NldFVw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AssertionMatcher_matches_Test#setUp: -instance, -isRemoveAssertJRelatedElementsFromStackTrace",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/matcher/AssertionMatcher_matches_Test.java" ],
+  "symbols" : [ "AssertionMatcher_matches_Test#setUp", "-instance, -isRemoveAssertJRelatedElementsFromStackTrace" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1pbnN0YW5jZSwgLWlzUmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlClJlbW92ZV9hc3NlcnRKX3N0YWNrdHJhY2VfZWxlbWVudHNfVGVzdCNiZWZvcmVUZXN0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Remove_assertJ_stacktrace_elements_Test#beforeTest: -instance, -isRemoveAssertJRelatedElementsFromStackTrace",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/example/test/Remove_assertJ_stacktrace_elements_Test.java" ],
+  "symbols" : [ "Remove_assertJ_stacktrace_elements_Test#beforeTest", "-instance, -isRemoveAssertJRelatedElementsFromStackTrace" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01PRElGSUVSUwpFbnRyeVBvaW50X0Fzc3VtcHRpb25zX3NldFByZWZlcnJlZEFzc3VtcHRpb25FeGNlcHRpb25fVGVzdCN3aXRoQXNzdW1wdGlvbnMKcHJvdGVjdGVkIC0-IHByaXZhdGU",
+  "kind" : "CHANGE_MODIFIERS",
+  "category" : "STRUCTURAL",
+  "description" : "Change modifiers of EntryPoint_Assumptions_setPreferredAssumptionException_Test#withAssumptions: protected -> private",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPoint_Assumptions_setPreferredAssumptionException_Test.java" ],
+  "symbols" : [ "EntryPoint_Assumptions_setPreferredAssumptionException_Test#withAssumptions", "protected -> private" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkVudHJ5UG9pbnRBc3NlcnRpb25zX3VzZURlZmF1bHRSZXByZXNlbnRhdGlvbl9UZXN0I0RFRkFVTFRfQ1VTVE9NX1JFUFJFU0VOVEFUSU9O",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field EntryPointAssertions_useDefaultRepresentation_Test#DEFAULT_CUSTOM_REPRESENTATION",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useDefaultRepresentation_Test.java" ],
+  "symbols" : [ "EntryPointAssertions_useDefaultRepresentation_Test#DEFAULT_CUSTOM_REPRESENTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkVudHJ5UG9pbnRBc3NlcnRpb25zX3VzZVJlcHJlc2VudGF0aW9uX1Rlc3QjREVGQVVMVF9DVVNUT01fUkVQUkVTRU5UQVRJT04",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field EntryPointAssertions_useRepresentation_Test#DEFAULT_CUSTOM_REPRESENTATION",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useRepresentation_Test.java" ],
+  "symbols" : [ "EntryPointAssertions_useRepresentation_Test#DEFAULT_CUSTOM_REPRESENTATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkVudHJ5UG9pbnRfQXNzdW1wdGlvbnNfc2V0UHJlZmVycmVkQXNzdW1wdGlvbkV4Y2VwdGlvbl9UZXN0I0RFRkFVTFRfUFJFRkVSUkVEX0FTU1VNUFRJT05fRVhDRVBUSU9O",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field EntryPoint_Assumptions_setPreferredAssumptionException_Test#DEFAULT_PREFERRED_ASSUMPTION_EXCEPTION",
+  "files" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPoint_Assumptions_setPreferredAssumptionException_Test.java" ],
+  "symbols" : [ "EntryPoint_Assumptions_setPreferredAssumptionException_Test#DEFAULT_PREFERRED_ASSUMPTION_EXCEPTION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkFzc2VydGlvbk1hdGNoZXJfbWF0Y2hlc19UZXN0I3JlbW92ZUFzc2VydEpSZWxhdGVkRWxlbWVudHNGcm9tU3RhY2tUcmFjZQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field AssertionMatcher_matches_Test#removeAssertJRelatedElementsFromStackTrace",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/matcher/AssertionMatcher_matches_Test.java" ],
+  "symbols" : [ "AssertionMatcher_matches_Test#removeAssertJRelatedElementsFromStackTrace" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClN0YW5kYXJkUmVwcmVzZW50YXRpb25fdGhyb3dhYmxlX2Zvcm1hdF9UZXN0I2luaXRpYWxNYXhTdGFja1RyYWNlRWxlbWVudHNEaXNwbGF5ZWRWYWx1ZQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field StandardRepresentation_throwable_format_Test#initialMaxStackTraceElementsDisplayedValue",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/presentation/StandardRepresentation_throwable_format_Test.java" ],
+  "symbols" : [ "StandardRepresentation_throwable_format_Test#initialMaxStackTraceElementsDisplayedValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClJlbW92ZV9hc3NlcnRKX3N0YWNrdHJhY2VfZWxlbWVudHNfVGVzdCNpbml0aWFsUmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlVmFsdWU",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Remove_assertJ_stacktrace_elements_Test#initialRemoveAssertJRelatedElementsFromStackTraceValue",
+  "files" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/example/test/Remove_assertJ_stacktrace_elements_Test.java" ],
+  "symbols" : [ "Remove_assertJ_stacktrace_elements_Test#initialRemoveAssertJRelatedElementsFromStackTraceValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

@@ -1,0 +1,13 @@
+[ {
+  "description" : "Remove RequestCacheConfigurer#getFaviconRequestMatcher",
+  "entity" : "RequestCacheConfigurer"
+}, {
+  "description" : "Add RequestCacheConfigurer#getIgnoredBackgroundRequestMatcher",
+  "entity" : "RequestCacheConfigurer"
+}, {
+  "description" : "Add field RequestCacheConfigurer#IGNORED_BACKGROUND_REQUEST_PATTERNS",
+  "entity" : "RequestCacheConfigurer"
+}, {
+  "description" : "Add field CookieServerRequestCache#IGNORED_BACKGROUND_REQUEST_PATTERNS",
+  "entity" : "CookieServerRequestCache"
+} ]

@@ -1,0 +1,85 @@
+{
+  "territories" : [ {
+    "moduleName" : "jetty-fcgi-server",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 5 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKSHR0cFN0cmVhbU92ZXJGQ0dJI29uSGVhZGVycw", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNvbkZpbGxhYmxlCmJyYW5jaCBhZGRlZA", "UkVNT1ZFX1NZTUJPTApIdHRwU3RyZWFtT3ZlckZDR0kjZXhlY3V0ZQ", "TU9ESUZZX01FVEhPRF9CT0RZClNlcnZlckZDR0lDb25uZWN0aW9uLlNlcnZlckxpc3RlbmVyI29uSGVhZGVycwpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ", "QUREX0ZJRUxEClNlcnZlckZDR0lDb25uZWN0aW9uI29uUmVxdWVzdA" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-server",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-fcgi-client",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-alpn-java-server",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-slf4j-impl",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-unixdomain-server",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-http2-server",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "jetty-fcgi-server",
+    "to" : "jetty-server"
+  }, {
+    "from" : "jetty-fcgi-server",
+    "to" : "jetty-fcgi-client"
+  }, {
+    "from" : "jetty-fcgi-server",
+    "to" : "jetty-alpn-java-server"
+  }, {
+    "from" : "jetty-fcgi-server",
+    "to" : "jetty-slf4j-impl"
+  }, {
+    "from" : "jetty-fcgi-server",
+    "to" : "jetty-unixdomain-server"
+  }, {
+    "from" : "jetty-fcgi-server",
+    "to" : "jetty-http2-server"
+  } ]
+}

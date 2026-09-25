@@ -1,0 +1,26 @@
+{
+  "changedFileCount" : 14,
+  "representedFileCount" : 11,
+  "files" : [ {
+    "path" : "documentation/modules/ROOT/partials/release-notes/release-notes-6.2.0-M1.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 7,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "junit-jupiter-api/src/main/java/org/junit/jupiter/api/Assertions.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 18,
+    "hunkCount" : 6,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "junit-jupiter-api/src/main/java/org/junit/jupiter/api/Timeout.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 3,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  } ]
+}

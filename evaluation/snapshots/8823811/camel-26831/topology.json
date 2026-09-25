@@ -1,0 +1,49 @@
+{
+  "territories" : [ {
+    "moduleName" : "camel-rest",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZXN0UHJvZHVjZXIjcHJlcGFyZUV4Y2hhbmdlCmJyYW5jaCBhZGRlZA", "QUREX1NZTUJPTApSZXN0UHJvZHVjZXIjZmlyc3RQbGFjZWhvbGRlcg", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaHJvd3MsICthc3NlcnRUaGF0LCArZS5nZXRNZXNzYWdlLCArY29udGFpbnMKUmVzdFByb2R1Y2VyQWR2YW5jZWRUZXN0I3Rlc3RQcmVwYXJlRXhjaGFuZ2VXaXRoVW5yZXNvbHZlZFBsYWNlaG9sZGVy" ],
+    "testChangeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaHJvd3MsICthc3NlcnRUaGF0LCArZS5nZXRNZXNzYWdlLCArY29udGFpbnMKUmVzdFByb2R1Y2VyQWR2YW5jZWRUZXN0I3Rlc3RQcmVwYXJlRXhjaGFuZ2VXaXRoVW5yZXNvbHZlZFBsYWNlaG9sZGVy" ]
+  }, {
+    "moduleName" : "camel-support",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-core-engine",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "camel-core-languages",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "camel-rest",
+    "to" : "camel-support"
+  }, {
+    "from" : "camel-rest",
+    "to" : "camel-core-engine"
+  }, {
+    "from" : "camel-rest",
+    "to" : "camel-core-languages"
+  } ]
+}

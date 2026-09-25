@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of BoundedReader#skip: branch added",
+  "entity" : "BoundedReader"
+}, {
+  "description" : "Add BoundedReaderTest#testSkipDoesNotExceedBound",
+  "entity" : "BoundedReaderTest"
+}, {
+  "description" : "Add BoundedReaderTest#testSkipDoesNotOverflowCharsRead",
+  "entity" : "BoundedReaderTest"
+}, {
+  "description" : "Add BoundedReaderTest#testSkipUsesActualSkippedCount",
+  "entity" : "BoundedReaderTest"
+} ]

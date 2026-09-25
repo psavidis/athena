@@ -1,0 +1,27 @@
+{
+  "vertx-core" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " public DnsClientImpl(VertxInternal vertx, DnsClientOptions options) {\n \n     InetSocketAddress dnsServer = new InetSocketAddress(options.getHost(), options.getPort());\n     if (dnsServer.isUnresolved()) {\n       throw new IllegalArgumentException(\"Cannot resolve the host to a valid ip address\");\n     }\n \n     DnsAddressResolverProvider provider = DnsAddressResolverProvider.create(vertx, vertx.nameResolver().options()\n-      .setServers(Collections.singletonList(dnsServer.getHostString() + \":\" + dnsServer.getPort()))\n+      .setServers(Collections.singletonList(dnsServer.getAddress().getHostAddress() + \":\" + dnsServer.getPort()))\n       .setOptResourceEnabled(false));\n \n     this.options = new DnsClientOptions(options);\n     this.provider = provider;\n     this.vertx = vertx;\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/dns/impl/DnsClientImpl.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in DNSTest",
+      "conceptDescription" : "1 change in test code of DNSTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Test\n+  public void testLocalhostNameServer() {\n+    vertx.createDnsClient(new DnsClientOptions().setPort(53).setHost(\"localhost\"));\n+  }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "vertx-core/src/test/java/io/vertx/tests/dns/DNSTest.java" ],
+      "groupedMoveCount" : 1
+    } ]
+  }
+}

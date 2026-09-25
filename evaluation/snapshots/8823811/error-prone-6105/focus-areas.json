@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of SuppressionInfo#withExtendedSuppressions: branch removed, loop removed",
+  "entity" : "SuppressionInfo"
+}, {
+  "description" : "Change control flow of SuggestedFixes#addSuppressWarnings: branch removed",
+  "entity" : "SuggestedFixes"
+}, {
+  "description" : "Change control flow of SuggestedFixes#supportedTreeTypes: condition changed",
+  "entity" : "SuggestedFixes"
+}, {
+  "description" : "Change control flow of UTemplater#visitIdentifier: condition changed",
+  "entity" : "UTemplater"
+} ]

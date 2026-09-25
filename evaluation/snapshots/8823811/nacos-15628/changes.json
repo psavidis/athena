@@ -1,0 +1,161 @@
+[ {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsI2NvbnZlcnRUb1dyaXRlUmVxdWVzdA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ProtoMessageUtil#convertToWriteRequest",
+  "files" : [ "consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java" ],
+  "symbols" : [ "ProtoMessageUtil#convertToWriteRequest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsI2NvbnZlcnRUb1JlYWRSZXF1ZXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ProtoMessageUtil#convertToReadRequest",
+  "files" : [ "consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java" ],
+  "symbols" : [ "ProtoMessageUtil#convertToReadRequest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UHJvdG8",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ProtoMessageUtilTest#testProto",
+  "files" : [ "consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java" ],
+  "symbols" : [ "ProtoMessageUtilTest#testProto" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSZWFkUmVxdWVzdA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ProtoMessageUtilTest#testParseReadRequest",
+  "files" : [ "consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java" ],
+  "symbols" : [ "ProtoMessageUtilTest#testParseReadRequest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXcml0ZVJlcXVlc3Q",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ProtoMessageUtilTest#testParseWriteRequest",
+  "files" : [ "consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java" ],
+  "symbols" : [ "ProtoMessageUtilTest#testParseWriteRequest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvUmVhZFJlcXVlc3Q",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ProtoMessageUtilTest#testConvertToReadRequest",
+  "files" : [ "consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java" ],
+  "symbols" : [ "ProtoMessageUtilTest#testConvertToReadRequest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvV3JpdGVSZXF1ZXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ProtoMessageUtilTest#testConvertToWriteRequest",
+  "files" : [ "consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java" ],
+  "symbols" : [ "ProtoMessageUtilTest#testConvertToWriteRequest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSYXdSZWFkUmVxdWVzdFRocm93c0V4Y2VwdGlvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ProtoMessageUtilTest#testParseRawReadRequestThrowsException",
+  "files" : [ "consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java" ],
+  "symbols" : [ "ProtoMessageUtilTest#testParseRawReadRequestThrowsException" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSYXdXcml0ZVJlcXVlc3RUaHJvd3NFeGNlcHRpb24",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ProtoMessageUtilTest#testParseRawWriteRequestThrowsException",
+  "files" : [ "consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java" ],
+  "symbols" : [ "ProtoMessageUtilTest#testParseRawWriteRequestThrowsException" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkZWJ1ZywgLXBhcnNlRnJvbSwgLWNvbnZlcnRUb1JlYWRSZXF1ZXN0LCAtY29udmVydFRvV3JpdGVSZXF1ZXN0LCByZXR1cm4gc3RhdGVtZW50cyAzIOKGkiAyClByb3RvTWVzc2FnZVV0aWwjcGFyc2U",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ProtoMessageUtil#parse: +debug, -parseFrom, -convertToReadRequest, -convertToWriteRequest, return statements 3 → 2",
+  "files" : [ "consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java" ],
+  "symbols" : [ "ProtoMessageUtil#parse", "+debug, -parseFrom, -convertToReadRequest, -convertToWriteRequest, return statements 3 → 2" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmYWlsLCArYXNzZXJ0VHJ1ZQpQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXaXRoQ29ycnVwdFJlcXVlc3RUeXBlRmllbGQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ProtoMessageUtilTest#testParseWithCorruptRequestTypeField: +fail, +assertTrue",
+  "files" : [ "consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java" ],
+  "symbols" : [ "ProtoMessageUtilTest#testParseWithCorruptRequestTypeField", "+fail, +assertTrue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithY3R1YWwuZ2V0Q2xhc3MsIC10ZXN0Q2FzZS5nZXRDbGFzcywgYXNzZXJ0RXF1YWxzKOKApik6IHRlc3RDYXNlIC0-IGFjdHVhbApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSZWFkUmVxdWVzdFdpdGhSZXF1ZXN0VHlwZUZpZWxk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ProtoMessageUtilTest#testParseReadRequestWithRequestTypeField: +actual.getClass, -testCase.getClass, assertEquals(…): testCase -> actual",
+  "files" : [ "consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java" ],
+  "symbols" : [ "ProtoMessageUtilTest#testParseReadRequestWithRequestTypeField", "+actual.getClass, -testCase.getClass, assertEquals(…): testCase -> actual" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithY3R1YWwuZ2V0Q2xhc3MsIC10ZXN0Q2FzZS5nZXRDbGFzcywgYXNzZXJ0RXF1YWxzKOKApik6IHRlc3RDYXNlIC0-IGFjdHVhbApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXcml0ZVJlcXVlc3RXaXRoUmVxdWVzdFR5cGVGaWVsZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ProtoMessageUtilTest#testParseWriteRequestWithRequestTypeField: +actual.getClass, -testCase.getClass, assertEquals(…): testCase -> actual",
+  "files" : [ "consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java" ],
+  "symbols" : [ "ProtoMessageUtilTest#testParseWriteRequestWithRequestTypeField", "+actual.getClass, -testCase.getClass, assertEquals(…): testCase -> actual" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClByb3RvTWVzc2FnZVV0aWwjTE9HR0VS",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ProtoMessageUtil#LOGGER",
+  "files" : [ "consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java" ],
+  "symbols" : [ "ProtoMessageUtil#LOGGER" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKbmFjb3MtYWkjb3JnLm1vY2tpdG86bW9ja2l0by1pbmxpbmU",
+  "kind" : "REMOVE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Remove dependency org.mockito:mockito-inline (nacos-ai)",
+  "files" : [ "ai/pom.xml" ],
+  "symbols" : [ "nacos-ai#org.mockito:mockito-inline" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKbmFjb3MtYWxsI29yZy5tb2NraXRvOm1vY2tpdG8taW5saW5l",
+  "kind" : "REMOVE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Remove dependency org.mockito:mockito-inline (nacos-all)",
+  "files" : [ "pom.xml" ],
+  "symbols" : [ "nacos-all#org.mockito:mockito-inline" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

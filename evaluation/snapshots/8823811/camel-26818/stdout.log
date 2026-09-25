@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/apache/camel.git",
+  "base" : "66daeda29d6d619057854be2192687d6ed6ed339",
+  "head" : "492d1bd8227e90da357b78bf152d9251836e305b",
+  "changeCount" : 16,
+  "moduleCount" : 2,
+  "checkoutAndAnalysisSeconds" : 49.94
+}

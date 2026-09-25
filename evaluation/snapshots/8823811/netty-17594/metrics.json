@@ -1,0 +1,46 @@
+{
+  "diff": {
+    "files": 4,
+    "java_files": 4,
+    "non_java_files": 0,
+    "substantive_java_files": 4,
+    "copyright_only_java_files": 0,
+    "production_java_files": 3,
+    "java_hunks": 7,
+    "java_lines_changed": 219
+  },
+  "athena": {
+    "changes": 24,
+    "changes_by_kind": {
+      "ADD_CLASS": 2,
+      "CHANGE_METHOD_SIGNATURE": 1,
+      "CHANGE_CONTROL_FLOW": 3,
+      "ADD_SYMBOL": 13,
+      "ADD_FIELD": 4,
+      "ADD_CONSTRUCTOR_PARAMETER": 1
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 21,
+      "BEHAVIORAL": 3
+    },
+    "semantic_entries": 23,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 20,
+      "RESPONSIBILITY": 3
+    },
+    "inferred_entries": 3,
+    "module_territories": 10,
+    "module_dependencies": 9,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 3,
+    "substantive_java_file_coverage": 0.75,
+    "production_java_files_represented": 2,
+    "production_java_file_coverage": 0.67,
+    "unrepresented_production_java_files": [
+      "codec-http2/src/main/java/io/netty/handler/codec/http2/Http2Connection.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

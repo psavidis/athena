@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/spring-projects/spring-boot.git",
+  "base" : "d28fc5b5ffe3bb26d83960bb4b0fbd03a0b894f0",
+  "head" : "3c6f7a54d30e82c9a06b635bb79d9a4624fa6633",
+  "changeCount" : 5,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 15.86
+}

@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of CollectionExpressionBuilder#rangeExpression: branch added",
+  "entity" : "CollectionExpressionBuilder"
+}, {
+  "description" : "Change control flow of MiscExpressionBuilder#collateExpression: branch added",
+  "entity" : "MiscExpressionBuilder"
+}, {
+  "description" : "Change control flow of MiscExpressionBuilder#kindOfTypeExpression: branch removed",
+  "entity" : "MiscExpressionBuilder"
+}, {
+  "description" : "Change control flow of MiscExpressionBuilder#randomExpression: branch added",
+  "entity" : "MiscExpressionBuilder"
+} ]

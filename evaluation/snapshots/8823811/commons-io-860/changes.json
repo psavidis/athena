@@ -1,0 +1,41 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCb3VuZGVkUmVhZGVyI3NraXAKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of BoundedReader#skip: branch added",
+  "files" : [ "src/main/java/org/apache/commons/io/input/BoundedReader.java" ],
+  "symbols" : [ "BoundedReader#skip", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcERvZXNOb3RFeGNlZWRCb3VuZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BoundedReaderTest#testSkipDoesNotExceedBound",
+  "files" : [ "src/test/java/org/apache/commons/io/input/BoundedReaderTest.java" ],
+  "symbols" : [ "BoundedReaderTest#testSkipDoesNotExceedBound" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcERvZXNOb3RPdmVyZmxvd0NoYXJzUmVhZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BoundedReaderTest#testSkipDoesNotOverflowCharsRead",
+  "files" : [ "src/test/java/org/apache/commons/io/input/BoundedReaderTest.java" ],
+  "symbols" : [ "BoundedReaderTest#testSkipDoesNotOverflowCharsRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCb3VuZGVkUmVhZGVyVGVzdCN0ZXN0U2tpcFVzZXNBY3R1YWxTa2lwcGVkQ291bnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BoundedReaderTest#testSkipUsesActualSkippedCount",
+  "files" : [ "src/test/java/org/apache/commons/io/input/BoundedReaderTest.java" ],
+  "symbols" : [ "BoundedReaderTest#testSkipUsesActualSkippedCount" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

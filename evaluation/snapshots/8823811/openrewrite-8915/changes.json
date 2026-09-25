@@ -1,0 +1,471 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNkb05vdERvd25ncmFkZQpjb25kaXRpb24gY2hhbmdlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of UpdateGradleWrapperTest#doNotDowngrade: condition changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#doNotDowngrade", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNwcmVmZXJFeGlzdGluZ0Rpc3RyaWJ1dGlvblNvdXJjZVdoZW5TZXJ2aWNlc0dyYWRsZU9yZ1VuYXZhaWxhYmxlCmNvbmRpdGlvbiBjaGFuZ2Vk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of UpdateGradleWrapperTest#preferExistingDistributionSourceWhenServicesGradleOrgUnavailable: condition changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#preferExistingDistributionSourceWhenServicesGradleOrgUnavailable", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNzZXJ2aWNlc0dyYWRsZU9yZ1VuYXZhaWxhYmxlRm9yQ3VzdG9tRGlzdHJpYnV0aW9uVXJpCmNvbmRpdGlvbiBjaGFuZ2Vk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of UpdateGradleWrapperTest#servicesGradleOrgUnavailableForCustomDistributionUri: condition changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#servicesGradleOrgUnavailableForCustomDistributionUri", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNkb05vdERvd25ncmFkZVdpdGhvdXRCdWlsZFRvb2xNYXJrZXIKY29uZGl0aW9uIGNoYW5nZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of UpdateGradleWrapperTest#doNotDowngradeWithoutBuildToolMarker: condition changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#doNotDowngradeWithoutBuildToolMarker", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVOQU1FX1NZTUJPTApHcmFkbGVXcmFwcGVyI21pZ3JhdGVUb0Rvd25sb2Fkc1VybApHcmFkbGVXcmFwcGVyI3RvRG93bmxvYWRzSG9zdA",
+  "kind" : "RENAME_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Rename GradleWrapper#migrateToDownloadsUrl -> toDownloadsHost",
+  "files" : [ "rewrite-gradle/src/main/java/org/openrewrite/gradle/util/GradleWrapper.java" ],
+  "symbols" : [ "GradleWrapper#migrateToDownloadsUrl", "GradleWrapper#toDownloadsHost" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApHcmFkbGVXcmFwcGVyI3dpdGhIb3N0T2Y",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add GradleWrapper#withHostOf",
+  "files" : [ "rewrite-gradle/src/main/java/org/openrewrite/gradle/util/GradleWrapper.java" ],
+  "symbols" : [ "GradleWrapper#withHostOf" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNwcmVzZXJ2ZURvd25sb2Fkc0dyYWRsZU9yZ0hvc3Q",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add UpdateGradleWrapperTest#preserveDownloadsGradleOrgHost",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#preserveDownloadsGradleOrgHost" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApVcGRhdGVHcmFkbGVXcmFwcGVyVGVzdCNwcmVzZXJ2ZURvd25sb2Fkc0dyYWRsZU9yZ0hvc3RGb3JWZXJzaW9uU2VsZWN0b3I",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add UpdateGradleWrapperTest#preserveDownloadsGradleOrgHostForVersionSelector",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#preserveDownloadsGradleOrgHostForVersionSelector" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydGlvbnNUZXN0I2N1c3RvbUluaXRTY3JpcHQKYXJndW1lbnRzIG9mIGNyZWF0ZSBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AssertionsTest#customInitScript: arguments of create changed",
+  "files" : [ "rewrite-gradle-tooling-model/model/src/test/java/org/openrewrite/gradle/toolingapi/AssertionsTest.java" ],
+  "symbols" : [ "AssertionsTest#customInitScript", "arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydGlvbnNUZXN0I211bHRpbW9kdWxlU3VicHJvamVjdEdldHNJdHNPd25HcmFkbGVQcm9qZWN0T25HcmFkbGU5CmFyZ3VtZW50cyBvZiByZXdyaXRlUnVuIGNoYW5nZWQsIGFyZ3VtZW50cyBvZiBjcmVhdGUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AssertionsTest#multimoduleSubprojectGetsItsOwnGradleProjectOnGradle9: arguments of rewriteRun changed, arguments of create changed",
+  "files" : [ "rewrite-gradle-tooling-model/model/src/test/java/org/openrewrite/gradle/toolingapi/AssertionsTest.java" ],
+  "symbols" : [ "AssertionsTest#multimoduleSubprojectGetsItsOwnGradleProjectOnGradle9", "arguments of rewriteRun changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFzc2VydGlvbnNUZXN0I211bHRpbW9kdWxlUmVzb2x2ZXNBZ2FpbnN0QnVpbGRSb290CmFyZ3VtZW50cyBvZiByZXdyaXRlUnVuIGNoYW5nZWQsIGFyZ3VtZW50cyBvZiBjcmVhdGUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AssertionsTest#multimoduleResolvesAgainstBuildRoot: arguments of rewriteRun changed, arguments of create changed",
+  "files" : [ "rewrite-gradle-tooling-model/model/src/test/java/org/openrewrite/gradle/toolingapi/AssertionsTest.java" ],
+  "symbols" : [ "AssertionsTest#multimoduleResolvesAgainstBuildRoot", "arguments of rewriteRun changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXIjZ2V0U2Nhbm5lcgpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapper#getScanner: return value changed",
+  "files" : [ "rewrite-gradle/src/main/java/org/openrewrite/gradle/UpdateGradleWrapper.java" ],
+  "symbols" : [ "UpdateGradleWrapper#getScanner", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3aXRoSG9zdE9mLCAtZGlzdHJpYnV0aW9uVHlwZS5nZXRGaWxlU3VmZml4LCByZXR1cm4gdmFsdWUgY2hhbmdlZCDDlzIKR3JhZGxlV3JhcHBlciNkZXRlcm1pbmVHcmFkbGVWZXJzaW9u",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of GradleWrapper#determineGradleVersion: +withHostOf, -distributionType.getFileSuffix, return value changed ×2",
+  "files" : [ "rewrite-gradle/src/main/java/org/openrewrite/gradle/util/GradleWrapper.java" ],
+  "symbols" : [ "GradleWrapper#determineGradleVersion", "+withHostOf, -distributionType.getFileSuffix, return value changed ×2" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0Rvd25sb2Fkc0hvc3QsICtyZXBsYWNlLCAtbWlncmF0ZVRvRG93bmxvYWRzVXJsLCAtZG93bmxvYWRVcmwucmVwbGFjZQpHcmFkbGVXcmFwcGVyI2xpc3RBbGxQdWJsaWNWZXJzaW9ucw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of GradleWrapper#listAllPublicVersions: +toDownloadsHost, +replace, -migrateToDownloadsUrl, -downloadUrl.replace",
+  "files" : [ "rewrite-gradle/src/main/java/org/openrewrite/gradle/util/GradleWrapper.java" ],
+  "symbols" : [ "GradleWrapper#listAllPublicVersions", "+toDownloadsHost, +replace, -migrateToDownloadsUrl, -downloadUrl.replace" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXIKYXJndW1lbnRzIG9mIHJld3JpdGVSdW4gY2hhbmdlZCwgYXJndW1lbnRzIG9mIGFmdGVyUmVjaXBlIGNoYW5nZWQsIGFyZ3VtZW50cyBvZiBjcmVhdGUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateWrapper: arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateWrapper", "arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I2FkZEdyYWRsZVdyYXBwZXIKYXJndW1lbnRzIG9mIHJld3JpdGVSdW4gY2hhbmdlZCwgYXJndW1lbnRzIG9mIGFmdGVyUmVjaXBlIGNoYW5nZWQsIGFyZ3VtZW50cyBvZiBjcmVhdGUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#addGradleWrapper: arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#addGradleWrapper", "arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVZlcnNpb25BbmREaXN0cmlidXRpb24KYXJndW1lbnRzIG9mIHJld3JpdGVSdW4gY2hhbmdlZCwgYXJndW1lbnRzIG9mIGFmdGVyUmVjaXBlIGNoYW5nZWQsIGFyZ3VtZW50cyBvZiBjcmVhdGUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateVersionAndDistribution: arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateVersionAndDistribution", "arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZUNoZWNrc3VtQWxyZWFkeVNldAphcmd1bWVudHMgb2YgcmV3cml0ZVJ1biBjaGFuZ2VkLCBhcmd1bWVudHMgb2YgYWZ0ZXJSZWNpcGUgY2hhbmdlZCwgYXJndW1lbnRzIG9mIGNyZWF0ZSBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateChecksumAlreadySet: arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateChecksumAlreadySet", "arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZU11bHRpcGxlV3JhcHBlcnMKYXJndW1lbnRzIG9mIHByb3BlcnRpZXMgY2hhbmdlZCDDlzI",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateMultipleWrappers: arguments of properties changed ×2",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateMultipleWrappers", "arguments of properties changed ×2" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I29sZGVyVGhhbjZfNgphcmd1bWVudHMgb2YgcmV3cml0ZVJ1biBjaGFuZ2VkLCBhcmd1bWVudHMgb2YgYWZ0ZXJSZWNpcGUgY2hhbmdlZCwgYXJndW1lbnRzIG9mIGNyZWF0ZSBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#olderThan6_6: arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#olderThan6_6", "arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I2FsbG93VXBkYXRpbmdEaXN0cmlidXRpb25UeXBlV2hlblNhbWVWZXJzaW9uCmFyZ3VtZW50cyBvZiByZXdyaXRlUnVuIGNoYW5nZWQsIGFyZ3VtZW50cyBvZiBhZnRlclJlY2lwZSBjaGFuZ2VkLCBhcmd1bWVudHMgb2YgY3JlYXRlIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#allowUpdatingDistributionTypeWhenSameVersion: arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#allowUpdatingDistributionTypeWhenSameVersion", "arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3ByZXNlcnZlRXhpc3RpbmdEaXN0cmlidXRpb25UeXBlCmFyZ3VtZW50cyBvZiByZXdyaXRlUnVuIGNoYW5nZWQsIGFyZ3VtZW50cyBvZiBhZnRlclJlY2lwZSBjaGFuZ2VkLCBhcmd1bWVudHMgb2YgY3JlYXRlIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#preserveExistingDistributionType: arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#preserveExistingDistributionType", "arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I2RlZmF1bHRzVG9MYXRlc3RSZWxlYXNlCmFyZ3VtZW50cyBvZiByZXdyaXRlUnVuIGNoYW5nZWQsIGFyZ3VtZW50cyBvZiBhZnRlclJlY2lwZSBjaGFuZ2VkLCBhcmd1bWVudHMgb2YgY3JlYXRlIGNoYW5nZWQsIGFyZ3VtZW50cyBvZiBhZnRlciBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#defaultsToLatestRelease: arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed, arguments of after changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#defaultsToLatestRelease", "arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed, arguments of after changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3NraXBXb3JrSWZVcGRhdGVkRWFybGllcgphcmd1bWVudHMgb2YgcmV3cml0ZVJ1biBjaGFuZ2VkLCBhcmd1bWVudHMgb2YgYWZ0ZXJSZWNpcGUgY2hhbmdlZCwgYXJndW1lbnRzIG9mIGNyZWF0ZSBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#skipWorkIfUpdatedEarlier: arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#skipWorkIfUpdatedEarlier", "arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I2dldEV4YWN0VmVyc2lvbldpdGhQYXR0ZXJuRnJvbUdyYWRsZVNlcnZpY2VzCmFyZ3VtZW50cyBvZiBwcm9wZXJ0aWVzIGNoYW5nZWQsIGFyZ3VtZW50cyBvZiBhZnRlciBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#getExactVersionWithPatternFromGradleServices: arguments of properties changed, arguments of after changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#getExactVersionWithPatternFromGradleServices", "arguments of properties changed, arguments of after changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I21pZ3JhdGVUb0N1c3RvbURpc3RyaWJ1dGlvblVyaQphcmd1bWVudHMgb2YgcHJvcGVydGllcyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#migrateToCustomDistributionUri: arguments of properties changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#migrateToCustomDistributionUri", "arguments of properties changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3JlbW92ZVNoYUR1cmluZ01pZ3JhdGlvblRvQ3VzdG9tRGlzdHJpYnV0aW9uVXJpCmFyZ3VtZW50cyBvZiBwcm9wZXJ0aWVzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#removeShaDuringMigrationToCustomDistributionUri: arguments of properties changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#removeShaDuringMigrationToCustomDistributionUri", "arguments of properties changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJJblN1YkRpcmVjdG9yeQphcmd1bWVudHMgb2YgcmV3cml0ZVJ1biBjaGFuZ2VkLCBhcmd1bWVudHMgb2YgYWZ0ZXJSZWNpcGUgY2hhbmdlZCwgYXJndW1lbnRzIG9mIGNyZWF0ZSBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperInSubDirectory: arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateWrapperInSubDirectory", "arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VzZXNFeGVjdXRhYmxlSmFyRnJvbThfMTQKYXJndW1lbnRzIG9mIHJld3JpdGVSdW4gY2hhbmdlZCwgYXJndW1lbnRzIG9mIGFmdGVyUmVjaXBlIGNoYW5nZWQsIGFyZ3VtZW50cyBvZiBjcmVhdGUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#usesExecutableJarFrom8_14: arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#usesExecutableJarFrom8_14", "arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uQW5kRGlzdHJpYnV0aW9uVHlwZUluR3Jvb3Z5RFNMCmFyZ3VtZW50cyBvZiBwcm9wZXJ0aWVzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionAndDistributionTypeInGroovyDSL: arguments of properties changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateWrapperVersionAndDistributionTypeInGroovyDSL", "arguments of properties changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uQW5kRGlzdHJpYnV0aW9uVHlwZUluS290bGluRFNMCmFyZ3VtZW50cyBvZiBwcm9wZXJ0aWVzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionAndDistributionTypeInKotlinDSL: arguments of properties changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateWrapperVersionAndDistributionTypeInKotlinDSL", "arguments of properties changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJEaXN0cmlidXRpb25VUkxJbkdyb292eURzbAphcmd1bWVudHMgb2YgcmV3cml0ZVJ1biBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperDistributionURLInGroovyDsl: arguments of rewriteRun changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateWrapperDistributionURLInGroovyDsl", "arguments of rewriteRun changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJEaXN0cmlidXRpb25VUkxJbktvdGxpbkRzbAphcmd1bWVudHMgb2YgcmV3cml0ZVJ1biBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperDistributionURLInKotlinDsl: arguments of rewriteRun changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateWrapperDistributionURLInKotlinDsl", "arguments of rewriteRun changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uVmlhVGFza3NQcm9wZXJ0eUFjY2Vzc0luR3Jvb3Z5RFNMCmFyZ3VtZW50cyBvZiBwcm9wZXJ0aWVzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionViaTasksPropertyAccessInGroovyDSL: arguments of properties changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateWrapperVersionViaTasksPropertyAccessInGroovyDSL", "arguments of properties changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uVmlhVGFza3NQcm9wZXJ0eUFjY2Vzc0luS290bGluRFNMCmFyZ3VtZW50cyBvZiBwcm9wZXJ0aWVzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionViaTasksPropertyAccessInKotlinDSL: arguments of properties changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateWrapperVersionViaTasksPropertyAccessInKotlinDSL", "arguments of properties changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uVmlhVGFza3NXaXRoVHlwZUluR3Jvb3Z5RFNMCmFyZ3VtZW50cyBvZiBwcm9wZXJ0aWVzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionViaTasksWithTypeInGroovyDSL: arguments of properties changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateWrapperVersionViaTasksWithTypeInGroovyDSL", "arguments of properties changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJWZXJzaW9uVmlhVGFza3NXaXRoVHlwZUluS290bGluRFNMCmFyZ3VtZW50cyBvZiBwcm9wZXJ0aWVzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperVersionViaTasksWithTypeInKotlinDSL: arguments of properties changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateWrapperVersionViaTasksWithTypeInKotlinDSL", "arguments of properties changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJXaXRob3V0QnVpbGRUb29sTWFya2VyCmFyZ3VtZW50cyBvZiByZXdyaXRlUnVuIGNoYW5nZWQsIGFyZ3VtZW50cyBvZiBzcGVjLmFmdGVyUmVjaXBlIGNoYW5nZWQsIGFyZ3VtZW50cyBvZiBjcmVhdGUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperWithoutBuildToolMarker: arguments of rewriteRun changed, arguments of spec.afterRecipe changed, arguments of create changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateWrapperWithoutBuildToolMarker", "arguments of rewriteRun changed, arguments of spec.afterRecipe changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJXaXRoTW9kZXJuZUNsaUJ1aWxkVG9vbE1hcmtlcgphcmd1bWVudHMgb2YgcmV3cml0ZVJ1biBjaGFuZ2VkLCBhcmd1bWVudHMgb2YgYWZ0ZXJSZWNpcGUgY2hhbmdlZCwgYXJndW1lbnRzIG9mIGNyZWF0ZSBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperWithModerneCliBuildToolMarker: arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateWrapperWithModerneCliBuildToolMarker", "arguments of rewriteRun changed, arguments of afterRecipe changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClVwZGF0ZUdyYWRsZVdyYXBwZXJUZXN0I3VwZGF0ZVdyYXBwZXJJblN1YkRpcmVjdG9yeVdpdGhvdXRCdWlsZFRvb2xNYXJrZXIKYXJndW1lbnRzIG9mIHJld3JpdGVSdW4gY2hhbmdlZCwgYXJndW1lbnRzIG9mIHNwZWMuYWZ0ZXJSZWNpcGUgY2hhbmdlZCwgYXJndW1lbnRzIG9mIGNyZWF0ZSBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of UpdateGradleWrapperTest#updateWrapperInSubDirectoryWithoutBuildToolMarker: arguments of rewriteRun changed, arguments of spec.afterRecipe changed, arguments of create changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/UpdateGradleWrapperTest.java" ],
+  "symbols" : [ "UpdateGradleWrapperTest#updateWrapperInSubDirectoryWithoutBuildToolMarker", "arguments of rewriteRun changed, arguments of spec.afterRecipe changed, arguments of create changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkRpc3RyaWJ1dGlvbkluZm9zVGVzdCNmZXRjaAphcmd1bWVudHMgb2YgaXNFcXVhbFRvIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of DistributionInfosTest#fetch: arguments of isEqualTo changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/internal/DistributionInfosTest.java" ],
+  "symbols" : [ "DistributionInfosTest#fetch", "arguments of isEqualTo changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkZpbmRHcmFkbGVXcmFwcGVyVGVzdCNmaW5kR3JhZGxlV3JhcHBlclZlcnNpb24KYXJndW1lbnRzIG9mIHByb3BlcnRpZXMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of FindGradleWrapperTest#findGradleWrapperVersion: arguments of properties changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/search/FindGradleWrapperTest.java" ],
+  "symbols" : [ "FindGradleWrapperTest#findGradleWrapperVersion", "arguments of properties changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkZpbmRHcmFkbGVXcmFwcGVyVGVzdCNmaW5kR3JhZGxlV3JhcHBlckRpc3RyaWJ1dGlvbgphcmd1bWVudHMgb2YgcHJvcGVydGllcyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of FindGradleWrapperTest#findGradleWrapperDistribution: arguments of properties changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/search/FindGradleWrapperTest.java" ],
+  "symbols" : [ "FindGradleWrapperTest#findGradleWrapperDistribution", "arguments of properties changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkZpbmRHcmFkbGVXcmFwcGVyVGVzdCNmaW5kR3JhZGxlV3JhcHBlclZlcnNpb25BbmREaXN0cmlidXRpb24KYXJndW1lbnRzIG9mIHByb3BlcnRpZXMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of FindGradleWrapperTest#findGradleWrapperVersionAndDistribution: arguments of properties changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/search/FindGradleWrapperTest.java" ],
+  "symbols" : [ "FindGradleWrapperTest#findGradleWrapperVersionAndDistribution", "arguments of properties changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkZpbmRHcmFkbGVXcmFwcGVyVGVzdCNmaW5kV3JhcHBlckRlZmF1bHRzCmFyZ3VtZW50cyBvZiBwcm9wZXJ0aWVzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of FindGradleWrapperTest#findWrapperDefaults: arguments of properties changed",
+  "files" : [ "rewrite-gradle/src/test/java/org/openrewrite/gradle/search/FindGradleWrapperTest.java" ],
+  "symbols" : [ "FindGradleWrapperTest#findWrapperDefaults", "arguments of properties changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkdyYWRsZVdyYXBwZXIjR1JBRExFX0RJU1RSSUJVVElPTlNfVVJM",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field GradleWrapper#GRADLE_DISTRIBUTIONS_URL",
+  "files" : [ "rewrite-gradle/src/main/java/org/openrewrite/gradle/util/GradleWrapper.java" ],
+  "symbols" : [ "GradleWrapper#GRADLE_DISTRIBUTIONS_URL" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFClVwZGF0ZUdyYWRsZVdyYXBwZXIjZGVzY3JpcHRpb24KdmFsdWUgY2hhbmdlZA",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of UpdateGradleWrapper#description: value changed",
+  "files" : [ "rewrite-gradle/src/main/java/org/openrewrite/gradle/UpdateGradleWrapper.java" ],
+  "symbols" : [ "UpdateGradleWrapper#description", "value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

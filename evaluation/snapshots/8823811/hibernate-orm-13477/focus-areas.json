@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of EntityCacheRestrictions#hasSqlRestrictions: condition changed",
+  "entity" : "EntityCacheRestrictions"
+}, {
+  "description" : "Change control flow of LoaderSelectBuilder#generateSelect: branch removed, loop removed",
+  "entity" : "LoaderSelectBuilder"
+}, {
+  "description" : "Change control flow of ManagedMappingType#areAttributesAffectedByEnabledFilters: condition changed",
+  "entity" : "ManagedMappingType"
+}, {
+  "description" : "Change control flow of ToOneAttributeMapping#resolveCircularFetch: branch added",
+  "entity" : "ToOneAttributeMapping"
+} ]

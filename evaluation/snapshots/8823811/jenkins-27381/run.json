@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/jenkinsci/jenkins.git",
+  "base" : "003f706d2f3ea233d56e30770741182716ab8808",
+  "head" : "397cdc7fcfe6f88e79a262e566b460d518387011",
+  "changeCount" : 6,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 9.43
+}

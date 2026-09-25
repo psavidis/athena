@@ -1,0 +1,197 @@
+{
+  "prTitle" : "Issue #14403 - Serialize FCGI input buffer access",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 2,
+    "STRUCTURAL" : 6,
+    "UNKNOWN" : 1,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTClNlcnZlckZDR0lDb25uZWN0aW9uVGVzdA",
+    "description" : "Add class ServerFCGIConnectionTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNvbkZpbGxhYmxlCmJyYW5jaCByZW1vdmVkLCBsb29wIHJlbW92ZWQ",
+    "description" : "Change control flow of ServerFCGIConnection#onFillable: branch removed, loop removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNwYXJzZUFuZEZpbGwKYnJhbmNoIHJlbW92ZWQsIGxvb3AgcmVtb3ZlZA",
+    "description" : "Change control flow of ServerFCGIConnection#parseAndFill: branch removed, loop removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "RVhUUkFDVF9NRVRIT0QKU2VydmVyRkNHSUNvbm5lY3Rpb24jb25GaWxsYWJsZQpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNvbkZpbGxhYmxlTG9ja2Vk",
+    "description" : "Extract ServerFCGIConnection#onFillableLocked",
+    "category" : "STRUCTURAL",
+    "kind" : "EXTRACT_METHOD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "RVhUUkFDVF9NRVRIT0QKU2VydmVyRkNHSUNvbm5lY3Rpb24jcGFyc2VBbmRGaWxsClNlcnZlckZDR0lDb25uZWN0aW9uI3BhcnNlQW5kRmlsbExvY2tlZA",
+    "description" : "Extract ServerFCGIConnection#parseAndFillLocked",
+    "category" : "STRUCTURAL",
+    "kind" : "EXTRACT_METHOD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApTZXJ2ZXJGQ0dJQ29ubmVjdGlvblRlc3QjdGVzdENvbXBsZXRpb25XYWl0c0ZvckZpbGw",
+    "description" : "Add ServerFCGIConnectionTest#testCompletionWaitsForFill",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApTZXJ2ZXJGQ0dJQ29ubmVjdGlvblRlc3QjcnVu",
+    "description" : "Add ServerFCGIConnectionTest#run",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NrLmxvY2sKU2VydmVyRkNHSUNvbm5lY3Rpb24jb25Db21wbGV0ZWQ",
+    "description" : "Modify body of ServerFCGIConnection#onCompleted: +lock.lock",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX0ZJRUxEClNlcnZlckZDR0lDb25uZWN0aW9uI2xvY2s",
+    "description" : "Add field ServerFCGIConnection#lock",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ServerFCGIConnectionTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTClNlcnZlckZDR0lDb25uZWN0aW9uVGVzdA",
+      "description" : "Add class ServerFCGIConnectionTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApTZXJ2ZXJGQ0dJQ29ubmVjdGlvblRlc3QjdGVzdENvbXBsZXRpb25XYWl0c0ZvckZpbGw",
+      "description" : "Add ServerFCGIConnectionTest#testCompletionWaitsForFill",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApTZXJ2ZXJGQ0dJQ29ubmVjdGlvblRlc3QjcnVu",
+      "description" : "Add ServerFCGIConnectionTest#run",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ServerFCGIConnection",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNvbkZpbGxhYmxlCmJyYW5jaCByZW1vdmVkLCBsb29wIHJlbW92ZWQ",
+      "description" : "Change control flow of ServerFCGIConnection#onFillable: branch removed, loop removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNwYXJzZUFuZEZpbGwKYnJhbmNoIHJlbW92ZWQsIGxvb3AgcmVtb3ZlZA",
+      "description" : "Change control flow of ServerFCGIConnection#parseAndFill: branch removed, loop removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 3,
+      "changeKey" : "RVhUUkFDVF9NRVRIT0QKU2VydmVyRkNHSUNvbm5lY3Rpb24jb25GaWxsYWJsZQpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNvbkZpbGxhYmxlTG9ja2Vk",
+      "description" : "Extract ServerFCGIConnection#onFillableLocked",
+      "category" : "STRUCTURAL",
+      "kind" : "EXTRACT_METHOD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 4,
+      "changeKey" : "RVhUUkFDVF9NRVRIT0QKU2VydmVyRkNHSUNvbm5lY3Rpb24jcGFyc2VBbmRGaWxsClNlcnZlckZDR0lDb25uZWN0aW9uI3BhcnNlQW5kRmlsbExvY2tlZA",
+      "description" : "Extract ServerFCGIConnection#parseAndFillLocked",
+      "category" : "STRUCTURAL",
+      "kind" : "EXTRACT_METHOD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NrLmxvY2sKU2VydmVyRkNHSUNvbm5lY3Rpb24jb25Db21wbGV0ZWQ",
+      "description" : "Modify body of ServerFCGIConnection#onCompleted: +lock.lock",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX0ZJRUxEClNlcnZlckZDR0lDb25uZWN0aW9uI2xvY2s",
+      "description" : "Add field ServerFCGIConnection#lock",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

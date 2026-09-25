@@ -1,0 +1,77 @@
+{
+  "prTitle" : "Fix UnsupportedOperationException in DubboDefaultPropertiesEnvironmentPostProcessor.addOrReplace on immutable property source (#16268)",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 2,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yI2FkZE9yUmVwbGFjZQpjb25kaXRpb24gY2hhbmdlZA",
+    "description" : "Change control flow of DubboDefaultPropertiesEnvironmentPostProcessor#addOrReplace: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yVGVzdCN0ZXN0UG9zdFByb2Nlc3NFbnZpcm9ubWVudE9uSW1tdXRhYmxlRGVmYXVsdFByb3BlcnRpZXM",
+    "description" : "Add DubboDefaultPropertiesEnvironmentPostProcessorTest#testPostProcessEnvironmentOnImmutableDefaultProperties",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yVGVzdCN0ZXN0SW1tdXRhYmxlRGVmYXVsdFByb3BlcnRpZXNEb2VzTm90T3ZlcnJpZGVFeGlzdGluZ0tleQ",
+    "description" : "Add DubboDefaultPropertiesEnvironmentPostProcessorTest#testImmutableDefaultPropertiesDoesNotOverrideExistingKey",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "DubboDefaultPropertiesEnvironmentPostProcessor",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yI2FkZE9yUmVwbGFjZQpjb25kaXRpb24gY2hhbmdlZA",
+      "description" : "Change control flow of DubboDefaultPropertiesEnvironmentPostProcessor#addOrReplace: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DubboDefaultPropertiesEnvironmentPostProcessorTest",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yVGVzdCN0ZXN0UG9zdFByb2Nlc3NFbnZpcm9ubWVudE9uSW1tdXRhYmxlRGVmYXVsdFByb3BlcnRpZXM",
+      "description" : "Add DubboDefaultPropertiesEnvironmentPostProcessorTest#testPostProcessEnvironmentOnImmutableDefaultProperties",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yVGVzdCN0ZXN0SW1tdXRhYmxlRGVmYXVsdFByb3BlcnRpZXNEb2VzTm90T3ZlcnJpZGVFeGlzdGluZ0tleQ",
+      "description" : "Add DubboDefaultPropertiesEnvironmentPostProcessorTest#testImmutableDefaultPropertiesDoesNotOverrideExistingKey",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

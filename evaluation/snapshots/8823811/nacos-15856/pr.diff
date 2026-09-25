@@ -1,0 +1,1103 @@
+diff --git a/bootstrap/src/main/resources/application.properties b/bootstrap/src/main/resources/application.properties
+index 7f0c0954974..85e673f64a2 100644
+--- a/bootstrap/src/main/resources/application.properties
++++ b/bootstrap/src/main/resources/application.properties
+@@ -42,8 +42,9 @@ nacos.server.main.port=8848
+ # nacos.plugin.datasource.db.user=nacos
+ # nacos.plugin.datasource.db.password=nacos
+ 
+-### JDBC driver class name. Blank uses the MySQL driver as compatibility default,
+-### so it MUST be set explicitly when the dialect is not mysql, e.g. postgresql / oracle:
++### JDBC driver class name. Blank uses the default driver provided by the selected dialect plugin
++### (mysql / postgresql / oracle / derby are built in). Set it explicitly to override that default,
++### or when the dialect plugin in use does not provide one (then the MySQL driver is used):
+ # nacos.plugin.datasource.db.pool.config.driver-class-name=org.postgresql.Driver
+ 
+ ### JDBC query timeout in seconds:
+diff --git a/distribution/conf/application.properties b/distribution/conf/application.properties
+index 7f0c0954974..85e673f64a2 100644
+--- a/distribution/conf/application.properties
++++ b/distribution/conf/application.properties
+@@ -42,8 +42,9 @@ nacos.server.main.port=8848
+ # nacos.plugin.datasource.db.user=nacos
+ # nacos.plugin.datasource.db.password=nacos
+ 
+-### JDBC driver class name. Blank uses the MySQL driver as compatibility default,
+-### so it MUST be set explicitly when the dialect is not mysql, e.g. postgresql / oracle:
++### JDBC driver class name. Blank uses the default driver provided by the selected dialect plugin
++### (mysql / postgresql / oracle / derby are built in). Set it explicitly to override that default,
++### or when the dialect plugin in use does not provide one (then the MySQL driver is used):
+ # nacos.plugin.datasource.db.pool.config.driver-class-name=org.postgresql.Driver
+ 
+ ### JDBC query timeout in seconds:
+diff --git a/persistence/src/main/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceProperties.java b/persistence/src/main/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceProperties.java
+index c4649286757..5955ed66f52 100644
+--- a/persistence/src/main/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceProperties.java
++++ b/persistence/src/main/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceProperties.java
+@@ -18,7 +18,11 @@
+ 
+ import com.alibaba.nacos.common.utils.Preconditions;
+ import com.alibaba.nacos.common.utils.StringUtils;
++import com.alibaba.nacos.plugin.datasource.dialect.DatabaseDialect;
++import com.alibaba.nacos.plugin.datasource.manager.DatabaseDialectManager;
+ import com.zaxxer.hikari.HikariDataSource;
++import org.slf4j.Logger;
++import org.slf4j.LoggerFactory;
+ import org.springframework.core.env.Environment;
+ 
+ import java.util.ArrayList;
+@@ -32,6 +36,13 @@
+  */
+ public class ExternalDataSourceProperties {
+     
++    private static final Logger LOGGER =
++        LoggerFactory.getLogger(ExternalDataSourceProperties.class);
++    
++    /**
++     * Compatibility default driver, used only when neither the pool config nor the selected
++     * dialect plugin provides a driver class name.
++     */
+     private static final String JDBC_DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
+     
+     private static final String TEST_QUERY = "SELECT 1";
+@@ -39,11 +50,13 @@ public class ExternalDataSourceProperties {
+     /**
+      * Build serveral HikariDataSource.
+      *
+-     * @param environment {@link Environment}
+-     * @param callback    Callback function when constructing data source
++     * @param environment    {@link Environment}
++     * @param dataSourceType datasource type resolved during service initialization
++     * @param callback       Callback function when constructing data source
+      * @return List of {@link HikariDataSource}
+      */
+-    List<HikariDataSource> build(Environment environment, Callback<HikariDataSource> callback) {
++    List<HikariDataSource> build(Environment environment, String dataSourceType,
++        Callback<HikariDataSource> callback) {
+         List<HikariDataSource> dataSources = new ArrayList<>();
+         DatasourceConfigResolver configResolver = new DatasourceConfigResolver(environment);
+         Integer num = configResolver.resolve("num", Integer.class);
+@@ -66,7 +79,7 @@ List<HikariDataSource> build(Environment environment, Callback<HikariDataSource>
+             DataSourcePoolProperties poolProperties =
+                 DataSourcePoolProperties.build(configResolver);
+             if (StringUtils.isEmpty(poolProperties.getDataSource().getDriverClassName())) {
+-                poolProperties.setDriverClassName(JDBC_DRIVER_NAME);
++                poolProperties.setDriverClassName(resolveDefaultDriverClassName(dataSourceType));
+             }
+             poolProperties.setJdbcUrl(url.trim());
+             poolProperties.setUsername(user.trim());
+@@ -83,6 +96,37 @@ List<HikariDataSource> build(Environment environment, Callback<HikariDataSource>
+         return dataSources;
+     }
+     
++    /**
++     * Resolve the driver class used when {@code pool.config.driver-class-name} is blank.
++     *
++     * <p>The selected {@link DatabaseDialect} plugin is asked first, so that selecting a dialect via
++     * {@code nacos.plugin.datasource-dialect.type} is enough for the built-in datasource plugins.
++     * When the dialect cannot be resolved or does not provide a default driver, the MySQL
++     * compatibility default is kept.
++     *
++     * @param dialectType datasource type resolved during service initialization
++     * @return default JDBC driver class name, never blank
++     */
++    String resolveDefaultDriverClassName(String dialectType) {
++        String driverClassName = null;
++        try {
++            DatabaseDialect dialect = DatabaseDialectManager.getInstance().getDialect(dialectType);
++            driverClassName = dialect.getDefaultDriverClassName();
++        } catch (IllegalStateException e) {
++            LOGGER.warn("[ExternalDataSourceProperties] Cannot resolve DatabaseDialect `{}` "
++                + "for default driver class name: {}", dialectType, e.getMessage());
++        }
++        if (StringUtils.isBlank(driverClassName)) {
++            LOGGER.info("[ExternalDataSourceProperties] DatabaseDialect `{}` provides no default "
++                + "driver class name, fallback to compatibility default `{}`", dialectType,
++                JDBC_DRIVER_NAME);
++            return JDBC_DRIVER_NAME;
++        }
++        LOGGER.info("[ExternalDataSourceProperties] Use default driver class name `{}` "
++            + "provided by DatabaseDialect `{}`", driverClassName, dialectType);
++        return driverClassName.trim();
++    }
++    
+     interface Callback<D> {
+         
+         /**
+diff --git a/persistence/src/main/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceServiceImpl.java b/persistence/src/main/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceServiceImpl.java
+index b1680f1e728..3bbac73332c 100644
+--- a/persistence/src/main/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceServiceImpl.java
++++ b/persistence/src/main/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceServiceImpl.java
+@@ -143,7 +143,7 @@ public synchronized void reload() throws IOException {
+             final List<Boolean> isHealthListNew = new ArrayList<Boolean>();
+             
+             List<HikariDataSource> dataSourceListNew = new ExternalDataSourceProperties()
+-                .build(EnvUtil.getEnvironment(), (dataSource) -> {
++                .build(EnvUtil.getEnvironment(), dataSourceType, (dataSource) -> {
+                     //check datasource connection
+                     ConnectionCheckUtil.checkDataSourceConnection(dataSource);
+                     
+diff --git a/persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java b/persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java
+index 2ca9b46382c..01a1d055b37 100644
+--- a/persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java
++++ b/persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java
+@@ -16,14 +16,31 @@
+ 
+ package com.alibaba.nacos.persistence.datasource;
+ 
++import com.alibaba.nacos.api.plugin.PluginStateChecker;
++import com.alibaba.nacos.api.plugin.PluginStateCheckerHolder;
++import com.alibaba.nacos.persistence.constants.PersistenceConstant;
++import com.alibaba.nacos.plugin.datasource.dialect.DatabaseDialect;
++import com.alibaba.nacos.plugin.datasource.manager.DatabaseDialectManager;
+ import com.zaxxer.hikari.HikariDataSource;
++import org.junit.jupiter.api.AfterEach;
++import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.Test;
++import org.junit.jupiter.params.ParameterizedTest;
++import org.junit.jupiter.params.provider.NullAndEmptySource;
++import org.junit.jupiter.params.provider.ValueSource;
+ import org.springframework.mock.env.MockEnvironment;
+ 
++import java.lang.reflect.Field;
++import java.util.HashMap;
+ import java.util.List;
++import java.util.Map;
+ 
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+ import static org.junit.jupiter.api.Assertions.assertThrows;
++import static org.mockito.Mockito.doThrow;
++import static org.mockito.Mockito.mock;
++import static org.mockito.Mockito.never;
++import static org.mockito.Mockito.verify;
+ 
+ public class ExternalDataSourcePropertiesTest {
+     
+@@ -35,6 +52,167 @@ public class ExternalDataSourcePropertiesTest {
+     
+     public static final String USERNAME = "nacos_devtest";
+     
++    private static final String MYSQL_COMPAT_DRIVER = "com.mysql.cj.jdbc.Driver";
++    
++    private static final String TEST_DIALECT_TYPE = "test-dialect";
++    
++    /**
++     * Hikari loads the driver class eagerly, so the test dialect must return a class that exists on
++     * the test classpath. Derby is a provided dependency of this module.
++     */
++    private static final String TEST_DIALECT_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
++    
++    private Map<String, DatabaseDialect> dialectMap;
++    
++    private Map<String, DatabaseDialect> originalDialects;
++    
++    private PluginStateChecker originalStateChecker;
++    
++    @BeforeEach
++    void setUp() throws Exception {
++        originalStateChecker = PluginStateCheckerHolder.getInstance().orElse(null);
++        dialectMap = getDialectMap();
++        originalDialects = new HashMap<>(dialectMap);
++        dialectMap.clear();
++        PluginStateCheckerHolder.setInstance(null);
++    }
++    
++    @AfterEach
++    void tearDown() {
++        dialectMap.clear();
++        dialectMap.putAll(originalDialects);
++        PluginStateCheckerHolder.setInstance(originalStateChecker);
++    }
++    
++    @Test
++    void driverClassNameUsesDialectDefaultWhenPoolConfigIsAbsent() {
++        dialectMap.put(TEST_DIALECT_TYPE, new TestDatabaseDialect(TEST_DIALECT_DRIVER));
++        MockEnvironment environment = mysqlEnvironment();
++        
++        List<HikariDataSource> dataSources =
++            new ExternalDataSourceProperties().build(environment, TEST_DIALECT_TYPE, dataSource -> {
++            });
++        
++        assertEquals(TEST_DIALECT_DRIVER, dataSources.get(0).getDriverClassName());
++    }
++    
++    @Test
++    void driverClassNameUsesSuppliedDialectTypeWhenEnvironmentSelectsAnotherDialect() {
++        dialectMap.put(TEST_DIALECT_TYPE, new TestDatabaseDialect(TEST_DIALECT_DRIVER));
++        dialectMap.put(PersistenceConstant.MYSQL, new TestDatabaseDialect(MYSQL_COMPAT_DRIVER));
++        MockEnvironment environment = mysqlEnvironment();
++        environment.setProperty("nacos.plugin.datasource-dialect.type", PersistenceConstant.MYSQL);
++        environment.setProperty("spring.sql.init.platform", PersistenceConstant.MYSQL);
++        
++        List<HikariDataSource> dataSources =
++            new ExternalDataSourceProperties().build(environment, TEST_DIALECT_TYPE, dataSource -> {
++            });
++        
++        assertEquals(TEST_DIALECT_DRIVER, dataSources.get(0).getDriverClassName());
++    }
++    
++    @ParameterizedTest
++    @ValueSource(strings = {"nacos.plugin.datasource.db.pool.config.driver-class-name",
++        "db.pool.config.driverClassName"})
++    void explicitPoolConfigDriverClassNameSkipsDialectDefault(String driverProperty) {
++        DatabaseDialect dialect = mock(DatabaseDialect.class);
++        doThrow(new UnsupportedOperationException("Default driver must not be requested"))
++            .when(dialect).getDefaultDriverClassName();
++        dialectMap.put(TEST_DIALECT_TYPE, dialect);
++        MockEnvironment environment = mysqlEnvironment();
++        environment.setProperty(driverProperty, MYSQL_COMPAT_DRIVER);
++        
++        List<HikariDataSource> dataSources =
++            new ExternalDataSourceProperties().build(environment, TEST_DIALECT_TYPE, dataSource -> {
++            });
++        
++        assertEquals(MYSQL_COMPAT_DRIVER, dataSources.get(0).getDriverClassName());
++        verify(dialect, never()).getDefaultDriverClassName();
++    }
++    
++    @Test
++    void canonicalPoolConfigDriverClassNameOverridesLegacyAndSkipsDialectDefault() {
++        DatabaseDialect dialect = mock(DatabaseDialect.class);
++        doThrow(new UnsupportedOperationException("Default driver must not be requested"))
++            .when(dialect).getDefaultDriverClassName();
++        dialectMap.put(TEST_DIALECT_TYPE, dialect);
++        MockEnvironment environment = mysqlEnvironment();
++        environment.setProperty("db.pool.config.driverClassName", TEST_DIALECT_DRIVER);
++        environment.setProperty("nacos.plugin.datasource.db.pool.config.driver-class-name",
++            MYSQL_COMPAT_DRIVER);
++        
++        List<HikariDataSource> dataSources =
++            new ExternalDataSourceProperties().build(environment, TEST_DIALECT_TYPE, dataSource -> {
++            });
++        
++        assertEquals(MYSQL_COMPAT_DRIVER, dataSources.get(0).getDriverClassName());
++        verify(dialect, never()).getDefaultDriverClassName();
++    }
++    
++    @ParameterizedTest
++    @NullAndEmptySource
++    @ValueSource(strings = {" ", "\t"})
++    void driverClassNameFallsBackToMysqlWhenDialectProvidesNoDriver(String driverClassName) {
++        dialectMap.put(TEST_DIALECT_TYPE, new TestDatabaseDialect(driverClassName));
++        MockEnvironment environment = mysqlEnvironment();
++        
++        List<HikariDataSource> dataSources =
++            new ExternalDataSourceProperties().build(environment, TEST_DIALECT_TYPE, dataSource -> {
++            });
++        
++        assertEquals(MYSQL_COMPAT_DRIVER, dataSources.get(0).getDriverClassName());
++    }
++    
++    @Test
++    void driverClassNameFallsBackToMysqlWhenDialectIsNotLoaded() {
++        MockEnvironment environment = mysqlEnvironment();
++        
++        List<HikariDataSource> dataSources =
++            new ExternalDataSourceProperties().build(environment, "unknown-dialect", dataSource -> {
++            });
++        
++        assertEquals(MYSQL_COMPAT_DRIVER, dataSources.get(0).getDriverClassName());
++    }
++    
++    @Test
++    void driverClassNameFallsBackToMysqlWhenDialectPluginIsDisabled() {
++        dialectMap.put(TEST_DIALECT_TYPE, new TestDatabaseDialect(TEST_DIALECT_DRIVER));
++        PluginStateCheckerHolder.setInstance((pluginType, pluginName) -> false);
++        MockEnvironment environment = mysqlEnvironment();
++        
++        List<HikariDataSource> dataSources =
++            new ExternalDataSourceProperties().build(environment, TEST_DIALECT_TYPE, dataSource -> {
++            });
++        
++        assertEquals(MYSQL_COMPAT_DRIVER, dataSources.get(0).getDriverClassName());
++    }
++    
++    @Test
++    void driverClassNameFallsBackToMysqlWhenMysqlDialectIsNotLoaded() {
++        List<HikariDataSource> dataSources =
++            new ExternalDataSourceProperties().build(mysqlEnvironment(), PersistenceConstant.MYSQL,
++                dataSource -> {
++                });
++        
++        assertEquals(MYSQL_COMPAT_DRIVER, dataSources.get(0).getDriverClassName());
++    }
++    
++    private static MockEnvironment mysqlEnvironment() {
++        MockEnvironment environment = new MockEnvironment();
++        environment.setProperty("nacos.plugin.datasource.db.num", "1");
++        environment.setProperty("nacos.plugin.datasource.db.user", USERNAME);
++        environment.setProperty("nacos.plugin.datasource.db.password", PASSWORD);
++        environment.setProperty("nacos.plugin.datasource.db.url.0", JDBC_URL);
++        return environment;
++    }
++    
++    @SuppressWarnings("unchecked")
++    private static Map<String, DatabaseDialect> getDialectMap() throws Exception {
++        Field field = DatabaseDialectManager.class.getDeclaredField("SUPPORT_DIALECT_MAP");
++        field.setAccessible(true);
++        return (Map<String, DatabaseDialect>) field.get(null);
++    }
++    
+     @Test
+     void externalDatasourceNormally() {
+         HikariDataSource expectedDataSource = new HikariDataSource();
+@@ -47,12 +225,13 @@ void externalDatasourceNormally() {
+         environment.setProperty("db.password", PASSWORD);
+         environment.setProperty("db.url.0", JDBC_URL);
+         List<HikariDataSource> dataSources =
+-            new ExternalDataSourceProperties().build(environment, (dataSource -> {
+-                assertEquals(dataSource.getJdbcUrl(), expectedDataSource.getJdbcUrl());
+-                assertEquals(dataSource.getUsername(), expectedDataSource.getUsername());
+-                assertEquals(dataSource.getPassword(), expectedDataSource.getPassword());
+-                
+-            }));
++            new ExternalDataSourceProperties().build(environment, PersistenceConstant.MYSQL,
++                (dataSource -> {
++                    assertEquals(dataSource.getJdbcUrl(), expectedDataSource.getJdbcUrl());
++                    assertEquals(dataSource.getUsername(), expectedDataSource.getUsername());
++                    assertEquals(dataSource.getPassword(), expectedDataSource.getPassword());
++                    
++                }));
+         assertEquals(1, dataSources.size());
+     }
+     
+@@ -64,11 +243,12 @@ void externalDatasourceSupportsCanonicalConfig() {
+         environment.setProperty("nacos.plugin.datasource.db.password", PASSWORD);
+         environment.setProperty("nacos.plugin.datasource.db.url.0", JDBC_URL);
+         List<HikariDataSource> dataSources =
+-            new ExternalDataSourceProperties().build(environment, dataSource -> {
+-                assertEquals(JDBC_URL, dataSource.getJdbcUrl());
+-                assertEquals(USERNAME, dataSource.getUsername());
+-                assertEquals(PASSWORD, dataSource.getPassword());
+-            });
++            new ExternalDataSourceProperties().build(environment, PersistenceConstant.MYSQL,
++                dataSource -> {
++                    assertEquals(JDBC_URL, dataSource.getJdbcUrl());
++                    assertEquals(USERNAME, dataSource.getUsername());
++                    assertEquals(PASSWORD, dataSource.getPassword());
++                });
+         assertEquals(1, dataSources.size());
+     }
+     
+@@ -86,8 +266,9 @@ void externalDatasourceCanonicalConfigOverridesLegacyPerItem() {
+         environment.setProperty("nacos.plugin.datasource.db.password.1",
+             "canonical-password-1");
+         List<HikariDataSource> dataSources =
+-            new ExternalDataSourceProperties().build(environment, dataSource -> {
+-            });
++            new ExternalDataSourceProperties().build(environment, PersistenceConstant.MYSQL,
++                dataSource -> {
++                });
+         assertEquals(2, dataSources.size());
+         assertEquals("canonical-url-0", dataSources.get(0).getJdbcUrl());
+         assertEquals("legacy-url-1", dataSources.get(1).getJdbcUrl());
+@@ -111,12 +292,13 @@ void externalDatasourceToAssertMultiJdbcUrl() {
+         environment.setProperty("db.url.0", JDBC_URL);
+         environment.setProperty("db.url.1", JDBC_URL);
+         List<HikariDataSource> dataSources =
+-            new ExternalDataSourceProperties().build(environment, (dataSource -> {
+-                assertEquals(dataSource.getJdbcUrl(), expectedDataSource.getJdbcUrl());
+-                assertEquals(dataSource.getUsername(), expectedDataSource.getUsername());
+-                assertEquals(dataSource.getPassword(), expectedDataSource.getPassword());
+-                
+-            }));
++            new ExternalDataSourceProperties().build(environment, PersistenceConstant.MYSQL,
++                (dataSource -> {
++                    assertEquals(dataSource.getJdbcUrl(), expectedDataSource.getJdbcUrl());
++                    assertEquals(dataSource.getUsername(), expectedDataSource.getUsername());
++                    assertEquals(dataSource.getPassword(), expectedDataSource.getPassword());
++                    
++                }));
+         assertEquals(2, dataSources.size());
+     }
+     
+@@ -136,12 +318,13 @@ void externalDatasourceToAssertMultiPasswordAndUsername() {
+         environment.setProperty("db.url.0", JDBC_URL);
+         environment.setProperty("db.url.1", JDBC_URL);
+         List<HikariDataSource> dataSources =
+-            new ExternalDataSourceProperties().build(environment, (dataSource -> {
+-                assertEquals(dataSource.getJdbcUrl(), expectedDataSource.getJdbcUrl());
+-                assertEquals(dataSource.getUsername(), expectedDataSource.getUsername());
+-                assertEquals(dataSource.getPassword(), expectedDataSource.getPassword());
+-                
+-            }));
++            new ExternalDataSourceProperties().build(environment, PersistenceConstant.MYSQL,
++                (dataSource -> {
++                    assertEquals(dataSource.getJdbcUrl(), expectedDataSource.getJdbcUrl());
++                    assertEquals(dataSource.getUsername(), expectedDataSource.getUsername());
++                    assertEquals(dataSource.getPassword(), expectedDataSource.getPassword());
++                    
++                }));
+         assertEquals(2, dataSources.size());
+     }
+     
+@@ -153,11 +336,12 @@ void externalDatasourceToAssertMinIdle() {
+         environment.setProperty("db.password", PASSWORD);
+         environment.setProperty("db.url.0", JDBC_URL);
+         List<HikariDataSource> dataSources =
+-            new ExternalDataSourceProperties().build(environment, (dataSource -> {
+-                dataSource.validate();
+-                assertEquals(DataSourcePoolProperties.DEFAULT_MINIMUM_IDLE,
+-                    dataSource.getMinimumIdle());
+-            }));
++            new ExternalDataSourceProperties().build(environment, PersistenceConstant.MYSQL,
++                (dataSource -> {
++                    dataSource.validate();
++                    assertEquals(DataSourcePoolProperties.DEFAULT_MINIMUM_IDLE,
++                        dataSource.getMinimumIdle());
++                }));
+         assertEquals(1, dataSources.size());
+     }
+     
+@@ -166,7 +350,7 @@ void externalDatasourceFailureWithLarkInfo() {
+         assertThrows(IllegalArgumentException.class, () -> {
+             
+             MockEnvironment environment = new MockEnvironment();
+-            new ExternalDataSourceProperties().build(environment, null);
++            new ExternalDataSourceProperties().build(environment, PersistenceConstant.MYSQL, null);
+             
+         });
+         
+@@ -187,13 +371,72 @@ void externalDatasourceFailureWithErrorInfo() {
+             environment.setProperty("db.password", PASSWORD);
+             environment.setProperty("db.url.0", JDBC_URL);
+             List<HikariDataSource> dataSources =
+-                new ExternalDataSourceProperties().build(environment, (dataSource -> {
+-                    assertEquals(dataSource.getJdbcUrl(), expectedDataSource.getJdbcUrl());
+-                    assertEquals(dataSource.getUsername(), expectedDataSource.getUsername());
+-                    assertEquals(dataSource.getPassword(), expectedDataSource.getPassword());
+-                    
+-                }));
++                new ExternalDataSourceProperties().build(environment, PersistenceConstant.MYSQL,
++                    (dataSource -> {
++                        assertEquals(dataSource.getJdbcUrl(), expectedDataSource.getJdbcUrl());
++                        assertEquals(dataSource.getUsername(), expectedDataSource.getUsername());
++                        assertEquals(dataSource.getPassword(), expectedDataSource.getPassword());
++                        
++                    }));
+         });
+     }
+     
++    private static class TestDatabaseDialect implements DatabaseDialect {
++        
++        private final String defaultDriverClassName;
++        
++        private TestDatabaseDialect(String defaultDriverClassName) {
++            this.defaultDriverClassName = defaultDriverClassName;
++        }
++        
++        @Override
++        public String getType() {
++            return TEST_DIALECT_TYPE;
++        }
++        
++        @Override
++        public String getDefaultDriverClassName() {
++            return defaultDriverClassName;
++        }
++        
++        @Override
++        public int getPagePrevNum(int page, int pageSize) {
++            return 0;
++        }
++        
++        @Override
++        public int getPageLastNum(int page, int pageSize) {
++            return 0;
++        }
++        
++        @Override
++        public String getLimitTopSqlWithMark(String sql) {
++            return sql;
++        }
++        
++        @Override
++        public String getLimitPageSqlWithMark(String sql) {
++            return sql;
++        }
++        
++        @Override
++        public String getLimitPageSql(String sql, int pageNo, int pageSize) {
++            return sql;
++        }
++        
++        @Override
++        public String getLimitPageSqlWithOffset(String sql, int startOffset, int pageSize) {
++            return sql;
++        }
++        
++        @Override
++        public String[] getReturnPrimaryKeys() {
++            return new String[] {"id"};
++        }
++        
++        @Override
++        public String getFunction(String functionName) {
++            return functionName;
++        }
++    }
+ }
+diff --git a/persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceServiceImplTest.java b/persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceServiceImplTest.java
+index fe367ddeafe..f5b9b44d642 100644
+--- a/persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceServiceImplTest.java
++++ b/persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceServiceImplTest.java
+@@ -17,15 +17,23 @@
+ package com.alibaba.nacos.persistence.datasource;
+ 
+ import com.alibaba.nacos.persistence.configuration.DatasourceConfiguration;
++import com.alibaba.nacos.persistence.datasource.mock.MockDriver;
+ import com.alibaba.nacos.persistence.exception.NJdbcException;
++import com.alibaba.nacos.plugin.datasource.dialect.DatabaseDialect;
++import com.alibaba.nacos.plugin.datasource.manager.DatabaseDialectManager;
+ import com.alibaba.nacos.sys.env.EnvUtil;
+ import com.zaxxer.hikari.HikariDataSource;
+ import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.Test;
+ import org.junit.jupiter.api.extension.ExtendWith;
++import org.junit.jupiter.params.ParameterizedTest;
++import org.junit.jupiter.params.provider.CsvSource;
++import org.junit.jupiter.params.provider.ValueSource;
+ import org.mockito.InjectMocks;
+ import org.mockito.Mock;
++import org.mockito.MockedStatic;
+ import org.mockito.junit.jupiter.MockitoExtension;
++import org.springframework.core.env.ConfigurableEnvironment;
+ import org.springframework.dao.EmptyResultDataAccessException;
+ import org.springframework.jdbc.CannotGetJdbcConnectionException;
+ import org.springframework.jdbc.UncategorizedSQLException;
+@@ -47,6 +55,7 @@
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+ import static org.junit.jupiter.api.Assertions.assertFalse;
+ import static org.junit.jupiter.api.Assertions.assertNotNull;
++import static org.junit.jupiter.api.Assertions.assertNotSame;
+ import static org.junit.jupiter.api.Assertions.assertThrows;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
+ import static org.mockito.ArgumentMatchers.any;
+@@ -54,7 +63,10 @@
+ import static org.mockito.ArgumentMatchers.eq;
+ import static org.mockito.Mockito.doThrow;
+ import static org.mockito.Mockito.mock;
++import static org.mockito.Mockito.mockStatic;
++import static org.mockito.Mockito.never;
+ import static org.mockito.Mockito.spy;
++import static org.mockito.Mockito.times;
+ import static org.mockito.Mockito.verify;
+ import static org.mockito.Mockito.when;
+ 
+@@ -147,6 +159,111 @@ void testInitUsesCanonicalQueryTimeout() {
+         }
+     }
+     
++    @ParameterizedTest
++    @CsvSource({"canonical-dialect,,canonical-dialect", ",legacy-dialect,legacy-dialect",
++        "canonical-dialect,legacy-dialect,canonical-dialect", "' ',legacy-dialect,legacy-dialect"})
++    void testDefaultDriverUsesSelectedDialect(String canonicalType, String legacyType,
++        String expectedType) throws Exception {
++        ConfigurableEnvironment previousEnvironment = EnvUtil.getEnvironment();
++        boolean previousUseExternalDb = DatasourceConfiguration.isUseExternalDb();
++        ExternalDataSourceServiceImpl service1 = new ExternalDataSourceServiceImpl();
++        DatabaseDialectManager dialectManager = mock(DatabaseDialectManager.class);
++        DatabaseDialect dialect = mock(DatabaseDialect.class);
++        when(dialectManager.getDialect(expectedType)).thenReturn(dialect);
++        when(dialect.getDefaultDriverClassName()).thenReturn(MockDriver.class.getName());
++        try (MockedStatic<DatabaseDialectManager> managerMock =
++            mockStatic(DatabaseDialectManager.class)) {
++            managerMock.when(DatabaseDialectManager::getInstance).thenReturn(dialectManager);
++            MockEnvironment environment = defaultDriverEnvironment();
++            if (canonicalType != null) {
++                environment.setProperty("nacos.plugin.datasource-dialect.type", canonicalType);
++            }
++            if (legacyType != null) {
++                environment.setProperty("spring.sql.init.platform", legacyType);
++            }
++            EnvUtil.setEnvironment(environment);
++            // Initialize the selected type without scheduling background health checks.
++            DatasourceConfiguration.setUseExternalDb(false);
++            service1.init();
++            service1.reload();
++            
++            assertEquals(expectedType, service1.getDataSourceType());
++            HikariDataSource dataSource =
++                (HikariDataSource) service1.getJdbcTemplate().getDataSource();
++            assertNotNull(dataSource);
++            assertEquals(MockDriver.class.getName(), dataSource.getDriverClassName());
++            verify(dialectManager).getDialect(expectedType);
++            verify(dialect).getDefaultDriverClassName();
++        } finally {
++            closeDataSource(service1);
++            DatasourceConfiguration.setUseExternalDb(previousUseExternalDb);
++            EnvUtil.setEnvironment(previousEnvironment);
++        }
++    }
++    
++    @ParameterizedTest
++    @ValueSource(strings = {"nacos.plugin.datasource-dialect.type", "spring.sql.init.platform"})
++    void testReloadKeepsInitiallySelectedDialect(String selector) throws Exception {
++        ConfigurableEnvironment previousEnvironment = EnvUtil.getEnvironment();
++        boolean previousUseExternalDb = DatasourceConfiguration.isUseExternalDb();
++        ExternalDataSourceServiceImpl service1 = new ExternalDataSourceServiceImpl();
++        DatabaseDialectManager dialectManager = mock(DatabaseDialectManager.class);
++        DatabaseDialect initialDialect = mock(DatabaseDialect.class);
++        DatabaseDialect replacementDialect = mock(DatabaseDialect.class);
++        when(dialectManager.getDialect(anyString()))
++            .thenAnswer(invocation -> "initial-dialect".equals(invocation.getArgument(0))
++                ? initialDialect : replacementDialect);
++        when(initialDialect.getDefaultDriverClassName()).thenReturn(MockDriver.class.getName());
++        try (MockedStatic<DatabaseDialectManager> managerMock =
++            mockStatic(DatabaseDialectManager.class)) {
++            managerMock.when(DatabaseDialectManager::getInstance).thenReturn(dialectManager);
++            MockEnvironment environment = defaultDriverEnvironment();
++            environment.setProperty(selector, "initial-dialect");
++            EnvUtil.setEnvironment(environment);
++            DatasourceConfiguration.setUseExternalDb(false);
++            service1.init();
++            service1.reload();
++            HikariDataSource originalDataSource =
++                (HikariDataSource) service1.getJdbcTemplate().getDataSource();
++            assertNotNull(originalDataSource);
++            assertEquals(MockDriver.class.getName(), originalDataSource.getDriverClassName());
++            
++            environment.setProperty(selector, "replacement-dialect");
++            service1.reload();
++            
++            assertEquals("initial-dialect", service1.getDataSourceType());
++            HikariDataSource reloadedDataSource =
++                (HikariDataSource) service1.getJdbcTemplate().getDataSource();
++            assertNotNull(reloadedDataSource);
++            assertNotSame(originalDataSource, reloadedDataSource);
++            assertTrue(originalDataSource.isClosed());
++            assertEquals(MockDriver.class.getName(), reloadedDataSource.getDriverClassName());
++            verify(dialectManager, times(2)).getDialect("initial-dialect");
++            verify(dialectManager, never()).getDialect("replacement-dialect");
++            verify(initialDialect, times(2)).getDefaultDriverClassName();
++            verify(replacementDialect, never()).getDefaultDriverClassName();
++        } finally {
++            closeDataSource(service1);
++            DatasourceConfiguration.setUseExternalDb(previousUseExternalDb);
++            EnvUtil.setEnvironment(previousEnvironment);
++        }
++    }
++    
++    private MockEnvironment defaultDriverEnvironment() {
++        return new MockEnvironment()
++            .withProperty("nacos.plugin.datasource.db.num", "1")
++            .withProperty("nacos.plugin.datasource.db.user", "user")
++            .withProperty("nacos.plugin.datasource.db.password", "password")
++            .withProperty("nacos.plugin.datasource.db.url.0", "jdbc:mock:default-driver");
++    }
++    
++    private void closeDataSource(ExternalDataSourceServiceImpl dataSourceService) {
++        JdbcTemplate jdbcTemplate = dataSourceService.getJdbcTemplate();
++        if (jdbcTemplate != null && jdbcTemplate.getDataSource() instanceof HikariDataSource) {
++            ((HikariDataSource) jdbcTemplate.getDataSource()).close();
++        }
++    }
++    
+     @Test
+     void testReload() {
+         try {
+diff --git a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-derby/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DerbyDatabaseDialect.java b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-derby/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DerbyDatabaseDialect.java
+index f12df5151aa..55ed9f5d0ac 100644
+--- a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-derby/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DerbyDatabaseDialect.java
++++ b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-derby/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DerbyDatabaseDialect.java
+@@ -26,11 +26,18 @@
+  */
+ public class DerbyDatabaseDialect extends AbstractDatabaseDialect {
+     
++    private static final String DEFAULT_DRIVER_CLASS_NAME = "org.apache.derby.jdbc.EmbeddedDriver";
++    
+     @Override
+     public String getType() {
+         return DatabaseTypeConstant.DERBY;
+     }
+     
++    @Override
++    public String getDefaultDriverClassName() {
++        return DEFAULT_DRIVER_CLASS_NAME;
++    }
++    
+     @Override
+     public String getFunction(String functionName) {
+         return TrustedDerbyFunctionEnum.getFunctionByName(functionName);
+diff --git a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-derby/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DerbyDatabaseDialectTest.java b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-derby/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DerbyDatabaseDialectTest.java
+new file mode 100644
+index 00000000000..94296057623
+--- /dev/null
++++ b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-derby/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DerbyDatabaseDialectTest.java
+@@ -0,0 +1,32 @@
++/*
++ * Copyright 1999-2026 Alibaba Group Holding Ltd.
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package com.alibaba.nacos.plugin.datasource.impl.dialect;
++
++import com.alibaba.nacos.plugin.datasource.constants.DatabaseTypeConstant;
++import org.junit.jupiter.api.Test;
++
++import static org.junit.jupiter.api.Assertions.assertEquals;
++
++class DerbyDatabaseDialectTest {
++    
++    @Test
++    void testGetDefaultDriverClassName() {
++        DerbyDatabaseDialect dialect = new DerbyDatabaseDialect();
++        assertEquals(DatabaseTypeConstant.DERBY, dialect.getType());
++        assertEquals("org.apache.derby.jdbc.EmbeddedDriver", dialect.getDefaultDriverClassName());
++    }
++}
+diff --git a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DefaultDatabaseDialect.java b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DefaultDatabaseDialect.java
+index 233359ae90b..86e8bbd09ce 100644
+--- a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DefaultDatabaseDialect.java
++++ b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DefaultDatabaseDialect.java
+@@ -30,6 +30,11 @@ public String getType() {
+         return DatabaseTypeConstant.MYSQL;
+     }
+     
++    @Override
++    public String getDefaultDriverClassName() {
++        return MysqlDatabaseDialect.DEFAULT_DRIVER_CLASS_NAME;
++    }
++    
+     @Override
+     public String getFunction(String functionName) {
+         return TrustedMysqlFunctionEnum.getFunctionByName(functionName);
+diff --git a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/MysqlDatabaseDialect.java b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/MysqlDatabaseDialect.java
+index e8ca3faba69..2db03e024d8 100644
+--- a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/MysqlDatabaseDialect.java
++++ b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/MysqlDatabaseDialect.java
+@@ -26,11 +26,18 @@
+  */
+ public class MysqlDatabaseDialect extends AbstractDatabaseDialect {
+     
++    static final String DEFAULT_DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
++    
+     @Override
+     public String getType() {
+         return DatabaseTypeConstant.MYSQL;
+     }
+     
++    @Override
++    public String getDefaultDriverClassName() {
++        return DEFAULT_DRIVER_CLASS_NAME;
++    }
++    
+     @Override
+     public String getFunction(String functionName) {
+         return TrustedMysqlFunctionEnum.getFunctionByName(functionName);
+diff --git a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/MysqlDatabaseDialectTest.java b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/MysqlDatabaseDialectTest.java
+new file mode 100644
+index 00000000000..0c9cf23f58a
+--- /dev/null
++++ b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/MysqlDatabaseDialectTest.java
+@@ -0,0 +1,40 @@
++/*
++ * Copyright 1999-2026 Alibaba Group Holding Ltd.
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package com.alibaba.nacos.plugin.datasource.impl.dialect;
++
++import com.alibaba.nacos.plugin.datasource.constants.DatabaseTypeConstant;
++import org.junit.jupiter.api.Test;
++
++import static org.junit.jupiter.api.Assertions.assertEquals;
++
++class MysqlDatabaseDialectTest {
++    
++    @Test
++    void testMysqlDialectProvidesDefaultDriverClassName() {
++        MysqlDatabaseDialect dialect = new MysqlDatabaseDialect();
++        assertEquals(DatabaseTypeConstant.MYSQL, dialect.getType());
++        assertEquals("com.mysql.cj.jdbc.Driver", dialect.getDefaultDriverClassName());
++    }
++    
++    @Test
++    void testDefaultDialectProvidesSameDriverAsMysqlDialect() {
++        DefaultDatabaseDialect dialect = new DefaultDatabaseDialect();
++        assertEquals(DatabaseTypeConstant.MYSQL, dialect.getType());
++        assertEquals(new MysqlDatabaseDialect().getDefaultDriverClassName(),
++            dialect.getDefaultDriverClassName());
++    }
++}
+diff --git a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-oracle/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/OracleDatabaseDialect.java b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-oracle/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/OracleDatabaseDialect.java
+index 615915ae4d6..9b8140edb41 100644
+--- a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-oracle/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/OracleDatabaseDialect.java
++++ b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-oracle/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/OracleDatabaseDialect.java
+@@ -26,11 +26,18 @@
+  */
+ public class OracleDatabaseDialect extends AbstractDatabaseDialect {
+     
++    private static final String DEFAULT_DRIVER_CLASS_NAME = "oracle.jdbc.OracleDriver";
++    
+     @Override
+     public String getType() {
+         return DatabaseTypeConstant.ORACLE;
+     }
+     
++    @Override
++    public String getDefaultDriverClassName() {
++        return DEFAULT_DRIVER_CLASS_NAME;
++    }
++    
+     @Override
+     public String getFunction(String functionName) {
+         return TrustedOracleFunctionEnum.getFunctionByName(functionName);
+diff --git a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-oracle/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/OracleDatabaseDialectTest.java b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-oracle/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/OracleDatabaseDialectTest.java
+new file mode 100644
+index 00000000000..3b35577cfdc
+--- /dev/null
++++ b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-oracle/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/OracleDatabaseDialectTest.java
+@@ -0,0 +1,32 @@
++/*
++ * Copyright 1999-2026 Alibaba Group Holding Ltd.
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package com.alibaba.nacos.plugin.datasource.impl.dialect;
++
++import com.alibaba.nacos.plugin.datasource.constants.DatabaseTypeConstant;
++import org.junit.jupiter.api.Test;
++
++import static org.junit.jupiter.api.Assertions.assertEquals;
++
++class OracleDatabaseDialectTest {
++    
++    @Test
++    void testGetDefaultDriverClassName() {
++        OracleDatabaseDialect dialect = new OracleDatabaseDialect();
++        assertEquals(DatabaseTypeConstant.ORACLE, dialect.getType());
++        assertEquals("oracle.jdbc.OracleDriver", dialect.getDefaultDriverClassName());
++    }
++}
+diff --git a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-postgresql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/PostgresqlDatabaseDialect.java b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-postgresql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/PostgresqlDatabaseDialect.java
+index 87f6e09c50b..5c292893035 100644
+--- a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-postgresql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/PostgresqlDatabaseDialect.java
++++ b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-postgresql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/PostgresqlDatabaseDialect.java
+@@ -35,11 +35,18 @@ public class PostgresqlDatabaseDialect extends AbstractDatabaseDialect {
+      */
+     private static final String UNIQUE_VIOLATION_SQL_STATE = "23505";
+     
++    private static final String DEFAULT_DRIVER_CLASS_NAME = "org.postgresql.Driver";
++    
+     @Override
+     public String getType() {
+         return DatabaseTypeConstant.POSTGRESQL;
+     }
+     
++    @Override
++    public String getDefaultDriverClassName() {
++        return DEFAULT_DRIVER_CLASS_NAME;
++    }
++    
+     @Override
+     public boolean isDuplicateKeyException(Throwable throwable) {
+         if (super.isDuplicateKeyException(throwable)) {
+diff --git a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-postgresql/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/PostgresqlDatabaseDialectTest.java b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-postgresql/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/PostgresqlDatabaseDialectTest.java
+index 6b0c5b2377a..831a7bbe2c9 100644
+--- a/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-postgresql/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/PostgresqlDatabaseDialectTest.java
++++ b/plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-postgresql/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/PostgresqlDatabaseDialectTest.java
+@@ -20,6 +20,7 @@
+ 
+ import java.sql.SQLException;
+ 
++import static org.junit.jupiter.api.Assertions.assertEquals;
+ import static org.junit.jupiter.api.Assertions.assertFalse;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
+ 
+@@ -27,6 +28,11 @@ class PostgresqlDatabaseDialectTest {
+     
+     private final PostgresqlDatabaseDialect dialect = new PostgresqlDatabaseDialect();
+     
++    @Test
++    void testGetDefaultDriverClassName() {
++        assertEquals("org.postgresql.Driver", dialect.getDefaultDriverClassName());
++    }
++    
+     @Test
+     void testIsDuplicateKeyExceptionForUniqueViolationSqlState() {
+         assertTrue(dialect.isDuplicateKeyException(
+diff --git a/plugin/datasource/src/main/java/com/alibaba/nacos/plugin/datasource/dialect/DatabaseDialect.java b/plugin/datasource/src/main/java/com/alibaba/nacos/plugin/datasource/dialect/DatabaseDialect.java
+index a453e2b5417..7d8148b3da3 100644
+--- a/plugin/datasource/src/main/java/com/alibaba/nacos/plugin/datasource/dialect/DatabaseDialect.java
++++ b/plugin/datasource/src/main/java/com/alibaba/nacos/plugin/datasource/dialect/DatabaseDialect.java
+@@ -99,6 +99,23 @@ public interface DatabaseDialect extends PluginConfigSpec {
+      */
+     String getFunction(String functionName);
+     
++    /**
++     * Get the default JDBC driver class name for this dialect.
++     *
++     * <p>The datasource module uses this value when
++     * {@code nacos.plugin.datasource.db.pool.config.driver-class-name} is blank, so users who only
++     * select the dialect via {@code nacos.plugin.datasource-dialect.type} do not have to configure
++     * the driver separately. An explicitly configured driver class always takes precedence.
++     *
++     * <p>The default implementation returns {@code null}, which means the dialect does not provide a
++     * default driver and the datasource module falls back to its compatibility default.
++     *
++     * @return fully qualified JDBC driver class name, or {@code null} if not provided
++     */
++    default String getDefaultDriverClassName() {
++        return null;
++    }
++    
+     /**
+      * Judge whether the given throwable represents a duplicate unique-key conflict for this dialect.
+      *
+diff --git a/plugin/datasource/src/test/java/com/alibaba/nacos/plugin/datasource/manager/DatabaseDialectManagerTest.java b/plugin/datasource/src/test/java/com/alibaba/nacos/plugin/datasource/manager/DatabaseDialectManagerTest.java
+index 05449922b94..ce72b59ff23 100644
+--- a/plugin/datasource/src/test/java/com/alibaba/nacos/plugin/datasource/manager/DatabaseDialectManagerTest.java
++++ b/plugin/datasource/src/test/java/com/alibaba/nacos/plugin/datasource/manager/DatabaseDialectManagerTest.java
+@@ -31,6 +31,7 @@
+ import java.util.Map;
+ 
+ import static org.junit.jupiter.api.Assertions.assertFalse;
++import static org.junit.jupiter.api.Assertions.assertNull;
+ import static org.junit.jupiter.api.Assertions.assertSame;
+ import static org.junit.jupiter.api.Assertions.assertThrows;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
+@@ -90,6 +91,13 @@ void testGetDialectDoesNotFallbackToAnotherEnabledDialect() {
+         assertTrue(exception.getMessage().contains("unknown"));
+     }
+     
++    @Test
++    void testDefaultDriverClassNameIsNullWhenDialectDoesNotProvideOne() {
++        // The SPI default keeps third-party dialects compiled against older versions working and
++        // lets the datasource module fall back to its compatibility default driver.
++        assertNull(new TestDatabaseDialect("test").getDefaultDriverClassName());
++    }
++    
+     @Test
+     void testLoadInitialUsesFirstDiscoveredDialect() throws Exception {
+         DatabaseDialect first = new TestDatabaseDialect("test");
+diff --git a/specs/en/plugin/datasource-dialect-plugin-spec.md b/specs/en/plugin/datasource-dialect-plugin-spec.md
+index 7389d8699e4..34059de138d 100644
+--- a/specs/en/plugin/datasource-dialect-plugin-spec.md
++++ b/specs/en/plugin/datasource-dialect-plugin-spec.md
+@@ -73,8 +73,26 @@ Dialect implementations provide `DatabaseDialect`.
+ | `getPageLastNum(page, pageSize)` | Return second pagination parameter. |
+ | `getReturnPrimaryKeys()` | Return generated key columns. |
+ | `getFunction(functionName)` | Map logical function names to dialect SQL functions. |
++| `getDefaultDriverClassName()` | Return the default JDBC driver class for the dialect, or `null` when the dialect provides none. The default returns `null`. |
+ | `isDuplicateKeyException(throwable)` | Classify whether a datasource throwable is a duplicate unique-key conflict. The default recognizes a Spring `DuplicateKeyException` in the cause chain; dialects may override for driver-specific detection. |
+ 
++`getDefaultDriverClassName()` lets a dialect plugin carry the driver knowledge for
++its own database, so selecting the dialect via
++`nacos.plugin.datasource-dialect.type` is enough for the external datasource to
++pick a matching driver. The datasource module consults it only when the driver
++class is empty after binding both legacy and canonical pool configuration. An
++explicit driver configured through either key always wins and bypasses the
++default-driver getter entirely, even if that getter would throw an exception.
++Canonical driver configuration takes precedence over its legacy alias. When the
++selected dialect cannot be resolved, is disabled, or returns `null`/blank, the datasource module keeps
++its MySQL driver compatibility default. The built-in `mysql`, `postgresql`,
++`oracle`, and `derby` dialects provide `com.mysql.cj.jdbc.Driver`,
++`org.postgresql.Driver`, `oracle.jdbc.OracleDriver`, and
++`org.apache.derby.jdbc.EmbeddedDriver` respectively. Providing a default driver
++does not bundle the driver jar; deployments must still place the driver on the
++classpath or under `${nacos.home}/plugins`. The driver compatibility fallback
++does not replace the selected dialect or relax its startup validation.
++
+ `isDuplicateKeyException(throwable)` is the single entry point config repositories
+ use to decide whether a failed insert was a duplicate unique-key conflict. The
+ default implementation walks the throwable cause chain and returns `true` when it
+@@ -150,6 +168,11 @@ The dialect selector supplies bootstrap selection and requires restart.
+ Persisted state entries for this exclusive type do not replace the static
+ selection, and the runtime status API must reject selection changes.
+ 
++External datasource default-driver lookup uses the datasource type already
++resolved during service initialization, including canonical/legacy selector
++precedence. Reloading connection pools reuses that resolved type rather than
++reading the selector again from the environment.
++
+ When neither the standard selector nor its legacy alias is configured, the
+ selection follows the server storage default: standalone mode and cluster mode
+ with `-DembeddedStorage=true` select `derby`; ordinary cluster mode selects
+@@ -206,7 +229,7 @@ The stable datasource module settings are:
+ | `nacos.plugin.datasource.db.pool.config.idle-timeout` | `db.pool.config.idleTimeout` or kebab-case equivalent | Hikari idle timeout in milliseconds; default `600000`. |
+ | `nacos.plugin.datasource.db.pool.config.maximum-pool-size` | `db.pool.config.maximumPoolSize` or kebab-case equivalent | Hikari maximum pool size; default `20`. |
+ | `nacos.plugin.datasource.db.pool.config.minimum-idle` | `db.pool.config.minimumIdle` or kebab-case equivalent | Hikari minimum idle connections; default `2`. |
+-| `nacos.plugin.datasource.db.pool.config.driver-class-name` | `db.pool.config.driverClassName` or kebab-case equivalent | JDBC driver class. Blank uses the MySQL driver compatibility default and is not inferred from the dialect, so it MUST be set explicitly for any non-MySQL dialect such as `postgresql` or `oracle`. |
++| `nacos.plugin.datasource.db.pool.config.driver-class-name` | `db.pool.config.driverClassName` or kebab-case equivalent | JDBC driver class. Blank uses the default provided by the selected dialect plugin via `getDefaultDriverClassName()`; when the dialect provides none, the MySQL driver compatibility default applies. Set it explicitly to override the dialect default or when using a dialect plugin that does not provide one. |
+ | `nacos.plugin.datasource.db.pool.config.connection-test-query` | `db.pool.config.connectionTestQuery` or kebab-case equivalent | Connection test query. Blank uses `SELECT 1`. |
+ | `nacos.plugin.datasource.db.query-timeout` | JVM property `QUERYTIMEOUT` | JDBC query timeout in seconds; default `3`. |
+ 
+diff --git a/specs/zh-cn/plugin/datasource-dialect-plugin-spec.md b/specs/zh-cn/plugin/datasource-dialect-plugin-spec.md
+index c75768188df..424dacb7ede 100644
+--- a/specs/zh-cn/plugin/datasource-dialect-plugin-spec.md
++++ b/specs/zh-cn/plugin/datasource-dialect-plugin-spec.md
+@@ -65,8 +65,21 @@ dialect 和另一个数据库的 mapper 是无效行为。
+ | `getPageLastNum(page, pageSize)` | 返回第二个分页参数。 |
+ | `getReturnPrimaryKeys()` | 返回生成主键列。 |
+ | `getFunction(functionName)` | 将逻辑函数名映射到方言 SQL 函数。 |
++| `getDefaultDriverClassName()` | 返回该方言默认的 JDBC 驱动类名；方言不提供时返回 `null`。默认实现返回 `null`。 |
+ | `isDuplicateKeyException(throwable)` | 判定数据源抛出的异常是否为唯一键重复冲突。默认识别异常因果链中的 Spring `DuplicateKeyException`，方言可重写以实现驱动级别的判定。 |
+ 
++`getDefaultDriverClassName()` 让方言插件自己携带所属数据库的驱动知识，用户只需通过
++`nacos.plugin.datasource-dialect.type` 选择方言，外部数据源即可选出匹配的驱动。
++datasource 模块仅在完成历史和标准连接池配置绑定后，驱动类仍为空时才会读取该值。
++通过标准 key 或历史 alias 显式配置驱动时，必须完全跳过默认驱动 getter，
++即使该 getter 会抛出异常也不影响显式驱动配置；标准 key 仍优先于历史 alias。
++当所选方言无法解析、已被禁用或返回 `null`/空白时，datasource 模块保持 MySQL 驱动兼容默认值。
++内置的 `mysql`、`postgresql`、
++`oracle`、`derby` 方言分别提供 `com.mysql.cj.jdbc.Driver`、`org.postgresql.Driver`、
++`oracle.jdbc.OracleDriver` 和 `org.apache.derby.jdbc.EmbeddedDriver`。提供默认驱动类名
++并不意味着打包驱动 jar，部署时仍需将驱动放入 classpath 或 `${nacos.home}/plugins`。
++驱动类的兼容回退不会替换所选方言，也不会放宽该方言的启动校验。
++
+ `isDuplicateKeyException(throwable)` 是 config 仓储判断插入失败是否为唯一键重复冲突的
+ 统一入口。默认实现会遍历异常因果链，当发现 Spring 的 `DuplicateKeyException` 时返回
+ `true`，并通过类名匹配以保证数据源插件模块不引入 Spring 依赖。这复现了此前与数据库无关
+@@ -120,6 +133,9 @@ default 中硬编码，因为各数据库能接受的转义字符字面量写法
+ 方言 selector 只提供启动选择并需要重启生效。该互斥类型的持久化状态不能替代静态选择，
+ 运行时 status API 必须拒绝选择变更。
+ 
++外部数据源查询默认驱动时，必须复用服务初始化时已按标准 key 和历史 alias 优先级解析的
++数据源类型。连接池 reload 继续使用该类型，不得重新从环境中读取 selector。
++
+ 标准选择 key 与历史 alias 均未配置时，选择结果沿用服务端存储默认值：单机模式以及
+ 配置了 `-DembeddedStorage=true` 的集群模式选择 `derby`，普通集群模式选择 `mysql`。
+ 这一隐式选择同样在启动时形成快照。
+@@ -170,7 +186,7 @@ datasource 配置 owner，不能把同一份凭据复制到所有方言。
+ | `nacos.plugin.datasource.db.pool.config.idle-timeout` | `db.pool.config.idleTimeout` 或对应 kebab-case | Hikari 空闲超时，单位毫秒，默认 `600000`。 |
+ | `nacos.plugin.datasource.db.pool.config.maximum-pool-size` | `db.pool.config.maximumPoolSize` 或对应 kebab-case | Hikari 最大连接数，默认 `20`。 |
+ | `nacos.plugin.datasource.db.pool.config.minimum-idle` | `db.pool.config.minimumIdle` 或对应 kebab-case | Hikari 最小空闲连接数，默认 `2`。 |
+-| `nacos.plugin.datasource.db.pool.config.driver-class-name` | `db.pool.config.driverClassName` 或对应 kebab-case | JDBC 驱动类；为空时使用 MySQL 驱动兼容默认值，不会根据方言自动推断，因此使用 `postgresql`、`oracle` 等非 MySQL 方言时必须显式配置。 |
++| `nacos.plugin.datasource.db.pool.config.driver-class-name` | `db.pool.config.driverClassName` 或对应 kebab-case | JDBC 驱动类；为空时使用所选方言插件通过 `getDefaultDriverClassName()` 提供的默认值，方言未提供时回落到 MySQL 驱动兼容默认值。需要覆盖方言默认值，或所用方言插件不提供默认值时，显式配置该项。 |
+ | `nacos.plugin.datasource.db.pool.config.connection-test-query` | `db.pool.config.connectionTestQuery` 或对应 kebab-case | 连接测试 SQL；为空时使用 `SELECT 1`。 |
+ | `nacos.plugin.datasource.db.query-timeout` | JVM 参数 `QUERYTIMEOUT` | JDBC 查询超时，单位秒，默认 `3`。 |
+ 

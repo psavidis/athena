@@ -1,0 +1,13 @@
+[ {
+  "entity" : "VertxEventLoopGroup",
+  "description" : "Change control flow of VertxEventLoopGroup#next: branch added"
+}, {
+  "entity" : "VertxEventLoopGroup",
+  "description" : "Change control flow of VertxEventLoopGroup#chooseHandler: branch removed"
+}, {
+  "entity" : "VertxEventLoopGroup.EventLoopLoadBalancer",
+  "description" : "Change control flow of VertxEventLoopGroup.EventLoopLoadBalancer#addHandler: branch removed"
+}, {
+  "entity" : "VertxEventLoopGroup.EventLoopLoadBalancer",
+  "description" : "Change control flow of VertxEventLoopGroup.EventLoopLoadBalancer#removeHandler: branch removed, loop removed"
+} ]

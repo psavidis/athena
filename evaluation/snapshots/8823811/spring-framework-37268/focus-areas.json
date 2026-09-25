@@ -1,0 +1,7 @@
+[ {
+  "description" : "Change control flow of ConcurrentLruCache#markAsRemoved: branch added",
+  "entity" : "ConcurrentLruCache"
+}, {
+  "description" : "Add ConcurrentLruCacheTests#removeRacingWithEvictionDoesNotExceedCapacity",
+  "entity" : "ConcurrentLruCacheTests"
+} ]

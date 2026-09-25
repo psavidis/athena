@@ -1,0 +1,13 @@
+[ {
+  "entity" : "BufferedFileChannelInputStream",
+  "description" : "Change control flow of BufferedFileChannelInputStream#close: branch added"
+}, {
+  "entity" : "ByteBufferCleaner",
+  "description" : "Change control flow of ByteBufferCleaner#getCleaner: branch added"
+}, {
+  "entity" : "MemoryMappedFileInputStream",
+  "description" : "Change control flow of MemoryMappedFileInputStream#cleanBuffer: condition changed"
+}, {
+  "entity" : "BufferedFileChannelInputStream",
+  "description" : "Change supertype of BufferedFileChannelInputStream: InputStream -> AbstractInputStream"
+} ]

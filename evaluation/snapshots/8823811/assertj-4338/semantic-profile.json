@@ -1,0 +1,190 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Remove afterEachTest in 12 test classes",
+    "conceptDescription" : "An existing symbol was deleted with no successor. Same change in: EntryPointAssertions_registerDateFormat_Test, EntryPointAssertions_setAllowComparingPrivateFields_Test, EntryPointAssertions_setAllowExtractingPrivateFields_Test, EntryPointAssertions_setExtractBareNamePropertyMethods_Test, EntryPointAssertions_setMaxElementsForPrinting_Test, EntryPointAssertions_setMaxLengthForSingleLineDescription_Test, EntryPointAssertions_setMaxStackTraceElementsDisplayed_Test, EntryPointAssertions_setPrintAssertionsDescription_Test, EntryPointAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test, EntryPointAssertions_useDefaultRepresentation_Test, EntryPointAssertions_useRepresentation_Test, EntryPoint_Assumptions_setPreferredAssumptionException_Test.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-@AfterEach\n-  void afterEachTest() {\n-    // reset to the default value to avoid side effects on the other tests\n-    AbstractDateAssert.useDefaultDateFormatsOnly();\n-  }\n+", "-@AfterEach\n-  void afterEachTest() {\n-    // reset to the default value to avoid side effects on the other tests\n-    FieldSupport.comparison().setAllowUsingPrivateFields(DEFAULT_ALLOW_COMPARING_PRIVATE_FIELDS);\n-  }\n+", "-@AfterEach\n-  void afterEachTest() {\n-    // reset to the default value to avoid side effects on the other tests\n-    FieldSupport.extraction().setAllowUsingPrivateFields(DEFAULT_ALLOW_EXTRACTING_PRIVATE_FIELDS);\n-  }\n+", "-@AfterEach\n-  void afterEachTest() {\n-    // reset to the default value to avoid side effects on the other tests\n-    Introspection.setExtractBareNamePropertyMethods(DEFAULT_EXTRACTING_BARE_NAME_PROPERTY_METHODS);\n-  }\n+", "-@AfterEach\n-  void afterEachTest() {\n-    // reset to the default value to avoid side effects on the other tests\n-    StandardRepresentation.setMaxElementsForPrinting(DEFAULT_MAX_ELEMENTS_FOR_PRINTING);\n-  }\n+", "-@AfterEach\n-  void afterEachTest() {\n-    // reset to the default value to avoid side effects on the other tests\n-    StandardRepresentation.setMaxLengthForSingleLineDescription(DEFAULT_MAX_LENGTH_FOR_SINGLE_LINE);\n-  }\n+", "-@AfterEach\n-  void afterEachTest() {\n-    // reset to the default value to avoid side effects on the other tests\n-    StandardRepresentation.setMaxStackTraceElementsDisplayed(DEFAULT_MAX_STACK_TRACE_ELEMENTS_DISPLAYED);\n-  }\n+", "-@AfterEach\n-  void afterEachTest() {\n-    // reset to the default value to avoid side effects on the other tests\n-    AbstractAssert.printAssertionsDescription = DEFAULT_EXTRACTING_BARE_NAME_PROPERTY_METHODS;\n-  }\n+", "-@AfterEach\n-  void afterEachTest() {\n-    // reset to the default value to avoid side effects on the other tests\n-    FAILURES.setRemoveAssertJRelatedElementsFromStackTrace(DEFAULT_REMOVE_ASSERTJ_FROM_STACK_TRACE);\n-  }\n+", "-@AfterEach\n-  void afterEachTest() {\n-    // reset to the default value to avoid side effects on the other tests\n-    AbstractAssert.customRepresentation = DEFAULT_CUSTOM_REPRESENTATION;\n-  }\n+", "-@AfterEach\n-  void afterEachTest() {\n-    // reset to the default value to avoid side effects on the other tests\n-    AbstractAssert.customRepresentation = DEFAULT_CUSTOM_REPRESENTATION;\n-  }\n+", "-@AfterEach\n-  void afterEachTest() {\n-    // reset to the default value to avoid side effects on the other tests\n-    Assumptions.setPreferredAssumptionException(DEFAULT_PREFERRED_ASSUMPTION_EXCEPTION);\n-  }\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_registerDateFormat_Test.java", "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setAllowComparingPrivateFields_Test.java", "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setAllowExtractingPrivateFields_Test.java", "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setExtractBareNamePropertyMethods_Test.java", "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxElementsForPrinting_Test.java", "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxLengthForSingleLineDescription_Test.java", "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxStackTraceElementsDisplayed_Test.java", "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setPrintAssertionsDescription_Test.java", "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test.java", "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useDefaultRepresentation_Test.java", "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useRepresentation_Test.java", "assertj-core/src/test/java/org/assertj/core/api/EntryPoint_Assumptions_setPreferredAssumptionException_Test.java" ],
+    "groupedMoveCount" : 12
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Remove tearDown in 2 test classes",
+    "conceptDescription" : "An existing symbol was deleted with no successor. Same change in: DateAssert_isEqualTo_with_string_based_date_representation_Test, AssertionMatcher_matches_Test.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-@Override\n-  @AfterEach\n-  public void tearDown() {\n-    useDefaultDateFormatsOnly();\n-    TimeZone.setDefault(defaultTimeZone);\n-  }\n+", "-@AfterEach\n-  public void tearDown() {\n-    Failures.instance().setRemoveAssertJRelatedElementsFromStackTrace(removeAssertJRelatedElementsFromStackTrace);\n-  }\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-core/src/test/java/org/assertj/core/api/date/DateAssert_isEqualTo_with_string_based_date_representation_Test.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/matcher/AssertionMatcher_matches_Test.java" ],
+    "groupedMoveCount" : 2
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Remove afterEach in 3 test classes",
+    "conceptDescription" : "An existing symbol was deleted with no successor. Same change in: MutatesGlobalConfiguration, Configuration_apply_Test, Configuration_describe_Test.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-@Override\n-    public void afterEach(ExtensionContext context) {\n-      resetAll();\n-    }\n+", "-@Override\n-    public void afterEach(ExtensionContext context) {\n-      resetAll();\n-    }\n+", "-@AfterEach\n-  public void afterEach() {\n-    // revert whatever we did in the other tests\n-    Configuration.DEFAULT_CONFIGURATION.apply();\n-  }\n+", "-@AfterEach\n-  public void afterEach() {\n-    // revert whatever we did in the other tests\n-    Configuration.DEFAULT_CONFIGURATION.apply();\n-  }\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-core/src/test/java/org/assertj/core/testkit/MutatesGlobalConfiguration.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/MutatesGlobalConfiguration.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/configuration/Configuration_apply_Test.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/configuration/Configuration_describe_Test.java" ],
+    "groupedMoveCount" : 3
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Remove afterTest in 3 test classes",
+    "conceptDescription" : "An existing symbol was deleted with no successor. Same change in: Assertions_useRepresentation_Test, StandardRepresentation_throwable_format_Test, Remove_assertJ_stacktrace_elements_Test.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-@AfterEach\n-  public void afterTest() {\n-    Assertions.useDefaultRepresentation();\n-  }\n+", "-@AfterEach\n-  public void afterTest() {\n-    StandardRepresentation.setMaxStackTraceElementsDisplayed(initialMaxStackTraceElementsDisplayedValue);\n-  }\n+", "-@AfterEach\n-  public void afterTest() {\n-    setRemoveAssertJRelatedElementsFromStackTrace(initialRemoveAssertJRelatedElementsFromStackTraceValue);\n-  }\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/api/Assertions_useRepresentation_Test.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/presentation/StandardRepresentation_throwable_format_Test.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/example/test/Remove_assertJ_stacktrace_elements_Test.java" ],
+    "groupedMoveCount" : 3
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add afterEach in 3 test classes",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart. Same change in: EntryPointAssertionsBaseTest, EntryPoint_Assumptions_setPreferredAssumptionException_Test, ResetGlobalConfigurationExtension.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+@AfterEach\n+  void afterEach() {\n+    resetGlobalConfiguration();\n+  }", "-\n+@AfterEach\n+  void afterEach() {\n+    Configuration configuration = CONFIGURATION_PROVIDER.configuration();\n+    configuration.setDefaults();\n+    configuration.apply();\n+  }", "-\n+@Override\n+  public void afterEach(ExtensionContext context) {\n+    Configuration configuration = CONFIGURATION_PROVIDER.configuration();\n+    configuration.setDefaults();\n+    configuration.apply();\n+  }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertionsBaseTest.java", "assertj-core/src/test/java/org/assertj/core/api/EntryPoint_Assumptions_setPreferredAssumptionException_Test.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/ResetGlobalConfigurationExtension.java" ],
+    "groupedMoveCount" : 3
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Remove DEFAULT_CUSTOM_REPRESENTATION in 2 test classes",
+    "conceptDescription" : "An existing symbol was deleted with no successor. Same change in: EntryPointAssertions_useDefaultRepresentation_Test, EntryPointAssertions_useRepresentation_Test.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-private static final Representation DEFAULT_CUSTOM_REPRESENTATION = AbstractAssert.customRepresentation;\n+", "-private static final Representation DEFAULT_CUSTOM_REPRESENTATION = AbstractAssert.customRepresentation;\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useDefaultRepresentation_Test.java", "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useRepresentation_Test.java" ],
+    "groupedMoveCount" : 2
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in MutatesGlobalConfiguration",
+    "conceptDescription" : "5 changes in test code of MutatesGlobalConfiguration.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-@ExtendWith(AssumptionMutatingExtension.class)\n-@Isolated(\"Mutates global state\")\n-@Target(ElementType.TYPE)\n-public @interface MutatesGlobalConfiguration {\n \n-  final class AssumptionMutatingExtension implements AfterEachCallback, AfterAllCallback {\n-\n-    @Override\n-    public void afterEach(ExtensionContext context) {\n-      resetAll();\n-    }\n-\n-    @Override\n-    public void afterAll(ExtensionContext context) {\n-      resetAll();\n-    }\n-\n-    private void resetAll() {\n-      ConfigurationProvider.CONFIGURATION_PROVIDER.configuration().setDefaults();\n-    }\n-  }\n-}", "-@ExtendWith(MutatesGlobalConfiguration.AssumptionMutatingExtension.class)\n-@Isolated(\"Mutates global state\")\n-@Target(ElementType.TYPE)\n-public @interface MutatesGlobalConfiguration {\n \n-  final class AssumptionMutatingExtension implements BeforeEachCallback, AfterEachCallback, AfterAllCallback {\n-\n-    @Override\n-    public void beforeEach(ExtensionContext context) {\n-      resetAll();\n-    }\n-\n-    @Override\n-    public void afterEach(ExtensionContext context) {\n-      resetAll();\n-    }\n-\n-    @Override\n-    public void afterAll(ExtensionContext context) {\n-      resetAll();\n-    }\n-\n-    private void resetAll() {\n-      ConfigurationProvider.CONFIGURATION_PROVIDER.configuration().setDefaults();\n-    }\n-  }\n-}", "-final class AssumptionMutatingExtension implements AfterEachCallback, AfterAllCallback {\n \n-    @Override\n-    public void afterEach(ExtensionContext context) {\n-      resetAll();\n-    }\n-\n-    @Override\n-    public void afterAll(ExtensionContext context) {\n-      resetAll();\n-    }\n-\n-    private void resetAll() {\n-      ConfigurationProvider.CONFIGURATION_PROVIDER.configuration().setDefaults();\n-    }\n-  }", "-final class AssumptionMutatingExtension implements BeforeEachCallback, AfterEachCallback, AfterAllCallback {\n \n-    @Override\n-    public void beforeEach(ExtensionContext context) {\n-      resetAll();\n-    }\n-\n-    @Override\n-    public void afterEach(ExtensionContext context) {\n-      resetAll();\n-    }\n-\n-    @Override\n-    public void afterAll(ExtensionContext context) {\n-      resetAll();\n-    }\n-\n-    private void resetAll() {\n-      ConfigurationProvider.CONFIGURATION_PROVIDER.configuration().setDefaults();\n-    }\n-  }", "-@Override\n-    public void afterAll(ExtensionContext context) {\n-      resetAll();\n-    }\n+", "-@Override\n-    public void afterAll(ExtensionContext context) {\n-      resetAll();\n-    }\n+", "-private void resetAll() {\n-      ConfigurationProvider.CONFIGURATION_PROVIDER.configuration().setDefaults();\n-    }\n+", "-private void resetAll() {\n-      ConfigurationProvider.CONFIGURATION_PROVIDER.configuration().setDefaults();\n-    }\n+", "-@Override\n-    public void beforeEach(ExtensionContext context) {\n-      resetAll();\n-    }\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-core/src/test/java/org/assertj/core/testkit/MutatesGlobalConfiguration.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/MutatesGlobalConfiguration.java" ],
+    "groupedMoveCount" : 5
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in ResetGlobalConfigurationExtension",
+    "conceptDescription" : "1 change in test code of ResetGlobalConfigurationExtension.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+public class ResetGlobalConfigurationExtension implements AfterEachCallback {\n \n+  @Override\n+  public void afterEach(ExtensionContext context) {\n+    Configuration configuration = CONFIGURATION_PROVIDER.configuration();\n+    configuration.setDefaults();\n+    configuration.apply();\n+  }\n+\n+}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/ResetGlobalConfigurationExtension.java" ],
+    "groupedMoveCount" : 1
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in DateAssertBaseTest",
+    "conceptDescription" : "3 changes in test code of DateAssertBaseTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @BeforeEach\n-  public void setUp() {\n+  protected void setUp() {\n     dates = mock(Dates.class);\n     objects = mock(Objects.class);\n     assertions = new DateAssert(new Date());\n     assertions.dates = dates;\n     assertions.objects = objects;\n   }", " @AfterEach\n-  public void tearDown() {\n-    AbstractDateAssert.useDefaultDateFormatsOnly();\n+  void tearDown() {\n+    Configuration configuration = CONFIGURATION_PROVIDER.configuration();\n+    configuration.setDefaults();\n+    configuration.apply();\n   }", " @AfterEach\n-  public void tearDown() {\n-    AbstractDateAssert.useDefaultDateFormatsOnly();\n+  void tearDown() {\n+    Configuration configuration = CONFIGURATION_PROVIDER.configuration();\n+    configuration.setDefaults();\n+    configuration.apply();\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-core/src/test/java/org/assertj/core/api/DateAssertBaseTest.java" ],
+    "groupedMoveCount" : 3
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in BaseAssertionsTest",
+    "conceptDescription" : "1 change in test code of BaseAssertionsTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-{\n+@BeforeEach\n+  void setUpStackTraceFiltering() {\n     setRemoveAssertJRelatedElementsFromStackTrace(false);\n   }", "-{\n+@BeforeEach\n+  void setUpStackTraceFiltering() {\n     setRemoveAssertJRelatedElementsFromStackTrace(false);\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-core/src/test/java/org/assertj/core/api/BaseAssertionsTest.java", "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/api/BaseAssertionsTest.java" ],
+    "groupedMoveCount" : 1
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in StandardRepresentation_throwable_format_Test",
+    "conceptDescription" : "2 changes in test code of StandardRepresentation_throwable_format_Test.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-@BeforeEach\n-  public void beforeTest() {\n-    initialMaxStackTraceElementsDisplayedValue = StandardRepresentation.getMaxStackTraceElementsDisplayed();\n-  }\n+", "-private int initialMaxStackTraceElementsDisplayedValue;\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/presentation/StandardRepresentation_throwable_format_Test.java" ],
+    "groupedMoveCount" : 2
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in EntryPointAssertionsBaseTest",
+    "conceptDescription" : "1 change in test code of EntryPointAssertionsBaseTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+private static void resetGlobalConfiguration() {\n+    Configuration configuration = ConfigurationProvider.CONFIGURATION_PROVIDER.configuration();\n+    configuration.setDefaults();\n+    configuration.apply();\n+  }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertionsBaseTest.java" ],
+    "groupedMoveCount" : 1
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in DateAssert_isEqualTo_with_string_based_date_representation_Test",
+    "conceptDescription" : "1 change in test code of DateAssert_isEqualTo_with_string_based_date_representation_Test.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+@AfterEach\n+  void restore_default_time_zone() {\n+    TimeZone.setDefault(defaultTimeZone);\n+  }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-core/src/test/java/org/assertj/core/api/date/DateAssert_isEqualTo_with_string_based_date_representation_Test.java" ],
+    "groupedMoveCount" : 1
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in WithAssertions_delegation_Test",
+    "conceptDescription" : "1 change in test code of WithAssertions_delegation_Test.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Test\n   void withAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test() {\n-    setRemoveAssertJRelatedElementsFromStackTrace(true);\n+    boolean removeAssertJRelatedElementsFromStackTrace = Failures.instance().isRemoveAssertJRelatedElementsFromStackTrace();\n+    try {\n+      setRemoveAssertJRelatedElementsFromStackTrace(true);\n+    } finally {\n+      setRemoveAssertJRelatedElementsFromStackTrace(removeAssertJRelatedElementsFromStackTrace);\n+    }\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-core/src/test/java/org/assertj/core/api/WithAssertions_delegation_Test.java" ],
+    "groupedMoveCount" : 1
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in AssertionMatcher_matches_Test",
+    "conceptDescription" : "2 changes in test code of AssertionMatcher_matches_Test.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @BeforeEach\n   public void setUp() {\n-    removeAssertJRelatedElementsFromStackTrace = Failures.instance().isRemoveAssertJRelatedElementsFromStackTrace();\n     Failures.instance().setRemoveAssertJRelatedElementsFromStackTrace(false);\n   }", "-private boolean removeAssertJRelatedElementsFromStackTrace;\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/matcher/AssertionMatcher_matches_Test.java" ],
+    "groupedMoveCount" : 2
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in Remove_assertJ_stacktrace_elements_Test",
+    "conceptDescription" : "2 changes in test code of Remove_assertJ_stacktrace_elements_Test.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @BeforeEach\n   public void beforeTest() {\n-    initialRemoveAssertJRelatedElementsFromStackTraceValue = Failures.instance().isRemoveAssertJRelatedElementsFromStackTrace();\n     setRemoveAssertJRelatedElementsFromStackTrace(true);\n   }", "-private boolean initialRemoveAssertJRelatedElementsFromStackTraceValue;\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/example/test/Remove_assertJ_stacktrace_elements_Test.java" ],
+    "groupedMoveCount" : 2
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in EntryPoint_Assumptions_setPreferredAssumptionException_Test",
+    "conceptDescription" : "2 changes in test code of EntryPoint_Assumptions_setPreferredAssumptionException_Test.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-protected static final WithAssumptions withAssumptions = mock(WithAssumptions.class, CALLS_REAL_METHODS);\n+private static final WithAssumptions withAssumptions = mock(WithAssumptions.class, CALLS_REAL_METHODS);", "-private static final PreferredAssumptionException DEFAULT_PREFERRED_ASSUMPTION_EXCEPTION = getPreferredAssumptionException();\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "assertj-core/src/test/java/org/assertj/core/api/EntryPoint_Assumptions_setPreferredAssumptionException_Test.java" ],
+    "groupedMoveCount" : 2
+  } ]
+}
