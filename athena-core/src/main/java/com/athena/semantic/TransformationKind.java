@@ -50,5 +50,8 @@ public enum TransformationKind {
     // its delta, e.g. "scope test -> compile".
     ADD_DEPENDENCY,
     REMOVE_DEPENDENCY,
-    CHANGE_DEPENDENCY
+    CHANGE_DEPENDENCY,
+    // A type's superclass or interfaces changed (ticket #358). Involved: the type, then the delta
+    // in simple names, e.g. "LinkedHashMap -> ConcurrentHashMap, +Closeable, -Serializable".
+    CHANGE_SUPERTYPE
 }

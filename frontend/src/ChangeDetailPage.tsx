@@ -40,6 +40,7 @@ const KIND_LABELS: Record<TransformationKind, string> = {
   ADD_DEPENDENCY: 'Add dependency',
   REMOVE_DEPENDENCY: 'Remove dependency',
   CHANGE_DEPENDENCY: 'Dependency change',
+  CHANGE_SUPERTYPE: 'Supertype change',
 }
 
 const CATEGORY_LABELS = {

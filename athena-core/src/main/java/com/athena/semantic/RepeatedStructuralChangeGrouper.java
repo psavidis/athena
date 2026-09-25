@@ -55,13 +55,14 @@ public final class RepeatedStructuralChangeGrouper {
         return new RepeatedStructuralChange(concept, subjectOf(members.get(0).change()), classes, evidence, merged);
     }
 
-    /** What the repeated change is about: the modifier delta for a modifier change, else the member name. */
+    /** What the repeated change is about: the delta for a modifier or supertype change (#358), else the member name. */
     private static String subjectOf(Change change) {
         if (change.matchedOccurrences().isEmpty() || change.matchedOccurrences().get(0).involvedDescriptions().isEmpty()) {
             return "";
         }
         List<String> involved = change.matchedOccurrences().get(0).involvedDescriptions();
-        if (change.kind() == TransformationKind.CHANGE_MODIFIERS && involved.size() > 1) {
+        if ((change.kind() == TransformationKind.CHANGE_MODIFIERS || change.kind() == TransformationKind.CHANGE_SUPERTYPE)
+                && involved.size() > 1) {
             return involved.get(1);
         }
         String description = involved.get(0);

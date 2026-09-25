@@ -10,6 +10,7 @@ import com.github.javaparser.ast.body.BodyDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.EnumConstantDeclaration;
+import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.InitializerDeclaration;
@@ -90,6 +91,7 @@ public final class TransformationDetector {
         // 0b. The modifiers of a class present under the same name in the same file on both
         // sides (ticket #313): made final, abstract, or more or less visible.
         results.addAll(classModifierChanges(baseParsed.classes(), headParsed.classes()));
+        results.addAll(supertypeChanges(baseParsed.classes(), headParsed.classes()));
 
         // Once a class is known to be the "same" class under a rename/move (its member set
         // matched exactly), its members are excluded from the flat method/field matching
@@ -557,6 +559,56 @@ public final class TransformationDetector {
         int lastDot = nestedName.lastIndexOf('.');
         String outer = renamedTypes.get(nestedName.substring(0, lastDot));
         return outer == null ? "" : outer + nestedName.substring(lastDot);
+    }
+
+    /**
+     * A {@code CHANGE_SUPERTYPE} for each type present in both revisions whose superclass or
+     * interfaces changed (ticket #358): "LinkedHashMap -> ConcurrentHashMap", "+Closeable",
+     * "-Serializable", joined with ", ". Simple names without type arguments, so changed type
+     * arguments alone and a reordered interface list are not a change.
+     */
+    private List<DetectedTransformation> supertypeChanges(List<ClassInfo> baseClasses, List<ClassInfo> headClasses) {
+        List<DetectedTransformation> changes = new ArrayList<>();
+        for (ClassInfo base : baseClasses) {
+            headClasses.stream()
+                    .filter(head -> head.file().equals(base.file()) && head.simpleName().equals(base.simpleName()))
+                    .findFirst()
+                    .flatMap(head -> supertypeDelta(base, head)
+                            .map(delta -> DetectedTransformation.withDiff(TransformationKind.CHANGE_SUPERTYPE,
+                                    List.of(base.simpleName(), delta), List.of(base.file(), head.file()),
+                                    base.headerText(), head.headerText())))
+                    .ifPresent(changes::add);
+        }
+        return changes;
+    }
+
+    private static Optional<String> supertypeDelta(ClassInfo base, ClassInfo head) {
+        List<String> items = new ArrayList<>();
+        if (!base.superclass().equals(head.superclass())) {
+            if (base.superclass().isEmpty()) {
+                items.add("+" + head.superclass());
+            } else if (head.superclass().isEmpty()) {
+                items.add("-" + base.superclass());
+            } else {
+                items.add(base.superclass() + " -> " + head.superclass());
+            }
+        }
+        head.interfaces().stream().filter(type -> !base.interfaces().contains(type)).forEach(type -> items.add("+" + type));
+        base.interfaces().stream().filter(type -> !head.interfaces().contains(type)).forEach(type -> items.add("-" + type));
+        return items.isEmpty() ? Optional.empty() : Optional.of(String.join(", ", items));
+    }
+
+    /** The simple names of a type's implemented interfaces, or an interface's extended ones (ticket #358). */
+    private static List<String> interfacesOf(TypeDeclaration<?> type) {
+        NodeList<ClassOrInterfaceType> interfaces;
+        if (type instanceof ClassOrInterfaceDeclaration declaration) {
+            interfaces = declaration.isInterface() ? declaration.getExtendedTypes() : declaration.getImplementedTypes();
+        } else if (type instanceof EnumDeclaration declaration) {
+            interfaces = declaration.getImplementedTypes();
+        } else {
+            return List.of();
+        }
+        return interfaces.stream().map(ClassOrInterfaceType::getNameAsString).toList();
     }
 
     private List<DetectedTransformation> classModifierChanges(List<ClassInfo> baseClasses, List<ClassInfo> headClasses) {
@@ -1510,7 +1562,7 @@ public final class TransformationDetector {
                     ? declaration.getTypeParameters().stream().map(p -> p.getNameAsString()).toList()
                     : List.of();
             collected.classes.add(new ClassInfo(qualifiedName, relativePath, memberSignatures, headerText, superclass,
-                    DeclarationModifiers.of(type), packageName, typeParameters));
+                    DeclarationModifiers.of(type), packageName, typeParameters, interfacesOf(type)));
         }
         collectAnonymousMembers(type, qualifiedName, relativePath, sourceLines, collected);
         for (BodyDeclaration<?> member : type.getMembers()) {
@@ -1662,9 +1714,10 @@ public final class TransformationDetector {
      * full source text (used for the class-level diff and formatting-only detection).
      * {@code superclass} is the simple name of the class it extends, empty for none (ticket #290).
      */
+    /** {@code interfaces} are the simple names of the implemented (or, for an interface, extended) interfaces (#358). */
     private record ClassInfo(String simpleName, String file, Set<String> memberSignatures, String headerText,
                              String superclass, DeclarationModifiers modifiers, String packageName,
-                             List<String> typeParameters) {
+                             List<String> typeParameters, List<String> interfaces) {
     }
 
     /**
