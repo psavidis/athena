@@ -188,7 +188,9 @@ final class BodySummary {
      * methods in the same order: a call's arguments differ, and putting the head call in place of
      * the base one makes the enclosing statement the head's. Only the innermost such call is
      * named, so {@code send(wrap(1))} becoming {@code send(wrap(2))} names {@code wrap}. A call in
-     * a return statement is left to the return value's own summary.
+     * a return statement is left to the return value's own summary, and so is a call whose
+     * arguments differ only in the receivers of calls inside them (ticket #375): those receivers
+     * are already listed as a call removed and added.
      */
     private List<String> argumentChanges(BodySummary head) {
         if (callSites.size() != head.callSites.size()) {
@@ -202,6 +204,7 @@ final class BodySummary {
                 return List.of();
             }
             if (!before.inReturn() && !before.arguments().equals(after.arguments())
+                    && !before.receiverlessArguments().equals(after.receiverlessArguments())
                     && before.statement().replace(before.text(), after.text()).equals(after.statement())) {
                 changed.add(i);
             }
@@ -291,6 +294,16 @@ final class BodySummary {
         return Optional.of(removedText + " -> " + addedText);
     }
 
+    /** {@code expression} printed without the receivers {@link #displayName} would name (ticket #375). */
+    private static String withoutReceivers(Expression expression) {
+        Expression copy = expression.clone();
+        List<MethodCallExpr> calls = new ArrayList<>(copy.findAll(MethodCallExpr.class));
+        calls.stream()
+                .filter(call -> call.getScope().flatMap(BodySummary::receiverName).isPresent())
+                .forEach(MethodCallExpr::removeScope);
+        return copy.toString();
+    }
+
     /** {@code expression} printed with its ?: branches swapped when it is a conditional, else as is (ticket #361). */
     private static String swapped(Expression expression) {
         if (!(expression instanceof ConditionalExpr conditional)) {
@@ -304,15 +317,17 @@ final class BodySummary {
 
     /**
      * One call as written (ticket #361): its displayed and simple names, its own text, the text of
-     * its enclosing statement and whether that is a return, and its arguments as written and with
-     * ?: branches swapped. Immutable.
+     * its enclosing statement and whether that is a return, and its arguments as written, with
+     * ?: branches swapped, and with the receivers #360 names stripped from the calls inside them
+     * (ticket #375). Immutable.
      */
     private record CallSite(String name, String simpleName, String text, String statement, boolean inReturn,
-                            List<String> arguments, List<String> swappedArguments) {
+                            List<String> arguments, List<String> swappedArguments, List<String> receiverlessArguments) {
 
         private CallSite {
             arguments = List.copyOf(arguments);
             swappedArguments = List.copyOf(swappedArguments);
+            receiverlessArguments = List.copyOf(receiverlessArguments);
         }
 
         static CallSite of(MethodCallExpr call) {
@@ -321,7 +336,8 @@ final class BodySummary {
                     statement.map(Node::toString).orElse(call.toString()),
                     statement.filter(Statement::isReturnStmt).isPresent(),
                     call.getArguments().stream().map(Node::toString).toList(),
-                    call.getArguments().stream().map(BodySummary::swapped).toList());
+                    call.getArguments().stream().map(BodySummary::swapped).toList(),
+                    call.getArguments().stream().map(BodySummary::withoutReceivers).toList());
         }
     }
 
