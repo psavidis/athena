@@ -40,6 +40,9 @@ public final class ModuleTopologyBuilder {
     // project(":module:web-server"), project(path: ":core") — Groovy and Kotlin DSL alike.
     private static final Pattern GRADLE_PROJECT_DEPENDENCY =
             Pattern.compile("project\\(\\s*(?:path\\s*[:=]\\s*)?['\"](:[^'\"]+)['\"]");
+    // project(':streams') { — a block in the root build file configuring one project (ticket #376).
+    private static final Pattern GRADLE_PROJECT_BLOCK =
+            Pattern.compile("\\bproject\\(\\s*(?:path\\s*[:=]\\s*)?['\"](:[^'\"]+)['\"]\\s*\\)\\s*\\{");
     // projects.module.springBootCore — Gradle's type-safe project accessors.
     private static final Pattern GRADLE_PROJECT_ACCESSOR = Pattern.compile("\\bprojects((?:\\.\\w+)+)");
 
@@ -146,7 +149,9 @@ public final class ModuleTopologyBuilder {
     /**
      * Real declared dependencies on other modules in this repo, read from this module's own
      * build files: Maven artifactIds, Gradle {@code project(":…")} references and type-safe
-     * {@code projects.…} accessors (ticket #293), and npm package names.
+     * {@code projects.…} accessors (ticket #293), and npm package names. A Gradle module's
+     * {@code project(':x') { … }} block in the root build file counts as its own build file
+     * (ticket #376); for the root module itself, those blocks belong to the other projects.
      */
     private Set<String> manifestDependencies(Path headRoot, String moduleDirectory, String moduleName,
                                              List<RepositoryModule> allModules) {
@@ -172,26 +177,13 @@ public final class ModuleTopologyBuilder {
 
         for (Path gradleFile : ModuleLayout.gradleBuildFiles(moduleDir, moduleDirectory)) {
             String content = readQuietly(gradleFile);
-            Matcher projectMatcher = GRADLE_PROJECT_DEPENDENCY.matcher(content);
-            while (projectMatcher.find()) {
-                String directory = projectMatcher.group(1).substring(1).replace(':', '/');
-                String lastSegment = directory.substring(directory.lastIndexOf('/') + 1);
-                allModules.stream()
-                        .filter(module -> module.directory().equals(directory))
-                        .findFirst()
-                        .or(() -> allModules.stream().filter(module -> module.name().equals(lastSegment)).findFirst())
-                        .map(RepositoryModule::name)
-                        .ifPresent(found::add);
-            }
-            Matcher accessorMatcher = GRADLE_PROJECT_ACCESSOR.matcher(content);
-            while (accessorMatcher.find()) {
-                String path = accessorMatcher.group(1);
-                String accessor = path.substring(path.lastIndexOf('.') + 1);
-                allModules.stream()
-                        .filter(module -> camelCase(module.name()).equals(accessor))
-                        .map(RepositoryModule::name)
-                        .findFirst()
-                        .ifPresent(found::add);
+            addGradleDependencies(moduleDirectory.isEmpty() ? withoutProjectBlocks(content) : content, allModules, found);
+        }
+        if (!moduleDirectory.isEmpty()) {
+            for (Path rootBuildFile : ModuleLayout.gradleBuildFiles(headRoot, "")) {
+                projectBlocks(readQuietly(rootBuildFile)).stream()
+                        .filter(block -> block.directory().equals(moduleDirectory))
+                        .forEach(block -> addGradleDependencies(block.body(), allModules, found));
             }
         }
 
@@ -212,6 +204,86 @@ public final class ModuleTopologyBuilder {
 
         found.remove(moduleName);
         return found;
+    }
+
+    /** Adds the modules {@code content}'s Gradle project references and accessors name to {@code found}. */
+    private static void addGradleDependencies(String content, List<RepositoryModule> allModules, Set<String> found) {
+        Matcher projectMatcher = GRADLE_PROJECT_DEPENDENCY.matcher(content);
+        while (projectMatcher.find()) {
+            String directory = projectMatcher.group(1).substring(1).replace(':', '/');
+            String lastSegment = directory.substring(directory.lastIndexOf('/') + 1);
+            allModules.stream()
+                    .filter(module -> module.directory().equals(directory))
+                    .findFirst()
+                    .or(() -> allModules.stream().filter(module -> module.name().equals(lastSegment)).findFirst())
+                    .map(RepositoryModule::name)
+                    .ifPresent(found::add);
+        }
+        Matcher accessorMatcher = GRADLE_PROJECT_ACCESSOR.matcher(content);
+        while (accessorMatcher.find()) {
+            String path = accessorMatcher.group(1);
+            String accessor = path.substring(path.lastIndexOf('.') + 1);
+            allModules.stream()
+                    .filter(module -> camelCase(module.name()).equals(accessor))
+                    .map(RepositoryModule::name)
+                    .findFirst()
+                    .ifPresent(found::add);
+        }
+    }
+
+    /**
+     * The {@code project(':x') { … }} blocks of a root build file (ticket #376), each with the
+     * directory of the project it configures and its body. Braces inside string literals don't count.
+     */
+    private static List<ProjectBlock> projectBlocks(String content) {
+        List<ProjectBlock> blocks = new ArrayList<>();
+        Matcher header = GRADLE_PROJECT_BLOCK.matcher(content);
+        int from = 0;
+        while (header.find(from)) {
+            int end = closingBrace(content, header.end() - 1);
+            blocks.add(new ProjectBlock(header.group(1).substring(1).replace(':', '/'), header.start(), end,
+                    content.substring(header.end(), Math.max(header.end(), end - 1))));
+            from = end;
+        }
+        return blocks;
+    }
+
+    /** {@code content} without its {@code project(':x') { … }} blocks: the root project's own part. */
+    private static String withoutProjectBlocks(String content) {
+        StringBuilder rest = new StringBuilder();
+        int from = 0;
+        for (ProjectBlock block : projectBlocks(content)) {
+            rest.append(content, from, block.start());
+            from = block.end();
+        }
+        return rest.append(content.substring(from)).toString();
+    }
+
+    /** The index just past the brace closing the one at {@code open}, or the end of {@code content}. */
+    private static int closingBrace(String content, int open) {
+        int depth = 0;
+        char quote = 0;
+        for (int i = open; i < content.length(); i++) {
+            char c = content.charAt(i);
+            if (quote != 0) {
+                if (c == '\\') {
+                    i++;
+                } else if (c == quote) {
+                    quote = 0;
+                }
+            } else if (c == '\'' || c == '"') {
+                quote = c;
+            } else if (c == '{') {
+                depth++;
+            } else if (c == '}' && --depth == 0) {
+                return i + 1;
+            }
+        }
+        return content.length();
+    }
+
+    /** One {@code project(':x') { … }} block: the project's directory, its span, and its body. */
+    private record ProjectBlock(String directory, int start, int end, String body) {
     }
 
     /** "spring-boot-core" -> "springBootCore", as Gradle derives type-safe project accessors. */
