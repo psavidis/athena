@@ -115,7 +115,7 @@ Feature: Method-body modification detection
     Given a base revision where static method "view" on class "Sets" returns "new Object() { public String toString() { return str; } }"
     And a head revision where static method "view" on "Sets" returns "new Object() { public String toString() { return str.trim(); } }"
     When the semantic engine detects transformations between the revisions
-    Then the body modification of "Sets#view" is described as "Modify body of Sets#view: +trim, return value changed"
+    Then the body modification of "Sets#view" is described as "Modify body of Sets#view: +str.trim, return value changed"
 
   Scenario: A changed lambda in the returned expression reads as a changed return value
     Given a base revision where static method "present" on class "Strings" returns "Stream.of(str).filter(x -> x != null).findFirst().get()"
@@ -127,13 +127,13 @@ Feature: Method-body modification detection
     Given a base revision where static method "actualPort" on class "Server" returns "server != null ? server.actualPort : actualPort"
     And a head revision where static method "actualPort" on "Server" returns "ref == null ? 0 : ref.get().actualPort"
     When the semantic engine detects transformations between the revisions
-    Then the body modification of "Server#actualPort" is described as "Modify body of Server#actualPort: +get, return value changed"
+    Then the body modification of "Server#actualPort" is described as "Modify body of Server#actualPort: +ref.get, return value changed"
 
   Scenario: A return wrapped in new code doesn't read as returning nothing before
     Given a base revision where static method "sniEntrySize" on class "Server" returns "sniEntrySize()"
     And a head revision where static method "sniEntrySize" on "Server" returns "ref == null ? 0 : ref.get().sniEntrySize()"
     When the semantic engine detects transformations between the revisions
-    Then the body modification of "Server#sniEntrySize" is described as "Modify body of Server#sniEntrySize: +get, return value changed"
+    Then the body modification of "Server#sniEntrySize" is described as "Modify body of Server#sniEntrySize: +ref.get, return value changed"
 
   Scenario: A whole changed expression is still named
     Given a base revision where static method "matcher" on class "RequestCache" returns "str.isEmpty() ? str : fallback"
@@ -159,4 +159,4 @@ Feature: Method-body modification detection
     Given a base revision where static method "pick" on class "Strings" returns "first" on one path and "str" on the other
     And a head revision where static method "pick" on "Strings" returns "first.trim()" on one path and "str.strip()" on the other
     When the semantic engine detects transformations between the revisions
-    Then the body modification of "Strings#pick" is described as "Modify body of Strings#pick: +trim, +strip, return first -> first.trim(), return str -> str.strip()"
+    Then the body modification of "Strings#pick" is described as "Modify body of Strings#pick: +first.trim, +str.strip, return first -> first.trim(), return str -> str.strip()"

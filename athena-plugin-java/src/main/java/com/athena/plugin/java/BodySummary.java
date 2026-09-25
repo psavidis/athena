@@ -4,8 +4,11 @@ import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.CallableDeclaration;
 import com.github.javaparser.ast.body.InitializerDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.expr.Expression;
+import com.github.javaparser.ast.expr.FieldAccessExpr;
 import com.github.javaparser.ast.expr.LambdaExpr;
 import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.ReturnStmt;
@@ -20,20 +23,23 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * What a method body calls, throws and returns — compared between two revisions so a body
  * modification says what changed inside the method (ticket #288), e.g. {@code "+triggerOnEvent,
- * +throw IllegalStateException"}, instead of just "the body changed". Calls are counted by
- * simple name, so changed arguments to an existing call are not a call added or removed.
+ * +throw IllegalStateException"}, instead of just "the body changed". A call is named with its
+ * receiver when that is a plain name or a field of this class ({@code consumedOffsets.clear},
+ * ticket #360), otherwise by its simple name, so changed arguments to an existing call are not
+ * a call added or removed.
  *
  * <p>Immutable; compared with {@link #describeChangeTo}.
  */
 final class BodySummary {
 
-    private static final BodySummary NONE = new BodySummary(Map.of(), Map.of(), List.of(), List.of());
+    private static final BodySummary NONE = new BodySummary(Map.of(), Set.of(), Map.of(), List.of(), List.of());
     private static final int MAX_ITEMS = 5;
     private static final int MAX_SNIPPET_LENGTH = 40;
     private static final String RETURN_VALUE_CHANGED = "return value changed";
@@ -41,15 +47,18 @@ final class BodySummary {
     static final String OTHER_STATEMENTS = "other statements changed";
 
     private final Map<String, Integer> calls;
+    // Ticket #360: the called methods by simple name, for makesSameCallsAs.
+    private final Set<String> callNames;
     private final Map<String, Integer> thrownTypes;
     private final int returnCount;
     // Ticket #339: the returned expressions in source order, and the body's top-level statements.
     private final List<String> returnExpressions;
     private final List<String> statements;
 
-    private BodySummary(Map<String, Integer> calls, Map<String, Integer> thrownTypes, List<String> returnExpressions,
-                        List<String> statements) {
+    private BodySummary(Map<String, Integer> calls, Set<String> callNames, Map<String, Integer> thrownTypes,
+                        List<String> returnExpressions, List<String> statements) {
         this.calls = Collections.unmodifiableMap(new LinkedHashMap<>(calls));
+        this.callNames = Set.copyOf(callNames);
         this.thrownTypes = Collections.unmodifiableMap(new LinkedHashMap<>(thrownTypes));
         this.returnCount = returnExpressions.size();
         this.returnExpressions = List.copyOf(returnExpressions);
@@ -69,7 +78,9 @@ final class BodySummary {
                 .sorted(Comparator.comparing(call -> call.getName().getBegin().orElseThrow()))
                 .toList();
         Map<String, Integer> calls = new LinkedHashMap<>();
-        callsInSourceOrder.forEach(call -> calls.merge(call.getNameAsString(), 1, Integer::sum));
+        callsInSourceOrder.forEach(call -> calls.merge(displayName(call), 1, Integer::sum));
+        Set<String> callNames = new LinkedHashSet<>();
+        callsInSourceOrder.forEach(call -> callNames.add(call.getNameAsString()));
         Map<String, Integer> thrownTypes = new LinkedHashMap<>();
         body.findAll(ThrowStmt.class).forEach(throwStmt -> thrownTypes.merge(thrownName(throwStmt), 1, Integer::sum));
         List<String> returns = body.findAll(ReturnStmt.class).stream()
@@ -80,7 +91,7 @@ final class BodySummary {
         List<String> statements = body instanceof BlockStmt block
                 ? block.getStatements().stream().map(statement -> statement.toString().replaceAll("\\s+", " ").trim()).toList()
                 : List.of();
-        return new BodySummary(calls, thrownTypes, returns, statements);
+        return new BodySummary(calls, callNames, thrownTypes, returns, statements);
     }
 
     /**
@@ -124,7 +135,7 @@ final class BodySummary {
     boolean makesSameCallsAs(BodySummary head) {
         // Calls by distinct name (an unrolled loop repeats them); throws by count (ticket #334): a
         // new throw of a type the method already throws is a real change, not a restructuring.
-        return calls.keySet().equals(head.calls.keySet()) && thrownTypes.equals(head.thrownTypes)
+        return callNames.equals(head.callNames) && thrownTypes.equals(head.thrownTypes)
                 && returnCount == head.returnCount;
     }
 
@@ -298,6 +309,29 @@ final class BodySummary {
                 .filter(entry -> entry.getValue() > before.getOrDefault(entry.getKey(), 0))
                 .map(Map.Entry::getKey)
                 .toList();
+    }
+
+    /**
+     * {@code call} as a body summary names it (ticket #360): {@code receiver.name} when the
+     * receiver is a plain name or {@code this.field}, the simple name for anything else — a chain,
+     * a method result, {@code super}, or a capitalized name, which is taken to be a type.
+     */
+    private static String displayName(MethodCallExpr call) {
+        return call.getScope().flatMap(BodySummary::receiverName)
+                .map(receiver -> receiver + "." + call.getNameAsString())
+                .orElse(call.getNameAsString());
+    }
+
+    private static Optional<String> receiverName(Expression scope) {
+        String name;
+        if (scope instanceof NameExpr nameExpr) {
+            name = nameExpr.getNameAsString();
+        } else if (scope instanceof FieldAccessExpr field && field.getScope().isThisExpr()) {
+            name = field.getNameAsString();
+        } else {
+            return Optional.empty();
+        }
+        return Character.isUpperCase(name.charAt(0)) ? Optional.empty() : Optional.of(name);
     }
 
     /** {@code throw new X(...)} is named by its type; anything else ({@code throw e}) by its expression. */
