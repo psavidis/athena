@@ -4,6 +4,7 @@ import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.CallableDeclaration;
 import com.github.javaparser.ast.body.InitializerDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.expr.ConditionalExpr;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.FieldAccessExpr;
 import com.github.javaparser.ast.expr.LambdaExpr;
@@ -12,6 +13,7 @@ import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.ReturnStmt;
+import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.stmt.ThrowStmt;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 
@@ -39,10 +41,11 @@ import java.util.regex.Pattern;
  */
 final class BodySummary {
 
-    private static final BodySummary NONE = new BodySummary(Map.of(), Set.of(), Map.of(), List.of(), List.of());
+    private static final BodySummary NONE = new BodySummary(Map.of(), Set.of(), List.of(), Map.of(), List.of(), List.of(), List.of());
     private static final int MAX_ITEMS = 5;
     private static final int MAX_SNIPPET_LENGTH = 40;
     private static final String RETURN_VALUE_CHANGED = "return value changed";
+    private static final String SWAPPED = "swapped ?: branches in ";
     private static final Pattern TOKEN = Pattern.compile("\\w+|\"(?:[^\"\\\\]|\\\\.)*\"|\\S");
     static final String OTHER_STATEMENTS = "other statements changed";
 
@@ -51,17 +54,24 @@ final class BodySummary {
     private final Set<String> callNames;
     private final Map<String, Integer> thrownTypes;
     private final int returnCount;
+    // Ticket #361: every call in source order, to name one whose arguments alone changed.
+    private final List<CallSite> callSites;
     // Ticket #339: the returned expressions in source order, and the body's top-level statements.
     private final List<String> returnExpressions;
+    // Ticket #361: each returned expression with its ?: branches swapped (itself when it isn't a conditional).
+    private final List<String> swappedReturnExpressions;
     private final List<String> statements;
 
-    private BodySummary(Map<String, Integer> calls, Set<String> callNames, Map<String, Integer> thrownTypes,
-                        List<String> returnExpressions, List<String> statements) {
+    private BodySummary(Map<String, Integer> calls, Set<String> callNames, List<CallSite> callSites,
+                        Map<String, Integer> thrownTypes, List<String> returnExpressions,
+                        List<String> swappedReturnExpressions, List<String> statements) {
         this.calls = Collections.unmodifiableMap(new LinkedHashMap<>(calls));
         this.callNames = Set.copyOf(callNames);
+        this.callSites = List.copyOf(callSites);
         this.thrownTypes = Collections.unmodifiableMap(new LinkedHashMap<>(thrownTypes));
         this.returnCount = returnExpressions.size();
         this.returnExpressions = List.copyOf(returnExpressions);
+        this.swappedReturnExpressions = List.copyOf(swappedReturnExpressions);
         this.statements = List.copyOf(statements);
     }
 
@@ -83,15 +93,21 @@ final class BodySummary {
         callsInSourceOrder.forEach(call -> callNames.add(call.getNameAsString()));
         Map<String, Integer> thrownTypes = new LinkedHashMap<>();
         body.findAll(ThrowStmt.class).forEach(throwStmt -> thrownTypes.merge(thrownName(throwStmt), 1, Integer::sum));
-        List<String> returns = body.findAll(ReturnStmt.class).stream()
+        List<ReturnStmt> returnStatements = body.findAll(ReturnStmt.class).stream()
                 .filter(returnStmt -> returnsFrom(returnStmt, body))
                 .sorted(Comparator.comparing(returnStmt -> returnStmt.getBegin().orElseThrow()))
+                .toList();
+        List<String> returns = returnStatements.stream()
                 .map(returnStmt -> returnStmt.getExpression().map(Node::toString).orElse(""))
+                .toList();
+        List<String> swappedReturns = returnStatements.stream()
+                .map(returnStmt -> returnStmt.getExpression().map(BodySummary::swapped).orElse(""))
                 .toList();
         List<String> statements = body instanceof BlockStmt block
                 ? block.getStatements().stream().map(statement -> statement.toString().replaceAll("\\s+", " ").trim()).toList()
                 : List.of();
-        return new BodySummary(calls, callNames, thrownTypes, returns, statements);
+        List<CallSite> callSites = callsInSourceOrder.stream().map(CallSite::of).toList();
+        return new BodySummary(calls, callNames, callSites, thrownTypes, returns, swappedReturns, statements);
     }
 
     /**
@@ -112,11 +128,15 @@ final class BodySummary {
             items.add("return statements " + returnCount + " → " + head.returnCount);
         } else {
             for (int i = 0; i < returnCount; i++) {
-                if (!returnExpressions.get(i).equals(head.returnExpressions.get(i))) {
-                    items.add(returnValueChange(returnExpressions.get(i), head.returnExpressions.get(i)));
+                if (returnExpressions.get(i).equals(head.returnExpressions.get(i))) {
+                    continue;
                 }
+                items.add(head.returnExpressions.get(i).equals(swappedReturnExpressions.get(i))
+                        ? SWAPPED + "return"
+                        : returnValueChange(returnExpressions.get(i), head.returnExpressions.get(i)));
             }
         }
+        items.addAll(argumentChanges(head));
         if (items.isEmpty()) {
             return OTHER_STATEMENTS;
         }
@@ -164,11 +184,84 @@ final class BodySummary {
     }
 
     /**
+     * The calls whose arguments alone changed (ticket #361), when both bodies call the same
+     * methods in the same order: a call's arguments differ, and putting the head call in place of
+     * the base one makes the enclosing statement the head's. Only the innermost such call is
+     * named, so {@code send(wrap(1))} becoming {@code send(wrap(2))} names {@code wrap}. A call in
+     * a return statement is left to the return value's own summary.
+     */
+    private List<String> argumentChanges(BodySummary head) {
+        if (callSites.size() != head.callSites.size()) {
+            return List.of();
+        }
+        List<Integer> changed = new ArrayList<>();
+        for (int i = 0; i < callSites.size(); i++) {
+            CallSite before = callSites.get(i);
+            CallSite after = head.callSites.get(i);
+            if (!before.simpleName().equals(after.simpleName())) {
+                return List.of();
+            }
+            if (!before.inReturn() && !before.arguments().equals(after.arguments())
+                    && before.statement().replace(before.text(), after.text()).equals(after.statement())) {
+                changed.add(i);
+            }
+        }
+        List<String> items = new ArrayList<>();
+        for (int i : changed) {
+            CallSite before = callSites.get(i);
+            boolean enclosesAnother = changed.stream().anyMatch(other -> other != i
+                    && before.statement().equals(callSites.get(other).statement())
+                    && !before.text().equals(callSites.get(other).text())
+                    && before.text().contains(callSites.get(other).text()));
+            if (!enclosesAnother) {
+                items.add(argumentChange(before, head.callSites.get(i)));
+            }
+        }
+        return items;
+    }
+
+    /**
+     * How one call's arguments changed (ticket #361): "swapped ?: branches in name(…)", "name(…):
+     * a -> b" trimmed like a return value, or "arguments of name changed" when more than one
+     * argument, their number, or a long part changed.
+     */
+    private static String argumentChange(CallSite before, CallSite after) {
+        String fallback = "arguments of " + after.name() + " changed";
+        if (before.arguments().size() != after.arguments().size()) {
+            return fallback;
+        }
+        List<Integer> differing = new ArrayList<>();
+        for (int i = 0; i < before.arguments().size(); i++) {
+            if (!before.arguments().get(i).equals(after.arguments().get(i))) {
+                differing.add(i);
+            }
+        }
+        if (differing.size() != 1) {
+            return fallback;
+        }
+        int index = differing.get(0);
+        if (after.arguments().get(index).equals(before.swappedArguments().get(index))) {
+            return SWAPPED + after.name() + "(…)";
+        }
+        return valueChange(before.arguments().get(index), after.arguments().get(index))
+                .map(change -> after.name() + "(…): " + change)
+                .orElse(fallback);
+    }
+
+    /**
      * A changed return value, trimmed to the part that differs (ticket #339): "return str -> EMPTY"
      * for {@code c ? str : s} becoming {@code c ? EMPTY : s}; "return value changed" when even
      * the differing parts are long.
      */
     private static String returnValueChange(String before, String after) {
+        return valueChange(before, after).map(change -> "return " + change).orElse(RETURN_VALUE_CHANGED);
+    }
+
+    /**
+     * A changed expression trimmed to the part that differs, "str -> EMPTY" (tickets #339, #351);
+     * empty when the differing parts are long or not whole expressions.
+     */
+    private static Optional<String> valueChange(String before, String after) {
         List<int[]> beforeTokens = tokens(before);
         List<int[]> afterTokens = tokens(after);
         int prefix = 0;
@@ -193,9 +286,43 @@ final class BodySummary {
         if (removedText.length() > MAX_SNIPPET_LENGTH || addedText.length() > MAX_SNIPPET_LENGTH
                 || !outsideBlocks(texts(before, beforeTokens.subList(0, prefix)))
                 || !wholeExpression(removed) || !wholeExpression(added)) {
-            return RETURN_VALUE_CHANGED;
+            return Optional.empty();
         }
-        return "return " + removedText + " -> " + addedText;
+        return Optional.of(removedText + " -> " + addedText);
+    }
+
+    /** {@code expression} printed with its ?: branches swapped when it is a conditional, else as is (ticket #361). */
+    private static String swapped(Expression expression) {
+        if (!(expression instanceof ConditionalExpr conditional)) {
+            return expression.toString();
+        }
+        ConditionalExpr swapped = conditional.clone();
+        swapped.setThenExpr(conditional.getElseExpr().clone());
+        swapped.setElseExpr(conditional.getThenExpr().clone());
+        return swapped.toString();
+    }
+
+    /**
+     * One call as written (ticket #361): its displayed and simple names, its own text, the text of
+     * its enclosing statement and whether that is a return, and its arguments as written and with
+     * ?: branches swapped. Immutable.
+     */
+    private record CallSite(String name, String simpleName, String text, String statement, boolean inReturn,
+                            List<String> arguments, List<String> swappedArguments) {
+
+        private CallSite {
+            arguments = List.copyOf(arguments);
+            swappedArguments = List.copyOf(swappedArguments);
+        }
+
+        static CallSite of(MethodCallExpr call) {
+            Optional<Statement> statement = call.findAncestor(Statement.class);
+            return new CallSite(displayName(call), call.getNameAsString(), call.toString(),
+                    statement.map(Node::toString).orElse(call.toString()),
+                    statement.filter(Statement::isReturnStmt).isPresent(),
+                    call.getArguments().stream().map(Node::toString).toList(),
+                    call.getArguments().stream().map(BodySummary::swapped).toList());
+        }
     }
 
     /** {@code items} with each repeated item listed once, at its first position, as "item ×N" (ticket #352). */
