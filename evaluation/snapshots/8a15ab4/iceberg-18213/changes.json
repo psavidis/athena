@@ -1,0 +1,71 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUYXNrcy5CdWlsZGVyI3J1blRhc2tXaXRoUmV0cnkKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Tasks.Builder#runTaskWithRetry: branch added",
+  "files" : [ "core/src/main/java/org/apache/iceberg/util/Tasks.java" ],
+  "symbols" : [ "Tasks.Builder#runTaskWithRetry", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUYXNrcyNjYXVzZWRCeUludGVycnVwdGlvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Tasks#causedByInterruption",
+  "files" : [ "core/src/main/java/org/apache/iceberg/util/Tasks.java" ],
+  "symbols" : [ "Tasks#causedByInterruption" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjdGFza3NBcmVOb3RSZXRyaWVkV2hlbkZhaWx1cmVJc0NhdXNlZEJ5SW50ZXJydXB0aW9u",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestTasks#tasksAreNotRetriedWhenFailureIsCausedByInterruption",
+  "files" : [ "core/src/test/java/org/apache/iceberg/util/TestTasks.java" ],
+  "symbols" : [ "TestTasks#tasksAreNotRetriedWhenFailureIsCausedByInterruption" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjaW50ZXJydXB0aW9ucw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestTasks#interruptions",
+  "files" : [ "core/src/test/java/org/apache/iceberg/util/TestTasks.java" ],
+  "symbols" : [ "TestTasks#interruptions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjdGFza3NBcmVSZXRyaWVkV2hlbkZhaWx1cmVJc05vdENhdXNlZEJ5SW50ZXJydXB0aW9u",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestTasks#tasksAreRetriedWhenFailureIsNotCausedByInterruption",
+  "files" : [ "core/src/test/java/org/apache/iceberg/util/TestTasks.java" ],
+  "symbols" : [ "TestTasks#tasksAreRetriedWhenFailureIsNotCausedByInterruption" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjdHJhbnNpZW50RmFpbHVyZXM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestTasks#transientFailures",
+  "files" : [ "core/src/test/java/org/apache/iceberg/util/TestTasks.java" ],
+  "symbols" : [ "TestTasks#transientFailures" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjcGFyYWxsZWxUYXNrc0FyZU5vdFJldHJpZWRXaGVuVGhlQ2FsbGVySXNJbnRlcnJ1cHRlZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestTasks#parallelTasksAreNotRetriedWhenTheCallerIsInterrupted",
+  "files" : [ "core/src/test/java/org/apache/iceberg/util/TestTasks.java" ],
+  "symbols" : [ "TestTasks#parallelTasksAreNotRetriedWhenTheCallerIsInterrupted" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

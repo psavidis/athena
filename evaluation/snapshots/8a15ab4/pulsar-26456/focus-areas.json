@@ -1,0 +1,13 @@
+[ {
+  "entity" : "ProducerImpl.WriteInEventLoopCallback",
+  "description" : "Change control flow of ProducerImpl.WriteInEventLoopCallback#run: branch added"
+}, {
+  "entity" : "ProducerImpl",
+  "description" : "Add ProducerImpl#releaseOpCmdAndRecycle"
+}, {
+  "entity" : "ProducerImpl",
+  "description" : "Add ProducerImpl#releaseOpCmd"
+}, {
+  "entity" : "ProducerImpl.OpSendMsg",
+  "description" : "Add field ProducerImpl.OpSendMsg#writeEventLoop"
+} ]

@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/apache/kafka.git",
+  "base" : "820533b870106cc0e0ac60e2076b8644d68bd85f",
+  "head" : "a890bc62ad6ff3948852f02845f578cd27217f82",
+  "changeCount" : 15,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 16.05
+}

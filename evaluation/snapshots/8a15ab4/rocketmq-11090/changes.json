@@ -1,0 +1,691 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTCkFic3RyYWN0Q29uc3VtZU1lc3NhZ2VTZXJ2aWNl",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AbstractConsumeMessageService",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java" ],
+  "symbols" : [ "AbstractConsumeMessageService" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NMQVNTCkNvbnN1bWVNZXNzYWdlRXhlY3V0b3JJbmplY3Rpb25UZXN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ConsumeMessageExecutorInjectionTest",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java" ],
+  "symbols" : [ "ConsumeMessageExecutorInjectionTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClN5c3RlbU1lc3NhZ2VDb25zdW1lRXhlY3V0b3I",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SystemMessageConsumeExecutor",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumeExecutor.java" ],
+  "symbols" : [ "SystemMessageConsumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NMQVNTClN5c3RlbU1lc3NhZ2VDb25zdW1lRXhlY3V0b3JUZXN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SystemMessageConsumeExecutorTest",
+  "files" : [ "proxy/src/test/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumeExecutorTest.java" ],
+  "symbols" : [ "SystemMessageConsumeExecutorTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClN5c3RlbU1lc3NhZ2VDb25zdW1lclNoYXJpbmdUZXN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SystemMessageConsumerSharingTest",
+  "files" : [ "proxy/src/test/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumerSharingTest.java" ],
+  "symbols" : [ "SystemMessageConsumerSharingTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UsIC1Db25zdW1lTWVzc2FnZVNlcnZpY2UKQ29uc3VtZU1lc3NhZ2VDb25jdXJyZW50bHlTZXJ2aWNl",
+  "kind" : "CHANGE_SUPERTYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change supertypes of ConsumeMessageConcurrentlyService: +AbstractConsumeMessageService, -ConsumeMessageService",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java" ],
+  "symbols" : [ "ConsumeMessageConcurrentlyService", "+AbstractConsumeMessageService, -ConsumeMessageService" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UsIC1Db25zdW1lTWVzc2FnZVNlcnZpY2UKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZQ",
+  "kind" : "CHANGE_SUPERTYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change supertypes of ConsumeMessageOrderlyService: +AbstractConsumeMessageService, -ConsumeMessageService",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java" ],
+  "symbols" : [ "ConsumeMessageOrderlyService", "+AbstractConsumeMessageService, -ConsumeMessageService" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UsIC1Db25zdW1lTWVzc2FnZVNlcnZpY2UKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNl",
+  "kind" : "CHANGE_SUPERTYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change supertypes of ConsumeMessagePopConcurrentlyService: +AbstractConsumeMessageService, -ConsumeMessageService",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java" ],
+  "symbols" : [ "ConsumeMessagePopConcurrentlyService", "+AbstractConsumeMessageService, -ConsumeMessageService" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UsIC1Db25zdW1lTWVzc2FnZVNlcnZpY2UKQ29uc3VtZU1lc3NhZ2VQb3BPcmRlcmx5U2VydmljZQ",
+  "kind" : "CHANGE_SUPERTYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change supertypes of ConsumeMessagePopOrderlyService: +AbstractConsumeMessageService, -ConsumeMessageService",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java" ],
+  "symbols" : [ "ConsumeMessagePopOrderlyService", "+AbstractConsumeMessageService, -ConsumeMessageService" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TVFQdXNoQ29uc3VtZXIjZ2V0Q29uc3VtZUV4ZWN1dG9y",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultMQPushConsumer#getConsumeExecutor",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/consumer/DefaultMQPushConsumer.java" ],
+  "symbols" : [ "DefaultMQPushConsumer#getConsumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TVFQdXNoQ29uc3VtZXIjc2V0Q29uc3VtZUV4ZWN1dG9y",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultMQPushConsumer#setConsumeExecutor",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/consumer/DefaultMQPushConsumer.java" ],
+  "symbols" : [ "DefaultMQPushConsumer#setConsumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBYnN0cmFjdENvbnN1bWVNZXNzYWdlU2VydmljZSNnZXRDb25zdW1lckdyb3VwVGFn",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AbstractConsumeMessageService#getConsumerGroupTag",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java" ],
+  "symbols" : [ "AbstractConsumeMessageService#getConsumerGroupTag" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBYnN0cmFjdENvbnN1bWVNZXNzYWdlU2VydmljZSNzaHV0ZG93bkNvbnN1bWVFeGVjdXRvcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AbstractConsumeMessageService#shutdownConsumeExecutor",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java" ],
+  "symbols" : [ "AbstractConsumeMessageService#shutdownConsumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCNzZXJ2aWNlcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConsumeMessageExecutorInjectionTest#services",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java" ],
+  "symbols" : [ "ConsumeMessageExecutorInjectionTest#services" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCN0ZXN0U2hhcmluZ0FuZE93bmVyc2hpcA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConsumeMessageExecutorInjectionTest#testSharingAndOwnership",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java" ],
+  "symbols" : [ "ConsumeMessageExecutorInjectionTest#testSharingAndOwnership" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCN0ZXN0Q2FuY2VsbGF0aW9uRG9lc05vdENoYW5nZU9yZGluYXJ5Q29uc3VtZXJPZmZzZXRz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConsumeMessageExecutorInjectionTest#testCancellationDoesNotChangeOrdinaryConsumerOffsets",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java" ],
+  "symbols" : [ "ConsumeMessageExecutorInjectionTest#testCancellationDoesNotChangeOrdinaryConsumerOffsets" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCN0ZXN0VmlydHVhbFRocmVhZEV4ZWN1dG9ySXNVc2VkRGlyZWN0bHk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConsumeMessageExecutorInjectionTest#testVirtualThreadExecutorIsUsedDirectly",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java" ],
+  "symbols" : [ "ConsumeMessageExecutorInjectionTest#testVirtualThreadExecutorIsUsedDirectly" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCN0ZXN0RXh0ZXJuYWxUYXNrc0FyZUxlZnRUb1RoZU93bmVyT25TaHV0ZG93bg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConsumeMessageExecutorInjectionTest#testExternalTasksAreLeftToTheOwnerOnShutdown",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java" ],
+  "symbols" : [ "ConsumeMessageExecutorInjectionTest#testExternalTasksAreLeftToTheOwnerOnShutdown" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCNjcmVhdGVTZXJ2aWNl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConsumeMessageExecutorInjectionTest#createService",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java" ],
+  "symbols" : [ "ConsumeMessageExecutorInjectionTest#createService" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQcm94eUNvbmZpZyNnZXRTeXN0ZW1NZXNzYWdlQ29uc3VtZXJUaHJlYWRQb29sQ29yZVNpemU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ProxyConfig#getSystemMessageConsumerThreadPoolCoreSize",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/config/ProxyConfig.java" ],
+  "symbols" : [ "ProxyConfig#getSystemMessageConsumerThreadPoolCoreSize" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQcm94eUNvbmZpZyNzZXRTeXN0ZW1NZXNzYWdlQ29uc3VtZXJUaHJlYWRQb29sQ29yZVNpemU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ProxyConfig#setSystemMessageConsumerThreadPoolCoreSize",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/config/ProxyConfig.java" ],
+  "symbols" : [ "ProxyConfig#setSystemMessageConsumerThreadPoolCoreSize" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTeXN0ZW1NZXNzYWdlQ29uc3VtZUV4ZWN1dG9yI2NyZWF0ZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SystemMessageConsumeExecutor#create",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumeExecutor.java" ],
+  "symbols" : [ "SystemMessageConsumeExecutor#create" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTeXN0ZW1NZXNzYWdlQ29uc3VtZUV4ZWN1dG9yVGVzdCN0ZXN0RGVmYXVsdHM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SystemMessageConsumeExecutorTest#testDefaults",
+  "files" : [ "proxy/src/test/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumeExecutorTest.java" ],
+  "symbols" : [ "SystemMessageConsumeExecutorTest#testDefaults" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTeXN0ZW1NZXNzYWdlQ29uc3VtZUV4ZWN1dG9yVGVzdCN0ZXN0Q29uZmlndXJlZFBvb2xQcmVzZXJ2ZXNRdWV1ZWRUYXNrcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SystemMessageConsumeExecutorTest#testConfiguredPoolPreservesQueuedTasks",
+  "files" : [ "proxy/src/test/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumeExecutorTest.java" ],
+  "symbols" : [ "SystemMessageConsumeExecutorTest#testConfiguredPoolPreservesQueuedTasks" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTeXN0ZW1NZXNzYWdlQ29uc3VtZXJTaGFyaW5nVGVzdCN0ZXN0TWFuYWdlckFuZEFkZGl0aW9uYWxTeW5jZXJSZWNlaXZlU2FtZUV4ZWN1dG9y",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SystemMessageConsumerSharingTest#testManagerAndAdditionalSyncerReceiveSameExecutor",
+  "files" : [ "proxy/src/test/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumerSharingTest.java" ],
+  "symbols" : [ "SystemMessageConsumerSharingTest#testManagerAndAdditionalSyncerReceiveSameExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzaHV0ZG93bkNvbnN1bWVFeGVjdXRvciwgLXNodXRkb3duR3JhY2VmdWxseQpDb25zdW1lTWVzc2FnZUNvbmN1cnJlbnRseVNlcnZpY2Ujc2h1dGRvd24",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumeMessageConcurrentlyService#shutdown: +shutdownConsumeExecutor, -shutdownGracefully",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java" ],
+  "symbols" : [ "ConsumeMessageConcurrentlyService#shutdown", "+shutdownConsumeExecutor, -shutdownGracefully" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzaHV0ZG93bkNvbnN1bWVFeGVjdXRvciwgLXNodXRkb3duR3JhY2VmdWxseQpDb25zdW1lTWVzc2FnZU9yZGVybHlTZXJ2aWNlI3NodXRkb3du",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumeMessageOrderlyService#shutdown: +shutdownConsumeExecutor, -shutdownGracefully",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java" ],
+  "symbols" : [ "ConsumeMessageOrderlyService#shutdown", "+shutdownConsumeExecutor, -shutdownGracefully" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzaHV0ZG93bkNvbnN1bWVFeGVjdXRvciwgLXNodXRkb3duR3JhY2VmdWxseQpDb25zdW1lTWVzc2FnZVBvcENvbmN1cnJlbnRseVNlcnZpY2Ujc2h1dGRvd24",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumeMessagePopConcurrentlyService#shutdown: +shutdownConsumeExecutor, -shutdownGracefully",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java" ],
+  "symbols" : [ "ConsumeMessagePopConcurrentlyService#shutdown", "+shutdownConsumeExecutor, -shutdownGracefully" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzaHV0ZG93bkNvbnN1bWVFeGVjdXRvciwgLXNodXRkb3duR3JhY2VmdWxseQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI3NodXRkb3du",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumeMessagePopOrderlyService#shutdown: +shutdownConsumeExecutor, -shutdownGracefully",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java" ],
+  "symbols" : [ "ConsumeMessagePopOrderlyService#shutdown", "+shutdownConsumeExecutor, -shutdownGracefully" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRGaWVsZCwgLWdldERlY2xhcmVkRmllbGQKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlVGVzdCN0ZXN0U2h1dGRvd24",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumeMessagePopConcurrentlyServiceTest#testShutdown: +getField, -getDeclaredField",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyServiceTest.java" ],
+  "symbols" : [ "ConsumeMessagePopConcurrentlyServiceTest#testShutdown", "+getField, -getDeclaredField" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZUZpZWxkLCAtd3JpdGVEZWNsYXJlZEZpZWxkCkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZVRlc3QjdGVzdFN1Ym1pdFBvcENvbnN1bWVSZXF1ZXN0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumeMessagePopConcurrentlyServiceTest#testSubmitPopConsumeRequest: +writeField, -writeDeclaredField",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyServiceTest.java" ],
+  "symbols" : [ "ConsumeMessagePopConcurrentlyServiceTest#testSubmitPopConsumeRequest", "+writeField, -writeDeclaredField" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZUZpZWxkLCAtd3JpdGVEZWNsYXJlZEZpZWxkCkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZVRlc3QjdGVzdFN1Ym1pdFBvcENvbnN1bWVSZXF1ZXN0V2l0aE11bHRpTXNn",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumeMessagePopConcurrentlyServiceTest#testSubmitPopConsumeRequestWithMultiMsg: +writeField, -writeDeclaredField",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyServiceTest.java" ],
+  "symbols" : [ "ConsumeMessagePopConcurrentlyServiceTest#testSubmitPopConsumeRequestWithMultiMsg", "+writeField, -writeDeclaredField" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRGaWVsZCwgLWdldERlY2xhcmVkRmllbGQKQ29uc3VtZU1lc3NhZ2VQb3BPcmRlcmx5U2VydmljZVRlc3QjdGVzdFNodXRkb3du",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumeMessagePopOrderlyServiceTest#testShutdown: +getField, -getDeclaredField",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyServiceTest.java" ],
+  "symbols" : [ "ConsumeMessagePopOrderlyServiceTest#testShutdown", "+getField, -getDeclaredField" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZUZpZWxkLCAtd3JpdGVEZWNsYXJlZEZpZWxkCkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2VUZXN0I3Rlc3RTdWJtaXRQb3BDb25zdW1lUmVxdWVzdA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumeMessagePopOrderlyServiceTest#testSubmitPopConsumeRequest: +writeField, -writeDeclaredField",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyServiceTest.java" ],
+  "symbols" : [ "ConsumeMessagePopOrderlyServiceTest#testSubmitPopConsumeRequest", "+writeField, -writeDeclaredField" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithcHBlbmRTaHV0ZG93biwgK3NodXRkb3duR3JhY2VmdWxseQpDbHVzdGVyU2VydmljZU1hbmFnZXIjaW5pdA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ClusterServiceManager#init: +appendShutdown, +shutdownGracefully",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/service/ClusterServiceManager.java" ],
+  "symbols" : [ "ClusterServiceManager#init", "+appendShutdown, +shutdownGracefully" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkZWZhdWx0TVFQdXNoQ29uc3VtZXIuc2V0Q29uc3VtZUV4ZWN1dG9yCkFic3RyYWN0U3lzdGVtTWVzc2FnZVN5bmNlciNzdGFydA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AbstractSystemMessageSyncer#start: +defaultMQPushConsumer.setConsumeExecutor",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/AbstractSystemMessageSyncer.java" ],
+  "symbols" : [ "AbstractSystemMessageSyncer#start", "+defaultMQPushConsumer.setConsumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkZWZhdWx0TVFQdXNoQ29uc3VtZXJJbXBsLmdldERlZmF1bHRNUVB1c2hDb25zdW1lciwgK2dldENvbnN1bWVyR3JvdXBUYWcsICtnZXRDb25zdW1lckdyb3VwLCAtY29uc3VtZXJHcm91cC5sZW5ndGgsIC1jb25zdW1lckdyb3VwLnN1YnN0cmluZyDigKZhbmQgMiBtb3JlCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSM8aW5pdD4",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumeMessageConcurrentlyService#<init>: +defaultMQPushConsumerImpl.getDefaultMQPushConsumer, +getConsumerGroupTag, +getConsumerGroup, -consumerGroup.length, -consumerGroup.substring …and 2 more",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java" ],
+  "symbols" : [ "ConsumeMessageConcurrentlyService#<init>", "+defaultMQPushConsumerImpl.getDefaultMQPushConsumer, +getConsumerGroupTag, +getConsumerGroup, -consumerGroup.length, -consumerGroup.substring …and 2 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkZWZhdWx0TVFQdXNoQ29uc3VtZXJJbXBsLmdldERlZmF1bHRNUVB1c2hDb25zdW1lciwgK2dldENvbnN1bWVyR3JvdXBUYWcsICtnZXRDb25zdW1lckdyb3VwLCAtY29uc3VtZXJHcm91cC5sZW5ndGgsIC1jb25zdW1lckdyb3VwLnN1YnN0cmluZyDigKZhbmQgMiBtb3JlCkNvbnN1bWVNZXNzYWdlT3JkZXJseVNlcnZpY2UjPGluaXQ-",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumeMessageOrderlyService#<init>: +defaultMQPushConsumerImpl.getDefaultMQPushConsumer, +getConsumerGroupTag, +getConsumerGroup, -consumerGroup.length, -consumerGroup.substring …and 2 more",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java" ],
+  "symbols" : [ "ConsumeMessageOrderlyService#<init>", "+defaultMQPushConsumerImpl.getDefaultMQPushConsumer, +getConsumerGroupTag, +getConsumerGroup, -consumerGroup.length, -consumerGroup.substring …and 2 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1kZWZhdWx0TVFQdXNoQ29uc3VtZXIuZ2V0Q29uc3VtZVRocmVhZE1pbiwgLWRlZmF1bHRNUVB1c2hDb25zdW1lci5nZXRDb25zdW1lVGhyZWFkTWF4CkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZSM8aW5pdD4",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumeMessagePopConcurrentlyService#<init>: -defaultMQPushConsumer.getConsumeThreadMin, -defaultMQPushConsumer.getConsumeThreadMax",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java" ],
+  "symbols" : [ "ConsumeMessagePopConcurrentlyService#<init>", "-defaultMQPushConsumer.getConsumeThreadMin, -defaultMQPushConsumer.getConsumeThreadMax" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1kZWZhdWx0TVFQdXNoQ29uc3VtZXIuZ2V0Q29uc3VtZVRocmVhZE1pbiwgLWRlZmF1bHRNUVB1c2hDb25zdW1lci5nZXRDb25zdW1lVGhyZWFkTWF4CkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2UjPGluaXQ-",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumeMessagePopOrderlyService#<init>: -defaultMQPushConsumer.getConsumeThreadMin, -defaultMQPushConsumer.getConsumeThreadMax",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java" ],
+  "symbols" : [ "ConsumeMessagePopOrderlyService#<init>", "-defaultMQPushConsumer.getConsumeThreadMin, -defaultMQPushConsumer.getConsumeThreadMax" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGUKQ2x1c3RlclNlcnZpY2VNYW5hZ2VyIzxpbml0Pg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ClusterServiceManager#<init>: +create",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/service/ClusterServiceManager.java" ],
+  "symbols" : [ "ClusterServiceManager#<init>", "+create" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsdXN0ZXJDb25zdW1lck1hbmFnZXIjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ClusterConsumerManager#<init>: other statements changed",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/service/client/ClusterConsumerManager.java" ],
+  "symbols" : [ "ClusterConsumerManager#<init>", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFic3RyYWN0U3lzdGVtTWVzc2FnZVN5bmNlciM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AbstractSystemMessageSyncer#<init>: other statements changed",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/AbstractSystemMessageSyncer.java" ],
+  "symbols" : [ "AbstractSystemMessageSyncer#<init>", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1idWlsZExvY2FsUHJveHlJZCwgLWluaXQKSGVhcnRiZWF0U3luY2VyIzxpbml0Pg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of HeartbeatSyncer#<init>: -buildLocalProxyId, -init",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/HeartbeatSyncer.java" ],
+  "symbols" : [ "HeartbeatSyncer#<init>", "-buildLocalProxyId, -init" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNjb25zdW1lUmVxdWVzdFF1ZXVl",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ConsumeMessageConcurrentlyService#consumeRequestQueue",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java" ],
+  "symbols" : [ "ConsumeMessageConcurrentlyService#consumeRequestQueue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNjb25zdW1lRXhlY3V0b3I",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ConsumeMessageConcurrentlyService#consumeExecutor",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java" ],
+  "symbols" : [ "ConsumeMessageConcurrentlyService#consumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlT3JkZXJseVNlcnZpY2UjY29uc3VtZVJlcXVlc3RRdWV1ZQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ConsumeMessageOrderlyService#consumeRequestQueue",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java" ],
+  "symbols" : [ "ConsumeMessageOrderlyService#consumeRequestQueue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlT3JkZXJseVNlcnZpY2UjY29uc3VtZUV4ZWN1dG9y",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ConsumeMessageOrderlyService#consumeExecutor",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java" ],
+  "symbols" : [ "ConsumeMessageOrderlyService#consumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZSNjb25zdW1lUmVxdWVzdFF1ZXVl",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ConsumeMessagePopConcurrentlyService#consumeRequestQueue",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java" ],
+  "symbols" : [ "ConsumeMessagePopConcurrentlyService#consumeRequestQueue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZSNjb25zdW1lRXhlY3V0b3I",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ConsumeMessagePopConcurrentlyService#consumeExecutor",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java" ],
+  "symbols" : [ "ConsumeMessagePopConcurrentlyService#consumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2UjY29uc3VtZVJlcXVlc3RRdWV1ZQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ConsumeMessagePopOrderlyService#consumeRequestQueue",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java" ],
+  "symbols" : [ "ConsumeMessagePopOrderlyService#consumeRequestQueue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2UjY29uc3VtZUV4ZWN1dG9y",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ConsumeMessagePopOrderlyService#consumeExecutor",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java" ],
+  "symbols" : [ "ConsumeMessagePopOrderlyService#consumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkRlZmF1bHRNUVB1c2hDb25zdW1lciNjb25zdW1lRXhlY3V0b3I",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field DefaultMQPushConsumer#consumeExecutor",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/consumer/DefaultMQPushConsumer.java" ],
+  "symbols" : [ "DefaultMQPushConsumer#consumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFic3RyYWN0Q29uc3VtZU1lc3NhZ2VTZXJ2aWNlI2NvbnN1bWVFeGVjdXRvcg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AbstractConsumeMessageService#consumeExecutor",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java" ],
+  "symbols" : [ "AbstractConsumeMessageService#consumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFic3RyYWN0Q29uc3VtZU1lc3NhZ2VTZXJ2aWNlI293bnNDb25zdW1lRXhlY3V0b3I",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AbstractConsumeMessageService#ownsConsumeExecutor",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java" ],
+  "symbols" : [ "AbstractConsumeMessageService#ownsConsumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkNvbnN1bWVNZXNzYWdlRXhlY3V0b3JJbmplY3Rpb25UZXN0I3NlcnZpY2VDbGFzcw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ConsumeMessageExecutorInjectionTest#serviceClass",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java" ],
+  "symbols" : [ "ConsumeMessageExecutorInjectionTest#serviceClass" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkNvbnN1bWVNZXNzYWdlRXhlY3V0b3JJbmplY3Rpb25UZXN0I2xpc3RlbmVyQ2xhc3M",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ConsumeMessageExecutorInjectionTest#listenerClass",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java" ],
+  "symbols" : [ "ConsumeMessageExecutorInjectionTest#listenerClass" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClByb3h5Q29uZmlnI3N5c3RlbU1lc3NhZ2VDb25zdW1lclRocmVhZFBvb2xDb3JlU2l6ZQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ProxyConfig#systemMessageConsumerThreadPoolCoreSize",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/config/ProxyConfig.java" ],
+  "symbols" : [ "ProxyConfig#systemMessageConsumerThreadPoolCoreSize" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkNsdXN0ZXJTZXJ2aWNlTWFuYWdlciNzeXN0ZW1NZXNzYWdlQ29uc3VtZUV4ZWN1dG9y",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ClusterServiceManager#systemMessageConsumeExecutor",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/service/ClusterServiceManager.java" ],
+  "symbols" : [ "ClusterServiceManager#systemMessageConsumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFic3RyYWN0U3lzdGVtTWVzc2FnZVN5bmNlciNjb25zdW1lRXhlY3V0b3I",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AbstractSystemMessageSyncer#consumeExecutor",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/AbstractSystemMessageSyncer.java" ],
+  "symbols" : [ "AbstractSystemMessageSyncer#consumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpBYnN0cmFjdENvbnN1bWVNZXNzYWdlU2VydmljZSNkZWZhdWx0TVFQdXNoQ29uc3VtZXI",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter AbstractConsumeMessageService#defaultMQPushConsumer",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java" ],
+  "symbols" : [ "AbstractConsumeMessageService#defaultMQPushConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCNzZXJ2aWNlQ2xhc3M",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ConsumeMessageExecutorInjectionTest#serviceClass",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java" ],
+  "symbols" : [ "ConsumeMessageExecutorInjectionTest#serviceClass" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCNsaXN0ZW5lckNsYXNz",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ConsumeMessageExecutorInjectionTest#listenerClass",
+  "files" : [ "client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java" ],
+  "symbols" : [ "ConsumeMessageExecutorInjectionTest#listenerClass" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpBYnN0cmFjdFN5c3RlbU1lc3NhZ2VTeW5jZXIjY29uc3VtZUV4ZWN1dG9y",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter AbstractSystemMessageSyncer#consumeExecutor",
+  "files" : [ "proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/AbstractSystemMessageSyncer.java" ],
+  "symbols" : [ "AbstractSystemMessageSyncer#consumeExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UFVMTF9VUF9GSUVMRApBYnN0cmFjdENvbnN1bWVNZXNzYWdlU2VydmljZSNkZWZhdWx0TVFQdXNoQ29uc3VtZXIKQ29uc3VtZU1lc3NhZ2VDb25jdXJyZW50bHlTZXJ2aWNlI2RlZmF1bHRNUVB1c2hDb25zdW1lcgpDb25zdW1lTWVzc2FnZU9yZGVybHlTZXJ2aWNlI2RlZmF1bHRNUVB1c2hDb25zdW1lcgpDb25zdW1lTWVzc2FnZVBvcENvbmN1cnJlbnRseVNlcnZpY2UjZGVmYXVsdE1RUHVzaENvbnN1bWVyCkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2UjZGVmYXVsdE1RUHVzaENvbnN1bWVy",
+  "kind" : "PULL_UP_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Pull up field defaultMQPushConsumer into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java" ],
+  "symbols" : [ "AbstractConsumeMessageService#defaultMQPushConsumer", "ConsumeMessageConcurrentlyService#defaultMQPushConsumer", "ConsumeMessageOrderlyService#defaultMQPushConsumer", "ConsumeMessagePopConcurrentlyService#defaultMQPushConsumer", "ConsumeMessagePopOrderlyService#defaultMQPushConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UjZGVjQ29yZVBvb2xTaXplCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNkZWNDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZSNkZWNDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlI2RlY0NvcmVQb29sU2l6ZQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI2RlY0NvcmVQb29sU2l6ZQ",
+  "kind" : "PULL_UP_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Pull up decCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java" ],
+  "symbols" : [ "AbstractConsumeMessageService#decCorePoolSize", "ConsumeMessageConcurrentlyService#decCorePoolSize", "ConsumeMessageOrderlyService#decCorePoolSize", "ConsumeMessagePopConcurrentlyService#decCorePoolSize", "ConsumeMessagePopOrderlyService#decCorePoolSize" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UjZ2V0Q29yZVBvb2xTaXplCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNnZXRDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZSNnZXRDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlI2dldENvcmVQb29sU2l6ZQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI2dldENvcmVQb29sU2l6ZQ",
+  "kind" : "PULL_UP_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Pull up getCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java" ],
+  "symbols" : [ "AbstractConsumeMessageService#getCorePoolSize", "ConsumeMessageConcurrentlyService#getCorePoolSize", "ConsumeMessageOrderlyService#getCorePoolSize", "ConsumeMessagePopConcurrentlyService#getCorePoolSize", "ConsumeMessagePopOrderlyService#getCorePoolSize" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UjaW5jQ29yZVBvb2xTaXplCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNpbmNDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZSNpbmNDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlI2luY0NvcmVQb29sU2l6ZQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI2luY0NvcmVQb29sU2l6ZQ",
+  "kind" : "PULL_UP_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Pull up incCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java" ],
+  "symbols" : [ "AbstractConsumeMessageService#incCorePoolSize", "ConsumeMessageConcurrentlyService#incCorePoolSize", "ConsumeMessageOrderlyService#incCorePoolSize", "ConsumeMessagePopConcurrentlyService#incCorePoolSize", "ConsumeMessagePopOrderlyService#incCorePoolSize" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UjdXBkYXRlQ29yZVBvb2xTaXplCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSN1cGRhdGVDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZSN1cGRhdGVDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlI3VwZGF0ZUNvcmVQb29sU2l6ZQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI3VwZGF0ZUNvcmVQb29sU2l6ZQ",
+  "kind" : "PULL_UP_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Pull up updateCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+  "files" : [ "client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java", "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java" ],
+  "symbols" : [ "AbstractConsumeMessageService#updateCorePoolSize", "ConsumeMessageConcurrentlyService#updateCorePoolSize", "ConsumeMessageOrderlyService#updateCorePoolSize", "ConsumeMessagePopConcurrentlyService#updateCorePoolSize", "ConsumeMessagePopOrderlyService#updateCorePoolSize" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

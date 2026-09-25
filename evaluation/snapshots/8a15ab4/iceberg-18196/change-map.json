@@ -1,0 +1,57 @@
+{
+  "prTitle" : "Flink: Backport RowKind fix in DynamicIcebergSink's DataConverter to 1.20/2.1/2.2",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 1,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0Um93RGF0YUNvbnZlcnRlciN0ZXN0UHJlc2VydmVzUm93S2luZA",
+    "description" : "Add TestRowDataConverter#testPreservesRowKind",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 3,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzb3VyY2VEYXRhLmdldFJvd0tpbmQKRGF0YUNvbnZlcnRlci5Sb3dEYXRhQ29udmVydGVyI2NvbnZlcnQ",
+    "description" : "Modify body of DataConverter.RowDataConverter#convert: +sourceData.getRowKind",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 3,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "TestRowDataConverter",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0Um93RGF0YUNvbnZlcnRlciN0ZXN0UHJlc2VydmVzUm93S2luZA",
+      "description" : "Add TestRowDataConverter#testPreservesRowKind",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 3,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "DataConverter.RowDataConverter",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzb3VyY2VEYXRhLmdldFJvd0tpbmQKRGF0YUNvbnZlcnRlci5Sb3dEYXRhQ29udmVydGVyI2NvbnZlcnQ",
+      "description" : "Modify body of DataConverter.RowDataConverter#convert: +sourceData.getRowKind",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 3,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

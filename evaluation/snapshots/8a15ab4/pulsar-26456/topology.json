@@ -1,0 +1,85 @@
+{
+  "territories" : [ {
+    "moduleName" : "pulsar-client",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 18 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpQcm9kdWNlckltcGwuV3JpdGVJbkV2ZW50TG9vcENhbGxiYWNrI3J1bgpicmFuY2ggYWRkZWQ", "QUREX1NZTUJPTApQcm9kdWNlckltcGwjcmVsZWFzZU9wQ21kQW5kUmVjeWNsZQ", "QUREX1NZTUJPTApQcm9kdWNlckltcGwjcmVsZWFzZU9wQ21k", "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTZW5kVGltZW91dER1cmluZ0luRmxpZ2h0V3JpdGVEZWZlcnNDbWRSZWxlYXNl", "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTZW5kVGltZW91dFJlbGVhc2VzQ21kSW5saW5lV2hlbk5vV3JpdGVJbkZsaWdodA", "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RQcm9jZXNzT3BTZW5kTXNnVHJhY2tzV3JpdGVFdmVudExvb3A", "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTdGFsZVdyaXRlQ2FsbGJhY2tTa2lwc0Rpc3Bvc2VkT3A", "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTdGFsZVdyaXRlQ2FsbGJhY2tTa2lwc09wUmVTZW50T25Bbm90aGVyTG9vcA", "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RGYWlsUGVuZGluZ01lc3NhZ2VzSGFuZGxlc1NodXR0aW5nRG93bkV2ZW50TG9vcA", "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCAtc2FmZVJlbGVhc2UsIC1vcC5yZWN5Y2xlClByb2R1Y2VySW1wbCNhY2tSZWNlaXZlZA", "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCAtc2FmZVJlbGVhc2UsIC1vcC5yZWN5Y2xlClByb2R1Y2VySW1wbCNyZWNvdmVyQ2hlY2tzdW1FcnJvcg", "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCAtc2FmZVJlbGVhc2UsIC1vcC5yZWN5Y2xlClByb2R1Y2VySW1wbCNyZWNvdmVyTm90QWxsb3dlZEVycm9y", "TU9ESUZZX01FVEhPRF9CT0RZCitsb2cud2FybiwgK2V4Y2VwdGlvbiwgK2xvZywgK3JlbGVhc2VPcENtZEFuZFJlY3ljbGUsICtmYWlsUGVuZGluZ01lc3NhZ2VzIOKApmFuZCAyIG1vcmUKUHJvZHVjZXJJbXBsI2ZhaWxQZW5kaW5nTWVzc2FnZXM", "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCArY254LmN0eCwgK2NoYW5uZWwsICtldmVudExvb3AsIC1zYWZlUmVsZWFzZSDigKZhbmQgMSBtb3JlClByb2R1Y2VySW1wbCNwcm9jZXNzT3BTZW5kTXNn", "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCArY254LmN0eCwgK2NoYW5uZWwsICtldmVudExvb3AsIC1vcC5yZWN5Y2xlIOKApmFuZCAxIG1vcmUKUHJvZHVjZXJJbXBsI3JlY292ZXJQcm9jZXNzT3BTZW5kTXNnRnJvbQ", "TU9ESUZZX01FVEhPRF9CT0RZClByb2R1Y2VySW1wbC5PcFNlbmRNc2cjaW5pdGlhbGl6ZQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ", "Q0hBTkdFX01PRElGSUVSUwordm9sYXRpbGUKUHJvZHVjZXJJbXBsLk9wU2VuZE1zZyNjbWQ", "QUREX0ZJRUxEClByb2R1Y2VySW1wbC5PcFNlbmRNc2cjd3JpdGVFdmVudExvb3A" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTZW5kVGltZW91dER1cmluZ0luRmxpZ2h0V3JpdGVEZWZlcnNDbWRSZWxlYXNl", "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTZW5kVGltZW91dFJlbGVhc2VzQ21kSW5saW5lV2hlbk5vV3JpdGVJbkZsaWdodA", "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RQcm9jZXNzT3BTZW5kTXNnVHJhY2tzV3JpdGVFdmVudExvb3A", "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTdGFsZVdyaXRlQ2FsbGJhY2tTa2lwc0Rpc3Bvc2VkT3A", "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTdGFsZVdyaXRlQ2FsbGJhY2tTa2lwc09wUmVTZW50T25Bbm90aGVyTG9vcA", "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RGYWlsUGVuZGluZ01lc3NhZ2VzSGFuZGxlc1NodXR0aW5nRG93bkV2ZW50TG9vcA" ]
+  }, {
+    "moduleName" : "pulsar-client-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "pulsar-client-api-v5",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "pulsar-tls-factory-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "pulsar-http-client-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "pulsar-common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "pulsar-client-messagecrypto-bc",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "pulsar-client",
+    "to" : "pulsar-client-api"
+  }, {
+    "from" : "pulsar-client",
+    "to" : "pulsar-client-api-v5"
+  }, {
+    "from" : "pulsar-client",
+    "to" : "pulsar-tls-factory-api"
+  }, {
+    "from" : "pulsar-client",
+    "to" : "pulsar-http-client-api"
+  }, {
+    "from" : "pulsar-client",
+    "to" : "pulsar-common"
+  }, {
+    "from" : "pulsar-client",
+    "to" : "pulsar-client-messagecrypto-bc"
+  } ]
+}

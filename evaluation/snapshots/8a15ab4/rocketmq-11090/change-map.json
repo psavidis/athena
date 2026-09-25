@@ -1,0 +1,1442 @@
+{
+  "prTitle" : "[ISSUE #11089] Share consumption executors for Proxy internal clients",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 50,
+    "UNKNOWN" : 19,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTCkFic3RyYWN0Q29uc3VtZU1lc3NhZ2VTZXJ2aWNl",
+    "description" : "Add class AbstractConsumeMessageService",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0NMQVNTCkNvbnN1bWVNZXNzYWdlRXhlY3V0b3JJbmplY3Rpb25UZXN0",
+    "description" : "Add class ConsumeMessageExecutorInjectionTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX0NMQVNTClN5c3RlbU1lc3NhZ2VDb25zdW1lRXhlY3V0b3I",
+    "description" : "Add class SystemMessageConsumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX0NMQVNTClN5c3RlbU1lc3NhZ2VDb25zdW1lRXhlY3V0b3JUZXN0",
+    "description" : "Add class SystemMessageConsumeExecutorTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX0NMQVNTClN5c3RlbU1lc3NhZ2VDb25zdW1lclNoYXJpbmdUZXN0",
+    "description" : "Add class SystemMessageConsumerSharingTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UsIC1Db25zdW1lTWVzc2FnZVNlcnZpY2UKQ29uc3VtZU1lc3NhZ2VDb25jdXJyZW50bHlTZXJ2aWNl",
+    "description" : "Change supertypes of ConsumeMessageConcurrentlyService: +AbstractConsumeMessageService, -ConsumeMessageService",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UsIC1Db25zdW1lTWVzc2FnZVNlcnZpY2UKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZQ",
+    "description" : "Change supertypes of ConsumeMessageOrderlyService: +AbstractConsumeMessageService, -ConsumeMessageService",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UsIC1Db25zdW1lTWVzc2FnZVNlcnZpY2UKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNl",
+    "description" : "Change supertypes of ConsumeMessagePopConcurrentlyService: +AbstractConsumeMessageService, -ConsumeMessageService",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UsIC1Db25zdW1lTWVzc2FnZVNlcnZpY2UKQ29uc3VtZU1lc3NhZ2VQb3BPcmRlcmx5U2VydmljZQ",
+    "description" : "Change supertypes of ConsumeMessagePopOrderlyService: +AbstractConsumeMessageService, -ConsumeMessageService",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TVFQdXNoQ29uc3VtZXIjZ2V0Q29uc3VtZUV4ZWN1dG9y",
+    "description" : "Add DefaultMQPushConsumer#getConsumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TVFQdXNoQ29uc3VtZXIjc2V0Q29uc3VtZUV4ZWN1dG9y",
+    "description" : "Add DefaultMQPushConsumer#setConsumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX1NZTUJPTApBYnN0cmFjdENvbnN1bWVNZXNzYWdlU2VydmljZSNnZXRDb25zdW1lckdyb3VwVGFn",
+    "description" : "Add AbstractConsumeMessageService#getConsumerGroupTag",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX1NZTUJPTApBYnN0cmFjdENvbnN1bWVNZXNzYWdlU2VydmljZSNzaHV0ZG93bkNvbnN1bWVFeGVjdXRvcg",
+    "description" : "Add AbstractConsumeMessageService#shutdownConsumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCNzZXJ2aWNlcw",
+    "description" : "Add ConsumeMessageExecutorInjectionTest#services",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCN0ZXN0U2hhcmluZ0FuZE93bmVyc2hpcA",
+    "description" : "Add ConsumeMessageExecutorInjectionTest#testSharingAndOwnership",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCN0ZXN0Q2FuY2VsbGF0aW9uRG9lc05vdENoYW5nZU9yZGluYXJ5Q29uc3VtZXJPZmZzZXRz",
+    "description" : "Add ConsumeMessageExecutorInjectionTest#testCancellationDoesNotChangeOrdinaryConsumerOffsets",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCN0ZXN0VmlydHVhbFRocmVhZEV4ZWN1dG9ySXNVc2VkRGlyZWN0bHk",
+    "description" : "Add ConsumeMessageExecutorInjectionTest#testVirtualThreadExecutorIsUsedDirectly",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCN0ZXN0RXh0ZXJuYWxUYXNrc0FyZUxlZnRUb1RoZU93bmVyT25TaHV0ZG93bg",
+    "description" : "Add ConsumeMessageExecutorInjectionTest#testExternalTasksAreLeftToTheOwnerOnShutdown",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCNjcmVhdGVTZXJ2aWNl",
+    "description" : "Add ConsumeMessageExecutorInjectionTest#createService",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 19,
+    "changeKey" : "QUREX1NZTUJPTApQcm94eUNvbmZpZyNnZXRTeXN0ZW1NZXNzYWdlQ29uc3VtZXJUaHJlYWRQb29sQ29yZVNpemU",
+    "description" : "Add ProxyConfig#getSystemMessageConsumerThreadPoolCoreSize",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 20,
+    "changeKey" : "QUREX1NZTUJPTApQcm94eUNvbmZpZyNzZXRTeXN0ZW1NZXNzYWdlQ29uc3VtZXJUaHJlYWRQb29sQ29yZVNpemU",
+    "description" : "Add ProxyConfig#setSystemMessageConsumerThreadPoolCoreSize",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 21,
+    "changeKey" : "QUREX1NZTUJPTApTeXN0ZW1NZXNzYWdlQ29uc3VtZUV4ZWN1dG9yI2NyZWF0ZQ",
+    "description" : "Add SystemMessageConsumeExecutor#create",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 22,
+    "changeKey" : "QUREX1NZTUJPTApTeXN0ZW1NZXNzYWdlQ29uc3VtZUV4ZWN1dG9yVGVzdCN0ZXN0RGVmYXVsdHM",
+    "description" : "Add SystemMessageConsumeExecutorTest#testDefaults",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 23,
+    "changeKey" : "QUREX1NZTUJPTApTeXN0ZW1NZXNzYWdlQ29uc3VtZUV4ZWN1dG9yVGVzdCN0ZXN0Q29uZmlndXJlZFBvb2xQcmVzZXJ2ZXNRdWV1ZWRUYXNrcw",
+    "description" : "Add SystemMessageConsumeExecutorTest#testConfiguredPoolPreservesQueuedTasks",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 24,
+    "changeKey" : "QUREX1NZTUJPTApTeXN0ZW1NZXNzYWdlQ29uc3VtZXJTaGFyaW5nVGVzdCN0ZXN0TWFuYWdlckFuZEFkZGl0aW9uYWxTeW5jZXJSZWNlaXZlU2FtZUV4ZWN1dG9y",
+    "description" : "Add SystemMessageConsumerSharingTest#testManagerAndAdditionalSyncerReceiveSameExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 25,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzaHV0ZG93bkNvbnN1bWVFeGVjdXRvciwgLXNodXRkb3duR3JhY2VmdWxseQpDb25zdW1lTWVzc2FnZUNvbmN1cnJlbnRseVNlcnZpY2Ujc2h1dGRvd24",
+    "description" : "Modify body of ConsumeMessageConcurrentlyService#shutdown: +shutdownConsumeExecutor, -shutdownGracefully",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 26,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzaHV0ZG93bkNvbnN1bWVFeGVjdXRvciwgLXNodXRkb3duR3JhY2VmdWxseQpDb25zdW1lTWVzc2FnZU9yZGVybHlTZXJ2aWNlI3NodXRkb3du",
+    "description" : "Modify body of ConsumeMessageOrderlyService#shutdown: +shutdownConsumeExecutor, -shutdownGracefully",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 27,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzaHV0ZG93bkNvbnN1bWVFeGVjdXRvciwgLXNodXRkb3duR3JhY2VmdWxseQpDb25zdW1lTWVzc2FnZVBvcENvbmN1cnJlbnRseVNlcnZpY2Ujc2h1dGRvd24",
+    "description" : "Modify body of ConsumeMessagePopConcurrentlyService#shutdown: +shutdownConsumeExecutor, -shutdownGracefully",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 28,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzaHV0ZG93bkNvbnN1bWVFeGVjdXRvciwgLXNodXRkb3duR3JhY2VmdWxseQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI3NodXRkb3du",
+    "description" : "Modify body of ConsumeMessagePopOrderlyService#shutdown: +shutdownConsumeExecutor, -shutdownGracefully",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 29,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRGaWVsZCwgLWdldERlY2xhcmVkRmllbGQKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlVGVzdCN0ZXN0U2h1dGRvd24",
+    "description" : "Modify body of ConsumeMessagePopConcurrentlyServiceTest#testShutdown: +getField, -getDeclaredField",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 30,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZUZpZWxkLCAtd3JpdGVEZWNsYXJlZEZpZWxkCkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZVRlc3QjdGVzdFN1Ym1pdFBvcENvbnN1bWVSZXF1ZXN0",
+    "description" : "Modify body of ConsumeMessagePopConcurrentlyServiceTest#testSubmitPopConsumeRequest: +writeField, -writeDeclaredField",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 31,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZUZpZWxkLCAtd3JpdGVEZWNsYXJlZEZpZWxkCkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZVRlc3QjdGVzdFN1Ym1pdFBvcENvbnN1bWVSZXF1ZXN0V2l0aE11bHRpTXNn",
+    "description" : "Modify body of ConsumeMessagePopConcurrentlyServiceTest#testSubmitPopConsumeRequestWithMultiMsg: +writeField, -writeDeclaredField",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 32,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRGaWVsZCwgLWdldERlY2xhcmVkRmllbGQKQ29uc3VtZU1lc3NhZ2VQb3BPcmRlcmx5U2VydmljZVRlc3QjdGVzdFNodXRkb3du",
+    "description" : "Modify body of ConsumeMessagePopOrderlyServiceTest#testShutdown: +getField, -getDeclaredField",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 33,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZUZpZWxkLCAtd3JpdGVEZWNsYXJlZEZpZWxkCkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2VUZXN0I3Rlc3RTdWJtaXRQb3BDb25zdW1lUmVxdWVzdA",
+    "description" : "Modify body of ConsumeMessagePopOrderlyServiceTest#testSubmitPopConsumeRequest: +writeField, -writeDeclaredField",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 34,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithcHBlbmRTaHV0ZG93biwgK3NodXRkb3duR3JhY2VmdWxseQpDbHVzdGVyU2VydmljZU1hbmFnZXIjaW5pdA",
+    "description" : "Modify body of ClusterServiceManager#init: +appendShutdown, +shutdownGracefully",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 35,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkZWZhdWx0TVFQdXNoQ29uc3VtZXIuc2V0Q29uc3VtZUV4ZWN1dG9yCkFic3RyYWN0U3lzdGVtTWVzc2FnZVN5bmNlciNzdGFydA",
+    "description" : "Modify body of AbstractSystemMessageSyncer#start: +defaultMQPushConsumer.setConsumeExecutor",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 36,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkZWZhdWx0TVFQdXNoQ29uc3VtZXJJbXBsLmdldERlZmF1bHRNUVB1c2hDb25zdW1lciwgK2dldENvbnN1bWVyR3JvdXBUYWcsICtnZXRDb25zdW1lckdyb3VwLCAtY29uc3VtZXJHcm91cC5sZW5ndGgsIC1jb25zdW1lckdyb3VwLnN1YnN0cmluZyDigKZhbmQgMiBtb3JlCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSM8aW5pdD4",
+    "description" : "Modify body of ConsumeMessageConcurrentlyService#<init>: +defaultMQPushConsumerImpl.getDefaultMQPushConsumer, +getConsumerGroupTag, +getConsumerGroup, -consumerGroup.length, -consumerGroup.substring …and 2 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 37,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkZWZhdWx0TVFQdXNoQ29uc3VtZXJJbXBsLmdldERlZmF1bHRNUVB1c2hDb25zdW1lciwgK2dldENvbnN1bWVyR3JvdXBUYWcsICtnZXRDb25zdW1lckdyb3VwLCAtY29uc3VtZXJHcm91cC5sZW5ndGgsIC1jb25zdW1lckdyb3VwLnN1YnN0cmluZyDigKZhbmQgMiBtb3JlCkNvbnN1bWVNZXNzYWdlT3JkZXJseVNlcnZpY2UjPGluaXQ-",
+    "description" : "Modify body of ConsumeMessageOrderlyService#<init>: +defaultMQPushConsumerImpl.getDefaultMQPushConsumer, +getConsumerGroupTag, +getConsumerGroup, -consumerGroup.length, -consumerGroup.substring …and 2 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 38,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1kZWZhdWx0TVFQdXNoQ29uc3VtZXIuZ2V0Q29uc3VtZVRocmVhZE1pbiwgLWRlZmF1bHRNUVB1c2hDb25zdW1lci5nZXRDb25zdW1lVGhyZWFkTWF4CkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZSM8aW5pdD4",
+    "description" : "Modify body of ConsumeMessagePopConcurrentlyService#<init>: -defaultMQPushConsumer.getConsumeThreadMin, -defaultMQPushConsumer.getConsumeThreadMax",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 39,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1kZWZhdWx0TVFQdXNoQ29uc3VtZXIuZ2V0Q29uc3VtZVRocmVhZE1pbiwgLWRlZmF1bHRNUVB1c2hDb25zdW1lci5nZXRDb25zdW1lVGhyZWFkTWF4CkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2UjPGluaXQ-",
+    "description" : "Modify body of ConsumeMessagePopOrderlyService#<init>: -defaultMQPushConsumer.getConsumeThreadMin, -defaultMQPushConsumer.getConsumeThreadMax",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 40,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGUKQ2x1c3RlclNlcnZpY2VNYW5hZ2VyIzxpbml0Pg",
+    "description" : "Modify body of ClusterServiceManager#<init>: +create",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 41,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsdXN0ZXJDb25zdW1lck1hbmFnZXIjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of ClusterConsumerManager#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 42,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFic3RyYWN0U3lzdGVtTWVzc2FnZVN5bmNlciM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of AbstractSystemMessageSyncer#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 43,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1idWlsZExvY2FsUHJveHlJZCwgLWluaXQKSGVhcnRiZWF0U3luY2VyIzxpbml0Pg",
+    "description" : "Modify body of HeartbeatSyncer#<init>: -buildLocalProxyId, -init",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 44,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNjb25zdW1lUmVxdWVzdFF1ZXVl",
+    "description" : "Remove field ConsumeMessageConcurrentlyService#consumeRequestQueue",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 45,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNjb25zdW1lRXhlY3V0b3I",
+    "description" : "Remove field ConsumeMessageConcurrentlyService#consumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 46,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlT3JkZXJseVNlcnZpY2UjY29uc3VtZVJlcXVlc3RRdWV1ZQ",
+    "description" : "Remove field ConsumeMessageOrderlyService#consumeRequestQueue",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 47,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlT3JkZXJseVNlcnZpY2UjY29uc3VtZUV4ZWN1dG9y",
+    "description" : "Remove field ConsumeMessageOrderlyService#consumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 48,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZSNjb25zdW1lUmVxdWVzdFF1ZXVl",
+    "description" : "Remove field ConsumeMessagePopConcurrentlyService#consumeRequestQueue",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 49,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZSNjb25zdW1lRXhlY3V0b3I",
+    "description" : "Remove field ConsumeMessagePopConcurrentlyService#consumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 50,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2UjY29uc3VtZVJlcXVlc3RRdWV1ZQ",
+    "description" : "Remove field ConsumeMessagePopOrderlyService#consumeRequestQueue",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 51,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2UjY29uc3VtZUV4ZWN1dG9y",
+    "description" : "Remove field ConsumeMessagePopOrderlyService#consumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 52,
+    "changeKey" : "QUREX0ZJRUxECkRlZmF1bHRNUVB1c2hDb25zdW1lciNjb25zdW1lRXhlY3V0b3I",
+    "description" : "Add field DefaultMQPushConsumer#consumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 53,
+    "changeKey" : "QUREX0ZJRUxECkFic3RyYWN0Q29uc3VtZU1lc3NhZ2VTZXJ2aWNlI2NvbnN1bWVFeGVjdXRvcg",
+    "description" : "Add field AbstractConsumeMessageService#consumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 54,
+    "changeKey" : "QUREX0ZJRUxECkFic3RyYWN0Q29uc3VtZU1lc3NhZ2VTZXJ2aWNlI293bnNDb25zdW1lRXhlY3V0b3I",
+    "description" : "Add field AbstractConsumeMessageService#ownsConsumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 55,
+    "changeKey" : "QUREX0ZJRUxECkNvbnN1bWVNZXNzYWdlRXhlY3V0b3JJbmplY3Rpb25UZXN0I3NlcnZpY2VDbGFzcw",
+    "description" : "Add field ConsumeMessageExecutorInjectionTest#serviceClass",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 56,
+    "changeKey" : "QUREX0ZJRUxECkNvbnN1bWVNZXNzYWdlRXhlY3V0b3JJbmplY3Rpb25UZXN0I2xpc3RlbmVyQ2xhc3M",
+    "description" : "Add field ConsumeMessageExecutorInjectionTest#listenerClass",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 57,
+    "changeKey" : "QUREX0ZJRUxEClByb3h5Q29uZmlnI3N5c3RlbU1lc3NhZ2VDb25zdW1lclRocmVhZFBvb2xDb3JlU2l6ZQ",
+    "description" : "Add field ProxyConfig#systemMessageConsumerThreadPoolCoreSize",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 58,
+    "changeKey" : "QUREX0ZJRUxECkNsdXN0ZXJTZXJ2aWNlTWFuYWdlciNzeXN0ZW1NZXNzYWdlQ29uc3VtZUV4ZWN1dG9y",
+    "description" : "Add field ClusterServiceManager#systemMessageConsumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 59,
+    "changeKey" : "QUREX0ZJRUxECkFic3RyYWN0U3lzdGVtTWVzc2FnZVN5bmNlciNjb25zdW1lRXhlY3V0b3I",
+    "description" : "Add field AbstractSystemMessageSyncer#consumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 60,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpBYnN0cmFjdENvbnN1bWVNZXNzYWdlU2VydmljZSNkZWZhdWx0TVFQdXNoQ29uc3VtZXI",
+    "description" : "Add constructor parameter AbstractConsumeMessageService#defaultMQPushConsumer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 61,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCNzZXJ2aWNlQ2xhc3M",
+    "description" : "Add constructor parameter ConsumeMessageExecutorInjectionTest#serviceClass",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 62,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCNsaXN0ZW5lckNsYXNz",
+    "description" : "Add constructor parameter ConsumeMessageExecutorInjectionTest#listenerClass",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 63,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpBYnN0cmFjdFN5c3RlbU1lc3NhZ2VTeW5jZXIjY29uc3VtZUV4ZWN1dG9y",
+    "description" : "Add constructor parameter AbstractSystemMessageSyncer#consumeExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 64,
+    "changeKey" : "UFVMTF9VUF9GSUVMRApBYnN0cmFjdENvbnN1bWVNZXNzYWdlU2VydmljZSNkZWZhdWx0TVFQdXNoQ29uc3VtZXIKQ29uc3VtZU1lc3NhZ2VDb25jdXJyZW50bHlTZXJ2aWNlI2RlZmF1bHRNUVB1c2hDb25zdW1lcgpDb25zdW1lTWVzc2FnZU9yZGVybHlTZXJ2aWNlI2RlZmF1bHRNUVB1c2hDb25zdW1lcgpDb25zdW1lTWVzc2FnZVBvcENvbmN1cnJlbnRseVNlcnZpY2UjZGVmYXVsdE1RUHVzaENvbnN1bWVyCkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2UjZGVmYXVsdE1RUHVzaENvbnN1bWVy",
+    "description" : "Pull up field defaultMQPushConsumer into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+    "category" : "STRUCTURAL",
+    "kind" : "PULL_UP_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 65,
+    "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UjZGVjQ29yZVBvb2xTaXplCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNkZWNDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZSNkZWNDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlI2RlY0NvcmVQb29sU2l6ZQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI2RlY0NvcmVQb29sU2l6ZQ",
+    "description" : "Pull up decCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+    "category" : "STRUCTURAL",
+    "kind" : "PULL_UP_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 66,
+    "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UjZ2V0Q29yZVBvb2xTaXplCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNnZXRDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZSNnZXRDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlI2dldENvcmVQb29sU2l6ZQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI2dldENvcmVQb29sU2l6ZQ",
+    "description" : "Pull up getCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+    "category" : "STRUCTURAL",
+    "kind" : "PULL_UP_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 67,
+    "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UjaW5jQ29yZVBvb2xTaXplCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNpbmNDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZSNpbmNDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlI2luY0NvcmVQb29sU2l6ZQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI2luY0NvcmVQb29sU2l6ZQ",
+    "description" : "Pull up incCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+    "category" : "STRUCTURAL",
+    "kind" : "PULL_UP_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 68,
+    "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UjdXBkYXRlQ29yZVBvb2xTaXplCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSN1cGRhdGVDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZSN1cGRhdGVDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlI3VwZGF0ZUNvcmVQb29sU2l6ZQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI3VwZGF0ZUNvcmVQb29sU2l6ZQ",
+    "description" : "Pull up updateCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+    "category" : "STRUCTURAL",
+    "kind" : "PULL_UP_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "AbstractConsumeMessageService",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTCkFic3RyYWN0Q29uc3VtZU1lc3NhZ2VTZXJ2aWNl",
+      "description" : "Add class AbstractConsumeMessageService",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX1NZTUJPTApBYnN0cmFjdENvbnN1bWVNZXNzYWdlU2VydmljZSNnZXRDb25zdW1lckdyb3VwVGFn",
+      "description" : "Add AbstractConsumeMessageService#getConsumerGroupTag",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX1NZTUJPTApBYnN0cmFjdENvbnN1bWVNZXNzYWdlU2VydmljZSNzaHV0ZG93bkNvbnN1bWVFeGVjdXRvcg",
+      "description" : "Add AbstractConsumeMessageService#shutdownConsumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 53,
+      "changeKey" : "QUREX0ZJRUxECkFic3RyYWN0Q29uc3VtZU1lc3NhZ2VTZXJ2aWNlI2NvbnN1bWVFeGVjdXRvcg",
+      "description" : "Add field AbstractConsumeMessageService#consumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 54,
+      "changeKey" : "QUREX0ZJRUxECkFic3RyYWN0Q29uc3VtZU1lc3NhZ2VTZXJ2aWNlI293bnNDb25zdW1lRXhlY3V0b3I",
+      "description" : "Add field AbstractConsumeMessageService#ownsConsumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 60,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpBYnN0cmFjdENvbnN1bWVNZXNzYWdlU2VydmljZSNkZWZhdWx0TVFQdXNoQ29uc3VtZXI",
+      "description" : "Add constructor parameter AbstractConsumeMessageService#defaultMQPushConsumer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 64,
+      "changeKey" : "UFVMTF9VUF9GSUVMRApBYnN0cmFjdENvbnN1bWVNZXNzYWdlU2VydmljZSNkZWZhdWx0TVFQdXNoQ29uc3VtZXIKQ29uc3VtZU1lc3NhZ2VDb25jdXJyZW50bHlTZXJ2aWNlI2RlZmF1bHRNUVB1c2hDb25zdW1lcgpDb25zdW1lTWVzc2FnZU9yZGVybHlTZXJ2aWNlI2RlZmF1bHRNUVB1c2hDb25zdW1lcgpDb25zdW1lTWVzc2FnZVBvcENvbmN1cnJlbnRseVNlcnZpY2UjZGVmYXVsdE1RUHVzaENvbnN1bWVyCkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2UjZGVmYXVsdE1RUHVzaENvbnN1bWVy",
+      "description" : "Pull up field defaultMQPushConsumer into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+      "category" : "STRUCTURAL",
+      "kind" : "PULL_UP_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 65,
+      "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UjZGVjQ29yZVBvb2xTaXplCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNkZWNDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZSNkZWNDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlI2RlY0NvcmVQb29sU2l6ZQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI2RlY0NvcmVQb29sU2l6ZQ",
+      "description" : "Pull up decCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+      "category" : "STRUCTURAL",
+      "kind" : "PULL_UP_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 66,
+      "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UjZ2V0Q29yZVBvb2xTaXplCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNnZXRDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZSNnZXRDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlI2dldENvcmVQb29sU2l6ZQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI2dldENvcmVQb29sU2l6ZQ",
+      "description" : "Pull up getCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+      "category" : "STRUCTURAL",
+      "kind" : "PULL_UP_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 67,
+      "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UjaW5jQ29yZVBvb2xTaXplCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNpbmNDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZSNpbmNDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlI2luY0NvcmVQb29sU2l6ZQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI2luY0NvcmVQb29sU2l6ZQ",
+      "description" : "Pull up incCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+      "category" : "STRUCTURAL",
+      "kind" : "PULL_UP_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 68,
+      "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UjdXBkYXRlQ29yZVBvb2xTaXplCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSN1cGRhdGVDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZSN1cGRhdGVDb3JlUG9vbFNpemUKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlI3VwZGF0ZUNvcmVQb29sU2l6ZQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI3VwZGF0ZUNvcmVQb29sU2l6ZQ",
+      "description" : "Pull up updateCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+      "category" : "STRUCTURAL",
+      "kind" : "PULL_UP_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ConsumeMessageExecutorInjectionTest",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX0NMQVNTCkNvbnN1bWVNZXNzYWdlRXhlY3V0b3JJbmplY3Rpb25UZXN0",
+      "description" : "Add class ConsumeMessageExecutorInjectionTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCNzZXJ2aWNlcw",
+      "description" : "Add ConsumeMessageExecutorInjectionTest#services",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 14,
+      "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCN0ZXN0U2hhcmluZ0FuZE93bmVyc2hpcA",
+      "description" : "Add ConsumeMessageExecutorInjectionTest#testSharingAndOwnership",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCN0ZXN0Q2FuY2VsbGF0aW9uRG9lc05vdENoYW5nZU9yZGluYXJ5Q29uc3VtZXJPZmZzZXRz",
+      "description" : "Add ConsumeMessageExecutorInjectionTest#testCancellationDoesNotChangeOrdinaryConsumerOffsets",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCN0ZXN0VmlydHVhbFRocmVhZEV4ZWN1dG9ySXNVc2VkRGlyZWN0bHk",
+      "description" : "Add ConsumeMessageExecutorInjectionTest#testVirtualThreadExecutorIsUsedDirectly",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCN0ZXN0RXh0ZXJuYWxUYXNrc0FyZUxlZnRUb1RoZU93bmVyT25TaHV0ZG93bg",
+      "description" : "Add ConsumeMessageExecutorInjectionTest#testExternalTasksAreLeftToTheOwnerOnShutdown",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 18,
+      "changeKey" : "QUREX1NZTUJPTApDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCNjcmVhdGVTZXJ2aWNl",
+      "description" : "Add ConsumeMessageExecutorInjectionTest#createService",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 55,
+      "changeKey" : "QUREX0ZJRUxECkNvbnN1bWVNZXNzYWdlRXhlY3V0b3JJbmplY3Rpb25UZXN0I3NlcnZpY2VDbGFzcw",
+      "description" : "Add field ConsumeMessageExecutorInjectionTest#serviceClass",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 56,
+      "changeKey" : "QUREX0ZJRUxECkNvbnN1bWVNZXNzYWdlRXhlY3V0b3JJbmplY3Rpb25UZXN0I2xpc3RlbmVyQ2xhc3M",
+      "description" : "Add field ConsumeMessageExecutorInjectionTest#listenerClass",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 61,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCNzZXJ2aWNlQ2xhc3M",
+      "description" : "Add constructor parameter ConsumeMessageExecutorInjectionTest#serviceClass",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 62,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpDb25zdW1lTWVzc2FnZUV4ZWN1dG9ySW5qZWN0aW9uVGVzdCNsaXN0ZW5lckNsYXNz",
+      "description" : "Add constructor parameter ConsumeMessageExecutorInjectionTest#listenerClass",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "SystemMessageConsumeExecutor",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX0NMQVNTClN5c3RlbU1lc3NhZ2VDb25zdW1lRXhlY3V0b3I",
+      "description" : "Add class SystemMessageConsumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 21,
+      "changeKey" : "QUREX1NZTUJPTApTeXN0ZW1NZXNzYWdlQ29uc3VtZUV4ZWN1dG9yI2NyZWF0ZQ",
+      "description" : "Add SystemMessageConsumeExecutor#create",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SystemMessageConsumeExecutorTest",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "QUREX0NMQVNTClN5c3RlbU1lc3NhZ2VDb25zdW1lRXhlY3V0b3JUZXN0",
+      "description" : "Add class SystemMessageConsumeExecutorTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 22,
+      "changeKey" : "QUREX1NZTUJPTApTeXN0ZW1NZXNzYWdlQ29uc3VtZUV4ZWN1dG9yVGVzdCN0ZXN0RGVmYXVsdHM",
+      "description" : "Add SystemMessageConsumeExecutorTest#testDefaults",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 23,
+      "changeKey" : "QUREX1NZTUJPTApTeXN0ZW1NZXNzYWdlQ29uc3VtZUV4ZWN1dG9yVGVzdCN0ZXN0Q29uZmlndXJlZFBvb2xQcmVzZXJ2ZXNRdWV1ZWRUYXNrcw",
+      "description" : "Add SystemMessageConsumeExecutorTest#testConfiguredPoolPreservesQueuedTasks",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "SystemMessageConsumerSharingTest",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "QUREX0NMQVNTClN5c3RlbU1lc3NhZ2VDb25zdW1lclNoYXJpbmdUZXN0",
+      "description" : "Add class SystemMessageConsumerSharingTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 24,
+      "changeKey" : "QUREX1NZTUJPTApTeXN0ZW1NZXNzYWdlQ29uc3VtZXJTaGFyaW5nVGVzdCN0ZXN0TWFuYWdlckFuZEFkZGl0aW9uYWxTeW5jZXJSZWNlaXZlU2FtZUV4ZWN1dG9y",
+      "description" : "Add SystemMessageConsumerSharingTest#testManagerAndAdditionalSyncerReceiveSameExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ConsumeMessageConcurrentlyService",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UsIC1Db25zdW1lTWVzc2FnZVNlcnZpY2UKQ29uc3VtZU1lc3NhZ2VDb25jdXJyZW50bHlTZXJ2aWNl",
+      "description" : "Change supertypes of ConsumeMessageConcurrentlyService: +AbstractConsumeMessageService, -ConsumeMessageService",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 25,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzaHV0ZG93bkNvbnN1bWVFeGVjdXRvciwgLXNodXRkb3duR3JhY2VmdWxseQpDb25zdW1lTWVzc2FnZUNvbmN1cnJlbnRseVNlcnZpY2Ujc2h1dGRvd24",
+      "description" : "Modify body of ConsumeMessageConcurrentlyService#shutdown: +shutdownConsumeExecutor, -shutdownGracefully",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 36,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkZWZhdWx0TVFQdXNoQ29uc3VtZXJJbXBsLmdldERlZmF1bHRNUVB1c2hDb25zdW1lciwgK2dldENvbnN1bWVyR3JvdXBUYWcsICtnZXRDb25zdW1lckdyb3VwLCAtY29uc3VtZXJHcm91cC5sZW5ndGgsIC1jb25zdW1lckdyb3VwLnN1YnN0cmluZyDigKZhbmQgMiBtb3JlCkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSM8aW5pdD4",
+      "description" : "Modify body of ConsumeMessageConcurrentlyService#<init>: +defaultMQPushConsumerImpl.getDefaultMQPushConsumer, +getConsumerGroupTag, +getConsumerGroup, -consumerGroup.length, -consumerGroup.substring …and 2 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 44,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNjb25zdW1lUmVxdWVzdFF1ZXVl",
+      "description" : "Remove field ConsumeMessageConcurrentlyService#consumeRequestQueue",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 45,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlQ29uY3VycmVudGx5U2VydmljZSNjb25zdW1lRXhlY3V0b3I",
+      "description" : "Remove field ConsumeMessageConcurrentlyService#consumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ConsumeMessageOrderlyService",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UsIC1Db25zdW1lTWVzc2FnZVNlcnZpY2UKQ29uc3VtZU1lc3NhZ2VPcmRlcmx5U2VydmljZQ",
+      "description" : "Change supertypes of ConsumeMessageOrderlyService: +AbstractConsumeMessageService, -ConsumeMessageService",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 26,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzaHV0ZG93bkNvbnN1bWVFeGVjdXRvciwgLXNodXRkb3duR3JhY2VmdWxseQpDb25zdW1lTWVzc2FnZU9yZGVybHlTZXJ2aWNlI3NodXRkb3du",
+      "description" : "Modify body of ConsumeMessageOrderlyService#shutdown: +shutdownConsumeExecutor, -shutdownGracefully",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 37,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkZWZhdWx0TVFQdXNoQ29uc3VtZXJJbXBsLmdldERlZmF1bHRNUVB1c2hDb25zdW1lciwgK2dldENvbnN1bWVyR3JvdXBUYWcsICtnZXRDb25zdW1lckdyb3VwLCAtY29uc3VtZXJHcm91cC5sZW5ndGgsIC1jb25zdW1lckdyb3VwLnN1YnN0cmluZyDigKZhbmQgMiBtb3JlCkNvbnN1bWVNZXNzYWdlT3JkZXJseVNlcnZpY2UjPGluaXQ-",
+      "description" : "Modify body of ConsumeMessageOrderlyService#<init>: +defaultMQPushConsumerImpl.getDefaultMQPushConsumer, +getConsumerGroupTag, +getConsumerGroup, -consumerGroup.length, -consumerGroup.substring …and 2 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 46,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlT3JkZXJseVNlcnZpY2UjY29uc3VtZVJlcXVlc3RRdWV1ZQ",
+      "description" : "Remove field ConsumeMessageOrderlyService#consumeRequestQueue",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 47,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlT3JkZXJseVNlcnZpY2UjY29uc3VtZUV4ZWN1dG9y",
+      "description" : "Remove field ConsumeMessageOrderlyService#consumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ConsumeMessagePopConcurrentlyService",
+    "entries" : [ {
+      "id" : 7,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UsIC1Db25zdW1lTWVzc2FnZVNlcnZpY2UKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNl",
+      "description" : "Change supertypes of ConsumeMessagePopConcurrentlyService: +AbstractConsumeMessageService, -ConsumeMessageService",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 27,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzaHV0ZG93bkNvbnN1bWVFeGVjdXRvciwgLXNodXRkb3duR3JhY2VmdWxseQpDb25zdW1lTWVzc2FnZVBvcENvbmN1cnJlbnRseVNlcnZpY2Ujc2h1dGRvd24",
+      "description" : "Modify body of ConsumeMessagePopConcurrentlyService#shutdown: +shutdownConsumeExecutor, -shutdownGracefully",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 38,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1kZWZhdWx0TVFQdXNoQ29uc3VtZXIuZ2V0Q29uc3VtZVRocmVhZE1pbiwgLWRlZmF1bHRNUVB1c2hDb25zdW1lci5nZXRDb25zdW1lVGhyZWFkTWF4CkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZSM8aW5pdD4",
+      "description" : "Modify body of ConsumeMessagePopConcurrentlyService#<init>: -defaultMQPushConsumer.getConsumeThreadMin, -defaultMQPushConsumer.getConsumeThreadMax",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 48,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZSNjb25zdW1lUmVxdWVzdFF1ZXVl",
+      "description" : "Remove field ConsumeMessagePopConcurrentlyService#consumeRequestQueue",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 49,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZSNjb25zdW1lRXhlY3V0b3I",
+      "description" : "Remove field ConsumeMessagePopConcurrentlyService#consumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ConsumeMessagePopOrderlyService",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQWJzdHJhY3RDb25zdW1lTWVzc2FnZVNlcnZpY2UsIC1Db25zdW1lTWVzc2FnZVNlcnZpY2UKQ29uc3VtZU1lc3NhZ2VQb3BPcmRlcmx5U2VydmljZQ",
+      "description" : "Change supertypes of ConsumeMessagePopOrderlyService: +AbstractConsumeMessageService, -ConsumeMessageService",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 28,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzaHV0ZG93bkNvbnN1bWVFeGVjdXRvciwgLXNodXRkb3duR3JhY2VmdWxseQpDb25zdW1lTWVzc2FnZVBvcE9yZGVybHlTZXJ2aWNlI3NodXRkb3du",
+      "description" : "Modify body of ConsumeMessagePopOrderlyService#shutdown: +shutdownConsumeExecutor, -shutdownGracefully",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 39,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1kZWZhdWx0TVFQdXNoQ29uc3VtZXIuZ2V0Q29uc3VtZVRocmVhZE1pbiwgLWRlZmF1bHRNUVB1c2hDb25zdW1lci5nZXRDb25zdW1lVGhyZWFkTWF4CkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2UjPGluaXQ-",
+      "description" : "Modify body of ConsumeMessagePopOrderlyService#<init>: -defaultMQPushConsumer.getConsumeThreadMin, -defaultMQPushConsumer.getConsumeThreadMax",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 50,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2UjY29uc3VtZVJlcXVlc3RRdWV1ZQ",
+      "description" : "Remove field ConsumeMessagePopOrderlyService#consumeRequestQueue",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 51,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2UjY29uc3VtZUV4ZWN1dG9y",
+      "description" : "Remove field ConsumeMessagePopOrderlyService#consumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DefaultMQPushConsumer",
+    "entries" : [ {
+      "id" : 9,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TVFQdXNoQ29uc3VtZXIjZ2V0Q29uc3VtZUV4ZWN1dG9y",
+      "description" : "Add DefaultMQPushConsumer#getConsumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TVFQdXNoQ29uc3VtZXIjc2V0Q29uc3VtZUV4ZWN1dG9y",
+      "description" : "Add DefaultMQPushConsumer#setConsumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 52,
+      "changeKey" : "QUREX0ZJRUxECkRlZmF1bHRNUVB1c2hDb25zdW1lciNjb25zdW1lRXhlY3V0b3I",
+      "description" : "Add field DefaultMQPushConsumer#consumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ProxyConfig",
+    "entries" : [ {
+      "id" : 19,
+      "changeKey" : "QUREX1NZTUJPTApQcm94eUNvbmZpZyNnZXRTeXN0ZW1NZXNzYWdlQ29uc3VtZXJUaHJlYWRQb29sQ29yZVNpemU",
+      "description" : "Add ProxyConfig#getSystemMessageConsumerThreadPoolCoreSize",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 20,
+      "changeKey" : "QUREX1NZTUJPTApQcm94eUNvbmZpZyNzZXRTeXN0ZW1NZXNzYWdlQ29uc3VtZXJUaHJlYWRQb29sQ29yZVNpemU",
+      "description" : "Add ProxyConfig#setSystemMessageConsumerThreadPoolCoreSize",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 57,
+      "changeKey" : "QUREX0ZJRUxEClByb3h5Q29uZmlnI3N5c3RlbU1lc3NhZ2VDb25zdW1lclRocmVhZFBvb2xDb3JlU2l6ZQ",
+      "description" : "Add field ProxyConfig#systemMessageConsumerThreadPoolCoreSize",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ConsumeMessagePopConcurrentlyServiceTest",
+    "entries" : [ {
+      "id" : 29,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRGaWVsZCwgLWdldERlY2xhcmVkRmllbGQKQ29uc3VtZU1lc3NhZ2VQb3BDb25jdXJyZW50bHlTZXJ2aWNlVGVzdCN0ZXN0U2h1dGRvd24",
+      "description" : "Modify body of ConsumeMessagePopConcurrentlyServiceTest#testShutdown: +getField, -getDeclaredField",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 30,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZUZpZWxkLCAtd3JpdGVEZWNsYXJlZEZpZWxkCkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZVRlc3QjdGVzdFN1Ym1pdFBvcENvbnN1bWVSZXF1ZXN0",
+      "description" : "Modify body of ConsumeMessagePopConcurrentlyServiceTest#testSubmitPopConsumeRequest: +writeField, -writeDeclaredField",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 31,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZUZpZWxkLCAtd3JpdGVEZWNsYXJlZEZpZWxkCkNvbnN1bWVNZXNzYWdlUG9wQ29uY3VycmVudGx5U2VydmljZVRlc3QjdGVzdFN1Ym1pdFBvcENvbnN1bWVSZXF1ZXN0V2l0aE11bHRpTXNn",
+      "description" : "Modify body of ConsumeMessagePopConcurrentlyServiceTest#testSubmitPopConsumeRequestWithMultiMsg: +writeField, -writeDeclaredField",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ConsumeMessagePopOrderlyServiceTest",
+    "entries" : [ {
+      "id" : 32,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRGaWVsZCwgLWdldERlY2xhcmVkRmllbGQKQ29uc3VtZU1lc3NhZ2VQb3BPcmRlcmx5U2VydmljZVRlc3QjdGVzdFNodXRkb3du",
+      "description" : "Modify body of ConsumeMessagePopOrderlyServiceTest#testShutdown: +getField, -getDeclaredField",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 33,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZUZpZWxkLCAtd3JpdGVEZWNsYXJlZEZpZWxkCkNvbnN1bWVNZXNzYWdlUG9wT3JkZXJseVNlcnZpY2VUZXN0I3Rlc3RTdWJtaXRQb3BDb25zdW1lUmVxdWVzdA",
+      "description" : "Modify body of ConsumeMessagePopOrderlyServiceTest#testSubmitPopConsumeRequest: +writeField, -writeDeclaredField",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ClusterServiceManager",
+    "entries" : [ {
+      "id" : 34,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithcHBlbmRTaHV0ZG93biwgK3NodXRkb3duR3JhY2VmdWxseQpDbHVzdGVyU2VydmljZU1hbmFnZXIjaW5pdA",
+      "description" : "Modify body of ClusterServiceManager#init: +appendShutdown, +shutdownGracefully",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 40,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGUKQ2x1c3RlclNlcnZpY2VNYW5hZ2VyIzxpbml0Pg",
+      "description" : "Modify body of ClusterServiceManager#<init>: +create",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 58,
+      "changeKey" : "QUREX0ZJRUxECkNsdXN0ZXJTZXJ2aWNlTWFuYWdlciNzeXN0ZW1NZXNzYWdlQ29uc3VtZUV4ZWN1dG9y",
+      "description" : "Add field ClusterServiceManager#systemMessageConsumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "AbstractSystemMessageSyncer",
+    "entries" : [ {
+      "id" : 35,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkZWZhdWx0TVFQdXNoQ29uc3VtZXIuc2V0Q29uc3VtZUV4ZWN1dG9yCkFic3RyYWN0U3lzdGVtTWVzc2FnZVN5bmNlciNzdGFydA",
+      "description" : "Modify body of AbstractSystemMessageSyncer#start: +defaultMQPushConsumer.setConsumeExecutor",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 42,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFic3RyYWN0U3lzdGVtTWVzc2FnZVN5bmNlciM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of AbstractSystemMessageSyncer#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 59,
+      "changeKey" : "QUREX0ZJRUxECkFic3RyYWN0U3lzdGVtTWVzc2FnZVN5bmNlciNjb25zdW1lRXhlY3V0b3I",
+      "description" : "Add field AbstractSystemMessageSyncer#consumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 63,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpBYnN0cmFjdFN5c3RlbU1lc3NhZ2VTeW5jZXIjY29uc3VtZUV4ZWN1dG9y",
+      "description" : "Add constructor parameter AbstractSystemMessageSyncer#consumeExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ClusterConsumerManager",
+    "entries" : [ {
+      "id" : 41,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsdXN0ZXJDb25zdW1lck1hbmFnZXIjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of ClusterConsumerManager#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "HeartbeatSyncer",
+    "entries" : [ {
+      "id" : 43,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1idWlsZExvY2FsUHJveHlJZCwgLWluaXQKSGVhcnRiZWF0U3luY2VyIzxpbml0Pg",
+      "description" : "Modify body of HeartbeatSyncer#<init>: -buildLocalProxyId, -init",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

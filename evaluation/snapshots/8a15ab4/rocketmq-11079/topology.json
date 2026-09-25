@@ -1,0 +1,106 @@
+{
+  "territories" : [ {
+    "moduleName" : "broker",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 6 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpCcm9rZXJNZXRyaWNzTWFuYWdlciNpbml0TGFnQW5kRGxxTWV0cmljcwpicmFuY2ggYWRkZWQ", "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlciNzaG91bGRSZWNvcmRWYWx1ZQ", "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjY3JlYXRlVGVzdEJyb2tlck1ldHJpY3NNYW5hZ2Vy", "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjdGVzdFNob3VsZFJlY29yZFZhbHVlV2hlblN1cHByZXNzRGlzYWJsZWQ", "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjdGVzdFNob3VsZFJlY29yZFZhbHVlV2hlblN1cHByZXNzRW5hYmxlZA", "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGVUZXN0QnJva2VyTWV0cmljc01hbmFnZXIsIC1nZXRQcm9wZXJ0eSwgLXJhbmRvbVVVSUQsIC1tZXNzYWdlU3RvcmVDb25maWcuc2V0U3RvcmVQYXRoUm9vdERpciwgLW5ldHR5U2VydmVyQ29uZmlnLnNldExpc3RlblBvcnQg4oCmYW5kIDEgbW9yZQpCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjY3JlYXRlVGVzdEJyb2tlck1ldHJpY3NNYW5hZ2Vy" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjY3JlYXRlVGVzdEJyb2tlck1ldHJpY3NNYW5hZ2Vy", "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjdGVzdFNob3VsZFJlY29yZFZhbHVlV2hlblN1cHByZXNzRGlzYWJsZWQ", "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjdGVzdFNob3VsZFJlY29yZFZhbHVlV2hlblN1cHByZXNzRW5hYmxlZA", "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGVUZXN0QnJva2VyTWV0cmljc01hbmFnZXIsIC1nZXRQcm9wZXJ0eSwgLXJhbmRvbVVVSUQsIC1tZXNzYWdlU3RvcmVDb25maWcuc2V0U3RvcmVQYXRoUm9vdERpciwgLW5ldHR5U2VydmVyQ29uZmlnLnNldExpc3RlblBvcnQg4oCmYW5kIDEgbW9yZQpCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjY3JlYXRlVGVzdEJyb2tlck1ldHJpY3NNYW5hZ2Vy" ]
+  }, {
+    "moduleName" : "common",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApCcm9rZXJDb25maWcjaXNTdXBwcmVzc01pblZhbHVlTWV0cmljcw", "QUREX1NZTUJPTApCcm9rZXJDb25maWcjc2V0U3VwcHJlc3NNaW5WYWx1ZU1ldHJpY3M", "QUREX0ZJRUxECkJyb2tlckNvbmZpZyNzdXBwcmVzc01pblZhbHVlTWV0cmljcw" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "remoting",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "store",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "tieredstore",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "client",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "srvutil",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "filter",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "auth",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "broker",
+    "to" : "remoting"
+  }, {
+    "from" : "broker",
+    "to" : "store"
+  }, {
+    "from" : "broker",
+    "to" : "tieredstore"
+  }, {
+    "from" : "broker",
+    "to" : "client"
+  }, {
+    "from" : "broker",
+    "to" : "srvutil"
+  }, {
+    "from" : "broker",
+    "to" : "filter"
+  }, {
+    "from" : "broker",
+    "to" : "auth"
+  } ]
+}

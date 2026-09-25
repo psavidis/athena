@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/eclipse-vertx/vert.x.git",
+  "base" : "ff6294583176fc0336256081d7d6a2e47ad33883",
+  "head" : "f634aa1b436becd0cdef47df0b10b5395d393d4d",
+  "changeCount" : 94,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 6.03
+}

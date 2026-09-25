@@ -1,0 +1,25 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Override\n     public RFuture<Void> releaseAsync(long permits) {\n         if (permits < 0) {\n             throw new IllegalArgumentException(\"Permits amount can't be negative\");\n         }\n         if (permits == 0) {\n             return CompletableFutureWrapper.completedNull();\n         }\n         return commandExecutor.evalWriteAsync(getRawName(), StringCodec.INSTANCE, RedisCommands.EVAL_VOID,\n                 \"local rate = redis.call('hget', KEYS[1], 'rate');\"\n                 + \"local interval = redis.call('hget', KEYS[1], 'interval');\"\n                 + \"local type = redis.call('hget', KEYS[1], 'type');\"\n                 + \"assert(rate ~= false and interval ~= false and type ~= false, 'RateLimiter is not initialized');\"\n \n                 + \"local valueName = KEYS[2];\"\n                 + \"local permitsName = KEYS[4];\"\n                 + \"if type == '1' then \"\n                 + \"    valueName = KEYS[3];\"\n                 + \"    permitsName = KEYS[5];\"\n                 + \"end;\"\n \n+                + \"local toRelease = tonumber(ARGV[1]);\"\n+                + \"local values = redis.call('zrange', permitsName, 0, -1, 'withscores');\"\n+                + \"for i = 1, #values - 1, 2 do\"\n+                + \"    if toRelease <= 0 then break; end;\"\n+                + \"    local v = values[i];\"\n+                + \"    local score = values[i + 1];\"\n+                + \"    local random, permits = struct.unpack('Bc0I', v);\"\n+                + \"    redis.call('zrem', permitsName, v);\"\n+                + \"    if permits <= toRelease then \"\n+                + \"        toRelease = toRelease - permits;\"\n+                + \"    else \"\n+                + \"        local remained = permits - toRelease;\"\n+                + \"        redis.call('zadd', permitsName, score, struct.pack('Bc0I', string.len(random), random, remained));\"\n+                + \"        toRelease = 0;\"\n+                + \"    end;\"\n+                + \"end;\"\n+\n                 + \"local currentValue = redis.call('get', valueName);\"\n                 + \"if currentValue == false then \"\n                 + \"    currentValue = tonumber(rate);\"\n                 + \"else \"\n                 + \"    currentValue = tonumber(currentValue);\"\n                 + \"end;\"\n \n                 + \"local newValue = currentValue + tonumber(ARGV[1]);\"\n                 + \"if newValue > tonumber(rate) then \"\n                 + \"    newValue = tonumber(rate);\"\n                 + \"end;\"\n                 + \"redis.call('set', valueName, newValue);\"\n \n                 + \"local keepAliveTime = redis.call('hget', KEYS[1], 'keepAliveTime');\"\n                 + \"if (keepAliveTime ~= false and tonumber(keepAliveTime) > 0) then \"\n                 + \"    redis.call('pexpire', KEYS[1], keepAliveTime);\"\n                 + \"    redis.call('pexpire', valueName, keepAliveTime);\"\n                 + \"    redis.call('pexpire', permitsName, keepAliveTime);\"\n                 + \"else \"\n                 + \"    local ttl = redis.call('pttl', KEYS[1]);\"\n                 + \"    if ttl > 0 then \"\n                 + \"        redis.call('pexpire', valueName, ttl);\"\n                 + \"        redis.call('pexpire', permitsName, ttl);\"\n                 + \"    end;\"\n                 + \"end;\",\n                 Arrays.asList(getRawName(), getValueName(), getClientValueName(), getPermitsName(), getClientPermitsName()), permits);\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "redisson/src/main/java/org/redisson/RedissonRateLimiter.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in RedissonRateLimiterTest",
+    "conceptDescription" : "1 change in test code of RedissonRateLimiterTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+@Test\n+    public void testReleasedPermitsPreservedAfterExpiry() throws InterruptedException {\n+        RRateLimiter limiter = redisson.getRateLimiter(\"testNoCollapse\");\n+        limiter.trySetRate(RateType.OVERALL, 10, 1, RateIntervalUnit.SECONDS);\n \n+        limiter.tryAcquire(1);\n+        limiter.release(1);\n+\n+        Thread.sleep(300);\n+\n+        for (int i = 0; i < 8; i++) {\n+            limiter.tryAcquire(1);\n+            limiter.release(1);\n+        }\n+\n+        Thread.sleep(900);\n+\n+        limiter.tryAcquire(1);\n+\n+        long permits = limiter.availablePermits();\n+\n+        assertThat(permits).isEqualTo(9);\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "redisson/src/test/java/org/redisson/RedissonRateLimiterTest.java" ],
+    "groupedMoveCount" : 1
+  } ]
+}

@@ -1,0 +1,137 @@
+{
+  "prTitle" : "Fix H3 great-circle latitude correction edge selection",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 4,
+    "UNKNOWN" : 2,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApIM1NwaGVyaWNhbFV0aWwjY29tcHV0ZUVkZ2U",
+    "description" : "Remove H3SphericalUtil#computeEdge",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApIM1NwaGVyaWNhbFV0aWxUZXN0cyN0ZXN0Qm90aEVkZ2VzQ2hlY2tlZEZvckV4dHJlbWVMYXRpdHVkZUNvcnJlY3Rpb24",
+    "description" : "Add H3SphericalUtilTests#testBothEdgesCheckedForExtremeLatitudeCorrection",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitib3VuZGFyeS5udW1Qb2ludHMsICtib3VuZGFyeS5nZXRMYXRMb24sICttaW4sICttYXgsICt2TWluLmdyZWF0Q2lyY2xlTWluTGF0aXR1ZGUg4oCmYW5kIDQgbW9yZQpIM1NwaGVyaWNhbFV0aWwjY29tcHV0ZUJvdW5kcw",
+    "description" : "Modify body of H3SphericalUtil#computeBounds: +boundary.numPoints, +boundary.getLatLon, +min, +max, +vMin.greatCircleMinLatitude …and 4 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkgzU3BoZXJpY2FsVXRpbCNNSU5fQ09NUEFSQVRPUg",
+    "description" : "Remove field H3SphericalUtil#MIN_COMPARATOR",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkgzU3BoZXJpY2FsVXRpbCNNQVhfQ09NUEFSQVRPUg",
+    "description" : "Remove field H3SphericalUtil#MAX_COMPARATOR",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCjFlLTUgLT4gMWUtNApIM1NwaGVyaWNhbFV0aWxUZXN0cyNMT05fREVMVEE",
+    "description" : "Change value of H3SphericalUtilTests#LON_DELTA: 1e-5 -> 1e-4",
+    "category" : "UNKNOWN",
+    "kind" : "CHANGE_FIELD_VALUE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "H3SphericalUtil",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApIM1NwaGVyaWNhbFV0aWwjY29tcHV0ZUVkZ2U",
+      "description" : "Remove H3SphericalUtil#computeEdge",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitib3VuZGFyeS5udW1Qb2ludHMsICtib3VuZGFyeS5nZXRMYXRMb24sICttaW4sICttYXgsICt2TWluLmdyZWF0Q2lyY2xlTWluTGF0aXR1ZGUg4oCmYW5kIDQgbW9yZQpIM1NwaGVyaWNhbFV0aWwjY29tcHV0ZUJvdW5kcw",
+      "description" : "Modify body of H3SphericalUtil#computeBounds: +boundary.numPoints, +boundary.getLatLon, +min, +max, +vMin.greatCircleMinLatitude …and 4 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 3,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkgzU3BoZXJpY2FsVXRpbCNNSU5fQ09NUEFSQVRPUg",
+      "description" : "Remove field H3SphericalUtil#MIN_COMPARATOR",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 4,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkgzU3BoZXJpY2FsVXRpbCNNQVhfQ09NUEFSQVRPUg",
+      "description" : "Remove field H3SphericalUtil#MAX_COMPARATOR",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "H3SphericalUtilTests",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApIM1NwaGVyaWNhbFV0aWxUZXN0cyN0ZXN0Qm90aEVkZ2VzQ2hlY2tlZEZvckV4dHJlbWVMYXRpdHVkZUNvcnJlY3Rpb24",
+      "description" : "Add H3SphericalUtilTests#testBothEdgesCheckedForExtremeLatitudeCorrection",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCjFlLTUgLT4gMWUtNApIM1NwaGVyaWNhbFV0aWxUZXN0cyNMT05fREVMVEE",
+      "description" : "Change value of H3SphericalUtilTests#LON_DELTA: 1e-5 -> 1e-4",
+      "category" : "UNKNOWN",
+      "kind" : "CHANGE_FIELD_VALUE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

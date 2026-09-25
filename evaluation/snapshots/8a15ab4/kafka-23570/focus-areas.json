@@ -1,0 +1,13 @@
+[ {
+  "description" : "Modify body of StreamTask#close: +consumedOffsets.clear",
+  "entity" : "StreamTask"
+}, {
+  "description" : "Add class SourceTopicChangelogRestoreIntegrationTest",
+  "entity" : "SourceTopicChangelogRestoreIntegrationTest"
+}, {
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#setUp",
+  "entity" : "SourceTopicChangelogRestoreIntegrationTest"
+}, {
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#tearDown",
+  "entity" : "SourceTopicChangelogRestoreIntegrationTest"
+} ]

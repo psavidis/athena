@@ -1,0 +1,49 @@
+{
+  "territories" : [ {
+    "moduleName" : "pulsar-common",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 9 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJDb21taXRzRnJhbWVBc1NpbmdsZU1lc3NhZ2U", "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdENvcHlpbmdFbmNvZGVyQ29tbWl0c0ZyYW1lQXNTaW5nbGVNZXNzYWdl", "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJTdXBwb3J0c011bHRpcGxlV3JpdGVzT2ZTYW1lUGFpcg", "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJGYWlsZWRCdWlsZEtlZXBzU3RyZWFtQWxpZ25lZA", "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJGYWlsZWRCdWlsZENvbW1pdHNOb3RoaW5n", "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJBbGxvY2F0aW9uRmFpbHVyZUZhaWxzV3JpdGVBbmRSZWxlYXNlc1BhaXI", "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjY2hhbm5lbE1vY2s", "TU9ESUZZX01FVEhPRF9CT0RZCitjb21wb3NpdGVCdWZmZXIsICtmcmFtZS5hZGRDb21wb25lbnQsICtmaXJzdC5yZXRhaW4sICtzZWNvbmQucmV0YWluLCArc2FmZVJlbGVhc2Ug4oCmYW5kIDQgbW9yZQpCeXRlQnVmUGFpci5FbmNvZGVyI3dyaXRl", "TU9ESUZZX01FVEhPRF9CT0RZCitjb21wb3NpdGVCdWZmZXIsICtmcmFtZS5hZGRDb21wb25lbnQsICtmaXJzdC5jb3B5LCArc2Vjb25kLmNvcHksICtzYWZlUmVsZWFzZSDigKZhbmQgNCBtb3JlCkJ5dGVCdWZQYWlyLkNvcHlpbmdFbmNvZGVyI3dyaXRl" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJDb21taXRzRnJhbWVBc1NpbmdsZU1lc3NhZ2U", "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdENvcHlpbmdFbmNvZGVyQ29tbWl0c0ZyYW1lQXNTaW5nbGVNZXNzYWdl", "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJTdXBwb3J0c011bHRpcGxlV3JpdGVzT2ZTYW1lUGFpcg", "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJGYWlsZWRCdWlsZEtlZXBzU3RyZWFtQWxpZ25lZA", "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJGYWlsZWRCdWlsZENvbW1pdHNOb3RoaW5n", "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJBbGxvY2F0aW9uRmFpbHVyZUZhaWxzV3JpdGVBbmRSZWxlYXNlc1BhaXI", "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjY2hhbm5lbE1vY2s" ]
+  }, {
+    "moduleName" : "pulsar-tls-factory-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "pulsar-client-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "pulsar-client-admin-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "pulsar-common",
+    "to" : "pulsar-tls-factory-api"
+  }, {
+    "from" : "pulsar-common",
+    "to" : "pulsar-client-api"
+  }, {
+    "from" : "pulsar-common",
+    "to" : "pulsar-client-admin-api"
+  } ]
+}

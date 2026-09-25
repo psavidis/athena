@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of Types.GeographyType#toString: branch added",
+  "entity" : "Types.GeographyType"
+}, {
+  "description" : "Change control flow of SchemaParser#toJson: branch added",
+  "entity" : "SchemaParser"
+}, {
+  "description" : "Add Types.GeometryType#writeReplace",
+  "entity" : "Types.GeometryType"
+}, {
+  "description" : "Add Types.GeographyType#writeReplace",
+  "entity" : "Types.GeographyType"
+} ]

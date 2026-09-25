@@ -1,0 +1,249 @@
+diff --git a/api/src/main/java/org/apache/iceberg/types/Types.java b/api/src/main/java/org/apache/iceberg/types/Types.java
+index f082915920ea..729ac173bf30 100644
+--- a/api/src/main/java/org/apache/iceberg/types/Types.java
++++ b/api/src/main/java/org/apache/iceberg/types/Types.java
+@@ -629,7 +629,12 @@ public int hashCode() {
+ 
+     @Override
+     public String toString() {
+-      return String.format("%s(%s)", NAME, crs());
++      return DEFAULT_CRS.equalsIgnoreCase(crs) ? NAME : String.format("%s(%s)", NAME, crs);
++    }
++
++    @Override
++    Object writeReplace() {
++      return new PrimitiveLikeHolder(String.format("%s(%s)", NAME, crs()));
+     }
+   }
+ 
+@@ -656,6 +661,8 @@ public static GeographyType of(String crs, EdgeAlgorithm algorithm) {
+ 
+     private final String crs;
+     private final EdgeAlgorithm algorithm;
++    // Preserve the caller's choice of compact or explicit type string independently of defaults.
++    private final boolean algorithmExplicit;
+ 
+     private GeographyType() {
+       this(null, null);
+@@ -667,6 +674,7 @@ private GeographyType(String crs, EdgeAlgorithm algorithm) {
+       // preserved)
+       this.crs = crs == null ? DEFAULT_CRS : crs;
+       this.algorithm = algorithm == null ? DEFAULT_ALGORITHM : algorithm;
++      this.algorithmExplicit = algorithm != null;
+     }
+ 
+     @Override
+@@ -706,7 +714,19 @@ public int hashCode() {
+ 
+     @Override
+     public String toString() {
+-      return String.format("%s(%s, %s)", NAME, crs(), algorithm());
++      if (algorithmExplicit) {
++        return String.format(
++            "%s(%s, %s)", NAME, DEFAULT_CRS.equalsIgnoreCase(crs) ? DEFAULT_CRS : crs, algorithm);
++      } else if (!DEFAULT_CRS.equalsIgnoreCase(crs)) {
++        return String.format("%s(%s)", NAME, crs);
++      }
++
++      return NAME;
++    }
++
++    @Override
++    Object writeReplace() {
++      return new PrimitiveLikeHolder(String.format("%s(%s, %s)", NAME, crs(), algorithm()));
+     }
+   }
+ 
+diff --git a/api/src/test/java/org/apache/iceberg/TestPartitionSpecValidation.java b/api/src/test/java/org/apache/iceberg/TestPartitionSpecValidation.java
+index 5c37ad527291..a1709d2a2e06 100644
+--- a/api/src/test/java/org/apache/iceberg/TestPartitionSpecValidation.java
++++ b/api/src/test/java/org/apache/iceberg/TestPartitionSpecValidation.java
+@@ -351,12 +351,8 @@ public void testUnsupported(int fieldId, String partitionName, String expectedEr
+   private static Object[][] unsupportedFieldsProvider() {
+     return new Object[][] {
+       {7, "variant_partition1", "Cannot partition by non-primitive source field: variant"},
+-      {8, "geom_partition1", "Invalid source type geometry(OGC:CRS84) for transform: bucket[5]"},
+-      {
+-        9,
+-        "geog_partition1",
+-        "Invalid source type geography(OGC:CRS84, spherical) for transform: bucket[5]"
+-      },
++      {8, "geom_partition1", "Invalid source type geometry for transform: bucket[5]"},
++      {9, "geog_partition1", "Invalid source type geography for transform: bucket[5]"},
+       {10, "unknown_partition1", "Invalid source type unknown for transform: bucket[5]"}
+     };
+   }
+diff --git a/api/src/test/java/org/apache/iceberg/types/TestSerializableTypes.java b/api/src/test/java/org/apache/iceberg/types/TestSerializableTypes.java
+index 2363bd8dc66b..671e7c08844c 100644
+--- a/api/src/test/java/org/apache/iceberg/types/TestSerializableTypes.java
++++ b/api/src/test/java/org/apache/iceberg/types/TestSerializableTypes.java
+@@ -22,11 +22,54 @@
+ import static org.apache.iceberg.types.Types.NestedField.required;
+ import static org.assertj.core.api.Assertions.assertThat;
+ 
++import java.io.ByteArrayInputStream;
++import java.io.ByteArrayOutputStream;
++import java.io.ObjectInputStream;
++import java.io.ObjectOutputStream;
++import java.nio.charset.StandardCharsets;
++import java.util.stream.Stream;
+ import org.apache.iceberg.Schema;
+ import org.apache.iceberg.TestHelpers;
+ import org.junit.jupiter.api.Test;
++import org.junit.jupiter.params.ParameterizedTest;
++import org.junit.jupiter.params.provider.Arguments;
++import org.junit.jupiter.params.provider.MethodSource;
+ 
+ public class TestSerializableTypes {
++  private static Stream<Arguments> geospatialTypes() {
++    return Stream.of(
++        Arguments.of(Types.GeometryType.crs84(), "geometry(OGC:CRS84)"),
++        Arguments.of(Types.GeometryType.of("OGC:CRS84"), "geometry(OGC:CRS84)"),
++        Arguments.of(Types.GeometryType.of("srid:3857"), "geometry(srid:3857)"),
++        Arguments.of(Types.GeographyType.crs84(), "geography(OGC:CRS84, spherical)"),
++        Arguments.of(
++            Types.GeographyType.of("OGC:CRS84", EdgeAlgorithm.SPHERICAL),
++            "geography(OGC:CRS84, spherical)"),
++        Arguments.of(Types.GeographyType.of("srid:4269"), "geography(srid:4269, spherical)"),
++        Arguments.of(
++            Types.GeographyType.of(null, EdgeAlgorithm.KARNEY), "geography(OGC:CRS84, karney)"),
++        Arguments.of(
++            Types.GeographyType.of("srid:4269", EdgeAlgorithm.KARNEY),
++            "geography(srid:4269, karney)"));
++  }
++
++  @ParameterizedTest
++  @MethodSource("geospatialTypes")
++  void geospatialSerializationIncludesResolvedDefaults(Type type, String expected)
++      throws Exception {
++    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
++    try (ObjectOutputStream out = new ObjectOutputStream(bytes)) {
++      out.writeObject(type);
++    }
++
++    // Round-trip equality alone cannot detect omitted defaults when the reader shares them.
++    assertThat(bytes.toByteArray()).containsSequence(expected.getBytes(StandardCharsets.UTF_8));
++    try (ObjectInputStream in =
++        new ObjectInputStream(new ByteArrayInputStream(bytes.toByteArray()))) {
++      assertThat(in.readObject()).isEqualTo(type).hasSameHashCodeAs(type);
++    }
++  }
++
+   @Test
+   public void testIdentityTypes() throws Exception {
+     // these types make a strong guarantee than equality, instances are identical
+diff --git a/api/src/test/java/org/apache/iceberg/types/TestTypes.java b/api/src/test/java/org/apache/iceberg/types/TestTypes.java
+index 2fb224aefb15..9312da57b73d 100644
+--- a/api/src/test/java/org/apache/iceberg/types/TestTypes.java
++++ b/api/src/test/java/org/apache/iceberg/types/TestTypes.java
+@@ -165,11 +165,12 @@ public void fromPrimitiveString() {
+ 
+   @Test
+   public void testGeospatialTypeToString() {
+-    assertThat(Types.GeometryType.crs84().toString()).isEqualTo("geometry(OGC:CRS84)");
++    assertThat(Types.GeometryType.crs84().toString()).isEqualTo("geometry");
+     assertThat(Types.GeometryType.of(Types.GeometryType.DEFAULT_CRS).toString())
+-        .isEqualTo("geometry(OGC:CRS84)");
++        .isEqualTo("geometry");
+     assertThat(Types.GeometryType.of("srid:4326").toString()).isEqualTo("geometry(srid:4326)");
+-    assertThat(Types.GeographyType.crs84().toString()).isEqualTo("geography(OGC:CRS84, spherical)");
++    assertThat(Types.GeographyType.crs84().toString()).isEqualTo("geography");
++    assertThat(Types.GeographyType.of("srid:4326").toString()).isEqualTo("geography(srid:4326)");
+     assertThat(Types.GeographyType.of("srid:4326", EdgeAlgorithm.KARNEY).toString())
+         .isEqualTo("geography(srid:4326, karney)");
+     assertThat(Types.GeographyType.of(null, EdgeAlgorithm.KARNEY).toString())
+@@ -180,11 +181,19 @@ public void testGeospatialTypeToString() {
+         .isEqualTo("geography(OGC:CRS84, spherical)");
+     assertThat(Types.GeographyType.of("srid:4326", EdgeAlgorithm.SPHERICAL).toString())
+         .isEqualTo("geography(srid:4326, spherical)");
+-
+-    // the CRS keeps its original casing in toString even though comparison is case-insensitive
+-    assertThat(Types.GeometryType.of("ogc:crs84").toString()).isEqualTo("geometry(ogc:crs84)");
+-    assertThat(Types.GeographyType.of("ogc:crs84").toString())
+-        .isEqualTo("geography(ogc:crs84, spherical)");
++    assertThat(Types.GeographyType.of(null, EdgeAlgorithm.SPHERICAL).toString())
++        .isEqualTo("geography(OGC:CRS84, spherical)");
++    assertThat(Types.GeographyType.of("srid:4326", null).toString())
++        .isEqualTo("geography(srid:4326)");
++    assertThat(Types.GeographyType.of(null, null).toString()).isEqualTo("geography");
++
++    // The default CRS is omitted or rendered canonically regardless of input casing.
++    assertThat(Types.GeometryType.of("ogc:crs84").toString()).isEqualTo("geometry");
++    assertThat(Types.GeographyType.of("ogc:crs84").toString()).isEqualTo("geography");
++    assertThat(Types.GeographyType.of("ogc:crs84", EdgeAlgorithm.SPHERICAL).toString())
++        .isEqualTo("geography(OGC:CRS84, spherical)");
++    assertThat(Types.GeographyType.of("ogc:crs84", EdgeAlgorithm.KARNEY).toString())
++        .isEqualTo("geography(OGC:CRS84, karney)");
+   }
+ 
+   @Test
+diff --git a/core/src/main/java/org/apache/iceberg/SchemaParser.java b/core/src/main/java/org/apache/iceberg/SchemaParser.java
+index 7481af0284f6..1d7fd67f2fa5 100644
+--- a/core/src/main/java/org/apache/iceberg/SchemaParser.java
++++ b/core/src/main/java/org/apache/iceberg/SchemaParser.java
+@@ -142,7 +142,18 @@ static void toJson(Types.MapType map, JsonGenerator generator) throws IOExceptio
+ 
+   static void toJson(Type type, JsonGenerator generator) throws IOException {
+     if (type.isPrimitiveType() || type.isVariantType()) {
+-      generator.writeString(type.toString());
++      switch (type.typeId()) {
++        case GEOMETRY -> {
++          Types.GeometryType geometry = (Types.GeometryType) type;
++          generator.writeString(String.format("geometry(%s)", geometry.crs()));
++        }
++        case GEOGRAPHY -> {
++          Types.GeographyType geography = (Types.GeographyType) type;
++          generator.writeString(
++              String.format("geography(%s, %s)", geography.crs(), geography.algorithm()));
++        }
++        default -> generator.writeString(type.toString());
++      }
+     } else {
+       Type.NestedType nested = type.asNestedType();
+       switch (type.typeId()) {
+diff --git a/core/src/test/java/org/apache/iceberg/TestSchemaParser.java b/core/src/test/java/org/apache/iceberg/TestSchemaParser.java
+index 218afe17aed1..9690e3b5bd4b 100644
+--- a/core/src/test/java/org/apache/iceberg/TestSchemaParser.java
++++ b/core/src/test/java/org/apache/iceberg/TestSchemaParser.java
+@@ -89,6 +89,22 @@ public void testIdentifierColumns() {
+     assertThat(serialized.identifierFieldIds()).isEqualTo(Sets.newHashSet(1, 2));
+   }
+ 
++  @Test
++  public void geospatialDefaultsSerializedExplicitly() {
++    Schema schema =
++        new Schema(
++            required(1, "geom", Types.GeometryType.crs84()),
++            required(2, "geog", Types.GeographyType.crs84()),
++            required(3, "geog_custom_crs", Types.GeographyType.of("EPSG:4326")));
++
++    String json = SchemaParser.toJson(schema);
++    assertThat(json)
++        .contains("\"type\":\"geometry(OGC:CRS84)\"")
++        .contains("\"type\":\"geography(OGC:CRS84, spherical)\"")
++        .contains("\"type\":\"geography(EPSG:4326, spherical)\"");
++    assertThat(SchemaParser.fromJson(json).asStruct()).isEqualTo(schema.asStruct());
++  }
++
+   @Test
+   public void testDocStrings() {
+     Schema schema =
+diff --git a/parquet/src/test/java/org/apache/iceberg/parquet/TestParquetSchemaUtil.java b/parquet/src/test/java/org/apache/iceberg/parquet/TestParquetSchemaUtil.java
+index 6acf5eda0e86..5bab3ded6f7a 100644
+--- a/parquet/src/test/java/org/apache/iceberg/parquet/TestParquetSchemaUtil.java
++++ b/parquet/src/test/java/org/apache/iceberg/parquet/TestParquetSchemaUtil.java
+@@ -417,11 +417,9 @@ public void testGeospatialAnnotationsWithOmittedParameters() {
+     assertThat(actualSchema.asStruct())
+         .as("Geometry and geography annotations must convert to the expected Iceberg types")
+         .isEqualTo(expectedSchema.asStruct());
+-    assertThat(actualSchema.findType("geom_bare").toString()).isEqualTo("geometry(OGC:CRS84)");
+-    assertThat(actualSchema.findType("geom_explicit_default").toString())
+-        .isEqualTo("geometry(OGC:CRS84)");
+-    assertThat(actualSchema.findType("geog_bare").toString())
+-        .isEqualTo("geography(OGC:CRS84, spherical)");
++    assertThat(actualSchema.findType("geom_bare").toString()).isEqualTo("geometry");
++    assertThat(actualSchema.findType("geom_explicit_default").toString()).isEqualTo("geometry");
++    assertThat(actualSchema.findType("geog_bare").toString()).isEqualTo("geography");
+     assertThat(actualSchema.findType("geog_explicit_spherical").toString())
+         .isEqualTo("geography(EPSG:4326, spherical)");
+   }

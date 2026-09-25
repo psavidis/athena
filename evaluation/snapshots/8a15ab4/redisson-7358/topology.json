@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "redisson",
+    "status" : "TOUCHED",
+    "fileCount" : 9,
+    "statusSummary" : "9 files · 11 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApSZWRpc3NvbktleXMjdGltZQ", "QUREX1NZTUJPTApSZWRpc3NvbktleXMjdGltZUFzeW5j", "QUREX1NZTUJPTApSS2V5cyN0aW1l", "QUREX1NZTUJPTApSS2V5c0FzeW5jI3RpbWVBc3luYw", "QUREX1NZTUJPTApSS2V5c1JlYWN0aXZlI3RpbWU", "QUREX1NZTUJPTApSS2V5c1J4I3RpbWU", "QUREX1NZTUJPTApSZWRpc3NvbkJhdGNoVGVzdCN0ZXN0VGltZQ", "QUREX1NZTUJPTApSZWRpc3NvbkJhdGNoVGVzdCN0ZXN0VGltZUluQ2x1c3Rlcg", "QUREX1NZTUJPTApSZWRpc3NvbktleXNSZWFjdGl2ZVRlc3QjdGVzdFRpbWU", "QUREX1NZTUJPTApSZWRpc3NvbktleXNUZXN0I3Rlc3RUaW1l", "QUREX1NZTUJPTApSZWRpc3NvbktleXNSeFRlc3QjdGVzdFRpbWU" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApSZWRpc3NvbkJhdGNoVGVzdCN0ZXN0VGltZQ", "QUREX1NZTUJPTApSZWRpc3NvbkJhdGNoVGVzdCN0ZXN0VGltZUluQ2x1c3Rlcg", "QUREX1NZTUJPTApSZWRpc3NvbktleXNSZWFjdGl2ZVRlc3QjdGVzdFRpbWU", "QUREX1NZTUJPTApSZWRpc3NvbktleXNUZXN0I3Rlc3RUaW1l", "QUREX1NZTUJPTApSZWRpc3NvbktleXNSeFRlc3QjdGVzdFRpbWU" ]
+  } ],
+  "dependencies" : [ ]
+}

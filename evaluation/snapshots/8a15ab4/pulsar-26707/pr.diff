@@ -1,0 +1,71 @@
+diff --git a/managed-ledger/src/main/java/org/apache/bookkeeper/mledger/impl/EntryImpl.java b/managed-ledger/src/main/java/org/apache/bookkeeper/mledger/impl/EntryImpl.java
+index 3cb360efd1701..9fafec3c1dd7f 100644
+--- a/managed-ledger/src/main/java/org/apache/bookkeeper/mledger/impl/EntryImpl.java
++++ b/managed-ledger/src/main/java/org/apache/bookkeeper/mledger/impl/EntryImpl.java
+@@ -71,6 +71,11 @@ public static EntryImpl create(LedgerEntry ledgerEntry, int expectedReadCount) {
+         entry.data = ledgerEntry.getEntryBuffer();
+         entry.data.retain();
+         entry.readCountHandler = EntryReadCountHandlerImpl.maybeCreate(expectedReadCount);
++        // Reset the lazily-cached position LAST, after the id assignments: a recycled object can
++        // carry a stale Position materialized by a getPosition() call that raced past the recycle
++        // (deallocation nulls the field, but a late reader re-materializes it from the reset ids
++        // as (-1, -1)), and any racy lazy rebuild must observe the fresh legitimate ids.
++        entry.position = null;
+         entry.setRefCnt(1);
+         return entry;
+     }
+@@ -109,6 +114,8 @@ public static EntryImpl create(long ledgerId, long entryId, byte[] data, int exp
+         entry.entryId = entryId;
+         entry.data = Unpooled.wrappedBuffer(data);
+         entry.readCountHandler = EntryReadCountHandlerImpl.maybeCreate(expectedReadCount);
++        // Reset the lazily-cached position: see create(LedgerEntry, int).
++        entry.position = null;
+         entry.setRefCnt(1);
+         return entry;
+     }
+@@ -124,6 +131,8 @@ public static EntryImpl create(long ledgerId, long entryId, ByteBuf data, int ex
+         entry.data = data;
+         entry.data.retain();
+         entry.readCountHandler = EntryReadCountHandlerImpl.maybeCreate(expectedReadCount);
++        // Reset the lazily-cached position: see create(LedgerEntry, int).
++        entry.position = null;
+         entry.setRefCnt(1);
+         return entry;
+     }
+diff --git a/managed-ledger/src/test/java/org/apache/bookkeeper/mledger/impl/EntryImplTest.java b/managed-ledger/src/test/java/org/apache/bookkeeper/mledger/impl/EntryImplTest.java
+index e8742b92811ad..38d7d34e9baeb 100644
+--- a/managed-ledger/src/test/java/org/apache/bookkeeper/mledger/impl/EntryImplTest.java
++++ b/managed-ledger/src/test/java/org/apache/bookkeeper/mledger/impl/EntryImplTest.java
+@@ -259,6 +259,32 @@ public void testCreateWithPositionThatIsImmutable() {
+         entry.release();
+     }
+ 
++    @Test
++    public void testRecycledObjectDoesNotInheritPoisonedPosition() {
++        // Given a legitimate entry that is released normally
++        EntryImpl first = EntryImpl.create(5L, 10L, new byte[]{1, 2, 3});
++        first.release();
++
++        // When a getPosition() call slips in AFTER the release: deallocation nulls the lazy
++        // position field, so this late reader re-materializes it from the reset ids as (-1, -1)
++        // and leaves the poisoned value cached inside the pooled object.
++        first.getPosition();
++
++        // Then the next create() (the recycler hands back the most recently released object on
++        // the same thread) must not report that stale (-1, -1) position as its own — through
++        // both the byte[] and the ByteBuf variants, which own the lazy field.
++        EntryImpl second = EntryImpl.create(6L, 20L, new byte[]{4, 5, 6});
++        assertTrue(second.getPosition().compareTo(PositionFactory.create(6L, 20L)) == 0,
++                "byte[] variant: a recycled entry must not inherit the poisoned (-1, -1) position");
++        second.release();
++
++        second.getPosition(); // re-poison the recycled object
++        EntryImpl third = EntryImpl.create(7L, 30L, Unpooled.wrappedBuffer(new byte[]{7, 8}));
++        assertTrue(third.getPosition().compareTo(PositionFactory.create(7L, 30L)) == 0,
++                "ByteBuf variant: a recycled entry must not inherit the poisoned (-1, -1) position");
++        third.release();
++    }
++
+     private void assertEntryFields(EntryImpl entry, long expectedLedgerId, long expectedEntryId) {
+         assertEquals(entry.getLedgerId(), expectedLedgerId);
+         assertEquals(entry.getEntryId(), expectedEntryId);

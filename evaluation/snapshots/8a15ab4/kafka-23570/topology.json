@@ -1,0 +1,163 @@
+{
+  "territories" : [ {
+    "moduleName" : "integration-tests",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 42 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "QUREX0NMQVNTClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdA", "QUREX0NMQVNTClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3I", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc2V0VXA", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjdGVhckRvd24", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc2hvdWxkRnVsbHlSZXN0b3JlU291cmNlVG9waWNDaGFuZ2Vsb2dTdG9yZUFmdGVyVGFza0NvcnJ1cHRpb25XaXRoU3RhbmRieVJlcGxpY2E", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjY2xvc2VBbmRMZWF2ZUdyb3Vw", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc3RhcnQ", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjdG9wb2xvZ3k", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc3RyZWFtc0NvbmZpZw", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJvZHVjZQ", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclBsYWNlbWVudA", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclN0YWJsZVBsYWNlbWVudA", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjaG9zdHNUYXNr", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclRhYmxlS2V5cw", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjY291bnRQcmVzZW50S2V5cw", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJlbG9hZGVkS2V5cw", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qja2V5c09m", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcmVzdG9yZUNvbnN1bWVy", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJvZHVjZXI", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QuVmVoaWNsZVN0YXRlUHJvY2Vzc29yI2luaXQ", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QuVmVoaWNsZVN0YXRlUHJvY2Vzc29yI3Byb2Nlc3M", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNOVU1fUFJFTE9BREVEX0tFWVM", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNOVU1fRVZFTlRT", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9UT1BJQw", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNFVkVOVFNfVE9QSUM", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9TVE9SRQ", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNFVkVOVF9DT1VOVF9TVE9SRQ", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9QQVJUSVRJT04", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQVNL", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNQUk9EVUNFUl9NQVhfQkxPQ0tfTVM", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNDT01NSVRfREVMQVk", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNSRVNUT1JFX0ZFVENIX0RFTEFZ", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNXQUlUX01T", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNzdGF0ZURpcnM", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNzdHJlYW1zVG9DbG9zZQ", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNyZWJhbGFuY2VDb3VudHM", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNjbHVzdGVy", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNwcm94eQ", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNhcHBJZA", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjY29udGV4dA", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjdmVoaWNsZVN0b3Jl", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjZXZlbnRDb3VudHM" ],
+    "testChangeKeys" : [ "QUREX0NMQVNTClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdA", "QUREX0NMQVNTClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3I", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc2V0VXA", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjdGVhckRvd24", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc2hvdWxkRnVsbHlSZXN0b3JlU291cmNlVG9waWNDaGFuZ2Vsb2dTdG9yZUFmdGVyVGFza0NvcnJ1cHRpb25XaXRoU3RhbmRieVJlcGxpY2E", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjY2xvc2VBbmRMZWF2ZUdyb3Vw", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc3RhcnQ", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjdG9wb2xvZ3k", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc3RyZWFtc0NvbmZpZw", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJvZHVjZQ", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclBsYWNlbWVudA", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclN0YWJsZVBsYWNlbWVudA", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjaG9zdHNUYXNr", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclRhYmxlS2V5cw", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjY291bnRQcmVzZW50S2V5cw", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJlbG9hZGVkS2V5cw", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qja2V5c09m", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcmVzdG9yZUNvbnN1bWVy", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJvZHVjZXI", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QuVmVoaWNsZVN0YXRlUHJvY2Vzc29yI2luaXQ", "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QuVmVoaWNsZVN0YXRlUHJvY2Vzc29yI3Byb2Nlc3M", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNOVU1fUFJFTE9BREVEX0tFWVM", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNOVU1fRVZFTlRT", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9UT1BJQw", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNFVkVOVFNfVE9QSUM", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9TVE9SRQ", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNFVkVOVF9DT1VOVF9TVE9SRQ", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9QQVJUSVRJT04", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQVNL", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNQUk9EVUNFUl9NQVhfQkxPQ0tfTVM", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNDT01NSVRfREVMQVk", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNSRVNUT1JFX0ZFVENIX0RFTEFZ", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNXQUlUX01T", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNzdGF0ZURpcnM", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNzdHJlYW1zVG9DbG9zZQ", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNyZWJhbGFuY2VDb3VudHM", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNjbHVzdGVy", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNwcm94eQ", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNhcHBJZA", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjY29udGV4dA", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjdmVoaWNsZVN0b3Jl", "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjZXZlbnRDb3VudHM" ]
+  }, {
+    "moduleName" : "streams",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Modify body of StreamTask#close: +consumedOffsets.clear",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCitjb25zdW1lZE9mZnNldHMuY2xlYXIKU3RyZWFtVGFzayNjbG9zZQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "clients",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "group-coordinator",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "group-coordinator-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "server",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "server-common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "storage",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "test-common-runtime",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "tools",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "transaction-coordinator",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "test-utils",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "generator",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "integration-tests",
+    "to" : "clients"
+  }, {
+    "from" : "integration-tests",
+    "to" : "streams"
+  }, {
+    "from" : "integration-tests",
+    "to" : "group-coordinator"
+  }, {
+    "from" : "integration-tests",
+    "to" : "group-coordinator-api"
+  }, {
+    "from" : "integration-tests",
+    "to" : "server"
+  }, {
+    "from" : "integration-tests",
+    "to" : "server-common"
+  }, {
+    "from" : "integration-tests",
+    "to" : "storage"
+  }, {
+    "from" : "integration-tests",
+    "to" : "test-common-runtime"
+  }, {
+    "from" : "integration-tests",
+    "to" : "tools"
+  }, {
+    "from" : "integration-tests",
+    "to" : "transaction-coordinator"
+  }, {
+    "from" : "integration-tests",
+    "to" : "test-utils"
+  }, {
+    "from" : "streams",
+    "to" : "clients"
+  }, {
+    "from" : "streams",
+    "to" : "test-utils"
+  }, {
+    "from" : "streams",
+    "to" : "generator"
+  } ]
+}

@@ -1,0 +1,7 @@
+[ {
+  "description" : "Modify body of DataConverter.RowDataConverter#convert: +sourceData.getRowKind",
+  "entity" : "DataConverter.RowDataConverter"
+}, {
+  "description" : "Add TestRowDataConverter#testPreservesRowKind",
+  "entity" : "TestRowDataConverter"
+} ]

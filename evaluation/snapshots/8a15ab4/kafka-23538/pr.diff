@@ -1,0 +1,62 @@
+diff --git a/group-coordinator/src/main/java/org/apache/kafka/coordinator/group/classic/ClassicGroup.java b/group-coordinator/src/main/java/org/apache/kafka/coordinator/group/classic/ClassicGroup.java
+index 3c6100d42eae0..641b9425f6794 100644
+--- a/group-coordinator/src/main/java/org/apache/kafka/coordinator/group/classic/ClassicGroup.java
++++ b/group-coordinator/src/main/java/org/apache/kafka/coordinator/group/classic/ClassicGroup.java
+@@ -847,7 +847,7 @@ public CommitPartitionValidator validateOffsetCommit(
+         }
+ 
+         if (generationId >= 0 || !memberId.isEmpty() || groupInstanceId != null) {
+-            validateMember(memberId, groupInstanceId, isTransactional ? "offset-commit" : "txn-offset-commit");
++            validateMember(memberId, groupInstanceId, isTransactional ? "txn-offset-commit" : "offset-commit");
+ 
+             if (generationId != this.generationId) {
+                 throw Errors.ILLEGAL_GENERATION.exception();
+diff --git a/group-coordinator/src/test/java/org/apache/kafka/coordinator/group/classic/ClassicGroupTest.java b/group-coordinator/src/test/java/org/apache/kafka/coordinator/group/classic/ClassicGroupTest.java
+index 2696bdd2c5162..2272bf7d80d0e 100644
+--- a/group-coordinator/src/test/java/org/apache/kafka/coordinator/group/classic/ClassicGroupTest.java
++++ b/group-coordinator/src/test/java/org/apache/kafka/coordinator/group/classic/ClassicGroupTest.java
+@@ -34,6 +34,7 @@
+ import org.apache.kafka.common.message.SyncGroupResponseData;
+ import org.apache.kafka.common.protocol.ApiKeys;
+ import org.apache.kafka.common.protocol.Errors;
++import org.apache.kafka.common.utils.LogCaptureAppender;
+ import org.apache.kafka.common.utils.MockTime;
+ import org.apache.kafka.common.utils.Time;
+ import org.apache.kafka.common.utils.Utils;
+@@ -52,6 +53,7 @@
+ import org.apache.kafka.image.MetadataImage;
+ import org.apache.kafka.timeline.SnapshotRegistry;
+ 
++import org.apache.logging.log4j.Level;
+ import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.Test;
+ import org.junit.jupiter.params.ParameterizedTest;
+@@ -1050,9 +1052,25 @@ public void testValidateOffsetCommit(short version) {
+         // Replace static member.
+         group.replaceStaticMember("instance-id", "member-id", "new-member-id");
+ 
+-        // The old instance id should be fenced.
+-        assertThrows(FencedInstanceIdException.class,
+-            () -> group.validateOffsetCommit("member-id", "instance-id", 1, false, version));
++        // The old instance id should be fenced and the operation logged.
++        try (LogCaptureAppender appender = LogCaptureAppender.createAndRegister(ClassicGroup.class)) {
++            assertThrows(FencedInstanceIdException.class,
++                () -> group.validateOffsetCommit("member-id", "instance-id", 1, false, version));
++
++            assertEquals(1, appender.getMessages(Level.INFO).stream()
++                .filter(msg -> msg.contains("Request memberId=member-id for static member with groupInstanceId=instance-id is fenced by existing memberId=new-member-id during operation offset-commit"))
++                .count());
++        }
++
++        // Same fencing check for a transactional offset commit. The operation should be logged.
++        try (LogCaptureAppender appender = LogCaptureAppender.createAndRegister(ClassicGroup.class)) {
++            assertThrows(FencedInstanceIdException.class,
++                () -> group.validateOffsetCommit("member-id", "instance-id", 1, true, version));
++
++            assertEquals(1, appender.getMessages(Level.INFO).stream()
++                .filter(msg -> msg.contains("Request memberId=member-id for static member with groupInstanceId=instance-id is fenced by existing memberId=new-member-id during operation txn-offset-commit"))
++                .count());
++        }
+ 
+         // Remove member and transitions to dead.
+         group.remove("new-instance-id");

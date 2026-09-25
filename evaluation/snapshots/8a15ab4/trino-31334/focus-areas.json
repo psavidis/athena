@@ -1,0 +1,7 @@
+[ {
+  "entity" : "PartitionedOutputOperator",
+  "description" : "Change control flow of PartitionedOutputOperator#finish: condition changed"
+}, {
+  "entity" : "TestPartitionedOutputOperator",
+  "description" : "Add TestPartitionedOutputOperator#testMemoryReleasedOnFinishFailure"
+} ]

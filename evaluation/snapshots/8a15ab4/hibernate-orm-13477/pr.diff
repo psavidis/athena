@@ -1,0 +1,3259 @@
+diff --git a/documentation/src/main/asciidoc/userguide/chapters/pc/PersistenceContext.adoc b/documentation/src/main/asciidoc/userguide/chapters/pc/PersistenceContext.adoc
+index 767f7c094bb5..64434f50c567 100644
+--- a/documentation/src/main/asciidoc/userguide/chapters/pc/PersistenceContext.adoc
++++ b/documentation/src/main/asciidoc/userguide/chapters/pc/PersistenceContext.adoc
+@@ -309,6 +309,48 @@ include::{extrasdir}/pc-where-collection-query-example.sql[]
+ ----
+ ====
+ 
++[[pc-to-one-restrictions]]
++==== Restrictions on to-one associations
++
++`@SQLRestriction` and `@Filter` may also be declared on a `@ManyToOne` or `@OneToOne` field or getter:
++
++[source,java]
++----
++@ManyToOne(fetch = FetchType.LAZY)
++@SQLRestriction("active = true")
++Person approver;
++
++@ManyToOne(fetch = FetchType.LAZY)
++@Filter(name = "activePerson", condition = "active = :active")
++Person reviewer;
++----
++
++The filter must have a corresponding `@FilterDef` with an `active` parameter.
++Enable it and set its parameter before loading the owner:
++
++[source,java]
++----
++session.enableFilter("activePerson").setParameter("active", true);
++----
++
++The conditions apply to the target entity through the annotated association, including associations
++mapped using `@JoinTable` and inverse one-to-one associations. Applicable conditions on the target entity
++and the association are combined using `AND`. Association filters apply whenever enabled, regardless of
++`@FilterDef.applyToLoadByKey`. Entity-level filters retain their usual load-by-key rules.
++Filter default conditions and explicit `@SqlFragmentAlias` declarations work as for collections.
++Use explicit aliases for filters referring to other tables of a target mapped with `JOINED` inheritance
++or `@SecondaryTable`. SQL restrictions qualify mapped columns from these tables automatically.
++
++An excluded target is represented as null, even if the target is already managed or cached.
++Other associations and direct lookups may still return the same target. Hibernate preserves the stored
++foreign key and join-table row when unrelated fields change or null is assigned to an already hidden
++association. Assigning a new nonnull target replaces the reference. A hidden target is not orphan-removed.
++Merge assumes that the detached source was loaded under the same filters and parameter values.
++
++Changing filters does not reinterpret already loaded associations. Refresh or reload the owner to obtain
++a new view. These predicates affect loading, not validation of newly assigned targets.
++Native result mappings require an additional visibility query when the association has an applicable restriction.
++
+ [[pc-where-join-table]]
+ ==== `@SQLJoinTableRestriction`
+ 
+@@ -455,7 +497,7 @@ include::{example-dir-pc}/FilterTest.java[tags=pc-filter-resolver-Account-exampl
+ 
+ [IMPORTANT]
+ ====
+-Filters apply to entity queries, but not to direct fetching, unless otherwise configured using the `applyToLoadByKey` flag
++Filters declared on an entity apply to entity queries, but not to direct fetching, unless otherwise configured using the `applyToLoadByKey` flag
+ on the `@FilterDef`, that should be set to `true` in order to activate the filter with direct fetching.
+ ====
+ 
+diff --git a/hibernate-core/src/main/java/org/hibernate/annotations/Filter.java b/hibernate-core/src/main/java/org/hibernate/annotations/Filter.java
+index fb08c8f791d1..130e1a4b8949 100644
+--- a/hibernate-core/src/main/java/org/hibernate/annotations/Filter.java
++++ b/hibernate-core/src/main/java/org/hibernate/annotations/Filter.java
+@@ -14,13 +14,13 @@
+ import static java.lang.annotation.RetentionPolicy.RUNTIME;
+ 
+ /**
+- * Specifies that an entity or collection is affected by a named
+- * filter declared using {@link FilterDef @FilterDef}, and allows the
+- * {@linkplain FilterDef#defaultCondition default filter condition}
+- * to be overridden for the annotated entity or collection role.
++ * Specifies that the annotated entity, collection, or to-one association is
++ * affected by a named filter declared using {@link FilterDef @FilterDef}, and
++ * allows the {@linkplain FilterDef#defaultCondition default filter condition}
++ * to be overridden for the annotated entity or association role.
+  * <p>
+- * For example, we might apply a filter named {@code Current} to
+- * an entity like this:
++ * For example, we might apply a filter named {@code Current} to an entity
++ * like this:
+  * <pre>
+  * &#64;Entity
+  * &#64;Filter(name = "Current",
+diff --git a/hibernate-core/src/main/java/org/hibernate/annotations/FilterDef.java b/hibernate-core/src/main/java/org/hibernate/annotations/FilterDef.java
+index 5ae30244f1f4..2c2ca8f6af80 100644
+--- a/hibernate-core/src/main/java/org/hibernate/annotations/FilterDef.java
++++ b/hibernate-core/src/main/java/org/hibernate/annotations/FilterDef.java
+@@ -112,17 +112,21 @@
+ 	boolean autoEnabled() default false;
+ 
+ 	/**
+-	 * Specifies that the filter should be applied to operations
+-	 * which fetch an entity by its identifier.
++	 * Specifies that the filter should be applied to operations which fetch
++	 * an entity by its identifier.
+ 	 * <p>
+-	 * By default, a filter does not apply to lookups by primary
+-	 * key, for example, when:
++	 * By default, a filter declared by an entity does not apply to lookups
++	 * by primary key, for example, when:
+ 	 * <ul>
+ 	 * <li> fetching a {@code @ManyToOne} association, or
+ 	 * <li>{@link org.hibernate.Session#find(Class, Object) find()}
+ 	 *     is called.
+ 	 * </ul>
+ 	 * <p>
++	 * This setting does not govern a filter declared directly by a to-one
++	 * association. Such a filter applies to that association whenever it
++	 * is enabled.
++	 * <p>
+ 	 * If a filter with {@code applyToLoadByKey = true} excludes the target
+ 	 * of a {@link jakarta.persistence.ManyToOne} or {@link jakarta.persistence.OneToOne}
+ 	 * association, the association is represented as {@code null}. Hibernate retains
+diff --git a/hibernate-core/src/main/java/org/hibernate/annotations/SQLRestriction.java b/hibernate-core/src/main/java/org/hibernate/annotations/SQLRestriction.java
+index 3d15fca6cf8c..28733d0aa5c3 100644
+--- a/hibernate-core/src/main/java/org/hibernate/annotations/SQLRestriction.java
++++ b/hibernate-core/src/main/java/org/hibernate/annotations/SQLRestriction.java
+@@ -14,7 +14,7 @@
+ 
+ /**
+  * Specifies a restriction written in native SQL to add to the generated
+- * SQL for entities or collections.
++ * SQL for an entity, collection, or to-one association.
+  * <p>
+  * For example, {@code @SQLRestriction} could be used to hide entity
+  * instances which have been soft-deleted, either for the entity class
+diff --git a/hibernate-core/src/main/java/org/hibernate/boot/model/internal/OneToOneSecondPass.java b/hibernate-core/src/main/java/org/hibernate/boot/model/internal/OneToOneSecondPass.java
+index c0418c435842..c6c155bc2699 100644
+--- a/hibernate-core/src/main/java/org/hibernate/boot/model/internal/OneToOneSecondPass.java
++++ b/hibernate-core/src/main/java/org/hibernate/boot/model/internal/OneToOneSecondPass.java
+@@ -160,6 +160,7 @@ private void bindTargetManyToOne(
+ 	private ManyToOne createManyToOne(OneToOne oneToOne, Join mappedByJoin) {
+ 		final ManyToOne manyToOne = new ManyToOne( buildingContext, mappedByJoin.getTable() );
+ 		manyToOne.setNotFoundAction( notFoundAction );
++		manyToOne.copyRestrictions( oneToOne );
+ 		manyToOne.setOnDeleteAction( oneToOne.getOnDeleteAction() );
+ 		manyToOne.setFetchStyle( oneToOne.getFetchStyle() );
+ 		manyToOne.setLazy( oneToOne.isLazy() );
+diff --git a/hibernate-core/src/main/java/org/hibernate/boot/model/internal/ToOneBinder.java b/hibernate-core/src/main/java/org/hibernate/boot/model/internal/ToOneBinder.java
+index 25195439c3e9..42c729f8097c 100644
+--- a/hibernate-core/src/main/java/org/hibernate/boot/model/internal/ToOneBinder.java
++++ b/hibernate-core/src/main/java/org/hibernate/boot/model/internal/ToOneBinder.java
+@@ -11,14 +11,17 @@
+ import org.hibernate.annotations.Fetch;
+ import org.hibernate.annotations.FetchMode;
+ import org.hibernate.annotations.FetchProfileOverride;
++import org.hibernate.annotations.Filter;
+ import org.hibernate.annotations.LazyGroup;
+ import org.hibernate.annotations.NotFound;
+ import org.hibernate.annotations.NotFoundAction;
+ import org.hibernate.annotations.OnDelete;
+ import org.hibernate.annotations.OnDeleteAction;
++import org.hibernate.annotations.SQLRestriction;
+ import org.hibernate.boot.models.JpaAnnotations;
+ import org.hibernate.boot.spi.MetadataBuildingContext;
+ import org.hibernate.boot.spi.PropertyData;
++import org.hibernate.boot.spi.SecondPass;
+ import org.hibernate.engine.FetchStyle;
+ import org.hibernate.mapping.SimpleValue;
+ import org.hibernate.mapping.ToOne;
+@@ -168,6 +171,7 @@ private static void bindManyToOne(
+ 		}
+ 		final var targetEntityClassDetails = getTargetEntity( inferredData, context );
+ 		manyToOne.setReferencedEntityName( getReferenceEntityName( inferredData, targetEntityClassDetails ) );
++		bindRestrictions( manyToOne, memberDetails, context );
+ 		defineFetchingStrategy( manyToOne, memberDetails, inferredData, propertyHolder );
+ 		//value.setFetchMode( fetchMode );
+ 		manyToOne.setNotFoundAction( notFoundAction );
+@@ -571,6 +575,7 @@ private static void bindTrueOneToOne(
+ 		final String propertyName = inferredData.getPropertyName();
+ 		oneToOne.setPropertyName( propertyName );
+ 		oneToOne.setReferencedEntityName( getReferenceEntityName( inferredData, targetEntityClassDetails ) );
++		bindRestrictions( oneToOne, memberDetails, context );
+ 		defineFetchingStrategy( oneToOne, memberDetails, inferredData, propertyHolder );
+ 		//value.setFetchMode( fetchMode );
+ 		oneToOne.setOnDeleteAction( onDeleteAction( memberDetails ) );
+@@ -622,6 +627,41 @@ private static void bindTrueOneToOne(
+ 		}
+ 	}
+ 
++	private static void bindRestrictions(ToOne association, MemberDetails member, MetadataBuildingContext context) {
++		final var restriction = DialectOverridesAnnotationHelper.getOverridableAnnotation(
++				member, SQLRestriction.class, context );
++		if ( restriction != null ) {
++			association.setSqlRestriction( restriction.value() );
++		}
++		member.forEachAnnotationUsage( Filter.class, context.getBootstrapContext().getModelsContext(),
++				filter -> {
++					final SecondPass secondPass = persistentClasses -> bindFilter( association, member, filter, context );
++					if ( context.getMetadataCollector().isInSecondPass() ) {
++						secondPass.doSecondPass( context.getMetadataCollector().getEntityBindingMap() );
++					}
++					else {
++						context.getMetadataCollector().addSecondPass( secondPass );
++					}
++				} );
++	}
++
++	private static void bindFilter(ToOne association, MemberDetails member, Filter filter, MetadataBuildingContext context) {
++		final var definition = context.getMetadataCollector().getFilterDefinition( filter.name() );
++		final String path = qualify( member.getDeclaringType().getName(), member.getName() );
++		if ( definition == null ) {
++			throw new AnnotationException( "Association '" + path
++					+ "' refers to an undefined filter named '" + filter.name() + "'" );
++		}
++		final String condition = filter.condition().isBlank()
++				? definition.getDefaultFilterCondition() : filter.condition();
++		if ( isBlank( condition ) ) {
++			throw new AnnotationException( "Association '" + path
++					+ "' has no condition for filter '" + filter.name() + "'" );
++		}
++		association.addFilter( filter.name(), condition, filter.deduceAliasInjectionPoints(),
++				BinderHelper.toAliasTableMap( filter.aliases() ), BinderHelper.toAliasEntityMap( filter.aliases() ) );
++	}
++
+ 	private static boolean isMappedToPrimaryKey(
+ 			AnnotatedJoinColumns joinColumns,
+ 			PropertyHolder propertyHolder,
+diff --git a/hibernate-core/src/main/java/org/hibernate/engine/internal/EntityCacheRestrictions.java b/hibernate-core/src/main/java/org/hibernate/engine/internal/EntityCacheRestrictions.java
+index 6b7c8f1c514f..37d158ef1538 100644
+--- a/hibernate-core/src/main/java/org/hibernate/engine/internal/EntityCacheRestrictions.java
++++ b/hibernate-core/src/main/java/org/hibernate/engine/internal/EntityCacheRestrictions.java
+@@ -7,6 +7,8 @@
+ import java.util.HashSet;
+ import java.util.Set;
+ 
++import static java.util.Collections.addAll;
++
+ import org.hibernate.boot.spi.MetadataImplementor;
+ import org.hibernate.engine.FetchStyle;
+ import org.hibernate.engine.FetchTiming;
+@@ -90,6 +92,7 @@ private static void collectAttributeFilters(
+ 		for ( int i = 0; i < mapping.getNumberOfAttributeMappings(); i++ ) {
+ 			final var attribute = mapping.getAttributeMapping( i );
+ 			if ( attribute instanceof ToOneAttributeMapping toOne ) {
++				addAll( names, toOne.getAssociationFilterNames() );
+ 				collectFilters( toOne.getEntityMappingType(), bootModel, names, visited );
+ 			}
+ 			else if ( attribute instanceof EmbeddableValuedModelPart embedded ) {
+@@ -134,7 +137,7 @@ else if ( mapping instanceof EntityMappingType entity
+ 			for ( int i = 0; i < mapping.getNumberOfAttributeMappings(); i++ ) {
+ 				final var attribute = mapping.getAttributeMapping( i );
+ 				if ( attribute instanceof ToOneAttributeMapping toOne
+-						&& hasSqlRestrictions( toOne.getEntityMappingType(), visited )
++						&& (toOne.hasAssociationSqlRestriction() || hasSqlRestrictions( toOne.getEntityMappingType(), visited ))
+ 					|| attribute instanceof EmbeddableValuedModelPart embedded
+ 						&& hasSqlRestrictions( embedded.getEmbeddableTypeDescriptor(), visited ) ) {
+ 					return true;
+diff --git a/hibernate-core/src/main/java/org/hibernate/engine/internal/FilteredAssociationMapping.java b/hibernate-core/src/main/java/org/hibernate/engine/internal/FilteredAssociationMapping.java
+index 899e44e03741..2c6505b7c4bb 100644
+--- a/hibernate-core/src/main/java/org/hibernate/engine/internal/FilteredAssociationMapping.java
++++ b/hibernate-core/src/main/java/org/hibernate/engine/internal/FilteredAssociationMapping.java
+@@ -61,8 +61,7 @@ public static FilteredAssociationMapping create(EntityPersister persister) {
+ 	}
+ 
+ 	public static boolean isRestricted(ToOneAttributeMapping association) {
+-		final var target = association.getEntityMappingType().getEntityPersister();
+-		return target.hasWhereRestrictions() || target.hasFilterForLoadByKey();
++		return association.hasWhereRestrictions() || association.hasFilterForLoadByKey();
+ 	}
+ 
+ 	public static boolean hasRestrictedAssociations(ManagedMappingType mapping) {
+diff --git a/hibernate-core/src/main/java/org/hibernate/loader/ast/internal/LoaderSelectBuilder.java b/hibernate-core/src/main/java/org/hibernate/loader/ast/internal/LoaderSelectBuilder.java
+index 8b2a925a4abf..0e2073c1415d 100644
+--- a/hibernate-core/src/main/java/org/hibernate/loader/ast/internal/LoaderSelectBuilder.java
++++ b/hibernate-core/src/main/java/org/hibernate/loader/ast/internal/LoaderSelectBuilder.java
+@@ -48,6 +48,7 @@
+ import org.hibernate.sql.ast.spi.creation.FromClauseAccess;
+ import org.hibernate.sql.ast.spi.creation.SimpleFromClauseAccessImpl;
+ import org.hibernate.sql.ast.spi.creation.SqlAliasBaseGenerator;
++import org.hibernate.sql.ast.spi.creation.SqlAliasBaseManager;
+ import org.hibernate.sql.ast.spi.creation.SqlAstCreationContext;
+ import org.hibernate.sql.ast.spi.creation.SqlAstCreationState;
+ import org.hibernate.sql.ast.spi.query.expression.ColumnReference;
+@@ -131,6 +132,18 @@ public static SelectStatement createSelectByUniqueKey(
+ 		return process.generateSelect();
+ 	}
+ 
++	static SelectStatement createAssociationKeySelect(
++			ToOneAttributeMapping association,
++			ModelPart restrictedPart, LoadQueryInfluencers influencers,
++			Consumer<JdbcParameter> parameterConsumer) {
++		final var target = association.getEntityMappingType();
++		final var factory = influencers.getSessionFactory();
++		final var builder = new LoaderSelectBuilder( factory.getSqlTranslationEngine(), target,
++				List.of( target.getIdentifierMapping() ), restrictedPart, null, 1, influencers,
++				LockOptions.NONE, parameterConsumer, new SqlAliasBaseManager() );
++		return builder.generateSelect( association );
++	}
++
+ 	/**
+ 	 * Create a select-statement (SQL AST) for loading by multiple keys using a single SQL ARRAY parameter
+ 	 */
+@@ -547,6 +560,10 @@ private static EntityGraphTraversalState determineGraphTraversalState(
+ 
+ 	@Nonnull
+ 	private SelectStatement generateSelect() {
++		return generateSelect( null );
++	}
++
++	private SelectStatement generateSelect(@Nullable ToOneAttributeMapping association) {
+ 		final var rootNavigablePath = new NavigablePath( loadable.getRootPathName() );
+ 
+ 		final var rootQuerySpec = new QuerySpec( true );
+@@ -593,6 +610,9 @@ else if ( cachedDomainResult != null ) {
+ 			applyFiltering( rootQuerySpec, rootTableGroup, (Restrictable) loadable, sqlAstCreationState );
+ 		}
+ 
++		if ( association != null ) {
++			association.applyAssociationRestrictions( rootQuerySpec::applyPredicate, rootTableGroup, sqlAstCreationState );
++		}
+ 		return new SelectStatement( rootQuerySpec, domainResults );
+ 	}
+ 
+diff --git a/hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java b/hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java
+new file mode 100644
+index 000000000000..34fe14ba28a9
+--- /dev/null
++++ b/hibernate-core/src/main/java/org/hibernate/loader/ast/internal/ToOneVisibilityLoader.java
+@@ -0,0 +1,185 @@
++/*
++ * SPDX-License-Identifier: Apache-2.0
++ * Copyright Red Hat Inc. and Hibernate Authors
++ */
++package org.hibernate.loader.ast.internal;
++
++import java.util.ArrayList;
++import java.util.IdentityHashMap;
++import java.util.List;
++import java.util.Map;
++import java.util.Set;
++
++import jakarta.annotation.Nullable;
++
++import org.hibernate.LockOptions;
++import org.hibernate.engine.spi.LoadQueryInfluencers;
++import org.hibernate.metamodel.mapping.ModelPart;
++import org.hibernate.metamodel.mapping.internal.ToOneAttributeMapping;
++import org.hibernate.sql.ast.spi.AbstractSqlAstWalker;
++import org.hibernate.sql.ast.spi.query.predicate.FilterPredicate;
++import org.hibernate.sql.ast.spi.query.select.SelectStatement;
++import org.hibernate.sql.exec.spi.JdbcParametersList;
++import org.hibernate.sql.results.jdbc.spi.JdbcValuesSourceProcessingState;
++import org.hibernate.type.descriptor.java.JavaType;
++
++/** Checks association visibility when the owner SQL could not supply a restricted target key. */
++public final class ToOneVisibilityLoader {
++	private final ToOneAttributeMapping association;
++	private volatile @Nullable Plan identifierPlan;
++	private volatile @Nullable Plan uniqueKeyPlan;
++
++	public ToOneVisibilityLoader(ToOneAttributeMapping association) {
++		this.association = association;
++	}
++
++	public boolean isVisible(Object key, boolean byUniqueKey, JdbcValuesSourceProcessingState processingState) {
++		final var session = processingState.getSession();
++		final var influencers = session.getLoadQueryInfluencers();
++		final Plan plan;
++		if ( association.isAffectedByEnabledFilters( influencers ) ) {
++			// Captured filter bindings may be reused within this execution, but not across sessions.
++			final var cache = processingState.getToOneVisibilityPlanCache();
++			plan = cache == null ? createPlan( byUniqueKey, influencers, false )
++					: cache.getPlan( this, byUniqueKey, influencers );
++		}
++		else {
++			var cached = byUniqueKey ? uniqueKeyPlan : identifierPlan;
++			if ( cached == null ) {
++				cached = createPlan( byUniqueKey, influencers, false );
++				if ( byUniqueKey ) {
++					uniqueKeyPlan = cached;
++				}
++				else {
++					identifierPlan = cached;
++				}
++			}
++			plan = cached;
++		}
++		// Select only the identifier: an excluded association must not mark an entity as absent.
++		return plan.loadPlan.load( key, session ) != null;
++	}
++
++	private Plan createPlan(boolean byUniqueKey, LoadQueryInfluencers influencers, boolean captureFilters) {
++		final var target = association.getEntityMappingType();
++		final ModelPart attribute = byUniqueKey
++				? target.findByPath( association.getReferencedPropertyName() ) : target.getIdentifierMapping();
++		final ModelPart key = attribute instanceof ToOneAttributeMapping toOne
++				? toOne.getForeignKeyDescriptor() : attribute;
++		final var parameters = JdbcParametersList.newBuilder();
++		final var select = LoaderSelectBuilder.createAssociationKeySelect( association, key, influencers, parameters::add );
++		final var filterState = captureFilters ? FilterState.capture( select, influencers ) : null;
++		return new Plan( new SingleIdLoadPlan<>( target, key, select, parameters.build(), LockOptions.NONE,
++				influencers.getSessionFactory() ), filterState );
++	}
++
++	/**
++	 * Lazily allocated by the result-processing state. Keeps only the latest plan for each
++	 * association and key mode, with no growth as filter arguments change during scrolling.
++	 */
++	public static final class Cache {
++		private @Nullable Map<ToOneVisibilityLoader, Plan> identifierPlans;
++		private @Nullable Map<ToOneVisibilityLoader, Plan> uniqueKeyPlans;
++
++		private Plan getPlan(ToOneVisibilityLoader loader, boolean byUniqueKey, LoadQueryInfluencers influencers) {
++			var plans = byUniqueKey ? uniqueKeyPlans : identifierPlans;
++			if ( plans == null ) {
++				plans = new IdentityHashMap<>( 2 );
++				if ( byUniqueKey ) {
++					uniqueKeyPlans = plans;
++				}
++				else {
++					identifierPlans = plans;
++				}
++			}
++			var plan = plans.get( loader );
++			if ( plan == null || !plan.matches( influencers ) ) {
++				plan = loader.createPlan( byUniqueKey, influencers, true );
++				plans.put( loader, plan );
++			}
++			return plan;
++		}
++	}
++
++	private record Plan(SingleIdLoadPlan<Object> loadPlan, @Nullable FilterState filters) {
++		boolean matches(LoadQueryInfluencers influencers) {
++			return filters != null && filters.matches( influencers );
++		}
++	}
++
++	private record FilterState(Set<String> enabledNames, List<Parameter> parameters) {
++		static FilterState capture(SelectStatement select, LoadQueryInfluencers influencers) {
++			final List<Parameter> parameters = new ArrayList<>();
++			select.accept( new AbstractSqlAstWalker() {
++				@Override
++				public void visitFilterPredicate(FilterPredicate predicate) {
++					for ( var fragment : predicate.getFragments() ) {
++						if ( fragment.getParameters() != null ) {
++							for ( var parameter : fragment.getParameters() ) {
++								parameters.add( Parameter.capture( parameter ) );
++							}
++						}
++					}
++				}
++			} );
++			return new FilterState( Set.copyOf( influencers.getEnabledFilterNames() ), parameters );
++		}
++
++		boolean matches(LoadQueryInfluencers influencers) {
++			// Enablement changes may introduce predicates absent from the previous AST,
++			// including parameterless filters. Arguments of unused filters do not matter.
++			if ( !enabledNames.equals( influencers.getEnabledFilterNames() ) ) {
++				return false;
++			}
++			for ( var parameter : parameters ) {
++				final var filter = influencers.getEnabledFilter( parameter.filterName );
++				if ( filter == null || !parameter.matches( filter.getParameterValue( parameter.name ) ) ) {
++					return false;
++				}
++			}
++			return true;
++		}
++	}
++
++	private record Parameter(String filterName, String name, JavaType<Object> javaType, Object value, boolean plural) {
++		@SuppressWarnings("unchecked")
++		static Parameter capture(FilterPredicate.FilterFragmentParameter parameter) {
++			final var javaType = (JavaType<Object>) parameter.getValueMapping().getJavaTypeDescriptor();
++			final Object value = parameter.getValue();
++			final boolean plural = isPlural( value, javaType );
++			final Object snapshot;
++			if ( plural ) {
++				final List<Object> elements = new ArrayList<>();
++				for ( Object element : (Iterable<?>) value ) {
++					elements.add( javaType.getMutabilityPlan().deepCopy( element ) );
++				}
++				snapshot = elements;
++			}
++			else {
++				snapshot = javaType.getMutabilityPlan().deepCopy( value );
++			}
++			return new Parameter( parameter.getFilterName(), parameter.getParameterName(), javaType, snapshot, plural );
++		}
++
++		boolean matches(Object current) {
++			if ( plural != isPlural( current, javaType ) ) {
++				return false;
++			}
++			if ( !plural ) {
++				return javaType.areEqual( value, current );
++			}
++			final var previous = ((Iterable<?>) value).iterator();
++			final var next = ((Iterable<?>) current).iterator();
++			while ( previous.hasNext() && next.hasNext() ) {
++				if ( !javaType.areEqual( previous.next(), next.next() ) ) {
++					return false;
++				}
++			}
++			return !previous.hasNext() && !next.hasNext();
++		}
++
++		private static boolean isPlural(Object value, JavaType<?> javaType) {
++			return value instanceof Iterable<?> && !javaType.isInstance( value );
++		}
++	}
++}
+diff --git a/hibernate-core/src/main/java/org/hibernate/mapping/ToOne.java b/hibernate-core/src/main/java/org/hibernate/mapping/ToOne.java
+index 130e1e6dc71e..9ec62c8ab662 100644
+--- a/hibernate-core/src/main/java/org/hibernate/mapping/ToOne.java
++++ b/hibernate-core/src/main/java/org/hibernate/mapping/ToOne.java
+@@ -5,12 +5,16 @@
+ package org.hibernate.mapping;
+ 
+ import org.hibernate.MappingException;
++import org.hibernate.Internal;
+ import org.hibernate.boot.model.internal.AnnotatedJoinColumns;
+ import org.hibernate.boot.spi.MetadataBuildingContext;
+ import org.hibernate.engine.FetchStyle;
+ import org.hibernate.type.EntityType;
+ import org.hibernate.type.MappingContext;
+ 
++import java.util.ArrayList;
++import java.util.List;
++import java.util.Map;
+ import java.util.Objects;
+ 
+ import static org.hibernate.boot.model.internal.BinderHelper.findReferencedColumnOwner;
+@@ -22,7 +26,7 @@
+  * @author Gavin King
+  */
+ public abstract sealed class ToOne
+-		extends SimpleValue implements Fetchable, SortableValue
++		extends SimpleValue implements Fetchable, SortableValue, Filterable
+ 		permits OneToOne, ManyToOne {
+ 
+ 	private FetchStyle fetchStyle;
+@@ -34,6 +38,8 @@ public abstract sealed class ToOne
+ 	private boolean unwrapProxy;
+ 	private boolean unwrapProxyImplicit;
+ 	private boolean referenceToPrimaryKey = true;
++	private String sqlRestriction;
++	private List<FilterConfiguration> filters = List.of();
+ 
+ 	protected ToOne(MetadataBuildingContext buildingContext, Table table) {
+ 		super( buildingContext, table );
+@@ -50,6 +56,36 @@ protected ToOne(ToOne original) {
+ 		this.unwrapProxy = original.unwrapProxy;
+ 		this.unwrapProxyImplicit = original.unwrapProxyImplicit;
+ 		this.referenceToPrimaryKey = original.referenceToPrimaryKey;
++		copyRestrictions( original );
++	}
++
++	public String getSqlRestriction() {
++		return sqlRestriction;
++	}
++
++	public void setSqlRestriction(String sqlRestriction) {
++		this.sqlRestriction = sqlRestriction;
++	}
++
++	@Override
++	public void addFilter(String name, String condition, boolean autoAliasInjection,
++			Map<String, String> aliasTableMap, Map<String, String> aliasEntityMap) {
++		if ( filters.isEmpty() ) {
++			filters = new ArrayList<>();
++		}
++		filters.add( new FilterConfiguration( name, condition, autoAliasInjection,
++				aliasTableMap, aliasEntityMap, null ) );
++	}
++
++	@Override
++	public List<FilterConfiguration> getFilters() {
++		return filters;
++	}
++
++	@Internal
++	public void copyRestrictions(ToOne original) {
++		sqlRestriction = original.sqlRestriction;
++		filters = original.filters.isEmpty() ? List.of() : new ArrayList<>( original.filters );
+ 	}
+ 
+ 	@Override
+diff --git a/hibernate-core/src/main/java/org/hibernate/metamodel/mapping/ManagedMappingType.java b/hibernate-core/src/main/java/org/hibernate/metamodel/mapping/ManagedMappingType.java
+index 9c1c3139c9c9..934aa5f4e761 100644
+--- a/hibernate-core/src/main/java/org/hibernate/metamodel/mapping/ManagedMappingType.java
++++ b/hibernate-core/src/main/java/org/hibernate/metamodel/mapping/ManagedMappingType.java
+@@ -166,7 +166,8 @@ else if ( attributeMapping instanceof EmbeddableValuedModelPart embedded ) {
+ 				}
+ 				else if ( attributeMapping instanceof ToOneAttributeMapping toOneAttributeMapping ) {
+ 					final EntityMappingType entityMappingType = toOneAttributeMapping.getEntityMappingType();
+-					if ( entityMappingType.isAffectedByEnabledFilters( visitedTypes, influencers, onlyApplyForLoadByKey ) ) {
++					if ( toOneAttributeMapping.isAffectedByAssociationFilters( influencers )
++							|| entityMappingType.isAffectedByEnabledFilters( visitedTypes, influencers, onlyApplyForLoadByKey ) ) {
+ 						return true;
+ 					}
+ 				}
+diff --git a/hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java b/hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java
+index 40c6793583fe..edf2583591ed 100644
+--- a/hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java
++++ b/hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneAttributeMapping.java
+@@ -22,6 +22,7 @@
+ import org.hibernate.spi.IndexedConsumer;
+ import org.hibernate.internal.util.StringHelper;
+ import org.hibernate.internal.util.collections.ArrayHelper;
++import org.hibernate.loader.ast.internal.ToOneVisibilityLoader;
+ import org.hibernate.mapping.Collection;
+ import org.hibernate.mapping.Component;
+ import org.hibernate.mapping.ManyToOne;
+@@ -97,6 +98,7 @@
+ import org.hibernate.sql.results.graph.entity.internal.EntityFetchJoinedImpl;
+ import org.hibernate.sql.results.graph.entity.internal.EntityFetchSelectImpl;
+ import org.hibernate.sql.results.internal.NullValueAssembler;
++import org.hibernate.sql.results.jdbc.spi.JdbcValuesSourceProcessingState;
+ import org.hibernate.sql.results.internal.domain.CircularBiDirectionalFetchImpl;
+ import org.hibernate.sql.results.internal.domain.CircularFetchImpl;
+ import org.hibernate.type.ComponentType;
+@@ -162,6 +164,8 @@ public class Entity1 {
+ 	private final boolean unwrapProxy;
+ 	private final boolean isOptional;
+ 	private final EntityMappingType entityMappingType;
++	private final ToOneRestrictions restrictions;
++	private volatile @Nullable ToOneVisibilityLoader visibilityLoader;
+ 
+ 	@Nullable private final String referencedPropertyName;
+ 	private final String targetKeyPropertyName;
+@@ -197,6 +201,7 @@ protected ToOneAttributeMapping(ToOneAttributeMapping original) {
+ 		unwrapProxy = original.unwrapProxy;
+ 		isOptional = original.isOptional;
+ 		entityMappingType = original.entityMappingType;
++		restrictions = original.restrictions;
+ 		referencedPropertyName = original.referencedPropertyName;
+ 		targetKeyPropertyName = original.targetKeyPropertyName;
+ 		cardinality = original.cardinality;
+@@ -301,6 +306,7 @@ public ToOneAttributeMapping(
+ 		referencedPropertyName = bootValue.getReferencedPropertyName();
+ 		unwrapProxy = bootValue.isUnwrapProxy();
+ 		this.entityMappingType = entityMappingType;
++		restrictions = ToOneRestrictions.create( bootValue, entityMappingType );
+ 
+ 		this.navigableRole = navigableRole;
+ 		declaringTableGroupProducer = resolveDeclaringTableGroupProducer(
+@@ -731,6 +737,7 @@ private ToOneAttributeMapping(
+ 		this.notFoundAction = original.notFoundAction;
+ 		this.unwrapProxy = original.unwrapProxy;
+ 		this.entityMappingType = original.entityMappingType;
++		restrictions = original.restrictions;
+ 		this.referencedPropertyName = original.referencedPropertyName;
+ 		this.targetKeyPropertyName = original.targetKeyPropertyName;
+ 		this.targetKeyPropertyNames = original.targetKeyPropertyNames;
+@@ -888,7 +895,7 @@ public void setForeignKeyDescriptor(ForeignKeyDescriptor foreignKeyDescriptor) {
+ 		// Otherwise we need to join to the associated entity table(s)
+ 		final boolean forceJoin = hasNotFoundAction()
+ 				|| entityMappingType.getSoftDeleteMapping() != null
+-				|| entityMappingType.hasWhereRestrictions()
++				|| hasWhereRestrictions()
+ 				|| cardinality == ONE_TO_ONE && isNullable();
+ 		canUseParentTableGroup = ! forceJoin
+ 				&& sideNature == ForeignKeyDescriptor.Nature.KEY
+@@ -1105,6 +1112,17 @@ public class PrimaryKey {
+ 				return null;
+ 			}
+ 
++			final var sqlAstCreationState = creationState.getSqlAstCreationState();
++			if ( restrictions.hasSqlRestriction()
++					|| restrictions.isAffectedByFilters( sqlAstCreationState.getLoadQueryInfluencers() )
++					|| sqlAstCreationState.isProcedureOrNativeQuery() && restrictions.hasFilters() ) {
++				// An entity loaded through another path has not satisfied this association's predicate.
++				// Resolve its visibility before reusing the instance, retaining the physical key as usual.
++				return generateNonJoinedFetch( fetchParent, fetchablePath, fetchTiming,
++						sqlAstCreationState.getFromClauseAccess().getTableGroup( fetchParentNavigablePath ),
++						getSide( creationState ), creationState );
++			}
++
+ 			ModelPart parentModelPart = creationState.resolveModelPart( parentNavigablePath );
+ 			if ( parentModelPart instanceof EmbeddedIdentifierMappingImpl ) {
+ 				while ( parentNavigablePath instanceof EntityIdentifierNavigablePath ) {
+@@ -1759,6 +1777,17 @@ else if ( hasNotFoundAction()
+ 
+ 		 */
+ 
++		return generateNonJoinedFetch( fetchParent, fetchablePath, fetchTiming, parentTableGroup, side, creationState );
++	}
++
++	private EntityFetch generateNonJoinedFetch(
++			FetchParent fetchParent,
++			NavigablePath fetchablePath,
++			FetchTiming fetchTiming,
++			TableGroup parentTableGroup,
++			ForeignKeyDescriptor.Nature side,
++			DomainResultCreationState creationState) {
++		final var sqlAstCreationState = creationState.getSqlAstCreationState();
+ 		DomainResult<?> keyResult =
+ 				getKeyResult( fetchParent, fetchablePath, creationState, side, parentTableGroup );
+ 		if ( isAffectedByRestrictions( creationState )
+@@ -1869,10 +1898,57 @@ private boolean needsJoinFetch(ForeignKeyDescriptor.Nature side) {
+ 	private boolean isAffectedByRestrictions(DomainResultCreationState creationState) {
+ 		final LoadQueryInfluencers loadQueryInfluencers = creationState.getSqlAstCreationState()
+ 				.getLoadQueryInfluencers();
+-		return entityMappingType.hasWhereRestrictions()
+-				|| entityMappingType.isAffectedByEnabledFilters( loadQueryInfluencers, true )
++		return isAffectedByRestrictions( loadQueryInfluencers )
+ 				|| creationState.getSqlAstCreationState().isProcedureOrNativeQuery()
+-						&& entityMappingType.getEntityPersister().hasFilterForLoadByKey();
++						&& hasFilterForLoadByKey();
++	}
++
++	public boolean hasWhereRestrictions() {
++		return restrictions.hasSqlRestriction() || entityMappingType.hasWhereRestrictions();
++	}
++
++	public boolean hasFilterForLoadByKey() {
++		return restrictions.hasFilters() || entityMappingType.getEntityPersister().hasFilterForLoadByKey();
++	}
++
++	public boolean hasAssociationSqlRestriction() {
++		return restrictions.hasSqlRestriction();
++	}
++
++	public String[] getAssociationFilterNames() {
++		return restrictions.getFilterNames();
++	}
++
++	public boolean isAffectedByAssociationFilters(LoadQueryInfluencers influencers) {
++		return restrictions.isAffectedByFilters( influencers );
++	}
++
++	public boolean isAffectedByEnabledFilters(LoadQueryInfluencers influencers) {
++		return restrictions.isAffectedByFilters( influencers )
++				|| entityMappingType.isAffectedByEnabledFilters( influencers, true );
++	}
++
++	public boolean isAffectedByRestrictions(LoadQueryInfluencers influencers) {
++		return hasWhereRestrictions() || isAffectedByEnabledFilters( influencers );
++	}
++
++	public boolean isAssociationKeyVisible(
++			Object key, boolean byUniqueKey, JdbcValuesSourceProcessingState processingState) {
++		final var session = processingState.getSession();
++		if ( !restrictions.hasSqlRestriction() && !restrictions.isAffectedByFilters( session.getLoadQueryInfluencers() ) ) {
++			return true;
++		}
++		var loader = visibilityLoader;
++		if ( loader == null ) {
++			visibilityLoader = loader = new ToOneVisibilityLoader( this );
++		}
++		return loader.isVisible( key, byUniqueKey, processingState );
++	}
++
++	public void applyAssociationRestrictions(
++			Consumer<Predicate> consumer,
++			TableGroup tableGroup, SqlAstCreationState creationState) {
++		restrictions.apply( consumer, entityMappingType, tableGroup, creationState );
+ 	}
+ 
+ 	private boolean needsImmediateFetch(FetchTiming fetchTiming) {
+@@ -2106,8 +2182,7 @@ private EntityFetch withRegisteredAssociationKeys(
+ 
+ 	@Override
+ 	public SqlAstJoinType getDefaultSqlAstJoinType(TableGroup parentTableGroup) {
+-		if ( isKeyTableNullable || isNullable || entityMappingType.hasWhereRestrictions()
+-				|| entityMappingType.getEntityPersister().hasFilterForLoadByKey() ) {
++		if ( isKeyTableNullable || isNullable || hasWhereRestrictions() || hasFilterForLoadByKey() ) {
+ 			return SqlAstJoinType.LEFT;
+ 		}
+ 		else if ( parentTableGroup.getModelPart() instanceof CollectionPart ) {
+@@ -2303,6 +2378,7 @@ public TableGroupJoin createTableGroupJoin(
+ 							true,
+ 							creationState
+ 					);
++					applyAssociationRestrictions( join::applyPredicate, lazyTableGroup, creationState );
+ 					if ( associatedEntityMappingType.getSuperMappingType() != null
+ 							&& !creationState.supportsEntityNameUsage() ) {
+ 						associatedEntityMappingType.applyDiscriminator( null, null, tableGroup, creationState );
+diff --git a/hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java b/hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java
+new file mode 100644
+index 000000000000..2af2b4136a98
+--- /dev/null
++++ b/hibernate-core/src/main/java/org/hibernate/metamodel/mapping/internal/ToOneRestrictions.java
+@@ -0,0 +1,87 @@
++/*
++ * SPDX-License-Identifier: Apache-2.0
++ * Copyright Red Hat Inc. and Hibernate Authors
++ */
++package org.hibernate.metamodel.mapping.internal;
++
++import java.util.function.Consumer;
++
++import jakarta.annotation.Nullable;
++
++import org.hibernate.engine.spi.LoadQueryInfluencers;
++import org.hibernate.mapping.ToOne;
++import org.hibernate.metamodel.mapping.EntityMappingType;
++import org.hibernate.persister.entity.AbstractEntityPersister;
++import org.hibernate.persister.filter.internal.FilterHelper;
++import org.hibernate.sql.RestrictionRendering;
++import org.hibernate.sql.Template;
++import org.hibernate.sql.ast.spi.creation.SqlAstCreationState;
++import org.hibernate.sql.ast.spi.query.from.TableGroup;
++import org.hibernate.sql.ast.spi.query.predicate.Predicate;
++import org.hibernate.sql.ast.spi.query.predicate.SqlFragmentPredicate;
++
++/** Restrictions belonging to an association, independently of its target entity's restrictions. */
++final class ToOneRestrictions {
++	static final ToOneRestrictions NONE = new ToOneRestrictions( null, null );
++	private static final String[] NO_FILTERS = new String[0];
++
++	private final @Nullable String sqlTemplate;
++	private final @Nullable FilterHelper filters;
++	private volatile @Nullable RestrictionRendering sqlRendering;
++
++	private ToOneRestrictions(@Nullable String sqlTemplate, @Nullable FilterHelper filters) {
++		this.sqlTemplate = sqlTemplate;
++		this.filters = filters;
++	}
++
++	static ToOneRestrictions create(ToOne bootMapping, EntityMappingType target) {
++		final String restriction = bootMapping.getSqlRestriction();
++		final var configurations = bootMapping.getFilters();
++		if ( (restriction == null || restriction.isBlank()) && configurations.isEmpty() ) {
++			return NONE;
++		}
++		final var factory = target.getEntityPersister().getFactory();
++		return new ToOneRestrictions(
++				restriction == null || restriction.isBlank() ? null : Template.renderWhereStringTemplate(
++						"(" + restriction + ")", factory.getJdbcServices().getDialect(), factory.getTypeConfiguration() ),
++				configurations.isEmpty() ? null : new FilterHelper( configurations,
++						AbstractEntityPersister.getEntityNameByTableNameMap(
++								bootMapping.getMetadata().getEntityBinding( bootMapping.getReferencedEntityName() ),
++								factory.getSqlStringGenerationContext() ), factory ) );
++	}
++
++	boolean hasSqlRestriction() {
++		return sqlTemplate != null;
++	}
++
++	boolean hasFilters() {
++		return filters != null;
++	}
++
++	String[] getFilterNames() {
++		return filters == null ? NO_FILTERS : filters.getFilterNames();
++	}
++
++	boolean isAffectedByFilters(LoadQueryInfluencers influencers) {
++		return filters != null && filters.isAffectedBy( influencers.getEnabledFilters() );
++	}
++
++	void apply(Consumer<Predicate> consumer, EntityMappingType target, TableGroup tableGroup,
++			SqlAstCreationState creationState) {
++		if ( sqlTemplate != null ) {
++			var rendering = sqlRendering;
++			if ( rendering == null ) {
++				// Runtime attributes might not exist yet when the to-one mapping is constructed.
++				sqlRendering = rendering = RestrictionRendering.compile( sqlTemplate, target );
++			}
++			final var reference = tableGroup.resolveTableReference( target.getEntityPersister().getTableName() );
++			final String alias = reference.getIdentificationVariable() != null
++					? reference.getIdentificationVariable() : reference.getTableId();
++			consumer.accept( new SqlFragmentPredicate( rendering.render( alias, true, tableGroup, creationState ) ) );
++		}
++		if ( filters != null ) {
++			filters.applyEnabledFilters( consumer, target.getEntityPersister().getFilterAliasGenerator( tableGroup ),
++					creationState.getLoadQueryInfluencers().getEnabledFilters(), false, tableGroup, creationState );
++		}
++	}
++}
+diff --git a/hibernate-core/src/main/java/org/hibernate/query/sqm/internal/SqmUtil.java b/hibernate-core/src/main/java/org/hibernate/query/sqm/internal/SqmUtil.java
+index d3632de861dc..400d6f080abe 100644
+--- a/hibernate-core/src/main/java/org/hibernate/query/sqm/internal/SqmUtil.java
++++ b/hibernate-core/src/main/java/org/hibernate/query/sqm/internal/SqmUtil.java
+@@ -280,9 +280,8 @@ private static ModelPartContainer getFilteredTargetMapping(
+ 	public static boolean isAssociationAffectedByEnabledFilters(
+ 			ModelPart modelPart, SqmToSqlAstConverter creationState) {
+ 		return modelPart instanceof ToOneAttributeMapping toOne
+-				&& toOne.getEntityMappingType().getEntityPersister().hasFilterForLoadByKey()
+-				&& toOne.getEntityMappingType().isAffectedByEnabledFilters(
+-						creationState.getLoadQueryInfluencers(), true );
++				&& toOne.hasFilterForLoadByKey()
++				&& toOne.isAffectedByEnabledFilters( creationState.getLoadQueryInfluencers() );
+ 	}
+ 
+ 	private static boolean shouldRenderTargetSide(
+diff --git a/hibernate-core/src/main/java/org/hibernate/sql/results/graph/entity/internal/EntitySelectFetchByUniqueKeyInitializer.java b/hibernate-core/src/main/java/org/hibernate/sql/results/graph/entity/internal/EntitySelectFetchByUniqueKeyInitializer.java
+index e7bb142ad378..2b591201a354 100644
+--- a/hibernate-core/src/main/java/org/hibernate/sql/results/graph/entity/internal/EntitySelectFetchByUniqueKeyInitializer.java
++++ b/hibernate-core/src/main/java/org/hibernate/sql/results/graph/entity/internal/EntitySelectFetchByUniqueKeyInitializer.java
+@@ -38,6 +38,9 @@ public EntitySelectFetchByUniqueKeyInitializer(
+ 
+ 	@Override
+ 	protected void initialize(EntitySelectFetchInitializerData data) {
++		if ( !isAssociationKeyVisible( data, true ) ) {
++			return;
++		}
+ 		final String entityName = concreteDescriptor.getEntityName();
+ 		final String uniqueKeyPropertyName = fetchedAttribute.getReferencedPropertyName();
+ 
+diff --git a/hibernate-core/src/main/java/org/hibernate/sql/results/graph/entity/internal/EntitySelectFetchInitializer.java b/hibernate-core/src/main/java/org/hibernate/sql/results/graph/entity/internal/EntitySelectFetchInitializer.java
+index ffc9df6fa7a8..1359d845500f 100644
+--- a/hibernate-core/src/main/java/org/hibernate/sql/results/graph/entity/internal/EntitySelectFetchInitializer.java
++++ b/hibernate-core/src/main/java/org/hibernate/sql/results/graph/entity/internal/EntitySelectFetchInitializer.java
+@@ -227,6 +227,9 @@ public void initializeInstance(Data data) {
+ 	}
+ 
+ 	protected void initialize(EntitySelectFetchInitializerData data) {
++		if ( !isAssociationKeyVisible( data, false ) ) {
++			return;
++		}
+ 		final var rowProcessingState = data.getRowProcessingState();
+ 		final var session = rowProcessingState.getSession();
+ 		final var persistenceContext = session.getPersistenceContextInternal();
+@@ -234,6 +237,17 @@ protected void initialize(EntitySelectFetchInitializerData data) {
+ 		initialize( data, persistenceContext.getEntityHolder( entityKey ), session, persistenceContext );
+ 	}
+ 
++	protected boolean isAssociationKeyVisible(EntitySelectFetchInitializerData data, boolean byUniqueKey) {
++		if ( !(keyAssembler instanceof RestrictedForeignKeyResult.Assembler<?>)
++				&& !toOneMapping.isAssociationKeyVisible( data.entityIdentifier, byUniqueKey,
++						data.getRowProcessingState().getJdbcValuesSourceProcessingState() ) ) {
++			data.setInstance( null );
++			data.setState( State.INITIALIZED );
++			return false;
++		}
++		return true;
++	}
++
+ 	protected void initialize(
+ 			EntitySelectFetchInitializerData data,
+ 			@Nullable EntityHolder holder,
+@@ -302,9 +316,8 @@ void checkNotFound(EntitySelectFetchInitializerData data) {
+ 	private boolean isAffectedByRestrictions(RowProcessingState rowProcessingState) {
+ 		// Native result mappings are reusable with filters enabled or disabled. Their
+ 		// affectedByFilter flag describes a possibility, not the current session's exclusions.
+-		return affectedByFilter && ( concreteDescriptor.hasWhereRestrictions()
+-				|| concreteDescriptor.isAffectedByEnabledFilters(
+-						rowProcessingState.getSession().getLoadQueryInfluencers(), true ) );
++		return affectedByFilter && toOneMapping.isAffectedByRestrictions(
++				rowProcessingState.getSession().getLoadQueryInfluencers() );
+ 	}
+ 
+ 	static void checkNotFound(
+diff --git a/hibernate-core/src/main/java/org/hibernate/sql/results/jdbc/internal/JdbcValuesSourceProcessingStateStandardImpl.java b/hibernate-core/src/main/java/org/hibernate/sql/results/jdbc/internal/JdbcValuesSourceProcessingStateStandardImpl.java
+index 239c6a08feee..70dcd1de616a 100644
+--- a/hibernate-core/src/main/java/org/hibernate/sql/results/jdbc/internal/JdbcValuesSourceProcessingStateStandardImpl.java
++++ b/hibernate-core/src/main/java/org/hibernate/sql/results/jdbc/internal/JdbcValuesSourceProcessingStateStandardImpl.java
+@@ -14,6 +14,7 @@
+ import org.hibernate.engine.spi.SharedSessionContractImplementor;
+ import org.hibernate.event.spi.PostLoadEvent;
+ import org.hibernate.event.spi.PreLoadEvent;
++import org.hibernate.loader.ast.internal.ToOneVisibilityLoader;
+ import org.hibernate.query.spi.QueryOptions;
+ import org.hibernate.sql.exec.spi.ExecutionContext;
+ import org.hibernate.sql.exec.spi.LoadedValuesCollector;
+@@ -32,6 +33,7 @@ public class JdbcValuesSourceProcessingStateStandardImpl implements JdbcValuesSo
+ 	private List<EntityHolder> loadingEntityHolders;
+ 	private List<EntityHolder> reloadedEntityHolders;
+ 	private Map<CollectionKey, LoadingCollectionEntry> loadingCollectionMap;
++	private ToOneVisibilityLoader.Cache toOneVisibilityPlanCache;
+ 
+ 	private final PreLoadEvent preLoadEvent;
+ 	private final PostLoadEvent postLoadEvent;
+@@ -146,6 +148,14 @@ public void registerLoadingCollection(CollectionKey key, LoadingCollectionEntry
+ 		}
+ 	}
+ 
++	@Override
++	public ToOneVisibilityLoader.Cache getToOneVisibilityPlanCache() {
++		if ( toOneVisibilityPlanCache == null ) {
++			toOneVisibilityPlanCache = new ToOneVisibilityLoader.Cache();
++		}
++		return toOneVisibilityPlanCache;
++	}
++
+ 	@Override
+ 	public SharedSessionContractImplementor getSession() {
+ 		return executionContext.getSession();
+diff --git a/hibernate-core/src/main/java/org/hibernate/sql/results/jdbc/spi/JdbcValuesSourceProcessingState.java b/hibernate-core/src/main/java/org/hibernate/sql/results/jdbc/spi/JdbcValuesSourceProcessingState.java
+index 56e9e0b8debe..63051c22eaa3 100644
+--- a/hibernate-core/src/main/java/org/hibernate/sql/results/jdbc/spi/JdbcValuesSourceProcessingState.java
++++ b/hibernate-core/src/main/java/org/hibernate/sql/results/jdbc/spi/JdbcValuesSourceProcessingState.java
+@@ -6,11 +6,14 @@
+ 
+ import java.util.List;
+ 
++import jakarta.annotation.Nullable;
++
+ import org.hibernate.engine.spi.CollectionKey;
+ import org.hibernate.engine.spi.EntityHolder;
+ import org.hibernate.engine.spi.SharedSessionContractImplementor;
+ import org.hibernate.event.spi.PostLoadEvent;
+ import org.hibernate.event.spi.PreLoadEvent;
++import org.hibernate.loader.ast.internal.ToOneVisibilityLoader;
+ import org.hibernate.sql.results.spi.LoadContexts;
+ import org.hibernate.sql.results.graph.collection.LoadingCollectionEntry;
+ import org.hibernate.query.spi.QueryOptions;
+@@ -31,6 +34,14 @@ public interface JdbcValuesSourceProcessingState {
+ 
+ 	SharedSessionContractImplementor getSession();
+ 
++	/**
++	 * Execution-local visibility plans, or {@code null} when the implementation does not cache them.
++	 * The cache lives for the result set, including across calls to {@link #finishUp()} while scrolling.
++	 */
++	default @Nullable ToOneVisibilityLoader.Cache getToOneVisibilityPlanCache() {
++		return null;
++	}
++
+ 	default QueryOptions getQueryOptions() {
+ 		return getExecutionContext().getQueryOptions();
+ 	}
+diff --git a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneCacheTest.java b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneCacheTest.java
+new file mode 100644
+index 000000000000..cadf09c27e3a
+--- /dev/null
++++ b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneCacheTest.java
+@@ -0,0 +1,66 @@
++/*
++ * SPDX-License-Identifier: Apache-2.0
++ * Copyright Red Hat Inc. and Hibernate Authors
++ */
++package org.hibernate.orm.test.where.annotations;
++
++import org.hibernate.testing.orm.junit.ServiceRegistry;
++import org.hibernate.testing.orm.junit.SessionFactory;
++import org.hibernate.testing.orm.junit.SessionFactoryScope;
++import org.hibernate.testing.orm.junit.Setting;
++import org.junit.jupiter.params.ParameterizedTest;
++import org.junit.jupiter.params.provider.MethodSource;
++
++import static org.assertj.core.api.Assertions.assertThat;
++
++@SessionFactory(generateStatistics = true)
++@ServiceRegistry(settings = {
++		@Setting(name = "hibernate.cache.use_second_level_cache", value = "true"),
++		@Setting(name = "hibernate.cache.use_query_cache", value = "true"),
++		@Setting(name = "hibernate.cache.query_cache_layout", value = "FULL")
++})
++class AssociationRestrictedToOneCacheTest extends AssociationRestrictedToOneTest {
++	@ParameterizedTest
++	@MethodSource("mappings")
++	void cachedTargetsDoNotBypassAssociationRestrictions(Mapping mapping, SessionFactoryScope scope) {
++		prepare( scope, mapping );
++		// Join-table inserts may invalidate the owner's initial cache entry. Warm it by loading.
++		scope.inTransaction( session -> session.find( mapping.ownerType(), 2L ) );
++		final var cache = scope.getSessionFactory().getCache();
++		assertThat( cache.containsEntity( mapping.targetType(), 2L ) ).isTrue();
++		assertThat( cache.containsEntity( mapping.ownerType(), 2L ) )
++				.isEqualTo( mapping.ownerType().getSimpleName().contains( "Filter" ) );
++		scope.inTransaction( session -> {
++			enable( session );
++			assertThat( session.find( mapping.targetType(), 2L ) ).isNotNull();
++			final Owner owner = session.find( mapping.ownerType(), 2L );
++			assertThat( owner.getTarget() ).isNull();
++			owner.name = "cached target";
++		} );
++		assertStoredReference( scope, mapping, 2L, 2L );
++		if ( mapping.ownerType().getSimpleName().contains( "Filter" ) ) {
++			scope.inTransaction( session -> assertThat( session.find( mapping.ownerType(), 2L ).getTarget() ).isNotNull() );
++		}
++	}
++
++	@ParameterizedTest
++	@MethodSource("mappings")
++	void queryCachePreservesHiddenKeys(Mapping mapping, SessionFactoryScope scope) {
++		prepare( scope, mapping );
++		scope.getSessionFactory().getStatistics().clear();
++		for ( int run = 0; run < 2; run++ ) {
++			final boolean update = run == 1;
++			scope.inTransaction( session -> {
++				enable( session );
++				final Owner owner = session.createQuery( "from " + mapping.ownerType().getSimpleName()
++						+ " o left join fetch o.target where o.id=2", mapping.ownerType() ).setCacheable( true ).getSingleResult();
++				assertThat( owner.getTarget() ).isNull();
++				if ( update ) {
++					owner.name = "query cache";
++				}
++			} );
++		}
++		assertThat( scope.getSessionFactory().getStatistics().getQueryCacheHitCount() ).isEqualTo( 1 );
++		assertStoredReference( scope, mapping, 2L, 2L );
++	}
++}
+diff --git a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneEmulatedUpsertTest.java b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneEmulatedUpsertTest.java
+new file mode 100644
+index 000000000000..83cfb54682ae
+--- /dev/null
++++ b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneEmulatedUpsertTest.java
+@@ -0,0 +1,16 @@
++/*
++ * SPDX-License-Identifier: Apache-2.0
++ * Copyright Red Hat Inc. and Hibernate Authors
++ */
++package org.hibernate.orm.test.where.annotations;
++
++import org.hibernate.dialect.H2Dialect;
++import org.hibernate.testing.orm.junit.RequiresDialect;
++import org.hibernate.testing.orm.junit.ServiceRegistry;
++import org.hibernate.testing.orm.junit.Setting;
++
++@ServiceRegistry(settings = @Setting(name = "hibernate.dialect",
++		value = "org.hibernate.orm.test.where.annotations.RestrictedToOneEmulatedUpsertTest$EmulatedUpsertDialect"))
++@RequiresDialect(H2Dialect.class)
++class AssociationRestrictedToOneEmulatedUpsertTest extends AssociationRestrictedToOneTest {
++}
+diff --git a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneEnhancedTest.java b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneEnhancedTest.java
+new file mode 100644
+index 000000000000..24ffdc43f3cb
+--- /dev/null
++++ b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneEnhancedTest.java
+@@ -0,0 +1,39 @@
++/*
++ * SPDX-License-Identifier: Apache-2.0
++ * Copyright Red Hat Inc. and Hibernate Authors
++ */
++package org.hibernate.orm.test.where.annotations;
++
++import org.hibernate.testing.bytecode.enhancement.extension.BytecodeEnhanced;
++import org.hibernate.testing.orm.junit.SessionFactoryScope;
++import org.junit.jupiter.api.Test;
++
++import static org.assertj.core.api.Assertions.assertThat;
++
++@BytecodeEnhanced(testEnhancedClasses = { AssociationRestrictedToOneTest.AssociationSqlFkLazy.class,
++		AssociationRestrictedToOneTest.AssociationFilterOneJoinLazy.class })
++class AssociationRestrictedToOneEnhancedTest extends AssociationRestrictedToOneTest {
++	@Test
++	void enhancedLoadingAndMutation(SessionFactoryScope scope) {
++		assertThat( scope.getSessionFactory().getMappingMetamodel()
++				.getEntityDescriptor( AssociationSqlFkLazy.class ).getBytecodeEnhancementMetadata().isEnhancedForLazyLoading() )
++				.isTrue();
++		mappings().forEach( mapping -> {
++			try {
++				findDistinguishesHiddenAndAbsent( mapping, scope );
++				cleanup( scope );
++				nativeAssociationFetchRetainsTheStoredKey( mapping, scope );
++				cleanup( scope );
++				unrelatedUpdatesPreserveHiddenReference( mapping, scope );
++				cleanup( scope );
++				mergingFilteredNullPreservesHiddenReference( mapping, scope );
++			}
++			catch (RuntimeException | AssertionError failure) {
++				throw new AssertionError( mapping.toString(), failure );
++			}
++			finally {
++				cleanup( scope );
++			}
++		} );
++	}
++}
+diff --git a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java
+new file mode 100644
+index 000000000000..4988052e97e1
+--- /dev/null
++++ b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneNotFoundTest.java
+@@ -0,0 +1,184 @@
++/*
++ * SPDX-License-Identifier: Apache-2.0
++ * Copyright Red Hat Inc. and Hibernate Authors
++ */
++package org.hibernate.orm.test.where.annotations;
++
++import java.util.stream.Stream;
++
++import org.hibernate.annotations.Fetch;
++import org.hibernate.annotations.FetchMode;
++import org.hibernate.annotations.Filter;
++import org.hibernate.annotations.FilterDef;
++import org.hibernate.annotations.NotFound;
++import org.hibernate.annotations.NotFoundAction;
++import org.hibernate.annotations.ParamDef;
++import org.hibernate.annotations.SQLRestriction;
++import org.hibernate.testing.orm.junit.DomainModel;
++import org.junit.jupiter.params.provider.Arguments;
++
++import jakarta.persistence.Entity;
++import jakarta.persistence.FetchType;
++import jakarta.persistence.JoinColumn;
++import jakarta.persistence.JoinTable;
++import jakarta.persistence.ManyToOne;
++import jakarta.persistence.Table;
++
++@DomainModel(annotatedClasses = { RestrictedToOneNotFoundTest.PlainTarget.class,
++		AssociationRestrictedToOneNotFoundTest.AssocSqlIgnore.class,
++		AssociationRestrictedToOneNotFoundTest.AssocSqlException.class,
++		AssociationRestrictedToOneNotFoundTest.AssocFilterIgnore.class,
++		AssociationRestrictedToOneNotFoundTest.AssocFilterException.class })
++class AssociationRestrictedToOneNotFoundTest extends RestrictedToOneNotFoundTest {
++	static Stream<Arguments> cases() {
++		return Stream.of(
++				new Mapping( AssocSqlIgnore.class, "Sql", true ),
++				new Mapping( AssocSqlException.class, "Sql", false ),
++				new Mapping( AssocFilterIgnore.class, "Filter", true ),
++				new Mapping( AssocFilterException.class, "Filter", false ) )
++				.flatMap( mapping -> Stream.of( false, true ).flatMap( enabled ->
++						Stream.of( Load.values() ).map( load -> Arguments.of( mapping, enabled, load ) ) ) );
++	}
++
++	@Override
++	String targetTable(Mapping mapping) {
++		return "nf_plain_target";
++	}
++
++	@Entity(name = "AssocSqlIgnore")
++	@Table(name = "nf_assocsqlignore")
++	static class AssocSqlIgnore extends Owner {
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.IGNORE)
++		@Fetch(FetchMode.JOIN)
++		@SQLRestriction("visible = 1")
++		@JoinColumn(name = "fk_id")
++		PlainTarget fk;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.IGNORE)
++		@Fetch(FetchMode.JOIN)
++		@SQLRestriction("visible = 1")
++		@JoinTable(name = "nf_assocsqlignore_join", joinColumns = @JoinColumn(name = "owner_id"), inverseJoinColumns = @JoinColumn(name = "joined_id"))
++		PlainTarget joined;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.IGNORE)
++		@Fetch(FetchMode.SELECT)
++		@SQLRestriction("visible = 1")
++		@JoinColumn(name = "selected_id")
++		PlainTarget selected;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.IGNORE)
++		@Fetch(FetchMode.SELECT)
++		@SQLRestriction("visible = 1")
++		@JoinTable(name = "nf_assocsqlignore_select_join", joinColumns = @JoinColumn(name = "owner_id"), inverseJoinColumns = @JoinColumn(name = "selected_join_id"))
++		PlainTarget selectedJoin;
++
++		@Override
++		Object[] targets() {
++			return new Object[] { fk, joined, selected, selectedJoin };
++		}
++	}
++
++	@Entity(name = "AssocSqlException")
++	@Table(name = "nf_assocsqlexception")
++	static class AssocSqlException extends Owner {
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.EXCEPTION)
++		@Fetch(FetchMode.JOIN)
++		@SQLRestriction("visible = 1")
++		@JoinColumn(name = "fk_id")
++		PlainTarget fk;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.EXCEPTION)
++		@Fetch(FetchMode.JOIN)
++		@SQLRestriction("visible = 1")
++		@JoinTable(name = "nf_assocsqlexception_join", joinColumns = @JoinColumn(name = "owner_id"), inverseJoinColumns = @JoinColumn(name = "joined_id"))
++		PlainTarget joined;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.EXCEPTION)
++		@Fetch(FetchMode.SELECT)
++		@SQLRestriction("visible = 1")
++		@JoinColumn(name = "selected_id")
++		PlainTarget selected;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.EXCEPTION)
++		@Fetch(FetchMode.SELECT)
++		@SQLRestriction("visible = 1")
++		@JoinTable(name = "nf_assocsqlexception_select_join", joinColumns = @JoinColumn(name = "owner_id"), inverseJoinColumns = @JoinColumn(name = "selected_join_id"))
++		PlainTarget selectedJoin;
++
++		@Override
++		Object[] targets() {
++			return new Object[] { fk, joined, selected, selectedJoin };
++		}
++	}
++
++	@Entity(name = "AssocFilterIgnore")
++	@Table(name = "nf_assocfilterignore")
++	@FilterDef(name = "nf_visible", parameters = @ParamDef(name = "visible", type = Integer.class))
++	static class AssocFilterIgnore extends Owner {
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.IGNORE)
++		@Fetch(FetchMode.JOIN)
++		@Filter(name = "nf_visible", condition = "visible = :visible")
++		@JoinColumn(name = "fk_id")
++		PlainTarget fk;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.IGNORE)
++		@Fetch(FetchMode.JOIN)
++		@Filter(name = "nf_visible", condition = "visible = :visible")
++		@JoinTable(name = "nf_assocfilterignore_join", joinColumns = @JoinColumn(name = "owner_id"), inverseJoinColumns = @JoinColumn(name = "joined_id"))
++		PlainTarget joined;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.IGNORE)
++		@Fetch(FetchMode.SELECT)
++		@Filter(name = "nf_visible", condition = "visible = :visible")
++		@JoinColumn(name = "selected_id")
++		PlainTarget selected;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.IGNORE)
++		@Fetch(FetchMode.SELECT)
++		@Filter(name = "nf_visible", condition = "visible = :visible")
++		@JoinTable(name = "nf_assocfilterignore_select_join", joinColumns = @JoinColumn(name = "owner_id"), inverseJoinColumns = @JoinColumn(name = "selected_join_id"))
++		PlainTarget selectedJoin;
++
++		@Override
++		Object[] targets() {
++			return new Object[] { fk, joined, selected, selectedJoin };
++		}
++	}
++
++	@Entity(name = "AssocFilterException")
++	@Table(name = "nf_assocfilterexception")
++	static class AssocFilterException extends Owner {
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.EXCEPTION)
++		@Fetch(FetchMode.JOIN)
++		@Filter(name = "nf_visible", condition = "visible = :visible")
++		@JoinColumn(name = "fk_id")
++		PlainTarget fk;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.EXCEPTION)
++		@Fetch(FetchMode.JOIN)
++		@Filter(name = "nf_visible", condition = "visible = :visible")
++		@JoinTable(name = "nf_assocfilterexception_join", joinColumns = @JoinColumn(name = "owner_id"), inverseJoinColumns = @JoinColumn(name = "joined_id"))
++		PlainTarget joined;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.EXCEPTION)
++		@Fetch(FetchMode.SELECT)
++		@Filter(name = "nf_visible", condition = "visible = :visible")
++		@JoinColumn(name = "selected_id")
++		PlainTarget selected;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@NotFound(action = NotFoundAction.EXCEPTION)
++		@Fetch(FetchMode.SELECT)
++		@Filter(name = "nf_visible", condition = "visible = :visible")
++		@JoinTable(name = "nf_assocfilterexception_select_join", joinColumns = @JoinColumn(name = "owner_id"), inverseJoinColumns = @JoinColumn(name = "selected_join_id"))
++		PlainTarget selectedJoin;
++
++		@Override
++		Object[] targets() {
++			return new Object[] { fk, joined, selected, selectedJoin };
++		}
++	}
++}
+diff --git a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneShallowCacheTest.java b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneShallowCacheTest.java
+new file mode 100644
+index 000000000000..410ab71094c9
+--- /dev/null
++++ b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneShallowCacheTest.java
+@@ -0,0 +1,16 @@
++/*
++ * SPDX-License-Identifier: Apache-2.0
++ * Copyright Red Hat Inc. and Hibernate Authors
++ */
++package org.hibernate.orm.test.where.annotations;
++
++import org.hibernate.testing.orm.junit.ServiceRegistry;
++import org.hibernate.testing.orm.junit.Setting;
++
++@ServiceRegistry(settings = {
++		@Setting(name = "hibernate.cache.use_second_level_cache", value = "true"),
++		@Setting(name = "hibernate.cache.use_query_cache", value = "true"),
++		@Setting(name = "hibernate.cache.query_cache_layout", value = "SHALLOW")
++})
++class AssociationRestrictedToOneShallowCacheTest extends AssociationRestrictedToOneCacheTest {
++}
+diff --git a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java
+new file mode 100644
+index 000000000000..4d2988037d84
+--- /dev/null
++++ b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/AssociationRestrictedToOneTest.java
+@@ -0,0 +1,744 @@
++/*
++ * SPDX-License-Identifier: Apache-2.0
++ * Copyright Red Hat Inc. and Hibernate Authors
++ */
++package org.hibernate.orm.test.where.annotations;
++
++import java.util.stream.Stream;
++
++import org.hibernate.annotations.DynamicUpdate;
++import org.hibernate.annotations.OptimisticLocking;
++import org.hibernate.annotations.OptimisticLockType;
++import org.hibernate.annotations.SQLUpdate;
++import org.hibernate.annotations.Cache;
++import org.hibernate.annotations.CacheConcurrencyStrategy;
++import org.hibernate.annotations.Fetch;
++import org.hibernate.annotations.FetchMode;
++import org.hibernate.annotations.Filter;
++import org.hibernate.annotations.FilterDef;
++import org.hibernate.annotations.ParamDef;
++import org.hibernate.annotations.SQLRestriction;
++import org.hibernate.testing.orm.junit.DomainModel;
++
++import jakarta.persistence.Entity;
++import jakarta.persistence.FetchType;
++import jakarta.persistence.JoinColumn;
++import jakarta.persistence.JoinTable;
++import jakarta.persistence.ManyToOne;
++import jakarta.persistence.OneToOne;
++import jakarta.persistence.Table;
++
++@DomainModel(annotatedClasses = {
++		AssociationRestrictedToOneTest.UnrestrictedTarget.class,
++		AssociationRestrictedToOneTest.AssociationSqlCustomFk.class,
++		AssociationRestrictedToOneTest.AssociationSqlAllFk.class,
++		AssociationRestrictedToOneTest.AssociationSqlDirtyFk.class,
++		AssociationRestrictedToOneTest.AssociationFilterCustomFk.class,
++		AssociationRestrictedToOneTest.AssociationFilterAllFk.class,
++		AssociationRestrictedToOneTest.AssociationFilterDirtyFk.class,
++		AssociationRestrictedToOneTest.AssociationSqlFk.class,
++		AssociationRestrictedToOneTest.AssociationSqlFkSelect.class,
++		AssociationRestrictedToOneTest.AssociationSqlFkLazy.class,
++		AssociationRestrictedToOneTest.AssociationSqlJoin.class,
++		AssociationRestrictedToOneTest.AssociationSqlJoinSelect.class,
++		AssociationRestrictedToOneTest.AssociationSqlJoinLazy.class,
++		AssociationRestrictedToOneTest.AssociationSqlOneFk.class,
++		AssociationRestrictedToOneTest.AssociationSqlOneFkSelect.class,
++		AssociationRestrictedToOneTest.AssociationSqlOneFkLazy.class,
++		AssociationRestrictedToOneTest.AssociationSqlOneJoin.class,
++		AssociationRestrictedToOneTest.AssociationSqlOneJoinSelect.class,
++		AssociationRestrictedToOneTest.AssociationSqlOneJoinLazy.class,
++		AssociationRestrictedToOneTest.AssociationFilterFk.class,
++		AssociationRestrictedToOneTest.AssociationFilterFkSelect.class,
++		AssociationRestrictedToOneTest.AssociationFilterFkLazy.class,
++		AssociationRestrictedToOneTest.AssociationFilterJoin.class,
++		AssociationRestrictedToOneTest.AssociationFilterJoinSelect.class,
++		AssociationRestrictedToOneTest.AssociationFilterJoinLazy.class,
++		AssociationRestrictedToOneTest.AssociationFilterOneFk.class,
++		AssociationRestrictedToOneTest.AssociationFilterOneFkSelect.class,
++		AssociationRestrictedToOneTest.AssociationFilterOneFkLazy.class,
++		AssociationRestrictedToOneTest.AssociationFilterOneJoin.class,
++		AssociationRestrictedToOneTest.AssociationFilterOneJoinSelect.class,
++		AssociationRestrictedToOneTest.AssociationFilterOneJoinLazy.class
++})
++class AssociationRestrictedToOneTest extends RestrictedToOneTest {
++	static Stream<Mapping> mappings() {
++		return Stream.of(
++				new Mapping( AssociationSqlCustomFk.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationSqlAllFk.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationSqlDirtyFk.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationFilterCustomFk.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationFilterAllFk.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationFilterDirtyFk.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationSqlFk.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationSqlFkSelect.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationSqlFkLazy.class, UnrestrictedTarget.class, true ),
++				new Mapping( AssociationSqlJoin.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationSqlJoinSelect.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationSqlJoinLazy.class, UnrestrictedTarget.class, true ),
++				new Mapping( AssociationSqlOneFk.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationSqlOneFkSelect.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationSqlOneFkLazy.class, UnrestrictedTarget.class, true ),
++				new Mapping( AssociationSqlOneJoin.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationSqlOneJoinSelect.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationSqlOneJoinLazy.class, UnrestrictedTarget.class, true ),
++				new Mapping( AssociationFilterFk.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationFilterFkSelect.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationFilterFkLazy.class, UnrestrictedTarget.class, true ),
++				new Mapping( AssociationFilterJoin.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationFilterJoinSelect.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationFilterJoinLazy.class, UnrestrictedTarget.class, true ),
++				new Mapping( AssociationFilterOneFk.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationFilterOneFkSelect.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationFilterOneFkLazy.class, UnrestrictedTarget.class, true ),
++				new Mapping( AssociationFilterOneJoin.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationFilterOneJoinSelect.class, UnrestrictedTarget.class, false ),
++				new Mapping( AssociationFilterOneJoinLazy.class, UnrestrictedTarget.class, true )
++		);
++	}
++
++	static Stream<Mapping> filterMappings() {
++		return mappings().filter( mapping -> mapping.ownerType().getSimpleName().contains( "Filter" ) );
++	}
++
++	static Stream<Mapping> orphanMappings() {
++		return mappings().filter( mapping -> mapping.ownerType().getSimpleName().contains( "One" ) );
++	}
++
++	@Entity(name = "UnrestrictedTarget")
++	@Table(name = "association_target")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	@FilterDef(name = "visibleTarget", parameters = @ParamDef(name = "active", type = Boolean.class))
++	public static class UnrestrictedTarget extends Target {
++	}
++
++	@Entity(name = "AssociationSqlFk")
++	@Table(name = "at_sql_fk")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationSqlFk extends Owner {
++		@ManyToOne(fetch = FetchType.EAGER)
++		@JoinColumn(name = "target_id")
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlFkSelect")
++	@Table(name = "at_sql_fk_select")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationSqlFkSelect extends Owner {
++		@ManyToOne(fetch = FetchType.EAGER)
++		@Fetch(FetchMode.SELECT)
++		@JoinColumn(name = "target_id")
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlFkLazy")
++	@Table(name = "at_sql_fk_lazy")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationSqlFkLazy extends Owner {
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinColumn(name = "target_id")
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlJoin")
++	@Table(name = "at_sql_jt")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationSqlJoin extends Owner {
++		@ManyToOne(fetch = FetchType.EAGER)
++		@JoinTable(name = "at_sql_jt_link", joinColumns = @JoinColumn(name = "owner_id"),
++				inverseJoinColumns = @JoinColumn(name = "target_id"))
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlJoinSelect")
++	@Table(name = "at_sql_jt_select")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationSqlJoinSelect extends Owner {
++		@ManyToOne(fetch = FetchType.EAGER)
++		@Fetch(FetchMode.SELECT)
++		@JoinTable(name = "at_sql_jt_select_link", joinColumns = @JoinColumn(name = "owner_id"),
++				inverseJoinColumns = @JoinColumn(name = "target_id"))
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlJoinLazy")
++	@Table(name = "at_sql_jt_lazy")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationSqlJoinLazy extends Owner {
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinTable(name = "at_sql_jt_lazy_link", joinColumns = @JoinColumn(name = "owner_id"),
++				inverseJoinColumns = @JoinColumn(name = "target_id"))
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlOneFk")
++	@Table(name = "at_sql_one_fk")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationSqlOneFk extends Owner {
++		@OneToOne(fetch = FetchType.EAGER, orphanRemoval = true)
++		@JoinColumn(name = "target_id")
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlOneFkSelect")
++	@Table(name = "at_sql_one_fk_select")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationSqlOneFkSelect extends Owner {
++		@OneToOne(fetch = FetchType.EAGER, orphanRemoval = true)
++		@Fetch(FetchMode.SELECT)
++		@JoinColumn(name = "target_id")
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlOneFkLazy")
++	@Table(name = "at_sql_one_fk_lazy")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationSqlOneFkLazy extends Owner {
++		@OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
++		@JoinColumn(name = "target_id")
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlOneJoin")
++	@Table(name = "at_sql_one_jt")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationSqlOneJoin extends Owner {
++		@OneToOne(fetch = FetchType.EAGER, orphanRemoval = true)
++		@JoinTable(name = "at_sql_one_jt_link", joinColumns = @JoinColumn(name = "owner_id"),
++				inverseJoinColumns = @JoinColumn(name = "target_id"))
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlOneJoinSelect")
++	@Table(name = "at_sql_one_jt_select")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationSqlOneJoinSelect extends Owner {
++		@OneToOne(fetch = FetchType.EAGER, orphanRemoval = true)
++		@Fetch(FetchMode.SELECT)
++		@JoinTable(name = "at_sql_one_jt_select_link", joinColumns = @JoinColumn(name = "owner_id"),
++				inverseJoinColumns = @JoinColumn(name = "target_id"))
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlOneJoinLazy")
++	@Table(name = "at_sql_one_jt_lazy")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationSqlOneJoinLazy extends Owner {
++		@OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
++		@JoinTable(name = "at_sql_one_jt_lazy_link", joinColumns = @JoinColumn(name = "owner_id"),
++				inverseJoinColumns = @JoinColumn(name = "target_id"))
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterFk")
++	@Table(name = "at_filter_fk")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationFilterFk extends Owner {
++		@ManyToOne(fetch = FetchType.EAGER)
++		@JoinColumn(name = "target_id")
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterFkSelect")
++	@Table(name = "at_filter_fk_select")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationFilterFkSelect extends Owner {
++		@ManyToOne(fetch = FetchType.EAGER)
++		@Fetch(FetchMode.SELECT)
++		@JoinColumn(name = "target_id")
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterFkLazy")
++	@Table(name = "at_filter_fk_lazy")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationFilterFkLazy extends Owner {
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinColumn(name = "target_id")
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterJoin")
++	@Table(name = "at_filter_jt")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationFilterJoin extends Owner {
++		@ManyToOne(fetch = FetchType.EAGER)
++		@JoinTable(name = "at_filter_jt_link", joinColumns = @JoinColumn(name = "owner_id"),
++				inverseJoinColumns = @JoinColumn(name = "target_id"))
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterJoinSelect")
++	@Table(name = "at_filter_jt_select")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationFilterJoinSelect extends Owner {
++		@ManyToOne(fetch = FetchType.EAGER)
++		@Fetch(FetchMode.SELECT)
++		@JoinTable(name = "at_filter_jt_select_link", joinColumns = @JoinColumn(name = "owner_id"),
++				inverseJoinColumns = @JoinColumn(name = "target_id"))
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterJoinLazy")
++	@Table(name = "at_filter_jt_lazy")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationFilterJoinLazy extends Owner {
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinTable(name = "at_filter_jt_lazy_link", joinColumns = @JoinColumn(name = "owner_id"),
++				inverseJoinColumns = @JoinColumn(name = "target_id"))
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterOneFk")
++	@Table(name = "at_filter_one_fk")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationFilterOneFk extends Owner {
++		@OneToOne(fetch = FetchType.EAGER, orphanRemoval = true)
++		@JoinColumn(name = "target_id")
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterOneFkSelect")
++	@Table(name = "at_filter_one_fk_select")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationFilterOneFkSelect extends Owner {
++		@OneToOne(fetch = FetchType.EAGER, orphanRemoval = true)
++		@Fetch(FetchMode.SELECT)
++		@JoinColumn(name = "target_id")
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterOneFkLazy")
++	@Table(name = "at_filter_one_fk_lazy")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationFilterOneFkLazy extends Owner {
++		@OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
++		@JoinColumn(name = "target_id")
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterOneJoin")
++	@Table(name = "at_filter_one_jt")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationFilterOneJoin extends Owner {
++		@OneToOne(fetch = FetchType.EAGER, orphanRemoval = true)
++		@JoinTable(name = "at_filter_one_jt_link", joinColumns = @JoinColumn(name = "owner_id"),
++				inverseJoinColumns = @JoinColumn(name = "target_id"))
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterOneJoinSelect")
++	@Table(name = "at_filter_one_jt_select")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationFilterOneJoinSelect extends Owner {
++		@OneToOne(fetch = FetchType.EAGER, orphanRemoval = true)
++		@Fetch(FetchMode.SELECT)
++		@JoinTable(name = "at_filter_one_jt_select_link", joinColumns = @JoinColumn(name = "owner_id"),
++				inverseJoinColumns = @JoinColumn(name = "target_id"))
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterOneJoinLazy")
++	@Table(name = "at_filter_one_jt_lazy")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	public static class AssociationFilterOneJoinLazy extends Owner {
++		@OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
++		@JoinTable(name = "at_filter_one_jt_lazy_link", joinColumns = @JoinColumn(name = "owner_id"),
++				inverseJoinColumns = @JoinColumn(name = "target_id"))
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlCustomFk")
++	@Table(name = "at_sql_custom")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	@SQLUpdate(sql = "update at_sql_custom set name=?, target_id=? where id=?")
++	public static class AssociationSqlCustomFk extends Owner {
++		@ManyToOne
++		@JoinColumn(name = "target_id")
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlAllFk")
++	@Table(name = "at_sql_all")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	@DynamicUpdate
++	@OptimisticLocking(type = OptimisticLockType.ALL)
++	public static class AssociationSqlAllFk extends Owner {
++		@ManyToOne
++		@JoinColumn(name = "target_id")
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationSqlDirtyFk")
++	@Table(name = "at_sql_dirty")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	@DynamicUpdate
++	@OptimisticLocking(type = OptimisticLockType.DIRTY)
++	public static class AssociationSqlDirtyFk extends Owner {
++		@ManyToOne
++		@JoinColumn(name = "target_id")
++		@SQLRestriction("active = true")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterCustomFk")
++	@Table(name = "at_filter_custom")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	@SQLUpdate(sql = "update at_filter_custom set name=?, target_id=? where id=?")
++	public static class AssociationFilterCustomFk extends Owner {
++		@ManyToOne
++		@JoinColumn(name = "target_id")
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterAllFk")
++	@Table(name = "at_filter_all")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	@DynamicUpdate
++	@OptimisticLocking(type = OptimisticLockType.ALL)
++	public static class AssociationFilterAllFk extends Owner {
++		@ManyToOne
++		@JoinColumn(name = "target_id")
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++
++	@Entity(name = "AssociationFilterDirtyFk")
++	@Table(name = "at_filter_dirty")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	@DynamicUpdate
++	@OptimisticLocking(type = OptimisticLockType.DIRTY)
++	public static class AssociationFilterDirtyFk extends Owner {
++		@ManyToOne
++		@JoinColumn(name = "target_id")
++		@Filter(name = "visibleTarget", condition = "active = :active")
++		UnrestrictedTarget target;
++
++		@Override
++		public Target getTarget() {
++			return target;
++		}
++
++		@Override
++		public void setTarget(Target target) {
++			this.target = (UnrestrictedTarget) target;
++		}
++	}
++}
+diff --git a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java
+new file mode 100644
+index 000000000000..3047b796e62d
+--- /dev/null
++++ b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedSecondaryTableTest.java
+@@ -0,0 +1,124 @@
++/*
++ * SPDX-License-Identifier: Apache-2.0
++ * Copyright Red Hat Inc. and Hibernate Authors
++ */
++package org.hibernate.orm.test.where.annotations;
++
++import java.util.ArrayList;
++import java.util.HashSet;
++import java.util.List;
++import java.util.Set;
++
++import org.hibernate.annotations.SQLRestriction;
++import org.hibernate.testing.orm.junit.DomainModel;
++import org.hibernate.testing.orm.junit.JiraKey;
++import org.hibernate.testing.orm.junit.SessionFactory;
++import org.hibernate.testing.orm.junit.SessionFactoryScope;
++import org.junit.jupiter.api.AfterEach;
++import org.junit.jupiter.api.BeforeEach;
++import org.junit.jupiter.params.ParameterizedTest;
++import org.junit.jupiter.params.provider.ValueSource;
++
++import jakarta.persistence.Column;
++import jakarta.persistence.Entity;
++import jakarta.persistence.FetchType;
++import jakarta.persistence.Id;
++import jakarta.persistence.JoinTable;
++import jakarta.persistence.ManyToMany;
++import jakarta.persistence.ManyToOne;
++import jakarta.persistence.OneToMany;
++import jakarta.persistence.SecondaryTable;
++import jakarta.persistence.Table;
++
++import static org.assertj.core.api.Assertions.assertThat;
++
++@DomainModel(annotatedClasses = { RestrictedSecondaryTableTest.Project.class,
++		RestrictedSecondaryTableTest.Document.class })
++@SessionFactory
++@JiraKey("HHH-12016")
++class RestrictedSecondaryTableTest {
++	@BeforeEach
++	void prepare(SessionFactoryScope scope) {
++		scope.inTransaction( session -> {
++			for ( long projectId = 1; projectId <= 2; projectId++ ) {
++				final Project project = new Project();
++				project.id = projectId;
++				session.persist( project );
++				for ( long id = projectId == 1 ? 1 : 4; id <= (projectId == 1 ? 3 : 4); id++ ) {
++					final Document document = new Document();
++					document.id = id;
++					document.project = project;
++					// Document 3 has no optional secondary-table row.
++					if ( id != 3 ) {
++						document.active = id == 1 ? 1 : 0;
++						document.published = 1;
++					}
++					session.persist( document );
++					project.documents.add( document );
++					project.linkedDocuments.add( document );
++				}
++			}
++		} );
++		scope.inTransaction( session -> assertThat( session.createNativeQuery(
++				"select count(*) from restricted_document_details where id = 3", Long.class )
++				.getSingleResult() ).isZero() );
++	}
++
++	@AfterEach
++	void cleanup(SessionFactoryScope scope) {
++		scope.getSessionFactory().getSchemaManager().truncate();
++	}
++
++	@ParameterizedTest
++	@ValueSource(strings = { "find", "query", "fetch", "graph" })
++	void secondaryTableColumnRestriction(String loading, SessionFactoryScope scope) {
++		scope.inTransaction( session -> {
++			final List<Project> projects;
++			switch ( loading ) {
++				case "find" -> projects = List.of(
++						session.find( Project.class, 1L ), session.find( Project.class, 2L ) );
++				case "query" -> projects = session.createQuery(
++						"from Project order by id", Project.class ).getResultList();
++				case "fetch" -> projects = session.createQuery(
++						"from Project p left join fetch p.documents left join fetch p.linkedDocuments order by p.id",
++						Project.class ).getResultList();
++				case "graph" -> {
++					final var graph = session.createEntityGraph( Project.class );
++					graph.addAttributeNodes( "documents", "linkedDocuments" );
++					projects = List.of( session.find( graph, 1L ), session.find( graph, 2L ) );
++				}
++				default -> throw new AssertionError( loading );
++			}
++			assertThat( projects ).extracting( p -> p.id ).containsExactly( 1L, 2L );
++			assertThat( projects.get( 0 ).documents ).extracting( d -> d.id ).containsExactly( 1L );
++			assertThat( projects.get( 0 ).linkedDocuments ).extracting( d -> d.id ).containsExactly( 1L );
++			assertThat( projects.get( 1 ).documents ).isEmpty();
++			assertThat( projects.get( 1 ).linkedDocuments ).isEmpty();
++		} );
++	}
++
++	@Entity(name = "Project")
++	@Table(name = "restricted_secondary_project")
++	static class Project {
++		@Id Long id;
++		@OneToMany(mappedBy = "project")
++		@SQLRestriction("ACTIVE = 1 and `published document` = 1")
++		List<Document> documents = new ArrayList<>();
++		@ManyToMany
++		@JoinTable(name = "restricted_document_link")
++		@SQLRestriction("ACTIVE = 1 and `published document` = 1")
++		Set<Document> linkedDocuments = new HashSet<>();
++	}
++
++	@Entity(name = "Document")
++	@Table(name = "restricted_secondary_document")
++	@SecondaryTable(name = "restricted_document_details")
++	static class Document {
++		@Id Long id;
++		@ManyToOne(fetch = FetchType.LAZY) Project project;
++		@Column(table = "restricted_document_details")
++		Integer active;
++		@Column(name = "`published document`", table = "restricted_document_details")
++		Integer published;
++	}
++}
+diff --git a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedToOneNotFoundTest.java b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedToOneNotFoundTest.java
+index b368b6abbfd2..a31e086a98a3 100644
+--- a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedToOneNotFoundTest.java
++++ b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedToOneNotFoundTest.java
+@@ -95,12 +95,16 @@ void cleanup(SessionFactoryScope scope) {
+ 		scope.getSessionFactory().getSchemaManager().truncate();
+ 	}
+ 
++	String targetTable(Mapping mapping) {
++		return "nf_" + mapping.restriction.toLowerCase() + "_target";
++	}
++
+ 	@ParameterizedTest
+ 	@MethodSource("cases")
+ 	void distinguishNullExcludedAndDangling(Mapping mapping, boolean enabled, Load load, SessionFactoryScope scope) {
+ 		final String table = mapping.table();
+ 		scope.inTransaction( session -> {
+-			final String target = "nf_" + mapping.restriction.toLowerCase() + "_target";
++			final String target = targetTable( mapping );
+ 			for ( long id = 1; id <= 2; id++ ) {
+ 				session.createNativeMutationQuery( "insert into " + target + " (id, visible) values (:id, :visible)" )
+ 						.setParameter( "id", id )
+diff --git a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedToOneTest.java b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedToOneTest.java
+index c8760c872942..d92252a399c5 100644
+--- a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedToOneTest.java
++++ b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/RestrictedToOneTest.java
+@@ -558,7 +558,8 @@ void refreshCanRevealAReferenceWhichCanThenBeCleared(Mapping mapping, SessionFac
+ 
+ 	private static void assertHiddenTargetExists(SessionFactoryScope scope, Mapping mapping) {
+ 		scope.inTransaction( session -> {
+-			final String table = mapping.targetType == SqlTarget.class ? "restricted_sql_target" : "restricted_filter_target";
++			final String table = scope.getSessionFactory().getMappingMetamodel().getEntityDescriptor( mapping.targetType )
++					.getMappedTableDetails().getTableName();
+ 			assertThat( session.createNativeQuery( "select count(*) from " + table + " where id=2", Long.class )
+ 					.getSingleResult() ).isEqualTo( 1 );
+ 		} );
+@@ -582,8 +583,8 @@ void onlyVisibleRemovalDeletesAnOrphan(Mapping mapping, SessionFactoryScope scop
+ 		} );
+ 		assertStoredReference( scope, mapping, 2L, 2L );
+ 		scope.inTransaction( session -> {
+-			final String table = mapping.targetType == SqlTarget.class
+-					? "restricted_sql_target" : "restricted_filter_target";
++			final String table = scope.getSessionFactory().getMappingMetamodel().getEntityDescriptor( mapping.targetType )
++					.getMappedTableDetails().getTableName();
+ 			assertThat( session.createNativeQuery( "select id from " + table + " order by id", Long.class )
+ 					.getResultList() ).containsExactly( 2L, 3L );
+ 		} );
+diff --git a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java
+new file mode 100644
+index 000000000000..c1697226d9c2
+--- /dev/null
++++ b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationCompositionTest.java
+@@ -0,0 +1,165 @@
++/*
++ * SPDX-License-Identifier: Apache-2.0
++ * Copyright Red Hat Inc. and Hibernate Authors
++ */
++package org.hibernate.orm.test.where.annotations;
++
++import org.hibernate.annotations.Filter;
++import org.hibernate.annotations.FilterDef;
++import org.hibernate.annotations.ParamDef;
++import org.hibernate.annotations.SQLRestriction;
++import org.hibernate.annotations.SqlFragmentAlias;
++import org.hibernate.testing.orm.junit.DomainModel;
++import org.hibernate.testing.orm.junit.SessionFactory;
++import org.hibernate.testing.orm.junit.SessionFactoryScope;
++import org.junit.jupiter.api.AfterEach;
++import org.junit.jupiter.params.ParameterizedTest;
++import org.junit.jupiter.params.provider.ValueSource;
++
++import jakarta.persistence.Access;
++import jakarta.persistence.AccessType;
++import jakarta.persistence.Column;
++import jakarta.persistence.Embeddable;
++import jakarta.persistence.Embedded;
++import jakarta.persistence.Entity;
++import jakarta.persistence.FetchType;
++import jakarta.persistence.Id;
++import jakarta.persistence.Inheritance;
++import jakarta.persistence.InheritanceType;
++import jakarta.persistence.JoinColumn;
++import jakarta.persistence.ManyToOne;
++import jakarta.persistence.SecondaryTable;
++import jakarta.persistence.Table;
++
++import static org.assertj.core.api.Assertions.assertThat;
++
++@DomainModel(annotatedClasses = { ToOneAssociationCompositionTest.BaseTarget.class,
++		ToOneAssociationCompositionTest.Target.class, ToOneAssociationCompositionTest.Owner.class })
++@SessionFactory
++class ToOneAssociationCompositionTest {
++	@AfterEach
++	void cleanup(SessionFactoryScope scope) {
++		scope.getSessionFactory().getSchemaManager().truncate();
++	}
++
++	@ParameterizedTest
++	@ValueSource(strings = { "find", "fetch", "native" })
++	void targetAndAssociationPredicatesComposeAcrossTables(String loading, SessionFactoryScope scope) {
++		scope.inTransaction( session -> {
++			for ( long id = 1; id <= 5; id++ ) {
++				final Target target = new Target();
++				target.id = id;
++				target.deleted = id == 2;
++				target.active = id != 3;
++				target.category = id == 4 ? 2 : 1;
++				target.approved = id != 5;
++				session.persist( target );
++				final Owner owner = new Owner();
++				owner.id = id;
++				owner.details = new Details();
++				owner.details.note = "original";
++				owner.details.sql = target;
++				owner.details.filtered = target;
++				session.persist( owner );
++			}
++		} );
++		for ( int category : new int[] { 1, 2, 1 } ) {
++			scope.inTransaction( session -> {
++				session.enableFilter( "targetActive" );
++				if ( category == 2 ) {
++					session.enableFilter( "targetQueryOnly" );
++				}
++				session.enableFilter( "associationCategory" ).setParameter( "category", category );
++				for ( long id = 1; id <= 5; id++ ) {
++					final Owner owner = switch ( loading ) {
++						case "find" -> session.find( Owner.class, id );
++						case "native" -> session.createNativeQuery( "select * from composed_owner where id=:id", Owner.class )
++								.setParameter( "id", id ).getSingleResult();
++						default -> session.createQuery( "from ComposedOwner o left join fetch o.details.sql "
++								+ "left join fetch o.details.filtered where o.id=:id", Owner.class )
++								.setParameter( "id", id ).getSingleResult();
++					};
++					final boolean includedByEntityFilter = !loading.equals( "fetch" ) || category != 2;
++					assertThat( owner.details.sql != null ).isEqualTo( includedByEntityFilter && id == 1 );
++					assertThat( owner.details.filtered != null )
++							.isEqualTo( includedByEntityFilter && id != 2 && id != 3 && (id == 4 ? 2 : 1) == category );
++					owner.details.note = "changed";
++				}
++			} );
++		}
++		scope.inTransaction( session -> {
++			for ( long id = 1; id <= 5; id++ ) {
++				assertThat( session.createNativeQuery( "select sql_id, filtered_id from composed_owner where id=:id", Object[].class )
++						.setParameter( "id", id ).getSingleResult() ).containsExactly( id, id );
++			}
++		} );
++	}
++
++	@Entity(name = "ComposedBaseTarget")
++	@Table(name = "composed_base")
++	@Inheritance(strategy = InheritanceType.JOINED)
++	@SQLRestriction("deleted = false")
++	@FilterDef(name = "targetActive", defaultCondition = "active = true", applyToLoadByKey = true)
++	@Filter(name = "targetActive")
++	@FilterDef(name = "targetQueryOnly", defaultCondition = "1=0")
++	@Filter(name = "targetQueryOnly")
++	@FilterDef(name = "associationCategory", defaultCondition = "{b}.category = :category",
++			parameters = @ParamDef(name = "category", type = Integer.class))
++	static class BaseTarget {
++		@Id Long id;
++		boolean deleted;
++		boolean active;
++		int category;
++	}
++
++	@Entity(name = "ComposedTarget")
++	@Table(name = "composed_target")
++	@SecondaryTable(name = "composed_details")
++	static class Target extends BaseTarget {
++		@Column(table = "composed_details")
++		boolean approved;
++	}
++
++	@Entity(name = "ComposedOwner")
++	@Table(name = "composed_owner")
++	static class Owner {
++		@Id Long id;
++		@Embedded Details details;
++	}
++
++	@Embeddable
++	@Access(AccessType.PROPERTY)
++	static class Details {
++		private String note;
++		private Target sql;
++		private Target filtered;
++
++		public String getNote() {
++			return note;
++		}
++		public void setNote(String note) {
++			this.note = note;
++		}
++
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinColumn(name = "sql_id")
++		@SQLRestriction("category = 1 and approved = true")
++		public Target getSql() {
++			return sql;
++		}
++		public void setSql(Target sql) {
++			this.sql = sql;
++		}
++
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinColumn(name = "filtered_id")
++		@Filter(name = "associationCategory", deduceAliasInjectionPoints = false,
++				aliases = @SqlFragmentAlias(alias = "b", table = "composed_base"))
++		public Target getFiltered() {
++			return filtered;
++		}
++		public void setFiltered(Target filtered) {
++			this.filtered = filtered;
++		}
++	}
++}
+diff --git a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java
+new file mode 100644
+index 000000000000..f45204e5ad8e
+--- /dev/null
++++ b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationKeysTest.java
+@@ -0,0 +1,145 @@
++/*
++ * SPDX-License-Identifier: Apache-2.0
++ * Copyright Red Hat Inc. and Hibernate Authors
++ */
++package org.hibernate.orm.test.where.annotations;
++
++import java.io.Serializable;
++import java.util.Objects;
++
++import org.hibernate.annotations.Filter;
++import org.hibernate.annotations.FilterDef;
++import org.hibernate.annotations.SQLRestriction;
++import org.hibernate.testing.orm.junit.DomainModel;
++import org.hibernate.testing.orm.junit.SessionFactory;
++import org.hibernate.testing.orm.junit.SessionFactoryScope;
++import org.junit.jupiter.api.AfterEach;
++import org.junit.jupiter.params.ParameterizedTest;
++import org.junit.jupiter.params.provider.ValueSource;
++
++import jakarta.persistence.Column;
++import jakarta.persistence.Embeddable;
++import jakarta.persistence.Embedded;
++import jakarta.persistence.EmbeddedId;
++import jakarta.persistence.Entity;
++import jakarta.persistence.FetchType;
++import jakarta.persistence.Id;
++import jakarta.persistence.JoinColumn;
++import jakarta.persistence.JoinColumns;
++import jakarta.persistence.ManyToOne;
++import jakarta.persistence.Table;
++
++import static org.assertj.core.api.Assertions.assertThat;
++
++@DomainModel(annotatedClasses = { ToOneAssociationKeysTest.Target.class, ToOneAssociationKeysTest.Owner.class })
++@SessionFactory
++class ToOneAssociationKeysTest {
++	@AfterEach
++	void cleanup(SessionFactoryScope scope) {
++		scope.getSessionFactory().getSchemaManager().truncate();
++	}
++
++	@ParameterizedTest
++	@ValueSource(strings = { "find", "fetch", "native" })
++	void hiddenCompositeAndUniqueKeysArePreserved(String loading, SessionFactoryScope scope) {
++		scope.inTransaction( session -> {
++			for ( int id = 1; id <= 2; id++ ) {
++				final Target target = new Target();
++				target.id = new Key( "target", id );
++				target.code = "code" + id;
++				target.registration = new Registration();
++				target.registration.code = "registered" + id;
++				target.active = id == 1 ? 1 : 0;
++				session.persist( target );
++				final Owner owner = new Owner();
++				owner.id = id;
++				owner.composite = target;
++				owner.unique = target;
++				owner.embeddedUnique = target;
++				session.persist( owner );
++			}
++		} );
++		for ( boolean preload : new boolean[] { false, true } ) {
++			scope.inTransaction( session -> {
++				session.enableFilter( "keyActive" );
++				if ( preload ) {
++					assertThat( session.find( Target.class, new Key( "target", 2 ) ) ).isNotNull();
++				}
++				for ( int id = 1; id <= 2; id++ ) {
++					final Owner owner = switch ( loading ) {
++						case "find" -> session.find( Owner.class, id );
++						case "native" -> session.createNativeQuery( "select * from association_keys where id=:id", Owner.class )
++								.setParameter( "id", id ).getSingleResult();
++						default -> session.createQuery( "from KeyOwner o left join fetch o.composite left join fetch o.unique "
++								+ "left join fetch o.embeddedUnique where o.id=:id",
++								Owner.class ).setParameter( "id", id ).getSingleResult();
++					};
++					assertThat( owner.composite == null ).isEqualTo( id == 2 );
++					assertThat( owner.unique == null ).isEqualTo( id == 2 );
++					assertThat( owner.embeddedUnique == null ).isEqualTo( id == 2 );
++					owner.name = "updated";
++				}
++			} );
++		}
++		scope.inTransaction( session -> {
++			final Object[] keys = session.createNativeQuery(
++					"select key_part, key_number, target_code, target_registration from association_keys where id=2", Object[].class )
++					.getSingleResult();
++			assertThat( keys[0] ).isEqualTo( "target" );
++			assertThat( ( (Number) keys[1] ).intValue() ).isEqualTo( 2 );
++			assertThat( keys[2] ).isEqualTo( "code2" );
++			assertThat( keys[3] ).isEqualTo( "registered2" );
++		} );
++	}
++
++	@Embeddable
++	static class Key implements Serializable {
++		String part;
++		@Column(name = "key_number")
++		int number;
++		Key() {}
++		Key(String part, int number) { this.part = part; this.number = number; }
++		@Override
++		public boolean equals(Object other) {
++			return other instanceof Key key && number == key.number && Objects.equals( part, key.part );
++		}
++		@Override
++		public int hashCode() { return Objects.hash( part, number ); }
++	}
++
++	@Entity(name = "KeyTarget")
++	@Table(name = "association_key_target")
++	@FilterDef(name = "keyActive", defaultCondition = "active = 1")
++	static class Target {
++		@EmbeddedId Key id;
++		@Column(unique = true) String code;
++		@Embedded Registration registration;
++		int active;
++	}
++
++	@Embeddable
++	static class Registration {
++		@Column(name = "registration_code", unique = true)
++		String code;
++	}
++
++	@Entity(name = "KeyOwner")
++	@Table(name = "association_keys")
++	static class Owner {
++		@Id int id;
++		String name;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinColumns({ @JoinColumn(name = "key_part", referencedColumnName = "part"),
++				@JoinColumn(name = "key_number", referencedColumnName = "key_number") })
++		@SQLRestriction("active = 1")
++		Target composite;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinColumn(name = "target_code", referencedColumnName = "code")
++		@Filter(name = "keyActive")
++		Target unique;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinColumn(name = "target_registration", referencedColumnName = "registration_code")
++		@SQLRestriction("active = 1")
++		Target embeddedUnique;
++	}
++}
+diff --git a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java
+new file mode 100644
+index 000000000000..3c2a23fc29df
+--- /dev/null
++++ b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityPlanTest.java
+@@ -0,0 +1,257 @@
++/*
++ * SPDX-License-Identifier: Apache-2.0
++ * Copyright Red Hat Inc. and Hibernate Authors
++ */
++package org.hibernate.orm.test.where.annotations;
++
++import java.util.ArrayList;
++import java.util.Date;
++import java.util.List;
++import java.util.function.Supplier;
++
++import org.hibernate.ScrollMode;
++import org.hibernate.annotations.Filter;
++import org.hibernate.annotations.FilterDef;
++import org.hibernate.annotations.ParamDef;
++import org.hibernate.annotations.SQLRestriction;
++import org.hibernate.testing.orm.junit.DomainModel;
++import org.hibernate.testing.orm.junit.SessionFactory;
++import org.hibernate.testing.orm.junit.SessionFactoryScope;
++import org.junit.jupiter.api.AfterEach;
++import org.junit.jupiter.api.BeforeEach;
++import org.junit.jupiter.params.ParameterizedTest;
++import org.junit.jupiter.params.provider.ValueSource;
++
++import jakarta.persistence.Column;
++import jakarta.persistence.Entity;
++import jakarta.persistence.FetchType;
++import jakarta.persistence.Id;
++import jakarta.persistence.JoinColumn;
++import jakarta.persistence.ManyToOne;
++import jakarta.persistence.MappedSuperclass;
++import jakarta.persistence.Table;
++
++import static org.assertj.core.api.Assertions.assertThat;
++
++@DomainModel(annotatedClasses = { ToOneAssociationVisibilityPlanTest.Target.class,
++		ToOneAssociationVisibilityPlanTest.IdOwner.class, ToOneAssociationVisibilityPlanTest.CodeOwner.class })
++@SessionFactory
++class ToOneAssociationVisibilityPlanTest {
++	@BeforeEach
++	void prepare(SessionFactoryScope scope) {
++		UpperBound.value.set( 8L );
++		scope.inTransaction( session -> {
++			for ( long id = 1; id <= 8; id++ ) {
++				final var target = new Target();
++				target.id = id;
++				target.code = "code" + id;
++				target.segment = (int) (id % 2);
++				target.stamp = new Date( id % 2 * 1000 );
++				session.persist( target );
++				final var idOwner = new IdOwner();
++				idOwner.id = id;
++				idOwner.target = target;
++				session.persist( idOwner );
++				final var codeOwner = new CodeOwner();
++				codeOwner.id = id;
++				codeOwner.target = target;
++				session.persist( codeOwner );
++			}
++		} );
++	}
++
++	@AfterEach
++	void cleanup(SessionFactoryScope scope) {
++		UpperBound.value.remove();
++		scope.getSessionFactory().getSchemaManager().truncate();
++	}
++
++	@ParameterizedTest
++	@ValueSource(booleans = { false, true })
++	void streamRespectsAssociationFilters(boolean uniqueKey, SessionFactoryScope scope) {
++		scope.inTransaction( session -> {
++			session.enableFilter( "visibilitySegments" ).setParameterList( "segments", List.of( 0 ) );
++			try ( var stream = session.createNativeQuery( sql( uniqueKey ), type( uniqueKey ) ).getResultStream() ) {
++				assertThat( stream.peek( owner -> assertThat( owner.target() != null ).isEqualTo( owner.id % 2 == 0 ) ).count() )
++						.isEqualTo( 8 );
++			}
++		} );
++	}
++
++	@ParameterizedTest
++	@ValueSource(booleans = { false, true })
++	void unusedFilterArgumentsDoNotAffectVisibility(boolean uniqueKey, SessionFactoryScope scope) {
++		scope.inTransaction( session -> {
++			session.enableFilter( "visibilitySegments" ).setParameterList( "segments", List.of( 0, 1 ) );
++			final var unused = session.enableFilter( "visibilityUnused" ).setParameter( "value", 0 );
++			try ( var rows = session.createNativeQuery( sql( uniqueKey ), type( uniqueKey ) ).scroll( ScrollMode.FORWARD_ONLY ) ) {
++				for ( int id = 1; id <= 8; id++ ) {
++					unused.setParameter( "value", id );
++					assertThat( rows.next() ).isTrue();
++					assertThat( rows.get().target() ).isNotNull();
++				}
++			}
++		} );
++	}
++
++	@ParameterizedTest
++	@ValueSource(booleans = { false, true })
++	void scrollingDetectsMutableScalarsAndResolvedArguments(boolean uniqueKey, SessionFactoryScope scope) {
++		scope.inTransaction( session -> {
++			final var stamp = new Date( 0 );
++			session.enableFilter( "visibilityStamp" ).setParameter( "stamp", stamp );
++			session.enableFilter( "visibilityResolvedLimit" );
++			try ( var rows = session.createNativeQuery( sql( uniqueKey ), type( uniqueKey ) ).scroll( ScrollMode.FORWARD_ONLY ) ) {
++				for ( int id = 1; id <= 8; id++ ) {
++					if ( id == 3 ) {
++						stamp.setTime( 1000 );
++					}
++					else if ( id == 5 ) {
++						UpperBound.value.set( 4L );
++					}
++					else if ( id == 7 ) {
++						UpperBound.value.set( 8L );
++					}
++					assertThat( rows.next() ).isTrue();
++					assertThat( rows.get().target() != null ).isEqualTo( id == 2 || id == 3 || id == 7 );
++				}
++			}
++		} );
++	}
++
++	@ParameterizedTest
++	@ValueSource(booleans = { false, true })
++	void listExecutionsUseCurrentFilterParameters(boolean uniqueKey, SessionFactoryScope scope) {
++		for ( int segment : new int[] { 0, 1, 0 } ) {
++			scope.inTransaction( session -> {
++				session.enableFilter( "visibilitySegments" ).setParameterList( "segments", List.of( segment ) );
++				final var owners = session.createNativeQuery( sql( uniqueKey ), type( uniqueKey ) ).getResultList();
++				assertThat( owners ).hasSize( 8 );
++				for ( Owner owner : owners ) {
++					assertThat( owner.target() != null ).isEqualTo( owner.id % 2 == segment );
++				}
++			} );
++		}
++	}
++
++	@ParameterizedTest
++	@ValueSource(booleans = { false, true })
++	void scrollingDetectsMutatedListsAndFilterEnablement(boolean uniqueKey, SessionFactoryScope scope) {
++		scope.inTransaction( session -> {
++			final var segments = new ArrayList<>( List.of( 1 ) );
++			session.enableFilter( "visibilitySegments" ).setParameterList( "segments", segments );
++			try ( var rows = session.createNativeQuery( sql( uniqueKey ), type( uniqueKey ) ).scroll( ScrollMode.FORWARD_ONLY ) ) {
++				for ( int id = 1; id <= 8; id++ ) {
++					if ( id == 3 ) {
++						segments.set( 0, 0 );
++					}
++					else if ( id == 5 ) {
++						segments.add( 1 );
++					}
++					else if ( id == 7 ) {
++						session.enableFilter( "visibilityLimit" ).setParameter( "upper", 6L );
++					}
++					else if ( id == 8 ) {
++						session.disableFilter( "visibilityLimit" );
++					}
++					assertThat( rows.next() ).isTrue();
++					assertThat( rows.get().target() != null ).isEqualTo( segments.contains( id % 2 ) && id != 7 );
++				}
++				assertThat( rows.next() ).isFalse();
++			}
++		} );
++	}
++
++	@ParameterizedTest
++	@ValueSource(booleans = { false, true })
++	void scrollingDetectsTargetFiltersAndScalarParameters(boolean uniqueKey, SessionFactoryScope scope) {
++		scope.inTransaction( session -> {
++			session.enableFilter( "visibilitySegments" ).setParameterList( "segments", List.of( 0, 1 ) );
++			final var limit = session.enableFilter( "visibilityLimit" ).setParameter( "upper", 8L );
++			try ( var rows = session.createNativeQuery( sql( uniqueKey ), type( uniqueKey ) ).scroll( ScrollMode.FORWARD_ONLY ) ) {
++				for ( int id = 1; id <= 8; id++ ) {
++					if ( id == 3 ) {
++						limit.setParameter( "upper", 2L );
++					}
++					else if ( id == 5 ) {
++						limit.setParameter( "upper", 8L );
++						session.enableFilter( "visibilityTarget" );
++					}
++					else if ( id == 7 ) {
++						session.disableFilter( "visibilityTarget" );
++					}
++					assertThat( rows.next() ).isTrue();
++					assertThat( rows.get().target() != null ).isEqualTo( id <= 2 || id == 6 || id >= 7 );
++				}
++			}
++		} );
++	}
++
++	private static String sql(boolean uniqueKey) {
++		return "select * from " + (uniqueKey ? "visibility_code_owner" : "visibility_id_owner") + " order by id";
++	}
++
++	private static Class<? extends Owner> type(boolean uniqueKey) {
++		return uniqueKey ? CodeOwner.class : IdOwner.class;
++	}
++
++	@Entity(name = "VisibilityTarget")
++	@Table(name = "visibility_target")
++	@FilterDef(name = "visibilitySegments", defaultCondition = "segment in (:segments)", parameters = @ParamDef(name = "segments", type = Integer.class))
++	@FilterDef(name = "visibilityLimit", defaultCondition = "id <= :upper", parameters = @ParamDef(name = "upper", type = Long.class))
++	@FilterDef(name = "visibilityTarget", defaultCondition = "segment = 0", applyToLoadByKey = true)
++	@FilterDef(name = "visibilityStamp", defaultCondition = "stamp = :stamp", parameters = @ParamDef(name = "stamp", type = Date.class))
++	@FilterDef(name = "visibilityResolvedLimit", defaultCondition = "id <= :upper",
++			parameters = @ParamDef(name = "upper", type = Long.class, resolver = UpperBound.class))
++	@FilterDef(name = "visibilityUnused", parameters = @ParamDef(name = "value", type = Integer.class))
++	@Filter(name = "visibilityTarget")
++	static class Target {
++		@Id Long id;
++		@Column(unique = true) String code;
++		int segment;
++		Date stamp;
++	}
++
++	public static class UpperBound implements Supplier<Long> {
++		static final ThreadLocal<Long> value = new ThreadLocal<>();
++		@Override
++		public Long get() {
++			return value.get();
++		}
++	}
++
++	@MappedSuperclass
++	abstract static class Owner {
++		@Id Long id;
++		abstract Target target();
++	}
++
++	@Entity(name = "VisibilityIdOwner")
++	@Table(name = "visibility_id_owner")
++	static class IdOwner extends Owner {
++		@ManyToOne(fetch = FetchType.LAZY)
++		@SQLRestriction("id > 0")
++		@Filter(name = "visibilitySegments")
++		@Filter(name = "visibilityLimit")
++		@Filter(name = "visibilityStamp")
++		@Filter(name = "visibilityResolvedLimit")
++		Target target;
++		@Override
++		Target target() { return target; }
++	}
++
++	@Entity(name = "VisibilityCodeOwner")
++	@Table(name = "visibility_code_owner")
++	static class CodeOwner extends Owner {
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinColumn(name = "target_code", referencedColumnName = "code")
++		@SQLRestriction("id > 0")
++		@Filter(name = "visibilitySegments")
++		@Filter(name = "visibilityLimit")
++		@Filter(name = "visibilityStamp")
++		@Filter(name = "visibilityResolvedLimit")
++		Target target;
++		@Override
++		Target target() { return target; }
++	}
++}
+diff --git a/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java
+new file mode 100644
+index 000000000000..88d378ff2dc5
+--- /dev/null
++++ b/hibernate-core/src/test/java/org/hibernate/orm/test/where/annotations/ToOneAssociationVisibilityTest.java
+@@ -0,0 +1,284 @@
++/*
++ * SPDX-License-Identifier: Apache-2.0
++ * Copyright Red Hat Inc. and Hibernate Authors
++ */
++package org.hibernate.orm.test.where.annotations;
++
++import java.util.Set;
++
++import org.hibernate.Hibernate;
++import org.hibernate.annotations.Cache;
++import org.hibernate.annotations.CacheConcurrencyStrategy;
++import org.hibernate.annotations.Filter;
++import org.hibernate.annotations.FilterDef;
++import org.hibernate.annotations.ParamDef;
++import org.hibernate.annotations.SQLRestriction;
++import org.hibernate.annotations.SqlFragmentAlias;
++import org.hibernate.testing.orm.junit.DomainModel;
++import org.hibernate.testing.orm.junit.ServiceRegistry;
++import org.hibernate.testing.orm.junit.SessionFactory;
++import org.hibernate.testing.orm.junit.SessionFactoryScope;
++import org.hibernate.testing.orm.junit.Setting;
++import org.junit.jupiter.api.AfterEach;
++import org.junit.jupiter.api.BeforeEach;
++import org.junit.jupiter.params.ParameterizedTest;
++import org.junit.jupiter.params.provider.ValueSource;
++
++import jakarta.persistence.Column;
++import jakarta.persistence.Entity;
++import jakarta.persistence.FetchType;
++import jakarta.persistence.Id;
++import jakarta.persistence.JoinColumn;
++import jakarta.persistence.JoinTable;
++import jakarta.persistence.ManyToOne;
++import jakarta.persistence.OneToOne;
++import jakarta.persistence.OneToMany;
++import jakarta.persistence.SecondaryTable;
++import jakarta.persistence.Table;
++
++import static org.assertj.core.api.Assertions.assertThat;
++
++@DomainModel(annotatedClasses = { ToOneAssociationVisibilityTest.Person.class,
++		ToOneAssociationVisibilityTest.Owner.class, ToOneAssociationVisibilityTest.Profile.class,
++		ToOneAssociationVisibilityTest.Account.class })
++@SessionFactory(generateStatistics = true, useCollectingStatementObserver = true)
++@ServiceRegistry(settings = {
++		@Setting(name = "hibernate.cache.use_second_level_cache", value = "true"),
++		@Setting(name = "hibernate.cache.use_query_cache", value = "true")
++})
++class ToOneAssociationVisibilityTest {
++	@BeforeEach
++	void prepare(SessionFactoryScope scope) {
++		scope.inTransaction( session -> {
++			for ( long id = 1; id <= 2; id++ ) {
++				final Person person = new Person();
++				person.id = id;
++				person.active = id == 1 ? 1 : 0;
++				person.category = 1;
++				person.allowed = id == 1 ? 1 : 0;
++				session.persist( person );
++				final Owner owner = new Owner();
++				owner.id = id;
++				owner.sql = person;
++				owner.filtered = person;
++				owner.unrestricted = person;
++				owner.combined = person;
++				owner.details = person;
++				session.persist( owner );
++				final Profile profile = new Profile();
++				profile.id = id;
++				session.persist( profile );
++				final Account account = new Account();
++				account.id = id;
++				account.active = person.active;
++				account.profile = profile;
++				account.linkedProfile = profile;
++				session.persist( account );
++			}
++		} );
++	}
++
++	@AfterEach
++	void cleanup(SessionFactoryScope scope) {
++		scope.getSessionFactory().getSchemaManager().truncate();
++		scope.getSessionFactory().getCache().evictAllRegions();
++	}
++
++	@ParameterizedTest
++	@ValueSource(strings = { "find", "fetch", "native", "cache" })
++	void visibilityBelongsToTheAssociation(String loading, SessionFactoryScope scope) {
++		for ( boolean preload : new boolean[] { false, true } ) {
++			scope.inTransaction( session -> {
++				session.enableFilter( "roleActive" ).setParameter( "active", 1 );
++				session.enableFilter( "roleCategory" ).setParameter( "category", 1 );
++				session.enableFilter( "roleDetails" ).setParameter( "allowed", 1 );
++				final Person person = preload ? session.find( Person.class, 2L ) : null;
++				final Owner owner = switch ( loading ) {
++					case "find" -> session.find( Owner.class, 2L );
++					case "native" -> session.createNativeQuery( "select * from role_owner where id=2", Owner.class )
++							.getSingleResult();
++					default -> session.createQuery( "from Owner o left join fetch o.sql left join fetch o.filtered "
++							+ "left join fetch o.unrestricted left join fetch o.combined left join fetch o.details where o.id=2",
++							Owner.class ).setCacheable( loading.equals( "cache" ) ).getSingleResult();
++				};
++				assertThat( owner.sql ).isNull();
++				assertThat( owner.filtered ).isNull();
++				assertThat( owner.details ).isNull();
++				assertThat( owner.combined ).isNull();
++				assertThat( owner.unrestricted ).isNotNull();
++				assertThat( session.find( Person.class, 2L ) ).isSameAs( owner.unrestricted );
++				if ( preload ) {
++					assertThat( owner.unrestricted ).isSameAs( person );
++				}
++				owner.name = "changed";
++			} );
++		}
++		scope.inTransaction( session -> assertThat( session.createNativeQuery(
++				"select sql_id, filtered_id, details_id, combined_id from role_owner where id=2", Object[].class )
++				.getSingleResult() ).containsExactly( 2L, 2L, 2L, 2L ) );
++	}
++
++	@ParameterizedTest
++	@ValueSource(booleans = { false, true })
++	void enabledFiltersAreCombinedAndParametersAreNotCached(boolean nativeQuery, SessionFactoryScope scope) {
++		for ( int category : new int[] { 1, 2, 1 } ) {
++			scope.inTransaction( session -> {
++				session.enableFilter( "roleActive" ).setParameter( "active", 1 );
++				session.enableFilter( "roleCategory" ).setParameter( "category", category );
++				final Owner owner = nativeQuery
++						? session.createNativeQuery( "select * from role_owner where id=1", Owner.class ).getSingleResult()
++						: session.find( Owner.class, 1L );
++				assertThat( owner.filtered == null ).isEqualTo( category != 1 );
++				assertThat( owner.combined == null ).isEqualTo( category != 1 );
++				assertThat( owner.sql ).isSameAs( session.find( Person.class, 1L ) );
++			} );
++		}
++	}
++
++	@ParameterizedTest
++	@ValueSource(booleans = { false, true })
++	void identifierNavigationHonorsAssociationFilters(boolean enabled, SessionFactoryScope scope) {
++		scope.inTransaction( session -> {
++			if ( enabled ) {
++				session.enableFilter( "roleActive" ).setParameter( "active", 1 );
++			}
++			assertThat( session.createQuery( "select o.id from Owner o where o.filtered.id=2", Long.class ).getResultList() )
++					.containsExactly( enabled ? new Long[0] : new Long[] { 2L } );
++			assertThat( session.createQuery( "select o.id from Owner o where o.sql.id=2", Long.class ).getResultList() ).isEmpty();
++			assertThat( session.createQuery( "select o.id from Owner o where fk(o.sql)=2", Long.class ).getResultList() )
++					.containsExactly( 2L );
++		} );
++	}
++
++	@ParameterizedTest
++	@ValueSource(strings = { "find", "fetch", "native", "circular" })
++	void inverseOneToOneRestrictionsAreIndependent(String loading, SessionFactoryScope scope) {
++		scope.inTransaction( session -> {
++			session.enableFilter( "roleActive" ).setParameter( "active", 1 );
++			final var account = session.find( Account.class, 2L );
++			final Profile loaded = switch ( loading ) {
++				case "find" -> session.find( Profile.class, 2L );
++				case "circular" -> session.createQuery( "from Account a join fetch a.profile where a.id=2", Account.class )
++						.getSingleResult().profile;
++				case "native" -> session.createNativeQuery( "select p.*, j.account_id from role_profile p "
++						+ "left join role_account_profile j on j.profile_id=p.id where p.id=2", Profile.class ).getSingleResult();
++				default -> session.createQuery( "from Profile p left join fetch p.sql left join fetch p.filtered "
++						+ "left join fetch p.unrestricted where p.id=2", Profile.class ).getSingleResult();
++			};
++			final Profile profile = Hibernate.unproxy( loaded, Profile.class );
++			assertThat( profile.sql ).isNull();
++			assertThat( profile.filtered ).isNull();
++			assertThat( profile.unrestricted ).isSameAs( account );
++			assertThat( profile.sqlJoin ).isNull();
++			assertThat( profile.filteredJoin ).isNull();
++			assertThat( profile.unrestrictedJoin ).isSameAs( account );
++		} );
++	}
++
++	@ParameterizedTest
++	@ValueSource(booleans = { false, true })
++	void collectionBackReferencesStillCheckVisibility(boolean fetch, SessionFactoryScope scope) {
++		scope.inTransaction( session -> {
++			session.enableFilter( "roleActive" ).setParameter( "active", 1 );
++			for ( long id = 1; id <= 2; id++ ) {
++				final Person person = fetch
++						? session.createQuery( "from Person p left join fetch p.sqlOwners left join fetch p.filteredOwners where p.id=:id", Person.class )
++								.setParameter( "id", id ).getSingleResult()
++						: session.find( Person.class, id );
++				assertThat( person.sqlOwners ).hasSize( 1 );
++				assertThat( person.filteredOwners ).hasSize( 1 );
++				final Owner owner = person.sqlOwners.iterator().next();
++				assertThat( person.filteredOwners.iterator().next() ).isSameAs( owner );
++				assertThat( owner.sql ).isSameAs( id == 1 ? person : null );
++				assertThat( owner.filtered ).isSameAs( id == 1 ? person : null );
++				owner.name = "changed";
++			}
++		} );
++		scope.inTransaction( session -> assertThat( session.createNativeQuery(
++				"select sql_id, filtered_id from role_owner where id=2", Object[].class ).getSingleResult() )
++				.containsExactly( 2L, 2L ) );
++	}
++
++	@Entity(name = "Person")
++	@Table(name = "role_person")
++	@SecondaryTable(name = "role_person_details")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	@FilterDef(name = "roleActive", defaultCondition = "active = :active", parameters = @ParamDef(name = "active", type = Integer.class))
++	@FilterDef(name = "roleCategory", defaultCondition = "category = :category", parameters = @ParamDef(name = "category", type = Integer.class))
++	@FilterDef(name = "roleDetails", parameters = @ParamDef(name = "allowed", type = Integer.class))
++	static class Person {
++		@Id Long id;
++		int active;
++		int category;
++		@Column(table = "role_person_details")
++		Integer allowed;
++		@OneToMany(mappedBy = "sql")
++		Set<Owner> sqlOwners;
++		@OneToMany(mappedBy = "filtered")
++		Set<Owner> filteredOwners;
++	}
++
++	@Entity(name = "Owner")
++	@Table(name = "role_owner")
++	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
++	static class Owner {
++		@Id Long id;
++		String name;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinColumn(name = "sql_id")
++		@SQLRestriction("active = 1")
++		Person sql;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinColumn(name = "filtered_id")
++		@Filter(name = "roleActive")
++		@Filter(name = "roleCategory")
++		Person filtered;
++		@ManyToOne(fetch = FetchType.LAZY)
++		Person unrestricted;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinColumn(name = "combined_id")
++		@SQLRestriction("active = 1")
++		@Filter(name = "roleCategory")
++		Person combined;
++		@ManyToOne(fetch = FetchType.LAZY)
++		@JoinColumn(name = "details_id")
++		@Filter(name = "roleDetails", condition = "{d}.allowed = :allowed", deduceAliasInjectionPoints = false,
++				aliases = @SqlFragmentAlias(alias = "d", table = "role_person_details"))
++		Person details;
++	}
++
++	@Entity(name = "Profile")
++	@Table(name = "role_profile")
++	static class Profile {
++		@Id Long id;
++		@OneToOne(mappedBy = "profile")
++		@SQLRestriction("active = 1")
++		Account sql;
++		@OneToOne(mappedBy = "profile")
++		@Filter(name = "roleActive")
++		Account filtered;
++		@OneToOne(mappedBy = "profile")
++		Account unrestricted;
++		@OneToOne(mappedBy = "linkedProfile")
++		@SQLRestriction("active = 1")
++		Account sqlJoin;
++		@OneToOne(mappedBy = "linkedProfile")
++		@Filter(name = "roleActive")
++		Account filteredJoin;
++		@OneToOne(mappedBy = "linkedProfile")
++		Account unrestrictedJoin;
++	}
++
++	@Entity(name = "Account")
++	@Table(name = "role_account")
++	static class Account {
++		@Id Long id;
++		int active;
++		@OneToOne(fetch = FetchType.LAZY)
++		Profile profile;
++		@OneToOne(fetch = FetchType.LAZY)
++		@JoinTable(name = "role_account_profile", joinColumns = @JoinColumn(name = "account_id"),
++				inverseJoinColumns = @JoinColumn(name = "profile_id"))
++		Profile linkedProfile;
++	}
++}
+diff --git a/migration-guide.adoc b/migration-guide.adoc
+index 26ee5343ff66..5574155fcadd 100644
+--- a/migration-guide.adoc
++++ b/migration-guide.adoc
+@@ -165,10 +165,42 @@ An explicit inner fetch join still excludes an owner whose target does not satis
+ Use a left fetch join to retain that owner with a null association.
+ 
+ The default value of `applyToLoadByKey` remains `false`.
+-A filter does not begin affecting association fetching merely because it is enabled for entity queries.
++A filter declared on the target entity does not begin affecting loading by key merely because it is enabled for entity queries.
+ `@SQLRestriction` remains unconditional and cannot be disabled.
+ The change does not extend to `@Any` fetching, which may still throw `EntityFilterException`.
+ 
++==== Restrictions declared on a to-one association
++
++`@SQLRestriction` and `@Filter` may now be declared directly on a `@ManyToOne` or `@OneToOne`
++field or getter. This includes associations mapped using `@JoinTable` and inverse one-to-one associations.
++The predicate restricts the target entity through that particular association. It is combined using `AND`
++with the target entity's applicable restrictions and with other enabled filters on the association.
++`@Filter` supports the existing default conditions, parameters, and `@SqlFragmentAlias` declarations.
++`@SQLRestriction` qualifies mapped columns from target superclass and secondary tables.
++Filters referring to other target tables may name those tables explicitly using `@SqlFragmentAlias`.
++
++A filter declared directly on the association applies whenever it is enabled, even when its
++`@FilterDef` uses the default `applyToLoadByKey = false`. That setting continues to govern filters
++declared on the target entity. These association annotations were previously ignored.
++
++Visibility is specific to the association. The same target may be null through a restricted association
++and visible through another association or a direct `find()`. A target already present in the persistence
++context or second-level cache does not bypass the association predicate. The existing rules for
++hidden references, merge, orphan removal, and changing filters also apply to these annotations.
++The predicates constrain loading and do not validate newly assigned targets or reinterpret loaded fields.
++
++For native results, Hibernate checks the association predicate with a separate target-key query before
++resolving the entity. A hidden result does not mark the target entity itself as missing.
++Static visibility queries are reused at mapping scope. With active filters, the result-processing state
++reuses the latest visibility plan for each association and key mode. Changes to enabled filters or to
++parameter values captured by the plan cause it to be rebuilt, including changes made while scrolling.
++Plans and parameter snapshots are retained only for that result set. The visibility query still executes
++for each reference requiring a check.
++No additional kind of per-entity persistence-context state is required.
++
++These annotations restrict target rows. They do not add support for `@SQLJoinTableRestriction`
++or `@FilterJoinTable` on to-one associations.
++
+ ==== Interaction with `@NotFound`
+ 
+ `@NotFound(IGNORE)` continues to represent a missing target as null and to require eager
+@@ -313,6 +345,8 @@ Second-level entity cache reads are bypassed for loads affected by enabled load-
+ entities with SQL restrictions on themselves or on reachable to-one associations, including associations
+ inside embeddables. Entities whose static SQL restrictions prevent cache reads are also excluded from
+ cache puts. This applies to inserts, loads, and updates, and retains cache invalidation on mutation.
++Enabled filters declared directly on a to-one association also prevent cache reads and puts for affected
++owners, regardless of `applyToLoadByKey`. An otherwise unrestricted target remains eligible for caching.
+ Entity state containing filtered null associations is not stored in the second-level cache, and updates
+ invalidate such entries instead of publishing the incomplete state.
+ The built-in tenant filter on the loaded entity does not by itself cause this bypass, since entity cache
+@@ -337,12 +371,14 @@ legacy mutation queue. It applies independently of association filtering.
+ Combining `@DynamicUpdate` and `@SQLUpdate` on the same entity remains unsupported.
+ 
+ [[collection-restriction-inherited-columns]]
+-=== SQL restrictions on inherited collection-element columns
++=== SQL restrictions on collection elements mapped to multiple tables
+ 
+ When rendering a collection-element `@SQLRestriction`, Hibernate now qualifies an unambiguous mapped column
+ using the table which declares it. This fixes restrictions on collections of `JOINED` subclasses which
+ refer to a column stored in a superclass table, as described in
+ https://hibernate.atlassian.net/browse/HHH-12016[HHH-12016].
++The same qualification applies to mapped columns stored in a `@SecondaryTable`, for both one-to-many
++and many-to-many collections.
+ The qualification handles quoted column names and case differences in unquoted names.
+ Unmapped or ambiguous column names retain the existing default qualification.
+ This does not introduce an explicit alias declaration facility for `@SQLRestriction`.
+diff --git a/whats-new.adoc b/whats-new.adoc
+index 109501eeeb89..71c25da938a9 100644
+--- a/whats-new.adoc
++++ b/whats-new.adoc
+@@ -12,6 +12,17 @@ Describes the new features and capabilities added to Hibernate ORM in {version}.
+ 
+ IMPORTANT: If migrating from earlier versions, be sure to also check out the link:{migrationGuide}[Migration Guide] for discussion of impactful changes.
+ 
++[[to-one-association-restrictions]]
++== Restrictions on to-one associations
++
++`@SQLRestriction` and `@Filter` may now be declared directly on `@ManyToOne` and `@OneToOne`
++associations, including associations mapped using join tables.
++Restrictions apply to the target through that association, consistently across eager and lazy fetching.
++An excluded target is represented as null while its stored reference is preserved during unrelated updates.
++Association filters apply whenever enabled, independently of `@FilterDef.applyToLoadByKey`.
++See the link:{userGuideBase}#pc-to-one-restrictions[user guide] for examples and
++the link:{migrationGuide}#filtered-to-one-associations[migration guide] for the update and merge semantics.
++
+ [[schema-if-exists]]
+ == Schema DDL uses `IF EXISTS` / `IF NOT EXISTS`
+ 

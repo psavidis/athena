@@ -1,0 +1,37 @@
+{
+  "territories" : [ {
+    "moduleName" : "vertx-core-java21-tests",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Change control flow of ContextTest#testInterruptThreadOnAwait: loop added",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpDb250ZXh0VGVzdCN0ZXN0SW50ZXJydXB0VGhyZWFkT25Bd2FpdApsb29wIGFkZGVk" ],
+    "testChangeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpDb250ZXh0VGVzdCN0ZXN0SW50ZXJydXB0VGhyZWFkT25Bd2FpdApsb29wIGFkZGVk" ]
+  }, {
+    "moduleName" : "vertx-core",
+    "status" : "TOUCHED",
+    "fileCount" : 3,
+    "statusSummary" : "3 files · 7 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKVGFza1F1ZXVlLkNvbnRpbnVhdGlvblRhc2sjcmVzdW1l", "Q0hBTkdFX0NPTlRST0xfRkxPVwpUYXNrUXVldWUuQ29udGludWF0aW9uVGFzayNzdXNwZW5kCmNvbmRpdGlvbiBjaGFuZ2Vk", "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKV29ya2VyRXhlY3V0b3IuRXhlY3V0aW9uI3Jlc3VtZQ", "QUREX1NZTUJPTApUYXNrUXVldWUuQ29udGludWF0aW9uVGFzayNhd2FpdA", "QUREX1NZTUJPTApUYXNrUXVldWUuQ29udGludWF0aW9uVGFzayNpbnRlcnJ1cHRlZA", "QUREX1NZTUJPTApUYXNrUXVldWVUZXN0I3Rlc3RJbnRlcnJ1cHRTdXNwZW5kZWQ", "UkVOQU1FX0ZJRUxEClRhc2tRdWV1ZS5Db250aW51YXRpb25UYXNrI1NUX0RPTkUKVGFza1F1ZXVlLkNvbnRpbnVhdGlvblRhc2sjU1RfUkVTVU1FRA" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApUYXNrUXVldWVUZXN0I3Rlc3RJbnRlcnJ1cHRTdXNwZW5kZWQ" ]
+  }, {
+    "moduleName" : "vertx-core-logging",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "vertx-core-java21-tests",
+    "to" : "vertx-core"
+  }, {
+    "from" : "vertx-core",
+    "to" : "vertx-core-logging"
+  } ]
+}

@@ -1,0 +1,12 @@
+{
+  "changedFileCount" : 10,
+  "representedFileCount" : 9,
+  "files" : [ {
+    "path" : "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/ServerChannelLoadBalancer.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 3,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  } ]
+}

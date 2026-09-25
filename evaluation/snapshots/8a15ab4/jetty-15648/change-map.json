@@ -1,0 +1,120 @@
+{
+  "prTitle" : "Issue #14403 - Defer FCGI application dispatch until the parser returns",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 3,
+    "UNKNOWN" : 1,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKSHR0cFN0cmVhbU92ZXJGQ0dJI29uSGVhZGVycw",
+    "description" : "Change signature of HttpStreamOverFCGI#onHeaders",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNvbkZpbGxhYmxlCmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of ServerFCGIConnection#onFillable: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApIdHRwU3RyZWFtT3ZlckZDR0kjZXhlY3V0ZQ",
+    "description" : "Remove HttpStreamOverFCGI#execute",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClNlcnZlckZDR0lDb25uZWN0aW9uLlNlcnZlckxpc3RlbmVyI29uSGVhZGVycwpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of ServerFCGIConnection.ServerListener#onHeaders: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX0ZJRUxEClNlcnZlckZDR0lDb25uZWN0aW9uI29uUmVxdWVzdA",
+    "description" : "Add field ServerFCGIConnection#onRequest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "HttpStreamOverFCGI",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKSHR0cFN0cmVhbU92ZXJGQ0dJI29uSGVhZGVycw",
+      "description" : "Change signature of HttpStreamOverFCGI#onHeaders",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApIdHRwU3RyZWFtT3ZlckZDR0kjZXhlY3V0ZQ",
+      "description" : "Remove HttpStreamOverFCGI#execute",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ServerFCGIConnection",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNvbkZpbGxhYmxlCmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of ServerFCGIConnection#onFillable: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX0ZJRUxEClNlcnZlckZDR0lDb25uZWN0aW9uI29uUmVxdWVzdA",
+      "description" : "Add field ServerFCGIConnection#onRequest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ServerFCGIConnection.ServerListener",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClNlcnZlckZDR0lDb25uZWN0aW9uLlNlcnZlckxpc3RlbmVyI29uSGVhZGVycwpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of ServerFCGIConnection.ServerListener#onHeaders: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

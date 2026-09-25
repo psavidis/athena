@@ -1,0 +1,111 @@
+[ {
+  "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXMjdGltZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RedissonKeys#time",
+  "files" : [ "redisson/src/main/java/org/redisson/RedissonKeys.java" ],
+  "symbols" : [ "RedissonKeys#time" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXMjdGltZUFzeW5j",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RedissonKeys#timeAsync",
+  "files" : [ "redisson/src/main/java/org/redisson/RedissonKeys.java" ],
+  "symbols" : [ "RedissonKeys#timeAsync" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSS2V5cyN0aW1l",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RKeys#time",
+  "files" : [ "redisson/src/main/java/org/redisson/api/RKeys.java" ],
+  "symbols" : [ "RKeys#time" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSS2V5c0FzeW5jI3RpbWVBc3luYw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RKeysAsync#timeAsync",
+  "files" : [ "redisson/src/main/java/org/redisson/api/RKeysAsync.java" ],
+  "symbols" : [ "RKeysAsync#timeAsync" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSS2V5c1JlYWN0aXZlI3RpbWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RKeysReactive#time",
+  "files" : [ "redisson/src/main/java/org/redisson/api/RKeysReactive.java" ],
+  "symbols" : [ "RKeysReactive#time" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSS2V5c1J4I3RpbWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RKeysRx#time",
+  "files" : [ "redisson/src/main/java/org/redisson/api/RKeysRx.java" ],
+  "symbols" : [ "RKeysRx#time" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbkJhdGNoVGVzdCN0ZXN0VGltZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RedissonBatchTest#testTime",
+  "files" : [ "redisson/src/test/java/org/redisson/RedissonBatchTest.java" ],
+  "symbols" : [ "RedissonBatchTest#testTime" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbkJhdGNoVGVzdCN0ZXN0VGltZUluQ2x1c3Rlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RedissonBatchTest#testTimeInCluster",
+  "files" : [ "redisson/src/test/java/org/redisson/RedissonBatchTest.java" ],
+  "symbols" : [ "RedissonBatchTest#testTimeInCluster" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXNSZWFjdGl2ZVRlc3QjdGVzdFRpbWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RedissonKeysReactiveTest#testTime",
+  "files" : [ "redisson/src/test/java/org/redisson/RedissonKeysReactiveTest.java" ],
+  "symbols" : [ "RedissonKeysReactiveTest#testTime" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXNUZXN0I3Rlc3RUaW1l",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RedissonKeysTest#testTime",
+  "files" : [ "redisson/src/test/java/org/redisson/RedissonKeysTest.java" ],
+  "symbols" : [ "RedissonKeysTest#testTime" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXNSeFRlc3QjdGVzdFRpbWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RedissonKeysRxTest#testTime",
+  "files" : [ "redisson/src/test/java/org/redisson/rx/RedissonKeysRxTest.java" ],
+  "symbols" : [ "RedissonKeysRxTest#testTime" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

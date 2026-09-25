@@ -1,0 +1,251 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpHcm91cE1ldGFkYXRhTWFuYWdlciNnZXRPck1heWJlU3Vic2NyaWJlU3RhdGljQ29uc3VtZXJHcm91cE1lbWJlcgpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of GroupMetadataManager#getOrMaybeSubscribeStaticConsumerGroupMember: branch added",
+  "files" : [ "group-coordinator/src/main/java/org/apache/kafka/coordinator/group/GroupMetadataManager.java" ],
+  "symbols" : [ "GroupMetadataManager#getOrMaybeSubscribeStaticConsumerGroupMember", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpHcm91cE1ldGFkYXRhTWFuYWdlciNnZXRPck1heWJlQ3JlYXRlU3RhdGljU3RyZWFtc0dyb3VwTWVtYmVyCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of GroupMetadataManager#getOrMaybeCreateStaticStreamsGroupMember: branch added",
+  "files" : [ "group-coordinator/src/main/java/org/apache/kafka/coordinator/group/GroupMetadataManager.java" ],
+  "symbols" : [ "GroupMetadataManager#getOrMaybeCreateStaticStreamsGroupMember", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdmVyaWZ5U3RhdGljTWVtYmVyTGVhdmVBbmRSZWpvaW5Ob0dyb3VwQnVtcApicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of StreamsGroupStaticMemberGroupMetadataManagerTest#verifyStaticMemberLeaveAndRejoinNoGroupBump: branch added",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/StreamsGroupStaticMemberGroupMetadataManagerTest.java" ],
+  "symbols" : [ "StreamsGroupStaticMemberGroupMetadataManagerTest#verifyStaticMemberLeaveAndRejoinNoGroupBump", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQW5kRGlmZmVyZW50SW5zdGFuY2VJZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove GroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdAndDifferentInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/GroupMetadataManagerTest.java" ],
+  "symbols" : [ "GroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdAndDifferentInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQW5kRGlmZmVyZW50SW5zdGFuY2VJZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdAndDifferentInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/StreamsGroupStaticMemberGroupMetadataManagerTest.java" ],
+  "symbols" : [ "StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdAndDifferentInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlciN0aHJvd0lmTWVtYmVySWRIYXNEaWZmZXJlbnRJbnN0YW5jZUlk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add GroupMetadataManager#throwIfMemberIdHasDifferentInstanceId",
+  "files" : [ "group-coordinator/src/main/java/org/apache/kafka/coordinator/group/GroupMetadataManager.java" ],
+  "symbols" : [ "GroupMetadataManager#throwIfMemberIdHasDifferentInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhEaWZmZXJlbnRJbnN0YW5jZUlk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add GroupMetadataManagerTest#testStaticMemberCannotRejoinWithDifferentInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/GroupMetadataManagerTest.java" ],
+  "symbols" : [ "GroupMetadataManagerTest#testStaticMemberCannotRejoinWithDifferentInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoSW5zdGFuY2VJZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add GroupMetadataManagerTest#testDynamicMemberCannotRejoinWithInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/GroupMetadataManagerTest.java" ],
+  "symbols" : [ "GroupMetadataManagerTest#testDynamicMemberCannotRejoinWithInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhSZWxlYXNlZEluc3RhbmNlSWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add GroupMetadataManagerTest#testStaticMemberCannotRejoinWithReleasedInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/GroupMetadataManagerTest.java" ],
+  "symbols" : [ "GroupMetadataManagerTest#testStaticMemberCannotRejoinWithReleasedInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhVbnJlbGVhc2VkSW5zdGFuY2VJZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add GroupMetadataManagerTest#testStaticMemberCannotRejoinWithUnreleasedInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/GroupMetadataManagerTest.java" ],
+  "symbols" : [ "GroupMetadataManagerTest#testStaticMemberCannotRejoinWithUnreleasedInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoUmVsZWFzZWRJbnN0YW5jZUlk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add GroupMetadataManagerTest#testDynamicMemberCannotRejoinWithReleasedInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/GroupMetadataManagerTest.java" ],
+  "symbols" : [ "GroupMetadataManagerTest#testDynamicMemberCannotRejoinWithReleasedInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoVW5yZWxlYXNlZEluc3RhbmNlSWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add GroupMetadataManagerTest#testDynamicMemberCannotRejoinWithUnreleasedInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/GroupMetadataManagerTest.java" ],
+  "symbols" : [ "GroupMetadataManagerTest#testDynamicMemberCannotRejoinWithUnreleasedInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQWZ0ZXJMZWF2aW5n",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add GroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdAfterLeaving",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/GroupMetadataManagerTest.java" ],
+  "symbols" : [ "GroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdAfterLeaving" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkV2hpbGVBY3RpdmU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add GroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdWhileActive",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/GroupMetadataManagerTest.java" ],
+  "symbols" : [ "GroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdWhileActive" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFJlamVjdGVkSm9pbkRvZXNOb3RSZWxhYmVsQ2FjaGVkUmVmaW5lZEFzc2lnbm1lbnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testRejectedJoinDoesNotRelabelCachedRefinedAssignment",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/StreamsGroupStaticMemberGroupMetadataManagerTest.java" ],
+  "symbols" : [ "StreamsGroupStaticMemberGroupMetadataManagerTest#testRejectedJoinDoesNotRelabelCachedRefinedAssignment" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdEZlbmNlZEhlYXJ0YmVhdERvZXNOb3RSZWxhYmVsQ2FjaGVkUmVmaW5lZEFzc2lnbm1lbnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testFencedHeartbeatDoesNotRelabelCachedRefinedAssignment",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/StreamsGroupStaticMemberGroupMetadataManagerTest.java" ],
+  "symbols" : [ "StreamsGroupStaticMemberGroupMetadataManagerTest#testFencedHeartbeatDoesNotRelabelCachedRefinedAssignment" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhEaWZmZXJlbnRJbnN0YW5jZUlk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberCannotRejoinWithDifferentInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/StreamsGroupStaticMemberGroupMetadataManagerTest.java" ],
+  "symbols" : [ "StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberCannotRejoinWithDifferentInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoSW5zdGFuY2VJZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testDynamicMemberCannotRejoinWithInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/StreamsGroupStaticMemberGroupMetadataManagerTest.java" ],
+  "symbols" : [ "StreamsGroupStaticMemberGroupMetadataManagerTest#testDynamicMemberCannotRejoinWithInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhSZWxlYXNlZEluc3RhbmNlSWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberCannotRejoinWithReleasedInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/StreamsGroupStaticMemberGroupMetadataManagerTest.java" ],
+  "symbols" : [ "StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberCannotRejoinWithReleasedInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhVbnJlbGVhc2VkSW5zdGFuY2VJZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberCannotRejoinWithUnreleasedInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/StreamsGroupStaticMemberGroupMetadataManagerTest.java" ],
+  "symbols" : [ "StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberCannotRejoinWithUnreleasedInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoUmVsZWFzZWRJbnN0YW5jZUlk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testDynamicMemberCannotRejoinWithReleasedInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/StreamsGroupStaticMemberGroupMetadataManagerTest.java" ],
+  "symbols" : [ "StreamsGroupStaticMemberGroupMetadataManagerTest#testDynamicMemberCannotRejoinWithReleasedInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoVW5yZWxlYXNlZEluc3RhbmNlSWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testDynamicMemberCannotRejoinWithUnreleasedInstanceId",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/StreamsGroupStaticMemberGroupMetadataManagerTest.java" ],
+  "symbols" : [ "StreamsGroupStaticMemberGroupMetadataManagerTest#testDynamicMemberCannotRejoinWithUnreleasedInstanceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkV2hpbGVBY3RpdmU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdWhileActive",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/StreamsGroupStaticMemberGroupMetadataManagerTest.java" ],
+  "symbols" : [ "StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdWhileActive" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1tYXliZU9sZFN0YXRpY01lbWJlci5tZW1iZXJJZCwgLWdyb3VwLnJlbGFiZWxSZWZpbmVkQXNzaWdubWVudApHcm91cE1ldGFkYXRhTWFuYWdlciNzdHJlYW1zR3JvdXBIZWFydGJlYXQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of GroupMetadataManager#streamsGroupHeartbeat: -maybeOldStaticMember.memberId, -group.relabelRefinedAssignment",
+  "files" : [ "group-coordinator/src/main/java/org/apache/kafka/coordinator/group/GroupMetadataManager.java" ],
+  "symbols" : [ "GroupMetadataManager#streamsGroupHeartbeat", "-maybeOldStaticMember.memberId, -group.relabelRefinedAssignment" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRFcXVhbHMsICtjb25zdW1lckdyb3VwLCArZ2V0T3JNYXliZUNyZWF0ZU1lbWJlciwgLXNldEluc3RhbmNlSWQsIC1zZXRTdGF0ZSDigKZhbmQgMjUgbW9yZQpHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdENvbnN1bWVyR3JvdXBIZWFydGJlYXRGcm9tRXhpc3RpbmdDbGFzc2ljU3RhdGljTWVtYmVy",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of GroupMetadataManagerTest#testConsumerGroupHeartbeatFromExistingClassicStaticMember: +assertEquals, +consumerGroup, +getOrMaybeCreateMember, -setInstanceId, -setState …and 25 more",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/GroupMetadataManagerTest.java" ],
+  "symbols" : [ "GroupMetadataManagerTest#testConsumerGroupHeartbeatFromExistingClassicStaticMember", "+assertEquals, +consumerGroup, +getOrMaybeCreateMember, -setInstanceId, -setState …and 25 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

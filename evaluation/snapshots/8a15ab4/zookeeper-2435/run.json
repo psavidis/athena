@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/apache/zookeeper.git",
+  "base" : "7af463e0fd5097930f52864911b224d8b9e6a485",
+  "head" : "e5e49fe4f5eb946a121f7b66ecf48a275470de8d",
+  "changeCount" : 72,
+  "moduleCount" : 5,
+  "checkoutAndAnalysisSeconds" : 5.74
+}

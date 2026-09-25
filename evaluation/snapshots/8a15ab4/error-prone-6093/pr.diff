@@ -1,0 +1,123 @@
+diff --git a/core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java b/core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java
+index 0caece85abc..c3cf738ffd5 100644
+--- a/core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java
++++ b/core/src/main/java/com/google/errorprone/bugpatterns/ImpossibleNullComparison.java
+@@ -166,6 +166,7 @@ private static boolean isNull(ExpressionTree tree) {
+   private final boolean checkPrimitives;
+   private final boolean checkValueOf;
+   private final boolean checkOrBuilder;
++  private final boolean checkClassForName;
+ 
+   @Inject
+   ImpossibleNullComparison(ErrorProneFlags flags) {
+@@ -174,6 +175,8 @@ private static boolean isNull(ExpressionTree tree) {
+     this.checkPrimitives = flags.getBoolean("ImmutableNullComparison:CheckPrimitives").orElse(true);
+     this.checkValueOf = flags.getBoolean("ImpossibleNullComparison:CheckValueOf").orElse(true);
+     this.checkOrBuilder = flags.getBoolean("ImpossibleNullComparison:CheckOrBuilder").orElse(true);
++    this.checkClassForName =
++        flags.getBoolean("ImpossibleNullComparison:CheckClassForName").orElse(true);
+   }
+ 
+   @Override
+@@ -317,6 +320,7 @@ private Optional<Fixer> getFixer(ExpressionTree tree, VisitorState state) {
+       return stream(GetterTypes.values())
+           .filter(gt -> !gt.equals(GetterTypes.PRIMITIVE) || checkPrimitives)
+           .filter(gt -> !gt.equals(GetterTypes.VALUE_OF) || checkValueOf)
++          .filter(gt -> !gt.equals(GetterTypes.CLASS_FOR_NAME) || checkClassForName)
+           .map(type -> type.match(resolvedTree, state, checkOrBuilder))
+           .filter(Objects::nonNull)
+           .findFirst();
+@@ -371,6 +375,17 @@ private interface Fixer {
+           .named("valueOf")
+           .withParameters("java.lang.String");
+ 
++  private static final Matcher<ExpressionTree> CLASS_FOR_NAME_MATCHER =
++      anyOf(
++          staticMethod()
++              .onClass("java.lang.Class")
++              .named("forName")
++              .withParameters("java.lang.String"),
++          staticMethod()
++              .onClass("java.lang.Class")
++              .named("forName")
++              .withParameters("java.lang.String", "boolean", "java.lang.ClassLoader"));
++
+   private enum GetterTypes {
+     OPTIONAL_GET {
+       @Override
+@@ -458,6 +473,15 @@ private enum GetterTypes {
+         return GetterTypes::emptyFix;
+       }
+     },
++    CLASS_FOR_NAME {
++      @Override
++      @Nullable Fixer match(ExpressionTree tree, VisitorState state, boolean checkOrBuilder) {
++        if (!CLASS_FOR_NAME_MATCHER.matches(tree, state)) {
++          return null;
++        }
++        return GetterTypes::emptyFix;
++      }
++    },
+     /** {@code proto.getFoo()} */
+     SCALAR {
+       @Override
+diff --git a/core/src/test/java/com/google/errorprone/bugpatterns/ImpossibleNullComparisonTest.java b/core/src/test/java/com/google/errorprone/bugpatterns/ImpossibleNullComparisonTest.java
+index 80ed912d692..10e88b8a8e1 100644
+--- a/core/src/test/java/com/google/errorprone/bugpatterns/ImpossibleNullComparisonTest.java
++++ b/core/src/test/java/com/google/errorprone/bugpatterns/ImpossibleNullComparisonTest.java
+@@ -689,4 +689,55 @@ public void test(TestProtoMessageOrBuilder orBld) {
+             """)
+         .doTest();
+   }
++
++  @Test
++  public void classForName() {
++    compilationHelper
++        .addSourceLines(
++            "Test.java",
++            """
++            import static com.google.common.base.Preconditions.checkNotNull;
++            import static com.google.common.truth.Truth.assertThat;
++            import static org.junit.Assert.assertNotNull;
++
++            class Test {
++              void o(String s, ClassLoader loader, Module m) throws Exception {
++                // BUG: Diagnostic contains:
++                if (Class.forName(s) == null) {}
++                // BUG: Diagnostic contains:
++                if (Class.forName(s) != null) {}
++                // BUG: Diagnostic contains:
++                if (null == Class.forName(s)) {}
++                // BUG: Diagnostic contains:
++                if (null != Class.forName(s)) {}
++                // BUG: Diagnostic contains:
++                if (Class.forName(s, true, loader) == null) {}
++                // BUG: Diagnostic contains:
++                assertThat(Class.forName(s)).isNotNull();
++                // BUG: Diagnostic contains:
++                assertNotNull(Class.forName(s));
++                // BUG: Diagnostic contains:
++                checkNotNull(Class.forName(s));
++                if (Class.forName(m, s) == null) {}
++              }
++            }
++            """)
++        .doTest();
++  }
++
++  @Test
++  public void classForName_flagDisabled() {
++    compilationHelper
++        .setArgs("-XepOpt:ImpossibleNullComparison:CheckClassForName=false")
++        .addSourceLines(
++            "Test.java",
++            """
++            class Test {
++              void o(String s) throws Exception {
++                if (Class.forName(s) == null) {}
++              }
++            }
++            """)
++        .doTest();
++  }
+ }

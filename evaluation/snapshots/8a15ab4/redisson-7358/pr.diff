@@ -1,0 +1,310 @@
+diff --git a/redisson/src/main/java/org/redisson/RedissonKeys.java b/redisson/src/main/java/org/redisson/RedissonKeys.java
+index 833c9231cd7..402a10c4549 100644
+--- a/redisson/src/main/java/org/redisson/RedissonKeys.java
++++ b/redisson/src/main/java/org/redisson/RedissonKeys.java
+@@ -30,11 +30,13 @@
+ import org.redisson.client.RedisException;
+ import org.redisson.client.codec.ByteArrayCodec;
+ import org.redisson.client.codec.Codec;
++import org.redisson.client.codec.LongCodec;
+ import org.redisson.client.codec.StringCodec;
+ import org.redisson.client.handler.State;
+ import org.redisson.client.protocol.RedisCommand;
+ import org.redisson.client.protocol.RedisCommands;
+ import org.redisson.client.protocol.RedisStrictCommand;
++import org.redisson.client.protocol.Time;
+ import org.redisson.client.protocol.decoder.ListMultiDecoder2;
+ import org.redisson.client.protocol.decoder.ListScanResult;
+ import org.redisson.client.protocol.decoder.ListScanResultReplayDecoder;
+@@ -445,6 +447,16 @@ public RFuture<Long> countAsync() {
+         return new CompletableFutureWrapper<>(s);
+     }
+ 
++    @Override
++    public Time time() {
++        return commandExecutor.get(timeAsync());
++    }
++
++    @Override
++    public RFuture<Time> timeAsync() {
++        return commandExecutor.readAsync((String) null, LongCodec.INSTANCE, RedisCommands.TIME);
++    }
++
+     @Override
+     public void flushdbParallel() {
+         commandExecutor.get(flushdbParallelAsync());
+diff --git a/redisson/src/main/java/org/redisson/api/RKeys.java b/redisson/src/main/java/org/redisson/api/RKeys.java
+index 910380122d3..ab66a988de1 100644
+--- a/redisson/src/main/java/org/redisson/api/RKeys.java
++++ b/redisson/src/main/java/org/redisson/api/RKeys.java
+@@ -19,6 +19,7 @@
+ import java.time.Instant;
+ import org.redisson.api.options.KeysScanOptions;
+ import org.redisson.api.keys.MigrateArgs;
++import org.redisson.client.protocol.Time;
+ 
+ import java.util.concurrent.TimeUnit;
+ import java.util.stream.Stream;
+@@ -362,6 +363,16 @@ public interface RKeys extends RKeysAsync {
+      */
+     long count();
+ 
++    /**
++     * Returns the current Redis server time.
++     * <p>
++     * In cluster mode, the request is routed to the shard owning slot 0.
++     * This is not a cluster-wide timestamp.
++     *
++     * @return server time in seconds and microseconds
++     */
++    Time time();
++
+     /**
+      * Swap two databases.
+      */
+diff --git a/redisson/src/main/java/org/redisson/api/RKeysAsync.java b/redisson/src/main/java/org/redisson/api/RKeysAsync.java
+index a619ebf1b01..1a59c1d681c 100644
+--- a/redisson/src/main/java/org/redisson/api/RKeysAsync.java
++++ b/redisson/src/main/java/org/redisson/api/RKeysAsync.java
+@@ -19,6 +19,7 @@
+ import java.time.Instant;
+ import org.redisson.api.options.KeysScanOptions;
+ import org.redisson.api.keys.MigrateArgs;
++import org.redisson.client.protocol.Time;
+ 
+ import java.util.concurrent.TimeUnit;
+ 
+@@ -272,6 +273,16 @@ public interface RKeysAsync {
+      */
+     RFuture<Long> countAsync();
+ 
++    /**
++     * Returns the current Redis server time in async mode.
++     * <p>
++     * In cluster mode, the request is routed to the shard owning slot 0.
++     * This is not a cluster-wide timestamp.
++     *
++     * @return server time in seconds and microseconds
++     */
++    RFuture<Time> timeAsync();
++
+     /**
+      * Swap two databases.
+      * <p>
+diff --git a/redisson/src/main/java/org/redisson/api/RKeysReactive.java b/redisson/src/main/java/org/redisson/api/RKeysReactive.java
+index ea9fb02750b..a88428f5277 100644
+--- a/redisson/src/main/java/org/redisson/api/RKeysReactive.java
++++ b/redisson/src/main/java/org/redisson/api/RKeysReactive.java
+@@ -19,6 +19,7 @@
+ import java.time.Instant;
+ import org.redisson.api.options.KeysScanOptions;
+ import org.redisson.api.keys.MigrateArgs;
++import org.redisson.client.protocol.Time;
+ import reactor.core.publisher.Flux;
+ import reactor.core.publisher.Mono;
+ 
+@@ -299,6 +300,16 @@ public interface RKeysReactive {
+      * @return count of keys
+      */
+     Mono<Long> count();
++
++    /**
++     * Returns the current Redis server time.
++     * <p>
++     * In cluster mode, the request is routed to the shard owning slot 0.
++     * This is not a cluster-wide timestamp.
++     *
++     * @return server time in seconds and microseconds
++     */
++    Mono<Time> time();
+     
+     /**
+      * Delete all the keys of the currently selected database
+diff --git a/redisson/src/main/java/org/redisson/api/RKeysRx.java b/redisson/src/main/java/org/redisson/api/RKeysRx.java
+index 366e9b2d5f8..60159dad5a6 100644
+--- a/redisson/src/main/java/org/redisson/api/RKeysRx.java
++++ b/redisson/src/main/java/org/redisson/api/RKeysRx.java
+@@ -23,6 +23,7 @@
+ import java.time.Instant;
+ import org.redisson.api.options.KeysScanOptions;
+ import org.redisson.api.keys.MigrateArgs;
++import org.redisson.client.protocol.Time;
+ 
+ import java.util.concurrent.TimeUnit;
+ 
+@@ -299,6 +300,16 @@ public interface RKeysRx {
+      * @return count of keys
+      */
+     Single<Long> count();
++
++    /**
++     * Returns the current Redis server time.
++     * <p>
++     * In cluster mode, the request is routed to the shard owning slot 0.
++     * This is not a cluster-wide timestamp.
++     *
++     * @return server time in seconds and microseconds
++     */
++    Single<Time> time();
+     
+     /**
+      * Delete all the keys of the currently selected database
+diff --git a/redisson/src/test/java/org/redisson/RedissonBatchTest.java b/redisson/src/test/java/org/redisson/RedissonBatchTest.java
+index 5d58508aeb7..0e6b0006d91 100644
+--- a/redisson/src/test/java/org/redisson/RedissonBatchTest.java
++++ b/redisson/src/test/java/org/redisson/RedissonBatchTest.java
+@@ -6,12 +6,15 @@
+ import org.junit.jupiter.api.Test;
+ import org.junit.jupiter.api.Timeout;
+ import org.junit.jupiter.params.ParameterizedTest;
++import org.junit.jupiter.params.provider.EnumSource;
+ import org.junit.jupiter.params.provider.MethodSource;
+ import org.redisson.api.*;
+ import org.redisson.api.BatchOptions.ExecutionMode;
++import org.redisson.api.redisnode.RedisNodes;
+ import org.redisson.client.*;
+ import org.redisson.client.codec.StringCodec;
+ import org.redisson.client.protocol.RedisCommands;
++import org.redisson.client.protocol.Time;
+ import org.redisson.cluster.ClusterNodeInfo;
+ import org.redisson.codec.JsonJacksonCodec;
+ import org.redisson.command.BatchPromise;
+@@ -33,6 +36,54 @@
+ 
+ public class RedissonBatchTest extends RedisDockerTest {
+ 
++    @ParameterizedTest
++    @EnumSource(ExecutionMode.class)
++    public void testTime(ExecutionMode executionMode) {
++        redisson.getAtomicLong("counter").set(42);
++        redisson.getBucket("name").set("value");
++        Time before = redisson.getRedisNodes(RedisNodes.SINGLE).getInstance().time();
++
++        RBatch batch = redisson.createBatch(BatchOptions.defaults().executionMode(executionMode));
++        RFuture<Long> counter = batch.getAtomicLong("counter").getAsync();
++        RFuture<Time> time = batch.getKeys().timeAsync();
++        RFuture<String> value = batch.<String>getBucket("name").getAsync();
++
++        assertThat(time.toCompletableFuture()).isNotDone();
++        BatchResult<?> result = batch.execute();
++        Time actual = time.toCompletableFuture().join();
++        Time after = redisson.getRedisNodes(RedisNodes.SINGLE).getInstance().time();
++
++        assertThat(actual.getMicroseconds()).isBetween(0, 999999);
++        assertThat(TimeUnit.SECONDS.toMicros(actual.getSeconds()) + actual.getMicroseconds())
++                .isBetween(TimeUnit.SECONDS.toMicros(before.getSeconds()) + before.getMicroseconds(),
++                        TimeUnit.SECONDS.toMicros(after.getSeconds()) + after.getMicroseconds());
++        assertThat(counter.toCompletableFuture().join()).isEqualTo(42);
++        assertThat(value.toCompletableFuture().join()).isEqualTo("value");
++        assertThat(result.getResponses().toArray()).containsExactly(42L, actual, "value");
++    }
++
++    @ParameterizedTest
++    @EnumSource(ExecutionMode.class)
++    public void testTimeInCluster(ExecutionMode executionMode) {
++        testInCluster(client -> {
++            RBatch batch = client.createBatch(BatchOptions.defaults().executionMode(executionMode));
++            RFuture<Time> first = batch.getKeys().timeAsync();
++            RFuture<Time> second = batch.getKeys().timeAsync();
++
++            assertThat(first.toCompletableFuture()).isNotDone();
++            assertThat(second.toCompletableFuture()).isNotDone();
++            BatchResult<?> result = batch.execute();
++
++            Time firstTime = first.toCompletableFuture().join();
++            Time secondTime = second.toCompletableFuture().join();
++            assertThat(firstTime.getSeconds()).isPositive();
++            assertThat(firstTime.getMicroseconds()).isBetween(0, 999999);
++            assertThat(secondTime.getSeconds()).isPositive();
++            assertThat(secondTime.getMicroseconds()).isBetween(0, 999999);
++            assertThat(result.getResponses().toArray()).containsExactly(firstTime, secondTime);
++        });
++    }
++
+     public static Iterable<Object[]> data() {
+         return Arrays.asList(new Object[][] {
+             {BatchOptions.defaults().executionMode(ExecutionMode.IN_MEMORY)},
+diff --git a/redisson/src/test/java/org/redisson/RedissonKeysReactiveTest.java b/redisson/src/test/java/org/redisson/RedissonKeysReactiveTest.java
+index aecaacf69a1..83bdfc63849 100644
+--- a/redisson/src/test/java/org/redisson/RedissonKeysReactiveTest.java
++++ b/redisson/src/test/java/org/redisson/RedissonKeysReactiveTest.java
+@@ -10,6 +10,7 @@
+ import org.redisson.api.RBucketReactive;
+ import org.redisson.api.RKeysReactive;
+ import org.redisson.api.RMapReactive;
++import org.redisson.client.protocol.Time;
+ import reactor.core.publisher.Flux;
+ import reactor.core.publisher.Mono;
+ 
+@@ -21,6 +22,14 @@
+ 
+ public class RedissonKeysReactiveTest extends BaseReactiveTest {
+ 
++    @Test
++    public void testTime() {
++        Time time = sync(redisson.getKeys().time());
++
++        assertThat(time.getSeconds()).isPositive();
++        assertThat(time.getMicroseconds()).isBetween(0, 999999);
++    }
++
+     @Test
+     public void testKeysByPatternIterator() {
+         for (int i = 0; i < 100; i++) {
+diff --git a/redisson/src/test/java/org/redisson/RedissonKeysTest.java b/redisson/src/test/java/org/redisson/RedissonKeysTest.java
+index 454757757fa..df73360f5bf 100644
+--- a/redisson/src/test/java/org/redisson/RedissonKeysTest.java
++++ b/redisson/src/test/java/org/redisson/RedissonKeysTest.java
+@@ -16,6 +16,7 @@
+ import org.redisson.api.stream.StreamCreateGroupArgs;
+ import org.redisson.config.Config;
+ import org.redisson.config.Protocol;
++import org.redisson.client.protocol.Time;
+ import org.testcontainers.containers.GenericContainer;
+ 
+ import java.time.Duration;
+@@ -29,6 +30,17 @@
+ 
+ public class RedissonKeysTest extends RedisDockerTest {
+ 
++    @Test
++    public void testTime() {
++        Time time = redisson.getKeys().time();
++        Time asyncTime = redisson.getKeys().timeAsync().toCompletableFuture().join();
++
++        assertThat(time.getSeconds()).isPositive();
++        assertThat(time.getMicroseconds()).isBetween(0, 999999);
++        assertThat(asyncTime.getSeconds()).isPositive();
++        assertThat(asyncTime.getMicroseconds()).isBetween(0, 999999);
++    }
++
+     @Test
+     public void testNewObjectListener() {
+         testWithParams(redisson -> {
+diff --git a/redisson/src/test/java/org/redisson/rx/RedissonKeysRxTest.java b/redisson/src/test/java/org/redisson/rx/RedissonKeysRxTest.java
+index 00c1f81f6a8..79831b840ec 100644
+--- a/redisson/src/test/java/org/redisson/rx/RedissonKeysRxTest.java
++++ b/redisson/src/test/java/org/redisson/rx/RedissonKeysRxTest.java
+@@ -8,6 +8,7 @@
+ import org.redisson.api.RMapRx;
+ import org.redisson.api.options.KeysScanOptions;
+ import org.redisson.client.codec.StringCodec;
++import org.redisson.client.protocol.Time;
+ 
+ import java.time.Duration;
+ import java.time.Instant;
+@@ -20,6 +21,14 @@
+ 
+ public class RedissonKeysRxTest extends BaseRxTest {
+ 
++    @Test
++    public void testTime() {
++        Time time = sync(redisson.getKeys().time());
++
++        assertThat(time.getSeconds()).isPositive();
++        assertThat(time.getMicroseconds()).isBetween(0, 999999);
++    }
++
+     @Test
+     public void testGetKeys() {
+         RKeysRx keys = redisson.getKeys();

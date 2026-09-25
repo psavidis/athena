@@ -1,0 +1,49 @@
+{
+  "territories" : [ {
+    "moduleName" : "core",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 6 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX0NMQVNTClF1ZXJ5UGFyYW1ldGVyTWFwVGVzdA", "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjYmFzaWM", "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjcGFyYW1ldGVyV2l0aG91dFZhbHVl", "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjdmFsdWVDb250YWluaW5nRXF1YWxzU2lnbg", "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjZW1wdHlQYXJhbWV0ZXJz", "TU9ESUZZX01FVEhPRF9CT0RZCitwYXJhbS5pc0VtcHR5ClF1ZXJ5UGFyYW1ldGVyTWFwIzxpbml0Pg" ],
+    "testChangeKeys" : [ "QUREX0NMQVNTClF1ZXJ5UGFyYW1ldGVyTWFwVGVzdA", "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjYmFzaWM", "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjcGFyYW1ldGVyV2l0aG91dFZhbHVl", "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjdmFsdWVDb250YWluaW5nRXF1YWxzU2lnbg", "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjZW1wdHlQYXJhbWV0ZXJz" ]
+  }, {
+    "moduleName" : "bom",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "cli",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spi",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "core",
+    "to" : "bom"
+  }, {
+    "from" : "core",
+    "to" : "cli"
+  }, {
+    "from" : "core",
+    "to" : "spi"
+  } ]
+}

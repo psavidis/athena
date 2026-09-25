@@ -1,0 +1,101 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTCkF6dXJpdGVDb250YWluZXJDb21tYW5kVGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class AzuriteContainerCommandTest",
+  "files" : [ "modules/azure/src/test/java/org/testcontainers/azure/AzuriteContainerCommandTest.java" ],
+  "symbols" : [ "AzuriteContainerCommandTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBenVyaXRlQ29udGFpbmVyI2dldENvbW1hbmRMaW5lCmxvb3AgYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of AzuriteContainer#getCommandLine: loop added",
+  "files" : [ "modules/azure/src/main/java/org/testcontainers/azure/AzuriteContainer.java" ],
+  "symbols" : [ "AzuriteContainer#getCommandLine", "loop added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyI3dpdGhDb21tYW5kT3B0aW9ucw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AzuriteContainer#withCommandOptions",
+  "files" : [ "modules/azure/src/main/java/org/testcontainers/azure/AzuriteContainer.java" ],
+  "symbols" : [ "AzuriteContainer#withCommandOptions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29tbWFuZExpbmVPbWl0c0V4dHJhT3B0aW9uc0J5RGVmYXVsdA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AzuriteContainerCommandTest#commandLineOmitsExtraOptionsByDefault",
+  "files" : [ "modules/azure/src/test/java/org/testcontainers/azure/AzuriteContainerCommandTest.java" ],
+  "symbols" : [ "AzuriteContainerCommandTest#commandLineOmitsExtraOptionsByDefault" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29tbWFuZExpbmVJbmNsdWRlc0V4dHJhT3B0aW9ucw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AzuriteContainerCommandTest#commandLineIncludesExtraOptions",
+  "files" : [ "modules/azure/src/test/java/org/testcontainers/azure/AzuriteContainerCommandTest.java" ],
+  "symbols" : [ "AzuriteContainerCommandTest#commandLineIncludesExtraOptions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29tbWFuZExpbmVBcHBlbmRzTXVsdGlwbGVPcHRpb25z",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AzuriteContainerCommandTest#commandLineAppendsMultipleOptions",
+  "files" : [ "modules/azure/src/test/java/org/testcontainers/azure/AzuriteContainerCommandTest.java" ],
+  "symbols" : [ "AzuriteContainerCommandTest#commandLineAppendsMultipleOptions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29tbWFuZExpbmVLZWVwc0V4dHJhT3B0aW9uc1RvZ2V0aGVyV2l0aFNzbA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AzuriteContainerCommandTest#commandLineKeepsExtraOptionsTogetherWithSsl",
+  "files" : [ "modules/azure/src/test/java/org/testcontainers/azure/AzuriteContainerCommandTest.java" ],
+  "symbols" : [ "AzuriteContainerCommandTest#commandLineKeepsExtraOptionsTogetherWithSsl" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29uZmlndXJlQXBwbGllc0NvbW1hbmRPcHRpb25zRXZlbklmV2l0aENvbW1hbmRXYXNVc2Vk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AzuriteContainerCommandTest#configureAppliesCommandOptionsEvenIfWithCommandWasUsed",
+  "files" : [ "modules/azure/src/test/java/org/testcontainers/azure/AzuriteContainerCommandTest.java" ],
+  "symbols" : [ "AzuriteContainerCommandTest#configureAppliesCommandOptionsEvenIfWithCommandWasUsed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkF6dXJpdGVDb250YWluZXIjY29tbWFuZE9wdGlvbnM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AzuriteContainer#commandOptions",
+  "files" : [ "modules/azure/src/main/java/org/testcontainers/azure/AzuriteContainer.java" ],
+  "symbols" : [ "AzuriteContainer#commandOptions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkF6dXJpdGVDb250YWluZXJDb21tYW5kVGVzdCNJTUFHRQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AzuriteContainerCommandTest#IMAGE",
+  "files" : [ "modules/azure/src/test/java/org/testcontainers/azure/AzuriteContainerCommandTest.java" ],
+  "symbols" : [ "AzuriteContainerCommandTest#IMAGE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

@@ -1,0 +1,171 @@
+[ {
+  "changeKey" : "QUREX1NZTUJPTApQdWxzYXJDbGllbnQjZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add PulsarClient#getTransactionCoordinatorClient",
+  "files" : [ "pulsar-client-api/src/main/java/org/apache/pulsar/client/api/PulsarClient.java" ],
+  "symbols" : [ "PulsarClient#getTransactionCoordinatorClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQdWxzYXJDbGllbnRJbXBsI2dldFRyYW5zYWN0aW9uQ29vcmRpbmF0b3JDbGllbnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add PulsarClientImpl#getTransactionCoordinatorClient",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/PulsarClientImpl.java" ],
+  "symbols" : [ "PulsarClientImpl#getTransactionCoordinatorClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnRPdGhlci5nZXRUcmFuc2FjdGlvbkNvb3JkaW5hdG9yQ2xpZW50LCAtZ2V0VGNDbGllbnQKQXV0aGVudGljYXRlZFRyYW5zYWN0aW9uUHJvZHVjZXJDb25zdW1lclRlc3QjdGVzdEVuZFR4bg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AuthenticatedTransactionProducerConsumerTest#testEndTxn: +pulsarClientOther.getTransactionCoordinatorClient, -getTcClient",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/transaction/AuthenticatedTransactionProducerConsumerTest.java" ],
+  "symbols" : [ "AuthenticatedTransactionProducerConsumerTest#testEndTxn", "+pulsarClientOther.getTransactionCoordinatorClient, -getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnRPdGhlci5nZXRUcmFuc2FjdGlvbkNvb3JkaW5hdG9yQ2xpZW50LCAtZ2V0VGNDbGllbnQKQXV0aGVudGljYXRlZFRyYW5zYWN0aW9uUHJvZHVjZXJDb25zdW1lclRlc3QjdGVzdEFkZFBhcnRpdGlvblRvVHhu",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AuthenticatedTransactionProducerConsumerTest#testAddPartitionToTxn: +pulsarClientOther.getTransactionCoordinatorClient, -getTcClient",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/transaction/AuthenticatedTransactionProducerConsumerTest.java" ],
+  "symbols" : [ "AuthenticatedTransactionProducerConsumerTest#testAddPartitionToTxn", "+pulsarClientOther.getTransactionCoordinatorClient, -getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnRPdGhlci5nZXRUcmFuc2FjdGlvbkNvb3JkaW5hdG9yQ2xpZW50LCAtZ2V0VGNDbGllbnQKQXV0aGVudGljYXRlZFRyYW5zYWN0aW9uUHJvZHVjZXJDb25zdW1lclRlc3QjdGVzdEFkZFN1YnNjcmlwdGlvblRvVHhu",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AuthenticatedTransactionProducerConsumerTest#testAddSubscriptionToTxn: +pulsarClientOther.getTransactionCoordinatorClient, -getTcClient",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/transaction/AuthenticatedTransactionProducerConsumerTest.java" ],
+  "symbols" : [ "AuthenticatedTransactionProducerConsumerTest#testAddSubscriptionToTxn", "+pulsarClientOther.getTransactionCoordinatorClient, -getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQnVmZmVyQ2xvc2VUZXN0I3NldHVw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TransactionBufferCloseTest#setup: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/transaction/buffer/TransactionBufferCloseTest.java" ],
+  "symbols" : [ "TransactionBufferCloseTest#setup", "+pulsarClient.getTransactionCoordinatorClient, -getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uU3RhYmxlUG9zaXRpb25UZXN0I3NldHVw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TransactionStablePositionTest#setup: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/transaction/buffer/TransactionStablePositionTest.java" ],
+  "symbols" : [ "TransactionStablePositionTest#setup", "+pulsarClient.getTransactionCoordinatorClient, -getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFRyYW5zYWN0aW9uQWRkU3Vic2NyaXB0aW9uVG9UeG5Bc3luY1JlY29ubmVjdA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TransactionClientConnectTest#testTransactionAddSubscriptionToTxnAsyncReconnect: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/impl/TransactionClientConnectTest.java" ],
+  "symbols" : [ "TransactionClientConnectTest#testTransactionAddSubscriptionToTxnAsyncReconnect", "+pulsarClient.getTransactionCoordinatorClient, -getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFRyYW5zYWN0aW9uQWJvcnRUb1R4bkFzeW5jUmVjb25uZWN0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TransactionClientConnectTest#testTransactionAbortToTxnAsyncReconnect: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/impl/TransactionClientConnectTest.java" ],
+  "symbols" : [ "TransactionClientConnectTest#testTransactionAbortToTxnAsyncReconnect", "+pulsarClient.getTransactionCoordinatorClient, -getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFRyYW5zYWN0aW9uQ29tbWl0VG9UeG5Bc3luY1JlY29ubmVjdA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TransactionClientConnectTest#testTransactionCommitToTxnAsyncReconnect: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/impl/TransactionClientConnectTest.java" ],
+  "symbols" : [ "TransactionClientConnectTest#testTransactionCommitToTxnAsyncReconnect", "+pulsarClient.getTransactionCoordinatorClient, -getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFRyYW5zYWN0aW9uQWRkUHVibGlzaFBhcnRpdGlvblRvVHhuUmVjb25uZWN0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TransactionClientConnectTest#testTransactionAddPublishPartitionToTxnReconnect: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/impl/TransactionClientConnectTest.java" ],
+  "symbols" : [ "TransactionClientConnectTest#testTransactionAddPublishPartitionToTxnReconnect", "+pulsarClient.getTransactionCoordinatorClient, -getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFB1bHNhckNsaWVudENsb3NlVGhlbkNsb3NlVGNDbGllbnQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TransactionClientConnectTest#testPulsarClientCloseThenCloseTcClient: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/impl/TransactionClientConnectTest.java" ],
+  "symbols" : [ "TransactionClientConnectTest#testPulsarClientCloseThenCloseTcClient", "+pulsarClient.getTransactionCoordinatorClient, -getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdEhhbmRsZXJTdGF0ZUNoYW5nZVRvUmVhZHk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TransactionClientConnectTest#testHandlerStateChangeToReady: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/impl/TransactionClientConnectTest.java" ],
+  "symbols" : [ "TransactionClientConnectTest#testHandlerStateChangeToReady", "+pulsarClient.getTransactionCoordinatorClient, -getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWNvdmVyUHVsc2FyQ2xpZW50LmdldFRyYW5zYWN0aW9uQ29vcmRpbmF0b3JDbGllbnQsIC1yZWNvdmVyUHVsc2FyQ2xpZW50LmdldFRjQ2xpZW50ClRyYW5zYWN0aW9uRW5kVG9FbmRUZXN0I3R4bk1ldGFkYXRhSGFuZGxlclJlY292ZXJUZXN0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TransactionEndToEndTest#txnMetadataHandlerRecoverTest: +recoverPulsarClient.getTransactionCoordinatorClient, -recoverPulsarClient.getTcClient",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/impl/TransactionEndToEndTest.java" ],
+  "symbols" : [ "TransactionEndToEndTest#txnMetadataHandlerRecoverTest", "+recoverPulsarClient.getTransactionCoordinatorClient, -recoverPulsarClient.getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRjTWV0YWRhdGFEaXNjb3ZlcnlUZXN0I3Y0U2RrVHJhbnNhY3Rpb25TdGlsbFVzZXNMZWdhY3lDb29yZGluYXRvcg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TcMetadataDiscoveryTest#v4SdkTransactionStillUsesLegacyCoordinator: +client.getTransactionCoordinatorClient, -getTcClient",
+  "files" : [ "tests/integration/src/test/java/org/apache/pulsar/tests/integration/transaction/TcMetadataDiscoveryTest.java" ],
+  "symbols" : [ "TcMetadataDiscoveryTest#v4SdkTransactionStillUsesLegacyCoordinator", "+client.getTransactionCoordinatorClient, -getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWNsaWVudC5nZXRUY0NsaWVudApUcmFuc2FjdGlvbkltcGwjPGluaXQ-",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TransactionImpl#<init>: +client.getTransactionCoordinatorClient, -client.getTcClient",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/transaction/TransactionImpl.java" ],
+  "symbols" : [ "TransactionImpl#<init>", "+client.getTransactionCoordinatorClient, -client.getTcClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKVHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudEltcGwgLT4gVHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudApUcmFuc2FjdGlvbkltcGwjdGNDbGllbnQ",
+  "kind" : "CHANGE_FIELD_TYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change type of field TransactionImpl#tcClient: TransactionCoordinatorClientImpl -> TransactionCoordinatorClient",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/transaction/TransactionImpl.java" ],
+  "symbols" : [ "TransactionImpl#tcClient", "TransactionCoordinatorClientImpl -> TransactionCoordinatorClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

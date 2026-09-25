@@ -1,0 +1,1028 @@
+diff --git a/core/trino-main/src/main/java/io/trino/execution/ParameterExtractor.java b/core/trino-main/src/main/java/io/trino/execution/ParameterExtractor.java
+index 87676573b95c..b90a6bf25583 100644
+--- a/core/trino-main/src/main/java/io/trino/execution/ParameterExtractor.java
++++ b/core/trino-main/src/main/java/io/trino/execution/ParameterExtractor.java
+@@ -45,8 +45,8 @@ public static List<Parameter> extractParameters(Statement statement)
+         return parameterExtractingVisitor.getParameters().stream()
+                 .sorted(Comparator.comparing(
+                         parameter -> parameter.getLocation().get(),
+-                        Comparator.comparingInt(NodeLocation::getLineNumber)
+-                                .thenComparingInt(NodeLocation::getColumnNumber)))
++                        Comparator.comparingInt(NodeLocation::line)
++                                .thenComparingInt(NodeLocation::column)))
+                 .collect(toImmutableList());
+     }
+ 
+diff --git a/core/trino-main/src/main/java/io/trino/operator/project/PageFieldsToInputParametersRewriter.java b/core/trino-main/src/main/java/io/trino/operator/project/PageFieldsToInputParametersRewriter.java
+index 9641cd23cc18..b09cd28def8a 100644
+--- a/core/trino-main/src/main/java/io/trino/operator/project/PageFieldsToInputParametersRewriter.java
++++ b/core/trino-main/src/main/java/io/trino/operator/project/PageFieldsToInputParametersRewriter.java
+@@ -138,11 +138,11 @@ protected Void visitCase(Case node, Boolean unconditionallyEvaluated)
+             // First condition is unconditional; everything else is conditional
+             List<WhenClause> whenClauses = node.whenClauses();
+             if (!whenClauses.isEmpty()) {
+-                process(whenClauses.getFirst().getOperand(), unconditionallyEvaluated);
+-                process(whenClauses.getFirst().getResult(), false);
++                process(whenClauses.getFirst().operand(), unconditionallyEvaluated);
++                process(whenClauses.getFirst().result(), false);
+                 for (int i = 1; i < whenClauses.size(); i++) {
+-                    process(whenClauses.get(i).getOperand(), false);
+-                    process(whenClauses.get(i).getResult(), false);
++                    process(whenClauses.get(i).operand(), false);
++                    process(whenClauses.get(i).result(), false);
+                 }
+             }
+             process(node.defaultValue(), false);
+diff --git a/core/trino-main/src/main/java/io/trino/operator/window/matcher/Matcher.java b/core/trino-main/src/main/java/io/trino/operator/window/matcher/Matcher.java
+index 8f11ab6fcd7a..ab7def973a47 100644
+--- a/core/trino-main/src/main/java/io/trino/operator/window/matcher/Matcher.java
++++ b/core/trino-main/src/main/java/io/trino/operator/window/matcher/Matcher.java
+@@ -246,8 +246,8 @@ private void advanceAndSchedule(IntList next, int threadId, int pointer, int inp
+             case JUMP -> advanceAndSchedule(next, threadId, ((Jump) instruction).getTarget(), inputIndex, runtime);
+             case SPLIT -> {
+                 int forked = runtime.forkThread(threadId);
+-                advanceAndSchedule(next, threadId, ((Split) instruction).getFirst(), inputIndex, runtime);
+-                advanceAndSchedule(next, forked, ((Split) instruction).getSecond(), inputIndex, runtime);
++                advanceAndSchedule(next, threadId, ((Split) instruction).first(), inputIndex, runtime);
++                advanceAndSchedule(next, forked, ((Split) instruction).second(), inputIndex, runtime);
+             }
+             case SAVE -> {
+                 runtime.captures.save(threadId, inputIndex);
+diff --git a/core/trino-main/src/main/java/io/trino/operator/window/matcher/Split.java b/core/trino-main/src/main/java/io/trino/operator/window/matcher/Split.java
+index f0dd4ad118e1..8baada37a082 100644
+--- a/core/trino-main/src/main/java/io/trino/operator/window/matcher/Split.java
++++ b/core/trino-main/src/main/java/io/trino/operator/window/matcher/Split.java
+@@ -13,32 +13,11 @@
+  */
+ package io.trino.operator.window.matcher;
+ 
+-import java.util.Objects;
+-
+ import static java.lang.String.format;
+ 
+-class Split
++record Split(int first, int second)
+         implements Instruction
+ {
+-    private final int first;
+-    private final int second;
+-
+-    public Split(int first, int second)
+-    {
+-        this.first = first;
+-        this.second = second;
+-    }
+-
+-    public int getFirst()
+-    {
+-        return first;
+-    }
+-
+-    public int getSecond()
+-    {
+-        return second;
+-    }
+-
+     @Override
+     public String toString()
+     {
+@@ -50,24 +29,4 @@ public Type type()
+     {
+         return Type.SPLIT;
+     }
+-
+-    @Override
+-    public boolean equals(Object obj)
+-    {
+-        if (this == obj) {
+-            return true;
+-        }
+-        if ((obj == null) || (getClass() != obj.getClass())) {
+-            return false;
+-        }
+-        Split o = (Split) obj;
+-        return first == o.first &&
+-                second == o.second;
+-    }
+-
+-    @Override
+-    public int hashCode()
+-    {
+-        return Objects.hash(first, second);
+-    }
+ }
+diff --git a/core/trino-main/src/main/java/io/trino/operator/window/matcher/ThreadEquivalence.java b/core/trino-main/src/main/java/io/trino/operator/window/matcher/ThreadEquivalence.java
+index 64f7d8ec682a..23cc9b32ac51 100644
+--- a/core/trino-main/src/main/java/io/trino/operator/window/matcher/ThreadEquivalence.java
++++ b/core/trino-main/src/main/java/io/trino/operator/window/matcher/ThreadEquivalence.java
+@@ -234,8 +234,8 @@ private static Set<Integer> reachableLabels(Program program, int instructionInde
+             }
+             case JUMP -> reachableLabels.addAll(reachableLabels(program, ((Jump) instruction).getTarget(), visited));
+             case SPLIT -> {
+-                reachableLabels.addAll(reachableLabels(program, ((Split) instruction).getFirst(), visited));
+-                reachableLabels.addAll(reachableLabels(program, ((Split) instruction).getSecond(), visited));
++                reachableLabels.addAll(reachableLabels(program, ((Split) instruction).first(), visited));
++                reachableLabels.addAll(reachableLabels(program, ((Split) instruction).second(), visited));
+             }
+             case MATCH_START, MATCH_END, SAVE -> reachableLabels.addAll(reachableLabels(program, instructionIndex + 1, visited));
+             case DONE -> {
+diff --git a/core/trino-main/src/main/java/io/trino/sql/analyzer/ExpressionTreeUtils.java b/core/trino-main/src/main/java/io/trino/sql/analyzer/ExpressionTreeUtils.java
+index 4355c35a356d..954779cfdafd 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/analyzer/ExpressionTreeUtils.java
++++ b/core/trino-main/src/main/java/io/trino/sql/analyzer/ExpressionTreeUtils.java
+@@ -138,7 +138,7 @@ public Void process(Node node, Void context)
+     public static Optional<Location> extractLocation(Node node)
+     {
+         return node.getLocation()
+-                .map(location -> new Location(location.getLineNumber(), location.getColumnNumber()));
++                .map(location -> new Location(location.line(), location.column()));
+     }
+ 
+     public static QualifiedName asQualifiedName(Expression expression)
+diff --git a/core/trino-main/src/main/java/io/trino/sql/analyzer/JsonPathAnalyzer.java b/core/trino-main/src/main/java/io/trino/sql/analyzer/JsonPathAnalyzer.java
+index 900910c64692..57b1c59d5060 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/analyzer/JsonPathAnalyzer.java
++++ b/core/trino-main/src/main/java/io/trino/sql/analyzer/JsonPathAnalyzer.java
+@@ -122,7 +122,7 @@ public JsonPathAnalysis analyzeJsonPath(StringLiteral path, Map<String, Type> pa
+ 
+     public JsonPathAnalysis analyzeImplicitJsonPath(String path, NodeLocation location)
+     {
+-        PathNode root = PathParser.withFixedErrorLocation(new Location(location.getLineNumber(), location.getColumnNumber())).parseJsonPath(path);
++        PathNode root = PathParser.withFixedErrorLocation(new Location(location.line(), location.column())).parseJsonPath(path);
+         new Visitor(ImmutableMap.of(), new StringLiteral(path)).process(root);
+         return new JsonPathAnalysis((JsonPath) root, types, jsonParameters, datetimeTemplates);
+     }
+diff --git a/core/trino-main/src/main/java/io/trino/sql/gen/ExpressionBytecodeCompiler.java b/core/trino-main/src/main/java/io/trino/sql/gen/ExpressionBytecodeCompiler.java
+index 2cfbb70501b5..56efd8efb77c 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/gen/ExpressionBytecodeCompiler.java
++++ b/core/trino-main/src/main/java/io/trino/sql/gen/ExpressionBytecodeCompiler.java
+@@ -266,7 +266,7 @@ protected BytecodeNode visitCase(Case node, Context context)
+             for (WhenClause clause : node.whenClauses().reversed()) {
+                 Variable wasNull = generatorContext.wasNull();
+                 BytecodeBlock conditionBlock = new BytecodeBlock()
+-                        .append(generatorContext.generate(clause.getOperand()))
++                        .append(generatorContext.generate(clause.operand()))
+                         .comment("... and condition value was not null")
+                         .append(wasNull)
+                         .invokeStatic(CompilerOperations.class, "not", boolean.class, boolean.class)
+@@ -275,7 +275,7 @@ protected BytecodeNode visitCase(Case node, Context context)
+ 
+                 result = new IfStatement()
+                         .condition(conditionBlock)
+-                        .ifTrue(generatorContext.generate(clause.getResult()))
++                        .ifTrue(generatorContext.generate(clause.result()))
+                         .ifFalse(result);
+             }
+             return result;
+diff --git a/core/trino-main/src/main/java/io/trino/sql/ir/Case.java b/core/trino-main/src/main/java/io/trino/sql/ir/Case.java
+index 5d980128394d..46974f6a4791 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/ir/Case.java
++++ b/core/trino-main/src/main/java/io/trino/sql/ir/Case.java
+@@ -36,15 +36,15 @@ public record Case(List<WhenClause> whenClauses, Expression defaultValue)
+         requireNonNull(defaultValue, "defaultValue is null");
+ 
+         for (WhenClause clause : whenClauses) {
+-            validateType(BOOLEAN, clause.getOperand());
+-            validateType(defaultValue.type(), clause.getResult());
++            validateType(BOOLEAN, clause.operand());
++            validateType(defaultValue.type(), clause.result());
+         }
+     }
+ 
+     @Override
+     public Type type()
+     {
+-        return whenClauses.getFirst().getResult().type();
++        return whenClauses.getFirst().result().type();
+     }
+ 
+     @Override
+@@ -58,8 +58,8 @@ public List<? extends Expression> children()
+     {
+         ImmutableList.Builder<Expression> builder = ImmutableList.builder();
+         whenClauses.forEach(clause -> {
+-            builder.add(clause.getOperand());
+-            builder.add(clause.getResult());
++            builder.add(clause.operand());
++            builder.add(clause.result());
+         });
+ 
+         builder.add(defaultValue);
+diff --git a/core/trino-main/src/main/java/io/trino/sql/ir/DefaultTraversalVisitor.java b/core/trino-main/src/main/java/io/trino/sql/ir/DefaultTraversalVisitor.java
+index fe05135756e2..39fe36692578 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/ir/DefaultTraversalVisitor.java
++++ b/core/trino-main/src/main/java/io/trino/sql/ir/DefaultTraversalVisitor.java
+@@ -130,8 +130,8 @@ protected Void visitLet(Let node, C context)
+     protected Void visitCase(Case node, C context)
+     {
+         for (WhenClause clause : node.whenClauses()) {
+-            process(clause.getOperand(), context);
+-            process(clause.getResult(), context);
++            process(clause.operand(), context);
++            process(clause.result(), context);
+         }
+ 
+         process(node.defaultValue(), context);
+diff --git a/core/trino-main/src/main/java/io/trino/sql/ir/ExpressionFormatter.java b/core/trino-main/src/main/java/io/trino/sql/ir/ExpressionFormatter.java
+index 430ac77e693c..0538be7115a9 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/ir/ExpressionFormatter.java
++++ b/core/trino-main/src/main/java/io/trino/sql/ir/ExpressionFormatter.java
+@@ -239,7 +239,7 @@ protected String visitMatch(Match node, Void context)
+ 
+         protected String format(WhenClause node, Void context)
+         {
+-            return "WHEN " + process(node.getOperand(), context) + " THEN " + process(node.getResult(), context);
++            return "WHEN " + process(node.operand(), context) + " THEN " + process(node.result(), context);
+         }
+ 
+         protected String format(MatchClause node, Void context)
+diff --git a/core/trino-main/src/main/java/io/trino/sql/ir/ExpressionTreeRewriter.java b/core/trino-main/src/main/java/io/trino/sql/ir/ExpressionTreeRewriter.java
+index 6f0cce1f2cdd..8ea9e78ae6ab 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/ir/ExpressionTreeRewriter.java
++++ b/core/trino-main/src/main/java/io/trino/sql/ir/ExpressionTreeRewriter.java
+@@ -238,10 +238,10 @@ private MatchClause rewriteMatchClause(MatchClause clause, Context<C> context)
+ 
+         protected WhenClause rewriteWhenClause(WhenClause node, Context<C> context)
+         {
+-            Expression operand = rewrite(node.getOperand(), context.get());
+-            Expression result = rewrite(node.getResult(), context.get());
++            Expression operand = rewrite(node.operand(), context.get());
++            Expression result = rewrite(node.result(), context.get());
+ 
+-            if (operand != node.getOperand() || result != node.getResult()) {
++            if (operand != node.operand() || result != node.result()) {
+                 return new WhenClause(operand, result);
+             }
+             return node;
+diff --git a/core/trino-main/src/main/java/io/trino/sql/ir/IrExpressions.java b/core/trino-main/src/main/java/io/trino/sql/ir/IrExpressions.java
+index 76f5fc9615a5..10da6d94f0d4 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/ir/IrExpressions.java
++++ b/core/trino-main/src/main/java/io/trino/sql/ir/IrExpressions.java
+@@ -334,10 +334,10 @@ private static NullIf matchIfFirstEqualsSecond(Expression expression)
+             return null;
+         }
+         WhenClause when = caseExpression.whenClauses().get(0);
+-        if (!(matchComparison(when.getOperand()) instanceof Comparison.Equal(Expression left, Expression right))) {
++        if (!(matchComparison(when.operand()) instanceof Comparison.Equal(Expression left, Expression right))) {
+             return null;
+         }
+-        if (!isConstantNull(when.getResult())) {
++        if (!isConstantNull(when.result())) {
+             return null;
+         }
+         if (!caseExpression.defaultValue().equals(left)) {
+@@ -426,7 +426,7 @@ private static boolean mayBeNull(PlannerContext plannerContext, CharVarcharCoerc
+                 case Comparison comparison -> mayBeNull(plannerContext, charVarcharCoercion, comparison.left(), referencesMayBeNull) ||
+                         mayBeNull(plannerContext, charVarcharCoercion, comparison.right(), referencesMayBeNull);
+             };
+-            case Case e -> e.whenClauses().stream().anyMatch(clause -> mayBeNull(plannerContext, charVarcharCoercion, clause.getResult(), referencesMayBeNull)) ||
++            case Case e -> e.whenClauses().stream().anyMatch(clause -> mayBeNull(plannerContext, charVarcharCoercion, clause.result(), referencesMayBeNull)) ||
+                     mayBeNull(plannerContext, charVarcharCoercion, e.defaultValue(), referencesMayBeNull);
+             case Cast e -> mayBeNull(plannerContext, charVarcharCoercion, e, referencesMayBeNull);
+             case Coalesce e -> e.operands().stream().allMatch(operand -> mayBeNull(plannerContext, charVarcharCoercion, operand, referencesMayBeNull));
+@@ -481,7 +481,7 @@ public static boolean mayFail(PlannerContext plannerContext, CharVarcharCoercion
+                 case null -> mayFail(e) || e.arguments().stream().anyMatch(argument -> mayFail(plannerContext, charVarcharCoercion, argument));
+                 case Comparison comparison -> mayFail(plannerContext, charVarcharCoercion, comparison.left()) || mayFail(plannerContext, charVarcharCoercion, comparison.right());
+             };
+-            case Case e -> e.whenClauses().stream().anyMatch(clause -> mayFail(plannerContext, charVarcharCoercion, clause.getOperand()) || mayFail(plannerContext, charVarcharCoercion, clause.getResult())) ||
++            case Case e -> e.whenClauses().stream().anyMatch(clause -> mayFail(plannerContext, charVarcharCoercion, clause.operand()) || mayFail(plannerContext, charVarcharCoercion, clause.result())) ||
+                     mayFail(plannerContext, charVarcharCoercion, e.defaultValue());
+             case Cast e -> mayFail(plannerContext, charVarcharCoercion, e);
+             case Coalesce e -> e.operands().stream().anyMatch(argument -> mayFail(plannerContext, charVarcharCoercion, argument));
+diff --git a/core/trino-main/src/main/java/io/trino/sql/ir/WhenClause.java b/core/trino-main/src/main/java/io/trino/sql/ir/WhenClause.java
+index a337167c22e7..ddacf1bb9946 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/ir/WhenClause.java
++++ b/core/trino-main/src/main/java/io/trino/sql/ir/WhenClause.java
+@@ -16,53 +16,15 @@
+ import com.fasterxml.jackson.annotation.JsonCreator;
+ import com.fasterxml.jackson.annotation.JsonProperty;
+ 
+-import java.util.Objects;
+-
+-public final class WhenClause
++public record WhenClause(Expression operand, Expression result)
+ {
+-    private final Expression operand;
+-    private final Expression result;
+-
+     @JsonCreator
+-    public WhenClause(Expression operand, Expression result)
++    public WhenClause(@JsonProperty("operand") Expression operand, @JsonProperty("result") Expression result)
+     {
+         this.operand = operand;
+         this.result = result;
+     }
+ 
+-    @JsonProperty
+-    public Expression getOperand()
+-    {
+-        return operand;
+-    }
+-
+-    @JsonProperty
+-    public Expression getResult()
+-    {
+-        return result;
+-    }
+-
+-    @Override
+-    public boolean equals(Object o)
+-    {
+-        if (this == o) {
+-            return true;
+-        }
+-        if (o == null || getClass() != o.getClass()) {
+-            return false;
+-        }
+-
+-        WhenClause that = (WhenClause) o;
+-        return Objects.equals(operand, that.operand) &&
+-                Objects.equals(result, that.result);
+-    }
+-
+-    @Override
+-    public int hashCode()
+-    {
+-        return Objects.hash(operand, result);
+-    }
+-
+     @Override
+     public String toString()
+     {
+diff --git a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/IrExpressionEvaluator.java b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/IrExpressionEvaluator.java
+index 3e85308d0d7e..614d6e80bbb5 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/IrExpressionEvaluator.java
++++ b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/IrExpressionEvaluator.java
+@@ -298,10 +298,10 @@ private Object evaluateInternal(Cast cast, Session session, Map<String, Object>
+     private Object evaluateInternal(Case expression, Session session, Map<String, Object> bindings)
+     {
+         for (WhenClause whenClause : expression.whenClauses()) {
+-            Object operand = evaluate(whenClause.getOperand(), session, bindings);
++            Object operand = evaluate(whenClause.operand(), session, bindings);
+ 
+             if (Boolean.TRUE.equals(operand)) {
+-                return evaluate(whenClause.getResult(), session, bindings);
++                return evaluate(whenClause.result(), session, bindings);
+             }
+         }
+ 
+diff --git a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/IrExpressionOptimizer.java b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/IrExpressionOptimizer.java
+index 08fe1bfef08f..7fce3d956225 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/IrExpressionOptimizer.java
++++ b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/IrExpressionOptimizer.java
+@@ -251,10 +251,10 @@ private Optional<List<WhenClause>> processClauses(List<WhenClause> clauses, Sess
+         boolean changed = false;
+         ImmutableList.Builder<WhenClause> optimized = ImmutableList.builder();
+         for (WhenClause clause : clauses) {
+-            Optional<Expression> operand = process(clause.getOperand(), session, symbolAllocator, bindings);
+-            Optional<Expression> result = process(clause.getResult(), session, symbolAllocator, bindings);
++            Optional<Expression> operand = process(clause.operand(), session, symbolAllocator, bindings);
++            Optional<Expression> result = process(clause.result(), session, symbolAllocator, bindings);
+             if (operand.isPresent() || result.isPresent()) {
+-                optimized.add(new WhenClause(operand.orElse(clause.getOperand()), result.orElse(clause.getResult())));
++                optimized.add(new WhenClause(operand.orElse(clause.operand()), result.orElse(clause.result())));
+             }
+             else {
+                 optimized.add(clause);
+diff --git a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/DistributeComparisonOverCase.java b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/DistributeComparisonOverCase.java
+index 87ae2cf4e726..efbe0c3f46fc 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/DistributeComparisonOverCase.java
++++ b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/DistributeComparisonOverCase.java
+@@ -99,8 +99,8 @@ private Expression distribute(Session session, ComparisonOperator operator, Case
+         return new Case(
+                 caseTerm.whenClauses().stream()
+                         .map(clause -> new WhenClause(
+-                                clause.getOperand(),
+-                                comparison(metadata, charVarcharCoercion, operator, clause.getResult(), target)))
++                                clause.operand(),
++                                comparison(metadata, charVarcharCoercion, operator, clause.result(), target)))
+                         .toList(),
+                 comparison(metadata, charVarcharCoercion, operator, caseTerm.defaultValue(), target));
+     }
+diff --git a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/EvaluateCase.java b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/EvaluateCase.java
+index db9aa57dd938..3f471ecd5675 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/EvaluateCase.java
++++ b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/EvaluateCase.java
+@@ -42,10 +42,10 @@ public Optional<Expression> apply(Expression expression, Session session, Symbol
+         }
+ 
+         for (WhenClause whenClause : whenClauses) {
+-            Expression operand = whenClause.getOperand();
++            Expression operand = whenClause.operand();
+ 
+             if (operand.equals(TRUE)) {
+-                return Optional.of(whenClause.getResult());
++                return Optional.of(whenClause.result());
+             }
+             else if (!(operand instanceof Constant)) {
+                 return Optional.empty();
+diff --git a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/ExtractCommonConjunctFromCase.java b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/ExtractCommonConjunctFromCase.java
+index c711f9f941c9..efecb376dee2 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/ExtractCommonConjunctFromCase.java
++++ b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/ExtractCommonConjunctFromCase.java
+@@ -72,7 +72,7 @@ public Optional<Expression> apply(Expression expression, Session session, Symbol
+ 
+         Case reduced = new Case(
+                 caseTerm.whenClauses().stream()
+-                        .map(clause -> new WhenClause(clause.getOperand(), removeConjuncts(clause.getResult(), common)))
++                        .map(clause -> new WhenClause(clause.operand(), removeConjuncts(clause.result(), common)))
+                         .collect(toImmutableList()),
+                 removeConjuncts(caseTerm.defaultValue(), common));
+ 
+@@ -85,7 +85,7 @@ public Optional<Expression> apply(Expression expression, Session session, Symbol
+     private static List<Expression> branchResults(Case caseTerm)
+     {
+         return ImmutableList.<Expression>builder()
+-                .addAll(caseTerm.whenClauses().stream().map(WhenClause::getResult).collect(toImmutableList()))
++                .addAll(caseTerm.whenClauses().stream().map(WhenClause::result).collect(toImmutableList()))
+                 .add(caseTerm.defaultValue())
+                 .build();
+     }
+diff --git a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/RemoveRedundantCaseClauses.java b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/RemoveRedundantCaseClauses.java
+index aa7a6209e3f8..0d73830015f5 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/RemoveRedundantCaseClauses.java
++++ b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/RemoveRedundantCaseClauses.java
+@@ -59,19 +59,19 @@ public Optional<Expression> apply(Expression expression, Session session, Symbol
+         Set<Expression> seen = new HashSet<>();
+         boolean changed = false;
+         for (WhenClause whenClause : whenClauses) {
+-            if (seen.contains(whenClause.getOperand()) || whenClause.getOperand().equals(FALSE) || whenClause.getOperand().equals(NULL_BOOLEAN)) {
++            if (seen.contains(whenClause.operand()) || whenClause.operand().equals(FALSE) || whenClause.operand().equals(NULL_BOOLEAN)) {
+                 changed = true;
+             }
+-            else if (whenClause.getOperand().equals(TRUE)) {
++            else if (whenClause.operand().equals(TRUE)) {
+                 changed = true;
+-                newDefault = whenClause.getResult();
++                newDefault = whenClause.result();
+                 break;
+             }
+             else {
+                 newClauses.add(whenClause);
+ 
+-                if (isDeterministic(whenClause.getOperand())) {
+-                    seen.add(whenClause.getOperand());
++                if (isDeterministic(whenClause.operand())) {
++                    seen.add(whenClause.operand());
+                 }
+             }
+         }
+diff --git a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/SimplifyRedundantCase.java b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/SimplifyRedundantCase.java
+index f740eba34707..c9623b836b18 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/SimplifyRedundantCase.java
++++ b/core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/SimplifyRedundantCase.java
+@@ -62,9 +62,9 @@ public Optional<Expression> apply(Expression expression, Session session, Symbol
+             return Optional.empty();
+         }
+ 
+-        if (!whenClauses.stream().map(WhenClause::getResult).allMatch(result -> result.equals(TRUE) || result.equals(FALSE)) ||
++        if (!whenClauses.stream().map(WhenClause::result).allMatch(result -> result.equals(TRUE) || result.equals(FALSE)) ||
+                 (!defaultValue.equals(TRUE) && !defaultValue.equals(FALSE)) ||
+-                whenClauses.stream().map(WhenClause::getOperand).anyMatch(e -> !isDeterministic(e))) {
++                whenClauses.stream().map(WhenClause::operand).anyMatch(e -> !isDeterministic(e))) {
+             return Optional.empty();
+         }
+ 
+@@ -97,17 +97,17 @@ private Optional<Expression> transformRecursive(Session session, int start, List
+         // This method constructs the simplified expression recursively.
+ 
+         int end = start;
+-        while (end < clauses.size() && clauses.get(end).getResult().equals(FALSE)) {
++        while (end < clauses.size() && clauses.get(end).result().equals(FALSE)) {
+             end++;
+         }
+ 
+         List<Expression> falseTerms = clauses.subList(start, end).stream()
+-                .map(clause -> IrExpressions.not(metadata, getCharVarcharCoercion(session), IrExpressions.comparison(metadata, getCharVarcharCoercion(session), ComparisonOperator.IDENTICAL, clause.getOperand(), TRUE)))
++                .map(clause -> IrExpressions.not(metadata, getCharVarcharCoercion(session), IrExpressions.comparison(metadata, getCharVarcharCoercion(session), ComparisonOperator.IDENTICAL, clause.operand(), TRUE)))
+                 .toList();
+ 
+         if (end < clauses.size()) {
+             List<Expression> terms = new ArrayList<>();
+-            terms.add(IrExpressions.comparison(metadata, getCharVarcharCoercion(session), ComparisonOperator.IDENTICAL, clauses.get(end).getOperand(), TRUE));
++            terms.add(IrExpressions.comparison(metadata, getCharVarcharCoercion(session), ComparisonOperator.IDENTICAL, clauses.get(end).operand(), TRUE));
+             transformRecursive(session, end + 1, clauses, defaultExpression).ifPresent(terms::add);
+ 
+             return Optional.of(IrUtils.and(
+diff --git a/core/trino-main/src/main/java/io/trino/sql/planner/iterative/rule/PreAggregateCaseAggregations.java b/core/trino-main/src/main/java/io/trino/sql/planner/iterative/rule/PreAggregateCaseAggregations.java
+index aa32c872009a..456e84590395 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/planner/iterative/rule/PreAggregateCaseAggregations.java
++++ b/core/trino-main/src/main/java/io/trino/sql/planner/iterative/rule/PreAggregateCaseAggregations.java
+@@ -421,8 +421,8 @@ private Optional<CaseAggregation> extractCaseAggregation(Symbol aggregationSymbo
+                     resolvedFunction,
+                     cumulativeFunction,
+                     name,
+-                    caseExpression.whenClauses().get(0).getOperand(),
+-                    caseExpression.whenClauses().get(0).getResult(),
++                    caseExpression.whenClauses().get(0).operand(),
++                    caseExpression.whenClauses().get(0).result(),
+                     cast(plannerContext.getTypeManager(), getCharVarcharCoercion(context.getSession()), caseExpression.defaultValue(), aggregationType)));
+         }
+ 
+diff --git a/core/trino-main/src/main/java/io/trino/sql/planner/iterative/rule/SimplifyFilterPredicate.java b/core/trino-main/src/main/java/io/trino/sql/planner/iterative/rule/SimplifyFilterPredicate.java
+index 9d21030a52ea..66f0ec39bfec 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/planner/iterative/rule/SimplifyFilterPredicate.java
++++ b/core/trino-main/src/main/java/io/trino/sql/planner/iterative/rule/SimplifyFilterPredicate.java
+@@ -138,17 +138,17 @@ private Optional<Expression> simplify(Session session, Case caseExpression)
+             // if-like expression
+             return simplify(
+                     session,
+-                    caseExpression.whenClauses().getFirst().getOperand(),
+-                    caseExpression.whenClauses().getFirst().getResult(),
++                    caseExpression.whenClauses().getFirst().operand(),
++                    caseExpression.whenClauses().getFirst().result(),
+                     caseExpression.defaultValue());
+         }
+ 
+         List<Expression> operands = caseExpression.whenClauses().stream()
+-                .map(WhenClause::getOperand)
++                .map(WhenClause::operand)
+                 .collect(toImmutableList());
+ 
+         List<Expression> results = caseExpression.whenClauses().stream()
+-                .map(WhenClause::getResult)
++                .map(WhenClause::result)
+                 .collect(toImmutableList());
+         long trueResultsCount = results.stream()
+                 .filter(result -> result.equals(TRUE))
+@@ -168,8 +168,8 @@ private Optional<Expression> simplify(Session session, Case caseExpression)
+         if (trueResultsCount == 1 && notTrueResultsCount == results.size() - 1 && isNotTrue(caseExpression.defaultValue())) {
+             ImmutableList.Builder<Expression> builder = ImmutableList.builder();
+             for (WhenClause whenClause : caseExpression.whenClauses()) {
+-                Expression operand = whenClause.getOperand();
+-                Expression result = whenClause.getResult();
++                Expression operand = whenClause.operand();
++                Expression result = whenClause.result();
+                 if (isNotTrue(result)) {
+                     builder.add(isFalseOrNullPredicate(session, operand));
+                 }
+@@ -188,12 +188,12 @@ private Optional<Expression> simplify(Session session, Case caseExpression)
+         // skip clauses with not true conditions
+         List<WhenClause> whenClauses = new ArrayList<>();
+         for (WhenClause whenClause : caseExpression.whenClauses()) {
+-            Expression operand = whenClause.getOperand();
++            Expression operand = whenClause.operand();
+             if (operand.equals(TRUE)) {
+                 if (whenClauses.isEmpty()) {
+-                    return Optional.of(whenClause.getResult());
++                    return Optional.of(whenClause.result());
+                 }
+-                return Optional.of(new Case(whenClauses, whenClause.getResult()));
++                return Optional.of(new Case(whenClauses, whenClause.result()));
+             }
+             if (!isNotTrue(operand)) {
+                 whenClauses.add(whenClause);
+diff --git a/core/trino-main/src/main/java/io/trino/sql/planner/plan/DynamicFilterId.java b/core/trino-main/src/main/java/io/trino/sql/planner/plan/DynamicFilterId.java
+index e0e0fd2c1c59..a1188e9650c7 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/planner/plan/DynamicFilterId.java
++++ b/core/trino-main/src/main/java/io/trino/sql/planner/plan/DynamicFilterId.java
+@@ -15,24 +15,20 @@
+ 
+ import com.fasterxml.jackson.annotation.JsonCreator;
+ import com.fasterxml.jackson.annotation.JsonValue;
+-import com.google.errorprone.annotations.Immutable;
+ 
++import static com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING;
+ import static io.airlift.slice.SizeOf.estimatedSizeOf;
+ import static io.airlift.slice.SizeOf.instanceSize;
+ import static java.util.Objects.requireNonNull;
+ 
+-@Immutable
+-public class DynamicFilterId
++public record DynamicFilterId(String id)
+ {
+     private static final int INSTANCE_SIZE = instanceSize(DynamicFilterId.class);
+ 
+-    private final String id;
+-
+-    @JsonCreator
+-    public DynamicFilterId(String id)
++    @JsonCreator(mode = DELEGATING)
++    public DynamicFilterId
+     {
+         requireNonNull(id, "id is null");
+-        this.id = id;
+     }
+ 
+     @Override
+@@ -42,26 +38,6 @@ public String toString()
+         return id;
+     }
+ 
+-    @Override
+-    public boolean equals(Object o)
+-    {
+-        if (this == o) {
+-            return true;
+-        }
+-        if (o == null || getClass() != o.getClass()) {
+-            return false;
+-        }
+-
+-        DynamicFilterId that = (DynamicFilterId) o;
+-        return id.equals(that.id);
+-    }
+-
+-    @Override
+-    public int hashCode()
+-    {
+-        return id.hashCode();
+-    }
+-
+     public long getRetainedSizeInBytes()
+     {
+         return INSTANCE_SIZE + estimatedSizeOf(id);
+diff --git a/core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanFragmentId.java b/core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanFragmentId.java
+index c5722046bf0d..30dcebfbb474 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanFragmentId.java
++++ b/core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanFragmentId.java
+@@ -15,20 +15,16 @@
+ 
+ import com.fasterxml.jackson.annotation.JsonCreator;
+ import com.fasterxml.jackson.annotation.JsonValue;
+-import com.google.errorprone.annotations.Immutable;
+ 
++import static com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING;
+ import static java.util.Objects.requireNonNull;
+ 
+-@Immutable
+-public class PlanFragmentId
++public record PlanFragmentId(String id)
+ {
+-    private final String id;
+-
+-    @JsonCreator
+-    public PlanFragmentId(String id)
++    @JsonCreator(mode = DELEGATING)
++    public PlanFragmentId
+     {
+         requireNonNull(id, "id is null");
+-        this.id = id;
+     }
+ 
+     @Override
+@@ -37,25 +33,4 @@ public String toString()
+     {
+         return id;
+     }
+-
+-    @Override
+-    public boolean equals(Object o)
+-    {
+-        if (this == o) {
+-            return true;
+-        }
+-        if (o == null || getClass() != o.getClass()) {
+-            return false;
+-        }
+-
+-        PlanFragmentId that = (PlanFragmentId) o;
+-
+-        return id.equals(that.id);
+-    }
+-
+-    @Override
+-    public int hashCode()
+-    {
+-        return id.hashCode();
+-    }
+ }
+diff --git a/core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanNodeId.java b/core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanNodeId.java
+index 97fa2138aa6f..22fb15b331b9 100644
+--- a/core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanNodeId.java
++++ b/core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanNodeId.java
+@@ -15,24 +15,20 @@
+ 
+ import com.fasterxml.jackson.annotation.JsonCreator;
+ import com.fasterxml.jackson.annotation.JsonValue;
+-import com.google.errorprone.annotations.Immutable;
+ 
++import static com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING;
+ import static io.airlift.slice.SizeOf.estimatedSizeOf;
+ import static io.airlift.slice.SizeOf.instanceSize;
+ import static java.util.Objects.requireNonNull;
+ 
+-@Immutable
+-public class PlanNodeId
++public record PlanNodeId(String id)
+ {
+     private static final int INSTANCE_SIZE = instanceSize(PlanNodeId.class);
+ 
+-    private final String id;
+-
+-    @JsonCreator
+-    public PlanNodeId(String id)
++    @JsonCreator(mode = DELEGATING)
++    public PlanNodeId
+     {
+         requireNonNull(id, "id is null");
+-        this.id = id;
+     }
+ 
+     @Override
+@@ -42,26 +38,6 @@ public String toString()
+         return id;
+     }
+ 
+-    @Override
+-    public boolean equals(Object o)
+-    {
+-        if (this == o) {
+-            return true;
+-        }
+-        if (o == null || getClass() != o.getClass()) {
+-            return false;
+-        }
+-
+-        PlanNodeId that = (PlanNodeId) o;
+-        return id.equals(that.id);
+-    }
+-
+-    @Override
+-    public int hashCode()
+-    {
+-        return id.hashCode();
+-    }
+-
+     public long getRetainedSizeInBytes()
+     {
+         return INSTANCE_SIZE
+diff --git a/core/trino-main/src/main/java/io/trino/transaction/TransactionId.java b/core/trino-main/src/main/java/io/trino/transaction/TransactionId.java
+index b9fa70956508..ac155feae8ab 100644
+--- a/core/trino-main/src/main/java/io/trino/transaction/TransactionId.java
++++ b/core/trino-main/src/main/java/io/trino/transaction/TransactionId.java
+@@ -16,18 +16,15 @@
+ import com.fasterxml.jackson.annotation.JsonCreator;
+ import com.fasterxml.jackson.annotation.JsonValue;
+ 
+-import java.util.Objects;
+ import java.util.UUID;
+ 
+ import static java.util.Objects.requireNonNull;
+ 
+-public final class TransactionId
++public record TransactionId(UUID uuid)
+ {
+-    private final UUID uuid;
+-
+-    private TransactionId(UUID uuid)
++    public TransactionId
+     {
+-        this.uuid = requireNonNull(uuid, "uuid is null");
++        requireNonNull(uuid, "uuid is null");
+     }
+ 
+     public static TransactionId create()
+@@ -41,25 +38,6 @@ public static TransactionId valueOf(String value)
+         return new TransactionId(UUID.fromString(value));
+     }
+ 
+-    @Override
+-    public int hashCode()
+-    {
+-        return Objects.hash(uuid);
+-    }
+-
+-    @Override
+-    public boolean equals(Object obj)
+-    {
+-        if (this == obj) {
+-            return true;
+-        }
+-        if (obj == null || getClass() != obj.getClass()) {
+-            return false;
+-        }
+-        TransactionId other = (TransactionId) obj;
+-        return Objects.equals(this.uuid, other.uuid);
+-    }
+-
+     @Override
+     @JsonValue
+     public String toString()
+diff --git a/core/trino-main/src/test/java/io/trino/sql/planner/assertions/ExpressionVerifier.java b/core/trino-main/src/test/java/io/trino/sql/planner/assertions/ExpressionVerifier.java
+index aee545923144..83dc77be263b 100644
+--- a/core/trino-main/src/test/java/io/trino/sql/planner/assertions/ExpressionVerifier.java
++++ b/core/trino-main/src/test/java/io/trino/sql/planner/assertions/ExpressionVerifier.java
+@@ -262,8 +262,8 @@ private boolean processWhenClauses(List<WhenClause> actual, List<WhenClause> exp
+ 
+     private boolean process(WhenClause actual, WhenClause expected)
+     {
+-        return process(actual.getOperand(), expected.getOperand()) &&
+-                process(actual.getResult(), expected.getResult());
++        return process(actual.operand(), expected.operand()) &&
++                process(actual.result(), expected.result());
+     }
+ 
+     @Override
+diff --git a/core/trino-main/src/test/java/io/trino/sql/planner/optimizations/TestSymbolMapper.java b/core/trino-main/src/test/java/io/trino/sql/planner/optimizations/TestSymbolMapper.java
+index 4db20c287cfe..7c66ea8284d9 100644
+--- a/core/trino-main/src/test/java/io/trino/sql/planner/optimizations/TestSymbolMapper.java
++++ b/core/trino-main/src/test/java/io/trino/sql/planner/optimizations/TestSymbolMapper.java
+@@ -179,10 +179,10 @@ public void testReallocateSymbolsInAggregationValuePointer()
+ 
+         assertThat(mappedArgument.name()).isNotEqualTo(bound);
+         assertThat(mappedArgument.value()).isEqualTo(mappedInput.toSymbolReference());
+-        assertThat(mappedBody.whenClauses().getFirst().getResult()).isEqualTo(mappedArgument.name().toSymbolReference());
++        assertThat(mappedBody.whenClauses().getFirst().result()).isEqualTo(mappedArgument.name().toSymbolReference());
+ 
+         assertThat(mappedClassifier).isNotEqualTo(classifier);
+-        assertThat(((IsNull) mappedBody.whenClauses().getFirst().getOperand()).value()).isEqualTo(mappedClassifier.toSymbolReference());
++        assertThat(((IsNull) mappedBody.whenClauses().getFirst().operand()).value()).isEqualTo(mappedClassifier.toSymbolReference());
+         assertThat(mappedMatchNumber).isNotEqualTo(matchNumber);
+         assertThat(mappedBody.defaultValue()).isEqualTo(mappedMatchNumber.toSymbolReference());
+ 
+diff --git a/core/trino-parser/src/main/java/io/trino/sql/parser/AstBuilder.java b/core/trino-parser/src/main/java/io/trino/sql/parser/AstBuilder.java
+index b9a048328a59..33218c30f7ba 100644
+--- a/core/trino-parser/src/main/java/io/trino/sql/parser/AstBuilder.java
++++ b/core/trino-parser/src/main/java/io/trino/sql/parser/AstBuilder.java
+@@ -4780,8 +4780,8 @@ private NodeLocation getLocation(Token token)
+         requireNonNull(token, "token is null");
+         return baseLocation
+                 .map(location -> new NodeLocation(
+-                        token.getLine() + location.getLineNumber() - 1,
+-                        token.getCharPositionInLine() + 1 + (token.getLine() == 1 ? location.getColumnNumber() : 0)))
++                        token.getLine() + location.line() - 1,
++                        token.getCharPositionInLine() + 1 + (token.getLine() == 1 ? location.column() : 0)))
+                 .orElse(new NodeLocation(token.getLine(), token.getCharPositionInLine() + 1));
+     }
+ 
+diff --git a/core/trino-parser/src/main/java/io/trino/sql/parser/ParsingException.java b/core/trino-parser/src/main/java/io/trino/sql/parser/ParsingException.java
+index c3cdf221994b..e737feacbe06 100644
+--- a/core/trino-parser/src/main/java/io/trino/sql/parser/ParsingException.java
++++ b/core/trino-parser/src/main/java/io/trino/sql/parser/ParsingException.java
+@@ -36,7 +36,7 @@ public ParsingException(String message, RecognitionException cause, int line, in
+ 
+     public ParsingException(String message, NodeLocation nodeLocation)
+     {
+-        this(message, null, nodeLocation.getLineNumber(), nodeLocation.getColumnNumber());
++        this(message, null, nodeLocation.line(), nodeLocation.column());
+     }
+ 
+     public int getLineNumber()
+diff --git a/core/trino-parser/src/main/java/io/trino/sql/parser/SqlParser.java b/core/trino-parser/src/main/java/io/trino/sql/parser/SqlParser.java
+index a366e598003c..3ecfaf845077 100644
+--- a/core/trino-parser/src/main/java/io/trino/sql/parser/SqlParser.java
++++ b/core/trino-parser/src/main/java/io/trino/sql/parser/SqlParser.java
+@@ -175,8 +175,8 @@ private Node invokeParser(String name, String sql, Optional<NodeLocation> locati
+             }
+             catch (ParsingException e) {
+                 location.ifPresent(statementLocation -> {
+-                    int line = statementLocation.getLineNumber();
+-                    int column = statementLocation.getColumnNumber();
++                    int line = statementLocation.line();
++                    int column = statementLocation.column();
+                     throw new ParsingException(
+                             e.getErrorMessage(),
+                             (RecognitionException) e.getCause(),
+diff --git a/core/trino-parser/src/main/java/io/trino/sql/tree/NodeLocation.java b/core/trino-parser/src/main/java/io/trino/sql/tree/NodeLocation.java
+index 7666f5b30d70..c2ee77056549 100644
+--- a/core/trino-parser/src/main/java/io/trino/sql/tree/NodeLocation.java
++++ b/core/trino-parser/src/main/java/io/trino/sql/tree/NodeLocation.java
+@@ -13,32 +13,14 @@
+  */
+ package io.trino.sql.tree;
+ 
+-import java.util.Objects;
+-
+ import static com.google.common.base.Preconditions.checkArgument;
+ 
+-public final class NodeLocation
++public record NodeLocation(int line, int column)
+ {
+-    private final int line;
+-    private final int column;
+-
+-    public NodeLocation(int line, int column)
++    public NodeLocation
+     {
+         checkArgument(line >= 1, "line must be at least one, got: %s", line);
+         checkArgument(column >= 1, "column must be at least one, got: %s", column);
+-
+-        this.line = line;
+-        this.column = column;
+-    }
+-
+-    public int getLineNumber()
+-    {
+-        return line;
+-    }
+-
+-    public int getColumnNumber()
+-    {
+-        return column;
+     }
+ 
+     @Override
+@@ -46,24 +28,4 @@ public String toString()
+     {
+         return line + ":" + column;
+     }
+-
+-    @Override
+-    public boolean equals(Object o)
+-    {
+-        if (this == o) {
+-            return true;
+-        }
+-        if (o == null || getClass() != o.getClass()) {
+-            return false;
+-        }
+-        NodeLocation that = (NodeLocation) o;
+-        return line == that.line &&
+-                column == that.column;
+-    }
+-
+-    @Override
+-    public int hashCode()
+-    {
+-        return Objects.hash(line, column);
+-    }
+ }
+diff --git a/lib/trino-orc/src/main/java/io/trino/orc/OrcDataSourceId.java b/lib/trino-orc/src/main/java/io/trino/orc/OrcDataSourceId.java
+index 3cb93b0e5a8d..01e40f63743f 100644
+--- a/lib/trino-orc/src/main/java/io/trino/orc/OrcDataSourceId.java
++++ b/lib/trino-orc/src/main/java/io/trino/orc/OrcDataSourceId.java
+@@ -13,36 +13,13 @@
+  */
+ package io.trino.orc;
+ 
+-import java.util.Objects;
+-
+ import static java.util.Objects.requireNonNull;
+ 
+-public final class OrcDataSourceId
++public record OrcDataSourceId(String id)
+ {
+-    private final String id;
+-
+-    public OrcDataSourceId(String id)
+-    {
+-        this.id = requireNonNull(id, "id is null");
+-    }
+-
+-    @Override
+-    public boolean equals(Object o)
+-    {
+-        if (this == o) {
+-            return true;
+-        }
+-        if (o == null || getClass() != o.getClass()) {
+-            return false;
+-        }
+-        OrcDataSourceId that = (OrcDataSourceId) o;
+-        return Objects.equals(id, that.id);
+-    }
+-
+-    @Override
+-    public int hashCode()
++    public OrcDataSourceId
+     {
+-        return Objects.hash(id);
++        requireNonNull(id, "id is null");
+     }
+ 
+     @Override
+diff --git a/lib/trino-parquet/src/main/java/io/trino/parquet/ParquetDataSourceId.java b/lib/trino-parquet/src/main/java/io/trino/parquet/ParquetDataSourceId.java
+index 5b68730f38e4..81fd85d3aa43 100644
+--- a/lib/trino-parquet/src/main/java/io/trino/parquet/ParquetDataSourceId.java
++++ b/lib/trino-parquet/src/main/java/io/trino/parquet/ParquetDataSourceId.java
+@@ -13,36 +13,13 @@
+  */
+ package io.trino.parquet;
+ 
+-import java.util.Objects;
+-
+ import static java.util.Objects.requireNonNull;
+ 
+-public final class ParquetDataSourceId
++public record ParquetDataSourceId(String id)
+ {
+-    private final String id;
+-
+-    public ParquetDataSourceId(String id)
+-    {
+-        this.id = requireNonNull(id, "id is null");
+-    }
+-
+-    @Override
+-    public boolean equals(Object o)
+-    {
+-        if (this == o) {
+-            return true;
+-        }
+-        if (o == null || getClass() != o.getClass()) {
+-            return false;
+-        }
+-        ParquetDataSourceId that = (ParquetDataSourceId) o;
+-        return Objects.equals(id, that.id);
+-    }
+-
+-    @Override
+-    public int hashCode()
++    public ParquetDataSourceId
+     {
+-        return Objects.hash(id);
++        requireNonNull(id, "id is null");
+     }
+ 
+     @Override

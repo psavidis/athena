@@ -1,0 +1,7 @@
+[ {
+  "description" : "Change control flow of ReflectiveTypeAdapterFactory#createBoundField: branch added",
+  "entity" : "ReflectiveTypeAdapterFactory"
+}, {
+  "description" : "Add field ReflectiveTypeAdapterFactory#createBoundField(anonymous BoundField)#knownAccessible",
+  "entity" : "ReflectiveTypeAdapterFactory"
+} ]

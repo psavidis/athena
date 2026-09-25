@@ -1,0 +1,37 @@
+{
+  "territories" : [ {
+    "moduleName" : "resilience4j-bulkhead",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApUaHJlYWRQb29sQnVsa2hlYWRDb25maWdUZXN0I2Zyb21TaG91bGROb3RNdXRhdGVCYXNlQ29uZmln", "QUREX1NZTUJPTApUaHJlYWRQb29sQnVsa2hlYWRDb25maWdUZXN0I2Zyb21TaG91bGRDb3B5QWxsRmllbGRz", "TU9ESUZZX01FVEhPRF9CT0RZClRocmVhZFBvb2xCdWxraGVhZENvbmZpZy5CdWlsZGVyIzxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApUaHJlYWRQb29sQnVsa2hlYWRDb25maWdUZXN0I2Zyb21TaG91bGROb3RNdXRhdGVCYXNlQ29uZmln", "QUREX1NZTUJPTApUaHJlYWRQb29sQnVsa2hlYWRDb25maWdUZXN0I2Zyb21TaG91bGRDb3B5QWxsRmllbGRz" ]
+  }, {
+    "moduleName" : "resilience4j-core",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "resilience4j-test",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "resilience4j-bulkhead",
+    "to" : "resilience4j-core"
+  }, {
+    "from" : "resilience4j-bulkhead",
+    "to" : "resilience4j-test"
+  } ]
+}

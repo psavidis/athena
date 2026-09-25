@@ -1,0 +1,97 @@
+{
+  "territories" : [ {
+    "moduleName" : "group-coordinator",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 2 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCkNsYXNzaWNHcm91cCN2YWxpZGF0ZU9mZnNldENvbW1pdApzd2FwcGVkID86IGJyYW5jaGVzIGluIHZhbGlkYXRlTWVtYmVyKOKApik", "TU9ESUZZX01FVEhPRF9CT0RZCitncm91cC52YWxpZGF0ZU9mZnNldENvbW1pdCwgK2Fzc2VydFRocm93cywgK2NyZWF0ZUFuZFJlZ2lzdGVyLCArYXNzZXJ0RXF1YWxzLCArYXBwZW5kZXIuZ2V0TWVzc2FnZXMg4oCmYW5kIDQgbW9yZQpDbGFzc2ljR3JvdXBUZXN0I3Rlc3RWYWxpZGF0ZU9mZnNldENvbW1pdA" ],
+    "testChangeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCitncm91cC52YWxpZGF0ZU9mZnNldENvbW1pdCwgK2Fzc2VydFRocm93cywgK2NyZWF0ZUFuZFJlZ2lzdGVyLCArYXNzZXJ0RXF1YWxzLCArYXBwZW5kZXIuZ2V0TWVzc2FnZXMg4oCmYW5kIDQgbW9yZQpDbGFzc2ljR3JvdXBUZXN0I3Rlc3RWYWxpZGF0ZU9mZnNldENvbW1pdA" ]
+  }, {
+    "moduleName" : "server-common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "clients",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "metadata",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "group-coordinator-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "storage",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "coordinator-common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "generator",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "group-coordinator",
+    "to" : "server-common"
+  }, {
+    "from" : "group-coordinator",
+    "to" : "clients"
+  }, {
+    "from" : "group-coordinator",
+    "to" : "metadata"
+  }, {
+    "from" : "group-coordinator",
+    "to" : "group-coordinator-api"
+  }, {
+    "from" : "group-coordinator",
+    "to" : "storage"
+  }, {
+    "from" : "group-coordinator",
+    "to" : "coordinator-common"
+  }, {
+    "from" : "group-coordinator",
+    "to" : "generator"
+  } ]
+}

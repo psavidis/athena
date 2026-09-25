@@ -1,0 +1,13 @@
+[ {
+  "description" : "Add RedissonKeys#time",
+  "entity" : "RedissonKeys"
+}, {
+  "description" : "Add RedissonKeys#timeAsync",
+  "entity" : "RedissonKeys"
+}, {
+  "description" : "Add RKeys#time",
+  "entity" : "RKeys"
+}, {
+  "description" : "Add RKeysAsync#timeAsync",
+  "entity" : "RKeysAsync"
+} ]

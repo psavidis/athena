@@ -1,0 +1,13 @@
+[ {
+  "entity" : "ExpressionTreeRewriter.RewritingVisitor",
+  "description" : "Change control flow of ExpressionTreeRewriter.RewritingVisitor#rewriteWhenClause: condition changed"
+}, {
+  "entity" : "IrExpressions",
+  "description" : "Change control flow of IrExpressions#matchIfFirstEqualsSecond: condition changed"
+}, {
+  "entity" : "RemoveRedundantCaseClauses",
+  "description" : "Change control flow of RemoveRedundantCaseClauses#apply: condition changed"
+}, {
+  "entity" : "SimplifyRedundantCase",
+  "description" : "Change control flow of SimplifyRedundantCase#apply: condition changed"
+} ]

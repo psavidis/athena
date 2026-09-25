@@ -1,0 +1,38 @@
+{
+  "trino-main" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n     public void finish()\n     {\n-        if (!finished) {\n-            Metrics finalMetrics = pagePartitioner.prepareForRelease(operatorContext);\n-            operatorContext.setLatestMetrics(finalMetrics);\n-            pagePartitionerPool.release(pagePartitioner);\n-            finished = true;\n+        if (finished) {\n+            return;\n         }\n+        finished = true;\n+\n+        try (Closer closer = Closer.create()) {\n+            // Closer runs in reverse registration order, so the partitioner is released even if the flush fails\n+            closer.register(() -> pagePartitionerPool.release(pagePartitioner));\n+            closer.register(() -> operatorContext.setLatestMetrics(pagePartitioner.prepareForRelease(operatorContext)));\n+        }\n+        catch (IOException e) {\n+            throw new RuntimeException(e);\n+        }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/trino-main/src/main/java/io/trino/operator/output/PartitionedOutputOperator.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in TestPartitionedOutputOperator",
+      "conceptDescription" : "1 change in test code of TestPartitionedOutputOperator.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@Test\n+    void testMemoryReleasedOnFinishFailure()\n+    {\n+        AggregatedMemoryContext memoryContext = newSimpleAggregatedMemoryContext();\n+        RuntimeException exception = new RuntimeException();\n+        TestOutputBuffer outputBuffer = new TestOutputBuffer();\n+        outputBuffer.throwOnEnqueue(exception);\n+        PartitionedOutputOperator partitionedOutputOperator = new PagePartitionerBuilder(executor, scheduledExecutor, outputBuffer)\n+                .withTypes(BIGINT)\n+                .withMemoryContext(memoryContext)\n+                .buildPartitionedOutputOperator();\n+        // repeated dictionary ids make finish flush the buffered page\n+        partitionedOutputOperator.addInput(new Page(DictionaryBlock.create(4, createLongsBlock(0, 1), new int[] {0, 1, 0, 1})));\n+        assertThat(memoryContext.getBytes()).isPositive();\n \n+        assertThatThrownBy(partitionedOutputOperator::finish).isSameAs(exception);\n+        assertThat(memoryContext.getBytes()).isZero();\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/trino-main/src/test/java/io/trino/operator/output/TestPartitionedOutputOperator.java" ],
+      "groupedMoveCount" : 1
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " @Override\n     public void finish()\n     {\n-        if (!finished) {\n-            Metrics finalMetrics = pagePartitioner.prepareForRelease(operatorContext);\n-            operatorContext.setLatestMetrics(finalMetrics);\n-            pagePartitionerPool.release(pagePartitioner);\n-            finished = true;\n+        if (finished) {\n+            return;\n         }\n+        finished = true;\n+\n+        try (Closer closer = Closer.create()) {\n+            // Closer runs in reverse registration order, so the partitioner is released even if the flush fails\n+            closer.register(() -> pagePartitionerPool.release(pagePartitioner));\n+            closer.register(() -> operatorContext.setLatestMetrics(pagePartitioner.prepareForRelease(operatorContext)));\n+        }\n+        catch (IOException e) {\n+            throw new RuntimeException(e);\n+        }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/trino-main/src/main/java/io/trino/operator/output/PartitionedOutputOperator.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  }
+}

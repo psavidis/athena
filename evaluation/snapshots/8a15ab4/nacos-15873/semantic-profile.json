@@ -1,0 +1,36 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Control Flow",
+    "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Override\n     public DistroData getDatumSnapshot() {\n         List<ClientSyncData> datum = new LinkedList<>();\n         for (String each : clientManager.allClientId()) {\n             Client client = clientManager.getClient(each);\n             if (null == client || !client.isEphemeral()) {\n                 continue;\n             }\n+            if (client instanceof ConnectionBasedClient) {\n+                continue;\n+            }\n             datum.add(client.generateSyncData());\n         }\n         ClientSyncDatumSnapshot snapshot = new ClientSyncDatumSnapshot();\n         snapshot.setClientSyncDataList(datum);\n         byte[] data = ApplicationUtils.getBean(Serializer.class).serialize(snapshot);\n         return new DistroData(new DistroKey(DataOperation.SNAPSHOT.name(), TYPE), data);\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "naming/src/main/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessor.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in DistroClientDataProcessorTest",
+    "conceptDescription" : "2 changes in test code of DistroClientDataProcessorTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+@Test\n+    void testGetDatumSnapshotIncludeNonConnectionBasedClient() {\n+        Client ipPortClient = new IpPortBasedClient(\"1.1.1.1:80#true\", true);\n+        Client ipPortClient2 = new IpPortBasedClient(\"2.2.2.2:80#true\", true);\n+        when(clientManager.allClientId())\n+                .thenReturn(Arrays.asList(\"1.1.1.1:80#true\", \"2.2.2.2:80#true\"));\n+        when(clientManager.getClient(\"1.1.1.1:80#true\")).thenReturn(ipPortClient);\n+        when(clientManager.getClient(\"2.2.2.2:80#true\")).thenReturn(ipPortClient2);\n \n+        distroClientDataProcessor.getDatumSnapshot();\n+\n+        ArgumentCaptor<ClientSyncDatumSnapshot> captor =\n+                ArgumentCaptor.forClass(ClientSyncDatumSnapshot.class);\n+        verify(serializer).serialize(captor.capture());\n+        assertEquals(2, captor.getValue().getClientSyncDataList().size());\n+    }", " @Test\n     void testGetDatumSnapshot() {\n         when(clientManager.allClientId()).thenReturn(Collections.singletonList(CLIENT_ID));\n         DistroData actual = distroClientDataProcessor.getDatumSnapshot();\n         assertEquals(DataOperation.SNAPSHOT.name(), actual.getDistroKey().getResourceKey());\n         assertEquals(DistroClientDataProcessor.TYPE, actual.getDistroKey().getResourceType());\n+        // connection based client should be excluded from snapshot\n+        ArgumentCaptor<ClientSyncDatumSnapshot> captor =\n+                ArgumentCaptor.forClass(ClientSyncDatumSnapshot.class);\n+        verify(serializer).serialize(captor.capture());\n+        assertTrue(captor.getValue().getClientSyncDataList().isEmpty());\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "naming/src/test/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessorTest.java" ],
+    "groupedMoveCount" : 2
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Modify Capability",
+    "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ " @Override\n     public DistroData getDatumSnapshot() {\n         List<ClientSyncData> datum = new LinkedList<>();\n         for (String each : clientManager.allClientId()) {\n             Client client = clientManager.getClient(each);\n             if (null == client || !client.isEphemeral()) {\n                 continue;\n             }\n+            if (client instanceof ConnectionBasedClient) {\n+                continue;\n+            }\n             datum.add(client.generateSyncData());\n         }\n         ClientSyncDatumSnapshot snapshot = new ClientSyncDatumSnapshot();\n         snapshot.setClientSyncDataList(datum);\n         byte[] data = ApplicationUtils.getBean(Serializer.class).serialize(snapshot);\n         return new DistroData(new DistroKey(DataOperation.SNAPSHOT.name(), TYPE), data);\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "naming/src/main/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessor.java" ],
+    "groupedMoveCount" : 0
+  } ]
+}

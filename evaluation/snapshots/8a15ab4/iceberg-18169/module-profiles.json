@@ -1,0 +1,165 @@
+{
+  "api" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n     public String toString() {\n-      return String.format(\"%s(%s, %s)\", NAME, crs(), algorithm());\n+      if (algorithmExplicit) {\n+        return String.format(\n+            \"%s(%s, %s)\", NAME, DEFAULT_CRS.equalsIgnoreCase(crs) ? DEFAULT_CRS : crs, algorithm);\n+      } else if (!DEFAULT_CRS.equalsIgnoreCase(crs)) {\n+        return String.format(\"%s(%s)\", NAME, crs);\n+      }\n+\n+      return NAME;\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "api/src/main/java/org/apache/iceberg/types/Types.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n     public String toString() {\n-      return String.format(\"%s(%s)\", NAME, crs());\n+      return DEFAULT_CRS.equalsIgnoreCase(crs) ? NAME : String.format(\"%s(%s)\", NAME, crs);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "api/src/main/java/org/apache/iceberg/types/Types.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private GeographyType(String crs, EdgeAlgorithm algorithm) {\n       Preconditions.checkArgument(crs == null || !crs.isEmpty(), \"Invalid CRS: (empty string)\");\n       // an omitted CRS/algorithm canonicalizes to the default; a provided CRS is kept as-is (case\n       // preserved)\n       this.crs = crs == null ? DEFAULT_CRS : crs;\n       this.algorithm = algorithm == null ? DEFAULT_ALGORITHM : algorithm;\n+      this.algorithmExplicit = algorithm != null;\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "api/src/main/java/org/apache/iceberg/types/Types.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private final boolean algorithmExplicit;" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "api/src/main/java/org/apache/iceberg/types/Types.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add writeReplace in 2 classes",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart. Same change in: Types.GeometryType, Types.GeographyType.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Override\n+    Object writeReplace() {\n+      return new PrimitiveLikeHolder(String.format(\"%s(%s)\", NAME, crs()));\n+    }", "-\n+@Override\n+    Object writeReplace() {\n+      return new PrimitiveLikeHolder(String.format(\"%s(%s, %s)\", NAME, crs(), algorithm()));\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "api/src/main/java/org/apache/iceberg/types/Types.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in TestSerializableTypes",
+      "conceptDescription" : "2 changes in test code of TestSerializableTypes.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private static Stream<Arguments> geospatialTypes() {\n+    return Stream.of(\n+        Arguments.of(Types.GeometryType.crs84(), \"geometry(OGC:CRS84)\"),\n+        Arguments.of(Types.GeometryType.of(\"OGC:CRS84\"), \"geometry(OGC:CRS84)\"),\n+        Arguments.of(Types.GeometryType.of(\"srid:3857\"), \"geometry(srid:3857)\"),\n+        Arguments.of(Types.GeographyType.crs84(), \"geography(OGC:CRS84, spherical)\"),\n+        Arguments.of(\n+            Types.GeographyType.of(\"OGC:CRS84\", EdgeAlgorithm.SPHERICAL),\n+            \"geography(OGC:CRS84, spherical)\"),\n+        Arguments.of(Types.GeographyType.of(\"srid:4269\"), \"geography(srid:4269, spherical)\"),\n+        Arguments.of(\n+            Types.GeographyType.of(null, EdgeAlgorithm.KARNEY), \"geography(OGC:CRS84, karney)\"),\n+        Arguments.of(\n+            Types.GeographyType.of(\"srid:4269\", EdgeAlgorithm.KARNEY),\n+            \"geography(srid:4269, karney)\"));\n+  }", "+@ParameterizedTest\n+  @MethodSource(\"geospatialTypes\")\n+  void geospatialSerializationIncludesResolvedDefaults(Type type, String expected)\n+      throws Exception {\n+    ByteArrayOutputStream bytes = new ByteArrayOutputStream();\n+    try (ObjectOutputStream out = new ObjectOutputStream(bytes)) {\n+      out.writeObject(type);\n+    }\n \n+    // Round-trip equality alone cannot detect omitted defaults when the reader shares them.\n+    assertThat(bytes.toByteArray()).containsSequence(expected.getBytes(StandardCharsets.UTF_8));\n+    try (ObjectInputStream in =\n+        new ObjectInputStream(new ByteArrayInputStream(bytes.toByteArray()))) {\n+      assertThat(in.readObject()).isEqualTo(type).hasSameHashCodeAs(type);\n+    }\n+  }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "api/src/test/java/org/apache/iceberg/types/TestSerializableTypes.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in TestPartitionSpecValidation",
+      "conceptDescription" : "1 change in test code of TestPartitionSpecValidation.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private static Object[][] unsupportedFieldsProvider() {\n     return new Object[][] {\n       {7, \"variant_partition1\", \"Cannot partition by non-primitive source field: variant\"},\n-      {8, \"geom_partition1\", \"Invalid source type geometry(OGC:CRS84) for transform: bucket[5]\"},\n-      {\n-        9,\n-        \"geog_partition1\",\n-        \"Invalid source type geography(OGC:CRS84, spherical) for transform: bucket[5]\"\n-      },\n+      {8, \"geom_partition1\", \"Invalid source type geometry for transform: bucket[5]\"},\n+      {9, \"geog_partition1\", \"Invalid source type geography for transform: bucket[5]\"},\n       {10, \"unknown_partition1\", \"Invalid source type unknown for transform: bucket[5]\"}\n     };\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "api/src/test/java/org/apache/iceberg/TestPartitionSpecValidation.java" ],
+      "groupedMoveCount" : 1
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in TestTypes",
+      "conceptDescription" : "1 change in test code of TestTypes.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Test\n   public void testGeospatialTypeToString() {\n-    assertThat(Types.GeometryType.crs84().toString()).isEqualTo(\"geometry(OGC:CRS84)\");\n+    assertThat(Types.GeometryType.crs84().toString()).isEqualTo(\"geometry\");\n     assertThat(Types.GeometryType.of(Types.GeometryType.DEFAULT_CRS).toString())\n-        .isEqualTo(\"geometry(OGC:CRS84)\");\n+        .isEqualTo(\"geometry\");\n     assertThat(Types.GeometryType.of(\"srid:4326\").toString()).isEqualTo(\"geometry(srid:4326)\");\n-    assertThat(Types.GeographyType.crs84().toString()).isEqualTo(\"geography(OGC:CRS84, spherical)\");\n+    assertThat(Types.GeographyType.crs84().toString()).isEqualTo(\"geography\");\n+    assertThat(Types.GeographyType.of(\"srid:4326\").toString()).isEqualTo(\"geography(srid:4326)\");\n     assertThat(Types.GeographyType.of(\"srid:4326\", EdgeAlgorithm.KARNEY).toString())\n         .isEqualTo(\"geography(srid:4326, karney)\");\n     assertThat(Types.GeographyType.of(null, EdgeAlgorithm.KARNEY).toString())\n         .isEqualTo(\"geography(OGC:CRS84, karney)\");\n     assertThat(\n             Types.GeographyType.of(Types.GeographyType.DEFAULT_CRS, EdgeAlgorithm.SPHERICAL)\n                 .toString())\n         .isEqualTo(\"geography(OGC:CRS84, spherical)\");\n     assertThat(Types.GeographyType.of(\"srid:4326\", EdgeAlgorithm.SPHERICAL).toString())\n         .isEqualTo(\"geography(srid:4326, spherical)\");\n+    assertThat(Types.GeographyType.of(null, EdgeAlgorithm.SPHERICAL).toString())\n+        .isEqualTo(\"geography(OGC:CRS84, spherical)\");\n+    assertThat(Types.GeographyType.of(\"srid:4326\", null).toString())\n+        .isEqualTo(\"geography(srid:4326)\");\n+    assertThat(Types.GeographyType.of(null, null).toString()).isEqualTo(\"geography\");\n \n-    // the CRS keeps its original casing in toString even though comparison is case-insensitive\n-    assertThat(Types.GeometryType.of(\"ogc:crs84\").toString()).isEqualTo(\"geometry(ogc:crs84)\");\n-    assertThat(Types.GeographyType.of(\"ogc:crs84\").toString())\n-        .isEqualTo(\"geography(ogc:crs84, spherical)\");\n+    // The default CRS is omitted or rendered canonically regardless of input casing.\n+    assertThat(Types.GeometryType.of(\"ogc:crs84\").toString()).isEqualTo(\"geometry\");\n+    assertThat(Types.GeographyType.of(\"ogc:crs84\").toString()).isEqualTo(\"geography\");\n+    assertThat(Types.GeographyType.of(\"ogc:crs84\", EdgeAlgorithm.SPHERICAL).toString())\n+        .isEqualTo(\"geography(OGC:CRS84, spherical)\");\n+    assertThat(Types.GeographyType.of(\"ogc:crs84\", EdgeAlgorithm.KARNEY).toString())\n+        .isEqualTo(\"geography(OGC:CRS84, karney)\");\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "api/src/test/java/org/apache/iceberg/types/TestTypes.java" ],
+      "groupedMoveCount" : 1
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " @Override\n     public String toString() {\n-      return String.format(\"%s(%s, %s)\", NAME, crs(), algorithm());\n+      if (algorithmExplicit) {\n+        return String.format(\n+            \"%s(%s, %s)\", NAME, DEFAULT_CRS.equalsIgnoreCase(crs) ? DEFAULT_CRS : crs, algorithm);\n+      } else if (!DEFAULT_CRS.equalsIgnoreCase(crs)) {\n+        return String.format(\"%s(%s)\", NAME, crs);\n+      }\n+\n+      return NAME;\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "api/src/main/java/org/apache/iceberg/types/Types.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+@Override\n+    Object writeReplace() {\n+      return new PrimitiveLikeHolder(String.format(\"%s(%s)\", NAME, crs()));\n+    }", "-\n+@Override\n+    Object writeReplace() {\n+      return new PrimitiveLikeHolder(String.format(\"%s(%s, %s)\", NAME, crs(), algorithm()));\n+    }", "-\n+private final boolean algorithmExplicit;" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "api/src/main/java/org/apache/iceberg/types/Types.java" ],
+      "groupedMoveCount" : 3
+    } ]
+  },
+  "core" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " static void toJson(Type type, JsonGenerator generator) throws IOException {\n     if (type.isPrimitiveType() || type.isVariantType()) {\n-      generator.writeString(type.toString());\n+      switch (type.typeId()) {\n+        case GEOMETRY -> {\n+          Types.GeometryType geometry = (Types.GeometryType) type;\n+          generator.writeString(String.format(\"geometry(%s)\", geometry.crs()));\n+        }\n+        case GEOGRAPHY -> {\n+          Types.GeographyType geography = (Types.GeographyType) type;\n+          generator.writeString(\n+              String.format(\"geography(%s, %s)\", geography.crs(), geography.algorithm()));\n+        }\n+        default -> generator.writeString(type.toString());\n+      }\n     } else {\n       Type.NestedType nested = type.asNestedType();\n       switch (type.typeId()) {\n         case STRUCT:\n           toJson(nested.asStructType(), generator);\n           break;\n         case LIST:\n           toJson(nested.asListType(), generator);\n           break;\n         case MAP:\n           toJson(nested.asMapType(), generator);\n           break;\n         default:\n           throw new IllegalArgumentException(\"Cannot write unknown type: \" + type);\n       }\n     }\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/org/apache/iceberg/SchemaParser.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in TestSchemaParser",
+      "conceptDescription" : "1 change in test code of TestSchemaParser.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@Test\n+  public void geospatialDefaultsSerializedExplicitly() {\n+    Schema schema =\n+        new Schema(\n+            required(1, \"geom\", Types.GeometryType.crs84()),\n+            required(2, \"geog\", Types.GeographyType.crs84()),\n+            required(3, \"geog_custom_crs\", Types.GeographyType.of(\"EPSG:4326\")));\n \n+    String json = SchemaParser.toJson(schema);\n+    assertThat(json)\n+        .contains(\"\\\"type\\\":\\\"geometry(OGC:CRS84)\\\"\")\n+        .contains(\"\\\"type\\\":\\\"geography(OGC:CRS84, spherical)\\\"\")\n+        .contains(\"\\\"type\\\":\\\"geography(EPSG:4326, spherical)\\\"\");\n+    assertThat(SchemaParser.fromJson(json).asStruct()).isEqualTo(schema.asStruct());\n+  }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/test/java/org/apache/iceberg/TestSchemaParser.java" ],
+      "groupedMoveCount" : 1
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " static void toJson(Type type, JsonGenerator generator) throws IOException {\n     if (type.isPrimitiveType() || type.isVariantType()) {\n-      generator.writeString(type.toString());\n+      switch (type.typeId()) {\n+        case GEOMETRY -> {\n+          Types.GeometryType geometry = (Types.GeometryType) type;\n+          generator.writeString(String.format(\"geometry(%s)\", geometry.crs()));\n+        }\n+        case GEOGRAPHY -> {\n+          Types.GeographyType geography = (Types.GeographyType) type;\n+          generator.writeString(\n+              String.format(\"geography(%s, %s)\", geography.crs(), geography.algorithm()));\n+        }\n+        default -> generator.writeString(type.toString());\n+      }\n     } else {\n       Type.NestedType nested = type.asNestedType();\n       switch (type.typeId()) {\n         case STRUCT:\n           toJson(nested.asStructType(), generator);\n           break;\n         case LIST:\n           toJson(nested.asListType(), generator);\n           break;\n         case MAP:\n           toJson(nested.asMapType(), generator);\n           break;\n         default:\n           throw new IllegalArgumentException(\"Cannot write unknown type: \" + type);\n       }\n     }\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/org/apache/iceberg/SchemaParser.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "parquet" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in TestParquetSchemaUtil",
+      "conceptDescription" : "1 change in test code of TestParquetSchemaUtil.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Test\n   public void testGeospatialAnnotationsWithOmittedParameters() {\n     // unset CRS and algorithm parameters must map to Iceberg's defaults, and explicit values\n     // (including explicit default values) must be preserved\n     MessageType messageType =\n         org.apache.parquet.schema.Types.buildMessage()\n             .required(PrimitiveTypeName.BINARY)\n             .as(LogicalTypeAnnotation.geometryType(null))\n             .id(1)\n             .named(\"geom_bare\")\n             .optional(PrimitiveTypeName.BINARY)\n             .as(LogicalTypeAnnotation.geometryType(\"OGC:CRS84\"))\n             .id(2)\n             .named(\"geom_explicit_default\")\n             .required(PrimitiveTypeName.BINARY)\n             .as(LogicalTypeAnnotation.geographyType(null, null))\n             .id(3)\n             .named(\"geog_bare\")\n             .optional(PrimitiveTypeName.BINARY)\n             .as(LogicalTypeAnnotation.geographyType(\"EPSG:4326\", null))\n             .id(4)\n             .named(\"geog_crs_only\")\n             .optional(PrimitiveTypeName.BINARY)\n             .as(LogicalTypeAnnotation.geographyType(null, EdgeInterpolationAlgorithm.ANDOYER))\n             .id(5)\n             .named(\"geog_algorithm_only\")\n             .optional(PrimitiveTypeName.BINARY)\n             .as(\n                 LogicalTypeAnnotation.geographyType(\n                     \"EPSG:4326\", EdgeInterpolationAlgorithm.SPHERICAL))\n             .id(6)\n             .named(\"geog_explicit_spherical\")\n             .named(\"geo_table\");\n \n     Schema expectedSchema =\n         new Schema(\n             required(1, \"geom_bare\", Types.GeometryType.crs84()),\n             optional(2, \"geom_explicit_default\", Types.GeometryType.crs84()),\n             required(3, \"geog_bare\", Types.GeographyType.crs84()),\n             optional(4, \"geog_crs_only\", Types.GeographyType.of(\"EPSG:4326\")),\n             optional(\n                 5,\n                 \"geog_algorithm_only\",\n                 Types.GeographyType.of(Types.GeographyType.DEFAULT_CRS, EdgeAlgorithm.ANDOYER)),\n             optional(\n                 6,\n                 \"geog_explicit_spherical\",\n                 Types.GeographyType.of(\"EPSG:4326\", EdgeAlgorithm.SPHERICAL)));\n \n     Schema actualSchema = ParquetSchemaUtil.convert(messageType);\n     assertThat(actualSchema.asStruct())\n         .as(\"Geometry and geography annotations must convert to the expected Iceberg types\")\n         .isEqualTo(expectedSchema.asStruct());\n-    assertThat(actualSchema.findType(\"geom_bare\").toString()).isEqualTo(\"geometry(OGC:CRS84)\");\n-    assertThat(actualSchema.findType(\"geom_explicit_default\").toString())\n-        .isEqualTo(\"geometry(OGC:CRS84)\");\n-    assertThat(actualSchema.findType(\"geog_bare\").toString())\n-        .isEqualTo(\"geography(OGC:CRS84, spherical)\");\n+    assertThat(actualSchema.findType(\"geom_bare\").toString()).isEqualTo(\"geometry\");\n+    assertThat(actualSchema.findType(\"geom_explicit_default\").toString()).isEqualTo(\"geometry\");\n+    assertThat(actualSchema.findType(\"geog_bare\").toString()).isEqualTo(\"geography\");\n     assertThat(actualSchema.findType(\"geog_explicit_spherical\").toString())\n         .isEqualTo(\"geography(EPSG:4326, spherical)\");\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "parquet/src/test/java/org/apache/iceberg/parquet/TestParquetSchemaUtil.java" ],
+      "groupedMoveCount" : 1
+    } ]
+  }
+}

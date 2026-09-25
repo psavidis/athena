@@ -1,0 +1,181 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpQcm9kdWNlckltcGwuV3JpdGVJbkV2ZW50TG9vcENhbGxiYWNrI3J1bgpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ProducerImpl.WriteInEventLoopCallback#run: branch added",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java" ],
+  "symbols" : [ "ProducerImpl.WriteInEventLoopCallback#run", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGwjcmVsZWFzZU9wQ21kQW5kUmVjeWNsZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ProducerImpl#releaseOpCmdAndRecycle",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java" ],
+  "symbols" : [ "ProducerImpl#releaseOpCmdAndRecycle" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGwjcmVsZWFzZU9wQ21k",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ProducerImpl#releaseOpCmd",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java" ],
+  "symbols" : [ "ProducerImpl#releaseOpCmd" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTZW5kVGltZW91dER1cmluZ0luRmxpZ2h0V3JpdGVEZWZlcnNDbWRSZWxlYXNl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ProducerImplTest#testSendTimeoutDuringInFlightWriteDefersCmdRelease",
+  "files" : [ "pulsar-client/src/test/java/org/apache/pulsar/client/impl/ProducerImplTest.java" ],
+  "symbols" : [ "ProducerImplTest#testSendTimeoutDuringInFlightWriteDefersCmdRelease" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTZW5kVGltZW91dFJlbGVhc2VzQ21kSW5saW5lV2hlbk5vV3JpdGVJbkZsaWdodA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ProducerImplTest#testSendTimeoutReleasesCmdInlineWhenNoWriteInFlight",
+  "files" : [ "pulsar-client/src/test/java/org/apache/pulsar/client/impl/ProducerImplTest.java" ],
+  "symbols" : [ "ProducerImplTest#testSendTimeoutReleasesCmdInlineWhenNoWriteInFlight" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RQcm9jZXNzT3BTZW5kTXNnVHJhY2tzV3JpdGVFdmVudExvb3A",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ProducerImplTest#testProcessOpSendMsgTracksWriteEventLoop",
+  "files" : [ "pulsar-client/src/test/java/org/apache/pulsar/client/impl/ProducerImplTest.java" ],
+  "symbols" : [ "ProducerImplTest#testProcessOpSendMsgTracksWriteEventLoop" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTdGFsZVdyaXRlQ2FsbGJhY2tTa2lwc0Rpc3Bvc2VkT3A",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ProducerImplTest#testStaleWriteCallbackSkipsDisposedOp",
+  "files" : [ "pulsar-client/src/test/java/org/apache/pulsar/client/impl/ProducerImplTest.java" ],
+  "symbols" : [ "ProducerImplTest#testStaleWriteCallbackSkipsDisposedOp" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTdGFsZVdyaXRlQ2FsbGJhY2tTa2lwc09wUmVTZW50T25Bbm90aGVyTG9vcA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ProducerImplTest#testStaleWriteCallbackSkipsOpReSentOnAnotherLoop",
+  "files" : [ "pulsar-client/src/test/java/org/apache/pulsar/client/impl/ProducerImplTest.java" ],
+  "symbols" : [ "ProducerImplTest#testStaleWriteCallbackSkipsOpReSentOnAnotherLoop" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RGYWlsUGVuZGluZ01lc3NhZ2VzSGFuZGxlc1NodXR0aW5nRG93bkV2ZW50TG9vcA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ProducerImplTest#testFailPendingMessagesHandlesShuttingDownEventLoop",
+  "files" : [ "pulsar-client/src/test/java/org/apache/pulsar/client/impl/ProducerImplTest.java" ],
+  "symbols" : [ "ProducerImplTest#testFailPendingMessagesHandlesShuttingDownEventLoop" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCAtc2FmZVJlbGVhc2UsIC1vcC5yZWN5Y2xlClByb2R1Y2VySW1wbCNhY2tSZWNlaXZlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ProducerImpl#ackReceived: +releaseOpCmdAndRecycle, -safeRelease, -op.recycle",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java" ],
+  "symbols" : [ "ProducerImpl#ackReceived", "+releaseOpCmdAndRecycle, -safeRelease, -op.recycle" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCAtc2FmZVJlbGVhc2UsIC1vcC5yZWN5Y2xlClByb2R1Y2VySW1wbCNyZWNvdmVyQ2hlY2tzdW1FcnJvcg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ProducerImpl#recoverChecksumError: +releaseOpCmdAndRecycle, -safeRelease, -op.recycle",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java" ],
+  "symbols" : [ "ProducerImpl#recoverChecksumError", "+releaseOpCmdAndRecycle, -safeRelease, -op.recycle" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCAtc2FmZVJlbGVhc2UsIC1vcC5yZWN5Y2xlClByb2R1Y2VySW1wbCNyZWNvdmVyTm90QWxsb3dlZEVycm9y",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ProducerImpl#recoverNotAllowedError: +releaseOpCmdAndRecycle, -safeRelease, -op.recycle",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java" ],
+  "symbols" : [ "ProducerImpl#recoverNotAllowedError", "+releaseOpCmdAndRecycle, -safeRelease, -op.recycle" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2cud2FybiwgK2V4Y2VwdGlvbiwgK2xvZywgK3JlbGVhc2VPcENtZEFuZFJlY3ljbGUsICtmYWlsUGVuZGluZ01lc3NhZ2VzIOKApmFuZCAyIG1vcmUKUHJvZHVjZXJJbXBsI2ZhaWxQZW5kaW5nTWVzc2FnZXM",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ProducerImpl#failPendingMessages: +log.warn, +exception, +log, +releaseOpCmdAndRecycle, +failPendingMessages …and 2 more",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java" ],
+  "symbols" : [ "ProducerImpl#failPendingMessages", "+log.warn, +exception, +log, +releaseOpCmdAndRecycle, +failPendingMessages …and 2 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCArY254LmN0eCwgK2NoYW5uZWwsICtldmVudExvb3AsIC1zYWZlUmVsZWFzZSDigKZhbmQgMSBtb3JlClByb2R1Y2VySW1wbCNwcm9jZXNzT3BTZW5kTXNn",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ProducerImpl#processOpSendMsg: +releaseOpCmdAndRecycle, +cnx.ctx, +channel, +eventLoop, -safeRelease …and 1 more",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java" ],
+  "symbols" : [ "ProducerImpl#processOpSendMsg", "+releaseOpCmdAndRecycle, +cnx.ctx, +channel, +eventLoop, -safeRelease …and 1 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCArY254LmN0eCwgK2NoYW5uZWwsICtldmVudExvb3AsIC1vcC5yZWN5Y2xlIOKApmFuZCAxIG1vcmUKUHJvZHVjZXJJbXBsI3JlY292ZXJQcm9jZXNzT3BTZW5kTXNnRnJvbQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ProducerImpl#recoverProcessOpSendMsgFrom: +releaseOpCmdAndRecycle, +cnx.ctx, +channel, +eventLoop, -op.recycle …and 1 more",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java" ],
+  "symbols" : [ "ProducerImpl#recoverProcessOpSendMsgFrom", "+releaseOpCmdAndRecycle, +cnx.ctx, +channel, +eventLoop, -op.recycle …and 1 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClByb2R1Y2VySW1wbC5PcFNlbmRNc2cjaW5pdGlhbGl6ZQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ProducerImpl.OpSendMsg#initialize: other statements changed",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java" ],
+  "symbols" : [ "ProducerImpl.OpSendMsg#initialize", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01PRElGSUVSUwordm9sYXRpbGUKUHJvZHVjZXJJbXBsLk9wU2VuZE1zZyNjbWQ",
+  "kind" : "CHANGE_MODIFIERS",
+  "category" : "STRUCTURAL",
+  "description" : "Change modifiers of ProducerImpl.OpSendMsg#cmd: +volatile",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java" ],
+  "symbols" : [ "ProducerImpl.OpSendMsg#cmd", "+volatile" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClByb2R1Y2VySW1wbC5PcFNlbmRNc2cjd3JpdGVFdmVudExvb3A",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ProducerImpl.OpSendMsg#writeEventLoop",
+  "files" : [ "pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java" ],
+  "symbols" : [ "ProducerImpl.OpSendMsg#writeEventLoop" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

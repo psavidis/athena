@@ -1,0 +1,31 @@
+[ {
+  "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvblJhdGVMaW1pdGVyVGVzdCN0ZXN0QXZhaWxhYmxlUGVybWl0c0FmdGVyUmVsZWFzZUFuZEV4cGlyYXRpb24",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RedissonRateLimiterTest#testAvailablePermitsAfterReleaseAndExpiration",
+  "files" : [ "redisson/src/test/java/org/redisson/RedissonRateLimiterTest.java" ],
+  "symbols" : [ "RedissonRateLimiterTest#testAvailablePermitsAfterReleaseAndExpiration" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvblJhdGVMaW1pdGVyVGVzdCN0ZXN0QXZhaWxhYmxlUGVybWl0c05ldmVyRXhjZWVkc1JhdGVQZXJDbGllbnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RedissonRateLimiterTest#testAvailablePermitsNeverExceedsRatePerClient",
+  "files" : [ "redisson/src/test/java/org/redisson/RedissonRateLimiterTest.java" ],
+  "symbols" : [ "RedissonRateLimiterTest#testAvailablePermitsNeverExceedsRatePerClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClJlZGlzc29uUmF0ZUxpbWl0ZXIjYXZhaWxhYmxlUGVybWl0c0FzeW5jCnJldHVybiB2YWx1ZSBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of RedissonRateLimiter#availablePermitsAsync: return value changed",
+  "files" : [ "redisson/src/main/java/org/redisson/RedissonRateLimiter.java" ],
+  "symbols" : [ "RedissonRateLimiter#availablePermitsAsync", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

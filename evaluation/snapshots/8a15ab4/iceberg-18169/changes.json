@@ -1,0 +1,131 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUeXBlcy5HZW9ncmFwaHlUeXBlI3RvU3RyaW5nCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Types.GeographyType#toString: branch added",
+  "files" : [ "api/src/main/java/org/apache/iceberg/types/Types.java" ],
+  "symbols" : [ "Types.GeographyType#toString", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTY2hlbWFQYXJzZXIjdG9Kc29uCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SchemaParser#toJson: branch added",
+  "files" : [ "core/src/main/java/org/apache/iceberg/SchemaParser.java" ],
+  "symbols" : [ "SchemaParser#toJson", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUeXBlcy5HZW9tZXRyeVR5cGUjd3JpdGVSZXBsYWNl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Types.GeometryType#writeReplace",
+  "files" : [ "api/src/main/java/org/apache/iceberg/types/Types.java" ],
+  "symbols" : [ "Types.GeometryType#writeReplace" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUeXBlcy5HZW9ncmFwaHlUeXBlI3dyaXRlUmVwbGFjZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Types.GeographyType#writeReplace",
+  "files" : [ "api/src/main/java/org/apache/iceberg/types/Types.java" ],
+  "symbols" : [ "Types.GeographyType#writeReplace" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0U2VyaWFsaXphYmxlVHlwZXMjZ2Vvc3BhdGlhbFR5cGVz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestSerializableTypes#geospatialTypes",
+  "files" : [ "api/src/test/java/org/apache/iceberg/types/TestSerializableTypes.java" ],
+  "symbols" : [ "TestSerializableTypes#geospatialTypes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0U2VyaWFsaXphYmxlVHlwZXMjZ2Vvc3BhdGlhbFNlcmlhbGl6YXRpb25JbmNsdWRlc1Jlc29sdmVkRGVmYXVsdHM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestSerializableTypes#geospatialSerializationIncludesResolvedDefaults",
+  "files" : [ "api/src/test/java/org/apache/iceberg/types/TestSerializableTypes.java" ],
+  "symbols" : [ "TestSerializableTypes#geospatialSerializationIncludesResolvedDefaults" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0U2NoZW1hUGFyc2VyI2dlb3NwYXRpYWxEZWZhdWx0c1NlcmlhbGl6ZWRFeHBsaWNpdGx5",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestSchemaParser#geospatialDefaultsSerializedExplicitly",
+  "files" : [ "core/src/test/java/org/apache/iceberg/TestSchemaParser.java" ],
+  "symbols" : [ "TestSchemaParser#geospatialDefaultsSerializedExplicitly" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitlcXVhbHNJZ25vcmVDYXNlLCAtY3JzLCByZXR1cm4gdmFsdWUgY2hhbmdlZApUeXBlcy5HZW9tZXRyeVR5cGUjdG9TdHJpbmc",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Types.GeometryType#toString: +equalsIgnoreCase, -crs, return value changed",
+  "files" : [ "api/src/main/java/org/apache/iceberg/types/Types.java" ],
+  "symbols" : [ "Types.GeometryType#toString", "+equalsIgnoreCase, -crs, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RQYXJ0aXRpb25TcGVjVmFsaWRhdGlvbiN1bnN1cHBvcnRlZEZpZWxkc1Byb3ZpZGVyCnJldHVybiB2YWx1ZSBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TestPartitionSpecValidation#unsupportedFieldsProvider: return value changed",
+  "files" : [ "api/src/test/java/org/apache/iceberg/TestPartitionSpecValidation.java" ],
+  "symbols" : [ "TestPartitionSpecValidation#unsupportedFieldsProvider", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCArdG9TdHJpbmcsICtpc0VxdWFsVG8sICtvZgpUZXN0VHlwZXMjdGVzdEdlb3NwYXRpYWxUeXBlVG9TdHJpbmc",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TestTypes#testGeospatialTypeToString: +assertThat, +toString, +isEqualTo, +of",
+  "files" : [ "api/src/test/java/org/apache/iceberg/types/TestTypes.java" ],
+  "symbols" : [ "TestTypes#testGeospatialTypeToString", "+assertThat, +toString, +isEqualTo, +of" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RQYXJxdWV0U2NoZW1hVXRpbCN0ZXN0R2Vvc3BhdGlhbEFubm90YXRpb25zV2l0aE9taXR0ZWRQYXJhbWV0ZXJzCmlzRXF1YWxUbyjigKYpOiAiZ2VvbWV0cnkoT0dDOkNSUzg0KSIgLT4gImdlb21ldHJ5IiDDlzIsIGlzRXF1YWxUbyjigKYpOiAiZ2VvZ3JhcGh5KE9HQzpDUlM4NCwgc3BoZXJpY2FsKSIgLT4gImdlb2dyYXBoeSI",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TestParquetSchemaUtil#testGeospatialAnnotationsWithOmittedParameters: isEqualTo(…): \"geometry(OGC:CRS84)\" -> \"geometry\" ×2, isEqualTo(…): \"geography(OGC:CRS84, spherical)\" -> \"geography\"",
+  "files" : [ "parquet/src/test/java/org/apache/iceberg/parquet/TestParquetSchemaUtil.java" ],
+  "symbols" : [ "TestParquetSchemaUtil#testGeospatialAnnotationsWithOmittedParameters", "isEqualTo(…): \"geometry(OGC:CRS84)\" -> \"geometry\" ×2, isEqualTo(…): \"geography(OGC:CRS84, spherical)\" -> \"geography\"" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClR5cGVzLkdlb2dyYXBoeVR5cGUjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Types.GeographyType#<init>: other statements changed",
+  "files" : [ "api/src/main/java/org/apache/iceberg/types/Types.java" ],
+  "symbols" : [ "Types.GeographyType#<init>", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClR5cGVzLkdlb2dyYXBoeVR5cGUjYWxnb3JpdGhtRXhwbGljaXQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field Types.GeographyType#algorithmExplicit",
+  "files" : [ "api/src/main/java/org/apache/iceberg/types/Types.java" ],
+  "symbols" : [ "Types.GeographyType#algorithmExplicit" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

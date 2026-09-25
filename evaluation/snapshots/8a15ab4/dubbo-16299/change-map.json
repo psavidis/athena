@@ -1,0 +1,57 @@
+{
+  "prTitle" : "Fix misleading NPE when request parameter is not Serializable",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEdWJib1Byb3RvY29sI2dldEludm9rZXIKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of DubboProtocol#getInvoker: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApEdWJib1Byb3RvY29sVGVzdCN0ZXN0R2V0SW52b2tlclRocm93c09uTnVsbFBhdGg",
+    "description" : "Add DubboProtocolTest#testGetInvokerThrowsOnNullPath",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "DubboProtocol",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEdWJib1Byb3RvY29sI2dldEludm9rZXIKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of DubboProtocol#getInvoker: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DubboProtocolTest",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApEdWJib1Byb3RvY29sVGVzdCN0ZXN0R2V0SW52b2tlclRocm93c09uTnVsbFBhdGg",
+      "description" : "Add DubboProtocolTest#testGetInvokerThrowsOnNullPath",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

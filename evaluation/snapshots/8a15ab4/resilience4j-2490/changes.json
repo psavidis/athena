@@ -1,0 +1,121 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SemaphoreBasedRateLimiterRefreshLimitRegressionTest",
+  "files" : [ "resilience4j-ratelimiter/src/test/java/io/github/resilience4j/ratelimiter/internal/SemaphoreBasedRateLimiterRefreshLimitRegressionTest.java" ],
+  "symbols" : [ "SemaphoreBasedRateLimiterRefreshLimitRegressionTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdC5Db3VudGluZ1NjaGVkdWxlZEV4ZWN1dG9y",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor",
+  "files" : [ "resilience4j-ratelimiter/src/test/java/io/github/resilience4j/ratelimiter/internal/SemaphoreBasedRateLimiterRefreshLimitRegressionTest.java" ],
+  "symbols" : [ "SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyI3JlZnJlc2hMaW1pdApicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SemaphoreBasedRateLimiter#refreshLimit: branch added",
+  "files" : [ "resilience4j-ratelimiter/src/main/java/io/github/resilience4j/ratelimiter/internal/SemaphoreBasedRateLimiter.java" ],
+  "symbols" : [ "SemaphoreBasedRateLimiter#refreshLimit", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyUmVmcmVzaExpbWl0UmVncmVzc2lvblRlc3QjcmVmcmVzaFNjaGVkdWxlck11c3RTdXJ2aXZlTGltaXREZWNyZWFzZUJlbG93QXZhaWxhYmxlUGVybWl0cw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SemaphoreBasedRateLimiterRefreshLimitRegressionTest#refreshSchedulerMustSurviveLimitDecreaseBelowAvailablePermits",
+  "files" : [ "resilience4j-ratelimiter/src/test/java/io/github/resilience4j/ratelimiter/internal/SemaphoreBasedRateLimiterRefreshLimitRegressionTest.java" ],
+  "symbols" : [ "SemaphoreBasedRateLimiterRefreshLimitRegressionTest#refreshSchedulerMustSurviveLimitDecreaseBelowAvailablePermits" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyUmVmcmVzaExpbWl0UmVncmVzc2lvblRlc3QjcmVmcmVzaExpbWl0Q2xhbXBzRXhjZXNzUGVybWl0c1dpdGhvdXRUaHJvd2luZw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SemaphoreBasedRateLimiterRefreshLimitRegressionTest#refreshLimitClampsExcessPermitsWithoutThrowing",
+  "files" : [ "resilience4j-ratelimiter/src/test/java/io/github/resilience4j/ratelimiter/internal/SemaphoreBasedRateLimiterRefreshLimitRegressionTest.java" ],
+  "symbols" : [ "SemaphoreBasedRateLimiterRefreshLimitRegressionTest#refreshLimitClampsExcessPermitsWithoutThrowing" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyUmVmcmVzaExpbWl0UmVncmVzc2lvblRlc3Qjd2FpdEZvcldpdGhpbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SemaphoreBasedRateLimiterRefreshLimitRegressionTest#waitForWithin",
+  "files" : [ "resilience4j-ratelimiter/src/test/java/io/github/resilience4j/ratelimiter/internal/SemaphoreBasedRateLimiterRefreshLimitRegressionTest.java" ],
+  "symbols" : [ "SemaphoreBasedRateLimiterRefreshLimitRegressionTest#waitForWithin" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyUmVmcmVzaExpbWl0UmVncmVzc2lvblRlc3QuQ291bnRpbmdTY2hlZHVsZWRFeGVjdXRvciNzY2hlZHVsZUF0Rml4ZWRSYXRl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor#scheduleAtFixedRate",
+  "files" : [ "resilience4j-ratelimiter/src/test/java/io/github/resilience4j/ratelimiter/internal/SemaphoreBasedRateLimiterRefreshLimitRegressionTest.java" ],
+  "symbols" : [ "SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor#scheduleAtFixedRate" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdCNJTklUSUFMX0xJTUlUX0ZPUl9QRVJJT0Q",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest#INITIAL_LIMIT_FOR_PERIOD",
+  "files" : [ "resilience4j-ratelimiter/src/test/java/io/github/resilience4j/ratelimiter/internal/SemaphoreBasedRateLimiterRefreshLimitRegressionTest.java" ],
+  "symbols" : [ "SemaphoreBasedRateLimiterRefreshLimitRegressionTest#INITIAL_LIMIT_FOR_PERIOD" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdCNMT1dFUkVEX0xJTUlUX0ZPUl9QRVJJT0Q",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest#LOWERED_LIMIT_FOR_PERIOD",
+  "files" : [ "resilience4j-ratelimiter/src/test/java/io/github/resilience4j/ratelimiter/internal/SemaphoreBasedRateLimiterRefreshLimitRegressionTest.java" ],
+  "symbols" : [ "SemaphoreBasedRateLimiterRefreshLimitRegressionTest#LOWERED_LIMIT_FOR_PERIOD" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdCNSRUZSRVNIX1BFUklPRA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest#REFRESH_PERIOD",
+  "files" : [ "resilience4j-ratelimiter/src/test/java/io/github/resilience4j/ratelimiter/internal/SemaphoreBasedRateLimiterRefreshLimitRegressionTest.java" ],
+  "symbols" : [ "SemaphoreBasedRateLimiterRefreshLimitRegressionTest#REFRESH_PERIOD" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdC5Db3VudGluZ1NjaGVkdWxlZEV4ZWN1dG9yI3JlZnJlc2hDb3VudA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor#refreshCount",
+  "files" : [ "resilience4j-ratelimiter/src/test/java/io/github/resilience4j/ratelimiter/internal/SemaphoreBasedRateLimiterRefreshLimitRegressionTest.java" ],
+  "symbols" : [ "SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor#refreshCount" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdC5Db3VudGluZ1NjaGVkdWxlZEV4ZWN1dG9yI3BlcmlvZGljRnV0dXJl",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor#periodicFuture",
+  "files" : [ "resilience4j-ratelimiter/src/test/java/io/github/resilience4j/ratelimiter/internal/SemaphoreBasedRateLimiterRefreshLimitRegressionTest.java" ],
+  "symbols" : [ "SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor#periodicFuture" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

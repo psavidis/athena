@@ -1,0 +1,295 @@
+{
+  "prTitle" : "API, Core: Restore geospatial type strings and preserve serialized parameters",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 2,
+    "STRUCTURAL" : 6,
+    "UNKNOWN" : 5,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUeXBlcy5HZW9ncmFwaHlUeXBlI3RvU3RyaW5nCmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of Types.GeographyType#toString: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTY2hlbWFQYXJzZXIjdG9Kc29uCmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of SchemaParser#toJson: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApUeXBlcy5HZW9tZXRyeVR5cGUjd3JpdGVSZXBsYWNl",
+    "description" : "Add Types.GeometryType#writeReplace",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApUeXBlcy5HZW9ncmFwaHlUeXBlI3dyaXRlUmVwbGFjZQ",
+    "description" : "Add Types.GeographyType#writeReplace",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0U2VyaWFsaXphYmxlVHlwZXMjZ2Vvc3BhdGlhbFR5cGVz",
+    "description" : "Add TestSerializableTypes#geospatialTypes",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0U2VyaWFsaXphYmxlVHlwZXMjZ2Vvc3BhdGlhbFNlcmlhbGl6YXRpb25JbmNsdWRlc1Jlc29sdmVkRGVmYXVsdHM",
+    "description" : "Add TestSerializableTypes#geospatialSerializationIncludesResolvedDefaults",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0U2NoZW1hUGFyc2VyI2dlb3NwYXRpYWxEZWZhdWx0c1NlcmlhbGl6ZWRFeHBsaWNpdGx5",
+    "description" : "Add TestSchemaParser#geospatialDefaultsSerializedExplicitly",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitlcXVhbHNJZ25vcmVDYXNlLCAtY3JzLCByZXR1cm4gdmFsdWUgY2hhbmdlZApUeXBlcy5HZW9tZXRyeVR5cGUjdG9TdHJpbmc",
+    "description" : "Modify body of Types.GeometryType#toString: +equalsIgnoreCase, -crs, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RQYXJ0aXRpb25TcGVjVmFsaWRhdGlvbiN1bnN1cHBvcnRlZEZpZWxkc1Byb3ZpZGVyCnJldHVybiB2YWx1ZSBjaGFuZ2Vk",
+    "description" : "Modify body of TestPartitionSpecValidation#unsupportedFieldsProvider: return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCArdG9TdHJpbmcsICtpc0VxdWFsVG8sICtvZgpUZXN0VHlwZXMjdGVzdEdlb3NwYXRpYWxUeXBlVG9TdHJpbmc",
+    "description" : "Modify body of TestTypes#testGeospatialTypeToString: +assertThat, +toString, +isEqualTo, +of",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RQYXJxdWV0U2NoZW1hVXRpbCN0ZXN0R2Vvc3BhdGlhbEFubm90YXRpb25zV2l0aE9taXR0ZWRQYXJhbWV0ZXJzCmlzRXF1YWxUbyjigKYpOiAiZ2VvbWV0cnkoT0dDOkNSUzg0KSIgLT4gImdlb21ldHJ5IiDDlzIsIGlzRXF1YWxUbyjigKYpOiAiZ2VvZ3JhcGh5KE9HQzpDUlM4NCwgc3BoZXJpY2FsKSIgLT4gImdlb2dyYXBoeSI",
+    "description" : "Modify body of TestParquetSchemaUtil#testGeospatialAnnotationsWithOmittedParameters: isEqualTo(…): \"geometry(OGC:CRS84)\" -> \"geometry\" ×2, isEqualTo(…): \"geography(OGC:CRS84, spherical)\" -> \"geography\"",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClR5cGVzLkdlb2dyYXBoeVR5cGUjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of Types.GeographyType#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX0ZJRUxEClR5cGVzLkdlb2dyYXBoeVR5cGUjYWxnb3JpdGhtRXhwbGljaXQ",
+    "description" : "Add field Types.GeographyType#algorithmExplicit",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "Types.GeographyType",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUeXBlcy5HZW9ncmFwaHlUeXBlI3RvU3RyaW5nCmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of Types.GeographyType#toString: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApUeXBlcy5HZW9ncmFwaHlUeXBlI3dyaXRlUmVwbGFjZQ",
+      "description" : "Add Types.GeographyType#writeReplace",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClR5cGVzLkdlb2dyYXBoeVR5cGUjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of Types.GeographyType#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX0ZJRUxEClR5cGVzLkdlb2dyYXBoeVR5cGUjYWxnb3JpdGhtRXhwbGljaXQ",
+      "description" : "Add field Types.GeographyType#algorithmExplicit",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SchemaParser",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTY2hlbWFQYXJzZXIjdG9Kc29uCmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of SchemaParser#toJson: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "Types.GeometryType",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApUeXBlcy5HZW9tZXRyeVR5cGUjd3JpdGVSZXBsYWNl",
+      "description" : "Add Types.GeometryType#writeReplace",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitlcXVhbHNJZ25vcmVDYXNlLCAtY3JzLCByZXR1cm4gdmFsdWUgY2hhbmdlZApUeXBlcy5HZW9tZXRyeVR5cGUjdG9TdHJpbmc",
+      "description" : "Modify body of Types.GeometryType#toString: +equalsIgnoreCase, -crs, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TestSerializableTypes",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0U2VyaWFsaXphYmxlVHlwZXMjZ2Vvc3BhdGlhbFR5cGVz",
+      "description" : "Add TestSerializableTypes#geospatialTypes",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0U2VyaWFsaXphYmxlVHlwZXMjZ2Vvc3BhdGlhbFNlcmlhbGl6YXRpb25JbmNsdWRlc1Jlc29sdmVkRGVmYXVsdHM",
+      "description" : "Add TestSerializableTypes#geospatialSerializationIncludesResolvedDefaults",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TestSchemaParser",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0U2NoZW1hUGFyc2VyI2dlb3NwYXRpYWxEZWZhdWx0c1NlcmlhbGl6ZWRFeHBsaWNpdGx5",
+      "description" : "Add TestSchemaParser#geospatialDefaultsSerializedExplicitly",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TestPartitionSpecValidation",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RQYXJ0aXRpb25TcGVjVmFsaWRhdGlvbiN1bnN1cHBvcnRlZEZpZWxkc1Byb3ZpZGVyCnJldHVybiB2YWx1ZSBjaGFuZ2Vk",
+      "description" : "Modify body of TestPartitionSpecValidation#unsupportedFieldsProvider: return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TestTypes",
+    "entries" : [ {
+      "id" : 9,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCArdG9TdHJpbmcsICtpc0VxdWFsVG8sICtvZgpUZXN0VHlwZXMjdGVzdEdlb3NwYXRpYWxUeXBlVG9TdHJpbmc",
+      "description" : "Modify body of TestTypes#testGeospatialTypeToString: +assertThat, +toString, +isEqualTo, +of",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TestParquetSchemaUtil",
+    "entries" : [ {
+      "id" : 10,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RQYXJxdWV0U2NoZW1hVXRpbCN0ZXN0R2Vvc3BhdGlhbEFubm90YXRpb25zV2l0aE9taXR0ZWRQYXJhbWV0ZXJzCmlzRXF1YWxUbyjigKYpOiAiZ2VvbWV0cnkoT0dDOkNSUzg0KSIgLT4gImdlb21ldHJ5IiDDlzIsIGlzRXF1YWxUbyjigKYpOiAiZ2VvZ3JhcGh5KE9HQzpDUlM4NCwgc3BoZXJpY2FsKSIgLT4gImdlb2dyYXBoeSI",
+      "description" : "Modify body of TestParquetSchemaUtil#testGeospatialAnnotationsWithOmittedParameters: isEqualTo(…): \"geometry(OGC:CRS84)\" -> \"geometry\" ×2, isEqualTo(…): \"geography(OGC:CRS84, spherical)\" -> \"geography\"",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

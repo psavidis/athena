@@ -1,0 +1,13 @@
+[ {
+  "description" : "Pull up field defaultMQPushConsumer into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+  "entity" : "AbstractConsumeMessageService"
+}, {
+  "description" : "Pull up decCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+  "entity" : "AbstractConsumeMessageService"
+}, {
+  "description" : "Pull up getCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+  "entity" : "AbstractConsumeMessageService"
+}, {
+  "description" : "Pull up incCorePoolSize into AbstractConsumeMessageService (from ConsumeMessageConcurrentlyService, ConsumeMessageOrderlyService, ConsumeMessagePopConcurrentlyService, ConsumeMessagePopOrderlyService)",
+  "entity" : "AbstractConsumeMessageService"
+} ]

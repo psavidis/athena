@@ -1,0 +1,383 @@
+{
+  "prTitle" : "[fix][client] Defer op cmd release to the write event loop on send timeout",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 10,
+    "UNKNOWN" : 7,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpQcm9kdWNlckltcGwuV3JpdGVJbkV2ZW50TG9vcENhbGxiYWNrI3J1bgpicmFuY2ggYWRkZWQ",
+    "description" : "Change control flow of ProducerImpl.WriteInEventLoopCallback#run: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGwjcmVsZWFzZU9wQ21kQW5kUmVjeWNsZQ",
+    "description" : "Add ProducerImpl#releaseOpCmdAndRecycle",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGwjcmVsZWFzZU9wQ21k",
+    "description" : "Add ProducerImpl#releaseOpCmd",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTZW5kVGltZW91dER1cmluZ0luRmxpZ2h0V3JpdGVEZWZlcnNDbWRSZWxlYXNl",
+    "description" : "Add ProducerImplTest#testSendTimeoutDuringInFlightWriteDefersCmdRelease",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTZW5kVGltZW91dFJlbGVhc2VzQ21kSW5saW5lV2hlbk5vV3JpdGVJbkZsaWdodA",
+    "description" : "Add ProducerImplTest#testSendTimeoutReleasesCmdInlineWhenNoWriteInFlight",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RQcm9jZXNzT3BTZW5kTXNnVHJhY2tzV3JpdGVFdmVudExvb3A",
+    "description" : "Add ProducerImplTest#testProcessOpSendMsgTracksWriteEventLoop",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTdGFsZVdyaXRlQ2FsbGJhY2tTa2lwc0Rpc3Bvc2VkT3A",
+    "description" : "Add ProducerImplTest#testStaleWriteCallbackSkipsDisposedOp",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTdGFsZVdyaXRlQ2FsbGJhY2tTa2lwc09wUmVTZW50T25Bbm90aGVyTG9vcA",
+    "description" : "Add ProducerImplTest#testStaleWriteCallbackSkipsOpReSentOnAnotherLoop",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RGYWlsUGVuZGluZ01lc3NhZ2VzSGFuZGxlc1NodXR0aW5nRG93bkV2ZW50TG9vcA",
+    "description" : "Add ProducerImplTest#testFailPendingMessagesHandlesShuttingDownEventLoop",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCAtc2FmZVJlbGVhc2UsIC1vcC5yZWN5Y2xlClByb2R1Y2VySW1wbCNhY2tSZWNlaXZlZA",
+    "description" : "Modify body of ProducerImpl#ackReceived: +releaseOpCmdAndRecycle, -safeRelease, -op.recycle",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCAtc2FmZVJlbGVhc2UsIC1vcC5yZWN5Y2xlClByb2R1Y2VySW1wbCNyZWNvdmVyQ2hlY2tzdW1FcnJvcg",
+    "description" : "Modify body of ProducerImpl#recoverChecksumError: +releaseOpCmdAndRecycle, -safeRelease, -op.recycle",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCAtc2FmZVJlbGVhc2UsIC1vcC5yZWN5Y2xlClByb2R1Y2VySW1wbCNyZWNvdmVyTm90QWxsb3dlZEVycm9y",
+    "description" : "Modify body of ProducerImpl#recoverNotAllowedError: +releaseOpCmdAndRecycle, -safeRelease, -op.recycle",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2cud2FybiwgK2V4Y2VwdGlvbiwgK2xvZywgK3JlbGVhc2VPcENtZEFuZFJlY3ljbGUsICtmYWlsUGVuZGluZ01lc3NhZ2VzIOKApmFuZCAyIG1vcmUKUHJvZHVjZXJJbXBsI2ZhaWxQZW5kaW5nTWVzc2FnZXM",
+    "description" : "Modify body of ProducerImpl#failPendingMessages: +log.warn, +exception, +log, +releaseOpCmdAndRecycle, +failPendingMessages …and 2 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCArY254LmN0eCwgK2NoYW5uZWwsICtldmVudExvb3AsIC1zYWZlUmVsZWFzZSDigKZhbmQgMSBtb3JlClByb2R1Y2VySW1wbCNwcm9jZXNzT3BTZW5kTXNn",
+    "description" : "Modify body of ProducerImpl#processOpSendMsg: +releaseOpCmdAndRecycle, +cnx.ctx, +channel, +eventLoop, -safeRelease …and 1 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 14,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCArY254LmN0eCwgK2NoYW5uZWwsICtldmVudExvb3AsIC1vcC5yZWN5Y2xlIOKApmFuZCAxIG1vcmUKUHJvZHVjZXJJbXBsI3JlY292ZXJQcm9jZXNzT3BTZW5kTXNnRnJvbQ",
+    "description" : "Modify body of ProducerImpl#recoverProcessOpSendMsgFrom: +releaseOpCmdAndRecycle, +cnx.ctx, +channel, +eventLoop, -op.recycle …and 1 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 15,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClByb2R1Y2VySW1wbC5PcFNlbmRNc2cjaW5pdGlhbGl6ZQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of ProducerImpl.OpSendMsg#initialize: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 16,
+    "changeKey" : "Q0hBTkdFX01PRElGSUVSUwordm9sYXRpbGUKUHJvZHVjZXJJbXBsLk9wU2VuZE1zZyNjbWQ",
+    "description" : "Change modifiers of ProducerImpl.OpSendMsg#cmd: +volatile",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_MODIFIERS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX0ZJRUxEClByb2R1Y2VySW1wbC5PcFNlbmRNc2cjd3JpdGVFdmVudExvb3A",
+    "description" : "Add field ProducerImpl.OpSendMsg#writeEventLoop",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ProducerImpl.WriteInEventLoopCallback",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpQcm9kdWNlckltcGwuV3JpdGVJbkV2ZW50TG9vcENhbGxiYWNrI3J1bgpicmFuY2ggYWRkZWQ",
+      "description" : "Change control flow of ProducerImpl.WriteInEventLoopCallback#run: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ProducerImpl",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGwjcmVsZWFzZU9wQ21kQW5kUmVjeWNsZQ",
+      "description" : "Add ProducerImpl#releaseOpCmdAndRecycle",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGwjcmVsZWFzZU9wQ21k",
+      "description" : "Add ProducerImpl#releaseOpCmd",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 9,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCAtc2FmZVJlbGVhc2UsIC1vcC5yZWN5Y2xlClByb2R1Y2VySW1wbCNhY2tSZWNlaXZlZA",
+      "description" : "Modify body of ProducerImpl#ackReceived: +releaseOpCmdAndRecycle, -safeRelease, -op.recycle",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 10,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCAtc2FmZVJlbGVhc2UsIC1vcC5yZWN5Y2xlClByb2R1Y2VySW1wbCNyZWNvdmVyQ2hlY2tzdW1FcnJvcg",
+      "description" : "Modify body of ProducerImpl#recoverChecksumError: +releaseOpCmdAndRecycle, -safeRelease, -op.recycle",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCAtc2FmZVJlbGVhc2UsIC1vcC5yZWN5Y2xlClByb2R1Y2VySW1wbCNyZWNvdmVyTm90QWxsb3dlZEVycm9y",
+      "description" : "Modify body of ProducerImpl#recoverNotAllowedError: +releaseOpCmdAndRecycle, -safeRelease, -op.recycle",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 12,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2cud2FybiwgK2V4Y2VwdGlvbiwgK2xvZywgK3JlbGVhc2VPcENtZEFuZFJlY3ljbGUsICtmYWlsUGVuZGluZ01lc3NhZ2VzIOKApmFuZCAyIG1vcmUKUHJvZHVjZXJJbXBsI2ZhaWxQZW5kaW5nTWVzc2FnZXM",
+      "description" : "Modify body of ProducerImpl#failPendingMessages: +log.warn, +exception, +log, +releaseOpCmdAndRecycle, +failPendingMessages …and 2 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 13,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCArY254LmN0eCwgK2NoYW5uZWwsICtldmVudExvb3AsIC1zYWZlUmVsZWFzZSDigKZhbmQgMSBtb3JlClByb2R1Y2VySW1wbCNwcm9jZXNzT3BTZW5kTXNn",
+      "description" : "Modify body of ProducerImpl#processOpSendMsg: +releaseOpCmdAndRecycle, +cnx.ctx, +channel, +eventLoop, -safeRelease …and 1 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 14,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWxlYXNlT3BDbWRBbmRSZWN5Y2xlLCArY254LmN0eCwgK2NoYW5uZWwsICtldmVudExvb3AsIC1vcC5yZWN5Y2xlIOKApmFuZCAxIG1vcmUKUHJvZHVjZXJJbXBsI3JlY292ZXJQcm9jZXNzT3BTZW5kTXNnRnJvbQ",
+      "description" : "Modify body of ProducerImpl#recoverProcessOpSendMsgFrom: +releaseOpCmdAndRecycle, +cnx.ctx, +channel, +eventLoop, -op.recycle …and 1 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ProducerImplTest",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTZW5kVGltZW91dER1cmluZ0luRmxpZ2h0V3JpdGVEZWZlcnNDbWRSZWxlYXNl",
+      "description" : "Add ProducerImplTest#testSendTimeoutDuringInFlightWriteDefersCmdRelease",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTZW5kVGltZW91dFJlbGVhc2VzQ21kSW5saW5lV2hlbk5vV3JpdGVJbkZsaWdodA",
+      "description" : "Add ProducerImplTest#testSendTimeoutReleasesCmdInlineWhenNoWriteInFlight",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RQcm9jZXNzT3BTZW5kTXNnVHJhY2tzV3JpdGVFdmVudExvb3A",
+      "description" : "Add ProducerImplTest#testProcessOpSendMsgTracksWriteEventLoop",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTdGFsZVdyaXRlQ2FsbGJhY2tTa2lwc0Rpc3Bvc2VkT3A",
+      "description" : "Add ProducerImplTest#testStaleWriteCallbackSkipsDisposedOp",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RTdGFsZVdyaXRlQ2FsbGJhY2tTa2lwc09wUmVTZW50T25Bbm90aGVyTG9vcA",
+      "description" : "Add ProducerImplTest#testStaleWriteCallbackSkipsOpReSentOnAnotherLoop",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApQcm9kdWNlckltcGxUZXN0I3Rlc3RGYWlsUGVuZGluZ01lc3NhZ2VzSGFuZGxlc1NodXR0aW5nRG93bkV2ZW50TG9vcA",
+      "description" : "Add ProducerImplTest#testFailPendingMessagesHandlesShuttingDownEventLoop",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ProducerImpl.OpSendMsg",
+    "entries" : [ {
+      "id" : 15,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClByb2R1Y2VySW1wbC5PcFNlbmRNc2cjaW5pdGlhbGl6ZQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of ProducerImpl.OpSendMsg#initialize: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 16,
+      "changeKey" : "Q0hBTkdFX01PRElGSUVSUwordm9sYXRpbGUKUHJvZHVjZXJJbXBsLk9wU2VuZE1zZyNjbWQ",
+      "description" : "Change modifiers of ProducerImpl.OpSendMsg#cmd: +volatile",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_MODIFIERS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX0ZJRUxEClByb2R1Y2VySW1wbC5PcFNlbmRNc2cjd3JpdGVFdmVudExvb3A",
+      "description" : "Add field ProducerImpl.OpSendMsg#writeEventLoop",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

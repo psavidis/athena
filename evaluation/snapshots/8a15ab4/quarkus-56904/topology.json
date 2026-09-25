@@ -1,0 +1,94 @@
+{
+  "territories" : [ {
+    "moduleName" : "runtime (elytron-security-common)",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 17 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUworQERlcHJlY2F0ZWQKQmNyeXB0VXRpbCNiY3J5cHRIYXNo", "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUworQERlcHJlY2F0ZWQKQmNyeXB0VXRpbCNtYXRjaGVz", "QUREX1NZTUJPTApCY3J5cHRVdGlsI2JjcnlwdEhhc2g", "QUREX1NZTUJPTApCY3J5cHRVdGlsI21hdGNoZXM", "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlU2FtZUhhc2hXaXRoQ2hhckFycmF5UGFzc3dvcmQ", "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0UGFzc3dvcmRNYXRjaGVzV2l0aENoYXJBcnJheVBhc3N3b3Jk", "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0UGFzc3dvcmROb3RNYXRjaGVzV2l0aENoYXJBcnJheVBhc3N3b3Jk", "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlUmlnaHRQYXNzd29yZFdpdGhDaGFyQXJyYXlQYXNzd29yZA", "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlU2FtZUhhc2hXaXRoRGVwcmVjYXRlZFN0cmluZ0l0ZXJhdGlvbkNvdW50T3ZlcmxvYWQ", "TU9ESUZZX01FVEhPRF9CT0RZCitwYXNzd29yZC50b0NoYXJBcnJheSwgcmV0dXJuIHBhc3N3b3JkIC0-IHBhc3N3b3JkLnRvQ2hhckFycmF5KCkKQmNyeXB0VXRpbCNiY3J5cHRIYXNo", "TU9ESUZZX01FVEhPRF9CT0RZCitwYXNzd29yZC50b0NoYXJBcnJheSwgLXJhbmRvbS5uZXh0Qnl0ZXMsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCkJjcnlwdFV0aWwjYmNyeXB0SGFzaA", "TU9ESUZZX01FVEhPRF9CT0RZCittYXRjaGVzLCAtZ2V0SW5zdGFuY2UsIC1wYXNzd29yZEZhY3RvcnkudHJhbnNsYXRlLCAtZGVjb2RlLCAtcGFzc3dvcmRGYWN0b3J5LnZlcmlmeSDigKZhbmQgNCBtb3JlCkJjcnlwdFV0aWwjbWF0Y2hlcw", "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc0FjY2VwdHNUaGVTdXBwb3J0ZWRQcmVmaXhlcw", "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBSGFzaFRoYXRJc05vdE1vZHVsYXJDcnlwdEZvcm1hdA", "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBVHJ1bmNhdGVkQmNyeXB0SGFzaA", "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBSGFzaE9mQW5vdGhlckFsZ29yaXRobQ", "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNUaGUyYlByZWZpeA" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlU2FtZUhhc2hXaXRoQ2hhckFycmF5UGFzc3dvcmQ", "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0UGFzc3dvcmRNYXRjaGVzV2l0aENoYXJBcnJheVBhc3N3b3Jk", "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0UGFzc3dvcmROb3RNYXRjaGVzV2l0aENoYXJBcnJheVBhc3N3b3Jk", "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlUmlnaHRQYXNzd29yZFdpdGhDaGFyQXJyYXlQYXNzd29yZA", "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlU2FtZUhhc2hXaXRoRGVwcmVjYXRlZFN0cmluZ0l0ZXJhdGlvbkNvdW50T3ZlcmxvYWQ", "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc0FjY2VwdHNUaGVTdXBwb3J0ZWRQcmVmaXhlcw", "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBSGFzaFRoYXRJc05vdE1vZHVsYXJDcnlwdEZvcm1hdA", "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBVHJ1bmNhdGVkQmNyeXB0SGFzaA", "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBSGFzaE9mQW5vdGhlckFsZ29yaXRobQ", "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNUaGUyYlByZWZpeA" ]
+  }, {
+    "moduleName" : "runtime (security-jpa-common)",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Modify body of JpaIdentityProviderUtil#passwordAction: +uuid.toCharArray",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCit1dWlkLnRvQ2hhckFycmF5CkpwYUlkZW50aXR5UHJvdmlkZXJVdGlsI3Bhc3N3b3JkQWN0aW9u" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "runtime (core)",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "junit-internal",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "extension-maven-plugin",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "processor (core)",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "runtime (security)",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "runtime (elytron-security-common)",
+    "to" : "runtime (core)"
+  }, {
+    "from" : "runtime (elytron-security-common)",
+    "to" : "junit-internal"
+  }, {
+    "from" : "runtime (elytron-security-common)",
+    "to" : "extension-maven-plugin"
+  }, {
+    "from" : "runtime (elytron-security-common)",
+    "to" : "processor (core)"
+  }, {
+    "from" : "runtime (security-jpa-common)",
+    "to" : "runtime (core)"
+  }, {
+    "from" : "runtime (security-jpa-common)",
+    "to" : "runtime (elytron-security-common)"
+  }, {
+    "from" : "runtime (security-jpa-common)",
+    "to" : "runtime (security)"
+  }, {
+    "from" : "runtime (security-jpa-common)",
+    "to" : "extension-maven-plugin"
+  }, {
+    "from" : "runtime (security-jpa-common)",
+    "to" : "processor (core)"
+  } ]
+}

@@ -1,0 +1,258 @@
+{
+  "prTitle" : "Add Redis server time support to RKeys",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 11,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXMjdGltZQ",
+    "description" : "Add RedissonKeys#time",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXMjdGltZUFzeW5j",
+    "description" : "Add RedissonKeys#timeAsync",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApSS2V5cyN0aW1l",
+    "description" : "Add RKeys#time",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApSS2V5c0FzeW5jI3RpbWVBc3luYw",
+    "description" : "Add RKeysAsync#timeAsync",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApSS2V5c1JlYWN0aXZlI3RpbWU",
+    "description" : "Add RKeysReactive#time",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApSS2V5c1J4I3RpbWU",
+    "description" : "Add RKeysRx#time",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbkJhdGNoVGVzdCN0ZXN0VGltZQ",
+    "description" : "Add RedissonBatchTest#testTime",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbkJhdGNoVGVzdCN0ZXN0VGltZUluQ2x1c3Rlcg",
+    "description" : "Add RedissonBatchTest#testTimeInCluster",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXNSZWFjdGl2ZVRlc3QjdGVzdFRpbWU",
+    "description" : "Add RedissonKeysReactiveTest#testTime",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXNUZXN0I3Rlc3RUaW1l",
+    "description" : "Add RedissonKeysTest#testTime",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXNSeFRlc3QjdGVzdFRpbWU",
+    "description" : "Add RedissonKeysRxTest#testTime",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "RedissonKeys",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXMjdGltZQ",
+      "description" : "Add RedissonKeys#time",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXMjdGltZUFzeW5j",
+      "description" : "Add RedissonKeys#timeAsync",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RKeys",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApSS2V5cyN0aW1l",
+      "description" : "Add RKeys#time",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RKeysAsync",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApSS2V5c0FzeW5jI3RpbWVBc3luYw",
+      "description" : "Add RKeysAsync#timeAsync",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RKeysReactive",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApSS2V5c1JlYWN0aXZlI3RpbWU",
+      "description" : "Add RKeysReactive#time",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RKeysRx",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApSS2V5c1J4I3RpbWU",
+      "description" : "Add RKeysRx#time",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RedissonBatchTest",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbkJhdGNoVGVzdCN0ZXN0VGltZQ",
+      "description" : "Add RedissonBatchTest#testTime",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbkJhdGNoVGVzdCN0ZXN0VGltZUluQ2x1c3Rlcg",
+      "description" : "Add RedissonBatchTest#testTimeInCluster",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "RedissonKeysReactiveTest",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXNSZWFjdGl2ZVRlc3QjdGVzdFRpbWU",
+      "description" : "Add RedissonKeysReactiveTest#testTime",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "RedissonKeysTest",
+    "entries" : [ {
+      "id" : 9,
+      "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXNUZXN0I3Rlc3RUaW1l",
+      "description" : "Add RedissonKeysTest#testTime",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "RedissonKeysRxTest",
+    "entries" : [ {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvbktleXNSeFRlc3QjdGVzdFRpbWU",
+      "description" : "Add RedissonKeysRxTest#testTime",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

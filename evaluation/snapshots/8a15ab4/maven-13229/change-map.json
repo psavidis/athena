@@ -1,0 +1,189 @@
+{
+  "prTitle" : "MNG-8725: Support max thread configuration",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 2,
+    "STRUCTURAL" : 3,
+    "UNKNOWN" : 3,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTCkxvb2t1cEludm9rZXJUZXN0",
+    "description" : "Add class LookupInvokerTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYXZlbkNsaSNjYWxjdWxhdGVEZWdyZWVPZkNvbmN1cnJlbmN5CmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of MavenCli#calculateDegreeOfConcurrency: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMb29rdXBJbnZva2VyI2NhbGN1bGF0ZURlZ3JlZU9mQ29uY3VycmVuY3kKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of LookupInvoker#calculateDegreeOfConcurrency: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApMb29rdXBJbnZva2VyVGVzdCN0ZXN0Q2FsY3VsYXRlRGVncmVlT2ZDb25jdXJyZW5jeQ",
+    "description" : "Add LookupInvokerTest#testCalculateDegreeOfConcurrency",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGkuY2FsY3VsYXRlRGVncmVlT2ZDb25jdXJyZW5jeSwgK2Fzc2VydEVxdWFscywgK21heApNYXZlbkNsaVRlc3QjdGVzdENhbGN1bGF0ZURlZ3JlZU9mQ29uY3VycmVuY3k",
+    "description" : "Modify body of MavenCliTest#testCalculateDegreeOfConcurrency: +cli.calculateDegreeOfConcurrency, +assertEquals, +max",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbW1vbnNDbGlNYXZlbk9wdGlvbnMuQ0xJTWFuYWdlciNwcmVwYXJlT3B0aW9ucwphcmd1bWVudHMgb2YgZGVzYyBjaGFuZ2Vk",
+    "description" : "Modify body of CommonsCliMavenOptions.CLIManager#prepareOptions: arguments of desc changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNMSU1hbmFnZXIjPGluaXQ-CmFyZ3VtZW50cyBvZiBkZXNjIGNoYW5nZWQ",
+    "description" : "Modify body of CLIManager#<init>: arguments of desc changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX0ZJRUxECkxvb2t1cEludm9rZXJUZXN0I2ludm9rZXI",
+    "description" : "Add field LookupInvokerTest#invoker",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "LookupInvokerTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTCkxvb2t1cEludm9rZXJUZXN0",
+      "description" : "Add class LookupInvokerTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApMb29rdXBJbnZva2VyVGVzdCN0ZXN0Q2FsY3VsYXRlRGVncmVlT2ZDb25jdXJyZW5jeQ",
+      "description" : "Add LookupInvokerTest#testCalculateDegreeOfConcurrency",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX0ZJRUxECkxvb2t1cEludm9rZXJUZXN0I2ludm9rZXI",
+      "description" : "Add field LookupInvokerTest#invoker",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "MavenCli",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYXZlbkNsaSNjYWxjdWxhdGVEZWdyZWVPZkNvbmN1cnJlbmN5CmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of MavenCli#calculateDegreeOfConcurrency: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "LookupInvoker",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMb29rdXBJbnZva2VyI2NhbGN1bGF0ZURlZ3JlZU9mQ29uY3VycmVuY3kKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of LookupInvoker#calculateDegreeOfConcurrency: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "MavenCliTest",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGkuY2FsY3VsYXRlRGVncmVlT2ZDb25jdXJyZW5jeSwgK2Fzc2VydEVxdWFscywgK21heApNYXZlbkNsaVRlc3QjdGVzdENhbGN1bGF0ZURlZ3JlZU9mQ29uY3VycmVuY3k",
+      "description" : "Modify body of MavenCliTest#testCalculateDegreeOfConcurrency: +cli.calculateDegreeOfConcurrency, +assertEquals, +max",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "CommonsCliMavenOptions.CLIManager",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbW1vbnNDbGlNYXZlbk9wdGlvbnMuQ0xJTWFuYWdlciNwcmVwYXJlT3B0aW9ucwphcmd1bWVudHMgb2YgZGVzYyBjaGFuZ2Vk",
+      "description" : "Modify body of CommonsCliMavenOptions.CLIManager#prepareOptions: arguments of desc changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "CLIManager",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNMSU1hbmFnZXIjPGluaXQ-CmFyZ3VtZW50cyBvZiBkZXNjIGNoYW5nZWQ",
+      "description" : "Modify body of CLIManager#<init>: arguments of desc changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

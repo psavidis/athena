@@ -1,0 +1,31 @@
+{
+  "territories" : [ {
+    "moduleName" : "api",
+    "status" : "TOUCHED",
+    "fileCount" : 4,
+    "statusSummary" : "4 files · 10 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpUeXBlcy5HZW9ncmFwaHlUeXBlI3RvU3RyaW5nCmJyYW5jaCBhZGRlZA", "QUREX1NZTUJPTApUeXBlcy5HZW9tZXRyeVR5cGUjd3JpdGVSZXBsYWNl", "QUREX1NZTUJPTApUeXBlcy5HZW9ncmFwaHlUeXBlI3dyaXRlUmVwbGFjZQ", "QUREX1NZTUJPTApUZXN0U2VyaWFsaXphYmxlVHlwZXMjZ2Vvc3BhdGlhbFR5cGVz", "QUREX1NZTUJPTApUZXN0U2VyaWFsaXphYmxlVHlwZXMjZ2Vvc3BhdGlhbFNlcmlhbGl6YXRpb25JbmNsdWRlc1Jlc29sdmVkRGVmYXVsdHM", "TU9ESUZZX01FVEhPRF9CT0RZCitlcXVhbHNJZ25vcmVDYXNlLCAtY3JzLCByZXR1cm4gdmFsdWUgY2hhbmdlZApUeXBlcy5HZW9tZXRyeVR5cGUjdG9TdHJpbmc", "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RQYXJ0aXRpb25TcGVjVmFsaWRhdGlvbiN1bnN1cHBvcnRlZEZpZWxkc1Byb3ZpZGVyCnJldHVybiB2YWx1ZSBjaGFuZ2Vk", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCArdG9TdHJpbmcsICtpc0VxdWFsVG8sICtvZgpUZXN0VHlwZXMjdGVzdEdlb3NwYXRpYWxUeXBlVG9TdHJpbmc", "TU9ESUZZX01FVEhPRF9CT0RZClR5cGVzLkdlb2dyYXBoeVR5cGUjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA", "QUREX0ZJRUxEClR5cGVzLkdlb2dyYXBoeVR5cGUjYWxnb3JpdGhtRXhwbGljaXQ" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApUZXN0U2VyaWFsaXphYmxlVHlwZXMjZ2Vvc3BhdGlhbFR5cGVz", "QUREX1NZTUJPTApUZXN0U2VyaWFsaXphYmxlVHlwZXMjZ2Vvc3BhdGlhbFNlcmlhbGl6YXRpb25JbmNsdWRlc1Jlc29sdmVkRGVmYXVsdHM", "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RQYXJ0aXRpb25TcGVjVmFsaWRhdGlvbiN1bnN1cHBvcnRlZEZpZWxkc1Byb3ZpZGVyCnJldHVybiB2YWx1ZSBjaGFuZ2Vk", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCArdG9TdHJpbmcsICtpc0VxdWFsVG8sICtvZgpUZXN0VHlwZXMjdGVzdEdlb3NwYXRpYWxUeXBlVG9TdHJpbmc" ]
+  }, {
+    "moduleName" : "core",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 2 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpTY2hlbWFQYXJzZXIjdG9Kc29uCmJyYW5jaCBhZGRlZA", "QUREX1NZTUJPTApUZXN0U2NoZW1hUGFyc2VyI2dlb3NwYXRpYWxEZWZhdWx0c1NlcmlhbGl6ZWRFeHBsaWNpdGx5" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApUZXN0U2NoZW1hUGFyc2VyI2dlb3NwYXRpYWxEZWZhdWx0c1NlcmlhbGl6ZWRFeHBsaWNpdGx5" ]
+  }, {
+    "moduleName" : "parquet",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Modify body of TestParquetSchemaUtil#testGeospatialAnnotationsWithOmittedParameters: isEqualTo(…): \"geometry(OGC:CRS84)\" -> \"geometry\" ×2, isEqualTo(…): \"geography(OGC:CRS84, spherical)\" -> \"geography\"",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RQYXJxdWV0U2NoZW1hVXRpbCN0ZXN0R2Vvc3BhdGlhbEFubm90YXRpb25zV2l0aE9taXR0ZWRQYXJhbWV0ZXJzCmlzRXF1YWxUbyjigKYpOiAiZ2VvbWV0cnkoT0dDOkNSUzg0KSIgLT4gImdlb21ldHJ5IiDDlzIsIGlzRXF1YWxUbyjigKYpOiAiZ2VvZ3JhcGh5KE9HQzpDUlM4NCwgc3BoZXJpY2FsKSIgLT4gImdlb2dyYXBoeSI" ],
+    "testChangeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RQYXJxdWV0U2NoZW1hVXRpbCN0ZXN0R2Vvc3BhdGlhbEFubm90YXRpb25zV2l0aE9taXR0ZWRQYXJhbWV0ZXJzCmlzRXF1YWxUbyjigKYpOiAiZ2VvbWV0cnkoT0dDOkNSUzg0KSIgLT4gImdlb21ldHJ5IiDDlzIsIGlzRXF1YWxUbyjigKYpOiAiZ2VvZ3JhcGh5KE9HQzpDUlM4NCwgc3BoZXJpY2FsKSIgLT4gImdlb2dyYXBoeSI" ]
+  } ],
+  "dependencies" : [ ]
+}

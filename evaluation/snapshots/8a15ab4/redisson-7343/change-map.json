@@ -1,0 +1,57 @@
+{
+  "prTitle" : "Fix RedissonRateLimiter discards permits returned by release() when it recalculates the currently available permits",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 1,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvblJhdGVMaW1pdGVyVGVzdCN0ZXN0UmVsZWFzZWRQZXJtaXRzUHJlc2VydmVkQWZ0ZXJFeHBpcnk",
+    "description" : "Add RedissonRateLimiterTest#testReleasedPermitsPreservedAfterExpiry",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClJlZGlzc29uUmF0ZUxpbWl0ZXIjcmVsZWFzZUFzeW5jCnJldHVybiB2YWx1ZSBjaGFuZ2Vk",
+    "description" : "Modify body of RedissonRateLimiter#releaseAsync: return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "RedissonRateLimiterTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX1NZTUJPTApSZWRpc3NvblJhdGVMaW1pdGVyVGVzdCN0ZXN0UmVsZWFzZWRQZXJtaXRzUHJlc2VydmVkQWZ0ZXJFeHBpcnk",
+      "description" : "Add RedissonRateLimiterTest#testReleasedPermitsPreservedAfterExpiry",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "RedissonRateLimiter",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClJlZGlzc29uUmF0ZUxpbWl0ZXIjcmVsZWFzZUFzeW5jCnJldHVybiB2YWx1ZSBjaGFuZ2Vk",
+      "description" : "Modify body of RedissonRateLimiter#releaseAsync: return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

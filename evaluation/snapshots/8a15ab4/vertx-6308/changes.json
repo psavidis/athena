@@ -1,0 +1,21 @@
+[ {
+  "changeKey" : "QUREX1NZTUJPTApETlNUZXN0I3Rlc3RMb2NhbGhvc3ROYW1lU2VydmVy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DNSTest#testLocalhostNameServer",
+  "files" : [ "vertx-core/src/test/java/io/vertx/tests/dns/DNSTest.java" ],
+  "symbols" : [ "DNSTest#testLocalhostNameServer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkbnNTZXJ2ZXIuZ2V0QWRkcmVzcywgK2dldEhvc3RBZGRyZXNzLCAtZG5zU2VydmVyLmdldEhvc3RTdHJpbmcKRG5zQ2xpZW50SW1wbCM8aW5pdD4",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of DnsClientImpl#<init>: +dnsServer.getAddress, +getHostAddress, -dnsServer.getHostString",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/dns/impl/DnsClientImpl.java" ],
+  "symbols" : [ "DnsClientImpl#<init>", "+dnsServer.getAddress, +getHostAddress, -dnsServer.getHostString" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

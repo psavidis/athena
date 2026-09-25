@@ -1,0 +1,91 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Signature",
+    "conceptDescription" : "A method's parameter list and/or return type changed.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @VisibleForTesting\n-  void configureApacheHttpClientBuilder(ApacheHttpClient.Builder apacheHttpClientBuilder) {\n+  void configureApacheHttpClientBuilder(Apache5HttpClient.Builder apacheHttpClientBuilder) {\n     if (connectionTimeoutMs != null) {\n       apacheHttpClientBuilder.connectionTimeout(Duration.ofMillis(connectionTimeoutMs));\n     }\n     if (socketTimeoutMs != null) {\n       apacheHttpClientBuilder.socketTimeout(Duration.ofMillis(socketTimeoutMs));\n     }\n     if (acquisitionTimeoutMs != null) {\n       apacheHttpClientBuilder.connectionAcquisitionTimeout(Duration.ofMillis(acquisitionTimeoutMs));\n     }\n     if (connectionMaxIdleTimeMs != null) {\n       apacheHttpClientBuilder.connectionMaxIdleTime(Duration.ofMillis(connectionMaxIdleTimeMs));\n     }\n     if (connectionTimeToLiveMs != null) {\n       apacheHttpClientBuilder.connectionTimeToLive(Duration.ofMillis(connectionTimeToLiveMs));\n     }\n     if (expectContinueEnabled != null) {\n       apacheHttpClientBuilder.expectContinueEnabled(expectContinueEnabled);\n     }\n     if (maxConnections != null) {\n       apacheHttpClientBuilder.maxConnections(maxConnections);\n     }\n     if (tcpKeepAliveEnabled != null) {\n       apacheHttpClientBuilder.tcpKeepAlive(tcpKeepAliveEnabled);\n     }\n     if (useIdleConnectionReaperEnabled != null) {\n       apacheHttpClientBuilder.useIdleConnectionReaper(useIdleConnectionReaperEnabled);\n     }\n     configureProxy(apacheHttpClientBuilder);\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "aws/src/main/java/org/apache/iceberg/aws/ApacheHttpClientConfigurations.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Signature",
+    "conceptDescription" : "A method's parameter list and/or return type changed.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-private void configureProxy(ApacheHttpClient.Builder apacheHttpClientBuilder) {\n+private void configureProxy(Apache5HttpClient.Builder apacheHttpClientBuilder) {\n     if (proxyEndpoint != null\n         || proxyUseSystemPropertyValues != null\n         || proxyUseEnvironmentVariableValues != null) {\n       ProxyConfiguration.Builder proxyBuilder = ProxyConfiguration.builder();\n \n       if (proxyEndpoint != null) {\n         proxyBuilder.endpoint(URI.create(proxyEndpoint));\n       }\n       if (proxyUseSystemPropertyValues != null) {\n         proxyBuilder.useSystemPropertyValues(proxyUseSystemPropertyValues);\n       }\n       if (proxyUseEnvironmentVariableValues != null) {\n         proxyBuilder.useEnvironmentVariableValues(proxyUseEnvironmentVariableValues);\n       }\n \n       apacheHttpClientBuilder.proxyConfiguration(proxyBuilder.build());\n     }\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "aws/src/main/java/org/apache/iceberg/aws/ApacheHttpClientConfigurations.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @BeforeEach\n   public void before() throws Exception {\n     MINIO_CONTAINER.start();\n     s3 =\n         S3Client.builder()\n             .region(REGION)\n             .credentialsProvider(CREDENTIALS_PROVIDER)\n             .applyMutation(\n                 s3ClientBuilder ->\n                     s3ClientBuilder.httpClientBuilder(\n-                        software.amazon.awssdk.http.apache.ApacheHttpClient.builder()))\n+                        software.amazon.awssdk.http.apache5.Apache5HttpClient.builder()))\n             .endpointOverride(URI.create(MINIO_CONTAINER.getS3URL()))\n             .forcePathStyle(true) // OSX won't resolve subdomains\n             .overrideConfiguration(\n                 c -> c.putAdvancedOption(SdkAdvancedClientOption.SIGNER, validatingSigner))\n             .build();\n \n     s3.createBucket(CreateBucketRequest.builder().bucket(BUCKET).build());\n     s3.putObject(\n         PutObjectRequest.builder().bucket(BUCKET).key(\"random/key\").build(),\n         Paths.get(\"/etc/hosts\"));\n     s3.putObject(\n         PutObjectRequest.builder().bucket(BUCKET).key(\"encoded/key=value/file\").build(),\n         Paths.get(\"/etc/hosts\"));\n \n     s3.createMultipartUpload(\n         CreateMultipartUploadRequest.builder().bucket(BUCKET).key(\"random/multipart-key\").build());\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "aws/src/integration/java/org/apache/iceberg/aws/s3/signer/TestS3RestSigner.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Override\n   protected SdkHttpClient buildHttpClient() {\n-    final ApacheHttpClient.Builder apacheHttpClientBuilder = ApacheHttpClient.builder();\n+    final Apache5HttpClient.Builder apacheHttpClientBuilder = Apache5HttpClient.builder();\n     configureApacheHttpClientBuilder(apacheHttpClientBuilder);\n     return apacheHttpClientBuilder.build();\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "aws/src/main/java/org/apache/iceberg/aws/ApacheHttpClientConfigurations.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Deprecated\n   public static SdkHttpClient.Builder configureHttpClientBuilder(String httpClientType) {\n     String clientType = httpClientType;\n     if (Strings.isNullOrEmpty(clientType)) {\n       clientType = HttpClientProperties.CLIENT_TYPE_DEFAULT;\n     }\n     switch (clientType) {\n       case HttpClientProperties.CLIENT_TYPE_URLCONNECTION:\n         return UrlConnectionHttpClient.builder();\n       case HttpClientProperties.CLIENT_TYPE_APACHE:\n-        return ApacheHttpClient.builder();\n+        return Apache5HttpClient.builder();\n       default:\n         throw new IllegalArgumentException(\"Unrecognized HTTP client type \" + httpClientType);\n     }\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "aws/src/main/java/org/apache/iceberg/aws/AwsClientFactories.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in TestHttpClientConfigurations",
+    "conceptDescription" : "3 changes in test code of TestHttpClientConfigurations.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Test\n   public void testApacheOverrideConfigurations() {\n     Map<String, String> properties = Maps.newHashMap();\n     properties.put(HttpClientProperties.URLCONNECTION_SOCKET_TIMEOUT_MS, \"90\");\n     properties.put(HttpClientProperties.URLCONNECTION_CONNECTION_TIMEOUT_MS, \"80\");\n     properties.put(HttpClientProperties.APACHE_SOCKET_TIMEOUT_MS, \"100\");\n     properties.put(HttpClientProperties.APACHE_CONNECTION_TIMEOUT_MS, \"200\");\n     properties.put(HttpClientProperties.APACHE_CONNECTION_ACQUISITION_TIMEOUT_MS, \"101\");\n     properties.put(HttpClientProperties.APACHE_CONNECTION_MAX_IDLE_TIME_MS, \"102\");\n     properties.put(HttpClientProperties.APACHE_CONNECTION_TIME_TO_LIVE_MS, \"103\");\n     properties.put(HttpClientProperties.APACHE_EXPECT_CONTINUE_ENABLED, \"true\");\n     properties.put(HttpClientProperties.APACHE_MAX_CONNECTIONS, \"104\");\n     properties.put(HttpClientProperties.APACHE_TCP_KEEP_ALIVE_ENABLED, \"true\");\n     properties.put(HttpClientProperties.APACHE_USE_IDLE_CONNECTION_REAPER_ENABLED, \"false\");\n     properties.put(HttpClientProperties.PROXY_ENDPOINT, \"http://proxy:8080\");\n     ApacheHttpClientConfigurations apacheHttpClientConfigurations =\n         ApacheHttpClientConfigurations.create(properties);\n-    ApacheHttpClient.Builder apacheHttpClientBuilder = ApacheHttpClient.builder();\n-    ApacheHttpClient.Builder spyApacheHttpClientBuilder = Mockito.spy(apacheHttpClientBuilder);\n+    Apache5HttpClient.Builder apacheHttpClientBuilder = Apache5HttpClient.builder();\n+    Apache5HttpClient.Builder spyApacheHttpClientBuilder = Mockito.spy(apacheHttpClientBuilder);\n \n     apacheHttpClientConfigurations.configureApacheHttpClientBuilder(spyApacheHttpClientBuilder);\n \n     Mockito.verify(spyApacheHttpClientBuilder).socketTimeout(Duration.ofMillis(100));\n     Mockito.verify(spyApacheHttpClientBuilder).connectionTimeout(Duration.ofMillis(200));\n     Mockito.verify(spyApacheHttpClientBuilder).connectionAcquisitionTimeout(Duration.ofMillis(101));\n     Mockito.verify(spyApacheHttpClientBuilder).connectionMaxIdleTime(Duration.ofMillis(102));\n     Mockito.verify(spyApacheHttpClientBuilder).connectionTimeToLive(Duration.ofMillis(103));\n     Mockito.verify(spyApacheHttpClientBuilder).expectContinueEnabled(true);\n     Mockito.verify(spyApacheHttpClientBuilder).maxConnections(104);\n     Mockito.verify(spyApacheHttpClientBuilder).tcpKeepAlive(true);\n     Mockito.verify(spyApacheHttpClientBuilder).useIdleConnectionReaper(false);\n     Mockito.verify(spyApacheHttpClientBuilder)\n         .proxyConfiguration(Mockito.any(ProxyConfiguration.class));\n   }", " @Test\n   public void testApacheDefaultConfigurations() {\n     ApacheHttpClientConfigurations apacheHttpClientConfigurations =\n         ApacheHttpClientConfigurations.create(Maps.newHashMap());\n-    ApacheHttpClient.Builder apacheHttpClientBuilder = ApacheHttpClient.builder();\n-    ApacheHttpClient.Builder spyApacheHttpClientBuilder = Mockito.spy(apacheHttpClientBuilder);\n+    Apache5HttpClient.Builder apacheHttpClientBuilder = Apache5HttpClient.builder();\n+    Apache5HttpClient.Builder spyApacheHttpClientBuilder = Mockito.spy(apacheHttpClientBuilder);\n \n     apacheHttpClientConfigurations.configureApacheHttpClientBuilder(spyApacheHttpClientBuilder);\n \n     Mockito.verify(spyApacheHttpClientBuilder, Mockito.never())\n         .connectionTimeout(Mockito.any(Duration.class));\n     Mockito.verify(spyApacheHttpClientBuilder, Mockito.never())\n         .socketTimeout(Mockito.any(Duration.class));\n     Mockito.verify(spyApacheHttpClientBuilder, Mockito.never())\n         .connectionAcquisitionTimeout(Mockito.any(Duration.class));\n     Mockito.verify(spyApacheHttpClientBuilder, Mockito.never())\n         .connectionMaxIdleTime(Mockito.any(Duration.class));\n     Mockito.verify(spyApacheHttpClientBuilder, Mockito.never())\n         .connectionTimeToLive(Mockito.any(Duration.class));\n     Mockito.verify(spyApacheHttpClientBuilder, Mockito.never())\n         .expectContinueEnabled(Mockito.anyBoolean());\n     Mockito.verify(spyApacheHttpClientBuilder, Mockito.never()).maxConnections(Mockito.anyInt());\n     Mockito.verify(spyApacheHttpClientBuilder, Mockito.never()).tcpKeepAlive(Mockito.anyBoolean());\n     Mockito.verify(spyApacheHttpClientBuilder, Mockito.never())\n         .useIdleConnectionReaper(Mockito.anyBoolean());\n     Mockito.verify(spyApacheHttpClientBuilder, Mockito.never())\n         .proxyConfiguration(Mockito.any(ProxyConfiguration.class));\n   }", " @ParameterizedTest\n   @ValueSource(\n       strings = {\n         HttpClientProperties.PROXY_USE_SYSTEM_PROPERTY_VALUES,\n         HttpClientProperties.PROXY_USE_ENVIRONMENT_VARIABLE_VALUES\n       })\n   public void testApacheProxyFlagTriggersProxyConfig(String propertyKey) {\n     Map<String, String> properties = Maps.newHashMap();\n     properties.put(propertyKey, \"false\");\n-    ApacheHttpClient.Builder spy = Mockito.spy(ApacheHttpClient.builder());\n+    Apache5HttpClient.Builder spy = Mockito.spy(Apache5HttpClient.builder());\n \n     ApacheHttpClientConfigurations.create(properties).configureApacheHttpClientBuilder(spy);\n \n     Mockito.verify(spy).proxyConfiguration(Mockito.any(ProxyConfiguration.class));\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "aws/src/test/java/org/apache/iceberg/aws/TestHttpClientConfigurations.java" ],
+    "groupedMoveCount" : 3
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in TestHttpClientProperties",
+    "conceptDescription" : "1 change in test code of TestHttpClientProperties.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Test\n   public void testApacheHttpClientConfiguration() {\n     Map<String, String> properties = Maps.newHashMap();\n     properties.put(HttpClientProperties.CLIENT_TYPE, \"apache\");\n     HttpClientProperties httpProperties = new HttpClientProperties(properties);\n     S3ClientBuilder mockS3ClientBuilder = Mockito.mock(S3ClientBuilder.class);\n     ArgumentCaptor<SdkHttpClient> httpClientCaptor = ArgumentCaptor.forClass(SdkHttpClient.class);\n \n     httpProperties.applyHttpClientConfigurations(mockS3ClientBuilder);\n     Mockito.verify(mockS3ClientBuilder).httpClient(httpClientCaptor.capture());\n     SdkHttpClient capturedHttpClient = httpClientCaptor.getValue();\n \n     assertThat(capturedHttpClient)\n         .as(\"Should use managed SDK http client\")\n         .isInstanceOf(ManagedHttpClient.class);\n \n-    // Verify the underlying delegate is ApacheHttpClient\n+    // Verify the underlying delegate is Apache5HttpClient\n     ManagedHttpClient managedClient = (ManagedHttpClient) capturedHttpClient;\n     assertThat(managedClient.httpClient())\n-        .as(\"Underlying client should be ApacheHttpClient\")\n-        .isInstanceOf(ApacheHttpClient.class);\n+        .as(\"Underlying client should be Apache5HttpClient\")\n+        .isInstanceOf(Apache5HttpClient.class);\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "aws/src/test/java/org/apache/iceberg/aws/TestHttpClientProperties.java" ],
+    "groupedMoveCount" : 1
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Change API Responsibility",
+    "conceptDescription" : "What a public API is responsible for doing changed.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ " @VisibleForTesting\n-  void configureApacheHttpClientBuilder(ApacheHttpClient.Builder apacheHttpClientBuilder) {\n+  void configureApacheHttpClientBuilder(Apache5HttpClient.Builder apacheHttpClientBuilder) {\n     if (connectionTimeoutMs != null) {\n       apacheHttpClientBuilder.connectionTimeout(Duration.ofMillis(connectionTimeoutMs));\n     }\n     if (socketTimeoutMs != null) {\n       apacheHttpClientBuilder.socketTimeout(Duration.ofMillis(socketTimeoutMs));\n     }\n     if (acquisitionTimeoutMs != null) {\n       apacheHttpClientBuilder.connectionAcquisitionTimeout(Duration.ofMillis(acquisitionTimeoutMs));\n     }\n     if (connectionMaxIdleTimeMs != null) {\n       apacheHttpClientBuilder.connectionMaxIdleTime(Duration.ofMillis(connectionMaxIdleTimeMs));\n     }\n     if (connectionTimeToLiveMs != null) {\n       apacheHttpClientBuilder.connectionTimeToLive(Duration.ofMillis(connectionTimeToLiveMs));\n     }\n     if (expectContinueEnabled != null) {\n       apacheHttpClientBuilder.expectContinueEnabled(expectContinueEnabled);\n     }\n     if (maxConnections != null) {\n       apacheHttpClientBuilder.maxConnections(maxConnections);\n     }\n     if (tcpKeepAliveEnabled != null) {\n       apacheHttpClientBuilder.tcpKeepAlive(tcpKeepAliveEnabled);\n     }\n     if (useIdleConnectionReaperEnabled != null) {\n       apacheHttpClientBuilder.useIdleConnectionReaper(useIdleConnectionReaperEnabled);\n     }\n     configureProxy(apacheHttpClientBuilder);\n   }", "-private void configureProxy(ApacheHttpClient.Builder apacheHttpClientBuilder) {\n+private void configureProxy(Apache5HttpClient.Builder apacheHttpClientBuilder) {\n     if (proxyEndpoint != null\n         || proxyUseSystemPropertyValues != null\n         || proxyUseEnvironmentVariableValues != null) {\n       ProxyConfiguration.Builder proxyBuilder = ProxyConfiguration.builder();\n \n       if (proxyEndpoint != null) {\n         proxyBuilder.endpoint(URI.create(proxyEndpoint));\n       }\n       if (proxyUseSystemPropertyValues != null) {\n         proxyBuilder.useSystemPropertyValues(proxyUseSystemPropertyValues);\n       }\n       if (proxyUseEnvironmentVariableValues != null) {\n         proxyBuilder.useEnvironmentVariableValues(proxyUseEnvironmentVariableValues);\n       }\n \n       apacheHttpClientBuilder.proxyConfiguration(proxyBuilder.build());\n     }\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "aws/src/main/java/org/apache/iceberg/aws/ApacheHttpClientConfigurations.java" ],
+    "groupedMoveCount" : 2
+  } ]
+}

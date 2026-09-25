@@ -1,0 +1,687 @@
+diff --git a/jetty-core/jetty-client/src/main/java/org/eclipse/jetty/client/AbstractConnectionPool.java b/jetty-core/jetty-client/src/main/java/org/eclipse/jetty/client/AbstractConnectionPool.java
+index d0f1842b5481..059192bee207 100644
+--- a/jetty-core/jetty-client/src/main/java/org/eclipse/jetty/client/AbstractConnectionPool.java
++++ b/jetty-core/jetty-client/src/main/java/org/eclipse/jetty/client/AbstractConnectionPool.java
+@@ -21,6 +21,7 @@
+ import java.util.Objects;
+ import java.util.concurrent.CompletableFuture;
+ import java.util.concurrent.TimeUnit;
++import java.util.concurrent.atomic.AtomicBoolean;
+ import java.util.concurrent.atomic.AtomicInteger;
+ import java.util.stream.Collectors;
+ 
+@@ -554,6 +555,7 @@ public String toString()
+ 
+     private class FutureConnection extends Promise.Completable<Connection>
+     {
++        private final AtomicBoolean completed = new AtomicBoolean();
+         private final Pool.Entry<Connection> reserved;
+ 
+         public FutureConnection(Pool.Entry<Connection> reserved)
+@@ -568,12 +570,15 @@ public void succeeded(Connection connection)
+                 LOG.debug("Connection creation succeeded {}: {}", reserved, connection);
+             if (connection instanceof Attachable)
+             {
+-                ((Attachable)connection).setAttachment(new EntryHolder(reserved));
+-                onCreated(connection);
+-                pending.decrementAndGet();
+-                reserved.enable(connection, false);
+-                super.succeeded(connection);
+-                proceed();
++                if (completed.compareAndSet(false, true))
++                {
++                    ((Attachable)connection).setAttachment(new EntryHolder(reserved));
++                    onCreated(connection);
++                    pending.decrementAndGet();
++                    reserved.enable(connection, false);
++                    super.succeeded(connection);
++                    proceed();
++                }
+             }
+             else
+             {
+@@ -584,12 +589,20 @@ public void succeeded(Connection connection)
+         @Override
+         public void failed(Throwable x)
+         {
+-            if (LOG.isDebugEnabled())
+-                LOG.debug("Connection creation failed {}", reserved, x);
+-            pending.decrementAndGet();
+-            reserved.remove();
+-            super.failed(x);
+-            destination.failed(x);
++            if (completed.compareAndSet(false, true))
++            {
++                if (LOG.isDebugEnabled())
++                    LOG.debug("Connection creation failed {}", reserved, x);
++                pending.decrementAndGet();
++                reserved.remove();
++                super.failed(x);
++                destination.failed(x);
++            }
++            else
++            {
++                if (LOG.isDebugEnabled())
++                    LOG.debug("Connection creation ignored failure {}", reserved, x);
++            }
+         }
+     }
+ 
+diff --git a/jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java b/jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java
+new file mode 100644
+index 000000000000..39aa5845d520
+--- /dev/null
++++ b/jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java
+@@ -0,0 +1,179 @@
++//
++// ========================================================================
++// Copyright (c) 1995 Mort Bay Consulting Pty Ltd and others.
++//
++// This program and the accompanying materials are made available under the
++// terms of the Eclipse Public License v. 2.0 which is available at
++// https://www.eclipse.org/legal/epl-2.0, or the Apache License, Version 2.0
++// which is available at https://www.apache.org/licenses/LICENSE-2.0.
++//
++// SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
++// ========================================================================
++//
++
++package org.eclipse.jetty.client;
++
++import java.io.IOException;
++import java.nio.channels.ClosedChannelException;
++import java.nio.channels.SelectableChannel;
++import java.nio.channels.SelectionKey;
++import java.util.Map;
++import java.util.concurrent.ExecutionException;
++import java.util.concurrent.TimeUnit;
++import java.util.concurrent.atomic.AtomicReference;
++
++import org.eclipse.jetty.client.transport.HttpClientTransportOverHTTP;
++import org.eclipse.jetty.client.transport.HttpDestination;
++import org.eclipse.jetty.http.HttpStatus;
++import org.eclipse.jetty.io.ClientConnector;
++import org.eclipse.jetty.io.EndPoint;
++import org.eclipse.jetty.io.ManagedSelector;
++import org.eclipse.jetty.io.SelectorManager;
++import org.eclipse.jetty.server.Handler;
++import org.eclipse.jetty.server.Server;
++import org.eclipse.jetty.server.ServerConnector;
++import org.eclipse.jetty.util.IO;
++import org.eclipse.jetty.util.component.LifeCycle;
++import org.eclipse.jetty.util.thread.QueuedThreadPool;
++import org.junit.jupiter.api.AfterEach;
++import org.junit.jupiter.params.ParameterizedTest;
++import org.junit.jupiter.params.provider.EnumSource;
++
++import static org.junit.jupiter.api.Assertions.assertEquals;
++import static org.junit.jupiter.api.Assertions.assertInstanceOf;
++import static org.junit.jupiter.api.Assertions.assertSame;
++import static org.junit.jupiter.api.Assertions.assertThrows;
++
++public class ConnectionPoolReservationTest
++{
++    private Server server;
++    private ServerConnector connector;
++    private FailingClientConnector clientConnector;
++    private HttpClient client;
++
++    private void start(Handler handler) throws Exception
++    {
++        QueuedThreadPool serverThreads = new QueuedThreadPool();
++        serverThreads.setName("server");
++        server = new Server(serverThreads);
++        connector = new ServerConnector(server, 1, 1);
++        server.addConnector(connector);
++        server.setHandler(handler);
++        server.start();
++
++        QueuedThreadPool clientThreads = new QueuedThreadPool();
++        clientThreads.setName("client");
++        clientConnector = new FailingClientConnector();
++        clientConnector.setSelectors(1);
++        // Connect in blocking mode, so that ClientConnector always uses
++        // SelectorManager.accept() rather than SelectorManager.connect().
++        clientConnector.setConnectBlocking(true);
++        clientConnector.setExecutor(clientThreads);
++        client = new HttpClient(new HttpClientTransportOverHTTP(clientConnector));
++        // Only one connection, so that the test fails
++        // fast if the reserved entry is not released.
++        client.setMaxConnectionsPerDestination(1);
++        client.start();
++    }
++
++    @AfterEach
++    public void dispose()
++    {
++        LifeCycle.stop(client);
++        LifeCycle.stop(server);
++    }
++
++    @ParameterizedTest
++    @EnumSource(Failure.class)
++    public void testConnectionCreationFailureReleasesReservedEntry(Failure failure) throws Exception
++    {
++        start(new EmptyServerHandler());
++
++        Request request = client.newRequest("localhost", connector.getLocalPort())
++            .timeout(5, TimeUnit.SECONDS);
++        HttpDestination destination = (HttpDestination)client.resolveDestination(request);
++        AbstractConnectionPool connectionPool = (AbstractConnectionPool)destination.getConnectionPool();
++
++        clientConnector.failure.set(failure);
++
++        ExecutionException x = assertThrows(ExecutionException.class, request::send);
++        assertInstanceOf(failure.expected, x.getCause());
++
++        // The reserved entry must have been removed, and the
++        // pending count restored, otherwise the entry is leaked.
++        assertEquals(0, connectionPool.getPendingConnectionCount());
++        assertEquals(0, connectionPool.getConnectionCount());
++
++        // Verify that the same destination can create a new connection.
++        clientConnector.failure.set(null);
++
++        request = client.newRequest("localhost", connector.getLocalPort())
++            .timeout(5, TimeUnit.SECONDS);
++        assertSame(destination, client.resolveDestination(request));
++        ContentResponse response = request.send();
++
++        assertEquals(HttpStatus.OK_200, response.getStatus());
++        assertEquals(0, connectionPool.getPendingConnectionCount());
++        assertEquals(1, connectionPool.getConnectionCount());
++        assertEquals(1, connectionPool.getIdleConnectionCount());
++    }
++
++    public enum Failure
++    {
++        NO_SELECTOR(ClosedChannelException.class),
++        REGISTRATION(ClosedChannelException.class),
++        NEW_ENDPOINT(IllegalStateException.class),
++        NEW_CONNECTION(IOException.class);
++
++        private final Class<? extends Throwable> expected;
++
++        Failure(Class<? extends Throwable> expected)
++        {
++            this.expected = expected;
++        }
++    }
++
++    private static class FailingClientConnector extends ClientConnector
++    {
++        private final AtomicReference<Failure> failure = new AtomicReference<>();
++
++        @Override
++        protected EndPoint newEndPoint(SelectableChannel selectable, ManagedSelector selector, SelectionKey selectionKey)
++        {
++            if (failure.get() == Failure.NEW_ENDPOINT)
++                throw new IllegalStateException("newEndPoint failure");
++            return super.newEndPoint(selectable, selector, selectionKey);
++        }
++
++        @Override
++        protected org.eclipse.jetty.io.Connection newConnection(EndPoint endPoint, Map<String, Object> context) throws IOException
++        {
++            if (failure.get() == Failure.NEW_CONNECTION)
++                throw new IOException("newConnection failure");
++            return super.newConnection(endPoint, context);
++        }
++
++        @Override
++        protected SelectorManager newSelectorManager()
++        {
++            return new ClientSelectorManager(getExecutor(), getScheduler(), getSelectors())
++            {
++                @Override
++                protected ManagedSelector chooseSelector()
++                {
++                    if (failure.get() == Failure.NO_SELECTOR)
++                        return null;
++                    return super.chooseSelector();
++                }
++
++                @Override
++                public void accept(SelectableChannel channel, Object attachment)
++                {
++                    if (failure.get() == Failure.REGISTRATION)
++                        IO.close(channel);
++                    super.accept(channel, attachment);
++                }
++            };
++        }
++    }
++}
+diff --git a/jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ClientConnector.java b/jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ClientConnector.java
+index faf0e3d8ad6e..de79314dc613 100644
+--- a/jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ClientConnector.java
++++ b/jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ClientConnector.java
+@@ -465,7 +465,7 @@ public void accept(SelectableChannel selectable, Map<String, Object> context)
+         catch (Throwable failure)
+         {
+             if (LOG.isDebugEnabled())
+-                LOG.debug("Could not accept {}", selectable);
++                LOG.debug("Could not accept {}", selectable, failure);
+             IO.close(selectable);
+             acceptFailed(failure, selectable, context);
+         }
+@@ -534,7 +534,8 @@ protected void connectFailed(SelectableChannel channel, SocketAddress address, T
+     {
+         if (LOG.isDebugEnabled())
+             LOG.debug("Could not connect to {}", address);
+-        notifyConnectFailure((SocketChannel)channel, address, failure);
++        if (channel instanceof SocketChannel socketChannel)
++            notifyConnectFailure(socketChannel, address, failure);
+         Promise<?> promise = (Promise<?>)context.get(CONNECTION_PROMISE_CONTEXT_KEY);
+         if (promise != null)
+             promise.failed(failure);
+@@ -668,6 +669,15 @@ protected void connectionFailed(SelectableChannel channel, Throwable failure, Ob
+             SocketAddress address = (SocketAddress)context.get(ClientConnector.REMOTE_SOCKET_ADDRESS_CONTEXT_KEY);
+             connectFailed(channel, address, failure, context);
+         }
++
++        @Override
++        protected void onAcceptFailed(SelectableChannel channel, Throwable failure, Object attachment)
++        {
++            super.onAcceptFailed(channel, failure, attachment);
++            @SuppressWarnings("unchecked")
++            Map<String, Object> context = (Map<String, Object>)attachment;
++            acceptFailed(failure, channel, context);
++        }
+     }
+ 
+     /**
+diff --git a/jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java b/jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java
+index 2fb1a84b6547..06bdfdd404c3 100644
+--- a/jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java
++++ b/jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java
+@@ -572,16 +572,22 @@ private void processUpdates()
+                 if (update == null)
+                     break;
+                 if (selector == null)
+-                    break;
+-                try
+                 {
+-                    if (LOG.isDebugEnabled())
+-                        LOG.debug("update {}", update);
+-                    update.update(selector);
++                    if (update instanceof Closeable closeable)
++                        IO.close(closeable);
+                 }
+-                catch (Throwable x)
++                else
+                 {
+-                    LOG.warn("Cannot update selector {}", ManagedSelector.this, x);
++                    try
++                    {
++                        if (LOG.isDebugEnabled())
++                            LOG.debug("update {}", update);
++                        update.update(selector);
++                    }
++                    catch (Throwable x)
++                    {
++                        LOG.warn("Cannot update selector {}", ManagedSelector.this, x);
++                    }
+                 }
+             }
+ 
+@@ -696,24 +702,29 @@ else if (key.isConnectable())
+                     {
+                         if (LOG.isDebugEnabled())
+                             LOG.debug("Ignoring cancelled key for channel {}", channel);
+-                        IO.close(attachment instanceof EndPoint ? (EndPoint)attachment : channel);
++                        close(channel, attachment);
+                     }
+                     catch (Throwable x)
+                     {
+                         LOG.warn("Could not process key for channel {}", channel, x);
+-                        IO.close(attachment instanceof EndPoint ? (EndPoint)attachment : channel);
++                        close(channel, attachment);
+                     }
+                 }
+                 else
+                 {
+                     if (LOG.isDebugEnabled())
+                         LOG.debug("Selector loop ignoring invalid key for channel {}", channel);
+-                    IO.close(attachment instanceof EndPoint ? (EndPoint)attachment : channel);
++                    close(channel, attachment);
+                 }
+             }
+             return null;
+         }
+ 
++        private void close(SelectableChannel channel, Object attachment)
++        {
++            IO.close(attachment instanceof Closeable closeable ? closeable : channel);
++        }
++
+         private void updateKeys()
+         {
+             // Do update keys for only previously selected keys.
+@@ -848,13 +859,18 @@ public void replaceKey(SelectionKey newKey)
+             _key = newKey;
+         }
+ 
+-        @Override
+-        public void close() throws IOException
++        void cancelAccept()
+         {
+-            // May be called from any thread.
+-            // Implements AbstractConnector.setAccepting(boolean).
++            // Implements AbstractConnector.setAccepting(boolean),
++            // where accepting may be suspended and then resumed.
+             submit(selector -> _key.cancel());
+         }
++
++        @Override
++        public void close()
++        {
++            IO.close(_channel);
++        }
+     }
+ 
+     class Accept implements SelectorUpdate, Runnable, Closeable
+@@ -867,7 +883,6 @@ class Accept implements SelectorUpdate, Runnable, Closeable
+         {
+             this.channel = channel;
+             this.attachment = attachment;
+-            _selectorManager.onAccepting(channel);
+         }
+ 
+         @Override
+@@ -913,7 +928,7 @@ public void close()
+         private void failed(Throwable failure)
+         {
+             IO.close(channel);
+-            _selectorManager.onAcceptFailed(channel, failure);
++            _selectorManager.onAcceptFailed(channel, failure, attachment);
+         }
+ 
+         @Override
+@@ -923,7 +938,7 @@ public String toString()
+         }
+     }
+ 
+-    class Connect implements SelectorUpdate, Runnable
++    class Connect implements SelectorUpdate, Runnable, Closeable
+     {
+         private final AtomicBoolean failed = new AtomicBoolean();
+         private final SelectableChannel channel;
+@@ -934,9 +949,9 @@ class Connect implements SelectorUpdate, Runnable
+         {
+             this.channel = channel;
+             this.attachment = attachment;
+-            long timeout = ManagedSelector.this._selectorManager.getConnectTimeout();
++            long timeout = _selectorManager.getConnectTimeout();
+             if (timeout > 0)
+-                this.timeout = ManagedSelector.this._selectorManager.getScheduler().schedule(this, timeout, TimeUnit.MILLISECONDS);
++                this.timeout = _selectorManager.getScheduler().schedule(this, timeout, TimeUnit.MILLISECONDS);
+             else
+                 this.timeout = null;
+         }
+@@ -965,14 +980,22 @@ public void run()
+             }
+         }
+ 
+-        public void failed(Throwable failure)
++        @Override
++        public void close()
++        {
++            if (LOG.isDebugEnabled())
++                LOG.debug("Closed connect of {}", channel);
++            failed(new ClosedChannelException());
++        }
++
++        private void failed(Throwable failure)
+         {
+             if (failed.compareAndSet(false, true))
+             {
+                 if (timeout != null)
+                     timeout.cancel();
+                 IO.close(channel);
+-                ManagedSelector.this._selectorManager.connectionFailed(channel, failure, attachment);
++                _selectorManager.connectionFailed(channel, failure, attachment);
+             }
+         }
+ 
+@@ -996,11 +1019,16 @@ public void update(Selector selector)
+                     LOG.debug("Closing {} connections on {}", selector.keys().size(), ManagedSelector.this);
+                 for (SelectionKey key : selector.keys())
+                 {
+-                    if (key != null && key.isValid())
++                    if (key != null)
+                     {
+-                        Closeable closeable = (key.attachment() instanceof EndPoint endPoint)
+-                            ? Objects.requireNonNullElse(endPoint.getConnection(), endPoint)
+-                            : key.channel();
++                        Object attachment = key.attachment();
++                        Closeable closeable;
++                        if (attachment instanceof EndPoint endPoint)
++                            closeable = Objects.requireNonNullElse(endPoint.getConnection(), endPoint);
++                        else if (attachment instanceof Closeable c)
++                            closeable = c;
++                        else
++                            closeable = key.channel();
+                         IO.close(closeable);
+                     }
+                 }
+@@ -1042,7 +1070,7 @@ public void update(Selector selector)
+         }
+     }
+ 
+-    private final class CreateEndPoint implements Runnable
++    private final class CreateEndPoint implements Runnable, Closeable
+     {
+         private final Connect _connect;
+         private final SelectionKey _key;
+@@ -1062,14 +1090,19 @@ public void run()
+             }
+             catch (Throwable failure)
+             {
+-                IO.close(_connect.channel);
+-                LOG.warn("Could not create EndPoint {}: {}", _connect.channel, String.valueOf(failure));
+-                if (LOG.isDebugEnabled())
+-                    LOG.debug("", failure);
++                LOG.warn("Could not create EndPoint {}", _connect.channel, failure);
+                 _connect.failed(failure);
+             }
+         }
+ 
++        @Override
++        public void close()
++        {
++            if (LOG.isDebugEnabled())
++                LOG.debug("Closed EndPoint creation of {}", _connect.channel);
++            _connect.failed(new ClosedChannelException());
++        }
++
+         @Override
+         public String toString()
+         {
+diff --git a/jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/SelectorManager.java b/jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/SelectorManager.java
+index c9d7d49e48dc..dc1a5ca94d0f 100644
+--- a/jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/SelectorManager.java
++++ b/jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/SelectorManager.java
+@@ -17,6 +17,7 @@
+ import java.io.IOException;
+ import java.net.Socket;
+ import java.net.SocketAddress;
++import java.nio.channels.ClosedChannelException;
+ import java.nio.channels.SelectableChannel;
+ import java.nio.channels.SelectionKey;
+ import java.nio.channels.Selector;
+@@ -30,6 +31,7 @@
+ import java.util.concurrent.atomic.AtomicInteger;
+ import java.util.function.IntUnaryOperator;
+ 
++import org.eclipse.jetty.util.IO;
+ import org.eclipse.jetty.util.ProcessorUtils;
+ import org.eclipse.jetty.util.TypeUtil;
+ import org.eclipse.jetty.util.annotation.ManagedAttribute;
+@@ -183,9 +185,16 @@ protected ManagedSelector chooseSelector()
+      */
+     public void connect(SelectableChannel channel, Object attachment)
+     {
+-        ManagedSelector set = chooseSelector();
+-        if (set != null)
+-            set.submit(set.new Connect(channel, attachment));
++        ManagedSelector selector = chooseSelector();
++        if (selector != null)
++        {
++            selector.submit(selector.new Connect(channel, attachment));
++        }
++        else
++        {
++            IO.close(channel);
++            connectionFailed(channel, new ClosedChannelException(), attachment);
++        }
+     }
+ 
+     /**
+@@ -209,8 +218,17 @@ public void accept(SelectableChannel channel)
+      */
+     public void accept(SelectableChannel channel, Object attachment)
+     {
++        onAccepting(channel);
+         ManagedSelector selector = chooseSelector();
+-        selector.submit(selector.new Accept(channel, attachment));
++        if (selector != null)
++        {
++            selector.submit(selector.new Accept(channel, attachment));
++        }
++        else
++        {
++            IO.close(channel);
++            onAcceptFailed(channel, new ClosedChannelException(), attachment);
++        }
+     }
+ 
+     /**
+@@ -225,9 +243,16 @@ public void accept(SelectableChannel channel, Object attachment)
+     public Closeable acceptor(SelectableChannel server)
+     {
+         ManagedSelector selector = chooseSelector();
+-        ManagedSelector.Acceptor acceptor = selector.new Acceptor(server);
+-        selector.submit(acceptor);
+-        return acceptor;
++        if (selector != null)
++        {
++            ManagedSelector.Acceptor acceptor = selector.new Acceptor(server);
++            selector.submit(acceptor);
++            return acceptor::cancelAccept;
++        }
++        else
++        {
++            return server;
++        }
+     }
+ 
+     /**
+@@ -480,13 +505,25 @@ protected void onAccepting(SelectableChannel channel)
+         }
+     }
+ 
+-    protected void onAcceptFailed(SelectableChannel channel, Throwable cause)
++    protected void onAcceptFailed(SelectableChannel channel, Throwable failure, Object attachment)
++    {
++        onAcceptFailed(channel, failure);
++    }
++
++    /**
++     * Invoked when an {@link #accept(SelectableChannel, Object)} operation fails.
++     *
++     * @param channel the channel that failed to be accepted
++     * @param failure the accept operation failure
++     */
++    @Deprecated(forRemoval = true, since = "12.1.13")
++    protected void onAcceptFailed(SelectableChannel channel, Throwable failure)
+     {
+         for (AcceptListener l : _acceptListeners)
+         {
+             try
+             {
+-                l.onAcceptFailed(channel, cause);
++                l.onAcceptFailed(channel, failure);
+             }
+             catch (Throwable x)
+             {
+diff --git a/jetty-core/jetty-server/src/main/java/org/eclipse/jetty/server/ServerConnector.java b/jetty-core/jetty-server/src/main/java/org/eclipse/jetty/server/ServerConnector.java
+index 8aba41dede08..4b5a219ad84e 100644
+--- a/jetty-core/jetty-server/src/main/java/org/eclipse/jetty/server/ServerConnector.java
++++ b/jetty-core/jetty-server/src/main/java/org/eclipse/jetty/server/ServerConnector.java
+@@ -565,27 +565,20 @@ public void setAccepting(boolean accepting)
+         if (getAcceptors() > 0)
+             return;
+ 
+-        try
++        if (accepting)
+         {
+-            if (accepting)
+-            {
+-                if (_acceptor.get() == null)
+-                {
+-                    Closeable acceptor = _manager.acceptor(_acceptChannel);
+-                    if (!_acceptor.compareAndSet(null, acceptor))
+-                        acceptor.close();
+-                }
+-            }
+-            else
++            if (_acceptor.get() == null)
+             {
+-                Closeable acceptor = _acceptor.get();
+-                if (acceptor != null && _acceptor.compareAndSet(acceptor, null))
+-                    acceptor.close();
++                Closeable acceptor = _manager.acceptor(_acceptChannel);
++                if (!_acceptor.compareAndSet(null, acceptor))
++                    IO.close(acceptor);
+             }
+         }
+-        catch (IOException e)
++        else
+         {
+-            throw new RuntimeException(e);
++            Closeable acceptor = _acceptor.get();
++            if (acceptor != null && _acceptor.compareAndSet(acceptor, null))
++                IO.close(acceptor);
+         }
+     }
+ 
+diff --git a/jetty-core/jetty-server/src/main/java/org/eclipse/jetty/server/handler/ConnectHandler.java b/jetty-core/jetty-server/src/main/java/org/eclipse/jetty/server/handler/ConnectHandler.java
+index 93f1a2174cd6..f8d512a5ab5b 100644
+--- a/jetty-core/jetty-server/src/main/java/org/eclipse/jetty/server/handler/ConnectHandler.java
++++ b/jetty-core/jetty-server/src/main/java/org/eclipse/jetty/server/handler/ConnectHandler.java
+@@ -516,11 +516,19 @@ public Connection newConnection(SelectableChannel channel, EndPoint endpoint, Ob
+         }
+ 
+         @Override
+-        protected void connectionFailed(SelectableChannel channel, final Throwable ex, final Object attachment)
++        protected void connectionFailed(SelectableChannel channel, Throwable failure, final Object attachment)
+         {
+             close(channel);
+             ConnectContext connectContext = (ConnectContext)attachment;
+-            onConnectFailure(connectContext.request, connectContext.response, connectContext.callback, ex);
++            onConnectFailure(connectContext.request, connectContext.response, connectContext.callback, failure);
++        }
++
++        @Override
++        protected void onAcceptFailed(SelectableChannel channel, Throwable failure, Object attachment)
++        {
++            super.onAcceptFailed(channel, failure, attachment);
++            ConnectContext connectContext = (ConnectContext)attachment;
++            onConnectFailure(connectContext.request, connectContext.response, connectContext.callback, failure);
+         }
+     }
+ 
+diff --git a/jetty-core/jetty-unixdomain-server/src/main/java/org/eclipse/jetty/unixdomain/server/UnixDomainServerConnector.java b/jetty-core/jetty-unixdomain-server/src/main/java/org/eclipse/jetty/unixdomain/server/UnixDomainServerConnector.java
+index 29c6bc44e510..b4a7ce452fd0 100644
+--- a/jetty-core/jetty-unixdomain-server/src/main/java/org/eclipse/jetty/unixdomain/server/UnixDomainServerConnector.java
++++ b/jetty-core/jetty-unixdomain-server/src/main/java/org/eclipse/jetty/unixdomain/server/UnixDomainServerConnector.java
+@@ -257,7 +257,7 @@ private ServerSocketChannel bindServerSocketChannel() throws IOException
+     public void setAccepting(boolean accepting)
+     {
+         super.setAccepting(accepting);
+-        if (getAcceptors() == 0)
++        if (getAcceptors() > 0)
+             return;
+         if (accepting)
+         {

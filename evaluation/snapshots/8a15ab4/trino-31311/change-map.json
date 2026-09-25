@@ -1,0 +1,1656 @@
+{
+  "prTitle" : "Convert classes to records",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 5,
+    "STRUCTURAL" : 46,
+    "UNKNOWN" : 26,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "UkVNT1ZFX0NMQVNTClNwbGl0",
+    "description" : "Remove class Split",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "UkVNT1ZFX0NMQVNTCldoZW5DbGF1c2U",
+    "description" : "Remove class WhenClause",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "UkVNT1ZFX0NMQVNTCkR5bmFtaWNGaWx0ZXJJZA",
+    "description" : "Remove class DynamicFilterId",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "UkVNT1ZFX0NMQVNTClBsYW5GcmFnbWVudElk",
+    "description" : "Remove class PlanFragmentId",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "UkVNT1ZFX0NMQVNTClBsYW5Ob2RlSWQ",
+    "description" : "Remove class PlanNodeId",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "UkVNT1ZFX0NMQVNTClRyYW5zYWN0aW9uSWQ",
+    "description" : "Remove class TransactionId",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "UkVNT1ZFX0NMQVNTCk5vZGVMb2NhdGlvbg",
+    "description" : "Remove class NodeLocation",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "UkVNT1ZFX0NMQVNTCk9yY0RhdGFTb3VyY2VJZA",
+    "description" : "Remove class OrcDataSourceId",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "UkVNT1ZFX0NMQVNTClBhcnF1ZXREYXRhU291cmNlSWQ",
+    "description" : "Remove class ParquetDataSourceId",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpFeHByZXNzaW9uVHJlZVJld3JpdGVyLlJld3JpdGluZ1Zpc2l0b3IjcmV3cml0ZVdoZW5DbGF1c2UKY29uZGl0aW9uIGNoYW5nZWQ",
+    "description" : "Change control flow of ExpressionTreeRewriter.RewritingVisitor#rewriteWhenClause: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpJckV4cHJlc3Npb25zI21hdGNoSWZGaXJzdEVxdWFsc1NlY29uZApjb25kaXRpb24gY2hhbmdlZA",
+    "description" : "Change control flow of IrExpressions#matchIfFirstEqualsSecond: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZW1vdmVSZWR1bmRhbnRDYXNlQ2xhdXNlcyNhcHBseQpjb25kaXRpb24gY2hhbmdlZA",
+    "description" : "Change control flow of RemoveRedundantCaseClauses#apply: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGlmeVJlZHVuZGFudENhc2UjYXBwbHkKY29uZGl0aW9uIGNoYW5nZWQ",
+    "description" : "Change control flow of SimplifyRedundantCase#apply: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGlmeVJlZHVuZGFudENhc2UjdHJhbnNmb3JtUmVjdXJzaXZlCmNvbmRpdGlvbiBjaGFuZ2Vk",
+    "description" : "Change control flow of SimplifyRedundantCase#transformRecursive: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 14,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApTcGxpdCNnZXRGaXJzdA",
+    "description" : "Remove Split#getFirst",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 15,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApTcGxpdCNnZXRTZWNvbmQ",
+    "description" : "Remove Split#getSecond",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 16,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApTcGxpdCNlcXVhbHM",
+    "description" : "Remove Split#equals",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 17,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApTcGxpdCNoYXNoQ29kZQ",
+    "description" : "Remove Split#hashCode",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 18,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2dldE9wZXJhbmQ",
+    "description" : "Remove WhenClause#getOperand",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 19,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2dldFJlc3VsdA",
+    "description" : "Remove WhenClause#getResult",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 20,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2VxdWFscw",
+    "description" : "Remove WhenClause#equals",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 21,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2hhc2hDb2Rl",
+    "description" : "Remove WhenClause#hashCode",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 22,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApEeW5hbWljRmlsdGVySWQjZXF1YWxz",
+    "description" : "Remove DynamicFilterId#equals",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 23,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApEeW5hbWljRmlsdGVySWQjaGFzaENvZGU",
+    "description" : "Remove DynamicFilterId#hashCode",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 24,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQbGFuRnJhZ21lbnRJZCNlcXVhbHM",
+    "description" : "Remove PlanFragmentId#equals",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 25,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQbGFuRnJhZ21lbnRJZCNoYXNoQ29kZQ",
+    "description" : "Remove PlanFragmentId#hashCode",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 26,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQbGFuTm9kZUlkI2VxdWFscw",
+    "description" : "Remove PlanNodeId#equals",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 27,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQbGFuTm9kZUlkI2hhc2hDb2Rl",
+    "description" : "Remove PlanNodeId#hashCode",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 28,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApUcmFuc2FjdGlvbklkI2hhc2hDb2Rl",
+    "description" : "Remove TransactionId#hashCode",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 29,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApUcmFuc2FjdGlvbklkI2VxdWFscw",
+    "description" : "Remove TransactionId#equals",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 30,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jZ2V0TGluZU51bWJlcg",
+    "description" : "Remove NodeLocation#getLineNumber",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 31,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jZ2V0Q29sdW1uTnVtYmVy",
+    "description" : "Remove NodeLocation#getColumnNumber",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 32,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jZXF1YWxz",
+    "description" : "Remove NodeLocation#equals",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 33,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jaGFzaENvZGU",
+    "description" : "Remove NodeLocation#hashCode",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 34,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApPcmNEYXRhU291cmNlSWQjZXF1YWxz",
+    "description" : "Remove OrcDataSourceId#equals",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 35,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApPcmNEYXRhU291cmNlSWQjaGFzaENvZGU",
+    "description" : "Remove OrcDataSourceId#hashCode",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 36,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQYXJxdWV0RGF0YVNvdXJjZUlkI2VxdWFscw",
+    "description" : "Remove ParquetDataSourceId#equals",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 37,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQYXJxdWV0RGF0YVNvdXJjZUlkI2hhc2hDb2Rl",
+    "description" : "Remove ParquetDataSourceId#hashCode",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 38,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClBhcmFtZXRlckV4dHJhY3RvciNleHRyYWN0UGFyYW1ldGVycwpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+    "description" : "Modify body of ParameterExtractor#extractParameters: return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 39,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitvcGVyYW5kLCArcmVzdWx0LCAtZ2V0T3BlcmFuZCwgLWdldFJlc3VsdApQYWdlRmllbGRzVG9JbnB1dFBhcmFtZXRlcnNSZXdyaXRlci5WaXNpdG9yI3Zpc2l0Q2FzZQ",
+    "description" : "Modify body of PageFieldsToInputParametersRewriter.Visitor#visitCase: +operand, +result, -getOperand, -getResult",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 40,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmaXJzdCwgK3NlY29uZCwgLWdldEZpcnN0LCAtZ2V0U2Vjb25kCk1hdGNoZXIjYWR2YW5jZUFuZFNjaGVkdWxl",
+    "description" : "Modify body of Matcher#advanceAndSchedule: +first, +second, -getFirst, -getSecond",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 41,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmaXJzdCwgK3NlY29uZCwgLWdldEZpcnN0LCAtZ2V0U2Vjb25kClRocmVhZEVxdWl2YWxlbmNlI3JlYWNoYWJsZUxhYmVscw",
+    "description" : "Modify body of ThreadEquivalence#reachableLabels: +first, +second, -getFirst, -getSecond",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 42,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NhdGlvbi5saW5lLCArbG9jYXRpb24uY29sdW1uLCAtbG9jYXRpb24uZ2V0TGluZU51bWJlciwgLWxvY2F0aW9uLmdldENvbHVtbk51bWJlciwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKRXhwcmVzc2lvblRyZWVVdGlscyNleHRyYWN0TG9jYXRpb24",
+    "description" : "Modify body of ExpressionTreeUtils#extractLocation: +location.line, +location.column, -location.getLineNumber, -location.getColumnNumber, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 43,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NhdGlvbi5saW5lLCArbG9jYXRpb24uY29sdW1uLCAtbG9jYXRpb24uZ2V0TGluZU51bWJlciwgLWxvY2F0aW9uLmdldENvbHVtbk51bWJlcgpKc29uUGF0aEFuYWx5emVyI2FuYWx5emVJbXBsaWNpdEpzb25QYXRo",
+    "description" : "Modify body of JsonPathAnalyzer#analyzeImplicitJsonPath: +location.line, +location.column, -location.getLineNumber, -location.getColumnNumber",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 44,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKRXhwcmVzc2lvbkJ5dGVjb2RlQ29tcGlsZXIuVmlzaXRvciN2aXNpdENhc2U",
+    "description" : "Modify body of ExpressionBytecodeCompiler.Visitor#visitCase: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 45,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXN1bHQsIC1nZXRSZXN1bHQsIHJldHVybiBnZXRSZXN1bHQgLT4gcmVzdWx0CkNhc2UjdHlwZQ",
+    "description" : "Modify body of Case#type: +result, -getResult, return getResult -> result",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 46,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKQ2FzZSNjaGlsZHJlbg",
+    "description" : "Modify body of Case#children: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 47,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKRGVmYXVsdFRyYXZlcnNhbFZpc2l0b3IjdmlzaXRDYXNl",
+    "description" : "Modify body of DefaultTraversalVisitor#visitCase: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 48,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitub2RlLm9wZXJhbmQsICtub2RlLnJlc3VsdCwgLW5vZGUuZ2V0T3BlcmFuZCwgLW5vZGUuZ2V0UmVzdWx0LCByZXR1cm4gdmFsdWUgY2hhbmdlZApFeHByZXNzaW9uRm9ybWF0dGVyLkZvcm1hdHRlciNmb3JtYXQ",
+    "description" : "Modify body of ExpressionFormatter.Formatter#format: +node.operand, +node.result, -node.getOperand, -node.getResult, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 49,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2UucmVzdWx0LCAtY2xhdXNlLmdldFJlc3VsdCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKSXJFeHByZXNzaW9ucyNtYXlCZU51bGw",
+    "description" : "Modify body of IrExpressions#mayBeNull: +clause.result, -clause.getResult, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 50,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCklyRXhwcmVzc2lvbnMjbWF5RmFpbA",
+    "description" : "Modify body of IrExpressions#mayFail: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 51,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3aGVuQ2xhdXNlLm9wZXJhbmQsICt3aGVuQ2xhdXNlLnJlc3VsdCwgLXdoZW5DbGF1c2UuZ2V0T3BlcmFuZCwgLXdoZW5DbGF1c2UuZ2V0UmVzdWx0LCByZXR1cm4gZ2V0UmVzdWx0IC0-IHJlc3VsdApJckV4cHJlc3Npb25FdmFsdWF0b3IjZXZhbHVhdGVJbnRlcm5hbA",
+    "description" : "Modify body of IrExpressionEvaluator#evaluateInternal: +whenClause.operand, +whenClause.result, -whenClause.getOperand, -whenClause.getResult, return getResult -> result",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 52,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKSXJFeHByZXNzaW9uT3B0aW1pemVyI3Byb2Nlc3NDbGF1c2Vz",
+    "description" : "Modify body of IrExpressionOptimizer#processClauses: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 53,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCkRpc3RyaWJ1dGVDb21wYXJpc29uT3ZlckNhc2UjZGlzdHJpYnV0ZQ",
+    "description" : "Modify body of DistributeComparisonOverCase#distribute: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 54,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3aGVuQ2xhdXNlLm9wZXJhbmQsICt3aGVuQ2xhdXNlLnJlc3VsdCwgLXdoZW5DbGF1c2UuZ2V0T3BlcmFuZCwgLXdoZW5DbGF1c2UuZ2V0UmVzdWx0LCByZXR1cm4gZ2V0UmVzdWx0IC0-IHJlc3VsdApFdmFsdWF0ZUNhc2UjYXBwbHk",
+    "description" : "Modify body of EvaluateCase#apply: +whenClause.operand, +whenClause.result, -whenClause.getOperand, -whenClause.getResult, return getResult -> result",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 55,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKRXh0cmFjdENvbW1vbkNvbmp1bmN0RnJvbUNhc2UjYXBwbHk",
+    "description" : "Modify body of ExtractCommonConjunctFromCase#apply: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 56,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dHJhY3RDb21tb25Db25qdW5jdEZyb21DYXNlI2JyYW5jaFJlc3VsdHMKcmV0dXJuIGdldFJlc3VsdCAtPiByZXN1bHQ",
+    "description" : "Modify body of ExtractCommonConjunctFromCase#branchResults: return getResult -> result",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 57,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitvcGVyYW5kLCArcmVzdWx0LCAtZ2V0T3BlcmFuZCwgLWdldFJlc3VsdCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKUHJlQWdncmVnYXRlQ2FzZUFnZ3JlZ2F0aW9ucyNleHRyYWN0Q2FzZUFnZ3JlZ2F0aW9u",
+    "description" : "Modify body of PreAggregateCaseAggregations#extractCaseAggregation: +operand, +result, -getOperand, -getResult, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 58,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitvcGVyYW5kLCArcmVzdWx0LCArd2hlbkNsYXVzZS5vcGVyYW5kLCArd2hlbkNsYXVzZS5yZXN1bHQsIC1nZXRPcGVyYW5kIOKApmFuZCA1IG1vcmUKU2ltcGxpZnlGaWx0ZXJQcmVkaWNhdGUjc2ltcGxpZnk",
+    "description" : "Modify body of SimplifyFilterPredicate#simplify: +operand, +result, +whenClause.operand, +whenClause.result, -getOperand …and 5 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 59,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithY3R1YWwub3BlcmFuZCwgK2V4cGVjdGVkLm9wZXJhbmQsICthY3R1YWwucmVzdWx0LCArZXhwZWN0ZWQucmVzdWx0LCAtYWN0dWFsLmdldE9wZXJhbmQg4oCmYW5kIDQgbW9yZQpFeHByZXNzaW9uVmVyaWZpZXIjcHJvY2Vzcw",
+    "description" : "Modify body of ExpressionVerifier#process: +actual.operand, +expected.operand, +actual.result, +expected.result, -actual.getOperand …and 4 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 60,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXN1bHQsICtvcGVyYW5kLCAtZ2V0UmVzdWx0LCAtZ2V0T3BlcmFuZApUZXN0U3ltYm9sTWFwcGVyI3Rlc3RSZWFsbG9jYXRlU3ltYm9sc0luQWdncmVnYXRpb25WYWx1ZVBvaW50ZXI",
+    "description" : "Modify body of TestSymbolMapper#testReallocateSymbolsInAggregationValuePointer: +result, +operand, -getResult, -getOperand",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 61,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NhdGlvbi5saW5lLCArbG9jYXRpb24uY29sdW1uLCAtbG9jYXRpb24uZ2V0TGluZU51bWJlciwgLWxvY2F0aW9uLmdldENvbHVtbk51bWJlciwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKQXN0QnVpbGRlciNnZXRMb2NhdGlvbg",
+    "description" : "Modify body of AstBuilder#getLocation: +location.line, +location.column, -location.getLineNumber, -location.getColumnNumber, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 62,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzdGF0ZW1lbnRMb2NhdGlvbi5saW5lLCArc3RhdGVtZW50TG9jYXRpb24uY29sdW1uLCAtc3RhdGVtZW50TG9jYXRpb24uZ2V0TGluZU51bWJlciwgLXN0YXRlbWVudExvY2F0aW9uLmdldENvbHVtbk51bWJlcgpTcWxQYXJzZXIjaW52b2tlUGFyc2Vy",
+    "description" : "Modify body of SqlParser#invokeParser: +statementLocation.line, +statementLocation.column, -statementLocation.getLineNumber, -statementLocation.getColumnNumber",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 63,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitub2RlTG9jYXRpb24ubGluZSwgK25vZGVMb2NhdGlvbi5jb2x1bW4sIC1ub2RlTG9jYXRpb24uZ2V0TGluZU51bWJlciwgLW5vZGVMb2NhdGlvbi5nZXRDb2x1bW5OdW1iZXIKUGFyc2luZ0V4Y2VwdGlvbiM8aW5pdD4",
+    "description" : "Modify body of ParsingException#<init>: +nodeLocation.line, +nodeLocation.column, -nodeLocation.getLineNumber, -nodeLocation.getColumnNumber",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 64,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClNwbGl0I2ZpcnN0",
+    "description" : "Remove field Split#first",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 65,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClNwbGl0I3NlY29uZA",
+    "description" : "Remove field Split#second",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 66,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECldoZW5DbGF1c2Ujb3BlcmFuZA",
+    "description" : "Remove field WhenClause#operand",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 67,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECldoZW5DbGF1c2UjcmVzdWx0",
+    "description" : "Remove field WhenClause#result",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 68,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkR5bmFtaWNGaWx0ZXJJZCNpZA",
+    "description" : "Remove field DynamicFilterId#id",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 69,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClBsYW5GcmFnbWVudElkI2lk",
+    "description" : "Remove field PlanFragmentId#id",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 70,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClBsYW5Ob2RlSWQjaWQ",
+    "description" : "Remove field PlanNodeId#id",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 71,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClRyYW5zYWN0aW9uSWQjdXVpZA",
+    "description" : "Remove field TransactionId#uuid",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 72,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECk5vZGVMb2NhdGlvbiNsaW5l",
+    "description" : "Remove field NodeLocation#line",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 73,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECk5vZGVMb2NhdGlvbiNjb2x1bW4",
+    "description" : "Remove field NodeLocation#column",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 74,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECk9yY0RhdGFTb3VyY2VJZCNpZA",
+    "description" : "Remove field OrcDataSourceId#id",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 75,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClBhcnF1ZXREYXRhU291cmNlSWQjaWQ",
+    "description" : "Remove field ParquetDataSourceId#id",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 76,
+    "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpXaGVuQ2xhdXNlIzxpbml0PgpvcGVyYW5kICtASnNvblByb3BlcnR5LCByZXN1bHQgK0BKc29uUHJvcGVydHk",
+    "description" : "Change parameter annotations of WhenClause#<init>: operand +@JsonProperty, result +@JsonProperty",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "Split",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "UkVNT1ZFX0NMQVNTClNwbGl0",
+      "description" : "Remove class Split",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 14,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApTcGxpdCNnZXRGaXJzdA",
+      "description" : "Remove Split#getFirst",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 15,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApTcGxpdCNnZXRTZWNvbmQ",
+      "description" : "Remove Split#getSecond",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 16,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApTcGxpdCNlcXVhbHM",
+      "description" : "Remove Split#equals",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 17,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApTcGxpdCNoYXNoQ29kZQ",
+      "description" : "Remove Split#hashCode",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 64,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClNwbGl0I2ZpcnN0",
+      "description" : "Remove field Split#first",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 65,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClNwbGl0I3NlY29uZA",
+      "description" : "Remove field Split#second",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "WhenClause",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "UkVNT1ZFX0NMQVNTCldoZW5DbGF1c2U",
+      "description" : "Remove class WhenClause",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 18,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2dldE9wZXJhbmQ",
+      "description" : "Remove WhenClause#getOperand",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 19,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2dldFJlc3VsdA",
+      "description" : "Remove WhenClause#getResult",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 20,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2VxdWFscw",
+      "description" : "Remove WhenClause#equals",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 21,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2hhc2hDb2Rl",
+      "description" : "Remove WhenClause#hashCode",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 66,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECldoZW5DbGF1c2Ujb3BlcmFuZA",
+      "description" : "Remove field WhenClause#operand",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 67,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECldoZW5DbGF1c2UjcmVzdWx0",
+      "description" : "Remove field WhenClause#result",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 76,
+      "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpXaGVuQ2xhdXNlIzxpbml0PgpvcGVyYW5kICtASnNvblByb3BlcnR5LCByZXN1bHQgK0BKc29uUHJvcGVydHk",
+      "description" : "Change parameter annotations of WhenClause#<init>: operand +@JsonProperty, result +@JsonProperty",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DynamicFilterId",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "UkVNT1ZFX0NMQVNTCkR5bmFtaWNGaWx0ZXJJZA",
+      "description" : "Remove class DynamicFilterId",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 22,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApEeW5hbWljRmlsdGVySWQjZXF1YWxz",
+      "description" : "Remove DynamicFilterId#equals",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 23,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApEeW5hbWljRmlsdGVySWQjaGFzaENvZGU",
+      "description" : "Remove DynamicFilterId#hashCode",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 68,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkR5bmFtaWNGaWx0ZXJJZCNpZA",
+      "description" : "Remove field DynamicFilterId#id",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "PlanFragmentId",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "UkVNT1ZFX0NMQVNTClBsYW5GcmFnbWVudElk",
+      "description" : "Remove class PlanFragmentId",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 24,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQbGFuRnJhZ21lbnRJZCNlcXVhbHM",
+      "description" : "Remove PlanFragmentId#equals",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 25,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQbGFuRnJhZ21lbnRJZCNoYXNoQ29kZQ",
+      "description" : "Remove PlanFragmentId#hashCode",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 69,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClBsYW5GcmFnbWVudElkI2lk",
+      "description" : "Remove field PlanFragmentId#id",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "PlanNodeId",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "UkVNT1ZFX0NMQVNTClBsYW5Ob2RlSWQ",
+      "description" : "Remove class PlanNodeId",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 26,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQbGFuTm9kZUlkI2VxdWFscw",
+      "description" : "Remove PlanNodeId#equals",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 27,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQbGFuTm9kZUlkI2hhc2hDb2Rl",
+      "description" : "Remove PlanNodeId#hashCode",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 70,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClBsYW5Ob2RlSWQjaWQ",
+      "description" : "Remove field PlanNodeId#id",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TransactionId",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "UkVNT1ZFX0NMQVNTClRyYW5zYWN0aW9uSWQ",
+      "description" : "Remove class TransactionId",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 28,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApUcmFuc2FjdGlvbklkI2hhc2hDb2Rl",
+      "description" : "Remove TransactionId#hashCode",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 29,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApUcmFuc2FjdGlvbklkI2VxdWFscw",
+      "description" : "Remove TransactionId#equals",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 71,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClRyYW5zYWN0aW9uSWQjdXVpZA",
+      "description" : "Remove field TransactionId#uuid",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "NodeLocation",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "UkVNT1ZFX0NMQVNTCk5vZGVMb2NhdGlvbg",
+      "description" : "Remove class NodeLocation",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 30,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jZ2V0TGluZU51bWJlcg",
+      "description" : "Remove NodeLocation#getLineNumber",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 31,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jZ2V0Q29sdW1uTnVtYmVy",
+      "description" : "Remove NodeLocation#getColumnNumber",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 32,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jZXF1YWxz",
+      "description" : "Remove NodeLocation#equals",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 33,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jaGFzaENvZGU",
+      "description" : "Remove NodeLocation#hashCode",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 72,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECk5vZGVMb2NhdGlvbiNsaW5l",
+      "description" : "Remove field NodeLocation#line",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 73,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECk5vZGVMb2NhdGlvbiNjb2x1bW4",
+      "description" : "Remove field NodeLocation#column",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "OrcDataSourceId",
+    "entries" : [ {
+      "id" : 7,
+      "changeKey" : "UkVNT1ZFX0NMQVNTCk9yY0RhdGFTb3VyY2VJZA",
+      "description" : "Remove class OrcDataSourceId",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 34,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApPcmNEYXRhU291cmNlSWQjZXF1YWxz",
+      "description" : "Remove OrcDataSourceId#equals",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 35,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApPcmNEYXRhU291cmNlSWQjaGFzaENvZGU",
+      "description" : "Remove OrcDataSourceId#hashCode",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 74,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECk9yY0RhdGFTb3VyY2VJZCNpZA",
+      "description" : "Remove field OrcDataSourceId#id",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ParquetDataSourceId",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "UkVNT1ZFX0NMQVNTClBhcnF1ZXREYXRhU291cmNlSWQ",
+      "description" : "Remove class ParquetDataSourceId",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 36,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQYXJxdWV0RGF0YVNvdXJjZUlkI2VxdWFscw",
+      "description" : "Remove ParquetDataSourceId#equals",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 37,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQYXJxdWV0RGF0YVNvdXJjZUlkI2hhc2hDb2Rl",
+      "description" : "Remove ParquetDataSourceId#hashCode",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 75,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClBhcnF1ZXREYXRhU291cmNlSWQjaWQ",
+      "description" : "Remove field ParquetDataSourceId#id",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ExpressionTreeRewriter.RewritingVisitor",
+    "entries" : [ {
+      "id" : 9,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpFeHByZXNzaW9uVHJlZVJld3JpdGVyLlJld3JpdGluZ1Zpc2l0b3IjcmV3cml0ZVdoZW5DbGF1c2UKY29uZGl0aW9uIGNoYW5nZWQ",
+      "description" : "Change control flow of ExpressionTreeRewriter.RewritingVisitor#rewriteWhenClause: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "IrExpressions",
+    "entries" : [ {
+      "id" : 10,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpJckV4cHJlc3Npb25zI21hdGNoSWZGaXJzdEVxdWFsc1NlY29uZApjb25kaXRpb24gY2hhbmdlZA",
+      "description" : "Change control flow of IrExpressions#matchIfFirstEqualsSecond: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 49,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2UucmVzdWx0LCAtY2xhdXNlLmdldFJlc3VsdCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKSXJFeHByZXNzaW9ucyNtYXlCZU51bGw",
+      "description" : "Modify body of IrExpressions#mayBeNull: +clause.result, -clause.getResult, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 50,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCklyRXhwcmVzc2lvbnMjbWF5RmFpbA",
+      "description" : "Modify body of IrExpressions#mayFail: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RemoveRedundantCaseClauses",
+    "entries" : [ {
+      "id" : 11,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZW1vdmVSZWR1bmRhbnRDYXNlQ2xhdXNlcyNhcHBseQpjb25kaXRpb24gY2hhbmdlZA",
+      "description" : "Change control flow of RemoveRedundantCaseClauses#apply: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SimplifyRedundantCase",
+    "entries" : [ {
+      "id" : 12,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGlmeVJlZHVuZGFudENhc2UjYXBwbHkKY29uZGl0aW9uIGNoYW5nZWQ",
+      "description" : "Change control flow of SimplifyRedundantCase#apply: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 13,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGlmeVJlZHVuZGFudENhc2UjdHJhbnNmb3JtUmVjdXJzaXZlCmNvbmRpdGlvbiBjaGFuZ2Vk",
+      "description" : "Change control flow of SimplifyRedundantCase#transformRecursive: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ParameterExtractor",
+    "entries" : [ {
+      "id" : 38,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClBhcmFtZXRlckV4dHJhY3RvciNleHRyYWN0UGFyYW1ldGVycwpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+      "description" : "Modify body of ParameterExtractor#extractParameters: return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "PageFieldsToInputParametersRewriter.Visitor",
+    "entries" : [ {
+      "id" : 39,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitvcGVyYW5kLCArcmVzdWx0LCAtZ2V0T3BlcmFuZCwgLWdldFJlc3VsdApQYWdlRmllbGRzVG9JbnB1dFBhcmFtZXRlcnNSZXdyaXRlci5WaXNpdG9yI3Zpc2l0Q2FzZQ",
+      "description" : "Modify body of PageFieldsToInputParametersRewriter.Visitor#visitCase: +operand, +result, -getOperand, -getResult",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "Matcher",
+    "entries" : [ {
+      "id" : 40,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmaXJzdCwgK3NlY29uZCwgLWdldEZpcnN0LCAtZ2V0U2Vjb25kCk1hdGNoZXIjYWR2YW5jZUFuZFNjaGVkdWxl",
+      "description" : "Modify body of Matcher#advanceAndSchedule: +first, +second, -getFirst, -getSecond",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ThreadEquivalence",
+    "entries" : [ {
+      "id" : 41,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmaXJzdCwgK3NlY29uZCwgLWdldEZpcnN0LCAtZ2V0U2Vjb25kClRocmVhZEVxdWl2YWxlbmNlI3JlYWNoYWJsZUxhYmVscw",
+      "description" : "Modify body of ThreadEquivalence#reachableLabels: +first, +second, -getFirst, -getSecond",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ExpressionTreeUtils",
+    "entries" : [ {
+      "id" : 42,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NhdGlvbi5saW5lLCArbG9jYXRpb24uY29sdW1uLCAtbG9jYXRpb24uZ2V0TGluZU51bWJlciwgLWxvY2F0aW9uLmdldENvbHVtbk51bWJlciwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKRXhwcmVzc2lvblRyZWVVdGlscyNleHRyYWN0TG9jYXRpb24",
+      "description" : "Modify body of ExpressionTreeUtils#extractLocation: +location.line, +location.column, -location.getLineNumber, -location.getColumnNumber, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "JsonPathAnalyzer",
+    "entries" : [ {
+      "id" : 43,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NhdGlvbi5saW5lLCArbG9jYXRpb24uY29sdW1uLCAtbG9jYXRpb24uZ2V0TGluZU51bWJlciwgLWxvY2F0aW9uLmdldENvbHVtbk51bWJlcgpKc29uUGF0aEFuYWx5emVyI2FuYWx5emVJbXBsaWNpdEpzb25QYXRo",
+      "description" : "Modify body of JsonPathAnalyzer#analyzeImplicitJsonPath: +location.line, +location.column, -location.getLineNumber, -location.getColumnNumber",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ExpressionBytecodeCompiler.Visitor",
+    "entries" : [ {
+      "id" : 44,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKRXhwcmVzc2lvbkJ5dGVjb2RlQ29tcGlsZXIuVmlzaXRvciN2aXNpdENhc2U",
+      "description" : "Modify body of ExpressionBytecodeCompiler.Visitor#visitCase: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "Case",
+    "entries" : [ {
+      "id" : 45,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXN1bHQsIC1nZXRSZXN1bHQsIHJldHVybiBnZXRSZXN1bHQgLT4gcmVzdWx0CkNhc2UjdHlwZQ",
+      "description" : "Modify body of Case#type: +result, -getResult, return getResult -> result",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 46,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKQ2FzZSNjaGlsZHJlbg",
+      "description" : "Modify body of Case#children: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DefaultTraversalVisitor",
+    "entries" : [ {
+      "id" : 47,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKRGVmYXVsdFRyYXZlcnNhbFZpc2l0b3IjdmlzaXRDYXNl",
+      "description" : "Modify body of DefaultTraversalVisitor#visitCase: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ExpressionFormatter.Formatter",
+    "entries" : [ {
+      "id" : 48,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitub2RlLm9wZXJhbmQsICtub2RlLnJlc3VsdCwgLW5vZGUuZ2V0T3BlcmFuZCwgLW5vZGUuZ2V0UmVzdWx0LCByZXR1cm4gdmFsdWUgY2hhbmdlZApFeHByZXNzaW9uRm9ybWF0dGVyLkZvcm1hdHRlciNmb3JtYXQ",
+      "description" : "Modify body of ExpressionFormatter.Formatter#format: +node.operand, +node.result, -node.getOperand, -node.getResult, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "IrExpressionEvaluator",
+    "entries" : [ {
+      "id" : 51,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3aGVuQ2xhdXNlLm9wZXJhbmQsICt3aGVuQ2xhdXNlLnJlc3VsdCwgLXdoZW5DbGF1c2UuZ2V0T3BlcmFuZCwgLXdoZW5DbGF1c2UuZ2V0UmVzdWx0LCByZXR1cm4gZ2V0UmVzdWx0IC0-IHJlc3VsdApJckV4cHJlc3Npb25FdmFsdWF0b3IjZXZhbHVhdGVJbnRlcm5hbA",
+      "description" : "Modify body of IrExpressionEvaluator#evaluateInternal: +whenClause.operand, +whenClause.result, -whenClause.getOperand, -whenClause.getResult, return getResult -> result",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "IrExpressionOptimizer",
+    "entries" : [ {
+      "id" : 52,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKSXJFeHByZXNzaW9uT3B0aW1pemVyI3Byb2Nlc3NDbGF1c2Vz",
+      "description" : "Modify body of IrExpressionOptimizer#processClauses: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DistributeComparisonOverCase",
+    "entries" : [ {
+      "id" : 53,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCkRpc3RyaWJ1dGVDb21wYXJpc29uT3ZlckNhc2UjZGlzdHJpYnV0ZQ",
+      "description" : "Modify body of DistributeComparisonOverCase#distribute: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "EvaluateCase",
+    "entries" : [ {
+      "id" : 54,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3aGVuQ2xhdXNlLm9wZXJhbmQsICt3aGVuQ2xhdXNlLnJlc3VsdCwgLXdoZW5DbGF1c2UuZ2V0T3BlcmFuZCwgLXdoZW5DbGF1c2UuZ2V0UmVzdWx0LCByZXR1cm4gZ2V0UmVzdWx0IC0-IHJlc3VsdApFdmFsdWF0ZUNhc2UjYXBwbHk",
+      "description" : "Modify body of EvaluateCase#apply: +whenClause.operand, +whenClause.result, -whenClause.getOperand, -whenClause.getResult, return getResult -> result",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ExtractCommonConjunctFromCase",
+    "entries" : [ {
+      "id" : 55,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKRXh0cmFjdENvbW1vbkNvbmp1bmN0RnJvbUNhc2UjYXBwbHk",
+      "description" : "Modify body of ExtractCommonConjunctFromCase#apply: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 56,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dHJhY3RDb21tb25Db25qdW5jdEZyb21DYXNlI2JyYW5jaFJlc3VsdHMKcmV0dXJuIGdldFJlc3VsdCAtPiByZXN1bHQ",
+      "description" : "Modify body of ExtractCommonConjunctFromCase#branchResults: return getResult -> result",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "PreAggregateCaseAggregations",
+    "entries" : [ {
+      "id" : 57,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitvcGVyYW5kLCArcmVzdWx0LCAtZ2V0T3BlcmFuZCwgLWdldFJlc3VsdCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKUHJlQWdncmVnYXRlQ2FzZUFnZ3JlZ2F0aW9ucyNleHRyYWN0Q2FzZUFnZ3JlZ2F0aW9u",
+      "description" : "Modify body of PreAggregateCaseAggregations#extractCaseAggregation: +operand, +result, -getOperand, -getResult, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SimplifyFilterPredicate",
+    "entries" : [ {
+      "id" : 58,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitvcGVyYW5kLCArcmVzdWx0LCArd2hlbkNsYXVzZS5vcGVyYW5kLCArd2hlbkNsYXVzZS5yZXN1bHQsIC1nZXRPcGVyYW5kIOKApmFuZCA1IG1vcmUKU2ltcGxpZnlGaWx0ZXJQcmVkaWNhdGUjc2ltcGxpZnk",
+      "description" : "Modify body of SimplifyFilterPredicate#simplify: +operand, +result, +whenClause.operand, +whenClause.result, -getOperand …and 5 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ExpressionVerifier",
+    "entries" : [ {
+      "id" : 59,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithY3R1YWwub3BlcmFuZCwgK2V4cGVjdGVkLm9wZXJhbmQsICthY3R1YWwucmVzdWx0LCArZXhwZWN0ZWQucmVzdWx0LCAtYWN0dWFsLmdldE9wZXJhbmQg4oCmYW5kIDQgbW9yZQpFeHByZXNzaW9uVmVyaWZpZXIjcHJvY2Vzcw",
+      "description" : "Modify body of ExpressionVerifier#process: +actual.operand, +expected.operand, +actual.result, +expected.result, -actual.getOperand …and 4 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TestSymbolMapper",
+    "entries" : [ {
+      "id" : 60,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXN1bHQsICtvcGVyYW5kLCAtZ2V0UmVzdWx0LCAtZ2V0T3BlcmFuZApUZXN0U3ltYm9sTWFwcGVyI3Rlc3RSZWFsbG9jYXRlU3ltYm9sc0luQWdncmVnYXRpb25WYWx1ZVBvaW50ZXI",
+      "description" : "Modify body of TestSymbolMapper#testReallocateSymbolsInAggregationValuePointer: +result, +operand, -getResult, -getOperand",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "AstBuilder",
+    "entries" : [ {
+      "id" : 61,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NhdGlvbi5saW5lLCArbG9jYXRpb24uY29sdW1uLCAtbG9jYXRpb24uZ2V0TGluZU51bWJlciwgLWxvY2F0aW9uLmdldENvbHVtbk51bWJlciwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKQXN0QnVpbGRlciNnZXRMb2NhdGlvbg",
+      "description" : "Modify body of AstBuilder#getLocation: +location.line, +location.column, -location.getLineNumber, -location.getColumnNumber, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SqlParser",
+    "entries" : [ {
+      "id" : 62,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzdGF0ZW1lbnRMb2NhdGlvbi5saW5lLCArc3RhdGVtZW50TG9jYXRpb24uY29sdW1uLCAtc3RhdGVtZW50TG9jYXRpb24uZ2V0TGluZU51bWJlciwgLXN0YXRlbWVudExvY2F0aW9uLmdldENvbHVtbk51bWJlcgpTcWxQYXJzZXIjaW52b2tlUGFyc2Vy",
+      "description" : "Modify body of SqlParser#invokeParser: +statementLocation.line, +statementLocation.column, -statementLocation.getLineNumber, -statementLocation.getColumnNumber",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ParsingException",
+    "entries" : [ {
+      "id" : 63,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitub2RlTG9jYXRpb24ubGluZSwgK25vZGVMb2NhdGlvbi5jb2x1bW4sIC1ub2RlTG9jYXRpb24uZ2V0TGluZU51bWJlciwgLW5vZGVMb2NhdGlvbi5nZXRDb2x1bW5OdW1iZXIKUGFyc2luZ0V4Y2VwdGlvbiM8aW5pdD4",
+      "description" : "Modify body of ParsingException#<init>: +nodeLocation.line, +nodeLocation.column, -nodeLocation.getLineNumber, -nodeLocation.getColumnNumber",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

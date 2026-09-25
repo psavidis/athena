@@ -1,0 +1,470 @@
+diff --git a/aws-bundle/LICENSE b/aws-bundle/LICENSE
+index d8484c933f9e..afbcf53a24f6 100644
+--- a/aws-bundle/LICENSE
++++ b/aws-bundle/LICENSE
+@@ -203,20 +203,6 @@
+ 
+ --------------------------------------------------------------------------------
+ 
+-This product bundles Apache Commons Codec.
+-
+-Project URL: https://commons.apache.org/proper/commons-codec/
+-License: Apache License, Version 2.0 - https://www.apache.org/licenses/LICENSE-2.0
+-
+---------------------------------------------------------------------------------
+-
+-This product bundles Apache Commons Logging.
+-
+-Project URL: http://commons.apache.org/proper/commons-logging/
+-License: Apache License, Version 2.0 - https://www.apache.org/licenses/LICENSE-2.0
+-
+---------------------------------------------------------------------------------
+-
+ This product bundles Apache Parquet (bundled by AWS Analytics Accelerator S3).
+ 
+ Copyright: 2014-2024 The Apache Software Foundation
+diff --git a/aws-bundle/build.gradle b/aws-bundle/build.gradle
+index 2e17d486a94a..fe545a3c72c4 100644
+--- a/aws-bundle/build.gradle
++++ b/aws-bundle/build.gradle
+@@ -34,7 +34,7 @@ project(":iceberg-aws-bundle") {
+   dependencies {
+     implementation platform(libs.awssdk.bom)
+     implementation libs.awssdk.s3accessgrants
+-    implementation "software.amazon.awssdk:apache-client"
++    implementation "software.amazon.awssdk:apache5-client"
+     implementation "software.amazon.awssdk:auth"
+     implementation "software.amazon.awssdk:crt-core"
+     implementation "software.amazon.awssdk:http-auth-aws-crt"
+diff --git a/aws-bundle/runtime-deps.txt b/aws-bundle/runtime-deps.txt
+index 1087b993fa19..b453c442a312 100644
+--- a/aws-bundle/runtime-deps.txt
++++ b/aws-bundle/runtime-deps.txt
+@@ -1,7 +1,5 @@
+ com.github.ben-manes.caffeine:caffeine:2.9
+ com.google.errorprone:error_prone_annotations:2.10
+-commons-codec:commons-codec:1.17
+-commons-logging:commons-logging:1.2
+ io.netty:netty-buffer:4.2
+ io.netty:netty-codec-base:4.2
+ io.netty:netty-codec-compression:4.2
+@@ -19,13 +17,10 @@ io.netty:netty-transport:4.2
+ org.apache.httpcomponents.client5:httpclient5:5.6
+ org.apache.httpcomponents.core5:httpcore5-h2:5.4
+ org.apache.httpcomponents.core5:httpcore5:5.4
+-org.apache.httpcomponents:httpclient:4.5
+-org.apache.httpcomponents:httpcore:4.4
+ org.checkerframework:checker-qual:3.19
+ org.reactivestreams:reactive-streams:1.0
+ software.amazon.awssdk.crt:aws-crt:0.48
+ software.amazon.awssdk:annotations:2.54
+-software.amazon.awssdk:apache-client:2.54
+ software.amazon.awssdk:apache5-client:2.54
+ software.amazon.awssdk:arns:2.54
+ software.amazon.awssdk:auth:2.54
+diff --git a/aws/src/integration/java/org/apache/iceberg/aws/s3/signer/TestS3RestSigner.java b/aws/src/integration/java/org/apache/iceberg/aws/s3/signer/TestS3RestSigner.java
+index 6d60fba05930..eecc4ad953e9 100644
+--- a/aws/src/integration/java/org/apache/iceberg/aws/s3/signer/TestS3RestSigner.java
++++ b/aws/src/integration/java/org/apache/iceberg/aws/s3/signer/TestS3RestSigner.java
+@@ -166,7 +166,7 @@ public void before() throws Exception {
+             .applyMutation(
+                 s3ClientBuilder ->
+                     s3ClientBuilder.httpClientBuilder(
+-                        software.amazon.awssdk.http.apache.ApacheHttpClient.builder()))
++                        software.amazon.awssdk.http.apache5.Apache5HttpClient.builder()))
+             .endpointOverride(URI.create(MINIO_CONTAINER.getS3URL()))
+             .forcePathStyle(true) // OSX won't resolve subdomains
+             .overrideConfiguration(
+diff --git a/aws/src/main/java/org/apache/iceberg/aws/ApacheHttpClientConfigurations.java b/aws/src/main/java/org/apache/iceberg/aws/ApacheHttpClientConfigurations.java
+index 30065c8db510..af9c16d992d7 100644
+--- a/aws/src/main/java/org/apache/iceberg/aws/ApacheHttpClientConfigurations.java
++++ b/aws/src/main/java/org/apache/iceberg/aws/ApacheHttpClientConfigurations.java
+@@ -27,8 +27,8 @@
+ import org.apache.iceberg.relocated.com.google.common.collect.Maps;
+ import org.apache.iceberg.util.PropertyUtil;
+ import software.amazon.awssdk.http.SdkHttpClient;
+-import software.amazon.awssdk.http.apache.ApacheHttpClient;
+-import software.amazon.awssdk.http.apache.ProxyConfiguration;
++import software.amazon.awssdk.http.apache5.Apache5HttpClient;
++import software.amazon.awssdk.http.apache5.ProxyConfiguration;
+ 
+ class ApacheHttpClientConfigurations extends BaseHttpClientConfigurations {
+   private Long connectionTimeoutMs;
+@@ -48,7 +48,7 @@ private ApacheHttpClientConfigurations() {}
+ 
+   @Override
+   protected SdkHttpClient buildHttpClient() {
+-    final ApacheHttpClient.Builder apacheHttpClientBuilder = ApacheHttpClient.builder();
++    final Apache5HttpClient.Builder apacheHttpClientBuilder = Apache5HttpClient.builder();
+     configureApacheHttpClientBuilder(apacheHttpClientBuilder);
+     return apacheHttpClientBuilder.build();
+   }
+@@ -93,7 +93,7 @@ private void initialize(Map<String, String> httpClientProperties) {
+   }
+ 
+   @VisibleForTesting
+-  void configureApacheHttpClientBuilder(ApacheHttpClient.Builder apacheHttpClientBuilder) {
++  void configureApacheHttpClientBuilder(Apache5HttpClient.Builder apacheHttpClientBuilder) {
+     if (connectionTimeoutMs != null) {
+       apacheHttpClientBuilder.connectionTimeout(Duration.ofMillis(connectionTimeoutMs));
+     }
+@@ -124,7 +124,7 @@ void configureApacheHttpClientBuilder(ApacheHttpClient.Builder apacheHttpClientB
+     configureProxy(apacheHttpClientBuilder);
+   }
+ 
+-  private void configureProxy(ApacheHttpClient.Builder apacheHttpClientBuilder) {
++  private void configureProxy(Apache5HttpClient.Builder apacheHttpClientBuilder) {
+     if (proxyEndpoint != null
+         || proxyUseSystemPropertyValues != null
+         || proxyUseEnvironmentVariableValues != null) {
+diff --git a/aws/src/main/java/org/apache/iceberg/aws/AwsClientFactories.java b/aws/src/main/java/org/apache/iceberg/aws/AwsClientFactories.java
+index e6eb8d28d01a..9697ed6c7cae 100644
+--- a/aws/src/main/java/org/apache/iceberg/aws/AwsClientFactories.java
++++ b/aws/src/main/java/org/apache/iceberg/aws/AwsClientFactories.java
+@@ -32,7 +32,7 @@
+ import software.amazon.awssdk.awscore.client.builder.AwsSyncClientBuilder;
+ import software.amazon.awssdk.core.client.builder.SdkClientBuilder;
+ import software.amazon.awssdk.http.SdkHttpClient;
+-import software.amazon.awssdk.http.apache.ApacheHttpClient;
++import software.amazon.awssdk.http.apache5.Apache5HttpClient;
+ import software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient;
+ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+ import software.amazon.awssdk.services.dynamodb.DynamoDbClientBuilder;
+@@ -200,7 +200,7 @@ public static SdkHttpClient.Builder configureHttpClientBuilder(String httpClient
+       case HttpClientProperties.CLIENT_TYPE_URLCONNECTION:
+         return UrlConnectionHttpClient.builder();
+       case HttpClientProperties.CLIENT_TYPE_APACHE:
+-        return ApacheHttpClient.builder();
++        return Apache5HttpClient.builder();
+       default:
+         throw new IllegalArgumentException("Unrecognized HTTP client type " + httpClientType);
+     }
+diff --git a/aws/src/main/java/org/apache/iceberg/aws/HttpClientProperties.java b/aws/src/main/java/org/apache/iceberg/aws/HttpClientProperties.java
+index 870d8e23651c..75ef497f914c 100644
+--- a/aws/src/main/java/org/apache/iceberg/aws/HttpClientProperties.java
++++ b/aws/src/main/java/org/apache/iceberg/aws/HttpClientProperties.java
+@@ -38,8 +38,8 @@ public class HttpClientProperties implements Serializable {
+ 
+   /**
+    * If this is set under {@link #CLIENT_TYPE}, {@link
+-   * software.amazon.awssdk.http.apache.ApacheHttpClient} will be used as the HTTP Client in {@link
+-   * AwsClientFactory}
++   * software.amazon.awssdk.http.apache5.Apache5HttpClient} will be used as the HTTP Client in
++   * {@link AwsClientFactory}
+    */
+   public static final String CLIENT_TYPE_APACHE = "apache";
+ 
+@@ -57,7 +57,7 @@ public class HttpClientProperties implements Serializable {
+   /**
+    * Used to configure the proxy endpoint. Used by both {@link
+    * software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient.Builder} and {@link
+-   * software.amazon.awssdk.http.apache.ApacheHttpClient.Builder}
++   * software.amazon.awssdk.http.apache5.Apache5HttpClient.Builder}
+    */
+   public static final String PROXY_ENDPOINT = "http-client.proxy-endpoint";
+ 
+@@ -68,7 +68,7 @@ public class HttpClientProperties implements Serializable {
+    * <p>For more details, see
+    * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/urlconnection/ProxyConfiguration.html
+    * and
+-   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ProxyConfiguration.html
++   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/ProxyConfiguration.html
+    */
+   public static final String PROXY_USE_SYSTEM_PROPERTY_VALUES =
+       "http-client.proxy-use-system-property-values";
+@@ -80,7 +80,7 @@ public class HttpClientProperties implements Serializable {
+    * <p>For more details, see
+    * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/urlconnection/ProxyConfiguration.html
+    * and
+-   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ProxyConfiguration.html
++   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/ProxyConfiguration.html
+    */
+   public static final String PROXY_USE_ENVIRONMENT_VARIABLE_VALUES =
+       "http-client.proxy-use-environment-variable-values";
+@@ -109,103 +109,103 @@ public class HttpClientProperties implements Serializable {
+ 
+   /**
+    * Used to configure the connection timeout in milliseconds for {@link
+-   * software.amazon.awssdk.http.apache.ApacheHttpClient.Builder}. This flag only works when {@link
+-   * #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
++   * software.amazon.awssdk.http.apache5.Apache5HttpClient.Builder}. This flag only works when
++   * {@link #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
+    *
+    * <p>For more details, see
+-   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html
++   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html
+    */
+   public static final String APACHE_CONNECTION_TIMEOUT_MS =
+       "http-client.apache.connection-timeout-ms";
+ 
+   /**
+    * Used to configure the socket timeout in milliseconds for {@link
+-   * software.amazon.awssdk.http.apache.ApacheHttpClient.Builder}. This flag only works when {@link
+-   * #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
++   * software.amazon.awssdk.http.apache5.Apache5HttpClient.Builder}. This flag only works when
++   * {@link #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
+    *
+    * <p>For more details, see
+-   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html
++   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html
+    */
+   public static final String APACHE_SOCKET_TIMEOUT_MS = "http-client.apache.socket-timeout-ms";
+ 
+   /**
+    * Used to configure the connection acquisition timeout in milliseconds for {@link
+-   * software.amazon.awssdk.http.apache.ApacheHttpClient.Builder}. This flag only works when {@link
+-   * #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
++   * software.amazon.awssdk.http.apache5.Apache5HttpClient.Builder}. This flag only works when
++   * {@link #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
+    *
+    * <p>For more details, see
+-   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html
++   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html
+    */
+   public static final String APACHE_CONNECTION_ACQUISITION_TIMEOUT_MS =
+       "http-client.apache.connection-acquisition-timeout-ms";
+ 
+   /**
+    * Used to configure the connection max idle time in milliseconds for {@link
+-   * software.amazon.awssdk.http.apache.ApacheHttpClient.Builder}. This flag only works when {@link
+-   * #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
++   * software.amazon.awssdk.http.apache5.Apache5HttpClient.Builder}. This flag only works when
++   * {@link #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
+    *
+    * <p>For more details, see
+-   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html
++   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html
+    */
+   public static final String APACHE_CONNECTION_MAX_IDLE_TIME_MS =
+       "http-client.apache.connection-max-idle-time-ms";
+ 
+   /**
+    * Used to configure the connection time to live in milliseconds for {@link
+-   * software.amazon.awssdk.http.apache.ApacheHttpClient.Builder}. This flag only works when {@link
+-   * #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
++   * software.amazon.awssdk.http.apache5.Apache5HttpClient.Builder}. This flag only works when
++   * {@link #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
+    *
+    * <p>For more details, see
+-   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html
++   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html
+    */
+   public static final String APACHE_CONNECTION_TIME_TO_LIVE_MS =
+       "http-client.apache.connection-time-to-live-ms";
+ 
+   /**
+    * Used to configure whether to enable the expect continue setting for {@link
+-   * software.amazon.awssdk.http.apache.ApacheHttpClient.Builder}. This flag only works when {@link
+-   * #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
++   * software.amazon.awssdk.http.apache5.Apache5HttpClient.Builder}. This flag only works when
++   * {@link #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
+    *
+    * <p>In default, this is disabled.
+    *
+    * <p>For more details, see
+-   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html
++   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html
+    */
+   public static final String APACHE_EXPECT_CONTINUE_ENABLED =
+       "http-client.apache.expect-continue-enabled";
+ 
+   /**
+    * Used to configure the max connections number for {@link
+-   * software.amazon.awssdk.http.apache.ApacheHttpClient.Builder}. This flag only works when {@link
+-   * #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
++   * software.amazon.awssdk.http.apache5.Apache5HttpClient.Builder}. This flag only works when
++   * {@link #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}
+    *
+    * <p>For more details, see
+-   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html
++   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html
+    */
+   public static final String APACHE_MAX_CONNECTIONS = "http-client.apache.max-connections";
+ 
+   /**
+    * Used to configure whether to enable the tcp keep alive setting for {@link
+-   * software.amazon.awssdk.http.apache.ApacheHttpClient.Builder}. This flag only works when {@link
+-   * #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}.
++   * software.amazon.awssdk.http.apache5.Apache5HttpClient.Builder}. This flag only works when
++   * {@link #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}.
+    *
+    * <p>In default, this is disabled.
+    *
+    * <p>For more details, see
+-   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html
++   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html
+    */
+   public static final String APACHE_TCP_KEEP_ALIVE_ENABLED =
+       "http-client.apache.tcp-keep-alive-enabled";
+ 
+   /**
+    * Used to configure whether to use idle connection reaper for {@link
+-   * software.amazon.awssdk.http.apache.ApacheHttpClient.Builder}. This flag only works when {@link
+-   * #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}.
++   * software.amazon.awssdk.http.apache5.Apache5HttpClient.Builder}. This flag only works when
++   * {@link #CLIENT_TYPE} is set to {@link #CLIENT_TYPE_APACHE}.
+    *
+    * <p>In default, this is enabled.
+    *
+    * <p>For more details, see
+-   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html
++   * https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html
+    */
+   public static final String APACHE_USE_IDLE_CONNECTION_REAPER_ENABLED =
+       "http-client.apache.use-idle-connection-reaper-enabled";
+@@ -259,7 +259,7 @@ public <T extends AwsSyncClientBuilder> void applyHttpClientConfigurations(T bui
+   /**
+    * Dynamically load the http client builder to avoid runtime deps requirements of both {@link
+    * software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient} and {@link
+-   * software.amazon.awssdk.http.apache.ApacheHttpClient}, since including both will cause error
++   * software.amazon.awssdk.http.apache5.Apache5HttpClient}, since including both will cause error
+    * described in <a href="https://github.com/apache/iceberg/issues/6715">issue#6715</a>
+    */
+   private <T> T loadHttpClientConfigurations(String impl) {
+diff --git a/aws/src/test/java/org/apache/iceberg/aws/TestHttpClientConfigurations.java b/aws/src/test/java/org/apache/iceberg/aws/TestHttpClientConfigurations.java
+index da73a5c1b5a5..899cd8f3e56e 100644
+--- a/aws/src/test/java/org/apache/iceberg/aws/TestHttpClientConfigurations.java
++++ b/aws/src/test/java/org/apache/iceberg/aws/TestHttpClientConfigurations.java
+@@ -25,8 +25,8 @@
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.ValueSource;
+ import org.mockito.Mockito;
+-import software.amazon.awssdk.http.apache.ApacheHttpClient;
+-import software.amazon.awssdk.http.apache.ProxyConfiguration;
++import software.amazon.awssdk.http.apache5.Apache5HttpClient;
++import software.amazon.awssdk.http.apache5.ProxyConfiguration;
+ import software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient;
+ 
+ public class TestHttpClientConfigurations {
+@@ -93,8 +93,8 @@ public void testApacheOverrideConfigurations() {
+     properties.put(HttpClientProperties.PROXY_ENDPOINT, "http://proxy:8080");
+     ApacheHttpClientConfigurations apacheHttpClientConfigurations =
+         ApacheHttpClientConfigurations.create(properties);
+-    ApacheHttpClient.Builder apacheHttpClientBuilder = ApacheHttpClient.builder();
+-    ApacheHttpClient.Builder spyApacheHttpClientBuilder = Mockito.spy(apacheHttpClientBuilder);
++    Apache5HttpClient.Builder apacheHttpClientBuilder = Apache5HttpClient.builder();
++    Apache5HttpClient.Builder spyApacheHttpClientBuilder = Mockito.spy(apacheHttpClientBuilder);
+ 
+     apacheHttpClientConfigurations.configureApacheHttpClientBuilder(spyApacheHttpClientBuilder);
+ 
+@@ -115,8 +115,8 @@ public void testApacheOverrideConfigurations() {
+   public void testApacheDefaultConfigurations() {
+     ApacheHttpClientConfigurations apacheHttpClientConfigurations =
+         ApacheHttpClientConfigurations.create(Maps.newHashMap());
+-    ApacheHttpClient.Builder apacheHttpClientBuilder = ApacheHttpClient.builder();
+-    ApacheHttpClient.Builder spyApacheHttpClientBuilder = Mockito.spy(apacheHttpClientBuilder);
++    Apache5HttpClient.Builder apacheHttpClientBuilder = Apache5HttpClient.builder();
++    Apache5HttpClient.Builder spyApacheHttpClientBuilder = Mockito.spy(apacheHttpClientBuilder);
+ 
+     apacheHttpClientConfigurations.configureApacheHttpClientBuilder(spyApacheHttpClientBuilder);
+ 
+@@ -149,7 +149,7 @@ public void testApacheDefaultConfigurations() {
+   public void testApacheProxyFlagTriggersProxyConfig(String propertyKey) {
+     Map<String, String> properties = Maps.newHashMap();
+     properties.put(propertyKey, "false");
+-    ApacheHttpClient.Builder spy = Mockito.spy(ApacheHttpClient.builder());
++    Apache5HttpClient.Builder spy = Mockito.spy(Apache5HttpClient.builder());
+ 
+     ApacheHttpClientConfigurations.create(properties).configureApacheHttpClientBuilder(spy);
+ 
+diff --git a/aws/src/test/java/org/apache/iceberg/aws/TestHttpClientProperties.java b/aws/src/test/java/org/apache/iceberg/aws/TestHttpClientProperties.java
+index 378e5e6ca94a..c6bb393e471a 100644
+--- a/aws/src/test/java/org/apache/iceberg/aws/TestHttpClientProperties.java
++++ b/aws/src/test/java/org/apache/iceberg/aws/TestHttpClientProperties.java
+@@ -30,7 +30,7 @@
+ import org.mockito.ArgumentCaptor;
+ import org.mockito.Mockito;
+ import software.amazon.awssdk.http.SdkHttpClient;
+-import software.amazon.awssdk.http.apache.ApacheHttpClient;
++import software.amazon.awssdk.http.apache5.Apache5HttpClient;
+ import software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient;
+ import software.amazon.awssdk.services.s3.S3Client;
+ import software.amazon.awssdk.services.s3.S3ClientBuilder;
+@@ -76,11 +76,11 @@ public void testApacheHttpClientConfiguration() {
+         .as("Should use managed SDK http client")
+         .isInstanceOf(ManagedHttpClient.class);
+ 
+-    // Verify the underlying delegate is ApacheHttpClient
++    // Verify the underlying delegate is Apache5HttpClient
+     ManagedHttpClient managedClient = (ManagedHttpClient) capturedHttpClient;
+     assertThat(managedClient.httpClient())
+-        .as("Underlying client should be ApacheHttpClient")
+-        .isInstanceOf(ApacheHttpClient.class);
++        .as("Underlying client should be Apache5HttpClient")
++        .isInstanceOf(Apache5HttpClient.class);
+   }
+ 
+   @Test
+diff --git a/build.gradle b/build.gradle
+index b312eebf5635..e2fe7735b240 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -540,7 +540,7 @@ project(':iceberg-aws') {
+     compileOnly(platform(libs.awssdk.bom))
+     compileOnly(libs.awssdk.s3accessgrants)
+     compileOnly("software.amazon.awssdk:url-connection-client")
+-    compileOnly("software.amazon.awssdk:apache-client")
++    compileOnly("software.amazon.awssdk:apache5-client")
+     compileOnly("software.amazon.awssdk:auth")
+     compileOnly("software.amazon.awssdk:http-auth-aws-crt")
+     compileOnly("software.amazon.awssdk:s3")
+diff --git a/docs/docs/aws.md b/docs/docs/aws.md
+index 694430ecf55c..f217974d2356 100644
+--- a/docs/docs/aws.md
++++ b/docs/docs/aws.md
+@@ -31,7 +31,7 @@ You will need to provide the AWS v2 SDK because that is what Iceberg depends on.
+ You can choose to use the [AWS SDK bundle](https://mvnrepository.com/artifact/software.amazon.awssdk/bundle),
+ or individual AWS client packages (Glue, S3, DynamoDB, KMS, STS) if you would like to have a minimal dependency footprint.
+ 
+-All the default AWS clients use the [Apache HTTP Client](https://mvnrepository.com/artifact/software.amazon.awssdk/apache-client)
++All the default AWS clients use the [Apache HTTP Client](https://mvnrepository.com/artifact/software.amazon.awssdk/apache5-client)
+ for HTTP connection management.
+ This dependency is not part of the AWS SDK bundle and needs to be added separately.
+ To choose a different HTTP client library such as [URL Connection HTTP Client](https://mvnrepository.com/artifact/software.amazon.awssdk/url-connection-client),
+@@ -698,7 +698,7 @@ When assume-role credential configurations are provided, [REST catalogs configur
+ 
+ ### HTTP Client Configurations
+ AWS clients support two types of HTTP Client, [URL Connection HTTP Client](https://mvnrepository.com/artifact/software.amazon.awssdk/url-connection-client)
+-and [Apache HTTP Client](https://mvnrepository.com/artifact/software.amazon.awssdk/apache-client).
++and [Apache HTTP Client](https://mvnrepository.com/artifact/software.amazon.awssdk/apache5-client).
+ By default, AWS clients use **Apache** HTTP Client to communicate with the service.
+ This HTTP client supports various functionalities and customized settings, such as expect-continue handshake and TCP KeepAlive, at the cost of extra dependency and additional startup latency.
+ In contrast, URL Connection HTTP Client optimizes for minimum dependencies and startup latency but supports less functionality than other implementations.
+@@ -734,15 +734,15 @@ Apache HTTP Client has the following configurable properties:
+ 
+ | Property                                              | Default                   | Description                                                                                                                                                                                                                                 |
+ |-------------------------------------------------------|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+-| http-client.apache.socket-timeout-ms                  | null                      | An optional [socket timeout](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html#socketTimeout(java.time.Duration)) in milliseconds |
+-| http-client.apache.connection-timeout-ms              | null                      | An optional [connection timeout](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html#connectionTimeout(java.time.Duration)) in milliseconds |
+-| http-client.apache.connection-acquisition-timeout-ms  | null                      | An optional [connection acquisition timeout](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html#connectionAcquisitionTimeout(java.time.Duration)) in milliseconds |
+-| http-client.apache.connection-max-idle-time-ms        | null                      | An optional [connection max idle timeout](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html#connectionMaxIdleTime(java.time.Duration)) in milliseconds |
+-| http-client.apache.connection-time-to-live-ms         | null                      | An optional [connection time to live](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html#connectionTimeToLive(java.time.Duration)) in milliseconds |
+-| http-client.apache.expect-continue-enabled            | null, disabled by default | An optional `true/false` setting that controls whether [expect continue](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html#expectContinueEnabled(java.lang.Boolean)) is enabled |
+-| http-client.apache.max-connections                    | null                      | An optional [max connections](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html#maxConnections(java.lang.Integer))  in integer       |
+-| http-client.apache.tcp-keep-alive-enabled             | null, disabled by default | An optional `true/false` setting that controls whether [tcp keep alive](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html#tcpKeepAlive(java.lang.Boolean)) is enabled |
+-| http-client.apache.use-idle-connection-reaper-enabled | null, enabled by default  | An optional `true/false` setting that controls whether [use idle connection reaper](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.Builder.html#useIdleConnectionReaper(java.lang.Boolean)) is used |
++| http-client.apache.socket-timeout-ms                  | null                      | An optional [socket timeout](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html#socketTimeout(java.time.Duration)) in milliseconds |
++| http-client.apache.connection-timeout-ms              | null                      | An optional [connection timeout](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html#connectionTimeout(java.time.Duration)) in milliseconds |
++| http-client.apache.connection-acquisition-timeout-ms  | null                      | An optional [connection acquisition timeout](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html#connectionAcquisitionTimeout(java.time.Duration)) in milliseconds |
++| http-client.apache.connection-max-idle-time-ms        | null                      | An optional [connection max idle timeout](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html#connectionMaxIdleTime(java.time.Duration)) in milliseconds |
++| http-client.apache.connection-time-to-live-ms         | null                      | An optional [connection time to live](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html#connectionTimeToLive(java.time.Duration)) in milliseconds |
++| http-client.apache.expect-continue-enabled            | null, disabled by default | An optional `true/false` setting that controls whether [expect continue](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html#expectContinueEnabled(java.lang.Boolean)) is enabled |
++| http-client.apache.max-connections                    | null                      | An optional [max connections](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html#maxConnections(java.lang.Integer))  in integer       |
++| http-client.apache.tcp-keep-alive-enabled             | null, disabled by default | An optional `true/false` setting that controls whether [tcp keep alive](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html#tcpKeepAlive(java.lang.Boolean)) is enabled |
++| http-client.apache.use-idle-connection-reaper-enabled | null, enabled by default  | An optional `true/false` setting that controls whether [use idle connection reaper](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache5/Apache5HttpClient.Builder.html#useIdleConnectionReaper(java.lang.Boolean)) is used |
+ 
+ Users can use catalog properties to override the defaults. For example, to configure the max connections for Apache HTTP Client when starting a spark shell, one can add:
+ ```shell
+diff --git a/gradle/libs.versions.toml b/gradle/libs.versions.toml
+index 902c13270bd6..c96274b00d41 100644
+--- a/gradle/libs.versions.toml
++++ b/gradle/libs.versions.toml
+@@ -33,7 +33,7 @@ arrow = "15.0.2"
+ avro = "1.12.2"
+ assertj-core = "3.27.7"
+ awaitility = "4.3.0"
+-awssdk-bom = "2.54.13"
++awssdk-bom = "2.54.17"
+ azuresdk-bom = "1.3.8"
+ awssdk-s3accessgrants = "2.4.1"
+ bouncycastle = "1.85"

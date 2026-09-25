@@ -1,0 +1,97 @@
+{
+  "territories" : [ {
+    "moduleName" : "group-coordinator",
+    "status" : "TOUCHED",
+    "fileCount" : 3,
+    "statusSummary" : "3 files · 25 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpHcm91cE1ldGFkYXRhTWFuYWdlciNnZXRPck1heWJlU3Vic2NyaWJlU3RhdGljQ29uc3VtZXJHcm91cE1lbWJlcgpicmFuY2ggYWRkZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpHcm91cE1ldGFkYXRhTWFuYWdlciNnZXRPck1heWJlQ3JlYXRlU3RhdGljU3RyZWFtc0dyb3VwTWVtYmVyCmJyYW5jaCBhZGRlZA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdmVyaWZ5U3RhdGljTWVtYmVyTGVhdmVBbmRSZWpvaW5Ob0dyb3VwQnVtcApicmFuY2ggYWRkZWQ", "UkVNT1ZFX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQW5kRGlmZmVyZW50SW5zdGFuY2VJZA", "UkVNT1ZFX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQW5kRGlmZmVyZW50SW5zdGFuY2VJZA", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlciN0aHJvd0lmTWVtYmVySWRIYXNEaWZmZXJlbnRJbnN0YW5jZUlk", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhEaWZmZXJlbnRJbnN0YW5jZUlk", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoSW5zdGFuY2VJZA", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhSZWxlYXNlZEluc3RhbmNlSWQ", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhVbnJlbGVhc2VkSW5zdGFuY2VJZA", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoUmVsZWFzZWRJbnN0YW5jZUlk", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoVW5yZWxlYXNlZEluc3RhbmNlSWQ", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQWZ0ZXJMZWF2aW5n", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkV2hpbGVBY3RpdmU", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFJlamVjdGVkSm9pbkRvZXNOb3RSZWxhYmVsQ2FjaGVkUmVmaW5lZEFzc2lnbm1lbnQ", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdEZlbmNlZEhlYXJ0YmVhdERvZXNOb3RSZWxhYmVsQ2FjaGVkUmVmaW5lZEFzc2lnbm1lbnQ", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhEaWZmZXJlbnRJbnN0YW5jZUlk", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoSW5zdGFuY2VJZA", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhSZWxlYXNlZEluc3RhbmNlSWQ", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhVbnJlbGVhc2VkSW5zdGFuY2VJZA", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoUmVsZWFzZWRJbnN0YW5jZUlk", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoVW5yZWxlYXNlZEluc3RhbmNlSWQ", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkV2hpbGVBY3RpdmU", "TU9ESUZZX01FVEhPRF9CT0RZCi1tYXliZU9sZFN0YXRpY01lbWJlci5tZW1iZXJJZCwgLWdyb3VwLnJlbGFiZWxSZWZpbmVkQXNzaWdubWVudApHcm91cE1ldGFkYXRhTWFuYWdlciNzdHJlYW1zR3JvdXBIZWFydGJlYXQ", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRFcXVhbHMsICtjb25zdW1lckdyb3VwLCArZ2V0T3JNYXliZUNyZWF0ZU1lbWJlciwgLXNldEluc3RhbmNlSWQsIC1zZXRTdGF0ZSDigKZhbmQgMjUgbW9yZQpHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdENvbnN1bWVyR3JvdXBIZWFydGJlYXRGcm9tRXhpc3RpbmdDbGFzc2ljU3RhdGljTWVtYmVy" ],
+    "testChangeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdmVyaWZ5U3RhdGljTWVtYmVyTGVhdmVBbmRSZWpvaW5Ob0dyb3VwQnVtcApicmFuY2ggYWRkZWQ", "UkVNT1ZFX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQW5kRGlmZmVyZW50SW5zdGFuY2VJZA", "UkVNT1ZFX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQW5kRGlmZmVyZW50SW5zdGFuY2VJZA", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhEaWZmZXJlbnRJbnN0YW5jZUlk", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoSW5zdGFuY2VJZA", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhSZWxlYXNlZEluc3RhbmNlSWQ", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhVbnJlbGVhc2VkSW5zdGFuY2VJZA", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoUmVsZWFzZWRJbnN0YW5jZUlk", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoVW5yZWxlYXNlZEluc3RhbmNlSWQ", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQWZ0ZXJMZWF2aW5n", "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkV2hpbGVBY3RpdmU", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFJlamVjdGVkSm9pbkRvZXNOb3RSZWxhYmVsQ2FjaGVkUmVmaW5lZEFzc2lnbm1lbnQ", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdEZlbmNlZEhlYXJ0YmVhdERvZXNOb3RSZWxhYmVsQ2FjaGVkUmVmaW5lZEFzc2lnbm1lbnQ", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhEaWZmZXJlbnRJbnN0YW5jZUlk", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoSW5zdGFuY2VJZA", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhSZWxlYXNlZEluc3RhbmNlSWQ", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhVbnJlbGVhc2VkSW5zdGFuY2VJZA", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoUmVsZWFzZWRJbnN0YW5jZUlk", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoVW5yZWxlYXNlZEluc3RhbmNlSWQ", "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkV2hpbGVBY3RpdmU", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRFcXVhbHMsICtjb25zdW1lckdyb3VwLCArZ2V0T3JNYXliZUNyZWF0ZU1lbWJlciwgLXNldEluc3RhbmNlSWQsIC1zZXRTdGF0ZSDigKZhbmQgMjUgbW9yZQpHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdENvbnN1bWVyR3JvdXBIZWFydGJlYXRGcm9tRXhpc3RpbmdDbGFzc2ljU3RhdGljTWVtYmVy" ]
+  }, {
+    "moduleName" : "server-common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "clients",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "metadata",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "group-coordinator-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "storage",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "coordinator-common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "generator",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "group-coordinator",
+    "to" : "server-common"
+  }, {
+    "from" : "group-coordinator",
+    "to" : "clients"
+  }, {
+    "from" : "group-coordinator",
+    "to" : "metadata"
+  }, {
+    "from" : "group-coordinator",
+    "to" : "group-coordinator-api"
+  }, {
+    "from" : "group-coordinator",
+    "to" : "storage"
+  }, {
+    "from" : "group-coordinator",
+    "to" : "coordinator-common"
+  }, {
+    "from" : "group-coordinator",
+    "to" : "generator"
+  } ]
+}

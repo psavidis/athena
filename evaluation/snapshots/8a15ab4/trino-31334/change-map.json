@@ -1,0 +1,57 @@
+{
+  "prTitle" : "Release page partitioner when output finish fails",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpQYXJ0aXRpb25lZE91dHB1dE9wZXJhdG9yI2ZpbmlzaApjb25kaXRpb24gY2hhbmdlZA",
+    "description" : "Change control flow of PartitionedOutputOperator#finish: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0UGFydGl0aW9uZWRPdXRwdXRPcGVyYXRvciN0ZXN0TWVtb3J5UmVsZWFzZWRPbkZpbmlzaEZhaWx1cmU",
+    "description" : "Add TestPartitionedOutputOperator#testMemoryReleasedOnFinishFailure",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "PartitionedOutputOperator",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpQYXJ0aXRpb25lZE91dHB1dE9wZXJhdG9yI2ZpbmlzaApjb25kaXRpb24gY2hhbmdlZA",
+      "description" : "Change control flow of PartitionedOutputOperator#finish: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TestPartitionedOutputOperator",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0UGFydGl0aW9uZWRPdXRwdXRPcGVyYXRvciN0ZXN0TWVtb3J5UmVsZWFzZWRPbkZpbmlzaEZhaWx1cmU",
+      "description" : "Add TestPartitionedOutputOperator#testMemoryReleasedOnFinishFailure",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

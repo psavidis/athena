@@ -1,0 +1,431 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SourceTopicChangelogRestoreIntegrationTest",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3I",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc2V0VXA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#setUp",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#setUp" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjdGVhckRvd24",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#tearDown",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#tearDown" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc2hvdWxkRnVsbHlSZXN0b3JlU291cmNlVG9waWNDaGFuZ2Vsb2dTdG9yZUFmdGVyVGFza0NvcnJ1cHRpb25XaXRoU3RhbmRieVJlcGxpY2E",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#shouldFullyRestoreSourceTopicChangelogStoreAfterTaskCorruptionWithStandbyReplica",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#shouldFullyRestoreSourceTopicChangelogStoreAfterTaskCorruptionWithStandbyReplica" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjY2xvc2VBbmRMZWF2ZUdyb3Vw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#closeAndLeaveGroup",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#closeAndLeaveGroup" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc3RhcnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#start",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#start" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjdG9wb2xvZ3k",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#topology",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#topology" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc3RyZWFtc0NvbmZpZw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#streamsConfig",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#streamsConfig" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJvZHVjZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#produce",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#produce" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclBsYWNlbWVudA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#waitForPlacement",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#waitForPlacement" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclN0YWJsZVBsYWNlbWVudA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#waitForStablePlacement",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#waitForStablePlacement" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjaG9zdHNUYXNr",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#hostsTask",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#hostsTask" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclRhYmxlS2V5cw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#waitForTableKeys",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#waitForTableKeys" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjY291bnRQcmVzZW50S2V5cw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#countPresentKeys",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#countPresentKeys" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJlbG9hZGVkS2V5cw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#preloadedKeys",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#preloadedKeys" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qja2V5c09m",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#keysOf",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#keysOf" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcmVzdG9yZUNvbnN1bWVy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#restoreConsumer",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#restoreConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJvZHVjZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#producer",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#producer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QuVmVoaWNsZVN0YXRlUHJvY2Vzc29yI2luaXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#init",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#init" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QuVmVoaWNsZVN0YXRlUHJvY2Vzc29yI3Byb2Nlc3M",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#process",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#process" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb25zdW1lZE9mZnNldHMuY2xlYXIKU3RyZWFtVGFzayNjbG9zZQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of StreamTask#close: +consumedOffsets.clear",
+  "files" : [ "streams/src/main/java/org/apache/kafka/streams/processor/internals/StreamTask.java" ],
+  "symbols" : [ "StreamTask#close", "+consumedOffsets.clear" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNOVU1fUFJFTE9BREVEX0tFWVM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#NUM_PRELOADED_KEYS",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#NUM_PRELOADED_KEYS" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNOVU1fRVZFTlRT",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#NUM_EVENTS",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#NUM_EVENTS" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9UT1BJQw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#TABLE_TOPIC",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#TABLE_TOPIC" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNFVkVOVFNfVE9QSUM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#EVENTS_TOPIC",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#EVENTS_TOPIC" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9TVE9SRQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#TABLE_STORE",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#TABLE_STORE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNFVkVOVF9DT1VOVF9TVE9SRQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#EVENT_COUNT_STORE",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#EVENT_COUNT_STORE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9QQVJUSVRJT04",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#TABLE_PARTITION",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#TABLE_PARTITION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQVNL",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#TASK",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#TASK" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNQUk9EVUNFUl9NQVhfQkxPQ0tfTVM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#PRODUCER_MAX_BLOCK_MS",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#PRODUCER_MAX_BLOCK_MS" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNDT01NSVRfREVMQVk",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#COMMIT_DELAY",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#COMMIT_DELAY" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNSRVNUT1JFX0ZFVENIX0RFTEFZ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#RESTORE_FETCH_DELAY",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#RESTORE_FETCH_DELAY" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNXQUlUX01T",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#WAIT_MS",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#WAIT_MS" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNzdGF0ZURpcnM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#stateDirs",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#stateDirs" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNzdHJlYW1zVG9DbG9zZQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#streamsToClose",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#streamsToClose" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNyZWJhbGFuY2VDb3VudHM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#rebalanceCounts",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#rebalanceCounts" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNjbHVzdGVy",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#cluster",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#cluster" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNwcm94eQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#proxy",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#proxy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNhcHBJZA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#appId",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest#appId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjY29udGV4dA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#context",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#context" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjdmVoaWNsZVN0b3Jl",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#vehicleStore",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#vehicleStore" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjZXZlbnRDb3VudHM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#eventCounts",
+  "files" : [ "streams/integration-tests/src/test/java/org/apache/kafka/streams/integration/SourceTopicChangelogRestoreIntegrationTest.java" ],
+  "symbols" : [ "SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#eventCounts" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

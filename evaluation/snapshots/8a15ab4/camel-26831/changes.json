@@ -1,0 +1,31 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZXN0UHJvZHVjZXIjcHJlcGFyZUV4Y2hhbmdlCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of RestProducer#prepareExchange: branch added",
+  "files" : [ "components/camel-rest/src/main/java/org/apache/camel/component/rest/RestProducer.java" ],
+  "symbols" : [ "RestProducer#prepareExchange", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0UHJvZHVjZXIjZmlyc3RQbGFjZWhvbGRlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RestProducer#firstPlaceholder",
+  "files" : [ "components/camel-rest/src/main/java/org/apache/camel/component/rest/RestProducer.java" ],
+  "symbols" : [ "RestProducer#firstPlaceholder" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaHJvd3MsICthc3NlcnRUaGF0LCArZS5nZXRNZXNzYWdlLCArY29udGFpbnMKUmVzdFByb2R1Y2VyQWR2YW5jZWRUZXN0I3Rlc3RQcmVwYXJlRXhjaGFuZ2VXaXRoVW5yZXNvbHZlZFBsYWNlaG9sZGVy",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of RestProducerAdvancedTest#testPrepareExchangeWithUnresolvedPlaceholder: +assertThrows, +assertThat, +e.getMessage, +contains",
+  "files" : [ "components/camel-rest/src/test/java/org/apache/camel/component/rest/RestProducerAdvancedTest.java" ],
+  "symbols" : [ "RestProducerAdvancedTest#testPrepareExchangeWithUnresolvedPlaceholder", "+assertThrows, +assertThat, +e.getMessage, +contains" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

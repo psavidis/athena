@@ -1,0 +1,91 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCcm9rZXJNZXRyaWNzTWFuYWdlciNpbml0TGFnQW5kRGxxTWV0cmljcwpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of BrokerMetricsManager#initLagAndDlqMetrics: branch added",
+  "files" : [ "broker/src/main/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManager.java" ],
+  "symbols" : [ "BrokerMetricsManager#initLagAndDlqMetrics", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlciNzaG91bGRSZWNvcmRWYWx1ZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BrokerMetricsManager#shouldRecordValue",
+  "files" : [ "broker/src/main/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManager.java" ],
+  "symbols" : [ "BrokerMetricsManager#shouldRecordValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjY3JlYXRlVGVzdEJyb2tlck1ldHJpY3NNYW5hZ2Vy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BrokerMetricsManagerTest#createTestBrokerMetricsManager",
+  "files" : [ "broker/src/test/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManagerTest.java" ],
+  "symbols" : [ "BrokerMetricsManagerTest#createTestBrokerMetricsManager" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjdGVzdFNob3VsZFJlY29yZFZhbHVlV2hlblN1cHByZXNzRGlzYWJsZWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BrokerMetricsManagerTest#testShouldRecordValueWhenSuppressDisabled",
+  "files" : [ "broker/src/test/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManagerTest.java" ],
+  "symbols" : [ "BrokerMetricsManagerTest#testShouldRecordValueWhenSuppressDisabled" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjdGVzdFNob3VsZFJlY29yZFZhbHVlV2hlblN1cHByZXNzRW5hYmxlZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BrokerMetricsManagerTest#testShouldRecordValueWhenSuppressEnabled",
+  "files" : [ "broker/src/test/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManagerTest.java" ],
+  "symbols" : [ "BrokerMetricsManagerTest#testShouldRecordValueWhenSuppressEnabled" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCcm9rZXJDb25maWcjaXNTdXBwcmVzc01pblZhbHVlTWV0cmljcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BrokerConfig#isSuppressMinValueMetrics",
+  "files" : [ "common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java" ],
+  "symbols" : [ "BrokerConfig#isSuppressMinValueMetrics" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCcm9rZXJDb25maWcjc2V0U3VwcHJlc3NNaW5WYWx1ZU1ldHJpY3M",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add BrokerConfig#setSuppressMinValueMetrics",
+  "files" : [ "common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java" ],
+  "symbols" : [ "BrokerConfig#setSuppressMinValueMetrics" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGVUZXN0QnJva2VyTWV0cmljc01hbmFnZXIsIC1nZXRQcm9wZXJ0eSwgLXJhbmRvbVVVSUQsIC1tZXNzYWdlU3RvcmVDb25maWcuc2V0U3RvcmVQYXRoUm9vdERpciwgLW5ldHR5U2VydmVyQ29uZmlnLnNldExpc3RlblBvcnQg4oCmYW5kIDEgbW9yZQpCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjY3JlYXRlVGVzdEJyb2tlck1ldHJpY3NNYW5hZ2Vy",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BrokerMetricsManagerTest#createTestBrokerMetricsManager: +createTestBrokerMetricsManager, -getProperty, -randomUUID, -messageStoreConfig.setStorePathRootDir, -nettyServerConfig.setListenPort …and 1 more",
+  "files" : [ "broker/src/test/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManagerTest.java" ],
+  "symbols" : [ "BrokerMetricsManagerTest#createTestBrokerMetricsManager", "+createTestBrokerMetricsManager, -getProperty, -randomUUID, -messageStoreConfig.setStorePathRootDir, -nettyServerConfig.setListenPort …and 1 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkJyb2tlckNvbmZpZyNzdXBwcmVzc01pblZhbHVlTWV0cmljcw",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field BrokerConfig#suppressMinValueMetrics",
+  "files" : [ "common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java" ],
+  "symbols" : [ "BrokerConfig#suppressMinValueMetrics" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

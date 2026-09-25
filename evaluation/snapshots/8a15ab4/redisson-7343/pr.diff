@@ -1,0 +1,61 @@
+diff --git a/redisson/src/main/java/org/redisson/RedissonRateLimiter.java b/redisson/src/main/java/org/redisson/RedissonRateLimiter.java
+index 460d8448a5d..283d751ecb0 100644
+--- a/redisson/src/main/java/org/redisson/RedissonRateLimiter.java
++++ b/redisson/src/main/java/org/redisson/RedissonRateLimiter.java
+@@ -292,6 +292,23 @@ public RFuture<Void> releaseAsync(long permits) {
+                 + "    permitsName = KEYS[5];"
+                 + "end;"
+ 
++                + "local toRelease = tonumber(ARGV[1]);"
++                + "local values = redis.call('zrange', permitsName, 0, -1, 'withscores');"
++                + "for i = 1, #values - 1, 2 do"
++                + "    if toRelease <= 0 then break; end;"
++                + "    local v = values[i];"
++                + "    local score = values[i + 1];"
++                + "    local random, permits = struct.unpack('Bc0I', v);"
++                + "    redis.call('zrem', permitsName, v);"
++                + "    if permits <= toRelease then "
++                + "        toRelease = toRelease - permits;"
++                + "    else "
++                + "        local remained = permits - toRelease;"
++                + "        redis.call('zadd', permitsName, score, struct.pack('Bc0I', string.len(random), random, remained));"
++                + "        toRelease = 0;"
++                + "    end;"
++                + "end;"
++
+                 + "local currentValue = redis.call('get', valueName);"
+                 + "if currentValue == false then "
+                 + "    currentValue = tonumber(rate);"
+diff --git a/redisson/src/test/java/org/redisson/RedissonRateLimiterTest.java b/redisson/src/test/java/org/redisson/RedissonRateLimiterTest.java
+index ca805c50c0f..532b5994b32 100644
+--- a/redisson/src/test/java/org/redisson/RedissonRateLimiterTest.java
++++ b/redisson/src/test/java/org/redisson/RedissonRateLimiterTest.java
+@@ -600,4 +600,28 @@ public void testRelease() {
+         // release -1
+         assertThatThrownBy(() -> rateLimiter.release(-1)).isInstanceOf(IllegalArgumentException.class);
+     }
++
++    @Test
++    public void testReleasedPermitsPreservedAfterExpiry() throws InterruptedException {
++        RRateLimiter limiter = redisson.getRateLimiter("testNoCollapse");
++        limiter.trySetRate(RateType.OVERALL, 10, 1, RateIntervalUnit.SECONDS);
++
++        limiter.tryAcquire(1);
++        limiter.release(1);
++
++        Thread.sleep(300);
++
++        for (int i = 0; i < 8; i++) {
++            limiter.tryAcquire(1);
++            limiter.release(1);
++        }
++
++        Thread.sleep(900);
++
++        limiter.tryAcquire(1);
++
++        long permits = limiter.availablePermits();
++
++        assertThat(permits).isEqualTo(9);
++    }
+ }

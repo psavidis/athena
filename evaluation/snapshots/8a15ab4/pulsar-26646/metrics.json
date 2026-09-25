@@ -1,0 +1,43 @@
+{
+  "diff": {
+    "files": 10,
+    "java_files": 10,
+    "non_java_files": 0,
+    "substantive_java_files": 10,
+    "copyright_only_java_files": 0,
+    "production_java_files": 4,
+    "java_hunks": 26,
+    "java_lines_changed": 75
+  },
+  "athena": {
+    "changes": 17,
+    "changes_by_kind": {
+      "ADD_SYMBOL": 2,
+      "MODIFY_METHOD_BODY": 14,
+      "CHANGE_FIELD_TYPE": 1
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 3,
+      "UNKNOWN": 14
+    },
+    "semantic_entries": 9,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 8,
+      "RESPONSIBILITY": 1
+    },
+    "inferred_entries": 1,
+    "module_territories": 21,
+    "module_dependencies": 28,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 9,
+    "substantive_java_file_coverage": 0.9,
+    "production_java_files_represented": 3,
+    "production_java_file_coverage": 0.75,
+    "unrepresented_production_java_files": [
+      "pulsar-client-api/src/main/java/org/apache/pulsar/client/api/transaction/TransactionCoordinatorClient.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

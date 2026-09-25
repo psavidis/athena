@@ -1,0 +1,27 @@
+{
+  "managed-ledger" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " public static EntryImpl create(LedgerEntry ledgerEntry, int expectedReadCount) {\n         EntryImpl entry = RECYCLER.get();\n         entry.ledgerId = ledgerEntry.getLedgerId();\n         entry.entryId = ledgerEntry.getEntryId();\n         entry.data = ledgerEntry.getEntryBuffer();\n         entry.data.retain();\n         entry.readCountHandler = EntryReadCountHandlerImpl.maybeCreate(expectedReadCount);\n+        // Reset the lazily-cached position LAST, after the id assignments: a recycled object can\n+        // carry a stale Position materialized by a getPosition() call that raced past the recycle\n+        // (deallocation nulls the field, but a late reader re-materializes it from the reset ids\n+        // as (-1, -1)), and any racy lazy rebuild must observe the fresh legitimate ids.\n+        entry.position = null;\n         entry.setRefCnt(1);\n         return entry;\n     }", " @VisibleForTesting\n     public static EntryImpl create(long ledgerId, long entryId, byte[] data, int expectedReadCount) {\n         EntryImpl entry = RECYCLER.get();\n         entry.ledgerId = ledgerId;\n         entry.entryId = entryId;\n         entry.data = Unpooled.wrappedBuffer(data);\n         entry.readCountHandler = EntryReadCountHandlerImpl.maybeCreate(expectedReadCount);\n+        // Reset the lazily-cached position: see create(LedgerEntry, int).\n+        entry.position = null;\n         entry.setRefCnt(1);\n         return entry;\n     }", " public static EntryImpl create(long ledgerId, long entryId, ByteBuf data, int expectedReadCount) {\n         EntryImpl entry = RECYCLER.get();\n         entry.ledgerId = ledgerId;\n         entry.entryId = entryId;\n         entry.data = data;\n         entry.data.retain();\n         entry.readCountHandler = EntryReadCountHandlerImpl.maybeCreate(expectedReadCount);\n+        // Reset the lazily-cached position: see create(LedgerEntry, int).\n+        entry.position = null;\n         entry.setRefCnt(1);\n         return entry;\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "managed-ledger/src/main/java/org/apache/bookkeeper/mledger/impl/EntryImpl.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in EntryImplTest",
+      "conceptDescription" : "1 change in test code of EntryImplTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@Test\n+    public void testRecycledObjectDoesNotInheritPoisonedPosition() {\n+        // Given a legitimate entry that is released normally\n+        EntryImpl first = EntryImpl.create(5L, 10L, new byte[]{1, 2, 3});\n+        first.release();\n \n+        // When a getPosition() call slips in AFTER the release: deallocation nulls the lazy\n+        // position field, so this late reader re-materializes it from the reset ids as (-1, -1)\n+        // and leaves the poisoned value cached inside the pooled object.\n+        first.getPosition();\n+\n+        // Then the next create() (the recycler hands back the most recently released object on\n+        // the same thread) must not report that stale (-1, -1) position as its own — through\n+        // both the byte[] and the ByteBuf variants, which own the lazy field.\n+        EntryImpl second = EntryImpl.create(6L, 20L, new byte[]{4, 5, 6});\n+        assertTrue(second.getPosition().compareTo(PositionFactory.create(6L, 20L)) == 0,\n+                \"byte[] variant: a recycled entry must not inherit the poisoned (-1, -1) position\");\n+        second.release();\n+\n+        second.getPosition(); // re-poison the recycled object\n+        EntryImpl third = EntryImpl.create(7L, 30L, Unpooled.wrappedBuffer(new byte[]{7, 8}));\n+        assertTrue(third.getPosition().compareTo(PositionFactory.create(7L, 30L)) == 0,\n+                \"ByteBuf variant: a recycled entry must not inherit the poisoned (-1, -1) position\");\n+        third.release();\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "managed-ledger/src/test/java/org/apache/bookkeeper/mledger/impl/EntryImplTest.java" ],
+      "groupedMoveCount" : 1
+    } ]
+  }
+}

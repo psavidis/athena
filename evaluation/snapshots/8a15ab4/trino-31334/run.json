@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/trinodb/trino.git",
+  "base" : "f545f2af6634e112d45c148b7849e855b9ff5aa3",
+  "head" : "3ea9d644e7ebdfa3d36fe83c24c25e83237bb644",
+  "changeCount" : 2,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 22.36
+}

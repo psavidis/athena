@@ -1,0 +1,11 @@
+[ {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0VxdWFsLCAtZXF1YWxzLCByZXR1cm4gQXJyYXlzLmVxdWFscyAtPiBNZXNzYWdlRGlnZXN0LmlzRXF1YWwKWm9vS2VlcGVyU2VydmVyI2NoZWNrUGFzc3dk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ZooKeeperServer#checkPasswd: +isEqual, -equals, return Arrays.equals -> MessageDigest.isEqual",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/ZooKeeperServer.java" ],
+  "symbols" : [ "ZooKeeperServer#checkPasswd", "+isEqual, -equals, return Arrays.equals -> MessageDigest.isEqual" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

@@ -1,0 +1,12 @@
+{
+  "changedFileCount" : 10,
+  "representedFileCount" : 9,
+  "files" : [ {
+    "path" : "pulsar-client-api/src/main/java/org/apache/pulsar/client/api/transaction/TransactionCoordinatorClient.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  } ]
+}

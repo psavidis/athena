@@ -1,0 +1,91 @@
+[ {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQXBhY2hlSHR0cENsaWVudENvbmZpZ3VyYXRpb25zI2NvbmZpZ3VyZUFwYWNoZUh0dHBDbGllbnRCdWlsZGVy",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of ApacheHttpClientConfigurations#configureApacheHttpClientBuilder",
+  "files" : [ "aws/src/main/java/org/apache/iceberg/aws/ApacheHttpClientConfigurations.java" ],
+  "symbols" : [ "ApacheHttpClientConfigurations#configureApacheHttpClientBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQXBhY2hlSHR0cENsaWVudENvbmZpZ3VyYXRpb25zI2NvbmZpZ3VyZVByb3h5",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of ApacheHttpClientConfigurations#configureProxy",
+  "files" : [ "aws/src/main/java/org/apache/iceberg/aws/ApacheHttpClientConfigurations.java" ],
+  "symbols" : [ "ApacheHttpClientConfigurations#configureProxy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RTM1Jlc3RTaWduZXIjYmVmb3JlCmFwcGx5TXV0YXRpb24o4oCmKTogYXBhY2hlLkFwYWNoZUh0dHBDbGllbnQgLT4gYXBhY2hlNS5BcGFjaGU1SHR0cENsaWVudCwgczNDbGllbnRCdWlsZGVyLmh0dHBDbGllbnRCdWlsZGVyKOKApik6IGFwYWNoZS5BcGFjaGVIdHRwQ2xpZW50IC0-IGFwYWNoZTUuQXBhY2hlNUh0dHBDbGllbnQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TestS3RestSigner#before: applyMutation(…): apache.ApacheHttpClient -> apache5.Apache5HttpClient, s3ClientBuilder.httpClientBuilder(…): apache.ApacheHttpClient -> apache5.Apache5HttpClient",
+  "files" : [ "aws/src/integration/java/org/apache/iceberg/aws/s3/signer/TestS3RestSigner.java" ],
+  "symbols" : [ "TestS3RestSigner#before", "applyMutation(…): apache.ApacheHttpClient -> apache5.Apache5HttpClient, s3ClientBuilder.httpClientBuilder(…): apache.ApacheHttpClient -> apache5.Apache5HttpClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFwYWNoZUh0dHBDbGllbnRDb25maWd1cmF0aW9ucyNidWlsZEh0dHBDbGllbnQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ApacheHttpClientConfigurations#buildHttpClient: other statements changed",
+  "files" : [ "aws/src/main/java/org/apache/iceberg/aws/ApacheHttpClientConfigurations.java" ],
+  "symbols" : [ "ApacheHttpClientConfigurations#buildHttpClient", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkF3c0NsaWVudEZhY3RvcmllcyNjb25maWd1cmVIdHRwQ2xpZW50QnVpbGRlcgpyZXR1cm4gQXBhY2hlSHR0cENsaWVudCAtPiBBcGFjaGU1SHR0cENsaWVudA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AwsClientFactories#configureHttpClientBuilder: return ApacheHttpClient -> Apache5HttpClient",
+  "files" : [ "aws/src/main/java/org/apache/iceberg/aws/AwsClientFactories.java" ],
+  "symbols" : [ "AwsClientFactories#configureHttpClientBuilder", "return ApacheHttpClient -> Apache5HttpClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RIdHRwQ2xpZW50Q29uZmlndXJhdGlvbnMjdGVzdEFwYWNoZU92ZXJyaWRlQ29uZmlndXJhdGlvbnMKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TestHttpClientConfigurations#testApacheOverrideConfigurations: other statements changed",
+  "files" : [ "aws/src/test/java/org/apache/iceberg/aws/TestHttpClientConfigurations.java" ],
+  "symbols" : [ "TestHttpClientConfigurations#testApacheOverrideConfigurations", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RIdHRwQ2xpZW50Q29uZmlndXJhdGlvbnMjdGVzdEFwYWNoZURlZmF1bHRDb25maWd1cmF0aW9ucwpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TestHttpClientConfigurations#testApacheDefaultConfigurations: other statements changed",
+  "files" : [ "aws/src/test/java/org/apache/iceberg/aws/TestHttpClientConfigurations.java" ],
+  "symbols" : [ "TestHttpClientConfigurations#testApacheDefaultConfigurations", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RIdHRwQ2xpZW50Q29uZmlndXJhdGlvbnMjdGVzdEFwYWNoZVByb3h5RmxhZ1RyaWdnZXJzUHJveHlDb25maWcKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TestHttpClientConfigurations#testApacheProxyFlagTriggersProxyConfig: other statements changed",
+  "files" : [ "aws/src/test/java/org/apache/iceberg/aws/TestHttpClientConfigurations.java" ],
+  "symbols" : [ "TestHttpClientConfigurations#testApacheProxyFlagTriggersProxyConfig", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RIdHRwQ2xpZW50UHJvcGVydGllcyN0ZXN0QXBhY2hlSHR0cENsaWVudENvbmZpZ3VyYXRpb24KaXNJbnN0YW5jZU9mKOKApik6IEFwYWNoZUh0dHBDbGllbnQgLT4gQXBhY2hlNUh0dHBDbGllbnQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TestHttpClientProperties#testApacheHttpClientConfiguration: isInstanceOf(…): ApacheHttpClient -> Apache5HttpClient",
+  "files" : [ "aws/src/test/java/org/apache/iceberg/aws/TestHttpClientProperties.java" ],
+  "symbols" : [ "TestHttpClientProperties#testApacheHttpClientConfiguration", "isInstanceOf(…): ApacheHttpClient -> Apache5HttpClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

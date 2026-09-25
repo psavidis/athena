@@ -1,0 +1,36 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Override\n     public void add(final int index, final E obj) {\n-        modCount++;\n         checkInterval(index, 0, size());\n+        modCount++;\n         if (root == null) {\n             root = new AVLNode<>(index, obj, null, null);\n         } else {\n             root = root.insert(index, obj);\n         }\n         size++;\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "src/main/java/org/apache/commons/collections4/list/TreeList.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Override\n     public E remove(final int index) {\n-        modCount++;\n         checkInterval(index, 0, size() - 1);\n+        modCount++;\n         final E result = get(index);\n         root = root.remove(index);\n         size--;\n         return result;\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "src/main/java/org/apache/commons/collections4/list/TreeList.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in TreeListTest",
+    "conceptDescription" : "1 change in test code of TreeListTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+@Test\n+    void testFailedIndexedChangeKeepsIteratorValid() {\n+        final List<String> list = new TreeList<>();\n+        list.add(\"a\");\n+        list.add(\"b\");\n \n+        // a rejected add(index) is a no-op and must not invalidate a live iterator\n+        final ListIterator<String> addIt = list.listIterator();\n+        assertThrows(IndexOutOfBoundsException.class, () -> list.add(5, \"x\"));\n+        assertEquals(2, list.size());\n+        assertEquals(\"a\", addIt.next());\n+\n+        // same for a rejected remove(index)\n+        final ListIterator<String> removeIt = list.listIterator();\n+        assertThrows(IndexOutOfBoundsException.class, () -> list.remove(10));\n+        assertEquals(2, list.size());\n+        assertEquals(\"a\", removeIt.next());\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "src/test/java/org/apache/commons/collections4/list/TreeListTest.java" ],
+    "groupedMoveCount" : 1
+  } ]
+}

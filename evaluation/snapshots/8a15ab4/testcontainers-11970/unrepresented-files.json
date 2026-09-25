@@ -1,0 +1,12 @@
+{
+  "changedFileCount" : 3,
+  "representedFileCount" : 2,
+  "files" : [ {
+    "path" : "docs/modules/azure.md",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

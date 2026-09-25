@@ -1,0 +1,13 @@
+[ {
+  "entity" : "Consumer",
+  "description" : "Change control flow of Consumer#getStats: branch removed"
+}, {
+  "entity" : "MessageRedeliveryController",
+  "description" : "Change control flow of MessageRedeliveryController#add: condition changed"
+}, {
+  "entity" : "PersistentSubscription",
+  "description" : "Change control flow of PersistentSubscription#reuseOrCreateDispatcher: branch removed"
+}, {
+  "entity" : "PersistentSubscription",
+  "description" : "Change control flow of PersistentSubscription#getStatsAsync: branch removed"
+} ]

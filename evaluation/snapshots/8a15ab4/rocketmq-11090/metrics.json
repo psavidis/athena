@@ -1,0 +1,50 @@
+{
+  "diff": {
+    "files": 18,
+    "java_files": 18,
+    "non_java_files": 0,
+    "substantive_java_files": 18,
+    "copyright_only_java_files": 0,
+    "production_java_files": 13,
+    "java_hunks": 47,
+    "java_lines_changed": 759
+  },
+  "athena": {
+    "changes": 69,
+    "changes_by_kind": {
+      "ADD_CLASS": 5,
+      "CHANGE_SUPERTYPE": 4,
+      "ADD_SYMBOL": 16,
+      "MODIFY_METHOD_BODY": 19,
+      "REMOVE_FIELD": 8,
+      "ADD_FIELD": 8,
+      "ADD_CONSTRUCTOR_PARAMETER": 4,
+      "PULL_UP_FIELD": 1,
+      "PULL_UP_SYMBOL": 4
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 50,
+      "UNKNOWN": 19
+    },
+    "semantic_entries": 41,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 32,
+      "RESPONSIBILITY": 8,
+      "ARCHITECTURE": 1
+    },
+    "inferred_entries": 9,
+    "module_territories": 6,
+    "module_dependencies": 5,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 17,
+    "substantive_java_file_coverage": 0.94,
+    "production_java_files_represented": 12,
+    "production_java_file_coverage": 0.92,
+    "unrepresented_production_java_files": [
+      "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageService.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

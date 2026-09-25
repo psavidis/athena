@@ -1,0 +1,771 @@
+[ {
+  "changeKey" : "UkVNT1ZFX0NMQVNTClNwbGl0",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class Split",
+  "files" : [ "core/trino-main/src/main/java/io/trino/operator/window/matcher/Split.java" ],
+  "symbols" : [ "Split" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTCldoZW5DbGF1c2U",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class WhenClause",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/WhenClause.java" ],
+  "symbols" : [ "WhenClause" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTCkR5bmFtaWNGaWx0ZXJJZA",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class DynamicFilterId",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/plan/DynamicFilterId.java" ],
+  "symbols" : [ "DynamicFilterId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTClBsYW5GcmFnbWVudElk",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class PlanFragmentId",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanFragmentId.java" ],
+  "symbols" : [ "PlanFragmentId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTClBsYW5Ob2RlSWQ",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class PlanNodeId",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanNodeId.java" ],
+  "symbols" : [ "PlanNodeId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTClRyYW5zYWN0aW9uSWQ",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class TransactionId",
+  "files" : [ "core/trino-main/src/main/java/io/trino/transaction/TransactionId.java" ],
+  "symbols" : [ "TransactionId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTCk5vZGVMb2NhdGlvbg",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class NodeLocation",
+  "files" : [ "core/trino-parser/src/main/java/io/trino/sql/tree/NodeLocation.java" ],
+  "symbols" : [ "NodeLocation" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTCk9yY0RhdGFTb3VyY2VJZA",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class OrcDataSourceId",
+  "files" : [ "lib/trino-orc/src/main/java/io/trino/orc/OrcDataSourceId.java" ],
+  "symbols" : [ "OrcDataSourceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTClBhcnF1ZXREYXRhU291cmNlSWQ",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class ParquetDataSourceId",
+  "files" : [ "lib/trino-parquet/src/main/java/io/trino/parquet/ParquetDataSourceId.java" ],
+  "symbols" : [ "ParquetDataSourceId" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpFeHByZXNzaW9uVHJlZVJld3JpdGVyLlJld3JpdGluZ1Zpc2l0b3IjcmV3cml0ZVdoZW5DbGF1c2UKY29uZGl0aW9uIGNoYW5nZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ExpressionTreeRewriter.RewritingVisitor#rewriteWhenClause: condition changed",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/ExpressionTreeRewriter.java" ],
+  "symbols" : [ "ExpressionTreeRewriter.RewritingVisitor#rewriteWhenClause", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpJckV4cHJlc3Npb25zI21hdGNoSWZGaXJzdEVxdWFsc1NlY29uZApjb25kaXRpb24gY2hhbmdlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of IrExpressions#matchIfFirstEqualsSecond: condition changed",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/IrExpressions.java" ],
+  "symbols" : [ "IrExpressions#matchIfFirstEqualsSecond", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZW1vdmVSZWR1bmRhbnRDYXNlQ2xhdXNlcyNhcHBseQpjb25kaXRpb24gY2hhbmdlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of RemoveRedundantCaseClauses#apply: condition changed",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/RemoveRedundantCaseClauses.java" ],
+  "symbols" : [ "RemoveRedundantCaseClauses#apply", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGlmeVJlZHVuZGFudENhc2UjYXBwbHkKY29uZGl0aW9uIGNoYW5nZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SimplifyRedundantCase#apply: condition changed",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/SimplifyRedundantCase.java" ],
+  "symbols" : [ "SimplifyRedundantCase#apply", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGlmeVJlZHVuZGFudENhc2UjdHJhbnNmb3JtUmVjdXJzaXZlCmNvbmRpdGlvbiBjaGFuZ2Vk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SimplifyRedundantCase#transformRecursive: condition changed",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/SimplifyRedundantCase.java" ],
+  "symbols" : [ "SimplifyRedundantCase#transformRecursive", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTcGxpdCNnZXRGaXJzdA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Split#getFirst",
+  "files" : [ "core/trino-main/src/main/java/io/trino/operator/window/matcher/Split.java" ],
+  "symbols" : [ "Split#getFirst" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTcGxpdCNnZXRTZWNvbmQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Split#getSecond",
+  "files" : [ "core/trino-main/src/main/java/io/trino/operator/window/matcher/Split.java" ],
+  "symbols" : [ "Split#getSecond" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTcGxpdCNlcXVhbHM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Split#equals",
+  "files" : [ "core/trino-main/src/main/java/io/trino/operator/window/matcher/Split.java" ],
+  "symbols" : [ "Split#equals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTcGxpdCNoYXNoQ29kZQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Split#hashCode",
+  "files" : [ "core/trino-main/src/main/java/io/trino/operator/window/matcher/Split.java" ],
+  "symbols" : [ "Split#hashCode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2dldE9wZXJhbmQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove WhenClause#getOperand",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/WhenClause.java" ],
+  "symbols" : [ "WhenClause#getOperand" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2dldFJlc3VsdA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove WhenClause#getResult",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/WhenClause.java" ],
+  "symbols" : [ "WhenClause#getResult" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2VxdWFscw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove WhenClause#equals",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/WhenClause.java" ],
+  "symbols" : [ "WhenClause#equals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2hhc2hDb2Rl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove WhenClause#hashCode",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/WhenClause.java" ],
+  "symbols" : [ "WhenClause#hashCode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApEeW5hbWljRmlsdGVySWQjZXF1YWxz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove DynamicFilterId#equals",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/plan/DynamicFilterId.java" ],
+  "symbols" : [ "DynamicFilterId#equals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApEeW5hbWljRmlsdGVySWQjaGFzaENvZGU",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove DynamicFilterId#hashCode",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/plan/DynamicFilterId.java" ],
+  "symbols" : [ "DynamicFilterId#hashCode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQbGFuRnJhZ21lbnRJZCNlcXVhbHM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PlanFragmentId#equals",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanFragmentId.java" ],
+  "symbols" : [ "PlanFragmentId#equals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQbGFuRnJhZ21lbnRJZCNoYXNoQ29kZQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PlanFragmentId#hashCode",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanFragmentId.java" ],
+  "symbols" : [ "PlanFragmentId#hashCode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQbGFuTm9kZUlkI2VxdWFscw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PlanNodeId#equals",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanNodeId.java" ],
+  "symbols" : [ "PlanNodeId#equals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQbGFuTm9kZUlkI2hhc2hDb2Rl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PlanNodeId#hashCode",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanNodeId.java" ],
+  "symbols" : [ "PlanNodeId#hashCode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApUcmFuc2FjdGlvbklkI2hhc2hDb2Rl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove TransactionId#hashCode",
+  "files" : [ "core/trino-main/src/main/java/io/trino/transaction/TransactionId.java" ],
+  "symbols" : [ "TransactionId#hashCode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApUcmFuc2FjdGlvbklkI2VxdWFscw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove TransactionId#equals",
+  "files" : [ "core/trino-main/src/main/java/io/trino/transaction/TransactionId.java" ],
+  "symbols" : [ "TransactionId#equals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jZ2V0TGluZU51bWJlcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NodeLocation#getLineNumber",
+  "files" : [ "core/trino-parser/src/main/java/io/trino/sql/tree/NodeLocation.java" ],
+  "symbols" : [ "NodeLocation#getLineNumber" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jZ2V0Q29sdW1uTnVtYmVy",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NodeLocation#getColumnNumber",
+  "files" : [ "core/trino-parser/src/main/java/io/trino/sql/tree/NodeLocation.java" ],
+  "symbols" : [ "NodeLocation#getColumnNumber" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jZXF1YWxz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NodeLocation#equals",
+  "files" : [ "core/trino-parser/src/main/java/io/trino/sql/tree/NodeLocation.java" ],
+  "symbols" : [ "NodeLocation#equals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jaGFzaENvZGU",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NodeLocation#hashCode",
+  "files" : [ "core/trino-parser/src/main/java/io/trino/sql/tree/NodeLocation.java" ],
+  "symbols" : [ "NodeLocation#hashCode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApPcmNEYXRhU291cmNlSWQjZXF1YWxz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove OrcDataSourceId#equals",
+  "files" : [ "lib/trino-orc/src/main/java/io/trino/orc/OrcDataSourceId.java" ],
+  "symbols" : [ "OrcDataSourceId#equals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApPcmNEYXRhU291cmNlSWQjaGFzaENvZGU",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove OrcDataSourceId#hashCode",
+  "files" : [ "lib/trino-orc/src/main/java/io/trino/orc/OrcDataSourceId.java" ],
+  "symbols" : [ "OrcDataSourceId#hashCode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQYXJxdWV0RGF0YVNvdXJjZUlkI2VxdWFscw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ParquetDataSourceId#equals",
+  "files" : [ "lib/trino-parquet/src/main/java/io/trino/parquet/ParquetDataSourceId.java" ],
+  "symbols" : [ "ParquetDataSourceId#equals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQYXJxdWV0RGF0YVNvdXJjZUlkI2hhc2hDb2Rl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ParquetDataSourceId#hashCode",
+  "files" : [ "lib/trino-parquet/src/main/java/io/trino/parquet/ParquetDataSourceId.java" ],
+  "symbols" : [ "ParquetDataSourceId#hashCode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClBhcmFtZXRlckV4dHJhY3RvciNleHRyYWN0UGFyYW1ldGVycwpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ParameterExtractor#extractParameters: return value changed",
+  "files" : [ "core/trino-main/src/main/java/io/trino/execution/ParameterExtractor.java" ],
+  "symbols" : [ "ParameterExtractor#extractParameters", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitvcGVyYW5kLCArcmVzdWx0LCAtZ2V0T3BlcmFuZCwgLWdldFJlc3VsdApQYWdlRmllbGRzVG9JbnB1dFBhcmFtZXRlcnNSZXdyaXRlci5WaXNpdG9yI3Zpc2l0Q2FzZQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of PageFieldsToInputParametersRewriter.Visitor#visitCase: +operand, +result, -getOperand, -getResult",
+  "files" : [ "core/trino-main/src/main/java/io/trino/operator/project/PageFieldsToInputParametersRewriter.java" ],
+  "symbols" : [ "PageFieldsToInputParametersRewriter.Visitor#visitCase", "+operand, +result, -getOperand, -getResult" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmaXJzdCwgK3NlY29uZCwgLWdldEZpcnN0LCAtZ2V0U2Vjb25kCk1hdGNoZXIjYWR2YW5jZUFuZFNjaGVkdWxl",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Matcher#advanceAndSchedule: +first, +second, -getFirst, -getSecond",
+  "files" : [ "core/trino-main/src/main/java/io/trino/operator/window/matcher/Matcher.java" ],
+  "symbols" : [ "Matcher#advanceAndSchedule", "+first, +second, -getFirst, -getSecond" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmaXJzdCwgK3NlY29uZCwgLWdldEZpcnN0LCAtZ2V0U2Vjb25kClRocmVhZEVxdWl2YWxlbmNlI3JlYWNoYWJsZUxhYmVscw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ThreadEquivalence#reachableLabels: +first, +second, -getFirst, -getSecond",
+  "files" : [ "core/trino-main/src/main/java/io/trino/operator/window/matcher/ThreadEquivalence.java" ],
+  "symbols" : [ "ThreadEquivalence#reachableLabels", "+first, +second, -getFirst, -getSecond" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NhdGlvbi5saW5lLCArbG9jYXRpb24uY29sdW1uLCAtbG9jYXRpb24uZ2V0TGluZU51bWJlciwgLWxvY2F0aW9uLmdldENvbHVtbk51bWJlciwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKRXhwcmVzc2lvblRyZWVVdGlscyNleHRyYWN0TG9jYXRpb24",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExpressionTreeUtils#extractLocation: +location.line, +location.column, -location.getLineNumber, -location.getColumnNumber, return value changed",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/analyzer/ExpressionTreeUtils.java" ],
+  "symbols" : [ "ExpressionTreeUtils#extractLocation", "+location.line, +location.column, -location.getLineNumber, -location.getColumnNumber, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NhdGlvbi5saW5lLCArbG9jYXRpb24uY29sdW1uLCAtbG9jYXRpb24uZ2V0TGluZU51bWJlciwgLWxvY2F0aW9uLmdldENvbHVtbk51bWJlcgpKc29uUGF0aEFuYWx5emVyI2FuYWx5emVJbXBsaWNpdEpzb25QYXRo",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of JsonPathAnalyzer#analyzeImplicitJsonPath: +location.line, +location.column, -location.getLineNumber, -location.getColumnNumber",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/analyzer/JsonPathAnalyzer.java" ],
+  "symbols" : [ "JsonPathAnalyzer#analyzeImplicitJsonPath", "+location.line, +location.column, -location.getLineNumber, -location.getColumnNumber" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKRXhwcmVzc2lvbkJ5dGVjb2RlQ29tcGlsZXIuVmlzaXRvciN2aXNpdENhc2U",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExpressionBytecodeCompiler.Visitor#visitCase: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/gen/ExpressionBytecodeCompiler.java" ],
+  "symbols" : [ "ExpressionBytecodeCompiler.Visitor#visitCase", "+clause.operand, +clause.result, -clause.getOperand, -clause.getResult" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXN1bHQsIC1nZXRSZXN1bHQsIHJldHVybiBnZXRSZXN1bHQgLT4gcmVzdWx0CkNhc2UjdHlwZQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Case#type: +result, -getResult, return getResult -> result",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/Case.java" ],
+  "symbols" : [ "Case#type", "+result, -getResult, return getResult -> result" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKQ2FzZSNjaGlsZHJlbg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of Case#children: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/Case.java" ],
+  "symbols" : [ "Case#children", "+clause.operand, +clause.result, -clause.getOperand, -clause.getResult" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKRGVmYXVsdFRyYXZlcnNhbFZpc2l0b3IjdmlzaXRDYXNl",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of DefaultTraversalVisitor#visitCase: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/DefaultTraversalVisitor.java" ],
+  "symbols" : [ "DefaultTraversalVisitor#visitCase", "+clause.operand, +clause.result, -clause.getOperand, -clause.getResult" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitub2RlLm9wZXJhbmQsICtub2RlLnJlc3VsdCwgLW5vZGUuZ2V0T3BlcmFuZCwgLW5vZGUuZ2V0UmVzdWx0LCByZXR1cm4gdmFsdWUgY2hhbmdlZApFeHByZXNzaW9uRm9ybWF0dGVyLkZvcm1hdHRlciNmb3JtYXQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExpressionFormatter.Formatter#format: +node.operand, +node.result, -node.getOperand, -node.getResult, return value changed",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/ExpressionFormatter.java" ],
+  "symbols" : [ "ExpressionFormatter.Formatter#format", "+node.operand, +node.result, -node.getOperand, -node.getResult, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2UucmVzdWx0LCAtY2xhdXNlLmdldFJlc3VsdCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKSXJFeHByZXNzaW9ucyNtYXlCZU51bGw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of IrExpressions#mayBeNull: +clause.result, -clause.getResult, return value changed",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/IrExpressions.java" ],
+  "symbols" : [ "IrExpressions#mayBeNull", "+clause.result, -clause.getResult, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCklyRXhwcmVzc2lvbnMjbWF5RmFpbA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of IrExpressions#mayFail: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult, return value changed",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/IrExpressions.java" ],
+  "symbols" : [ "IrExpressions#mayFail", "+clause.operand, +clause.result, -clause.getOperand, -clause.getResult, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3aGVuQ2xhdXNlLm9wZXJhbmQsICt3aGVuQ2xhdXNlLnJlc3VsdCwgLXdoZW5DbGF1c2UuZ2V0T3BlcmFuZCwgLXdoZW5DbGF1c2UuZ2V0UmVzdWx0LCByZXR1cm4gZ2V0UmVzdWx0IC0-IHJlc3VsdApJckV4cHJlc3Npb25FdmFsdWF0b3IjZXZhbHVhdGVJbnRlcm5hbA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of IrExpressionEvaluator#evaluateInternal: +whenClause.operand, +whenClause.result, -whenClause.getOperand, -whenClause.getResult, return getResult -> result",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/optimizer/IrExpressionEvaluator.java" ],
+  "symbols" : [ "IrExpressionEvaluator#evaluateInternal", "+whenClause.operand, +whenClause.result, -whenClause.getOperand, -whenClause.getResult, return getResult -> result" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKSXJFeHByZXNzaW9uT3B0aW1pemVyI3Byb2Nlc3NDbGF1c2Vz",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of IrExpressionOptimizer#processClauses: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/optimizer/IrExpressionOptimizer.java" ],
+  "symbols" : [ "IrExpressionOptimizer#processClauses", "+clause.operand, +clause.result, -clause.getOperand, -clause.getResult" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCkRpc3RyaWJ1dGVDb21wYXJpc29uT3ZlckNhc2UjZGlzdHJpYnV0ZQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of DistributeComparisonOverCase#distribute: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult, return value changed",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/DistributeComparisonOverCase.java" ],
+  "symbols" : [ "DistributeComparisonOverCase#distribute", "+clause.operand, +clause.result, -clause.getOperand, -clause.getResult, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3aGVuQ2xhdXNlLm9wZXJhbmQsICt3aGVuQ2xhdXNlLnJlc3VsdCwgLXdoZW5DbGF1c2UuZ2V0T3BlcmFuZCwgLXdoZW5DbGF1c2UuZ2V0UmVzdWx0LCByZXR1cm4gZ2V0UmVzdWx0IC0-IHJlc3VsdApFdmFsdWF0ZUNhc2UjYXBwbHk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of EvaluateCase#apply: +whenClause.operand, +whenClause.result, -whenClause.getOperand, -whenClause.getResult, return getResult -> result",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/EvaluateCase.java" ],
+  "symbols" : [ "EvaluateCase#apply", "+whenClause.operand, +whenClause.result, -whenClause.getOperand, -whenClause.getResult, return getResult -> result" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKRXh0cmFjdENvbW1vbkNvbmp1bmN0RnJvbUNhc2UjYXBwbHk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExtractCommonConjunctFromCase#apply: +clause.operand, +clause.result, -clause.getOperand, -clause.getResult",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/ExtractCommonConjunctFromCase.java" ],
+  "symbols" : [ "ExtractCommonConjunctFromCase#apply", "+clause.operand, +clause.result, -clause.getOperand, -clause.getResult" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dHJhY3RDb21tb25Db25qdW5jdEZyb21DYXNlI2JyYW5jaFJlc3VsdHMKcmV0dXJuIGdldFJlc3VsdCAtPiByZXN1bHQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExtractCommonConjunctFromCase#branchResults: return getResult -> result",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/optimizer/rule/ExtractCommonConjunctFromCase.java" ],
+  "symbols" : [ "ExtractCommonConjunctFromCase#branchResults", "return getResult -> result" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitvcGVyYW5kLCArcmVzdWx0LCAtZ2V0T3BlcmFuZCwgLWdldFJlc3VsdCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKUHJlQWdncmVnYXRlQ2FzZUFnZ3JlZ2F0aW9ucyNleHRyYWN0Q2FzZUFnZ3JlZ2F0aW9u",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of PreAggregateCaseAggregations#extractCaseAggregation: +operand, +result, -getOperand, -getResult, return value changed",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/iterative/rule/PreAggregateCaseAggregations.java" ],
+  "symbols" : [ "PreAggregateCaseAggregations#extractCaseAggregation", "+operand, +result, -getOperand, -getResult, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitvcGVyYW5kLCArcmVzdWx0LCArd2hlbkNsYXVzZS5vcGVyYW5kLCArd2hlbkNsYXVzZS5yZXN1bHQsIC1nZXRPcGVyYW5kIOKApmFuZCA1IG1vcmUKU2ltcGxpZnlGaWx0ZXJQcmVkaWNhdGUjc2ltcGxpZnk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SimplifyFilterPredicate#simplify: +operand, +result, +whenClause.operand, +whenClause.result, -getOperand …and 5 more",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/iterative/rule/SimplifyFilterPredicate.java" ],
+  "symbols" : [ "SimplifyFilterPredicate#simplify", "+operand, +result, +whenClause.operand, +whenClause.result, -getOperand …and 5 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithY3R1YWwub3BlcmFuZCwgK2V4cGVjdGVkLm9wZXJhbmQsICthY3R1YWwucmVzdWx0LCArZXhwZWN0ZWQucmVzdWx0LCAtYWN0dWFsLmdldE9wZXJhbmQg4oCmYW5kIDQgbW9yZQpFeHByZXNzaW9uVmVyaWZpZXIjcHJvY2Vzcw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExpressionVerifier#process: +actual.operand, +expected.operand, +actual.result, +expected.result, -actual.getOperand …and 4 more",
+  "files" : [ "core/trino-main/src/test/java/io/trino/sql/planner/assertions/ExpressionVerifier.java" ],
+  "symbols" : [ "ExpressionVerifier#process", "+actual.operand, +expected.operand, +actual.result, +expected.result, -actual.getOperand …and 4 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXN1bHQsICtvcGVyYW5kLCAtZ2V0UmVzdWx0LCAtZ2V0T3BlcmFuZApUZXN0U3ltYm9sTWFwcGVyI3Rlc3RSZWFsbG9jYXRlU3ltYm9sc0luQWdncmVnYXRpb25WYWx1ZVBvaW50ZXI",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TestSymbolMapper#testReallocateSymbolsInAggregationValuePointer: +result, +operand, -getResult, -getOperand",
+  "files" : [ "core/trino-main/src/test/java/io/trino/sql/planner/optimizations/TestSymbolMapper.java" ],
+  "symbols" : [ "TestSymbolMapper#testReallocateSymbolsInAggregationValuePointer", "+result, +operand, -getResult, -getOperand" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NhdGlvbi5saW5lLCArbG9jYXRpb24uY29sdW1uLCAtbG9jYXRpb24uZ2V0TGluZU51bWJlciwgLWxvY2F0aW9uLmdldENvbHVtbk51bWJlciwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKQXN0QnVpbGRlciNnZXRMb2NhdGlvbg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AstBuilder#getLocation: +location.line, +location.column, -location.getLineNumber, -location.getColumnNumber, return value changed",
+  "files" : [ "core/trino-parser/src/main/java/io/trino/sql/parser/AstBuilder.java" ],
+  "symbols" : [ "AstBuilder#getLocation", "+location.line, +location.column, -location.getLineNumber, -location.getColumnNumber, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzdGF0ZW1lbnRMb2NhdGlvbi5saW5lLCArc3RhdGVtZW50TG9jYXRpb24uY29sdW1uLCAtc3RhdGVtZW50TG9jYXRpb24uZ2V0TGluZU51bWJlciwgLXN0YXRlbWVudExvY2F0aW9uLmdldENvbHVtbk51bWJlcgpTcWxQYXJzZXIjaW52b2tlUGFyc2Vy",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SqlParser#invokeParser: +statementLocation.line, +statementLocation.column, -statementLocation.getLineNumber, -statementLocation.getColumnNumber",
+  "files" : [ "core/trino-parser/src/main/java/io/trino/sql/parser/SqlParser.java" ],
+  "symbols" : [ "SqlParser#invokeParser", "+statementLocation.line, +statementLocation.column, -statementLocation.getLineNumber, -statementLocation.getColumnNumber" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitub2RlTG9jYXRpb24ubGluZSwgK25vZGVMb2NhdGlvbi5jb2x1bW4sIC1ub2RlTG9jYXRpb24uZ2V0TGluZU51bWJlciwgLW5vZGVMb2NhdGlvbi5nZXRDb2x1bW5OdW1iZXIKUGFyc2luZ0V4Y2VwdGlvbiM8aW5pdD4",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ParsingException#<init>: +nodeLocation.line, +nodeLocation.column, -nodeLocation.getLineNumber, -nodeLocation.getColumnNumber",
+  "files" : [ "core/trino-parser/src/main/java/io/trino/sql/parser/ParsingException.java" ],
+  "symbols" : [ "ParsingException#<init>", "+nodeLocation.line, +nodeLocation.column, -nodeLocation.getLineNumber, -nodeLocation.getColumnNumber" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClNwbGl0I2ZpcnN0",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Split#first",
+  "files" : [ "core/trino-main/src/main/java/io/trino/operator/window/matcher/Split.java" ],
+  "symbols" : [ "Split#first" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClNwbGl0I3NlY29uZA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Split#second",
+  "files" : [ "core/trino-main/src/main/java/io/trino/operator/window/matcher/Split.java" ],
+  "symbols" : [ "Split#second" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECldoZW5DbGF1c2Ujb3BlcmFuZA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field WhenClause#operand",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/WhenClause.java" ],
+  "symbols" : [ "WhenClause#operand" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECldoZW5DbGF1c2UjcmVzdWx0",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field WhenClause#result",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/WhenClause.java" ],
+  "symbols" : [ "WhenClause#result" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkR5bmFtaWNGaWx0ZXJJZCNpZA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field DynamicFilterId#id",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/plan/DynamicFilterId.java" ],
+  "symbols" : [ "DynamicFilterId#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBsYW5GcmFnbWVudElkI2lk",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PlanFragmentId#id",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanFragmentId.java" ],
+  "symbols" : [ "PlanFragmentId#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBsYW5Ob2RlSWQjaWQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PlanNodeId#id",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/planner/plan/PlanNodeId.java" ],
+  "symbols" : [ "PlanNodeId#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClRyYW5zYWN0aW9uSWQjdXVpZA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field TransactionId#uuid",
+  "files" : [ "core/trino-main/src/main/java/io/trino/transaction/TransactionId.java" ],
+  "symbols" : [ "TransactionId#uuid" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk5vZGVMb2NhdGlvbiNsaW5l",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field NodeLocation#line",
+  "files" : [ "core/trino-parser/src/main/java/io/trino/sql/tree/NodeLocation.java" ],
+  "symbols" : [ "NodeLocation#line" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk5vZGVMb2NhdGlvbiNjb2x1bW4",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field NodeLocation#column",
+  "files" : [ "core/trino-parser/src/main/java/io/trino/sql/tree/NodeLocation.java" ],
+  "symbols" : [ "NodeLocation#column" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk9yY0RhdGFTb3VyY2VJZCNpZA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field OrcDataSourceId#id",
+  "files" : [ "lib/trino-orc/src/main/java/io/trino/orc/OrcDataSourceId.java" ],
+  "symbols" : [ "OrcDataSourceId#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBhcnF1ZXREYXRhU291cmNlSWQjaWQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ParquetDataSourceId#id",
+  "files" : [ "lib/trino-parquet/src/main/java/io/trino/parquet/ParquetDataSourceId.java" ],
+  "symbols" : [ "ParquetDataSourceId#id" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpXaGVuQ2xhdXNlIzxpbml0PgpvcGVyYW5kICtASnNvblByb3BlcnR5LCByZXN1bHQgK0BKc29uUHJvcGVydHk",
+  "kind" : "CHANGE_PARAMETER_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change parameter annotations of WhenClause#<init>: operand +@JsonProperty, result +@JsonProperty",
+  "files" : [ "core/trino-main/src/main/java/io/trino/sql/ir/WhenClause.java" ],
+  "symbols" : [ "WhenClause#<init>", "operand +@JsonProperty, result +@JsonProperty" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/resilience4j/resilience4j.git",
+  "base" : "94982b82577d06e7e76ef5fe0e4a7329b8fb2ddd",
+  "head" : "74e1f820c4ac71d80f2c9d428fe5d24b5f60ce81",
+  "changeCount" : 12,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 3.91
+}

@@ -1,0 +1,14 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " protected boolean checkPasswd(long sessionId, byte[] passwd) {\n-        return sessionId != 0 && Arrays.equals(passwd, generatePasswd(sessionId));\n+        return sessionId != 0 && MessageDigest.isEqual(passwd, generatePasswd(sessionId));\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/ZooKeeperServer.java" ],
+    "groupedMoveCount" : 0
+  } ]
+}

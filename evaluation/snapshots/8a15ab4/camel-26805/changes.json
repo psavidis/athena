@@ -1,0 +1,291 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTCkluZmxpZ2h0UmVwb3NpdG9yeU5vZGVTb3VyY2VUZXN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class InflightRepositoryNodeSourceTest",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/impl/InflightRepositoryNodeSourceTest.java" ],
+  "symbols" : [ "InflightRepositoryNodeSourceTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCk1hbmFnZWRJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ManagedInflightRepositoryNodeSourceTest",
+  "files" : [ "core/camel-management/src/test/java/org/apache/camel/management/ManagedInflightRepositoryNodeSourceTest.java" ],
+  "symbols" : [ "ManagedInflightRepositoryNodeSourceTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0QXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXIjZHVtcEJsb2NrZWRUaHJlYWQKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of DefaultAsyncProcessorAwaitManager#dumpBlockedThread: branch added",
+  "files" : [ "core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultAsyncProcessorAwaitManager.java" ],
+  "symbols" : [ "DefaultAsyncProcessorAwaitManager#dumpBlockedThread", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0U2h1dGRvd25TdHJhdGVneSNsb2dJbmZsaWdodEV4Y2hhbmdlcwpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of DefaultShutdownStrategy#logInflightExchanges: branch added",
+  "files" : [ "core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultShutdownStrategy.java" ],
+  "symbols" : [ "DefaultShutdownStrategy#logInflightExchanges", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApBc3luY1Byb2Nlc3NvckF3YWl0TWFuYWdlci5Bd2FpdFRocmVhZCNnZXROb2RlU291cmNl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add AsyncProcessorAwaitManager.AwaitThread#getNodeSource",
+  "files" : [ "core/camel-api/src/main/java/org/apache/camel/spi/AsyncProcessorAwaitManager.java" ],
+  "symbols" : [ "AsyncProcessorAwaitManager.AwaitThread#getNodeSource" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApJbmZsaWdodFJlcG9zaXRvcnkuSW5mbGlnaHRFeGNoYW5nZSNnZXROb2RlU291cmNl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add InflightRepository.InflightExchange#getNodeSource",
+  "files" : [ "core/camel-api/src/main/java/org/apache/camel/spi/InflightRepository.java" ],
+  "symbols" : [ "InflightRepository.InflightExchange#getNodeSource" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0QXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXIuQXdhaXRUaHJlYWRFbnRyeSNnZXROb2RlU291cmNl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultAsyncProcessorAwaitManager.AwaitThreadEntry#getNodeSource",
+  "files" : [ "core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultAsyncProcessorAwaitManager.java" ],
+  "symbols" : [ "DefaultAsyncProcessorAwaitManager.AwaitThreadEntry#getNodeSource" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SW5mbGlnaHRSZXBvc2l0b3J5LkluZmxpZ2h0RXhjaGFuZ2VFbnRyeSNnZXROb2RlU291cmNl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultInflightRepository.InflightExchangeEntry#getNodeSource",
+  "files" : [ "core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultInflightRepository.java" ],
+  "symbols" : [ "DefaultInflightRepository.InflightExchangeEntry#getNodeSource" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0QXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXJUZXN0I3Rlc3ROb2RlU291cmNlSXNOdWxsV2hlbk5vbmVXYXNSZWNvcmRlZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultAsyncProcessorAwaitManagerTest#testNodeSourceIsNullWhenNoneWasRecorded",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/impl/DefaultAsyncProcessorAwaitManagerTest.java" ],
+  "symbols" : [ "DefaultAsyncProcessorAwaitManagerTest#testNodeSourceIsNullWhenNoneWasRecorded" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0QXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXJUZXN0I3Rlc3ROb2RlU291cmNlU2F5c1doZXJlVGhlTm9kZUlz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultAsyncProcessorAwaitManagerTest#testNodeSourceSaysWhereTheNodeIs",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/impl/DefaultAsyncProcessorAwaitManagerTest.java" ],
+  "symbols" : [ "DefaultAsyncProcessorAwaitManagerTest#testNodeSourceSaysWhereTheNodeIs" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdCNjcmVhdGVDYW1lbENvbnRleHQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add InflightRepositoryNodeSourceTest#createCamelContext",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/impl/InflightRepositoryNodeSourceTest.java" ],
+  "symbols" : [ "InflightRepositoryNodeSourceTest#createCamelContext" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdCN0ZXN0SW5mbGlnaHRFeGNoYW5nZVNheXNXaGVyZVRoZU5vZGVJcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add InflightRepositoryNodeSourceTest#testInflightExchangeSaysWhereTheNodeIs",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/impl/InflightRepositoryNodeSourceTest.java" ],
+  "symbols" : [ "InflightRepositoryNodeSourceTest#testInflightExchangeSaysWhereTheNodeIs" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdCNjcmVhdGVSb3V0ZUJ1aWxkZXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add InflightRepositoryNodeSourceTest#createRouteBuilder",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/impl/InflightRepositoryNodeSourceTest.java" ],
+  "symbols" : [ "InflightRepositoryNodeSourceTest#createRouteBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkSW5mbGlnaHRSZXBvc2l0b3J5Tm9kZVNvdXJjZVRlc3QjY3JlYXRlQ2FtZWxDb250ZXh0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ManagedInflightRepositoryNodeSourceTest#createCamelContext",
+  "files" : [ "core/camel-management/src/test/java/org/apache/camel/management/ManagedInflightRepositoryNodeSourceTest.java" ],
+  "symbols" : [ "ManagedInflightRepositoryNodeSourceTest#createCamelContext" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkSW5mbGlnaHRSZXBvc2l0b3J5Tm9kZVNvdXJjZVRlc3QjdGVzdEluZmxpZ2h0Um93U2F5c1doZXJlVGhlTm9kZUlz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ManagedInflightRepositoryNodeSourceTest#testInflightRowSaysWhereTheNodeIs",
+  "files" : [ "core/camel-management/src/test/java/org/apache/camel/management/ManagedInflightRepositoryNodeSourceTest.java" ],
+  "symbols" : [ "ManagedInflightRepositoryNodeSourceTest#testInflightRowSaysWhereTheNodeIs" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkSW5mbGlnaHRSZXBvc2l0b3J5Tm9kZVNvdXJjZVRlc3QjY3JlYXRlUm91dGVCdWlsZGVy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ManagedInflightRepositoryNodeSourceTest#createRouteBuilder",
+  "files" : [ "core/camel-management/src/test/java/org/apache/camel/management/ManagedInflightRepositoryNodeSourceTest.java" ],
+  "symbols" : [ "ManagedInflightRepositoryNodeSourceTest#createRouteBuilder" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithdC5nZXROb2RlU291cmNlCkJsb2NrZWRDb25zb2xlI2RvQ2FsbFRleHQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BlockedConsole#doCallText: +at.getNodeSource",
+  "files" : [ "core/camel-console/src/main/java/org/apache/camel/impl/console/BlockedConsole.java" ],
+  "symbols" : [ "BlockedConsole#doCallText", "+at.getNodeSource" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithdC5nZXROb2RlU291cmNlCkJsb2NrZWRDb25zb2xlI2RvQ2FsbEpzb24",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of BlockedConsole#doCallJson: +at.getNodeSource",
+  "files" : [ "core/camel-console/src/main/java/org/apache/camel/impl/console/BlockedConsole.java" ],
+  "symbols" : [ "BlockedConsole#doCallJson", "+at.getNodeSource" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpZS5nZXROb2RlU291cmNlCkluZmxpZ2h0Q29uc29sZSNkb0NhbGxUZXh0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of InflightConsole#doCallText: +ie.getNodeSource",
+  "files" : [ "core/camel-console/src/main/java/org/apache/camel/impl/console/InflightConsole.java" ],
+  "symbols" : [ "InflightConsole#doCallText", "+ie.getNodeSource" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpZS5nZXROb2RlU291cmNlCkluZmxpZ2h0Q29uc29sZSNkb0NhbGxKc29u",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of InflightConsole#doCallJson: +ie.getNodeSource",
+  "files" : [ "core/camel-console/src/main/java/org/apache/camel/impl/console/InflightConsole.java" ],
+  "symbols" : [ "InflightConsole#doCallJson", "+ie.getNodeSource" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNhbWVsT3Blbk1CZWFuVHlwZXMjbGlzdEF3YWl0VGhyZWFkc0NvbXBvc2l0ZVR5cGUKcmV0dXJuIHZhbHVlIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CamelOpenMBeanTypes#listAwaitThreadsCompositeType: return value changed",
+  "files" : [ "core/camel-management-api/src/main/java/org/apache/camel/api/management/mbean/CamelOpenMBeanTypes.java" ],
+  "symbols" : [ "CamelOpenMBeanTypes#listAwaitThreadsCompositeType", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNhbWVsT3Blbk1CZWFuVHlwZXMjbGlzdEluZmxpZ2h0RXhjaGFuZ2VzQ29tcG9zaXRlVHlwZQpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of CamelOpenMBeanTypes#listInflightExchangesCompositeType: return value changed",
+  "files" : [ "core/camel-management-api/src/main/java/org/apache/camel/api/management/mbean/CamelOpenMBeanTypes.java" ],
+  "symbols" : [ "CamelOpenMBeanTypes#listInflightExchangesCompositeType", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitlbnRyeS5nZXROb2RlU291cmNlLCByZXR1cm4gdmFsdWUgY2hhbmdlZApNYW5hZ2VkQXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXIjdG9Db21wb3NpdGVEYXRh",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ManagedAsyncProcessorAwaitManager#toCompositeData: +entry.getNodeSource, return value changed",
+  "files" : [ "core/camel-management/src/main/java/org/apache/camel/management/mbean/ManagedAsyncProcessorAwaitManager.java" ],
+  "symbols" : [ "ManagedAsyncProcessorAwaitManager#toCompositeData", "+entry.getNodeSource, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitlbnRyeS5nZXROb2RlU291cmNlLCByZXR1cm4gdmFsdWUgY2hhbmdlZApNYW5hZ2VkSW5mbGlnaHRSZXBvc2l0b3J5I3RvQ29tcG9zaXRlRGF0YQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ManagedInflightRepository#toCompositeData: +entry.getNodeSource, return value changed",
+  "files" : [ "core/camel-management/src/main/java/org/apache/camel/management/mbean/ManagedInflightRepository.java" ],
+  "symbols" : [ "ManagedInflightRepository#toCompositeData", "+entry.getNodeSource, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKSW5mbGlnaHRDb25zb2xlLkV4Y2hhbmdlIzxpbml0Pg",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of InflightConsole.Exchange#<init>",
+  "files" : [ "core/camel-console/src/main/java/org/apache/camel/impl/console/InflightConsole.java" ],
+  "symbols" : [ "InflightConsole.Exchange#<init>" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQmxvY2tlZENvbnNvbGUuRW50cnkjPGluaXQ-",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of BlockedConsole.Entry#<init>",
+  "files" : [ "core/camel-console/src/main/java/org/apache/camel/impl/console/BlockedConsole.java" ],
+  "symbols" : [ "BlockedConsole.Entry#<init>" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkluZmxpZ2h0UmVwb3NpdG9yeU5vZGVTb3VyY2VUZXN0I1NPVVJDRQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field InflightRepositoryNodeSourceTest#SOURCE",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/impl/InflightRepositoryNodeSourceTest.java" ],
+  "symbols" : [ "InflightRepositoryNodeSourceTest#SOURCE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkluZmxpZ2h0UmVwb3NpdG9yeU5vZGVTb3VyY2VUZXN0I25vZGVTb3VyY2U",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field InflightRepositoryNodeSourceTest#nodeSource",
+  "files" : [ "core/camel-core/src/test/java/org/apache/camel/impl/InflightRepositoryNodeSourceTest.java" ],
+  "symbols" : [ "InflightRepositoryNodeSourceTest#nodeSource" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECk1hbmFnZWRJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdCNTT1VSQ0U",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ManagedInflightRepositoryNodeSourceTest#SOURCE",
+  "files" : [ "core/camel-management/src/test/java/org/apache/camel/management/ManagedInflightRepositoryNodeSourceTest.java" ],
+  "symbols" : [ "ManagedInflightRepositoryNodeSourceTest#SOURCE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/apache/iceberg.git",
+  "base" : "4f535ff60e7d11bfd5ed42fe42c83f92b0642ae0",
+  "head" : "6b1e3aa19713e9c8a7ab81e84be92d3af4dae485",
+  "changeCount" : 2,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 9.13
+}

@@ -1,0 +1,13 @@
+[ {
+  "entity" : "SemaphoreBasedRateLimiter",
+  "description" : "Change control flow of SemaphoreBasedRateLimiter#refreshLimit: branch added"
+}, {
+  "entity" : "SemaphoreBasedRateLimiterRefreshLimitRegressionTest",
+  "description" : "Add class SemaphoreBasedRateLimiterRefreshLimitRegressionTest"
+}, {
+  "entity" : "SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor",
+  "description" : "Add class SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor"
+}, {
+  "entity" : "SemaphoreBasedRateLimiterRefreshLimitRegressionTest",
+  "description" : "Add SemaphoreBasedRateLimiterRefreshLimitRegressionTest#refreshSchedulerMustSurviveLimitDecreaseBelowAvailablePermits"
+} ]

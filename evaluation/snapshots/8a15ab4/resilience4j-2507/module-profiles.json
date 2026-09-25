@@ -1,0 +1,27 @@
+{
+  "resilience4j-bulkhead" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " public Builder(ThreadPoolBulkheadConfig bulkheadConfig) {\n-            this.config = bulkheadConfig;\n+            config = new ThreadPoolBulkheadConfig();\n+            config.maxThreadPoolSize = bulkheadConfig.maxThreadPoolSize;\n+            config.coreThreadPoolSize = bulkheadConfig.coreThreadPoolSize;\n+            config.queueCapacity = bulkheadConfig.queueCapacity;\n+            config.keepAliveDuration = bulkheadConfig.keepAliveDuration;\n+            config.writableStackTraceEnabled = bulkheadConfig.writableStackTraceEnabled;\n+            config.contextPropagators = new ArrayList<>(bulkheadConfig.contextPropagators);\n+            config.rejectedExecutionHandler = bulkheadConfig.rejectedExecutionHandler;\n         }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "resilience4j-bulkhead/src/main/java/io/github/resilience4j/bulkhead/ThreadPoolBulkheadConfig.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in ThreadPoolBulkheadConfigTest",
+      "conceptDescription" : "2 changes in test code of ThreadPoolBulkheadConfigTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@Test\n+    void fromShouldNotMutateBaseConfig() {\n+        ThreadPoolBulkheadConfig baseConfig = ThreadPoolBulkheadConfig.custom()\n+            .maxThreadPoolSize(4)\n+            .coreThreadPoolSize(2)\n+            .queueCapacity(10)\n+            .build();\n \n+        ThreadPoolBulkheadConfig derivedConfig = ThreadPoolBulkheadConfig.from(baseConfig)\n+            .maxThreadPoolSize(20)\n+            .coreThreadPoolSize(8)\n+            .queueCapacity(50)\n+            .build();\n+\n+        // derivedConfig must be a different instance\n+        assertThat(derivedConfig).isNotSameAs(baseConfig);\n+\n+        // base config must remain unchanged\n+        assertThat(baseConfig.getMaxThreadPoolSize()).isEqualTo(4);\n+        assertThat(baseConfig.getCoreThreadPoolSize()).isEqualTo(2);\n+        assertThat(baseConfig.getQueueCapacity()).isEqualTo(10);\n+\n+        // derived config must have the new values\n+        assertThat(derivedConfig.getMaxThreadPoolSize()).isEqualTo(20);\n+        assertThat(derivedConfig.getCoreThreadPoolSize()).isEqualTo(8);\n+        assertThat(derivedConfig.getQueueCapacity()).isEqualTo(50);\n+    }", "+@Test\n+    void fromShouldCopyAllFields() {\n+        Duration keepAlive = Duration.ofSeconds(30);\n+        ThreadPoolBulkheadConfig baseConfig = ThreadPoolBulkheadConfig.custom()\n+            .maxThreadPoolSize(10)\n+            .coreThreadPoolSize(5)\n+            .queueCapacity(20)\n+            .keepAliveDuration(keepAlive)\n+            .writableStackTraceEnabled(false)\n+            .build();\n \n+        ThreadPoolBulkheadConfig derivedConfig = ThreadPoolBulkheadConfig.from(baseConfig)\n+            .maxThreadPoolSize(50)\n+            .build();\n+\n+        // All fields except maxThreadPoolSize should be copied from base\n+        assertThat(derivedConfig.getCoreThreadPoolSize()).isEqualTo(5);\n+        assertThat(derivedConfig.getQueueCapacity()).isEqualTo(20);\n+        assertThat(derivedConfig.getKeepAliveDuration()).isEqualTo(keepAlive);\n+        assertThat(derivedConfig.isWritableStackTraceEnabled()).isFalse();\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "resilience4j-bulkhead/src/test/java/io/github/resilience4j/bulkhead/ThreadPoolBulkheadConfigTest.java" ],
+      "groupedMoveCount" : 2
+    } ]
+  }
+}

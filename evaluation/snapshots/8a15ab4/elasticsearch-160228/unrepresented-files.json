@@ -1,0 +1,12 @@
+{
+  "changedFileCount" : 5,
+  "representedFileCount" : 4,
+  "files" : [ {
+    "path" : "docs/changelog/160228.yaml",
+    "status" : "ADDED",
+    "linesChanged" : 6,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

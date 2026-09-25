@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of DefaultAsyncProcessorAwaitManager#dumpBlockedThread: branch added",
+  "entity" : "DefaultAsyncProcessorAwaitManager"
+}, {
+  "description" : "Change control flow of DefaultShutdownStrategy#logInflightExchanges: branch added",
+  "entity" : "DefaultShutdownStrategy"
+}, {
+  "description" : "Change signature of InflightConsole.Exchange#<init>",
+  "entity" : "InflightConsole.Exchange"
+}, {
+  "description" : "Change signature of BlockedConsole.Entry#<init>",
+  "entity" : "BlockedConsole.Entry"
+} ]

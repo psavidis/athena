@@ -1,0 +1,10 @@
+[ {
+  "description" : "Modify body of RedissonRateLimiter#availablePermitsAsync: return value changed",
+  "entity" : "RedissonRateLimiter"
+}, {
+  "description" : "Add RedissonRateLimiterTest#testAvailablePermitsAfterReleaseAndExpiration",
+  "entity" : "RedissonRateLimiterTest"
+}, {
+  "description" : "Add RedissonRateLimiterTest#testAvailablePermitsNeverExceedsRatePerClient",
+  "entity" : "RedissonRateLimiterTest"
+} ]

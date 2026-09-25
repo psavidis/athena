@@ -1,0 +1,21 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEdWJib1Byb3RvY29sI2dldEludm9rZXIKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of DubboProtocol#getInvoker: branch added",
+  "files" : [ "dubbo-rpc/dubbo-rpc-dubbo/src/main/java/org/apache/dubbo/rpc/protocol/dubbo/DubboProtocol.java" ],
+  "symbols" : [ "DubboProtocol#getInvoker", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEdWJib1Byb3RvY29sVGVzdCN0ZXN0R2V0SW52b2tlclRocm93c09uTnVsbFBhdGg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DubboProtocolTest#testGetInvokerThrowsOnNullPath",
+  "files" : [ "dubbo-rpc/dubbo-rpc-dubbo/src/test/java/org/apache/dubbo/rpc/protocol/dubbo/DubboProtocolTest.java" ],
+  "symbols" : [ "DubboProtocolTest#testGetInvokerThrowsOnNullPath" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

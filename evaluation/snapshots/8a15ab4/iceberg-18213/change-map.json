@@ -1,0 +1,160 @@
+{
+  "prTitle" : "Core: Do not retry Tasks after interrupt",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 6,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUYXNrcy5CdWlsZGVyI3J1blRhc2tXaXRoUmV0cnkKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of Tasks.Builder#runTaskWithRetry: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApUYXNrcyNjYXVzZWRCeUludGVycnVwdGlvbg",
+    "description" : "Add Tasks#causedByInterruption",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjdGFza3NBcmVOb3RSZXRyaWVkV2hlbkZhaWx1cmVJc0NhdXNlZEJ5SW50ZXJydXB0aW9u",
+    "description" : "Add TestTasks#tasksAreNotRetriedWhenFailureIsCausedByInterruption",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjaW50ZXJydXB0aW9ucw",
+    "description" : "Add TestTasks#interruptions",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjdGFza3NBcmVSZXRyaWVkV2hlbkZhaWx1cmVJc05vdENhdXNlZEJ5SW50ZXJydXB0aW9u",
+    "description" : "Add TestTasks#tasksAreRetriedWhenFailureIsNotCausedByInterruption",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjdHJhbnNpZW50RmFpbHVyZXM",
+    "description" : "Add TestTasks#transientFailures",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjcGFyYWxsZWxUYXNrc0FyZU5vdFJldHJpZWRXaGVuVGhlQ2FsbGVySXNJbnRlcnJ1cHRlZA",
+    "description" : "Add TestTasks#parallelTasksAreNotRetriedWhenTheCallerIsInterrupted",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "Tasks.Builder",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUYXNrcy5CdWlsZGVyI3J1blRhc2tXaXRoUmV0cnkKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of Tasks.Builder#runTaskWithRetry: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "Tasks",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApUYXNrcyNjYXVzZWRCeUludGVycnVwdGlvbg",
+      "description" : "Add Tasks#causedByInterruption",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TestTasks",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjdGFza3NBcmVOb3RSZXRyaWVkV2hlbkZhaWx1cmVJc0NhdXNlZEJ5SW50ZXJydXB0aW9u",
+      "description" : "Add TestTasks#tasksAreNotRetriedWhenFailureIsCausedByInterruption",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjaW50ZXJydXB0aW9ucw",
+      "description" : "Add TestTasks#interruptions",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjdGFza3NBcmVSZXRyaWVkV2hlbkZhaWx1cmVJc05vdENhdXNlZEJ5SW50ZXJydXB0aW9u",
+      "description" : "Add TestTasks#tasksAreRetriedWhenFailureIsNotCausedByInterruption",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjdHJhbnNpZW50RmFpbHVyZXM",
+      "description" : "Add TestTasks#transientFailures",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0VGFza3MjcGFyYWxsZWxUYXNrc0FyZU5vdFJldHJpZWRXaGVuVGhlQ2FsbGVySXNJbnRlcnJ1cHRlZA",
+      "description" : "Add TestTasks#parallelTasksAreNotRetriedWhenTheCallerIsInterrupted",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

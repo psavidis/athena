@@ -1,0 +1,104 @@
+diff --git a/core/trino-main/src/main/java/io/trino/operator/output/PartitionedOutputOperator.java b/core/trino-main/src/main/java/io/trino/operator/output/PartitionedOutputOperator.java
+index 43cc7e9404be..c44be8cc0fee 100644
+--- a/core/trino-main/src/main/java/io/trino/operator/output/PartitionedOutputOperator.java
++++ b/core/trino-main/src/main/java/io/trino/operator/output/PartitionedOutputOperator.java
+@@ -15,6 +15,7 @@
+ 
+ import com.fasterxml.jackson.annotation.JsonCreator;
+ import com.fasterxml.jackson.annotation.JsonProperty;
++import com.google.common.io.Closer;
+ import com.google.common.util.concurrent.ListenableFuture;
+ import io.airlift.slice.Slice;
+ import io.airlift.units.DataSize;
+@@ -30,11 +31,11 @@
+ import io.trino.operator.PartitionFunction;
+ import io.trino.spi.Mergeable;
+ import io.trino.spi.Page;
+-import io.trino.spi.metrics.Metrics;
+ import io.trino.spi.predicate.NullableValue;
+ import io.trino.spi.type.Type;
+ import io.trino.sql.planner.plan.PlanNodeId;
+ 
++import java.io.IOException;
+ import java.util.List;
+ import java.util.Optional;
+ import java.util.OptionalInt;
+@@ -284,11 +285,18 @@ public OperatorContext getOperatorContext()
+     @Override
+     public void finish()
+     {
+-        if (!finished) {
+-            Metrics finalMetrics = pagePartitioner.prepareForRelease(operatorContext);
+-            operatorContext.setLatestMetrics(finalMetrics);
+-            pagePartitionerPool.release(pagePartitioner);
+-            finished = true;
++        if (finished) {
++            return;
++        }
++        finished = true;
++
++        try (Closer closer = Closer.create()) {
++            // Closer runs in reverse registration order, so the partitioner is released even if the flush fails
++            closer.register(() -> pagePartitionerPool.release(pagePartitioner));
++            closer.register(() -> operatorContext.setLatestMetrics(pagePartitioner.prepareForRelease(operatorContext)));
++        }
++        catch (IOException e) {
++            throw new RuntimeException(e);
+         }
+     }
+ 
+diff --git a/core/trino-main/src/test/java/io/trino/operator/output/TestPartitionedOutputOperator.java b/core/trino-main/src/test/java/io/trino/operator/output/TestPartitionedOutputOperator.java
+index 6e5b00601c00..13b7b8b2dee1 100644
+--- a/core/trino-main/src/test/java/io/trino/operator/output/TestPartitionedOutputOperator.java
++++ b/core/trino-main/src/test/java/io/trino/operator/output/TestPartitionedOutputOperator.java
+@@ -13,10 +13,12 @@
+  */
+ package io.trino.operator.output;
+ 
++import io.trino.memory.context.AggregatedMemoryContext;
+ import io.trino.operator.OperatorContext;
+ import io.trino.operator.output.TestPagePartitioner.PagePartitionerBuilder;
+ import io.trino.operator.output.TestPagePartitioner.TestOutputBuffer;
+ import io.trino.spi.Page;
++import io.trino.spi.block.DictionaryBlock;
+ import org.junit.jupiter.api.AfterAll;
+ import org.junit.jupiter.api.BeforeAll;
+ import org.junit.jupiter.api.Test;
+@@ -28,10 +30,13 @@
+ 
+ import static io.airlift.concurrent.Threads.daemonThreadsNamed;
+ import static io.trino.block.BlockAssertions.createLongSequenceBlock;
++import static io.trino.block.BlockAssertions.createLongsBlock;
++import static io.trino.memory.context.AggregatedMemoryContext.newSimpleAggregatedMemoryContext;
+ import static io.trino.spi.type.BigintType.BIGINT;
+ import static java.util.concurrent.Executors.newCachedThreadPool;
+ import static java.util.concurrent.Executors.newScheduledThreadPool;
+ import static org.assertj.core.api.Assertions.assertThat;
++import static org.assertj.core.api.Assertions.assertThatThrownBy;
+ import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
+ import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
+ 
+@@ -76,4 +81,23 @@ public void testOperatorContextStats()
+             assertThat(operatorContext.getOutputDataSize()).isEqualTo(page.getSizeInBytes());
+         }
+     }
++
++    @Test
++    void testMemoryReleasedOnFinishFailure()
++    {
++        AggregatedMemoryContext memoryContext = newSimpleAggregatedMemoryContext();
++        RuntimeException exception = new RuntimeException();
++        TestOutputBuffer outputBuffer = new TestOutputBuffer();
++        outputBuffer.throwOnEnqueue(exception);
++        PartitionedOutputOperator partitionedOutputOperator = new PagePartitionerBuilder(executor, scheduledExecutor, outputBuffer)
++                .withTypes(BIGINT)
++                .withMemoryContext(memoryContext)
++                .buildPartitionedOutputOperator();
++        // repeated dictionary ids make finish flush the buffered page
++        partitionedOutputOperator.addInput(new Page(DictionaryBlock.create(4, createLongsBlock(0, 1), new int[] {0, 1, 0, 1})));
++        assertThat(memoryContext.getBytes()).isPositive();
++
++        assertThatThrownBy(partitionedOutputOperator::finish).isSameAs(exception);
++        assertThat(memoryContext.getBytes()).isZero();
++    }
+ }

@@ -1,0 +1,200 @@
+{
+  "prTitle" : "[fix][client] Commit ByteBufPair frames as a single outbound pipeline entry",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 7,
+    "UNKNOWN" : 2,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJDb21taXRzRnJhbWVBc1NpbmdsZU1lc3NhZ2U",
+    "description" : "Add ByteBufPairTest#testEncoderCommitsFrameAsSingleMessage",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdENvcHlpbmdFbmNvZGVyQ29tbWl0c0ZyYW1lQXNTaW5nbGVNZXNzYWdl",
+    "description" : "Add ByteBufPairTest#testCopyingEncoderCommitsFrameAsSingleMessage",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJTdXBwb3J0c011bHRpcGxlV3JpdGVzT2ZTYW1lUGFpcg",
+    "description" : "Add ByteBufPairTest#testEncoderSupportsMultipleWritesOfSamePair",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJGYWlsZWRCdWlsZEtlZXBzU3RyZWFtQWxpZ25lZA",
+    "description" : "Add ByteBufPairTest#testEncoderFailedBuildKeepsStreamAligned",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJGYWlsZWRCdWlsZENvbW1pdHNOb3RoaW5n",
+    "description" : "Add ByteBufPairTest#testEncoderFailedBuildCommitsNothing",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJBbGxvY2F0aW9uRmFpbHVyZUZhaWxzV3JpdGVBbmRSZWxlYXNlc1BhaXI",
+    "description" : "Add ByteBufPairTest#testEncoderAllocationFailureFailsWriteAndReleasesPair",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjY2hhbm5lbE1vY2s",
+    "description" : "Add ByteBufPairTest#channelMock",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb21wb3NpdGVCdWZmZXIsICtmcmFtZS5hZGRDb21wb25lbnQsICtmaXJzdC5yZXRhaW4sICtzZWNvbmQucmV0YWluLCArc2FmZVJlbGVhc2Ug4oCmYW5kIDQgbW9yZQpCeXRlQnVmUGFpci5FbmNvZGVyI3dyaXRl",
+    "description" : "Modify body of ByteBufPair.Encoder#write: +compositeBuffer, +frame.addComponent, +first.retain, +second.retain, +safeRelease …and 4 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb21wb3NpdGVCdWZmZXIsICtmcmFtZS5hZGRDb21wb25lbnQsICtmaXJzdC5jb3B5LCArc2Vjb25kLmNvcHksICtzYWZlUmVsZWFzZSDigKZhbmQgNCBtb3JlCkJ5dGVCdWZQYWlyLkNvcHlpbmdFbmNvZGVyI3dyaXRl",
+    "description" : "Modify body of ByteBufPair.CopyingEncoder#write: +compositeBuffer, +frame.addComponent, +first.copy, +second.copy, +safeRelease …and 4 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ByteBufPairTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJDb21taXRzRnJhbWVBc1NpbmdsZU1lc3NhZ2U",
+      "description" : "Add ByteBufPairTest#testEncoderCommitsFrameAsSingleMessage",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdENvcHlpbmdFbmNvZGVyQ29tbWl0c0ZyYW1lQXNTaW5nbGVNZXNzYWdl",
+      "description" : "Add ByteBufPairTest#testCopyingEncoderCommitsFrameAsSingleMessage",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJTdXBwb3J0c011bHRpcGxlV3JpdGVzT2ZTYW1lUGFpcg",
+      "description" : "Add ByteBufPairTest#testEncoderSupportsMultipleWritesOfSamePair",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJGYWlsZWRCdWlsZEtlZXBzU3RyZWFtQWxpZ25lZA",
+      "description" : "Add ByteBufPairTest#testEncoderFailedBuildKeepsStreamAligned",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJGYWlsZWRCdWlsZENvbW1pdHNOb3RoaW5n",
+      "description" : "Add ByteBufPairTest#testEncoderFailedBuildCommitsNothing",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJBbGxvY2F0aW9uRmFpbHVyZUZhaWxzV3JpdGVBbmRSZWxlYXNlc1BhaXI",
+      "description" : "Add ByteBufPairTest#testEncoderAllocationFailureFailsWriteAndReleasesPair",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjY2hhbm5lbE1vY2s",
+      "description" : "Add ByteBufPairTest#channelMock",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ByteBufPair.Encoder",
+    "entries" : [ {
+      "id" : 7,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb21wb3NpdGVCdWZmZXIsICtmcmFtZS5hZGRDb21wb25lbnQsICtmaXJzdC5yZXRhaW4sICtzZWNvbmQucmV0YWluLCArc2FmZVJlbGVhc2Ug4oCmYW5kIDQgbW9yZQpCeXRlQnVmUGFpci5FbmNvZGVyI3dyaXRl",
+      "description" : "Modify body of ByteBufPair.Encoder#write: +compositeBuffer, +frame.addComponent, +first.retain, +second.retain, +safeRelease …and 4 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ByteBufPair.CopyingEncoder",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb21wb3NpdGVCdWZmZXIsICtmcmFtZS5hZGRDb21wb25lbnQsICtmaXJzdC5jb3B5LCArc2Vjb25kLmNvcHksICtzYWZlUmVsZWFzZSDigKZhbmQgNCBtb3JlCkJ5dGVCdWZQYWlyLkNvcHlpbmdFbmNvZGVyI3dyaXRl",
+      "description" : "Modify body of ByteBufPair.CopyingEncoder#write: +compositeBuffer, +frame.addComponent, +first.copy, +second.copy, +safeRelease …and 4 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

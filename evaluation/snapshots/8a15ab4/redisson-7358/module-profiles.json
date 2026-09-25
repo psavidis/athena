@@ -1,0 +1,60 @@
+{
+  "redisson" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add time in 4 classes",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart. Same change in: RedissonKeys, RKeys, RKeysReactive, RKeysRx.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Override\n+    public Time time() {\n+        return commandExecutor.get(timeAsync());\n+    }", "-\n+Time time();", "-\n+Mono<Time> time();", "-\n+Single<Time> time();" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "redisson/src/main/java/org/redisson/RedissonKeys.java", "redisson/src/main/java/org/redisson/api/RKeys.java", "redisson/src/main/java/org/redisson/api/RKeysReactive.java", "redisson/src/main/java/org/redisson/api/RKeysRx.java" ],
+      "groupedMoveCount" : 4
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add timeAsync in 2 classes",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart. Same change in: RedissonKeys, RKeysAsync.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Override\n+    public RFuture<Time> timeAsync() {\n+        return commandExecutor.readAsync((String) null, LongCodec.INSTANCE, RedisCommands.TIME);\n+    }", "-\n+RFuture<Time> timeAsync();" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "redisson/src/main/java/org/redisson/RedissonKeys.java", "redisson/src/main/java/org/redisson/api/RKeysAsync.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add testTime in 4 test classes",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart. Same change in: RedissonBatchTest, RedissonKeysReactiveTest, RedissonKeysTest, RedissonKeysRxTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@ParameterizedTest\n+    @EnumSource(ExecutionMode.class)\n+    public void testTime(ExecutionMode executionMode) {\n+        redisson.getAtomicLong(\"counter\").set(42);\n+        redisson.getBucket(\"name\").set(\"value\");\n+        Time before = redisson.getRedisNodes(RedisNodes.SINGLE).getInstance().time();\n \n+        RBatch batch = redisson.createBatch(BatchOptions.defaults().executionMode(executionMode));\n+        RFuture<Long> counter = batch.getAtomicLong(\"counter\").getAsync();\n+        RFuture<Time> time = batch.getKeys().timeAsync();\n+        RFuture<String> value = batch.<String>getBucket(\"name\").getAsync();\n+\n+        assertThat(time.toCompletableFuture()).isNotDone();\n+        BatchResult<?> result = batch.execute();\n+        Time actual = time.toCompletableFuture().join();\n+        Time after = redisson.getRedisNodes(RedisNodes.SINGLE).getInstance().time();\n+\n+        assertThat(actual.getMicroseconds()).isBetween(0, 999999);\n+        assertThat(TimeUnit.SECONDS.toMicros(actual.getSeconds()) + actual.getMicroseconds())\n+                .isBetween(TimeUnit.SECONDS.toMicros(before.getSeconds()) + before.getMicroseconds(),\n+                        TimeUnit.SECONDS.toMicros(after.getSeconds()) + after.getMicroseconds());\n+        assertThat(counter.toCompletableFuture().join()).isEqualTo(42);\n+        assertThat(value.toCompletableFuture().join()).isEqualTo(\"value\");\n+        assertThat(result.getResponses().toArray()).containsExactly(42L, actual, \"value\");\n+    }", "+@Test\n+    public void testTime() {\n+        Time time = sync(redisson.getKeys().time());\n \n+        assertThat(time.getSeconds()).isPositive();\n+        assertThat(time.getMicroseconds()).isBetween(0, 999999);\n+    }", "+@Test\n+    public void testTime() {\n+        Time time = redisson.getKeys().time();\n+        Time asyncTime = redisson.getKeys().timeAsync().toCompletableFuture().join();\n \n+        assertThat(time.getSeconds()).isPositive();\n+        assertThat(time.getMicroseconds()).isBetween(0, 999999);\n+        assertThat(asyncTime.getSeconds()).isPositive();\n+        assertThat(asyncTime.getMicroseconds()).isBetween(0, 999999);\n+    }", "+@Test\n+    public void testTime() {\n+        Time time = sync(redisson.getKeys().time());\n \n+        assertThat(time.getSeconds()).isPositive();\n+        assertThat(time.getMicroseconds()).isBetween(0, 999999);\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "redisson/src/test/java/org/redisson/RedissonBatchTest.java", "redisson/src/test/java/org/redisson/RedissonKeysReactiveTest.java", "redisson/src/test/java/org/redisson/RedissonKeysTest.java", "redisson/src/test/java/org/redisson/rx/RedissonKeysRxTest.java" ],
+      "groupedMoveCount" : 4
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in RedissonBatchTest",
+      "conceptDescription" : "1 change in test code of RedissonBatchTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@ParameterizedTest\n+    @EnumSource(ExecutionMode.class)\n+    public void testTimeInCluster(ExecutionMode executionMode) {\n+        testInCluster(client -> {\n+            RBatch batch = client.createBatch(BatchOptions.defaults().executionMode(executionMode));\n+            RFuture<Time> first = batch.getKeys().timeAsync();\n+            RFuture<Time> second = batch.getKeys().timeAsync();\n \n+            assertThat(first.toCompletableFuture()).isNotDone();\n+            assertThat(second.toCompletableFuture()).isNotDone();\n+            BatchResult<?> result = batch.execute();\n+\n+            Time firstTime = first.toCompletableFuture().join();\n+            Time secondTime = second.toCompletableFuture().join();\n+            assertThat(firstTime.getSeconds()).isPositive();\n+            assertThat(firstTime.getMicroseconds()).isBetween(0, 999999);\n+            assertThat(secondTime.getSeconds()).isPositive();\n+            assertThat(secondTime.getMicroseconds()).isBetween(0, 999999);\n+            assertThat(result.getResponses().toArray()).containsExactly(firstTime, secondTime);\n+        });\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "redisson/src/test/java/org/redisson/RedissonBatchTest.java" ],
+      "groupedMoveCount" : 1
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+@Override\n+    public Time time() {\n+        return commandExecutor.get(timeAsync());\n+    }", "-\n+@Override\n+    public RFuture<Time> timeAsync() {\n+        return commandExecutor.readAsync((String) null, LongCodec.INSTANCE, RedisCommands.TIME);\n+    }", "-\n+Time time();", "-\n+RFuture<Time> timeAsync();", "-\n+Mono<Time> time();", "-\n+Single<Time> time();" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "redisson/src/main/java/org/redisson/RedissonKeys.java", "redisson/src/main/java/org/redisson/api/RKeys.java", "redisson/src/main/java/org/redisson/api/RKeysAsync.java", "redisson/src/main/java/org/redisson/api/RKeysReactive.java", "redisson/src/main/java/org/redisson/api/RKeysRx.java" ],
+      "groupedMoveCount" : 6
+    } ]
+  }
+}

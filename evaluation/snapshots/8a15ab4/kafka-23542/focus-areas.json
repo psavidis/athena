@@ -1,0 +1,13 @@
+[ {
+  "entity" : "GroupMetadataManager",
+  "description" : "Change control flow of GroupMetadataManager#getOrMaybeSubscribeStaticConsumerGroupMember: branch added"
+}, {
+  "entity" : "GroupMetadataManager",
+  "description" : "Change control flow of GroupMetadataManager#getOrMaybeCreateStaticStreamsGroupMember: branch added"
+}, {
+  "entity" : "GroupMetadataManager",
+  "description" : "Add GroupMetadataManager#throwIfMemberIdHasDifferentInstanceId"
+}, {
+  "entity" : "GroupMetadataManager",
+  "description" : "Modify body of GroupMetadataManager#streamsGroupHeartbeat: -maybeOldStaticMember.memberId, -group.relabelRefinedAssignment"
+} ]

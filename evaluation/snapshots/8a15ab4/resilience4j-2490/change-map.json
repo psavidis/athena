@@ -1,0 +1,260 @@
+{
+  "prTitle" : "fix(ratelimiter): prevent SemaphoreBasedRateLimiter refresh task from terminating after a downward limit change",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 11,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdA",
+    "description" : "Add class SemaphoreBasedRateLimiterRefreshLimitRegressionTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0NMQVNTClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdC5Db3VudGluZ1NjaGVkdWxlZEV4ZWN1dG9y",
+    "description" : "Add class SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyI3JlZnJlc2hMaW1pdApicmFuY2ggYWRkZWQ",
+    "description" : "Change control flow of SemaphoreBasedRateLimiter#refreshLimit: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyUmVmcmVzaExpbWl0UmVncmVzc2lvblRlc3QjcmVmcmVzaFNjaGVkdWxlck11c3RTdXJ2aXZlTGltaXREZWNyZWFzZUJlbG93QXZhaWxhYmxlUGVybWl0cw",
+    "description" : "Add SemaphoreBasedRateLimiterRefreshLimitRegressionTest#refreshSchedulerMustSurviveLimitDecreaseBelowAvailablePermits",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyUmVmcmVzaExpbWl0UmVncmVzc2lvblRlc3QjcmVmcmVzaExpbWl0Q2xhbXBzRXhjZXNzUGVybWl0c1dpdGhvdXRUaHJvd2luZw",
+    "description" : "Add SemaphoreBasedRateLimiterRefreshLimitRegressionTest#refreshLimitClampsExcessPermitsWithoutThrowing",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyUmVmcmVzaExpbWl0UmVncmVzc2lvblRlc3Qjd2FpdEZvcldpdGhpbg",
+    "description" : "Add SemaphoreBasedRateLimiterRefreshLimitRegressionTest#waitForWithin",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyUmVmcmVzaExpbWl0UmVncmVzc2lvblRlc3QuQ291bnRpbmdTY2hlZHVsZWRFeGVjdXRvciNzY2hlZHVsZUF0Rml4ZWRSYXRl",
+    "description" : "Add SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor#scheduleAtFixedRate",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdCNJTklUSUFMX0xJTUlUX0ZPUl9QRVJJT0Q",
+    "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest#INITIAL_LIMIT_FOR_PERIOD",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdCNMT1dFUkVEX0xJTUlUX0ZPUl9QRVJJT0Q",
+    "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest#LOWERED_LIMIT_FOR_PERIOD",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdCNSRUZSRVNIX1BFUklPRA",
+    "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest#REFRESH_PERIOD",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdC5Db3VudGluZ1NjaGVkdWxlZEV4ZWN1dG9yI3JlZnJlc2hDb3VudA",
+    "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor#refreshCount",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdC5Db3VudGluZ1NjaGVkdWxlZEV4ZWN1dG9yI3BlcmlvZGljRnV0dXJl",
+    "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor#periodicFuture",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "SemaphoreBasedRateLimiterRefreshLimitRegressionTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdA",
+      "description" : "Add class SemaphoreBasedRateLimiterRefreshLimitRegressionTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyUmVmcmVzaExpbWl0UmVncmVzc2lvblRlc3QjcmVmcmVzaFNjaGVkdWxlck11c3RTdXJ2aXZlTGltaXREZWNyZWFzZUJlbG93QXZhaWxhYmxlUGVybWl0cw",
+      "description" : "Add SemaphoreBasedRateLimiterRefreshLimitRegressionTest#refreshSchedulerMustSurviveLimitDecreaseBelowAvailablePermits",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyUmVmcmVzaExpbWl0UmVncmVzc2lvblRlc3QjcmVmcmVzaExpbWl0Q2xhbXBzRXhjZXNzUGVybWl0c1dpdGhvdXRUaHJvd2luZw",
+      "description" : "Add SemaphoreBasedRateLimiterRefreshLimitRegressionTest#refreshLimitClampsExcessPermitsWithoutThrowing",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyUmVmcmVzaExpbWl0UmVncmVzc2lvblRlc3Qjd2FpdEZvcldpdGhpbg",
+      "description" : "Add SemaphoreBasedRateLimiterRefreshLimitRegressionTest#waitForWithin",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdCNJTklUSUFMX0xJTUlUX0ZPUl9QRVJJT0Q",
+      "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest#INITIAL_LIMIT_FOR_PERIOD",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdCNMT1dFUkVEX0xJTUlUX0ZPUl9QRVJJT0Q",
+      "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest#LOWERED_LIMIT_FOR_PERIOD",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 9,
+      "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdCNSRUZSRVNIX1BFUklPRA",
+      "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest#REFRESH_PERIOD",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX0NMQVNTClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdC5Db3VudGluZ1NjaGVkdWxlZEV4ZWN1dG9y",
+      "description" : "Add class SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyUmVmcmVzaExpbWl0UmVncmVzc2lvblRlc3QuQ291bnRpbmdTY2hlZHVsZWRFeGVjdXRvciNzY2hlZHVsZUF0Rml4ZWRSYXRl",
+      "description" : "Add SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor#scheduleAtFixedRate",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 10,
+      "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdC5Db3VudGluZ1NjaGVkdWxlZEV4ZWN1dG9yI3JlZnJlc2hDb3VudA",
+      "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor#refreshCount",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX0ZJRUxEClNlbWFwaG9yZUJhc2VkUmF0ZUxpbWl0ZXJSZWZyZXNoTGltaXRSZWdyZXNzaW9uVGVzdC5Db3VudGluZ1NjaGVkdWxlZEV4ZWN1dG9yI3BlcmlvZGljRnV0dXJl",
+      "description" : "Add field SemaphoreBasedRateLimiterRefreshLimitRegressionTest.CountingScheduledExecutor#periodicFuture",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "SemaphoreBasedRateLimiter",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZW1hcGhvcmVCYXNlZFJhdGVMaW1pdGVyI3JlZnJlc2hMaW1pdApicmFuY2ggYWRkZWQ",
+      "description" : "Change control flow of SemaphoreBasedRateLimiter#refreshLimit: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

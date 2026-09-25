@@ -1,0 +1,61 @@
+{
+  "territories" : [ {
+    "moduleName" : "managed-ledger",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApFbnRyeUltcGxUZXN0I3Rlc3RSZWN5Y2xlZE9iamVjdERvZXNOb3RJbmhlcml0UG9pc29uZWRQb3NpdGlvbg", "TU9ESUZZX01FVEhPRF9CT0RZCkVudHJ5SW1wbCNjcmVhdGUKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApFbnRyeUltcGxUZXN0I3Rlc3RSZWN5Y2xlZE9iamVjdERvZXNOb3RJbmhlcml0UG9pc29uZWRQb3NpdGlvbg" ]
+  }, {
+    "moduleName" : "pulsar-common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "pulsar-metadata",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "pulsar-opentelemetry",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "testmocks",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "managed-ledger",
+    "to" : "pulsar-common"
+  }, {
+    "from" : "managed-ledger",
+    "to" : "pulsar-metadata"
+  }, {
+    "from" : "managed-ledger",
+    "to" : "pulsar-opentelemetry"
+  }, {
+    "from" : "managed-ledger",
+    "to" : "testmocks"
+  } ]
+}
