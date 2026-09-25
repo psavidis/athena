@@ -133,8 +133,23 @@ public final class ModuleTopologyBuilder {
         return layout.moduleDirectories().stream()
                 .filter(directory -> Files.isDirectory(headRoot.resolve(directory)))
                 .map(directory -> new RepositoryModule(directory, layout.nameOf(directory),
-                        mavenArtifactId(headRoot.resolve(directory))))
+                        mavenArtifactId(headRoot.resolve(directory)),
+                        gradleProjectName(headRoot.resolve(directory), directory)))
                 .toList();
+    }
+
+    /**
+     * The Gradle project name a module's own build file carries (ticket #377), as builds like
+     * spring-security name each project after it: {@code web/spring-security-web.gradle} is
+     * {@code :spring-security-web}. Empty for {@code build.gradle[.kts]} or several build files.
+     */
+    private static String gradleProjectName(Path moduleDir, String directory) {
+        List<Path> buildFiles = ModuleLayout.gradleBuildFiles(moduleDir, directory);
+        if (buildFiles.size() != 1) {
+            return "";
+        }
+        String fileName = buildFiles.get(0).getFileName().toString();
+        return fileName.startsWith("build.gradle") ? "" : fileName.replaceFirst("\\.gradle(\\.kts)?$", "");
     }
 
     private String mavenArtifactId(Path moduleDir) {
@@ -216,6 +231,8 @@ public final class ModuleTopologyBuilder {
                     .filter(module -> module.directory().equals(directory))
                     .findFirst()
                     .or(() -> allModules.stream().filter(module -> module.name().equals(lastSegment)).findFirst())
+                    // Ticket #377: last, the module whose build file carries the project's name.
+                    .or(() -> allModules.stream().filter(module -> module.gradleProjectName().equals(directory)).findFirst())
                     .map(RepositoryModule::name)
                     .ifPresent(found::add);
         }
@@ -344,7 +361,10 @@ public final class ModuleTopologyBuilder {
         }
     }
 
-    /** A module found in the repository: its directory ("" for the root), name and Maven artifactId ("" if none). */
-    private record RepositoryModule(String directory, String name, String artifactId) {
+    /**
+     * A module found in the repository: its directory ("" for the root), name, Maven artifactId
+     * and the Gradle project name its build file carries ("" if none).
+     */
+    private record RepositoryModule(String directory, String name, String artifactId, String gradleProjectName) {
     }
 }
