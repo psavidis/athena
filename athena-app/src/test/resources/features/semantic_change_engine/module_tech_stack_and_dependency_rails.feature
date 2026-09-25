@@ -70,3 +70,16 @@ Feature: Tech stack and dependency rails for Gradle and Maven modules
     Given the user has created a standalone Diff of Gradle project "kafka" including "clients, streams" whose root build file reads "project(':streams') {\n  dependencies {\n    implementation project(':clients')\n  }\n}", changing a class in "src/main/java"
     When the user requests the Semantic Canvas topology
     Then no dependency rail is drawn
+
+  # Ticket #377: spring-security names each project after its build file, not its directory.
+
+  Scenario: A dependency on a project named after a module's build file is a rail to that module
+    Given the user has created a standalone Diff changing a class in module "config" whose only build file "spring-security-config.gradle" depends on project ":spring-security-web", next to module "web" built by "spring-security-web.gradle"
+    When the user requests the Semantic Canvas topology
+    Then a dependency rail runs from "config" to "web"
+    And territory "web" is idle
+
+  Scenario: A project name that matches no module draws no rail
+    Given the user has created a standalone Diff changing a class in module "config" whose only build file "spring-security-config.gradle" depends on project ":spring-security-ldap", next to module "web" built by "spring-security-web.gradle"
+    When the user requests the Semantic Canvas topology
+    Then no dependency rail is drawn
