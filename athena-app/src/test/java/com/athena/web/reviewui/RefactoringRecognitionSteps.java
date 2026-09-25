@@ -16,7 +16,9 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -126,6 +128,19 @@ public class RefactoringRecognitionSteps {
         }
     }
 
+    @When("the developer moves {string} of {string} before {string}")
+    public void the_developer_moves_a_member_before(String member, String className, String before) {
+        reorder(className, members -> {
+            String moved = members.remove(indexOfMember(members, member));
+            members.add(indexOfMember(members, before), moved);
+        });
+    }
+
+    @When("the developer moves {string} of {string} to the end")
+    public void the_developer_moves_a_member_to_the_end(String member, String className) {
+        reorder(className, members -> members.add(members.remove(indexOfMember(members, member))));
+    }
+
     @When("the reviewer opens the Change Map of the two commits")
     public void the_reviewer_opens_the_change_map() {
         String headCommit = repository.commit("refactor");
@@ -146,11 +161,46 @@ public class RefactoringRecognitionSteps {
         assertThat(changeMap.changes()).extracting(ChangeEntryResponse::description).containsExactly(description);
     }
 
+    @Then("no changed file is left unrepresented")
+    public void no_changed_file_is_left_unrepresented() {
+        assertThat(new RepresentationCoverageController(session).unrepresentedFiles().files()).isEmpty();
+    }
+
+    @Then("the Change Map lists no reorder")
+    public void the_change_map_lists_no_reorder() {
+        assertThat(changeMap.changes()).extracting(ChangeEntryResponse::description)
+                .isNotEmpty()
+                .noneMatch(description -> description.startsWith("Reorder members"));
+    }
+
     @Then("the Explorer shows no {string} entry")
     public void the_explorer_shows_no_entry(String conceptName) {
         assertThat(profileController.pullRequestSemanticProfile().dimensions())
                 .extracting(SemanticDimensionEntryResponse::conceptName)
                 .doesNotContain(conceptName);
+    }
+
+    /** Rewrites {@code className}'s members (the blank-line-separated blocks of its body) in a new order. */
+    private void reorder(String className, Consumer<List<String>> reordering) {
+        Path file = repository.directory().resolve(PACKAGE_DIR + className + ".java");
+        String source = read(file);
+        int open = source.indexOf("{\n") + 2;
+        int close = source.lastIndexOf("}");
+        List<String> members = new ArrayList<>(List.of(source.substring(open, close).strip().split("\n\n")));
+        reordering.accept(members);
+        repository.write(PACKAGE_DIR + className + ".java",
+                source.substring(0, open) + "    " + String.join("\n\n", members) + "\n" + source.substring(close));
+    }
+
+    /** The index of the member block declaring {@code name}: a method {@code name(} or a field {@code name;}. */
+    private static int indexOfMember(List<String> members, String name) {
+        Pattern declaration = Pattern.compile("\\b" + Pattern.quote(name) + "\\s*[(;=]");
+        for (int i = 0; i < members.size(); i++) {
+            if (declaration.matcher(members.get(i).lines().findFirst().orElse("")).find()) {
+                return i;
+            }
+        }
+        throw new IllegalArgumentException("No member " + name);
     }
 
     /** Replaces the whole identifier {@code from} with {@code to} in each named class's file. */

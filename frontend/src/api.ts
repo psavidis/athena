@@ -60,6 +60,7 @@ export type TransformationKind =
   | 'REMOVE_DEPENDENCY'
   | 'CHANGE_DEPENDENCY'
   | 'CHANGE_SUPERTYPE'
+  | 'REORDER_MEMBERS'
 
 export type ReviewState = 'UNSEEN' | 'UNDERSTANDING' | 'REVIEWED' | 'CONCERN' | 'SKIPPED'
 

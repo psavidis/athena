@@ -78,6 +78,7 @@ public final class ChangeGrouper {
             case REMOVE_SYMBOL -> "Remove " + key.involvedDescriptions.get(0);
             case CHANGE_METHOD_SIGNATURE -> "Change signature of " + key.involvedDescriptions.get(0);
             case FORMATTING_ONLY -> "Formatting: " + key.involvedDescriptions.get(0);
+            case REORDER_MEMBERS -> "Reorder members of " + key.involvedDescriptions.get(0) + ": " + key.involvedDescriptions.get(1);
             case MOVE_CLASS -> "Move class " + classMove(key.involvedDescriptions, representative)
                     + importFollowOns(representative) + referenceFollowOns(representative);
             case RENAME_CLASS -> "Rename class " + classMove(key.involvedDescriptions, representative)

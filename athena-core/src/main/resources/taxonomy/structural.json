@@ -16,6 +16,7 @@
   {"id": "add-dependency", "name": "Add Dependency", "description": "A module declares a new build dependency."},
   {"id": "remove-dependency", "name": "Remove Dependency", "description": "A module no longer declares a build dependency."},
   {"id": "change-supertype", "name": "Change Supertype", "description": "A type's superclass or implemented interfaces changed."},
+  {"id": "reorder-members", "name": "Reorder Members", "description": "Members of a type moved to other positions in it, each unchanged."},
   {"id": "change-dependency", "name": "Change Dependency", "description": "A module's build dependency changed scope, version or optionality."},
   {"id": "pull-up", "name": "Pull Up", "description": "A member several classes declared moved up into a new common base class they now extend."},
   {"id": "modify-body", "name": "Modify Body", "description": "A method or constructor kept its signature but its body changed in a way no more specific transformation explains."}

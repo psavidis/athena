@@ -47,3 +47,23 @@ Feature: Athena recognizes simple refactorings end to end
     Then the Change Map lists exactly "Rename class Account -> Wallet (references updated in 2 files)"
     And the Explorer shows no "Change Signature" entry
     And the Explorer shows no "Change API Responsibility" entry
+
+  # Ticket #387: members moved to another position in the same class, unchanged.
+
+  Scenario: A method moved within its class reads as a reorder
+    When the developer moves "canWithdraw" of "Account" before "getBalance"
+    And the reviewer opens the Change Map of the two commits
+    Then the Change Map lists exactly "Reorder members of Account: canWithdraw moved before getBalance"
+    And no changed file is left unrepresented
+
+  Scenario: Several members moved within their class read as one reorder
+    When the developer moves "canWithdraw" of "Account" before "getBalance"
+    And the developer moves "balance" of "Account" to the end
+    And the reviewer opens the Change Map of the two commits
+    Then the Change Map lists exactly "Reorder members of Account: 2 members moved"
+
+  Scenario: A moved method that also changed is not a reorder
+    When the developer moves "canWithdraw" of "Account" before "getBalance"
+    And the developer renames "amount" to "limit" in "Account"
+    And the reviewer opens the Change Map of the two commits
+    Then the Change Map lists no reorder

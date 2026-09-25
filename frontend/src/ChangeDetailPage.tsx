@@ -41,6 +41,7 @@ const KIND_LABELS: Record<TransformationKind, string> = {
   REMOVE_DEPENDENCY: 'Remove dependency',
   CHANGE_DEPENDENCY: 'Dependency change',
   CHANGE_SUPERTYPE: 'Supertype change',
+  REORDER_MEMBERS: 'Member reorder',
 }
 
 const CATEGORY_LABELS = {
