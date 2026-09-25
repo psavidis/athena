@@ -52,7 +52,7 @@ class RenameReferenceFoldingTest {
         assertThat(detected).singleElement().satisfies(rename -> {
             assertThat(rename.kind()).isEqualTo(TransformationKind.RENAME_SYMBOL);
             assertThat(rename.context()).containsEntry(DetectedTransformation.REFERENCE_FOLLOW_ONS, "2");
-            assertThat(rename.filesTouched()).containsExactlyInAnyOrder("Account.java", "Bank.java", "Audit.java");
+            assertThat(rename.filesTouched()).containsOnly("Account.java", "Bank.java", "Audit.java");
         });
     }
 

@@ -1,6 +1,8 @@
 package com.athena.web.reviewui;
 
 import com.athena.plugins.PluginRegistry;
+import com.athena.repository.ImportedPullRequest;
+import com.athena.web.Diff;
 import com.athena.semantic.PrAnalyzer;
 import com.athena.web.WebSession;
 import com.athena.web.diff.DiffSelectionController;
@@ -109,8 +111,16 @@ public class RefactoringRecognitionSteps {
 
     @When("the reviewer opens the Change Map of the two commits")
     public void the_reviewer_opens_the_change_map() {
+        String headCommit = repository.commit("refactor");
         diffController.createDiff(new DiffSelectionController.CreateDiffRequest(
-                repository.directory().toString(), baseCommit, repository.commit("refactor")));
+                repository.directory().toString(), baseCommit, headCommit));
+        // The Change Map serves a selected PR: re-home the analyzed Diff under one, as the
+        // corpus snapshot tool does. No GitHub call is made.
+        Diff diff = session.selectedDiff().orElseThrow();
+        session.clearSelectedDiff();
+        session.connect("placeholder-never-sent");
+        session.select(new WebSession.SelectedPullRequest(
+                new ImportedPullRequest(0, "refactor", "", baseCommit, headCommit, List.of(), List.of()), "local", diff));
         changeMap = changeMapController.changeMap();
     }
 

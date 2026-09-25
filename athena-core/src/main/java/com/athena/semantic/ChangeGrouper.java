@@ -70,7 +70,7 @@ public final class ChangeGrouper {
 
     private String title(GroupKey key, DetectedTransformation representative) {
         return switch (key.kind) {
-            case RENAME_SYMBOL -> "Rename " + arrowJoin(key.involvedDescriptions);
+            case RENAME_SYMBOL -> "Rename " + arrowJoin(key.involvedDescriptions) + referenceFollowOns(representative);
             case MECHANICAL_REPLACEMENT -> "Rename " + String.join(" -> ", key.involvedDescriptions);
             case MOVE_SYMBOL -> "Move " + arrowJoin(key.involvedDescriptions);
             case EXTRACT_METHOD -> "Extract " + key.involvedDescriptions.get(key.involvedDescriptions.size() - 1);
@@ -84,7 +84,7 @@ public final class ChangeGrouper {
                     + importFollowOns(representative);
             case ADD_CLASS -> "Add class " + key.involvedDescriptions.get(0);
             case REMOVE_CLASS -> "Remove class " + key.involvedDescriptions.get(0);
-            case RENAME_FIELD -> "Rename field " + arrowJoin(key.involvedDescriptions);
+            case RENAME_FIELD -> "Rename field " + arrowJoin(key.involvedDescriptions) + referenceFollowOns(representative);
             case MOVE_FIELD -> "Move field " + arrowJoin(key.involvedDescriptions);
             case ADD_FIELD -> "Add field " + key.involvedDescriptions.get(0);
             case REMOVE_FIELD -> "Remove field " + key.involvedDescriptions.get(0);
@@ -176,6 +176,15 @@ public final class ChangeGrouper {
             return "";
         }
         return " (imports updated in " + count + ("1".equals(count) ? " file)" : " files)");
+    }
+
+    /** " (references updated in N files)" for a rename whose references changed in other files (ticket #384). */
+    private static String referenceFollowOns(DetectedTransformation representative) {
+        String count = representative.context().get(DetectedTransformation.REFERENCE_FOLLOW_ONS);
+        if (count == null) {
+            return "";
+        }
+        return " (references updated in " + count + ("1".equals(count) ? " file)" : " files)");
     }
 
     /** The package segments needed to tell {@code segments} apart, plus any shared trailing ones, as "a.b." ("" at the root). */

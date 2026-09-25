@@ -25,6 +25,9 @@ public final class DetectedTransformation {
     /** Context key: how many files only updated their imports to follow this class move or rename (ticket #337). */
     public static final String IMPORT_FOLLOW_ONS = "importFollowOns";
 
+    /** Context key: how many other files a field or method rename updated references in (ticket #384). */
+    public static final String REFERENCE_FOLLOW_ONS = "referenceFollowOns";
+
     /** Context keys: the packages a moved class left and entered (ticket #335). */
     public static final String FROM_PACKAGE = "fromPackage";
     public static final String TO_PACKAGE = "toPackage";
