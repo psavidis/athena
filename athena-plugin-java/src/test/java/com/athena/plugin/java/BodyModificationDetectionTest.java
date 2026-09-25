@@ -34,7 +34,7 @@ class BodyModificationDetectionTest {
         assertThat(detect()).singleElement().satisfies(change -> {
             assertThat(change.kind()).isEqualTo(TransformationKind.MODIFY_METHOD_BODY);
             assertThat(ChangeCategory.of(change.kind())).isEqualTo(ChangeCategory.UNKNOWN);
-            assertThat(change.involvedDescriptions()).containsExactly("Printer#format", "+trim, return name -> name.trim()");
+            assertThat(change.involvedDescriptions()).containsExactly("Printer#format", "+name.trim, return name -> name.trim()");
             assertThat(change.diffText()).contains("-        return name;").contains("+        return name.trim();");
         });
     }
@@ -100,7 +100,7 @@ class BodyModificationDetectionTest {
 
         assertThat(detect()).singleElement().satisfies(change -> {
             assertThat(change.kind()).isEqualTo(TransformationKind.MODIFY_METHOD_BODY);
-            assertThat(change.involvedDescriptions()).containsExactly("Reader#<clinit>", "+flush");
+            assertThat(change.involvedDescriptions()).containsExactly("Reader#<clinit>", "+r.flush");
             assertThat(change.diffText()).contains("r.flush()");
         });
     }

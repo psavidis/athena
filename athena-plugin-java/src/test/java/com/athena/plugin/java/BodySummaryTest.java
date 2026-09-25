@@ -175,7 +175,7 @@ class BodySummaryTest {
 
     @Test
     void anInsertionIntoAReturnedValueIsAnchoredOnThePrecedingToken() {
-        assertThat(describe("return name;", "return name.trim();")).isEqualTo("+trim, return name -> name.trim()");
+        assertThat(describe("return name;", "return name.trim();")).isEqualTo("+name.trim, return name -> name.trim()");
     }
 
     @Test
@@ -206,12 +206,12 @@ class BodySummaryTest {
     @Test
     void aPartThatEndsInAnOperatorIsAChangedValue() {
         assertThat(describe("return t != null ? t.port : port;", "return ref == null ? 0 : ref.get().port;"))
-                .isEqualTo("+get, return value changed");
+                .isEqualTo("+ref.get, return value changed");
     }
 
     @Test
     void aValueWrappedInNewCodeIsAChangedValueNotNothing() {
-        assertThat(describe("return size();", "return ref == null ? 0 : ref.get().size();")).isEqualTo("+get, return value changed");
+        assertThat(describe("return size();", "return ref == null ? 0 : ref.get().size();")).isEqualTo("+ref.get, return value changed");
     }
 
     @Test
