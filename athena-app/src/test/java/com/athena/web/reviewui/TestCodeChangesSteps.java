@@ -349,6 +349,43 @@ public class TestCodeChangesSteps {
         select(base, repository.commit("head"));
     }
 
+    @Given("the reviewer has selected a PR where class {string} changed from {string} to {string}")
+    public void a_pr_where_a_class_changed_its_supertypes(String className, String before, String after) throws IOException {
+        repository = GitRepositoryFixture.create();
+        repository.write(MAIN + className + ".java", classDeclaring(className, before));
+        String base = repository.commit("base");
+        repository.write(MAIN + className + ".java", classDeclaring(className, after));
+        select(base, repository.commit("head"));
+    }
+
+    @Given("the reviewer has selected a PR where classes {string}, {string} and {string} each started implementing {string}")
+    public void a_pr_where_classes_started_implementing(String a, String b, String c, String type) throws IOException {
+        repository = GitRepositoryFixture.create();
+        for (String className : List.of(a, b, c)) {
+            repository.write(MAIN + className + ".java", classDeclaring(className, ""));
+        }
+        String base = repository.commit("base");
+        for (String className : List.of(a, b, c)) {
+            repository.write(MAIN + className + ".java", classDeclaring(className, "implements " + type));
+        }
+        select(base, repository.commit("head"));
+    }
+
+    @Then("the Change Map includes the Change {string}")
+    public void the_change_map_includes_the_change(String description) {
+        assertThat(changeMap.changes()).extracting(ChangeEntryResponse::description).contains(description);
+    }
+
+    @Then("no Change in the Change Map mentions {string}")
+    public void no_change_mentions(String text) {
+        assertThat(changeMap.changes()).extracting(ChangeEntryResponse::description).noneMatch(d -> d.contains(text));
+    }
+
+    private static String classDeclaring(String className, String supertypes) {
+        return "package com.acme;\n\npublic class " + className + (supertypes.isEmpty() ? "" : " " + supertypes)
+                + " {\n    public void close() {\n    }\n}\n";
+    }
+
     @Then("that entry names the classes {string}")
     public void that_entry_names_the_classes(String classes) {
         assertThat(lastGroup.conceptDescription()).contains(classes);

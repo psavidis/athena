@@ -34,6 +34,23 @@ class ChangeGrouperTitleTest {
         assertThat(change.title()).isEqualTo("Move class Codec -> Codec");
     }
 
+    @Test
+    void aSingleSupertypeChangeIsNamedInTheSingular() {
+        assertThat(titleOf(TransformationKind.CHANGE_SUPERTYPE, "SimpleRegistry", "LinkedHashMap -> ConcurrentHashMap"))
+                .isEqualTo("Change supertype of SimpleRegistry: LinkedHashMap -> ConcurrentHashMap");
+    }
+
+    @Test
+    void severalSupertypeChangesAreNamedInThePlural() {
+        assertThat(titleOf(TransformationKind.CHANGE_SUPERTYPE, "Registry", "LinkedHashMap -> ConcurrentHashMap, -Serializable"))
+                .isEqualTo("Change supertypes of Registry: LinkedHashMap -> ConcurrentHashMap, -Serializable");
+    }
+
+    private static String titleOf(TransformationKind kind, String... involved) {
+        DetectedTransformation change = DetectedTransformation.of(kind, List.of(involved), List.of("Registry.java"));
+        return new ChangeGrouper().group(List.of(change)).get(0).title();
+    }
+
     private static String titleOfMove(String className, String fromPackage, String toPackage) {
         DetectedTransformation move = DetectedTransformation.of(TransformationKind.MOVE_CLASS,
                         List.of(className, className), List.of("a/" + className + ".java", "b/" + className + ".java"))
