@@ -46,6 +46,28 @@ class ChangeGrouperTitleTest {
                 .isEqualTo("Change supertypes of Registry: LinkedHashMap -> ConcurrentHashMap, -Serializable");
     }
 
+    // Ticket #384: a rename counts the other files whose references it updated.
+
+    @Test
+    void aRenameNamesTheFilesWhoseReferencesItUpdated() {
+        DetectedTransformation rename = DetectedTransformation.of(TransformationKind.RENAME_SYMBOL,
+                        List.of("Account#getBalance", "Account#currentFunds"), List.of("Account.java"))
+                .withContext(DetectedTransformation.REFERENCE_FOLLOW_ONS, "2");
+
+        assertThat(new ChangeGrouper().group(List.of(rename)).get(0).title())
+                .isEqualTo("Rename Account#getBalance -> currentFunds (references updated in 2 files)");
+    }
+
+    @Test
+    void aFieldRenameWithOneOtherFileUsesTheSingular() {
+        DetectedTransformation rename = DetectedTransformation.of(TransformationKind.RENAME_FIELD,
+                        List.of("Account#balance", "Account#funds"), List.of("Account.java"))
+                .withContext(DetectedTransformation.REFERENCE_FOLLOW_ONS, "1");
+
+        assertThat(new ChangeGrouper().group(List.of(rename)).get(0).title())
+                .isEqualTo("Rename field Account#balance -> funds (references updated in 1 file)");
+    }
+
     private static String titleOf(TransformationKind kind, String... involved) {
         DetectedTransformation change = DetectedTransformation.of(kind, List.of(involved), List.of("Registry.java"));
         return new ChangeGrouper().group(List.of(change)).get(0).title();
