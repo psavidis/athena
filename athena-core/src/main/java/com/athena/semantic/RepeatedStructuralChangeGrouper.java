@@ -13,8 +13,9 @@ import java.util.Set;
  * across two or more distinct classes become one {@link RepeatedStructuralChange}. The member
  * name is read from the Change's first involved description ("Type#member"); a Change with no
  * member (e.g. an added class) is never folded. A modifier change (ticket #313) is keyed by
- * its delta instead ("+final"), whatever the member: that's the repeated operation. Groups
- * come out in first-seen order.
+ * its delta instead ("+final"), whatever the member: that's the repeated operation. A test
+ * Change's Framework classifications (its JUnit lifecycle card, ticket #315) fold with it
+ * (ticket #363). Groups come out in first-seen order.
  */
 public final class RepeatedStructuralChangeGrouper {
 
@@ -49,6 +50,9 @@ public final class RepeatedStructuralChangeGrouper {
         for (SemanticProfile member : members) {
             List<SemanticClassification> structural = member.classifications(SemanticDimension.STRUCTURAL);
             merged.addAll(structural);
+            if (member.change().isTestCode()) {
+                merged.addAll(member.classifications(SemanticDimension.FRAMEWORK));
+            }
             structural.forEach(classification -> evidence.addAll(classification.evidence()));
         }
         TaxonomyConcept concept = merged.get(0).concept();

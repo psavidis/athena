@@ -217,7 +217,8 @@ public class TestCodeChangesSteps {
         repository.write(TEST + second + ".java", classWithMethods(second, 0, ""));
         String base = repository.commit("base");
         repository.write(TEST + first + ".java", classWithMethods(first, 1, ""));
-        repository.write(TEST + second + ".java", classWithMethods(second, 1, ""));
+        // A differently named method: the same one in both would fold into one entry (ticket #363).
+        repository.write(TEST + second + ".java", classWithMethods(second, 0, "    void verify() {\n    }\n"));
         select(base, repository.commit("head"));
     }
 
