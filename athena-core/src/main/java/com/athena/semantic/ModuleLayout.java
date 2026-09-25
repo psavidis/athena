@@ -21,8 +21,9 @@ import java.util.regex.Pattern;
  * Which module a changed file belongs to (ticket #292): the nearest directory above it that
  * holds a build descriptor ({@code pom.xml}, {@code build.gradle}, {@code build.gradle.kts},
  * {@code package.json}, or a Gradle build file named after the directory itself —
- * {@code hibernate-core/hibernate-core.gradle}, ticket #314), in head or — for a file only in
- * base — in base. The module is named
+ * {@code hibernate-core/hibernate-core.gradle}, ticket #314), or that the root settings file
+ * includes as a Gradle project ({@code include 'connect:api'} names {@code connect/api}, ticket
+ * #362), in head or — for a file only in base — in base. The module is named
  * after that directory; a descriptor at the repository root names it after the project
  * ({@code artifactId}, {@code rootProject.name} or {@code "name"}), or {@code "(root)"}.
  * With no descriptor anywhere above a file, the file's leading path segment names its module,
@@ -41,11 +42,18 @@ public final class ModuleLayout {
     private static final Pattern MAVEN_PARENT = Pattern.compile("<parent>.*?</parent>", Pattern.DOTALL);
     private static final Pattern MAVEN_ARTIFACT_ID = Pattern.compile("<artifactId>\\s*([\\w.-]+)\\s*</artifactId>");
     private static final Pattern GRADLE_ROOT_PROJECT_NAME = Pattern.compile("rootProject\\.name\\s*=\\s*['\"]([^'\"]+)['\"]");
+    private static final List<String> GRADLE_SETTINGS = List.of("settings.gradle", "settings.gradle.kts");
+    private static final Pattern LINE_COMMENT = Pattern.compile("//[^\n]*");
+    // "include" (not "includeBuild"), an optional "(", then one or more quoted project paths separated by commas.
+    private static final Pattern GRADLE_INCLUDE = Pattern.compile(
+            "\\binclude\\s*\\(?\\s*((?:['\"][^'\"\\n]+['\"]\\s*,\\s*)*['\"][^'\"\\n]+['\"])");
+    private static final Pattern QUOTED = Pattern.compile("['\"]([^'\"\\n]+)['\"]");
     private static final Pattern PACKAGE_JSON_NAME = Pattern.compile("\"name\"\\s*:\\s*\"([^\"]+)\"");
 
     private final List<Path> roots;
     private final Map<String, Optional<String>> descriptorDirectoryCache = new ConcurrentHashMap<>();
     private List<String> moduleDirectories;
+    private Set<String> includedDirectories;
 
     private ModuleLayout(List<Path> roots) {
         this.roots = List.copyOf(roots);
@@ -107,6 +115,9 @@ public final class ModuleLayout {
         if (moduleDirectories == null) {
             Set<String> found = new TreeSet<>();
             roots.forEach(root -> found.addAll(discoverModuleDirectories(root)));
+            includedDirectories().stream()
+                    .filter(directory -> roots.stream().anyMatch(root -> Files.isDirectory(root.resolve(directory))))
+                    .forEach(found::add);
             moduleDirectories = List.copyOf(found);
         }
         return moduleDirectories;
@@ -160,7 +171,7 @@ public final class ModuleLayout {
     }
 
     private boolean hasDescriptor(String directory) {
-        return roots.stream().anyMatch(root -> isModuleDirectory(root.resolve(directory), directory));
+        return includedDirectories().contains(directory) || roots.stream().anyMatch(root -> isModuleDirectory(root.resolve(directory), directory));
     }
 
     /** Whether {@code dir} (relative path {@code directory}) holds a build descriptor, by name or as its lone Gradle file. */
@@ -220,6 +231,48 @@ public final class ModuleLayout {
 
     private static List<String> gradleBuildFileNamesFor(String name) {
         return List.of(name + ".gradle", name + ".gradle.kts");
+    }
+
+    /**
+     * The directories of the Gradle projects the root settings file of either revision includes
+     * (ticket #362): {@code include 'a', 'b:c'} or {@code include(":a")} names {@code a} and
+     * {@code b/c}. Line comments and {@code includeBuild} are ignored. Read once.
+     */
+    private synchronized Set<String> includedDirectories() {
+        if (includedDirectories == null) {
+            Set<String> found = new TreeSet<>();
+            for (Path root : roots) {
+                for (String settings : GRADLE_SETTINGS) {
+                    found.addAll(includes(root.resolve(settings)));
+                }
+            }
+            includedDirectories = Set.copyOf(found);
+        }
+        return includedDirectories;
+    }
+
+    private static List<String> includes(Path settingsFile) {
+        if (!Files.isRegularFile(settingsFile)) {
+            return List.of();
+        }
+        String content;
+        try {
+            content = LINE_COMMENT.matcher(Files.readString(settingsFile)).replaceAll("");
+        } catch (IOException e) {
+            throw new UncheckedIOException("Could not read Gradle settings " + settingsFile, e);
+        }
+        List<String> directories = new ArrayList<>();
+        Matcher include = GRADLE_INCLUDE.matcher(content);
+        while (include.find()) {
+            Matcher project = QUOTED.matcher(include.group(1));
+            while (project.find()) {
+                String directory = project.group(1).strip().replaceFirst("^:", "").replace(':', '/');
+                if (!directory.isEmpty()) {
+                    directories.add(directory);
+                }
+            }
+        }
+        return directories;
     }
 
     private static String leadingSegment(String filePath) {

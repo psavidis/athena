@@ -74,3 +74,30 @@ Feature: Module identity comes from build descriptors
     Given the user has created a standalone Diff changing classes in modules "web" and "config" whose only build files are "spring-security-web.gradle" and "spring-security-config.gradle"
     When the user requests the Semantic Canvas topology
     Then the territories are "web" and "config"
+
+  # Ticket #362: projects a settings file includes are modules, even without a build file of their own.
+
+  Scenario: Projects included from settings.gradle are modules without their own build file
+    Given the user has created a standalone Diff of Gradle project "kafka" whose "settings.gradle" includes "include 'clients', 'group-coordinator', 'streams'", changing classes in "group-coordinator" and "streams"
+    When the user requests the Semantic Canvas topology
+    Then the territories are "group-coordinator" and "streams"
+
+  Scenario: A nested included project maps to its nested directory
+    Given the user has created a standalone Diff of Gradle project "kafka" whose "settings.gradle" includes "include 'clients',\n    'connect:api',\n    'connect:runtime'", changing classes in "connect/api" and "connect/runtime"
+    When the user requests the Semantic Canvas topology
+    Then the territories are "api" and "runtime"
+
+  Scenario: Projects included from a Kotlin settings file are modules too
+    Given the user has created a standalone Diff of Gradle project "kafka" whose "settings.gradle.kts" includes "include(\":connect:api\", \":streams\")", changing classes in "connect/api" and "streams"
+    When the user requests the Semantic Canvas topology
+    Then the territories are "api" and "streams"
+
+  Scenario: An included project whose name clashes gets a distinguishing name
+    Given the user has created a standalone Diff of Gradle project "kafka" whose "settings.gradle" includes "include 'api', 'connect:api'", changing classes in "api" and "connect/api"
+    When the user requests the Semantic Canvas topology
+    Then the territories are "api" and "api (connect)"
+
+  Scenario: A directory the settings file doesn't include stays part of the enclosing module
+    Given the user has created a standalone Diff of Gradle project "kafka" whose "settings.gradle" includes "include 'streams'", changing classes in "streams" and "tools"
+    When the user requests the Semantic Canvas topology
+    Then the territories are "streams" and "kafka"
