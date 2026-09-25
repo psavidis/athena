@@ -34,7 +34,71 @@ class BodySummaryTest {
 
     @Test
     void aChangedArgumentIsNotACallAddedOrRemoved() {
-        assertThat(describe("audit(t); return t;", "audit(\"x\"); return t;")).isEqualTo("other statements changed");
+        assertThat(describe("audit(t); return t;", "audit(\"x\"); return t;")).isEqualTo("audit(…): t -> \"x\"");
+    }
+
+    // Ticket #361: a call whose only change is its arguments is named with that change.
+
+    @Test
+    void aChangedArgumentIsTrimmedToThePartThatDiffers() {
+        assertThat(describe("validateMember(memberId, group.id(), \"offset-commit\"); return t;",
+                "validateMember(memberId, group.id(), \"txn-offset-commit\"); return t;"))
+                .isEqualTo("validateMember(…): \"offset-commit\" -> \"txn-offset-commit\"");
+    }
+
+    @Test
+    void aChangedArgumentInsideABlockIsNamedToo() {
+        assertThat(describe("if (a) { audit(t, 1); } return t;", "if (a) { audit(t, 2); } return t;"))
+                .isEqualTo("audit(…): 1 -> 2");
+    }
+
+    @Test
+    void aCallWithAReceiverIsNamedWithIt() {
+        assertThat(describe("offsets.put(k, 1); return t;", "offsets.put(k, 2); return t;")).isEqualTo("offsets.put(…): 1 -> 2");
+    }
+
+    @Test
+    void swappedConditionalBranchesInAnArgumentAreASwap() {
+        assertThat(describe("validateMember(m, tx ? \"a\" : \"b\"); return t;", "validateMember(m, tx ? \"b\" : \"a\"); return t;"))
+                .isEqualTo("swapped ?: branches in validateMember(…)");
+    }
+
+    @Test
+    void swappedConditionalBranchesInAReturnAreASwap() {
+        assertThat(describe("return tx ? a : b;", "return tx ? b : a;")).isEqualTo("swapped ?: branches in return");
+    }
+
+    @Test
+    void aChangedArgumentCountReadsAsChangedArguments() {
+        assertThat(describe("record(e); return t;", "record(e, u); return t;")).isEqualTo("arguments of record changed");
+    }
+
+    @Test
+    void aLongChangedArgumentReadsAsChangedArguments() {
+        assertThat(describe("record(theFirstVeryLongIdentifierThatGoesOnAndOn); return t;",
+                "record(theSecondVeryLongIdentifierThatGoesOnAndOn); return t;"))
+                .isEqualTo("arguments of record changed");
+    }
+
+    @Test
+    void severalChangedArgumentsOfOneCallReadAsChangedArguments() {
+        assertThat(describe("record(a, b); return t;", "record(c, d); return t;")).isEqualTo("arguments of record changed");
+    }
+
+    @Test
+    void theInnermostCallWithAChangedArgumentIsNamed() {
+        assertThat(describe("send(wrap(1)); return t;", "send(wrap(2)); return t;")).isEqualTo("wrap(…): 1 -> 2");
+    }
+
+    @Test
+    void aStatementThatChangedBeyondTheArgumentsIsNotNamed() {
+        assertThat(describe("int c = record(e); return t;", "long c = record(u); return t;")).isEqualTo("other statements changed");
+    }
+
+    @Test
+    void theSameArgumentChangeTwiceIsCounted() {
+        assertThat(describe("record(\"a\"); x = 1; record(\"a\"); return t;", "record(\"b\"); x = 1; record(\"b\"); return t;"))
+                .isEqualTo("record(…): \"a\" -> \"b\" ×2");
     }
 
     @Test
