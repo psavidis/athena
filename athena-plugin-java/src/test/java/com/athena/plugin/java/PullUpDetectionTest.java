@@ -54,8 +54,10 @@ class PullUpDetectionTest {
         write(headRoot, "Alpha", "public class Alpha extends Base {\n}\n");
         write(headRoot, "Beta", "public class Beta extends Base {\n}\n");
 
+        // Both subclasses now extend Base: that is a supertype change of its own (ticket #358).
         assertThat(detect()).extracting(t -> t.kind() + " " + t.involvedDescriptions())
-                .containsExactly("ADD_CLASS [Base]", "PULL_UP_SYMBOL [Base#getBuilder, Alpha#getBuilder, Beta#getBuilder]");
+                .containsExactly("ADD_CLASS [Base]", "CHANGE_SUPERTYPE [Alpha, +Base]", "CHANGE_SUPERTYPE [Beta, +Base]",
+                        "PULL_UP_SYMBOL [Base#getBuilder, Alpha#getBuilder, Beta#getBuilder]");
     }
 
     @Test

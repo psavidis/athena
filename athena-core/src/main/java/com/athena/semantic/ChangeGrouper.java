@@ -111,6 +111,9 @@ public final class ChangeGrouper {
             case REMOVE_DEPENDENCY -> "Remove " + dependency(key.involvedDescriptions.get(0));
             case CHANGE_DEPENDENCY -> "Change " + dependency(key.involvedDescriptions.get(0))
                     + ": " + key.involvedDescriptions.get(1);
+            // Ticket #358: singular for one changed supertype, plural when several changed together.
+            case CHANGE_SUPERTYPE -> (key.involvedDescriptions.get(1).contains(", ") ? "Change supertypes of " : "Change supertype of ")
+                    + key.involvedDescriptions.get(0) + ": " + key.involvedDescriptions.get(1);
             case CHANGE_FIELD_VALUE -> "Change value of " + key.involvedDescriptions.get(0)
                     + ": " + key.involvedDescriptions.get(1);
             case CHANGE_MODIFIERS -> "Change modifiers of " + key.involvedDescriptions.get(0)

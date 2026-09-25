@@ -59,6 +59,7 @@ export type TransformationKind =
   | 'ADD_DEPENDENCY'
   | 'REMOVE_DEPENDENCY'
   | 'CHANGE_DEPENDENCY'
+  | 'CHANGE_SUPERTYPE'
 
 export type ReviewState = 'UNSEEN' | 'UNDERSTANDING' | 'REVIEWED' | 'CONCERN' | 'SKIPPED'
 

@@ -51,6 +51,7 @@ public final class StructuralTaxonomyClassifier {
             case ADD_DEPENDENCY -> "add-dependency";
             case REMOVE_DEPENDENCY -> "remove-dependency";
             case CHANGE_DEPENDENCY -> "change-dependency";
+            case CHANGE_SUPERTYPE -> "change-supertype";
         };
     }
 
