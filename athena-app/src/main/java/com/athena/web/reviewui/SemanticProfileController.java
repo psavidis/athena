@@ -133,13 +133,15 @@ public class SemanticProfileController {
                 ? new RepeatedStructuralChangeGrouper().group(
                         profiles.stream().filter(profile -> !profile.change().isTestCode()).toList())
                 : List.of();
-        // Ticket #363: the same change across test classes folds too, ahead of the per-class test groups.
+        // Ticket #363: the same change across test classes folds too, ahead of the per-class test
+        // groups, but only where the fold takes over a whole test class (ticket #374).
+        TestChangeGrouper testChangeGrouper = new TestChangeGrouper();
         List<RepeatedStructuralChange> repeatedTest = groupTestChanges
-                ? new RepeatedStructuralChangeGrouper().group(
-                        profiles.stream().filter(profile -> profile.change().isTestCode()).toList())
+                ? testChangeGrouper.shortening(profiles, new RepeatedStructuralChangeGrouper().group(
+                        profiles.stream().filter(profile -> profile.change().isTestCode()).toList()))
                 : List.of();
         List<TestChangeGroup> testGroups = groupTestChanges
-                ? new TestChangeGrouper().group(profiles, repeatedTest)
+                ? testChangeGrouper.group(profiles, repeatedTest)
                 : List.of();
         Set<SemanticClassification> groupedAway = Stream.of(
                         splitGroups.stream().flatMap(group -> group.mergedClassifications().stream()),
