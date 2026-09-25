@@ -44,7 +44,7 @@ public final class ResponsibilityTaxonomyClassifier {
                  CHANGE_FIELD_ANNOTATIONS, CHANGE_FIELD_TYPE, CHANGE_PARAMETER_ANNOTATIONS,
                  CHANGE_METHOD_ANNOTATIONS, MODIFY_METHOD_BODY -> Optional.empty();
             // Only a visibility change alters the contract (ticket #313); see conceptIdFor(Change).
-            case CHANGE_MODIFIERS, CHANGE_FIELD_VALUE, CHANGE_SUPERTYPE -> Optional.empty();
+            case CHANGE_MODIFIERS, CHANGE_FIELD_VALUE, CHANGE_SUPERTYPE, REORDER_MEMBERS -> Optional.empty();
             // A build dependency is not a responsibility of the code (ticket #340).
             case ADD_DEPENDENCY, REMOVE_DEPENDENCY, CHANGE_DEPENDENCY -> Optional.empty();
         };

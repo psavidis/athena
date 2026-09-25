@@ -53,5 +53,8 @@ public enum TransformationKind {
     CHANGE_DEPENDENCY,
     // A type's superclass or interfaces changed (ticket #358). Involved: the type, then the delta
     // in simple names, e.g. "LinkedHashMap -> ConcurrentHashMap, +Closeable, -Serializable".
-    CHANGE_SUPERTYPE
+    CHANGE_SUPERTYPE,
+    // Members of a type moved to other positions in it, each unchanged (ticket #387). Involved: the
+    // type, then the move, e.g. "mul moved before add" or "3 members moved".
+    REORDER_MEMBERS
 }

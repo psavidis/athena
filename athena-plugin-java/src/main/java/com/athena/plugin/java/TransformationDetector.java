@@ -326,6 +326,14 @@ public final class TransformationDetector {
                 excluding(baseParsed.annotationElements(), AnnotationElementInfo::enclosingType, classMatch.excludedBaseTypes()),
                 excluding(headParsed.annotationElements(), AnnotationElementInfo::enclosingType, classMatch.excludedHeadTypes())));
 
+        // 10b. Members moved to other positions in the same type, each unchanged (ticket #387).
+        for (Map.Entry<String, ParsedFile> base : baseFiles.entrySet()) {
+            ParsedFile head = headFiles.get(base.getKey());
+            if (head != null && !unparseable.contains(base.getKey())) {
+                results.addAll(MemberOrder.reorders(base.getKey(), base.getValue().unit(), head.unit()));
+            }
+        }
+
         // 11. Pull-ups (ticket #290): a member several existing classes lost to a new common
         // base class that gained it. Runs last, since it replaces the move/remove/add rows the
         // steps above already reported for those same members.
