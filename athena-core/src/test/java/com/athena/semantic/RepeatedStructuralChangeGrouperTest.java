@@ -100,6 +100,13 @@ class RepeatedStructuralChangeGrouperTest {
         assertThat(groups).singleElement().satisfies(group -> assertThat(group.mergedClassifications()).doesNotContain(lifecycle));
     }
 
+    @Test
+    void doesNotFoldTheSameChangeInNestedClassesOfOneTestClass() {
+        assertThat(grouper.group(List.of(
+                testProfile("SpyAnnotationTest.WithSpy#dependency", "SpyAnnotationTest"),
+                testProfile("SpyAnnotationTest.WithMock#dependency", "SpyAnnotationTest")))).isEmpty();
+    }
+
     private static SemanticClassification lifecycleOf(SemanticProfile profile) {
         TaxonomyConcept junit = TaxonomyConcept.of("junit-lifecycle", SemanticDimension.FRAMEWORK,
                 "JUnit: Lifecycle/Extensions", "JUnit lifecycle annotations.", Optional.empty());
@@ -107,7 +114,11 @@ class RepeatedStructuralChangeGrouperTest {
     }
 
     private SemanticProfile testProfile(String symbol) {
-        String file = "core/src/test/java/" + symbol.split("#")[0] + ".java";
+        return testProfile(symbol, symbol.split("#")[0]);
+    }
+
+    private SemanticProfile testProfile(String symbol, String fileName) {
+        String file = "core/src/test/java/" + fileName + ".java";
         Change change = new ChangeGrouper().group(List.of(DetectedTransformation.of(
                 TransformationKind.REMOVE_SYMBOL, List.of(symbol), List.of(file)))).get(0);
         SemanticProfile profile = SemanticProfile.empty(change);
