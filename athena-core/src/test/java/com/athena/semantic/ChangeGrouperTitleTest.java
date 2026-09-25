@@ -80,6 +80,14 @@ class ChangeGrouperTitleTest {
                 .isEqualTo("Rename class Account -> Wallet (references updated in 2 files)");
     }
 
+    // Ticket #387: members moved within a class.
+
+    @Test
+    void aReorderNamesTheClassAndTheMove() {
+        assertThat(titleOf(TransformationKind.REORDER_MEMBERS, "Calc", "mul moved before add"))
+                .isEqualTo("Reorder members of Calc: mul moved before add");
+    }
+
     // Ticket #386: a local variable or parameter rename names its kind and methods.
 
     @Test
