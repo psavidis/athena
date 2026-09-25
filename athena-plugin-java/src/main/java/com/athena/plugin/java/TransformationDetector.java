@@ -36,6 +36,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
@@ -267,8 +268,8 @@ public final class TransformationDetector {
 
         // 6. Mechanical replacement: a whole-identifier textual substitution applied
         //    identically across every file that referenced the old identifier.
-        List<DetectedTransformation> mechanicalReplacements = detectMechanicalReplacements(baseRoot, headRoot,
-                changedFiles.presentInBoth());
+        List<DetectedTransformation> mechanicalReplacements = withLocalRenameScopes(
+                detectMechanicalReplacements(baseRoot, headRoot, changedFiles.presentInBoth()), baseFiles);
         results.addAll(mechanicalReplacements);
 
         // 6b. Body modifications (ticket #264): every same-signature method or constructor whose
@@ -330,6 +331,29 @@ public final class TransformationDetector {
         // steps above already reported for those same members.
         return withRenameReferences(
                 withImportFollowOns(baseFiles, headFiles, unparseable, withPullUps(baseParsed, headParsed, results)));
+    }
+
+    /**
+     * Each replacement of a local variable's or parameter's name, recorded with that kind and the
+     * methods declaring it (ticket #386), read from the base revision of the files it touched.
+     */
+    private static List<DetectedTransformation> withLocalRenameScopes(List<DetectedTransformation> replacements,
+                                                                     Map<String, ParsedFile> baseFiles) {
+        List<DetectedTransformation> scoped = new ArrayList<>();
+        for (DetectedTransformation replacement : replacements) {
+            String description = replacement.involvedDescriptions().get(0);
+            String oldName = description.substring(0, description.indexOf(" -> "));
+            List<CompilationUnit> units = replacement.filesTouched().stream().distinct()
+                    .map(baseFiles::get)
+                    .filter(Objects::nonNull)
+                    .map(ParsedFile::unit)
+                    .toList();
+            scoped.add(units.isEmpty() ? replacement : LocalRenameScope.of(oldName, units)
+                    .map(scope -> replacement.withContext(DetectedTransformation.RENAME_SCOPE_KIND, scope.kind())
+                            .withContext(DetectedTransformation.RENAME_SCOPE, String.join(", ", scope.methods())))
+                    .orElse(replacement));
+        }
+        return scoped;
     }
 
     private static final Set<TransformationKind> RENAME_KINDS =

@@ -28,6 +28,13 @@ public final class DetectedTransformation {
     /** Context key: how many other files a field or method rename updated references in (ticket #384). */
     public static final String REFERENCE_FOLLOW_ONS = "referenceFollowOns";
 
+    /**
+     * Context keys: for a mechanical replacement of a local variable's or parameter's name (ticket
+     * #386), that kind ("local variable" or "parameter") and the methods declaring it ("A#m, A#n").
+     */
+    public static final String RENAME_SCOPE_KIND = "renameScopeKind";
+    public static final String RENAME_SCOPE = "renameScope";
+
     /** Context keys: the packages a moved class left and entered (ticket #335). */
     public static final String FROM_PACKAGE = "fromPackage";
     public static final String TO_PACKAGE = "toPackage";

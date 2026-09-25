@@ -71,7 +71,7 @@ public final class ChangeGrouper {
     private String title(GroupKey key, DetectedTransformation representative) {
         return switch (key.kind) {
             case RENAME_SYMBOL -> "Rename " + arrowJoin(key.involvedDescriptions) + referenceFollowOns(representative);
-            case MECHANICAL_REPLACEMENT -> "Rename " + String.join(" -> ", key.involvedDescriptions);
+            case MECHANICAL_REPLACEMENT -> scopedRename(String.join(" -> ", key.involvedDescriptions), representative);
             case MOVE_SYMBOL -> "Move " + arrowJoin(key.involvedDescriptions);
             case EXTRACT_METHOD -> "Extract " + key.involvedDescriptions.get(key.involvedDescriptions.size() - 1);
             case ADD_SYMBOL -> "Add " + key.involvedDescriptions.get(0);
@@ -176,6 +176,25 @@ public final class ChangeGrouper {
             return "";
         }
         return " (imports updated in " + count + ("1".equals(count) ? " file)" : " files)");
+    }
+
+    private static final int MAX_SCOPE_METHODS = 3;
+
+    /**
+     * "Rename local variable a -> b in A#m" or "Rename parameter a -> b in A#m, A#n" when the
+     * replacement renamed a local variable or parameter (ticket #386), listing at most
+     * {@value #MAX_SCOPE_METHODS} methods; plain "Rename a -> b" otherwise.
+     */
+    private static String scopedRename(String names, DetectedTransformation representative) {
+        String kind = representative.context().get(DetectedTransformation.RENAME_SCOPE_KIND);
+        if (kind == null) {
+            return "Rename " + names;
+        }
+        List<String> methods = List.of(representative.context().get(DetectedTransformation.RENAME_SCOPE).split(", "));
+        String scope = methods.size() <= MAX_SCOPE_METHODS
+                ? String.join(", ", methods)
+                : String.join(", ", methods.subList(0, MAX_SCOPE_METHODS)) + " …and " + (methods.size() - MAX_SCOPE_METHODS) + " more";
+        return "Rename " + kind + " " + names + " in " + scope;
     }
 
     /** " (references updated in N files)" for a rename whose references changed in other files (ticket #384). */

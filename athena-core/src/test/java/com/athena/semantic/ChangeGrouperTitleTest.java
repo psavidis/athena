@@ -68,6 +68,28 @@ class ChangeGrouperTitleTest {
                 .isEqualTo("Rename field Account#balance -> funds (references updated in 1 file)");
     }
 
+    // Ticket #386: a local variable or parameter rename names its kind and methods.
+
+    @Test
+    void aLocalVariableRenameNamesItsMethod() {
+        assertThat(scopedRenameTitle("local variable", "Account#deposit"))
+                .isEqualTo("Rename local variable updated -> newFunds in Account#deposit");
+    }
+
+    @Test
+    void aParameterRenameInManyMethodsListsThreeThenCounts() {
+        assertThat(scopedRenameTitle("parameter", "A#a, A#b, A#c, A#d, A#e"))
+                .isEqualTo("Rename parameter updated -> newFunds in A#a, A#b, A#c …and 2 more");
+    }
+
+    private static String scopedRenameTitle(String kind, String scope) {
+        DetectedTransformation rename = DetectedTransformation.of(TransformationKind.MECHANICAL_REPLACEMENT,
+                        List.of("updated -> newFunds"), List.of("Account.java"))
+                .withContext(DetectedTransformation.RENAME_SCOPE_KIND, kind)
+                .withContext(DetectedTransformation.RENAME_SCOPE, scope);
+        return new ChangeGrouper().group(List.of(rename)).get(0).title();
+    }
+
     private static String titleOf(TransformationKind kind, String... involved) {
         DetectedTransformation change = DetectedTransformation.of(kind, List.of(involved), List.of("Registry.java"));
         return new ChangeGrouper().group(List.of(change)).get(0).title();

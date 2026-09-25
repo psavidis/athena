@@ -21,3 +21,20 @@ Feature: Athena recognizes simple refactorings end to end
     And the reviewer opens the Change Map of the two commits
     Then the Change Map lists exactly "Rename Account#getBalance -> currentFunds (references updated in 2 files)"
     And the Explorer shows no "Mechanical Replacement" entry
+
+  # Ticket #386: a local variable or parameter rename names its kind and scope.
+
+  Scenario: A local variable rename names the variable's method
+    When the developer renames "updated" to "newFunds" in "Account"
+    And the reviewer opens the Change Map of the two commits
+    Then the Change Map lists exactly "Rename local variable updated -> newFunds in Account#deposit"
+
+  Scenario: A parameter rename names every method it's a parameter of
+    When the developer renames "amount" to "value" in "Account"
+    And the reviewer opens the Change Map of the two commits
+    Then the Change Map lists exactly "Rename parameter amount -> value in Account#deposit, Account#canWithdraw"
+
+  Scenario: An identifier that is neither a local variable nor a parameter keeps the plain rename title
+    When the developer renames "balance" to "funds" in "Audit"
+    And the reviewer opens the Change Map of the two commits
+    Then the Change Map lists exactly "Rename balance -> funds"
