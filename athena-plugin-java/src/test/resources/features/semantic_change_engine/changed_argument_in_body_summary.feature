@@ -38,3 +38,24 @@ Feature: A body summary names a changed argument
     And a head revision where "log" on "Audit" has the body "long count = record(user);"
     When the semantic engine detects transformations between the revisions
     Then the body modification of "Audit#log" is described as "Modify body of Audit#log: other statements changed"
+
+  # Ticket #375: an argument change that is only a changed receiver, already shown as a call
+  # removed and added, isn't listed again.
+
+  Scenario: An argument whose only change is a call's receiver is not listed again
+    Given a base revision where method "setup" on class "PetControllerTests" has the body "given(owners.findPetTypes()).willReturn(petTypes);"
+    And a head revision where "setup" on "PetControllerTests" has the body "given(types.findPetTypes()).willReturn(petTypes); size = 1;"
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "PetControllerTests#setup" is described as "Modify body of PetControllerTests#setup: +types.findPetTypes, -owners.findPetTypes"
+
+  Scenario: An argument that changes beyond the receiver is still listed
+    Given a base revision where method "setup" on class "PetControllerTests" has the body "given(owners.find(1)).willReturn(petTypes);"
+    And a head revision where "setup" on "PetControllerTests" has the body "given(types.find(2)).willReturn(petTypes);"
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "PetControllerTests#setup" is described as "Modify body of PetControllerTests#setup: +types.find, -owners.find, types.find(…): 1 -> 2"
+
+  Scenario: A changed plain argument is still listed
+    Given a base revision where method "setup" on class "PetControllerTests" has the body "given(owners).willReturn(petTypes);"
+    And a head revision where "setup" on "PetControllerTests" has the body "given(types).willReturn(petTypes); size = 1;"
+    When the semantic engine detects transformations between the revisions
+    Then the body modification of "PetControllerTests#setup" is described as "Modify body of PetControllerTests#setup: given(…): owners -> types"
