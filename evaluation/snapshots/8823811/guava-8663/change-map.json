@@ -1,0 +1,57 @@
+{
+  "prTitle" : "Avoid recursion when MultiReader advances past empty readers.",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNdWx0aVJlYWRlciNyZWFkCmJyYW5jaCByZW1vdmVkLCBsb29wIGFkZGVk",
+    "description" : "Change control flow of MultiReader#read: branch removed, loop added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApNdWx0aVJlYWRlclRlc3QjdGVzdFJlYWRfbm9TdGFja092ZXJmbG93X21hbnlFbXB0eVNvdXJjZXM",
+    "description" : "Add MultiReaderTest#testRead_noStackOverflow_manyEmptySources",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "MultiReader",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNdWx0aVJlYWRlciNyZWFkCmJyYW5jaCByZW1vdmVkLCBsb29wIGFkZGVk",
+      "description" : "Change control flow of MultiReader#read: branch removed, loop added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "MultiReaderTest",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApNdWx0aVJlYWRlclRlc3QjdGVzdFJlYWRfbm9TdGFja092ZXJmbG93X21hbnlFbXB0eVNvdXJjZXM",
+      "description" : "Add MultiReaderTest#testRead_noStackOverflow_manyEmptySources",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

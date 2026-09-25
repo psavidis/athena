@@ -1,0 +1,13 @@
+[ {
+  "description" : "Move OwnerRepository#findPetTypes -> PetTypeRepository#findPetTypes",
+  "entity" : "OwnerRepository"
+}, {
+  "description" : "Add constructor parameter PetController#types",
+  "entity" : "PetController"
+}, {
+  "description" : "Add constructor parameter PetTypeFormatter#types",
+  "entity" : "PetTypeFormatter"
+}, {
+  "description" : "Add class PetTypeRepository",
+  "entity" : "PetTypeRepository"
+} ]

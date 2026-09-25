@@ -1,0 +1,14 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " public final Future<Void> shutdown(Duration timeout) {\n     if (timeout.isNegative()) {\n       throw new IllegalArgumentException();\n     }\n     Action<T> action;\n     Cleaner.Cleanable cleanable;\n     synchronized (this) {\n       action = this.action;\n       cleanable = this.cleanable;\n       this.action = null;\n       this.cleanable = null;\n     }\n     if (action != null) {\n       assert cleanable != null;\n       action.timeout = timeout;\n       cleanable.clean();\n-      return action.closeFuture;\n+      Future<Void> closeFuture = action.closeFuture;\n+      return closeFuture != null ? closeFuture : Future.succeededFuture();\n     } else {\n       return Future.succeededFuture();\n     }\n   }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "vertx-core/src/main/java/io/vertx/core/impl/CleanableObject.java" ],
+    "groupedMoveCount" : 0
+  } ]
+}

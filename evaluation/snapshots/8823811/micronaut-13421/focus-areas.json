@@ -1,0 +1,13 @@
+[ {
+  "entity" : "NettyHttpClient",
+  "description" : "Change control flow of NettyHttpClient#buildStreamExchange: branch added"
+}, {
+  "entity" : "NettyHttpClient",
+  "description" : "Change control flow of NettyHttpClient#readBodyOnError: condition changed"
+}, {
+  "entity" : "NettyHttpClient",
+  "description" : "Add NettyHttpClient#shouldBufferErrorBody"
+}, {
+  "entity" : "NettyHttpClient",
+  "description" : "Modify body of NettyHttpClient#handleStreamHttpError: other statements changed"
+} ]

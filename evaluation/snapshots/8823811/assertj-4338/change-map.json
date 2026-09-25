@@ -1,0 +1,1009 @@
+{
+  "prTitle" : "Refactor global configuration reset handling",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 42,
+    "UNKNOWN" : 4,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "UkVNT1ZFX0NMQVNTCk11dGF0ZXNHbG9iYWxDb25maWd1cmF0aW9u",
+    "description" : "Remove class MutatesGlobalConfiguration",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "UkVNT1ZFX0NMQVNTCk11dGF0ZXNHbG9iYWxDb25maWd1cmF0aW9uLkFzc3VtcHRpb25NdXRhdGluZ0V4dGVuc2lvbg",
+    "description" : "Remove class MutatesGlobalConfiguration.AssumptionMutatingExtension",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX0NMQVNTClJlc2V0R2xvYmFsQ29uZmlndXJhdGlvbkV4dGVuc2lvbg",
+    "description" : "Add class ResetGlobalConfigurationExtension",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX01PRElGSUVSUwpEYXRlQXNzZXJ0QmFzZVRlc3Qjc2V0VXAKcHVibGljIC0-IHByb3RlY3RlZA",
+    "description" : "Change modifiers of DateAssertBaseTest#setUp: public -> protected",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_MODIFIERS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "Q0hBTkdFX01PRElGSUVSUwpEYXRlQXNzZXJ0QmFzZVRlc3QjdGVhckRvd24KcHVibGljIC0-IHBhY2thZ2UtcHJpdmF0ZQ",
+    "description" : "Change modifiers of DateAssertBaseTest#tearDown: public -> package-private",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_MODIFIERS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "UkVOQU1FX1NZTUJPTApCYXNlQXNzZXJ0aW9uc1Rlc3QjPGluc3RhbmNlLWluaXQ-CkJhc2VBc3NlcnRpb25zVGVzdCNzZXRVcFN0YWNrVHJhY2VGaWx0ZXJpbmc",
+    "description" : "Rename BaseAssertionsTest#<instance-init> -> setUpStackTraceFiltering",
+    "category" : "STRUCTURAL",
+    "kind" : "RENAME_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19yZWdpc3RlckRhdGVGb3JtYXRfVGVzdCNhZnRlckVhY2hUZXN0",
+    "description" : "Remove EntryPointAssertions_registerDateFormat_Test#afterEachTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRBbGxvd0NvbXBhcmluZ1ByaXZhdGVGaWVsZHNfVGVzdCNhZnRlckVhY2hUZXN0",
+    "description" : "Remove EntryPointAssertions_setAllowComparingPrivateFields_Test#afterEachTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRBbGxvd0V4dHJhY3RpbmdQcml2YXRlRmllbGRzX1Rlc3QjYWZ0ZXJFYWNoVGVzdA",
+    "description" : "Remove EntryPointAssertions_setAllowExtractingPrivateFields_Test#afterEachTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRFeHRyYWN0QmFyZU5hbWVQcm9wZXJ0eU1ldGhvZHNfVGVzdCNhZnRlckVhY2hUZXN0",
+    "description" : "Remove EntryPointAssertions_setExtractBareNamePropertyMethods_Test#afterEachTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRNYXhFbGVtZW50c0ZvclByaW50aW5nX1Rlc3QjYWZ0ZXJFYWNoVGVzdA",
+    "description" : "Remove EntryPointAssertions_setMaxElementsForPrinting_Test#afterEachTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRNYXhMZW5ndGhGb3JTaW5nbGVMaW5lRGVzY3JpcHRpb25fVGVzdCNhZnRlckVhY2hUZXN0",
+    "description" : "Remove EntryPointAssertions_setMaxLengthForSingleLineDescription_Test#afterEachTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 12,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRNYXhTdGFja1RyYWNlRWxlbWVudHNEaXNwbGF5ZWRfVGVzdCNhZnRlckVhY2hUZXN0",
+    "description" : "Remove EntryPointAssertions_setMaxStackTraceElementsDisplayed_Test#afterEachTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 13,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRQcmludEFzc2VydGlvbnNEZXNjcmlwdGlvbl9UZXN0I2FmdGVyRWFjaFRlc3Q",
+    "description" : "Remove EntryPointAssertions_setPrintAssertionsDescription_Test#afterEachTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRSZW1vdmVBc3NlcnRKUmVsYXRlZEVsZW1lbnRzRnJvbVN0YWNrVHJhY2VfVGVzdCNhZnRlckVhY2hUZXN0",
+    "description" : "Remove EntryPointAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test#afterEachTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc191c2VEZWZhdWx0UmVwcmVzZW50YXRpb25fVGVzdCNhZnRlckVhY2hUZXN0",
+    "description" : "Remove EntryPointAssertions_useDefaultRepresentation_Test#afterEachTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc191c2VSZXByZXNlbnRhdGlvbl9UZXN0I2FmdGVyRWFjaFRlc3Q",
+    "description" : "Remove EntryPointAssertions_useRepresentation_Test#afterEachTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50X0Fzc3VtcHRpb25zX3NldFByZWZlcnJlZEFzc3VtcHRpb25FeGNlcHRpb25fVGVzdCNhZnRlckVhY2hUZXN0",
+    "description" : "Remove EntryPoint_Assumptions_setPreferredAssumptionException_Test#afterEachTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 18,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApEYXRlQXNzZXJ0X2lzRXF1YWxUb193aXRoX3N0cmluZ19iYXNlZF9kYXRlX3JlcHJlc2VudGF0aW9uX1Rlc3QjdGVhckRvd24",
+    "description" : "Remove DateAssert_isEqualTo_with_string_based_date_representation_Test#tearDown",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 19,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApNdXRhdGVzR2xvYmFsQ29uZmlndXJhdGlvbi5Bc3N1bXB0aW9uTXV0YXRpbmdFeHRlbnNpb24jYWZ0ZXJFYWNo",
+    "description" : "Remove MutatesGlobalConfiguration.AssumptionMutatingExtension#afterEach",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 20,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApNdXRhdGVzR2xvYmFsQ29uZmlndXJhdGlvbi5Bc3N1bXB0aW9uTXV0YXRpbmdFeHRlbnNpb24jYWZ0ZXJBbGw",
+    "description" : "Remove MutatesGlobalConfiguration.AssumptionMutatingExtension#afterAll",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 21,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApNdXRhdGVzR2xvYmFsQ29uZmlndXJhdGlvbi5Bc3N1bXB0aW9uTXV0YXRpbmdFeHRlbnNpb24jcmVzZXRBbGw",
+    "description" : "Remove MutatesGlobalConfiguration.AssumptionMutatingExtension#resetAll",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 22,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApBc3NlcnRpb25zX3VzZVJlcHJlc2VudGF0aW9uX1Rlc3QjYWZ0ZXJUZXN0",
+    "description" : "Remove Assertions_useRepresentation_Test#afterTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 23,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApDb25maWd1cmF0aW9uX2FwcGx5X1Rlc3QjYWZ0ZXJFYWNo",
+    "description" : "Remove Configuration_apply_Test#afterEach",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 24,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApDb25maWd1cmF0aW9uX2Rlc2NyaWJlX1Rlc3QjYWZ0ZXJFYWNo",
+    "description" : "Remove Configuration_describe_Test#afterEach",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 25,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApBc3NlcnRpb25NYXRjaGVyX21hdGNoZXNfVGVzdCN0ZWFyRG93bg",
+    "description" : "Remove AssertionMatcher_matches_Test#tearDown",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 26,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApTdGFuZGFyZFJlcHJlc2VudGF0aW9uX3Rocm93YWJsZV9mb3JtYXRfVGVzdCNiZWZvcmVUZXN0",
+    "description" : "Remove StandardRepresentation_throwable_format_Test#beforeTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 27,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApTdGFuZGFyZFJlcHJlc2VudGF0aW9uX3Rocm93YWJsZV9mb3JtYXRfVGVzdCNhZnRlclRlc3Q",
+    "description" : "Remove StandardRepresentation_throwable_format_Test#afterTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 28,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApNdXRhdGVzR2xvYmFsQ29uZmlndXJhdGlvbi5Bc3N1bXB0aW9uTXV0YXRpbmdFeHRlbnNpb24jYmVmb3JlRWFjaA",
+    "description" : "Remove MutatesGlobalConfiguration.AssumptionMutatingExtension#beforeEach",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 29,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZW1vdmVfYXNzZXJ0Sl9zdGFja3RyYWNlX2VsZW1lbnRzX1Rlc3QjYWZ0ZXJUZXN0",
+    "description" : "Remove Remove_assertJ_stacktrace_elements_Test#afterTest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 30,
+    "changeKey" : "QUREX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc0Jhc2VUZXN0I2FmdGVyRWFjaA",
+    "description" : "Add EntryPointAssertionsBaseTest#afterEach",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 31,
+    "changeKey" : "QUREX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc0Jhc2VUZXN0I3Jlc2V0R2xvYmFsQ29uZmlndXJhdGlvbg",
+    "description" : "Add EntryPointAssertionsBaseTest#resetGlobalConfiguration",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 32,
+    "changeKey" : "QUREX1NZTUJPTApFbnRyeVBvaW50X0Fzc3VtcHRpb25zX3NldFByZWZlcnJlZEFzc3VtcHRpb25FeGNlcHRpb25fVGVzdCNhZnRlckVhY2g",
+    "description" : "Add EntryPoint_Assumptions_setPreferredAssumptionException_Test#afterEach",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 33,
+    "changeKey" : "QUREX1NZTUJPTApEYXRlQXNzZXJ0X2lzRXF1YWxUb193aXRoX3N0cmluZ19iYXNlZF9kYXRlX3JlcHJlc2VudGF0aW9uX1Rlc3QjcmVzdG9yZV9kZWZhdWx0X3RpbWVfem9uZQ",
+    "description" : "Add DateAssert_isEqualTo_with_string_based_date_representation_Test#restore_default_time_zone",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 34,
+    "changeKey" : "QUREX1NZTUJPTApSZXNldEdsb2JhbENvbmZpZ3VyYXRpb25FeHRlbnNpb24jYWZ0ZXJFYWNo",
+    "description" : "Add ResetGlobalConfigurationExtension#afterEach",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 35,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb25maWd1cmF0aW9uLCArY29uZmlndXJhdGlvbi5zZXREZWZhdWx0cywgK2NvbmZpZ3VyYXRpb24uYXBwbHksIC11c2VEZWZhdWx0RGF0ZUZvcm1hdHNPbmx5CkRhdGVBc3NlcnRCYXNlVGVzdCN0ZWFyRG93bg",
+    "description" : "Modify body of DateAssertBaseTest#tearDown: +configuration, +configuration.setDefaults, +configuration.apply, -useDefaultDateFormatsOnly",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 36,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnN0YW5jZSwgK2lzUmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlLCArc2V0UmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlCldpdGhBc3NlcnRpb25zX2RlbGVnYXRpb25fVGVzdCN3aXRoQXNzZXJ0aW9uc19zZXRSZW1vdmVBc3NlcnRKUmVsYXRlZEVsZW1lbnRzRnJvbVN0YWNrVHJhY2VfVGVzdA",
+    "description" : "Modify body of WithAssertions_delegation_Test#withAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test: +instance, +isRemoveAssertJRelatedElementsFromStackTrace, +setRemoveAssertJRelatedElementsFromStackTrace",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 37,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1pbnN0YW5jZSwgLWlzUmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlCkFzc2VydGlvbk1hdGNoZXJfbWF0Y2hlc19UZXN0I3NldFVw",
+    "description" : "Modify body of AssertionMatcher_matches_Test#setUp: -instance, -isRemoveAssertJRelatedElementsFromStackTrace",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 38,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1pbnN0YW5jZSwgLWlzUmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlClJlbW92ZV9hc3NlcnRKX3N0YWNrdHJhY2VfZWxlbWVudHNfVGVzdCNiZWZvcmVUZXN0",
+    "description" : "Modify body of Remove_assertJ_stacktrace_elements_Test#beforeTest: -instance, -isRemoveAssertJRelatedElementsFromStackTrace",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 39,
+    "changeKey" : "Q0hBTkdFX01PRElGSUVSUwpFbnRyeVBvaW50X0Fzc3VtcHRpb25zX3NldFByZWZlcnJlZEFzc3VtcHRpb25FeGNlcHRpb25fVGVzdCN3aXRoQXNzdW1wdGlvbnMKcHJvdGVjdGVkIC0-IHByaXZhdGU",
+    "description" : "Change modifiers of EntryPoint_Assumptions_setPreferredAssumptionException_Test#withAssumptions: protected -> private",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_MODIFIERS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 40,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkVudHJ5UG9pbnRBc3NlcnRpb25zX3VzZURlZmF1bHRSZXByZXNlbnRhdGlvbl9UZXN0I0RFRkFVTFRfQ1VTVE9NX1JFUFJFU0VOVEFUSU9O",
+    "description" : "Remove field EntryPointAssertions_useDefaultRepresentation_Test#DEFAULT_CUSTOM_REPRESENTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 41,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkVudHJ5UG9pbnRBc3NlcnRpb25zX3VzZVJlcHJlc2VudGF0aW9uX1Rlc3QjREVGQVVMVF9DVVNUT01fUkVQUkVTRU5UQVRJT04",
+    "description" : "Remove field EntryPointAssertions_useRepresentation_Test#DEFAULT_CUSTOM_REPRESENTATION",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 42,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkVudHJ5UG9pbnRfQXNzdW1wdGlvbnNfc2V0UHJlZmVycmVkQXNzdW1wdGlvbkV4Y2VwdGlvbl9UZXN0I0RFRkFVTFRfUFJFRkVSUkVEX0FTU1VNUFRJT05fRVhDRVBUSU9O",
+    "description" : "Remove field EntryPoint_Assumptions_setPreferredAssumptionException_Test#DEFAULT_PREFERRED_ASSUMPTION_EXCEPTION",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 43,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECkFzc2VydGlvbk1hdGNoZXJfbWF0Y2hlc19UZXN0I3JlbW92ZUFzc2VydEpSZWxhdGVkRWxlbWVudHNGcm9tU3RhY2tUcmFjZQ",
+    "description" : "Remove field AssertionMatcher_matches_Test#removeAssertJRelatedElementsFromStackTrace",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 44,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClN0YW5kYXJkUmVwcmVzZW50YXRpb25fdGhyb3dhYmxlX2Zvcm1hdF9UZXN0I2luaXRpYWxNYXhTdGFja1RyYWNlRWxlbWVudHNEaXNwbGF5ZWRWYWx1ZQ",
+    "description" : "Remove field StandardRepresentation_throwable_format_Test#initialMaxStackTraceElementsDisplayedValue",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 45,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClJlbW92ZV9hc3NlcnRKX3N0YWNrdHJhY2VfZWxlbWVudHNfVGVzdCNpbml0aWFsUmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlVmFsdWU",
+    "description" : "Remove field Remove_assertJ_stacktrace_elements_Test#initialRemoveAssertJRelatedElementsFromStackTraceValue",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "MutatesGlobalConfiguration",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "UkVNT1ZFX0NMQVNTCk11dGF0ZXNHbG9iYWxDb25maWd1cmF0aW9u",
+      "description" : "Remove class MutatesGlobalConfiguration",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "MutatesGlobalConfiguration.AssumptionMutatingExtension",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "UkVNT1ZFX0NMQVNTCk11dGF0ZXNHbG9iYWxDb25maWd1cmF0aW9uLkFzc3VtcHRpb25NdXRhdGluZ0V4dGVuc2lvbg",
+      "description" : "Remove class MutatesGlobalConfiguration.AssumptionMutatingExtension",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 19,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApNdXRhdGVzR2xvYmFsQ29uZmlndXJhdGlvbi5Bc3N1bXB0aW9uTXV0YXRpbmdFeHRlbnNpb24jYWZ0ZXJFYWNo",
+      "description" : "Remove MutatesGlobalConfiguration.AssumptionMutatingExtension#afterEach",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 20,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApNdXRhdGVzR2xvYmFsQ29uZmlndXJhdGlvbi5Bc3N1bXB0aW9uTXV0YXRpbmdFeHRlbnNpb24jYWZ0ZXJBbGw",
+      "description" : "Remove MutatesGlobalConfiguration.AssumptionMutatingExtension#afterAll",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 21,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApNdXRhdGVzR2xvYmFsQ29uZmlndXJhdGlvbi5Bc3N1bXB0aW9uTXV0YXRpbmdFeHRlbnNpb24jcmVzZXRBbGw",
+      "description" : "Remove MutatesGlobalConfiguration.AssumptionMutatingExtension#resetAll",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 28,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApNdXRhdGVzR2xvYmFsQ29uZmlndXJhdGlvbi5Bc3N1bXB0aW9uTXV0YXRpbmdFeHRlbnNpb24jYmVmb3JlRWFjaA",
+      "description" : "Remove MutatesGlobalConfiguration.AssumptionMutatingExtension#beforeEach",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ResetGlobalConfigurationExtension",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX0NMQVNTClJlc2V0R2xvYmFsQ29uZmlndXJhdGlvbkV4dGVuc2lvbg",
+      "description" : "Add class ResetGlobalConfigurationExtension",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 34,
+      "changeKey" : "QUREX1NZTUJPTApSZXNldEdsb2JhbENvbmZpZ3VyYXRpb25FeHRlbnNpb24jYWZ0ZXJFYWNo",
+      "description" : "Add ResetGlobalConfigurationExtension#afterEach",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "DateAssertBaseTest",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX01PRElGSUVSUwpEYXRlQXNzZXJ0QmFzZVRlc3Qjc2V0VXAKcHVibGljIC0-IHByb3RlY3RlZA",
+      "description" : "Change modifiers of DateAssertBaseTest#setUp: public -> protected",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_MODIFIERS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "Q0hBTkdFX01PRElGSUVSUwpEYXRlQXNzZXJ0QmFzZVRlc3QjdGVhckRvd24KcHVibGljIC0-IHBhY2thZ2UtcHJpdmF0ZQ",
+      "description" : "Change modifiers of DateAssertBaseTest#tearDown: public -> package-private",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_MODIFIERS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 35,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb25maWd1cmF0aW9uLCArY29uZmlndXJhdGlvbi5zZXREZWZhdWx0cywgK2NvbmZpZ3VyYXRpb24uYXBwbHksIC11c2VEZWZhdWx0RGF0ZUZvcm1hdHNPbmx5CkRhdGVBc3NlcnRCYXNlVGVzdCN0ZWFyRG93bg",
+      "description" : "Modify body of DateAssertBaseTest#tearDown: +configuration, +configuration.setDefaults, +configuration.apply, -useDefaultDateFormatsOnly",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "BaseAssertionsTest",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "UkVOQU1FX1NZTUJPTApCYXNlQXNzZXJ0aW9uc1Rlc3QjPGluc3RhbmNlLWluaXQ-CkJhc2VBc3NlcnRpb25zVGVzdCNzZXRVcFN0YWNrVHJhY2VGaWx0ZXJpbmc",
+      "description" : "Rename BaseAssertionsTest#<instance-init> -> setUpStackTraceFiltering",
+      "category" : "STRUCTURAL",
+      "kind" : "RENAME_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "EntryPointAssertions_registerDateFormat_Test",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19yZWdpc3RlckRhdGVGb3JtYXRfVGVzdCNhZnRlckVhY2hUZXN0",
+      "description" : "Remove EntryPointAssertions_registerDateFormat_Test#afterEachTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "EntryPointAssertions_setAllowComparingPrivateFields_Test",
+    "entries" : [ {
+      "id" : 7,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRBbGxvd0NvbXBhcmluZ1ByaXZhdGVGaWVsZHNfVGVzdCNhZnRlckVhY2hUZXN0",
+      "description" : "Remove EntryPointAssertions_setAllowComparingPrivateFields_Test#afterEachTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "EntryPointAssertions_setAllowExtractingPrivateFields_Test",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRBbGxvd0V4dHJhY3RpbmdQcml2YXRlRmllbGRzX1Rlc3QjYWZ0ZXJFYWNoVGVzdA",
+      "description" : "Remove EntryPointAssertions_setAllowExtractingPrivateFields_Test#afterEachTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "EntryPointAssertions_setExtractBareNamePropertyMethods_Test",
+    "entries" : [ {
+      "id" : 9,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRFeHRyYWN0QmFyZU5hbWVQcm9wZXJ0eU1ldGhvZHNfVGVzdCNhZnRlckVhY2hUZXN0",
+      "description" : "Remove EntryPointAssertions_setExtractBareNamePropertyMethods_Test#afterEachTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "EntryPointAssertions_setMaxElementsForPrinting_Test",
+    "entries" : [ {
+      "id" : 10,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRNYXhFbGVtZW50c0ZvclByaW50aW5nX1Rlc3QjYWZ0ZXJFYWNoVGVzdA",
+      "description" : "Remove EntryPointAssertions_setMaxElementsForPrinting_Test#afterEachTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "EntryPointAssertions_setMaxLengthForSingleLineDescription_Test",
+    "entries" : [ {
+      "id" : 11,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRNYXhMZW5ndGhGb3JTaW5nbGVMaW5lRGVzY3JpcHRpb25fVGVzdCNhZnRlckVhY2hUZXN0",
+      "description" : "Remove EntryPointAssertions_setMaxLengthForSingleLineDescription_Test#afterEachTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "EntryPointAssertions_setMaxStackTraceElementsDisplayed_Test",
+    "entries" : [ {
+      "id" : 12,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRNYXhTdGFja1RyYWNlRWxlbWVudHNEaXNwbGF5ZWRfVGVzdCNhZnRlckVhY2hUZXN0",
+      "description" : "Remove EntryPointAssertions_setMaxStackTraceElementsDisplayed_Test#afterEachTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "EntryPointAssertions_setPrintAssertionsDescription_Test",
+    "entries" : [ {
+      "id" : 13,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRQcmludEFzc2VydGlvbnNEZXNjcmlwdGlvbl9UZXN0I2FmdGVyRWFjaFRlc3Q",
+      "description" : "Remove EntryPointAssertions_setPrintAssertionsDescription_Test#afterEachTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "EntryPointAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test",
+    "entries" : [ {
+      "id" : 14,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc19zZXRSZW1vdmVBc3NlcnRKUmVsYXRlZEVsZW1lbnRzRnJvbVN0YWNrVHJhY2VfVGVzdCNhZnRlckVhY2hUZXN0",
+      "description" : "Remove EntryPointAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test#afterEachTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "EntryPointAssertions_useDefaultRepresentation_Test",
+    "entries" : [ {
+      "id" : 15,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc191c2VEZWZhdWx0UmVwcmVzZW50YXRpb25fVGVzdCNhZnRlckVhY2hUZXN0",
+      "description" : "Remove EntryPointAssertions_useDefaultRepresentation_Test#afterEachTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 40,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkVudHJ5UG9pbnRBc3NlcnRpb25zX3VzZURlZmF1bHRSZXByZXNlbnRhdGlvbl9UZXN0I0RFRkFVTFRfQ1VTVE9NX1JFUFJFU0VOVEFUSU9O",
+      "description" : "Remove field EntryPointAssertions_useDefaultRepresentation_Test#DEFAULT_CUSTOM_REPRESENTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "EntryPointAssertions_useRepresentation_Test",
+    "entries" : [ {
+      "id" : 16,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc191c2VSZXByZXNlbnRhdGlvbl9UZXN0I2FmdGVyRWFjaFRlc3Q",
+      "description" : "Remove EntryPointAssertions_useRepresentation_Test#afterEachTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 41,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkVudHJ5UG9pbnRBc3NlcnRpb25zX3VzZVJlcHJlc2VudGF0aW9uX1Rlc3QjREVGQVVMVF9DVVNUT01fUkVQUkVTRU5UQVRJT04",
+      "description" : "Remove field EntryPointAssertions_useRepresentation_Test#DEFAULT_CUSTOM_REPRESENTATION",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "EntryPoint_Assumptions_setPreferredAssumptionException_Test",
+    "entries" : [ {
+      "id" : 17,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApFbnRyeVBvaW50X0Fzc3VtcHRpb25zX3NldFByZWZlcnJlZEFzc3VtcHRpb25FeGNlcHRpb25fVGVzdCNhZnRlckVhY2hUZXN0",
+      "description" : "Remove EntryPoint_Assumptions_setPreferredAssumptionException_Test#afterEachTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 32,
+      "changeKey" : "QUREX1NZTUJPTApFbnRyeVBvaW50X0Fzc3VtcHRpb25zX3NldFByZWZlcnJlZEFzc3VtcHRpb25FeGNlcHRpb25fVGVzdCNhZnRlckVhY2g",
+      "description" : "Add EntryPoint_Assumptions_setPreferredAssumptionException_Test#afterEach",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 39,
+      "changeKey" : "Q0hBTkdFX01PRElGSUVSUwpFbnRyeVBvaW50X0Fzc3VtcHRpb25zX3NldFByZWZlcnJlZEFzc3VtcHRpb25FeGNlcHRpb25fVGVzdCN3aXRoQXNzdW1wdGlvbnMKcHJvdGVjdGVkIC0-IHByaXZhdGU",
+      "description" : "Change modifiers of EntryPoint_Assumptions_setPreferredAssumptionException_Test#withAssumptions: protected -> private",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_MODIFIERS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 42,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkVudHJ5UG9pbnRfQXNzdW1wdGlvbnNfc2V0UHJlZmVycmVkQXNzdW1wdGlvbkV4Y2VwdGlvbl9UZXN0I0RFRkFVTFRfUFJFRkVSUkVEX0FTU1VNUFRJT05fRVhDRVBUSU9O",
+      "description" : "Remove field EntryPoint_Assumptions_setPreferredAssumptionException_Test#DEFAULT_PREFERRED_ASSUMPTION_EXCEPTION",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "DateAssert_isEqualTo_with_string_based_date_representation_Test",
+    "entries" : [ {
+      "id" : 18,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApEYXRlQXNzZXJ0X2lzRXF1YWxUb193aXRoX3N0cmluZ19iYXNlZF9kYXRlX3JlcHJlc2VudGF0aW9uX1Rlc3QjdGVhckRvd24",
+      "description" : "Remove DateAssert_isEqualTo_with_string_based_date_representation_Test#tearDown",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 33,
+      "changeKey" : "QUREX1NZTUJPTApEYXRlQXNzZXJ0X2lzRXF1YWxUb193aXRoX3N0cmluZ19iYXNlZF9kYXRlX3JlcHJlc2VudGF0aW9uX1Rlc3QjcmVzdG9yZV9kZWZhdWx0X3RpbWVfem9uZQ",
+      "description" : "Add DateAssert_isEqualTo_with_string_based_date_representation_Test#restore_default_time_zone",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "Assertions_useRepresentation_Test",
+    "entries" : [ {
+      "id" : 22,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApBc3NlcnRpb25zX3VzZVJlcHJlc2VudGF0aW9uX1Rlc3QjYWZ0ZXJUZXN0",
+      "description" : "Remove Assertions_useRepresentation_Test#afterTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "Configuration_apply_Test",
+    "entries" : [ {
+      "id" : 23,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApDb25maWd1cmF0aW9uX2FwcGx5X1Rlc3QjYWZ0ZXJFYWNo",
+      "description" : "Remove Configuration_apply_Test#afterEach",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "Configuration_describe_Test",
+    "entries" : [ {
+      "id" : 24,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApDb25maWd1cmF0aW9uX2Rlc2NyaWJlX1Rlc3QjYWZ0ZXJFYWNo",
+      "description" : "Remove Configuration_describe_Test#afterEach",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "AssertionMatcher_matches_Test",
+    "entries" : [ {
+      "id" : 25,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApBc3NlcnRpb25NYXRjaGVyX21hdGNoZXNfVGVzdCN0ZWFyRG93bg",
+      "description" : "Remove AssertionMatcher_matches_Test#tearDown",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 37,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1pbnN0YW5jZSwgLWlzUmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlCkFzc2VydGlvbk1hdGNoZXJfbWF0Y2hlc19UZXN0I3NldFVw",
+      "description" : "Modify body of AssertionMatcher_matches_Test#setUp: -instance, -isRemoveAssertJRelatedElementsFromStackTrace",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 43,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECkFzc2VydGlvbk1hdGNoZXJfbWF0Y2hlc19UZXN0I3JlbW92ZUFzc2VydEpSZWxhdGVkRWxlbWVudHNGcm9tU3RhY2tUcmFjZQ",
+      "description" : "Remove field AssertionMatcher_matches_Test#removeAssertJRelatedElementsFromStackTrace",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "StandardRepresentation_throwable_format_Test",
+    "entries" : [ {
+      "id" : 26,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApTdGFuZGFyZFJlcHJlc2VudGF0aW9uX3Rocm93YWJsZV9mb3JtYXRfVGVzdCNiZWZvcmVUZXN0",
+      "description" : "Remove StandardRepresentation_throwable_format_Test#beforeTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 27,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApTdGFuZGFyZFJlcHJlc2VudGF0aW9uX3Rocm93YWJsZV9mb3JtYXRfVGVzdCNhZnRlclRlc3Q",
+      "description" : "Remove StandardRepresentation_throwable_format_Test#afterTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 44,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClN0YW5kYXJkUmVwcmVzZW50YXRpb25fdGhyb3dhYmxlX2Zvcm1hdF9UZXN0I2luaXRpYWxNYXhTdGFja1RyYWNlRWxlbWVudHNEaXNwbGF5ZWRWYWx1ZQ",
+      "description" : "Remove field StandardRepresentation_throwable_format_Test#initialMaxStackTraceElementsDisplayedValue",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "Remove_assertJ_stacktrace_elements_Test",
+    "entries" : [ {
+      "id" : 29,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZW1vdmVfYXNzZXJ0Sl9zdGFja3RyYWNlX2VsZW1lbnRzX1Rlc3QjYWZ0ZXJUZXN0",
+      "description" : "Remove Remove_assertJ_stacktrace_elements_Test#afterTest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 38,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1pbnN0YW5jZSwgLWlzUmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlClJlbW92ZV9hc3NlcnRKX3N0YWNrdHJhY2VfZWxlbWVudHNfVGVzdCNiZWZvcmVUZXN0",
+      "description" : "Modify body of Remove_assertJ_stacktrace_elements_Test#beforeTest: -instance, -isRemoveAssertJRelatedElementsFromStackTrace",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 45,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClJlbW92ZV9hc3NlcnRKX3N0YWNrdHJhY2VfZWxlbWVudHNfVGVzdCNpbml0aWFsUmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlVmFsdWU",
+      "description" : "Remove field Remove_assertJ_stacktrace_elements_Test#initialRemoveAssertJRelatedElementsFromStackTraceValue",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "EntryPointAssertionsBaseTest",
+    "entries" : [ {
+      "id" : 30,
+      "changeKey" : "QUREX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc0Jhc2VUZXN0I2FmdGVyRWFjaA",
+      "description" : "Add EntryPointAssertionsBaseTest#afterEach",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 31,
+      "changeKey" : "QUREX1NZTUJPTApFbnRyeVBvaW50QXNzZXJ0aW9uc0Jhc2VUZXN0I3Jlc2V0R2xvYmFsQ29uZmlndXJhdGlvbg",
+      "description" : "Add EntryPointAssertionsBaseTest#resetGlobalConfiguration",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "WithAssertions_delegation_Test",
+    "entries" : [ {
+      "id" : 36,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpbnN0YW5jZSwgK2lzUmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlLCArc2V0UmVtb3ZlQXNzZXJ0SlJlbGF0ZWRFbGVtZW50c0Zyb21TdGFja1RyYWNlCldpdGhBc3NlcnRpb25zX2RlbGVnYXRpb25fVGVzdCN3aXRoQXNzZXJ0aW9uc19zZXRSZW1vdmVBc3NlcnRKUmVsYXRlZEVsZW1lbnRzRnJvbVN0YWNrVHJhY2VfVGVzdA",
+      "description" : "Modify body of WithAssertions_delegation_Test#withAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test: +instance, +isRemoveAssertJRelatedElementsFromStackTrace, +setRemoveAssertJRelatedElementsFromStackTrace",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

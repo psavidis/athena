@@ -1,0 +1,868 @@
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/BaseAssertionsTest.java b/assertj-core/src/test/java/org/assertj/core/api/BaseAssertionsTest.java
+index d30f107a244..663adb0f4cf 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/BaseAssertionsTest.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/BaseAssertionsTest.java
+@@ -27,12 +27,15 @@
+ import java.util.Comparator;
+ import java.util.Set;
+ 
++import org.junit.jupiter.api.BeforeEach;
++
+ /**
+  * @author Filip Hrisafov
+  */
+ public abstract class BaseAssertionsTest {
+ 
+-  {
++  @BeforeEach
++  void setUpStackTraceFiltering() {
+     setRemoveAssertJRelatedElementsFromStackTrace(false);
+   }
+ 
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/DateAssertBaseTest.java b/assertj-core/src/test/java/org/assertj/core/api/DateAssertBaseTest.java
+index 936835cbe39..0466c86f1ba 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/DateAssertBaseTest.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/DateAssertBaseTest.java
+@@ -15,21 +15,21 @@
+  */
+ package org.assertj.core.api;
+ 
++import static org.assertj.core.configuration.ConfigurationProvider.CONFIGURATION_PROVIDER;
+ import static org.mockito.Mockito.mock;
+ 
+ import java.util.Date;
+ 
++import org.assertj.core.configuration.Configuration;
+ import org.assertj.core.internal.Dates;
+ import org.assertj.core.internal.Objects;
+ import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.BeforeEach;
+ 
+ /**
+- * 
+  * Abstract base of all DateAssert tests.
+  * 
+  * @author Joel Costigliola
+- * 
+  */
+ public abstract class DateAssertBaseTest {
+ 
+@@ -38,7 +38,7 @@ public abstract class DateAssertBaseTest {
+   protected Objects objects;
+ 
+   @BeforeEach
+-  public void setUp() {
++  protected void setUp() {
+     dates = mock(Dates.class);
+     objects = mock(Objects.class);
+     assertions = new DateAssert(new Date());
+@@ -46,9 +46,12 @@ public void setUp() {
+     assertions.objects = objects;
+   }
+ 
++  // TODO delete once moved to `assertj-core-tests`
+   @AfterEach
+-  public void tearDown() {
+-    AbstractDateAssert.useDefaultDateFormatsOnly();
++  void tearDown() {
++    Configuration configuration = CONFIGURATION_PROVIDER.configuration();
++    configuration.setDefaults();
++    configuration.apply();
+   }
+ 
+   protected Date parse(String dateAsString) {
+@@ -70,4 +73,5 @@ protected Objects getObjects(DateAssert someAssertions) {
+   protected Dates getDates(DateAssert someAssertions) {
+     return someAssertions.dates;
+   }
++
+ }
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertionsBaseTest.java b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertionsBaseTest.java
+index fdeb29439bf..07a9fa04fcd 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertionsBaseTest.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertionsBaseTest.java
+@@ -18,8 +18,24 @@
+ import static org.mockito.Answers.CALLS_REAL_METHODS;
+ import static org.mockito.Mockito.mock;
+ 
++import org.assertj.core.configuration.Configuration;
++import org.assertj.core.configuration.ConfigurationProvider;
++import org.junit.jupiter.api.AfterEach;
++
+ public class EntryPointAssertionsBaseTest {
+ 
+   protected static final WithAssertions withAssertions = mock(WithAssertions.class, CALLS_REAL_METHODS);
+ 
++  // TODO delete once moved to `assertj-core-tests`
++  @AfterEach
++  void afterEach() {
++    resetGlobalConfiguration();
++  }
++
++  private static void resetGlobalConfiguration() {
++    Configuration configuration = ConfigurationProvider.CONFIGURATION_PROVIDER.configuration();
++    configuration.setDefaults();
++    configuration.apply();
++  }
++
+ }
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_registerDateFormat_Test.java b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_registerDateFormat_Test.java
+index b5fadc6b2be..77065b188c1 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_registerDateFormat_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_registerDateFormat_Test.java
+@@ -22,7 +22,6 @@
+ import java.util.function.Consumer;
+ import java.util.stream.Stream;
+ 
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.params.ParameterizedTest;
+@@ -37,12 +36,6 @@ void beforeEachTest() {
+     AbstractDateAssert.useDefaultDateFormatsOnly();
+   }
+ 
+-  @AfterEach
+-  void afterEachTest() {
+-    // reset to the default value to avoid side effects on the other tests
+-    AbstractDateAssert.useDefaultDateFormatsOnly();
+-  }
+-
+   @ParameterizedTest
+   @MethodSource("registerCustomDateFormatFunctions")
+   void should_register_DateFormat(Consumer<DateFormat> registerCustomDateFormatFunction) {
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setAllowComparingPrivateFields_Test.java b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setAllowComparingPrivateFields_Test.java
+index 07d4251ecca..a0d79ff29c8 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setAllowComparingPrivateFields_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setAllowComparingPrivateFields_Test.java
+@@ -21,7 +21,6 @@
+ import java.util.stream.Stream;
+ 
+ import org.assertj.core.util.introspection.FieldSupport;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.MethodSource;
+@@ -31,12 +30,6 @@ class EntryPointAssertions_setAllowComparingPrivateFields_Test extends EntryPoin
+ 
+   private static final boolean DEFAULT_ALLOW_COMPARING_PRIVATE_FIELDS = FieldSupport.comparison().isAllowedToUsePrivateFields();
+ 
+-  @AfterEach
+-  void afterEachTest() {
+-    // reset to the default value to avoid side effects on the other tests
+-    FieldSupport.comparison().setAllowUsingPrivateFields(DEFAULT_ALLOW_COMPARING_PRIVATE_FIELDS);
+-  }
+-
+   @ParameterizedTest
+   @MethodSource("setAllowComparingPrivateFieldsFunctions")
+   void should_set_allowComparingPrivateFields_value(Consumer<Boolean> setAllowComparingPrivateFieldsFunction) {
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setAllowExtractingPrivateFields_Test.java b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setAllowExtractingPrivateFields_Test.java
+index 1acfa5e5668..3ed357fb3cc 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setAllowExtractingPrivateFields_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setAllowExtractingPrivateFields_Test.java
+@@ -21,7 +21,6 @@
+ import java.util.stream.Stream;
+ 
+ import org.assertj.core.util.introspection.FieldSupport;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.MethodSource;
+@@ -31,12 +30,6 @@ class EntryPointAssertions_setAllowExtractingPrivateFields_Test extends EntryPoi
+ 
+   private static final boolean DEFAULT_ALLOW_EXTRACTING_PRIVATE_FIELDS = FieldSupport.comparison().isAllowedToUsePrivateFields();
+ 
+-  @AfterEach
+-  void afterEachTest() {
+-    // reset to the default value to avoid side effects on the other tests
+-    FieldSupport.extraction().setAllowUsingPrivateFields(DEFAULT_ALLOW_EXTRACTING_PRIVATE_FIELDS);
+-  }
+-
+   @ParameterizedTest
+   @MethodSource("setAllowExtractingPrivateFieldsFunctions")
+   void should_set_allowComparingPrivateFields_value(Consumer<Boolean> setAllowExtractingPrivateFieldsFunction) {
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setExtractBareNamePropertyMethods_Test.java b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setExtractBareNamePropertyMethods_Test.java
+index c7f68a71931..2dce1498936 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setExtractBareNamePropertyMethods_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setExtractBareNamePropertyMethods_Test.java
+@@ -21,7 +21,6 @@
+ import java.util.stream.Stream;
+ 
+ import org.assertj.core.util.introspection.Introspection;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.MethodSource;
+@@ -31,12 +30,6 @@ class EntryPointAssertions_setExtractBareNamePropertyMethods_Test extends EntryP
+ 
+   private static final boolean DEFAULT_EXTRACTING_BARE_NAME_PROPERTY_METHODS = Introspection.canExtractBareNamePropertyMethods();
+ 
+-  @AfterEach
+-  void afterEachTest() {
+-    // reset to the default value to avoid side effects on the other tests
+-    Introspection.setExtractBareNamePropertyMethods(DEFAULT_EXTRACTING_BARE_NAME_PROPERTY_METHODS);
+-  }
+-
+   @ParameterizedTest
+   @MethodSource("setAllowExtractingBareNamePropertyMethodsFunctions")
+   void should_set_allowComparingPrivateFields_value(Consumer<Boolean> setAllowExtractingBareNamePropertyMethodsFunction) {
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxElementsForPrinting_Test.java b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxElementsForPrinting_Test.java
+index 160c72d760a..1f16cf2ad63 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxElementsForPrinting_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxElementsForPrinting_Test.java
+@@ -21,7 +21,6 @@
+ import java.util.stream.Stream;
+ 
+ import org.assertj.core.presentation.StandardRepresentation;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.MethodSource;
+@@ -31,12 +30,6 @@ class EntryPointAssertions_setMaxElementsForPrinting_Test extends EntryPointAsse
+ 
+   private static final int DEFAULT_MAX_ELEMENTS_FOR_PRINTING = StandardRepresentation.getMaxElementsForPrinting();
+ 
+-  @AfterEach
+-  void afterEachTest() {
+-    // reset to the default value to avoid side effects on the other tests
+-    StandardRepresentation.setMaxElementsForPrinting(DEFAULT_MAX_ELEMENTS_FOR_PRINTING);
+-  }
+-
+   @ParameterizedTest
+   @MethodSource("setMaxElementsForPrintingFunctions")
+   void should_set_maxElementsForPrinting_value(Consumer<Integer> setMaxElementsForPrintingFunction) {
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxLengthForSingleLineDescription_Test.java b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxLengthForSingleLineDescription_Test.java
+index d3bbbc912d0..e6ca32bfe23 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxLengthForSingleLineDescription_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxLengthForSingleLineDescription_Test.java
+@@ -21,7 +21,6 @@
+ import java.util.stream.Stream;
+ 
+ import org.assertj.core.presentation.StandardRepresentation;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.MethodSource;
+ 
+@@ -29,12 +28,6 @@ class EntryPointAssertions_setMaxLengthForSingleLineDescription_Test extends Ent
+ 
+   private static final int DEFAULT_MAX_LENGTH_FOR_SINGLE_LINE = StandardRepresentation.getMaxLengthForSingleLineDescription();
+ 
+-  @AfterEach
+-  void afterEachTest() {
+-    // reset to the default value to avoid side effects on the other tests
+-    StandardRepresentation.setMaxLengthForSingleLineDescription(DEFAULT_MAX_LENGTH_FOR_SINGLE_LINE);
+-  }
+-
+   @ParameterizedTest
+   @MethodSource("setMaxLengthForSingleLineDescriptionFunctions")
+   void should_set_maxLengthForSingleLineDescription_value(Consumer<Integer> setMaxLengthForSingleLineDescriptionFunction) {
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxStackTraceElementsDisplayed_Test.java b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxStackTraceElementsDisplayed_Test.java
+index e5502881252..c020f659219 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxStackTraceElementsDisplayed_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setMaxStackTraceElementsDisplayed_Test.java
+@@ -21,7 +21,6 @@
+ import java.util.stream.Stream;
+ 
+ import org.assertj.core.presentation.StandardRepresentation;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.MethodSource;
+@@ -31,12 +30,6 @@ class EntryPointAssertions_setMaxStackTraceElementsDisplayed_Test extends EntryP
+ 
+   private static final int DEFAULT_MAX_STACK_TRACE_ELEMENTS_DISPLAYED = StandardRepresentation.getMaxStackTraceElementsDisplayed();
+ 
+-  @AfterEach
+-  void afterEachTest() {
+-    // reset to the default value to avoid side effects on the other tests
+-    StandardRepresentation.setMaxStackTraceElementsDisplayed(DEFAULT_MAX_STACK_TRACE_ELEMENTS_DISPLAYED);
+-  }
+-
+   @ParameterizedTest
+   @MethodSource("setMaxStackTraceElementsDisplayedFunctions")
+   void should_set_maxStackTraceElementsDisplayed_value(Consumer<Integer> setMaxStackTraceElementsDisplayedFunction) {
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setPrintAssertionsDescription_Test.java b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setPrintAssertionsDescription_Test.java
+index fdf4478d895..dc085b20859 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setPrintAssertionsDescription_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setPrintAssertionsDescription_Test.java
+@@ -20,7 +20,6 @@
+ import java.util.function.Consumer;
+ import java.util.stream.Stream;
+ 
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.MethodSource;
+@@ -30,12 +29,6 @@ class EntryPointAssertions_setPrintAssertionsDescription_Test extends EntryPoint
+ 
+   private static final boolean DEFAULT_EXTRACTING_BARE_NAME_PROPERTY_METHODS = AbstractAssert.printAssertionsDescription;
+ 
+-  @AfterEach
+-  void afterEachTest() {
+-    // reset to the default value to avoid side effects on the other tests
+-    AbstractAssert.printAssertionsDescription = DEFAULT_EXTRACTING_BARE_NAME_PROPERTY_METHODS;
+-  }
+-
+   @ParameterizedTest
+   @MethodSource("setPrintAssertionsDescriptionMethodsFunctions")
+   void should_set_printAssertionsDescription_value(Consumer<Boolean> setPrintAssertionsDescriptionMethodsFunction) {
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test.java b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test.java
+index f9ec7f86bf6..6c1f2b16036 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test.java
+@@ -21,7 +21,6 @@
+ import java.util.stream.Stream;
+ 
+ import org.assertj.core.internal.Failures;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.MethodSource;
+@@ -32,12 +31,6 @@ class EntryPointAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test ex
+   private static final Failures FAILURES = Failures.instance();
+   private static final boolean DEFAULT_REMOVE_ASSERTJ_FROM_STACK_TRACE = FAILURES.isRemoveAssertJRelatedElementsFromStackTrace();
+ 
+-  @AfterEach
+-  void afterEachTest() {
+-    // reset to the default value to avoid side effects on the other tests
+-    FAILURES.setRemoveAssertJRelatedElementsFromStackTrace(DEFAULT_REMOVE_ASSERTJ_FROM_STACK_TRACE);
+-  }
+-
+   @ParameterizedTest
+   @MethodSource("setRemoveAssertJRelatedElementsFromStackTraceMethodsFunctions")
+   void should_set_removeAssertJRelatedElementsFromStackTrace_value(Consumer<Boolean> setRemoveAssertJRelatedElementsFromStackTraceMethodsFunction) {
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useDefaultRepresentation_Test.java b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useDefaultRepresentation_Test.java
+index 550a3464485..9ea765a4681 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useDefaultRepresentation_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useDefaultRepresentation_Test.java
+@@ -24,24 +24,13 @@
+ 
+ import org.apache.commons.lang3.tuple.Pair;
+ import org.assertj.core.presentation.Representation;
+-import org.assertj.core.testkit.MutatesGlobalConfiguration;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.MethodSource;
+ 
+ @DisplayName("EntryPoint assertions useDefaultRepresentation method")
+-@MutatesGlobalConfiguration
+ class EntryPointAssertions_useDefaultRepresentation_Test extends EntryPointAssertionsBaseTest {
+ 
+-  private static final Representation DEFAULT_CUSTOM_REPRESENTATION = AbstractAssert.customRepresentation;
+-
+-  @AfterEach
+-  void afterEachTest() {
+-    // reset to the default value to avoid side effects on the other tests
+-    AbstractAssert.customRepresentation = DEFAULT_CUSTOM_REPRESENTATION;
+-  }
+-
+   @ParameterizedTest
+   @MethodSource("useRepresentationFunctions")
+   void should_set_default_Representation(Pair<Consumer<Representation>, Runnable> params) {
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useRepresentation_Test.java b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useRepresentation_Test.java
+index cf27693e29d..1d104ea8d65 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useRepresentation_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/EntryPointAssertions_useRepresentation_Test.java
+@@ -22,7 +22,6 @@
+ import java.util.stream.Stream;
+ 
+ import org.assertj.core.presentation.Representation;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.MethodSource;
+@@ -30,14 +29,6 @@
+ @DisplayName("EntryPoint assertions useRepresentation method")
+ class EntryPointAssertions_useRepresentation_Test extends EntryPointAssertionsBaseTest {
+ 
+-  private static final Representation DEFAULT_CUSTOM_REPRESENTATION = AbstractAssert.customRepresentation;
+-
+-  @AfterEach
+-  void afterEachTest() {
+-    // reset to the default value to avoid side effects on the other tests
+-    AbstractAssert.customRepresentation = DEFAULT_CUSTOM_REPRESENTATION;
+-  }
+-
+   @ParameterizedTest
+   @MethodSource("useRepresentationFunctions")
+   void should_set_customRepresentation_value(Consumer<Representation> useRepresentationFunction) {
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/EntryPoint_Assumptions_setPreferredAssumptionException_Test.java b/assertj-core/src/test/java/org/assertj/core/api/EntryPoint_Assumptions_setPreferredAssumptionException_Test.java
+index a12208d938e..8f9826fdc03 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/EntryPoint_Assumptions_setPreferredAssumptionException_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/EntryPoint_Assumptions_setPreferredAssumptionException_Test.java
+@@ -21,6 +21,7 @@
+ import static org.assertj.core.api.AssumptionExceptionFactory.getPreferredAssumptionException;
+ import static org.assertj.core.api.Assumptions.assumeThat;
+ import static org.assertj.core.api.BDDAssertions.then;
++import static org.assertj.core.configuration.ConfigurationProvider.CONFIGURATION_PROVIDER;
+ import static org.assertj.core.configuration.PreferredAssumptionException.JUNIT5;
+ import static org.assertj.core.configuration.PreferredAssumptionException.TEST_NG;
+ import static org.mockito.Answers.CALLS_REAL_METHODS;
+@@ -29,24 +30,23 @@
+ import java.util.function.Consumer;
+ import java.util.stream.Stream;
+ 
++import org.assertj.core.configuration.Configuration;
+ import org.assertj.core.configuration.PreferredAssumptionException;
+-import org.assertj.core.testkit.MutatesGlobalConfiguration;
+ import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.MethodSource;
+ import org.opentest4j.TestAbortedException;
+ 
+-@MutatesGlobalConfiguration
+ class EntryPoint_Assumptions_setPreferredAssumptionException_Test {
+ 
+-  protected static final WithAssumptions withAssumptions = mock(WithAssumptions.class, CALLS_REAL_METHODS);
+-
+-  private static final PreferredAssumptionException DEFAULT_PREFERRED_ASSUMPTION_EXCEPTION = getPreferredAssumptionException();
++  private static final WithAssumptions withAssumptions = mock(WithAssumptions.class, CALLS_REAL_METHODS);
+ 
++  // TODO delete once moved to `assertj-core-tests`
+   @AfterEach
+-  void afterEachTest() {
+-    // reset to the default value to avoid side effects on the other tests
+-    Assumptions.setPreferredAssumptionException(DEFAULT_PREFERRED_ASSUMPTION_EXCEPTION);
++  void afterEach() {
++    Configuration configuration = CONFIGURATION_PROVIDER.configuration();
++    configuration.setDefaults();
++    configuration.apply();
+   }
+ 
+   @ParameterizedTest
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/WithAssertions_delegation_Test.java b/assertj-core/src/test/java/org/assertj/core/api/WithAssertions_delegation_Test.java
+index f9e5525f27b..6102a084808 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/WithAssertions_delegation_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/WithAssertions_delegation_Test.java
+@@ -64,6 +64,7 @@
+ import java.util.stream.Stream;
+ 
+ import org.assertj.core.data.MapEntry;
++import org.assertj.core.internal.Failures;
+ import org.assertj.core.util.Lists;
+ import org.junit.jupiter.api.Test;
+ 
+@@ -761,7 +762,12 @@ void withAssertions_allOf_condition_array_Test() {
+    */
+   @Test
+   void withAssertions_setRemoveAssertJRelatedElementsFromStackTrace_Test() {
+-    setRemoveAssertJRelatedElementsFromStackTrace(true);
++    boolean removeAssertJRelatedElementsFromStackTrace = Failures.instance().isRemoveAssertJRelatedElementsFromStackTrace();
++    try {
++      setRemoveAssertJRelatedElementsFromStackTrace(true);
++    } finally {
++      setRemoveAssertJRelatedElementsFromStackTrace(removeAssertJRelatedElementsFromStackTrace);
++    }
+   }
+ 
+   /**
+diff --git a/assertj-core/src/test/java/org/assertj/core/api/date/DateAssert_isEqualTo_with_string_based_date_representation_Test.java b/assertj-core/src/test/java/org/assertj/core/api/date/DateAssert_isEqualTo_with_string_based_date_representation_Test.java
+index b540139c0c9..b63226d123f 100644
+--- a/assertj-core/src/test/java/org/assertj/core/api/date/DateAssert_isEqualTo_with_string_based_date_representation_Test.java
++++ b/assertj-core/src/test/java/org/assertj/core/api/date/DateAssert_isEqualTo_with_string_based_date_representation_Test.java
+@@ -58,10 +58,8 @@ public void setUp() {
+     defaultTimeZone = TimeZone.getDefault();
+   }
+ 
+-  @Override
+   @AfterEach
+-  public void tearDown() {
+-    useDefaultDateFormatsOnly();
++  void restore_default_time_zone() {
+     TimeZone.setDefault(defaultTimeZone);
+   }
+ 
+diff --git a/assertj-core/src/test/java/org/assertj/core/testkit/MutatesGlobalConfiguration.java b/assertj-core/src/test/java/org/assertj/core/testkit/MutatesGlobalConfiguration.java
+deleted file mode 100644
+index 16aab439d94..00000000000
+--- a/assertj-core/src/test/java/org/assertj/core/testkit/MutatesGlobalConfiguration.java
++++ /dev/null
+@@ -1,58 +0,0 @@
+-/*
+- * Copyright 2012-2026 the original author or authors.
+- *
+- * Licensed under the Apache License, Version 2.0 (the "License");
+- * you may not use this file except in compliance with the License.
+- * You may obtain a copy of the License at
+- *
+- * https://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+- */
+-package org.assertj.core.testkit;
+-
+-import java.lang.annotation.ElementType;
+-import java.lang.annotation.Target;
+-
+-import org.assertj.core.configuration.ConfigurationProvider;
+-import org.assertj.core.testkit.MutatesGlobalConfiguration.AssumptionMutatingExtension;
+-import org.junit.jupiter.api.extension.AfterAllCallback;
+-import org.junit.jupiter.api.extension.AfterEachCallback;
+-import org.junit.jupiter.api.extension.ExtendWith;
+-import org.junit.jupiter.api.extension.ExtensionContext;
+-import org.junit.jupiter.api.parallel.Isolated;
+-
+-/**
+- * An annotation for any test class that mutates the global configuration.
+- *
+- * <p>By using this annotation, any tests that mutate this configuration will have the configuration
+- * reset to the default values after each test case runs.
+- *
+- * @author Ashley Scopes
+- */
+-@ExtendWith(AssumptionMutatingExtension.class)
+-@Isolated("Mutates global state")
+-@Target(ElementType.TYPE)
+-public @interface MutatesGlobalConfiguration {
+-
+-  final class AssumptionMutatingExtension implements AfterEachCallback, AfterAllCallback {
+-
+-    @Override
+-    public void afterEach(ExtensionContext context) {
+-      resetAll();
+-    }
+-
+-    @Override
+-    public void afterAll(ExtensionContext context) {
+-      resetAll();
+-    }
+-
+-    private void resetAll() {
+-      ConfigurationProvider.CONFIGURATION_PROVIDER.configuration().setDefaults();
+-    }
+-  }
+-}
+diff --git a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/module-info.java b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/module-info.java
+index a6f020177e1..330e02689a9 100644
+--- a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/module-info.java
++++ b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/module-info.java
+@@ -30,4 +30,6 @@
+   requires org.opentest4j;
+   requires org.junit.jupiter.api;
+   requires org.apache.commons.collections4;
++
++  provides org.junit.jupiter.api.extension.Extension with org.assertj.tests.core.testkit.ResetGlobalConfigurationExtension;
+ }
+diff --git a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/api/Assertions_useRepresentation_Test.java b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/api/Assertions_useRepresentation_Test.java
+index 87141c9bebb..3cc51939d1c 100644
+--- a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/api/Assertions_useRepresentation_Test.java
++++ b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/api/Assertions_useRepresentation_Test.java
+@@ -21,18 +21,12 @@
+ 
+ import org.assertj.core.api.Assertions;
+ import org.assertj.core.presentation.StandardRepresentation;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.Test;
+ 
+ class Assertions_useRepresentation_Test {
+ 
+   private final CustomRepresentation customRepresentation = new CustomRepresentation();
+ 
+-  @AfterEach
+-  public void afterTest() {
+-    Assertions.useDefaultRepresentation();
+-  }
+-
+   @Test
+   void should_use_given_representation_in_assertion_error_messages() {
+     Assertions.useRepresentation(customRepresentation);
+diff --git a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/api/BaseAssertionsTest.java b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/api/BaseAssertionsTest.java
+index 8f4175595b9..cc1977cf44b 100644
+--- a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/api/BaseAssertionsTest.java
++++ b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/api/BaseAssertionsTest.java
+@@ -30,13 +30,15 @@
+ import org.assertj.core.api.AssertDelegateTarget;
+ import org.assertj.core.api.FactoryBasedNavigableIterableAssert;
+ import org.assertj.core.api.FactoryBasedNavigableListAssert;
++import org.junit.jupiter.api.BeforeEach;
+ 
+ /**
+  * @author Filip Hrisafov
+  */
+ public abstract class BaseAssertionsTest {
+ 
+-  {
++  @BeforeEach
++  void setUpStackTraceFiltering() {
+     setRemoveAssertJRelatedElementsFromStackTrace(false);
+   }
+ 
+diff --git a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/configuration/Configuration_apply_Test.java b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/configuration/Configuration_apply_Test.java
+index 97c41bd75ce..c8c4b0cdc0b 100644
+--- a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/configuration/Configuration_apply_Test.java
++++ b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/configuration/Configuration_apply_Test.java
+@@ -28,11 +28,8 @@
+ import org.assertj.core.presentation.StandardRepresentation;
+ import org.assertj.core.util.introspection.FieldSupport;
+ import org.assertj.core.util.introspection.Introspection;
+-import org.assertj.tests.core.testkit.MutatesGlobalConfiguration;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.Test;
+ 
+-@MutatesGlobalConfiguration
+ class Configuration_apply_Test {
+ 
+   @Test
+@@ -74,10 +71,4 @@ void should_reset_date_formats() throws Exception {
+     Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2001-02-03");
+     assertThatAssertionErrorIsThrownBy(() -> then(date).isEqualTo("2001_02_03"));
+   }
+-
+-  @AfterEach
+-  public void afterEach() {
+-    // revert whatever we did in the other tests
+-    Configuration.DEFAULT_CONFIGURATION.apply();
+-  }
+ }
+diff --git a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/configuration/Configuration_describe_Test.java b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/configuration/Configuration_describe_Test.java
+index d38271671de..8666c2d4e3f 100644
+--- a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/configuration/Configuration_describe_Test.java
++++ b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/configuration/Configuration_describe_Test.java
+@@ -22,11 +22,8 @@
+ 
+ import org.assertj.core.configuration.Configuration;
+ import org.assertj.core.description.Description;
+-import org.assertj.tests.core.testkit.MutatesGlobalConfiguration;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.Test;
+ 
+-@MutatesGlobalConfiguration
+ class Configuration_describe_Test {
+ 
+   @Test
+@@ -62,10 +59,4 @@ public String toString() {
+                                        "- preferredAssumptionException .................... = TEST_NG(org.testng.SkipException)%n"));
+   }
+ 
+-  @AfterEach
+-  public void afterEach() {
+-    // revert whatever we did in the other tests
+-    Configuration.DEFAULT_CONFIGURATION.apply();
+-  }
+-
+ }
+diff --git a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/matcher/AssertionMatcher_matches_Test.java b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/matcher/AssertionMatcher_matches_Test.java
+index a898226a131..c5cfacb1968 100644
+--- a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/matcher/AssertionMatcher_matches_Test.java
++++ b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/matcher/AssertionMatcher_matches_Test.java
+@@ -26,7 +26,6 @@
+ import org.assertj.core.internal.Failures;
+ import org.assertj.core.matcher.AssertionMatcher;
+ import org.hamcrest.Description;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.Test;
+ import org.mockito.InOrder;
+@@ -42,24 +41,15 @@ public void assertion(Integer actual) throws AssertionError {
+     }
+   };
+ 
+-  private boolean removeAssertJRelatedElementsFromStackTrace;
+-
+   /**
+    * Stacktrace filtering must be disabled in order to check frames in
+    * {@link this#matcher_should_fill_description_when_assertion_fails()}.
+-   * I use setUp and tearDown methods to ensure that it is set to original value after a test.
+    */
+   @BeforeEach
+   public void setUp() {
+-    removeAssertJRelatedElementsFromStackTrace = Failures.instance().isRemoveAssertJRelatedElementsFromStackTrace();
+     Failures.instance().setRemoveAssertJRelatedElementsFromStackTrace(false);
+   }
+ 
+-  @AfterEach
+-  public void tearDown() {
+-    Failures.instance().setRemoveAssertJRelatedElementsFromStackTrace(removeAssertJRelatedElementsFromStackTrace);
+-  }
+-
+   @Test
+   void matcher_should_pass_when_assertion_passes() {
+     assertThat(isZeroMatcher.matches(ZERO)).isTrue();
+diff --git a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/presentation/StandardRepresentation_throwable_format_Test.java b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/presentation/StandardRepresentation_throwable_format_Test.java
+index 916bbc65674..5f1b3353a4d 100644
+--- a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/presentation/StandardRepresentation_throwable_format_Test.java
++++ b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/presentation/StandardRepresentation_throwable_format_Test.java
+@@ -24,24 +24,10 @@
+ import org.assertj.core.configuration.Configuration;
+ import org.assertj.core.presentation.Representation;
+ import org.assertj.core.presentation.StandardRepresentation;
+-import org.junit.jupiter.api.AfterEach;
+-import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.Test;
+ 
+ class StandardRepresentation_throwable_format_Test {
+ 
+-  private int initialMaxStackTraceElementsDisplayedValue;
+-
+-  @BeforeEach
+-  public void beforeTest() {
+-    initialMaxStackTraceElementsDisplayedValue = StandardRepresentation.getMaxStackTraceElementsDisplayed();
+-  }
+-
+-  @AfterEach
+-  public void afterTest() {
+-    StandardRepresentation.setMaxStackTraceElementsDisplayed(initialMaxStackTraceElementsDisplayedValue);
+-  }
+-
+   private static final Representation REPRESENTATION = new StandardRepresentation();
+ 
+   // Just to make sure the stack trace is long enough.
+diff --git a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/MutatesGlobalConfiguration.java b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/MutatesGlobalConfiguration.java
+deleted file mode 100644
+index 8db774b08b4..00000000000
+--- a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/MutatesGlobalConfiguration.java
++++ /dev/null
+@@ -1,63 +0,0 @@
+-/*
+- * Copyright 2012-2026 the original author or authors.
+- *
+- * Licensed under the Apache License, Version 2.0 (the "License");
+- * you may not use this file except in compliance with the License.
+- * You may obtain a copy of the License at
+- *
+- * https://www.apache.org/licenses/LICENSE-2.0
+- *
+- * Unless required by applicable law or agreed to in writing, software
+- * distributed under the License is distributed on an "AS IS" BASIS,
+- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- * See the License for the specific language governing permissions and
+- * limitations under the License.
+- */
+-package org.assertj.tests.core.testkit;
+-
+-import java.lang.annotation.ElementType;
+-import java.lang.annotation.Target;
+-
+-import org.assertj.core.configuration.ConfigurationProvider;
+-import org.junit.jupiter.api.extension.AfterAllCallback;
+-import org.junit.jupiter.api.extension.AfterEachCallback;
+-import org.junit.jupiter.api.extension.BeforeEachCallback;
+-import org.junit.jupiter.api.extension.ExtendWith;
+-import org.junit.jupiter.api.extension.ExtensionContext;
+-import org.junit.jupiter.api.parallel.Isolated;
+-
+-/**
+- * An annotation for any test class that mutates the global configuration.
+- *
+- * <p>By using this annotation, any tests that mutate this configuration will have the configuration
+- * reset to the default values after each test case runs.
+- *
+- * @author Ashley Scopes
+- */
+-@ExtendWith(MutatesGlobalConfiguration.AssumptionMutatingExtension.class)
+-@Isolated("Mutates global state")
+-@Target(ElementType.TYPE)
+-public @interface MutatesGlobalConfiguration {
+-
+-  final class AssumptionMutatingExtension implements BeforeEachCallback, AfterEachCallback, AfterAllCallback {
+-
+-    @Override
+-    public void beforeEach(ExtensionContext context) {
+-      resetAll();
+-    }
+-
+-    @Override
+-    public void afterEach(ExtensionContext context) {
+-      resetAll();
+-    }
+-
+-    @Override
+-    public void afterAll(ExtensionContext context) {
+-      resetAll();
+-    }
+-
+-    private void resetAll() {
+-      ConfigurationProvider.CONFIGURATION_PROVIDER.configuration().setDefaults();
+-    }
+-  }
+-}
+diff --git a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/ResetGlobalConfigurationExtension.java b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/ResetGlobalConfigurationExtension.java
+new file mode 100644
+index 00000000000..adeecaae64d
+--- /dev/null
++++ b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/assertj/tests/core/testkit/ResetGlobalConfigurationExtension.java
+@@ -0,0 +1,33 @@
++/*
++ * Copyright 2012-2026 the original author or authors.
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ * https://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package org.assertj.tests.core.testkit;
++
++import static org.assertj.core.configuration.ConfigurationProvider.CONFIGURATION_PROVIDER;
++
++import org.assertj.core.configuration.Configuration;
++import org.junit.jupiter.api.extension.AfterEachCallback;
++import org.junit.jupiter.api.extension.ExtensionContext;
++
++public class ResetGlobalConfigurationExtension implements AfterEachCallback {
++
++  @Override
++  public void afterEach(ExtensionContext context) {
++    Configuration configuration = CONFIGURATION_PROVIDER.configuration();
++    configuration.setDefaults();
++    configuration.apply();
++  }
++
++}
+diff --git a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/example/test/Remove_assertJ_stacktrace_elements_Test.java b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/example/test/Remove_assertJ_stacktrace_elements_Test.java
+index bc8b87a39b5..5d955be1f66 100644
+--- a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/example/test/Remove_assertJ_stacktrace_elements_Test.java
++++ b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/java/org/example/test/Remove_assertJ_stacktrace_elements_Test.java
+@@ -24,27 +24,17 @@
+ import java.util.stream.Stream;
+ 
+ import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
+-import org.assertj.core.internal.Failures;
+-import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.MethodSource;
+ 
+ class Remove_assertJ_stacktrace_elements_Test {
+ 
+-  private boolean initialRemoveAssertJRelatedElementsFromStackTraceValue;
+-
+   @BeforeEach
+   public void beforeTest() {
+-    initialRemoveAssertJRelatedElementsFromStackTraceValue = Failures.instance().isRemoveAssertJRelatedElementsFromStackTrace();
+     setRemoveAssertJRelatedElementsFromStackTrace(true);
+   }
+ 
+-  @AfterEach
+-  public void afterTest() {
+-    setRemoveAssertJRelatedElementsFromStackTrace(initialRemoveAssertJRelatedElementsFromStackTraceValue);
+-  }
+-
+   @ParameterizedTest
+   @MethodSource
+   void stacktrace_should_not_include_assertj_elements_nor_elements_coming_from_assertj(ThrowingCallable throwingCallable) {
+diff --git a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/resources/META-INF/services/org.junit.jupiter.api.extension.Extension b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/resources/META-INF/services/org.junit.jupiter.api.extension.Extension
+new file mode 100644
+index 00000000000..06a3b1b7402
+--- /dev/null
++++ b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/resources/META-INF/services/org.junit.jupiter.api.extension.Extension
+@@ -0,0 +1 @@
++org.assertj.tests.core.testkit.ResetGlobalConfigurationExtension
+diff --git a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/resources/junit-platform.properties b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/resources/junit-platform.properties
+index 8fb7638d37a..6ff62d8285e 100644
+--- a/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/resources/junit-platform.properties
++++ b/assertj-tests/assertj-integration-tests/assertj-core-tests/src/test/resources/junit-platform.properties
+@@ -1 +1,2 @@
+ junit.jupiter.displayname.generator.default=org.assertj.tests.core.testkit.junit.jupiter.DefaultDisplayNameGenerator
++junit.jupiter.extensions.autodetection.enabled=true

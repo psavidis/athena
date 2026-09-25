@@ -1,0 +1,271 @@
+{
+  "territories" : [ {
+    "moduleName" : "spring-boot-test",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 5 changes",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ "Q0hBTkdFX1NVUEVSVFlQRQotQmVhbkZhY3RvcnlBd2FyZQpJbXBvcnRzQ29udGV4dEN1c3RvbWl6ZXIuSW1wb3J0c1NlbGVjdG9y", "UkVNT1ZFX1NZTUJPTApJbXBvcnRzQ29udGV4dEN1c3RvbWl6ZXIuSW1wb3J0c1NlbGVjdG9yI3NldEJlYW5GYWN0b3J5", "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCkltcG9ydHNDb250ZXh0Q3VzdG9taXplci5JbXBvcnRzU2VsZWN0b3IjYmVhbkZhY3Rvcnk", "Q0hBTkdFX01PRElGSUVSUworZmluYWwKSW1wb3J0c0NvbnRleHRDdXN0b21pemVyLkltcG9ydHNTZWxlY3RvciNiZWFuRmFjdG9yeQ", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpJbXBvcnRzQ29udGV4dEN1c3RvbWl6ZXIuSW1wb3J0c1NlbGVjdG9yI2JlYW5GYWN0b3J5" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-actuator-autoconfigure",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 7 changes",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ "Q0hBTkdFX1NVUEVSVFlQRQotQmVhbkNsYXNzTG9hZGVyQXdhcmUKTWFuYWdlbWVudENvbnRleHRDb25maWd1cmF0aW9uSW1wb3J0U2VsZWN0b3I", "UkVNT1ZFX1NZTUJPTApNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvciNzZXRCZWFuQ2xhc3NMb2FkZXI", "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRDbGFzc0xvYWRlcgpNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvclRlc3RzI3NlbGVjdEltcG9ydHNMb2Fkc0Zyb21SZXNvdXJjZXM", "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRDbGFzc0xvYWRlcgpNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvclRlc3RzLlRlc3RNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25zSW1wb3J0U2VsZWN0b3IjPGluaXQ-", "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCk1hbmFnZW1lbnRDb250ZXh0Q29uZmlndXJhdGlvbkltcG9ydFNlbGVjdG9yI2NsYXNzTG9hZGVy", "Q0hBTkdFX01PRElGSUVSUworZmluYWwKTWFuYWdlbWVudENvbnRleHRDb25maWd1cmF0aW9uSW1wb3J0U2VsZWN0b3IjY2xhc3NMb2FkZXI", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvciNjbGFzc0xvYWRlcg" ],
+    "testChangeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRDbGFzc0xvYWRlcgpNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvclRlc3RzI3NlbGVjdEltcG9ydHNMb2Fkc0Zyb21SZXNvdXJjZXM", "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRDbGFzc0xvYWRlcgpNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25JbXBvcnRTZWxlY3RvclRlc3RzLlRlc3RNYW5hZ2VtZW50Q29udGV4dENvbmZpZ3VyYXRpb25zSW1wb3J0U2VsZWN0b3IjPGluaXQ-" ]
+  }, {
+    "moduleName" : "spring-boot-integration",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 5 changes",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ "Q0hBTkdFX1NVUEVSVFlQRQotQmVhbkZhY3RvcnlBd2FyZQpJbnRlZ3JhdGlvbkF1dG9Db25maWd1cmF0aW9uU2NhblJlZ2lzdHJhcg", "UkVNT1ZFX1NZTUJPTApJbnRlZ3JhdGlvbkF1dG9Db25maWd1cmF0aW9uU2NhblJlZ2lzdHJhciNzZXRCZWFuRmFjdG9yeQ", "Q0hBTkdFX0ZJRUxEX0FOTk9UQVRJT05TCkludGVncmF0aW9uQXV0b0NvbmZpZ3VyYXRpb25TY2FuUmVnaXN0cmFyI2JlYW5GYWN0b3J5", "Q0hBTkdFX01PRElGSUVSUworZmluYWwKSW50ZWdyYXRpb25BdXRvQ29uZmlndXJhdGlvblNjYW5SZWdpc3RyYXIjYmVhbkZhY3Rvcnk", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpJbnRlZ3JhdGlvbkF1dG9Db25maWd1cmF0aW9uU2NhblJlZ2lzdHJhciNiZWFuRmFjdG9yeQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-validation",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 4 changes",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ "Q0hBTkdFX1NVUEVSVFlQRQotQmVhbkZhY3RvcnlBd2FyZQpQcmltYXJ5RGVmYXVsdFZhbGlkYXRvclBvc3RQcm9jZXNzb3I", "UkVNT1ZFX1NZTUJPTApQcmltYXJ5RGVmYXVsdFZhbGlkYXRvclBvc3RQcm9jZXNzb3Ijc2V0QmVhbkZhY3Rvcnk", "Q0hBTkdFX01PRElGSUVSUworZmluYWwKUHJpbWFyeURlZmF1bHRWYWxpZGF0b3JQb3N0UHJvY2Vzc29yI2JlYW5GYWN0b3J5", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpQcmltYXJ5RGVmYXVsdFZhbGlkYXRvclBvc3RQcm9jZXNzb3IjYmVhbkZhY3Rvcnk" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-web-server",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 8 changes",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ "Q0hBTkdFX1NVUEVSVFlQRQotQmVhbkZhY3RvcnlBd2FyZQpSZWFjdGl2ZVdlYlNlcnZlckNvbmZpZ3VyYXRpb24uQmVhblBvc3RQcm9jZXNzb3JzUmVnaXN0cmFy", "Q0hBTkdFX1NVUEVSVFlQRQotQmVhbkZhY3RvcnlBd2FyZQpTZXJ2bGV0V2ViU2VydmVyQ29uZmlndXJhdGlvbi5CZWFuUG9zdFByb2Nlc3NvcnNSZWdpc3RyYXI", "UkVNT1ZFX1NZTUJPTApSZWFjdGl2ZVdlYlNlcnZlckNvbmZpZ3VyYXRpb24uQmVhblBvc3RQcm9jZXNzb3JzUmVnaXN0cmFyI3NldEJlYW5GYWN0b3J5", "UkVNT1ZFX1NZTUJPTApTZXJ2bGV0V2ViU2VydmVyQ29uZmlndXJhdGlvbi5CZWFuUG9zdFByb2Nlc3NvcnNSZWdpc3RyYXIjc2V0QmVhbkZhY3Rvcnk", "Q0hBTkdFX01PRElGSUVSUworZmluYWwKUmVhY3RpdmVXZWJTZXJ2ZXJDb25maWd1cmF0aW9uLkJlYW5Qb3N0UHJvY2Vzc29yc1JlZ2lzdHJhciNiZWFuRmFjdG9yeQ", "Q0hBTkdFX01PRElGSUVSUworZmluYWwKU2VydmxldFdlYlNlcnZlckNvbmZpZ3VyYXRpb24uQmVhblBvc3RQcm9jZXNzb3JzUmVnaXN0cmFyI2JlYW5GYWN0b3J5", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpSZWFjdGl2ZVdlYlNlcnZlckNvbmZpZ3VyYXRpb24uQmVhblBvc3RQcm9jZXNzb3JzUmVnaXN0cmFyI2JlYW5GYWN0b3J5", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTZXJ2bGV0V2ViU2VydmVyQ29uZmlndXJhdGlvbi5CZWFuUG9zdFByb2Nlc3NvcnNSZWdpc3RyYXIjYmVhbkZhY3Rvcnk" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "buildSrc",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 4 changes",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNpbXBvcnRQYXJ0aWNpcGFudHNTaG91bGRPbmx5SW1wbGVtZW50QXdhcmVJbnRlcmZhY2VzSWZUaGV5QXJlUHVibGlj", "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNhcmVJbXBvcnRQYXJ0aWNpcGFudHM", "QUREX1NZTUJPTApBcmNoaXRlY3R1cmVSdWxlcyNub3REaXJlY3RseUltcGxlbWVudEF3YXJlSW50ZXJmYWNlcw", "TU9ESUZZX01FVEhPRF9CT0RZCitydWxlcy5hZGQsICtpbXBvcnRQYXJ0aWNpcGFudHNTaG91bGRPbmx5SW1wbGVtZW50QXdhcmVJbnRlcmZhY2VzSWZUaGV5QXJlUHVibGljCkFyY2hpdGVjdHVyZVJ1bGVzI3N0YW5kYXJk" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-test-support",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-autoconfigure",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-actuator",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-transaction",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-jdbc",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-micrometer-metrics",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-rsocket",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-flyway",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-sql",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-jersey",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-webflux",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-webmvc",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spring-boot-reactor-netty",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "spring-boot-test",
+    "to" : "spring-boot"
+  }, {
+    "from" : "spring-boot-test",
+    "to" : "spring-boot-test-support"
+  }, {
+    "from" : "spring-boot-actuator-autoconfigure",
+    "to" : "spring-boot-autoconfigure"
+  }, {
+    "from" : "spring-boot-actuator-autoconfigure",
+    "to" : "spring-boot-actuator"
+  }, {
+    "from" : "spring-boot-actuator-autoconfigure",
+    "to" : "spring-boot-web-server"
+  }, {
+    "from" : "spring-boot-actuator-autoconfigure",
+    "to" : "spring-boot-test"
+  }, {
+    "from" : "spring-boot-actuator-autoconfigure",
+    "to" : "spring-boot-test-support"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-transaction"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-autoconfigure"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-actuator-autoconfigure"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-jdbc"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-micrometer-metrics"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-rsocket"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-test"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-flyway"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-test-support"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-sql"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-jersey"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-webflux"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-webmvc"
+  }, {
+    "from" : "spring-boot-integration",
+    "to" : "spring-boot-reactor-netty"
+  }, {
+    "from" : "spring-boot-validation",
+    "to" : "spring-boot"
+  }, {
+    "from" : "spring-boot-validation",
+    "to" : "spring-boot-autoconfigure"
+  }, {
+    "from" : "spring-boot-validation",
+    "to" : "spring-boot-test"
+  }, {
+    "from" : "spring-boot-validation",
+    "to" : "spring-boot-test-support"
+  }, {
+    "from" : "spring-boot-web-server",
+    "to" : "spring-boot"
+  }, {
+    "from" : "spring-boot-web-server",
+    "to" : "spring-boot-autoconfigure"
+  }, {
+    "from" : "spring-boot-web-server",
+    "to" : "spring-boot-test"
+  }, {
+    "from" : "spring-boot-web-server",
+    "to" : "spring-boot-test-support"
+  } ]
+}

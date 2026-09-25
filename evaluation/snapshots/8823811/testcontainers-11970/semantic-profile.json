@@ -1,0 +1,69 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Change Control Flow",
+    "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " String getCommandLine() {\n         final StringBuilder args = new StringBuilder(\"azurite\");\n         args.append(\" --blobHost \").append(ALLOW_ALL_CONNECTIONS);\n         args.append(\" --queueHost \").append(ALLOW_ALL_CONNECTIONS);\n         args.append(\" --tableHost \").append(ALLOW_ALL_CONNECTIONS);\n         if (this.cert != null) {\n             args.append(\" --cert \").append(\"/cert\").append(this.certExtension);\n             if (this.pwd != null) {\n                 args.append(\" --pwd \").append(this.pwd);\n             } else {\n                 args.append(\" --key \").append(\"/key.pem\");\n             }\n         }\n+        for (String option : this.commandOptions) {\n+            args.append(\" \").append(option);\n+        }\n         final String cmd = args.toString();\n         logger().debug(\"Using command line: '{}'\", cmd);\n         return cmd;\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "modules/azure/src/main/java/org/testcontainers/azure/AzuriteContainer.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+public AzuriteContainer withCommandOptions(String... options) {\n+        this.commandOptions.addAll(Arrays.asList(options));\n+        return this;\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "modules/azure/src/main/java/org/testcontainers/azure/AzuriteContainer.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+private final List<String> commandOptions = new ArrayList<>();" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "modules/azure/src/main/java/org/testcontainers/azure/AzuriteContainer.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in AzuriteContainerCommandTest",
+    "conceptDescription" : "7 changes in test code of AzuriteContainerCommandTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+class AzuriteContainerCommandTest {\n \n+    private static final String IMAGE = \"mcr.microsoft.com/azure-storage/azurite:3.33.0\";\n+\n+    @Test\n+    void commandLineOmitsExtraOptionsByDefault() {\n+        AzuriteContainer emulator = new AzuriteContainer(IMAGE);\n+\n+        assertThat(emulator.getCommandLine()).doesNotContain(\"--skipApiVersionCheck\");\n+    }\n+\n+    @Test\n+    void commandLineIncludesExtraOptions() {\n+        // commandOptions {\n+        AzuriteContainer emulator = new AzuriteContainer(\"mcr.microsoft.com/azure-storage/azurite:3.33.0\")\n+            .withCommandOptions(\"--skipApiVersionCheck\");\n+        // }\n+\n+        assertThat(emulator.getCommandLine())\n+            .startsWith(\"azurite --blobHost 0.0.0.0 --queueHost 0.0.0.0 --tableHost 0.0.0.0\")\n+            .endsWith(\"--skipApiVersionCheck\");\n+    }\n+\n+    @Test\n+    void commandLineAppendsMultipleOptions() {\n+        AzuriteContainer emulator = new AzuriteContainer(IMAGE)\n+            .withCommandOptions(\"--skipApiVersionCheck\", \"--disableProductStyleUrl\");\n+\n+        assertThat(emulator.getCommandLine()).endsWith(\"--skipApiVersionCheck --disableProductStyleUrl\");\n+    }\n+\n+    @Test\n+    void commandLineKeepsExtraOptionsTogetherWithSsl() {\n+        AzuriteContainer emulator = new AzuriteContainer(IMAGE)\n+            .withSsl(MountableFile.forClasspathResource(\"/keystore.pfx\"), \"changeit\")\n+            .withCommandOptions(\"--skipApiVersionCheck\");\n+\n+        assertThat(emulator.getCommandLine())\n+            .contains(\"--cert /cert.pfx\")\n+            .endsWith(\"--pwd changeit --skipApiVersionCheck\");\n+    }\n+\n+    @Test\n+    void configureAppliesCommandOptionsEvenIfWithCommandWasUsed() {\n+        AzuriteContainer emulator = new AzuriteContainer(IMAGE)\n+            .withCommand(\"azurite --ignored\")\n+            .withCommandOptions(\"--skipApiVersionCheck\");\n+\n+        emulator.configure();\n+\n+        assertThat(String.join(\" \", emulator.getCommandParts()))\n+            .isEqualTo(\"azurite --blobHost 0.0.0.0 --queueHost 0.0.0.0 --tableHost 0.0.0.0 --skipApiVersionCheck\");\n+        assertThat(emulator.getCommandLine()).contains(\"--blobHost 0.0.0.0\").contains(\"--skipApiVersionCheck\");\n+    }\n+}", "+@Test\n+    void commandLineOmitsExtraOptionsByDefault() {\n+        AzuriteContainer emulator = new AzuriteContainer(IMAGE);\n \n+        assertThat(emulator.getCommandLine()).doesNotContain(\"--skipApiVersionCheck\");\n+    }", "+@Test\n+    void commandLineIncludesExtraOptions() {\n+        // commandOptions {\n+        AzuriteContainer emulator = new AzuriteContainer(\"mcr.microsoft.com/azure-storage/azurite:3.33.0\")\n+            .withCommandOptions(\"--skipApiVersionCheck\");\n+        // }\n \n+        assertThat(emulator.getCommandLine())\n+            .startsWith(\"azurite --blobHost 0.0.0.0 --queueHost 0.0.0.0 --tableHost 0.0.0.0\")\n+            .endsWith(\"--skipApiVersionCheck\");\n+    }", "+@Test\n+    void commandLineAppendsMultipleOptions() {\n+        AzuriteContainer emulator = new AzuriteContainer(IMAGE)\n+            .withCommandOptions(\"--skipApiVersionCheck\", \"--disableProductStyleUrl\");\n \n+        assertThat(emulator.getCommandLine()).endsWith(\"--skipApiVersionCheck --disableProductStyleUrl\");\n+    }", "+@Test\n+    void commandLineKeepsExtraOptionsTogetherWithSsl() {\n+        AzuriteContainer emulator = new AzuriteContainer(IMAGE)\n+            .withSsl(MountableFile.forClasspathResource(\"/keystore.pfx\"), \"changeit\")\n+            .withCommandOptions(\"--skipApiVersionCheck\");\n \n+        assertThat(emulator.getCommandLine())\n+            .contains(\"--cert /cert.pfx\")\n+            .endsWith(\"--pwd changeit --skipApiVersionCheck\");\n+    }", "+@Test\n+    void configureAppliesCommandOptionsEvenIfWithCommandWasUsed() {\n+        AzuriteContainer emulator = new AzuriteContainer(IMAGE)\n+            .withCommand(\"azurite --ignored\")\n+            .withCommandOptions(\"--skipApiVersionCheck\");\n \n+        emulator.configure();\n+\n+        assertThat(String.join(\" \", emulator.getCommandParts()))\n+            .isEqualTo(\"azurite --blobHost 0.0.0.0 --queueHost 0.0.0.0 --tableHost 0.0.0.0 --skipApiVersionCheck\");\n+        assertThat(emulator.getCommandLine()).contains(\"--blobHost 0.0.0.0\").contains(\"--skipApiVersionCheck\");\n+    }", "-\n+private static final String IMAGE = \"mcr.microsoft.com/azure-storage/azurite:3.33.0\";" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "modules/azure/src/test/java/org/testcontainers/azure/AzuriteContainerCommandTest.java" ],
+    "groupedMoveCount" : 7
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Modify Capability",
+    "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ " String getCommandLine() {\n         final StringBuilder args = new StringBuilder(\"azurite\");\n         args.append(\" --blobHost \").append(ALLOW_ALL_CONNECTIONS);\n         args.append(\" --queueHost \").append(ALLOW_ALL_CONNECTIONS);\n         args.append(\" --tableHost \").append(ALLOW_ALL_CONNECTIONS);\n         if (this.cert != null) {\n             args.append(\" --cert \").append(\"/cert\").append(this.certExtension);\n             if (this.pwd != null) {\n                 args.append(\" --pwd \").append(this.pwd);\n             } else {\n                 args.append(\" --key \").append(\"/key.pem\");\n             }\n         }\n+        for (String option : this.commandOptions) {\n+            args.append(\" \").append(option);\n+        }\n         final String cmd = args.toString();\n         logger().debug(\"Using command line: '{}'\", cmd);\n         return cmd;\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "modules/azure/src/main/java/org/testcontainers/azure/AzuriteContainer.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Add Capability",
+    "conceptDescription" : "A new business-meaningful capability was introduced.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-\n+public AzuriteContainer withCommandOptions(String... options) {\n+        this.commandOptions.addAll(Arrays.asList(options));\n+        return this;\n+    }", "-\n+private final List<String> commandOptions = new ArrayList<>();" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "modules/azure/src/main/java/org/testcontainers/azure/AzuriteContainer.java" ],
+    "groupedMoveCount" : 2
+  } ]
+}

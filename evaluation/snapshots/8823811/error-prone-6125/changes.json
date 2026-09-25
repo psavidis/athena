@@ -1,0 +1,321 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTb3VyY2VQYXRoTWF0Y2hlciNjYW5vbmljYWxpemVQYXRoCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SourcePathMatcher#canonicalizePath: branch added",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/SourcePathMatcher.java" ],
+  "symbols" : [ "SourcePathMatcher#canonicalizePath", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZXN0cmljdGVkQXBpQ2hlY2tlciNtYXRjaEFubm90YXRpb24KYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of RestrictedApiChecker#matchAnnotation: branch added",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/RestrictedApiChecker.java" ],
+  "symbols" : [ "RestrictedApiChecker#matchAnnotation", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUmVzdHJpY3RlZEFwaUNoZWNrZXIjY2hlY2tSZXN0cmljdGlvbg",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of RestrictedApiChecker#checkRestriction",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/RestrictedApiChecker.java" ],
+  "symbols" : [ "RestrictedApiChecker#checkRestriction" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUmVzdHJpY3RlZEFwaUNoZWNrZXIjc2hvdWxkQWxsb3dXaXRoV2FybmluZw",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of RestrictedApiChecker#shouldAllowWithWarning",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/RestrictedApiChecker.java" ],
+  "symbols" : [ "RestrictedApiChecker#shouldAllowWithWarning" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZXN0cmljdGVkQXBpQ2hlY2tlciNzaG91bGRBbGxvdw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove RestrictedApiChecker#shouldAllow",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/RestrictedApiChecker.java" ],
+  "symbols" : [ "RestrictedApiChecker#shouldAllow" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTb3VyY2VQYXRoTWF0Y2hlclRlc3QjbmVzdGVkUGF0aF9leGVjcm9vdF9ub3RFeGVtcHRlZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SourcePathMatcherTest#nestedPath_execroot_notExempted",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+  "symbols" : [ "SourcePathMatcherTest#nestedPath_execroot_notExempted" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiN2YWxpZGF0ZUFubm90YXRpb24",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Restriction#validateAnnotation",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+  "symbols" : [ "Restriction#validateAnnotation" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNmcm9t",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Restriction#from",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+  "symbols" : [ "Restriction#from" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNpc1BhdGhPclRlc3Rvbmx5RXhlbXB0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Restriction#isPathOrTestonlyExempt",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+  "symbols" : [ "Restriction#isPathOrTestonlyExempt" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNpc0FsbG93bGlzdGVk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Restriction#isAllowlisted",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+  "symbols" : [ "Restriction#isAllowlisted" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNpc0FsbG93ZWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Restriction#isAllowed",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+  "symbols" : [ "Restriction#isAllowed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbiNzZWxmT3JFbmNsb3Npbmc",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Restriction#selfOrEnclosing",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+  "symbols" : [ "Restriction#selfOrEnclosing" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbi5QYXRoUmVzdHJpY3Rpb25zI2Zyb20",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Restriction.PathRestrictions#from",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+  "symbols" : [ "Restriction.PathRestrictions#from" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGlvbi5QYXRoUmVzdHJpY3Rpb25zI2hhc0NvbmZsaWN0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Restriction.PathRestrictions#hasConflict",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+  "symbols" : [ "Restriction.PathRestrictions#hasConflict" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGVkQXBpQ2hlY2tlclRlc3QjYWxsb3dlZFBhdGhz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RestrictedApiCheckerTest#allowedPaths",
+  "files" : [ "core/src/test/java/com/google/errorprone/bugpatterns/RestrictedApiCheckerTest.java" ],
+  "symbols" : [ "RestrictedApiCheckerTest#allowedPaths" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGVkQXBpQ2hlY2tlclRlc3QjYWxsb3dlZFBhdGhzQW5kQWxsb3dlZE9uUGF0aEJvdGhTcGVjaWZpZWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RestrictedApiCheckerTest#allowedPathsAndAllowedOnPathBothSpecified",
+  "files" : [ "core/src/test/java/com/google/errorprone/bugpatterns/RestrictedApiCheckerTest.java" ],
+  "symbols" : [ "RestrictedApiCheckerTest#allowedPathsAndAllowedOnPathBothSpecified" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSZXN0cmljdGVkQXBpQ2hlY2tlclRlc3QjYWxsb3dlZFBhdGhzX25lc3RlZFJ1bmZpbGVzX3JlamVjdGVk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RestrictedApiCheckerTest#allowedPaths_nestedRunfiles_rejected",
+  "files" : [ "core/src/test/java/com/google/errorprone/bugpatterns/RestrictedApiCheckerTest.java" ],
+  "symbols" : [ "RestrictedApiCheckerTest#allowedPaths_nestedRunfiles_rejected" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGVja0FyZ3VtZW50LCArcGF0dGVybi5zdGFydHNXaXRoLCArcGF0dGVybi5jb250YWlucywgK3BhdHRlcm4uZW5kc1dpdGgKU291cmNlUGF0aE1hdGNoZXIjcGFyc2VQYXRo",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SourcePathMatcher#parsePath: +checkArgument, +pattern.startsWith, +pattern.contains, +pattern.endsWith",
+  "files" : [ "check_api/src/main/java/com/google/errorprone/util/SourcePathMatcher.java" ],
+  "symbols" : [ "SourcePathMatcher#parsePath", "+checkArgument, +pattern.startsWith, +pattern.contains, +pattern.endsWith" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaGF0LCArbWF0Y2hlci5tYXRjaGVzLCAraXNUcnVlClNvdXJjZVBhdGhNYXRjaGVyVGVzdCNleGFjdFBhdGhNYXRjaA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SourcePathMatcherTest#exactPathMatch: +assertThat, +matcher.matches, +isTrue",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+  "symbols" : [ "SourcePathMatcherTest#exactPathMatch", "+assertThat, +matcher.matches, +isTrue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaHJvd3MsICtjcmVhdGUKU291cmNlUGF0aE1hdGNoZXJUZXN0I2ludmFsaWRQYXR0ZXJuc19yZWplY3RlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SourcePathMatcherTest#invalidPatterns_rejected: +assertThrows, +create",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+  "symbols" : [ "SourcePathMatcherTest#invalidPatterns_rejected", "+assertThrows, +create" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClJlc3RyaWN0ZWRBcGlDaGVja2VyI2NoZWNrTWV0aG9kVXNlCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of RestrictedApiChecker#checkMethodUse: other statements changed",
+  "files" : [ "core/src/main/java/com/google/errorprone/bugpatterns/RestrictedApiChecker.java" ],
+  "symbols" : [ "RestrictedApiChecker#checkMethodUse", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI0JBWkVMX1JVTkZJTEVT",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#BAZEL_RUNFILES",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+  "symbols" : [ "SourcePathMatcherTest.CanonicalizeTestCase#BAZEL_RUNFILES" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI0JBWkVMX1JVTkZJTEVTX1NMQVNI",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#BAZEL_RUNFILES_SLASH",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+  "symbols" : [ "SourcePathMatcherTest.CanonicalizeTestCase#BAZEL_RUNFILES_SLASH" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI0ZJTEVfVVJJ",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#FILE_URI",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+  "symbols" : [ "SourcePathMatcherTest.CanonicalizeTestCase#FILE_URI" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1JFTEFUSVZFX1JVTkZJTEVTX1BBQ0tBR0U",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_RUNFILES_PACKAGE",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+  "symbols" : [ "SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_RUNFILES_PACKAGE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1JFTEFUSVZFX0VYRUNST09UX1BBQ0tBR0U",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_EXECROOT_PACKAGE",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+  "symbols" : [ "SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_EXECROOT_PACKAGE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1JFTEFUSVZFX0VYRUNST09UX1RPUF9MRVZFTA",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_EXECROOT_TOP_LEVEL",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+  "symbols" : [ "SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_EXECROOT_TOP_LEVEL" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1JFTEFUSVZFX1JVTkZJTEVTX1RPUF9MRVZFTA",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_RUNFILES_TOP_LEVEL",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+  "symbols" : [ "SourcePathMatcherTest.CanonicalizeTestCase#RELATIVE_RUNFILES_TOP_LEVEL" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI1VOQU5DSE9SRURfUlVORklMRVM",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#UNANCHORED_RUNFILES",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+  "symbols" : [ "SourcePathMatcherTest.CanonicalizeTestCase#UNANCHORED_RUNFILES" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI05FU1RFRF9SVU5GSUxFU19ESVI",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#NESTED_RUNFILES_DIR",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+  "symbols" : [ "SourcePathMatcherTest.CanonicalizeTestCase#NESTED_RUNFILES_DIR" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKU291cmNlUGF0aE1hdGNoZXJUZXN0LkNhbm9uaWNhbGl6ZVRlc3RDYXNlI05FU1RFRF9FWEVDUk9PVF9ESVI",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant SourcePathMatcherTest.CanonicalizeTestCase#NESTED_EXECROOT_DIR",
+  "files" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+  "symbols" : [ "SourcePathMatcherTest.CanonicalizeTestCase#NESTED_EXECROOT_DIR" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0FOTk9UQVRJT05fRUxFTUVOVApSZXN0cmljdGVkQXBpI2FsbG93ZWRQYXRocw",
+  "kind" : "ADD_ANNOTATION_ELEMENT",
+  "category" : "STRUCTURAL",
+  "description" : "Add annotation element RestrictedApi#allowedPaths",
+  "files" : [ "annotations/src/main/java/com/google/errorprone/annotations/RestrictedApi.java" ],
+  "symbols" : [ "RestrictedApi#allowedPaths" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

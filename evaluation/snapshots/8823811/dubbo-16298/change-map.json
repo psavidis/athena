@@ -1,0 +1,97 @@
+{
+  "prTitle" : "fix: throw clear exception when request parameter is not Serializable",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 2,
+    "STRUCTURAL" : 2,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEdWJib0NvZGVjI2VuY29kZVJlcXVlc3REYXRhCmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of DubboCodec#encodeRequestData: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEdWJib0NvZGVjI2VuY29kZVJlc3BvbnNlRGF0YQpicmFuY2ggYWRkZWQ",
+    "description" : "Change control flow of DubboCodec#encodeResponseData: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUwotQERpc2FibGVkCkR1YmJvUHJvdG9jb2xUZXN0I3Rlc3ROb25TZXJpYWxpemVkUGFyYW1ldGVy",
+    "description" : "Change annotations of DubboProtocolTest#testNonSerializedParameter: -@Disabled",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_ANNOTATIONS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUwotQERpc2FibGVkCkR1YmJvUHJvdG9jb2xUZXN0I3Rlc3RSZXR1cm5Ob25TZXJpYWxpemVk",
+    "description" : "Change annotations of DubboProtocolTest#testReturnNonSerialized: -@Disabled",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_ANNOTATIONS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "DubboCodec",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEdWJib0NvZGVjI2VuY29kZVJlcXVlc3REYXRhCmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of DubboCodec#encodeRequestData: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEdWJib0NvZGVjI2VuY29kZVJlc3BvbnNlRGF0YQpicmFuY2ggYWRkZWQ",
+      "description" : "Change control flow of DubboCodec#encodeResponseData: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DubboProtocolTest",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUwotQERpc2FibGVkCkR1YmJvUHJvdG9jb2xUZXN0I3Rlc3ROb25TZXJpYWxpemVkUGFyYW1ldGVy",
+      "description" : "Change annotations of DubboProtocolTest#testNonSerializedParameter: -@Disabled",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_ANNOTATIONS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUwotQERpc2FibGVkCkR1YmJvUHJvdG9jb2xUZXN0I3Rlc3RSZXR1cm5Ob25TZXJpYWxpemVk",
+      "description" : "Change annotations of DubboProtocolTest#testReturnNonSerialized: -@Disabled",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_ANNOTATIONS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

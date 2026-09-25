@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "commons-lang3",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpGcmFjdGlvbiNnZXRSZWR1Y2VkRnJhY3Rpb24KYnJhbmNoIGFkZGVk", "QUREX1NZTUJPTApGcmFjdGlvblRlc3QjdGVzdE15UmVkdWNlZEZyYWN0aW9uRml4" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApGcmFjdGlvblRlc3QjdGVzdE15UmVkdWNlZEZyYWN0aW9uRml4" ]
+  } ],
+  "dependencies" : [ ]
+}

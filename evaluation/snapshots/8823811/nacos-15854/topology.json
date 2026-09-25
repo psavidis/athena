@@ -1,0 +1,148 @@
+{
+  "territories" : [ {
+    "moduleName" : "consistency",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 22 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpQcm90b01lc3NhZ2VVdGlsI3BhcnNlCmJyYW5jaCBhZGRlZA", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsI2NvbnZlcnRUb1dyaXRlUmVxdWVzdA", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsI2NvbnZlcnRUb1JlYWRSZXF1ZXN0", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXaXRoQ29ycnVwdFJlcXVlc3RUeXBlRmllbGQ", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UHJvdG8", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSZWFkUmVxdWVzdA", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXcml0ZVJlcXVlc3Q", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvUmVhZFJlcXVlc3Q", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvV3JpdGVSZXF1ZXN0", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VOdWxsT3JFbXB0eUJ5dGVz", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VUcnVuY2F0ZWRSZXF1ZXN0VHlwZVByZWZpeA", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VVbmtub3duUmVxdWVzdFR5cGU", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VDb3JydXB0UmVxdWVzdFByZXNlcnZlc0NhdXNl", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VFbXB0eVJlYWRSZXF1ZXN0V2l0aFJlcXVlc3RUeXBlRmllbGQ", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VFbXB0eVdyaXRlUmVxdWVzdFdpdGhSZXF1ZXN0VHlwZUZpZWxk", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VVbnRhZ2dlZFJlcXVlc3Q", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN1bnRhZ2dlZFJlcXVlc3Rz", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN3aXRoUmVxdWVzdFR5cGU", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaHJvd3MsIC1mYWlsLCAtYXNzZXJ0VHJ1ZQpQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VJbnZhbGlkQnl0ZXM", "TU9ESUZZX01FVEhPRF9CT0RZCitjb3B5RnJvbVV0ZjgsICtwdXRFeHRlbmRJbmZvLCArYXNzZXJ0SW5zdGFuY2VPZiwgK3dpdGhSZXF1ZXN0VHlwZSwgK2V4cGVjdGVkLmdldEdyb3VwIOKApmFuZCAxNSBtb3JlClByb3RvTWVzc2FnZVV0aWxUZXN0I3Rlc3RQYXJzZVJlYWRSZXF1ZXN0V2l0aFJlcXVlc3RUeXBlRmllbGQ", "TU9ESUZZX01FVEhPRF9CT0RZCitzZXRLZXksICtjb3B5RnJvbVV0ZjgsICtzZXRUeXBlLCArc2V0T3BlcmF0aW9uLCArcHV0RXh0ZW5kSW5mbyDigKZhbmQgMjUgbW9yZQpQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXcml0ZVJlcXVlc3RXaXRoUmVxdWVzdFR5cGVGaWVsZA", "QUREX0ZJRUxEClByb3RvTWVzc2FnZVV0aWwjTE9HR0VS" ],
+    "testChangeKeys" : [ "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXaXRoQ29ycnVwdFJlcXVlc3RUeXBlRmllbGQ", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UHJvdG8", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSZWFkUmVxdWVzdA", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXcml0ZVJlcXVlc3Q", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvUmVhZFJlcXVlc3Q", "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvV3JpdGVSZXF1ZXN0", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VOdWxsT3JFbXB0eUJ5dGVz", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VUcnVuY2F0ZWRSZXF1ZXN0VHlwZVByZWZpeA", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VVbmtub3duUmVxdWVzdFR5cGU", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VDb3JydXB0UmVxdWVzdFByZXNlcnZlc0NhdXNl", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VFbXB0eVJlYWRSZXF1ZXN0V2l0aFJlcXVlc3RUeXBlRmllbGQ", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VFbXB0eVdyaXRlUmVxdWVzdFdpdGhSZXF1ZXN0VHlwZUZpZWxk", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VVbnRhZ2dlZFJlcXVlc3Q", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN1bnRhZ2dlZFJlcXVlc3Rz", "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN3aXRoUmVxdWVzdFR5cGU", "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaHJvd3MsIC1mYWlsLCAtYXNzZXJ0VHJ1ZQpQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VJbnZhbGlkQnl0ZXM", "TU9ESUZZX01FVEhPRF9CT0RZCitjb3B5RnJvbVV0ZjgsICtwdXRFeHRlbmRJbmZvLCArYXNzZXJ0SW5zdGFuY2VPZiwgK3dpdGhSZXF1ZXN0VHlwZSwgK2V4cGVjdGVkLmdldEdyb3VwIOKApmFuZCAxNSBtb3JlClByb3RvTWVzc2FnZVV0aWxUZXN0I3Rlc3RQYXJzZVJlYWRSZXF1ZXN0V2l0aFJlcXVlc3RUeXBlRmllbGQ", "TU9ESUZZX01FVEhPRF9CT0RZCitzZXRLZXksICtjb3B5RnJvbVV0ZjgsICtzZXRUeXBlLCArc2V0T3BlcmF0aW9uLCArcHV0RXh0ZW5kSW5mbyDigKZhbmQgMjUgbW9yZQpQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXcml0ZVJlcXVlc3RXaXRoUmVxdWVzdFR5cGVGaWVsZA" ]
+  }, {
+    "moduleName" : "core",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 3 changes",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApOYWNvc1N0YXRlTWFjaGluZVRlc3QjdGVzdE9uQXBwbHlJbnZhbGlkTG9nUm9sbHNCYWNrV2l0aG91dEludm9raW5nUHJvY2Vzc29y", "QUREX1NZTUJPTApOYWNvc1N0YXRlTWFjaGluZVRlc3QjaW52YWxpZExvZ0RhdGE", "TU9ESUZZX01FVEhPRF9CT0RZCituZXdCdWlsZGVyLCArc2V0R3JvdXAsICtzZXRPcGVyYXRpb24sICtzZXREYXRhLCArY29weUZyb21VdGY4IOKApmFuZCAxOCBtb3JlCk5hY29zU3RhdGVNYWNoaW5lVGVzdCN0ZXN0T25BcHBseUZvbGxvd2VyV3JpdGVSZXF1ZXN0" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApOYWNvc1N0YXRlTWFjaGluZVRlc3QjdGVzdE9uQXBwbHlJbnZhbGlkTG9nUm9sbHNCYWNrV2l0aG91dEludm9raW5nUHJvY2Vzc29y", "QUREX1NZTUJPTApOYWNvc1N0YXRlTWFjaGluZVRlc3QjaW52YWxpZExvZ0RhdGE", "TU9ESUZZX01FVEhPRF9CT0RZCituZXdCdWlsZGVyLCArc2V0R3JvdXAsICtzZXRPcGVyYXRpb24sICtzZXREYXRhLCArY29weUZyb21VdGY4IOKApmFuZCAxOCBtb3JlCk5hY29zU3RhdGVNYWNoaW5lVGVzdCN0ZXN0T25BcHBseUZvbGxvd2VyV3JpdGVSZXF1ZXN0" ]
+  }, {
+    "moduleName" : "common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "persistence",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "auth",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "SPRING_BOOT_JAVA",
+    "techStackLabel" : "Spring Boot · Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trace",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "visibility",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "control",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "config (plugin)",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "encryption",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "datasource",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "environment",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "consistency",
+    "to" : "common"
+  }, {
+    "from" : "core",
+    "to" : "common"
+  }, {
+    "from" : "core",
+    "to" : "consistency"
+  }, {
+    "from" : "core",
+    "to" : "persistence"
+  }, {
+    "from" : "core",
+    "to" : "auth"
+  }, {
+    "from" : "core",
+    "to" : "trace"
+  }, {
+    "from" : "core",
+    "to" : "visibility"
+  }, {
+    "from" : "core",
+    "to" : "control"
+  }, {
+    "from" : "core",
+    "to" : "config (plugin)"
+  }, {
+    "from" : "core",
+    "to" : "encryption"
+  }, {
+    "from" : "core",
+    "to" : "datasource"
+  }, {
+    "from" : "core",
+    "to" : "environment"
+  } ]
+}

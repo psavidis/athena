@@ -1,0 +1,207 @@
+{
+  "camel-core" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in InflightRepositoryNodeSourceTest",
+      "conceptDescription" : "6 changes in test code of InflightRepositoryNodeSourceTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+public class InflightRepositoryNodeSourceTest extends ContextTestSupport {\n \n+    /** Such as InflightRepositoryNodeSourceTest:73 */\n+    private static final Pattern SOURCE = Pattern.compile(\"\\\\S+:\\\\d+\");\n+\n+    private final AtomicReference<String> nodeSource = new AtomicReference<>();\n+\n+    @Override\n+    protected CamelContext createCamelContext() throws Exception {\n+        CamelContext context = super.createCamelContext();\n+        context.getInflightRepository().setInflightBrowseEnabled(true);\n+        context.setMessageHistory(true);\n+        context.setSourceLocationEnabled(true);\n+        return context;\n+    }\n+\n+    @Test\n+    public void testInflightExchangeSaysWhereTheNodeIs() {\n+        template.sendBody(\"direct:start\", \"Hello World\");\n+\n+        String source = nodeSource.get();\n+        assertNotNull(source, \"The inflight exchange should say where the node is\");\n+        assertTrue(SOURCE.matcher(source).matches(), \"Expected a source:line but was: \" + source);\n+    }\n+\n+    @Override\n+    protected RouteBuilder createRouteBuilder() {\n+        return new RouteBuilder() {\n+            @Override\n+            public void configure() {\n+                from(\"direct:start\").routeId(\"foo\")\n+                        .process(exchange -> {\n+                            Collection<InflightRepository.InflightExchange> list\n+                                    = context.getInflightRepository().browse();\n+                            assertEquals(1, list.size());\n+\n+                            InflightRepository.InflightExchange inflight = list.iterator().next();\n+                            assertEquals(\"myProcessor\", inflight.getNodeId());\n+                            nodeSource.set(inflight.getNodeSource());\n+                        }).id(\"myProcessor\")\n+                        .to(\"mock:result\");\n+            }\n+        };\n+    }\n+}", "-\n+@Override\n+    protected CamelContext createCamelContext() throws Exception {\n+        CamelContext context = super.createCamelContext();\n+        context.getInflightRepository().setInflightBrowseEnabled(true);\n+        context.setMessageHistory(true);\n+        context.setSourceLocationEnabled(true);\n+        return context;\n+    }", "+@Test\n+    public void testInflightExchangeSaysWhereTheNodeIs() {\n+        template.sendBody(\"direct:start\", \"Hello World\");\n \n+        String source = nodeSource.get();\n+        assertNotNull(source, \"The inflight exchange should say where the node is\");\n+        assertTrue(SOURCE.matcher(source).matches(), \"Expected a source:line but was: \" + source);\n+    }", "+@Override\n+    protected RouteBuilder createRouteBuilder() {\n+        return new RouteBuilder() {\n+            @Override\n+            public void configure() {\n+                from(\"direct:start\").routeId(\"foo\")\n+                        .process(exchange -> {\n+                            Collection<InflightRepository.InflightExchange> list\n+                                    = context.getInflightRepository().browse();\n+                            assertEquals(1, list.size());\n \n+                            InflightRepository.InflightExchange inflight = list.iterator().next();\n+                            assertEquals(\"myProcessor\", inflight.getNodeId());\n+                            nodeSource.set(inflight.getNodeSource());\n+                        }).id(\"myProcessor\")\n+                        .to(\"mock:result\");\n+            }\n+        };\n+    }", "-\n+private static final Pattern SOURCE = Pattern.compile(\"\\\\S+:\\\\d+\");", "-\n+private final AtomicReference<String> nodeSource = new AtomicReference<>();" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-core/src/test/java/org/apache/camel/impl/InflightRepositoryNodeSourceTest.java" ],
+      "groupedMoveCount" : 6
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in DefaultAsyncProcessorAwaitManagerTest",
+      "conceptDescription" : "2 changes in test code of DefaultAsyncProcessorAwaitManagerTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Test\n+    public void testNodeSourceIsNullWhenNoneWasRecorded() throws Exception {\n+        startAsyncProcess();\n+        AsyncProcessorAwaitManager.AwaitThread awaitThread = defaultAsyncProcessorAwaitManager.browse().iterator().next();\n+        assertThat(awaitThread.getNodeSource(), is(nullValue()));\n+        waitForEndOfAsyncProcess();\n+    }", "-\n+@Test\n+    public void testNodeSourceSaysWhereTheNodeIs() throws Exception {\n+        startAsyncProcess();\n+        exchange.getExchangeExtension().setHistoryNodeId(\"nodeId\");\n+        exchange.getExchangeExtension().setHistoryNodeSource(\"orders.camel.yaml:18\");\n+        AsyncProcessorAwaitManager.AwaitThread awaitThread = defaultAsyncProcessorAwaitManager.browse().iterator().next();\n+        assertThat(awaitThread.getNodeId(), is(\"nodeId\"));\n+        assertThat(awaitThread.getNodeSource(), is(\"orders.camel.yaml:18\"));\n+        waitForEndOfAsyncProcess();\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-core/src/test/java/org/apache/camel/impl/DefaultAsyncProcessorAwaitManagerTest.java" ],
+      "groupedMoveCount" : 2
+    } ]
+  },
+  "camel-management" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body toCompositeData in 2 classes",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains. Same change in: ManagedAsyncProcessorAwaitManager, ManagedInflightRepository.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private static CompositeData toCompositeData(AsyncProcessorAwaitManager.AwaitThread entry, CompositeType ct)\n             throws OpenDataException {\n         // TODO Update once baseline is Java 21\n         //        String id = Long.toString(entry.getBlockedThread().threadId());\n         String id = Long.toString(entry.getBlockedThread().getId());\n         String name = entry.getBlockedThread().getName();\n         String exchangeId = entry.getExchange().getExchangeId();\n         String routeId = entry.getRouteId();\n         String nodeId = entry.getNodeId();\n+        String nodeSource = entry.getNodeSource();\n         String duration = Long.toString(entry.getWaitDuration());\n \n         return new CompositeDataSupport(\n                 ct,\n-                new String[] { \"id\", \"name\", \"exchangeId\", \"routeId\", \"nodeId\", \"duration\" },\n-                new Object[] { id, name, exchangeId, routeId, nodeId, duration });\n+                new String[] { \"id\", \"name\", \"exchangeId\", \"routeId\", \"nodeId\", \"nodeSource\", \"duration\" },\n+                new Object[] { id, name, exchangeId, routeId, nodeId, nodeSource, duration });\n     }", " private static CompositeData toCompositeData(InflightRepository.InflightExchange entry, CompositeType ct)\n             throws OpenDataException {\n         String exchangeId = entry.getExchange().getExchangeId();\n         String fromRouteId = entry.getFromRouteId();\n         String atRouteId = entry.getAtRouteId();\n         String nodeId = entry.getNodeId();\n+        String nodeSource = entry.getNodeSource();\n         String elapsed = Long.toString(entry.getElapsed());\n         String duration = Long.toString(entry.getDuration());\n \n         return new CompositeDataSupport(\n                 ct,\n-                new String[] { \"exchangeId\", \"fromRouteId\", \"routeId\", \"nodeId\", \"elapsed\", \"duration\" },\n-                new Object[] { exchangeId, fromRouteId, atRouteId, nodeId, elapsed, duration });\n+                new String[] { \"exchangeId\", \"fromRouteId\", \"routeId\", \"nodeId\", \"nodeSource\", \"elapsed\", \"duration\" },\n+                new Object[] { exchangeId, fromRouteId, atRouteId, nodeId, nodeSource, elapsed, duration });\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-management/src/main/java/org/apache/camel/management/mbean/ManagedAsyncProcessorAwaitManager.java", "core/camel-management/src/main/java/org/apache/camel/management/mbean/ManagedInflightRepository.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in ManagedInflightRepositoryNodeSourceTest",
+      "conceptDescription" : "5 changes in test code of ManagedInflightRepositoryNodeSourceTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@DisabledOnOs(OS.AIX)\n+public class ManagedInflightRepositoryNodeSourceTest extends ManagementTestSupport {\n \n+    /** Such as ManagedInflightRepositoryNodeSourceTest:80 */\n+    private static final Pattern SOURCE = Pattern.compile(\"\\\\S+:\\\\d+\");\n+\n+    @Override\n+    protected CamelContext createCamelContext() throws Exception {\n+        CamelContext context = super.createCamelContext();\n+        context.setMessageHistory(true);\n+        context.setSourceLocationEnabled(true);\n+        return context;\n+    }\n+\n+    @Test\n+    public void testInflightRowSaysWhereTheNodeIs() throws Exception {\n+        getMockEndpoint(\"mock:result\").expectedMessageCount(1);\n+\n+        template.sendBody(\"direct:start\", \"Hello World\");\n+\n+        assertMockEndpointsSatisfied();\n+    }\n+\n+    @Override\n+    protected RouteBuilder createRouteBuilder() {\n+        return new RouteBuilder() {\n+            @Override\n+            public void configure() {\n+                context.getInflightRepository().setInflightBrowseEnabled(true);\n+\n+                from(\"direct:start\").routeId(\"foo\")\n+                        .process(exchange -> {\n+                            MBeanServer mbeanServer = getMBeanServer();\n+                            ObjectName name = getCamelObjectName(TYPE_SERVICE, \"DefaultInflightRepository\");\n+\n+                            TabularData data = (TabularData) mbeanServer.invoke(name, \"browse\", null, null);\n+                            assertNotNull(data);\n+                            assertEquals(1, data.size());\n+\n+                            CompositeData row = (CompositeData) data.values().iterator().next();\n+                            assertEquals(\"myProcessor\", row.get(\"nodeId\"));\n+\n+                            Object source = row.get(\"nodeSource\");\n+                            assertNotNull(source, \"The row should say where the node is\");\n+                            assertTrue(SOURCE.matcher(source.toString()).matches(),\n+                                    \"Expected a source:line but was: \" + source);\n+                        }).id(\"myProcessor\")\n+                        .to(\"mock:result\");\n+            }\n+        };\n+    }\n+\n+}", "-\n+@Override\n+    protected CamelContext createCamelContext() throws Exception {\n+        CamelContext context = super.createCamelContext();\n+        context.setMessageHistory(true);\n+        context.setSourceLocationEnabled(true);\n+        return context;\n+    }", "+@Test\n+    public void testInflightRowSaysWhereTheNodeIs() throws Exception {\n+        getMockEndpoint(\"mock:result\").expectedMessageCount(1);\n \n+        template.sendBody(\"direct:start\", \"Hello World\");\n+\n+        assertMockEndpointsSatisfied();\n+    }", "+@Override\n+    protected RouteBuilder createRouteBuilder() {\n+        return new RouteBuilder() {\n+            @Override\n+            public void configure() {\n+                context.getInflightRepository().setInflightBrowseEnabled(true);\n \n+                from(\"direct:start\").routeId(\"foo\")\n+                        .process(exchange -> {\n+                            MBeanServer mbeanServer = getMBeanServer();\n+                            ObjectName name = getCamelObjectName(TYPE_SERVICE, \"DefaultInflightRepository\");\n+\n+                            TabularData data = (TabularData) mbeanServer.invoke(name, \"browse\", null, null);\n+                            assertNotNull(data);\n+                            assertEquals(1, data.size());\n+\n+                            CompositeData row = (CompositeData) data.values().iterator().next();\n+                            assertEquals(\"myProcessor\", row.get(\"nodeId\"));\n+\n+                            Object source = row.get(\"nodeSource\");\n+                            assertNotNull(source, \"The row should say where the node is\");\n+                            assertTrue(SOURCE.matcher(source.toString()).matches(),\n+                                    \"Expected a source:line but was: \" + source);\n+                        }).id(\"myProcessor\")\n+                        .to(\"mock:result\");\n+            }\n+        };\n+    }", "-\n+private static final Pattern SOURCE = Pattern.compile(\"\\\\S+:\\\\d+\");" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-management/src/test/java/org/apache/camel/management/ManagedInflightRepositoryNodeSourceTest.java" ],
+      "groupedMoveCount" : 5
+    } ]
+  },
+  "camel-base-engine" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private static String dumpBlockedThread(AwaitThread entry) {\n         StringBuilder sb = new StringBuilder(512);\n         sb.append(\"\\n\");\n         sb.append(\"Blocked Thread\\n\");\n         sb.append(\n                 \"---------------------------------------------------------------------------------------------------------------------------------------\\n\");\n \n         // TODO Update once baseline is Java 21\n         //        sb.append(style(\"Id:\")).append(entry.getBlockedThread().threadId()).append(\"\\n\");\n         sb.append(style(\"Id:\")).append(entry.getBlockedThread().getId()).append(\"\\n\");\n         sb.append(style(\"Name:\")).append(entry.getBlockedThread().getName()).append(\"\\n\");\n         sb.append(style(\"RouteId:\")).append(safeNull(entry.getRouteId())).append(\"\\n\");\n         sb.append(style(\"NodeId:\")).append(safeNull(entry.getNodeId())).append(\"\\n\");\n+        if (entry.getNodeSource() != null) {\n+            sb.append(style(\"Source:\")).append(entry.getNodeSource()).append(\"\\n\");\n+        }\n         sb.append(style(\"Duration:\")).append(entry.getWaitDuration()).append(\" msec.\\n\");\n         return sb.toString();\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultAsyncProcessorAwaitManager.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " protected void logInflightExchanges(CamelContext camelContext, List<RouteStartupOrder> routes, boolean infoLevel) {\n         // check if we need to log\n         if (!infoLevel && !LOG.isDebugEnabled()) {\n             return;\n         }\n \n         Collection<InflightRepository.InflightExchange> inflights = camelContext.getInflightRepository().browse();\n         int size = inflights.size();\n         if (size == 0) {\n             return;\n         }\n \n         // filter so inflight must start from any of the routes\n         Set<String> routeIds = new HashSet<>();\n         for (RouteStartupOrder route : routes) {\n             routeIds.add(route.getRoute().getId());\n         }\n         Collection<InflightRepository.InflightExchange> filtered = new ArrayList<>();\n         for (InflightRepository.InflightExchange inflight : inflights) {\n             String routeId = inflight.getExchange().getFromRouteId();\n             if (routeIds.contains(routeId)) {\n                 filtered.add(inflight);\n             }\n         }\n \n         size = filtered.size();\n         if (size == 0) {\n             return;\n         }\n \n         StringBuilder sb = new StringBuilder(512);\n \n         sb.append(\"There are \").append(size).append(\" inflight exchanges:\");\n         for (InflightRepository.InflightExchange inflight : filtered) {\n             sb.append(\"\\n\\tInflightExchange: [exchangeId=\").append(inflight.getExchange().getExchangeId())\n                     .append(\", fromRouteId=\").append(inflight.getExchange().getFromRouteId())\n                     .append(\", atRouteId=\").append(inflight.getAtRouteId())\n-                    .append(\", nodeId=\").append(inflight.getNodeId())\n-                    .append(\", elapsed=\").append(inflight.getElapsed())\n+                    .append(\", nodeId=\").append(inflight.getNodeId());\n+            if (inflight.getNodeSource() != null) {\n+                // where the node is in the source, so it is clear which line is holding the shutdown up\n+                sb.append(\", nodeSource=\").append(inflight.getNodeSource());\n+            }\n+            sb.append(\", elapsed=\").append(inflight.getElapsed())\n                     .append(\", duration=\").append(inflight.getDuration())\n                     .append(\"]\");\n         }\n \n         if (infoLevel) {\n             LOG.info(sb.toString());\n         } else {\n             LOG.debug(sb.toString());\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultShutdownStrategy.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add getNodeSource in 2 classes",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart. Same change in: DefaultAsyncProcessorAwaitManager.AwaitThreadEntry, DefaultInflightRepository.InflightExchangeEntry.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Override\n+        public String getNodeSource() {\n+            return exchange.getExchangeExtension().getHistoryNodeSource();\n+        }", "-\n+@Override\n+        public String getNodeSource() {\n+            return exchange.getExchangeExtension().getHistoryNodeSource();\n+        }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultAsyncProcessorAwaitManager.java", "core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultInflightRepository.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " private static String dumpBlockedThread(AwaitThread entry) {\n         StringBuilder sb = new StringBuilder(512);\n         sb.append(\"\\n\");\n         sb.append(\"Blocked Thread\\n\");\n         sb.append(\n                 \"---------------------------------------------------------------------------------------------------------------------------------------\\n\");\n \n         // TODO Update once baseline is Java 21\n         //        sb.append(style(\"Id:\")).append(entry.getBlockedThread().threadId()).append(\"\\n\");\n         sb.append(style(\"Id:\")).append(entry.getBlockedThread().getId()).append(\"\\n\");\n         sb.append(style(\"Name:\")).append(entry.getBlockedThread().getName()).append(\"\\n\");\n         sb.append(style(\"RouteId:\")).append(safeNull(entry.getRouteId())).append(\"\\n\");\n         sb.append(style(\"NodeId:\")).append(safeNull(entry.getNodeId())).append(\"\\n\");\n+        if (entry.getNodeSource() != null) {\n+            sb.append(style(\"Source:\")).append(entry.getNodeSource()).append(\"\\n\");\n+        }\n         sb.append(style(\"Duration:\")).append(entry.getWaitDuration()).append(\" msec.\\n\");\n         return sb.toString();\n     }", " protected void logInflightExchanges(CamelContext camelContext, List<RouteStartupOrder> routes, boolean infoLevel) {\n         // check if we need to log\n         if (!infoLevel && !LOG.isDebugEnabled()) {\n             return;\n         }\n \n         Collection<InflightRepository.InflightExchange> inflights = camelContext.getInflightRepository().browse();\n         int size = inflights.size();\n         if (size == 0) {\n             return;\n         }\n \n         // filter so inflight must start from any of the routes\n         Set<String> routeIds = new HashSet<>();\n         for (RouteStartupOrder route : routes) {\n             routeIds.add(route.getRoute().getId());\n         }\n         Collection<InflightRepository.InflightExchange> filtered = new ArrayList<>();\n         for (InflightRepository.InflightExchange inflight : inflights) {\n             String routeId = inflight.getExchange().getFromRouteId();\n             if (routeIds.contains(routeId)) {\n                 filtered.add(inflight);\n             }\n         }\n \n         size = filtered.size();\n         if (size == 0) {\n             return;\n         }\n \n         StringBuilder sb = new StringBuilder(512);\n \n         sb.append(\"There are \").append(size).append(\" inflight exchanges:\");\n         for (InflightRepository.InflightExchange inflight : filtered) {\n             sb.append(\"\\n\\tInflightExchange: [exchangeId=\").append(inflight.getExchange().getExchangeId())\n                     .append(\", fromRouteId=\").append(inflight.getExchange().getFromRouteId())\n                     .append(\", atRouteId=\").append(inflight.getAtRouteId())\n-                    .append(\", nodeId=\").append(inflight.getNodeId())\n-                    .append(\", elapsed=\").append(inflight.getElapsed())\n+                    .append(\", nodeId=\").append(inflight.getNodeId());\n+            if (inflight.getNodeSource() != null) {\n+                // where the node is in the source, so it is clear which line is holding the shutdown up\n+                sb.append(\", nodeSource=\").append(inflight.getNodeSource());\n+            }\n+            sb.append(\", elapsed=\").append(inflight.getElapsed())\n                     .append(\", duration=\").append(inflight.getDuration())\n                     .append(\"]\");\n         }\n \n         if (infoLevel) {\n             LOG.info(sb.toString());\n         } else {\n             LOG.debug(sb.toString());\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultAsyncProcessorAwaitManager.java", "core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultShutdownStrategy.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+@Override\n+        public String getNodeSource() {\n+            return exchange.getExchangeExtension().getHistoryNodeSource();\n+        }", "-\n+@Override\n+        public String getNodeSource() {\n+            return exchange.getExchangeExtension().getHistoryNodeSource();\n+        }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultAsyncProcessorAwaitManager.java", "core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultInflightRepository.java" ],
+      "groupedMoveCount" : 2
+    } ]
+  },
+  "camel-api" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add getNodeSource in 2 classes",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart. Same change in: AsyncProcessorAwaitManager.AwaitThread, InflightRepository.InflightExchange.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Nullable\n+        default String getNodeSource() {\n+            return null;\n+        }", "-\n+@Nullable\n+        default String getNodeSource() {\n+            return null;\n+        }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-api/src/main/java/org/apache/camel/spi/AsyncProcessorAwaitManager.java", "core/camel-api/src/main/java/org/apache/camel/spi/InflightRepository.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+@Nullable\n+        default String getNodeSource() {\n+            return null;\n+        }", "-\n+@Nullable\n+        default String getNodeSource() {\n+            return null;\n+        }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-api/src/main/java/org/apache/camel/spi/AsyncProcessorAwaitManager.java", "core/camel-api/src/main/java/org/apache/camel/spi/InflightRepository.java" ],
+      "groupedMoveCount" : 2
+    } ]
+  },
+  "camel-console" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body doCallText in 2 classes",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains. Same change in: BlockedConsole, InflightConsole.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n     protected String doCallText(Map<String, Object> options) {\n         StringBuilder sb = new StringBuilder();\n \n         AsyncProcessorAwaitManager am = PluginHelper.getAsyncProcessorAwaitManager(getCamelContext());\n         sb.append(String.format(\"%n    Blocked: %s\", am.size()));\n         for (AsyncProcessorAwaitManager.AwaitThread at : am.browse()) {\n             String age = TimeUtils.printDuration(at.getWaitDuration(), true);\n-            sb.append(String.format(\"%n    %s (at: %s/%s age: %s)\",\n-                    at.getExchange().getExchangeId(), at.getRouteId(), at.getNodeId(), age));\n+            String source = at.getNodeSource() != null ? \" source: \" + at.getNodeSource() : \"\";\n+            sb.append(String.format(\"%n    %s (at: %s/%s%s age: %s)\",\n+                    at.getExchange().getExchangeId(), at.getRouteId(), at.getNodeId(), source, age));\n         }\n \n         return sb.toString();\n     }", " @Override\n     protected String doCallText(Map<String, Object> options) {\n         String filter = optionString(options, FILTER);\n         int max = optionInt(options, LIMIT, Integer.MAX_VALUE);\n \n         StringBuilder sb = new StringBuilder();\n \n         InflightRepository repo = getCamelContext().getInflightRepository();\n         sb.append(String.format(\"%n    Inflight: %s\", repo.size()));\n         sb.append(String.format(\"%n    InflightBrowseEnabled: %s\", repo.isInflightBrowseEnabled()));\n         if (repo.isInflightBrowseEnabled()) {\n             for (InflightRepository.InflightExchange ie : repo.browse(filter, max, false)) {\n                 String age = TimeUtils.printDuration(ie.getDuration(), true);\n-                sb.append(String.format(\"%n    %s (from: %s at: %s/%s remote: %b age: %s)\",\n+                String source = ie.getNodeSource() != null ? \" source: \" + ie.getNodeSource() : \"\";\n+                sb.append(String.format(\"%n    %s (from: %s at: %s/%s%s remote: %b age: %s)\",\n                         ie.getExchange().getExchangeId(), ie.getFromRouteId(), ie.getAtRouteId(), ie.getNodeId(),\n-                        ie.isFromRemoteEndpoint(), age));\n+                        source, ie.isFromRemoteEndpoint(), age));\n             }\n         }\n \n         return sb.toString();\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-console/src/main/java/org/apache/camel/impl/console/BlockedConsole.java", "core/camel-console/src/main/java/org/apache/camel/impl/console/InflightConsole.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body doCallJson in 2 classes",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains. Same change in: BlockedConsole, InflightConsole.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n     protected Map<String, Object> doCallJson(Map<String, Object> options) {\n         AsyncProcessorAwaitManager am = PluginHelper.getAsyncProcessorAwaitManager(getCamelContext());\n \n         List<Entry> entries = new ArrayList<>();\n         for (AsyncProcessorAwaitManager.AwaitThread at : am.browse()) {\n             entries.add(new Entry(\n-                    at.getExchange().getExchangeId(), at.getRouteId(), at.getNodeId(), at.getWaitDuration()));\n+                    at.getExchange().getExchangeId(), at.getRouteId(), at.getNodeId(), at.getNodeSource(),\n+                    at.getWaitDuration()));\n         }\n \n         Response response = new Response(am.size(), entries.isEmpty() ? null : entries);\n         return JsonRecordSupport.toJsonObject(response);\n     }", " @Override\n     protected Map<String, Object> doCallJson(Map<String, Object> options) {\n         String filter = optionString(options, FILTER);\n         int max = optionInt(options, LIMIT, Integer.MAX_VALUE);\n \n         InflightRepository repo = getCamelContext().getInflightRepository();\n         boolean browseEnabled = repo.isInflightBrowseEnabled();\n \n         List<Exchange> exchanges = null;\n         if (browseEnabled) {\n             exchanges = new ArrayList<>();\n             for (InflightRepository.InflightExchange ie : repo.browse(filter, max, false)) {\n                 exchanges.add(new Exchange(\n                         ie.getExchange().getExchangeId(), ie.getFromRouteId(), ie.isFromRemoteEndpoint(),\n-                        ie.getAtRouteId(), ie.getNodeId(), ie.getElapsed(), ie.getDuration()));\n+                        ie.getAtRouteId(), ie.getNodeId(), ie.getNodeSource(), ie.getElapsed(), ie.getDuration()));\n             }\n         }\n \n         Response response = new Response(repo.size(), browseEnabled, exchanges);\n         return JsonRecordSupport.toJsonObject(response);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-console/src/main/java/org/apache/camel/impl/console/BlockedConsole.java", "core/camel-console/src/main/java/org/apache/camel/impl/console/InflightConsole.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Signature <init> in 2 classes",
+      "conceptDescription" : "A method's parameter list and/or return type changed. Same change in: BlockedConsole.Entry, InflightConsole.Exchange.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-record Entry(String exchangeId, String routeId, String nodeId, long duration)\n+record Entry(String exchangeId, String routeId, String nodeId, String nodeSource, long duration)", "-record Exchange(String exchangeId, String fromRouteId, boolean fromRemoteEndpoint, String atRouteId, String nodeId, long elapsed, long duration)\n+record Exchange(String exchangeId, String fromRouteId, boolean fromRemoteEndpoint, String atRouteId, String nodeId, String nodeSource, long elapsed, long duration)" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-console/src/main/java/org/apache/camel/impl/console/BlockedConsole.java", "core/camel-console/src/main/java/org/apache/camel/impl/console/InflightConsole.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Change API Responsibility",
+      "conceptDescription" : "What a public API is responsible for doing changed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-record Entry(String exchangeId, String routeId, String nodeId, long duration)\n+record Entry(String exchangeId, String routeId, String nodeId, String nodeSource, long duration)", "-record Exchange(String exchangeId, String fromRouteId, boolean fromRemoteEndpoint, String atRouteId, String nodeId, long elapsed, long duration)\n+record Exchange(String exchangeId, String fromRouteId, boolean fromRemoteEndpoint, String atRouteId, String nodeId, String nodeSource, long elapsed, long duration)" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-console/src/main/java/org/apache/camel/impl/console/BlockedConsole.java", "core/camel-console/src/main/java/org/apache/camel/impl/console/InflightConsole.java" ],
+      "groupedMoveCount" : 2
+    } ]
+  },
+  "camel-management-api" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " public static CompositeType listAwaitThreadsCompositeType() throws OpenDataException {\n         return new CompositeType(\n                 \"threads\", \"Threads\",\n-                new String[] { \"id\", \"name\", \"exchangeId\", \"routeId\", \"nodeId\", \"duration\" },\n-                new String[] { \"Thread Id\", \"Thread name\", \"ExchangeId\", \"RouteId\", \"NodeId\", \"Duration\" },\n+                new String[] { \"id\", \"name\", \"exchangeId\", \"routeId\", \"nodeId\", \"nodeSource\", \"duration\" },\n+                new String[] {\n+                        \"Thread Id\", \"Thread name\", \"ExchangeId\", \"RouteId\", \"NodeId\", \"NodeSource\", \"Duration\" },\n                 new OpenType[] {\n                         SimpleType.STRING, SimpleType.STRING, SimpleType.STRING, SimpleType.STRING, SimpleType.STRING,\n-                        SimpleType.STRING });\n+                        SimpleType.STRING, SimpleType.STRING });\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-management-api/src/main/java/org/apache/camel/api/management/mbean/CamelOpenMBeanTypes.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " public static CompositeType listInflightExchangesCompositeType() throws OpenDataException {\n         return new CompositeType(\n                 \"exchanges\", \"Exchanges\",\n-                new String[] { \"exchangeId\", \"fromRouteId\", \"routeId\", \"nodeId\", \"elapsed\", \"duration\" },\n-                new String[] { \"Exchange Id\", \"From RouteId\", \"RouteId\", \"NodeId\", \"Elapsed\", \"Duration\" },\n+                new String[] { \"exchangeId\", \"fromRouteId\", \"routeId\", \"nodeId\", \"nodeSource\", \"elapsed\", \"duration\" },\n+                new String[] {\n+                        \"Exchange Id\", \"From RouteId\", \"RouteId\", \"NodeId\", \"NodeSource\", \"Elapsed\", \"Duration\" },\n                 new OpenType[] {\n                         SimpleType.STRING, SimpleType.STRING, SimpleType.STRING, SimpleType.STRING, SimpleType.STRING,\n-                        SimpleType.STRING });\n+                        SimpleType.STRING, SimpleType.STRING });\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-management-api/src/main/java/org/apache/camel/api/management/mbean/CamelOpenMBeanTypes.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  }
+}

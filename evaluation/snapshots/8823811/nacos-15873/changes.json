@@ -1,0 +1,31 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEaXN0cm9DbGllbnREYXRhUHJvY2Vzc29yI2dldERhdHVtU25hcHNob3QKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of DistroClientDataProcessor#getDatumSnapshot: branch added",
+  "files" : [ "naming/src/main/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessor.java" ],
+  "symbols" : [ "DistroClientDataProcessor#getDatumSnapshot", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEaXN0cm9DbGllbnREYXRhUHJvY2Vzc29yVGVzdCN0ZXN0R2V0RGF0dW1TbmFwc2hvdEluY2x1ZGVOb25Db25uZWN0aW9uQmFzZWRDbGllbnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DistroClientDataProcessorTest#testGetDatumSnapshotIncludeNonConnectionBasedClient",
+  "files" : [ "naming/src/test/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessorTest.java" ],
+  "symbols" : [ "DistroClientDataProcessorTest#testGetDatumSnapshotIncludeNonConnectionBasedClient" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitmb3JDbGFzcywgK3ZlcmlmeSwgK3NlcmlhbGl6ZSwgK2NhcHRvci5jYXB0dXJlLCArYXNzZXJ0VHJ1ZSDigKZhbmQgMyBtb3JlCkRpc3Ryb0NsaWVudERhdGFQcm9jZXNzb3JUZXN0I3Rlc3RHZXREYXR1bVNuYXBzaG90",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of DistroClientDataProcessorTest#testGetDatumSnapshot: +forClass, +verify, +serialize, +captor.capture, +assertTrue …and 3 more",
+  "files" : [ "naming/src/test/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessorTest.java" ],
+  "symbols" : [ "DistroClientDataProcessorTest#testGetDatumSnapshot", "+forClass, +verify, +serialize, +captor.capture, +assertTrue …and 3 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

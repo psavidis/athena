@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change dependency io.dropwizard:dropwizard-testing (examples-core): exclusion junit:junit removed",
+  "entity" : "examples-core"
+}, {
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-common (dropwizard-auth): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "entity" : "dropwizard-auth"
+}, {
+  "description" : "Change dependency org.glassfish.jersey.core:jersey-server (dropwizard-auth): exclusion org.glassfish.hk2.external:jakarta.inject removed",
+  "entity" : "dropwizard-auth"
+}, {
+  "description" : "Change dependency org.eclipse.jetty:jetty-server (dropwizard-auth): exclusion org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api removed",
+  "entity" : "dropwizard-auth"
+} ]

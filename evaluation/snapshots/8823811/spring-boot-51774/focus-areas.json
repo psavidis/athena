@@ -1,0 +1,13 @@
+[ {
+  "description" : "Add field KafkaProperties.Listener#awaitAsyncResultsOnStop",
+  "entity" : "KafkaProperties.Listener"
+}, {
+  "description" : "Add KafkaProperties.Listener#isAwaitAsyncResultsOnStop",
+  "entity" : "KafkaProperties.Listener"
+}, {
+  "description" : "Add KafkaProperties.Listener#setAwaitAsyncResultsOnStop",
+  "entity" : "KafkaProperties.Listener"
+}, {
+  "description" : "Modify body of ConcurrentKafkaListenerContainerFactoryConfigurer#configureContainer: +map.from, +to",
+  "entity" : "ConcurrentKafkaListenerContainerFactoryConfigurer"
+} ]

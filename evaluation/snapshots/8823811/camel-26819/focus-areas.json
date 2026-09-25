@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change supertype of SimpleRegistry: LinkedHashMap -> ConcurrentHashMap",
+  "entity" : "SimpleRegistry"
+}, {
+  "description" : "Add field DefaultModel#log",
+  "entity" : "DefaultModel"
+}, {
+  "description" : "Modify body of DefaultModel#addCustomBean: +lock.lock, +lock.unlock",
+  "entity" : "DefaultModel"
+}, {
+  "description" : "Modify body of SimpleRegistry#bind: computeIfAbsent(…): LinkedHashMap -> ConcurrentHashMap",
+  "entity" : "SimpleRegistry"
+} ]

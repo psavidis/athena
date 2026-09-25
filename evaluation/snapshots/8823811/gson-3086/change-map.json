@@ -1,0 +1,54 @@
+{
+  "prTitle" : "Skip accessibility check in BoundField once it is known to have passed",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5I2NyZWF0ZUJvdW5kRmllbGQKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of ReflectiveTypeAdapterFactory#createBoundField: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0ZJRUxEClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkjY3JlYXRlQm91bmRGaWVsZChhbm9ueW1vdXMgQm91bmRGaWVsZCkja25vd25BY2Nlc3NpYmxl",
+    "description" : "Add field ReflectiveTypeAdapterFactory#createBoundField(anonymous BoundField)#knownAccessible",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ReflectiveTypeAdapterFactory",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZWZsZWN0aXZlVHlwZUFkYXB0ZXJGYWN0b3J5I2NyZWF0ZUJvdW5kRmllbGQKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of ReflectiveTypeAdapterFactory#createBoundField: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "QUREX0ZJRUxEClJlZmxlY3RpdmVUeXBlQWRhcHRlckZhY3RvcnkjY3JlYXRlQm91bmRGaWVsZChhbm9ueW1vdXMgQm91bmRGaWVsZCkja25vd25BY2Nlc3NpYmxl",
+      "description" : "Add field ReflectiveTypeAdapterFactory#createBoundField(anonymous BoundField)#knownAccessible",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

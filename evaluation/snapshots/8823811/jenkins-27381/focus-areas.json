@@ -1,0 +1,13 @@
+[ {
+  "description" : "Modify body of QueryParameterMap#<init>: +param.isEmpty",
+  "entity" : "QueryParameterMap"
+}, {
+  "description" : "Add class QueryParameterMapTest",
+  "entity" : "QueryParameterMapTest"
+}, {
+  "description" : "Add QueryParameterMapTest#basic",
+  "entity" : "QueryParameterMapTest"
+}, {
+  "description" : "Add QueryParameterMapTest#parameterWithoutValue",
+  "entity" : "QueryParameterMapTest"
+} ]

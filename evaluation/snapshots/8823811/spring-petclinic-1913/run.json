@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/spring-projects/spring-petclinic.git",
+  "base" : "3a931080d40e7daf14bd2fdd06204550ca66f6ff",
+  "head" : "263e7bbd052cfc38caa9461f690299e308eda15d",
+  "changeCount" : 21,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 3.3
+}

@@ -1,0 +1,635 @@
+{
+  "prTitle" : "ByteBufferCleaner to check Unsafe access in Java 23+",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 3,
+    "STRUCTURAL" : 20,
+    "UNKNOWN" : 7,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0KSW5wdXRTdHJlYW0gLT4gQWJzdHJhY3RJbnB1dFN0cmVhbQ",
+    "description" : "Change supertype of BufferedFileChannelInputStream: InputStream -> AbstractInputStream",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0jY2xvc2UKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of BufferedFileChannelInputStream#close: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCeXRlQnVmZmVyQ2xlYW5lciNnZXRDbGVhbmVyCmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of ByteBufferCleaner#getCleaner: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW0jY2xlYW5CdWZmZXIKY29uZGl0aW9uIGNoYW5nZWQ",
+    "description" : "Change control flow of MemoryMappedFileInputStream#cleanBuffer: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "UkVOQU1FX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdFN1cHBvcnRlZApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdFN1cHBvcnRlZEJlZm9yZUphdmEyMw",
+    "description" : "Rename ByteBufferCleanerTest#testSupported -> testSupportedBeforeJava23",
+    "category" : "STRUCTURAL",
+    "kind" : "RENAME_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0jY2xlYW4",
+    "description" : "Remove BufferedFileChannelInputStream#clean",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0jaXNDbGVhbg",
+    "description" : "Remove BufferedFileChannelInputStream#isClean",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0jY2xlYW5CdWZmZXI",
+    "description" : "Add BufferedFileChannelInputStream#cleanBuffer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0uQnVpbGRlciNzZXRDbGVhbg",
+    "description" : "Add BufferedFileChannelInputStream.Builder#setClean",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX1NZTUJPTApNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW0uQnVpbGRlciNzZXRDbGVhbg",
+    "description" : "Add MemoryMappedFileInputStream.Builder#setClean",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW1UZXN0I3Rlc3RDbGVhbkNhbGxlZE5ldmVy",
+    "description" : "Add BufferedFileChannelInputStreamTest#testCleanCalledNever",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdENsZWFuTm9uRGlyZWN0QnVmZmVy",
+    "description" : "Add ByteBufferCleanerTest#testCleanNonDirectBuffer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdENsZWFuTnVsbEJ1ZmZlcg",
+    "description" : "Add ByteBufferCleanerTest#testCleanNullBuffer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdE5vdFN1cHBvcnRlZFNpbmNlSmF2YTIz",
+    "description" : "Add ByteBufferCleanerTest#testNotSupportedSinceJava23",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdmVyaWZ5VW5jbGVhcmVk",
+    "description" : "Add ByteBufferCleanerTest#verifyUncleared",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW1UZXN0I3Rlc3RDbGVhbkNhbGxlZA",
+    "description" : "Add MemoryMappedFileInputStreamTest#testCleanCalled",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW1UZXN0I3Rlc3RDbGVhbkNhbGxlZE5ldmVy",
+    "description" : "Add MemoryMappedFileInputStreamTest#testCleanCalledNever",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRQcm9wZXJ0eSwgK2VxdWFscywgK3BhcnNlSW50LCByZXR1cm4gc3RhdGVtZW50cyAxIOKGkiAyCkJ5dGVCdWZmZXJDbGVhbmVyI2lzU3VwcG9ydGVk",
+    "description" : "Modify body of ByteBufferCleaner#isSupported: +getProperty, +equals, +parseInt, return statements 1 → 2",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 18,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc1N1cHBvcnRlZCwgK21vY2tTdGF0aWMsICtzZXRDbGVhbiwgK21vY2tlZC52ZXJpZnksICtjbGVhbiDigKZhbmQgNSBtb3JlCkJ1ZmZlcmVkRmlsZUNoYW5uZWxJbnB1dFN0cmVhbVRlc3QjdGVzdENsZWFuQ2FsbGVkT25seU9uY2U",
+    "description" : "Modify body of BufferedFileChannelInputStreamTest#testCleanCalledOnlyOnce: +isSupported, +mockStatic, +setClean, +mocked.verify, +clean …and 5 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 19,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkJ5dGVCdWZmZXJDbGVhbmVyVGVzdCN0ZXN0Q2xlYW5FbXB0eQphbGxvY2F0ZURpcmVjdCjigKYpOiAxMCAtPiA4",
+    "description" : "Modify body of ByteBufferCleanerTest#testCleanEmpty: allocateDirect(…): 10 -> 8",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 20,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitidWZmZXIucHV0TG9uZywgK3ZlcmlmeVVuY2xlYXJlZCwgLWJ1ZmZlci5wdXQsIC1pbnNlY3VyZSwgLXJhbmRvbUJ5dGVzCkJ5dGVCdWZmZXJDbGVhbmVyVGVzdCN0ZXN0Q2xlYW5GdWxs",
+    "description" : "Modify body of ByteBufferCleanerTest#testCleanFull: +buffer.putLong, +verifyUncleared, -buffer.put, -insecure, -randomBytes",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 21,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkJ1ZmZlcmVkRmlsZUNoYW5uZWxJbnB1dFN0cmVhbSM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of BufferedFileChannelInputStream#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 22,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1lbW9yeU1hcHBlZEZpbGVJbnB1dFN0cmVhbSM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of MemoryMappedFileInputStream#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 23,
+    "changeKey" : "Q0hBTkdFX01PRElGSUVSUwotZmluYWwKQnVmZmVyZWRGaWxlQ2hhbm5lbElucHV0U3RyZWFtI2J5dGVCdWZmZXI",
+    "description" : "Change modifiers of BufferedFileChannelInputStream#byteBuffer: -final",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_MODIFIERS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 24,
+    "changeKey" : "Q0hBTkdFX01PRElGSUVSUworZmluYWwKQnVmZmVyZWRGaWxlQ2hhbm5lbElucHV0U3RyZWFtI2NsZWFu",
+    "description" : "Change modifiers of BufferedFileChannelInputStream#clean: +final",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_MODIFIERS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 25,
+    "changeKey" : "QUREX0ZJRUxECkJ1ZmZlcmVkRmlsZUNoYW5uZWxJbnB1dFN0cmVhbSNFTVBUWV9CVUZGRVI",
+    "description" : "Add field BufferedFileChannelInputStream#EMPTY_BUFFER",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 26,
+    "changeKey" : "QUREX0ZJRUxECkJ1ZmZlcmVkRmlsZUNoYW5uZWxJbnB1dFN0cmVhbS5CdWlsZGVyI2NsZWFu",
+    "description" : "Add field BufferedFileChannelInputStream.Builder#clean",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 27,
+    "changeKey" : "QUREX0ZJRUxECk1lbW9yeU1hcHBlZEZpbGVJbnB1dFN0cmVhbSNjbGVhbg",
+    "description" : "Add field MemoryMappedFileInputStream#clean",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 28,
+    "changeKey" : "QUREX0ZJRUxECk1lbW9yeU1hcHBlZEZpbGVJbnB1dFN0cmVhbS5CdWlsZGVyI2NsZWFu",
+    "description" : "Add field MemoryMappedFileInputStream.Builder#clean",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 29,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCk1lbW9yeU1hcHBlZEZpbGVJbnB1dFN0cmVhbSNFTVBUWV9CVUZGRVIKdmFsdWUgY2hhbmdlZA",
+    "description" : "Change value of MemoryMappedFileInputStream#EMPTY_BUFFER: value changed",
+    "category" : "UNKNOWN",
+    "kind" : "CHANGE_FIELD_VALUE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "BufferedFileChannelInputStream",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0KSW5wdXRTdHJlYW0gLT4gQWJzdHJhY3RJbnB1dFN0cmVhbQ",
+      "description" : "Change supertype of BufferedFileChannelInputStream: InputStream -> AbstractInputStream",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0jY2xvc2UKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of BufferedFileChannelInputStream#close: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 5,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0jY2xlYW4",
+      "description" : "Remove BufferedFileChannelInputStream#clean",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 6,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0jaXNDbGVhbg",
+      "description" : "Remove BufferedFileChannelInputStream#isClean",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0jY2xlYW5CdWZmZXI",
+      "description" : "Add BufferedFileChannelInputStream#cleanBuffer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 21,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkJ1ZmZlcmVkRmlsZUNoYW5uZWxJbnB1dFN0cmVhbSM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of BufferedFileChannelInputStream#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 23,
+      "changeKey" : "Q0hBTkdFX01PRElGSUVSUwotZmluYWwKQnVmZmVyZWRGaWxlQ2hhbm5lbElucHV0U3RyZWFtI2J5dGVCdWZmZXI",
+      "description" : "Change modifiers of BufferedFileChannelInputStream#byteBuffer: -final",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_MODIFIERS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 24,
+      "changeKey" : "Q0hBTkdFX01PRElGSUVSUworZmluYWwKQnVmZmVyZWRGaWxlQ2hhbm5lbElucHV0U3RyZWFtI2NsZWFu",
+      "description" : "Change modifiers of BufferedFileChannelInputStream#clean: +final",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_MODIFIERS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 25,
+      "changeKey" : "QUREX0ZJRUxECkJ1ZmZlcmVkRmlsZUNoYW5uZWxJbnB1dFN0cmVhbSNFTVBUWV9CVUZGRVI",
+      "description" : "Add field BufferedFileChannelInputStream#EMPTY_BUFFER",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ByteBufferCleaner",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCeXRlQnVmZmVyQ2xlYW5lciNnZXRDbGVhbmVyCmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of ByteBufferCleaner#getCleaner: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 17,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRQcm9wZXJ0eSwgK2VxdWFscywgK3BhcnNlSW50LCByZXR1cm4gc3RhdGVtZW50cyAxIOKGkiAyCkJ5dGVCdWZmZXJDbGVhbmVyI2lzU3VwcG9ydGVk",
+      "description" : "Modify body of ByteBufferCleaner#isSupported: +getProperty, +equals, +parseInt, return statements 1 → 2",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "MemoryMappedFileInputStream",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW0jY2xlYW5CdWZmZXIKY29uZGl0aW9uIGNoYW5nZWQ",
+      "description" : "Change control flow of MemoryMappedFileInputStream#cleanBuffer: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 22,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1lbW9yeU1hcHBlZEZpbGVJbnB1dFN0cmVhbSM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of MemoryMappedFileInputStream#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 27,
+      "changeKey" : "QUREX0ZJRUxECk1lbW9yeU1hcHBlZEZpbGVJbnB1dFN0cmVhbSNjbGVhbg",
+      "description" : "Add field MemoryMappedFileInputStream#clean",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 29,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCk1lbW9yeU1hcHBlZEZpbGVJbnB1dFN0cmVhbSNFTVBUWV9CVUZGRVIKdmFsdWUgY2hhbmdlZA",
+      "description" : "Change value of MemoryMappedFileInputStream#EMPTY_BUFFER: value changed",
+      "category" : "UNKNOWN",
+      "kind" : "CHANGE_FIELD_VALUE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ByteBufferCleanerTest",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "UkVOQU1FX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdFN1cHBvcnRlZApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdFN1cHBvcnRlZEJlZm9yZUphdmEyMw",
+      "description" : "Rename ByteBufferCleanerTest#testSupported -> testSupportedBeforeJava23",
+      "category" : "STRUCTURAL",
+      "kind" : "RENAME_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdENsZWFuTm9uRGlyZWN0QnVmZmVy",
+      "description" : "Add ByteBufferCleanerTest#testCleanNonDirectBuffer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdENsZWFuTnVsbEJ1ZmZlcg",
+      "description" : "Add ByteBufferCleanerTest#testCleanNullBuffer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdGVzdE5vdFN1cHBvcnRlZFNpbmNlSmF2YTIz",
+      "description" : "Add ByteBufferCleanerTest#testNotSupportedSinceJava23",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 14,
+      "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmZmVyQ2xlYW5lclRlc3QjdmVyaWZ5VW5jbGVhcmVk",
+      "description" : "Add ByteBufferCleanerTest#verifyUncleared",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 19,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkJ5dGVCdWZmZXJDbGVhbmVyVGVzdCN0ZXN0Q2xlYW5FbXB0eQphbGxvY2F0ZURpcmVjdCjigKYpOiAxMCAtPiA4",
+      "description" : "Modify body of ByteBufferCleanerTest#testCleanEmpty: allocateDirect(…): 10 -> 8",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 20,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitidWZmZXIucHV0TG9uZywgK3ZlcmlmeVVuY2xlYXJlZCwgLWJ1ZmZlci5wdXQsIC1pbnNlY3VyZSwgLXJhbmRvbUJ5dGVzCkJ5dGVCdWZmZXJDbGVhbmVyVGVzdCN0ZXN0Q2xlYW5GdWxs",
+      "description" : "Modify body of ByteBufferCleanerTest#testCleanFull: +buffer.putLong, +verifyUncleared, -buffer.put, -insecure, -randomBytes",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "BufferedFileChannelInputStream.Builder",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW0uQnVpbGRlciNzZXRDbGVhbg",
+      "description" : "Add BufferedFileChannelInputStream.Builder#setClean",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 26,
+      "changeKey" : "QUREX0ZJRUxECkJ1ZmZlcmVkRmlsZUNoYW5uZWxJbnB1dFN0cmVhbS5CdWlsZGVyI2NsZWFu",
+      "description" : "Add field BufferedFileChannelInputStream.Builder#clean",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "MemoryMappedFileInputStream.Builder",
+    "entries" : [ {
+      "id" : 9,
+      "changeKey" : "QUREX1NZTUJPTApNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW0uQnVpbGRlciNzZXRDbGVhbg",
+      "description" : "Add MemoryMappedFileInputStream.Builder#setClean",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 28,
+      "changeKey" : "QUREX0ZJRUxECk1lbW9yeU1hcHBlZEZpbGVJbnB1dFN0cmVhbS5CdWlsZGVyI2NsZWFu",
+      "description" : "Add field MemoryMappedFileInputStream.Builder#clean",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "BufferedFileChannelInputStreamTest",
+    "entries" : [ {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApCdWZmZXJlZEZpbGVDaGFubmVsSW5wdXRTdHJlYW1UZXN0I3Rlc3RDbGVhbkNhbGxlZE5ldmVy",
+      "description" : "Add BufferedFileChannelInputStreamTest#testCleanCalledNever",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 18,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc1N1cHBvcnRlZCwgK21vY2tTdGF0aWMsICtzZXRDbGVhbiwgK21vY2tlZC52ZXJpZnksICtjbGVhbiDigKZhbmQgNSBtb3JlCkJ1ZmZlcmVkRmlsZUNoYW5uZWxJbnB1dFN0cmVhbVRlc3QjdGVzdENsZWFuQ2FsbGVkT25seU9uY2U",
+      "description" : "Modify body of BufferedFileChannelInputStreamTest#testCleanCalledOnlyOnce: +isSupported, +mockStatic, +setClean, +mocked.verify, +clean …and 5 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "MemoryMappedFileInputStreamTest",
+    "entries" : [ {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW1UZXN0I3Rlc3RDbGVhbkNhbGxlZA",
+      "description" : "Add MemoryMappedFileInputStreamTest#testCleanCalled",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApNZW1vcnlNYXBwZWRGaWxlSW5wdXRTdHJlYW1UZXN0I3Rlc3RDbGVhbkNhbGxlZE5ldmVy",
+      "description" : "Add MemoryMappedFileInputStreamTest#testCleanCalledNever",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

@@ -1,0 +1,42 @@
+{
+  "diff": {
+    "files": 3,
+    "java_files": 2,
+    "non_java_files": 1,
+    "substantive_java_files": 2,
+    "copyright_only_java_files": 0,
+    "production_java_files": 1,
+    "java_hunks": 5,
+    "java_lines_changed": 85
+  },
+  "athena": {
+    "changes": 10,
+    "changes_by_kind": {
+      "ADD_CLASS": 1,
+      "CHANGE_CONTROL_FLOW": 1,
+      "ADD_SYMBOL": 6,
+      "ADD_FIELD": 2
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 9,
+      "BEHAVIORAL": 1
+    },
+    "semantic_entries": 6,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 4,
+      "RESPONSIBILITY": 2
+    },
+    "inferred_entries": 2,
+    "module_territories": 1,
+    "module_dependencies": 0,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 2,
+    "substantive_java_file_coverage": 1.0,
+    "production_java_files_represented": 1,
+    "production_java_file_coverage": 1.0,
+    "unrepresented_production_java_files": [],
+    "unrepresented_test_java_files": []
+  }
+}

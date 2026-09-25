@@ -1,0 +1,13 @@
+[ {
+  "description" : "Add constructor parameter ImportsContextCustomizer.ImportsSelector#beanFactory",
+  "entity" : "ImportsContextCustomizer.ImportsSelector"
+}, {
+  "description" : "Add constructor parameter ManagementContextConfigurationImportSelector#classLoader",
+  "entity" : "ManagementContextConfigurationImportSelector"
+}, {
+  "description" : "Add constructor parameter IntegrationAutoConfigurationScanRegistrar#beanFactory",
+  "entity" : "IntegrationAutoConfigurationScanRegistrar"
+}, {
+  "description" : "Add constructor parameter PrimaryDefaultValidatorPostProcessor#beanFactory",
+  "entity" : "PrimaryDefaultValidatorPostProcessor"
+} ]

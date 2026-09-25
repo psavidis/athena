@@ -1,0 +1,639 @@
+{
+  "prTitle" : "CAMEL-24975: the inflight, blocked and shutdown views say where the node is",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 2,
+    "STRUCTURAL" : 19,
+    "UNKNOWN" : 8,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTCkluZmxpZ2h0UmVwb3NpdG9yeU5vZGVTb3VyY2VUZXN0",
+    "description" : "Add class InflightRepositoryNodeSourceTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0NMQVNTCk1hbmFnZWRJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdA",
+    "description" : "Add class ManagedInflightRepositoryNodeSourceTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0QXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXIjZHVtcEJsb2NrZWRUaHJlYWQKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of DefaultAsyncProcessorAwaitManager#dumpBlockedThread: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0U2h1dGRvd25TdHJhdGVneSNsb2dJbmZsaWdodEV4Y2hhbmdlcwpicmFuY2ggYWRkZWQ",
+    "description" : "Change control flow of DefaultShutdownStrategy#logInflightExchanges: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApBc3luY1Byb2Nlc3NvckF3YWl0TWFuYWdlci5Bd2FpdFRocmVhZCNnZXROb2RlU291cmNl",
+    "description" : "Add AsyncProcessorAwaitManager.AwaitThread#getNodeSource",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApJbmZsaWdodFJlcG9zaXRvcnkuSW5mbGlnaHRFeGNoYW5nZSNnZXROb2RlU291cmNl",
+    "description" : "Add InflightRepository.InflightExchange#getNodeSource",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0QXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXIuQXdhaXRUaHJlYWRFbnRyeSNnZXROb2RlU291cmNl",
+    "description" : "Add DefaultAsyncProcessorAwaitManager.AwaitThreadEntry#getNodeSource",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SW5mbGlnaHRSZXBvc2l0b3J5LkluZmxpZ2h0RXhjaGFuZ2VFbnRyeSNnZXROb2RlU291cmNl",
+    "description" : "Add DefaultInflightRepository.InflightExchangeEntry#getNodeSource",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0QXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXJUZXN0I3Rlc3ROb2RlU291cmNlSXNOdWxsV2hlbk5vbmVXYXNSZWNvcmRlZA",
+    "description" : "Add DefaultAsyncProcessorAwaitManagerTest#testNodeSourceIsNullWhenNoneWasRecorded",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0QXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXJUZXN0I3Rlc3ROb2RlU291cmNlU2F5c1doZXJlVGhlTm9kZUlz",
+    "description" : "Add DefaultAsyncProcessorAwaitManagerTest#testNodeSourceSaysWhereTheNodeIs",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdCNjcmVhdGVDYW1lbENvbnRleHQ",
+    "description" : "Add InflightRepositoryNodeSourceTest#createCamelContext",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX1NZTUJPTApJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdCN0ZXN0SW5mbGlnaHRFeGNoYW5nZVNheXNXaGVyZVRoZU5vZGVJcw",
+    "description" : "Add InflightRepositoryNodeSourceTest#testInflightExchangeSaysWhereTheNodeIs",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX1NZTUJPTApJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdCNjcmVhdGVSb3V0ZUJ1aWxkZXI",
+    "description" : "Add InflightRepositoryNodeSourceTest#createRouteBuilder",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkSW5mbGlnaHRSZXBvc2l0b3J5Tm9kZVNvdXJjZVRlc3QjY3JlYXRlQ2FtZWxDb250ZXh0",
+    "description" : "Add ManagedInflightRepositoryNodeSourceTest#createCamelContext",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkSW5mbGlnaHRSZXBvc2l0b3J5Tm9kZVNvdXJjZVRlc3QjdGVzdEluZmxpZ2h0Um93U2F5c1doZXJlVGhlTm9kZUlz",
+    "description" : "Add ManagedInflightRepositoryNodeSourceTest#testInflightRowSaysWhereTheNodeIs",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkSW5mbGlnaHRSZXBvc2l0b3J5Tm9kZVNvdXJjZVRlc3QjY3JlYXRlUm91dGVCdWlsZGVy",
+    "description" : "Add ManagedInflightRepositoryNodeSourceTest#createRouteBuilder",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithdC5nZXROb2RlU291cmNlCkJsb2NrZWRDb25zb2xlI2RvQ2FsbFRleHQ",
+    "description" : "Modify body of BlockedConsole#doCallText: +at.getNodeSource",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 17,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithdC5nZXROb2RlU291cmNlCkJsb2NrZWRDb25zb2xlI2RvQ2FsbEpzb24",
+    "description" : "Modify body of BlockedConsole#doCallJson: +at.getNodeSource",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 18,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpZS5nZXROb2RlU291cmNlCkluZmxpZ2h0Q29uc29sZSNkb0NhbGxUZXh0",
+    "description" : "Modify body of InflightConsole#doCallText: +ie.getNodeSource",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 19,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpZS5nZXROb2RlU291cmNlCkluZmxpZ2h0Q29uc29sZSNkb0NhbGxKc29u",
+    "description" : "Modify body of InflightConsole#doCallJson: +ie.getNodeSource",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 20,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNhbWVsT3Blbk1CZWFuVHlwZXMjbGlzdEF3YWl0VGhyZWFkc0NvbXBvc2l0ZVR5cGUKcmV0dXJuIHZhbHVlIGNoYW5nZWQ",
+    "description" : "Modify body of CamelOpenMBeanTypes#listAwaitThreadsCompositeType: return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 21,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNhbWVsT3Blbk1CZWFuVHlwZXMjbGlzdEluZmxpZ2h0RXhjaGFuZ2VzQ29tcG9zaXRlVHlwZQpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+    "description" : "Modify body of CamelOpenMBeanTypes#listInflightExchangesCompositeType: return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 22,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitlbnRyeS5nZXROb2RlU291cmNlLCByZXR1cm4gdmFsdWUgY2hhbmdlZApNYW5hZ2VkQXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXIjdG9Db21wb3NpdGVEYXRh",
+    "description" : "Modify body of ManagedAsyncProcessorAwaitManager#toCompositeData: +entry.getNodeSource, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 23,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitlbnRyeS5nZXROb2RlU291cmNlLCByZXR1cm4gdmFsdWUgY2hhbmdlZApNYW5hZ2VkSW5mbGlnaHRSZXBvc2l0b3J5I3RvQ29tcG9zaXRlRGF0YQ",
+    "description" : "Modify body of ManagedInflightRepository#toCompositeData: +entry.getNodeSource, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 24,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQmxvY2tlZENvbnNvbGUuRW50cnkjPGluaXQ-",
+    "description" : "Change signature of BlockedConsole.Entry#<init>",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 25,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKSW5mbGlnaHRDb25zb2xlLkV4Y2hhbmdlIzxpbml0Pg",
+    "description" : "Change signature of InflightConsole.Exchange#<init>",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 26,
+    "changeKey" : "QUREX0ZJRUxECkluZmxpZ2h0UmVwb3NpdG9yeU5vZGVTb3VyY2VUZXN0I1NPVVJDRQ",
+    "description" : "Add field InflightRepositoryNodeSourceTest#SOURCE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 27,
+    "changeKey" : "QUREX0ZJRUxECkluZmxpZ2h0UmVwb3NpdG9yeU5vZGVTb3VyY2VUZXN0I25vZGVTb3VyY2U",
+    "description" : "Add field InflightRepositoryNodeSourceTest#nodeSource",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 28,
+    "changeKey" : "QUREX0ZJRUxECk1hbmFnZWRJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdCNTT1VSQ0U",
+    "description" : "Add field ManagedInflightRepositoryNodeSourceTest#SOURCE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "InflightRepositoryNodeSourceTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTCkluZmxpZ2h0UmVwb3NpdG9yeU5vZGVTb3VyY2VUZXN0",
+      "description" : "Add class InflightRepositoryNodeSourceTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdCNjcmVhdGVDYW1lbENvbnRleHQ",
+      "description" : "Add InflightRepositoryNodeSourceTest#createCamelContext",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX1NZTUJPTApJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdCN0ZXN0SW5mbGlnaHRFeGNoYW5nZVNheXNXaGVyZVRoZU5vZGVJcw",
+      "description" : "Add InflightRepositoryNodeSourceTest#testInflightExchangeSaysWhereTheNodeIs",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX1NZTUJPTApJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdCNjcmVhdGVSb3V0ZUJ1aWxkZXI",
+      "description" : "Add InflightRepositoryNodeSourceTest#createRouteBuilder",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 26,
+      "changeKey" : "QUREX0ZJRUxECkluZmxpZ2h0UmVwb3NpdG9yeU5vZGVTb3VyY2VUZXN0I1NPVVJDRQ",
+      "description" : "Add field InflightRepositoryNodeSourceTest#SOURCE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 27,
+      "changeKey" : "QUREX0ZJRUxECkluZmxpZ2h0UmVwb3NpdG9yeU5vZGVTb3VyY2VUZXN0I25vZGVTb3VyY2U",
+      "description" : "Add field InflightRepositoryNodeSourceTest#nodeSource",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ManagedInflightRepositoryNodeSourceTest",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX0NMQVNTCk1hbmFnZWRJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdA",
+      "description" : "Add class ManagedInflightRepositoryNodeSourceTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkSW5mbGlnaHRSZXBvc2l0b3J5Tm9kZVNvdXJjZVRlc3QjY3JlYXRlQ2FtZWxDb250ZXh0",
+      "description" : "Add ManagedInflightRepositoryNodeSourceTest#createCamelContext",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 14,
+      "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkSW5mbGlnaHRSZXBvc2l0b3J5Tm9kZVNvdXJjZVRlc3QjdGVzdEluZmxpZ2h0Um93U2F5c1doZXJlVGhlTm9kZUlz",
+      "description" : "Add ManagedInflightRepositoryNodeSourceTest#testInflightRowSaysWhereTheNodeIs",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkSW5mbGlnaHRSZXBvc2l0b3J5Tm9kZVNvdXJjZVRlc3QjY3JlYXRlUm91dGVCdWlsZGVy",
+      "description" : "Add ManagedInflightRepositoryNodeSourceTest#createRouteBuilder",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 28,
+      "changeKey" : "QUREX0ZJRUxECk1hbmFnZWRJbmZsaWdodFJlcG9zaXRvcnlOb2RlU291cmNlVGVzdCNTT1VSQ0U",
+      "description" : "Add field ManagedInflightRepositoryNodeSourceTest#SOURCE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "DefaultAsyncProcessorAwaitManager",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0QXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXIjZHVtcEJsb2NrZWRUaHJlYWQKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of DefaultAsyncProcessorAwaitManager#dumpBlockedThread: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DefaultShutdownStrategy",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0U2h1dGRvd25TdHJhdGVneSNsb2dJbmZsaWdodEV4Y2hhbmdlcwpicmFuY2ggYWRkZWQ",
+      "description" : "Change control flow of DefaultShutdownStrategy#logInflightExchanges: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "AsyncProcessorAwaitManager.AwaitThread",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApBc3luY1Byb2Nlc3NvckF3YWl0TWFuYWdlci5Bd2FpdFRocmVhZCNnZXROb2RlU291cmNl",
+      "description" : "Add AsyncProcessorAwaitManager.AwaitThread#getNodeSource",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "InflightRepository.InflightExchange",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApJbmZsaWdodFJlcG9zaXRvcnkuSW5mbGlnaHRFeGNoYW5nZSNnZXROb2RlU291cmNl",
+      "description" : "Add InflightRepository.InflightExchange#getNodeSource",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DefaultAsyncProcessorAwaitManager.AwaitThreadEntry",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0QXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXIuQXdhaXRUaHJlYWRFbnRyeSNnZXROb2RlU291cmNl",
+      "description" : "Add DefaultAsyncProcessorAwaitManager.AwaitThreadEntry#getNodeSource",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DefaultInflightRepository.InflightExchangeEntry",
+    "entries" : [ {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SW5mbGlnaHRSZXBvc2l0b3J5LkluZmxpZ2h0RXhjaGFuZ2VFbnRyeSNnZXROb2RlU291cmNl",
+      "description" : "Add DefaultInflightRepository.InflightExchangeEntry#getNodeSource",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DefaultAsyncProcessorAwaitManagerTest",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0QXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXJUZXN0I3Rlc3ROb2RlU291cmNlSXNOdWxsV2hlbk5vbmVXYXNSZWNvcmRlZA",
+      "description" : "Add DefaultAsyncProcessorAwaitManagerTest#testNodeSourceIsNullWhenNoneWasRecorded",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 9,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0QXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXJUZXN0I3Rlc3ROb2RlU291cmNlU2F5c1doZXJlVGhlTm9kZUlz",
+      "description" : "Add DefaultAsyncProcessorAwaitManagerTest#testNodeSourceSaysWhereTheNodeIs",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "BlockedConsole",
+    "entries" : [ {
+      "id" : 16,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithdC5nZXROb2RlU291cmNlCkJsb2NrZWRDb25zb2xlI2RvQ2FsbFRleHQ",
+      "description" : "Modify body of BlockedConsole#doCallText: +at.getNodeSource",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 17,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithdC5nZXROb2RlU291cmNlCkJsb2NrZWRDb25zb2xlI2RvQ2FsbEpzb24",
+      "description" : "Modify body of BlockedConsole#doCallJson: +at.getNodeSource",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "InflightConsole",
+    "entries" : [ {
+      "id" : 18,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpZS5nZXROb2RlU291cmNlCkluZmxpZ2h0Q29uc29sZSNkb0NhbGxUZXh0",
+      "description" : "Modify body of InflightConsole#doCallText: +ie.getNodeSource",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 19,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpZS5nZXROb2RlU291cmNlCkluZmxpZ2h0Q29uc29sZSNkb0NhbGxKc29u",
+      "description" : "Modify body of InflightConsole#doCallJson: +ie.getNodeSource",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "CamelOpenMBeanTypes",
+    "entries" : [ {
+      "id" : 20,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNhbWVsT3Blbk1CZWFuVHlwZXMjbGlzdEF3YWl0VGhyZWFkc0NvbXBvc2l0ZVR5cGUKcmV0dXJuIHZhbHVlIGNoYW5nZWQ",
+      "description" : "Modify body of CamelOpenMBeanTypes#listAwaitThreadsCompositeType: return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 21,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNhbWVsT3Blbk1CZWFuVHlwZXMjbGlzdEluZmxpZ2h0RXhjaGFuZ2VzQ29tcG9zaXRlVHlwZQpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+      "description" : "Modify body of CamelOpenMBeanTypes#listInflightExchangesCompositeType: return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ManagedAsyncProcessorAwaitManager",
+    "entries" : [ {
+      "id" : 22,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitlbnRyeS5nZXROb2RlU291cmNlLCByZXR1cm4gdmFsdWUgY2hhbmdlZApNYW5hZ2VkQXN5bmNQcm9jZXNzb3JBd2FpdE1hbmFnZXIjdG9Db21wb3NpdGVEYXRh",
+      "description" : "Modify body of ManagedAsyncProcessorAwaitManager#toCompositeData: +entry.getNodeSource, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ManagedInflightRepository",
+    "entries" : [ {
+      "id" : 23,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitlbnRyeS5nZXROb2RlU291cmNlLCByZXR1cm4gdmFsdWUgY2hhbmdlZApNYW5hZ2VkSW5mbGlnaHRSZXBvc2l0b3J5I3RvQ29tcG9zaXRlRGF0YQ",
+      "description" : "Modify body of ManagedInflightRepository#toCompositeData: +entry.getNodeSource, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "BlockedConsole.Entry",
+    "entries" : [ {
+      "id" : 24,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQmxvY2tlZENvbnNvbGUuRW50cnkjPGluaXQ-",
+      "description" : "Change signature of BlockedConsole.Entry#<init>",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "InflightConsole.Exchange",
+    "entries" : [ {
+      "id" : 25,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKSW5mbGlnaHRDb25zb2xlLkV4Y2hhbmdlIzxpbml0Pg",
+      "description" : "Change signature of InflightConsole.Exchange#<init>",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

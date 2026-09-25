@@ -1,0 +1,217 @@
+{
+  "prTitle" : "Allow extra Azurite command line options",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 9,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTCkF6dXJpdGVDb250YWluZXJDb21tYW5kVGVzdA",
+    "description" : "Add class AzuriteContainerCommandTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBenVyaXRlQ29udGFpbmVyI2dldENvbW1hbmRMaW5lCmxvb3AgYWRkZWQ",
+    "description" : "Change control flow of AzuriteContainer#getCommandLine: loop added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyI3dpdGhDb21tYW5kT3B0aW9ucw",
+    "description" : "Add AzuriteContainer#withCommandOptions",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29tbWFuZExpbmVPbWl0c0V4dHJhT3B0aW9uc0J5RGVmYXVsdA",
+    "description" : "Add AzuriteContainerCommandTest#commandLineOmitsExtraOptionsByDefault",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29tbWFuZExpbmVJbmNsdWRlc0V4dHJhT3B0aW9ucw",
+    "description" : "Add AzuriteContainerCommandTest#commandLineIncludesExtraOptions",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29tbWFuZExpbmVBcHBlbmRzTXVsdGlwbGVPcHRpb25z",
+    "description" : "Add AzuriteContainerCommandTest#commandLineAppendsMultipleOptions",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29tbWFuZExpbmVLZWVwc0V4dHJhT3B0aW9uc1RvZ2V0aGVyV2l0aFNzbA",
+    "description" : "Add AzuriteContainerCommandTest#commandLineKeepsExtraOptionsTogetherWithSsl",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29uZmlndXJlQXBwbGllc0NvbW1hbmRPcHRpb25zRXZlbklmV2l0aENvbW1hbmRXYXNVc2Vk",
+    "description" : "Add AzuriteContainerCommandTest#configureAppliesCommandOptionsEvenIfWithCommandWasUsed",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX0ZJRUxECkF6dXJpdGVDb250YWluZXIjY29tbWFuZE9wdGlvbnM",
+    "description" : "Add field AzuriteContainer#commandOptions",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX0ZJRUxECkF6dXJpdGVDb250YWluZXJDb21tYW5kVGVzdCNJTUFHRQ",
+    "description" : "Add field AzuriteContainerCommandTest#IMAGE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "AzuriteContainerCommandTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTCkF6dXJpdGVDb250YWluZXJDb21tYW5kVGVzdA",
+      "description" : "Add class AzuriteContainerCommandTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29tbWFuZExpbmVPbWl0c0V4dHJhT3B0aW9uc0J5RGVmYXVsdA",
+      "description" : "Add AzuriteContainerCommandTest#commandLineOmitsExtraOptionsByDefault",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29tbWFuZExpbmVJbmNsdWRlc0V4dHJhT3B0aW9ucw",
+      "description" : "Add AzuriteContainerCommandTest#commandLineIncludesExtraOptions",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29tbWFuZExpbmVBcHBlbmRzTXVsdGlwbGVPcHRpb25z",
+      "description" : "Add AzuriteContainerCommandTest#commandLineAppendsMultipleOptions",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29tbWFuZExpbmVLZWVwc0V4dHJhT3B0aW9uc1RvZ2V0aGVyV2l0aFNzbA",
+      "description" : "Add AzuriteContainerCommandTest#commandLineKeepsExtraOptionsTogetherWithSsl",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyQ29tbWFuZFRlc3QjY29uZmlndXJlQXBwbGllc0NvbW1hbmRPcHRpb25zRXZlbklmV2l0aENvbW1hbmRXYXNVc2Vk",
+      "description" : "Add AzuriteContainerCommandTest#configureAppliesCommandOptionsEvenIfWithCommandWasUsed",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 9,
+      "changeKey" : "QUREX0ZJRUxECkF6dXJpdGVDb250YWluZXJDb21tYW5kVGVzdCNJTUFHRQ",
+      "description" : "Add field AzuriteContainerCommandTest#IMAGE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "AzuriteContainer",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBenVyaXRlQ29udGFpbmVyI2dldENvbW1hbmRMaW5lCmxvb3AgYWRkZWQ",
+      "description" : "Change control flow of AzuriteContainer#getCommandLine: loop added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApBenVyaXRlQ29udGFpbmVyI3dpdGhDb21tYW5kT3B0aW9ucw",
+      "description" : "Add AzuriteContainer#withCommandOptions",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX0ZJRUxECkF6dXJpdGVDb250YWluZXIjY29tbWFuZE9wdGlvbnM",
+      "description" : "Add field AzuriteContainer#commandOptions",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

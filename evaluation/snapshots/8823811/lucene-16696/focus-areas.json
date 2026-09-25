@@ -1,0 +1,13 @@
+[ {
+  "entity" : "Lucene104ScalarQuantizedVectorsWriter",
+  "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#writeVectors: branch removed"
+}, {
+  "entity" : "Lucene104ScalarQuantizedVectorsWriter",
+  "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#writeSortedVectors: branch removed"
+}, {
+  "entity" : "Lucene104ScalarQuantizedVectorsWriter",
+  "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#mergedQuantizedVectorValues: branch removed"
+}, {
+  "entity" : "Lucene104ScalarQuantizedVectorsWriter",
+  "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorField: branch removed"
+} ]

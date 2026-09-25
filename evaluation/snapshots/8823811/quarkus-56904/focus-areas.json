@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change annotations of BcryptUtil#bcryptHash: +@Deprecated",
+  "entity" : "BcryptUtil"
+}, {
+  "description" : "Change annotations of BcryptUtil#matches: +@Deprecated",
+  "entity" : "BcryptUtil"
+}, {
+  "description" : "Add BcryptUtil#bcryptHash",
+  "entity" : "BcryptUtil"
+}, {
+  "description" : "Add BcryptUtil#matches",
+  "entity" : "BcryptUtil"
+} ]

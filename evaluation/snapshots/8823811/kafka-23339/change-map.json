@@ -1,0 +1,317 @@
+{
+  "prTitle" : "KAFKA-20416: Source changelog committed offset retry",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 11,
+    "UNKNOWN" : 4,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlciNyZXNvbHZlUmVzdG9yZUNlaWxpbmdDb21taXR0ZWRPZmZzZXQ",
+    "description" : "Add StoreChangelogReader#resolveRestoreCeilingCommittedOffset",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlciNtYXliZUZhbGxCYWNrVG9aZXJvQ29tbWl0dGVkT2Zmc2V0",
+    "description" : "Add StoreChangelogReader#maybeFallBackToZeroCommittedOffset",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmVzdG9yZUZyZXNoU291cmNlQ2hhbmdlbG9nV2l0aE1pc3NpbmdDb21taXR0ZWRPZmZzZXRJbW1lZGlhdGVseUF0WmVybw",
+    "description" : "Add StoreChangelogReaderTest#shouldRestoreFreshSourceChangelogWithMissingCommittedOffsetImmediatelyAtZero",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmV0cnlNaXNzaW5nQ29tbWl0dGVkT2Zmc2V0Rm9yV2lwZWRTb3VyY2VDaGFuZ2Vsb2dUaGVuRmFsbEJhY2tUb1plcm8",
+    "description" : "Add StoreChangelogReaderTest#shouldRetryMissingCommittedOffsetForWipedSourceChangelogThenFallBackToZero",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmVjb3ZlcldpcGVkU291cmNlQ2hhbmdlbG9nVG9SZWFsQ29tbWl0dGVkT2Zmc2V0V2hlblRyYW5zaWVudGx5TWlzc2luZ0JlZm9yZVRpbWVvdXQ",
+    "description" : "Add StoreChangelogReaderTest#shouldRecoverWipedSourceChangelogToRealCommittedOffsetWhenTransientlyMissingBeforeTimeout",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3QjY29tbWl0dGVkT2Y",
+    "description" : "Add StoreChangelogReaderTest#committedOf",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2V0dXBXaXBlZFNvdXJjZUNoYW5nZWxvZw",
+    "description" : "Add StoreChangelogReaderTest#setupWipedSourceChangelog",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClN0b3JlQ2hhbmdlbG9nUmVhZGVyI2NvbW1pdHRlZE9mZnNldEZvckNoYW5nZWxvZ3MKdG9NYXAo4oCmKTogMEwgLT4gTk9fQ09NTUlUVEVEX09GRlNFVA",
+    "description" : "Modify body of StoreChangelogReader#committedOffsetForChangelogs: toMap(…): 0L -> NO_COMMITTED_OFFSET",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCittYXgKU3RvcmVDaGFuZ2Vsb2dSZWFkZXIjdXBkYXRlTGltaXRPZmZzZXRzRm9yU3RhbmRieUNoYW5nZWxvZ3M",
+    "description" : "Modify body of StoreChangelogReader#updateLimitOffsetsForStandbyChangelogs: +max",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGFuZ2Vsb2dQYXJ0aXRpb24sICtyZXNvbHZlUmVzdG9yZUNlaWxpbmdDb21taXR0ZWRPZmZzZXQsICtjb21taXR0ZWRPZmZzZXRNaXNzaW5nU2luY2VNcy5yZW1vdmUsICtldmVyU3RhcnRlZFJlc3RvcmluZ0NoYW5nZWxvZ3MuYWRkLCAtY29tbWl0dGVkT2Zmc2V0cy5nZXQg4oCmYW5kIDEgbW9yZQpTdG9yZUNoYW5nZWxvZ1JlYWRlciNpbml0aWFsaXplQ2hhbmdlbG9ncw",
+    "description" : "Modify body of StoreChangelogReader#initializeChangelogs: +changelogPartition, +resolveRestoreCeilingCommittedOffset, +committedOffsetMissingSinceMs.remove, +everStartedRestoringChangelogs.add, -committedOffsets.get …and 1 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb25maWcuZ2V0TG9uZwpTdG9yZUNoYW5nZWxvZ1JlYWRlciM8aW5pdD4",
+    "description" : "Modify body of StoreChangelogReader#<init>: +config.getLong",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI05PX0NPTU1JVFRFRF9PRkZTRVQ",
+    "description" : "Add field StoreChangelogReader#NO_COMMITTED_OFFSET",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI2NvbW1pdHRlZE9mZnNldE1pc3NpbmdTaW5jZU1z",
+    "description" : "Add field StoreChangelogReader#committedOffsetMissingSinceMs",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI2V2ZXJTdGFydGVkUmVzdG9yaW5nQ2hhbmdlbG9ncw",
+    "description" : "Add field StoreChangelogReader#everStartedRestoringChangelogs",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI3Rhc2tUaW1lb3V0TXM",
+    "description" : "Add field StoreChangelogReader#taskTimeoutMs",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "StoreChangelogReader",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlciNyZXNvbHZlUmVzdG9yZUNlaWxpbmdDb21taXR0ZWRPZmZzZXQ",
+      "description" : "Add StoreChangelogReader#resolveRestoreCeilingCommittedOffset",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlciNtYXliZUZhbGxCYWNrVG9aZXJvQ29tbWl0dGVkT2Zmc2V0",
+      "description" : "Add StoreChangelogReader#maybeFallBackToZeroCommittedOffset",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClN0b3JlQ2hhbmdlbG9nUmVhZGVyI2NvbW1pdHRlZE9mZnNldEZvckNoYW5nZWxvZ3MKdG9NYXAo4oCmKTogMEwgLT4gTk9fQ09NTUlUVEVEX09GRlNFVA",
+      "description" : "Modify body of StoreChangelogReader#committedOffsetForChangelogs: toMap(…): 0L -> NO_COMMITTED_OFFSET",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 8,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCittYXgKU3RvcmVDaGFuZ2Vsb2dSZWFkZXIjdXBkYXRlTGltaXRPZmZzZXRzRm9yU3RhbmRieUNoYW5nZWxvZ3M",
+      "description" : "Modify body of StoreChangelogReader#updateLimitOffsetsForStandbyChangelogs: +max",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 9,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGFuZ2Vsb2dQYXJ0aXRpb24sICtyZXNvbHZlUmVzdG9yZUNlaWxpbmdDb21taXR0ZWRPZmZzZXQsICtjb21taXR0ZWRPZmZzZXRNaXNzaW5nU2luY2VNcy5yZW1vdmUsICtldmVyU3RhcnRlZFJlc3RvcmluZ0NoYW5nZWxvZ3MuYWRkLCAtY29tbWl0dGVkT2Zmc2V0cy5nZXQg4oCmYW5kIDEgbW9yZQpTdG9yZUNoYW5nZWxvZ1JlYWRlciNpbml0aWFsaXplQ2hhbmdlbG9ncw",
+      "description" : "Modify body of StoreChangelogReader#initializeChangelogs: +changelogPartition, +resolveRestoreCeilingCommittedOffset, +committedOffsetMissingSinceMs.remove, +everStartedRestoringChangelogs.add, -committedOffsets.get …and 1 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 10,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb25maWcuZ2V0TG9uZwpTdG9yZUNoYW5nZWxvZ1JlYWRlciM8aW5pdD4",
+      "description" : "Modify body of StoreChangelogReader#<init>: +config.getLong",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI05PX0NPTU1JVFRFRF9PRkZTRVQ",
+      "description" : "Add field StoreChangelogReader#NO_COMMITTED_OFFSET",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI2NvbW1pdHRlZE9mZnNldE1pc3NpbmdTaW5jZU1z",
+      "description" : "Add field StoreChangelogReader#committedOffsetMissingSinceMs",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI2V2ZXJTdGFydGVkUmVzdG9yaW5nQ2hhbmdlbG9ncw",
+      "description" : "Add field StoreChangelogReader#everStartedRestoringChangelogs",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 14,
+      "changeKey" : "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI3Rhc2tUaW1lb3V0TXM",
+      "description" : "Add field StoreChangelogReader#taskTimeoutMs",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "StoreChangelogReaderTest",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmVzdG9yZUZyZXNoU291cmNlQ2hhbmdlbG9nV2l0aE1pc3NpbmdDb21taXR0ZWRPZmZzZXRJbW1lZGlhdGVseUF0WmVybw",
+      "description" : "Add StoreChangelogReaderTest#shouldRestoreFreshSourceChangelogWithMissingCommittedOffsetImmediatelyAtZero",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmV0cnlNaXNzaW5nQ29tbWl0dGVkT2Zmc2V0Rm9yV2lwZWRTb3VyY2VDaGFuZ2Vsb2dUaGVuRmFsbEJhY2tUb1plcm8",
+      "description" : "Add StoreChangelogReaderTest#shouldRetryMissingCommittedOffsetForWipedSourceChangelogThenFallBackToZero",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmVjb3ZlcldpcGVkU291cmNlQ2hhbmdlbG9nVG9SZWFsQ29tbWl0dGVkT2Zmc2V0V2hlblRyYW5zaWVudGx5TWlzc2luZ0JlZm9yZVRpbWVvdXQ",
+      "description" : "Add StoreChangelogReaderTest#shouldRecoverWipedSourceChangelogToRealCommittedOffsetWhenTransientlyMissingBeforeTimeout",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3QjY29tbWl0dGVkT2Y",
+      "description" : "Add StoreChangelogReaderTest#committedOf",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2V0dXBXaXBlZFNvdXJjZUNoYW5nZWxvZw",
+      "description" : "Add StoreChangelogReaderTest#setupWipedSourceChangelog",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

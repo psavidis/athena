@@ -1,0 +1,71 @@
+diff --git a/naming/src/main/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessor.java b/naming/src/main/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessor.java
+index 13f7feea6a3..666dfc23cd5 100644
+--- a/naming/src/main/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessor.java
++++ b/naming/src/main/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessor.java
+@@ -31,6 +31,7 @@
+ import com.alibaba.nacos.naming.core.v2.client.Client;
+ import com.alibaba.nacos.naming.core.v2.client.ClientSyncData;
+ import com.alibaba.nacos.naming.core.v2.client.ClientSyncDatumSnapshot;
++import com.alibaba.nacos.naming.core.v2.client.impl.ConnectionBasedClient;
+ import com.alibaba.nacos.naming.core.v2.client.manager.ClientManager;
+ import com.alibaba.nacos.naming.core.v2.event.client.ClientEvent;
+ import com.alibaba.nacos.naming.core.v2.event.client.ClientOperationEvent;
+@@ -262,6 +263,9 @@ public DistroData getDatumSnapshot() {
+             if (null == client || !client.isEphemeral()) {
+                 continue;
+             }
++            if (client instanceof ConnectionBasedClient) {
++                continue;
++            }
+             datum.add(client.generateSyncData());
+         }
+         ClientSyncDatumSnapshot snapshot = new ClientSyncDatumSnapshot();
+diff --git a/naming/src/test/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessorTest.java b/naming/src/test/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessorTest.java
+index d6ed20cf113..ec305a5e020 100644
+--- a/naming/src/test/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessorTest.java
++++ b/naming/src/test/java/com/alibaba/nacos/naming/consistency/ephemeral/distro/v2/DistroClientDataProcessorTest.java
+@@ -29,6 +29,7 @@
+ import com.alibaba.nacos.naming.core.v2.client.ClientSyncData;
+ import com.alibaba.nacos.naming.core.v2.client.ClientSyncDatumSnapshot;
+ import com.alibaba.nacos.naming.core.v2.client.impl.ConnectionBasedClient;
++import com.alibaba.nacos.naming.core.v2.client.impl.IpPortBasedClient;
+ import com.alibaba.nacos.naming.core.v2.client.manager.ClientManager;
+ import com.alibaba.nacos.naming.core.v2.event.client.ClientEvent;
+ import com.alibaba.nacos.naming.core.v2.pojo.BatchInstanceData;
+@@ -41,6 +42,7 @@
+ import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.Test;
+ import org.junit.jupiter.api.extension.ExtendWith;
++import org.mockito.ArgumentCaptor;
+ import org.mockito.Mock;
+ import org.mockito.Mockito;
+ import org.mockito.junit.jupiter.MockitoExtension;
+@@ -374,6 +376,28 @@ void testGetDatumSnapshot() {
+         DistroData actual = distroClientDataProcessor.getDatumSnapshot();
+         assertEquals(DataOperation.SNAPSHOT.name(), actual.getDistroKey().getResourceKey());
+         assertEquals(DistroClientDataProcessor.TYPE, actual.getDistroKey().getResourceType());
++        // connection based client should be excluded from snapshot
++        ArgumentCaptor<ClientSyncDatumSnapshot> captor =
++                ArgumentCaptor.forClass(ClientSyncDatumSnapshot.class);
++        verify(serializer).serialize(captor.capture());
++        assertTrue(captor.getValue().getClientSyncDataList().isEmpty());
++    }
++
++    @Test
++    void testGetDatumSnapshotIncludeNonConnectionBasedClient() {
++        Client ipPortClient = new IpPortBasedClient("1.1.1.1:80#true", true);
++        Client ipPortClient2 = new IpPortBasedClient("2.2.2.2:80#true", true);
++        when(clientManager.allClientId())
++                .thenReturn(Arrays.asList("1.1.1.1:80#true", "2.2.2.2:80#true"));
++        when(clientManager.getClient("1.1.1.1:80#true")).thenReturn(ipPortClient);
++        when(clientManager.getClient("2.2.2.2:80#true")).thenReturn(ipPortClient2);
++
++        distroClientDataProcessor.getDatumSnapshot();
++
++        ArgumentCaptor<ClientSyncDatumSnapshot> captor =
++                ArgumentCaptor.forClass(ClientSyncDatumSnapshot.class);
++        verify(serializer).serialize(captor.capture());
++        assertEquals(2, captor.getValue().getClientSyncDataList().size());
+     }
+     
+     @Test

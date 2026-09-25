@@ -1,0 +1,262 @@
+diff --git a/ai/pom.xml b/ai/pom.xml
+index 25f6919dfa5..e289f34aae8 100644
+--- a/ai/pom.xml
++++ b/ai/pom.xml
+@@ -84,11 +84,6 @@
+             <artifactId>mockito-core</artifactId>
+             <scope>test</scope>
+         </dependency>
+-        <dependency>
+-            <groupId>org.mockito</groupId>
+-            <artifactId>mockito-inline</artifactId>
+-            <scope>test</scope>
+-        </dependency>
+     </dependencies>
+ 
+ </project>
+diff --git a/consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java b/consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java
+index 4464db2267f..a56feb2ef4d 100644
+--- a/consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java
++++ b/consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java
+@@ -16,12 +16,12 @@
+ 
+ package com.alibaba.nacos.consistency;
+ 
+-import com.alibaba.nacos.consistency.entity.GetRequest;
+-import com.alibaba.nacos.consistency.entity.Log;
+ import com.alibaba.nacos.consistency.entity.ReadRequest;
+ import com.alibaba.nacos.consistency.entity.WriteRequest;
+ import com.alibaba.nacos.consistency.exception.ConsistencyException;
+ import com.google.protobuf.Message;
++import org.slf4j.Logger;
++import org.slf4j.LoggerFactory;
+ 
+ /**
+  * protobuf message utils.
+@@ -30,6 +30,8 @@
+  */
+ public class ProtoMessageUtil {
+     
++    private static final Logger LOGGER = LoggerFactory.getLogger(ProtoMessageUtil.class);
++    
+     /**
+      * should be different from field tags of ReadRequest or WriteQuest.
+      */
+@@ -41,68 +43,24 @@ public class ProtoMessageUtil {
+     
+     /**
+      * Converts the byte array to a specific Protobuf object.
+-     * Internally, the protobuf new and old objects are compatible.
+      *
+      * @param bytes An array of bytes
+      * @return Message
+      */
+     public static Message parse(byte[] bytes) {
+-        Message result;
+         try {
+             if (bytes[0] == REQUEST_TYPE_FIELD_TAG) {
+                 if (bytes[1] == REQUEST_TYPE_READ) {
+-                    result = ReadRequest.parseFrom(bytes);
++                    return ReadRequest.parseFrom(bytes);
+                 } else {
+-                    result = WriteRequest.parseFrom(bytes);
++                    return WriteRequest.parseFrom(bytes);
+                 }
+-                return result;
+             }
+-        } catch (Throwable ignore) {
+-        }
+-        
+-        // old consistency entity, will be @Deprecated in future
+-        try {
+-            GetRequest request = GetRequest.parseFrom(bytes);
+-            return convertToReadRequest(request);
+-        } catch (Throwable ignore) {
+-        }
+-        
+-        try {
+-            Log log = Log.parseFrom(bytes);
+-            return convertToWriteRequest(log);
+-        } catch (Throwable ignore) {
++        } catch (Throwable e) {
++            LOGGER.debug("Failed to parse protocol request", e);
+         }
+         
+         throw new ConsistencyException(
+             "The current array cannot be serialized to the corresponding object");
+     }
+-    
+-    /**
+-     * convert Log to WriteRequest.
+-     *
+-     * @param log log
+-     * @return {@link WriteRequest}
+-     */
+-    public static WriteRequest convertToWriteRequest(Log log) {
+-        return WriteRequest.newBuilder().setKey(log.getKey()).setGroup(log.getGroup())
+-            .setData(log.getData())
+-            .setType(log.getType())
+-            .setOperation(log.getOperation())
+-            .putAllExtendInfo(log.getExtendInfoMap())
+-            .build();
+-    }
+-    
+-    /**
+-     * convert Log to ReadRequest.
+-     *
+-     * @param request request
+-     * @return {@link ReadRequest}
+-     */
+-    public static ReadRequest convertToReadRequest(GetRequest request) {
+-        return ReadRequest.newBuilder()
+-            .setGroup(request.getGroup())
+-            .setData(request.getData())
+-            .putAllExtendInfo(request.getExtendInfoMap())
+-            .build();
+-    }
+ }
+diff --git a/consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java b/consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java
+index e6956abf161..2320ad1fe89 100644
+--- a/consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java
++++ b/consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java
+@@ -16,8 +16,6 @@
+ 
+ package com.alibaba.nacos.consistency;
+ 
+-import com.alibaba.nacos.consistency.entity.GetRequest;
+-import com.alibaba.nacos.consistency.entity.Log;
+ import com.alibaba.nacos.consistency.entity.ReadRequest;
+ import com.alibaba.nacos.consistency.entity.WriteRequest;
+ import com.google.protobuf.ByteString;
+@@ -53,19 +51,12 @@ void testParseWithCorruptRequestTypeField() {
+             (byte) ProtoMessageUtil.REQUEST_TYPE_READ, (byte) 0x80};
+         try {
+             ProtoMessageUtil.parse(corruptBytes);
+-        } catch (Exception ignored) {
++            fail("Should throw ConsistencyException for corrupt bytes");
++        } catch (Exception e) {
++            assertTrue(e instanceof com.alibaba.nacos.consistency.exception.ConsistencyException);
+         }
+     }
+     
+-    @Test
+-    void testProto() throws Exception {
+-        WriteRequest request = WriteRequest.newBuilder().setKey("test-proto-new").build();
+-        
+-        byte[] bytes = request.toByteArray();
+-        Log log = Log.parseFrom(bytes);
+-        assertEquals(request.getKey(), log.getKey());
+-    }
+-    
+     @Test
+     void testParseReadRequestWithRequestTypeField() {
+         String group = "test";
+@@ -82,7 +73,7 @@ void testParseReadRequestWithRequestTypeField() {
+             .put(dataBytes).position(0);
+         
+         Object actual = ProtoMessageUtil.parse(byteBuffer.array());
+-        assertEquals(ReadRequest.class, testCase.getClass());
++        assertEquals(ReadRequest.class, actual.getClass());
+         assertEquals(group, ((ReadRequest) actual).getGroup());
+         assertEquals(data, ((ReadRequest) actual).getData());
+     }
+@@ -103,64 +94,38 @@ void testParseWriteRequestWithRequestTypeField() {
+             .put(dataBytes).position(0);
+         
+         Object actual = ProtoMessageUtil.parse(byteBuffer.array());
+-        assertEquals(WriteRequest.class, testCase.getClass());
++        assertEquals(WriteRequest.class, actual.getClass());
+         assertEquals(group, ((WriteRequest) actual).getGroup());
+         assertEquals(data, ((WriteRequest) actual).getData());
+     }
+     
+     @Test
+-    void testParseReadRequest() {
++    void testParseRawReadRequestThrowsException() {
++        // Raw ReadRequest bytes without REQUEST_TYPE_FIELD_TAG prefix
++        // should throw ConsistencyException since legacy fallback is removed
+         String group = "test";
+         ByteString data = ByteString.copyFrom("data".getBytes());
+         ReadRequest testCase = ReadRequest.newBuilder().setGroup(group).setData(data).build();
+-        Object actual = ProtoMessageUtil.parse(testCase.toByteArray());
+-        assertEquals(ReadRequest.class, testCase.getClass());
+-        assertEquals(group, ((ReadRequest) actual).getGroup());
+-        assertEquals(data, ((ReadRequest) actual).getData());
++        try {
++            ProtoMessageUtil.parse(testCase.toByteArray());
++            fail("Should throw ConsistencyException for raw ReadRequest bytes");
++        } catch (Exception e) {
++            assertTrue(e instanceof com.alibaba.nacos.consistency.exception.ConsistencyException);
++        }
+     }
+     
+     @Test
+-    void testParseWriteRequest() {
++    void testParseRawWriteRequestThrowsException() {
++        // Raw WriteRequest bytes without REQUEST_TYPE_FIELD_TAG prefix
++        // should throw ConsistencyException since legacy fallback is removed
+         String group = "test";
+         ByteString data = ByteString.copyFrom("data".getBytes());
+         WriteRequest testCase = WriteRequest.newBuilder().setGroup(group).setData(data).build();
+-        Object actual = ProtoMessageUtil.parse(testCase.toByteArray());
+-        assertEquals(WriteRequest.class, testCase.getClass());
+-        assertEquals(group, ((WriteRequest) actual).getGroup());
+-        assertEquals(data, ((WriteRequest) actual).getData());
+-    }
+-    
+-    @Test
+-    void testConvertToReadRequest() {
+-        ByteString data = ByteString.copyFrom("data".getBytes());
+-        String group = "test";
+-        
+-        GetRequest getRequest =
+-            GetRequest.newBuilder().setGroup(group).setData(data).putExtendInfo("k", "v").build();
+-        ReadRequest readRequest = ProtoMessageUtil.convertToReadRequest(getRequest);
+-        
+-        assertEquals(group, readRequest.getGroup());
+-        
+-        assertEquals(data, readRequest.getData());
+-        
+-        assertEquals(1, readRequest.getExtendInfoCount());
+-    }
+-    
+-    @Test
+-    void testConvertToWriteRequest() {
+-        ByteString data = ByteString.copyFrom("data".getBytes());
+-        Log log = Log.newBuilder().setKey("key").setGroup("group").setData(data).setOperation("o")
+-            .putExtendInfo("k", "v").build();
+-        WriteRequest writeRequest = ProtoMessageUtil.convertToWriteRequest(log);
+-        
+-        assertEquals(1, writeRequest.getExtendInfoCount());
+-        
+-        assertEquals(data, writeRequest.getData());
+-        
+-        assertEquals("key", writeRequest.getKey());
+-        
+-        assertEquals("group", writeRequest.getGroup());
+-        
+-        assertEquals("o", writeRequest.getOperation());
++        try {
++            ProtoMessageUtil.parse(testCase.toByteArray());
++            fail("Should throw ConsistencyException for raw WriteRequest bytes");
++        } catch (Exception e) {
++            assertTrue(e instanceof com.alibaba.nacos.consistency.exception.ConsistencyException);
++        }
+     }
+ }
+diff --git a/pom.xml b/pom.xml
+index 31cb4d4398e..019ba93385d 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -652,11 +652,6 @@
+             <artifactId>mockito-core</artifactId>
+             <scope>test</scope>
+         </dependency>
+-        <dependency>
+-            <groupId>org.mockito</groupId>
+-            <artifactId>mockito-inline</artifactId>
+-            <scope>test</scope>
+-        </dependency>
+         <dependency>
+             <groupId>org.mockito</groupId>
+             <artifactId>mockito-junit-jupiter</artifactId>

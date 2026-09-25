@@ -1,0 +1,77 @@
+{
+  "prTitle" : "CAMEL-24986: a REST producer says which path parameter has no value",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 1,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZXN0UHJvZHVjZXIjcHJlcGFyZUV4Y2hhbmdlCmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of RestProducer#prepareExchange: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApSZXN0UHJvZHVjZXIjZmlyc3RQbGFjZWhvbGRlcg",
+    "description" : "Add RestProducer#firstPlaceholder",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaHJvd3MsICthc3NlcnRUaGF0LCArZS5nZXRNZXNzYWdlLCArY29udGFpbnMKUmVzdFByb2R1Y2VyQWR2YW5jZWRUZXN0I3Rlc3RQcmVwYXJlRXhjaGFuZ2VXaXRoVW5yZXNvbHZlZFBsYWNlaG9sZGVy",
+    "description" : "Modify body of RestProducerAdvancedTest#testPrepareExchangeWithUnresolvedPlaceholder: +assertThrows, +assertThat, +e.getMessage, +contains",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "RestProducer",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZXN0UHJvZHVjZXIjcHJlcGFyZUV4Y2hhbmdlCmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of RestProducer#prepareExchange: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApSZXN0UHJvZHVjZXIjZmlyc3RQbGFjZWhvbGRlcg",
+      "description" : "Add RestProducer#firstPlaceholder",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RestProducerAdvancedTest",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaHJvd3MsICthc3NlcnRUaGF0LCArZS5nZXRNZXNzYWdlLCArY29udGFpbnMKUmVzdFByb2R1Y2VyQWR2YW5jZWRUZXN0I3Rlc3RQcmVwYXJlRXhjaGFuZ2VXaXRoVW5yZXNvbHZlZFBsYWNlaG9sZGVy",
+      "description" : "Modify body of RestProducerAdvancedTest#testPrepareExchangeWithUnresolvedPlaceholder: +assertThrows, +assertThat, +e.getMessage, +contains",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

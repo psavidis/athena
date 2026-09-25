@@ -1,0 +1,10 @@
+[ {
+  "entity" : "TreeList",
+  "description" : "Modify body of TreeList#add: moved modCount++ after checkInterval(index, 0, size())"
+}, {
+  "entity" : "TreeList",
+  "description" : "Modify body of TreeList#remove: moved modCount++ after checkInterval(index, 0, size() - 1)"
+}, {
+  "entity" : "TreeListTest",
+  "description" : "Add TreeListTest#testFailedIndexedChangeKeepsIteratorValid"
+} ]

@@ -1,0 +1,26 @@
+{
+  "changedFileCount" : 6,
+  "representedFileCount" : 3,
+  "files" : [ {
+    "path" : "docs/src/main/asciidoc/security-getting-started-tutorial.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 9,
+    "hunkCount" : 3,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "docs/src/main/asciidoc/security-jdbc.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "docs/src/main/asciidoc/security-jpa.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

@@ -1,0 +1,19 @@
+{
+  "changedFileCount" : 82,
+  "representedFileCount" : 80,
+  "files" : [ {
+    "path" : "android/guava/src/com/google/common/collect/CompactHashMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 4,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "guava/src/com/google/common/collect/CompactHashMap.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 4,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  } ]
+}

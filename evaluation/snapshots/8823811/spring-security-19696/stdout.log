@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/spring-projects/spring-security.git",
+  "base" : "a7410ddc3766a06ed6dfb0b374e92218c3908f2c",
+  "head" : "0ca2c392447bcc25b1562c45effb62c31082cc74",
+  "changeCount" : 29,
+  "moduleCount" : 2,
+  "checkoutAndAnalysisSeconds" : 9.81
+}

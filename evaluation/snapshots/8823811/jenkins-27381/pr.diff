@@ -1,0 +1,68 @@
+diff --git a/core/src/main/java/hudson/util/QueryParameterMap.java b/core/src/main/java/hudson/util/QueryParameterMap.java
+index 226881f6eccc..acb552050809 100644
+--- a/core/src/main/java/hudson/util/QueryParameterMap.java
++++ b/core/src/main/java/hudson/util/QueryParameterMap.java
+@@ -58,9 +58,12 @@ public class QueryParameterMap {
+     public QueryParameterMap(String queryString) {
+         if (queryString == null || queryString.isEmpty())   return;
+         for (String param : queryString.split("&")) {
+-            String[] kv = param.split("=");
++            if (param.isEmpty()) {
++                continue;
++            }
++            String[] kv = param.split("=", 2);
+             String key = URLDecoder.decode(kv[0], StandardCharsets.UTF_8);
+-            String value = URLDecoder.decode(kv[1], StandardCharsets.UTF_8);
++            String value = kv.length > 1 ? URLDecoder.decode(kv[1], StandardCharsets.UTF_8) : "";
+             List<String> values = store.computeIfAbsent(key, k -> new ArrayList<>());
+             values.add(value);
+         }
+diff --git a/core/src/test/java/hudson/util/QueryParameterMapTest.java b/core/src/test/java/hudson/util/QueryParameterMapTest.java
+new file mode 100644
+index 000000000000..d41c22bd358e
+--- /dev/null
++++ b/core/src/test/java/hudson/util/QueryParameterMapTest.java
+@@ -0,0 +1,43 @@
++package hudson.util;
++
++import static org.junit.jupiter.api.Assertions.assertEquals;
++import static org.junit.jupiter.api.Assertions.assertNull;
++
++import java.util.List;
++import org.junit.jupiter.api.Test;
++
++class QueryParameterMapTest {
++
++    @Test
++    void basic() {
++        QueryParameterMap m = new QueryParameterMap("a=1&b=x%20y&a=2");
++        assertEquals("1", m.get("a"));
++        assertEquals(List.of("1", "2"), m.getAll("a"));
++        assertEquals("x y", m.get("b"));
++        assertNull(m.get("c"));
++        assertEquals(List.of(), m.getAll("c"));
++    }
++
++    @Test
++    void parameterWithoutValue() {
++        QueryParameterMap m = new QueryParameterMap("flag&rev=&a=1");
++        assertEquals("", m.get("flag"));
++        assertEquals("", m.get("rev"));
++        assertEquals("1", m.get("a"));
++    }
++
++    @Test
++    void valueContainingEqualsSign() {
++        QueryParameterMap m = new QueryParameterMap("token=abc==&expr=a=b");
++        assertEquals("abc==", m.get("token"));
++        assertEquals("a=b", m.get("expr"));
++    }
++
++    @Test
++    void emptyParameters() {
++        QueryParameterMap m = new QueryParameterMap("a=1&&b=2");
++        assertEquals("1", m.get("a"));
++        assertEquals("2", m.get("b"));
++        assertEquals(List.of(), m.getAll(""));
++    }
++}

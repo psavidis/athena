@@ -1,0 +1,19 @@
+{
+  "changedFileCount" : 29,
+  "representedFileCount" : 27,
+  "files" : [ {
+    "path" : "dropwizard-parent/pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 14,
+    "hunkCount" : 3,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "pom.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 7,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  } ]
+}

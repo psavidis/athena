@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of SpyAnnotationEngine#process: branch removed",
+  "entity" : "SpyAnnotationEngine"
+}, {
+  "description" : "Change control flow of SpyOnInjectedFieldsHandler#processInjection: branch removed",
+  "entity" : "SpyOnInjectedFieldsHandler"
+}, {
+  "description" : "Add annotation element Spy#mockMaker",
+  "entity" : "Spy"
+}, {
+  "description" : "Add class SpyAnnotationUtil",
+  "entity" : "SpyAnnotationUtil"
+} ]

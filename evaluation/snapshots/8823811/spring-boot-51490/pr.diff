@@ -1,0 +1,299 @@
+diff --git a/buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java b/buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java
+index b96a600e43f6..22e1533c3a32 100644
+--- a/buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java
++++ b/buildSrc/src/main/java/org/springframework/boot/build/architecture/ArchitectureRules.java
+@@ -61,8 +61,15 @@
+ import com.tngtech.archunit.lang.syntax.elements.GivenMethodsConjunction;
+ import com.tngtech.archunit.library.dependencies.SlicesRuleDefinition;
+ 
++import org.springframework.beans.factory.BeanClassLoaderAware;
++import org.springframework.beans.factory.BeanFactoryAware;
+ import org.springframework.beans.factory.config.BeanDefinition;
++import org.springframework.context.EnvironmentAware;
++import org.springframework.context.ResourceLoaderAware;
++import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
++import org.springframework.context.annotation.ImportSelector;
+ import org.springframework.context.annotation.Role;
++import org.springframework.core.type.filter.TypeFilter;
+ import org.springframework.util.ResourceUtils;
+ 
+ /**
+@@ -109,6 +116,7 @@ static List<ArchRule> standard() {
+ 		rules.add(autoConfigurationClassesShouldBePublicAndFinal());
+ 		rules.add(autoConfigurationClassesShouldHaveNoPublicMembers());
+ 		rules.add(testAutoConfigurationClassesShouldBePackagePrivateAndFinal());
++		rules.add(importParticipantsShouldOnlyImplementAwareInterfacesIfTheyArePublic());
+ 		return List.copyOf(rules);
+ 	}
+ 
+@@ -277,6 +285,36 @@ private static ArchRule noClassesShouldCallStringToLowerCaseWithoutLocale() {
+ 			.because(shouldUse("String.toLowerCase(Locale.ROOT)"));
+ 	}
+ 
++	private static ArchRule importParticipantsShouldOnlyImplementAwareInterfacesIfTheyArePublic() {
++		return ArchRuleDefinition.classes()
++			.that(areImportParticipants())
++			.and()
++			.areNotPublic()
++			.should(notDirectlyImplementAwareInterfaces())
++			.allowEmptyShould(true);
++	}
++
++	private static DescribedPredicate<JavaClass> areImportParticipants() {
++		return JavaClass.Predicates.implement(ImportBeanDefinitionRegistrar.class)
++			.or(JavaClass.Predicates.implement(ImportSelector.class))
++			.or(JavaClass.Predicates.implement(TypeFilter.class));
++	}
++
++	private static ArchCondition<JavaClass> notDirectlyImplementAwareInterfaces() {
++		Set<String> awareNames = Set.of(BeanClassLoaderAware.class.getName(), BeanFactoryAware.class.getName(),
++				EnvironmentAware.class.getName(), ResourceLoaderAware.class.getName());
++		return ArchCondition
++			.from(DescribedPredicate.describe("not directly implement BeanClassLoaderAware, BeanFactoryAware,"
++					+ " EnvironmentAware, or ResourceLoaderAware", (javaClass) -> {
++						for (JavaClass rawInterface : javaClass.getRawInterfaces()) {
++							if (awareNames.contains(rawInterface.getFullName())) {
++								return false;
++							}
++						}
++						return true;
++					}));
++	}
++
+ 	private static ArchRule conditionalOnMissingBeanShouldNotSpecifyOnlyATypeThatIsTheSameAsMethodReturnType(
+ 			String annotation) {
+ 		return methodsThatAreAnnotatedWith(annotation)
+diff --git a/core/spring-boot-test/src/main/java/org/springframework/boot/test/context/ImportsContextCustomizer.java b/core/spring-boot-test/src/main/java/org/springframework/boot/test/context/ImportsContextCustomizer.java
+index 70645fa416f6..de07c1cd627a 100644
+--- a/core/spring-boot-test/src/main/java/org/springframework/boot/test/context/ImportsContextCustomizer.java
++++ b/core/spring-boot-test/src/main/java/org/springframework/boot/test/context/ImportsContextCustomizer.java
+@@ -30,7 +30,6 @@
+ 
+ import org.springframework.beans.BeansException;
+ import org.springframework.beans.factory.BeanFactory;
+-import org.springframework.beans.factory.BeanFactoryAware;
+ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+ import org.springframework.beans.factory.config.BeanDefinition;
+ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+@@ -170,15 +169,13 @@ static class ImportsConfiguration {
+ 	 * {@link ImportSelector} that returns the original test class so that direct
+ 	 * {@code @Import} annotations are processed.
+ 	 */
+-	static class ImportsSelector implements ImportSelector, BeanFactoryAware {
++	static class ImportsSelector implements ImportSelector {
+ 
+ 		private static final String[] NO_IMPORTS = {};
+ 
+-		@SuppressWarnings("NullAway.Init")
+-		private ConfigurableListableBeanFactory beanFactory;
++		private final ConfigurableListableBeanFactory beanFactory;
+ 
+-		@Override
+-		public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
++		ImportsSelector(BeanFactory beanFactory) {
+ 			this.beanFactory = (ConfigurableListableBeanFactory) beanFactory;
+ 		}
+ 
+diff --git a/module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelector.java b/module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelector.java
+index c20b77e2ea7c..416ff3612e9a 100644
+--- a/module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelector.java
++++ b/module/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelector.java
+@@ -23,7 +23,6 @@
+ 
+ import org.jspecify.annotations.Nullable;
+ 
+-import org.springframework.beans.factory.BeanClassLoaderAware;
+ import org.springframework.boot.actuate.autoconfigure.web.ManagementContextConfiguration;
+ import org.springframework.boot.actuate.autoconfigure.web.ManagementContextType;
+ import org.springframework.boot.context.annotation.ImportCandidates;
+@@ -51,9 +50,13 @@
+  * @see ImportCandidates
+  */
+ @Order(Ordered.LOWEST_PRECEDENCE)
+-class ManagementContextConfigurationImportSelector implements DeferredImportSelector, BeanClassLoaderAware {
++class ManagementContextConfigurationImportSelector implements DeferredImportSelector {
+ 
+-	private @Nullable ClassLoader classLoader;
++	private final ClassLoader classLoader;
++
++	ManagementContextConfigurationImportSelector(ClassLoader classLoader) {
++		this.classLoader = classLoader;
++	}
+ 
+ 	@Override
+ 	public String[] selectImports(AnnotationMetadata metadata) {
+@@ -98,11 +101,6 @@ protected List<String> loadFactoryNames() {
+ 		return ImportCandidates.load(ManagementContextConfiguration.class, this.classLoader).getCandidates();
+ 	}
+ 
+-	@Override
+-	public void setBeanClassLoader(ClassLoader classLoader) {
+-		this.classLoader = classLoader;
+-	}
+-
+ 	/**
+ 	 * A management configuration class which can be sorted according to {@code @Order}.
+ 	 */
+diff --git a/module/spring-boot-actuator-autoconfigure/src/test/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelectorTests.java b/module/spring-boot-actuator-autoconfigure/src/test/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelectorTests.java
+index 0faed22268fb..3261530123d2 100644
+--- a/module/spring-boot-actuator-autoconfigure/src/test/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelectorTests.java
++++ b/module/spring-boot-actuator-autoconfigure/src/test/java/org/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelectorTests.java
+@@ -64,7 +64,8 @@ void selectImportsFiltersSameOnlyConfigurationWhenUsingChildContext() {
+ 
+ 	@Test
+ 	void selectImportsLoadsFromResources() {
+-		String[] imports = new ManagementContextConfigurationImportSelector()
++		String[] imports = new ManagementContextConfigurationImportSelector(
++				ManagementContextConfigurationImportSelector.class.getClassLoader())
+ 			.selectImports(AnnotationMetadata.introspect(EnableChildContext.class));
+ 		Set<String> expected = new HashSet<>();
+ 		ImportCandidates
+@@ -84,6 +85,7 @@ private static final class TestManagementContextConfigurationsImportSelector
+ 		private final List<String> factoryNames;
+ 
+ 		private TestManagementContextConfigurationsImportSelector(Class<?>... classes) {
++			super(ManagementContextConfigurationImportSelector.class.getClassLoader());
+ 			this.factoryNames = Stream.of(classes).map(Class::getName).toList();
+ 		}
+ 
+diff --git a/module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationAutoConfigurationScanRegistrar.java b/module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationAutoConfigurationScanRegistrar.java
+index bc8132890ead..92d931dec16a 100644
+--- a/module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationAutoConfigurationScanRegistrar.java
++++ b/module/spring-boot-integration/src/main/java/org/springframework/boot/integration/autoconfigure/IntegrationAutoConfigurationScanRegistrar.java
+@@ -19,9 +19,7 @@
+ import java.util.Collection;
+ import java.util.Collections;
+ 
+-import org.springframework.beans.BeansException;
+ import org.springframework.beans.factory.BeanFactory;
+-import org.springframework.beans.factory.BeanFactoryAware;
+ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+ import org.springframework.boot.autoconfigure.AutoConfigurationPackages;
+ import org.springframework.core.annotation.AnnotationAttributes;
+@@ -36,13 +34,11 @@
+  * @author Artem Bilan
+  * @author Phillip Webb
+  */
+-class IntegrationAutoConfigurationScanRegistrar extends IntegrationComponentScanRegistrar implements BeanFactoryAware {
++class IntegrationAutoConfigurationScanRegistrar extends IntegrationComponentScanRegistrar {
+ 
+-	@SuppressWarnings("NullAway.Init")
+-	private BeanFactory beanFactory;
++	private final BeanFactory beanFactory;
+ 
+-	@Override
+-	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
++	IntegrationAutoConfigurationScanRegistrar(BeanFactory beanFactory) {
+ 		this.beanFactory = beanFactory;
+ 	}
+ 
+diff --git a/module/spring-boot-validation/src/main/java/org/springframework/boot/validation/autoconfigure/PrimaryDefaultValidatorPostProcessor.java b/module/spring-boot-validation/src/main/java/org/springframework/boot/validation/autoconfigure/PrimaryDefaultValidatorPostProcessor.java
+index d7ec00615bc5..426c37f3b667 100644
+--- a/module/spring-boot-validation/src/main/java/org/springframework/boot/validation/autoconfigure/PrimaryDefaultValidatorPostProcessor.java
++++ b/module/spring-boot-validation/src/main/java/org/springframework/boot/validation/autoconfigure/PrimaryDefaultValidatorPostProcessor.java
+@@ -18,9 +18,7 @@
+ 
+ import org.jspecify.annotations.Nullable;
+ 
+-import org.springframework.beans.BeansException;
+ import org.springframework.beans.factory.BeanFactory;
+-import org.springframework.beans.factory.BeanFactoryAware;
+ import org.springframework.beans.factory.config.BeanDefinition;
+ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+@@ -42,20 +40,18 @@
+  * @author Matej Nedic
+  * @author Andy Wilkinson
+  */
+-class PrimaryDefaultValidatorPostProcessor implements ImportBeanDefinitionRegistrar, BeanFactoryAware {
++class PrimaryDefaultValidatorPostProcessor implements ImportBeanDefinitionRegistrar {
+ 
+ 	/**
+ 	 * The bean name of the auto-configured Validator.
+ 	 */
+ 	private static final String VALIDATOR_BEAN_NAME = "defaultValidator";
+ 
+-	private @Nullable ConfigurableListableBeanFactory beanFactory;
++	private final @Nullable ConfigurableListableBeanFactory beanFactory;
+ 
+-	@Override
+-	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+-		if (beanFactory instanceof ConfigurableListableBeanFactory listableBeanFactory) {
+-			this.beanFactory = listableBeanFactory;
+-		}
++	PrimaryDefaultValidatorPostProcessor(BeanFactory beanFactory) {
++		this.beanFactory = (beanFactory instanceof ConfigurableListableBeanFactory listableBeanFactory)
++				? listableBeanFactory : null;
+ 	}
+ 
+ 	@Override
+diff --git a/module/spring-boot-web-server/src/main/java/org/springframework/boot/web/server/autoconfigure/reactive/ReactiveWebServerConfiguration.java b/module/spring-boot-web-server/src/main/java/org/springframework/boot/web/server/autoconfigure/reactive/ReactiveWebServerConfiguration.java
+index 14938716e969..64dea47c1a6f 100644
+--- a/module/spring-boot-web-server/src/main/java/org/springframework/boot/web/server/autoconfigure/reactive/ReactiveWebServerConfiguration.java
++++ b/module/spring-boot-web-server/src/main/java/org/springframework/boot/web/server/autoconfigure/reactive/ReactiveWebServerConfiguration.java
+@@ -18,9 +18,7 @@
+ 
+ import org.jspecify.annotations.Nullable;
+ 
+-import org.springframework.beans.BeansException;
+ import org.springframework.beans.factory.BeanFactory;
+-import org.springframework.beans.factory.BeanFactoryAware;
+ import org.springframework.beans.factory.ObjectProvider;
+ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+@@ -68,15 +66,13 @@ ForwardedHeaderTransformer forwardedHeaderTransformer() {
+ 	 * Registers a {@link WebServerFactoryCustomizerBeanPostProcessor}. Registered via
+ 	 * {@link ImportBeanDefinitionRegistrar} for early registration.
+ 	 */
+-	static class BeanPostProcessorsRegistrar implements ImportBeanDefinitionRegistrar, BeanFactoryAware {
++	static class BeanPostProcessorsRegistrar implements ImportBeanDefinitionRegistrar {
+ 
+-		private @Nullable ConfigurableListableBeanFactory beanFactory;
++		private final @Nullable ConfigurableListableBeanFactory beanFactory;
+ 
+-		@Override
+-		public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+-			if (beanFactory instanceof ConfigurableListableBeanFactory listableBeanFactory) {
+-				this.beanFactory = listableBeanFactory;
+-			}
++		BeanPostProcessorsRegistrar(BeanFactory beanFactory) {
++			this.beanFactory = (beanFactory instanceof ConfigurableListableBeanFactory listableBeanFactory)
++					? listableBeanFactory : null;
+ 		}
+ 
+ 		@Override
+diff --git a/module/spring-boot-web-server/src/main/java/org/springframework/boot/web/server/autoconfigure/servlet/ServletWebServerConfiguration.java b/module/spring-boot-web-server/src/main/java/org/springframework/boot/web/server/autoconfigure/servlet/ServletWebServerConfiguration.java
+index 088f134ace40..44651561c8ec 100644
+--- a/module/spring-boot-web-server/src/main/java/org/springframework/boot/web/server/autoconfigure/servlet/ServletWebServerConfiguration.java
++++ b/module/spring-boot-web-server/src/main/java/org/springframework/boot/web/server/autoconfigure/servlet/ServletWebServerConfiguration.java
+@@ -19,9 +19,7 @@
+ import jakarta.servlet.DispatcherType;
+ import org.jspecify.annotations.Nullable;
+ 
+-import org.springframework.beans.BeansException;
+ import org.springframework.beans.factory.BeanFactory;
+-import org.springframework.beans.factory.BeanFactoryAware;
+ import org.springframework.beans.factory.ObjectProvider;
+ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+@@ -86,15 +84,13 @@ FilterRegistrationBean<ForwardedHeaderFilter> forwardedHeaderFilter(
+ 	 * Registers a {@link WebServerFactoryCustomizerBeanPostProcessor}. Registered via
+ 	 * {@link ImportBeanDefinitionRegistrar} for early registration.
+ 	 */
+-	static class BeanPostProcessorsRegistrar implements ImportBeanDefinitionRegistrar, BeanFactoryAware {
++	static class BeanPostProcessorsRegistrar implements ImportBeanDefinitionRegistrar {
+ 
+-		private @Nullable ConfigurableListableBeanFactory beanFactory;
++		private final @Nullable ConfigurableListableBeanFactory beanFactory;
+ 
+-		@Override
+-		public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+-			if (beanFactory instanceof ConfigurableListableBeanFactory listableBeanFactory) {
+-				this.beanFactory = listableBeanFactory;
+-			}
++		BeanPostProcessorsRegistrar(BeanFactory beanFactory) {
++			this.beanFactory = (beanFactory instanceof ConfigurableListableBeanFactory listableBeanFactory)
++					? listableBeanFactory : null;
+ 		}
+ 
+ 		@Override

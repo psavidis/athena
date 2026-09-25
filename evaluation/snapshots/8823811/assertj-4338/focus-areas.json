@@ -1,0 +1,13 @@
+[ {
+  "description" : "Rename BaseAssertionsTest#<instance-init> -> setUpStackTraceFiltering",
+  "entity" : "BaseAssertionsTest"
+}, {
+  "description" : "Remove class MutatesGlobalConfiguration",
+  "entity" : "MutatesGlobalConfiguration"
+}, {
+  "description" : "Remove class MutatesGlobalConfiguration.AssumptionMutatingExtension",
+  "entity" : "MutatesGlobalConfiguration.AssumptionMutatingExtension"
+}, {
+  "description" : "Remove MutatesGlobalConfiguration.AssumptionMutatingExtension#afterEach",
+  "entity" : "MutatesGlobalConfiguration.AssumptionMutatingExtension"
+} ]
