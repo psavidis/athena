@@ -79,9 +79,9 @@ public final class ChangeGrouper {
             case CHANGE_METHOD_SIGNATURE -> "Change signature of " + key.involvedDescriptions.get(0);
             case FORMATTING_ONLY -> "Formatting: " + key.involvedDescriptions.get(0);
             case MOVE_CLASS -> "Move class " + classMove(key.involvedDescriptions, representative)
-                    + importFollowOns(representative);
+                    + importFollowOns(representative) + referenceFollowOns(representative);
             case RENAME_CLASS -> "Rename class " + classMove(key.involvedDescriptions, representative)
-                    + importFollowOns(representative);
+                    + importFollowOns(representative) + referenceFollowOns(representative);
             case ADD_CLASS -> "Add class " + key.involvedDescriptions.get(0);
             case REMOVE_CLASS -> "Remove class " + key.involvedDescriptions.get(0);
             case RENAME_FIELD -> "Rename field " + arrowJoin(key.involvedDescriptions) + referenceFollowOns(representative);
@@ -197,7 +197,7 @@ public final class ChangeGrouper {
         return "Rename " + kind + " " + names + " in " + scope;
     }
 
-    /** " (references updated in N files)" for a rename whose references changed in other files (ticket #384). */
+    /** " (references updated in N files)" for a rename whose references changed in other files (tickets #384, #385). */
     private static String referenceFollowOns(DetectedTransformation representative) {
         String count = representative.context().get(DetectedTransformation.REFERENCE_FOLLOW_ONS);
         if (count == null) {

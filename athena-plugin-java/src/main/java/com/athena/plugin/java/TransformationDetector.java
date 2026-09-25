@@ -412,7 +412,9 @@ public final class TransformationDetector {
      * Attaches every changed file that only follows a class this Diff moves or renames (ticket
      * #337): its imports changed only to name moved or renamed classes, and any other difference
      * is the renamed classes' new names replacing their old ones. Such a file is a consequence of
-     * the move or rename, not a change of its own; it then counts as represented.
+     * the move or rename, not a change of its own; it then counts as represented, and the
+     * signature or body Changes found in it are dropped (ticket #385). The rename or move says
+     * "references updated" when a follow-on file's body changed, "imports updated" otherwise.
      */
     private List<DetectedTransformation> withImportFollowOns(Map<String, ParsedFile> baseFiles,
                                                              Map<String, ParsedFile> headFiles, Set<String> unparseable,
@@ -439,6 +441,7 @@ public final class TransformationDetector {
             }
         }
         Map<Integer, List<String>> followOns = new LinkedHashMap<>();
+        Set<Integer> referenceOwners = new LinkedHashSet<>();
         for (Map.Entry<String, ParsedFile> base : baseFiles.entrySet()) {
             ParsedFile head = headFiles.get(base.getKey());
             if (head == null || unparseable.contains(base.getKey())) continue;
@@ -471,12 +474,28 @@ public final class TransformationDetector {
                 owners.add(owner);
             }
             if (allFollow && !owners.isEmpty()) {
-                followOns.computeIfAbsent(owners.iterator().next(), k -> new ArrayList<>()).add(base.getKey());
+                Integer owner = owners.iterator().next();
+                followOns.computeIfAbsent(owner, k -> new ArrayList<>()).add(base.getKey());
+                if (!baseBody.equals(headBody)) {
+                    referenceOwners.add(owner);
+                }
             }
         }
-        List<DetectedTransformation> attached = new ArrayList<>(results);
-        followOns.forEach((index, files) -> attached.set(index, results.get(index).withAdditionalFiles(files)
-                .withContext(DetectedTransformation.IMPORT_FOLLOW_ONS, String.valueOf(files.size()))));
+        Set<String> followOnFiles = new LinkedHashSet<>();
+        followOns.values().forEach(followOnFiles::addAll);
+        List<DetectedTransformation> attached = new ArrayList<>();
+        for (int i = 0; i < results.size(); i++) {
+            DetectedTransformation t = results.get(i);
+            List<String> files = followOns.get(i);
+            if (files != null) {
+                String key = referenceOwners.contains(i)
+                        ? DetectedTransformation.REFERENCE_FOLLOW_ONS : DetectedTransformation.IMPORT_FOLLOW_ONS;
+                attached.add(t.withAdditionalFiles(files).withContext(key, String.valueOf(files.size())));
+            } else if (classChangeByName.containsValue(i) || !followOnFiles.containsAll(t.filesTouched())) {
+                attached.add(t);
+            }
+            // else: a signature or body edit inside a follow-on file is only the rename's ripple.
+        }
         return attached;
     }
 

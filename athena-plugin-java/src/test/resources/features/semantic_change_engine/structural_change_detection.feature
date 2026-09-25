@@ -175,4 +175,4 @@ Feature: Structural and mechanical change detection
     And a head revision where it is renamed "CleanableResource" with type parameter "R" in package "io.vertx.core.internal"
     And a class "WorkerExecutorImpl" whose only change is extending "CleanableResource" instead of "CleanableObject"
     When the semantic engine detects transformations between the revisions
-    Then the change "Rename class impl.CleanableObject -> internal.CleanableResource (imports updated in 1 file)" is detected
+    Then the change "Rename class impl.CleanableObject -> internal.CleanableResource (references updated in 1 file)" is detected
