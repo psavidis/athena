@@ -3,7 +3,8 @@ Feature: Switch statements and expressions in control-flow change detection
   if/else branches, so rewriting an if-chain as a switch is not mistaken for
   removed branches, and an added or removed case is a behavioral change
   (ticket #289; #258 re-run report, N2). Where only the branch structure
-  changed, the description also says "same calls" (ticket #319).
+  changed, the description also says "same calls" (ticket #319), but not for a
+  lone added case or changed label, which change behavior (ticket #357).
 
   Scenario: An if-chain rewritten as a switch with the same conditions says so
     Given a base revision where method "describe" on class "Scope" picks a label with an if-chain over "EMPTY", "OPEN" and "CLOSED" with a final else
@@ -39,13 +40,13 @@ Feature: Switch statements and expressions in control-flow change detection
     Given a base revision where method "describe" on class "Scope" picks a label with a switch over "EMPTY" and "OPEN" with a default
     And a head revision where "describe" on "Scope" picks a label with a switch over "EMPTY" and "CLOSED" with a default
     When the semantic engine detects transformations between the revisions
-    Then the control-flow change of "Scope#describe" is described as "condition changed; same calls"
+    Then the control-flow change of "Scope#describe" is described as "condition changed"
 
   Scenario: An added case in a switch expression is an added branch
     Given a base revision where method "describe" on class "Scope" returns a switch expression over "EMPTY" and "OPEN" with a default
     And a head revision where "describe" on "Scope" returns a switch expression over "EMPTY", "OPEN" and "CLOSED" with a default
     When the semantic engine detects transformations between the revisions
-    Then the control-flow change of "Scope#describe" is described as "branch added; same calls"
+    Then the control-flow change of "Scope#describe" is described as "branch added"
 
   Scenario: An unchanged switch with a changed case body is not a control-flow change
     Given a base revision where method "describe" on class "Scope" picks a label with a switch over "EMPTY" and "OPEN" with a default

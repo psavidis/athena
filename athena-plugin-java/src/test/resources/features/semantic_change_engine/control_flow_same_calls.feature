@@ -32,3 +32,24 @@ Feature: A control-flow change says when the body makes the same calls
     And a head revision where "getInvoker" on "Protocol" also throws "RemotingException" from a new guard
     When the semantic engine detects transformations between the revisions
     Then the control-flow change of "Protocol#getInvoker" does not mention "same calls"
+
+  # Ticket #357: "same calls" only for a restructuring, never for a lone added,
+  # removed or changed piece of control flow, which is a behavior change in itself.
+
+  Scenario: A new guard that skips an element does not say so
+    Given a base revision where method "serializeAll" on class "Serializer" writes each property in a simple loop
+    And a head revision where "serializeAll" on "Serializer" also skips skipped properties with continue
+    When the semantic engine detects transformations between the revisions
+    Then the control-flow change of "Serializer#serializeAll" is exactly "branch added"
+
+  Scenario: A removed branch does not say so
+    Given a base revision where method "serializeAll" on class "Serializer" writes each property in a simple loop
+    And a head revision where "serializeAll" on "Serializer" writes every property without the null check
+    When the semantic engine detects transformations between the revisions
+    Then the control-flow change of "Serializer#serializeAll" is exactly "branch removed"
+
+  Scenario: A lone changed condition does not say so
+    Given a base revision where method "serializeAll" on class "Serializer" writes each property in a simple loop
+    And a head revision where "serializeAll" on "Serializer" writes only properties that are not empty
+    When the semantic engine detects transformations between the revisions
+    Then the control-flow change of "Serializer#serializeAll" is exactly "condition changed"
