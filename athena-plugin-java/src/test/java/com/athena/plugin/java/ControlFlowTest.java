@@ -163,7 +163,8 @@ class ControlFlowTest {
 
     @Test
     void severalKindsOfChangeTogetherAreARestructuring() {
-        assertThat(controlFlowOf("if (a) { x(); }").restructures(controlFlowOf("if (b) { x(); } if (c) { x(); }"))).isTrue();
+        assertThat(controlFlowOf("for (int i = 0; i < n; i++) { x(); }")
+                .restructures(controlFlowOf("if (n > 0) { x(); } if (n > 1) { x(); }"))).isTrue();
     }
 
     @Test

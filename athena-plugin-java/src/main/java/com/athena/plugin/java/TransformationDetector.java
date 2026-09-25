@@ -152,9 +152,11 @@ public final class TransformationDetector {
                     Optional<String> controlFlowChange = base.controlFlow.describeChangeTo(head.controlFlow);
                     if (controlFlowChange.isPresent()) {
                         // Still behavioral, but a reviewer should know when the body makes the same
-                        // calls, only structured differently (ticket #319).
-                        String description = controlFlowChange.get()
-                                + (base.bodySummary.makesSameCallsAs(head.bodySummary) ? "; same calls" : "");
+                        // calls, only structured differently (ticket #319) — never for a lone added,
+                        // removed or changed piece of control flow, which is the change (#357).
+                        boolean sameCalls = base.controlFlow.restructures(head.controlFlow)
+                                && base.bodySummary.makesSameCallsAs(head.bodySummary);
+                        String description = controlFlowChange.get() + (sameCalls ? "; same calls" : "");
                         results.add(DetectedTransformation.withDiff(TransformationKind.CHANGE_CONTROL_FLOW,
                                 List.of(base.description(), description), List.of(base.file, head.file),
                                 base.rawWholeDeclaration, head.rawWholeDeclaration));
