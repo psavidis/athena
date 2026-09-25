@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change signature of ApacheHttpClientConfigurations#configureApacheHttpClientBuilder",
+  "entity" : "ApacheHttpClientConfigurations"
+}, {
+  "description" : "Change signature of ApacheHttpClientConfigurations#configureProxy",
+  "entity" : "ApacheHttpClientConfigurations"
+}, {
+  "description" : "Modify body of TestS3RestSigner#before: applyMutation(…): apache.ApacheHttpClient -> apache5.Apache5HttpClient, s3ClientBuilder.httpClientBuilder(…): apache.ApacheHttpClient -> apache5.Apache5HttpClient",
+  "entity" : "TestS3RestSigner"
+}, {
+  "description" : "Modify body of ApacheHttpClientConfigurations#buildHttpClient: other statements changed",
+  "entity" : "ApacheHttpClientConfigurations"
+} ]

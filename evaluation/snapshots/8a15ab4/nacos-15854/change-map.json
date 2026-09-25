@@ -1,0 +1,520 @@
+{
+  "prTitle" : "[ISSUE #15628] Remove legacy Raft request parsing and preserve parse errors",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 20,
+    "UNKNOWN" : 4,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpQcm90b01lc3NhZ2VVdGlsI3BhcnNlCmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of ProtoMessageUtil#parse: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsI2NvbnZlcnRUb1dyaXRlUmVxdWVzdA",
+    "description" : "Remove ProtoMessageUtil#convertToWriteRequest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsI2NvbnZlcnRUb1JlYWRSZXF1ZXN0",
+    "description" : "Remove ProtoMessageUtil#convertToReadRequest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXaXRoQ29ycnVwdFJlcXVlc3RUeXBlRmllbGQ",
+    "description" : "Remove ProtoMessageUtilTest#testParseWithCorruptRequestTypeField",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UHJvdG8",
+    "description" : "Remove ProtoMessageUtilTest#testProto",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSZWFkUmVxdWVzdA",
+    "description" : "Remove ProtoMessageUtilTest#testParseReadRequest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXcml0ZVJlcXVlc3Q",
+    "description" : "Remove ProtoMessageUtilTest#testParseWriteRequest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvUmVhZFJlcXVlc3Q",
+    "description" : "Remove ProtoMessageUtilTest#testConvertToReadRequest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvV3JpdGVSZXF1ZXN0",
+    "description" : "Remove ProtoMessageUtilTest#testConvertToWriteRequest",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VOdWxsT3JFbXB0eUJ5dGVz",
+    "description" : "Add ProtoMessageUtilTest#testParseNullOrEmptyBytes",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VUcnVuY2F0ZWRSZXF1ZXN0VHlwZVByZWZpeA",
+    "description" : "Add ProtoMessageUtilTest#testParseTruncatedRequestTypePrefix",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VVbmtub3duUmVxdWVzdFR5cGU",
+    "description" : "Add ProtoMessageUtilTest#testParseUnknownRequestType",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VDb3JydXB0UmVxdWVzdFByZXNlcnZlc0NhdXNl",
+    "description" : "Add ProtoMessageUtilTest#testParseCorruptRequestPreservesCause",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VFbXB0eVJlYWRSZXF1ZXN0V2l0aFJlcXVlc3RUeXBlRmllbGQ",
+    "description" : "Add ProtoMessageUtilTest#testParseEmptyReadRequestWithRequestTypeField",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VFbXB0eVdyaXRlUmVxdWVzdFdpdGhSZXF1ZXN0VHlwZUZpZWxk",
+    "description" : "Add ProtoMessageUtilTest#testParseEmptyWriteRequestWithRequestTypeField",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VVbnRhZ2dlZFJlcXVlc3Q",
+    "description" : "Add ProtoMessageUtilTest#testParseUntaggedRequest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN1bnRhZ2dlZFJlcXVlc3Rz",
+    "description" : "Add ProtoMessageUtilTest#untaggedRequests",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN3aXRoUmVxdWVzdFR5cGU",
+    "description" : "Add ProtoMessageUtilTest#withRequestType",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX1NZTUJPTApOYWNvc1N0YXRlTWFjaGluZVRlc3QjdGVzdE9uQXBwbHlJbnZhbGlkTG9nUm9sbHNCYWNrV2l0aG91dEludm9raW5nUHJvY2Vzc29y",
+    "description" : "Add NacosStateMachineTest#testOnApplyInvalidLogRollsBackWithoutInvokingProcessor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 19,
+    "changeKey" : "QUREX1NZTUJPTApOYWNvc1N0YXRlTWFjaGluZVRlc3QjaW52YWxpZExvZ0RhdGE",
+    "description" : "Add NacosStateMachineTest#invalidLogData",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 20,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaHJvd3MsIC1mYWlsLCAtYXNzZXJ0VHJ1ZQpQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VJbnZhbGlkQnl0ZXM",
+    "description" : "Modify body of ProtoMessageUtilTest#testParseInvalidBytes: +assertThrows, -fail, -assertTrue",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 21,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb3B5RnJvbVV0ZjgsICtwdXRFeHRlbmRJbmZvLCArYXNzZXJ0SW5zdGFuY2VPZiwgK3dpdGhSZXF1ZXN0VHlwZSwgK2V4cGVjdGVkLmdldEdyb3VwIOKApmFuZCAxNSBtb3JlClByb3RvTWVzc2FnZVV0aWxUZXN0I3Rlc3RQYXJzZVJlYWRSZXF1ZXN0V2l0aFJlcXVlc3RUeXBlRmllbGQ",
+    "description" : "Modify body of ProtoMessageUtilTest#testParseReadRequestWithRequestTypeField: +copyFromUtf8, +putExtendInfo, +assertInstanceOf, +withRequestType, +expected.getGroup …and 15 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 22,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzZXRLZXksICtjb3B5RnJvbVV0ZjgsICtzZXRUeXBlLCArc2V0T3BlcmF0aW9uLCArcHV0RXh0ZW5kSW5mbyDigKZhbmQgMjUgbW9yZQpQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXcml0ZVJlcXVlc3RXaXRoUmVxdWVzdFR5cGVGaWVsZA",
+    "description" : "Modify body of ProtoMessageUtilTest#testParseWriteRequestWithRequestTypeField: +setKey, +copyFromUtf8, +setType, +setOperation, +putExtendInfo …and 25 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 23,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCituZXdCdWlsZGVyLCArc2V0R3JvdXAsICtzZXRPcGVyYXRpb24sICtzZXREYXRhLCArY29weUZyb21VdGY4IOKApmFuZCAxOCBtb3JlCk5hY29zU3RhdGVNYWNoaW5lVGVzdCN0ZXN0T25BcHBseUZvbGxvd2VyV3JpdGVSZXF1ZXN0",
+    "description" : "Modify body of NacosStateMachineTest#testOnApplyFollowerWriteRequest: +newBuilder, +setGroup, +setOperation, +setData, +copyFromUtf8 …and 18 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 24,
+    "changeKey" : "QUREX0ZJRUxEClByb3RvTWVzc2FnZVV0aWwjTE9HR0VS",
+    "description" : "Add field ProtoMessageUtil#LOGGER",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ProtoMessageUtil",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpQcm90b01lc3NhZ2VVdGlsI3BhcnNlCmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of ProtoMessageUtil#parse: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsI2NvbnZlcnRUb1dyaXRlUmVxdWVzdA",
+      "description" : "Remove ProtoMessageUtil#convertToWriteRequest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsI2NvbnZlcnRUb1JlYWRSZXF1ZXN0",
+      "description" : "Remove ProtoMessageUtil#convertToReadRequest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 24,
+      "changeKey" : "QUREX0ZJRUxEClByb3RvTWVzc2FnZVV0aWwjTE9HR0VS",
+      "description" : "Add field ProtoMessageUtil#LOGGER",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ProtoMessageUtilTest",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXaXRoQ29ycnVwdFJlcXVlc3RUeXBlRmllbGQ",
+      "description" : "Remove ProtoMessageUtilTest#testParseWithCorruptRequestTypeField",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UHJvdG8",
+      "description" : "Remove ProtoMessageUtilTest#testProto",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VSZWFkUmVxdWVzdA",
+      "description" : "Remove ProtoMessageUtilTest#testParseReadRequest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXcml0ZVJlcXVlc3Q",
+      "description" : "Remove ProtoMessageUtilTest#testParseWriteRequest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvUmVhZFJlcXVlc3Q",
+      "description" : "Remove ProtoMessageUtilTest#testConvertToReadRequest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 8,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0Q29udmVydFRvV3JpdGVSZXF1ZXN0",
+      "description" : "Remove ProtoMessageUtilTest#testConvertToWriteRequest",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 9,
+      "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VOdWxsT3JFbXB0eUJ5dGVz",
+      "description" : "Add ProtoMessageUtilTest#testParseNullOrEmptyBytes",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VUcnVuY2F0ZWRSZXF1ZXN0VHlwZVByZWZpeA",
+      "description" : "Add ProtoMessageUtilTest#testParseTruncatedRequestTypePrefix",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VVbmtub3duUmVxdWVzdFR5cGU",
+      "description" : "Add ProtoMessageUtilTest#testParseUnknownRequestType",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VDb3JydXB0UmVxdWVzdFByZXNlcnZlc0NhdXNl",
+      "description" : "Add ProtoMessageUtilTest#testParseCorruptRequestPreservesCause",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VFbXB0eVJlYWRSZXF1ZXN0V2l0aFJlcXVlc3RUeXBlRmllbGQ",
+      "description" : "Add ProtoMessageUtilTest#testParseEmptyReadRequestWithRequestTypeField",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 14,
+      "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VFbXB0eVdyaXRlUmVxdWVzdFdpdGhSZXF1ZXN0VHlwZUZpZWxk",
+      "description" : "Add ProtoMessageUtilTest#testParseEmptyWriteRequestWithRequestTypeField",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VVbnRhZ2dlZFJlcXVlc3Q",
+      "description" : "Add ProtoMessageUtilTest#testParseUntaggedRequest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN1bnRhZ2dlZFJlcXVlc3Rz",
+      "description" : "Add ProtoMessageUtilTest#untaggedRequests",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX1NZTUJPTApQcm90b01lc3NhZ2VVdGlsVGVzdCN3aXRoUmVxdWVzdFR5cGU",
+      "description" : "Add ProtoMessageUtilTest#withRequestType",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 20,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRUaHJvd3MsIC1mYWlsLCAtYXNzZXJ0VHJ1ZQpQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VJbnZhbGlkQnl0ZXM",
+      "description" : "Modify body of ProtoMessageUtilTest#testParseInvalidBytes: +assertThrows, -fail, -assertTrue",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 21,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb3B5RnJvbVV0ZjgsICtwdXRFeHRlbmRJbmZvLCArYXNzZXJ0SW5zdGFuY2VPZiwgK3dpdGhSZXF1ZXN0VHlwZSwgK2V4cGVjdGVkLmdldEdyb3VwIOKApmFuZCAxNSBtb3JlClByb3RvTWVzc2FnZVV0aWxUZXN0I3Rlc3RQYXJzZVJlYWRSZXF1ZXN0V2l0aFJlcXVlc3RUeXBlRmllbGQ",
+      "description" : "Modify body of ProtoMessageUtilTest#testParseReadRequestWithRequestTypeField: +copyFromUtf8, +putExtendInfo, +assertInstanceOf, +withRequestType, +expected.getGroup …and 15 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 22,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzZXRLZXksICtjb3B5RnJvbVV0ZjgsICtzZXRUeXBlLCArc2V0T3BlcmF0aW9uLCArcHV0RXh0ZW5kSW5mbyDigKZhbmQgMjUgbW9yZQpQcm90b01lc3NhZ2VVdGlsVGVzdCN0ZXN0UGFyc2VXcml0ZVJlcXVlc3RXaXRoUmVxdWVzdFR5cGVGaWVsZA",
+      "description" : "Modify body of ProtoMessageUtilTest#testParseWriteRequestWithRequestTypeField: +setKey, +copyFromUtf8, +setType, +setOperation, +putExtendInfo …and 25 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "NacosStateMachineTest",
+    "entries" : [ {
+      "id" : 18,
+      "changeKey" : "QUREX1NZTUJPTApOYWNvc1N0YXRlTWFjaGluZVRlc3QjdGVzdE9uQXBwbHlJbnZhbGlkTG9nUm9sbHNCYWNrV2l0aG91dEludm9raW5nUHJvY2Vzc29y",
+      "description" : "Add NacosStateMachineTest#testOnApplyInvalidLogRollsBackWithoutInvokingProcessor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 19,
+      "changeKey" : "QUREX1NZTUJPTApOYWNvc1N0YXRlTWFjaGluZVRlc3QjaW52YWxpZExvZ0RhdGE",
+      "description" : "Add NacosStateMachineTest#invalidLogData",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 23,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCituZXdCdWlsZGVyLCArc2V0R3JvdXAsICtzZXRPcGVyYXRpb24sICtzZXREYXRhLCArY29weUZyb21VdGY4IOKApmFuZCAxOCBtb3JlCk5hY29zU3RhdGVNYWNoaW5lVGVzdCN0ZXN0T25BcHBseUZvbGxvd2VyV3JpdGVSZXF1ZXN0",
+      "description" : "Modify body of NacosStateMachineTest#testOnApplyFollowerWriteRequest: +newBuilder, +setGroup, +setOperation, +setData, +copyFromUtf8 …and 18 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

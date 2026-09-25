@@ -1,0 +1,25 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Override\n     public RFuture<Long> availablePermitsAsync() {\n         return commandExecutor.evalWriteAsync(getRawName(), LongCodec.INSTANCE, RedisCommands.EVAL_LONG,\n                 \"local rate = redis.call('hget', KEYS[1], 'rate');\"\n               + \"local interval = redis.call('hget', KEYS[1], 'interval');\"\n               + \"local type = redis.call('hget', KEYS[1], 'type');\"\n               + \"assert(rate ~= false and interval ~= false and type ~= false, 'RateLimiter is not initialized')\"\n \n               + \"local valueName = KEYS[2];\"\n               + \"local permitsName = KEYS[4];\"\n               + \"if type == '1' then \"\n                   + \"valueName = KEYS[3];\"\n                   + \"permitsName = KEYS[5];\"\n               + \"end;\"\n \n               + \"local currentValue = redis.call('get', valueName); \"\n               + \"if currentValue == false then \"\n                      + \"redis.call('set', valueName, rate); \"\n                      + \"return rate; \"\n               + \"else \"\n                      + \"local expiredValues = redis.call('zrangebyscore', permitsName, 0, tonumber(ARGV[1]) - interval); \"\n                      + \"local released = 0; \"\n                      + \"for i, v in ipairs(expiredValues) do \"\n                           + \"local random, permits = struct.unpack('Bc0I', v);\"\n                           + \"released = released + permits;\"\n                      + \"end; \"\n \n                      + \"if released > 0 then \"\n                           + \"redis.call('zremrangebyscore', permitsName, 0, tonumber(ARGV[1]) - interval); \"\n                           + \"currentValue = tonumber(currentValue) + released; \"\n+                          + \"if currentValue > tonumber(rate) then \"\n+                               + \"currentValue = tonumber(rate); \"\n+                          + \"end; \"\n                           + \"redis.call('set', valueName, currentValue);\"\n                      + \"end;\"\n \n                      + \"return currentValue; \"\n               + \"end;\",\n                 Arrays.asList(getRawName(), getValueName(), getClientValueName(), getPermitsName(), getClientPermitsName()),\n                 System.currentTimeMillis());\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "redisson/src/main/java/org/redisson/RedissonRateLimiter.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in RedissonRateLimiterTest",
+    "conceptDescription" : "2 changes in test code of RedissonRateLimiterTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+@Test\n+    public void testAvailablePermitsAfterReleaseAndExpiration() throws InterruptedException {\n+        RRateLimiter rateLimiter = redisson.getRateLimiter(\"test_available_permits_after_release\");\n+        rateLimiter.setRate(RateType.OVERALL, 10, Duration.ofSeconds(1));\n \n+        // acquire, then hand the permit back before it expires. release() bumps the counter\n+        // but leaves the acquisition in the permits sorted set.\n+        rateLimiter.acquire(1);\n+        rateLimiter.release(1);\n+        assertThat(rateLimiter.availablePermits()).isEqualTo(10);\n+\n+        // once the interval elapses, the still-present sorted set entry is counted as expired\n+        // and added on top of the value release() already restored.\n+        Thread.sleep(1100);\n+\n+        assertThat(rateLimiter.availablePermits()).isEqualTo(10);\n+    }", "+@Test\n+    public void testAvailablePermitsNeverExceedsRatePerClient() throws InterruptedException {\n+        RRateLimiter rateLimiter = redisson.getRateLimiter(\"test_available_permits_per_client\");\n+        rateLimiter.setRate(RateType.PER_CLIENT, 10, Duration.ofSeconds(1));\n \n+        rateLimiter.acquire(3);\n+        rateLimiter.release(3);\n+\n+        Thread.sleep(1100);\n+\n+        assertThat(rateLimiter.availablePermits()).isEqualTo(10);\n+    }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "redisson/src/test/java/org/redisson/RedissonRateLimiterTest.java" ],
+    "groupedMoveCount" : 2
+  } ]
+}

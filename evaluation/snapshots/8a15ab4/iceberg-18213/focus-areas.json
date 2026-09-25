@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of Tasks.Builder#runTaskWithRetry: branch added",
+  "entity" : "Tasks.Builder"
+}, {
+  "description" : "Add Tasks#causedByInterruption",
+  "entity" : "Tasks"
+}, {
+  "description" : "Add TestTasks#tasksAreNotRetriedWhenFailureIsCausedByInterruption",
+  "entity" : "TestTasks"
+}, {
+  "description" : "Add TestTasks#interruptions",
+  "entity" : "TestTasks"
+} ]

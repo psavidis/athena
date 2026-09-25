@@ -1,0 +1,289 @@
+{
+  "territories" : [ {
+    "moduleName" : "esql",
+    "status" : "TOUCHED",
+    "fileCount" : 4,
+    "statusSummary" : "4 files · 6 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "UkVNT1ZFX1NZTUJPTApIM1NwaGVyaWNhbFV0aWwjY29tcHV0ZUVkZ2U", "QUREX1NZTUJPTApIM1NwaGVyaWNhbFV0aWxUZXN0cyN0ZXN0Qm90aEVkZ2VzQ2hlY2tlZEZvckV4dHJlbWVMYXRpdHVkZUNvcnJlY3Rpb24", "TU9ESUZZX01FVEhPRF9CT0RZCitib3VuZGFyeS5udW1Qb2ludHMsICtib3VuZGFyeS5nZXRMYXRMb24sICttaW4sICttYXgsICt2TWluLmdyZWF0Q2lyY2xlTWluTGF0aXR1ZGUg4oCmYW5kIDQgbW9yZQpIM1NwaGVyaWNhbFV0aWwjY29tcHV0ZUJvdW5kcw", "UkVNT1ZFX0ZJRUxECkgzU3BoZXJpY2FsVXRpbCNNSU5fQ09NUEFSQVRPUg", "UkVNT1ZFX0ZJRUxECkgzU3BoZXJpY2FsVXRpbCNNQVhfQ09NUEFSQVRPUg", "Q0hBTkdFX0ZJRUxEX1ZBTFVFCjFlLTUgLT4gMWUtNApIM1NwaGVyaWNhbFV0aWxUZXN0cyNMT05fREVMVEE" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApIM1NwaGVyaWNhbFV0aWxUZXN0cyN0ZXN0Qm90aEVkZ2VzQ2hlY2tlZEZvckV4dHJlbWVMYXRpdHVkZUNvcnJlY3Rpb24", "Q0hBTkdFX0ZJRUxEX1ZBTFVFCjFlLTUgLT4gMWUtNApIM1NwaGVyaWNhbFV0aWxUZXN0cyNMT05fREVMVEE" ]
+  }, {
+    "moduleName" : "spi (lang-painless)",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "spi (encryption)",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "dissect",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "grok",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "web-utils",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "user-agent-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "ip-location-api",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "exponential-histogram",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "h3",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "reindex",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "parent-join",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "analysis-common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "ingest-common",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "legacy-geo",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "data-streams",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "ip-location",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "mapper-extras",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "user-agent",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "geoip-fixture",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "mapper-size",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "s3-fixture",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "aws-fixture-utils",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "lz4",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "esql",
+    "to" : "spi (lang-painless)"
+  }, {
+    "from" : "esql",
+    "to" : "spi (encryption)"
+  }, {
+    "from" : "esql",
+    "to" : "dissect"
+  }, {
+    "from" : "esql",
+    "to" : "grok"
+  }, {
+    "from" : "esql",
+    "to" : "web-utils"
+  }, {
+    "from" : "esql",
+    "to" : "user-agent-api"
+  }, {
+    "from" : "esql",
+    "to" : "ip-location-api"
+  }, {
+    "from" : "esql",
+    "to" : "exponential-histogram"
+  }, {
+    "from" : "esql",
+    "to" : "h3"
+  }, {
+    "from" : "esql",
+    "to" : "reindex"
+  }, {
+    "from" : "esql",
+    "to" : "parent-join"
+  }, {
+    "from" : "esql",
+    "to" : "analysis-common"
+  }, {
+    "from" : "esql",
+    "to" : "ingest-common"
+  }, {
+    "from" : "esql",
+    "to" : "legacy-geo"
+  }, {
+    "from" : "esql",
+    "to" : "data-streams"
+  }, {
+    "from" : "esql",
+    "to" : "ip-location"
+  }, {
+    "from" : "esql",
+    "to" : "mapper-extras"
+  }, {
+    "from" : "esql",
+    "to" : "user-agent"
+  }, {
+    "from" : "esql",
+    "to" : "geoip-fixture"
+  }, {
+    "from" : "esql",
+    "to" : "mapper-size"
+  }, {
+    "from" : "esql",
+    "to" : "s3-fixture"
+  }, {
+    "from" : "esql",
+    "to" : "aws-fixture-utils"
+  }, {
+    "from" : "esql",
+    "to" : "lz4"
+  } ]
+}

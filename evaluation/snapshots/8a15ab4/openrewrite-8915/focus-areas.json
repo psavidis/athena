@@ -1,0 +1,13 @@
+[ {
+  "description" : "Rename GradleWrapper#migrateToDownloadsUrl -> toDownloadsHost",
+  "entity" : "GradleWrapper"
+}, {
+  "description" : "Add GradleWrapper#withHostOf",
+  "entity" : "GradleWrapper"
+}, {
+  "description" : "Remove field GradleWrapper#GRADLE_DISTRIBUTIONS_URL",
+  "entity" : "GradleWrapper"
+}, {
+  "description" : "Modify body of UpdateGradleWrapper#getScanner: return value changed",
+  "entity" : "UpdateGradleWrapper"
+} ]

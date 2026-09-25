@@ -1,0 +1,13 @@
+[ {
+  "entity" : "H3SphericalUtil",
+  "description" : "Remove H3SphericalUtil#computeEdge"
+}, {
+  "entity" : "H3SphericalUtil",
+  "description" : "Remove field H3SphericalUtil#MIN_COMPARATOR"
+}, {
+  "entity" : "H3SphericalUtil",
+  "description" : "Remove field H3SphericalUtil#MAX_COMPARATOR"
+}, {
+  "entity" : "H3SphericalUtil",
+  "description" : "Modify body of H3SphericalUtil#computeBounds: +boundary.numPoints, +boundary.getLatLon, +min, +max, +vMin.greatCircleMinLatitude …and 4 more"
+} ]

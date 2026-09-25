@@ -1,0 +1,31 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yI2FkZE9yUmVwbGFjZQpjb25kaXRpb24gY2hhbmdlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of DubboDefaultPropertiesEnvironmentPostProcessor#addOrReplace: condition changed",
+  "files" : [ "dubbo-spring-boot-project/dubbo-spring-boot/src/main/java/org/apache/dubbo/spring/boot/env/DubboDefaultPropertiesEnvironmentPostProcessor.java" ],
+  "symbols" : [ "DubboDefaultPropertiesEnvironmentPostProcessor#addOrReplace", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yVGVzdCN0ZXN0UG9zdFByb2Nlc3NFbnZpcm9ubWVudE9uSW1tdXRhYmxlRGVmYXVsdFByb3BlcnRpZXM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DubboDefaultPropertiesEnvironmentPostProcessorTest#testPostProcessEnvironmentOnImmutableDefaultProperties",
+  "files" : [ "dubbo-spring-boot-project/dubbo-spring-boot/src/test/java/org/apache/dubbo/spring/boot/env/DubboDefaultPropertiesEnvironmentPostProcessorTest.java" ],
+  "symbols" : [ "DubboDefaultPropertiesEnvironmentPostProcessorTest#testPostProcessEnvironmentOnImmutableDefaultProperties" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEdWJib0RlZmF1bHRQcm9wZXJ0aWVzRW52aXJvbm1lbnRQb3N0UHJvY2Vzc29yVGVzdCN0ZXN0SW1tdXRhYmxlRGVmYXVsdFByb3BlcnRpZXNEb2VzTm90T3ZlcnJpZGVFeGlzdGluZ0tleQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DubboDefaultPropertiesEnvironmentPostProcessorTest#testImmutableDefaultPropertiesDoesNotOverrideExistingKey",
+  "files" : [ "dubbo-spring-boot-project/dubbo-spring-boot/src/test/java/org/apache/dubbo/spring/boot/env/DubboDefaultPropertiesEnvironmentPostProcessorTest.java" ],
+  "symbols" : [ "DubboDefaultPropertiesEnvironmentPostProcessorTest#testImmutableDefaultPropertiesDoesNotOverrideExistingKey" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

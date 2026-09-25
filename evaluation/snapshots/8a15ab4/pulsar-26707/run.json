@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/apache/pulsar.git",
+  "base" : "5e90511526f5b30323a3acb2b57d3c936fe26717",
+  "head" : "89af53858c5552d0db156b206d4b4602e2941f62",
+  "changeCount" : 2,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 12.44
+}

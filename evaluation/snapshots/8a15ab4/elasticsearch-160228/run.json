@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/elastic/elasticsearch.git",
+  "base" : "d9e33f855d803e97bd13f0cc67df2e2e49c42d89",
+  "head" : "717ad2924a35cf83874eff66365fce875893a4a2",
+  "changeCount" : 6,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 67.5
+}

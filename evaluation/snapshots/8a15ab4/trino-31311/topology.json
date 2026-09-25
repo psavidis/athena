@@ -1,0 +1,280 @@
+{
+  "territories" : [ {
+    "moduleName" : "trino-main",
+    "status" : "TOUCHED",
+    "fileCount" : 29,
+    "statusSummary" : "29 files · 59 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "UkVNT1ZFX0NMQVNTClNwbGl0", "UkVNT1ZFX0NMQVNTCldoZW5DbGF1c2U", "UkVNT1ZFX0NMQVNTCkR5bmFtaWNGaWx0ZXJJZA", "UkVNT1ZFX0NMQVNTClBsYW5GcmFnbWVudElk", "UkVNT1ZFX0NMQVNTClBsYW5Ob2RlSWQ", "UkVNT1ZFX0NMQVNTClRyYW5zYWN0aW9uSWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpFeHByZXNzaW9uVHJlZVJld3JpdGVyLlJld3JpdGluZ1Zpc2l0b3IjcmV3cml0ZVdoZW5DbGF1c2UKY29uZGl0aW9uIGNoYW5nZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpJckV4cHJlc3Npb25zI21hdGNoSWZGaXJzdEVxdWFsc1NlY29uZApjb25kaXRpb24gY2hhbmdlZA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpSZW1vdmVSZWR1bmRhbnRDYXNlQ2xhdXNlcyNhcHBseQpjb25kaXRpb24gY2hhbmdlZA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGlmeVJlZHVuZGFudENhc2UjYXBwbHkKY29uZGl0aW9uIGNoYW5nZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW1wbGlmeVJlZHVuZGFudENhc2UjdHJhbnNmb3JtUmVjdXJzaXZlCmNvbmRpdGlvbiBjaGFuZ2Vk", "UkVNT1ZFX1NZTUJPTApTcGxpdCNnZXRGaXJzdA", "UkVNT1ZFX1NZTUJPTApTcGxpdCNnZXRTZWNvbmQ", "UkVNT1ZFX1NZTUJPTApTcGxpdCNlcXVhbHM", "UkVNT1ZFX1NZTUJPTApTcGxpdCNoYXNoQ29kZQ", "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2dldE9wZXJhbmQ", "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2dldFJlc3VsdA", "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2VxdWFscw", "UkVNT1ZFX1NZTUJPTApXaGVuQ2xhdXNlI2hhc2hDb2Rl", "UkVNT1ZFX1NZTUJPTApEeW5hbWljRmlsdGVySWQjZXF1YWxz", "UkVNT1ZFX1NZTUJPTApEeW5hbWljRmlsdGVySWQjaGFzaENvZGU", "UkVNT1ZFX1NZTUJPTApQbGFuRnJhZ21lbnRJZCNlcXVhbHM", "UkVNT1ZFX1NZTUJPTApQbGFuRnJhZ21lbnRJZCNoYXNoQ29kZQ", "UkVNT1ZFX1NZTUJPTApQbGFuTm9kZUlkI2VxdWFscw", "UkVNT1ZFX1NZTUJPTApQbGFuTm9kZUlkI2hhc2hDb2Rl", "UkVNT1ZFX1NZTUJPTApUcmFuc2FjdGlvbklkI2hhc2hDb2Rl", "UkVNT1ZFX1NZTUJPTApUcmFuc2FjdGlvbklkI2VxdWFscw", "TU9ESUZZX01FVEhPRF9CT0RZClBhcmFtZXRlckV4dHJhY3RvciNleHRyYWN0UGFyYW1ldGVycwpyZXR1cm4gdmFsdWUgY2hhbmdlZA", "TU9ESUZZX01FVEhPRF9CT0RZCitvcGVyYW5kLCArcmVzdWx0LCAtZ2V0T3BlcmFuZCwgLWdldFJlc3VsdApQYWdlRmllbGRzVG9JbnB1dFBhcmFtZXRlcnNSZXdyaXRlci5WaXNpdG9yI3Zpc2l0Q2FzZQ", "TU9ESUZZX01FVEhPRF9CT0RZCitmaXJzdCwgK3NlY29uZCwgLWdldEZpcnN0LCAtZ2V0U2Vjb25kCk1hdGNoZXIjYWR2YW5jZUFuZFNjaGVkdWxl", "TU9ESUZZX01FVEhPRF9CT0RZCitmaXJzdCwgK3NlY29uZCwgLWdldEZpcnN0LCAtZ2V0U2Vjb25kClRocmVhZEVxdWl2YWxlbmNlI3JlYWNoYWJsZUxhYmVscw", "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NhdGlvbi5saW5lLCArbG9jYXRpb24uY29sdW1uLCAtbG9jYXRpb24uZ2V0TGluZU51bWJlciwgLWxvY2F0aW9uLmdldENvbHVtbk51bWJlciwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKRXhwcmVzc2lvblRyZWVVdGlscyNleHRyYWN0TG9jYXRpb24", "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NhdGlvbi5saW5lLCArbG9jYXRpb24uY29sdW1uLCAtbG9jYXRpb24uZ2V0TGluZU51bWJlciwgLWxvY2F0aW9uLmdldENvbHVtbk51bWJlcgpKc29uUGF0aEFuYWx5emVyI2FuYWx5emVJbXBsaWNpdEpzb25QYXRo", "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKRXhwcmVzc2lvbkJ5dGVjb2RlQ29tcGlsZXIuVmlzaXRvciN2aXNpdENhc2U", "TU9ESUZZX01FVEhPRF9CT0RZCityZXN1bHQsIC1nZXRSZXN1bHQsIHJldHVybiBnZXRSZXN1bHQgLT4gcmVzdWx0CkNhc2UjdHlwZQ", "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKQ2FzZSNjaGlsZHJlbg", "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKRGVmYXVsdFRyYXZlcnNhbFZpc2l0b3IjdmlzaXRDYXNl", "TU9ESUZZX01FVEhPRF9CT0RZCitub2RlLm9wZXJhbmQsICtub2RlLnJlc3VsdCwgLW5vZGUuZ2V0T3BlcmFuZCwgLW5vZGUuZ2V0UmVzdWx0LCByZXR1cm4gdmFsdWUgY2hhbmdlZApFeHByZXNzaW9uRm9ybWF0dGVyLkZvcm1hdHRlciNmb3JtYXQ", "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2UucmVzdWx0LCAtY2xhdXNlLmdldFJlc3VsdCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKSXJFeHByZXNzaW9ucyNtYXlCZU51bGw", "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCklyRXhwcmVzc2lvbnMjbWF5RmFpbA", "TU9ESUZZX01FVEhPRF9CT0RZCit3aGVuQ2xhdXNlLm9wZXJhbmQsICt3aGVuQ2xhdXNlLnJlc3VsdCwgLXdoZW5DbGF1c2UuZ2V0T3BlcmFuZCwgLXdoZW5DbGF1c2UuZ2V0UmVzdWx0LCByZXR1cm4gZ2V0UmVzdWx0IC0-IHJlc3VsdApJckV4cHJlc3Npb25FdmFsdWF0b3IjZXZhbHVhdGVJbnRlcm5hbA", "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKSXJFeHByZXNzaW9uT3B0aW1pemVyI3Byb2Nlc3NDbGF1c2Vz", "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCkRpc3RyaWJ1dGVDb21wYXJpc29uT3ZlckNhc2UjZGlzdHJpYnV0ZQ", "TU9ESUZZX01FVEhPRF9CT0RZCit3aGVuQ2xhdXNlLm9wZXJhbmQsICt3aGVuQ2xhdXNlLnJlc3VsdCwgLXdoZW5DbGF1c2UuZ2V0T3BlcmFuZCwgLXdoZW5DbGF1c2UuZ2V0UmVzdWx0LCByZXR1cm4gZ2V0UmVzdWx0IC0-IHJlc3VsdApFdmFsdWF0ZUNhc2UjYXBwbHk", "TU9ESUZZX01FVEhPRF9CT0RZCitjbGF1c2Uub3BlcmFuZCwgK2NsYXVzZS5yZXN1bHQsIC1jbGF1c2UuZ2V0T3BlcmFuZCwgLWNsYXVzZS5nZXRSZXN1bHQKRXh0cmFjdENvbW1vbkNvbmp1bmN0RnJvbUNhc2UjYXBwbHk", "TU9ESUZZX01FVEhPRF9CT0RZCkV4dHJhY3RDb21tb25Db25qdW5jdEZyb21DYXNlI2JyYW5jaFJlc3VsdHMKcmV0dXJuIGdldFJlc3VsdCAtPiByZXN1bHQ", "TU9ESUZZX01FVEhPRF9CT0RZCitvcGVyYW5kLCArcmVzdWx0LCAtZ2V0T3BlcmFuZCwgLWdldFJlc3VsdCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKUHJlQWdncmVnYXRlQ2FzZUFnZ3JlZ2F0aW9ucyNleHRyYWN0Q2FzZUFnZ3JlZ2F0aW9u", "TU9ESUZZX01FVEhPRF9CT0RZCitvcGVyYW5kLCArcmVzdWx0LCArd2hlbkNsYXVzZS5vcGVyYW5kLCArd2hlbkNsYXVzZS5yZXN1bHQsIC1nZXRPcGVyYW5kIOKApmFuZCA1IG1vcmUKU2ltcGxpZnlGaWx0ZXJQcmVkaWNhdGUjc2ltcGxpZnk", "TU9ESUZZX01FVEhPRF9CT0RZCithY3R1YWwub3BlcmFuZCwgK2V4cGVjdGVkLm9wZXJhbmQsICthY3R1YWwucmVzdWx0LCArZXhwZWN0ZWQucmVzdWx0LCAtYWN0dWFsLmdldE9wZXJhbmQg4oCmYW5kIDQgbW9yZQpFeHByZXNzaW9uVmVyaWZpZXIjcHJvY2Vzcw", "TU9ESUZZX01FVEhPRF9CT0RZCityZXN1bHQsICtvcGVyYW5kLCAtZ2V0UmVzdWx0LCAtZ2V0T3BlcmFuZApUZXN0U3ltYm9sTWFwcGVyI3Rlc3RSZWFsbG9jYXRlU3ltYm9sc0luQWdncmVnYXRpb25WYWx1ZVBvaW50ZXI", "UkVNT1ZFX0ZJRUxEClNwbGl0I2ZpcnN0", "UkVNT1ZFX0ZJRUxEClNwbGl0I3NlY29uZA", "UkVNT1ZFX0ZJRUxECldoZW5DbGF1c2Ujb3BlcmFuZA", "UkVNT1ZFX0ZJRUxECldoZW5DbGF1c2UjcmVzdWx0", "UkVNT1ZFX0ZJRUxECkR5bmFtaWNGaWx0ZXJJZCNpZA", "UkVNT1ZFX0ZJRUxEClBsYW5GcmFnbWVudElkI2lk", "UkVNT1ZFX0ZJRUxEClBsYW5Ob2RlSWQjaWQ", "UkVNT1ZFX0ZJRUxEClRyYW5zYWN0aW9uSWQjdXVpZA", "Q0hBTkdFX1BBUkFNRVRFUl9BTk5PVEFUSU9OUwpXaGVuQ2xhdXNlIzxpbml0PgpvcGVyYW5kICtASnNvblByb3BlcnR5LCByZXN1bHQgK0BKc29uUHJvcGVydHk" ],
+    "testChangeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCithY3R1YWwub3BlcmFuZCwgK2V4cGVjdGVkLm9wZXJhbmQsICthY3R1YWwucmVzdWx0LCArZXhwZWN0ZWQucmVzdWx0LCAtYWN0dWFsLmdldE9wZXJhbmQg4oCmYW5kIDQgbW9yZQpFeHByZXNzaW9uVmVyaWZpZXIjcHJvY2Vzcw", "TU9ESUZZX01FVEhPRF9CT0RZCityZXN1bHQsICtvcGVyYW5kLCAtZ2V0UmVzdWx0LCAtZ2V0T3BlcmFuZApUZXN0U3ltYm9sTWFwcGVyI3Rlc3RSZWFsbG9jYXRlU3ltYm9sc0luQWdncmVnYXRpb25WYWx1ZVBvaW50ZXI" ]
+  }, {
+    "moduleName" : "trino-parser",
+    "status" : "TOUCHED",
+    "fileCount" : 4,
+    "statusSummary" : "4 files · 10 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "UkVNT1ZFX0NMQVNTCk5vZGVMb2NhdGlvbg", "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jZ2V0TGluZU51bWJlcg", "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jZ2V0Q29sdW1uTnVtYmVy", "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jZXF1YWxz", "UkVNT1ZFX1NZTUJPTApOb2RlTG9jYXRpb24jaGFzaENvZGU", "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NhdGlvbi5saW5lLCArbG9jYXRpb24uY29sdW1uLCAtbG9jYXRpb24uZ2V0TGluZU51bWJlciwgLWxvY2F0aW9uLmdldENvbHVtbk51bWJlciwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKQXN0QnVpbGRlciNnZXRMb2NhdGlvbg", "TU9ESUZZX01FVEhPRF9CT0RZCitzdGF0ZW1lbnRMb2NhdGlvbi5saW5lLCArc3RhdGVtZW50TG9jYXRpb24uY29sdW1uLCAtc3RhdGVtZW50TG9jYXRpb24uZ2V0TGluZU51bWJlciwgLXN0YXRlbWVudExvY2F0aW9uLmdldENvbHVtbk51bWJlcgpTcWxQYXJzZXIjaW52b2tlUGFyc2Vy", "TU9ESUZZX01FVEhPRF9CT0RZCitub2RlTG9jYXRpb24ubGluZSwgK25vZGVMb2NhdGlvbi5jb2x1bW4sIC1ub2RlTG9jYXRpb24uZ2V0TGluZU51bWJlciwgLW5vZGVMb2NhdGlvbi5nZXRDb2x1bW5OdW1iZXIKUGFyc2luZ0V4Y2VwdGlvbiM8aW5pdD4", "UkVNT1ZFX0ZJRUxECk5vZGVMb2NhdGlvbiNsaW5l", "UkVNT1ZFX0ZJRUxECk5vZGVMb2NhdGlvbiNjb2x1bW4" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-orc",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 4 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "UkVNT1ZFX0NMQVNTCk9yY0RhdGFTb3VyY2VJZA", "UkVNT1ZFX1NZTUJPTApPcmNEYXRhU291cmNlSWQjZXF1YWxz", "UkVNT1ZFX1NZTUJPTApPcmNEYXRhU291cmNlSWQjaGFzaENvZGU", "UkVNT1ZFX0ZJRUxECk9yY0RhdGFTb3VyY2VJZCNpZA" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-parquet",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 4 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "UkVNT1ZFX0NMQVNTClBhcnF1ZXREYXRhU291cmNlSWQ", "UkVNT1ZFX1NZTUJPTApQYXJxdWV0RGF0YVNvdXJjZUlkI2VxdWFscw", "UkVNT1ZFX1NZTUJPTApQYXJxdWV0RGF0YVNvdXJjZUlkI2hhc2hDb2Rl", "UkVNT1ZFX0ZJRUxEClBhcnF1ZXREYXRhU291cmNlSWQjaWQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-array",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-cache",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-client",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-geospatial-toolkit",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-matching",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-memory-context",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-plugin-toolkit",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-spi",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-web-ui",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-exchange-filesystem",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-testing-services",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-tpch",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-grammar",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-filesystem",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-testing",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-tpcds",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "trino-main",
+    "to" : "trino-array"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-cache"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-client"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-geospatial-toolkit"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-matching"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-memory-context"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-parser"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-plugin-toolkit"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-spi"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-web-ui"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-exchange-filesystem"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-testing-services"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-tpch"
+  }, {
+    "from" : "trino-parser",
+    "to" : "trino-grammar"
+  }, {
+    "from" : "trino-orc",
+    "to" : "trino-array"
+  }, {
+    "from" : "trino-orc",
+    "to" : "trino-filesystem"
+  }, {
+    "from" : "trino-orc",
+    "to" : "trino-memory-context"
+  }, {
+    "from" : "trino-orc",
+    "to" : "trino-plugin-toolkit"
+  }, {
+    "from" : "trino-orc",
+    "to" : "trino-spi"
+  }, {
+    "from" : "trino-orc",
+    "to" : "trino-main"
+  }, {
+    "from" : "trino-orc",
+    "to" : "trino-testing-services"
+  }, {
+    "from" : "trino-orc",
+    "to" : "trino-tpch"
+  }, {
+    "from" : "trino-parquet",
+    "to" : "trino-cache"
+  }, {
+    "from" : "trino-parquet",
+    "to" : "trino-memory-context"
+  }, {
+    "from" : "trino-parquet",
+    "to" : "trino-plugin-toolkit"
+  }, {
+    "from" : "trino-parquet",
+    "to" : "trino-filesystem"
+  }, {
+    "from" : "trino-parquet",
+    "to" : "trino-spi"
+  }, {
+    "from" : "trino-parquet",
+    "to" : "trino-main"
+  }, {
+    "from" : "trino-parquet",
+    "to" : "trino-testing"
+  }, {
+    "from" : "trino-parquet",
+    "to" : "trino-testing-services"
+  }, {
+    "from" : "trino-parquet",
+    "to" : "trino-tpcds"
+  }, {
+    "from" : "trino-parquet",
+    "to" : "trino-tpch"
+  } ]
+}

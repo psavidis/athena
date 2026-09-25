@@ -13,7 +13,7 @@ instead of judging from a single PR (issue #258).
 | `tools/coverage.py` | Derives `metrics.json` (diff-vs-Athena coverage) for a snapshot. |
 | `tools/summarize.py` | Prints a snapshot as plain text: Change Map, Explorer cards, Canvas, focus areas. Used for the protocol's Athena pass. |
 | `snapshots/<athena-sha>/` | Raw evidence per Athena version: `pr.diff` plus every view Athena would render. |
-| `reports/` | Dated evaluation reports, written against a specific snapshot directory. The first is `reports/2026-09-23-baseline-a5bb763.md`; the re-run after #260–#271 is `reports/2026-09-24-rerun-80ce13f.md`; the third run, after #285–#296, is `reports/2026-09-24-rerun-e2b2780.md`; the baseline for the 16 entries added in #311 is `reports/2026-09-24-expansion-baseline-c6a1721.md`; the 26-entry run after #313–#320 is `reports/2026-09-24-rerun-9d1b462.md`; the baseline for the 19 entries added in #332 is `reports/2026-09-24-expansion2-baseline-b6f6f49.md`; the 45-entry run after #334–#340 is `reports/2026-09-25-rerun-feaac14.md`; the baseline for the 21 entries added in #355 is `reports/2026-09-25-expansion3-baseline-61d70d2.md`; the 66-entry run after #357–#363 is `reports/2026-09-25-rerun-8823811.md`. |
+| `reports/` | Dated evaluation reports, written against a specific snapshot directory. The first is `reports/2026-09-23-baseline-a5bb763.md`; the re-run after #260–#271 is `reports/2026-09-24-rerun-80ce13f.md`; the third run, after #285–#296, is `reports/2026-09-24-rerun-e2b2780.md`; the baseline for the 16 entries added in #311 is `reports/2026-09-24-expansion-baseline-c6a1721.md`; the 26-entry run after #313–#320 is `reports/2026-09-24-rerun-9d1b462.md`; the baseline for the 19 entries added in #332 is `reports/2026-09-24-expansion2-baseline-b6f6f49.md`; the 45-entry run after #334–#340 is `reports/2026-09-25-rerun-feaac14.md`; the baseline for the 21 entries added in #355 is `reports/2026-09-25-expansion3-baseline-61d70d2.md`; the 66-entry run after #357–#363 is `reports/2026-09-25-rerun-8823811.md`; the baseline for the 21 entries added in #382 is `reports/2026-09-25-expansion4-baseline-8a15ab4.md`. |
 
 ## Re-running against a newer Athena
 
@@ -108,6 +108,27 @@ the entries whose numbers moved, and write a new report under `reports/` using
 | `nacos-15628` | closed-unmerged | Titled "add logging", it also removed the legacy parse fallbacks and a test dependency. Not merged: breaking changes beyond its stated scope. The maintainers re-did it deliberately as `nacos-15854`. |
 | `jetty-15616` | closed-unmerged | A per-connection lock around FCGI input handling. Not merged: the reviewer called it a coarse lock that masks the race rather than a proper fix. Superseded by `jetty-15648`. |
 | `camel-26819` | closed-unmerged | Concurrent bean registration made thread-safe with `ConcurrentHashMap` and a lock. Not merged: the review found a remaining reader-side race and a symptom-masking null guard. |
+| `pulsar-26707` | small-bug-fix | A recycled `EntryImpl` could keep a stale `(-1, -1)` position cached by a late `getPosition()`; `create()` now resets it. Three one-line field resets; Maven. |
+| `resilience4j-2507` | small-bug-fix | `ThreadPoolBulkheadConfig.from(base)` kept a reference to `base`, so building a derived config mutated it. A constructor that copies fields; Gradle. |
+| `redisson-7343` | small-bug-fix | `release()` left released permits in the rate limiter's sorted set, so they were counted again on expiry. A Lua script inside a Java string. The root-cause fix `redisson-7334` didn't make. |
+| `redisson-7358` | simple-feature | `RKeys.time()` returning the Redis server time, across the sync, async, Reactive and Rx interfaces. An additive API over four facades. |
+| `rocketmq-11079` | simple-feature | A broker flag that stops exporting lag, in-flight and available metrics whose value is zero. The same guard wrapped around eight gauge callbacks. |
+| `trino-31311` | refactoring | Nine value classes become records, and every `getX()` call becomes `x()` across 35 files. A language-level refactoring with no behavior change. |
+| `pulsar-26646` | api-change | `TransactionCoordinatorClient` loses `@InterfaceAudience.Private` and becomes reachable from `PulsarClient`. An API promoted to public, mostly by an annotation. |
+| `iceberg-18196` | cross-module | A one-line `RowKind` fix backported to three Flink version modules (1.20, 2.1, 2.2), with the same test in each. The same change in parallel modules. |
+| `zookeeper-2435` | dependency-framework | Jetty 9.4 → 12.1 (EE10): `javax` → `jakarta` across 17 files, four admin/metrics classes reworked, one deleted, plus LICENSE and OWASP noise. Maven. |
+| `rocketmq-11090` | architectural | Push consumers accept an external consume executor, extracted into a new `AbstractConsumeMessageService`; the Proxy's system consumers share one pool. |
+| `pulsar-26687` | large | PIP-379 cleanup: deletes the classic Shared/Key_Shared dispatchers, their two config flags and two deprecated stats fields. About 4k deleted lines. |
+| `iceberg-18195` | mixed-noisy | AWS SDK bump with a switch to the Apache HttpClient 5 client: a two-class type swap among LICENSE, runtime-deps, version-catalog and docs edits. Gradle. |
+| `trino-31334` | complex-behavioral | `PartitionedOutputOperator.finish()` returns the partitioner to its pool even when the flush fails, using a `Closer`. A resource leak on an error path. |
+| `elasticsearch-160228` | complex-behavioral | H3 cell bounds checked only one of the two edges at the extreme vertex. The same geometric fix in two copies of the utility. Gradle, very large repository. |
+| `iceberg-18213` | complex-behavioral | `Tasks` retried work whose failure was caused by an interrupt. It now walks the cause chain and restores the interrupt flag. Cancellation semantics. |
+| `resilience4j-2490` | complex-behavioral | Lowering a semaphore rate limiter's limit made `refreshLimit()` release a negative count, which killed the scheduled refresh for good. A two-branch fix. |
+| `pulsar-26456` | complex-behavioral | The producer's send-timeout path released a frame still queued for writing on the event loop. Release and recycle are now deferred to that loop. The fix `pulsar-26459` should have been. |
+| `pulsar-26459` | closed-unmerged | Writes each frame as one `CompositeByteBuf` to avoid header-only frames. Not merged: `ByteBufPair` exists to avoid composite buffers, and the reviewers found Netty misused on the release side, which `pulsar-26456` fixed. |
+| `redisson-7334` | closed-unmerged | Clamps available permits to the rate after released permits expire. Not merged: a symptom clamp; the maintainer fixed the root cause in `redisson-7343` instead. |
+| `zookeeper-2401` | closed-unmerged | Constant-time comparison for the session password. Not merged: the password is derivable from the session id anyway, so it's no real security gain. |
+| `iceberg-18169` | closed-unmerged | Restores the pre-#16765 compact geospatial type strings. Not merged: after a dev-list discussion the maintainers kept the explicit form as the better behavior, to be documented. |
 
 Candidates considered and kept in reserve: `keycloak-53012` (cross-module bug fix),
 `mockito-3792` (Android mock maker swap, mostly Gradle/Kotlin), `spring-petclinic-2279`

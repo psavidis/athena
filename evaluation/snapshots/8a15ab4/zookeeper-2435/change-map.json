@@ -1,0 +1,1484 @@
+{
+  "prTitle" : "ZOOKEEPER-5038: Migrate to Jetty 12.1.12 (EE10)",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 66,
+    "UNKNOWN" : 6,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "UkVNT1ZFX0NMQVNTClJlYWRBaGVhZEVuZHBvaW50",
+    "description" : "Remove class ReadAheadEndpoint",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpBYnN0cmFjdENvbm5lY3Rpb25GYWN0b3J5IC0-IERldGVjdG9yQ29ubmVjdGlvbkZhY3RvcnkKVW5pZmllZENvbm5lY3Rpb25GYWN0b3J5",
+    "description" : "Change supertype of UnifiedConnectionFactory: AbstractConnectionFactory -> DetectorConnectionFactory",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpBYnN0cmFjdEhhbmRsZXIgLT4gQWJzdHJhY3QKQ29tbWFuZExpc3RlbmVyLkNvbW1hbmRIYW5kbGVy",
+    "description" : "Change supertype of CommandListener.CommandHandler: AbstractHandler -> Abstract",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQ29tbWFuZExpc3RlbmVyLkNvbW1hbmRIYW5kbGVyI2hhbmRsZQ",
+    "description" : "Change signature of CommandListener.CommandHandler#handle",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRMb2NhbEFkZHJlc3M",
+    "description" : "Remove ReadAheadEndpoint#getLocalAddress",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRSZW1vdGVBZGRyZXNz",
+    "description" : "Remove ReadAheadEndpoint#getRemoteAddress",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc09wZW4",
+    "description" : "Remove ReadAheadEndpoint#isOpen",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRDcmVhdGVkVGltZVN0YW1w",
+    "description" : "Remove ReadAheadEndpoint#getCreatedTimeStamp",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc091dHB1dFNodXRkb3du",
+    "description" : "Remove ReadAheadEndpoint#isOutputShutdown",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc0lucHV0U2h1dGRvd24",
+    "description" : "Remove ReadAheadEndpoint#isInputShutdown",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNzaHV0ZG93bk91dHB1dA",
+    "description" : "Remove ReadAheadEndpoint#shutdownOutput",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNjbG9zZQ",
+    "description" : "Remove ReadAheadEndpoint#close",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRUcmFuc3BvcnQ",
+    "description" : "Remove ReadAheadEndpoint#getTransport",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRJZGxlVGltZW91dA",
+    "description" : "Remove ReadAheadEndpoint#getIdleTimeout",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 14,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRDb25uZWN0aW9u",
+    "description" : "Remove ReadAheadEndpoint#getConnection",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 15,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNvbk9wZW4",
+    "description" : "Remove ReadAheadEndpoint#onOpen",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 16,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNvbkNsb3Nl",
+    "description" : "Remove ReadAheadEndpoint#onClose",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 17,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc09wdGltaXplZEZvckRpcmVjdEJ1ZmZlcnM",
+    "description" : "Remove ReadAheadEndpoint#isOptimizedForDirectBuffers",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 18,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc0ZpbGxJbnRlcmVzdGVk",
+    "description" : "Remove ReadAheadEndpoint#isFillInterested",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 19,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN0cnlGaWxsSW50ZXJlc3RlZA",
+    "description" : "Remove ReadAheadEndpoint#tryFillInterested",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 20,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNmbHVzaA",
+    "description" : "Remove ReadAheadEndpoint#flush",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 21,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNzZXRJZGxlVGltZW91dA",
+    "description" : "Remove ReadAheadEndpoint#setIdleTimeout",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 22,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN3cml0ZQ",
+    "description" : "Remove ReadAheadEndpoint#write",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 23,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNzZXRDb25uZWN0aW9u",
+    "description" : "Remove ReadAheadEndpoint#setConnection",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 24,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN1cGdyYWRl",
+    "description" : "Remove ReadAheadEndpoint#upgrade",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 25,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNmaWxsSW50ZXJlc3RlZA",
+    "description" : "Remove ReadAheadEndpoint#fillInterested",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 26,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNyZWFkQWhlYWQ",
+    "description" : "Remove ReadAheadEndpoint#readAhead",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 27,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNyZWFkRnJvbVN0YXJ0",
+    "description" : "Remove ReadAheadEndpoint#readFromStart",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 28,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNmaWxs",
+    "description" : "Remove ReadAheadEndpoint#fill",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 29,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRCeXRlcw",
+    "description" : "Remove ReadAheadEndpoint#getBytes",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 30,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN0aHJvd1BlbmRpbmdFeGNlcHRpb24",
+    "description" : "Remove ReadAheadEndpoint#throwPendingException",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 31,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjZG9TdGFydA",
+    "description" : "Remove UnifiedConnectionFactory#doStart",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 32,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjbmV3Q29ubmVjdGlvbg",
+    "description" : "Remove UnifiedConnectionFactory#newConnection",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 33,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjbmV3U3NsQ29ubmVjdGlvbg",
+    "description" : "Remove UnifiedConnectionFactory#newSslConnection",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 34,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjdG9TdHJpbmc",
+    "description" : "Remove UnifiedConnectionFactory#toString",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 35,
+    "changeKey" : "QUREX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjbmV4dFByb3RvY29s",
+    "description" : "Add UnifiedConnectionFactory#nextProtocol",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 36,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjdXN0b21pemVyLnNldFNuaUhvc3RDaGVjawpQcm9tZXRoZXVzTWV0cmljc1Byb3ZpZGVyI3N0YXJ0",
+    "description" : "Modify body of PrometheusMetricsProvider#start: +customizer.setSniHostCheck",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 37,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitvZgpQcm9tZXRoZXVzTWV0cmljc1Byb3ZpZGVyI2NyZWF0ZVNzbENvbnRleHRGYWN0b3J5",
+    "description" : "Modify body of PrometheusMetricsProvider#createSslContextFactory: +of",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 38,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjdXN0b21pemVyLnNldFN0c01heEFnZSwgK2N1c3RvbWl6ZXIuc2V0U3RzSW5jbHVkZVN1YkRvbWFpbnMsICtjdXN0b21pemVyLnNldFNuaUhvc3RDaGVjaywgK2NvbmZpZy5zZXRTZWN1cmVTY2hlbWUsICtjb25maWcuYWRkQ3VzdG9taXplciDigKZhbmQgMiBtb3JlClByb21ldGhldXNNZXRyaWNzUHJvdmlkZXIjY3JlYXRlU3NsQ29ubmVjdG9y",
+    "description" : "Modify body of PrometheusMetricsProvider#createSslConnector: +customizer.setStsMaxAge, +customizer.setStsIncludeSubDomains, +customizer.setSniHostCheck, +config.setSecureScheme, +config.addCustomizer …and 2 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 39,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzZWN1cml0eUhhbmRsZXIucHV0LCArYXNTdHJpbmcsIC1jLnNldEF1dGhlbnRpY2F0ZSwgLWNtdC5zZXRDb25zdHJhaW50LCAtY210LnNldE1ldGhvZCDigKZhbmQgMiBtb3JlCkpldHR5QWRtaW5TZXJ2ZXIjY29uc3RyYWluVHJhY2VNZXRob2Q",
+    "description" : "Modify body of JettyAdminServer#constrainTraceMethod: +securityHandler.put, +asString, -c.setAuthenticate, -cmt.setConstraint, -cmt.setMethod …and 2 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 40,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjdXN0b21pemVyLnNldFNuaUhvc3RDaGVjawpKZXR0eUFkbWluU2VydmVyIzxpbml0Pg",
+    "description" : "Modify body of JettyAdminServer#<init>: +customizer.setSniHostCheck",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 41,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I2VuZFBvaW50",
+    "description" : "Remove field ReadAheadEndpoint#endPoint",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 42,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I3N0YXJ0",
+    "description" : "Remove field ReadAheadEndpoint#start",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 43,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I2J5dGVz",
+    "description" : "Remove field ReadAheadEndpoint#bytes",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 44,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I2xlZnRUb1JlYWQ",
+    "description" : "Remove field ReadAheadEndpoint#leftToRead",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 45,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I3BlbmRpbmdFeGNlcHRpb24",
+    "description" : "Remove field ReadAheadEndpoint#pendingException",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 46,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClVuaWZpZWRDb25uZWN0aW9uRmFjdG9yeSNMT0c",
+    "description" : "Remove field UnifiedConnectionFactory#LOG",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 47,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClVuaWZpZWRDb25uZWN0aW9uRmFjdG9yeSNzc2xDb250ZXh0RmFjdG9yeQ",
+    "description" : "Remove field UnifiedConnectionFactory#sslContextFactory",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 48,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClVuaWZpZWRDb25uZWN0aW9uRmFjdG9yeSNuZXh0UHJvdG9jb2w",
+    "description" : "Remove field UnifiedConnectionFactory#nextProtocol",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 49,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFClg1MDlBdXRoZW50aWNhdGlvblByb3ZpZGVyI1g1MDlfQ0VSVElGSUNBVEVfQVRUUklCVVRFX05BTUUKdmFsdWUgY2hhbmdlZA",
+    "description" : "Change value of X509AuthenticationProvider#X509_CERTIFICATE_ATTRIBUTE_NAME: value changed",
+    "category" : "UNKNOWN",
+    "kind" : "CHANGE_FIELD_VALUE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 50,
+    "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZlciBbbWFuYWdlZF0",
+    "description" : "Remove managed dependency org.eclipse.jetty:jetty-server (parent)",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 51,
+    "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQgW21hbmFnZWRd",
+    "description" : "Remove managed dependency org.eclipse.jetty:jetty-servlet (parent)",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 52,
+    "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LWNsaWVudCBbbWFuYWdlZF0",
+    "description" : "Remove managed dependency org.eclipse.jetty:jetty-client (parent)",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 53,
+    "changeKey" : "QUREX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LWJvbSBbbWFuYWdlZF0",
+    "description" : "Add managed dependency org.eclipse.jetty:jetty-bom (parent)",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 54,
+    "changeKey" : "QUREX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1ib20gW21hbmFnZWRd",
+    "description" : "Add managed dependency org.eclipse.jetty.ee10:jetty-ee10-bom (parent)",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 55,
+    "changeKey" : "QUREX0RFUEVOREVOQ1kKcGFyZW50I2pha2FydGEuc2VydmxldDpqYWthcnRhLnNlcnZsZXQtYXBpIFttYW5hZ2VkXQ",
+    "description" : "Add managed dependency jakarta.servlet:jakarta.servlet-api (parent)",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 56,
+    "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLWFzc2VtYmx5I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQ",
+    "description" : "Remove dependency org.eclipse.jetty:jetty-servlet (zookeeper-assembly)",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 57,
+    "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLWFzc2VtYmx5I29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0",
+    "description" : "Add dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (zookeeper-assembly)",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 58,
+    "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLWFzc2VtYmx5I2pha2FydGEuc2VydmxldDpqYWthcnRhLnNlcnZsZXQtYXBp",
+    "description" : "Add dependency jakarta.servlet:jakarta.servlet-api (zookeeper-assembly)",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 59,
+    "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLWNvbnRyaWItZmF0amFyI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQ",
+    "description" : "Remove dependency org.eclipse.jetty:jetty-servlet (zookeeper-contrib-fatjar)",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 60,
+    "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLWNvbnRyaWItZmF0amFyI29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0",
+    "description" : "Add dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (zookeeper-contrib-fatjar)",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 61,
+    "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNpby5wcm9tZXRoZXVzOnByb21ldGhldXMtbWV0cmljcy1leHBvcnRlci1zZXJ2bGV0LWphdmF4",
+    "description" : "Remove dependency io.prometheus:prometheus-metrics-exporter-servlet-javax (zookeeper-prometheus-metrics)",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 62,
+    "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKdmVyc2lvbiAke2pldHR5LnZlcnNpb259IC0-IG5vbmUKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2ZXI",
+    "description" : "Change dependency org.eclipse.jetty:jetty-server (zookeeper-prometheus-metrics): version ${jetty.version} -> none",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 63,
+    "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2bGV0",
+    "description" : "Remove dependency org.eclipse.jetty:jetty-servlet (zookeeper-prometheus-metrics)",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 64,
+    "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKdmVyc2lvbiAke2pldHR5LnZlcnNpb259IC0-IG5vbmUKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS11dGls",
+    "description" : "Change dependency org.eclipse.jetty:jetty-util (zookeeper-prometheus-metrics): version ${jetty.version} -> none",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 65,
+    "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNqYXZheC5zZXJ2bGV0OmphdmF4LnNlcnZsZXQtYXBp",
+    "description" : "Remove dependency javax.servlet:javax.servlet-api (zookeeper-prometheus-metrics)",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 66,
+    "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNpby5wcm9tZXRoZXVzOnByb21ldGhldXMtbWV0cmljcy1leHBvcnRlci1zZXJ2bGV0LWpha2FydGE",
+    "description" : "Add dependency io.prometheus:prometheus-metrics-exporter-servlet-jakarta (zookeeper-prometheus-metrics)",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 67,
+    "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eS5lZTEwOmpldHR5LWVlMTAtc2VydmxldA",
+    "description" : "Add dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (zookeeper-prometheus-metrics)",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 68,
+    "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNqYWthcnRhLnNlcnZsZXQ6amFrYXJ0YS5zZXJ2bGV0LWFwaQ",
+    "description" : "Add dependency jakarta.servlet:jakarta.servlet-api (zookeeper-prometheus-metrics)",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 69,
+    "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQ",
+    "description" : "Remove dependency org.eclipse.jetty:jetty-servlet (zookeeper)",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 70,
+    "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyI29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0",
+    "description" : "Add dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (zookeeper)",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 71,
+    "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyI2pha2FydGEuc2VydmxldDpqYWthcnRhLnNlcnZsZXQtYXBp",
+    "description" : "Add dependency jakarta.servlet:jakarta.servlet-api (zookeeper)",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_DEPENDENCY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ReadAheadEndpoint",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "UkVNT1ZFX0NMQVNTClJlYWRBaGVhZEVuZHBvaW50",
+      "description" : "Remove class ReadAheadEndpoint",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 4,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRMb2NhbEFkZHJlc3M",
+      "description" : "Remove ReadAheadEndpoint#getLocalAddress",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 5,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRSZW1vdGVBZGRyZXNz",
+      "description" : "Remove ReadAheadEndpoint#getRemoteAddress",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 6,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc09wZW4",
+      "description" : "Remove ReadAheadEndpoint#isOpen",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRDcmVhdGVkVGltZVN0YW1w",
+      "description" : "Remove ReadAheadEndpoint#getCreatedTimeStamp",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 8,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc091dHB1dFNodXRkb3du",
+      "description" : "Remove ReadAheadEndpoint#isOutputShutdown",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 9,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc0lucHV0U2h1dGRvd24",
+      "description" : "Remove ReadAheadEndpoint#isInputShutdown",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 10,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNzaHV0ZG93bk91dHB1dA",
+      "description" : "Remove ReadAheadEndpoint#shutdownOutput",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNjbG9zZQ",
+      "description" : "Remove ReadAheadEndpoint#close",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 12,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRUcmFuc3BvcnQ",
+      "description" : "Remove ReadAheadEndpoint#getTransport",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 13,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRJZGxlVGltZW91dA",
+      "description" : "Remove ReadAheadEndpoint#getIdleTimeout",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 14,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRDb25uZWN0aW9u",
+      "description" : "Remove ReadAheadEndpoint#getConnection",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 15,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNvbk9wZW4",
+      "description" : "Remove ReadAheadEndpoint#onOpen",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 16,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNvbkNsb3Nl",
+      "description" : "Remove ReadAheadEndpoint#onClose",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 17,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc09wdGltaXplZEZvckRpcmVjdEJ1ZmZlcnM",
+      "description" : "Remove ReadAheadEndpoint#isOptimizedForDirectBuffers",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 18,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc0ZpbGxJbnRlcmVzdGVk",
+      "description" : "Remove ReadAheadEndpoint#isFillInterested",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 19,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN0cnlGaWxsSW50ZXJlc3RlZA",
+      "description" : "Remove ReadAheadEndpoint#tryFillInterested",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 20,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNmbHVzaA",
+      "description" : "Remove ReadAheadEndpoint#flush",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 21,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNzZXRJZGxlVGltZW91dA",
+      "description" : "Remove ReadAheadEndpoint#setIdleTimeout",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 22,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN3cml0ZQ",
+      "description" : "Remove ReadAheadEndpoint#write",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 23,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNzZXRDb25uZWN0aW9u",
+      "description" : "Remove ReadAheadEndpoint#setConnection",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 24,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN1cGdyYWRl",
+      "description" : "Remove ReadAheadEndpoint#upgrade",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 25,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNmaWxsSW50ZXJlc3RlZA",
+      "description" : "Remove ReadAheadEndpoint#fillInterested",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 26,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNyZWFkQWhlYWQ",
+      "description" : "Remove ReadAheadEndpoint#readAhead",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 27,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNyZWFkRnJvbVN0YXJ0",
+      "description" : "Remove ReadAheadEndpoint#readFromStart",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 28,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNmaWxs",
+      "description" : "Remove ReadAheadEndpoint#fill",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 29,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRCeXRlcw",
+      "description" : "Remove ReadAheadEndpoint#getBytes",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 30,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN0aHJvd1BlbmRpbmdFeGNlcHRpb24",
+      "description" : "Remove ReadAheadEndpoint#throwPendingException",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 41,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I2VuZFBvaW50",
+      "description" : "Remove field ReadAheadEndpoint#endPoint",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 42,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I3N0YXJ0",
+      "description" : "Remove field ReadAheadEndpoint#start",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 43,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I2J5dGVz",
+      "description" : "Remove field ReadAheadEndpoint#bytes",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 44,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I2xlZnRUb1JlYWQ",
+      "description" : "Remove field ReadAheadEndpoint#leftToRead",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 45,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I3BlbmRpbmdFeGNlcHRpb24",
+      "description" : "Remove field ReadAheadEndpoint#pendingException",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "UnifiedConnectionFactory",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpBYnN0cmFjdENvbm5lY3Rpb25GYWN0b3J5IC0-IERldGVjdG9yQ29ubmVjdGlvbkZhY3RvcnkKVW5pZmllZENvbm5lY3Rpb25GYWN0b3J5",
+      "description" : "Change supertype of UnifiedConnectionFactory: AbstractConnectionFactory -> DetectorConnectionFactory",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 31,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjZG9TdGFydA",
+      "description" : "Remove UnifiedConnectionFactory#doStart",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 32,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjbmV3Q29ubmVjdGlvbg",
+      "description" : "Remove UnifiedConnectionFactory#newConnection",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 33,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjbmV3U3NsQ29ubmVjdGlvbg",
+      "description" : "Remove UnifiedConnectionFactory#newSslConnection",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 34,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjdG9TdHJpbmc",
+      "description" : "Remove UnifiedConnectionFactory#toString",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 35,
+      "changeKey" : "QUREX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjbmV4dFByb3RvY29s",
+      "description" : "Add UnifiedConnectionFactory#nextProtocol",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 46,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClVuaWZpZWRDb25uZWN0aW9uRmFjdG9yeSNMT0c",
+      "description" : "Remove field UnifiedConnectionFactory#LOG",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 47,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClVuaWZpZWRDb25uZWN0aW9uRmFjdG9yeSNzc2xDb250ZXh0RmFjdG9yeQ",
+      "description" : "Remove field UnifiedConnectionFactory#sslContextFactory",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 48,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClVuaWZpZWRDb25uZWN0aW9uRmFjdG9yeSNuZXh0UHJvdG9jb2w",
+      "description" : "Remove field UnifiedConnectionFactory#nextProtocol",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "CommandListener.CommandHandler",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpBYnN0cmFjdEhhbmRsZXIgLT4gQWJzdHJhY3QKQ29tbWFuZExpc3RlbmVyLkNvbW1hbmRIYW5kbGVy",
+      "description" : "Change supertype of CommandListener.CommandHandler: AbstractHandler -> Abstract",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQ29tbWFuZExpc3RlbmVyLkNvbW1hbmRIYW5kbGVyI2hhbmRsZQ",
+      "description" : "Change signature of CommandListener.CommandHandler#handle",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "PrometheusMetricsProvider",
+    "entries" : [ {
+      "id" : 36,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjdXN0b21pemVyLnNldFNuaUhvc3RDaGVjawpQcm9tZXRoZXVzTWV0cmljc1Byb3ZpZGVyI3N0YXJ0",
+      "description" : "Modify body of PrometheusMetricsProvider#start: +customizer.setSniHostCheck",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 37,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitvZgpQcm9tZXRoZXVzTWV0cmljc1Byb3ZpZGVyI2NyZWF0ZVNzbENvbnRleHRGYWN0b3J5",
+      "description" : "Modify body of PrometheusMetricsProvider#createSslContextFactory: +of",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 38,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjdXN0b21pemVyLnNldFN0c01heEFnZSwgK2N1c3RvbWl6ZXIuc2V0U3RzSW5jbHVkZVN1YkRvbWFpbnMsICtjdXN0b21pemVyLnNldFNuaUhvc3RDaGVjaywgK2NvbmZpZy5zZXRTZWN1cmVTY2hlbWUsICtjb25maWcuYWRkQ3VzdG9taXplciDigKZhbmQgMiBtb3JlClByb21ldGhldXNNZXRyaWNzUHJvdmlkZXIjY3JlYXRlU3NsQ29ubmVjdG9y",
+      "description" : "Modify body of PrometheusMetricsProvider#createSslConnector: +customizer.setStsMaxAge, +customizer.setStsIncludeSubDomains, +customizer.setSniHostCheck, +config.setSecureScheme, +config.addCustomizer …and 2 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "JettyAdminServer",
+    "entries" : [ {
+      "id" : 39,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzZWN1cml0eUhhbmRsZXIucHV0LCArYXNTdHJpbmcsIC1jLnNldEF1dGhlbnRpY2F0ZSwgLWNtdC5zZXRDb25zdHJhaW50LCAtY210LnNldE1ldGhvZCDigKZhbmQgMiBtb3JlCkpldHR5QWRtaW5TZXJ2ZXIjY29uc3RyYWluVHJhY2VNZXRob2Q",
+      "description" : "Modify body of JettyAdminServer#constrainTraceMethod: +securityHandler.put, +asString, -c.setAuthenticate, -cmt.setConstraint, -cmt.setMethod …and 2 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 40,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjdXN0b21pemVyLnNldFNuaUhvc3RDaGVjawpKZXR0eUFkbWluU2VydmVyIzxpbml0Pg",
+      "description" : "Modify body of JettyAdminServer#<init>: +customizer.setSniHostCheck",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "X509AuthenticationProvider",
+    "entries" : [ {
+      "id" : 49,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFClg1MDlBdXRoZW50aWNhdGlvblByb3ZpZGVyI1g1MDlfQ0VSVElGSUNBVEVfQVRUUklCVVRFX05BTUUKdmFsdWUgY2hhbmdlZA",
+      "description" : "Change value of X509AuthenticationProvider#X509_CERTIFICATE_ATTRIBUTE_NAME: value changed",
+      "category" : "UNKNOWN",
+      "kind" : "CHANGE_FIELD_VALUE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "parent",
+    "entries" : [ {
+      "id" : 50,
+      "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZlciBbbWFuYWdlZF0",
+      "description" : "Remove managed dependency org.eclipse.jetty:jetty-server (parent)",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 51,
+      "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQgW21hbmFnZWRd",
+      "description" : "Remove managed dependency org.eclipse.jetty:jetty-servlet (parent)",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 52,
+      "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LWNsaWVudCBbbWFuYWdlZF0",
+      "description" : "Remove managed dependency org.eclipse.jetty:jetty-client (parent)",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 53,
+      "changeKey" : "QUREX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LWJvbSBbbWFuYWdlZF0",
+      "description" : "Add managed dependency org.eclipse.jetty:jetty-bom (parent)",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 54,
+      "changeKey" : "QUREX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1ib20gW21hbmFnZWRd",
+      "description" : "Add managed dependency org.eclipse.jetty.ee10:jetty-ee10-bom (parent)",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 55,
+      "changeKey" : "QUREX0RFUEVOREVOQ1kKcGFyZW50I2pha2FydGEuc2VydmxldDpqYWthcnRhLnNlcnZsZXQtYXBpIFttYW5hZ2VkXQ",
+      "description" : "Add managed dependency jakarta.servlet:jakarta.servlet-api (parent)",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "zookeeper-assembly",
+    "entries" : [ {
+      "id" : 56,
+      "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLWFzc2VtYmx5I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQ",
+      "description" : "Remove dependency org.eclipse.jetty:jetty-servlet (zookeeper-assembly)",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 57,
+      "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLWFzc2VtYmx5I29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0",
+      "description" : "Add dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (zookeeper-assembly)",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 58,
+      "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLWFzc2VtYmx5I2pha2FydGEuc2VydmxldDpqYWthcnRhLnNlcnZsZXQtYXBp",
+      "description" : "Add dependency jakarta.servlet:jakarta.servlet-api (zookeeper-assembly)",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "zookeeper-contrib-fatjar",
+    "entries" : [ {
+      "id" : 59,
+      "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLWNvbnRyaWItZmF0amFyI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQ",
+      "description" : "Remove dependency org.eclipse.jetty:jetty-servlet (zookeeper-contrib-fatjar)",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 60,
+      "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLWNvbnRyaWItZmF0amFyI29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0",
+      "description" : "Add dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (zookeeper-contrib-fatjar)",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "zookeeper-prometheus-metrics",
+    "entries" : [ {
+      "id" : 61,
+      "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNpby5wcm9tZXRoZXVzOnByb21ldGhldXMtbWV0cmljcy1leHBvcnRlci1zZXJ2bGV0LWphdmF4",
+      "description" : "Remove dependency io.prometheus:prometheus-metrics-exporter-servlet-javax (zookeeper-prometheus-metrics)",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 62,
+      "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKdmVyc2lvbiAke2pldHR5LnZlcnNpb259IC0-IG5vbmUKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2ZXI",
+      "description" : "Change dependency org.eclipse.jetty:jetty-server (zookeeper-prometheus-metrics): version ${jetty.version} -> none",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 63,
+      "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2bGV0",
+      "description" : "Remove dependency org.eclipse.jetty:jetty-servlet (zookeeper-prometheus-metrics)",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 64,
+      "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKdmVyc2lvbiAke2pldHR5LnZlcnNpb259IC0-IG5vbmUKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS11dGls",
+      "description" : "Change dependency org.eclipse.jetty:jetty-util (zookeeper-prometheus-metrics): version ${jetty.version} -> none",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 65,
+      "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNqYXZheC5zZXJ2bGV0OmphdmF4LnNlcnZsZXQtYXBp",
+      "description" : "Remove dependency javax.servlet:javax.servlet-api (zookeeper-prometheus-metrics)",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 66,
+      "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNpby5wcm9tZXRoZXVzOnByb21ldGhldXMtbWV0cmljcy1leHBvcnRlci1zZXJ2bGV0LWpha2FydGE",
+      "description" : "Add dependency io.prometheus:prometheus-metrics-exporter-servlet-jakarta (zookeeper-prometheus-metrics)",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 67,
+      "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eS5lZTEwOmpldHR5LWVlMTAtc2VydmxldA",
+      "description" : "Add dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (zookeeper-prometheus-metrics)",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 68,
+      "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNqYWthcnRhLnNlcnZsZXQ6amFrYXJ0YS5zZXJ2bGV0LWFwaQ",
+      "description" : "Add dependency jakarta.servlet:jakarta.servlet-api (zookeeper-prometheus-metrics)",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "zookeeper",
+    "entries" : [ {
+      "id" : 69,
+      "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQ",
+      "description" : "Remove dependency org.eclipse.jetty:jetty-servlet (zookeeper)",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 70,
+      "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyI29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0",
+      "description" : "Add dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (zookeeper)",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 71,
+      "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyI2pha2FydGEuc2VydmxldDpqYWthcnRhLnNlcnZsZXQtYXBp",
+      "description" : "Add dependency jakarta.servlet:jakarta.servlet-api (zookeeper)",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_DEPENDENCY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

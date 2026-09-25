@@ -1,0 +1,3011 @@
+[ {
+  "changeKey" : "UkVNT1ZFX0NMQVNTClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2lj",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class PersistentDispatcherMultipleConsumersClassic",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljLlJlYWRUeXBl",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class PersistentDispatcherMultipleConsumersClassic.ReadType",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic.ReadType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2lj",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class PersistentStickyKeyDispatcherMultipleConsumersClassic",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTCk5vbkVudHJ5Q2FjaGVLZXlTaGFyZWRTdWJzY3JpcHRpb25WMzBUZXN0",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class NonEntryCacheKeySharedSubscriptionV30Test",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/bookkeeper/mledger/impl/NonEntryCacheKeySharedSubscriptionV30Test.java" ],
+  "symbols" : [ "NonEntryCacheKeySharedSubscriptionV30Test" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdA",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class PersistentDispatcherMultipleConsumersClassicTest",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassicTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdA",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class PersistentStickyKeyDispatcherMultipleConsumersClassicTest",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0NMQVNTCktleVNoYXJlZEltcGxlbWVudGF0aW9uVHlwZQ",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class KeySharedImplementationType",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/tests/KeySharedImplementationType.java" ],
+  "symbols" : [ "KeySharedImplementationType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpDb25zdW1lciNnZXRTdGF0cwpicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of Consumer#getStats: branch removed",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/Consumer.java" ],
+  "symbols" : [ "Consumer#getStats", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNZXNzYWdlUmVkZWxpdmVyeUNvbnRyb2xsZXIjYWRkCmNvbmRpdGlvbiBjaGFuZ2Vk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of MessageRedeliveryController#add: condition changed",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/MessageRedeliveryController.java" ],
+  "symbols" : [ "MessageRedeliveryController#add", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpQZXJzaXN0ZW50U3Vic2NyaXB0aW9uI3JldXNlT3JDcmVhdGVEaXNwYXRjaGVyCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of PersistentSubscription#reuseOrCreateDispatcher: branch removed",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentSubscription.java" ],
+  "symbols" : [ "PersistentSubscription#reuseOrCreateDispatcher", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpQZXJzaXN0ZW50U3Vic2NyaXB0aW9uI2dldFN0YXRzQXN5bmMKYnJhbmNoIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of PersistentSubscription#getStatsAsync: branch removed",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentSubscription.java" ],
+  "symbols" : [ "PersistentSubscription#getStatsAsync", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUGVyc2lzdGVudERpc3BhdGNoZXJNdWx0aXBsZUNvbnN1bWVyc1Rlc3QjdGVzdFJlYWRNb3JlRW50cmllc0NvbmZsYXRlc0NvbmN1cnJlbnRSZXF1ZXN0cw",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of PersistentDispatcherMultipleConsumersTest#testReadMoreEntriesConflatesConcurrentRequests",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersTest#testReadMoreEntriesConflatesConcurrentRequests" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUGVyc2lzdGVudERpc3BhdGNoZXJNdWx0aXBsZUNvbnN1bWVyc1Rlc3QjdGVzdFJlYWRNb3JlRW50cmllc0NvbmZsYXRlc1JlZW50cmFudFJlcXVlc3Rz",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of PersistentDispatcherMultipleConsumersTest#testReadMoreEntriesConflatesReentrantRequests",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersTest#testReadMoreEntriesConflatesReentrantRequests" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUGVyc2lzdGVudERpc3BhdGNoZXJNdWx0aXBsZUNvbnN1bWVyc1Rlc3QjdGVzdFJlYWRNb3JlRW50cmllc1JlY292ZXJzQWZ0ZXJGYWlsdXJl",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of PersistentDispatcherMultipleConsumersTest#testReadMoreEntriesRecoversAfterFailure",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersTest#testReadMoreEntriesRecoversAfterFailure" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUGVyc2lzdGVudERpc3BhdGNoZXJNdWx0aXBsZUNvbnN1bWVyc1Rlc3QjdGVzdFJlYWRNb3JlRW50cmllc1J1bnNSZWVudHJhbnRSZXF1ZXN0c0FmdGVyRmFpbHVyZQ",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of PersistentDispatcherMultipleConsumersTest#testReadMoreEntriesRunsReentrantRequestsAfterFailure",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersTest#testReadMoreEntriesRunsReentrantRequestsAfterFailure" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUGVyc2lzdGVudERpc3BhdGNoZXJNdWx0aXBsZUNvbnN1bWVyc1Rlc3QjdGVzdFJlYWRNb3JlRW50cmllc1J1bnNDb25jdXJyZW50UmVxdWVzdEFmdGVyRmFpbHVyZQ",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of PersistentDispatcherMultipleConsumersTest#testReadMoreEntriesRunsConcurrentRequestAfterFailure",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersTest#testReadMoreEntriesRunsConcurrentRequestAfterFailure" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUGVyc2lzdGVudERpc3BhdGNoZXJNdWx0aXBsZUNvbnN1bWVyc1Rlc3QjY3JlYXRlUmVhZENvbmZsYXRpb25EaXNwYXRjaGVy",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of PersistentDispatcherMultipleConsumersTest#createReadConflationDispatcher",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersTest#createReadConflationDispatcher" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2hhcmVkRGlzcGF0Y2hlclBlcm1pdEFjY291bnRpbmdUZXN0I3Rlc3RGbG93Q29tbWFuZFJhY2VXaXRoQ29uc3VtZXJSZW1vdmFsRG9lc05vdExvc2VQZXJtaXRz",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of SharedDispatcherPermitAccountingTest#testFlowCommandRaceWithConsumerRemovalDoesNotLosePermits",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/SharedDispatcherPermitAccountingTest.java" ],
+  "symbols" : [ "SharedDispatcherPermitAccountingTest#testFlowCommandRaceWithConsumerRemovalDoesNotLosePermits" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2hhcmVkRGlzcGF0Y2hlclBlcm1pdEFjY291bnRpbmdUZXN0I3Rlc3RRdWV1ZWRGbG93RG9lc05vdEFwcGx5VG9FcXVhbFJlcGxhY2VtZW50Q29uc3VtZXI",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of SharedDispatcherPermitAccountingTest#testQueuedFlowDoesNotApplyToEqualReplacementConsumer",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/SharedDispatcherPermitAccountingTest.java" ],
+  "symbols" : [ "SharedDispatcherPermitAccountingTest#testQueuedFlowDoesNotApplyToEqualReplacementConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2hhcmVkRGlzcGF0Y2hlclBlcm1pdEFjY291bnRpbmdUZXN0I3Rlc3RSZWplY3RlZEZsb3dTdGF5c1BlbmRpbmdBbmRJc0V4Y2x1ZGVkRnJvbVJlbW92YWw",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of SharedDispatcherPermitAccountingTest#testRejectedFlowStaysPendingAndIsExcludedFromRemoval",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/SharedDispatcherPermitAccountingTest.java" ],
+  "symbols" : [ "SharedDispatcherPermitAccountingTest#testRejectedFlowStaysPendingAndIsExcludedFromRemoval" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2hhcmVkRGlzcGF0Y2hlclBlcm1pdEFjY291bnRpbmdUZXN0I3Rlc3RSZW1vdmFsQXBwbGllc05lZ2F0aXZlQWNjb3VudGVkUGVybWl0QmFsYW5jZQ",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of SharedDispatcherPermitAccountingTest#testRemovalAppliesNegativeAccountedPermitBalance",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/SharedDispatcherPermitAccountingTest.java" ],
+  "symbols" : [ "SharedDispatcherPermitAccountingTest#testRemovalAppliesNegativeAccountedPermitBalance" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2hhcmVkRGlzcGF0Y2hlclBlcm1pdEFjY291bnRpbmdUZXN0I3Rlc3RCbG9ja2VkRmxvd0NvbW1hbmRSYWNlV2l0aENvbnN1bWVyUmVtb3ZhbERvZXNOb3RMb3NlUGVybWl0cw",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of SharedDispatcherPermitAccountingTest#testBlockedFlowCommandRaceWithConsumerRemovalDoesNotLosePermits",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/SharedDispatcherPermitAccountingTest.java" ],
+  "symbols" : [ "SharedDispatcherPermitAccountingTest#testBlockedFlowCommandRaceWithConsumerRemovalDoesNotLosePermits" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2hhcmVkRGlzcGF0Y2hlclBlcm1pdEFjY291bnRpbmdUZXN0I3Rlc3RSZW1haW5pbmdDb25zdW1lckNhbkNvbnRpbnVlQWZ0ZXJGbG93QW5kQ2xvc2VSYWNl",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of SharedDispatcherPermitAccountingTest#testRemainingConsumerCanContinueAfterFlowAndCloseRace",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/SharedDispatcherPermitAccountingTest.java" ],
+  "symbols" : [ "SharedDispatcherPermitAccountingTest#testRemainingConsumerCanContinueAfterFlowAndCloseRace" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2hhcmVkRGlzcGF0Y2hlclBlcm1pdEFjY291bnRpbmdUZXN0I2NyZWF0ZVRlc3RDb250ZXh0",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of SharedDispatcherPermitAccountingTest#createTestContext",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/SharedDispatcherPermitAccountingTest.java" ],
+  "symbols" : [ "SharedDispatcherPermitAccountingTest#createTestContext" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaGFyZWREaXNwYXRjaGVyUGVybWl0QWNjb3VudGluZ1Rlc3QjZGVjcmVtZW50VG90YWxBdmFpbGFibGVQZXJtaXRzCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SharedDispatcherPermitAccountingTest#decrementTotalAvailablePermits: branch removed",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/SharedDispatcherPermitAccountingTest.java" ],
+  "symbols" : [ "SharedDispatcherPermitAccountingTest#decrementTotalAvailablePermits", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaGFyZWREaXNwYXRjaGVyUGVybWl0QWNjb3VudGluZ1Rlc3QjdG90YWxBdmFpbGFibGVQZXJtaXRzCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SharedDispatcherPermitAccountingTest#totalAvailablePermits: branch removed",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/SharedDispatcherPermitAccountingTest.java" ],
+  "symbols" : [ "SharedDispatcherPermitAccountingTest#totalAvailablePermits", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQ29uc3VtZXJTdGF0c1Rlc3QjdGVzdENvbnN1bWVyU3RhdHNPdXRwdXQ",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of ConsumerStatsTest#testConsumerStatsOutput",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/stats/ConsumerStatsTest.java" ],
+  "symbols" : [ "ConsumerStatsTest#testConsumerStatsOutput" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uQnJva2VyQ2FjaGVUZXN0I3Rlc3RSZXBsYXlRdWV1ZVJlYWRzR2V0dGluZ0NhY2hlZA",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionBrokerCacheTest#testReplayQueueReadsGettingCached",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionBrokerCacheTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionBrokerCacheTest#testReplayQueueReadsGettingCached" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uRGlzYWJsZWRCcm9rZXJDYWNoZVRlc3QjdGVzdE1lc3NhZ2VPcmRlckluU2luZ2xlQ29uc3VtZXJSZWNvbm5lY3Q",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionDisabledBrokerCacheTest#testMessageOrderInSingleConsumerReconnect",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionDisabledBrokerCacheTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionDisabledBrokerCacheTest#testMessageOrderInSingleConsumerReconnect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0U2VuZEFuZFJlY2VpdmVXaXRoSGFzaFJhbmdlQXV0b1NwbGl0U3RpY2t5S2V5Q29uc3VtZXJTZWxlY3Rvcg",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testSendAndReceiveWithHashRangeAutoSplitStickyKeyConsumerSelector",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testSendAndReceiveWithHashRangeAutoSplitStickyKeyConsumerSelector" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0U2VuZEFuZFJlY2VpdmVXaXRoQmF0Y2hpbmc",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testSendAndReceiveWithBatching",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testSendAndReceiveWithBatching" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0U2VuZEFuZFJlY2VpdmVXaXRoSGFzaFJhbmdlRXhjbHVzaXZlU3RpY2t5S2V5Q29uc3VtZXJTZWxlY3Rvcg",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testSendAndReceiveWithHashRangeExclusiveStickyKeyConsumerSelector",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testSendAndReceiveWithHashRangeExclusiveStickyKeyConsumerSelector" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0Q29uc3VtZXJDcmFzaFNlbmRBbmRSZWNlaXZlV2l0aEhhc2hSYW5nZUF1dG9TcGxpdFN0aWNreUtleUNvbnN1bWVyU2VsZWN0b3I",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testConsumerCrashSendAndReceiveWithHashRangeAutoSplitStickyKeyConsumerSelector",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testConsumerCrashSendAndReceiveWithHashRangeAutoSplitStickyKeyConsumerSelector" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0Tm9LZXlTZW5kQW5kUmVjZWl2ZVdpdGhIYXNoUmFuZ2VBdXRvU3BsaXRTdGlja3lLZXlDb25zdW1lclNlbGVjdG9y",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testNoKeySendAndReceiveWithHashRangeAutoSplitStickyKeyConsumerSelector",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testNoKeySendAndReceiveWithHashRangeAutoSplitStickyKeyConsumerSelector" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0Tm9LZXlTZW5kQW5kUmVjZWl2ZVdpdGhIYXNoUmFuZ2VFeGNsdXNpdmVTdGlja3lLZXlDb25zdW1lclNlbGVjdG9y",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testNoKeySendAndReceiveWithHashRangeExclusiveStickyKeyConsumerSelector",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testNoKeySendAndReceiveWithHashRangeExclusiveStickyKeyConsumerSelector" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0T3JkZXJpbmdLZXlXaXRoSGFzaFJhbmdlQXV0b1NwbGl0U3RpY2t5S2V5Q29uc3VtZXJTZWxlY3Rvcg",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testOrderingKeyWithHashRangeAutoSplitStickyKeyConsumerSelector",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testOrderingKeyWithHashRangeAutoSplitStickyKeyConsumerSelector" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0T3JkZXJpbmdLZXlXaXRoSGFzaFJhbmdlRXhjbHVzaXZlU3RpY2t5S2V5Q29uc3VtZXJTZWxlY3Rvcg",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testOrderingKeyWithHashRangeExclusiveStickyKeyConsumerSelector",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testOrderingKeyWithHashRangeExclusiveStickyKeyConsumerSelector" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0Q2Fubm90VXNlQWNrbm93bGVkZ2VDdW11bGF0aXZl",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testCannotUseAcknowledgeCumulative",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testCannotUseAcknowledgeCumulative" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0TWFraW5nUHJvZ3Jlc3NXaXRoU2xvd2VyQ29uc3VtZXI",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testMakingProgressWithSlowerConsumer",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testMakingProgressWithSlowerConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0T3JkZXJpbmdXaGVuQWRkaW5nQ29uc3VtZXJz",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testOrderingWhenAddingConsumers",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testOrderingWhenAddingConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0UmVhZEFoZWFkV2l0aENvbmZpZ3VyZWRMb29rQWhlYWRMaW1pdA",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testReadAheadWithConfiguredLookAheadLimit",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testReadAheadWithConfiguredLookAheadLimit" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0UmVtb3ZlRmlyc3RDb25zdW1lcg",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testRemoveFirstConsumer",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testRemoveFirstConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0SGFzaFJhbmdlQ29uZmxpY3Q",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testHashRangeConflict",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testHashRangeConflict" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0V2l0aE1lc3NhZ2VDb21wcmVzc2lvbg",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testWithMessageCompression",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testWithMessageCompression" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0QXR0YWNoS2V5VG9NZXNzYWdlTWV0YWRhdGE",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testAttachKeyToMessageMetadata",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testAttachKeyToMessageMetadata" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0Q29udGludWVEaXNwYXRjaE1lc3NhZ2VzV2hlbk1lc3NhZ2VUVEw",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testContinueDispatchMessagesWhenMessageTTL",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testContinueDispatchMessagesWhenMessageTTL" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0T3JkZXJpbmdXaXRoQ29uc3VtZXJMaXN0ZW5lcg",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testOrderingWithConsumerListener",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testOrderingWithConsumerListener" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0S2V5U2hhcmVkQ29uc3VtZXJXaXRoRW5jcnlwdGVk",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testKeySharedConsumerWithEncrypted",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testKeySharedConsumerWithEncrypted" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0U2VsZWN0b3JDaGFuZ2VkQWZ0ZXJBbGxDb25zdW1lckRpc2Nvbm5lY3RlZA",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testSelectorChangedAfterAllConsumerDisconnected",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testSelectorChangedAfterAllConsumerDisconnected" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0QWxsb3dPdXRPZk9yZGVyRGVsaXZlcnlDaGFuZ2VkQWZ0ZXJBbGxDb25zdW1lckRpc2Nvbm5lY3RlZA",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testAllowOutOfOrderDeliveryChangedAfterAllConsumerDisconnected",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testAllowOutOfOrderDeliveryChangedAfterAllConsumerDisconnected" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0Q2hlY2tDb25zdW1lcnNXaXRoU2FtZU5hbWU",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testCheckConsumersWithSameName",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testCheckConsumersWithSameName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0U3RpY2t5S2V5UmFuZ2VzUmVzdGFydENvbnN1bWVycw",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testStickyKeyRangesRestartConsumers",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testStickyKeyRangesRestartConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0Q29udGludWVEaXNwYXRjaE1lc3NhZ2VzV2hlbk1lc3NhZ2VEZWxheWVk",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testContinueDispatchMessagesWhenMessageDelayed",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testContinueDispatchMessagesWhenMessageDelayed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0Tm9SZXBlYXRlZFJlYWRBbmREaXNjYXJk",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testNoRepeatedReadAndDiscard",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testNoRepeatedReadAndDiscard" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0UmVjZW50Sm9pbmVkUG9zV2lsbE5vdFN0dWNrT3RoZXJDb25zdW1lcg",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testRecentJoinedPosWillNotStuckOtherConsumer",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testRecentJoinedPosWillNotStuckOtherConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0UmVhZEFoZWFkTGltaXQ",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testReadAheadLimit",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testReadAheadLimit" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0T3JkZXJpbmdBZnRlclJlY29ubmVjdHM",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testOrderingAfterReconnects",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testOrderingAfterReconnects" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCN0ZXN0RGVsaXZlcnlPZlJlbWFpbmluZ01lc3NhZ2VzV2l0aG91dERlYWRsb2Nr",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionTest#testDeliveryOfRemainingMessagesWithoutDeadlock",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#testDeliveryOfRemainingMessagesWithoutDeadlock" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKS2V5U2hhcmVkU3Vic2NyaXB0aW9uTWF4VW5hY2tlZE1lc3NhZ2VzVGVzdCN0ZXN0Q2FuUmVjb3ZlckNvbnN1bXB0aW9uV2hlbkxpZnRNYXhVbkFja2VkTWVzc2FnZXNSZXN0cmljdGlvbg",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of KeySharedSubscriptionMaxUnackedMessagesTest#testCanRecoverConsumptionWhenLiftMaxUnAckedMessagesRestriction",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/impl/KeySharedSubscriptionMaxUnackedMessagesTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionMaxUnackedMessagesTest#testCanRecoverConsumptionWhenLiftMaxUnAckedMessagesRestriction" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApDb25zdW1lciNzZXRSZWFkUG9zaXRpb25XaGVuSm9pbmluZw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove Consumer#setReadPositionWhenJoining",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/Consumer.java" ],
+  "symbols" : [ "Consumer#setReadPositionWhenJoining" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTdGlja3lLZXlEaXNwYXRjaGVyI2dldFJlY2VudGx5Sm9pbmVkQ29uc3VtZXJz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove StickyKeyDispatcher#getRecentlyJoinedConsumers",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/StickyKeyDispatcher.java" ],
+  "symbols" : [ "StickyKeyDispatcher#getRecentlyJoinedConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTdGlja3lLZXlEaXNwYXRjaGVyI2lzQ2xhc3NpYw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove StickyKeyDispatcher#isClassic",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/StickyKeyDispatcher.java" ],
+  "symbols" : [ "StickyKeyDispatcher#isClassic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApBYnN0cmFjdFBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnMjaXNDbGFzc2lj",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove AbstractPersistentDispatcherMultipleConsumers#isClassic",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/AbstractPersistentDispatcherMultipleConsumers.java" ],
+  "symbols" : [ "AbstractPersistentDispatcherMultipleConsumers#isClassic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNZXNzYWdlUmVkZWxpdmVyeUNvbnRyb2xsZXIjY29udGFpbnNTdGlja3lLZXlIYXNoZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove MessageRedeliveryController#containsStickyKeyHashes",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/MessageRedeliveryController.java" ],
+  "symbols" : [ "MessageRedeliveryController#containsStickyKeyHashes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzI2lzQ2xhc3NpYw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumers#isClassic",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumers.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumers#isClassic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNhZGRDb25zdW1lcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#addConsumer",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#addConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpc0NvbnN1bWVyc0V4Y2VlZGVkT25TdWJzY3JpcHRpb24",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#isConsumersExceededOnSubscription",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#isConsumersExceededOnSubscription" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNyZW1vdmVDb25zdW1lcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#removeConsumer",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#removeConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNjbGVhckNvbXBvbmVudHNBZnRlclJlbW92ZWRBbGxDb25zdW1lcnM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#clearComponentsAfterRemovedAllConsumers",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#clearComponentsAfterRemovedAllConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNjb25zdW1lckZsb3c",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#consumerFlow",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#consumerFlow" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpbnRlcm5hbENvbnN1bWVyRmxvdw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#internalConsumerFlow",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#internalConsumerFlow" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNyZWFkTW9yZUVudHJpZXNBc3luYw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#readMoreEntriesAsync",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#readMoreEntriesAsync" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpbnRlcm5hbFJlYWRNb3JlRW50cmllcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#internalReadMoreEntries",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#internalReadMoreEntries" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNzaG91bGRQYXVzZU9uQWNrU3RhdGVQZXJzaXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#shouldPauseOnAckStatePersist",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#shouldPauseOnAckStatePersist" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNyZVNjaGVkdWxlUmVhZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#reScheduleRead",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#reScheduleRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNjYWxjdWxhdGVUb1JlYWQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#calculateToRead",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#calculateToRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNhc3luY1JlcGxheUVudHJpZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#asyncReplayEntries",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#asyncReplayEntries" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNhc3luY1JlcGxheUVudHJpZXNJbk9yZGVy",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#asyncReplayEntriesInOrder",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#asyncReplayEntriesInOrder" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpc0NvbnN1bWVyQ29ubmVjdGVk",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#isConsumerConnected",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#isConsumerConnected" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRDb25zdW1lcnM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getConsumers",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNjYW5VbnN1YnNjcmliZQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#canUnsubscribe",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#canUnsubscribe" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNjbG9zZQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#close",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#close" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNkaXNjb25uZWN0QWxsQ29uc3VtZXJz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#disconnectAllConsumers",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#disconnectAllConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNjYW5jZWxQZW5kaW5nUmVhZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#cancelPendingRead",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#cancelPendingRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNkaXNjb25uZWN0QWN0aXZlQ29uc3VtZXJz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#disconnectActiveConsumers",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#disconnectActiveConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNyZXNldENsb3NlRnV0dXJl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#resetCloseFuture",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#resetCloseFuture" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNyZXNldA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#reset",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#reset" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRUeXBl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getType",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNyZWFkRW50cmllc0NvbXBsZXRl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#readEntriesComplete",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#readEntriesComplete" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNhY3F1aXJlU2VuZEluUHJvZ3Jlc3M",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#acquireSendInProgress",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#acquireSendInProgress" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNyZWxlYXNlU2VuZEluUHJvZ3Jlc3M",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#releaseSendInProgress",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#releaseSendInProgress" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpc1NlbmRJblByb2dyZXNz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#isSendInProgress",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#isSendInProgress" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNzZW5kTWVzc2FnZXNUb0NvbnN1bWVycw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#sendMessagesToConsumers",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#sendMessagesToConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyN0cnlTZW5kTWVzc2FnZXNUb0NvbnN1bWVycw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#trySendMessagesToConsumers",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#trySendMessagesToConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNzZW5kQ2h1bmtlZE1lc3NhZ2VzVG9Db25zdW1lcnM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#sendChunkedMessagesToConsumers",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#sendChunkedMessagesToConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNyZWFkRW50cmllc0ZhaWxlZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#readEntriesFailed",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#readEntriesFailed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNzY2hlZHVsZVJlYWRFbnRyaWVzV2l0aERlbGF5",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#scheduleReadEntriesWithDelay",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#scheduleReadEntriesWithDelay" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNuZWVkVHJpbUFja2VkTWVzc2FnZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#needTrimAckedMessages",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#needTrimAckedMessages" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpc0F0bGVhc3RPbmVDb25zdW1lckF2YWlsYWJsZQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#isAtleastOneConsumerAvailable",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#isAtleastOneConsumerAvailable" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRGaXJzdEF2YWlsYWJsZUNvbnN1bWVyUGVybWl0cw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getFirstAvailableConsumerPermits",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getFirstAvailableConsumerPermits" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpc0NvbnN1bWVyV3JpdGFibGU",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#isConsumerWritable",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#isConsumerWritable" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpc0NvbnN1bWVyQXZhaWxhYmxl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#isConsumerAvailable",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#isConsumerAvailable" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNyZWRlbGl2ZXJVbmFja25vd2xlZGdlZE1lc3NhZ2Vz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#redeliverUnacknowledgedMessages",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#redeliverUnacknowledgedMessages" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNhZGRVbkFja2VkTWVzc2FnZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#addUnAckedMessages",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#addUnAckedMessages" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNhZnRlckFja01lc3NhZ2Vz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#afterAckMessages",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#afterAckMessages" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNjaGVja0FuZFJlc3VtZUlmUGF1c2Vk",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#checkAndResumeIfPaused",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#checkAndResumeIfPaused" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpc0Jsb2NrZWREaXNwYXRjaGVyT25VbmFja2VkTXNncw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#isBlockedDispatcherOnUnackedMsgs",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#isBlockedDispatcherOnUnackedMsgs" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNibG9ja0Rpc3BhdGNoZXJPblVuYWNrZWRNc2dz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#blockDispatcherOnUnackedMsgs",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#blockDispatcherOnUnackedMsgs" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyN1bkJsb2NrRGlzcGF0Y2hlck9uVW5hY2tlZE1zZ3M",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#unBlockDispatcherOnUnackedMsgs",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#unBlockDispatcherOnUnackedMsgs" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRUb3RhbFVuYWNrZWRNZXNzYWdlcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getTotalUnackedMessages",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getTotalUnackedMessages" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXROYW1l",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getName",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRSZWRlbGl2ZXJ5VHJhY2tlcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getRedeliveryTracker",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getRedeliveryTracker" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRSYXRlTGltaXRlcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getRateLimiter",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getRateLimiter" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpbml0aWFsaXplRGlzcGF0Y2hSYXRlTGltaXRlcklmTmVlZGVk",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#initializeDispatchRateLimiterIfNeeded",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#initializeDispatchRateLimiterIfNeeded" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyN0cmFja0RlbGF5ZWREZWxpdmVyeQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#trackDelayedDelivery",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#trackDelayedDelivery" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRNZXNzYWdlc1RvUmVwbGF5Tm93",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getMessagesToReplayNow",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getMessagesToReplayNow" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNmaWx0ZXJPdXRFbnRyaWVzV2lsbEJlRGlzY2FyZGVk",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#filterOutEntriesWillBeDiscarded",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#filterOutEntriesWillBeDiscarded" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNoYXNDb25zdW1lcnNOZWVkZWROb3JtYWxSZWFk",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#hasConsumersNeededNormalRead",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#hasConsumersNeededNormalRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNzaG91bGRQYXVzZURlbGl2ZXJ5Rm9yRGVsYXlUcmFja2Vy",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#shouldPauseDeliveryForDelayTracker",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#shouldPauseDeliveryForDelayTracker" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXROdW1iZXJPZkRlbGF5ZWRNZXNzYWdlcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getNumberOfDelayedMessages",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getNumberOfDelayedMessages" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNjbGVhckRlbGF5ZWRNZXNzYWdlcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#clearDelayedMessages",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#clearDelayedMessages" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNjdXJzb3JJc1Jlc2V0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#cursorIsReset",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#cursorIsReset" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNhZGRNZXNzYWdlVG9SZXBsYXk",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#addMessageToReplay",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#addMessageToReplay" ],
+  "occurrences" : 3,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNjaGVja0lmTWVzc2FnZUlzVW5hY2tlZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#checkIfMessageIsUnacked",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#checkIfMessageIsUnacked" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNjaGVja0FuZFVuYmxvY2tJZlN0dWNr",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#checkAndUnblockIfStuck",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#checkAndUnblockIfStuck" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRUb3BpYw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getTopic",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getTopic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXREZWxheWVkVHJhY2tlck1lbW9yeVVzYWdl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getDelayedTrackerMemoryUsage",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getDelayedTrackerMemoryUsage" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRCdWNrZXREZWxheWVkSW5kZXhTdGF0cw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getBucketDelayedIndexStats",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getBucketDelayedIndexStats" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpc0NsYXNzaWM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#isClassic",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#isClassic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRDdXJzb3I",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getCursor",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getCursor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRTdGlja3lLZXlIYXNo",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getStickyKeyHash",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getStickyKeyHash" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRTdWJzY3JpcHRpb24",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getSubscription",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getSubscription" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXROdW1iZXJPZk1lc3NhZ2VzSW5SZXBsYXk",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#getNumberOfMessagesInReplay",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#getNumberOfMessagesInReplay" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpc0hhdmVQZW5kaW5nUmVhZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#isHavePendingRead",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#isHavePendingRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpc0hhdmVQZW5kaW5nUmVwbGF5UmVhZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassic#isHavePendingReplayRead",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#isHavePendingReplayRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRTZWxlY3Rvcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#getSelector",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#getSelector" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNhZGRDb25zdW1lcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#addConsumer",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#addConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNzb3J0UmVjZW50bHlKb2luZWRDb25zdW1lcnNJZk5lZWRlZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#sortRecentlyJoinedConsumersIfNeeded",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#sortRecentlyJoinedConsumersIfNeeded" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNyZW1vdmVDb25zdW1lcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#removeConsumer",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#removeConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyN0cnlTZW5kTWVzc2FnZXNUb0NvbnN1bWVycw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#trySendMessagesToConsumers",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#trySendMessagesToConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRSZXN0cmljdGVkTWF4RW50cmllc0ZvckNvbnN1bWVy",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#getRestrictedMaxEntriesForConsumer",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#getRestrictedMaxEntriesForConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNhZnRlckFja01lc3NhZ2Vz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#afterAckMessages",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#afterAckMessages" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNyZW1vdmVDb25zdW1lcnNGcm9tUmVjZW50Sm9pbmVkQ29uc3VtZXJz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#removeConsumersFromRecentJoinedConsumers",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#removeConsumersFromRecentJoinedConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRNZXNzYWdlc1RvUmVwbGF5Tm93",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#getMessagesToReplayNow",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#getMessagesToReplayNow" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRBdmFpbGFibGVQZXJtaXRz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#getAvailablePermits",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#getAvailablePermits" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNmaWx0ZXJPdXRFbnRyaWVzV2lsbEJlRGlzY2FyZGVk",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#filterOutEntriesWillBeDiscarded",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#filterOutEntriesWillBeDiscarded" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNoYXNDb25zdW1lcnNOZWVkZWROb3JtYWxSZWFk",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#hasConsumersNeededNormalRead",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#hasConsumersNeededNormalRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpc1JlcGxheVF1ZXVlU2l6ZUJlbG93TGltaXQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#isReplayQueueSizeBelowLimit",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#isReplayQueueSizeBelowLimit" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRUeXBl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#getType",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#getType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNhc3luY1JlcGxheUVudHJpZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#asyncReplayEntries",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#asyncReplayEntries" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRLZXlTaGFyZWRNb2Rl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#getKeySharedMode",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#getKeySharedMode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNpc0FsbG93T3V0T2ZPcmRlckRlbGl2ZXJ5",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#isAllowOutOfOrderDelivery",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#isAllowOutOfOrderDelivery" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNoYXNTYW1lS2V5U2hhcmVkUG9saWN5",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#hasSameKeySharedPolicy",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#hasSameKeySharedPolicy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRSZWNlbnRseUpvaW5lZENvbnN1bWVycw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#getRecentlyJoinedConsumers",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#getRecentlyJoinedConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRDb25zdW1lcktleUhhc2hSYW5nZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#getConsumerKeyHashRanges",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#getConsumerKeyHashRanges" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpYyNnZXRTdGlja3lLZXlIYXNo",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassic#getStickyKeyHash",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#getStickyKeyHash" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOb25FbnRyeUNhY2hlS2V5U2hhcmVkU3Vic2NyaXB0aW9uVjMwVGVzdCNzZXR1cA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NonEntryCacheKeySharedSubscriptionV30Test#setup",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/bookkeeper/mledger/impl/NonEntryCacheKeySharedSubscriptionV30Test.java" ],
+  "symbols" : [ "NonEntryCacheKeySharedSubscriptionV30Test#setup" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOb25FbnRyeUNhY2hlS2V5U2hhcmVkU3Vic2NyaXB0aW9uVjMwVGVzdCNjbGVhbnVw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NonEntryCacheKeySharedSubscriptionV30Test#cleanup",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/bookkeeper/mledger/impl/NonEntryCacheKeySharedSubscriptionV30Test.java" ],
+  "symbols" : [ "NonEntryCacheKeySharedSubscriptionV30Test#cleanup" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOb25FbnRyeUNhY2hlS2V5U2hhcmVkU3Vic2NyaXB0aW9uVjMwVGVzdCNkb0luaXRDb25m",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NonEntryCacheKeySharedSubscriptionV30Test#doInitConf",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/bookkeeper/mledger/impl/NonEntryCacheKeySharedSubscriptionV30Test.java" ],
+  "symbols" : [ "NonEntryCacheKeySharedSubscriptionV30Test#doInitConf" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOb25FbnRyeUNhY2hlS2V5U2hhcmVkU3Vic2NyaXB0aW9uVjMwVGVzdCN0ZXN0UmVjZW50Sm9pblF1ZXVlSXNJbk9yZGVyQWZ0ZXJSZXdpbmQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NonEntryCacheKeySharedSubscriptionV30Test#testRecentJoinQueueIsInOrderAfterRewind",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/bookkeeper/mledger/impl/NonEntryCacheKeySharedSubscriptionV30Test.java" ],
+  "symbols" : [ "NonEntryCacheKeySharedSubscriptionV30Test#testRecentJoinQueueIsInOrderAfterRewind" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOb25FbnRyeUNhY2hlS2V5U2hhcmVkU3Vic2NyaXB0aW9uVjMwVGVzdCNzbGVlcA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NonEntryCacheKeySharedSubscriptionV30Test#sleep",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/bookkeeper/mledger/impl/NonEntryCacheKeySharedSubscriptionV30Test.java" ],
+  "symbols" : [ "NonEntryCacheKeySharedSubscriptionV30Test#sleep" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOb25FbnRyeUNhY2hlS2V5U2hhcmVkU3Vic2NyaXB0aW9uVjMwVGVzdCN2ZXJpZnlNYXBJdGVtc0FyZUluT3JkZXI",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NonEntryCacheKeySharedSubscriptionV30Test#verifyMapItemsAreInOrder",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/bookkeeper/mledger/impl/NonEntryCacheKeySharedSubscriptionV30Test.java" ],
+  "symbols" : [ "NonEntryCacheKeySharedSubscriptionV30Test#verifyMapItemsAreInOrder" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTaGFyZWRTdWJzY3JpcHRpb25VbmFja2VkTWVzc2FnZXNBY2NvdW50aW5nVGVzdCNjcmVhdGVUZXN0SW5zdGFuY2Vz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove SharedSubscriptionUnackedMessagesAccountingTest#createTestInstances",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/SharedSubscriptionUnackedMessagesAccountingTest.java" ],
+  "symbols" : [ "SharedSubscriptionUnackedMessagesAccountingTest#createTestInstances" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNZXNzYWdlUmVkZWxpdmVyeUNvbnRyb2xsZXJUZXN0I3Rlc3RDbGFzc2ljT3V0T2ZPcmRlckRvZXNOb3RJbml0aWFsaXplUG9zaXRpb25IYXNoTWFw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove MessageRedeliveryControllerTest#testClassicOutOfOrderDoesNotInitializePositionHashMap",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/MessageRedeliveryControllerTest.java" ],
+  "symbols" : [ "MessageRedeliveryControllerTest#testClassicOutOfOrderDoesNotInitializePositionHashMap" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApNZXNzYWdlUmVkZWxpdmVyeUNvbnRyb2xsZXJUZXN0I3Rlc3RDb250YWluc1N0aWNreUtleUhhc2hlcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove MessageRedeliveryControllerTest#testContainsStickyKeyHashes",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/MessageRedeliveryControllerTest.java" ],
+  "symbols" : [ "MessageRedeliveryControllerTest#testContainsStickyKeyHashes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdEtleVNoYXJlZFJlcGxheVF1ZXVlUmVzdW1lc0FmdGVyQ29uc3VtZXJGbG93",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassicTest#testKeySharedReplayQueueResumesAfterConsumerFlow",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassicTest#testKeySharedReplayQueueResumesAfterConsumerFlow" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdFRvcGljRGVsZXRlSWZDb25zdW1lclNldE1pc21hdGNoQ29uc3VtZXJMaXN0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassicTest#testTopicDeleteIfConsumerSetMismatchConsumerList",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassicTest#testTopicDeleteIfConsumerSetMismatchConsumerList" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdFRvcGljRGVsZXRlSWZDb25zdW1lclNldE1pc21hdGNoQ29uc3VtZXJMaXN0Mg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassicTest#testTopicDeleteIfConsumerSetMismatchConsumerList2",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassicTest#testTopicDeleteIfConsumerSetMismatchConsumerList2" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdFNraXBSZWFkRW50cmllc0Zyb21DbG9zZUN1cnNvcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassicTest#testSkipReadEntriesFromCloseCursor",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassicTest#testSkipReadEntriesFromCloseCursor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdFJhY2VDb25kaXRpb25JblRyYWNrRGVsYXllZERlbGl2ZXJ5",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassicTest#testRaceConditionInTrackDelayedDelivery",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassicTest#testRaceConditionInTrackDelayedDelivery" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3Qja2V5Rm9yQ29uc3VtZXI",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersClassicTest#keyForConsumer",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassicTest#keyForConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzVGVzdCNyZWFkQ29uZmxhdGlvbkRpc3BhdGNoZXJUeXBlcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentDispatcherMultipleConsumersTest#readConflationDispatcherTypes",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersTest.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersTest#readConflationDispatcherTypes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3Qjc2V0dXA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#setup",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#setup" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjbW9ja1NlbmRNZXNzYWdlcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#mockSendMessages",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#mockSendMessages" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjY3JlYXRlTW9ja0NvbnN1bWVy",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#createMockConsumer",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#createMockConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjY2xlYW51cA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#cleanup",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#cleanup" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdEVudHJ5QnVja2V0RGlzcGF0Y2hOZXZlck1hdGNoZXNDbGFzc2ljUG9saWN5",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testEntryBucketDispatchNeverMatchesClassicPolicy",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testEntryBucketDispatchNeverMatchesClassicPolicy" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdE5vcm1hbFJlYWRJc0JvdW5kZWRCeUtleVNoYXJlZExvb2tBaGVhZExpbWl0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testNormalReadIsBoundedByKeySharedLookAheadLimit",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testNormalReadIsBoundedByKeySharedLookAheadLimit" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdENvbnN1bWVyRmxvd1Jlc3VtZXNEaXNwYXRjaFdoZW5SZXBsYXlRdWV1ZUlzRnVsbA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testConsumerFlowResumesDispatchWhenReplayQueueIsFull",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testConsumerFlowResumesDispatchWhenReplayQueueIsFull" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdEFkZENvbnN1bWVyV2hlbkNsb3NlZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testAddConsumerWhenClosed",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testAddConsumerWhenClosed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdFNvcnRSZWNlbnRseUpvaW5lZENvbnN1bWVyc0lmTmVlZGVk",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testSortRecentlyJoinedConsumersIfNeeded",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testSortRecentlyJoinedConsumersIfNeeded" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdFNraXBTb3J0UmVjZW50bHlKb2luZWRDb25zdW1lcnNJZk5vdE5lZWRlZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testSkipSortRecentlyJoinedConsumersIfNotNeeded",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testSkipSortRecentlyJoinedConsumersIfNotNeeded" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdFNlbmRNYXJrZXJNZXNzYWdl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testSendMarkerMessage",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testSendMarkerMessage" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjY29weUVudHJpZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#copyEntries",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#copyEntries" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdFNlbmRNZXNzYWdl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testSendMessage",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testSendMessage" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdFNraXBSZWRlbGl2ZXJUZW1wb3JhbGx5",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testSkipRedeliverTemporally",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testSkipRedeliverTemporally" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjdGVzdE1lc3NhZ2VSZWRlbGl2ZXJ5",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testMessageRedelivery",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#testMessageRedelivery" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjZ2VuZXJhdGVLZXlGb3JDb25zdW1lcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#generateKeyForConsumer",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#generateKeyForConsumer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjY3JlYXRlRW50cnk",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#createEntry",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#createEntry" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApQZXJzaXN0ZW50U3RpY2t5S2V5RGlzcGF0Y2hlck11bHRpcGxlQ29uc3VtZXJzQ2xhc3NpY1Rlc3QjY3JlYXRlTWVzc2FnZQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove PersistentStickyKeyDispatcherMultipleConsumersClassicTest#createMessage",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#createMessage" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTaGFyZWREaXNwYXRjaGVyUGVybWl0QWNjb3VudGluZ1Rlc3QjZGlzcGF0Y2hlckltcGxlbWVudGF0aW9ucw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove SharedDispatcherPermitAccountingTest#dispatcherImplementations",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/SharedDispatcherPermitAccountingTest.java" ],
+  "symbols" : [ "SharedDispatcherPermitAccountingTest#dispatcherImplementations" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTaGFyZWREaXNwYXRjaGVyUGVybWl0QWNjb3VudGluZ1Rlc3QjY3JlYXRlVGVzdENvbnRleHQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove SharedDispatcherPermitAccountingTest#createTestContext",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/SharedDispatcherPermitAccountingTest.java" ],
+  "symbols" : [ "SharedDispatcherPermitAccountingTest#createTestContext" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApDb25zdW1lclN0YXRzVGVzdCNjbGFzc2ljQW5kU3Vic2NyaXB0aW9uVHlwZQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ConsumerStatsTest#classicAndSubscriptionType",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/stats/ConsumerStatsTest.java" ],
+  "symbols" : [ "ConsumerStatsTest#classicAndSubscriptionType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApLZXlTaGFyZWRTdWJzY3JpcHRpb25Ccm9rZXJDYWNoZVRlc3QjY3JlYXRlVGVzdEluc3RhbmNlcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove KeySharedSubscriptionBrokerCacheTest#createTestInstances",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionBrokerCacheTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionBrokerCacheTest#createTestInstances" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApLZXlTaGFyZWRTdWJzY3JpcHRpb25Ccm9rZXJDYWNoZVRlc3QjY3VycmVudEltcGxlbWVudGF0aW9uVHlwZQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove KeySharedSubscriptionBrokerCacheTest#currentImplementationType",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionBrokerCacheTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionBrokerCacheTest#currentImplementationType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApLZXlTaGFyZWRTdWJzY3JpcHRpb25EaXNhYmxlZEJyb2tlckNhY2hlVGVzdCNjcmVhdGVUZXN0SW5zdGFuY2Vz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove KeySharedSubscriptionDisabledBrokerCacheTest#createTestInstances",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionDisabledBrokerCacheTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionDisabledBrokerCacheTest#createTestInstances" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApLZXlTaGFyZWRTdWJzY3JpcHRpb25EaXNhYmxlZEJyb2tlckNhY2hlVGVzdCNjdXJyZW50SW1wbGVtZW50YXRpb25UeXBl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove KeySharedSubscriptionDisabledBrokerCacheTest#currentImplementationType",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionDisabledBrokerCacheTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionDisabledBrokerCacheTest#currentImplementationType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApLZXlTaGFyZWRTdWJzY3JpcHRpb25UZXN0I2NyZWF0ZVRlc3RJbnN0YW5jZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove KeySharedSubscriptionTest#createTestInstances",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#createTestInstances" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApLZXlTaGFyZWRTdWJzY3JpcHRpb25UZXN0I3ByZXBlbmRJbXBsZW1lbnRhdGlvblR5cGVUb0RhdGE",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove KeySharedSubscriptionTest#prependImplementationTypeToData",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#prependImplementationTypeToData" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApLZXlTaGFyZWRTdWJzY3JpcHRpb25UZXN0I2N1cnJlbnRJbXBsZW1lbnRhdGlvblR5cGU",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove KeySharedSubscriptionTest#currentImplementationType",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#currentImplementationType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApLZXlTaGFyZWRTdWJzY3JpcHRpb25NYXhVbmFja2VkTWVzc2FnZXNUZXN0I2NyZWF0ZVRlc3RJbnN0YW5jZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove KeySharedSubscriptionMaxUnackedMessagesTest#createTestInstances",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/impl/KeySharedSubscriptionMaxUnackedMessagesTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionMaxUnackedMessagesTest#createTestInstances" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApLZXlTaGFyZWRJbXBsZW1lbnRhdGlvblR5cGUjc2tpcElmQ2xhc3NpYw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove KeySharedImplementationType#skipIfClassic",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/tests/KeySharedImplementationType.java" ],
+  "symbols" : [ "KeySharedImplementationType#skipIfClassic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApLZXlTaGFyZWRJbXBsZW1lbnRhdGlvblR5cGUjcHJlcGVuZEltcGxlbWVudGF0aW9uVHlwZVRvRGF0YQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove KeySharedImplementationType#prependImplementationTypeToData",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/tests/KeySharedImplementationType.java" ],
+  "symbols" : [ "KeySharedImplementationType#prependImplementationTypeToData" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApLZXlTaGFyZWRJbXBsZW1lbnRhdGlvblR5cGUjZ2VuZXJhdGVUZXN0SW5zdGFuY2Vz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove KeySharedImplementationType#generateTestInstances",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/tests/KeySharedImplementationType.java" ],
+  "symbols" : [ "KeySharedImplementationType#generateTestInstances" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApDb25zdW1lclN0YXRzI2dldFJlYWRQb3NpdGlvbldoZW5Kb2luaW5n",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ConsumerStats#getReadPositionWhenJoining",
+  "files" : [ "pulsar-client-admin-api/src/main/java/org/apache/pulsar/common/policies/data/ConsumerStats.java" ],
+  "symbols" : [ "ConsumerStats#getReadPositionWhenJoining" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApDb25zdW1lclN0YXRzI2dldEtleUhhc2hSYW5nZXM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ConsumerStats#getKeyHashRanges",
+  "files" : [ "pulsar-client-admin-api/src/main/java/org/apache/pulsar/common/policies/data/ConsumerStats.java" ],
+  "symbols" : [ "ConsumerStats#getKeyHashRanges" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApTdWJzY3JpcHRpb25TdGF0cyNnZXRDb25zdW1lcnNBZnRlck1hcmtEZWxldGVQb3NpdGlvbg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove SubscriptionStats#getConsumersAfterMarkDeletePosition",
+  "files" : [ "pulsar-client-admin-api/src/main/java/org/apache/pulsar/common/policies/data/SubscriptionStats.java" ],
+  "symbols" : [ "SubscriptionStats#getConsumersAfterMarkDeletePosition" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApDb25zdW1lclN0YXRzSW1wbCNnZXRSZWFkUG9zaXRpb25XaGVuSm9pbmluZw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ConsumerStatsImpl#getReadPositionWhenJoining",
+  "files" : [ "pulsar-common/src/main/java/org/apache/pulsar/common/policies/data/stats/ConsumerStatsImpl.java" ],
+  "symbols" : [ "ConsumerStatsImpl#getReadPositionWhenJoining" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNZXNzYWdlUmVkZWxpdmVyeUNvbnRyb2xsZXJUZXN0I3Rlc3RDb250YWluc1N0aWNreUtleUhhc2g",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MessageRedeliveryControllerTest#testContainsStickyKeyHash",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/MessageRedeliveryControllerTest.java" ],
+  "symbols" : [ "MessageRedeliveryControllerTest#testContainsStickyKeyHash" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25zdW1lclN0YXRzVGVzdCNzaGFyZWRTdWJzY3JpcHRpb25UeXBlcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConsumerStatsTest#sharedSubscriptionTypes",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/stats/ConsumerStatsTest.java" ],
+  "symbols" : [ "ConsumerStatsTest#sharedSubscriptionTypes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1jb25mLnNldFN1YnNjcmlwdGlvblNoYXJlZFVzZUNsYXNzaWNQZXJzaXN0ZW50SW1wbGVtZW50YXRpb24KU2hhcmVkU3Vic2NyaXB0aW9uVW5hY2tlZE1lc3NhZ2VzQWNjb3VudGluZ1Rlc3QjZG9Jbml0Q29uZg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SharedSubscriptionUnackedMessagesAccountingTest#doInitConf: -conf.setSubscriptionSharedUseClassicPersistentImplementation",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/SharedSubscriptionUnackedMessagesAccountingTest.java" ],
+  "symbols" : [ "SharedSubscriptionUnackedMessagesAccountingTest#doInitConf", "-conf.setSubscriptionSharedUseClassicPersistentImplementation" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClNoYXJlZFN1YnNjcmlwdGlvblVuYWNrZWRNZXNzYWdlc0FjY291bnRpbmdUZXN0I3Rlc3RSZW1vdmluZ1NhbWVDb25zdW1lclR3aWNlRGViaXRzVW5hY2tlZE1lc3NhZ2VzT25jZQphcmd1bWVudHMgb2YgaXNJbnN0YW5jZU9mIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SharedSubscriptionUnackedMessagesAccountingTest#testRemovingSameConsumerTwiceDebitsUnackedMessagesOnce: arguments of isInstanceOf changed",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/SharedSubscriptionUnackedMessagesAccountingTest.java" ],
+  "symbols" : [ "SharedSubscriptionUnackedMessagesAccountingTest#testRemovingSameConsumerTwiceDebitsUnackedMessagesOnce", "arguments of isInstanceOf changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClNoYXJlZERpc3BhdGNoZXJQZXJtaXRBY2NvdW50aW5nVGVzdCNmbG93UmFjZURpc3BhdGNoZXJWYXJpYW50cwpyZXR1cm4gdmFsdWUgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SharedDispatcherPermitAccountingTest#flowRaceDispatcherVariants: return value changed",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/SharedDispatcherPermitAccountingTest.java" ],
+  "symbols" : [ "SharedDispatcherPermitAccountingTest#flowRaceDispatcherVariants", "return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1jb25mLnNldFN1YnNjcmlwdGlvbktleVNoYXJlZFVzZUNsYXNzaWNQZXJzaXN0ZW50SW1wbGVtZW50YXRpb24sIC1jb25mLnNldFN1YnNjcmlwdGlvblNoYXJlZFVzZUNsYXNzaWNQZXJzaXN0ZW50SW1wbGVtZW50YXRpb24KS2V5U2hhcmVkU3Vic2NyaXB0aW9uQnJva2VyQ2FjaGVUZXN0I2RvSW5pdENvbmY",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of KeySharedSubscriptionBrokerCacheTest#doInitConf: -conf.setSubscriptionKeySharedUseClassicPersistentImplementation, -conf.setSubscriptionSharedUseClassicPersistentImplementation",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionBrokerCacheTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionBrokerCacheTest#doInitConf", "-conf.setSubscriptionKeySharedUseClassicPersistentImplementation, -conf.setSubscriptionSharedUseClassicPersistentImplementation" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1jb25mLnNldFN1YnNjcmlwdGlvbktleVNoYXJlZFVzZUNsYXNzaWNQZXJzaXN0ZW50SW1wbGVtZW50YXRpb24sIC1jb25mLnNldFN1YnNjcmlwdGlvblNoYXJlZFVzZUNsYXNzaWNQZXJzaXN0ZW50SW1wbGVtZW50YXRpb24KS2V5U2hhcmVkU3Vic2NyaXB0aW9uRGlzYWJsZWRCcm9rZXJDYWNoZVRlc3Qjc2V0dXA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of KeySharedSubscriptionDisabledBrokerCacheTest#setup: -conf.setSubscriptionKeySharedUseClassicPersistentImplementation, -conf.setSubscriptionSharedUseClassicPersistentImplementation",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionDisabledBrokerCacheTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionDisabledBrokerCacheTest#setup", "-conf.setSubscriptionKeySharedUseClassicPersistentImplementation, -conf.setSubscriptionSharedUseClassicPersistentImplementation" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1wcmVwZW5kSW1wbGVtZW50YXRpb25UeXBlVG9EYXRhLCByZXR1cm4gdmFsdWUgY2hhbmdlZApLZXlTaGFyZWRTdWJzY3JpcHRpb25UZXN0I2JhdGNoUHJvdmlkZXI",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of KeySharedSubscriptionTest#batchProvider: -prependImplementationTypeToData, return value changed",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#batchProvider", "-prependImplementationTypeToData, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1wcmVwZW5kSW1wbGVtZW50YXRpb25UeXBlVG9EYXRhLCByZXR1cm4gdmFsdWUgY2hhbmdlZApLZXlTaGFyZWRTdWJzY3JpcHRpb25UZXN0I3BhcnRpdGlvbmVkUHJvdmlkZXI",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of KeySharedSubscriptionTest#partitionedProvider: -prependImplementationTypeToData, return value changed",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#partitionedProvider", "-prependImplementationTypeToData, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1wcmVwZW5kSW1wbGVtZW50YXRpb25UeXBlVG9EYXRhLCByZXR1cm4gdmFsdWUgY2hhbmdlZApLZXlTaGFyZWRTdWJzY3JpcHRpb25UZXN0I2RhdGFQcm92aWRlcg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of KeySharedSubscriptionTest#dataProvider: -prependImplementationTypeToData, return value changed",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#dataProvider", "-prependImplementationTypeToData, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1wcmVwZW5kSW1wbGVtZW50YXRpb25UeXBlVG9EYXRhLCByZXR1cm4gdmFsdWUgY2hhbmdlZApLZXlTaGFyZWRTdWJzY3JpcHRpb25UZXN0I3RvcGljRG9tYWluUHJvdmlkZXI",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of KeySharedSubscriptionTest#topicDomainProvider: -prependImplementationTypeToData, return value changed",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#topicDomainProvider", "-prependImplementationTypeToData, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1jb25mLnNldFN1YnNjcmlwdGlvbktleVNoYXJlZFVzZUNsYXNzaWNQZXJzaXN0ZW50SW1wbGVtZW50YXRpb24sIC1jb25mLnNldFN1YnNjcmlwdGlvblNoYXJlZFVzZUNsYXNzaWNQZXJzaXN0ZW50SW1wbGVtZW50YXRpb24KS2V5U2hhcmVkU3Vic2NyaXB0aW9uVGVzdCNzZXR1cA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of KeySharedSubscriptionTest#setup: -conf.setSubscriptionKeySharedUseClassicPersistentImplementation, -conf.setSubscriptionSharedUseClassicPersistentImplementation",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#setup", "-conf.setSubscriptionKeySharedUseClassicPersistentImplementation, -conf.setSubscriptionSharedUseClassicPersistentImplementation" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1wcmVwZW5kSW1wbGVtZW50YXRpb25UeXBlVG9EYXRhLCByZXR1cm4gdmFsdWUgY2hhbmdlZApLZXlTaGFyZWRTdWJzY3JpcHRpb25UZXN0I2FsbG93S2V5U2hhcmVkT3V0T2ZPcmRlcg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of KeySharedSubscriptionTest#allowKeySharedOutOfOrder: -prependImplementationTypeToData, return value changed",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#allowKeySharedOutOfOrder", "-prependImplementationTypeToData, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1jb25mLnNldFN1YnNjcmlwdGlvbktleVNoYXJlZFVzZUNsYXNzaWNQZXJzaXN0ZW50SW1wbGVtZW50YXRpb24sIC1jb25mLnNldFN1YnNjcmlwdGlvblNoYXJlZFVzZUNsYXNzaWNQZXJzaXN0ZW50SW1wbGVtZW50YXRpb24KS2V5U2hhcmVkU3Vic2NyaXB0aW9uTWF4VW5hY2tlZE1lc3NhZ2VzVGVzdCNzZXR1cA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of KeySharedSubscriptionMaxUnackedMessagesTest#setup: -conf.setSubscriptionKeySharedUseClassicPersistentImplementation, -conf.setSubscriptionSharedUseClassicPersistentImplementation",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/impl/KeySharedSubscriptionMaxUnackedMessagesTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionMaxUnackedMessagesTest#setup", "-conf.setSubscriptionKeySharedUseClassicPersistentImplementation, -conf.setSubscriptionSharedUseClassicPersistentImplementation" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1pbXBsZW1lbnRhdGlvblR5cGUucHJlcGVuZEltcGxlbWVudGF0aW9uVHlwZVRvRGF0YSwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKS2V5U2hhcmVkU3Vic2NyaXB0aW9uTWF4VW5hY2tlZE1lc3NhZ2VzVGVzdCNzdWJUeXBl",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of KeySharedSubscriptionMaxUnackedMessagesTest#subType: -implementationType.prependImplementationTypeToData, return value changed",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/impl/KeySharedSubscriptionMaxUnackedMessagesTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionMaxUnackedMessagesTest#subType", "-implementationType.prependImplementationTypeToData, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbnN1bWVyU3RhdHNJbXBsI2FkZApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConsumerStatsImpl#add: other statements changed",
+  "files" : [ "pulsar-common/src/main/java/org/apache/pulsar/common/policies/data/stats/ConsumerStatsImpl.java" ],
+  "symbols" : [ "ConsumerStatsImpl#add", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1jb25zdW1lcnNBZnRlck1hcmtEZWxldGVQb3NpdGlvbi5jbGVhcgpTdWJzY3JpcHRpb25TdGF0c0ltcGwjcmVzZXQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SubscriptionStatsImpl#reset: -consumersAfterMarkDeletePosition.clear",
+  "files" : [ "pulsar-common/src/main/java/org/apache/pulsar/common/policies/data/stats/SubscriptionStatsImpl.java" ],
+  "symbols" : [ "SubscriptionStatsImpl#reset", "-consumersAfterMarkDeletePosition.clear" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1jb25zdW1lcnNBZnRlck1hcmtEZWxldGVQb3NpdGlvbi5wdXRBbGwKU3Vic2NyaXB0aW9uU3RhdHNJbXBsI2FkZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SubscriptionStatsImpl#add: -consumersAfterMarkDeletePosition.putAll",
+  "files" : [ "pulsar-common/src/main/java/org/apache/pulsar/common/policies/data/stats/SubscriptionStatsImpl.java" ],
+  "symbols" : [ "SubscriptionStatsImpl#add", "-consumersAfterMarkDeletePosition.putAll" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFic3RyYWN0UHVsc2FyUHJvZmlsaW5nVGVzdCNiZWZvcmVTZXR1cENsdXN0ZXIKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of AbstractPulsarProfilingTest#beforeSetupCluster: other statements changed",
+  "files" : [ "tests/integration/src/test/java/org/apache/pulsar/tests/integration/profiling/AbstractPulsarProfilingTest.java" ],
+  "symbols" : [ "AbstractPulsarProfilingTest#beforeSetupCluster", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCituZXdQb3NpdGlvblRvU3RpY2t5S2V5SGFzaE1hcCwgK25ld0J1aWxkZXIsICtjb25jdXJyZW5jeUxldmVsLCArZXhwZWN0ZWRJdGVtcywgK2F1dG9TaHJpbmsg4oCmYW5kIDEgbW9yZQpNZXNzYWdlUmVkZWxpdmVyeUNvbnRyb2xsZXIjPGluaXQ-",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MessageRedeliveryController#<init>: +newPositionToStickyKeyHashMap, +newBuilder, +concurrencyLevel, +expectedItems, +autoShrink …and 1 more",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/MessageRedeliveryController.java" ],
+  "symbols" : [ "MessageRedeliveryController#<init>", "+newPositionToStickyKeyHashMap, +newBuilder, +concurrencyLevel, +expectedItems, +autoShrink …and 1 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnMjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of PersistentDispatcherMultipleConsumers#<init>: other statements changed",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumers.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumers#<init>", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnMjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of PersistentStickyKeyDispatcherMultipleConsumers#<init>: other statements changed",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumers.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumers#<init>", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClN1YnNjcmlwdGlvblN0YXRzSW1wbCM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SubscriptionStatsImpl#<init>: other statements changed",
+  "files" : [ "pulsar-common/src/main/java/org/apache/pulsar/common/policies/data/stats/SubscriptionStatsImpl.java" ],
+  "symbols" : [ "SubscriptionStatsImpl#<init>", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClNlcnZpY2VDb25maWd1cmF0aW9uI3N1YnNjcmlwdGlvbktleVNoYXJlZFVzZUNsYXNzaWNQZXJzaXN0ZW50SW1wbGVtZW50YXRpb24",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ServiceConfiguration#subscriptionKeySharedUseClassicPersistentImplementation",
+  "files" : [ "pulsar-broker-common/src/main/java/org/apache/pulsar/broker/ServiceConfiguration.java" ],
+  "symbols" : [ "ServiceConfiguration#subscriptionKeySharedUseClassicPersistentImplementation" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClNlcnZpY2VDb25maWd1cmF0aW9uI3N1YnNjcmlwdGlvblNoYXJlZFVzZUNsYXNzaWNQZXJzaXN0ZW50SW1wbGVtZW50YXRpb24",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ServiceConfiguration#subscriptionSharedUseClassicPersistentImplementation",
+  "files" : [ "pulsar-broker-common/src/main/java/org/apache/pulsar/broker/ServiceConfiguration.java" ],
+  "symbols" : [ "ServiceConfiguration#subscriptionSharedUseClassicPersistentImplementation" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVyI3JlYWRQb3NpdGlvbldoZW5Kb2luaW5n",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field Consumer#readPositionWhenJoining",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/Consumer.java" ],
+  "symbols" : [ "Consumer#readPositionWhenJoining" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk1lc3NhZ2VSZWRlbGl2ZXJ5Q29udHJvbGxlciNpc0NsYXNzaWNEaXNwYXRjaGVy",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field MessageRedeliveryController#isClassicDispatcher",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/MessageRedeliveryController.java" ],
+  "symbols" : [ "MessageRedeliveryController#isClassicDispatcher" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI0xPRw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#LOG",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#LOG" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2xvZw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#log",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#log" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI3RvcGlj",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#topic",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#topic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2N1cnNvcg",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#cursor",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#cursor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2xhc3RJbmRpdmlkdWFsRGVsZXRlZFJhbmdlRnJvbUN1cnNvclJlY292ZXJ5",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#lastIndividualDeletedRangeFromCursorRecovery",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#lastIndividualDeletedRangeFromCursorRecovery" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2Nsb3NlRnV0dXJl",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#closeFuture",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#closeFuture" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI3JlZGVsaXZlcnlNZXNzYWdlcw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#redeliveryMessages",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#redeliveryMessages" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI3JlZGVsaXZlcnlUcmFja2Vy",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#redeliveryTracker",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#redeliveryTracker" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2RlbGF5ZWREZWxpdmVyeVRyYWNrZXI",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#delayedDeliveryTracker",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#delayedDeliveryTracker" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2hhdmVQZW5kaW5nUmVhZA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#havePendingRead",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#havePendingRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2hhdmVQZW5kaW5nUmVwbGF5UmVhZA",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#havePendingReplayRead",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#havePendingReplayRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI21pblJlcGxheWVkUG9zaXRpb24",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#minReplayedPosition",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#minReplayedPosition" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI3Nob3VsZFJld2luZEJlZm9yZVJlYWRpbmdPclJlcGxheWluZw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#shouldRewindBeforeReadingOrReplaying",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#shouldRewindBeforeReadingOrReplaying" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI25hbWU",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#name",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#name" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI3NlbmRJblByb2dyZXNz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#sendInProgress",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#sendInProgress" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI1RPVEFMX0FWQUlMQUJMRV9QRVJNSVRTX1VQREFURVI",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#TOTAL_AVAILABLE_PERMITS_UPDATER",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#TOTAL_AVAILABLE_PERMITS_UPDATER" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI3RvdGFsQXZhaWxhYmxlUGVybWl0cw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#totalAvailablePermits",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#totalAvailablePermits" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI3JlYWRCYXRjaFNpemU",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#readBatchSize",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#readBatchSize" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI3JlYWRGYWlsdXJlQmFja29mZg",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#readFailureBackoff",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#readFailureBackoff" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI1RPVEFMX1VOQUNLRURfTUVTU0FHRVNfVVBEQVRFUg",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#TOTAL_UNACKED_MESSAGES_UPDATER",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#TOTAL_UNACKED_MESSAGES_UPDATER" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI3RvdGFsVW5hY2tlZE1lc3NhZ2Vz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#totalUnackedMessages",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#totalUnackedMessages" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI0JMT0NLRURfRElTUEFUQ0hFUl9PTl9DVVJTT1JfREFUQV9DQU5fTk9UX0ZVTExZX1BFUlNJU1RfVVBEQVRFUg",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#BLOCKED_DISPATCHER_ON_CURSOR_DATA_CAN_NOT_FULLY_PERSIST_UPDATER",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#BLOCKED_DISPATCHER_ON_CURSOR_DATA_CAN_NOT_FULLY_PERSIST_UPDATER" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2Jsb2NrZWREaXNwYXRjaGVyT25DdXJzb3JEYXRhQ2FuTm90RnVsbHlQZXJzaXN0",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#blockedDispatcherOnCursorDataCanNotFullyPersist",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#blockedDispatcherOnCursorDataCanNotFullyPersist" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2Jsb2NrZWREaXNwYXRjaGVyT25VbmFja2VkTXNncw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#blockedDispatcherOnUnackedMsgs",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#blockedDispatcherOnUnackedMsgs" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI0JMT0NLRURfRElTUEFUQ0hFUl9PTl9VTkFDS01TR19VUERBVEVS",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#BLOCKED_DISPATCHER_ON_UNACKMSG_UPDATER",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#BLOCKED_DISPATCHER_ON_UNACKMSG_UPDATER" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2Rpc3BhdGNoUmF0ZUxpbWl0ZXI",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#dispatchRateLimiter",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#dispatchRateLimiter" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2lzUmVzY2hlZHVsZVJlYWRJblByb2dyZXNz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#isRescheduleReadInProgress",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#isRescheduleReadInProgress" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2Rpc3BhdGNoTWVzc2FnZXNUaHJlYWQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#dispatchMessagesThread",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#dispatchMessagesThread" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnREaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2Fzc2lnbm9y",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentDispatcherMultipleConsumersClassic#assignor",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic#assignor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI0xPRw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassic#LOG",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#LOG" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2xvZw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassic#log",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#log" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2FsbG93T3V0T2ZPcmRlckRlbGl2ZXJ5",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassic#allowOutOfOrderDelivery",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#allowOutOfOrderDelivery" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI3NlbGVjdG9y",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassic#selector",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#selector" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2lzRGlzcGF0Y2hlclN0dWNrT25SZXBsYXlz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassic#isDispatcherStuckOnReplays",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#isDispatcherStuckOnReplays" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2tleVNoYXJlZE1vZGU",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassic#keySharedMode",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#keySharedMode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI3JlY2VudGx5Sm9pbmVkQ29uc3VtZXJz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassic#recentlyJoinedConsumers",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#recentlyJoinedConsumers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI3NvcnRSZWNlbnRseUpvaW5lZENvbnN1bWVyc0lmTmVlZGVk",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassic#sortRecentlyJoinedConsumersIfNeeded",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#sortRecentlyJoinedConsumersIfNeeded" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2xvY2FsR3JvdXBlZEVudHJpZXM",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassic#localGroupedEntries",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#localGroupedEntries" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljI2xvY2FsR3JvdXBlZFBvc2l0aW9ucw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassic#localGroupedPositions",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassic#localGroupedPositions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClNoYXJlZFN1YnNjcmlwdGlvblVuYWNrZWRNZXNzYWdlc0FjY291bnRpbmdUZXN0I2NsYXNzaWM",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field SharedSubscriptionUnackedMessagesAccountingTest#classic",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/SharedSubscriptionUnackedMessagesAccountingTest.java" ],
+  "symbols" : [ "SharedSubscriptionUnackedMessagesAccountingTest#classic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdCNwdWxzYXJNb2Nr",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassicTest#pulsarMock",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#pulsarMock" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdCNicm9rZXJNb2Nr",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassicTest#brokerMock",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#brokerMock" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdCNjdXJzb3JNb2Nr",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassicTest#cursorMock",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#cursorMock" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdCNjb25zdW1lck1vY2s",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassicTest#consumerMock",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#consumerMock" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdCN0b3BpY01vY2s",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassicTest#topicMock",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#topicMock" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdCNzdWJzY3JpcHRpb25Nb2Nr",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassicTest#subscriptionMock",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#subscriptionMock" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdCNjb25maWdNb2Nr",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassicTest#configMock",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#configMock" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdCNzdWNjZWVkZWRGdXR1cmU",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassicTest#succeededFuture",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#succeededFuture" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdCNvcmRlcmVkRXhlY3V0b3I",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassicTest#orderedExecutor",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#orderedExecutor" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdCNwZXJzaXN0ZW50RGlzcGF0Y2hlcg",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassicTest#persistentDispatcher",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#persistentDispatcher" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdCN0b3BpY05hbWU",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassicTest#topicName",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#topicName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdCNzdWJzY3JpcHRpb25OYW1l",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassicTest#subscriptionName",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#subscriptionName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClBlcnNpc3RlbnRTdGlja3lLZXlEaXNwYXRjaGVyTXVsdGlwbGVDb25zdW1lcnNDbGFzc2ljVGVzdCNjb25zdW1lck1vY2tBdmFpbGFibGVQZXJtaXRz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field PersistentStickyKeyDispatcherMultipleConsumersClassicTest#consumerMockAvailablePermits",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/broker/service/persistent/PersistentStickyKeyDispatcherMultipleConsumersClassicTest.java" ],
+  "symbols" : [ "PersistentStickyKeyDispatcherMultipleConsumersClassicTest#consumerMockAvailablePermits" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECktleVNoYXJlZFN1YnNjcmlwdGlvbkJyb2tlckNhY2hlVGVzdCNpbXBsZW1lbnRhdGlvblR5cGU",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field KeySharedSubscriptionBrokerCacheTest#implementationType",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionBrokerCacheTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionBrokerCacheTest#implementationType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECktleVNoYXJlZFN1YnNjcmlwdGlvbkRpc2FibGVkQnJva2VyQ2FjaGVUZXN0I2ltcGxlbWVudGF0aW9uVHlwZQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field KeySharedSubscriptionDisabledBrokerCacheTest#implementationType",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionDisabledBrokerCacheTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionDisabledBrokerCacheTest#implementationType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECktleVNoYXJlZFN1YnNjcmlwdGlvblRlc3QjaW1wbGVtZW50YXRpb25UeXBl",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field KeySharedSubscriptionTest#implementationType",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/api/KeySharedSubscriptionTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionTest#implementationType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECktleVNoYXJlZFN1YnNjcmlwdGlvbk1heFVuYWNrZWRNZXNzYWdlc1Rlc3QjaW1wbGVtZW50YXRpb25UeXBl",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field KeySharedSubscriptionMaxUnackedMessagesTest#implementationType",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/client/impl/KeySharedSubscriptionMaxUnackedMessagesTest.java" ],
+  "symbols" : [ "KeySharedSubscriptionMaxUnackedMessagesTest#implementationType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECktleVNoYXJlZEltcGxlbWVudGF0aW9uVHlwZSNERUZBVUxU",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field KeySharedImplementationType#DEFAULT",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/tests/KeySharedImplementationType.java" ],
+  "symbols" : [ "KeySharedImplementationType#DEFAULT" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECktleVNoYXJlZEltcGxlbWVudGF0aW9uVHlwZSNjbGFzc2lj",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field KeySharedImplementationType#classic",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/tests/KeySharedImplementationType.java" ],
+  "symbols" : [ "KeySharedImplementationType#classic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVyU3RhdHNJbXBsI3JlYWRQb3NpdGlvbldoZW5Kb2luaW5n",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ConsumerStatsImpl#readPositionWhenJoining",
+  "files" : [ "pulsar-common/src/main/java/org/apache/pulsar/common/policies/data/stats/ConsumerStatsImpl.java" ],
+  "symbols" : [ "ConsumerStatsImpl#readPositionWhenJoining" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkNvbnN1bWVyU3RhdHNJbXBsI2tleUhhc2hSYW5nZXM",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ConsumerStatsImpl#keyHashRanges",
+  "files" : [ "pulsar-common/src/main/java/org/apache/pulsar/common/policies/data/stats/ConsumerStatsImpl.java" ],
+  "symbols" : [ "ConsumerStatsImpl#keyHashRanges" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClN1YnNjcmlwdGlvblN0YXRzSW1wbCNjb25zdW1lcnNBZnRlck1hcmtEZWxldGVQb3NpdGlvbg",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field SubscriptionStatsImpl#consumersAfterMarkDeletePosition",
+  "files" : [ "pulsar-common/src/main/java/org/apache/pulsar/common/policies/data/stats/SubscriptionStatsImpl.java" ],
+  "symbols" : [ "SubscriptionStatsImpl#consumersAfterMarkDeletePosition" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0VOVU1fQ09OU1RBTlQKUGVyc2lzdGVudERpc3BhdGNoZXJNdWx0aXBsZUNvbnN1bWVyc0NsYXNzaWMuUmVhZFR5cGUjTm9ybWFs",
+  "kind" : "REMOVE_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Remove enum constant PersistentDispatcherMultipleConsumersClassic.ReadType#Normal",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic.ReadType#Normal" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0VOVU1fQ09OU1RBTlQKUGVyc2lzdGVudERpc3BhdGNoZXJNdWx0aXBsZUNvbnN1bWVyc0NsYXNzaWMuUmVhZFR5cGUjUmVwbGF5",
+  "kind" : "REMOVE_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Remove enum constant PersistentDispatcherMultipleConsumersClassic.ReadType#Replay",
+  "files" : [ "pulsar-broker/src/main/java/org/apache/pulsar/broker/service/persistent/PersistentDispatcherMultipleConsumersClassic.java" ],
+  "symbols" : [ "PersistentDispatcherMultipleConsumersClassic.ReadType#Replay" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0VOVU1fQ09OU1RBTlQKS2V5U2hhcmVkSW1wbGVtZW50YXRpb25UeXBlI1BJUDM3OQ",
+  "kind" : "REMOVE_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Remove enum constant KeySharedImplementationType#PIP379",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/tests/KeySharedImplementationType.java" ],
+  "symbols" : [ "KeySharedImplementationType#PIP379" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "UkVNT1ZFX0VOVU1fQ09OU1RBTlQKS2V5U2hhcmVkSW1wbGVtZW50YXRpb25UeXBlI0NsYXNzaWM",
+  "kind" : "REMOVE_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Remove enum constant KeySharedImplementationType#Classic",
+  "files" : [ "pulsar-broker/src/test/java/org/apache/pulsar/tests/KeySharedImplementationType.java" ],
+  "symbols" : [ "KeySharedImplementationType#Classic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

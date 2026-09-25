@@ -1,0 +1,13 @@
+[ {
+  "description" : "Add PulsarClient#getTransactionCoordinatorClient",
+  "entity" : "PulsarClient"
+}, {
+  "description" : "Add PulsarClientImpl#getTransactionCoordinatorClient",
+  "entity" : "PulsarClientImpl"
+}, {
+  "description" : "Modify body of TransactionImpl#<init>: +client.getTransactionCoordinatorClient, -client.getTcClient",
+  "entity" : "TransactionImpl"
+}, {
+  "description" : "Change type of field TransactionImpl#tcClient: TransactionCoordinatorClientImpl -> TransactionCoordinatorClient",
+  "entity" : "TransactionImpl"
+} ]

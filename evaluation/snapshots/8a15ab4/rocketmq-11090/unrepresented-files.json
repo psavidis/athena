@@ -1,0 +1,12 @@
+{
+  "changedFileCount" : 18,
+  "representedFileCount" : 17,
+  "files" : [ {
+    "path" : "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageService.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 1,
+    "hunkCount" : 1,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  } ]
+}

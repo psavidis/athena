@@ -1,0 +1,50 @@
+diff --git a/src/main/java/org/apache/commons/lang3/math/Fraction.java b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+index 3ba548fac87..a57845dd2bb 100644
+--- a/src/main/java/org/apache/commons/lang3/math/Fraction.java
++++ b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+@@ -328,8 +328,8 @@ public static Fraction getReducedFraction(int numerator, int denominator) {
+         if (numerator == 0) {
+             return ZERO; // normalize zero.
+         }
+-        // allow 2^k/-2^31 as a valid fraction (where k>0)
+-        if (denominator == Integer.MIN_VALUE && (numerator & 1) == 0) {
++        // Reduce common powers of two before sign normalization to avoid negating Integer.MIN_VALUE.
++        while ((numerator & 1) == 0 && (denominator & 1) == 0) {
+             numerator /= 2;
+             denominator /= 2;
+         }
+diff --git a/src/test/java/org/apache/commons/lang3/math/FractionTest.java b/src/test/java/org/apache/commons/lang3/math/FractionTest.java
+index 7affb71cd67..aac15b7828c 100644
+--- a/src/test/java/org/apache/commons/lang3/math/FractionTest.java
++++ b/src/test/java/org/apache/commons/lang3/math/FractionTest.java
+@@ -1114,6 +1114,30 @@ void testReducedFactory_int_int() {
+         assertEquals(1, f.getDenominator());
+     }
+ 
++    @Test
++    void testReducedFactoryIntegerMinValue() {
++        Fraction f = Fraction.getReducedFraction(Integer.MIN_VALUE, -2);
++        assertEquals(1073741824, f.getNumerator());
++        assertEquals(1, f.getDenominator());
++
++        f = Fraction.getReducedFraction(Integer.MIN_VALUE, -6);
++        assertEquals(1073741824, f.getNumerator());
++        assertEquals(3, f.getDenominator());
++
++        f = Fraction.getReducedFraction(Integer.MIN_VALUE, Integer.MIN_VALUE);
++        assertEquals(1, f.getNumerator());
++        assertEquals(1, f.getDenominator());
++
++        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(Integer.MIN_VALUE, -1));
++        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(Integer.MIN_VALUE, -3));
++
++        f = Fraction.getReducedFraction(-2, Integer.MIN_VALUE);
++        assertEquals(1, f.getNumerator());
++        assertEquals(1073741824, f.getDenominator());
++
++        assertThrows(ArithmeticException.class, () -> Fraction.getReducedFraction(-7, Integer.MIN_VALUE));
++    }
++
+     @Test
+     void testSubtract() {
+         Fraction f;

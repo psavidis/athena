@@ -1,0 +1,107 @@
+{
+  "broker" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private void initLagAndDlqMetrics() {\n         if (!brokerConfig.isEnableLagAndDlqMetrics()) {\n             return;\n         }\n \n         consumerLagMessages = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_LAG_MESSAGES)\n             .setDescription(\"Consumer lag messages\")\n             .ofLongs()\n             .buildWithCallback(measurement -> {\n-                consumerLagCalculator.calculateLag(result ->\n-                    measurement.record(result.lag, buildLagAttributes(result))\n-                );\n+                consumerLagCalculator.calculateLag(result -> {\n+                    if (shouldRecordValue(result.lag, 0)) {\n+                        measurement.record(result.lag, buildLagAttributes(result));\n+                    }\n+                });\n \n-                liteConsumerLagCalculator.calculateLiteLagCount(result ->\n-                    measurement.record(result.lag, buildLagAttributes(result))\n-                );\n+                liteConsumerLagCalculator.calculateLiteLagCount(result -> {\n+                    if (shouldRecordValue(result.lag, 0)) {\n+                        measurement.record(result.lag, buildLagAttributes(result));\n+                    }\n+                });\n             });\n \n         consumerLagLatency = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_LAG_LATENCY)\n             .setDescription(\"Consumer lag time\")\n             .setUnit(\"milliseconds\")\n             .ofLongs()\n             .buildWithCallback(measurement -> {\n-                consumerLagCalculator.calculateLag(lagResult ->\n-                    measurement.record(lagResult.getLagLatency(), buildLagAttributes(lagResult)));\n+                consumerLagCalculator.calculateLag(lagResult -> {\n+                    if (shouldRecordValue(lagResult.getLagLatency(), 0)) {\n+                        measurement.record(lagResult.getLagLatency(), buildLagAttributes(lagResult));\n+                    }\n+                });\n \n-                liteConsumerLagCalculator.calculateLiteLagLatency(lagResult ->\n-                    measurement.record(lagResult.getLagLatency(), buildLagAttributes(lagResult)));\n+                liteConsumerLagCalculator.calculateLiteLagLatency(lagResult -> {\n+                    if (shouldRecordValue(lagResult.getLagLatency(), 0)) {\n+                        measurement.record(lagResult.getLagLatency(), buildLagAttributes(lagResult));\n+                    }\n+                });\n             });\n \n         consumerInflightMessages = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_INFLIGHT_MESSAGES)\n             .setDescription(\"Consumer inflight messages\")\n             .ofLongs()\n             .buildWithCallback(measurement ->\n-                consumerLagCalculator.calculateInflight(result -> measurement.record(result.inFlight, buildLagAttributes(result))));\n+                consumerLagCalculator.calculateInflight(result -> {\n+                    if (shouldRecordValue(result.inFlight, 0)) {\n+                        measurement.record(result.inFlight, buildLagAttributes(result));\n+                    }\n+                }));\n \n         consumerQueueingLatency = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_QUEUEING_LATENCY)\n             .setDescription(\"Consumer queueing time\")\n             .setUnit(\"milliseconds\")\n             .ofLongs()\n             .buildWithCallback(measurement -> consumerLagCalculator.calculateInflight(result -> {\n                 long latency = 0;\n                 long curTimeStamp = System.currentTimeMillis();\n                 if (result.earliestUnPulledTimestamp != 0) {\n                     latency = curTimeStamp - result.earliestUnPulledTimestamp;\n                 }\n-                measurement.record(latency, buildLagAttributes(result));\n+                if (shouldRecordValue(latency, 0)) {\n+                    measurement.record(latency, buildLagAttributes(result));\n+                }\n             }));\n \n         consumerReadyMessages = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_READY_MESSAGES)\n             .setDescription(\"Consumer ready messages\")\n             .ofLongs()\n             .buildWithCallback(measurement -> {\n-                consumerLagCalculator.calculateAvailable(result ->\n-                    measurement.record(result.available, buildLagAttributes(result)));\n+                consumerLagCalculator.calculateAvailable(result -> {\n+                    if (shouldRecordValue(result.available, 0)) {\n+                        measurement.record(result.available, buildLagAttributes(result));\n+                    }\n+                });\n \n                 // for lite, ready == lag\n-                liteConsumerLagCalculator.calculateLiteLagCount(result ->\n-                    measurement.record(result.lag, buildLagAttributes(result)));\n+                liteConsumerLagCalculator.calculateLiteLagCount(result -> {\n+                    if (shouldRecordValue(result.lag, 0)) {\n+                        measurement.record(result.lag, buildLagAttributes(result));\n+                    }\n+                });\n             });\n \n         sendToDlqMessages = brokerMeter.counterBuilder(COUNTER_CONSUMER_SEND_TO_DLQ_MESSAGES_TOTAL)\n             .setDescription(\"Consumer send to DLQ messages\")\n             .build();\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "broker/src/main/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManager.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@VisibleForTesting\n+    boolean shouldRecordValue(long currentValue, long minValue) {\n+        return !brokerConfig.isSuppressMinValueMetrics() || currentValue > minValue;\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "broker/src/main/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManager.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in BrokerMetricsManagerTest",
+      "conceptDescription" : "4 changes in test code of BrokerMetricsManagerTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+private BrokerMetricsManager createTestBrokerMetricsManager(BrokerConfig brokerConfig) {\n+        MessageStoreConfig messageStoreConfig = new MessageStoreConfig();\n+        String storePathRootDir = System.getProperty(\"java.io.tmpdir\") + File.separator + \"store-\"\n+                + UUID.randomUUID();\n+        messageStoreConfig.setStorePathRootDir(storePathRootDir);\n \n+        NettyServerConfig nettyServerConfig = new NettyServerConfig();\n+        nettyServerConfig.setListenPort(0);\n+\n+        BrokerController brokerController = new BrokerController(brokerConfig, nettyServerConfig,\n+                new NettyClientConfig(), messageStoreConfig);\n+\n+        return new BrokerMetricsManager(brokerController);\n+    }", "-\n+@Test\n+    public void testShouldRecordValueWhenSuppressDisabled() {\n+        BrokerConfig brokerConfig = new BrokerConfig();\n+        brokerConfig.setSuppressMinValueMetrics(false);\n+        BrokerMetricsManager metricsManager = createTestBrokerMetricsManager(brokerConfig);\n+        // default behavior: all values are recorded regardless of minValue\n+        assertThat(metricsManager.shouldRecordValue(0, 0)).isTrue();\n+        assertThat(metricsManager.shouldRecordValue(100, 0)).isTrue();\n+    }", "-\n+@Test\n+    public void testShouldRecordValueWhenSuppressEnabled() {\n+        BrokerConfig brokerConfig = new BrokerConfig();\n+        brokerConfig.setSuppressMinValueMetrics(true);\n+        BrokerMetricsManager metricsManager = createTestBrokerMetricsManager(brokerConfig);\n+        // values not greater than minValue are suppressed, greater ones are recorded\n+        assertThat(metricsManager.shouldRecordValue(0, 0)).isFalse();\n+        assertThat(metricsManager.shouldRecordValue(100, 0)).isTrue();\n+        assertThat(metricsManager.shouldRecordValue(1000, 1000)).isFalse();\n+        assertThat(metricsManager.shouldRecordValue(1001, 1000)).isTrue();\n+    }", " private BrokerMetricsManager createTestBrokerMetricsManager() {\n-        MessageStoreConfig messageStoreConfig = new MessageStoreConfig();\n-        String storePathRootDir = System.getProperty(\"java.io.tmpdir\") + File.separator + \"store-\"\n-                + UUID.randomUUID();\n-        messageStoreConfig.setStorePathRootDir(storePathRootDir);\n-        BrokerConfig brokerConfig = new BrokerConfig();\n-\n-        NettyServerConfig nettyServerConfig = new NettyServerConfig();\n-        nettyServerConfig.setListenPort(0);\n-\n-        BrokerController brokerController = new BrokerController(brokerConfig, nettyServerConfig,\n-                new NettyClientConfig(), messageStoreConfig);\n-\n-        return new BrokerMetricsManager(brokerController);\n+        return createTestBrokerMetricsManager(new BrokerConfig());\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "broker/src/test/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManagerTest.java" ],
+      "groupedMoveCount" : 4
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " private void initLagAndDlqMetrics() {\n         if (!brokerConfig.isEnableLagAndDlqMetrics()) {\n             return;\n         }\n \n         consumerLagMessages = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_LAG_MESSAGES)\n             .setDescription(\"Consumer lag messages\")\n             .ofLongs()\n             .buildWithCallback(measurement -> {\n-                consumerLagCalculator.calculateLag(result ->\n-                    measurement.record(result.lag, buildLagAttributes(result))\n-                );\n+                consumerLagCalculator.calculateLag(result -> {\n+                    if (shouldRecordValue(result.lag, 0)) {\n+                        measurement.record(result.lag, buildLagAttributes(result));\n+                    }\n+                });\n \n-                liteConsumerLagCalculator.calculateLiteLagCount(result ->\n-                    measurement.record(result.lag, buildLagAttributes(result))\n-                );\n+                liteConsumerLagCalculator.calculateLiteLagCount(result -> {\n+                    if (shouldRecordValue(result.lag, 0)) {\n+                        measurement.record(result.lag, buildLagAttributes(result));\n+                    }\n+                });\n             });\n \n         consumerLagLatency = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_LAG_LATENCY)\n             .setDescription(\"Consumer lag time\")\n             .setUnit(\"milliseconds\")\n             .ofLongs()\n             .buildWithCallback(measurement -> {\n-                consumerLagCalculator.calculateLag(lagResult ->\n-                    measurement.record(lagResult.getLagLatency(), buildLagAttributes(lagResult)));\n+                consumerLagCalculator.calculateLag(lagResult -> {\n+                    if (shouldRecordValue(lagResult.getLagLatency(), 0)) {\n+                        measurement.record(lagResult.getLagLatency(), buildLagAttributes(lagResult));\n+                    }\n+                });\n \n-                liteConsumerLagCalculator.calculateLiteLagLatency(lagResult ->\n-                    measurement.record(lagResult.getLagLatency(), buildLagAttributes(lagResult)));\n+                liteConsumerLagCalculator.calculateLiteLagLatency(lagResult -> {\n+                    if (shouldRecordValue(lagResult.getLagLatency(), 0)) {\n+                        measurement.record(lagResult.getLagLatency(), buildLagAttributes(lagResult));\n+                    }\n+                });\n             });\n \n         consumerInflightMessages = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_INFLIGHT_MESSAGES)\n             .setDescription(\"Consumer inflight messages\")\n             .ofLongs()\n             .buildWithCallback(measurement ->\n-                consumerLagCalculator.calculateInflight(result -> measurement.record(result.inFlight, buildLagAttributes(result))));\n+                consumerLagCalculator.calculateInflight(result -> {\n+                    if (shouldRecordValue(result.inFlight, 0)) {\n+                        measurement.record(result.inFlight, buildLagAttributes(result));\n+                    }\n+                }));\n \n         consumerQueueingLatency = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_QUEUEING_LATENCY)\n             .setDescription(\"Consumer queueing time\")\n             .setUnit(\"milliseconds\")\n             .ofLongs()\n             .buildWithCallback(measurement -> consumerLagCalculator.calculateInflight(result -> {\n                 long latency = 0;\n                 long curTimeStamp = System.currentTimeMillis();\n                 if (result.earliestUnPulledTimestamp != 0) {\n                     latency = curTimeStamp - result.earliestUnPulledTimestamp;\n                 }\n-                measurement.record(latency, buildLagAttributes(result));\n+                if (shouldRecordValue(latency, 0)) {\n+                    measurement.record(latency, buildLagAttributes(result));\n+                }\n             }));\n \n         consumerReadyMessages = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_READY_MESSAGES)\n             .setDescription(\"Consumer ready messages\")\n             .ofLongs()\n             .buildWithCallback(measurement -> {\n-                consumerLagCalculator.calculateAvailable(result ->\n-                    measurement.record(result.available, buildLagAttributes(result)));\n+                consumerLagCalculator.calculateAvailable(result -> {\n+                    if (shouldRecordValue(result.available, 0)) {\n+                        measurement.record(result.available, buildLagAttributes(result));\n+                    }\n+                });\n \n                 // for lite, ready == lag\n-                liteConsumerLagCalculator.calculateLiteLagCount(result ->\n-                    measurement.record(result.lag, buildLagAttributes(result)));\n+                liteConsumerLagCalculator.calculateLiteLagCount(result -> {\n+                    if (shouldRecordValue(result.lag, 0)) {\n+                        measurement.record(result.lag, buildLagAttributes(result));\n+                    }\n+                });\n             });\n \n         sendToDlqMessages = brokerMeter.counterBuilder(COUNTER_CONSUMER_SEND_TO_DLQ_MESSAGES_TOTAL)\n             .setDescription(\"Consumer send to DLQ messages\")\n             .build();\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "broker/src/main/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManager.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+@VisibleForTesting\n+    boolean shouldRecordValue(long currentValue, long minValue) {\n+        return !brokerConfig.isSuppressMinValueMetrics() || currentValue > minValue;\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "broker/src/main/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManager.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "common" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public boolean isSuppressMinValueMetrics() {\n+        return suppressMinValueMetrics;\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public void setSuppressMinValueMetrics(boolean suppressMinValueMetrics) {\n+        this.suppressMinValueMetrics = suppressMinValueMetrics;\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private boolean suppressMinValueMetrics = false;" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+public boolean isSuppressMinValueMetrics() {\n+        return suppressMinValueMetrics;\n+    }", "-\n+public void setSuppressMinValueMetrics(boolean suppressMinValueMetrics) {\n+        this.suppressMinValueMetrics = suppressMinValueMetrics;\n+    }", "-\n+private boolean suppressMinValueMetrics = false;" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java" ],
+      "groupedMoveCount" : 3
+    } ]
+  }
+}

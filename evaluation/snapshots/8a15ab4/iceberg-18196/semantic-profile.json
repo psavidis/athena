@@ -1,0 +1,25 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @Override\n     public RowData convert(Object object) {\n       RowData sourceData = (RowData) object;\n-      GenericRowData targetData = new GenericRowData(fieldGetters.length);\n+      GenericRowData targetData = new GenericRowData(sourceData.getRowKind(), fieldGetters.length);\n       for (int i = 0; i < fieldGetters.length; i++) {\n         Object value = fieldGetters[i].getFieldOrNull(sourceData);\n         targetData.setField(i, dataConverters[i].convert(value));\n       }\n \n       return targetData;\n     }", " @Override\n     public RowData convert(Object object) {\n       RowData sourceData = (RowData) object;\n-      GenericRowData targetData = new GenericRowData(fieldGetters.length);\n+      GenericRowData targetData = new GenericRowData(sourceData.getRowKind(), fieldGetters.length);\n       for (int i = 0; i < fieldGetters.length; i++) {\n         Object value = fieldGetters[i].getFieldOrNull(sourceData);\n         targetData.setField(i, dataConverters[i].convert(value));\n       }\n \n       return targetData;\n     }", " @Override\n     public RowData convert(Object object) {\n       RowData sourceData = (RowData) object;\n-      GenericRowData targetData = new GenericRowData(fieldGetters.length);\n+      GenericRowData targetData = new GenericRowData(sourceData.getRowKind(), fieldGetters.length);\n       for (int i = 0; i < fieldGetters.length; i++) {\n         Object value = fieldGetters[i].getFieldOrNull(sourceData);\n         targetData.setField(i, dataConverters[i].convert(value));\n       }\n \n       return targetData;\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java", "flink/v2.1/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java", "flink/v2.2/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in TestRowDataConverter",
+    "conceptDescription" : "1 change in test code of TestRowDataConverter.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "+@Test\n+  void testPreservesRowKind() {\n+    RowData deleteRow = SimpleDataUtil.createRowData(1, \"a\");\n+    deleteRow.setRowKind(RowKind.DELETE);\n \n+    assertThat(convert(deleteRow, SCHEMA, SCHEMA2).getRowKind()).isEqualTo(RowKind.DELETE);\n+  }", "+@Test\n+  void testPreservesRowKind() {\n+    RowData deleteRow = SimpleDataUtil.createRowData(1, \"a\");\n+    deleteRow.setRowKind(RowKind.DELETE);\n \n+    assertThat(convert(deleteRow, SCHEMA, SCHEMA2).getRowKind()).isEqualTo(RowKind.DELETE);\n+  }", "+@Test\n+  void testPreservesRowKind() {\n+    RowData deleteRow = SimpleDataUtil.createRowData(1, \"a\");\n+    deleteRow.setRowKind(RowKind.DELETE);\n \n+    assertThat(convert(deleteRow, SCHEMA, SCHEMA2).getRowKind()).isEqualTo(RowKind.DELETE);\n+  }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "flink/v1.20/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java", "flink/v2.1/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java", "flink/v2.2/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java" ],
+    "groupedMoveCount" : 1
+  } ]
+}

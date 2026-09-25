@@ -1,0 +1,72 @@
+diff --git a/jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/HttpStreamOverFCGI.java b/jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/HttpStreamOverFCGI.java
+index 575fdd44d912..d0a7213fa16b 100644
+--- a/jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/HttpStreamOverFCGI.java
++++ b/jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/HttpStreamOverFCGI.java
+@@ -103,17 +103,15 @@ else if (FCGI.Headers.HTTPS.equalsIgnoreCase(name))
+             processField(field);
+     }
+ 
+-    public void onHeaders()
++    public Runnable onHeaders()
+     {
+         String pathQuery = URIUtil.addPathQuery(_path, _query);
+         HttpScheme scheme = StringUtil.isEmpty(_secure) ? HttpScheme.HTTP : HttpScheme.HTTPS;
+         MetaData.Request request = new MetaData.Request(_connection.getBeginNanoTime(), _method, scheme.asString(), hostPort, pathQuery, HttpVersion.fromString(_version), _headers, -1);
+         Runnable task = _httpChannel.onRequest(request);
+         _allHeaders.forEach(field -> _httpChannel.getRequest().setAttribute(field.getName(), field.getValue()));
+-        // TODO: here we just execute the task.
+-        //  However, we should really return all the way back to onFillable()
+-        //  and feed the Runnable to an ExecutionStrategy.
+-        execute(task);
++        // Return the task to dispatch it after ServerParser.parse() has returned.
++        return task;
+     }
+ 
+     private void processField(HttpField field)
+@@ -358,11 +356,6 @@ public boolean onIdleTimeout(TimeoutException timeout)
+         return !handlingRequest;
+     }
+ 
+-    private void execute(Runnable task)
+-    {
+-        _connection.getConnector().getExecutor().execute(task);
+-    }
+-
+     private class DemandCallback implements Callback
+     {
+         @Override
+diff --git a/jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnection.java b/jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnection.java
+index b0460dd7c629..faf3bb44ac21 100644
+--- a/jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnection.java
++++ b/jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnection.java
+@@ -59,6 +59,7 @@ public class ServerFCGIConnection extends AbstractMetaDataConnection implements
+     private boolean useOutputDirectByteBuffers;
+     private RetainableByteBuffer inputBuffer;
+     private HttpStreamOverFCGI stream;
++    private Runnable onRequest;
+ 
+     public ServerFCGIConnection(Connector connector, EndPoint endPoint, HttpConfiguration configuration, boolean sendStatus200)
+     {
+@@ -191,6 +192,10 @@ public void onFillable()
+                     {
+                         if (stream == null && inputBuffer.isEmpty())
+                             releaseInputBuffer();
++                        Runnable task = onRequest;
++                        onRequest = null;
++                        if (task != null)
++                            getExecutor().execute(task);
+                         return;
+                     }
+                 }
+@@ -359,9 +364,8 @@ public boolean onHeaders(int request)
+                 LOG.debug("Request {} headers on {}", request, stream);
+             if (stream != null)
+             {
+-                stream.onHeaders();
+-                // We have dispatched to the application,
+-                // so we must stop the fill & parse loop.
++                onRequest = stream.onHeaders();
++                // Return to onFillable() before dispatching to the application.
+                 return true;
+             }
+             return false;

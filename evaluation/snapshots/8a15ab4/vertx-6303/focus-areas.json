@@ -1,0 +1,4 @@
+[ {
+  "entity" : "CleanableObject",
+  "description" : "Modify body of CleanableObject#shutdown: +succeededFuture, return value changed"
+} ]

@@ -1,0 +1,82 @@
+diff --git a/spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java b/spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java
+index 279e75b0ebf9..23052d7498be 100644
+--- a/spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java
++++ b/spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java
+@@ -199,11 +199,15 @@ public void clear() {
+ 	}
+ 
+ 	/*
+-	 * Transition the node to the {@code removed} state and decrement the current size of the cache.
++	 * Transition the node to the {@code removed} state and decrement the
++	 * current size of the cache, unless the node has already been removed.
+ 	 */
+ 	private void markAsRemoved(Node<K, V> node) {
+ 		for (; ; ) {
+ 			CacheEntry<V> current = node.get();
++			if (current.state == CacheEntryState.REMOVED) {
++				return;
++			}
+ 			CacheEntry<V> removed = new CacheEntry<>(current.value, CacheEntryState.REMOVED);
+ 			if (node.compareAndSet(current, removed)) {
+ 				this.currentSize.lazySet(this.currentSize.get() - 1);
+diff --git a/spring-core/src/test/java/org/springframework/util/ConcurrentLruCacheTests.java b/spring-core/src/test/java/org/springframework/util/ConcurrentLruCacheTests.java
+index 784bc97f3763..b4dfadf08e0d 100644
+--- a/spring-core/src/test/java/org/springframework/util/ConcurrentLruCacheTests.java
++++ b/spring-core/src/test/java/org/springframework/util/ConcurrentLruCacheTests.java
+@@ -16,6 +16,10 @@
+ 
+ package org.springframework.util;
+ 
++import java.util.concurrent.atomic.AtomicBoolean;
++import java.util.concurrent.atomic.AtomicInteger;
++import java.util.concurrent.atomic.AtomicReference;
++
+ import org.junit.jupiter.api.Test;
+ 
+ import static org.assertj.core.api.Assertions.assertThat;
+@@ -108,4 +112,45 @@ void clearAndSize() {
+ 		assertThat(this.cache.contains("k3")).isTrue();
+ 	}
+ 
++	@Test
++	void removeRacingWithEvictionDoesNotExceedCapacity() throws Exception {
++		ConcurrentLruCache<Integer, String> cache = new ConcurrentLruCache<>(2, key -> "value" + key);
++		AtomicBoolean stop = new AtomicBoolean();
++		AtomicInteger removals = new AtomicInteger();
++		AtomicReference<Throwable> failure = new AtomicReference<>();
++		Thread remover = new Thread(() -> {
++			try {
++				while (!stop.get()) {
++					cache.get(0);
++					if (cache.remove(0)) {
++						removals.incrementAndGet();
++					}
++				}
++			}
++			catch (Throwable ex) {
++				failure.set(ex);
++			}
++		});
++		remover.start();
++		try {
++			for (int i = 1; i <= 50_000; i++) {
++				cache.get(i);
++			}
++		}
++		finally {
++			stop.set(true);
++			remover.join(5000);
++		}
++		int budget = 50_000;
++		int key = 100_000;
++		while (cache.size() > cache.capacity() && budget-- > 0) {
++			cache.get(key++);
++		}
++
++		assertThat(remover.isAlive()).isFalse();
++		assertThat(failure.get()).isNull();
++		assertThat(removals.get()).isGreaterThan(0);
++		assertThat(cache.size()).isLessThanOrEqualTo(cache.capacity());
++	}
++
+ }

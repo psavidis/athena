@@ -1,0 +1,1939 @@
+{
+  "prTitle" : "Reimplement shared servers using the shared resource feature",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 11,
+    "STRUCTURAL" : 71,
+    "UNKNOWN" : 12,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "UkVNT1ZFX0NMQVNTCk5ldFNlcnZlckltcGwuTmV0U29ja2V0SW5pdGlhbGl6ZXI",
+    "description" : "Remove class NetServerImpl.NetSocketInitializer",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0NMQVNTCk5ldFNlcnZlckltcGwuVGNwU2VydmVy",
+    "description" : "Add class NetServerImpl.TcpServer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX0NMQVNTCk5ldFNlcnZlckltcGwuQ2hhbm5lbEhhbmRsZXI",
+    "description" : "Add class NetServerImpl.ChannelHandler",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX01PRElGSUVSUworc3RhdGljClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVy",
+    "description" : "Change modifiers of QuicServerImpl.QuicDispatcher: +static",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_MODIFIERS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "Q0hBTkdFX01PRElGSUVSUworc3RhdGljClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVyLlNlcnZlclJlZ2lzdHJhdGlvbg",
+    "description" : "Change modifiers of QuicServerImpl.QuicDispatcher.ServerRegistration: +static",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_MODIFIERS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQ2xvc2VhYmxlClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVy",
+    "description" : "Change supertype of QuicServerImpl.QuicDispatcher: +Closeable",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpWZXJ0eEV2ZW50TG9vcEdyb3VwI25leHQKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of VertxEventLoopGroup#next: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpWZXJ0eEV2ZW50TG9vcEdyb3VwI2Nob29zZUhhbmRsZXIKYnJhbmNoIHJlbW92ZWQ",
+    "description" : "Change control flow of VertxEventLoopGroup#chooseHandler: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpWZXJ0eEV2ZW50TG9vcEdyb3VwLkV2ZW50TG9vcExvYWRCYWxhbmNlciNhZGRIYW5kbGVyCmJyYW5jaCByZW1vdmVk",
+    "description" : "Change control flow of VertxEventLoopGroup.EventLoopLoadBalancer#addHandler: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpWZXJ0eEV2ZW50TG9vcEdyb3VwLkV2ZW50TG9vcExvYWRCYWxhbmNlciNyZW1vdmVIYW5kbGVyCmJyYW5jaCByZW1vdmVkLCBsb29wIHJlbW92ZWQ",
+    "description" : "Change control flow of VertxEventLoopGroup.EventLoopLoadBalancer#removeHandler: branch removed, loop removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpRdWljU2VydmVySW1wbCNjaGFubmVsSGFuZGxlcgpicmFuY2ggcmVtb3ZlZA",
+    "description" : "Change control flow of QuicServerImpl#channelHandler: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUXVpY1NlcnZlckltcGwuUXVpY0Rpc3BhdGNoZXIjcmVnaXN0ZXI",
+    "description" : "Change signature of QuicServerImpl.QuicDispatcher#register",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpRdWljU2VydmVySW1wbC5RdWljRGlzcGF0Y2hlciNjaGFubmVsVW5yZWdpc3RlcmVkCmNvbmRpdGlvbiBjaGFuZ2Vk",
+    "description" : "Change control flow of QuicServerImpl.QuicDispatcher#channelUnregistered: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI3NodXRkb3duCmNvbmRpdGlvbiBjaGFuZ2Vk",
+    "description" : "Change control flow of NetServerImpl#shutdown: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 14,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI3VwZGF0ZVNTTE9wdGlvbnMKYnJhbmNoIHJlbW92ZWQ",
+    "description" : "Change control flow of NetServerImpl#updateSSLOptions: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 15,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI3VwZGF0ZVRyYWZmaWNTaGFwaW5nT3B0aW9ucwpicmFuY2ggcmVtb3ZlZA",
+    "description" : "Change control flow of NetServerImpl#updateTrafficShapingOptions: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 16,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTmV0U2VydmVySW1wbCN1cGRhdGVUcmFmZmljU2hhcGluZ09wdGlvbnM",
+    "description" : "Change signature of NetServerImpl#updateTrafficShapingOptions",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 17,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI2JpbmQKYnJhbmNoIHJlbW92ZWQ",
+    "description" : "Change control flow of NetServerImpl#bind: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 18,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTmV0U2VydmVySW1wbCNiaW5k",
+    "description" : "Change signature of NetServerImpl#bind",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 19,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI2hhbmRsZVNodXRkb3duCmJyYW5jaCByZW1vdmVk",
+    "description" : "Change control flow of NetServerImpl#handleShutdown: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 20,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUworQElnbm9yZQpOZXRUZXN0I3Rlc3RTaHV0ZG93bkFjY2VwdFJhY2U",
+    "description" : "Change annotations of NetTest#testShutdownAcceptRace: +@Ignore",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_ANNOTATIONS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 21,
+    "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbCNjcmVhdGVUcmFmZmljU2hhcGluZ0hhbmRsZXIKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjY3JlYXRlVHJhZmZpY1NoYXBpbmdIYW5kbGVy",
+    "description" : "Move NetServerImpl#createTrafficShapingHandler -> NetServerImpl.TcpServer#createTrafficShapingHandler",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 22,
+    "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbCNjcmVhdGVNZXRyaWNzCk5ldFNlcnZlckltcGwuVGNwU2VydmVyI2NyZWF0ZU1ldHJpY3M",
+    "description" : "Move NetServerImpl#createMetrics -> NetServerImpl.TcpServer#createMetrics",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 23,
+    "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbC5DaGFubmVsSGFuZGxlciNhY2NlcHQKTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNhY2NlcHQ",
+    "description" : "Move NetServerImpl.NetSocketInitializer#accept -> NetServerImpl.ChannelHandler#accept",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 24,
+    "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbC5DaGFubmVsSGFuZGxlciNjb25maWd1cmVQaXBlbGluZQpOZXRTZXJ2ZXJJbXBsLk5ldFNvY2tldEluaXRpYWxpemVyI2NvbmZpZ3VyZVBpcGVsaW5l",
+    "description" : "Move NetServerImpl.NetSocketInitializer#configurePipeline -> NetServerImpl.ChannelHandler#configurePipeline",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 25,
+    "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbC5DaGFubmVsSGFuZGxlciNoYW5kbGVFeGNlcHRpb24KTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNoYW5kbGVFeGNlcHRpb24",
+    "description" : "Move NetServerImpl.NetSocketInitializer#handleException -> NetServerImpl.ChannelHandler#handleException",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 26,
+    "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbC5DaGFubmVsSGFuZGxlciNjb25uZWN0ZWQKTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNjb25uZWN0ZWQ",
+    "description" : "Move NetServerImpl.NetSocketInitializer#connected -> NetServerImpl.ChannelHandler#connected",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 27,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApWZXJ0eEltcGwjc2hhcmVkVGNwU2VydmVycw",
+    "description" : "Remove VertxImpl#sharedTcpServers",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 28,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApWZXJ0eEludGVybmFsI3NoYXJlZFRjcFNlcnZlcnM",
+    "description" : "Remove VertxInternal#sharedTcpServers",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 29,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApWZXJ0eFdyYXBwZXIjc2hhcmVkVGNwU2VydmVycw",
+    "description" : "Remove VertxWrapper#sharedTcpServers",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 30,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsI2NyZWF0ZVRyYWZmaWNTaGFwaW5nSGFuZGxlcg",
+    "description" : "Remove NetServerImpl#createTrafficShapingHandler",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 31,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsI2FwcGx5Q29ubmVjdGlvbk9wdGlvbnM",
+    "description" : "Remove NetServerImpl#applyConnectionOptions",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 32,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsI2FjdHVhbENsb3Nl",
+    "description" : "Remove NetServerImpl#actualClose",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 33,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsI2JpbmQ",
+    "description" : "Remove NetServerImpl#bind",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 34,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLk5ldFNvY2tldEluaXRpYWxpemVyI2FjY2VwdA",
+    "description" : "Remove NetServerImpl.NetSocketInitializer#accept",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 35,
+    "changeKey" : "QUREX1NZTUJPTApWZXJ0eEV2ZW50TG9vcEdyb3VwLkhhbmRsZXJMb2FkQmFsYW5jZXIjcmVtb3ZlSGFuZGxlcg",
+    "description" : "Add VertxEventLoopGroup.HandlerLoadBalancer#removeHandler",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 36,
+    "changeKey" : "QUREX1NZTUJPTApRdWljU2VydmVySW1wbC5RdWljRGlzcGF0Y2hlciNzaHV0ZG93bg",
+    "description" : "Add QuicServerImpl.QuicDispatcher#shutdown",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 37,
+    "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNiaW5k",
+    "description" : "Add NetServerImpl.TcpServer#bind",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 38,
+    "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNiaW5kMg",
+    "description" : "Add NetServerImpl.TcpServer#bind2",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 39,
+    "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNhcHBseUNvbm5lY3Rpb25PcHRpb25z",
+    "description" : "Add NetServerImpl.TcpServer#applyConnectionOptions",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 40,
+    "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNzaHV0ZG93bg",
+    "description" : "Add NetServerImpl.TcpServer#shutdown",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 41,
+    "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2luaXQ",
+    "description" : "Add NetServerImpl.ChannelHandler#init",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 42,
+    "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2hhbmRsZQ",
+    "description" : "Add NetServerImpl.ChannelHandler#handle",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 43,
+    "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2FjY2VwdA",
+    "description" : "Add NetServerImpl.ChannelHandler#accept",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 44,
+    "changeKey" : "QUREX1NZTUJPTApOZXRUZXN0I3Rlc3RTaGFyZWRTZXJ2ZXJTaHV0ZG93blJlbW92ZXNGcm9tRXZlbnRMb29wR3JvdXA",
+    "description" : "Add NetTest#testSharedServerShutdownRemovesFromEventLoopGroup",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 45,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0VtcHR5LCByZXR1cm4gY2xvc2luZyAtPiBoYW5kbGVyTG9hZEJhbGFuY2Vycy5pc0VtcHR5KCkKVmVydHhFdmVudExvb3BHcm91cCNyZW1vdmVIYW5kbGVy",
+    "description" : "Modify body of VertxEventLoopGroup#removeHandler: +isEmpty, return closing -> handlerLoadBalancers.isEmpty()",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 46,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWYuZ2V0LCArZ2V0LCAtc3NsQ29udGV4dFByb3ZpZGVyUmVmLmdldCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKTmV0U2VydmVySW1wbCNzc2xDb250ZXh0UHJvdmlkZXI",
+    "description" : "Modify body of NetServerImpl#sslContextProvider: +ref.get, +get, -sslContextProviderRef.get, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 47,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWYuZ2V0LCByZXR1cm4gdmFsdWUgY2hhbmdlZApOZXRTZXJ2ZXJJbXBsI2FjdHVhbFBvcnQ",
+    "description" : "Modify body of NetServerImpl#actualPort: +ref.get, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 48,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWYuZ2V0LCArc25pRW50cnlTaXplLCAtc3NsQ29udGV4dE1hbmFnZXIuc25pRW50cnlTaXplLCByZXR1cm4gdmFsdWUgY2hhbmdlZApOZXRTZXJ2ZXJJbXBsI3NuaUVudHJ5U2l6ZQ",
+    "description" : "Modify body of NetServerImpl#sniEntrySize: +ref.get, +sniEntrySize, -sslContextManager.sniEntrySize, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 49,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk5ldFNlcnZlckltcGwjaXNMaXN0ZW5pbmcKcmV0dXJuIGxpc3RlbmluZyAtPiBjaGFubmVsSGFuZGxlciAhPSBudWxs",
+    "description" : "Modify body of NetServerImpl#isListening: return listening -> channelHandler != null",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 50,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWYuZ2V0LCByZXR1cm4gdmFsdWUgY2hhbmdlZApOZXRTZXJ2ZXJJbXBsI2lzTWV0cmljc0VuYWJsZWQ",
+    "description" : "Modify body of NetServerImpl#isMetricsEnabled: +ref.get, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 51,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWYuZ2V0LCByZXR1cm4gdmFsdWUgY2hhbmdlZApOZXRTZXJ2ZXJJbXBsI2dldE1ldHJpY3M",
+    "description" : "Modify body of NetServerImpl#getMetrics: +ref.get, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 52,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk5ldFNlcnZlckltcGwjaGFuZGxlQ2xvc2UKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of NetServerImpl#handleClose: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 53,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit1bndyYXAsICt0Y3BTZXJ2ZXIsIC1zaGFyZWRUY3BTZXJ2ZXJzLCAtdmFsdWVzLCAtaXRlcmF0b3Ig4oCmYW5kIDEgbW9yZQpTU0xFbmdpbmVUZXN0LlRlc3RTZXJ2ZXIjc2V0VXA",
+    "description" : "Modify body of SSLEngineTest.TestServer#setUp: +unwrap, +tcpServer, -sharedTcpServers, -values, -iterator …and 1 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 54,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRXYWl0VW50aWwsIC1vbkNvbXBsZXRlLCAtb25TdWNjZXNzLCAtYXNzZXJ0RXF1YWxzLCAtdGVzdENvbXBsZXRlCk1ldHJpY3NUZXN0I3Rlc3RTZXJ2ZXJMaWZlY3ljbGU",
+    "description" : "Modify body of MetricsTest#testServerLifecycle: +assertWaitUntil, -onComplete, -onSuccess, -assertEquals, -testComplete",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 55,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit2ZXJ0eC5jcmVhdGVOZXRTZXJ2ZXIsICtzZXRQb3J0LCArYXdhaXQsICtzLmNsb3NlLCArY29ubmVjdEhhbmRsZXIg4oCmYW5kIDEgbW9yZQpOZXRUZXN0I3Rlc3RMaXN0ZW5PbldpbGRjYXJkUG9ydA",
+    "description" : "Modify body of NetTest#testListenOnWildcardPort: +vertx.createNetServer, +setPort, +await, +s.close, +connectHandler …and 1 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 56,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClZlcnR4RXZlbnRMb29wR3JvdXAjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of VertxEventLoopGroup#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 57,
+    "changeKey" : "Q0hBTkdFX01PRElGSUVSUworZmluYWwKUXVpY1NlcnZlckltcGwuUXVpY0Rpc3BhdGNoZXIjcmVnaXN0cmF0aW9ucw",
+    "description" : "Change modifiers of QuicServerImpl.QuicDispatcher#registrations: +final",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_MODIFIERS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 58,
+    "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI2V2ZW50TG9vcApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2V2ZW50TG9vcA",
+    "description" : "Move field NetServerImpl#eventLoop -> NetServerImpl.ChannelHandler#eventLoop",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 59,
+    "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI3Jlc29sdmVkS2V5RXhjaGFuZ2VHcm91cHMKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjcmVzb2x2ZWRLZXlFeGNoYW5nZUdyb3Vwcw",
+    "description" : "Move field NetServerImpl#resolvedKeyExchangeGroups -> NetServerImpl.TcpServer#resolvedKeyExchangeGroups",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 60,
+    "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI3NzbENvbnRleHRQcm92aWRlclJlZgpOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNzc2xDb250ZXh0UHJvdmlkZXJSZWY",
+    "description" : "Move field NetServerImpl#sslContextProviderRef -> NetServerImpl.TcpServer#sslContextProviderRef",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 61,
+    "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI3RyYWZmaWNTaGFwaW5nSGFuZGxlcgpOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciN0cmFmZmljU2hhcGluZ0hhbmRsZXI",
+    "description" : "Move field NetServerImpl#trafficShapingHandler -> NetServerImpl.TcpServer#trafficShapingHandler",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 62,
+    "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI2NoYW5uZWxCYWxhbmNlcgpOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNjaGFubmVsQmFsYW5jZXI",
+    "description" : "Move field NetServerImpl#channelBalancer -> NetServerImpl.TcpServer#channelBalancer",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 63,
+    "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI2JpbmRGdXR1cmUKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjYmluZEZ1dHVyZQ",
+    "description" : "Move field NetServerImpl#bindFuture -> NetServerImpl.TcpServer#bindFuture",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 64,
+    "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI21ldHJpY3MKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjbWV0cmljcw",
+    "description" : "Move field NetServerImpl#metrics -> NetServerImpl.TcpServer#metrics",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 65,
+    "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI2FjdHVhbFBvcnQKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjYWN0dWFsUG9ydA",
+    "description" : "Move field NetServerImpl#actualPort -> NetServerImpl.TcpServer#actualPort",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 66,
+    "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2NvbnRleHQKTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNjb250ZXh0",
+    "description" : "Move field NetServerImpl.NetSocketInitializer#context -> NetServerImpl.ChannelHandler#context",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 67,
+    "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2Nvbm5lY3Rpb25IYW5kbGVyCk5ldFNlcnZlckltcGwuTmV0U29ja2V0SW5pdGlhbGl6ZXIjY29ubmVjdGlvbkhhbmRsZXI",
+    "description" : "Move field NetServerImpl.NetSocketInitializer#connectionHandler -> NetServerImpl.ChannelHandler#connectionHandler",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 68,
+    "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2V4Y2VwdGlvbkhhbmRsZXIKTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNleGNlcHRpb25IYW5kbGVy",
+    "description" : "Move field NetServerImpl.NetSocketInitializer#exceptionHandler -> NetServerImpl.ChannelHandler#exceptionHandler",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 69,
+    "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI3RyYWZmaWNTaGFwaW5nSGFuZGxlcgpOZXRTZXJ2ZXJJbXBsLk5ldFNvY2tldEluaXRpYWxpemVyI3RyYWZmaWNTaGFwaW5nSGFuZGxlcg",
+    "description" : "Move field NetServerImpl.NetSocketInitializer#trafficShapingHandler -> NetServerImpl.ChannelHandler#trafficShapingHandler",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 70,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClZlcnR4SW1wbCNzaGFyZWROZXRTZXJ2ZXJz",
+    "description" : "Remove field VertxImpl#sharedNetServers",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 71,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClZlcnR4RXZlbnRMb29wR3JvdXAuRXZlbnRMb29wTG9hZEJhbGFuY2VyI2Nsb3Npbmc",
+    "description" : "Remove field VertxEventLoopGroup.EventLoopLoadBalancer#closing",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 72,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVyI3NlcnZlcklE",
+    "description" : "Remove field QuicServerImpl.QuicDispatcher#serverID",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 73,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjaW5pdGlhbGl6ZXI",
+    "description" : "Remove field NetServerImpl#initializer",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 74,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjY2hhbm5lbEdyb3Vw",
+    "description" : "Remove field NetServerImpl#channelGroup",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 75,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjd29ya2Vy",
+    "description" : "Remove field NetServerImpl#worker",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 76,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjbGlzdGVuaW5n",
+    "description" : "Remove field NetServerImpl#listening",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 77,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjYWN0dWFsU2VydmVy",
+    "description" : "Remove field NetServerImpl#actualServer",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 78,
+    "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjc3NsQ29udGV4dE1hbmFnZXI",
+    "description" : "Remove field NetServerImpl#sslContextManager",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 79,
+    "changeKey" : "QUREX0ZJRUxEClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVyLlNlcnZlclJlZ2lzdHJhdGlvbiNjbG9zZWFibGU",
+    "description" : "Add field QuicServerImpl.QuicDispatcher.ServerRegistration#closeable",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 80,
+    "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwjY2hhbm5lbEhhbmRsZXI",
+    "description" : "Add field NetServerImpl#channelHandler",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 81,
+    "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwjcmVzb3VyY2U",
+    "description" : "Add field NetServerImpl#resource",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 82,
+    "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwuVGNwU2VydmVyI3NzbENvbnRleHRNYW5hZ2Vy",
+    "description" : "Add field NetServerImpl.TcpServer#sslContextManager",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 83,
+    "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwuQ2hhbm5lbEhhbmRsZXIjc2VydmVy",
+    "description" : "Add field NetServerImpl.ChannelHandler#server",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 84,
+    "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwuQ2hhbm5lbEhhbmRsZXIjZ3JvdXA",
+    "description" : "Add field NetServerImpl.ChannelHandler#group",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 85,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpRdWljU2VydmVySW1wbC5RdWljRGlzcGF0Y2hlci5TZXJ2ZXJSZWdpc3RyYXRpb24jY2xvc2VhYmxl",
+    "description" : "Add constructor parameter QuicServerImpl.QuicDispatcher.ServerRegistration#closeable",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 86,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNhY3R1YWxQb3J0",
+    "description" : "Add constructor parameter NetServerImpl.TcpServer#actualPort",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 87,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI3NlcnZlcg",
+    "description" : "Add constructor parameter NetServerImpl.ChannelHandler#server",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 88,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2V2ZW50TG9vcA",
+    "description" : "Add constructor parameter NetServerImpl.ChannelHandler#eventLoop",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 89,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2dyb3Vw",
+    "description" : "Add constructor parameter NetServerImpl.ChannelHandler#group",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 90,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2NvbnRleHQ",
+    "description" : "Add constructor parameter NetServerImpl.ChannelHandler#context",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 91,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2Nvbm5lY3Rpb25IYW5kbGVy",
+    "description" : "Add constructor parameter NetServerImpl.ChannelHandler#connectionHandler",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 92,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2V4Y2VwdGlvbkhhbmRsZXI",
+    "description" : "Add constructor parameter NetServerImpl.ChannelHandler#exceptionHandler",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 93,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI3RyYWZmaWNTaGFwaW5nSGFuZGxlcg",
+    "description" : "Add constructor parameter NetServerImpl.ChannelHandler#trafficShapingHandler",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "NetServerImpl.NetSocketInitializer",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "UkVNT1ZFX0NMQVNTCk5ldFNlcnZlckltcGwuTmV0U29ja2V0SW5pdGlhbGl6ZXI",
+      "description" : "Remove class NetServerImpl.NetSocketInitializer",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 23,
+      "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbC5DaGFubmVsSGFuZGxlciNhY2NlcHQKTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNhY2NlcHQ",
+      "description" : "Move NetServerImpl.NetSocketInitializer#accept -> NetServerImpl.ChannelHandler#accept",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 24,
+      "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbC5DaGFubmVsSGFuZGxlciNjb25maWd1cmVQaXBlbGluZQpOZXRTZXJ2ZXJJbXBsLk5ldFNvY2tldEluaXRpYWxpemVyI2NvbmZpZ3VyZVBpcGVsaW5l",
+      "description" : "Move NetServerImpl.NetSocketInitializer#configurePipeline -> NetServerImpl.ChannelHandler#configurePipeline",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 25,
+      "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbC5DaGFubmVsSGFuZGxlciNoYW5kbGVFeGNlcHRpb24KTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNoYW5kbGVFeGNlcHRpb24",
+      "description" : "Move NetServerImpl.NetSocketInitializer#handleException -> NetServerImpl.ChannelHandler#handleException",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 26,
+      "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbC5DaGFubmVsSGFuZGxlciNjb25uZWN0ZWQKTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNjb25uZWN0ZWQ",
+      "description" : "Move NetServerImpl.NetSocketInitializer#connected -> NetServerImpl.ChannelHandler#connected",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 34,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLk5ldFNvY2tldEluaXRpYWxpemVyI2FjY2VwdA",
+      "description" : "Remove NetServerImpl.NetSocketInitializer#accept",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 66,
+      "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2NvbnRleHQKTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNjb250ZXh0",
+      "description" : "Move field NetServerImpl.NetSocketInitializer#context -> NetServerImpl.ChannelHandler#context",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 67,
+      "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2Nvbm5lY3Rpb25IYW5kbGVyCk5ldFNlcnZlckltcGwuTmV0U29ja2V0SW5pdGlhbGl6ZXIjY29ubmVjdGlvbkhhbmRsZXI",
+      "description" : "Move field NetServerImpl.NetSocketInitializer#connectionHandler -> NetServerImpl.ChannelHandler#connectionHandler",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 68,
+      "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2V4Y2VwdGlvbkhhbmRsZXIKTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNleGNlcHRpb25IYW5kbGVy",
+      "description" : "Move field NetServerImpl.NetSocketInitializer#exceptionHandler -> NetServerImpl.ChannelHandler#exceptionHandler",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 69,
+      "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI3RyYWZmaWNTaGFwaW5nSGFuZGxlcgpOZXRTZXJ2ZXJJbXBsLk5ldFNvY2tldEluaXRpYWxpemVyI3RyYWZmaWNTaGFwaW5nSGFuZGxlcg",
+      "description" : "Move field NetServerImpl.NetSocketInitializer#trafficShapingHandler -> NetServerImpl.ChannelHandler#trafficShapingHandler",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "NetServerImpl.TcpServer",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX0NMQVNTCk5ldFNlcnZlckltcGwuVGNwU2VydmVy",
+      "description" : "Add class NetServerImpl.TcpServer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 37,
+      "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNiaW5k",
+      "description" : "Add NetServerImpl.TcpServer#bind",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 38,
+      "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNiaW5kMg",
+      "description" : "Add NetServerImpl.TcpServer#bind2",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 39,
+      "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNhcHBseUNvbm5lY3Rpb25PcHRpb25z",
+      "description" : "Add NetServerImpl.TcpServer#applyConnectionOptions",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 40,
+      "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNzaHV0ZG93bg",
+      "description" : "Add NetServerImpl.TcpServer#shutdown",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 82,
+      "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwuVGNwU2VydmVyI3NzbENvbnRleHRNYW5hZ2Vy",
+      "description" : "Add field NetServerImpl.TcpServer#sslContextManager",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 86,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNhY3R1YWxQb3J0",
+      "description" : "Add constructor parameter NetServerImpl.TcpServer#actualPort",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "NetServerImpl.ChannelHandler",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX0NMQVNTCk5ldFNlcnZlckltcGwuQ2hhbm5lbEhhbmRsZXI",
+      "description" : "Add class NetServerImpl.ChannelHandler",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 41,
+      "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2luaXQ",
+      "description" : "Add NetServerImpl.ChannelHandler#init",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 42,
+      "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2hhbmRsZQ",
+      "description" : "Add NetServerImpl.ChannelHandler#handle",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 43,
+      "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2FjY2VwdA",
+      "description" : "Add NetServerImpl.ChannelHandler#accept",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 83,
+      "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwuQ2hhbm5lbEhhbmRsZXIjc2VydmVy",
+      "description" : "Add field NetServerImpl.ChannelHandler#server",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 84,
+      "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwuQ2hhbm5lbEhhbmRsZXIjZ3JvdXA",
+      "description" : "Add field NetServerImpl.ChannelHandler#group",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 87,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI3NlcnZlcg",
+      "description" : "Add constructor parameter NetServerImpl.ChannelHandler#server",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 88,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2V2ZW50TG9vcA",
+      "description" : "Add constructor parameter NetServerImpl.ChannelHandler#eventLoop",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 89,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2dyb3Vw",
+      "description" : "Add constructor parameter NetServerImpl.ChannelHandler#group",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 90,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2NvbnRleHQ",
+      "description" : "Add constructor parameter NetServerImpl.ChannelHandler#context",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 91,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2Nvbm5lY3Rpb25IYW5kbGVy",
+      "description" : "Add constructor parameter NetServerImpl.ChannelHandler#connectionHandler",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 92,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2V4Y2VwdGlvbkhhbmRsZXI",
+      "description" : "Add constructor parameter NetServerImpl.ChannelHandler#exceptionHandler",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 93,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI3RyYWZmaWNTaGFwaW5nSGFuZGxlcg",
+      "description" : "Add constructor parameter NetServerImpl.ChannelHandler#trafficShapingHandler",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "QuicServerImpl.QuicDispatcher",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX01PRElGSUVSUworc3RhdGljClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVy",
+      "description" : "Change modifiers of QuicServerImpl.QuicDispatcher: +static",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_MODIFIERS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 5,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQ2xvc2VhYmxlClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVy",
+      "description" : "Change supertype of QuicServerImpl.QuicDispatcher: +Closeable",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUXVpY1NlcnZlckltcGwuUXVpY0Rpc3BhdGNoZXIjcmVnaXN0ZXI",
+      "description" : "Change signature of QuicServerImpl.QuicDispatcher#register",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 12,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpRdWljU2VydmVySW1wbC5RdWljRGlzcGF0Y2hlciNjaGFubmVsVW5yZWdpc3RlcmVkCmNvbmRpdGlvbiBjaGFuZ2Vk",
+      "description" : "Change control flow of QuicServerImpl.QuicDispatcher#channelUnregistered: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 36,
+      "changeKey" : "QUREX1NZTUJPTApRdWljU2VydmVySW1wbC5RdWljRGlzcGF0Y2hlciNzaHV0ZG93bg",
+      "description" : "Add QuicServerImpl.QuicDispatcher#shutdown",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 57,
+      "changeKey" : "Q0hBTkdFX01PRElGSUVSUworZmluYWwKUXVpY1NlcnZlckltcGwuUXVpY0Rpc3BhdGNoZXIjcmVnaXN0cmF0aW9ucw",
+      "description" : "Change modifiers of QuicServerImpl.QuicDispatcher#registrations: +final",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_MODIFIERS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 72,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVyI3NlcnZlcklE",
+      "description" : "Remove field QuicServerImpl.QuicDispatcher#serverID",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "QuicServerImpl.QuicDispatcher.ServerRegistration",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "Q0hBTkdFX01PRElGSUVSUworc3RhdGljClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVyLlNlcnZlclJlZ2lzdHJhdGlvbg",
+      "description" : "Change modifiers of QuicServerImpl.QuicDispatcher.ServerRegistration: +static",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_MODIFIERS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 79,
+      "changeKey" : "QUREX0ZJRUxEClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVyLlNlcnZlclJlZ2lzdHJhdGlvbiNjbG9zZWFibGU",
+      "description" : "Add field QuicServerImpl.QuicDispatcher.ServerRegistration#closeable",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 85,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpRdWljU2VydmVySW1wbC5RdWljRGlzcGF0Y2hlci5TZXJ2ZXJSZWdpc3RyYXRpb24jY2xvc2VhYmxl",
+      "description" : "Add constructor parameter QuicServerImpl.QuicDispatcher.ServerRegistration#closeable",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "VertxEventLoopGroup",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpWZXJ0eEV2ZW50TG9vcEdyb3VwI25leHQKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of VertxEventLoopGroup#next: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpWZXJ0eEV2ZW50TG9vcEdyb3VwI2Nob29zZUhhbmRsZXIKYnJhbmNoIHJlbW92ZWQ",
+      "description" : "Change control flow of VertxEventLoopGroup#chooseHandler: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 45,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0VtcHR5LCByZXR1cm4gY2xvc2luZyAtPiBoYW5kbGVyTG9hZEJhbGFuY2Vycy5pc0VtcHR5KCkKVmVydHhFdmVudExvb3BHcm91cCNyZW1vdmVIYW5kbGVy",
+      "description" : "Modify body of VertxEventLoopGroup#removeHandler: +isEmpty, return closing -> handlerLoadBalancers.isEmpty()",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 56,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClZlcnR4RXZlbnRMb29wR3JvdXAjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of VertxEventLoopGroup#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "VertxEventLoopGroup.EventLoopLoadBalancer",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpWZXJ0eEV2ZW50TG9vcEdyb3VwLkV2ZW50TG9vcExvYWRCYWxhbmNlciNhZGRIYW5kbGVyCmJyYW5jaCByZW1vdmVk",
+      "description" : "Change control flow of VertxEventLoopGroup.EventLoopLoadBalancer#addHandler: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 9,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpWZXJ0eEV2ZW50TG9vcEdyb3VwLkV2ZW50TG9vcExvYWRCYWxhbmNlciNyZW1vdmVIYW5kbGVyCmJyYW5jaCByZW1vdmVkLCBsb29wIHJlbW92ZWQ",
+      "description" : "Change control flow of VertxEventLoopGroup.EventLoopLoadBalancer#removeHandler: branch removed, loop removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 71,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClZlcnR4RXZlbnRMb29wR3JvdXAuRXZlbnRMb29wTG9hZEJhbGFuY2VyI2Nsb3Npbmc",
+      "description" : "Remove field VertxEventLoopGroup.EventLoopLoadBalancer#closing",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "QuicServerImpl",
+    "entries" : [ {
+      "id" : 10,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpRdWljU2VydmVySW1wbCNjaGFubmVsSGFuZGxlcgpicmFuY2ggcmVtb3ZlZA",
+      "description" : "Change control flow of QuicServerImpl#channelHandler: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "NetServerImpl",
+    "entries" : [ {
+      "id" : 13,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI3NodXRkb3duCmNvbmRpdGlvbiBjaGFuZ2Vk",
+      "description" : "Change control flow of NetServerImpl#shutdown: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 14,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI3VwZGF0ZVNTTE9wdGlvbnMKYnJhbmNoIHJlbW92ZWQ",
+      "description" : "Change control flow of NetServerImpl#updateSSLOptions: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 15,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI3VwZGF0ZVRyYWZmaWNTaGFwaW5nT3B0aW9ucwpicmFuY2ggcmVtb3ZlZA",
+      "description" : "Change control flow of NetServerImpl#updateTrafficShapingOptions: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 16,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTmV0U2VydmVySW1wbCN1cGRhdGVUcmFmZmljU2hhcGluZ09wdGlvbnM",
+      "description" : "Change signature of NetServerImpl#updateTrafficShapingOptions",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 17,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI2JpbmQKYnJhbmNoIHJlbW92ZWQ",
+      "description" : "Change control flow of NetServerImpl#bind: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 18,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTmV0U2VydmVySW1wbCNiaW5k",
+      "description" : "Change signature of NetServerImpl#bind",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 19,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI2hhbmRsZVNodXRkb3duCmJyYW5jaCByZW1vdmVk",
+      "description" : "Change control flow of NetServerImpl#handleShutdown: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 21,
+      "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbCNjcmVhdGVUcmFmZmljU2hhcGluZ0hhbmRsZXIKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjY3JlYXRlVHJhZmZpY1NoYXBpbmdIYW5kbGVy",
+      "description" : "Move NetServerImpl#createTrafficShapingHandler -> NetServerImpl.TcpServer#createTrafficShapingHandler",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 22,
+      "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbCNjcmVhdGVNZXRyaWNzCk5ldFNlcnZlckltcGwuVGNwU2VydmVyI2NyZWF0ZU1ldHJpY3M",
+      "description" : "Move NetServerImpl#createMetrics -> NetServerImpl.TcpServer#createMetrics",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 30,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsI2NyZWF0ZVRyYWZmaWNTaGFwaW5nSGFuZGxlcg",
+      "description" : "Remove NetServerImpl#createTrafficShapingHandler",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 31,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsI2FwcGx5Q29ubmVjdGlvbk9wdGlvbnM",
+      "description" : "Remove NetServerImpl#applyConnectionOptions",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 32,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsI2FjdHVhbENsb3Nl",
+      "description" : "Remove NetServerImpl#actualClose",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 33,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsI2JpbmQ",
+      "description" : "Remove NetServerImpl#bind",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 46,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWYuZ2V0LCArZ2V0LCAtc3NsQ29udGV4dFByb3ZpZGVyUmVmLmdldCwgcmV0dXJuIHZhbHVlIGNoYW5nZWQKTmV0U2VydmVySW1wbCNzc2xDb250ZXh0UHJvdmlkZXI",
+      "description" : "Modify body of NetServerImpl#sslContextProvider: +ref.get, +get, -sslContextProviderRef.get, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 47,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWYuZ2V0LCByZXR1cm4gdmFsdWUgY2hhbmdlZApOZXRTZXJ2ZXJJbXBsI2FjdHVhbFBvcnQ",
+      "description" : "Modify body of NetServerImpl#actualPort: +ref.get, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 48,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWYuZ2V0LCArc25pRW50cnlTaXplLCAtc3NsQ29udGV4dE1hbmFnZXIuc25pRW50cnlTaXplLCByZXR1cm4gdmFsdWUgY2hhbmdlZApOZXRTZXJ2ZXJJbXBsI3NuaUVudHJ5U2l6ZQ",
+      "description" : "Modify body of NetServerImpl#sniEntrySize: +ref.get, +sniEntrySize, -sslContextManager.sniEntrySize, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 49,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk5ldFNlcnZlckltcGwjaXNMaXN0ZW5pbmcKcmV0dXJuIGxpc3RlbmluZyAtPiBjaGFubmVsSGFuZGxlciAhPSBudWxs",
+      "description" : "Modify body of NetServerImpl#isListening: return listening -> channelHandler != null",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 50,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWYuZ2V0LCByZXR1cm4gdmFsdWUgY2hhbmdlZApOZXRTZXJ2ZXJJbXBsI2lzTWV0cmljc0VuYWJsZWQ",
+      "description" : "Modify body of NetServerImpl#isMetricsEnabled: +ref.get, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 51,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWYuZ2V0LCByZXR1cm4gdmFsdWUgY2hhbmdlZApOZXRTZXJ2ZXJJbXBsI2dldE1ldHJpY3M",
+      "description" : "Modify body of NetServerImpl#getMetrics: +ref.get, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 52,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk5ldFNlcnZlckltcGwjaGFuZGxlQ2xvc2UKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of NetServerImpl#handleClose: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 58,
+      "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI2V2ZW50TG9vcApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2V2ZW50TG9vcA",
+      "description" : "Move field NetServerImpl#eventLoop -> NetServerImpl.ChannelHandler#eventLoop",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 59,
+      "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI3Jlc29sdmVkS2V5RXhjaGFuZ2VHcm91cHMKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjcmVzb2x2ZWRLZXlFeGNoYW5nZUdyb3Vwcw",
+      "description" : "Move field NetServerImpl#resolvedKeyExchangeGroups -> NetServerImpl.TcpServer#resolvedKeyExchangeGroups",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 60,
+      "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI3NzbENvbnRleHRQcm92aWRlclJlZgpOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNzc2xDb250ZXh0UHJvdmlkZXJSZWY",
+      "description" : "Move field NetServerImpl#sslContextProviderRef -> NetServerImpl.TcpServer#sslContextProviderRef",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 61,
+      "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI3RyYWZmaWNTaGFwaW5nSGFuZGxlcgpOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciN0cmFmZmljU2hhcGluZ0hhbmRsZXI",
+      "description" : "Move field NetServerImpl#trafficShapingHandler -> NetServerImpl.TcpServer#trafficShapingHandler",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 62,
+      "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI2NoYW5uZWxCYWxhbmNlcgpOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNjaGFubmVsQmFsYW5jZXI",
+      "description" : "Move field NetServerImpl#channelBalancer -> NetServerImpl.TcpServer#channelBalancer",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 63,
+      "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI2JpbmRGdXR1cmUKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjYmluZEZ1dHVyZQ",
+      "description" : "Move field NetServerImpl#bindFuture -> NetServerImpl.TcpServer#bindFuture",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 64,
+      "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI21ldHJpY3MKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjbWV0cmljcw",
+      "description" : "Move field NetServerImpl#metrics -> NetServerImpl.TcpServer#metrics",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 65,
+      "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI2FjdHVhbFBvcnQKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjYWN0dWFsUG9ydA",
+      "description" : "Move field NetServerImpl#actualPort -> NetServerImpl.TcpServer#actualPort",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 73,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjaW5pdGlhbGl6ZXI",
+      "description" : "Remove field NetServerImpl#initializer",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 74,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjY2hhbm5lbEdyb3Vw",
+      "description" : "Remove field NetServerImpl#channelGroup",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 75,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjd29ya2Vy",
+      "description" : "Remove field NetServerImpl#worker",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 76,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjbGlzdGVuaW5n",
+      "description" : "Remove field NetServerImpl#listening",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 77,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjYWN0dWFsU2VydmVy",
+      "description" : "Remove field NetServerImpl#actualServer",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 78,
+      "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjc3NsQ29udGV4dE1hbmFnZXI",
+      "description" : "Remove field NetServerImpl#sslContextManager",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 80,
+      "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwjY2hhbm5lbEhhbmRsZXI",
+      "description" : "Add field NetServerImpl#channelHandler",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 81,
+      "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwjcmVzb3VyY2U",
+      "description" : "Add field NetServerImpl#resource",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "NetTest",
+    "entries" : [ {
+      "id" : 20,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUworQElnbm9yZQpOZXRUZXN0I3Rlc3RTaHV0ZG93bkFjY2VwdFJhY2U",
+      "description" : "Change annotations of NetTest#testShutdownAcceptRace: +@Ignore",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_ANNOTATIONS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 44,
+      "changeKey" : "QUREX1NZTUJPTApOZXRUZXN0I3Rlc3RTaGFyZWRTZXJ2ZXJTaHV0ZG93blJlbW92ZXNGcm9tRXZlbnRMb29wR3JvdXA",
+      "description" : "Add NetTest#testSharedServerShutdownRemovesFromEventLoopGroup",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 55,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit2ZXJ0eC5jcmVhdGVOZXRTZXJ2ZXIsICtzZXRQb3J0LCArYXdhaXQsICtzLmNsb3NlLCArY29ubmVjdEhhbmRsZXIg4oCmYW5kIDEgbW9yZQpOZXRUZXN0I3Rlc3RMaXN0ZW5PbldpbGRjYXJkUG9ydA",
+      "description" : "Modify body of NetTest#testListenOnWildcardPort: +vertx.createNetServer, +setPort, +await, +s.close, +connectHandler …and 1 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "VertxImpl",
+    "entries" : [ {
+      "id" : 27,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApWZXJ0eEltcGwjc2hhcmVkVGNwU2VydmVycw",
+      "description" : "Remove VertxImpl#sharedTcpServers",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 70,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClZlcnR4SW1wbCNzaGFyZWROZXRTZXJ2ZXJz",
+      "description" : "Remove field VertxImpl#sharedNetServers",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "VertxInternal",
+    "entries" : [ {
+      "id" : 28,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApWZXJ0eEludGVybmFsI3NoYXJlZFRjcFNlcnZlcnM",
+      "description" : "Remove VertxInternal#sharedTcpServers",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "VertxWrapper",
+    "entries" : [ {
+      "id" : 29,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApWZXJ0eFdyYXBwZXIjc2hhcmVkVGNwU2VydmVycw",
+      "description" : "Remove VertxWrapper#sharedTcpServers",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "VertxEventLoopGroup.HandlerLoadBalancer",
+    "entries" : [ {
+      "id" : 35,
+      "changeKey" : "QUREX1NZTUJPTApWZXJ0eEV2ZW50TG9vcEdyb3VwLkhhbmRsZXJMb2FkQmFsYW5jZXIjcmVtb3ZlSGFuZGxlcg",
+      "description" : "Add VertxEventLoopGroup.HandlerLoadBalancer#removeHandler",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SSLEngineTest.TestServer",
+    "entries" : [ {
+      "id" : 53,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit1bndyYXAsICt0Y3BTZXJ2ZXIsIC1zaGFyZWRUY3BTZXJ2ZXJzLCAtdmFsdWVzLCAtaXRlcmF0b3Ig4oCmYW5kIDEgbW9yZQpTU0xFbmdpbmVUZXN0LlRlc3RTZXJ2ZXIjc2V0VXA",
+      "description" : "Modify body of SSLEngineTest.TestServer#setUp: +unwrap, +tcpServer, -sharedTcpServers, -values, -iterator …and 1 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "MetricsTest",
+    "entries" : [ {
+      "id" : 54,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRXYWl0VW50aWwsIC1vbkNvbXBsZXRlLCAtb25TdWNjZXNzLCAtYXNzZXJ0RXF1YWxzLCAtdGVzdENvbXBsZXRlCk1ldHJpY3NUZXN0I3Rlc3RTZXJ2ZXJMaWZlY3ljbGU",
+      "description" : "Modify body of MetricsTest#testServerLifecycle: +assertWaitUntil, -onComplete, -onSuccess, -assertEquals, -testComplete",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

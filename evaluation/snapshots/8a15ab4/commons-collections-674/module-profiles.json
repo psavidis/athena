@@ -1,0 +1,38 @@
+{
+  "commons-collections4" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n     public V remove(final Object key) {\n+        Objects.requireNonNull(key, \"key\");\n         final int hash = hashOf(key);\n         return segmentFor(hash).remove(key, hash, null, false);\n     }", " @Override\n     public boolean remove(final Object key, final Object value) {\n+        Objects.requireNonNull(key, \"key\");\n         final int hash = hashOf(key);\n         if (value == null) {\n             return false;\n         }\n         return segmentFor(hash).remove(key, hash, value, false) != null;\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMap.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n     public V replace(final K key, final V value) {\n+        Objects.requireNonNull(key, \"key\");\n         Objects.requireNonNull(value, \"value\");\n         final int hash = hashOf(key);\n         return segmentFor(hash).replace(key, hash, value);\n     }", " @Override\n     public boolean replace(final K key, final V oldValue, final V newValue) {\n+        Objects.requireNonNull(key, \"key\");\n         Objects.requireNonNull(oldValue, \"oldValue\");\n         Objects.requireNonNull(newValue, \"newValue\");\n         final int hash = hashOf(key);\n         return segmentFor(hash).replace(key, hash, oldValue, newValue);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/main/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMap.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in ConcurrentReferenceHashMapTest",
+      "conceptDescription" : "3 changes in test code of ConcurrentReferenceHashMapTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Test\n     void testBuilderAll() {\n         final Map<Integer, String> map0 = new HashMap<>();\n         map0.put(1, \"1\");\n         // @formatter:off\n         final Map<Integer, String> map = ConcurrentReferenceHashMap.<Integer, String>builder()\n                 .setConcurrencyLevel(4)\n                 .setInitialCapacity(32)\n                 .setKeyReferenceType(ReferenceType.SOFT)\n                 .setLoadFactor(0.74f)\n                 .setOptions(EnumSet.of(Option.IDENTITY_COMPARISONS))\n                 .setSourceMap(map0)\n                 .get();\n         // @formatter:on\n         map0.put(2, \"2\");\n         assertTrue(map.containsKey(1));\n         assertFalse(map.containsKey(2));\n-\n     }", "+@Test\n+    void testRemoveNullKeyThrowsWithoutIdentityComparisons() {\n+        final ConcurrentReferenceHashMap<String, String> map = ConcurrentReferenceHashMap.<String, String>builder()\n+                .get();\n+        map.put(\"testKey\", \"testValue\");\n \n+        assertThrows(NullPointerException.class, () -> map.remove(null, \"testValue\"));\n+        assertThrows(NullPointerException.class, () -> map.remove(null));\n+        assertThrows(NullPointerException.class, () -> map.replace(null, \"value\"));\n+        assertThrows(NullPointerException.class, () -> map.replace(null, \"oldValue\", \"newValue\"));\n+    }", "+@Test\n+    void testRemoveNullKeyThrowsWithIdentityComparisons() {\n+        final ConcurrentReferenceHashMap<String, String> map = ConcurrentReferenceHashMap.<String, String>builder()\n+                .setOptions(EnumSet.of(Option.IDENTITY_COMPARISONS))\n+                .get();\n+        map.put(\"testKey\", \"testValue\");\n \n+        assertThrows(NullPointerException.class, () -> map.remove(null));\n+        assertThrows(NullPointerException.class, () -> map.remove(null, \"value\"));\n+        assertThrows(NullPointerException.class, () -> map.replace(null, \"value\"));\n+        assertThrows(NullPointerException.class, () -> map.replace(null, \"old\", \"new\"));\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "src/test/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMapTest.java" ],
+      "groupedMoveCount" : 3
+    } ]
+  }
+}

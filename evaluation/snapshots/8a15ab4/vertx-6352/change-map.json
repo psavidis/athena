@@ -1,0 +1,183 @@
+{
+  "prTitle" : "Interruping a suspended virtual thread should leave its task queue in a consistent state.",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 2,
+    "STRUCTURAL" : 6,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpDb250ZXh0VGVzdCN0ZXN0SW50ZXJydXB0VGhyZWFkT25Bd2FpdApsb29wIGFkZGVk",
+    "description" : "Change control flow of ContextTest#testInterruptThreadOnAwait: loop added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKVGFza1F1ZXVlLkNvbnRpbnVhdGlvblRhc2sjcmVzdW1l",
+    "description" : "Change signature of TaskQueue.ContinuationTask#resume",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUYXNrUXVldWUuQ29udGludWF0aW9uVGFzayNzdXNwZW5kCmNvbmRpdGlvbiBjaGFuZ2Vk",
+    "description" : "Change control flow of TaskQueue.ContinuationTask#suspend: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKV29ya2VyRXhlY3V0b3IuRXhlY3V0aW9uI3Jlc3VtZQ",
+    "description" : "Change signature of WorkerExecutor.Execution#resume",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApUYXNrUXVldWUuQ29udGludWF0aW9uVGFzayNhd2FpdA",
+    "description" : "Add TaskQueue.ContinuationTask#await",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApUYXNrUXVldWUuQ29udGludWF0aW9uVGFzayNpbnRlcnJ1cHRlZA",
+    "description" : "Add TaskQueue.ContinuationTask#interrupted",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApUYXNrUXVldWVUZXN0I3Rlc3RJbnRlcnJ1cHRTdXNwZW5kZWQ",
+    "description" : "Add TaskQueueTest#testInterruptSuspended",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "UkVOQU1FX0ZJRUxEClRhc2tRdWV1ZS5Db250aW51YXRpb25UYXNrI1NUX0RPTkUKVGFza1F1ZXVlLkNvbnRpbnVhdGlvblRhc2sjU1RfUkVTVU1FRA",
+    "description" : "Rename field TaskQueue.ContinuationTask#ST_RESUMED -> ST_DONE",
+    "category" : "STRUCTURAL",
+    "kind" : "RENAME_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ContextTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpDb250ZXh0VGVzdCN0ZXN0SW50ZXJydXB0VGhyZWFkT25Bd2FpdApsb29wIGFkZGVk",
+      "description" : "Change control flow of ContextTest#testInterruptThreadOnAwait: loop added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TaskQueue.ContinuationTask",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKVGFza1F1ZXVlLkNvbnRpbnVhdGlvblRhc2sjcmVzdW1l",
+      "description" : "Change signature of TaskQueue.ContinuationTask#resume",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUYXNrUXVldWUuQ29udGludWF0aW9uVGFzayNzdXNwZW5kCmNvbmRpdGlvbiBjaGFuZ2Vk",
+      "description" : "Change control flow of TaskQueue.ContinuationTask#suspend: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApUYXNrUXVldWUuQ29udGludWF0aW9uVGFzayNhd2FpdA",
+      "description" : "Add TaskQueue.ContinuationTask#await",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApUYXNrUXVldWUuQ29udGludWF0aW9uVGFzayNpbnRlcnJ1cHRlZA",
+      "description" : "Add TaskQueue.ContinuationTask#interrupted",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "UkVOQU1FX0ZJRUxEClRhc2tRdWV1ZS5Db250aW51YXRpb25UYXNrI1NUX0RPTkUKVGFza1F1ZXVlLkNvbnRpbnVhdGlvblRhc2sjU1RfUkVTVU1FRA",
+      "description" : "Rename field TaskQueue.ContinuationTask#ST_RESUMED -> ST_DONE",
+      "category" : "STRUCTURAL",
+      "kind" : "RENAME_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "WorkerExecutor.Execution",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKV29ya2VyRXhlY3V0b3IuRXhlY3V0aW9uI3Jlc3VtZQ",
+      "description" : "Change signature of WorkerExecutor.Execution#resume",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TaskQueueTest",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApUYXNrUXVldWVUZXN0I3Rlc3RJbnRlcnJ1cHRTdXNwZW5kZWQ",
+      "description" : "Add TaskQueueTest#testInterruptSuspended",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

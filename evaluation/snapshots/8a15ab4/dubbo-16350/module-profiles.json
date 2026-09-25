@@ -1,0 +1,27 @@
+{
+  "dubbo-common" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " public static String substringAfter(String str, int separator) {\n         if (isEmpty(str)) {\n             return str;\n         }\n         int index = str.indexOf(separator);\n-        return index == INDEX_NOT_FOUND ? str : str.substring(index + 1);\n+        return index == INDEX_NOT_FOUND ? EMPTY_STRING : str.substring(index + 1);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dubbo-common/src/main/java/org/apache/dubbo/common/utils/StringUtils.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in StringUtilsTest",
+      "conceptDescription" : "1 change in test code of StringUtilsTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Test\n+    void testSubstringAfter() {\n+        // null or empty input is returned as-is\n+        assertThat(StringUtils.substringAfter(null, ':'), is(nullValue()));\n+        assertEquals(\"\", StringUtils.substringAfter(\"\", ':'));\n+        // returns the substring after the first occurrence of the separator\n+        assertEquals(\"b\", StringUtils.substringAfter(\"a:b\", ':'));\n+        assertEquals(\"b:c\", StringUtils.substringAfter(\"a:b:c\", ':'));\n+        // separator at the end leaves nothing after it\n+        assertEquals(\"\", StringUtils.substringAfter(\"ab:\", ':'));\n+        // when the separator is absent the Javadoc promises an empty string\n+        assertEquals(\"\", StringUtils.substringAfter(\"abc\", ':'));\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dubbo-common/src/test/java/org/apache/dubbo/common/utils/StringUtilsTest.java" ],
+      "groupedMoveCount" : 1
+    } ]
+  }
+}

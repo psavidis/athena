@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/google/gson.git",
+  "base" : "c9f3fd55854a743b66f857ace3c7b268ea3e2ef7",
+  "head" : "0987b36249d07d61df2e9368a218891b3fcf9726",
+  "changeCount" : 9,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 3.29
+}

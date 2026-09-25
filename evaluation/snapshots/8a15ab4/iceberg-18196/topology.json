@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "v1.20",
+    "status" : "TOUCHED",
+    "fileCount" : 6,
+    "statusSummary" : "6 files · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApUZXN0Um93RGF0YUNvbnZlcnRlciN0ZXN0UHJlc2VydmVzUm93S2luZA", "TU9ESUZZX01FVEhPRF9CT0RZCitzb3VyY2VEYXRhLmdldFJvd0tpbmQKRGF0YUNvbnZlcnRlci5Sb3dEYXRhQ29udmVydGVyI2NvbnZlcnQ" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApUZXN0Um93RGF0YUNvbnZlcnRlciN0ZXN0UHJlc2VydmVzUm93S2luZA" ]
+  } ],
+  "dependencies" : [ ]
+}

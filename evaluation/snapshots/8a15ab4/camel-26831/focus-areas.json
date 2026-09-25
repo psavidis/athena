@@ -1,0 +1,10 @@
+[ {
+  "entity" : "RestProducer",
+  "description" : "Change control flow of RestProducer#prepareExchange: branch added"
+}, {
+  "entity" : "RestProducer",
+  "description" : "Add RestProducer#firstPlaceholder"
+}, {
+  "entity" : "RestProducerAdvancedTest",
+  "description" : "Modify body of RestProducerAdvancedTest#testPrepareExchangeWithUnresolvedPlaceholder: +assertThrows, +assertThat, +e.getMessage, +contains"
+} ]

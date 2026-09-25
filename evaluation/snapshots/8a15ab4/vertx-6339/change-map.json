@@ -1,0 +1,473 @@
+{
+  "prTitle" : "Expose ServiceResource and CleanableObject as internals.",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 16,
+    "UNKNOWN" : 5,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "TU9WRV9DTEFTUwpTZXJ2aWNlUmVzb3VyY2U",
+    "description" : "Move class impl.ServiceResource -> internal.ServiceResource (imports updated in 5 files)",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "TU9WRV9DTEFTUwpTZXJ2aWNlUmVzb3VyY2UuVGFzaw",
+    "description" : "Move class impl.ServiceResource.Task -> internal.ServiceResource.Task",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "TU9WRV9DTEFTUwpTZXJ2aWNlUmVzb3VyY2UuU3RhcnQ",
+    "description" : "Move class impl.ServiceResource.Start -> internal.ServiceResource.Start",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "TU9WRV9DTEFTUwpTZXJ2aWNlUmVzb3VyY2UuU3RvcA",
+    "description" : "Move class impl.ServiceResource.Stop -> internal.ServiceResource.Stop",
+    "category" : "STRUCTURAL",
+    "kind" : "MOVE_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "UkVOQU1FX0NMQVNTCkNsZWFuYWJsZU9iamVjdApDbGVhbmFibGVSZXNvdXJjZQ",
+    "description" : "Rename class impl.CleanableObject -> internal.CleanableResource (imports updated in 5 files)",
+    "category" : "STRUCTURAL",
+    "kind" : "RENAME_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "UkVOQU1FX0NMQVNTCkNsZWFuYWJsZU9iamVjdC5BY3Rpb24KQ2xlYW5hYmxlUmVzb3VyY2UuQWN0aW9u",
+    "description" : "Rename class impl.CleanableObject.Action -> internal.CleanableResource.Action",
+    "category" : "STRUCTURAL",
+    "kind" : "RENAME_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpDbGVhbmFibGVIdHRwQ2xpZW50CkNsZWFuYWJsZU9iamVjdCAtPiBDbGVhbmFibGVSZXNvdXJjZQ",
+    "description" : "Change supertype of CleanableHttpClient: CleanableObject -> CleanableResource",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpDbGVhbmFibGVPYmplY3QgLT4gQ2xlYW5hYmxlUmVzb3VyY2UKQ2xlYW5hYmxlV2ViU29ja2V0Q2xpZW50",
+    "description" : "Change supertype of CleanableWebSocketClient: CleanableObject -> CleanableResource",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpDbGVhbmFibGVPYmplY3QgLT4gQ2xlYW5hYmxlUmVzb3VyY2UKV29ya2VyRXhlY3V0b3JJbXBs",
+    "description" : "Change supertype of WorkerExecutorImpl: CleanableObject -> CleanableResource",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpDbGVhbmFibGVOZXRDbGllbnQKQ2xlYW5hYmxlT2JqZWN0IC0-IENsZWFuYWJsZVJlc291cmNl",
+    "description" : "Change supertype of CleanableNetClient: CleanableObject -> CleanableResource",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpDbGVhbmFibGVPYmplY3QgLT4gQ2xlYW5hYmxlUmVzb3VyY2UKQ2xlYW5hYmxlT2JqZWN0VGVzdC5DbGVhbmFibGVUZXN0",
+    "description" : "Change supertype of CleanableObjectTest.CleanableTest: CleanableObject -> CleanableResource",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX1NZTUJPTApTZXJ2aWNlUmVzb3VyY2VUZXN0LlRlc3RSZXNvdXJjZSNpc0RvbmU",
+    "description" : "Add ServiceResourceTest.TestResource#isDone",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 12,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsZWFuYWJsZU9iamVjdFRlc3QjdGVzdENsb3NlQ29sbGVjdGVkUmVzb3VyY2UKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of CleanableObjectTest#testCloseCollectedResource: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 13,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXNvdXJjZS5pc0RvbmUsIC1yZXNvdXJjZS5oYXNQZW5kaW5nVGFza3MKU2VydmljZVJlc291cmNlVGVzdCNzdGFydFNlcnZpY2VBZnRlclVuZGVwbG95",
+    "description" : "Modify body of ServiceResourceTest#startServiceAfterUndeploy: +resource.isDone, -resource.hasPendingTasks",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXNvdXJjZS5pc0RvbmUsIC1yZXNvdXJjZS5oYXNQZW5kaW5nVGFza3MKU2VydmljZVJlc291cmNlVGVzdCN0ZXN0U3RvcFN1Y2Nlc3M",
+    "description" : "Modify body of ServiceResourceTest#testStopSuccess: +resource.isDone, -resource.hasPendingTasks",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXNvdXJjZS5pc0RvbmUsIC1yZXNvdXJjZS5oYXNQZW5kaW5nVGFza3MKU2VydmljZVJlc291cmNlVGVzdCN0ZXN0U3RhcnRpbmdTdG9w",
+    "description" : "Modify body of ServiceResourceTest#testStartingStop: +resource.isDone, -resource.hasPendingTasks",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXNvdXJjZS5pc0RvbmUsIC1yZXNvdXJjZS5oYXNQZW5kaW5nVGFza3MKU2VydmljZVJlc291cmNlVGVzdCN0ZXN0U3RvcEFmdGVyU3RhcnRGYWlsdXJl",
+    "description" : "Modify body of ServiceResourceTest#testStopAfterStartFailure: +resource.isDone, -resource.hasPendingTasks",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTZXJ2aWNlUmVzb3VyY2UuVGFzayNjb21wbGV0aW9u",
+    "description" : "Add constructor parameter ServiceResource.Task#completion",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTZXJ2aWNlUmVzb3VyY2UuU3RhcnQjY29udGV4dA",
+    "description" : "Add constructor parameter ServiceResource.Start#context",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 19,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTZXJ2aWNlUmVzb3VyY2UuU3RhcnQjYXJncw",
+    "description" : "Add constructor parameter ServiceResource.Start#args",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 20,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTZXJ2aWNlUmVzb3VyY2UuU3RvcCN0aW1lb3V0",
+    "description" : "Add constructor parameter ServiceResource.Stop#timeout",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ServiceResource",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "TU9WRV9DTEFTUwpTZXJ2aWNlUmVzb3VyY2U",
+      "description" : "Move class impl.ServiceResource -> internal.ServiceResource (imports updated in 5 files)",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ServiceResource.Task",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "TU9WRV9DTEFTUwpTZXJ2aWNlUmVzb3VyY2UuVGFzaw",
+      "description" : "Move class impl.ServiceResource.Task -> internal.ServiceResource.Task",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTZXJ2aWNlUmVzb3VyY2UuVGFzayNjb21wbGV0aW9u",
+      "description" : "Add constructor parameter ServiceResource.Task#completion",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ServiceResource.Start",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "TU9WRV9DTEFTUwpTZXJ2aWNlUmVzb3VyY2UuU3RhcnQ",
+      "description" : "Move class impl.ServiceResource.Start -> internal.ServiceResource.Start",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 18,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTZXJ2aWNlUmVzb3VyY2UuU3RhcnQjY29udGV4dA",
+      "description" : "Add constructor parameter ServiceResource.Start#context",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 19,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTZXJ2aWNlUmVzb3VyY2UuU3RhcnQjYXJncw",
+      "description" : "Add constructor parameter ServiceResource.Start#args",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ServiceResource.Stop",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "TU9WRV9DTEFTUwpTZXJ2aWNlUmVzb3VyY2UuU3RvcA",
+      "description" : "Move class impl.ServiceResource.Stop -> internal.ServiceResource.Stop",
+      "category" : "STRUCTURAL",
+      "kind" : "MOVE_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 20,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTZXJ2aWNlUmVzb3VyY2UuU3RvcCN0aW1lb3V0",
+      "description" : "Add constructor parameter ServiceResource.Stop#timeout",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "CleanableObject",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "UkVOQU1FX0NMQVNTCkNsZWFuYWJsZU9iamVjdApDbGVhbmFibGVSZXNvdXJjZQ",
+      "description" : "Rename class impl.CleanableObject -> internal.CleanableResource (imports updated in 5 files)",
+      "category" : "STRUCTURAL",
+      "kind" : "RENAME_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "CleanableObject.Action",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "UkVOQU1FX0NMQVNTCkNsZWFuYWJsZU9iamVjdC5BY3Rpb24KQ2xlYW5hYmxlUmVzb3VyY2UuQWN0aW9u",
+      "description" : "Rename class impl.CleanableObject.Action -> internal.CleanableResource.Action",
+      "category" : "STRUCTURAL",
+      "kind" : "RENAME_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "CleanableHttpClient",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpDbGVhbmFibGVIdHRwQ2xpZW50CkNsZWFuYWJsZU9iamVjdCAtPiBDbGVhbmFibGVSZXNvdXJjZQ",
+      "description" : "Change supertype of CleanableHttpClient: CleanableObject -> CleanableResource",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "CleanableWebSocketClient",
+    "entries" : [ {
+      "id" : 7,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpDbGVhbmFibGVPYmplY3QgLT4gQ2xlYW5hYmxlUmVzb3VyY2UKQ2xlYW5hYmxlV2ViU29ja2V0Q2xpZW50",
+      "description" : "Change supertype of CleanableWebSocketClient: CleanableObject -> CleanableResource",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "WorkerExecutorImpl",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpDbGVhbmFibGVPYmplY3QgLT4gQ2xlYW5hYmxlUmVzb3VyY2UKV29ya2VyRXhlY3V0b3JJbXBs",
+      "description" : "Change supertype of WorkerExecutorImpl: CleanableObject -> CleanableResource",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "CleanableNetClient",
+    "entries" : [ {
+      "id" : 9,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpDbGVhbmFibGVOZXRDbGllbnQKQ2xlYW5hYmxlT2JqZWN0IC0-IENsZWFuYWJsZVJlc291cmNl",
+      "description" : "Change supertype of CleanableNetClient: CleanableObject -> CleanableResource",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "CleanableObjectTest.CleanableTest",
+    "entries" : [ {
+      "id" : 10,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpDbGVhbmFibGVPYmplY3QgLT4gQ2xlYW5hYmxlUmVzb3VyY2UKQ2xlYW5hYmxlT2JqZWN0VGVzdC5DbGVhbmFibGVUZXN0",
+      "description" : "Change supertype of CleanableObjectTest.CleanableTest: CleanableObject -> CleanableResource",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ServiceResourceTest.TestResource",
+    "entries" : [ {
+      "id" : 11,
+      "changeKey" : "QUREX1NZTUJPTApTZXJ2aWNlUmVzb3VyY2VUZXN0LlRlc3RSZXNvdXJjZSNpc0RvbmU",
+      "description" : "Add ServiceResourceTest.TestResource#isDone",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "CleanableObjectTest",
+    "entries" : [ {
+      "id" : 12,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsZWFuYWJsZU9iamVjdFRlc3QjdGVzdENsb3NlQ29sbGVjdGVkUmVzb3VyY2UKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of CleanableObjectTest#testCloseCollectedResource: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ServiceResourceTest",
+    "entries" : [ {
+      "id" : 13,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXNvdXJjZS5pc0RvbmUsIC1yZXNvdXJjZS5oYXNQZW5kaW5nVGFza3MKU2VydmljZVJlc291cmNlVGVzdCNzdGFydFNlcnZpY2VBZnRlclVuZGVwbG95",
+      "description" : "Modify body of ServiceResourceTest#startServiceAfterUndeploy: +resource.isDone, -resource.hasPendingTasks",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 14,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXNvdXJjZS5pc0RvbmUsIC1yZXNvdXJjZS5oYXNQZW5kaW5nVGFza3MKU2VydmljZVJlc291cmNlVGVzdCN0ZXN0U3RvcFN1Y2Nlc3M",
+      "description" : "Modify body of ServiceResourceTest#testStopSuccess: +resource.isDone, -resource.hasPendingTasks",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXNvdXJjZS5pc0RvbmUsIC1yZXNvdXJjZS5oYXNQZW5kaW5nVGFza3MKU2VydmljZVJlc291cmNlVGVzdCN0ZXN0U3RhcnRpbmdTdG9w",
+      "description" : "Modify body of ServiceResourceTest#testStartingStop: +resource.isDone, -resource.hasPendingTasks",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 16,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXNvdXJjZS5pc0RvbmUsIC1yZXNvdXJjZS5oYXNQZW5kaW5nVGFza3MKU2VydmljZVJlc291cmNlVGVzdCN0ZXN0U3RvcEFmdGVyU3RhcnRGYWlsdXJl",
+      "description" : "Modify body of ServiceResourceTest#testStopAfterStartFailure: +resource.isDone, -resource.hasPendingTasks",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

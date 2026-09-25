@@ -1,0 +1,1337 @@
+{
+  "core" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "docs/source/examples/core/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-auth" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-auth/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-auth/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-auth/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-auth/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-auth/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-auth/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-auth/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-benchmarks" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-benchmarks/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-benchmarks/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-client" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-client/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-client/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-client/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-client/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-client/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-core" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-core/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-core/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-core/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-core/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-core/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-core/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-core/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-dependencies" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-dependencies/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-dependencies/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-dependencies/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-dependencies/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-e2e" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-e2e/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-e2e/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-e2e/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-e2e/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-e2e/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-example" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-example/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-example/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-example/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-forms" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-forms/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-health" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-health/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-health/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-health/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-hibernate" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-hibernate/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-hibernate/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-hibernate/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-hibernate/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-hibernate/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-hibernate/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-hibernate/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-hibernate/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-hibernate/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-http2" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-http2/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Remove Dependency",
+      "conceptDescription" : "A module no longer declares a build dependency.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-http2/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-http2/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-http2/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-http2/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-http2/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-jdbi3" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jdbi3/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jdbi3/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jdbi3/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-jersey" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jersey/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jersey/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jersey/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jersey/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jersey/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jersey/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jersey/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jersey/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jersey/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-jetty" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jetty/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jetty/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-jetty/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-json-logging" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-json-logging/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-json-logging/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-lifecycle" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-lifecycle/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-metrics" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-metrics/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-migrations" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-migrations/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-migrations/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-request-logging" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-request-logging/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Remove Dependency",
+      "conceptDescription" : "A module no longer declares a build dependency.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-request-logging/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-request-logging/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-request-logging/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-request-logging/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-request-logging/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-servlets" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-servlets/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-testing" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-testing/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-testing/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-testing/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-testing/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-testing/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-testing/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-testing/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-testing/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-testing/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-testing/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-testing/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-testing/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-testing/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-unix-socket" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-unix-socket/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-validation" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-validation/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-views-freemarker" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-freemarker/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-freemarker/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-freemarker/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-freemarker/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-freemarker/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-freemarker/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-freemarker/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-freemarker/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-freemarker/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-views-mustache" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-mustache/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-mustache/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-mustache/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-mustache/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-mustache/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views-mustache/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "dropwizard-views" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views/pom.xml" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Dependency",
+      "conceptDescription" : "A module's build dependency changed scope, version or optionality.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dropwizard-views/pom.xml" ],
+      "groupedMoveCount" : 0
+    } ]
+  }
+}

@@ -1,0 +1,7 @@
+[ {
+  "description" : "Modify body of RedissonRateLimiter#releaseAsync: return value changed",
+  "entity" : "RedissonRateLimiter"
+}, {
+  "description" : "Add RedissonRateLimiterTest#testReleasedPermitsPreservedAfterExpiry",
+  "entity" : "RedissonRateLimiterTest"
+} ]

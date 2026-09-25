@@ -1,0 +1,183 @@
+{
+  "prTitle" : "Fix ConcurrentModificationException and NullPointerException in concu…",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 6,
+    "UNKNOWN" : 2,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTCkRlZmF1bHRNb2RlbENvbmN1cnJlbnRUZXN0",
+    "description" : "Add class DefaultModelConcurrentTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpMaW5rZWRIYXNoTWFwIC0-IENvbmN1cnJlbnRIYXNoTWFwClNpbXBsZVJlZ2lzdHJ5",
+    "description" : "Change supertype of SimpleRegistry: LinkedHashMap -> ConcurrentHashMap",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_SUPERTYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TW9kZWxDb25jdXJyZW50VGVzdCN0ZXN0Q29uY3VycmVudEFkZEN1c3RvbUJlYW4",
+    "description" : "Add DefaultModelConcurrentTest#testConcurrentAddCustomBean",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TW9kZWxDb25jdXJyZW50VGVzdCN0ZXN0Q29uY3VycmVudEFkZEN1c3RvbUJlYW5XaXRoU2FtZU5hbWU",
+    "description" : "Add DefaultModelConcurrentTest#testConcurrentAddCustomBeanWithSameName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApTaW1wbGVSZWdpc3RyeVRlc3QjdGVzdENvbmN1cnJlbnRCaW5k",
+    "description" : "Add SimpleRegistryTest#testConcurrentBind",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NrLmxvY2ssICtsb2NrLnVubG9jawpEZWZhdWx0TW9kZWwjYWRkQ3VzdG9tQmVhbg",
+    "description" : "Modify body of DefaultModel#addCustomBean: +lock.lock, +lock.unlock",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClNpbXBsZVJlZ2lzdHJ5I2JpbmQKY29tcHV0ZUlmQWJzZW50KOKApik6IExpbmtlZEhhc2hNYXAgLT4gQ29uY3VycmVudEhhc2hNYXA",
+    "description" : "Modify body of SimpleRegistry#bind: computeIfAbsent(…): LinkedHashMap -> ConcurrentHashMap",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX0ZJRUxECkRlZmF1bHRNb2RlbCNsb2c",
+    "description" : "Add field DefaultModel#log",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "DefaultModelConcurrentTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTCkRlZmF1bHRNb2RlbENvbmN1cnJlbnRUZXN0",
+      "description" : "Add class DefaultModelConcurrentTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TW9kZWxDb25jdXJyZW50VGVzdCN0ZXN0Q29uY3VycmVudEFkZEN1c3RvbUJlYW4",
+      "description" : "Add DefaultModelConcurrentTest#testConcurrentAddCustomBean",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TW9kZWxDb25jdXJyZW50VGVzdCN0ZXN0Q29uY3VycmVudEFkZEN1c3RvbUJlYW5XaXRoU2FtZU5hbWU",
+      "description" : "Add DefaultModelConcurrentTest#testConcurrentAddCustomBeanWithSameName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "SimpleRegistry",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpMaW5rZWRIYXNoTWFwIC0-IENvbmN1cnJlbnRIYXNoTWFwClNpbXBsZVJlZ2lzdHJ5",
+      "description" : "Change supertype of SimpleRegistry: LinkedHashMap -> ConcurrentHashMap",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_SUPERTYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 6,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClNpbXBsZVJlZ2lzdHJ5I2JpbmQKY29tcHV0ZUlmQWJzZW50KOKApik6IExpbmtlZEhhc2hNYXAgLT4gQ29uY3VycmVudEhhc2hNYXA",
+      "description" : "Modify body of SimpleRegistry#bind: computeIfAbsent(…): LinkedHashMap -> ConcurrentHashMap",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SimpleRegistryTest",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApTaW1wbGVSZWdpc3RyeVRlc3QjdGVzdENvbmN1cnJlbnRCaW5k",
+      "description" : "Add SimpleRegistryTest#testConcurrentBind",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "DefaultModel",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NrLmxvY2ssICtsb2NrLnVubG9jawpEZWZhdWx0TW9kZWwjYWRkQ3VzdG9tQmVhbg",
+      "description" : "Modify body of DefaultModel#addCustomBean: +lock.lock, +lock.unlock",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX0ZJRUxECkRlZmF1bHRNb2RlbCNsb2c",
+      "description" : "Add field DefaultModel#log",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

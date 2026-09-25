@@ -1,0 +1,67 @@
+{
+  "diff": {
+    "files": 38,
+    "java_files": 22,
+    "non_java_files": 16,
+    "substantive_java_files": 22,
+    "copyright_only_java_files": 0,
+    "production_java_files": 13,
+    "java_hunks": 40,
+    "java_lines_changed": 474
+  },
+  "athena": {
+    "changes": 72,
+    "changes_by_kind": {
+      "REMOVE_CLASS": 1,
+      "CHANGE_SUPERTYPE": 2,
+      "CHANGE_METHOD_SIGNATURE": 1,
+      "REMOVE_SYMBOL": 31,
+      "ADD_SYMBOL": 1,
+      "MODIFY_METHOD_BODY": 5,
+      "REMOVE_FIELD": 8,
+      "CHANGE_FIELD_VALUE": 1,
+      "REMOVE_DEPENDENCY": 9,
+      "ADD_DEPENDENCY": 11,
+      "CHANGE_DEPENDENCY": 2
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 66,
+      "UNKNOWN": 6
+    },
+    "semantic_entries": 67,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 64,
+      "RESPONSIBILITY": 3
+    },
+    "inferred_entries": 3,
+    "module_territories": 10,
+    "module_dependencies": 11,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 6,
+    "substantive_java_file_coverage": 0.27,
+    "production_java_files_represented": 6,
+    "production_java_file_coverage": 0.46,
+    "unrepresented_production_java_files": [
+      "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/CommandResponse.java",
+      "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/Commands.java",
+      "zookeeper-server/src/main/java/org/apache/zookeeper/server/auth/AuthenticationProvider.java",
+      "zookeeper-server/src/main/java/org/apache/zookeeper/server/auth/DigestAuthenticationProvider.java",
+      "zookeeper-server/src/main/java/org/apache/zookeeper/server/auth/IPAuthenticationProvider.java",
+      "zookeeper-server/src/main/java/org/apache/zookeeper/server/auth/WrappedAuthenticationProvider.java",
+      "zookeeper-server/src/main/java/org/apache/zookeeper/server/controller/CommandClient.java"
+    ],
+    "unrepresented_test_java_files": [
+      "zookeeper-metrics-providers/zookeeper-prometheus-metrics/src/test/java/org/apache/zookeeper/metrics/prometheus/PrometheusMetricsProviderTest.java",
+      "zookeeper-server/src/test/java/org/apache/zookeeper/server/admin/CommandAuthTest.java",
+      "zookeeper-server/src/test/java/org/apache/zookeeper/server/admin/CommandResponseTest.java",
+      "zookeeper-server/src/test/java/org/apache/zookeeper/server/admin/CommandsTest.java",
+      "zookeeper-server/src/test/java/org/apache/zookeeper/server/admin/ShedConnectionsCommandTest.java",
+      "zookeeper-server/src/test/java/org/apache/zookeeper/server/admin/SnapshotAndRestoreCommandTest.java",
+      "zookeeper-server/src/test/java/org/apache/zookeeper/server/auth/IPAuthenticationProviderTest.java",
+      "zookeeper-server/src/test/java/org/apache/zookeeper/test/IPAuthTest.java",
+      "zookeeper-server/src/test/java/org/apache/zookeeper/test/X509AuthTest.java"
+    ]
+  }
+}

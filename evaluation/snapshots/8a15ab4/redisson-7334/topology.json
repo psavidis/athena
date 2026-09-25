@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "redisson",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApSZWRpc3NvblJhdGVMaW1pdGVyVGVzdCN0ZXN0QXZhaWxhYmxlUGVybWl0c0FmdGVyUmVsZWFzZUFuZEV4cGlyYXRpb24", "QUREX1NZTUJPTApSZWRpc3NvblJhdGVMaW1pdGVyVGVzdCN0ZXN0QXZhaWxhYmxlUGVybWl0c05ldmVyRXhjZWVkc1JhdGVQZXJDbGllbnQ", "TU9ESUZZX01FVEhPRF9CT0RZClJlZGlzc29uUmF0ZUxpbWl0ZXIjYXZhaWxhYmxlUGVybWl0c0FzeW5jCnJldHVybiB2YWx1ZSBjaGFuZ2Vk" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApSZWRpc3NvblJhdGVMaW1pdGVyVGVzdCN0ZXN0QXZhaWxhYmxlUGVybWl0c0FmdGVyUmVsZWFzZUFuZEV4cGlyYXRpb24", "QUREX1NZTUJPTApSZWRpc3NvblJhdGVMaW1pdGVyVGVzdCN0ZXN0QXZhaWxhYmxlUGVybWl0c05ldmVyRXhjZWVkc1JhdGVQZXJDbGllbnQ" ]
+  } ],
+  "dependencies" : [ ]
+}

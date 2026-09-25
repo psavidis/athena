@@ -1,0 +1,229 @@
+diff --git a/core/camel-core-engine/src/main/java/org/apache/camel/impl/DefaultModel.java b/core/camel-core-engine/src/main/java/org/apache/camel/impl/DefaultModel.java
+index 1fbf9a7038050..2f65d40d3a90e 100644
+--- a/core/camel-core-engine/src/main/java/org/apache/camel/impl/DefaultModel.java
++++ b/core/camel-core-engine/src/main/java/org/apache/camel/impl/DefaultModel.java
+@@ -66,9 +66,12 @@
+ import org.apache.camel.util.AntPathMatcher;
+ import org.apache.camel.util.ObjectHelper;
+ import org.apache.camel.util.StringHelper;
++import org.slf4j.Logger;
++import org.slf4j.LoggerFactory;
+ 
+ public class DefaultModel implements Model {
+ 
++    private static final Logger log = LoggerFactory.getLogger(DefaultModel.class);
+     private final CamelContext camelContext;
+     private final Lock lock = new ReentrantLock();
+ 
+@@ -901,9 +904,14 @@ public void setModelReifierFactory(ModelReifierFactory modelReifierFactory) {
+ 
+     @Override
+     public void addCustomBean(BeanFactoryDefinition<?> bean) {
+-        // remove exiting bean with same name to update
+-        beans.removeIf(b -> bean.getName().equals(b.getName()));
+-        beans.add(bean);
++        lock.lock();
++        try {
++            // remove existing bean with same name to update; guard against null entries left by prior corruption
++            beans.removeIf(b -> b != null && bean.getName().equals(b.getName()));
++            beans.add(bean);
++        }finally {
++            lock.unlock();
++        }
+     }
+ 
+     @Override
+diff --git a/core/camel-core/src/test/java/org/apache/camel/impl/DefaultModelConcurrentTest.java b/core/camel-core/src/test/java/org/apache/camel/impl/DefaultModelConcurrentTest.java
+new file mode 100644
+index 0000000000000..6317b984c3e65
+--- /dev/null
++++ b/core/camel-core/src/test/java/org/apache/camel/impl/DefaultModelConcurrentTest.java
+@@ -0,0 +1,104 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package org.apache.camel.impl;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.CyclicBarrier;
++import java.util.concurrent.ExecutorService;
++import java.util.concurrent.Executors;
++import java.util.concurrent.Future;
++import java.util.concurrent.TimeUnit;
++
++import org.apache.camel.model.BeanFactoryDefinition;
++import org.junit.jupiter.api.Test;
++
++import static org.junit.jupiter.api.Assertions.assertEquals;
++import static org.junit.jupiter.api.Assertions.assertTrue;
++
++/**
++ * Verifies that concurrent calls to {@link DefaultModel#addCustomBean} do not throw
++ * {@link java.util.ConcurrentModificationException} or {@link NullPointerException}.
++ */
++public class DefaultModelConcurrentTest {
++
++    @Test
++    public void testConcurrentAddCustomBean() throws Exception {
++        DefaultModel model = new DefaultModel(null);
++        int threads = 20;
++        CyclicBarrier barrier = new CyclicBarrier(threads);
++        ExecutorService pool = Executors.newFixedThreadPool(threads);
++        List<Future<?>> futures = new ArrayList<>(threads);
++
++        for (int i = 0; i < threads; i++) {
++            final String name = "bean-" + i;
++            futures.add(pool.submit(() -> {
++                try {
++                    barrier.await(5, TimeUnit.SECONDS);
++                } catch (Exception e) {
++                    throw new RuntimeException(e);
++                }
++                BeanFactoryDefinition<?> def = new BeanFactoryDefinition<>();
++                def.setName(name);
++                model.addCustomBean(def);
++            }));
++        }
++
++        pool.shutdown();
++        assertTrue(pool.awaitTermination(10, TimeUnit.SECONDS));
++
++        for (Future<?> f : futures) {
++            f.get(); // rethrows any ConcurrentModificationException from threads
++        }
++
++        assertEquals(threads, model.getCustomBeans().size());
++    }
++
++    @Test
++    public void testConcurrentAddCustomBeanWithSameName() throws Exception {
++        // Simulates multiple retries registering the same bean name concurrently —
++        // only one entry per name must survive (the last one wins, no duplicates).
++        DefaultModel model = new DefaultModel(null);
++        int threads = 20;
++        CyclicBarrier barrier = new CyclicBarrier(threads);
++        ExecutorService pool = Executors.newFixedThreadPool(threads);
++        List<Future<?>> futures = new ArrayList<>(threads);
++
++        for (int i = 0; i < threads; i++) {
++            futures.add(pool.submit(() -> {
++                try {
++                    barrier.await(5, TimeUnit.SECONDS);
++                } catch (Exception e) {
++                    throw new RuntimeException(e);
++                }
++                BeanFactoryDefinition<?> def = new BeanFactoryDefinition<>();
++                def.setName("sharedBean");
++                model.addCustomBean(def);
++            }));
++        }
++
++        pool.shutdown();
++        assertTrue(pool.awaitTermination(10, TimeUnit.SECONDS));
++
++        for (Future<?> f : futures) {
++            f.get(); // rethrows any ConcurrentModificationException from threads
++        }
++
++        assertEquals(1, model.getCustomBeans().size());
++        assertEquals("sharedBean", model.getCustomBeans().get(0).getName());
++    }
++}
+diff --git a/core/camel-core/src/test/java/org/apache/camel/impl/SimpleRegistryTest.java b/core/camel-core/src/test/java/org/apache/camel/impl/SimpleRegistryTest.java
+index c07604d7bb36c..3b613ee5541b6 100644
+--- a/core/camel-core/src/test/java/org/apache/camel/impl/SimpleRegistryTest.java
++++ b/core/camel-core/src/test/java/org/apache/camel/impl/SimpleRegistryTest.java
+@@ -16,7 +16,14 @@
+  */
+ package org.apache.camel.impl;
+ 
++import java.util.ArrayList;
++import java.util.List;
+ import java.util.Map;
++import java.util.concurrent.CyclicBarrier;
++import java.util.concurrent.ExecutorService;
++import java.util.concurrent.Executors;
++import java.util.concurrent.Future;
++import java.util.concurrent.TimeUnit;
+ 
+ import org.apache.camel.support.SimpleRegistry;
+ import org.junit.jupiter.api.Assertions;
+@@ -121,4 +128,34 @@ public void testUnbind() {
+         Assertions.assertEquals("bar", registry.lookupByName("myKey"));
+     }
+ 
++    @Test
++    public void testConcurrentBind() throws Exception {
++        int threads = 20;
++        SimpleRegistry reg = new SimpleRegistry();
++        CyclicBarrier barrier = new CyclicBarrier(threads);
++        ExecutorService pool = Executors.newFixedThreadPool(threads);
++        List<Future<?>> futures = new ArrayList<>(threads);
++
++        for (int i = 0; i < threads; i++) {
++            final String key = "bean-" + i;
++            futures.add(pool.submit(() -> {
++                try {
++                    barrier.await(5, TimeUnit.SECONDS);
++                } catch (Exception e) {
++                    throw new RuntimeException(e);
++                }
++                reg.bind(key, Object.class, new Object());
++            }));
++        }
++
++        pool.shutdown();
++        assertTrue(pool.awaitTermination(10, TimeUnit.SECONDS));
++
++        for (Future<?> f : futures) {
++            f.get(); // rethrows any ConcurrentModificationException from threads
++        }
++
++        assertEquals(threads, reg.size());
++    }
++
+ }
+diff --git a/core/camel-support/src/main/java/org/apache/camel/support/SimpleRegistry.java b/core/camel-support/src/main/java/org/apache/camel/support/SimpleRegistry.java
+index 388f4222d9159..2e45d8012c6eb 100644
+--- a/core/camel-support/src/main/java/org/apache/camel/support/SimpleRegistry.java
++++ b/core/camel-support/src/main/java/org/apache/camel/support/SimpleRegistry.java
+@@ -22,6 +22,7 @@
+ import java.util.LinkedHashSet;
+ import java.util.Map;
+ import java.util.Set;
++import java.util.concurrent.ConcurrentHashMap;
+ import java.util.function.Supplier;
+ 
+ import org.apache.camel.NoSuchBeanException;
+@@ -35,7 +36,7 @@
+  *
+  * @see DefaultRegistry
+  */
+-public class SimpleRegistry extends LinkedHashMap<String, Map<Class<?>, Object>> implements Registry, Closeable {
++public class SimpleRegistry extends ConcurrentHashMap<String, Map<Class<?>, Object>> implements Registry, Closeable {
+ 
+     @Override
+     public Object lookupByName(String name) {
+@@ -103,7 +104,7 @@ public <T> Set<T> findByType(Class<T> type) {
+     @Override
+     public void bind(String id, Class<?> type, Object bean) {
+         if (bean != null) {
+-            computeIfAbsent(id, k -> new LinkedHashMap<>()).put(type, wrap(bean));
++            computeIfAbsent(id, k -> new ConcurrentHashMap<>()).put(type, wrap(bean));
+         }
+     }
+ 

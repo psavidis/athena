@@ -1,0 +1,51 @@
+{
+  "diff": {
+    "files": 34,
+    "java_files": 31,
+    "non_java_files": 3,
+    "substantive_java_files": 31,
+    "copyright_only_java_files": 0,
+    "production_java_files": 18,
+    "java_hunks": 59,
+    "java_lines_changed": 2597
+  },
+  "athena": {
+    "changes": 366,
+    "changes_by_kind": {
+      "ADD_CLASS": 68,
+      "CHANGE_SUPERTYPE": 1,
+      "CHANGE_CONTROL_FLOW": 8,
+      "CHANGE_METHOD_SIGNATURE": 1,
+      "ADD_SYMBOL": 145,
+      "MODIFY_METHOD_BODY": 16,
+      "ADD_FIELD": 122,
+      "ADD_CONSTRUCTOR_PARAMETER": 5
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 342,
+      "BEHAVIORAL": 8,
+      "UNKNOWN": 16
+    },
+    "semantic_entries": 86,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 83,
+      "RESPONSIBILITY": 3
+    },
+    "inferred_entries": 3,
+    "module_territories": 5,
+    "module_dependencies": 4,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 28,
+    "substantive_java_file_coverage": 0.9,
+    "production_java_files_represented": 15,
+    "production_java_file_coverage": 0.83,
+    "unrepresented_production_java_files": [
+      "hibernate-core/src/main/java/org/hibernate/annotations/Filter.java",
+      "hibernate-core/src/main/java/org/hibernate/annotations/FilterDef.java",
+      "hibernate-core/src/main/java/org/hibernate/annotations/SQLRestriction.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

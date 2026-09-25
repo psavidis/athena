@@ -1,0 +1,198 @@
+diff --git a/broker/src/main/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManager.java b/broker/src/main/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManager.java
+index 299b712b375..3f8b44bbd73 100644
+--- a/broker/src/main/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManager.java
++++ b/broker/src/main/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManager.java
+@@ -16,6 +16,7 @@
+  */
+ package org.apache.rocketmq.broker.metrics;
+ 
++import com.google.common.annotations.VisibleForTesting;
+ import com.google.common.base.Splitter;
+ import io.opentelemetry.api.common.Attributes;
+ import io.opentelemetry.api.common.AttributesBuilder;
+@@ -721,13 +722,17 @@ private void initLagAndDlqMetrics() {
+             .setDescription("Consumer lag messages")
+             .ofLongs()
+             .buildWithCallback(measurement -> {
+-                consumerLagCalculator.calculateLag(result ->
+-                    measurement.record(result.lag, buildLagAttributes(result))
+-                );
++                consumerLagCalculator.calculateLag(result -> {
++                    if (shouldRecordValue(result.lag, 0)) {
++                        measurement.record(result.lag, buildLagAttributes(result));
++                    }
++                });
+ 
+-                liteConsumerLagCalculator.calculateLiteLagCount(result ->
+-                    measurement.record(result.lag, buildLagAttributes(result))
+-                );
++                liteConsumerLagCalculator.calculateLiteLagCount(result -> {
++                    if (shouldRecordValue(result.lag, 0)) {
++                        measurement.record(result.lag, buildLagAttributes(result));
++                    }
++                });
+             });
+ 
+         consumerLagLatency = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_LAG_LATENCY)
+@@ -735,18 +740,28 @@ private void initLagAndDlqMetrics() {
+             .setUnit("milliseconds")
+             .ofLongs()
+             .buildWithCallback(measurement -> {
+-                consumerLagCalculator.calculateLag(lagResult ->
+-                    measurement.record(lagResult.getLagLatency(), buildLagAttributes(lagResult)));
++                consumerLagCalculator.calculateLag(lagResult -> {
++                    if (shouldRecordValue(lagResult.getLagLatency(), 0)) {
++                        measurement.record(lagResult.getLagLatency(), buildLagAttributes(lagResult));
++                    }
++                });
+ 
+-                liteConsumerLagCalculator.calculateLiteLagLatency(lagResult ->
+-                    measurement.record(lagResult.getLagLatency(), buildLagAttributes(lagResult)));
++                liteConsumerLagCalculator.calculateLiteLagLatency(lagResult -> {
++                    if (shouldRecordValue(lagResult.getLagLatency(), 0)) {
++                        measurement.record(lagResult.getLagLatency(), buildLagAttributes(lagResult));
++                    }
++                });
+             });
+ 
+         consumerInflightMessages = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_INFLIGHT_MESSAGES)
+             .setDescription("Consumer inflight messages")
+             .ofLongs()
+             .buildWithCallback(measurement ->
+-                consumerLagCalculator.calculateInflight(result -> measurement.record(result.inFlight, buildLagAttributes(result))));
++                consumerLagCalculator.calculateInflight(result -> {
++                    if (shouldRecordValue(result.inFlight, 0)) {
++                        measurement.record(result.inFlight, buildLagAttributes(result));
++                    }
++                }));
+ 
+         consumerQueueingLatency = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_QUEUEING_LATENCY)
+             .setDescription("Consumer queueing time")
+@@ -758,19 +773,27 @@ private void initLagAndDlqMetrics() {
+                 if (result.earliestUnPulledTimestamp != 0) {
+                     latency = curTimeStamp - result.earliestUnPulledTimestamp;
+                 }
+-                measurement.record(latency, buildLagAttributes(result));
++                if (shouldRecordValue(latency, 0)) {
++                    measurement.record(latency, buildLagAttributes(result));
++                }
+             }));
+ 
+         consumerReadyMessages = brokerMeter.gaugeBuilder(GAUGE_CONSUMER_READY_MESSAGES)
+             .setDescription("Consumer ready messages")
+             .ofLongs()
+             .buildWithCallback(measurement -> {
+-                consumerLagCalculator.calculateAvailable(result ->
+-                    measurement.record(result.available, buildLagAttributes(result)));
++                consumerLagCalculator.calculateAvailable(result -> {
++                    if (shouldRecordValue(result.available, 0)) {
++                        measurement.record(result.available, buildLagAttributes(result));
++                    }
++                });
+ 
+                 // for lite, ready == lag
+-                liteConsumerLagCalculator.calculateLiteLagCount(result ->
+-                    measurement.record(result.lag, buildLagAttributes(result)));
++                liteConsumerLagCalculator.calculateLiteLagCount(result -> {
++                    if (shouldRecordValue(result.lag, 0)) {
++                        measurement.record(result.lag, buildLagAttributes(result));
++                    }
++                });
+             });
+ 
+         sendToDlqMessages = brokerMeter.counterBuilder(COUNTER_CONSUMER_SEND_TO_DLQ_MESSAGES_TOTAL)
+@@ -778,6 +801,11 @@ private void initLagAndDlqMetrics() {
+             .build();
+     }
+ 
++    @VisibleForTesting
++    boolean shouldRecordValue(long currentValue, long minValue) {
++        return !brokerConfig.isSuppressMinValueMetrics() || currentValue > minValue;
++    }
++
+     private void initTransactionMetrics() {
+         if (!brokerController.getBrokerConfig().isEnableTransactionMetrics()) {
+             return;
+diff --git a/broker/src/test/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManagerTest.java b/broker/src/test/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManagerTest.java
+index 9e4cfa70c18..5afaa90bda9 100644
+--- a/broker/src/test/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManagerTest.java
++++ b/broker/src/test/java/org/apache/rocketmq/broker/metrics/BrokerMetricsManagerTest.java
+@@ -44,11 +44,14 @@
+ public class BrokerMetricsManagerTest {
+ 
+     private BrokerMetricsManager createTestBrokerMetricsManager() {
++        return createTestBrokerMetricsManager(new BrokerConfig());
++    }
++
++    private BrokerMetricsManager createTestBrokerMetricsManager(BrokerConfig brokerConfig) {
+         MessageStoreConfig messageStoreConfig = new MessageStoreConfig();
+         String storePathRootDir = System.getProperty("java.io.tmpdir") + File.separator + "store-"
+                 + UUID.randomUUID();
+         messageStoreConfig.setStorePathRootDir(storePathRootDir);
+-        BrokerConfig brokerConfig = new BrokerConfig();
+ 
+         NettyServerConfig nettyServerConfig = new NettyServerConfig();
+         nettyServerConfig.setListenPort(0);
+@@ -59,6 +62,28 @@ private BrokerMetricsManager createTestBrokerMetricsManager() {
+         return new BrokerMetricsManager(brokerController);
+     }
+ 
++    @Test
++    public void testShouldRecordValueWhenSuppressDisabled() {
++        BrokerConfig brokerConfig = new BrokerConfig();
++        brokerConfig.setSuppressMinValueMetrics(false);
++        BrokerMetricsManager metricsManager = createTestBrokerMetricsManager(brokerConfig);
++        // default behavior: all values are recorded regardless of minValue
++        assertThat(metricsManager.shouldRecordValue(0, 0)).isTrue();
++        assertThat(metricsManager.shouldRecordValue(100, 0)).isTrue();
++    }
++
++    @Test
++    public void testShouldRecordValueWhenSuppressEnabled() {
++        BrokerConfig brokerConfig = new BrokerConfig();
++        brokerConfig.setSuppressMinValueMetrics(true);
++        BrokerMetricsManager metricsManager = createTestBrokerMetricsManager(brokerConfig);
++        // values not greater than minValue are suppressed, greater ones are recorded
++        assertThat(metricsManager.shouldRecordValue(0, 0)).isFalse();
++        assertThat(metricsManager.shouldRecordValue(100, 0)).isTrue();
++        assertThat(metricsManager.shouldRecordValue(1000, 1000)).isFalse();
++        assertThat(metricsManager.shouldRecordValue(1001, 1000)).isTrue();
++    }
++
+     @Test
+     public void testNewAttributesBuilder() {
+         BrokerMetricsManager metricsManager = createTestBrokerMetricsManager();
+diff --git a/common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java b/common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java
+index 3ab78fba5f9..8e49839e3e0 100644
+--- a/common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java
++++ b/common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java
+@@ -463,6 +463,14 @@ public class BrokerConfig extends BrokerIdentity {
+     private boolean enableRequestMetrics = true;
+     private boolean enableLagAndDlqMetrics = true;
+ 
++    /**
++     * Whether to suppress exporting data points whose value is not greater than a minimal
++     * threshold (minValue). Set true to reduce metrics cardinality and export payload.
++     * Suppressed series disappear from the export instead of reporting minValue, so alert rules
++     * based on absent()/absent_over_time() will fire once value drops to minValue.
++     */
++    private boolean suppressMinValueMetrics = false;
++
+     private long channelExpiredTimeout = 1000 * 120;
+     private long subscriptionExpiredTimeout = 1000 * 60 * 10;
+ 
+@@ -2018,6 +2026,14 @@ public void setEnableLagAndDlqMetrics(boolean enableLagAndDlqMetrics) {
+         this.enableLagAndDlqMetrics = enableLagAndDlqMetrics;
+     }
+ 
++    public boolean isSuppressMinValueMetrics() {
++        return suppressMinValueMetrics;
++    }
++
++    public void setSuppressMinValueMetrics(boolean suppressMinValueMetrics) {
++        this.suppressMinValueMetrics = suppressMinValueMetrics;
++    }
++
+     public boolean isEnableRemotingMetrics() {
+         return enableRemotingMetrics;
+     }

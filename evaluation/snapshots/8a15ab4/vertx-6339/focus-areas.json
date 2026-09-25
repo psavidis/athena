@@ -1,0 +1,13 @@
+[ {
+  "entity" : "ServiceResource",
+  "description" : "Move class impl.ServiceResource -> internal.ServiceResource (imports updated in 5 files)"
+}, {
+  "entity" : "ServiceResource.Task",
+  "description" : "Move class impl.ServiceResource.Task -> internal.ServiceResource.Task"
+}, {
+  "entity" : "ServiceResource.Start",
+  "description" : "Move class impl.ServiceResource.Start -> internal.ServiceResource.Start"
+}, {
+  "entity" : "ServiceResource.Stop",
+  "description" : "Move class impl.ServiceResource.Stop -> internal.ServiceResource.Stop"
+} ]

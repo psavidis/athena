@@ -1,0 +1,91 @@
+[ {
+  "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJDb21taXRzRnJhbWVBc1NpbmdsZU1lc3NhZ2U",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ByteBufPairTest#testEncoderCommitsFrameAsSingleMessage",
+  "files" : [ "pulsar-common/src/test/java/org/apache/pulsar/common/protocol/ByteBufPairTest.java" ],
+  "symbols" : [ "ByteBufPairTest#testEncoderCommitsFrameAsSingleMessage" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdENvcHlpbmdFbmNvZGVyQ29tbWl0c0ZyYW1lQXNTaW5nbGVNZXNzYWdl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ByteBufPairTest#testCopyingEncoderCommitsFrameAsSingleMessage",
+  "files" : [ "pulsar-common/src/test/java/org/apache/pulsar/common/protocol/ByteBufPairTest.java" ],
+  "symbols" : [ "ByteBufPairTest#testCopyingEncoderCommitsFrameAsSingleMessage" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJTdXBwb3J0c011bHRpcGxlV3JpdGVzT2ZTYW1lUGFpcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ByteBufPairTest#testEncoderSupportsMultipleWritesOfSamePair",
+  "files" : [ "pulsar-common/src/test/java/org/apache/pulsar/common/protocol/ByteBufPairTest.java" ],
+  "symbols" : [ "ByteBufPairTest#testEncoderSupportsMultipleWritesOfSamePair" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJGYWlsZWRCdWlsZEtlZXBzU3RyZWFtQWxpZ25lZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ByteBufPairTest#testEncoderFailedBuildKeepsStreamAligned",
+  "files" : [ "pulsar-common/src/test/java/org/apache/pulsar/common/protocol/ByteBufPairTest.java" ],
+  "symbols" : [ "ByteBufPairTest#testEncoderFailedBuildKeepsStreamAligned" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJGYWlsZWRCdWlsZENvbW1pdHNOb3RoaW5n",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ByteBufPairTest#testEncoderFailedBuildCommitsNothing",
+  "files" : [ "pulsar-common/src/test/java/org/apache/pulsar/common/protocol/ByteBufPairTest.java" ],
+  "symbols" : [ "ByteBufPairTest#testEncoderFailedBuildCommitsNothing" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjdGVzdEVuY29kZXJBbGxvY2F0aW9uRmFpbHVyZUZhaWxzV3JpdGVBbmRSZWxlYXNlc1BhaXI",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ByteBufPairTest#testEncoderAllocationFailureFailsWriteAndReleasesPair",
+  "files" : [ "pulsar-common/src/test/java/org/apache/pulsar/common/protocol/ByteBufPairTest.java" ],
+  "symbols" : [ "ByteBufPairTest#testEncoderAllocationFailureFailsWriteAndReleasesPair" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApCeXRlQnVmUGFpclRlc3QjY2hhbm5lbE1vY2s",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ByteBufPairTest#channelMock",
+  "files" : [ "pulsar-common/src/test/java/org/apache/pulsar/common/protocol/ByteBufPairTest.java" ],
+  "symbols" : [ "ByteBufPairTest#channelMock" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb21wb3NpdGVCdWZmZXIsICtmcmFtZS5hZGRDb21wb25lbnQsICtmaXJzdC5yZXRhaW4sICtzZWNvbmQucmV0YWluLCArc2FmZVJlbGVhc2Ug4oCmYW5kIDQgbW9yZQpCeXRlQnVmUGFpci5FbmNvZGVyI3dyaXRl",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ByteBufPair.Encoder#write: +compositeBuffer, +frame.addComponent, +first.retain, +second.retain, +safeRelease …and 4 more",
+  "files" : [ "pulsar-common/src/main/java/org/apache/pulsar/common/protocol/ByteBufPair.java" ],
+  "symbols" : [ "ByteBufPair.Encoder#write", "+compositeBuffer, +frame.addComponent, +first.retain, +second.retain, +safeRelease …and 4 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjb21wb3NpdGVCdWZmZXIsICtmcmFtZS5hZGRDb21wb25lbnQsICtmaXJzdC5jb3B5LCArc2Vjb25kLmNvcHksICtzYWZlUmVsZWFzZSDigKZhbmQgNCBtb3JlCkJ5dGVCdWZQYWlyLkNvcHlpbmdFbmNvZGVyI3dyaXRl",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ByteBufPair.CopyingEncoder#write: +compositeBuffer, +frame.addComponent, +first.copy, +second.copy, +safeRelease …and 4 more",
+  "files" : [ "pulsar-common/src/main/java/org/apache/pulsar/common/protocol/ByteBufPair.java" ],
+  "symbols" : [ "ByteBufPair.CopyingEncoder#write", "+compositeBuffer, +frame.addComponent, +first.copy, +second.copy, +safeRelease …and 4 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

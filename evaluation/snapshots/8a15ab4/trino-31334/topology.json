@@ -1,0 +1,169 @@
+{
+  "territories" : [ {
+    "moduleName" : "trino-main",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpQYXJ0aXRpb25lZE91dHB1dE9wZXJhdG9yI2ZpbmlzaApjb25kaXRpb24gY2hhbmdlZA", "QUREX1NZTUJPTApUZXN0UGFydGl0aW9uZWRPdXRwdXRPcGVyYXRvciN0ZXN0TWVtb3J5UmVsZWFzZWRPbkZpbmlzaEZhaWx1cmU" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApUZXN0UGFydGl0aW9uZWRPdXRwdXRPcGVyYXRvciN0ZXN0TWVtb3J5UmVsZWFzZWRPbkZpbmlzaEZhaWx1cmU" ]
+  }, {
+    "moduleName" : "trino-array",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-cache",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-client",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-geospatial-toolkit",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-matching",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-memory-context",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-parser",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-plugin-toolkit",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-spi",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-web-ui",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-exchange-filesystem",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-testing-services",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "trino-tpch",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "trino-main",
+    "to" : "trino-array"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-cache"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-client"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-geospatial-toolkit"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-matching"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-memory-context"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-parser"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-plugin-toolkit"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-spi"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-web-ui"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-exchange-filesystem"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-testing-services"
+  }, {
+    "from" : "trino-main",
+    "to" : "trino-tpch"
+  } ]
+}

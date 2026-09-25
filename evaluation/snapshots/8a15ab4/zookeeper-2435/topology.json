@@ -1,0 +1,127 @@
+{
+  "territories" : [ {
+    "moduleName" : "zookeeper-server",
+    "status" : "TOUCHED",
+    "fileCount" : 6,
+    "statusSummary" : "6 files · 50 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "UkVNT1ZFX0NMQVNTClJlYWRBaGVhZEVuZHBvaW50", "Q0hBTkdFX1NVUEVSVFlQRQpBYnN0cmFjdENvbm5lY3Rpb25GYWN0b3J5IC0-IERldGVjdG9yQ29ubmVjdGlvbkZhY3RvcnkKVW5pZmllZENvbm5lY3Rpb25GYWN0b3J5", "Q0hBTkdFX1NVUEVSVFlQRQpBYnN0cmFjdEhhbmRsZXIgLT4gQWJzdHJhY3QKQ29tbWFuZExpc3RlbmVyLkNvbW1hbmRIYW5kbGVy", "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQ29tbWFuZExpc3RlbmVyLkNvbW1hbmRIYW5kbGVyI2hhbmRsZQ", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRMb2NhbEFkZHJlc3M", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRSZW1vdGVBZGRyZXNz", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc09wZW4", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRDcmVhdGVkVGltZVN0YW1w", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc091dHB1dFNodXRkb3du", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc0lucHV0U2h1dGRvd24", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNzaHV0ZG93bk91dHB1dA", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNjbG9zZQ", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRUcmFuc3BvcnQ", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRJZGxlVGltZW91dA", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRDb25uZWN0aW9u", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNvbk9wZW4", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNvbkNsb3Nl", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc09wdGltaXplZEZvckRpcmVjdEJ1ZmZlcnM", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc0ZpbGxJbnRlcmVzdGVk", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN0cnlGaWxsSW50ZXJlc3RlZA", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNmbHVzaA", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNzZXRJZGxlVGltZW91dA", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN3cml0ZQ", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNzZXRDb25uZWN0aW9u", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN1cGdyYWRl", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNmaWxsSW50ZXJlc3RlZA", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNyZWFkQWhlYWQ", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNyZWFkRnJvbVN0YXJ0", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNmaWxs", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRCeXRlcw", "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN0aHJvd1BlbmRpbmdFeGNlcHRpb24", "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjZG9TdGFydA", "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjbmV3Q29ubmVjdGlvbg", "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjbmV3U3NsQ29ubmVjdGlvbg", "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjdG9TdHJpbmc", "QUREX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjbmV4dFByb3RvY29s", "TU9ESUZZX01FVEhPRF9CT0RZCitzZWN1cml0eUhhbmRsZXIucHV0LCArYXNTdHJpbmcsIC1jLnNldEF1dGhlbnRpY2F0ZSwgLWNtdC5zZXRDb25zdHJhaW50LCAtY210LnNldE1ldGhvZCDigKZhbmQgMiBtb3JlCkpldHR5QWRtaW5TZXJ2ZXIjY29uc3RyYWluVHJhY2VNZXRob2Q", "TU9ESUZZX01FVEhPRF9CT0RZCitjdXN0b21pemVyLnNldFNuaUhvc3RDaGVjawpKZXR0eUFkbWluU2VydmVyIzxpbml0Pg", "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I2VuZFBvaW50", "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I3N0YXJ0", "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I2J5dGVz", "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I2xlZnRUb1JlYWQ", "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I3BlbmRpbmdFeGNlcHRpb24", "UkVNT1ZFX0ZJRUxEClVuaWZpZWRDb25uZWN0aW9uRmFjdG9yeSNMT0c", "UkVNT1ZFX0ZJRUxEClVuaWZpZWRDb25uZWN0aW9uRmFjdG9yeSNzc2xDb250ZXh0RmFjdG9yeQ", "UkVNT1ZFX0ZJRUxEClVuaWZpZWRDb25uZWN0aW9uRmFjdG9yeSNuZXh0UHJvdG9jb2w", "Q0hBTkdFX0ZJRUxEX1ZBTFVFClg1MDlBdXRoZW50aWNhdGlvblByb3ZpZGVyI1g1MDlfQ0VSVElGSUNBVEVfQVRUUklCVVRFX05BTUUKdmFsdWUgY2hhbmdlZA", "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQ", "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyI29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0", "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyI2pha2FydGEuc2VydmxldDpqYWthcnRhLnNlcnZsZXQtYXBp" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "zookeeper-prometheus-metrics",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 11 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCitjdXN0b21pemVyLnNldFNuaUhvc3RDaGVjawpQcm9tZXRoZXVzTWV0cmljc1Byb3ZpZGVyI3N0YXJ0", "TU9ESUZZX01FVEhPRF9CT0RZCitvZgpQcm9tZXRoZXVzTWV0cmljc1Byb3ZpZGVyI2NyZWF0ZVNzbENvbnRleHRGYWN0b3J5", "TU9ESUZZX01FVEhPRF9CT0RZCitjdXN0b21pemVyLnNldFN0c01heEFnZSwgK2N1c3RvbWl6ZXIuc2V0U3RzSW5jbHVkZVN1YkRvbWFpbnMsICtjdXN0b21pemVyLnNldFNuaUhvc3RDaGVjaywgK2NvbmZpZy5zZXRTZWN1cmVTY2hlbWUsICtjb25maWcuYWRkQ3VzdG9taXplciDigKZhbmQgMiBtb3JlClByb21ldGhldXNNZXRyaWNzUHJvdmlkZXIjY3JlYXRlU3NsQ29ubmVjdG9y", "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNpby5wcm9tZXRoZXVzOnByb21ldGhldXMtbWV0cmljcy1leHBvcnRlci1zZXJ2bGV0LWphdmF4", "Q0hBTkdFX0RFUEVOREVOQ1kKdmVyc2lvbiAke2pldHR5LnZlcnNpb259IC0-IG5vbmUKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2ZXI", "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2bGV0", "Q0hBTkdFX0RFUEVOREVOQ1kKdmVyc2lvbiAke2pldHR5LnZlcnNpb259IC0-IG5vbmUKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS11dGls", "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNqYXZheC5zZXJ2bGV0OmphdmF4LnNlcnZsZXQtYXBp", "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNpby5wcm9tZXRoZXVzOnByb21ldGhldXMtbWV0cmljcy1leHBvcnRlci1zZXJ2bGV0LWpha2FydGE", "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eS5lZTEwOmpldHR5LWVlMTAtc2VydmxldA", "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNqYWthcnRhLnNlcnZsZXQ6amFrYXJ0YS5zZXJ2bGV0LWFwaQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "parent",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 6 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "UkVNT1ZFX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZlciBbbWFuYWdlZF0", "UkVNT1ZFX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQgW21hbmFnZWRd", "UkVNT1ZFX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LWNsaWVudCBbbWFuYWdlZF0", "QUREX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LWJvbSBbbWFuYWdlZF0", "QUREX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1ib20gW21hbmFnZWRd", "QUREX0RFUEVOREVOQ1kKcGFyZW50I2pha2FydGEuc2VydmxldDpqYWthcnRhLnNlcnZsZXQtYXBpIFttYW5hZ2VkXQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "zookeeper-assembly",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLWFzc2VtYmx5I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQ", "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLWFzc2VtYmx5I29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0", "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLWFzc2VtYmx5I2pha2FydGEuc2VydmxldDpqYWthcnRhLnNlcnZsZXQtYXBp" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "zookeeper-contrib-fatjar",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLWNvbnRyaWItZmF0amFyI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQ", "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLWNvbnRyaWItZmF0amFyI29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "zookeeper-jute",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "zookeeper-website",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "zookeeper-client",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "zookeeper-recipes",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "zookeeper-it",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "zookeeper-server",
+    "to" : "zookeeper-jute"
+  }, {
+    "from" : "zookeeper-prometheus-metrics",
+    "to" : "zookeeper-server"
+  }, {
+    "from" : "zookeeper-assembly",
+    "to" : "zookeeper-website"
+  }, {
+    "from" : "zookeeper-assembly",
+    "to" : "zookeeper-jute"
+  }, {
+    "from" : "zookeeper-assembly",
+    "to" : "zookeeper-server"
+  }, {
+    "from" : "zookeeper-assembly",
+    "to" : "zookeeper-client"
+  }, {
+    "from" : "zookeeper-assembly",
+    "to" : "zookeeper-prometheus-metrics"
+  }, {
+    "from" : "zookeeper-assembly",
+    "to" : "zookeeper-recipes"
+  }, {
+    "from" : "zookeeper-contrib-fatjar",
+    "to" : "zookeeper-jute"
+  }, {
+    "from" : "zookeeper-contrib-fatjar",
+    "to" : "zookeeper-server"
+  }, {
+    "from" : "zookeeper-contrib-fatjar",
+    "to" : "zookeeper-it"
+  } ]
+}

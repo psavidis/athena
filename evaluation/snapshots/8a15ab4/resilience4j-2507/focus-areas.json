@@ -1,0 +1,10 @@
+[ {
+  "description" : "Modify body of ThreadPoolBulkheadConfig.Builder#<init>: other statements changed",
+  "entity" : "ThreadPoolBulkheadConfig.Builder"
+}, {
+  "description" : "Add ThreadPoolBulkheadConfigTest#fromShouldNotMutateBaseConfig",
+  "entity" : "ThreadPoolBulkheadConfigTest"
+}, {
+  "description" : "Add ThreadPoolBulkheadConfigTest#fromShouldCopyAllFields",
+  "entity" : "ThreadPoolBulkheadConfigTest"
+} ]

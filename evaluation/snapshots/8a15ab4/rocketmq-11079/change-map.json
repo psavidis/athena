@@ -1,0 +1,200 @@
+{
+  "prTitle" : "[ISSUE #11078] Support suppressing minimal-value metrics to reduce export payload",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 7,
+    "UNKNOWN" : 1,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCcm9rZXJNZXRyaWNzTWFuYWdlciNpbml0TGFnQW5kRGxxTWV0cmljcwpicmFuY2ggYWRkZWQ",
+    "description" : "Change control flow of BrokerMetricsManager#initLagAndDlqMetrics: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlciNzaG91bGRSZWNvcmRWYWx1ZQ",
+    "description" : "Add BrokerMetricsManager#shouldRecordValue",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjY3JlYXRlVGVzdEJyb2tlck1ldHJpY3NNYW5hZ2Vy",
+    "description" : "Add BrokerMetricsManagerTest#createTestBrokerMetricsManager",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjdGVzdFNob3VsZFJlY29yZFZhbHVlV2hlblN1cHByZXNzRGlzYWJsZWQ",
+    "description" : "Add BrokerMetricsManagerTest#testShouldRecordValueWhenSuppressDisabled",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjdGVzdFNob3VsZFJlY29yZFZhbHVlV2hlblN1cHByZXNzRW5hYmxlZA",
+    "description" : "Add BrokerMetricsManagerTest#testShouldRecordValueWhenSuppressEnabled",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApCcm9rZXJDb25maWcjaXNTdXBwcmVzc01pblZhbHVlTWV0cmljcw",
+    "description" : "Add BrokerConfig#isSuppressMinValueMetrics",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApCcm9rZXJDb25maWcjc2V0U3VwcHJlc3NNaW5WYWx1ZU1ldHJpY3M",
+    "description" : "Add BrokerConfig#setSuppressMinValueMetrics",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGVUZXN0QnJva2VyTWV0cmljc01hbmFnZXIsIC1nZXRQcm9wZXJ0eSwgLXJhbmRvbVVVSUQsIC1tZXNzYWdlU3RvcmVDb25maWcuc2V0U3RvcmVQYXRoUm9vdERpciwgLW5ldHR5U2VydmVyQ29uZmlnLnNldExpc3RlblBvcnQg4oCmYW5kIDEgbW9yZQpCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjY3JlYXRlVGVzdEJyb2tlck1ldHJpY3NNYW5hZ2Vy",
+    "description" : "Modify body of BrokerMetricsManagerTest#createTestBrokerMetricsManager: +createTestBrokerMetricsManager, -getProperty, -randomUUID, -messageStoreConfig.setStorePathRootDir, -nettyServerConfig.setListenPort …and 1 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX0ZJRUxECkJyb2tlckNvbmZpZyNzdXBwcmVzc01pblZhbHVlTWV0cmljcw",
+    "description" : "Add field BrokerConfig#suppressMinValueMetrics",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "BrokerMetricsManager",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpCcm9rZXJNZXRyaWNzTWFuYWdlciNpbml0TGFnQW5kRGxxTWV0cmljcwpicmFuY2ggYWRkZWQ",
+      "description" : "Change control flow of BrokerMetricsManager#initLagAndDlqMetrics: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlciNzaG91bGRSZWNvcmRWYWx1ZQ",
+      "description" : "Add BrokerMetricsManager#shouldRecordValue",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "BrokerMetricsManagerTest",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjY3JlYXRlVGVzdEJyb2tlck1ldHJpY3NNYW5hZ2Vy",
+      "description" : "Add BrokerMetricsManagerTest#createTestBrokerMetricsManager",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjdGVzdFNob3VsZFJlY29yZFZhbHVlV2hlblN1cHByZXNzRGlzYWJsZWQ",
+      "description" : "Add BrokerMetricsManagerTest#testShouldRecordValueWhenSuppressDisabled",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjdGVzdFNob3VsZFJlY29yZFZhbHVlV2hlblN1cHByZXNzRW5hYmxlZA",
+      "description" : "Add BrokerMetricsManagerTest#testShouldRecordValueWhenSuppressEnabled",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGVUZXN0QnJva2VyTWV0cmljc01hbmFnZXIsIC1nZXRQcm9wZXJ0eSwgLXJhbmRvbVVVSUQsIC1tZXNzYWdlU3RvcmVDb25maWcuc2V0U3RvcmVQYXRoUm9vdERpciwgLW5ldHR5U2VydmVyQ29uZmlnLnNldExpc3RlblBvcnQg4oCmYW5kIDEgbW9yZQpCcm9rZXJNZXRyaWNzTWFuYWdlclRlc3QjY3JlYXRlVGVzdEJyb2tlck1ldHJpY3NNYW5hZ2Vy",
+      "description" : "Modify body of BrokerMetricsManagerTest#createTestBrokerMetricsManager: +createTestBrokerMetricsManager, -getProperty, -randomUUID, -messageStoreConfig.setStorePathRootDir, -nettyServerConfig.setListenPort …and 1 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "BrokerConfig",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApCcm9rZXJDb25maWcjaXNTdXBwcmVzc01pblZhbHVlTWV0cmljcw",
+      "description" : "Add BrokerConfig#isSuppressMinValueMetrics",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApCcm9rZXJDb25maWcjc2V0U3VwcHJlc3NNaW5WYWx1ZU1ldHJpY3M",
+      "description" : "Add BrokerConfig#setSuppressMinValueMetrics",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX0ZJRUxECkJyb2tlckNvbmZpZyNzdXBwcmVzc01pblZhbHVlTWV0cmljcw",
+      "description" : "Add field BrokerConfig#suppressMinValueMetrics",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/redisson/redisson.git",
+  "base" : "2fc31b7d130f13924dd965e683b64e2182437eb8",
+  "head" : "3fb10736e199ef6a0902c54208e9097ada24f6d0",
+  "changeCount" : 2,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 5.89
+}

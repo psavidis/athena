@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of DubboCodec#encodeRequestData: branch added",
+  "entity" : "DubboCodec"
+}, {
+  "description" : "Change control flow of DubboCodec#encodeResponseData: branch added",
+  "entity" : "DubboCodec"
+}, {
+  "description" : "Change annotations of DubboProtocolTest#testNonSerializedParameter: -@Disabled",
+  "entity" : "DubboProtocolTest"
+}, {
+  "description" : "Change annotations of DubboProtocolTest#testReturnNonSerialized: -@Disabled",
+  "entity" : "DubboProtocolTest"
+} ]

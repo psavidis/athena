@@ -1,0 +1,13 @@
+[ {
+  "entity" : "CommandListener.CommandHandler",
+  "description" : "Change signature of CommandListener.CommandHandler#handle"
+}, {
+  "entity" : "UnifiedConnectionFactory",
+  "description" : "Change supertype of UnifiedConnectionFactory: AbstractConnectionFactory -> DetectorConnectionFactory"
+}, {
+  "entity" : "CommandListener.CommandHandler",
+  "description" : "Change supertype of CommandListener.CommandHandler: AbstractHandler -> Abstract"
+}, {
+  "entity" : "ReadAheadEndpoint",
+  "description" : "Remove class ReadAheadEndpoint"
+} ]

@@ -1,0 +1,13 @@
+[ {
+  "entity" : "AbstractConnectionPool.FutureConnection",
+  "description" : "Change control flow of AbstractConnectionPool.FutureConnection#succeeded: branch added"
+}, {
+  "entity" : "AbstractConnectionPool.FutureConnection",
+  "description" : "Change control flow of AbstractConnectionPool.FutureConnection#failed: branch added"
+}, {
+  "entity" : "ClientConnector",
+  "description" : "Change control flow of ClientConnector#connectFailed: branch added"
+}, {
+  "entity" : "ManagedSelector.SelectorProducer",
+  "description" : "Change control flow of ManagedSelector.SelectorProducer#processUpdates: branch added"
+} ]

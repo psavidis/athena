@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of MulticastProcessor.MulticastTask#aggregate: branch removed, loop removed",
+  "entity" : "MulticastProcessor.MulticastTask"
+}, {
+  "description" : "Extract MulticastProcessor.MulticastTask#aggregateCompleted",
+  "entity" : "MulticastProcessor.MulticastTask"
+}, {
+  "description" : "Add MulticastProcessor.MulticastTask#doDoneNoMorePairs",
+  "entity" : "MulticastProcessor.MulticastTask"
+}, {
+  "description" : "Modify body of MulticastProcessor.MulticastReactiveTask#run: +doDoneNoMorePairs, -doDone, -result.get",
+  "entity" : "MulticastProcessor.MulticastReactiveTask"
+} ]

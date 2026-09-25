@@ -1,0 +1,13 @@
+[ {
+  "entity" : "ProtoMessageUtil",
+  "description" : "Change control flow of ProtoMessageUtil#parse: branch added"
+}, {
+  "entity" : "ProtoMessageUtil",
+  "description" : "Remove ProtoMessageUtil#convertToWriteRequest"
+}, {
+  "entity" : "ProtoMessageUtil",
+  "description" : "Remove ProtoMessageUtil#convertToReadRequest"
+}, {
+  "entity" : "ProtoMessageUtil",
+  "description" : "Add field ProtoMessageUtil#LOGGER"
+} ]

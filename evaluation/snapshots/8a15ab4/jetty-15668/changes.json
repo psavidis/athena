@@ -1,0 +1,511 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ConnectionPoolReservationTest",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWx1cmU",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ConnectionPoolReservationTest.Failure",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest.Failure" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWxpbmdDbGllbnRDb25uZWN0b3I",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ConnectionPoolReservationTest.FailingClientConnector",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest.FailingClientConnector" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQ2xvc2VhYmxlCk1hbmFnZWRTZWxlY3Rvci5Db25uZWN0",
+  "kind" : "CHANGE_SUPERTYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change supertype of ManagedSelector.Connect: +Closeable",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.Connect", "+Closeable" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQorQ2xvc2VhYmxlCk1hbmFnZWRTZWxlY3Rvci5DcmVhdGVFbmRQb2ludA",
+  "kind" : "CHANGE_SUPERTYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change supertype of ManagedSelector.CreateEndPoint: +Closeable",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.CreateEndPoint", "+Closeable" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdENvbm5lY3Rpb25Qb29sLkZ1dHVyZUNvbm5lY3Rpb24jc3VjY2VlZGVkCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of AbstractConnectionPool.FutureConnection#succeeded: branch added",
+  "files" : [ "jetty-core/jetty-client/src/main/java/org/eclipse/jetty/client/AbstractConnectionPool.java" ],
+  "symbols" : [ "AbstractConnectionPool.FutureConnection#succeeded", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdENvbm5lY3Rpb25Qb29sLkZ1dHVyZUNvbm5lY3Rpb24jZmFpbGVkCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of AbstractConnectionPool.FutureConnection#failed: branch added",
+  "files" : [ "jetty-core/jetty-client/src/main/java/org/eclipse/jetty/client/AbstractConnectionPool.java" ],
+  "symbols" : [ "AbstractConnectionPool.FutureConnection#failed", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpDbGllbnRDb25uZWN0b3IjY29ubmVjdEZhaWxlZApicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ClientConnector#connectFailed: branch added",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ClientConnector.java" ],
+  "symbols" : [ "ClientConnector#connectFailed", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYW5hZ2VkU2VsZWN0b3IuU2VsZWN0b3JQcm9kdWNlciNwcm9jZXNzVXBkYXRlcwpicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ManagedSelector.SelectorProducer#processUpdates: branch added",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.SelectorProducer#processUpdates", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01PRElGSUVSUwpNYW5hZ2VkU2VsZWN0b3IuQ29ubmVjdCNmYWlsZWQKcHVibGljIC0-IHByaXZhdGU",
+  "kind" : "CHANGE_MODIFIERS",
+  "category" : "STRUCTURAL",
+  "description" : "Change modifiers of ManagedSelector.Connect#failed: public -> private",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.Connect#failed", "public -> private" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYW5hZ2VkU2VsZWN0b3IuQ2xvc2VDb25uZWN0aW9ucyN1cGRhdGUKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ManagedSelector.CloseConnections#update: branch added",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.CloseConnections#update", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYW5hZ2VkU2VsZWN0b3IuQ3JlYXRlRW5kUG9pbnQjcnVuCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ManagedSelector.CreateEndPoint#run: branch removed",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.CreateEndPoint#run", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZWxlY3Rvck1hbmFnZXIjY29ubmVjdApicmFuY2ggYWRkZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SelectorManager#connect: branch added",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/SelectorManager.java" ],
+  "symbols" : [ "SelectorManager#connect", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZWxlY3Rvck1hbmFnZXIjYWNjZXB0CmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SelectorManager#accept: branch added",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/SelectorManager.java" ],
+  "symbols" : [ "SelectorManager#accept", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZWxlY3Rvck1hbmFnZXIjYWNjZXB0b3IKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SelectorManager#acceptor: branch added",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/SelectorManager.java" ],
+  "symbols" : [ "SelectorManager#acceptor", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2VsZWN0b3JNYW5hZ2VyI29uQWNjZXB0RmFpbGVk",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of SelectorManager#onAcceptFailed",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/SelectorManager.java" ],
+  "symbols" : [ "SelectorManager#onAcceptFailed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVbml4RG9tYWluU2VydmVyQ29ubmVjdG9yI3NldEFjY2VwdGluZwpjb25kaXRpb24gY2hhbmdlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of UnixDomainServerConnector#setAccepting: condition changed",
+  "files" : [ "jetty-core/jetty-unixdomain-server/src/main/java/org/eclipse/jetty/unixdomain/server/UnixDomainServerConnector.java" ],
+  "symbols" : [ "UnixDomainServerConnector#setAccepting", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCNzdGFydA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConnectionPoolReservationTest#start",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest#start" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCNkaXNwb3Nl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConnectionPoolReservationTest#dispose",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest#dispose" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCN0ZXN0Q29ubmVjdGlvbkNyZWF0aW9uRmFpbHVyZVJlbGVhc2VzUmVzZXJ2ZWRFbnRyeQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConnectionPoolReservationTest#testConnectionCreationFailureReleasesReservedEntry",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest#testConnectionCreationFailureReleasesReservedEntry" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld0VuZFBvaW50",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConnectionPoolReservationTest.FailingClientConnector#newEndPoint",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest.FailingClientConnector#newEndPoint" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld0Nvbm5lY3Rpb24",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConnectionPoolReservationTest.FailingClientConnector#newConnection",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest.FailingClientConnector#newConnection" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld1NlbGVjdG9yTWFuYWdlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConnectionPoolReservationTest.FailingClientConnector#newSelectorManager",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest.FailingClientConnector#newSelectorManager" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDbGllbnRDb25uZWN0b3IuQ2xpZW50U2VsZWN0b3JNYW5hZ2VyI29uQWNjZXB0RmFpbGVk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ClientConnector.ClientSelectorManager#onAcceptFailed",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ClientConnector.java" ],
+  "symbols" : [ "ClientConnector.ClientSelectorManager#onAcceptFailed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuU2VsZWN0b3JQcm9kdWNlciNjbG9zZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ManagedSelector.SelectorProducer#close",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.SelectorProducer#close" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuQWNjZXB0b3IjY2FuY2VsQWNjZXB0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ManagedSelector.Acceptor#cancelAccept",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.Acceptor#cancelAccept" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuQ29ubmVjdCNjbG9zZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ManagedSelector.Connect#close",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.Connect#close" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuQ3JlYXRlRW5kUG9pbnQjY2xvc2U",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ManagedSelector.CreateEndPoint#close",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.CreateEndPoint#close" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTZWxlY3Rvck1hbmFnZXIjb25BY2NlcHRGYWlsZWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SelectorManager#onAcceptFailed",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/SelectorManager.java" ],
+  "symbols" : [ "SelectorManager#onAcceptFailed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApDb25uZWN0SGFuZGxlci5Db25uZWN0TWFuYWdlciNvbkFjY2VwdEZhaWxlZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ConnectHandler.ConnectManager#onAcceptFailed",
+  "files" : [ "jetty-core/jetty-server/src/main/java/org/eclipse/jetty/server/handler/ConnectHandler.java" ],
+  "symbols" : [ "ConnectHandler.ConnectManager#onAcceptFailed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsaWVudENvbm5lY3RvciNhY2NlcHQKYXJndW1lbnRzIG9mIGRlYnVnIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ClientConnector#accept: arguments of debug changed",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ClientConnector.java" ],
+  "symbols" : [ "ClientConnector#accept", "arguments of debug changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5TZWxlY3RvclByb2R1Y2VyI3Byb2Nlc3NTZWxlY3RlZAphcmd1bWVudHMgb2YgY2xvc2UgY2hhbmdlZCDDlzM",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ManagedSelector.SelectorProducer#processSelected: arguments of close changed ×3",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.SelectorProducer#processSelected", "arguments of close changed ×3" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbG9zZSwgLXN1Ym1pdCwgLV9rZXkuY2FuY2VsCk1hbmFnZWRTZWxlY3Rvci5BY2NlcHRvciNjbG9zZQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ManagedSelector.Acceptor#close: +close, -submit, -_key.cancel",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.Acceptor#close", "+close, -submit, -_key.cancel" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5BY2NlcHQjZmFpbGVkCmFyZ3VtZW50cyBvZiBfc2VsZWN0b3JNYW5hZ2VyLm9uQWNjZXB0RmFpbGVkIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ManagedSelector.Accept#failed: arguments of _selectorManager.onAcceptFailed changed",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.Accept#failed", "arguments of _selectorManager.onAcceptFailed changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5Db25uZWN0I2ZhaWxlZApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ManagedSelector.Connect#failed: other statements changed",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.Connect#failed", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbG9zZSwgLWFjY2VwdG9yLmNsb3NlLCAtdGhyb3cgUnVudGltZUV4Y2VwdGlvbiwgYXJndW1lbnRzIG9mIGNsb3NlIGNoYW5nZWQgw5cyClNlcnZlckNvbm5lY3RvciNzZXRBY2NlcHRpbmc",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ServerConnector#setAccepting: +close, -acceptor.close, -throw RuntimeException, arguments of close changed ×2",
+  "files" : [ "jetty-core/jetty-server/src/main/java/org/eclipse/jetty/server/ServerConnector.java" ],
+  "symbols" : [ "ServerConnector#setAccepting", "+close, -acceptor.close, -throw RuntimeException, arguments of close changed ×2" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbm5lY3RIYW5kbGVyLkNvbm5lY3RNYW5hZ2VyI2Nvbm5lY3Rpb25GYWlsZWQKb25Db25uZWN0RmFpbHVyZSjigKYpOiBleCAtPiBmYWlsdXJl",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ConnectHandler.ConnectManager#connectionFailed: onConnectFailure(…): ex -> failure",
+  "files" : [ "jetty-core/jetty-server/src/main/java/org/eclipse/jetty/server/handler/ConnectHandler.java" ],
+  "symbols" : [ "ConnectHandler.ConnectManager#connectionFailed", "onConnectFailure(…): ex -> failure" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1fc2VsZWN0b3JNYW5hZ2VyLm9uQWNjZXB0aW5nCk1hbmFnZWRTZWxlY3Rvci5BY2NlcHQjPGluaXQ-",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ManagedSelector.Accept#<init>: -_selectorManager.onAccepting",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.Accept#<init>", "-_selectorManager.onAccepting" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5Db25uZWN0Izxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ManagedSelector.Connect#<init>: other statements changed",
+  "files" : [ "jetty-core/jetty-io/src/main/java/org/eclipse/jetty/io/ManagedSelector.java" ],
+  "symbols" : [ "ManagedSelector.Connect#<init>", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkFic3RyYWN0Q29ubmVjdGlvblBvb2wuRnV0dXJlQ29ubmVjdGlvbiNjb21wbGV0ZWQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field AbstractConnectionPool.FutureConnection#completed",
+  "files" : [ "jetty-core/jetty-client/src/main/java/org/eclipse/jetty/client/AbstractConnectionPool.java" ],
+  "symbols" : [ "AbstractConnectionPool.FutureConnection#completed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I3NlcnZlcg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ConnectionPoolReservationTest#server",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest#server" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2Nvbm5lY3Rvcg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ConnectionPoolReservationTest#connector",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest#connector" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2NsaWVudENvbm5lY3Rvcg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ConnectionPoolReservationTest#clientConnector",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest#clientConnector" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2NsaWVudA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ConnectionPoolReservationTest#client",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest#client" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWx1cmUjZXhwZWN0ZWQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ConnectionPoolReservationTest.Failure#expected",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest.Failure#expected" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWxpbmdDbGllbnRDb25uZWN0b3IjZmFpbHVyZQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ConnectionPoolReservationTest.FailingClientConnector#failure",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest.FailingClientConnector#failure" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsdXJlI2V4cGVjdGVk",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ConnectionPoolReservationTest.Failure#expected",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest.Failure#expected" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNOT19TRUxFQ1RPUg",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant ConnectionPoolReservationTest.Failure#NO_SELECTOR",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest.Failure#NO_SELECTOR" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNSRUdJU1RSQVRJT04",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant ConnectionPoolReservationTest.Failure#REGISTRATION",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest.Failure#REGISTRATION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNORVdfRU5EUE9JTlQ",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant ConnectionPoolReservationTest.Failure#NEW_ENDPOINT",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest.Failure#NEW_ENDPOINT" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNORVdfQ09OTkVDVElPTg",
+  "kind" : "ADD_ENUM_CONSTANT",
+  "category" : "STRUCTURAL",
+  "description" : "Add enum constant ConnectionPoolReservationTest.Failure#NEW_CONNECTION",
+  "files" : [ "jetty-core/jetty-client/src/test/java/org/eclipse/jetty/client/ConnectionPoolReservationTest.java" ],
+  "symbols" : [ "ConnectionPoolReservationTest.Failure#NEW_CONNECTION" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

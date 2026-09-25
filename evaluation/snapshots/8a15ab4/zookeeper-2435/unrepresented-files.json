@@ -1,0 +1,243 @@
+{
+  "changedFileCount" : 45,
+  "representedFileCount" : 11,
+  "files" : [ {
+    "path" : "owaspSuppressions.xml",
+    "status" : "MODIFIED",
+    "linesChanged" : 19,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-metrics-providers/zookeeper-prometheus-metrics/src/test/java/org/apache/zookeeper/metrics/prometheus/PrometheusMetricsProviderTest.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 12,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/CommandResponse.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/Commands.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/main/java/org/apache/zookeeper/server/auth/AuthenticationProvider.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/main/java/org/apache/zookeeper/server/auth/DigestAuthenticationProvider.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/main/java/org/apache/zookeeper/server/auth/IPAuthenticationProvider.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/main/java/org/apache/zookeeper/server/auth/WrappedAuthenticationProvider.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/main/java/org/apache/zookeeper/server/controller/CommandClient.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jakarta.servlet-api-6.0.0.LICENSE.txt",
+    "status" : "ADDED",
+    "linesChanged" : 637,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-client-9.4.58.v20250814.LICENSE.txt",
+    "status" : "REMOVED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-ee10-servlet-12.1.12.LICENSE.txt",
+    "status" : "ADDED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-http-12.1.12.LICENSE.txt",
+    "status" : "ADDED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-http-9.4.58.v20250814.LICENSE.txt",
+    "status" : "REMOVED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-io-12.1.12.LICENSE.txt",
+    "status" : "ADDED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-io-9.4.58.v20250814.LICENSE.txt",
+    "status" : "REMOVED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-security-12.1.12.LICENSE.txt",
+    "status" : "ADDED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-security-9.4.58.v20250814.LICENSE.txt",
+    "status" : "REMOVED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-server-12.1.12.LICENSE.txt",
+    "status" : "ADDED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-server-9.4.58.v20250814.LICENSE.txt",
+    "status" : "REMOVED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-servlet-9.4.58.v20250814.LICENSE.txt",
+    "status" : "REMOVED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-session-12.1.12.LICENSE.txt",
+    "status" : "ADDED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-util-12.1.12.LICENSE.txt",
+    "status" : "ADDED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-util-9.4.58.v20250814.LICENSE.txt",
+    "status" : "REMOVED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/main/resources/lib/jetty-util-ajax-9.4.58.v20250814.LICENSE.txt",
+    "status" : "REMOVED",
+    "linesChanged" : 414,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "zookeeper-server/src/test/java/org/apache/zookeeper/server/admin/CommandAuthTest.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/test/java/org/apache/zookeeper/server/admin/CommandResponseTest.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/test/java/org/apache/zookeeper/server/admin/CommandsTest.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/test/java/org/apache/zookeeper/server/admin/ShedConnectionsCommandTest.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/test/java/org/apache/zookeeper/server/admin/SnapshotAndRestoreCommandTest.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/test/java/org/apache/zookeeper/server/auth/IPAuthenticationProviderTest.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/test/java/org/apache/zookeeper/test/IPAuthTest.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-server/src/test/java/org/apache/zookeeper/test/X509AuthTest.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 2,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "zookeeper-website/app/pages/_docs/docs/_mdx/admin-ops/administrators-guide/commands.mdx",
+    "status" : "MODIFIED",
+    "linesChanged" : 10,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

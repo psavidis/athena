@@ -1,0 +1,343 @@
+{
+  "prTitle" : "CAMEL-24959: camel-core - Do not complete a parallel streaming split before its parts when the iterator ends with a null",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 14,
+    "UNKNOWN" : 1,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTClNwbGl0UGFyYWxsZWxTdHJlYW1pbmdJdGVyYXRvck51bGxUZXN0",
+    "description" : "Add class SplitParallelStreamingIteratorNullTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0NMQVNTClNwbGl0UGFyYWxsZWxTdHJlYW1pbmdJdGVyYXRvck51bGxUZXN0Lk15SXRlcmF0b3I",
+    "description" : "Add class SplitParallelStreamingIteratorNullTest.MyIterator",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNdWx0aWNhc3RQcm9jZXNzb3IuTXVsdGljYXN0VGFzayNhZ2dyZWdhdGUKYnJhbmNoIHJlbW92ZWQsIGxvb3AgcmVtb3ZlZA",
+    "description" : "Change control flow of MulticastProcessor.MulticastTask#aggregate: branch removed, loop removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "RVhUUkFDVF9NRVRIT0QKTXVsdGljYXN0UHJvY2Vzc29yLk11bHRpY2FzdFRhc2sjYWdncmVnYXRlCk11bHRpY2FzdFByb2Nlc3Nvci5NdWx0aWNhc3RUYXNrI2FnZ3JlZ2F0ZUNvbXBsZXRlZA",
+    "description" : "Extract MulticastProcessor.MulticastTask#aggregateCompleted",
+    "category" : "STRUCTURAL",
+    "kind" : "EXTRACT_METHOD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApNdWx0aWNhc3RQcm9jZXNzb3IuTXVsdGljYXN0VGFzayNkb0RvbmVOb01vcmVQYWlycw",
+    "description" : "Add MulticastProcessor.MulticastTask#doDoneNoMorePairs",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdCN0ZXN0U3BsaXRTdHJlYW1pbmdQYXJhbGxlbA",
+    "description" : "Add SplitParallelStreamingIteratorNullTest#testSplitStreamingParallel",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdCN0ZXN0U3BsaXRTdHJlYW1pbmc",
+    "description" : "Add SplitParallelStreamingIteratorNullTest#testSplitStreaming",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdCNzb3J0ZWQ",
+    "description" : "Add SplitParallelStreamingIteratorNullTest#sorted",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdCNjcmVhdGVSb3V0ZUJ1aWxkZXI",
+    "description" : "Add SplitParallelStreamingIteratorNullTest#createRouteBuilder",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX1NZTUJPTApTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdC5NeUl0ZXJhdG9yI2hhc05leHQ",
+    "description" : "Add SplitParallelStreamingIteratorNullTest.MyIterator#hasNext",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdC5NeUl0ZXJhdG9yI25leHQ",
+    "description" : "Add SplitParallelStreamingIteratorNullTest.MyIterator#next",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkb0RvbmVOb01vcmVQYWlycywgLWRvRG9uZSwgLXJlc3VsdC5nZXQKTXVsdGljYXN0UHJvY2Vzc29yLk11bHRpY2FzdFJlYWN0aXZlVGFzayNydW4",
+    "description" : "Modify body of MulticastProcessor.MulticastReactiveTask#run: +doDoneNoMorePairs, -doDone, -result.get",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX0ZJRUxEClNwbGl0UGFyYWxsZWxTdHJlYW1pbmdJdGVyYXRvck51bGxUZXN0I2xhc3RIYXNOZXh0",
+    "description" : "Add field SplitParallelStreamingIteratorNullTest#lastHasNext",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX0ZJRUxEClNwbGl0UGFyYWxsZWxTdHJlYW1pbmdJdGVyYXRvck51bGxUZXN0Lk15SXRlcmF0b3IjbGFzdEhhc05leHQ",
+    "description" : "Add field SplitParallelStreamingIteratorNullTest.MyIterator#lastHasNext",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX0ZJRUxEClNwbGl0UGFyYWxsZWxTdHJlYW1pbmdJdGVyYXRvck51bGxUZXN0Lk15SXRlcmF0b3IjY291bnQ",
+    "description" : "Add field SplitParallelStreamingIteratorNullTest.MyIterator#count",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdC5NeUl0ZXJhdG9yI2xhc3RIYXNOZXh0",
+    "description" : "Add constructor parameter SplitParallelStreamingIteratorNullTest.MyIterator#lastHasNext",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "SplitParallelStreamingIteratorNullTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTClNwbGl0UGFyYWxsZWxTdHJlYW1pbmdJdGVyYXRvck51bGxUZXN0",
+      "description" : "Add class SplitParallelStreamingIteratorNullTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdCN0ZXN0U3BsaXRTdHJlYW1pbmdQYXJhbGxlbA",
+      "description" : "Add SplitParallelStreamingIteratorNullTest#testSplitStreamingParallel",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdCN0ZXN0U3BsaXRTdHJlYW1pbmc",
+      "description" : "Add SplitParallelStreamingIteratorNullTest#testSplitStreaming",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdCNzb3J0ZWQ",
+      "description" : "Add SplitParallelStreamingIteratorNullTest#sorted",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdCNjcmVhdGVSb3V0ZUJ1aWxkZXI",
+      "description" : "Add SplitParallelStreamingIteratorNullTest#createRouteBuilder",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX0ZJRUxEClNwbGl0UGFyYWxsZWxTdHJlYW1pbmdJdGVyYXRvck51bGxUZXN0I2xhc3RIYXNOZXh0",
+      "description" : "Add field SplitParallelStreamingIteratorNullTest#lastHasNext",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "SplitParallelStreamingIteratorNullTest.MyIterator",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX0NMQVNTClNwbGl0UGFyYWxsZWxTdHJlYW1pbmdJdGVyYXRvck51bGxUZXN0Lk15SXRlcmF0b3I",
+      "description" : "Add class SplitParallelStreamingIteratorNullTest.MyIterator",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 9,
+      "changeKey" : "QUREX1NZTUJPTApTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdC5NeUl0ZXJhdG9yI2hhc05leHQ",
+      "description" : "Add SplitParallelStreamingIteratorNullTest.MyIterator#hasNext",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdC5NeUl0ZXJhdG9yI25leHQ",
+      "description" : "Add SplitParallelStreamingIteratorNullTest.MyIterator#next",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX0ZJRUxEClNwbGl0UGFyYWxsZWxTdHJlYW1pbmdJdGVyYXRvck51bGxUZXN0Lk15SXRlcmF0b3IjbGFzdEhhc05leHQ",
+      "description" : "Add field SplitParallelStreamingIteratorNullTest.MyIterator#lastHasNext",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 14,
+      "changeKey" : "QUREX0ZJRUxEClNwbGl0UGFyYWxsZWxTdHJlYW1pbmdJdGVyYXRvck51bGxUZXN0Lk15SXRlcmF0b3IjY291bnQ",
+      "description" : "Add field SplitParallelStreamingIteratorNullTest.MyIterator#count",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpTcGxpdFBhcmFsbGVsU3RyZWFtaW5nSXRlcmF0b3JOdWxsVGVzdC5NeUl0ZXJhdG9yI2xhc3RIYXNOZXh0",
+      "description" : "Add constructor parameter SplitParallelStreamingIteratorNullTest.MyIterator#lastHasNext",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "MulticastProcessor.MulticastTask",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNdWx0aWNhc3RQcm9jZXNzb3IuTXVsdGljYXN0VGFzayNhZ2dyZWdhdGUKYnJhbmNoIHJlbW92ZWQsIGxvb3AgcmVtb3ZlZA",
+      "description" : "Change control flow of MulticastProcessor.MulticastTask#aggregate: branch removed, loop removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 3,
+      "changeKey" : "RVhUUkFDVF9NRVRIT0QKTXVsdGljYXN0UHJvY2Vzc29yLk11bHRpY2FzdFRhc2sjYWdncmVnYXRlCk11bHRpY2FzdFByb2Nlc3Nvci5NdWx0aWNhc3RUYXNrI2FnZ3JlZ2F0ZUNvbXBsZXRlZA",
+      "description" : "Extract MulticastProcessor.MulticastTask#aggregateCompleted",
+      "category" : "STRUCTURAL",
+      "kind" : "EXTRACT_METHOD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApNdWx0aWNhc3RQcm9jZXNzb3IuTXVsdGljYXN0VGFzayNkb0RvbmVOb01vcmVQYWlycw",
+      "description" : "Add MulticastProcessor.MulticastTask#doDoneNoMorePairs",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "MulticastProcessor.MulticastReactiveTask",
+    "entries" : [ {
+      "id" : 11,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkb0RvbmVOb01vcmVQYWlycywgLWRvRG9uZSwgLXJlc3VsdC5nZXQKTXVsdGljYXN0UHJvY2Vzc29yLk11bHRpY2FzdFJlYWN0aXZlVGFzayNydW4",
+      "description" : "Modify body of MulticastProcessor.MulticastReactiveTask#run: +doDoneNoMorePairs, -doDone, -result.get",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

@@ -1,0 +1,21 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpQYXJ0aXRpb25lZE91dHB1dE9wZXJhdG9yI2ZpbmlzaApjb25kaXRpb24gY2hhbmdlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of PartitionedOutputOperator#finish: condition changed",
+  "files" : [ "core/trino-main/src/main/java/io/trino/operator/output/PartitionedOutputOperator.java" ],
+  "symbols" : [ "PartitionedOutputOperator#finish", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApUZXN0UGFydGl0aW9uZWRPdXRwdXRPcGVyYXRvciN0ZXN0TWVtb3J5UmVsZWFzZWRPbkZpbmlzaEZhaWx1cmU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TestPartitionedOutputOperator#testMemoryReleasedOnFinishFailure",
+  "files" : [ "core/trino-main/src/test/java/io/trino/operator/output/TestPartitionedOutputOperator.java" ],
+  "symbols" : [ "TestPartitionedOutputOperator#testMemoryReleasedOnFinishFailure" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

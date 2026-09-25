@@ -1,0 +1,721 @@
+[ {
+  "changeKey" : "UkVNT1ZFX0NMQVNTClJlYWRBaGVhZEVuZHBvaW50",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class ReadAheadEndpoint",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpBYnN0cmFjdENvbm5lY3Rpb25GYWN0b3J5IC0-IERldGVjdG9yQ29ubmVjdGlvbkZhY3RvcnkKVW5pZmllZENvbm5lY3Rpb25GYWN0b3J5",
+  "kind" : "CHANGE_SUPERTYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change supertype of UnifiedConnectionFactory: AbstractConnectionFactory -> DetectorConnectionFactory",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/UnifiedConnectionFactory.java" ],
+  "symbols" : [ "UnifiedConnectionFactory", "AbstractConnectionFactory -> DetectorConnectionFactory" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX1NVUEVSVFlQRQpBYnN0cmFjdEhhbmRsZXIgLT4gQWJzdHJhY3QKQ29tbWFuZExpc3RlbmVyLkNvbW1hbmRIYW5kbGVy",
+  "kind" : "CHANGE_SUPERTYPE",
+  "category" : "STRUCTURAL",
+  "description" : "Change supertype of CommandListener.CommandHandler: AbstractHandler -> Abstract",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/controller/CommandListener.java" ],
+  "symbols" : [ "CommandListener.CommandHandler", "AbstractHandler -> Abstract" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQ29tbWFuZExpc3RlbmVyLkNvbW1hbmRIYW5kbGVyI2hhbmRsZQ",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of CommandListener.CommandHandler#handle",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/controller/CommandListener.java" ],
+  "symbols" : [ "CommandListener.CommandHandler#handle" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRMb2NhbEFkZHJlc3M",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#getLocalAddress",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#getLocalAddress" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRSZW1vdGVBZGRyZXNz",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#getRemoteAddress",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#getRemoteAddress" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc09wZW4",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#isOpen",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#isOpen" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRDcmVhdGVkVGltZVN0YW1w",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#getCreatedTimeStamp",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#getCreatedTimeStamp" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc091dHB1dFNodXRkb3du",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#isOutputShutdown",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#isOutputShutdown" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc0lucHV0U2h1dGRvd24",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#isInputShutdown",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#isInputShutdown" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNzaHV0ZG93bk91dHB1dA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#shutdownOutput",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#shutdownOutput" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNjbG9zZQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#close",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#close" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRUcmFuc3BvcnQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#getTransport",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#getTransport" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRJZGxlVGltZW91dA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#getIdleTimeout",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#getIdleTimeout" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRDb25uZWN0aW9u",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#getConnection",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#getConnection" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNvbk9wZW4",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#onOpen",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#onOpen" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNvbkNsb3Nl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#onClose",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#onClose" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc09wdGltaXplZEZvckRpcmVjdEJ1ZmZlcnM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#isOptimizedForDirectBuffers",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#isOptimizedForDirectBuffers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNpc0ZpbGxJbnRlcmVzdGVk",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#isFillInterested",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#isFillInterested" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN0cnlGaWxsSW50ZXJlc3RlZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#tryFillInterested",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#tryFillInterested" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNmbHVzaA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#flush",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#flush" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNzZXRJZGxlVGltZW91dA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#setIdleTimeout",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#setIdleTimeout" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN3cml0ZQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#write",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#write" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNzZXRDb25uZWN0aW9u",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#setConnection",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#setConnection" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN1cGdyYWRl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#upgrade",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#upgrade" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNmaWxsSW50ZXJlc3RlZA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#fillInterested",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#fillInterested" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNyZWFkQWhlYWQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#readAhead",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#readAhead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNyZWFkRnJvbVN0YXJ0",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#readFromStart",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#readFromStart" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNmaWxs",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#fill",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#fill" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCNnZXRCeXRlcw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#getBytes",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#getBytes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApSZWFkQWhlYWRFbmRwb2ludCN0aHJvd1BlbmRpbmdFeGNlcHRpb24",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove ReadAheadEndpoint#throwPendingException",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#throwPendingException" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjZG9TdGFydA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove UnifiedConnectionFactory#doStart",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/UnifiedConnectionFactory.java" ],
+  "symbols" : [ "UnifiedConnectionFactory#doStart" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjbmV3Q29ubmVjdGlvbg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove UnifiedConnectionFactory#newConnection",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/UnifiedConnectionFactory.java" ],
+  "symbols" : [ "UnifiedConnectionFactory#newConnection" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjbmV3U3NsQ29ubmVjdGlvbg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove UnifiedConnectionFactory#newSslConnection",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/UnifiedConnectionFactory.java" ],
+  "symbols" : [ "UnifiedConnectionFactory#newSslConnection" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjdG9TdHJpbmc",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove UnifiedConnectionFactory#toString",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/UnifiedConnectionFactory.java" ],
+  "symbols" : [ "UnifiedConnectionFactory#toString" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApVbmlmaWVkQ29ubmVjdGlvbkZhY3RvcnkjbmV4dFByb3RvY29s",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add UnifiedConnectionFactory#nextProtocol",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/UnifiedConnectionFactory.java" ],
+  "symbols" : [ "UnifiedConnectionFactory#nextProtocol" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjdXN0b21pemVyLnNldFNuaUhvc3RDaGVjawpQcm9tZXRoZXVzTWV0cmljc1Byb3ZpZGVyI3N0YXJ0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of PrometheusMetricsProvider#start: +customizer.setSniHostCheck",
+  "files" : [ "zookeeper-metrics-providers/zookeeper-prometheus-metrics/src/main/java/org/apache/zookeeper/metrics/prometheus/PrometheusMetricsProvider.java" ],
+  "symbols" : [ "PrometheusMetricsProvider#start", "+customizer.setSniHostCheck" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitvZgpQcm9tZXRoZXVzTWV0cmljc1Byb3ZpZGVyI2NyZWF0ZVNzbENvbnRleHRGYWN0b3J5",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of PrometheusMetricsProvider#createSslContextFactory: +of",
+  "files" : [ "zookeeper-metrics-providers/zookeeper-prometheus-metrics/src/main/java/org/apache/zookeeper/metrics/prometheus/PrometheusMetricsProvider.java" ],
+  "symbols" : [ "PrometheusMetricsProvider#createSslContextFactory", "+of" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjdXN0b21pemVyLnNldFN0c01heEFnZSwgK2N1c3RvbWl6ZXIuc2V0U3RzSW5jbHVkZVN1YkRvbWFpbnMsICtjdXN0b21pemVyLnNldFNuaUhvc3RDaGVjaywgK2NvbmZpZy5zZXRTZWN1cmVTY2hlbWUsICtjb25maWcuYWRkQ3VzdG9taXplciDigKZhbmQgMiBtb3JlClByb21ldGhldXNNZXRyaWNzUHJvdmlkZXIjY3JlYXRlU3NsQ29ubmVjdG9y",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of PrometheusMetricsProvider#createSslConnector: +customizer.setStsMaxAge, +customizer.setStsIncludeSubDomains, +customizer.setSniHostCheck, +config.setSecureScheme, +config.addCustomizer …and 2 more",
+  "files" : [ "zookeeper-metrics-providers/zookeeper-prometheus-metrics/src/main/java/org/apache/zookeeper/metrics/prometheus/PrometheusMetricsProvider.java" ],
+  "symbols" : [ "PrometheusMetricsProvider#createSslConnector", "+customizer.setStsMaxAge, +customizer.setStsIncludeSubDomains, +customizer.setSniHostCheck, +config.setSecureScheme, +config.addCustomizer …and 2 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitzZWN1cml0eUhhbmRsZXIucHV0LCArYXNTdHJpbmcsIC1jLnNldEF1dGhlbnRpY2F0ZSwgLWNtdC5zZXRDb25zdHJhaW50LCAtY210LnNldE1ldGhvZCDigKZhbmQgMiBtb3JlCkpldHR5QWRtaW5TZXJ2ZXIjY29uc3RyYWluVHJhY2VNZXRob2Q",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of JettyAdminServer#constrainTraceMethod: +securityHandler.put, +asString, -c.setAuthenticate, -cmt.setConstraint, -cmt.setMethod …and 2 more",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/JettyAdminServer.java" ],
+  "symbols" : [ "JettyAdminServer#constrainTraceMethod", "+securityHandler.put, +asString, -c.setAuthenticate, -cmt.setConstraint, -cmt.setMethod …and 2 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjdXN0b21pemVyLnNldFNuaUhvc3RDaGVjawpKZXR0eUFkbWluU2VydmVyIzxpbml0Pg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of JettyAdminServer#<init>: +customizer.setSniHostCheck",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/JettyAdminServer.java" ],
+  "symbols" : [ "JettyAdminServer#<init>", "+customizer.setSniHostCheck" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I2VuZFBvaW50",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ReadAheadEndpoint#endPoint",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#endPoint" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I3N0YXJ0",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ReadAheadEndpoint#start",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#start" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I2J5dGVz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ReadAheadEndpoint#bytes",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#bytes" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I2xlZnRUb1JlYWQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ReadAheadEndpoint#leftToRead",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#leftToRead" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClJlYWRBaGVhZEVuZHBvaW50I3BlbmRpbmdFeGNlcHRpb24",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field ReadAheadEndpoint#pendingException",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/ReadAheadEndpoint.java" ],
+  "symbols" : [ "ReadAheadEndpoint#pendingException" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClVuaWZpZWRDb25uZWN0aW9uRmFjdG9yeSNMT0c",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field UnifiedConnectionFactory#LOG",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/UnifiedConnectionFactory.java" ],
+  "symbols" : [ "UnifiedConnectionFactory#LOG" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClVuaWZpZWRDb25uZWN0aW9uRmFjdG9yeSNzc2xDb250ZXh0RmFjdG9yeQ",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field UnifiedConnectionFactory#sslContextFactory",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/UnifiedConnectionFactory.java" ],
+  "symbols" : [ "UnifiedConnectionFactory#sslContextFactory" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClVuaWZpZWRDb25uZWN0aW9uRmFjdG9yeSNuZXh0UHJvdG9jb2w",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field UnifiedConnectionFactory#nextProtocol",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/admin/UnifiedConnectionFactory.java" ],
+  "symbols" : [ "UnifiedConnectionFactory#nextProtocol" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFClg1MDlBdXRoZW50aWNhdGlvblByb3ZpZGVyI1g1MDlfQ0VSVElGSUNBVEVfQVRUUklCVVRFX05BTUUKdmFsdWUgY2hhbmdlZA",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of X509AuthenticationProvider#X509_CERTIFICATE_ATTRIBUTE_NAME: value changed",
+  "files" : [ "zookeeper-server/src/main/java/org/apache/zookeeper/server/auth/X509AuthenticationProvider.java" ],
+  "symbols" : [ "X509AuthenticationProvider#X509_CERTIFICATE_ATTRIBUTE_NAME", "value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZlciBbbWFuYWdlZF0",
+  "kind" : "REMOVE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Remove managed dependency org.eclipse.jetty:jetty-server (parent)",
+  "files" : [ "pom.xml" ],
+  "symbols" : [ "parent#org.eclipse.jetty:jetty-server [managed]" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQgW21hbmFnZWRd",
+  "kind" : "REMOVE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Remove managed dependency org.eclipse.jetty:jetty-servlet (parent)",
+  "files" : [ "pom.xml" ],
+  "symbols" : [ "parent#org.eclipse.jetty:jetty-servlet [managed]" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LWNsaWVudCBbbWFuYWdlZF0",
+  "kind" : "REMOVE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Remove managed dependency org.eclipse.jetty:jetty-client (parent)",
+  "files" : [ "pom.xml" ],
+  "symbols" : [ "parent#org.eclipse.jetty:jetty-client [managed]" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LWJvbSBbbWFuYWdlZF0",
+  "kind" : "ADD_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Add managed dependency org.eclipse.jetty:jetty-bom (parent)",
+  "files" : [ "pom.xml" ],
+  "symbols" : [ "parent#org.eclipse.jetty:jetty-bom [managed]" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0RFUEVOREVOQ1kKcGFyZW50I29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1ib20gW21hbmFnZWRd",
+  "kind" : "ADD_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Add managed dependency org.eclipse.jetty.ee10:jetty-ee10-bom (parent)",
+  "files" : [ "pom.xml" ],
+  "symbols" : [ "parent#org.eclipse.jetty.ee10:jetty-ee10-bom [managed]" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0RFUEVOREVOQ1kKcGFyZW50I2pha2FydGEuc2VydmxldDpqYWthcnRhLnNlcnZsZXQtYXBpIFttYW5hZ2VkXQ",
+  "kind" : "ADD_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Add managed dependency jakarta.servlet:jakarta.servlet-api (parent)",
+  "files" : [ "pom.xml" ],
+  "symbols" : [ "parent#jakarta.servlet:jakarta.servlet-api [managed]" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLWFzc2VtYmx5I29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQ",
+  "kind" : "REMOVE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Remove dependency org.eclipse.jetty:jetty-servlet (zookeeper-assembly)",
+  "files" : [ "zookeeper-assembly/pom.xml" ],
+  "symbols" : [ "zookeeper-assembly#org.eclipse.jetty:jetty-servlet" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLWFzc2VtYmx5I29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0",
+  "kind" : "ADD_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Add dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (zookeeper-assembly)",
+  "files" : [ "zookeeper-assembly/pom.xml" ],
+  "symbols" : [ "zookeeper-assembly#org.eclipse.jetty.ee10:jetty-ee10-servlet" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLWFzc2VtYmx5I2pha2FydGEuc2VydmxldDpqYWthcnRhLnNlcnZsZXQtYXBp",
+  "kind" : "ADD_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Add dependency jakarta.servlet:jakarta.servlet-api (zookeeper-assembly)",
+  "files" : [ "zookeeper-assembly/pom.xml" ],
+  "symbols" : [ "zookeeper-assembly#jakarta.servlet:jakarta.servlet-api" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLWNvbnRyaWItZmF0amFyI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQ",
+  "kind" : "REMOVE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Remove dependency org.eclipse.jetty:jetty-servlet (zookeeper-contrib-fatjar)",
+  "files" : [ "zookeeper-contrib/zookeeper-contrib-fatjar/pom.xml" ],
+  "symbols" : [ "zookeeper-contrib-fatjar#org.eclipse.jetty:jetty-servlet" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLWNvbnRyaWItZmF0amFyI29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0",
+  "kind" : "ADD_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Add dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (zookeeper-contrib-fatjar)",
+  "files" : [ "zookeeper-contrib/zookeeper-contrib-fatjar/pom.xml" ],
+  "symbols" : [ "zookeeper-contrib-fatjar#org.eclipse.jetty.ee10:jetty-ee10-servlet" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNpby5wcm9tZXRoZXVzOnByb21ldGhldXMtbWV0cmljcy1leHBvcnRlci1zZXJ2bGV0LWphdmF4",
+  "kind" : "REMOVE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Remove dependency io.prometheus:prometheus-metrics-exporter-servlet-javax (zookeeper-prometheus-metrics)",
+  "files" : [ "zookeeper-metrics-providers/zookeeper-prometheus-metrics/pom.xml" ],
+  "symbols" : [ "zookeeper-prometheus-metrics#io.prometheus:prometheus-metrics-exporter-servlet-javax" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKdmVyc2lvbiAke2pldHR5LnZlcnNpb259IC0-IG5vbmUKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2ZXI",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-server (zookeeper-prometheus-metrics): version ${jetty.version} -> none",
+  "files" : [ "zookeeper-metrics-providers/zookeeper-prometheus-metrics/pom.xml" ],
+  "symbols" : [ "zookeeper-prometheus-metrics#org.eclipse.jetty:jetty-server", "version ${jetty.version} -> none" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS1zZXJ2bGV0",
+  "kind" : "REMOVE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Remove dependency org.eclipse.jetty:jetty-servlet (zookeeper-prometheus-metrics)",
+  "files" : [ "zookeeper-metrics-providers/zookeeper-prometheus-metrics/pom.xml" ],
+  "symbols" : [ "zookeeper-prometheus-metrics#org.eclipse.jetty:jetty-servlet" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0RFUEVOREVOQ1kKdmVyc2lvbiAke2pldHR5LnZlcnNpb259IC0-IG5vbmUKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eTpqZXR0eS11dGls",
+  "kind" : "CHANGE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Change dependency org.eclipse.jetty:jetty-util (zookeeper-prometheus-metrics): version ${jetty.version} -> none",
+  "files" : [ "zookeeper-metrics-providers/zookeeper-prometheus-metrics/pom.xml" ],
+  "symbols" : [ "zookeeper-prometheus-metrics#org.eclipse.jetty:jetty-util", "version ${jetty.version} -> none" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNqYXZheC5zZXJ2bGV0OmphdmF4LnNlcnZsZXQtYXBp",
+  "kind" : "REMOVE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Remove dependency javax.servlet:javax.servlet-api (zookeeper-prometheus-metrics)",
+  "files" : [ "zookeeper-metrics-providers/zookeeper-prometheus-metrics/pom.xml" ],
+  "symbols" : [ "zookeeper-prometheus-metrics#javax.servlet:javax.servlet-api" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNpby5wcm9tZXRoZXVzOnByb21ldGhldXMtbWV0cmljcy1leHBvcnRlci1zZXJ2bGV0LWpha2FydGE",
+  "kind" : "ADD_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Add dependency io.prometheus:prometheus-metrics-exporter-servlet-jakarta (zookeeper-prometheus-metrics)",
+  "files" : [ "zookeeper-metrics-providers/zookeeper-prometheus-metrics/pom.xml" ],
+  "symbols" : [ "zookeeper-prometheus-metrics#io.prometheus:prometheus-metrics-exporter-servlet-jakarta" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNvcmcuZWNsaXBzZS5qZXR0eS5lZTEwOmpldHR5LWVlMTAtc2VydmxldA",
+  "kind" : "ADD_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Add dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (zookeeper-prometheus-metrics)",
+  "files" : [ "zookeeper-metrics-providers/zookeeper-prometheus-metrics/pom.xml" ],
+  "symbols" : [ "zookeeper-prometheus-metrics#org.eclipse.jetty.ee10:jetty-ee10-servlet" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyLXByb21ldGhldXMtbWV0cmljcyNqYWthcnRhLnNlcnZsZXQ6amFrYXJ0YS5zZXJ2bGV0LWFwaQ",
+  "kind" : "ADD_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Add dependency jakarta.servlet:jakarta.servlet-api (zookeeper-prometheus-metrics)",
+  "files" : [ "zookeeper-metrics-providers/zookeeper-prometheus-metrics/pom.xml" ],
+  "symbols" : [ "zookeeper-prometheus-metrics#jakarta.servlet:jakarta.servlet-api" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0RFUEVOREVOQ1kKem9va2VlcGVyI29yZy5lY2xpcHNlLmpldHR5OmpldHR5LXNlcnZsZXQ",
+  "kind" : "REMOVE_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Remove dependency org.eclipse.jetty:jetty-servlet (zookeeper)",
+  "files" : [ "zookeeper-server/pom.xml" ],
+  "symbols" : [ "zookeeper#org.eclipse.jetty:jetty-servlet" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyI29yZy5lY2xpcHNlLmpldHR5LmVlMTA6amV0dHktZWUxMC1zZXJ2bGV0",
+  "kind" : "ADD_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Add dependency org.eclipse.jetty.ee10:jetty-ee10-servlet (zookeeper)",
+  "files" : [ "zookeeper-server/pom.xml" ],
+  "symbols" : [ "zookeeper#org.eclipse.jetty.ee10:jetty-ee10-servlet" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0RFUEVOREVOQ1kKem9va2VlcGVyI2pha2FydGEuc2VydmxldDpqYWthcnRhLnNlcnZsZXQtYXBp",
+  "kind" : "ADD_DEPENDENCY",
+  "category" : "STRUCTURAL",
+  "description" : "Add dependency jakarta.servlet:jakarta.servlet-api (zookeeper)",
+  "files" : [ "zookeeper-server/pom.xml" ],
+  "symbols" : [ "zookeeper#jakarta.servlet:jakarta.servlet-api" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

@@ -1,0 +1,140 @@
+diff --git a/docs/modules/azure.md b/docs/modules/azure.md
+index 1b3242551c1..461fcc9f679 100644
+--- a/docs/modules/azure.md
++++ b/docs/modules/azure.md
+@@ -27,6 +27,12 @@ Start Azurite Emulator during a test:
+ !!! note
+     SSL configuration is possible using the `withSsl(MountableFile, String)` and  `withSsl(MountableFile, MountableFile)` methods.
+ 
++Newer Azure Storage SDK versions can send API versions that Azurite does not support. Use `withCommandOptions(...)` to append extra Azurite flags such as `--skipApiVersionCheck`. `AzuriteContainer` rebuilds its process command in `configure()`, so `.withCommand(...)` cannot be used for extra flags.
++
++<!--codeinclude-->
++[Pass extra Azurite command options](../../modules/azure/src/test/java/org/testcontainers/azure/AzuriteContainerCommandTest.java) inside_block:commandOptions
++<!--/codeinclude-->
++
+ If the tested application needs to use more than one set of credentials, the container can be configured to use custom credentials.
+ Please see some examples below.
+ 
+diff --git a/modules/azure/src/main/java/org/testcontainers/azure/AzuriteContainer.java b/modules/azure/src/main/java/org/testcontainers/azure/AzuriteContainer.java
+index 56c58df1f1d..11e34237740 100644
+--- a/modules/azure/src/main/java/org/testcontainers/azure/AzuriteContainer.java
++++ b/modules/azure/src/main/java/org/testcontainers/azure/AzuriteContainer.java
+@@ -4,6 +4,10 @@
+ import org.testcontainers.utility.DockerImageName;
+ import org.testcontainers.utility.MountableFile;
+ 
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.List;
++
+ /**
+  * Testcontainers implementation for Azurite Emulator.
+  * <p>
+@@ -52,6 +56,8 @@ public class AzuriteContainer extends GenericContainer<AzuriteContainer> {
+ 
+     private String pwd = null;
+ 
++    private final List<String> commandOptions = new ArrayList<>();
++
+     /**
+      * @param dockerImageName specified docker image name to run
+      */
+@@ -96,6 +102,20 @@ public AzuriteContainer withSsl(final MountableFile pemCert, final MountableFile
+         return this;
+     }
+ 
++    /**
++     * Append extra Azurite command line flags after the default host and SSL arguments.
++     * <p>
++     * {@link #withCommand(String...)} cannot be used for this: {@link #configure()} always
++     * rebuilds the process command and overwrites any previously set command.
++     *
++     * @param options additional Azurite flags, for example {@code --skipApiVersionCheck}
++     * @return this
++     */
++    public AzuriteContainer withCommandOptions(String... options) {
++        this.commandOptions.addAll(Arrays.asList(options));
++        return this;
++    }
++
+     @Override
+     protected void configure() {
+         withCommand(getCommandLine());
+@@ -160,6 +180,9 @@ String getCommandLine() {
+                 args.append(" --key ").append("/key.pem");
+             }
+         }
++        for (String option : this.commandOptions) {
++            args.append(" ").append(option);
++        }
+         final String cmd = args.toString();
+         logger().debug("Using command line: '{}'", cmd);
+         return cmd;
+diff --git a/modules/azure/src/test/java/org/testcontainers/azure/AzuriteContainerCommandTest.java b/modules/azure/src/test/java/org/testcontainers/azure/AzuriteContainerCommandTest.java
+new file mode 100644
+index 00000000000..c12e77ed69a
+--- /dev/null
++++ b/modules/azure/src/test/java/org/testcontainers/azure/AzuriteContainerCommandTest.java
+@@ -0,0 +1,62 @@
++package org.testcontainers.azure;
++
++import org.junit.jupiter.api.Test;
++import org.testcontainers.utility.MountableFile;
++
++import static org.assertj.core.api.Assertions.assertThat;
++
++class AzuriteContainerCommandTest {
++
++    private static final String IMAGE = "mcr.microsoft.com/azure-storage/azurite:3.33.0";
++
++    @Test
++    void commandLineOmitsExtraOptionsByDefault() {
++        AzuriteContainer emulator = new AzuriteContainer(IMAGE);
++
++        assertThat(emulator.getCommandLine()).doesNotContain("--skipApiVersionCheck");
++    }
++
++    @Test
++    void commandLineIncludesExtraOptions() {
++        // commandOptions {
++        AzuriteContainer emulator = new AzuriteContainer("mcr.microsoft.com/azure-storage/azurite:3.33.0")
++            .withCommandOptions("--skipApiVersionCheck");
++        // }
++
++        assertThat(emulator.getCommandLine())
++            .startsWith("azurite --blobHost 0.0.0.0 --queueHost 0.0.0.0 --tableHost 0.0.0.0")
++            .endsWith("--skipApiVersionCheck");
++    }
++
++    @Test
++    void commandLineAppendsMultipleOptions() {
++        AzuriteContainer emulator = new AzuriteContainer(IMAGE)
++            .withCommandOptions("--skipApiVersionCheck", "--disableProductStyleUrl");
++
++        assertThat(emulator.getCommandLine()).endsWith("--skipApiVersionCheck --disableProductStyleUrl");
++    }
++
++    @Test
++    void commandLineKeepsExtraOptionsTogetherWithSsl() {
++        AzuriteContainer emulator = new AzuriteContainer(IMAGE)
++            .withSsl(MountableFile.forClasspathResource("/keystore.pfx"), "changeit")
++            .withCommandOptions("--skipApiVersionCheck");
++
++        assertThat(emulator.getCommandLine())
++            .contains("--cert /cert.pfx")
++            .endsWith("--pwd changeit --skipApiVersionCheck");
++    }
++
++    @Test
++    void configureAppliesCommandOptionsEvenIfWithCommandWasUsed() {
++        AzuriteContainer emulator = new AzuriteContainer(IMAGE)
++            .withCommand("azurite --ignored")
++            .withCommandOptions("--skipApiVersionCheck");
++
++        emulator.configure();
++
++        assertThat(String.join(" ", emulator.getCommandParts()))
++            .isEqualTo("azurite --blobHost 0.0.0.0 --queueHost 0.0.0.0 --tableHost 0.0.0.0 --skipApiVersionCheck");
++        assertThat(emulator.getCommandLine()).contains("--blobHost 0.0.0.0").contains("--skipApiVersionCheck");
++    }
++}

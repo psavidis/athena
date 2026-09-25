@@ -1,0 +1,88 @@
+{
+  "camel-core" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in DefaultModelConcurrentTest",
+      "conceptDescription" : "3 changes in test code of DefaultModelConcurrentTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+public class DefaultModelConcurrentTest {\n \n+    @Test\n+    public void testConcurrentAddCustomBean() throws Exception {\n+        DefaultModel model = new DefaultModel(null);\n+        int threads = 20;\n+        CyclicBarrier barrier = new CyclicBarrier(threads);\n+        ExecutorService pool = Executors.newFixedThreadPool(threads);\n+        List<Future<?>> futures = new ArrayList<>(threads);\n+\n+        for (int i = 0; i < threads; i++) {\n+            final String name = \"bean-\" + i;\n+            futures.add(pool.submit(() -> {\n+                try {\n+                    barrier.await(5, TimeUnit.SECONDS);\n+                } catch (Exception e) {\n+                    throw new RuntimeException(e);\n+                }\n+                BeanFactoryDefinition<?> def = new BeanFactoryDefinition<>();\n+                def.setName(name);\n+                model.addCustomBean(def);\n+            }));\n+        }\n+\n+        pool.shutdown();\n+        assertTrue(pool.awaitTermination(10, TimeUnit.SECONDS));\n+\n+        for (Future<?> f : futures) {\n+            f.get(); // rethrows any ConcurrentModificationException from threads\n+        }\n+\n+        assertEquals(threads, model.getCustomBeans().size());\n+    }\n+\n+    @Test\n+    public void testConcurrentAddCustomBeanWithSameName() throws Exception {\n+        // Simulates multiple retries registering the same bean name concurrently —\n+        // only one entry per name must survive (the last one wins, no duplicates).\n+        DefaultModel model = new DefaultModel(null);\n+        int threads = 20;\n+        CyclicBarrier barrier = new CyclicBarrier(threads);\n+        ExecutorService pool = Executors.newFixedThreadPool(threads);\n+        List<Future<?>> futures = new ArrayList<>(threads);\n+\n+        for (int i = 0; i < threads; i++) {\n+            futures.add(pool.submit(() -> {\n+                try {\n+                    barrier.await(5, TimeUnit.SECONDS);\n+                } catch (Exception e) {\n+                    throw new RuntimeException(e);\n+                }\n+                BeanFactoryDefinition<?> def = new BeanFactoryDefinition<>();\n+                def.setName(\"sharedBean\");\n+                model.addCustomBean(def);\n+            }));\n+        }\n+\n+        pool.shutdown();\n+        assertTrue(pool.awaitTermination(10, TimeUnit.SECONDS));\n+\n+        for (Future<?> f : futures) {\n+            f.get(); // rethrows any ConcurrentModificationException from threads\n+        }\n+\n+        assertEquals(1, model.getCustomBeans().size());\n+        assertEquals(\"sharedBean\", model.getCustomBeans().get(0).getName());\n+    }\n+}", "+@Test\n+    public void testConcurrentAddCustomBean() throws Exception {\n+        DefaultModel model = new DefaultModel(null);\n+        int threads = 20;\n+        CyclicBarrier barrier = new CyclicBarrier(threads);\n+        ExecutorService pool = Executors.newFixedThreadPool(threads);\n+        List<Future<?>> futures = new ArrayList<>(threads);\n \n+        for (int i = 0; i < threads; i++) {\n+            final String name = \"bean-\" + i;\n+            futures.add(pool.submit(() -> {\n+                try {\n+                    barrier.await(5, TimeUnit.SECONDS);\n+                } catch (Exception e) {\n+                    throw new RuntimeException(e);\n+                }\n+                BeanFactoryDefinition<?> def = new BeanFactoryDefinition<>();\n+                def.setName(name);\n+                model.addCustomBean(def);\n+            }));\n+        }\n+\n+        pool.shutdown();\n+        assertTrue(pool.awaitTermination(10, TimeUnit.SECONDS));\n+\n+        for (Future<?> f : futures) {\n+            f.get(); // rethrows any ConcurrentModificationException from threads\n+        }\n+\n+        assertEquals(threads, model.getCustomBeans().size());\n+    }", "+@Test\n+    public void testConcurrentAddCustomBeanWithSameName() throws Exception {\n+        // Simulates multiple retries registering the same bean name concurrently —\n+        // only one entry per name must survive (the last one wins, no duplicates).\n+        DefaultModel model = new DefaultModel(null);\n+        int threads = 20;\n+        CyclicBarrier barrier = new CyclicBarrier(threads);\n+        ExecutorService pool = Executors.newFixedThreadPool(threads);\n+        List<Future<?>> futures = new ArrayList<>(threads);\n \n+        for (int i = 0; i < threads; i++) {\n+            futures.add(pool.submit(() -> {\n+                try {\n+                    barrier.await(5, TimeUnit.SECONDS);\n+                } catch (Exception e) {\n+                    throw new RuntimeException(e);\n+                }\n+                BeanFactoryDefinition<?> def = new BeanFactoryDefinition<>();\n+                def.setName(\"sharedBean\");\n+                model.addCustomBean(def);\n+            }));\n+        }\n+\n+        pool.shutdown();\n+        assertTrue(pool.awaitTermination(10, TimeUnit.SECONDS));\n+\n+        for (Future<?> f : futures) {\n+            f.get(); // rethrows any ConcurrentModificationException from threads\n+        }\n+\n+        assertEquals(1, model.getCustomBeans().size());\n+        assertEquals(\"sharedBean\", model.getCustomBeans().get(0).getName());\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-core/src/test/java/org/apache/camel/impl/DefaultModelConcurrentTest.java" ],
+      "groupedMoveCount" : 3
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in SimpleRegistryTest",
+      "conceptDescription" : "1 change in test code of SimpleRegistryTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@Test\n+    public void testConcurrentBind() throws Exception {\n+        int threads = 20;\n+        SimpleRegistry reg = new SimpleRegistry();\n+        CyclicBarrier barrier = new CyclicBarrier(threads);\n+        ExecutorService pool = Executors.newFixedThreadPool(threads);\n+        List<Future<?>> futures = new ArrayList<>(threads);\n \n+        for (int i = 0; i < threads; i++) {\n+            final String key = \"bean-\" + i;\n+            futures.add(pool.submit(() -> {\n+                try {\n+                    barrier.await(5, TimeUnit.SECONDS);\n+                } catch (Exception e) {\n+                    throw new RuntimeException(e);\n+                }\n+                reg.bind(key, Object.class, new Object());\n+            }));\n+        }\n+\n+        pool.shutdown();\n+        assertTrue(pool.awaitTermination(10, TimeUnit.SECONDS));\n+\n+        for (Future<?> f : futures) {\n+            f.get(); // rethrows any ConcurrentModificationException from threads\n+        }\n+\n+        assertEquals(threads, reg.size());\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-core/src/test/java/org/apache/camel/impl/SimpleRegistryTest.java" ],
+      "groupedMoveCount" : 1
+    } ]
+  },
+  "camel-support" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Supertype",
+      "conceptDescription" : "A type's superclass or implemented interfaces changed.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-public class SimpleRegistry extends LinkedHashMap<String, Map<Class<?>, Object>> implements Registry, Closeable {\n+public class SimpleRegistry extends ConcurrentHashMap<String, Map<Class<?>, Object>> implements Registry, Closeable {\n \n     @Override\n     public Object lookupByName(String name) {\n         return lookupByNameAndType(name, Object.class);\n     }\n \n     @Override\n     public <T> T lookupByNameAndType(String name, Class<T> type) {\n         Map<Class<?>, Object> map = this.get(name);\n         if (map == null) {\n             return null;\n         }\n \n         Object answer = map.get(type);\n         if (answer == null) {\n             // look for first entry that is the type\n             for (Object value : map.values()) {\n                 if (type.isInstance(value)) {\n                     answer = value;\n                     break;\n                 }\n             }\n         }\n         if (answer == null) {\n             return null;\n         }\n         try {\n             answer = unwrap(answer);\n             return type.cast(answer);\n         } catch (Exception e) {\n             String msg = \"Found bean: \" + name + \" in SimpleRegistry: \" + this\n                          + \" of type: \" + answer.getClass().getName() + \" expected type was: \" + type;\n             throw new NoSuchBeanException(name, msg, e);\n         }\n     }\n \n     @Override\n     public <T> Map<String, T> findByTypeWithName(Class<T> type) {\n         Map<String, T> result = new LinkedHashMap<>();\n         for (Map.Entry<String, Map<Class<?>, Object>> entry : entrySet()) {\n             for (Object value : entry.getValue().values()) {\n                 if (type.isInstance(value)) {\n                     value = unwrap(value);\n                     result.put(entry.getKey(), type.cast(value));\n                 }\n             }\n         }\n         return result;\n     }\n \n     @Override\n     public <T> Set<T> findByType(Class<T> type) {\n         Set<T> result = new LinkedHashSet<>();\n         for (Map.Entry<String, Map<Class<?>, Object>> entry : entrySet()) {\n             for (Object value : entry.getValue().values()) {\n                 if (type.isInstance(value)) {\n                     value = unwrap(value);\n                     result.add(type.cast(value));\n                 }\n             }\n         }\n         return result;\n     }\n \n     @Override\n     public void bind(String id, Class<?> type, Object bean) {\n         if (bean != null) {\n-            computeIfAbsent(id, k -> new LinkedHashMap<>()).put(type, wrap(bean));\n+            computeIfAbsent(id, k -> new ConcurrentHashMap<>()).put(type, wrap(bean));\n         }\n     }\n \n     @Override\n     public void bind(String id, Class<?> type, Object bean, String initMethod, String destroyMethod)\n             throws RuntimeCamelException {\n         throw new UnsupportedOperationException(\"Use DefaultRegistry\");\n     }\n \n     @Override\n     public void bind(String id, Class<?> type, Supplier<Object> bean) {\n         throw new UnsupportedOperationException(\"Use SupplierRegistry\");\n     }\n \n     @Override\n     public void bind(String id, Class<?> type, Supplier<Object> bean, String initMethod, String destroyMethod)\n             throws RuntimeCamelException {\n         throw new UnsupportedOperationException(\"Use SupplierRegistry\");\n     }\n \n     @Override\n     public void bindAsPrototype(String id, Class<?> type, Supplier<Object> bean) {\n         throw new UnsupportedOperationException(\"Use SupplierRegistry\");\n     }\n \n     @Override\n     public void unbind(String id) {\n         remove(id);\n     }\n \n     @Override\n     public void close() throws IOException {\n         clear();\n     }\n }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-support/src/main/java/org/apache/camel/support/SimpleRegistry.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n     public void bind(String id, Class<?> type, Object bean) {\n         if (bean != null) {\n-            computeIfAbsent(id, k -> new LinkedHashMap<>()).put(type, wrap(bean));\n+            computeIfAbsent(id, k -> new ConcurrentHashMap<>()).put(type, wrap(bean));\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-support/src/main/java/org/apache/camel/support/SimpleRegistry.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "camel-core-engine" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n     public void addCustomBean(BeanFactoryDefinition<?> bean) {\n-        // remove exiting bean with same name to update\n-        beans.removeIf(b -> bean.getName().equals(b.getName()));\n-        beans.add(bean);\n+        lock.lock();\n+        try {\n+            // remove existing bean with same name to update; guard against null entries left by prior corruption\n+            beans.removeIf(b -> b != null && bean.getName().equals(b.getName()));\n+            beans.add(bean);\n+        }finally {\n+            lock.unlock();\n+        }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-core-engine/src/main/java/org/apache/camel/impl/DefaultModel.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private static final Logger log = LoggerFactory.getLogger(DefaultModel.class);" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-core-engine/src/main/java/org/apache/camel/impl/DefaultModel.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+private static final Logger log = LoggerFactory.getLogger(DefaultModel.class);" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/camel-core-engine/src/main/java/org/apache/camel/impl/DefaultModel.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  }
+}

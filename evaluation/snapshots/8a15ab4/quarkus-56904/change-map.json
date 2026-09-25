@@ -1,0 +1,380 @@
+{
+  "prTitle" : "Add char[] overloads to BcryptUtil and deprecate the String ones",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 9,
+    "UNKNOWN" : 9,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUworQERlcHJlY2F0ZWQKQmNyeXB0VXRpbCNiY3J5cHRIYXNo",
+    "description" : "Change annotations of BcryptUtil#bcryptHash: +@Deprecated",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_ANNOTATIONS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUworQERlcHJlY2F0ZWQKQmNyeXB0VXRpbCNtYXRjaGVz",
+    "description" : "Change annotations of BcryptUtil#matches: +@Deprecated",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_ANNOTATIONS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsI2JjcnlwdEhhc2g",
+    "description" : "Add BcryptUtil#bcryptHash",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 3,
+    "exceptionCount" : 1,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsI21hdGNoZXM",
+    "description" : "Add BcryptUtil#matches",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlU2FtZUhhc2hXaXRoQ2hhckFycmF5UGFzc3dvcmQ",
+    "description" : "Add BcryptUtilTest#testHashesTheSameHashWithCharArrayPassword",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0UGFzc3dvcmRNYXRjaGVzV2l0aENoYXJBcnJheVBhc3N3b3Jk",
+    "description" : "Add BcryptUtilTest#testPasswordMatchesWithCharArrayPassword",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0UGFzc3dvcmROb3RNYXRjaGVzV2l0aENoYXJBcnJheVBhc3N3b3Jk",
+    "description" : "Add BcryptUtilTest#testPasswordNotMatchesWithCharArrayPassword",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlUmlnaHRQYXNzd29yZFdpdGhDaGFyQXJyYXlQYXNzd29yZA",
+    "description" : "Add BcryptUtilTest#testHashesTheRightPasswordWithCharArrayPassword",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlU2FtZUhhc2hXaXRoRGVwcmVjYXRlZFN0cmluZ0l0ZXJhdGlvbkNvdW50T3ZlcmxvYWQ",
+    "description" : "Add BcryptUtilTest#testHashesTheSameHashWithDeprecatedStringIterationCountOverload",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwYXNzd29yZC50b0NoYXJBcnJheSwgcmV0dXJuIHBhc3N3b3JkIC0-IHBhc3N3b3JkLnRvQ2hhckFycmF5KCkKQmNyeXB0VXRpbCNiY3J5cHRIYXNo",
+    "description" : "Modify body of BcryptUtil#bcryptHash: +password.toCharArray, return password -> password.toCharArray()",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwYXNzd29yZC50b0NoYXJBcnJheSwgLXJhbmRvbS5uZXh0Qnl0ZXMsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCkJjcnlwdFV0aWwjYmNyeXB0SGFzaA",
+    "description" : "Modify body of BcryptUtil#bcryptHash: +password.toCharArray, -random.nextBytes, return value changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCittYXRjaGVzLCAtZ2V0SW5zdGFuY2UsIC1wYXNzd29yZEZhY3RvcnkudHJhbnNsYXRlLCAtZGVjb2RlLCAtcGFzc3dvcmRGYWN0b3J5LnZlcmlmeSDigKZhbmQgNCBtb3JlCkJjcnlwdFV0aWwjbWF0Y2hlcw",
+    "description" : "Modify body of BcryptUtil#matches: +matches, -getInstance, -passwordFactory.translate, -decode, -passwordFactory.verify …and 4 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc0FjY2VwdHNUaGVTdXBwb3J0ZWRQcmVmaXhlcw",
+    "description" : "Modify body of BcryptUtilTest#testMatchesAcceptsTheSupportedPrefixes: +toCharArray",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 13,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBSGFzaFRoYXRJc05vdE1vZHVsYXJDcnlwdEZvcm1hdA",
+    "description" : "Modify body of BcryptUtilTest#testMatchesRejectsAHashThatIsNotModularCryptFormat: +toCharArray",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBVHJ1bmNhdGVkQmNyeXB0SGFzaA",
+    "description" : "Modify body of BcryptUtilTest#testMatchesRejectsATruncatedBcryptHash: +toCharArray",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBSGFzaE9mQW5vdGhlckFsZ29yaXRobQ",
+    "description" : "Modify body of BcryptUtilTest#testMatchesRejectsAHashOfAnotherAlgorithm: +toCharArray",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNUaGUyYlByZWZpeA",
+    "description" : "Modify body of BcryptUtilTest#testMatchesRejectsThe2bPrefix: +toCharArray",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit1dWlkLnRvQ2hhckFycmF5CkpwYUlkZW50aXR5UHJvdmlkZXJVdGlsI3Bhc3N3b3JkQWN0aW9u",
+    "description" : "Modify body of JpaIdentityProviderUtil#passwordAction: +uuid.toCharArray",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "BcryptUtil",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUworQERlcHJlY2F0ZWQKQmNyeXB0VXRpbCNiY3J5cHRIYXNo",
+      "description" : "Change annotations of BcryptUtil#bcryptHash: +@Deprecated",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_ANNOTATIONS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUworQERlcHJlY2F0ZWQKQmNyeXB0VXRpbCNtYXRjaGVz",
+      "description" : "Change annotations of BcryptUtil#matches: +@Deprecated",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_ANNOTATIONS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsI2JjcnlwdEhhc2g",
+      "description" : "Add BcryptUtil#bcryptHash",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 3,
+      "exceptionCount" : 1,
+      "testCode" : false
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsI21hdGNoZXM",
+      "description" : "Add BcryptUtil#matches",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 9,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwYXNzd29yZC50b0NoYXJBcnJheSwgcmV0dXJuIHBhc3N3b3JkIC0-IHBhc3N3b3JkLnRvQ2hhckFycmF5KCkKQmNyeXB0VXRpbCNiY3J5cHRIYXNo",
+      "description" : "Modify body of BcryptUtil#bcryptHash: +password.toCharArray, return password -> password.toCharArray()",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 10,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwYXNzd29yZC50b0NoYXJBcnJheSwgLXJhbmRvbS5uZXh0Qnl0ZXMsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCkJjcnlwdFV0aWwjYmNyeXB0SGFzaA",
+      "description" : "Modify body of BcryptUtil#bcryptHash: +password.toCharArray, -random.nextBytes, return value changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCittYXRjaGVzLCAtZ2V0SW5zdGFuY2UsIC1wYXNzd29yZEZhY3RvcnkudHJhbnNsYXRlLCAtZGVjb2RlLCAtcGFzc3dvcmRGYWN0b3J5LnZlcmlmeSDigKZhbmQgNCBtb3JlCkJjcnlwdFV0aWwjbWF0Y2hlcw",
+      "description" : "Modify body of BcryptUtil#matches: +matches, -getInstance, -passwordFactory.translate, -decode, -passwordFactory.verify …and 4 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "BcryptUtilTest",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlU2FtZUhhc2hXaXRoQ2hhckFycmF5UGFzc3dvcmQ",
+      "description" : "Add BcryptUtilTest#testHashesTheSameHashWithCharArrayPassword",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0UGFzc3dvcmRNYXRjaGVzV2l0aENoYXJBcnJheVBhc3N3b3Jk",
+      "description" : "Add BcryptUtilTest#testPasswordMatchesWithCharArrayPassword",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0UGFzc3dvcmROb3RNYXRjaGVzV2l0aENoYXJBcnJheVBhc3N3b3Jk",
+      "description" : "Add BcryptUtilTest#testPasswordNotMatchesWithCharArrayPassword",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlUmlnaHRQYXNzd29yZFdpdGhDaGFyQXJyYXlQYXNzd29yZA",
+      "description" : "Add BcryptUtilTest#testHashesTheRightPasswordWithCharArrayPassword",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApCY3J5cHRVdGlsVGVzdCN0ZXN0SGFzaGVzVGhlU2FtZUhhc2hXaXRoRGVwcmVjYXRlZFN0cmluZ0l0ZXJhdGlvbkNvdW50T3ZlcmxvYWQ",
+      "description" : "Add BcryptUtilTest#testHashesTheSameHashWithDeprecatedStringIterationCountOverload",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 12,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc0FjY2VwdHNUaGVTdXBwb3J0ZWRQcmVmaXhlcw",
+      "description" : "Modify body of BcryptUtilTest#testMatchesAcceptsTheSupportedPrefixes: +toCharArray",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 13,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBSGFzaFRoYXRJc05vdE1vZHVsYXJDcnlwdEZvcm1hdA",
+      "description" : "Modify body of BcryptUtilTest#testMatchesRejectsAHashThatIsNotModularCryptFormat: +toCharArray",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 14,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBVHJ1bmNhdGVkQmNyeXB0SGFzaA",
+      "description" : "Modify body of BcryptUtilTest#testMatchesRejectsATruncatedBcryptHash: +toCharArray",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNBSGFzaE9mQW5vdGhlckFsZ29yaXRobQ",
+      "description" : "Modify body of BcryptUtilTest#testMatchesRejectsAHashOfAnotherAlgorithm: +toCharArray",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 16,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit0b0NoYXJBcnJheQpCY3J5cHRVdGlsVGVzdCN0ZXN0TWF0Y2hlc1JlamVjdHNUaGUyYlByZWZpeA",
+      "description" : "Modify body of BcryptUtilTest#testMatchesRejectsThe2bPrefix: +toCharArray",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "JpaIdentityProviderUtil",
+    "entries" : [ {
+      "id" : 17,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit1dWlkLnRvQ2hhckFycmF5CkpwYUlkZW50aXR5UHJvdmlkZXJVdGlsI3Bhc3N3b3JkQWN0aW9u",
+      "description" : "Modify body of JpaIdentityProviderUtil#passwordAction: +uuid.toCharArray",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

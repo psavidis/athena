@@ -1,0 +1,25 @@
+{
+  "territories" : [ {
+    "moduleName" : "zookeeper-server",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Modify body of ZooKeeperServer#checkPasswd: +isEqual, -equals, return Arrays.equals -> MessageDigest.isEqual",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "TU9ESUZZX01FVEhPRF9CT0RZCitpc0VxdWFsLCAtZXF1YWxzLCByZXR1cm4gQXJyYXlzLmVxdWFscyAtPiBNZXNzYWdlRGlnZXN0LmlzRXF1YWwKWm9vS2VlcGVyU2VydmVyI2NoZWNrUGFzc3dk" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "zookeeper-jute",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "zookeeper-server",
+    "to" : "zookeeper-jute"
+  } ]
+}

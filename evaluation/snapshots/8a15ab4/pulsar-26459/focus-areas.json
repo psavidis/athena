@@ -1,0 +1,13 @@
+[ {
+  "description" : "Modify body of ByteBufPair.Encoder#write: +compositeBuffer, +frame.addComponent, +first.retain, +second.retain, +safeRelease …and 4 more",
+  "entity" : "ByteBufPair.Encoder"
+}, {
+  "description" : "Modify body of ByteBufPair.CopyingEncoder#write: +compositeBuffer, +frame.addComponent, +first.copy, +second.copy, +safeRelease …and 4 more",
+  "entity" : "ByteBufPair.CopyingEncoder"
+}, {
+  "description" : "Add ByteBufPairTest#testEncoderCommitsFrameAsSingleMessage",
+  "entity" : "ByteBufPairTest"
+}, {
+  "description" : "Add ByteBufPairTest#testCopyingEncoderCommitsFrameAsSingleMessage",
+  "entity" : "ByteBufPairTest"
+} ]

@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/apache/rocketmq.git",
+  "base" : "ff8f6f74c560e391261ccd716707c6d20422e253",
+  "head" : "f15a1b8749ba4bb51c220975d3b5b36d2551a3e7",
+  "changeCount" : 9,
+  "moduleCount" : 2,
+  "checkoutAndAnalysisSeconds" : 6.71
+}

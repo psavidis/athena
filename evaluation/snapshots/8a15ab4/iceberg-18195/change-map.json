@@ -1,0 +1,206 @@
+{
+  "prTitle" : "Build: Bump AWS SDK to 2.54.17 and migrate to Apache HttpClient 5",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 2,
+    "UNKNOWN" : 7,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQXBhY2hlSHR0cENsaWVudENvbmZpZ3VyYXRpb25zI2NvbmZpZ3VyZUFwYWNoZUh0dHBDbGllbnRCdWlsZGVy",
+    "description" : "Change signature of ApacheHttpClientConfigurations#configureApacheHttpClientBuilder",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQXBhY2hlSHR0cENsaWVudENvbmZpZ3VyYXRpb25zI2NvbmZpZ3VyZVByb3h5",
+    "description" : "Change signature of ApacheHttpClientConfigurations#configureProxy",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RTM1Jlc3RTaWduZXIjYmVmb3JlCmFwcGx5TXV0YXRpb24o4oCmKTogYXBhY2hlLkFwYWNoZUh0dHBDbGllbnQgLT4gYXBhY2hlNS5BcGFjaGU1SHR0cENsaWVudCwgczNDbGllbnRCdWlsZGVyLmh0dHBDbGllbnRCdWlsZGVyKOKApik6IGFwYWNoZS5BcGFjaGVIdHRwQ2xpZW50IC0-IGFwYWNoZTUuQXBhY2hlNUh0dHBDbGllbnQ",
+    "description" : "Modify body of TestS3RestSigner#before: applyMutation(…): apache.ApacheHttpClient -> apache5.Apache5HttpClient, s3ClientBuilder.httpClientBuilder(…): apache.ApacheHttpClient -> apache5.Apache5HttpClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFwYWNoZUh0dHBDbGllbnRDb25maWd1cmF0aW9ucyNidWlsZEh0dHBDbGllbnQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of ApacheHttpClientConfigurations#buildHttpClient: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkF3c0NsaWVudEZhY3RvcmllcyNjb25maWd1cmVIdHRwQ2xpZW50QnVpbGRlcgpyZXR1cm4gQXBhY2hlSHR0cENsaWVudCAtPiBBcGFjaGU1SHR0cENsaWVudA",
+    "description" : "Modify body of AwsClientFactories#configureHttpClientBuilder: return ApacheHttpClient -> Apache5HttpClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RIdHRwQ2xpZW50Q29uZmlndXJhdGlvbnMjdGVzdEFwYWNoZU92ZXJyaWRlQ29uZmlndXJhdGlvbnMKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of TestHttpClientConfigurations#testApacheOverrideConfigurations: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RIdHRwQ2xpZW50Q29uZmlndXJhdGlvbnMjdGVzdEFwYWNoZURlZmF1bHRDb25maWd1cmF0aW9ucwpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of TestHttpClientConfigurations#testApacheDefaultConfigurations: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RIdHRwQ2xpZW50Q29uZmlndXJhdGlvbnMjdGVzdEFwYWNoZVByb3h5RmxhZ1RyaWdnZXJzUHJveHlDb25maWcKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of TestHttpClientConfigurations#testApacheProxyFlagTriggersProxyConfig: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RIdHRwQ2xpZW50UHJvcGVydGllcyN0ZXN0QXBhY2hlSHR0cENsaWVudENvbmZpZ3VyYXRpb24KaXNJbnN0YW5jZU9mKOKApik6IEFwYWNoZUh0dHBDbGllbnQgLT4gQXBhY2hlNUh0dHBDbGllbnQ",
+    "description" : "Modify body of TestHttpClientProperties#testApacheHttpClientConfiguration: isInstanceOf(…): ApacheHttpClient -> Apache5HttpClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ApacheHttpClientConfigurations",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQXBhY2hlSHR0cENsaWVudENvbmZpZ3VyYXRpb25zI2NvbmZpZ3VyZUFwYWNoZUh0dHBDbGllbnRCdWlsZGVy",
+      "description" : "Change signature of ApacheHttpClientConfigurations#configureApacheHttpClientBuilder",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKQXBhY2hlSHR0cENsaWVudENvbmZpZ3VyYXRpb25zI2NvbmZpZ3VyZVByb3h5",
+      "description" : "Change signature of ApacheHttpClientConfigurations#configureProxy",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 3,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkFwYWNoZUh0dHBDbGllbnRDb25maWd1cmF0aW9ucyNidWlsZEh0dHBDbGllbnQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of ApacheHttpClientConfigurations#buildHttpClient: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TestS3RestSigner",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RTM1Jlc3RTaWduZXIjYmVmb3JlCmFwcGx5TXV0YXRpb24o4oCmKTogYXBhY2hlLkFwYWNoZUh0dHBDbGllbnQgLT4gYXBhY2hlNS5BcGFjaGU1SHR0cENsaWVudCwgczNDbGllbnRCdWlsZGVyLmh0dHBDbGllbnRCdWlsZGVyKOKApik6IGFwYWNoZS5BcGFjaGVIdHRwQ2xpZW50IC0-IGFwYWNoZTUuQXBhY2hlNUh0dHBDbGllbnQ",
+      "description" : "Modify body of TestS3RestSigner#before: applyMutation(…): apache.ApacheHttpClient -> apache5.Apache5HttpClient, s3ClientBuilder.httpClientBuilder(…): apache.ApacheHttpClient -> apache5.Apache5HttpClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "AwsClientFactories",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkF3c0NsaWVudEZhY3RvcmllcyNjb25maWd1cmVIdHRwQ2xpZW50QnVpbGRlcgpyZXR1cm4gQXBhY2hlSHR0cENsaWVudCAtPiBBcGFjaGU1SHR0cENsaWVudA",
+      "description" : "Modify body of AwsClientFactories#configureHttpClientBuilder: return ApacheHttpClient -> Apache5HttpClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TestHttpClientConfigurations",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RIdHRwQ2xpZW50Q29uZmlndXJhdGlvbnMjdGVzdEFwYWNoZU92ZXJyaWRlQ29uZmlndXJhdGlvbnMKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of TestHttpClientConfigurations#testApacheOverrideConfigurations: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RIdHRwQ2xpZW50Q29uZmlndXJhdGlvbnMjdGVzdEFwYWNoZURlZmF1bHRDb25maWd1cmF0aW9ucwpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of TestHttpClientConfigurations#testApacheDefaultConfigurations: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RIdHRwQ2xpZW50Q29uZmlndXJhdGlvbnMjdGVzdEFwYWNoZVByb3h5RmxhZ1RyaWdnZXJzUHJveHlDb25maWcKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of TestHttpClientConfigurations#testApacheProxyFlagTriggersProxyConfig: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TestHttpClientProperties",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRlc3RIdHRwQ2xpZW50UHJvcGVydGllcyN0ZXN0QXBhY2hlSHR0cENsaWVudENvbmZpZ3VyYXRpb24KaXNJbnN0YW5jZU9mKOKApik6IEFwYWNoZUh0dHBDbGllbnQgLT4gQXBhY2hlNUh0dHBDbGllbnQ",
+      "description" : "Modify body of TestHttpClientProperties#testApacheHttpClientConfiguration: isInstanceOf(…): ApacheHttpClient -> Apache5HttpClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

@@ -1,0 +1,64 @@
+{
+  "territories" : [ {
+    "moduleName" : "guava (android)",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · Change control flow of MultiReader#read: branch removed, loop added",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpNdWx0aVJlYWRlciNyZWFkCmJyYW5jaCByZW1vdmVkLCBsb29wIGFkZGVk" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "guava-tests (android)",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · Add MultiReaderTest#testRead_noStackOverflow_manyEmptySources",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApNdWx0aVJlYWRlclRlc3QjdGVzdFJlYWRfbm9TdGFja092ZXJmbG93X21hbnlFbXB0eVNvdXJjZXM" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApNdWx0aVJlYWRlclRlc3QjdGVzdFJlYWRfbm9TdGFja092ZXJmbG93X21hbnlFbXB0eVNvdXJjZXM" ]
+  }, {
+    "moduleName" : "failureaccess",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "listenablefuture1",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "guava-testlib (android)",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "guava (android)",
+    "to" : "failureaccess"
+  }, {
+    "from" : "guava (android)",
+    "to" : "listenablefuture1"
+  }, {
+    "from" : "guava-tests (android)",
+    "to" : "guava (android)"
+  }, {
+    "from" : "guava-tests (android)",
+    "to" : "guava-testlib (android)"
+  }, {
+    "from" : "guava-tests (android)",
+    "to" : "failureaccess"
+  } ]
+}

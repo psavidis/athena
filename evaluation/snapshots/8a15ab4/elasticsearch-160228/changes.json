@@ -1,0 +1,61 @@
+[ {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApIM1NwaGVyaWNhbFV0aWwjY29tcHV0ZUVkZ2U",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove H3SphericalUtil#computeEdge",
+  "files" : [ "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/common/spatial/H3SphericalUtil.java", "x-pack/plugin/spatial/src/main/java/org/elasticsearch/xpack/spatial/common/H3SphericalUtil.java" ],
+  "symbols" : [ "H3SphericalUtil#computeEdge" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApIM1NwaGVyaWNhbFV0aWxUZXN0cyN0ZXN0Qm90aEVkZ2VzQ2hlY2tlZEZvckV4dHJlbWVMYXRpdHVkZUNvcnJlY3Rpb24",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add H3SphericalUtilTests#testBothEdgesCheckedForExtremeLatitudeCorrection",
+  "files" : [ "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/common/spatial/H3SphericalUtilTests.java", "x-pack/plugin/spatial/src/test/java/org/elasticsearch/xpack/spatial/common/H3SphericalUtilTests.java" ],
+  "symbols" : [ "H3SphericalUtilTests#testBothEdgesCheckedForExtremeLatitudeCorrection" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitib3VuZGFyeS5udW1Qb2ludHMsICtib3VuZGFyeS5nZXRMYXRMb24sICttaW4sICttYXgsICt2TWluLmdyZWF0Q2lyY2xlTWluTGF0aXR1ZGUg4oCmYW5kIDQgbW9yZQpIM1NwaGVyaWNhbFV0aWwjY29tcHV0ZUJvdW5kcw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of H3SphericalUtil#computeBounds: +boundary.numPoints, +boundary.getLatLon, +min, +max, +vMin.greatCircleMinLatitude …and 4 more",
+  "files" : [ "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/common/spatial/H3SphericalUtil.java", "x-pack/plugin/spatial/src/main/java/org/elasticsearch/xpack/spatial/common/H3SphericalUtil.java" ],
+  "symbols" : [ "H3SphericalUtil#computeBounds", "+boundary.numPoints, +boundary.getLatLon, +min, +max, +vMin.greatCircleMinLatitude …and 4 more" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkgzU3BoZXJpY2FsVXRpbCNNSU5fQ09NUEFSQVRPUg",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field H3SphericalUtil#MIN_COMPARATOR",
+  "files" : [ "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/common/spatial/H3SphericalUtil.java", "x-pack/plugin/spatial/src/main/java/org/elasticsearch/xpack/spatial/common/H3SphericalUtil.java" ],
+  "symbols" : [ "H3SphericalUtil#MIN_COMPARATOR" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECkgzU3BoZXJpY2FsVXRpbCNNQVhfQ09NUEFSQVRPUg",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field H3SphericalUtil#MAX_COMPARATOR",
+  "files" : [ "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/common/spatial/H3SphericalUtil.java", "x-pack/plugin/spatial/src/main/java/org/elasticsearch/xpack/spatial/common/H3SphericalUtil.java" ],
+  "symbols" : [ "H3SphericalUtil#MAX_COMPARATOR" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCjFlLTUgLT4gMWUtNApIM1NwaGVyaWNhbFV0aWxUZXN0cyNMT05fREVMVEE",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of H3SphericalUtilTests#LON_DELTA: 1e-5 -> 1e-4",
+  "files" : [ "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/common/spatial/H3SphericalUtilTests.java", "x-pack/plugin/spatial/src/test/java/org/elasticsearch/xpack/spatial/common/H3SphericalUtilTests.java" ],
+  "symbols" : [ "H3SphericalUtilTests#LON_DELTA", "1e-5 -> 1e-4" ],
+  "occurrences" : 2,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

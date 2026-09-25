@@ -1,0 +1,120 @@
+diff --git a/flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java b/flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java
+index 34da5efd940f..0234c01d6412 100644
+--- a/flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java
++++ b/flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java
+@@ -169,7 +169,7 @@ class RowDataConverter implements DataConverter {
+     @Override
+     public RowData convert(Object object) {
+       RowData sourceData = (RowData) object;
+-      GenericRowData targetData = new GenericRowData(fieldGetters.length);
++      GenericRowData targetData = new GenericRowData(sourceData.getRowKind(), fieldGetters.length);
+       for (int i = 0; i < fieldGetters.length; i++) {
+         Object value = fieldGetters[i].getFieldOrNull(sourceData);
+         targetData.setField(i, dataConverters[i].convert(value));
+diff --git a/flink/v1.20/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java b/flink/v1.20/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java
+index 7c179f793af7..cd3971ea73e2 100644
+--- a/flink/v1.20/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java
++++ b/flink/v1.20/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java
+@@ -33,6 +33,7 @@
+ import org.apache.flink.table.data.RowData;
+ import org.apache.flink.table.data.StringData;
+ import org.apache.flink.table.data.TimestampData;
++import org.apache.flink.types.RowKind;
+ import org.apache.iceberg.Schema;
+ import org.apache.iceberg.flink.DataGenerator;
+ import org.apache.iceberg.flink.DataGenerators;
+@@ -76,6 +77,14 @@ void testAddColumn() {
+         .isEqualTo(GenericRowData.of(1, StringData.fromString("a"), null));
+   }
+ 
++  @Test
++  void testPreservesRowKind() {
++    RowData deleteRow = SimpleDataUtil.createRowData(1, "a");
++    deleteRow.setRowKind(RowKind.DELETE);
++
++    assertThat(convert(deleteRow, SCHEMA, SCHEMA2).getRowKind()).isEqualTo(RowKind.DELETE);
++  }
++
+   @Test
+   void testAddRequiredColumn() {
+     Schema currentSchema = new Schema(Types.NestedField.optional(1, "id", Types.IntegerType.get()));
+diff --git a/flink/v2.1/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java b/flink/v2.1/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java
+index 34da5efd940f..0234c01d6412 100644
+--- a/flink/v2.1/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java
++++ b/flink/v2.1/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java
+@@ -169,7 +169,7 @@ class RowDataConverter implements DataConverter {
+     @Override
+     public RowData convert(Object object) {
+       RowData sourceData = (RowData) object;
+-      GenericRowData targetData = new GenericRowData(fieldGetters.length);
++      GenericRowData targetData = new GenericRowData(sourceData.getRowKind(), fieldGetters.length);
+       for (int i = 0; i < fieldGetters.length; i++) {
+         Object value = fieldGetters[i].getFieldOrNull(sourceData);
+         targetData.setField(i, dataConverters[i].convert(value));
+diff --git a/flink/v2.1/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java b/flink/v2.1/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java
+index 7c179f793af7..cd3971ea73e2 100644
+--- a/flink/v2.1/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java
++++ b/flink/v2.1/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java
+@@ -33,6 +33,7 @@
+ import org.apache.flink.table.data.RowData;
+ import org.apache.flink.table.data.StringData;
+ import org.apache.flink.table.data.TimestampData;
++import org.apache.flink.types.RowKind;
+ import org.apache.iceberg.Schema;
+ import org.apache.iceberg.flink.DataGenerator;
+ import org.apache.iceberg.flink.DataGenerators;
+@@ -76,6 +77,14 @@ void testAddColumn() {
+         .isEqualTo(GenericRowData.of(1, StringData.fromString("a"), null));
+   }
+ 
++  @Test
++  void testPreservesRowKind() {
++    RowData deleteRow = SimpleDataUtil.createRowData(1, "a");
++    deleteRow.setRowKind(RowKind.DELETE);
++
++    assertThat(convert(deleteRow, SCHEMA, SCHEMA2).getRowKind()).isEqualTo(RowKind.DELETE);
++  }
++
+   @Test
+   void testAddRequiredColumn() {
+     Schema currentSchema = new Schema(Types.NestedField.optional(1, "id", Types.IntegerType.get()));
+diff --git a/flink/v2.2/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java b/flink/v2.2/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java
+index 34da5efd940f..0234c01d6412 100644
+--- a/flink/v2.2/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java
++++ b/flink/v2.2/flink/src/main/java/org/apache/iceberg/flink/sink/dynamic/DataConverter.java
+@@ -169,7 +169,7 @@ class RowDataConverter implements DataConverter {
+     @Override
+     public RowData convert(Object object) {
+       RowData sourceData = (RowData) object;
+-      GenericRowData targetData = new GenericRowData(fieldGetters.length);
++      GenericRowData targetData = new GenericRowData(sourceData.getRowKind(), fieldGetters.length);
+       for (int i = 0; i < fieldGetters.length; i++) {
+         Object value = fieldGetters[i].getFieldOrNull(sourceData);
+         targetData.setField(i, dataConverters[i].convert(value));
+diff --git a/flink/v2.2/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java b/flink/v2.2/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java
+index 7c179f793af7..cd3971ea73e2 100644
+--- a/flink/v2.2/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java
++++ b/flink/v2.2/flink/src/test/java/org/apache/iceberg/flink/sink/dynamic/TestRowDataConverter.java
+@@ -33,6 +33,7 @@
+ import org.apache.flink.table.data.RowData;
+ import org.apache.flink.table.data.StringData;
+ import org.apache.flink.table.data.TimestampData;
++import org.apache.flink.types.RowKind;
+ import org.apache.iceberg.Schema;
+ import org.apache.iceberg.flink.DataGenerator;
+ import org.apache.iceberg.flink.DataGenerators;
+@@ -76,6 +77,14 @@ void testAddColumn() {
+         .isEqualTo(GenericRowData.of(1, StringData.fromString("a"), null));
+   }
+ 
++  @Test
++  void testPreservesRowKind() {
++    RowData deleteRow = SimpleDataUtil.createRowData(1, "a");
++    deleteRow.setRowKind(RowKind.DELETE);
++
++    assertThat(convert(deleteRow, SCHEMA, SCHEMA2).getRowKind()).isEqualTo(RowKind.DELETE);
++  }
++
+   @Test
+   void testAddRequiredColumn() {
+     Schema currentSchema = new Schema(Types.NestedField.optional(1, "id", Types.IntegerType.get()));

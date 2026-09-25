@@ -1,0 +1,7 @@
+[ {
+  "entity" : "EntryImpl",
+  "description" : "Modify body of EntryImpl#create: other statements changed"
+}, {
+  "entity" : "EntryImplTest",
+  "description" : "Add EntryImplTest#testRecycledObjectDoesNotInheritPoisonedPosition"
+} ]

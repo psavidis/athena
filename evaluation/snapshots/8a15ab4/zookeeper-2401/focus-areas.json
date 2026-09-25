@@ -1,0 +1,4 @@
+[ {
+  "entity" : "ZooKeeperServer",
+  "description" : "Modify body of ZooKeeperServer#checkPasswd: +isEqual, -equals, return Arrays.equals -> MessageDigest.isEqual"
+} ]

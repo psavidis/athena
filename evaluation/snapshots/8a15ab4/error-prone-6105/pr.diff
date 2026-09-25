@@ -1,0 +1,1379 @@
+diff --git a/check_api/src/main/java/com/google/errorprone/SuppressionInfo.java b/check_api/src/main/java/com/google/errorprone/SuppressionInfo.java
+index b9d127abafd..218282b4a0c 100644
+--- a/check_api/src/main/java/com/google/errorprone/SuppressionInfo.java
++++ b/check_api/src/main/java/com/google/errorprone/SuppressionInfo.java
+@@ -24,17 +24,17 @@
+ import com.google.errorprone.matchers.Suppressible;
+ import com.google.errorprone.suppliers.Supplier;
+ import com.google.errorprone.util.ASTHelpers;
++import com.google.errorprone.util.MoreAnnotations;
+ import com.sun.source.tree.ClassTree;
+ import com.sun.source.tree.CompilationUnitTree;
+ import com.sun.source.util.SimpleTreeVisitor;
+-import com.sun.tools.javac.code.Attribute;
+ import com.sun.tools.javac.code.Symbol;
+-import com.sun.tools.javac.code.Symbol.MethodSymbol;
++import com.sun.tools.javac.code.Symbol.TypeSymbol;
+ import com.sun.tools.javac.util.Name;
+-import com.sun.tools.javac.util.Pair;
+ import java.util.Collections;
+ import java.util.HashSet;
+ import java.util.Set;
++import javax.lang.model.element.AnnotationMirror;
+ 
+ /**
+  * Immutable container of "suppression signals" - annotations or other information gathered from
+@@ -53,7 +53,6 @@ public final class SuppressionInfo {
+ 
+   private static final Supplier<Name> ANDROID_SUPPRESS_LINT =
+       VisitorState.memoize(state -> state.getName("android.annotation.SuppressLint"));
+-  private static final Supplier<Name> VALUE = VisitorState.memoize(state -> state.getName("value"));
+   private final ImmutableSet<String> suppressWarningsStrings;
+ 
+   @SuppressWarnings("Immutable") /* Name is javac's interned version of a string. */
+@@ -152,30 +151,19 @@ public SuppressionInfo withExtendedSuppressions(
+ 
+     /* Handle {@code @SuppressWarnings} and {@code @SuppressLint}. */
+     Name suppressLint = ANDROID_SUPPRESS_LINT.get(state);
+-    Name valueName = VALUE.get(state);
+     Set<String> newSuppressions = null;
+     // Iterate over annotations on this symbol, looking for SuppressWarnings
+-    for (Attribute.Compound attr : sym.getAnnotationMirrors()) {
+-      if ((attr.type.tsym == state.getSymtab().suppressWarningsType.tsym)
+-          || attr.type.tsym.getQualifiedName().equals(suppressLint)) {
+-        for (Pair<MethodSymbol, Attribute> value : attr.values) {
+-          if (value.fst.name.equals(valueName)) {
+-            if (value.snd
+-                instanceof Attribute.Array array) { // SuppressWarnings/SuppressLint take an array
+-              for (Attribute suppress : array.values) {
+-                String suppressedWarning = (String) suppress.getValue();
+-                if (!suppressWarningsStrings.contains(suppressedWarning)) {
+-                  anyModification = true;
+-                  if (newSuppressions == null) {
+-                    newSuppressions = new HashSet<>(suppressWarningsStrings);
+-                  }
+-                  newSuppressions.add(suppressedWarning);
+-                }
+-              }
+-            } else {
+-              throw new RuntimeException(
+-                  "Expected SuppressWarnings/SuppressLint annotation to take array type");
++    for (AnnotationMirror attr : sym.getAnnotationMirrors()) {
++      TypeSymbol tsym = MoreAnnotations.asElement(attr);
++      if (tsym.equals(state.getSymtab().suppressWarningsType.tsym)
++          || tsym.getQualifiedName().equals(suppressLint)) {
++        for (String suppressedWarning : MoreAnnotations.getStrings(attr, "value")) {
++          if (!suppressWarningsStrings.contains(suppressedWarning)) {
++            anyModification = true;
++            if (newSuppressions == null) {
++              newSuppressions = new HashSet<>(suppressWarningsStrings);
+             }
++            newSuppressions.add(suppressedWarning);
+           }
+         }
+       }
+diff --git a/check_api/src/main/java/com/google/errorprone/fixes/SuggestedFixes.java b/check_api/src/main/java/com/google/errorprone/fixes/SuggestedFixes.java
+index 21db9d1e22f..319f223379b 100644
+--- a/check_api/src/main/java/com/google/errorprone/fixes/SuggestedFixes.java
++++ b/check_api/src/main/java/com/google/errorprone/fixes/SuggestedFixes.java
+@@ -24,7 +24,6 @@
+ import static com.google.common.collect.Iterables.getOnlyElement;
+ import static com.google.common.collect.Streams.stream;
+ import static com.google.errorprone.fixes.ErrorProneEndPosTable.getEndPosition;
+-import static com.google.errorprone.util.ASTHelpers.getAnnotation;
+ import static com.google.errorprone.util.ASTHelpers.getAnnotationWithSimpleName;
+ import static com.google.errorprone.util.ASTHelpers.getModifiers;
+ import static com.google.errorprone.util.ASTHelpers.getStartPosition;
+@@ -35,7 +34,6 @@
+ import static com.sun.tools.javac.code.TypeTag.CLASS;
+ import static com.sun.tools.javac.util.Position.NOPOS;
+ import static java.lang.Math.max;
+-import static java.util.Arrays.stream;
+ import static java.util.stream.Collectors.joining;
+ import static java.util.stream.Collectors.toCollection;
+ 
+@@ -62,6 +60,7 @@
+ import com.google.errorprone.util.ErrorProneToken;
+ import com.google.errorprone.util.ErrorProneTokens;
+ import com.google.errorprone.util.FindIdentifiers;
++import com.google.errorprone.util.MoreAnnotations;
+ import com.sun.source.doctree.DocTree;
+ import com.sun.source.doctree.ParamTree;
+ import com.sun.source.tree.AnnotationTree;
+@@ -114,7 +113,7 @@
+ import java.io.File;
+ import java.io.IOException;
+ import java.io.UncheckedIOException;
+-import java.lang.annotation.Target;
++import java.lang.annotation.ElementType;
+ import java.net.JarURLConnection;
+ import java.net.URI;
+ import java.nio.file.Path;
+@@ -139,6 +138,7 @@
+ import java.util.stream.IntStream;
+ import java.util.stream.Stream;
+ import java.util.stream.StreamSupport;
++import javax.lang.model.element.AnnotationMirror;
+ import javax.lang.model.element.Element;
+ import javax.lang.model.element.ElementKind;
+ import javax.lang.model.element.Modifier;
+@@ -1122,7 +1122,8 @@ public static void addSuppressWarnings(
+       return;
+     }
+ 
+-    SuppressWarnings existingAnnotation = getAnnotation(suppressibleNode, SuppressWarnings.class);
++    AnnotationTree suppressAnnotationTree =
++        getAnnotationWithSimpleName(findAnnotationsTree(suppressibleNode), "SuppressWarnings");
+     String suppression = state.getTreeMaker().Literal(CLASS, warningToSuppress).toString();
+ 
+     // Line comment to add, if it is present.
+@@ -1130,20 +1131,17 @@ public static void addSuppressWarnings(
+         Optional.ofNullable(lineComment).map(s -> "// " + s + "\n");
+ 
+     // If we have an existing @SuppressWarnings on the element, extend its value
+-    if (existingAnnotation != null) {
++    if (suppressAnnotationTree != null) {
+       // Add warning to the existing annotation
+-      String[] values = existingAnnotation.value();
+-      if (Arrays.asList(values).contains(warningToSuppress)) {
++      AnnotationMirror compound = ASTHelpers.getAnnotationMirror(suppressAnnotationTree);
++      ImmutableSet<String> values =
++          compound != null
++              ? ImmutableSet.copyOf(MoreAnnotations.getStrings(compound, "value"))
++              : ImmutableSet.of();
++      if (values.contains(warningToSuppress)) {
+         // The nearest suppress warnings already contains this thing, so we can't add another thing
+         return;
+       }
+-      AnnotationTree suppressAnnotationTree =
+-          getAnnotationWithSimpleName(
+-              findAnnotationsTree(suppressibleNode), SuppressWarnings.class.getSimpleName());
+-      if (suppressAnnotationTree == null) {
+-        // This is weird, bail out
+-        return;
+-      }
+ 
+       fixBuilder.merge(
+           addValuesToAnnotationArgument(
+@@ -1174,14 +1172,16 @@ public static void removeSuppressWarnings(
+     }
+ 
+     AnnotationTree suppressAnnotationTree =
+-        getAnnotationWithSimpleName(
+-            findAnnotationsTree(suppressibleNode), SuppressWarnings.class.getSimpleName());
++        getAnnotationWithSimpleName(findAnnotationsTree(suppressibleNode), "SuppressWarnings");
+     if (suppressAnnotationTree == null) {
+       return;
+     }
+ 
+-    SuppressWarnings annotation = getAnnotation(suppressibleNode, SuppressWarnings.class);
+-    ImmutableSet<String> warningsSuppressed = ImmutableSet.copyOf(annotation.value());
++    AnnotationMirror suppression = ASTHelpers.getAnnotationMirror(suppressAnnotationTree);
++    ImmutableSet<String> warningsSuppressed =
++        suppression != null
++            ? ImmutableSet.copyOf(MoreAnnotations.getStrings(suppression, "value"))
++            : ImmutableSet.of();
+     ImmutableSet<String> newWarningSet =
+         warningsSuppressed.stream()
+             .filter(warning -> !warning.equals(warningToRemove))
+@@ -1735,14 +1735,15 @@ public static boolean suggestedExemptingAnnotationSupported(Element exemptingAnn
+ 
+   private static ImmutableSet<Class<? extends Tree>> supportedTreeTypes(
+       Element exemptingAnnotation) {
+-    Target targetAnnotation = exemptingAnnotation.getAnnotation(Target.class);
+-    if (targetAnnotation == null) {
++    Set<ElementType> targetElementTypes =
++        MoreAnnotations.getTargetElementTypes(exemptingAnnotation);
++    if (targetElementTypes == null) {
+       // in the absence of further information, we assume the annotation is supported on classes and
+       // methods.
+       return TREE_TYPE_UNKNOWN_ANNOTATION;
+     }
+-    return stream(targetAnnotation.value())
+-        .flatMap(
++    return targetElementTypes.stream()
++        .<Class<? extends Tree>>flatMap(
+             t ->
+                 switch (t) {
+                   case TYPE -> Stream.of(ClassTree.class);
+diff --git a/check_api/src/main/java/com/google/errorprone/matchers/UnusedReturnValueMatcher.java b/check_api/src/main/java/com/google/errorprone/matchers/UnusedReturnValueMatcher.java
+index 80f15b40ba4..29bab8cc608 100644
+--- a/check_api/src/main/java/com/google/errorprone/matchers/UnusedReturnValueMatcher.java
++++ b/check_api/src/main/java/com/google/errorprone/matchers/UnusedReturnValueMatcher.java
+@@ -219,8 +219,7 @@ private static boolean isTestExpectedExceptionMethod(MethodTree tree, VisitorSta
+     return getSymbol(tree).getAnnotationMirrors().stream()
+         .filter(am -> am.type.tsym.getQualifiedName().contentEquals("org.junit.Test"))
+         .findFirst()
+-        .flatMap(testAm -> MoreAnnotations.getAnnotationValue(testAm, "expected"))
+-        .flatMap(MoreAnnotations::asTypeValue)
++        .flatMap(testAm -> MoreAnnotations.getTypeValue(testAm, "expected"))
+         .filter(tv -> !tv.toString().equals("org.junit.Test.None"))
+         .isPresent();
+   }
+diff --git a/check_api/src/main/java/com/google/errorprone/util/ASTHelpers.java b/check_api/src/main/java/com/google/errorprone/util/ASTHelpers.java
+index a3e1c131e5f..178157e47f9 100644
+--- a/check_api/src/main/java/com/google/errorprone/util/ASTHelpers.java
++++ b/check_api/src/main/java/com/google/errorprone/util/ASTHelpers.java
+@@ -25,6 +25,7 @@
+ import static com.google.errorprone.VisitorState.memoize;
+ import static com.google.errorprone.matchers.JUnitMatchers.JUNIT4_RUN_WITH_ANNOTATION;
+ import static com.google.errorprone.matchers.Matchers.isSubtypeOf;
++import static com.google.errorprone.util.AnnotationNames.NULL_MARKED_ANNOTATION;
+ import static com.sun.tools.javac.code.Scope.LookupKind.NON_RECURSIVE;
+ import static java.util.Objects.requireNonNull;
+ import static java.util.stream.Collectors.toCollection;
+@@ -86,7 +87,6 @@
+ import com.sun.source.util.TreePath;
+ import com.sun.source.util.TreeScanner;
+ import com.sun.tools.javac.api.JavacTrees;
+-import com.sun.tools.javac.code.Attribute;
+ import com.sun.tools.javac.code.Attribute.Compound;
+ import com.sun.tools.javac.code.Attribute.TypeCompound;
+ import com.sun.tools.javac.code.Flags;
+@@ -1069,7 +1069,7 @@ private static boolean hasDirectAnnotationWithSimpleName(
+       Stream<? extends AnnotationMirror> annotations, String simpleName) {
+     return annotations.anyMatch(
+         annotation ->
+-            annotation.getAnnotationType().asElement().getSimpleName().contentEquals(simpleName));
++            MoreAnnotations.asElement(annotation).getSimpleName().contentEquals(simpleName));
+   }
+ 
+   /**
+@@ -1090,8 +1090,7 @@ public static boolean hasDirectAnnotation(MethodSymbol sym, String qualifiedName
+ 
+   private static boolean hasDirectAnnotation(
+       Stream<? extends AnnotationMirror> annotations, Predicate<Element> matcher) {
+-    return annotations.anyMatch(
+-        annotation -> matcher.test(annotation.getAnnotationType().asElement()));
++    return annotations.anyMatch(annotation -> matcher.test(MoreAnnotations.asElement(annotation)));
+   }
+ 
+   /**
+@@ -1829,12 +1828,11 @@ public static ImmutableSet<String> getGeneratedBy(Symbol symbol, VisitorState st
+     return getGeneratedBy(symbol);
+   }
+ 
+-  private static Stream<String> generatedValues(Attribute.Compound attribute) {
+-    return attribute.getElementValues().entrySet().stream()
+-        .filter(e -> e.getKey().getSimpleName().contentEquals("value"))
+-        .findFirst()
+-        .map(e -> MoreAnnotations.asStrings(e.getValue()))
+-        .orElseGet(() -> Stream.of(attribute.type.tsym.getQualifiedName().toString()));
++  private static Stream<String> generatedValues(AnnotationMirror attribute) {
++    return MoreAnnotations.getValue(attribute, "value")
++        .map(MoreAnnotations::asStrings)
++        .orElseGet(
++            () -> Stream.of(MoreAnnotations.asElement(attribute).getQualifiedName().toString()));
+   }
+ 
+   public static boolean isSuper(Tree tree) {
+@@ -2361,7 +2359,7 @@ public static boolean isSwitchDefault(CaseTree caseTree) {
+   }
+ 
+   private static final Supplier<Name> NULL_MARKED_NAME =
+-      memoize(state -> state.getName("org.jspecify.annotations.NullMarked"));
++      memoize(state -> state.getName(NULL_MARKED_ANNOTATION));
+ 
+   private ASTHelpers() {}
+ }
+diff --git a/check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java b/check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java
+index 22bcde123db..604f85081f4 100644
+--- a/check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java
++++ b/check_api/src/main/java/com/google/errorprone/util/AnnotationNames.java
+@@ -23,29 +23,55 @@ public final class AnnotationNames {
+ 
+   public static final String AFTER_TEMPLATE_ANNOTATION =
+       "com.google.errorprone.refaster.annotation.AfterTemplate";
++  public static final String AUTO_BUILDER_ANNOTATION = "com.google.auto.value.AutoBuilder";
++  public static final String AUTO_FACTORY_ANNOTATION = "com.google.auto.factory.AutoFactory";
++  public static final String AUTO_VALUE_ANNOTATION = "com.google.auto.value.AutoValue";
+   public static final String BEFORE_TEMPLATE_ANNOTATION =
+       "com.google.errorprone.refaster.annotation.BeforeTemplate";
+   public static final String BUG_PATTERN_ANNOTATION = "com.google.errorprone.BugPattern";
+   public static final String CAN_IGNORE_RETURN_VALUE_ANNOTATION =
+       "com.google.errorprone.annotations.CanIgnoreReturnValue";
++  public static final String CHECK_RETURN_VALUE_ANNOTATION =
++      "com.google.errorprone.annotations.CheckReturnValue";
+   public static final String COMPATIBLE_WITH_ANNOTATION =
+       "com.google.errorprone.annotations.CompatibleWith";
++  public static final String DEPRECATED_ANNOTATION = "java.lang.Deprecated";
+   public static final String DO_NOT_CALL_ANNOTATION = "com.google.errorprone.annotations.DoNotCall";
+   public static final String FORMAT_METHOD_ANNOTATION =
+       "com.google.errorprone.annotations.FormatMethod";
+   public static final String FORMAT_STRING_ANNOTATION =
+       "com.google.errorprone.annotations.FormatString";
+   public static final String IMMUTABLE_ANNOTATION = "com.google.errorprone.annotations.Immutable";
++  public static final String INCOMPATIBLE_MODIFIERS_ANNOTATION =
++      "com.google.errorprone.annotations.IncompatibleModifiers";
++  public static final String INLINE_ME_ANNOTATION = "com.google.errorprone.annotations.InlineMe";
++  public static final String INLINE_ME_VALIDATION_DISABLED_ANNOTATION =
++      "com.google.errorprone.annotations.InlineMeValidationDisabled";
+   public static final String LAZY_INIT_ANNOTATION =
+       "com.google.errorprone.annotations.concurrent.LazyInit";
+   public static final String LENIENT_FORMAT_STRING_ANNOTATION =
+       "com.google.errorprone.annotations.LenientFormatString";
++  public static final String MATCHES_ANNOTATION =
++      "com.google.errorprone.refaster.annotation.Matches";
+   public static final String MUST_BE_CLOSED_ANNOTATION =
+       "com.google.errorprone.annotations.MustBeClosed";
++  public static final String NOT_MATCHES_ANNOTATION =
++      "com.google.errorprone.refaster.annotation.NotMatches";
++  public static final String NULL_MARKED_ANNOTATION = "org.jspecify.annotations.NullMarked";
++  public static final String NULL_UNMARKED_ANNOTATION = "org.jspecify.annotations.NullUnmarked";
++  public static final String OF_KIND_ANNOTATION =
++      "com.google.errorprone.refaster.annotation.OfKind";
++  public static final String OVERRIDE_ANNOTATION = "java.lang.Override";
++  public static final String REPEATABLE_ANNOTATION = "java.lang.annotation.Repeatable";
+   public static final String REPEATED_ANNOTATION =
+       "com.google.errorprone.refaster.annotation.Repeated";
++  public static final String REQUIRED_MODIFIERS_ANNOTATION =
++      "com.google.errorprone.annotations.RequiredModifiers";
+   public static final String RESTRICTED_API_ANNOTATION =
+       "com.google.errorprone.annotations.RestrictedApi";
++  public static final String RETENTION_ANNOTATION = "java.lang.annotation.Retention";
++  public static final String SUPPRESS_WARNINGS_ANNOTATION = "java.lang.SuppressWarnings";
++  public static final String TARGET_ANNOTATION = "java.lang.annotation.Target";
+   public static final String THREAD_SAFE_ANNOTATION =
+       "com.google.errorprone.annotations.ThreadSafe";
+   public static final String VAR_ANNOTATION = "com.google.errorprone.annotations.Var";
+diff --git a/check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java b/check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java
+index b8fe73e48eb..85353ef21a5 100644
+--- a/check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java
++++ b/check_api/src/main/java/com/google/errorprone/util/MoreAnnotations.java
+@@ -16,48 +16,219 @@
+ 
+ package com.google.errorprone.util;
+ 
++import static com.google.common.collect.ImmutableList.toImmutableList;
++import static com.google.errorprone.util.AnnotationNames.RETENTION_ANNOTATION;
++import static com.google.errorprone.util.AnnotationNames.TARGET_ANNOTATION;
++
+ import com.google.common.base.MoreObjects;
+-import com.google.common.collect.Streams;
++import com.google.common.collect.ImmutableList;
++import com.google.errorprone.annotations.InlineMe;
+ import com.sun.tools.javac.code.Attribute;
++import com.sun.tools.javac.code.Attribute.Compound;
++import com.sun.tools.javac.code.Symbol;
++import com.sun.tools.javac.code.Symbol.TypeSymbol;
++import com.sun.tools.javac.code.Symbol.VarSymbol;
++import java.lang.annotation.ElementType;
++import java.lang.annotation.RetentionPolicy;
+ import java.util.EnumSet;
+ import java.util.List;
+ import java.util.Map;
++import java.util.Objects;
+ import java.util.Optional;
+-import java.util.function.Function;
++import java.util.Set;
+ import java.util.stream.Stream;
+ import javax.lang.model.element.AnnotationMirror;
+ import javax.lang.model.element.AnnotationValue;
++import javax.lang.model.element.Element;
++import javax.lang.model.element.Name;
+ import javax.lang.model.element.VariableElement;
+ import javax.lang.model.type.TypeMirror;
+ import javax.lang.model.util.SimpleAnnotationValueVisitor8;
++import org.jspecify.annotations.Nullable;
+ 
+ /** Annotation-related utilities. */
+ public final class MoreAnnotations {
+ 
++  /**
++   * Returns the annotation on the given element with the specified qualified binary or canonical
++   * name.
++   */
++  public static Optional<Attribute.Compound> getAnnotation(Element sym, String qualifiedName) {
++    if (!(sym instanceof Symbol symbol)) {
++      return Optional.empty();
++    }
++    for (Attribute.Compound a : symbol.getRawAttributes()) {
++      if (a.type.tsym.getQualifiedName().contentEquals(qualifiedName)) {
++        return Optional.of(a);
++      }
++    }
++    return Optional.empty();
++  }
++
++  /** Returns the annotation on the given element with the specified qualified name. */
++  public static Optional<Attribute.Compound> getAnnotation(Element sym, Name qualifiedName) {
++    if (!(sym instanceof Symbol symbol)) {
++      return Optional.empty();
++    }
++    for (Attribute.Compound a : symbol.getRawAttributes()) {
++      if (a.type.tsym.getQualifiedName().equals(qualifiedName)) {
++        return Optional.of(a);
++      }
++    }
++    return Optional.empty();
++  }
++
++  /** Returns the annotation on the given element with the specified simple name. */
++  public static Optional<Attribute.Compound> getAnnotationWithSimpleName(
++      Element sym, String simpleName) {
++    if (!(sym instanceof Symbol symbol)) {
++      return Optional.empty();
++    }
++    for (Attribute.Compound a : symbol.getRawAttributes()) {
++      if (a.type.tsym.getSimpleName().contentEquals(simpleName)) {
++        return Optional.of(a);
++      }
++    }
++    return Optional.empty();
++  }
++
+   /**
+    * Returns the value of the annotation element-value pair with the given name if it is explicitly
+    * set.
+    */
+-  public static Optional<Attribute> getValue(Attribute.Compound attribute, String name) {
+-    return attribute.getElementValues().entrySet().stream()
++  public static Optional<AnnotationValue> getValue(AnnotationMirror annotationMirror, String name) {
++    if (annotationMirror == null) {
++      return Optional.empty();
++    }
++    return annotationMirror.getElementValues().entrySet().stream()
+         .filter(e -> e.getKey().getSimpleName().contentEquals(name))
+-        .map(Map.Entry::getValue)
++        .<AnnotationValue>map(Map.Entry::getValue)
+         .findFirst();
+   }
+ 
+   /**
+    * Returns the value of the annotation element-value pair with the given name if it is explicitly
+    * set.
++   *
++   * @deprecated Prefer {@link #getValue(AnnotationMirror, String)}.
+    */
+-  public static Optional<AnnotationValue> getAnnotationValue(
+-      Attribute.Compound attribute, String name) {
+-    return getValue(attribute, name).map(a -> a);
++  @InlineMe(
++      replacement =
++          "MoreAnnotations.getValue((AnnotationMirror) attribute, name).map(Attribute.class::cast)",
++      imports = {
++        "com.google.errorprone.util.MoreAnnotations",
++        "com.sun.tools.javac.code.Attribute",
++        "javax.lang.model.element.AnnotationMirror"
++      })
++  @Deprecated
++  public static Optional<Attribute> getValue(Attribute.Compound attribute, String name) {
++    return getValue((AnnotationMirror) attribute, name).map(Attribute.class::cast);
++  }
++
++  /** Shorthand for extracting a string value of a named element from an annotation mirror. */
++  public static Optional<String> getStringValue(AnnotationMirror attribute, String name) {
++    return getValue(attribute, name).flatMap(MoreAnnotations::asStringValue);
++  }
++
++  /** Shorthand for extracting the "value" string of a named annotation on an element. */
++  public static Optional<String> getStringValue(Element sym, String annotationName) {
++    return getAnnotation(sym, annotationName).flatMap(a -> getStringValue(a, "value"));
++  }
++
++  /** Shorthand for extracting a boolean value of a named element from an annotation mirror. */
++  public static Optional<Boolean> getBooleanValue(AnnotationMirror attribute, String name) {
++    return getValue(attribute, name).flatMap(MoreAnnotations::asBooleanValue);
++  }
++
++  /** Shorthand for extracting the "value" boolean of a named annotation on an element. */
++  public static Optional<Boolean> getBooleanValue(Element sym, String annotationName) {
++    return getAnnotation(sym, annotationName).flatMap(a -> getBooleanValue(a, "value"));
++  }
++
++  /** Shorthand for extracting an enum value of a named element from an annotation mirror. */
++  public static Optional<VarSymbol> getEnumValue(AnnotationMirror attribute, String name) {
++    return getValue(attribute, name).flatMap(MoreAnnotations::asEnumValue);
++  }
++
++  /** Shorthand for extracting the "value" enum of a named annotation on an element. */
++  public static Optional<VarSymbol> getEnumValue(Element sym, String annotationName) {
++    return getAnnotation(sym, annotationName).flatMap(a -> getEnumValue(a, "value"));
++  }
++
++  /** Shorthand for extracting enum values of a named element from an annotation mirror. */
++  public static ImmutableList<VarSymbol> getEnumValues(AnnotationMirror attribute, String name) {
++    return getValue(attribute, name)
++        .map(v -> asEnumValues(v).collect(toImmutableList()))
++        .orElseGet(ImmutableList::of);
++  }
++
++  /** Shorthand for extracting the "value" enum values of a named annotation on an element. */
++  public static ImmutableList<VarSymbol> getEnumValues(Element sym, String annotationName) {
++    return getAnnotation(sym, annotationName)
++        .map(a -> getEnumValues(a, "value"))
++        .orElseGet(ImmutableList::of);
++  }
++
++  /**
++   * Shorthand for extracting a list of strings for a named element (e.g. array or single string).
++   */
++  public static ImmutableList<String> getStrings(AnnotationMirror attribute, String name) {
++    return getValue(attribute, name)
++        .map(v -> asStrings(v).collect(toImmutableList()))
++        .orElseGet(ImmutableList::of);
++  }
++
++  /**
++   * Shorthand for extracting a list of strings from the "value" element of a named annotation on an
++   * element.
++   */
++  public static ImmutableList<String> getStrings(Element sym, String annotationName) {
++    return getAnnotation(sym, annotationName)
++        .map(a -> getStrings(a, "value"))
++        .orElseGet(ImmutableList::of);
++  }
++
++  /** Shorthand for extracting a list of types for a named element (e.g. Class[] or Class). */
++  public static ImmutableList<TypeMirror> getTypes(AnnotationMirror attribute, String name) {
++    return getValue(attribute, name)
++        .map(v -> asTypes(v).collect(toImmutableList()))
++        .orElseGet(ImmutableList::of);
++  }
++
++  /**
++   * Shorthand for extracting a list of types from the "value" element of a named annotation on an
++   * element.
++   */
++  public static ImmutableList<TypeMirror> getTypes(Element sym, String annotationName) {
++    return getAnnotation(sym, annotationName)
++        .map(a -> getTypes(a, "value"))
++        .orElseGet(ImmutableList::of);
++  }
++
++  /** Shorthand for extracting a type value of a named element from an annotation mirror. */
++  public static Optional<TypeMirror> getTypeValue(AnnotationMirror attribute, String name) {
++    return getValue(attribute, name).flatMap(MoreAnnotations::asTypeValue);
++  }
++
++  /** Shorthand for extracting the "value" type of a named annotation on an element. */
++  public static Optional<TypeMirror> getTypeValue(Element sym, String annotationName) {
++    return getAnnotation(sym, annotationName).flatMap(a -> getTypeValue(a, "value"));
++  }
++
++  /** Converts the given attribute to a boolean value. */
++  public static Optional<Boolean> asBooleanValue(AnnotationValue a) {
++    class Visitor extends SimpleAnnotationValueVisitor8<Boolean, Void> {
++      @Override
++      public Boolean visitBoolean(boolean b, Void unused) {
++        return b;
++      }
++    }
++    return Optional.ofNullable(a.accept(new Visitor(), null));
+   }
+ 
+   /** Converts the given attribute to an integer value. */
+   public static Optional<Integer> asIntegerValue(AnnotationValue a) {
+     class Visitor extends SimpleAnnotationValueVisitor8<Integer, Void> {
+-
+       @Override
+       public Integer visitInt(int i, Void unused) {
+         return i;
+@@ -66,10 +237,9 @@ public Integer visitInt(int i, Void unused) {
+     return Optional.ofNullable(a.accept(new Visitor(), null));
+   }
+ 
+-  /** Converts the given attribute to an string value. */
++  /** Converts the given attribute to a string value. */
+   public static Optional<String> asStringValue(AnnotationValue a) {
+     class Visitor extends SimpleAnnotationValueVisitor8<String, Void> {
+-
+       @Override
+       public String visitString(String s, Void unused) {
+         return s;
+@@ -79,40 +249,58 @@ public String visitString(String s, Void unused) {
+   }
+ 
+   /** Converts the given attribute to an enum value. */
+-  public static <T extends Enum<T>> Optional<T> asEnumValue(Class<T> clazz, AnnotationValue a) {
+-    class Visitor extends SimpleAnnotationValueVisitor8<T, Void> {
+-
++  public static Optional<VarSymbol> asEnumValue(AnnotationValue a) {
++    class Visitor extends SimpleAnnotationValueVisitor8<VarSymbol, Void> {
+       @Override
+-      public T visitEnumConstant(VariableElement c, Void unused) {
+-        return Enum.valueOf(clazz, c.getSimpleName().toString());
++      public VarSymbol visitEnumConstant(VariableElement c, Void unused) {
++        return (VarSymbol) c;
+       }
+     }
+     return Optional.ofNullable(a.accept(new Visitor(), null));
+   }
+ 
++  /**
++   * Converts the given attribute to an enum value.
++   *
++   * @deprecated Prefer {@link #asEnumValue(AnnotationValue)}.
++   */
++  @Deprecated
++  public static <T extends Enum<T>> Optional<T> asEnumValue(Class<T> clazz, AnnotationValue a) {
++    return asEnumValue(a).map(c -> Enum.valueOf(clazz, c.getSimpleName().toString()));
++  }
++
++  /** Converts the given annotation value to one or more enum values. */
++  public static Stream<VarSymbol> asEnumValues(AnnotationValue v) {
++    return v.accept(
++        new SimpleAnnotationValueVisitor8<Stream<VarSymbol>, Void>(Stream.empty()) {
++          @Override
++          public Stream<VarSymbol> visitEnumConstant(VariableElement c, Void unused) {
++            return Stream.of((VarSymbol) c);
++          }
++
++          @Override
++          public Stream<VarSymbol> visitArray(List<? extends AnnotationValue> list, Void unused) {
++            return list.stream().flatMap(a -> a.accept(this, null));
++          }
++        },
++        null);
++  }
++
++  /**
++   * Converts the given attribute to enum values.
++   *
++   * @deprecated Prefer {@link #asEnumValues(AnnotationValue)}.
++   */
++  @Deprecated
+   public static <T extends Enum<T>> EnumSet<T> asEnumValues(Class<T> clazz, AnnotationValue a) {
+     EnumSet<T> result = EnumSet.noneOf(clazz);
+-    class Visitor extends SimpleAnnotationValueVisitor8<Void, Void> {
+-      @Override
+-      public Void visitEnumConstant(VariableElement c, Void unused) {
+-        result.add(Enum.valueOf(clazz, c.getSimpleName().toString()));
+-        return null;
+-      }
+-
+-      @Override
+-      public Void visitArray(List<? extends AnnotationValue> list, Void unused) {
+-        list.stream().forEach(a -> a.accept(this, null));
+-        return null;
+-      }
+-    }
+-    a.accept(new Visitor(), null);
++    asEnumValues(a).forEach(c -> result.add(Enum.valueOf(clazz, c.getSimpleName().toString())));
+     return result;
+   }
+ 
+   /** Converts the given attribute to a type. */
+   public static Optional<TypeMirror> asTypeValue(AnnotationValue a) {
+     class Visitor extends SimpleAnnotationValueVisitor8<TypeMirror, Void> {
+-
+       @Override
+       public TypeMirror visitType(TypeMirror t, Void unused) {
+         return t;
+@@ -133,13 +321,24 @@ public Stream<String> visitString(String s, Void unused) {
+ 
+               @Override
+               public Stream<String> visitArray(List<? extends AnnotationValue> list, Void unused) {
+-                return list.stream().flatMap(a -> a.accept(this, null)).filter(x -> x != null);
++                return list.stream().flatMap(a -> a.accept(this, null)).filter(Objects::nonNull);
+               }
+             },
+             null),
+         Stream.empty());
+   }
+ 
++  /** Converts the given attribute to an annotation mirror. */
++  public static Optional<AnnotationMirror> asAnnotationValue(AnnotationValue a) {
++    class Visitor extends SimpleAnnotationValueVisitor8<AnnotationMirror, Void> {
++      @Override
++      public AnnotationMirror visitAnnotation(AnnotationMirror a, Void unused) {
++        return a;
++      }
++    }
++    return Optional.ofNullable(a.accept(new Visitor(), null));
++  }
++
+   /** Converts the given annotation value to one or more annotations. */
+   public static Stream<AnnotationMirror> asAnnotations(AnnotationValue v) {
+     return v.accept(
+@@ -160,18 +359,125 @@ public Stream<AnnotationMirror> visitArray(
+ 
+   /** Converts the given annotation value to one or more types. */
+   public static Stream<TypeMirror> asTypes(AnnotationValue v) {
+-    return asArray(v, MoreAnnotations::asTypeValue);
++    return v.accept(
++        new SimpleAnnotationValueVisitor8<Stream<TypeMirror>, Void>(Stream.empty()) {
++          @Override
++          public Stream<TypeMirror> visitType(TypeMirror t, Void unused) {
++            return Stream.of(t);
++          }
++
++          @Override
++          public Stream<TypeMirror> visitArray(List<? extends AnnotationValue> list, Void unused) {
++            return list.stream().flatMap(a -> a.accept(this, null));
++          }
++        },
++        null);
+   }
+ 
+-  private static <T> Stream<T> asArray(
+-      AnnotationValue v, Function<AnnotationValue, Optional<T>> mapper) {
+-    class Visitor extends SimpleAnnotationValueVisitor8<Stream<T>, Void> {
+-      @Override
+-      public Stream<T> visitArray(List<? extends AnnotationValue> vals, Void unused) {
+-        return vals.stream().map(mapper).flatMap(Streams::stream);
++  /**
++   * @deprecated Use {@link #getValue(AnnotationMirror, String)} instead.
++   */
++  @InlineMe(
++      replacement = "MoreAnnotations.getValue(annotationMirror, name)",
++      imports = "com.google.errorprone.util.MoreAnnotations")
++  @Deprecated
++  public static Optional<AnnotationValue> getAnnotationValue(
++      AnnotationMirror annotationMirror, String name) {
++    return getValue(annotationMirror, name);
++  }
++
++  /**
++   * @deprecated Prefer {@link #getValue(AnnotationMirror, String)}.
++   */
++  @InlineMe(
++      replacement = "MoreAnnotations.getValue((AnnotationMirror) attribute, name)",
++      imports = {
++        "com.google.errorprone.util.MoreAnnotations",
++        "javax.lang.model.element.AnnotationMirror"
++      })
++  @Deprecated
++  public static Optional<AnnotationValue> getAnnotationValue(
++      Attribute.Compound attribute, String name) {
++    return getValue((AnnotationMirror) attribute, name);
++  }
++
++  /** Returns the {@link TypeSymbol} representing the declaration of the annotation mirror. */
++  public static TypeSymbol asElement(AnnotationMirror annotationMirror) {
++    return (TypeSymbol) annotationMirror.getAnnotationType().asElement();
++  }
++
++  /**
++   * Returns the set of {@link ElementType} targets specified in the annotation's {@code @Target}
++   * meta-annotation, or {@code null} if no {@code @Target} meta-annotation is present.
++   */
++  public static @Nullable Set<ElementType> getTargetElementTypes(Element annotationSymbol) {
++    if (annotationSymbol instanceof TypeSymbol typeSymbol) {
++      var metadata = typeSymbol.getAnnotationTypeMetadata();
++      if (metadata != null) {
++        Compound target = metadata.getTarget();
++        if (target != null) {
++          return getTargetElementTypes(target);
++        }
++        return null;
++      }
++    }
++    return getAnnotation(annotationSymbol, TARGET_ANNOTATION)
++        .map(MoreAnnotations::getTargetElementTypes)
++        .orElse(null);
++  }
++
++  private static Set<ElementType> getTargetElementTypes(AnnotationMirror target) {
++    EnumSet<ElementType> result = EnumSet.noneOf(ElementType.class);
++    for (VarSymbol element : getEnumValues(target, "value")) {
++      try {
++        result.add(ElementType.valueOf(element.getSimpleName().toString()));
++      } catch (IllegalArgumentException e) {
++        // Ignore unrecognized ElementType constants
+       }
+     }
+-    return MoreObjects.firstNonNull(v.accept(new Visitor(), null), Stream.of());
++    return result;
++  }
++
++  /**
++   * Returns whether the annotation is a type annotation (i.e. its {@code @Target} includes {@link
++   * ElementType#TYPE_USE} or {@link ElementType#TYPE_PARAMETER}).
++   */
++  public static boolean isTypeAnnotation(Element annotationSymbol) {
++    Set<ElementType> targets = getTargetElementTypes(annotationSymbol);
++    return targets != null
++        && (targets.contains(ElementType.TYPE_USE) || targets.contains(ElementType.TYPE_PARAMETER));
++  }
++
++  /**
++   * Returns the effective {@link RetentionPolicy} of the annotation symbol (defaulting to {@link
++   * RetentionPolicy#CLASS} per JLS 9.6.4.2 if omitted or not found).
++   */
++  public static RetentionPolicy getRetentionPolicy(Element annotationSymbol) {
++    return getEnumValue(annotationSymbol, RETENTION_ANNOTATION)
++        .map(c -> asRetentionPolicy(c.getSimpleName().toString()))
++        .orElse(RetentionPolicy.CLASS);
++  }
++
++  private static RetentionPolicy asRetentionPolicy(String name) {
++    try {
++      return RetentionPolicy.valueOf(name);
++    } catch (IllegalArgumentException e) {
++      return RetentionPolicy.CLASS;
++    }
++  }
++
++  /**
++   * Returns whether the annotation applies to the given {@link ElementType}. If the annotation has
++   * no {@code @Target} meta-annotation, it is applicable in all declaration contexts (per JLS
++   * 9.6.4.1), which includes all element types except {@link ElementType#TYPE_USE} and {@link
++   * ElementType#TYPE_PARAMETER}.
++   */
++  public static boolean targetsElement(Element annotationSymbol, ElementType target) {
++    Set<ElementType> targets = getTargetElementTypes(annotationSymbol);
++    if (targets != null) {
++      return targets.contains(target);
++    }
++    return target != ElementType.TYPE_USE && target != ElementType.TYPE_PARAMETER;
+   }
+ 
+   private MoreAnnotations() {}
+diff --git a/check_api/src/test/java/com/google/errorprone/util/MoreAnnotationsTest.java b/check_api/src/test/java/com/google/errorprone/util/MoreAnnotationsTest.java
+new file mode 100644
+index 00000000000..ab187d943db
+--- /dev/null
++++ b/check_api/src/test/java/com/google/errorprone/util/MoreAnnotationsTest.java
+@@ -0,0 +1,216 @@
++/*
++ * Copyright 2024 The Error Prone Authors.
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *     http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package com.google.errorprone.util;
++
++import static com.google.common.truth.Truth.assertThat;
++import static java.lang.annotation.ElementType.METHOD;
++import static java.lang.annotation.ElementType.TYPE;
++import static java.lang.annotation.ElementType.TYPE_USE;
++
++import com.google.errorprone.VisitorState;
++import com.google.errorprone.matchers.CompilerBasedAbstractTest;
++import com.google.errorprone.scanner.Scanner;
++import com.sun.source.tree.ClassTree;
++import com.sun.source.tree.MethodTree;
++import com.sun.tools.javac.code.Symbol.ClassSymbol;
++import com.sun.tools.javac.code.Symbol.MethodSymbol;
++import com.sun.tools.javac.code.Symbol.VarSymbol;
++import java.lang.annotation.RetentionPolicy;
++import java.util.List;
++import java.util.Optional;
++import java.util.concurrent.atomic.AtomicBoolean;
++import java.util.stream.Stream;
++import javax.lang.model.element.AnnotationMirror;
++import javax.lang.model.element.AnnotationValue;
++import org.junit.Test;
++import org.junit.runner.RunWith;
++import org.junit.runners.JUnit4;
++
++/** Tests for {@link MoreAnnotations}. */
++@RunWith(JUnit4.class)
++public class MoreAnnotationsTest extends CompilerBasedAbstractTest {
++
++  @Test
++  public void annotationAccessors() {
++    writeFile(
++        "TestAnno.java",
++        """
++        import java.lang.annotation.ElementType;
++        import java.lang.annotation.Retention;
++        import java.lang.annotation.RetentionPolicy;
++        import java.lang.annotation.Target;
++
++        @Retention(RetentionPolicy.RUNTIME)
++        @Target({ElementType.TYPE, ElementType.METHOD})
++        @interface MyAnno {
++          String strVal() default "default";
++          boolean boolVal() default false;
++          RetentionPolicy[] enumArr() default {};
++          RetentionPolicy enumVal() default RetentionPolicy.SOURCE;
++          String[] strArr() default {};
++          Class<?>[] typeArr() default {};
++        }
++
++        @Retention(RetentionPolicy.SOURCE)
++        @interface SourceAnno {}
++
++        @Target({ElementType.TYPE_USE})
++        @interface TypeUseAnno {}
++
++        @interface DefaultRetentionAnno {}
++
++        @MyAnno(
++            strVal = "hello",
++            boolVal = true,
++            enumArr = {RetentionPolicy.RUNTIME},
++            enumVal = RetentionPolicy.CLASS,
++            strArr = {"a", "b"},
++            typeArr = {String.class, Integer.class})
++        public class TestAnno {
++          @MyAnno(strVal = "method")
++          public void testMethod() {}
++        }
++        """);
++
++    AtomicBoolean verified = new AtomicBoolean(false);
++    assertCompiles(
++        new Scanner() {
++          @Override
++          public Void visitClass(ClassTree tree, VisitorState state) {
++            ClassSymbol sym = ASTHelpers.getSymbol(tree);
++            if (sym.getSimpleName().contentEquals("TestAnno")) {
++              Optional<? extends AnnotationMirror> anno =
++                  MoreAnnotations.getAnnotation(sym, "MyAnno");
++              assertThat(anno).isPresent();
++              AnnotationMirror compound = anno.get();
++
++              assertThat(MoreAnnotations.getStringValue(compound, "strVal")).hasValue("hello");
++              assertThat(MoreAnnotations.getBooleanValue(compound, "boolVal")).hasValue(true);
++              Optional<VarSymbol> enumVal = MoreAnnotations.getEnumValue(compound, "enumVal");
++              assertThat(enumVal.map(c -> c.getSimpleName().toString())).hasValue("CLASS");
++              assertThat(MoreAnnotations.getEnumValue(sym, "MyAnno")).isEmpty();
++              List<VarSymbol> enumArr = MoreAnnotations.getEnumValues(compound, "enumArr");
++              assertThat(enumArr.stream().map(c -> c.getSimpleName().toString()))
++                  .containsExactly("RUNTIME");
++              assertThat(MoreAnnotations.getStrings(compound, "strArr"))
++                  .containsExactly("a", "b")
++                  .inOrder();
++              assertThat(
++                      MoreAnnotations.getTypes(compound, "typeArr").stream().map(Object::toString))
++                  .containsExactly("java.lang.String", "java.lang.Integer")
++                  .inOrder();
++
++              assertThat(
++                      MoreAnnotations.getValue(compound, "strVal")
++                          .map(MoreAnnotations::asStrings)
++                          .orElseGet(Stream::empty))
++                  .containsExactly("hello");
++              assertThat(
++                      MoreAnnotations.getValue(compound, "strArr")
++                          .map(MoreAnnotations::asStrings)
++                          .orElseGet(Stream::empty))
++                  .containsExactly("a", "b")
++                  .inOrder();
++              assertThat(
++                      MoreAnnotations.asAnnotations(
++                              (AnnotationValue) sym.getAnnotationMirrors().get(0))
++                          .map(a -> MoreAnnotations.asElement(a).getSimpleName().toString()))
++                  .containsExactly("MyAnno");
++
++              assertThat(MoreAnnotations.getAnnotationWithSimpleName(sym, "MyAnno")).isPresent();
++              assertThat(MoreAnnotations.getAnnotationWithSimpleName(sym, "NonExistent")).isEmpty();
++              verified.set(true);
++            }
++            return super.visitClass(tree, state);
++          }
++
++          @Override
++          public Void visitMethod(MethodTree tree, VisitorState state) {
++            MethodSymbol sym = ASTHelpers.getSymbol(tree);
++            if (sym.getSimpleName().contentEquals("testMethod")) {
++              Optional<? extends AnnotationMirror> anno =
++                  MoreAnnotations.getAnnotation(sym, "MyAnno");
++              assertThat(anno).isPresent();
++              assertThat(
++                      MoreAnnotations.asElement(anno.get()).getSimpleName().contentEquals("MyAnno"))
++                  .isTrue();
++              assertThat(MoreAnnotations.getStringValue(anno.get(), "strVal")).hasValue("method");
++            }
++            return super.visitMethod(tree, state);
++          }
++        });
++    assertThat(verified.get()).isTrue();
++  }
++
++  @Test
++  public void targetAndRetentionHelpers() {
++    writeFile(
++        "MetaTest.java",
++        """
++        import java.lang.annotation.ElementType;
++        import java.lang.annotation.Retention;
++        import java.lang.annotation.RetentionPolicy;
++        import java.lang.annotation.Target;
++
++        @Target({ElementType.TYPE, ElementType.METHOD})
++        @Retention(RetentionPolicy.RUNTIME)
++        @interface TargetAndRuntimeAnno {}
++
++        @Target({ElementType.TYPE_USE})
++        @Retention(RetentionPolicy.SOURCE)
++        @interface TypeUseAndSourceAnno {}
++
++        @interface DefaultAnno {}
++
++        public class MetaTest {}
++        """);
++
++    AtomicBoolean verified = new AtomicBoolean(false);
++    assertCompiles(
++        new Scanner() {
++          @Override
++          public Void visitClass(ClassTree tree, VisitorState state) {
++            ClassSymbol sym = ASTHelpers.getSymbol(tree);
++            if (sym.getSimpleName().contentEquals("TargetAndRuntimeAnno")) {
++              assertThat(MoreAnnotations.getTargetElementTypes(sym)).containsExactly(TYPE, METHOD);
++              assertThat(MoreAnnotations.isTypeAnnotation(sym)).isFalse();
++              assertThat(MoreAnnotations.targetsElement(sym, TYPE)).isTrue();
++              assertThat(MoreAnnotations.targetsElement(sym, METHOD)).isTrue();
++              assertThat(MoreAnnotations.targetsElement(sym, TYPE_USE)).isFalse();
++              assertThat(MoreAnnotations.getRetentionPolicy(sym))
++                  .isEqualTo(RetentionPolicy.RUNTIME);
++            } else if (sym.getSimpleName().contentEquals("TypeUseAndSourceAnno")) {
++              assertThat(MoreAnnotations.getTargetElementTypes(sym)).containsExactly(TYPE_USE);
++              assertThat(MoreAnnotations.isTypeAnnotation(sym)).isTrue();
++              assertThat(MoreAnnotations.targetsElement(sym, TYPE_USE)).isTrue();
++              assertThat(MoreAnnotations.targetsElement(sym, TYPE)).isFalse();
++              assertThat(MoreAnnotations.getRetentionPolicy(sym)).isEqualTo(RetentionPolicy.SOURCE);
++            } else if (sym.getSimpleName().contentEquals("DefaultAnno")) {
++              assertThat(MoreAnnotations.getTargetElementTypes(sym)).isNull();
++              assertThat(MoreAnnotations.isTypeAnnotation(sym)).isFalse();
++              assertThat(MoreAnnotations.targetsElement(sym, TYPE)).isTrue();
++              assertThat(MoreAnnotations.targetsElement(sym, METHOD)).isTrue();
++              assertThat(MoreAnnotations.targetsElement(sym, TYPE_USE)).isFalse();
++              assertThat(MoreAnnotations.getRetentionPolicy(sym)).isEqualTo(RetentionPolicy.CLASS);
++              verified.set(true);
++            }
++            return super.visitClass(tree, state);
++          }
++        });
++    assertThat(verified.get()).isTrue();
++  }
++}
+diff --git a/core/src/main/java/com/google/errorprone/refaster/PlaceholderMethod.java b/core/src/main/java/com/google/errorprone/refaster/PlaceholderMethod.java
+index a3590cc7817..fd1b2205898 100644
+--- a/core/src/main/java/com/google/errorprone/refaster/PlaceholderMethod.java
++++ b/core/src/main/java/com/google/errorprone/refaster/PlaceholderMethod.java
+@@ -14,6 +14,9 @@
+ 
+ package com.google.errorprone.refaster;
+ 
++import static com.google.errorprone.util.AnnotationNames.MATCHES_ANNOTATION;
++import static com.google.errorprone.util.AnnotationNames.NOT_MATCHES_ANNOTATION;
++
+ import com.google.common.base.Predicates;
+ import com.google.common.collect.ClassToInstanceMap;
+ import com.google.common.collect.ImmutableClassToInstanceMap;
+@@ -23,14 +26,13 @@
+ import com.google.errorprone.VisitorState;
+ import com.google.errorprone.matchers.Matcher;
+ import com.google.errorprone.refaster.UPlaceholderExpression.PlaceholderParamIdent;
+-import com.google.errorprone.refaster.annotation.Matches;
+ import com.google.errorprone.refaster.annotation.MayOptionallyUse;
+-import com.google.errorprone.refaster.annotation.NotMatches;
+ import com.google.errorprone.refaster.annotation.OfKind;
+ import com.google.errorprone.refaster.annotation.Placeholder;
+ import com.sun.source.tree.ExpressionTree;
+ import com.sun.source.tree.Tree;
+ import com.sun.source.tree.Tree.Kind;
++import com.sun.tools.javac.code.Symbol.MethodSymbol;
+ import com.sun.tools.javac.tree.JCTree.JCExpression;
+ import com.sun.tools.javac.tree.JCTree.JCStatement;
+ import com.sun.tools.javac.util.List;
+@@ -57,16 +59,13 @@ static PlaceholderMethod create(
+       CharSequence name,
+       UType returnType,
+       ImmutableMap<UVariableDecl, ImmutableClassToInstanceMap<Annotation>> parameters,
+-      ClassToInstanceMap<Annotation> annotations) {
++      ClassToInstanceMap<Annotation> annotations,
++      MethodSymbol sym) {
+     boolean allowsIdentity = annotations.getInstance(Placeholder.class).allowsIdentity();
+     Class<? extends Matcher<? super ExpressionTree>> matchesClass =
+-        annotations.containsKey(Matches.class)
+-            ? UTemplater.getValue(annotations.getInstance(Matches.class))
+-            : null;
++        UTemplater.getMatcherClass(sym, MATCHES_ANNOTATION);
+     Class<? extends Matcher<? super ExpressionTree>> notMatchesClass =
+-        annotations.containsKey(NotMatches.class)
+-            ? UTemplater.getValue(annotations.getInstance(NotMatches.class))
+-            : null;
++        UTemplater.getMatcherClass(sym, NOT_MATCHES_ANNOTATION);
+     Predicate<Kind> allowedKinds =
+         annotations.containsKey(OfKind.class)
+             ? Predicates.<Tree.Kind>in(Arrays.asList(annotations.getInstance(OfKind.class).value()))
+diff --git a/core/src/main/java/com/google/errorprone/refaster/RefasterRuleBuilderScanner.java b/core/src/main/java/com/google/errorprone/refaster/RefasterRuleBuilderScanner.java
+index ec6fbf010ea..738970b4c77 100644
+--- a/core/src/main/java/com/google/errorprone/refaster/RefasterRuleBuilderScanner.java
++++ b/core/src/main/java/com/google/errorprone/refaster/RefasterRuleBuilderScanner.java
+@@ -120,7 +120,8 @@ public Void visitMethod(MethodTree tree, Void v) {
+                 tree.getName(),
+                 templater.template(sym.getReturnType()),
+                 params.buildOrThrow(),
+-                UTemplater.annotationMap(sym)));
++                UTemplater.annotationMap(sym),
++                sym));
+       } else if (hasAnnotation(tree, BEFORE_TEMPLATE_ANNOTATION, state)) {
+         checkState(afterTemplates.isEmpty(), "BeforeTemplate must come before AfterTemplate");
+         Template<?> template =
+diff --git a/core/src/main/java/com/google/errorprone/refaster/UTemplater.java b/core/src/main/java/com/google/errorprone/refaster/UTemplater.java
+index 4fc60d40cd1..58dbe15dca4 100644
+--- a/core/src/main/java/com/google/errorprone/refaster/UTemplater.java
++++ b/core/src/main/java/com/google/errorprone/refaster/UTemplater.java
+@@ -18,11 +18,16 @@
+ 
+ import static com.google.common.base.Preconditions.checkArgument;
+ import static com.google.common.base.Preconditions.checkState;
++import static com.google.common.collect.ImmutableSet.toImmutableSet;
+ import static com.google.errorprone.util.ASTHelpers.getType;
+ import static com.google.errorprone.util.ASTHelpers.hasAnnotation;
+ import static com.google.errorprone.util.ASTHelpers.isStatic;
++import static com.google.errorprone.util.AnnotationNames.MATCHES_ANNOTATION;
++import static com.google.errorprone.util.AnnotationNames.NOT_MATCHES_ANNOTATION;
++import static com.google.errorprone.util.AnnotationNames.OF_KIND_ANNOTATION;
+ import static com.google.errorprone.util.AnnotationNames.REPEATED_ANNOTATION;
+ 
++import com.google.auto.common.AnnotationMirrors;
+ import com.google.common.collect.ImmutableClassToInstanceMap;
+ import com.google.common.collect.ImmutableList;
+ import com.google.common.collect.ImmutableMap;
+@@ -32,11 +37,8 @@
+ import com.google.common.reflect.TypeToken;
+ import com.google.errorprone.VisitorState;
+ import com.google.errorprone.matchers.Matcher;
+-import com.google.errorprone.refaster.annotation.Matches;
+-import com.google.errorprone.refaster.annotation.NotMatches;
+-import com.google.errorprone.refaster.annotation.OfKind;
+-import com.google.errorprone.refaster.annotation.Repeated;
+ import com.google.errorprone.util.ASTHelpers;
++import com.google.errorprone.util.MoreAnnotations;
+ import com.sun.source.tree.AnnotatedTypeTree;
+ import com.sun.source.tree.AnnotationTree;
+ import com.sun.source.tree.ArrayAccessTree;
+@@ -112,15 +114,12 @@
+ import com.sun.tools.javac.util.Context;
+ import java.lang.annotation.Annotation;
+ import java.util.ArrayList;
+-import java.util.Arrays;
+-import java.util.EnumSet;
+ import java.util.HashMap;
+ import java.util.List;
+ import java.util.Map;
++import javax.lang.model.element.AnnotationMirror;
+ import javax.lang.model.element.ElementKind;
+-import javax.lang.model.element.TypeElement;
+-import javax.lang.model.type.DeclaredType;
+-import javax.lang.model.type.MirroredTypeException;
++import javax.lang.model.type.TypeMirror;
+ import org.jspecify.annotations.Nullable;
+ 
+ /**
+@@ -608,22 +607,25 @@ public UExpression visitIdentifier(IdentifierTree tree, Void v) {
+       VarSymbol symbol = freeVariables.get(tree.getName().toString());
+       checkState(symbol == sym);
+       UExpression ident = UFreeIdent.create(tree.getName());
+-      Matches matches = ASTHelpers.getAnnotation(symbol, Matches.class);
++      Class<? extends Matcher<? super ExpressionTree>> matches =
++          getMatcherClass(symbol, MATCHES_ANNOTATION);
+       if (matches != null) {
+-        ident = UMatches.create(getValue(matches), /* positive= */ true, ident);
++        ident = UMatches.create(matches, /* positive= */ true, ident);
+       }
+-      NotMatches notMatches = ASTHelpers.getAnnotation(symbol, NotMatches.class);
++      Class<? extends Matcher<? super ExpressionTree>> notMatches =
++          getMatcherClass(symbol, NOT_MATCHES_ANNOTATION);
+       if (notMatches != null) {
+-        ident = UMatches.create(getValue(notMatches), /* positive= */ false, ident);
++        ident = UMatches.create(notMatches, /* positive= */ false, ident);
+       }
+-      OfKind hasKind = ASTHelpers.getAnnotation(symbol, OfKind.class);
+-      if (hasKind != null) {
+-        EnumSet<Kind> allowed = EnumSet.copyOf(Arrays.asList(hasKind.value()));
+-        ident = UOfKind.create(ident, ImmutableSet.copyOf(allowed));
++      ImmutableSet<Kind> allowed =
++          MoreAnnotations.getEnumValues(symbol, OF_KIND_ANNOTATION).stream()
++              .map(c -> Kind.valueOf(c.getSimpleName().toString()))
++              .collect(toImmutableSet());
++      if (!allowed.isEmpty()) {
++        ident = UOfKind.create(ident, allowed);
+       }
+       // @Repeated annotations need to be checked last.
+-      Repeated repeated = ASTHelpers.getAnnotation(symbol, Repeated.class);
+-      if (repeated != null) {
++      if (MoreAnnotations.getAnnotation(symbol, REPEATED_ANNOTATION).isPresent()) {
+         ident = URepeated.create(tree.getName(), ident);
+       }
+       return ident;
+@@ -638,45 +640,30 @@ public UExpression visitIdentifier(IdentifierTree tree, Void v) {
+     };
+   }
+ 
+-  /**
+-   * Returns the {@link Class} instance for the {@link Matcher} associated with the provided {@link
+-   * Matches} annotation. This roundabout solution is recommended and explained by {@link
+-   * Element#getAnnotation(Class)}.
+-   */
+-  static Class<? extends Matcher<? super ExpressionTree>> getValue(Matches matches) {
+-    String name;
+-    try {
+-      var unused = matches.value();
+-      throw new RuntimeException("unreachable");
+-    } catch (MirroredTypeException e) {
+-      DeclaredType type = (DeclaredType) e.getTypeMirror();
+-      name = ((TypeElement) type.asElement()).getQualifiedName().toString();
+-    }
+-    try {
+-      return asSubclass(Class.forName(name), new TypeToken<Matcher<? super ExpressionTree>>() {});
+-    } catch (ClassNotFoundException | ClassCastException e) {
+-      throw new RuntimeException(e);
+-    }
++  static @Nullable Class<? extends Matcher<? super ExpressionTree>> getMatcherClass(
++      Symbol symbol, String annotationName) {
++    return MoreAnnotations.getAnnotation(symbol, annotationName)
++        .map(UTemplater::getMatcherClass)
++        .orElse(null);
+   }
+ 
+   /**
+-   * Returns the {@link Class} instance for the {@link Matcher} associated with the provided {@link
+-   * NotMatches} annotation. This roundabout solution is recommended and explained by {@link
+-   * Element#getAnnotation(Class)}.
++   * Returns the {@link Class} instance for the {@link Matcher} associated with the provided
++   * annotation mirror.
+    */
+-  static Class<? extends Matcher<? super ExpressionTree>> getValue(NotMatches matches) {
+-    String name;
+-    try {
+-      var unused = matches.value();
+-      throw new RuntimeException("unreachable");
+-    } catch (MirroredTypeException e) {
+-      DeclaredType type = (DeclaredType) e.getTypeMirror();
+-      name = ((TypeElement) type.asElement()).getQualifiedName().toString();
+-    }
++  static Class<? extends Matcher<? super ExpressionTree>> getMatcherClass(
++      AnnotationMirror compound) {
++    TypeMirror type =
++        MoreAnnotations.getTypeValue(compound, "value")
++            .orElseThrow(
++                () ->
++                    new IllegalArgumentException(
++                        "No value in " + AnnotationMirrors.toString(compound)));
++    String name = ((Type) type).asElement().getQualifiedName().toString();
+     try {
+       return asSubclass(Class.forName(name), new TypeToken<Matcher<? super ExpressionTree>>() {});
+     } catch (ClassNotFoundException | ClassCastException e) {
+-      throw new RuntimeException(e);
++      throw new IllegalArgumentException(e);
+     }
+   }
+ 
+@@ -932,15 +919,14 @@ public UForAll visitForAll(ForAll type, Void v) {
+   @SuppressWarnings("unchecked")
+   public static ImmutableClassToInstanceMap<Annotation> annotationMap(Symbol symbol) {
+     ImmutableClassToInstanceMap.Builder<Annotation> builder = ImmutableClassToInstanceMap.builder();
+-    for (Compound compound : symbol.getAnnotationMirrors()) {
+-      String annotationClassName =
+-          classNameFrom((TypeElement) compound.getAnnotationType().asElement());
++    for (AnnotationMirror compound : symbol.getAnnotationMirrors()) {
++      String annotationClassName = classNameFrom(MoreAnnotations.asElement(compound));
+       try {
+         Class<? extends Annotation> annotationClazz =
+             Class.forName(annotationClassName).asSubclass(Annotation.class);
+         builder.put(
+             (Class) annotationClazz,
+-            AnnotationProxyMaker.generateAnnotation(compound, annotationClazz));
++            AnnotationProxyMaker.generateAnnotation((Compound) compound, annotationClazz));
+       } catch (ClassNotFoundException e) {
+         String friendlyMessage =
+             "Tried to instantiate an instance of the annotation "
+@@ -956,13 +942,13 @@ public static ImmutableClassToInstanceMap<Annotation> annotationMap(Symbol symbo
+ 
+   // Class.forName() needs nested classes as "foo.Bar$Baz$Quux", not "foo.Bar.Baz.Quux"
+   // (which is what getQualifiedName() returns).
+-  private static String classNameFrom(TypeElement type) {
++  private static String classNameFrom(Symbol type) {
+     // Get the full type name (e.g. "foo.Bar.Baz.Quux") before walking up the hierarchy.
+     String typeName = type.getQualifiedName().toString();
+     // Find outermost enclosing type (e.g. "foo.Bar" in our example), possibly several levels up.
+     // Packages enclose types, so we cannot just wait until we hit null.
+     while (type.getEnclosingElement().getKind() == ElementKind.CLASS) {
+-      type = (TypeElement) type.getEnclosingElement();
++      type = type.getEnclosingElement();
+     }
+     // Start with outermost class name and append remainder of full type name with '.' -> '$'
+     String className = type.getQualifiedName().toString();
+diff --git a/core/src/test/java/com/google/errorprone/apply/ImportStatementsTest.java b/core/src/test/java/com/google/errorprone/apply/ImportStatementsTest.java
+index 5d8900cdae5..2e0be318be2 100644
+--- a/core/src/test/java/com/google/errorprone/apply/ImportStatementsTest.java
++++ b/core/src/test/java/com/google/errorprone/apply/ImportStatementsTest.java
+@@ -19,7 +19,6 @@
+ import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
+ import static com.google.errorprone.matchers.Description.NO_MATCH;
+ import static com.google.errorprone.util.ASTHelpers.getSymbol;
+-import static com.google.errorprone.util.MoreAnnotations.getAnnotationValue;
+ import static java.util.stream.Collectors.joining;
+ 
+ import com.google.common.base.Joiner;
+@@ -33,7 +32,6 @@
+ import com.google.errorprone.matchers.Description;
+ import com.google.errorprone.util.MoreAnnotations;
+ import com.sun.source.tree.ClassTree;
+-import com.sun.tools.javac.code.Attribute;
+ import java.lang.annotation.ElementType;
+ import java.lang.annotation.Target;
+ import java.util.Optional;
+@@ -60,43 +58,30 @@ public class ImportStatementsTest {
+   public static class ImportsToAddChecker extends BugChecker implements ClassTreeMatcher {
+     @Override
+     public Description matchClass(ClassTree tree, VisitorState state) {
+-      Optional<Attribute.Compound> annotation =
+-          getSymbol(tree).getAnnotationMirrors().stream()
+-              .filter(
+-                  a ->
+-                      a.type
+-                          .tsym
+-                          .getQualifiedName()
+-                          .contentEquals(ImportsToAdd.class.getCanonicalName()))
+-              .findAny();
++      var annotation =
++          MoreAnnotations.getAnnotation(getSymbol(tree), ImportsToAdd.class.getCanonicalName());
+       if (annotation.isEmpty()) {
+         return NO_MATCH;
+       }
+       SuggestedFix.Builder fix = SuggestedFix.builder();
+-      getAnnotationValue(annotation.get(), "toAdd")
+-          .map(MoreAnnotations::asStrings)
+-          .ifPresent(
+-              toAdd ->
+-                  toAdd.forEach(
+-                      i -> {
+-                        if (i.startsWith("static ")) {
+-                          fix.addStaticImport(i.substring("static ".length()));
+-                        } else {
+-                          fix.addImport(i);
+-                        }
+-                      }));
+-      getAnnotationValue(annotation.get(), "toRemove")
+-          .map(MoreAnnotations::asStrings)
+-          .ifPresent(
+-              toRemove ->
+-                  toRemove.forEach(
+-                      i -> {
+-                        if (i.startsWith("static ")) {
+-                          fix.removeStaticImport(i.substring("static ".length()));
+-                        } else {
+-                          fix.removeImport(i);
+-                        }
+-                      }));
++      MoreAnnotations.getStrings(annotation.get(), "toAdd")
++          .forEach(
++              i -> {
++                if (i.startsWith("static ")) {
++                  fix.addStaticImport(i.substring("static ".length()));
++                } else {
++                  fix.addImport(i);
++                }
++              });
++      MoreAnnotations.getStrings(annotation.get(), "toRemove")
++          .forEach(
++              i -> {
++                if (i.startsWith("static ")) {
++                  fix.removeStaticImport(i.substring("static ".length()));
++                } else {
++                  fix.removeImport(i);
++                }
++              });
+       return describeMatch(tree, fix.build());
+     }
+   }

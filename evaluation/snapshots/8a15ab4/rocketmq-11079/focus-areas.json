@@ -1,0 +1,13 @@
+[ {
+  "entity" : "BrokerMetricsManager",
+  "description" : "Change control flow of BrokerMetricsManager#initLagAndDlqMetrics: branch added"
+}, {
+  "entity" : "BrokerMetricsManager",
+  "description" : "Add BrokerMetricsManager#shouldRecordValue"
+}, {
+  "entity" : "BrokerConfig",
+  "description" : "Add BrokerConfig#isSuppressMinValueMetrics"
+}, {
+  "entity" : "BrokerConfig",
+  "description" : "Add BrokerConfig#setSuppressMinValueMetrics"
+} ]

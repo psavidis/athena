@@ -1,0 +1,40 @@
+{
+  "changedFileCount" : 11,
+  "representedFileCount" : 6,
+  "files" : [ {
+    "path" : "gradle/wrapper/gradle-wrapper.properties",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "rewrite-core/src/test/resources/gradle-wrapper.properties",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "rewrite-gradle/src/main/resources/META-INF/rewrite/examples.yml",
+    "status" : "MODIFIED",
+    "linesChanged" : 8,
+    "hunkCount" : 4,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "rewrite-gradle/src/main/resources/META-INF/rewrite/recipes.csv",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "rewrite-gradle/src/main/resources/example.yml",
+    "status" : "MODIFIED",
+    "linesChanged" : 8,
+    "hunkCount" : 4,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

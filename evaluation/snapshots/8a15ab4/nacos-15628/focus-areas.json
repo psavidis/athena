@@ -1,0 +1,13 @@
+[ {
+  "description" : "Remove ProtoMessageUtil#convertToWriteRequest",
+  "entity" : "ProtoMessageUtil"
+}, {
+  "description" : "Remove ProtoMessageUtil#convertToReadRequest",
+  "entity" : "ProtoMessageUtil"
+}, {
+  "description" : "Add field ProtoMessageUtil#LOGGER",
+  "entity" : "ProtoMessageUtil"
+}, {
+  "description" : "Modify body of ProtoMessageUtil#parse: +debug, -parseFrom, -convertToReadRequest, -convertToWriteRequest, return statements 3 → 2",
+  "entity" : "ProtoMessageUtil"
+} ]

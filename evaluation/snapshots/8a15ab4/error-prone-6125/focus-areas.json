@@ -1,0 +1,13 @@
+[ {
+  "description" : "Change control flow of SourcePathMatcher#canonicalizePath: branch added",
+  "entity" : "SourcePathMatcher"
+}, {
+  "description" : "Change control flow of RestrictedApiChecker#matchAnnotation: branch added",
+  "entity" : "RestrictedApiChecker"
+}, {
+  "description" : "Change signature of RestrictedApiChecker#checkRestriction",
+  "entity" : "RestrictedApiChecker"
+}, {
+  "description" : "Change signature of RestrictedApiChecker#shouldAllowWithWarning",
+  "entity" : "RestrictedApiChecker"
+} ]

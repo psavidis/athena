@@ -1,0 +1,118 @@
+{
+  "runtime (elytron-security-common)" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Contract Annotations",
+      "conceptDescription" : "Annotations on a method, its return type or its parameters changed (e.g. nullness), changing its contract but not its signature.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-public static String bcryptHash(String password) {\n-        return bcryptHash(password, 10);\n+@Deprecated(since = \"4.0\", forRemoval = true)\n+    public static String bcryptHash(String password) {\n+        return bcryptHash(password.toCharArray(), 10);\n     }", "-public static String bcryptHash(String password, int iterationCount) {\n-        byte[] salt = new byte[BCryptPassword.BCRYPT_SALT_SIZE];\n-        random.nextBytes(salt);\n-        return bcryptHash(password, iterationCount, salt);\n+@Deprecated(since = \"4.0\", forRemoval = true)\n+    public static String bcryptHash(String password, int iterationCount) {\n+        return bcryptHash(password.toCharArray(), iterationCount);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Contract Annotations",
+      "conceptDescription" : "Annotations on a method, its return type or its parameters changed (e.g. nullness), changing its contract but not its signature.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-public static boolean matches(String plainText, String passwordHash) {\n+@Deprecated(since = \"4.0\", forRemoval = true)\n+    public static boolean matches(String plainText, String passwordHash) {\n         Objects.requireNonNull(plainText, \"plainText password is required\");\n         Objects.requireNonNull(passwordHash, \"passwordHash is required\");\n-        PasswordFactory passwordFactory;\n-        try {\n-            passwordFactory = PasswordFactory.getInstance(BCryptPassword.ALGORITHM_BCRYPT, provider);\n-        } catch (NoSuchAlgorithmException e) {\n-            // can't really happen\n-            throw new RuntimeException(e);\n-        }\n-        try {\n-            Password userPasswordRestored = passwordFactory.translate(ModularCrypt.decode(passwordHash));\n-            return passwordFactory.verify(userPasswordRestored, plainText.toCharArray());\n-        } catch (InvalidKeySpecException | InvalidKeyException | IllegalArgumentException e) {\n-            throw new IllegalArgumentException(\"The provided password hash is not a valid Modular Crypt Format bcrypt hash\"\n-                    + \" (expected a '$2$', '$2a$', '$2x$' or '$2y$' prefix, the cost, and 53 characters of salt and\"\n-                    + \" hash): \" + e.getMessage(), e);\n-        }\n+        return matches(plainText.toCharArray(), passwordHash);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public static String bcryptHash(char[] password, int iterationCount) {\n+        byte[] salt = new byte[BCryptPassword.BCRYPT_SALT_SIZE];\n+        random.nextBytes(salt);\n+        return bcryptHash(password, iterationCount, salt);\n+    }", "+public static String bcryptHash(char[] password, int iterationCount, byte[] salt) {\n+        if (iterationCount <= 0) {\n+            throw new IllegalArgumentException(\"Iteration count must be greater than zero\");\n+        }\n+        Objects.requireNonNull(password, \"password is required\");\n+        Objects.requireNonNull(salt, \"salt is required\");\n+        if (salt.length != BCryptPassword.BCRYPT_SALT_SIZE) {\n+            throw new IllegalArgumentException(\"Salt length must be exactly \" + BCryptPassword.BCRYPT_SALT_SIZE + \" bytes\");\n+        }\n \n+        PasswordFactory passwordFactory;\n+        try {\n+            passwordFactory = PasswordFactory.getInstance(BCryptPassword.ALGORITHM_BCRYPT, provider);\n+        } catch (NoSuchAlgorithmException e) {\n+            // can't really happen\n+            throw new RuntimeException(e);\n+        }\n+\n+        IteratedSaltedPasswordAlgorithmSpec iteratedAlgorithmSpec = new IteratedSaltedPasswordAlgorithmSpec(iterationCount,\n+                salt);\n+        EncryptablePasswordSpec encryptableSpec = new EncryptablePasswordSpec(password, iteratedAlgorithmSpec);\n+\n+        try {\n+            BCryptPassword original = (BCryptPassword) passwordFactory.generatePassword(encryptableSpec);\n+            return ModularCrypt.encodeAsString(original);\n+        } catch (InvalidKeySpecException e) {\n+            // can't really happen\n+            throw new RuntimeException(e);\n+        }\n+    }", "-\n+@Deprecated(since = \"4.0\", forRemoval = true)\n+    public static String bcryptHash(String password, int iterationCount, byte[] salt) {\n+        return bcryptHash(password.toCharArray(), iterationCount, salt);\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public static boolean matches(char[] plainText, String passwordHash) {\n+        Objects.requireNonNull(plainText, \"plainText password is required\");\n+        Objects.requireNonNull(passwordHash, \"passwordHash is required\");\n+        PasswordFactory passwordFactory;\n+        try {\n+            passwordFactory = PasswordFactory.getInstance(BCryptPassword.ALGORITHM_BCRYPT, provider);\n+        } catch (NoSuchAlgorithmException e) {\n+            // can't really happen\n+            throw new RuntimeException(e);\n+        }\n+        try {\n+            Password userPasswordRestored = passwordFactory.translate(ModularCrypt.decode(passwordHash));\n+            return passwordFactory.verify(userPasswordRestored, plainText);\n+        } catch (InvalidKeySpecException | InvalidKeyException | IllegalArgumentException e) {\n+            throw new IllegalArgumentException(\"The provided password hash is not a valid Modular Crypt Format bcrypt hash\"\n+                    + \" (expected a '$2$', '$2a$', '$2x$' or '$2y$' prefix, the cost, and 53 characters of salt and\"\n+                    + \" hash): \" + e.getMessage(), e);\n+        }\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-public static String bcryptHash(String password) {\n-        return bcryptHash(password, 10);\n+@Deprecated(since = \"4.0\", forRemoval = true)\n+    public static String bcryptHash(String password) {\n+        return bcryptHash(password.toCharArray(), 10);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-public static String bcryptHash(String password, int iterationCount) {\n-        byte[] salt = new byte[BCryptPassword.BCRYPT_SALT_SIZE];\n-        random.nextBytes(salt);\n-        return bcryptHash(password, iterationCount, salt);\n+@Deprecated(since = \"4.0\", forRemoval = true)\n+    public static String bcryptHash(String password, int iterationCount) {\n+        return bcryptHash(password.toCharArray(), iterationCount);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-public static boolean matches(String plainText, String passwordHash) {\n+@Deprecated(since = \"4.0\", forRemoval = true)\n+    public static boolean matches(String plainText, String passwordHash) {\n         Objects.requireNonNull(plainText, \"plainText password is required\");\n         Objects.requireNonNull(passwordHash, \"passwordHash is required\");\n-        PasswordFactory passwordFactory;\n-        try {\n-            passwordFactory = PasswordFactory.getInstance(BCryptPassword.ALGORITHM_BCRYPT, provider);\n-        } catch (NoSuchAlgorithmException e) {\n-            // can't really happen\n-            throw new RuntimeException(e);\n-        }\n-        try {\n-            Password userPasswordRestored = passwordFactory.translate(ModularCrypt.decode(passwordHash));\n-            return passwordFactory.verify(userPasswordRestored, plainText.toCharArray());\n-        } catch (InvalidKeySpecException | InvalidKeyException | IllegalArgumentException e) {\n-            throw new IllegalArgumentException(\"The provided password hash is not a valid Modular Crypt Format bcrypt hash\"\n-                    + \" (expected a '$2$', '$2a$', '$2x$' or '$2y$' prefix, the cost, and 53 characters of salt and\"\n-                    + \" hash): \" + e.getMessage(), e);\n-        }\n+        return matches(plainText.toCharArray(), passwordHash);\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in BcryptUtilTest",
+      "conceptDescription" : "10 changes in test code of BcryptUtilTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Test\n+    public void testHashesTheSameHashWithCharArrayPassword() throws InvalidKeySpecException, NoSuchAlgorithmException {\n+        String adminKnownBcrypt = \"$2a$10$YP9QWYOpxRNCNquTzCjRIuEpc.MiVPTjlMIZHNqHKckKN8FK9Xyh2\";\n+        byte[] knownSalt = new byte[] { 105, 31, -46, 97, -92, 43, -51, 51, -60, 62, -52, 21, -44, 73, 83, 43 };\n+        String adminProducedBcrypt = BcryptUtil.bcryptHash(\"admin\".toCharArray(), 10, knownSalt);\n+        Assertions.assertEquals(adminKnownBcrypt, adminProducedBcrypt);\n+    }", "-\n+@Test\n+    public void testPasswordMatchesWithCharArrayPassword() {\n+        char[] testPassword = \"fubar\".toCharArray();\n+        String testPasswordHash = BcryptUtil.bcryptHash(testPassword, 10);\n+        Assertions.assertTrue(BcryptUtil.matches(testPassword, testPasswordHash));\n+    }", "-\n+@Test\n+    public void testPasswordNotMatchesWithCharArrayPassword() {\n+        char[] testPassword = \"fubar\".toCharArray();\n+        String testPasswordHash = BcryptUtil.bcryptHash(testPassword, 10);\n+        Assertions.assertFalse(BcryptUtil.matches(\"fubar2\".toCharArray(), testPasswordHash));\n+    }", "+@Test\n+    public void testHashesTheRightPasswordWithCharArrayPassword() throws InvalidKeySpecException, NoSuchAlgorithmException {\n+        char[] testPassword = \"fubar\".toCharArray();\n \n+        String testPasswordHash = BcryptUtil.bcryptHash(testPassword);\n+\n+        PasswordGuessEvidence correctPasswordEvidence = new PasswordGuessEvidence(testPassword);\n+        PasswordGuessEvidence incorrectPasswordEvidence = new PasswordGuessEvidence(\"stef\".toCharArray());\n+        PasswordCredential producedPasswordCredential = new PasswordCredential(ModularCrypt.decode(testPasswordHash));\n+        Assertions.assertTrue(producedPasswordCredential.verify(correctPasswordEvidence));\n+        Assertions.assertFalse(producedPasswordCredential.verify(incorrectPasswordEvidence));\n+    }", "-\n+@Test\n+    public void testHashesTheSameHashWithDeprecatedStringIterationCountOverload()\n+            throws InvalidKeySpecException, NoSuchAlgorithmException {\n+        String testPassword = \"fubar\";\n+        String testPasswordHash = BcryptUtil.bcryptHash(testPassword, 4);\n+        Assertions.assertTrue(BcryptUtil.matches(testPassword, testPasswordHash));\n+    }", " @Test\n     public void testMatchesAcceptsTheSupportedPrefixes() {\n-        String bcrypt = BcryptUtil.bcryptHash(\"fubar\");\n+        char[] testPassword = \"fubar\".toCharArray();\n+        String bcrypt = BcryptUtil.bcryptHash(testPassword);\n         for (String prefix : List.of(\"$2$\", \"$2a$\", \"$2x$\", \"$2y$\")) {\n-            Assertions.assertTrue(BcryptUtil.matches(\"fubar\", prefix + bcrypt.substring(4)), prefix);\n+            Assertions.assertTrue(BcryptUtil.matches(testPassword, prefix + bcrypt.substring(4)), prefix);\n         }\n     }", " @Test\n     public void testMatchesRejectsAHashThatIsNotModularCryptFormat() {\n+        char[] testPassword = \"fubar\".toCharArray();\n         IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class,\n-                () -> BcryptUtil.matches(\"fubar\", \"not-a-hash\"));\n+                () -> BcryptUtil.matches(testPassword, \"not-a-hash\"));\n         assertInvalidHashMessage(e, \"not-a-hash\");\n         Assertions.assertInstanceOf(InvalidKeySpecException.class, e.getCause());\n         Assertions.assertTrue(e.getMessage().contains(\"ELY08003\"), e.getMessage());\n     }", " @Test\n     public void testMatchesRejectsATruncatedBcryptHash() {\n+        char[] testPassword = \"fubar\".toCharArray();\n         IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class,\n-                () -> BcryptUtil.matches(\"fubar\", \"$2a$10$abc\"));\n+                () -> BcryptUtil.matches(testPassword, \"$2a$10$abc\"));\n         assertInvalidHashMessage(e, \"$2a$10$abc\");\n         Assertions.assertInstanceOf(IllegalArgumentException.class, e.getCause());\n         Assertions.assertTrue(e.getMessage().contains(\"ELY08021\"), e.getMessage());\n     }", " @Test\n     public void testMatchesRejectsAHashOfAnotherAlgorithm() {\n+        char[] testPassword = \"fubar\".toCharArray();\n         String md5Crypt = \"$1$saltsalt$qjXMvbEw8oaL.CzflDugX/\";\n         IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class,\n-                () -> BcryptUtil.matches(\"fubar\", md5Crypt));\n+                () -> BcryptUtil.matches(testPassword, md5Crypt));\n         assertInvalidHashMessage(e, md5Crypt);\n         Assertions.assertInstanceOf(InvalidKeyException.class, e.getCause());\n         Assertions.assertTrue(e.getMessage().contains(\"ELY08027\"), e.getMessage());\n     }", " @Test\n     public void testMatchesRejectsThe2bPrefix() {\n-        String notSupported = \"$2b$\" + BcryptUtil.bcryptHash(\"fubar\").substring(4);\n+        char[] testPassword = \"fubar\".toCharArray();\n+        String notSupported = \"$2b$\" + BcryptUtil.bcryptHash(testPassword).substring(4);\n         IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class,\n-                () -> BcryptUtil.matches(\"fubar\", notSupported));\n+                () -> BcryptUtil.matches(testPassword, notSupported));\n         assertInvalidHashMessage(e, notSupported);\n         Assertions.assertInstanceOf(InvalidKeySpecException.class, e.getCause());\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java" ],
+      "groupedMoveCount" : 10
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+public static String bcryptHash(char[] password, int iterationCount) {\n+        byte[] salt = new byte[BCryptPassword.BCRYPT_SALT_SIZE];\n+        random.nextBytes(salt);\n+        return bcryptHash(password, iterationCount, salt);\n+    }", "+public static String bcryptHash(char[] password, int iterationCount, byte[] salt) {\n+        if (iterationCount <= 0) {\n+            throw new IllegalArgumentException(\"Iteration count must be greater than zero\");\n+        }\n+        Objects.requireNonNull(password, \"password is required\");\n+        Objects.requireNonNull(salt, \"salt is required\");\n+        if (salt.length != BCryptPassword.BCRYPT_SALT_SIZE) {\n+            throw new IllegalArgumentException(\"Salt length must be exactly \" + BCryptPassword.BCRYPT_SALT_SIZE + \" bytes\");\n+        }\n \n+        PasswordFactory passwordFactory;\n+        try {\n+            passwordFactory = PasswordFactory.getInstance(BCryptPassword.ALGORITHM_BCRYPT, provider);\n+        } catch (NoSuchAlgorithmException e) {\n+            // can't really happen\n+            throw new RuntimeException(e);\n+        }\n+\n+        IteratedSaltedPasswordAlgorithmSpec iteratedAlgorithmSpec = new IteratedSaltedPasswordAlgorithmSpec(iterationCount,\n+                salt);\n+        EncryptablePasswordSpec encryptableSpec = new EncryptablePasswordSpec(password, iteratedAlgorithmSpec);\n+\n+        try {\n+            BCryptPassword original = (BCryptPassword) passwordFactory.generatePassword(encryptableSpec);\n+            return ModularCrypt.encodeAsString(original);\n+        } catch (InvalidKeySpecException e) {\n+            // can't really happen\n+            throw new RuntimeException(e);\n+        }\n+    }", "-\n+@Deprecated(since = \"4.0\", forRemoval = true)\n+    public static String bcryptHash(String password, int iterationCount, byte[] salt) {\n+        return bcryptHash(password.toCharArray(), iterationCount, salt);\n+    }", "-\n+public static boolean matches(char[] plainText, String passwordHash) {\n+        Objects.requireNonNull(plainText, \"plainText password is required\");\n+        Objects.requireNonNull(passwordHash, \"passwordHash is required\");\n+        PasswordFactory passwordFactory;\n+        try {\n+            passwordFactory = PasswordFactory.getInstance(BCryptPassword.ALGORITHM_BCRYPT, provider);\n+        } catch (NoSuchAlgorithmException e) {\n+            // can't really happen\n+            throw new RuntimeException(e);\n+        }\n+        try {\n+            Password userPasswordRestored = passwordFactory.translate(ModularCrypt.decode(passwordHash));\n+            return passwordFactory.verify(userPasswordRestored, plainText);\n+        } catch (InvalidKeySpecException | InvalidKeyException | IllegalArgumentException e) {\n+            throw new IllegalArgumentException(\"The provided password hash is not a valid Modular Crypt Format bcrypt hash\"\n+                    + \" (expected a '$2$', '$2a$', '$2x$' or '$2y$' prefix, the cost, and 53 characters of salt and\"\n+                    + \" hash): \" + e.getMessage(), e);\n+        }\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java" ],
+      "groupedMoveCount" : 2
+    } ]
+  },
+  "runtime (security-jpa-common)" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " public static void passwordAction(PasswordType type) {\n         String uuid = UUID.randomUUID().toString();\n         if (type == PasswordType.CLEAR) {\n             ClearPassword.createRaw(ClearPassword.ALGORITHM_CLEAR, uuid.toCharArray());\n         } else {\n-            BcryptUtil.bcryptHash(uuid);\n+            BcryptUtil.bcryptHash(uuid.toCharArray());\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "extensions/security-jpa-common/runtime/src/main/java/io/quarkus/security/jpa/common/runtime/JpaIdentityProviderUtil.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  }
+}

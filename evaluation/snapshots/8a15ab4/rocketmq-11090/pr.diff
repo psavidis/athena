@@ -1,0 +1,1213 @@
+diff --git a/client/src/main/java/org/apache/rocketmq/client/consumer/DefaultMQPushConsumer.java b/client/src/main/java/org/apache/rocketmq/client/consumer/DefaultMQPushConsumer.java
+index 5df5cc8fa1a..9aef301f50d 100644
+--- a/client/src/main/java/org/apache/rocketmq/client/consumer/DefaultMQPushConsumer.java
++++ b/client/src/main/java/org/apache/rocketmq/client/consumer/DefaultMQPushConsumer.java
+@@ -47,6 +47,7 @@
+ import java.util.Map;
+ import java.util.Map.Entry;
+ import java.util.Set;
++import java.util.concurrent.ExecutorService;
+ 
+ /**
+  * In most scenarios, this is the mostly recommended class to consume messages.
+@@ -160,6 +161,8 @@ public class DefaultMQPushConsumer extends ClientConfig implements MQPushConsume
+      */
+     private int consumeThreadMin = 20;
+ 
++    private ExecutorService consumeExecutor;
++
+     /**
+      * Max consumer thread number
+      */
+@@ -558,6 +561,37 @@ public void setConsumerGroup(String consumerGroup) {
+         this.consumerGroup = consumerGroup;
+     }
+ 
++    /**
++     * Returns the externally managed consumption executor, or null for a dedicated pool.
++     */
++    public ExecutorService getConsumeExecutor() {
++        return consumeExecutor;
++    }
++
++    /**
++     * Sets an externally managed executor before starting this consumer.
++     *
++     * <p>This is an advanced API intended for controlled integrations such as Proxy. Ordinary
++     * applications should use the default consumption pool instead of injecting an executor.
++     * The executor may be shared with other consumers. Virtual-thread executors are also supported
++     * when supplied by applications running on a compatible JDK.
++     *
++     * <p>While consumers are running, the external executor must avoid capacity-based rejection
++     * and must not discard or cancel pending consumption tasks. The client does not guarantee
++     * automatic recovery from rejected tasks. Discarding or cancelling tasks can retain cached
++     * messages and pin consumption offsets, eventually stalling consumption.
++     *
++     * <p>The caller controls concurrency and owns the executor's lifecycle. This consumer never
++     * shuts down or resizes an external executor. Consumer shutdown does not await or cancel tasks
++     * submitted to it; the caller must stop all consumers using the executor before shutting it
++     * down and awaiting its termination.
++     *
++     * @param consumeExecutor external executor, or null to use the default dedicated pool
++     */
++    public void setConsumeExecutor(ExecutorService consumeExecutor) {
++        this.consumeExecutor = consumeExecutor;
++    }
++
+     public int getConsumeThreadMax() {
+         return consumeThreadMax;
+     }
+diff --git a/client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java b/client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java
+new file mode 100644
+index 00000000000..27887989bcb
+--- /dev/null
++++ b/client/src/main/java/org/apache/rocketmq/client/impl/consumer/AbstractConsumeMessageService.java
+@@ -0,0 +1,81 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *     http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package org.apache.rocketmq.client.impl.consumer;
++
++import java.util.concurrent.ExecutorService;
++import java.util.concurrent.LinkedBlockingQueue;
++import java.util.concurrent.ThreadFactory;
++import java.util.concurrent.ThreadPoolExecutor;
++import java.util.concurrent.TimeUnit;
++import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
++import org.apache.rocketmq.common.utils.ThreadUtils;
++
++public abstract class AbstractConsumeMessageService implements ConsumeMessageService {
++    protected final DefaultMQPushConsumer defaultMQPushConsumer;
++    protected final ExecutorService consumeExecutor;
++    private final boolean ownsConsumeExecutor;
++
++    protected AbstractConsumeMessageService(DefaultMQPushConsumer defaultMQPushConsumer, ThreadFactory threadFactory) {
++        this.defaultMQPushConsumer = defaultMQPushConsumer;
++        ExecutorService externalExecutor = defaultMQPushConsumer.getConsumeExecutor();
++        this.ownsConsumeExecutor = externalExecutor == null;
++        if (this.ownsConsumeExecutor) {
++            this.consumeExecutor = new ThreadPoolExecutor(
++                defaultMQPushConsumer.getConsumeThreadMin(),
++                defaultMQPushConsumer.getConsumeThreadMax(),
++                1000 * 60,
++                TimeUnit.MILLISECONDS,
++                new LinkedBlockingQueue<>(),
++                threadFactory);
++        } else {
++            this.consumeExecutor = externalExecutor;
++        }
++    }
++
++    protected static String getConsumerGroupTag(String consumerGroup) {
++        return (consumerGroup.length() > 100 ? consumerGroup.substring(0, 100) : consumerGroup) + "_";
++    }
++
++    protected void shutdownConsumeExecutor(long awaitTerminateMillis) {
++        if (this.ownsConsumeExecutor) {
++            ThreadUtils.shutdownGracefully(this.consumeExecutor, awaitTerminateMillis, TimeUnit.MILLISECONDS);
++        }
++    }
++
++    @Override
++    public void updateCorePoolSize(int corePoolSize) {
++        if (this.ownsConsumeExecutor
++            && corePoolSize > 0
++            && corePoolSize <= Short.MAX_VALUE
++            && corePoolSize < this.defaultMQPushConsumer.getConsumeThreadMax()) {
++            ((ThreadPoolExecutor) this.consumeExecutor).setCorePoolSize(corePoolSize);
++        }
++    }
++
++    @Override
++    public void incCorePoolSize() {
++    }
++
++    @Override
++    public void decCorePoolSize() {
++    }
++
++    @Override
++    public int getCorePoolSize() {
++        return this.ownsConsumeExecutor ? ((ThreadPoolExecutor) this.consumeExecutor).getCorePoolSize() : -1;
++    }
++}
+diff --git a/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java b/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java
+index b151fefbbb3..361da434ff2 100644
+--- a/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java
++++ b/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageConcurrentlyService.java
+@@ -22,14 +22,10 @@
+ import java.util.Iterator;
+ import java.util.List;
+ import java.util.Map;
+-import java.util.concurrent.BlockingQueue;
+ import java.util.concurrent.Executors;
+-import java.util.concurrent.LinkedBlockingQueue;
+ import java.util.concurrent.RejectedExecutionException;
+ import java.util.concurrent.ScheduledExecutorService;
+-import java.util.concurrent.ThreadPoolExecutor;
+ import java.util.concurrent.TimeUnit;
+-import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+ import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
+ import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
+ import org.apache.rocketmq.client.consumer.listener.ConsumeReturnType;
+@@ -42,19 +38,15 @@
+ import org.apache.rocketmq.common.message.MessageAccessor;
+ import org.apache.rocketmq.common.message.MessageExt;
+ import org.apache.rocketmq.common.message.MessageQueue;
+-import org.apache.rocketmq.common.utils.ThreadUtils;
+ import org.apache.rocketmq.remoting.protocol.body.CMResult;
+ import org.apache.rocketmq.remoting.protocol.body.ConsumeMessageDirectlyResult;
+ import org.apache.rocketmq.logging.org.slf4j.Logger;
+ import org.apache.rocketmq.logging.org.slf4j.LoggerFactory;
+ 
+-public class ConsumeMessageConcurrentlyService implements ConsumeMessageService {
++public class ConsumeMessageConcurrentlyService extends AbstractConsumeMessageService {
+     private static final Logger log = LoggerFactory.getLogger(ConsumeMessageConcurrentlyService.class);
+     private final DefaultMQPushConsumerImpl defaultMQPushConsumerImpl;
+-    private final DefaultMQPushConsumer defaultMQPushConsumer;
+     private final MessageListenerConcurrently messageListener;
+-    private final BlockingQueue<Runnable> consumeRequestQueue;
+-    private final ThreadPoolExecutor consumeExecutor;
+     private final String consumerGroup;
+ 
+     private final ScheduledExecutorService scheduledExecutorService;
+@@ -62,22 +54,14 @@ public class ConsumeMessageConcurrentlyService implements ConsumeMessageService
+ 
+     public ConsumeMessageConcurrentlyService(DefaultMQPushConsumerImpl defaultMQPushConsumerImpl,
+         MessageListenerConcurrently messageListener) {
++        super(defaultMQPushConsumerImpl.getDefaultMQPushConsumer(), new ThreadFactoryImpl("ConsumeMessageThread_"
++            + getConsumerGroupTag(defaultMQPushConsumerImpl.getDefaultMQPushConsumer().getConsumerGroup())));
+         this.defaultMQPushConsumerImpl = defaultMQPushConsumerImpl;
+         this.messageListener = messageListener;
+ 
+-        this.defaultMQPushConsumer = this.defaultMQPushConsumerImpl.getDefaultMQPushConsumer();
+         this.consumerGroup = this.defaultMQPushConsumer.getConsumerGroup();
+-        this.consumeRequestQueue = new LinkedBlockingQueue<>();
+-
+-        String consumerGroupTag = (consumerGroup.length() > 100 ? consumerGroup.substring(0, 100) : consumerGroup) + "_";
+-        this.consumeExecutor = new ThreadPoolExecutor(
+-            this.defaultMQPushConsumer.getConsumeThreadMin(),
+-            this.defaultMQPushConsumer.getConsumeThreadMax(),
+-            1000 * 60,
+-            TimeUnit.MILLISECONDS,
+-            this.consumeRequestQueue,
+-            new ThreadFactoryImpl("ConsumeMessageThread_" + consumerGroupTag));
+ 
++        String consumerGroupTag = getConsumerGroupTag(consumerGroup);
+         this.scheduledExecutorService = Executors.newSingleThreadScheduledExecutor(new ThreadFactoryImpl("ConsumeMessageScheduledThread_" + consumerGroupTag));
+         this.cleanExpireMsgExecutors = Executors.newSingleThreadScheduledExecutor(new ThreadFactoryImpl("CleanExpireMsgScheduledThread_" + consumerGroupTag));
+     }
+@@ -99,34 +83,10 @@ public void run() {
+ 
+     public void shutdown(long awaitTerminateMillis) {
+         this.scheduledExecutorService.shutdown();
+-        ThreadUtils.shutdownGracefully(this.consumeExecutor, awaitTerminateMillis, TimeUnit.MILLISECONDS);
++        shutdownConsumeExecutor(awaitTerminateMillis);
+         this.cleanExpireMsgExecutors.shutdown();
+     }
+ 
+-    @Override
+-    public void updateCorePoolSize(int corePoolSize) {
+-        if (corePoolSize > 0
+-            && corePoolSize <= Short.MAX_VALUE
+-            && corePoolSize < this.defaultMQPushConsumer.getConsumeThreadMax()) {
+-            this.consumeExecutor.setCorePoolSize(corePoolSize);
+-        }
+-    }
+-
+-    @Override
+-    public void incCorePoolSize() {
+-
+-    }
+-
+-    @Override
+-    public void decCorePoolSize() {
+-
+-    }
+-
+-    @Override
+-    public int getCorePoolSize() {
+-        return this.consumeExecutor.getCorePoolSize();
+-    }
+-
+     @Override
+     public ConsumeMessageDirectlyResult consumeMessageDirectly(MessageExt msg, String brokerName) {
+         ConsumeMessageDirectlyResult result = new ConsumeMessageDirectlyResult();
+diff --git a/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java b/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java
+index 3ca465da70d..776eb129c75 100644
+--- a/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java
++++ b/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageOrderlyService.java
+@@ -20,14 +20,10 @@
+ import java.util.Collections;
+ import java.util.HashMap;
+ import java.util.List;
+-import java.util.concurrent.BlockingQueue;
+ import java.util.concurrent.Executors;
+-import java.util.concurrent.LinkedBlockingQueue;
+ import java.util.concurrent.ScheduledExecutorService;
+-import java.util.concurrent.ThreadPoolExecutor;
+ import java.util.concurrent.TimeUnit;
+ import org.apache.commons.lang3.StringUtils;
+-import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+ import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyContext;
+ import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyStatus;
+ import org.apache.rocketmq.client.consumer.listener.ConsumeReturnType;
+@@ -42,7 +38,6 @@
+ import org.apache.rocketmq.common.message.MessageConst;
+ import org.apache.rocketmq.common.message.MessageExt;
+ import org.apache.rocketmq.common.message.MessageQueue;
+-import org.apache.rocketmq.common.utils.ThreadUtils;
+ import org.apache.rocketmq.remoting.protocol.NamespaceUtil;
+ import org.apache.rocketmq.remoting.protocol.body.CMResult;
+ import org.apache.rocketmq.remoting.protocol.body.ConsumeMessageDirectlyResult;
+@@ -50,15 +45,12 @@
+ import org.apache.rocketmq.logging.org.slf4j.Logger;
+ import org.apache.rocketmq.logging.org.slf4j.LoggerFactory;
+ 
+-public class ConsumeMessageOrderlyService implements ConsumeMessageService {
++public class ConsumeMessageOrderlyService extends AbstractConsumeMessageService {
+     private static final Logger log = LoggerFactory.getLogger(ConsumeMessageOrderlyService.class);
+     private final static long MAX_TIME_CONSUME_CONTINUOUSLY =
+         Long.parseLong(System.getProperty("rocketmq.client.maxTimeConsumeContinuously", "60000"));
+     private final DefaultMQPushConsumerImpl defaultMQPushConsumerImpl;
+-    private final DefaultMQPushConsumer defaultMQPushConsumer;
+     private final MessageListenerOrderly messageListener;
+-    private final BlockingQueue<Runnable> consumeRequestQueue;
+-    private final ThreadPoolExecutor consumeExecutor;
+     private final String consumerGroup;
+     private final MessageQueueLock messageQueueLock = new MessageQueueLock();
+     private final ScheduledExecutorService scheduledExecutorService;
+@@ -66,22 +58,14 @@ public class ConsumeMessageOrderlyService implements ConsumeMessageService {
+ 
+     public ConsumeMessageOrderlyService(DefaultMQPushConsumerImpl defaultMQPushConsumerImpl,
+         MessageListenerOrderly messageListener) {
++        super(defaultMQPushConsumerImpl.getDefaultMQPushConsumer(), new ThreadFactoryImpl("ConsumeMessageThread_"
++            + getConsumerGroupTag(defaultMQPushConsumerImpl.getDefaultMQPushConsumer().getConsumerGroup())));
+         this.defaultMQPushConsumerImpl = defaultMQPushConsumerImpl;
+         this.messageListener = messageListener;
+ 
+-        this.defaultMQPushConsumer = this.defaultMQPushConsumerImpl.getDefaultMQPushConsumer();
+         this.consumerGroup = this.defaultMQPushConsumer.getConsumerGroup();
+-        this.consumeRequestQueue = new LinkedBlockingQueue<>();
+-
+-        String consumerGroupTag = (consumerGroup.length() > 100 ? consumerGroup.substring(0, 100) : consumerGroup) + "_";
+-        this.consumeExecutor = new ThreadPoolExecutor(
+-            this.defaultMQPushConsumer.getConsumeThreadMin(),
+-            this.defaultMQPushConsumer.getConsumeThreadMax(),
+-            1000 * 60,
+-            TimeUnit.MILLISECONDS,
+-            this.consumeRequestQueue,
+-            new ThreadFactoryImpl("ConsumeMessageThread_" + consumerGroupTag));
+ 
++        String consumerGroupTag = getConsumerGroupTag(consumerGroup);
+         this.scheduledExecutorService = Executors.newSingleThreadScheduledExecutor(new ThreadFactoryImpl("ConsumeMessageScheduledThread_" + consumerGroupTag));
+     }
+ 
+@@ -105,7 +89,7 @@ public void run() {
+     public void shutdown(long awaitTerminateMillis) {
+         this.stopped = true;
+         this.scheduledExecutorService.shutdown();
+-        ThreadUtils.shutdownGracefully(this.consumeExecutor, awaitTerminateMillis, TimeUnit.MILLISECONDS);
++        shutdownConsumeExecutor(awaitTerminateMillis);
+         if (MessageModel.CLUSTERING.equals(this.defaultMQPushConsumerImpl.messageModel())) {
+             this.unlockAllMQ();
+         }
+@@ -115,28 +99,6 @@ public synchronized void unlockAllMQ() {
+         this.defaultMQPushConsumerImpl.getRebalanceImpl().unlockAll(false);
+     }
+ 
+-    @Override
+-    public void updateCorePoolSize(int corePoolSize) {
+-        if (corePoolSize > 0
+-            && corePoolSize <= Short.MAX_VALUE
+-            && corePoolSize < this.defaultMQPushConsumer.getConsumeThreadMax()) {
+-            this.consumeExecutor.setCorePoolSize(corePoolSize);
+-        }
+-    }
+-
+-    @Override
+-    public void incCorePoolSize() {
+-    }
+-
+-    @Override
+-    public void decCorePoolSize() {
+-    }
+-
+-    @Override
+-    public int getCorePoolSize() {
+-        return this.consumeExecutor.getCorePoolSize();
+-    }
+-
+     @Override
+     public ConsumeMessageDirectlyResult consumeMessageDirectly(MessageExt msg, String brokerName) {
+         ConsumeMessageDirectlyResult result = new ConsumeMessageDirectlyResult();
+diff --git a/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java b/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java
+index d5191871106..9d70400903c 100644
+--- a/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java
++++ b/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyService.java
+@@ -20,16 +20,12 @@
+ import java.util.Collections;
+ import java.util.HashMap;
+ import java.util.List;
+-import java.util.concurrent.BlockingQueue;
+ import java.util.concurrent.Executors;
+-import java.util.concurrent.LinkedBlockingQueue;
+ import java.util.concurrent.RejectedExecutionException;
+ import java.util.concurrent.ScheduledExecutorService;
+-import java.util.concurrent.ThreadPoolExecutor;
+ import java.util.concurrent.TimeUnit;
+ import org.apache.rocketmq.client.consumer.AckCallback;
+ import org.apache.rocketmq.client.consumer.AckResult;
+-import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+ import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
+ import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
+ import org.apache.rocketmq.client.consumer.listener.ConsumeReturnType;
+@@ -43,40 +39,27 @@
+ import org.apache.rocketmq.common.message.MessageConst;
+ import org.apache.rocketmq.common.message.MessageExt;
+ import org.apache.rocketmq.common.message.MessageQueue;
+-import org.apache.rocketmq.common.utils.ThreadUtils;
+ import org.apache.rocketmq.remoting.protocol.body.CMResult;
+ import org.apache.rocketmq.remoting.protocol.body.ConsumeMessageDirectlyResult;
+ import org.apache.rocketmq.remoting.protocol.header.ExtraInfoUtil;
+ import org.apache.rocketmq.logging.org.slf4j.Logger;
+ import org.apache.rocketmq.logging.org.slf4j.LoggerFactory;
+ 
+-public class ConsumeMessagePopConcurrentlyService implements ConsumeMessageService {
++public class ConsumeMessagePopConcurrentlyService extends AbstractConsumeMessageService {
+     private static final Logger log = LoggerFactory.getLogger(ConsumeMessagePopConcurrentlyService.class);
+     private final DefaultMQPushConsumerImpl defaultMQPushConsumerImpl;
+-    private final DefaultMQPushConsumer defaultMQPushConsumer;
+     private final MessageListenerConcurrently messageListener;
+-    private final BlockingQueue<Runnable> consumeRequestQueue;
+-    private final ThreadPoolExecutor consumeExecutor;
+     private final String consumerGroup;
+ 
+     private final ScheduledExecutorService scheduledExecutorService;
+ 
+     public ConsumeMessagePopConcurrentlyService(DefaultMQPushConsumerImpl defaultMQPushConsumerImpl,
+         MessageListenerConcurrently messageListener) {
++        super(defaultMQPushConsumerImpl.getDefaultMQPushConsumer(), new ThreadFactoryImpl("ConsumeMessageThread_"));
+         this.defaultMQPushConsumerImpl = defaultMQPushConsumerImpl;
+         this.messageListener = messageListener;
+ 
+-        this.defaultMQPushConsumer = this.defaultMQPushConsumerImpl.getDefaultMQPushConsumer();
+         this.consumerGroup = this.defaultMQPushConsumer.getConsumerGroup();
+-        this.consumeRequestQueue = new LinkedBlockingQueue<>();
+-
+-        this.consumeExecutor = new ThreadPoolExecutor(
+-            this.defaultMQPushConsumer.getConsumeThreadMin(),
+-            this.defaultMQPushConsumer.getConsumeThreadMax(),
+-            1000 * 60,
+-            TimeUnit.MILLISECONDS,
+-            this.consumeRequestQueue,
+-            new ThreadFactoryImpl("ConsumeMessageThread_"));
+ 
+         this.scheduledExecutorService = Executors.newSingleThreadScheduledExecutor(new ThreadFactoryImpl("ConsumeMessageScheduledThread_"));
+     }
+@@ -86,32 +69,9 @@ public void start() {
+ 
+     public void shutdown(long awaitTerminateMillis) {
+         this.scheduledExecutorService.shutdown();
+-        ThreadUtils.shutdownGracefully(this.consumeExecutor, awaitTerminateMillis, TimeUnit.MILLISECONDS);
+-    }
+-
+-    @Override
+-    public void updateCorePoolSize(int corePoolSize) {
+-        if (corePoolSize > 0
+-            && corePoolSize <= Short.MAX_VALUE
+-            && corePoolSize < this.defaultMQPushConsumer.getConsumeThreadMax()) {
+-            this.consumeExecutor.setCorePoolSize(corePoolSize);
+-        }
+-    }
+-
+-    @Override
+-    public void incCorePoolSize() {
++        shutdownConsumeExecutor(awaitTerminateMillis);
+     }
+ 
+-    @Override
+-    public void decCorePoolSize() {
+-    }
+-
+-    @Override
+-    public int getCorePoolSize() {
+-        return this.consumeExecutor.getCorePoolSize();
+-    }
+-
+-
+     @Override
+     public ConsumeMessageDirectlyResult consumeMessageDirectly(MessageExt msg, String brokerName) {
+         ConsumeMessageDirectlyResult result = new ConsumeMessageDirectlyResult();
+diff --git a/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java b/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java
+index 4eab1ccf664..8f6a5ee6dfd 100644
+--- a/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java
++++ b/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyService.java
+@@ -19,14 +19,10 @@
+ import io.netty.util.internal.ConcurrentSet;
+ import java.util.ArrayList;
+ import java.util.List;
+-import java.util.concurrent.BlockingQueue;
+ import java.util.concurrent.Executors;
+-import java.util.concurrent.LinkedBlockingQueue;
+ import java.util.concurrent.ScheduledExecutorService;
+-import java.util.concurrent.ThreadPoolExecutor;
+ import java.util.concurrent.TimeUnit;
+ import org.apache.commons.lang3.StringUtils;
+-import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+ import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyContext;
+ import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyStatus;
+ import org.apache.rocketmq.client.consumer.listener.MessageListenerOrderly;
+@@ -39,7 +35,6 @@
+ import org.apache.rocketmq.common.message.MessageConst;
+ import org.apache.rocketmq.common.message.MessageExt;
+ import org.apache.rocketmq.common.message.MessageQueue;
+-import org.apache.rocketmq.common.utils.ThreadUtils;
+ import org.apache.rocketmq.remoting.protocol.NamespaceUtil;
+ import org.apache.rocketmq.remoting.protocol.body.CMResult;
+ import org.apache.rocketmq.remoting.protocol.body.ConsumeMessageDirectlyResult;
+@@ -47,14 +42,11 @@
+ import org.apache.rocketmq.logging.org.slf4j.Logger;
+ import org.apache.rocketmq.logging.org.slf4j.LoggerFactory;
+ 
+-public class ConsumeMessagePopOrderlyService implements ConsumeMessageService {
++public class ConsumeMessagePopOrderlyService extends AbstractConsumeMessageService {
+     private static final Logger log = LoggerFactory.getLogger(ConsumeMessagePopOrderlyService.class);
+     private final DefaultMQPushConsumerImpl defaultMQPushConsumerImpl;
+-    private final DefaultMQPushConsumer defaultMQPushConsumer;
+     private final MessageListenerOrderly messageListener;
+-    private final BlockingQueue<Runnable> consumeRequestQueue;
+     private final ConcurrentSet<ConsumeRequest> consumeRequestSet = new ConcurrentSet<>();
+-    private final ThreadPoolExecutor consumeExecutor;
+     private final String consumerGroup;
+     private final MessageQueueLock messageQueueLock = new MessageQueueLock();
+     private final MessageQueueLock consumeRequestLock = new MessageQueueLock();
+@@ -63,20 +55,11 @@ public class ConsumeMessagePopOrderlyService implements ConsumeMessageService {
+ 
+     public ConsumeMessagePopOrderlyService(DefaultMQPushConsumerImpl defaultMQPushConsumerImpl,
+         MessageListenerOrderly messageListener) {
++        super(defaultMQPushConsumerImpl.getDefaultMQPushConsumer(), new ThreadFactoryImpl("ConsumeMessageThread_"));
+         this.defaultMQPushConsumerImpl = defaultMQPushConsumerImpl;
+         this.messageListener = messageListener;
+ 
+-        this.defaultMQPushConsumer = this.defaultMQPushConsumerImpl.getDefaultMQPushConsumer();
+         this.consumerGroup = this.defaultMQPushConsumer.getConsumerGroup();
+-        this.consumeRequestQueue = new LinkedBlockingQueue<>();
+-
+-        this.consumeExecutor = new ThreadPoolExecutor(
+-            this.defaultMQPushConsumer.getConsumeThreadMin(),
+-            this.defaultMQPushConsumer.getConsumeThreadMax(),
+-            1000 * 60,
+-            TimeUnit.MILLISECONDS,
+-            this.consumeRequestQueue,
+-            new ThreadFactoryImpl("ConsumeMessageThread_"));
+ 
+         this.scheduledExecutorService = Executors.newSingleThreadScheduledExecutor(new ThreadFactoryImpl("ConsumeMessageScheduledThread_"));
+     }
+@@ -97,7 +80,7 @@ public void run() {
+     public void shutdown(long awaitTerminateMillis) {
+         this.stopped = true;
+         this.scheduledExecutorService.shutdown();
+-        ThreadUtils.shutdownGracefully(this.consumeExecutor, awaitTerminateMillis, TimeUnit.MILLISECONDS);
++        shutdownConsumeExecutor(awaitTerminateMillis);
+         if (MessageModel.CLUSTERING.equals(this.defaultMQPushConsumerImpl.messageModel())) {
+             this.unlockAllMessageQueues();
+         }
+@@ -107,28 +90,6 @@ public synchronized void unlockAllMessageQueues() {
+         this.defaultMQPushConsumerImpl.getRebalanceImpl().unlockAll(false);
+     }
+ 
+-    @Override
+-    public void updateCorePoolSize(int corePoolSize) {
+-        if (corePoolSize > 0
+-            && corePoolSize <= Short.MAX_VALUE
+-            && corePoolSize < this.defaultMQPushConsumer.getConsumeThreadMax()) {
+-            this.consumeExecutor.setCorePoolSize(corePoolSize);
+-        }
+-    }
+-
+-    @Override
+-    public void incCorePoolSize() {
+-    }
+-
+-    @Override
+-    public void decCorePoolSize() {
+-    }
+-
+-    @Override
+-    public int getCorePoolSize() {
+-        return this.consumeExecutor.getCorePoolSize();
+-    }
+-
+     @Override
+     public ConsumeMessageDirectlyResult consumeMessageDirectly(MessageExt msg, String brokerName) {
+         ConsumeMessageDirectlyResult result = new ConsumeMessageDirectlyResult();
+diff --git a/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageService.java b/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageService.java
+index ee684730aed..1842b5eac15 100644
+--- a/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageService.java
++++ b/client/src/main/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageService.java
+@@ -32,6 +32,7 @@ public interface ConsumeMessageService {
+ 
+     void decCorePoolSize();
+ 
++    /** Returns the owned pool core size, or -1 when execution is managed externally. */
+     int getCorePoolSize();
+ 
+     ConsumeMessageDirectlyResult consumeMessageDirectly(final MessageExt msg, final String brokerName);
+diff --git a/client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java b/client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java
+new file mode 100644
+index 00000000000..8dfffdf8ba6
+--- /dev/null
++++ b/client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessageExecutorInjectionTest.java
+@@ -0,0 +1,203 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *     http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package org.apache.rocketmq.client.impl.consumer;
++
++import java.lang.reflect.Method;
++import java.util.Arrays;
++import java.util.Collection;
++import java.util.Collections;
++import java.util.concurrent.CountDownLatch;
++import java.util.concurrent.Future;
++import java.util.concurrent.ExecutorService;
++import java.util.concurrent.Executors;
++import java.util.concurrent.ThreadPoolExecutor;
++import java.util.concurrent.TimeUnit;
++import org.apache.commons.lang3.reflect.FieldUtils;
++import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
++import org.apache.rocketmq.client.consumer.store.OffsetStore;
++import org.apache.rocketmq.common.message.MessageExt;
++import org.apache.rocketmq.common.message.MessageQueue;
++import org.junit.Assume;
++import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
++import org.apache.rocketmq.client.consumer.listener.MessageListenerOrderly;
++import org.apache.rocketmq.remoting.protocol.heartbeat.MessageModel;
++import org.junit.Test;
++import org.junit.runner.RunWith;
++import org.junit.runners.Parameterized;
++
++import static org.junit.Assert.assertEquals;
++import static org.junit.Assert.assertFalse;
++import static org.junit.Assert.assertSame;
++import static org.junit.Assert.assertTrue;
++import static org.mockito.Mockito.verifyNoInteractions;
++import static org.mockito.Mockito.mock;
++import static org.mockito.Mockito.when;
++
++@RunWith(Parameterized.class)
++public class ConsumeMessageExecutorInjectionTest {
++    @Parameterized.Parameters(name = "{0}")
++    public static Collection<Object[]> services() {
++        return Arrays.asList(new Object[][] {
++            {ConsumeMessageConcurrentlyService.class, MessageListenerConcurrently.class},
++            {ConsumeMessageOrderlyService.class, MessageListenerOrderly.class},
++            {ConsumeMessagePopConcurrentlyService.class, MessageListenerConcurrently.class},
++            {ConsumeMessagePopOrderlyService.class, MessageListenerOrderly.class}
++        });
++    }
++
++    private final Class<? extends ConsumeMessageService> serviceClass;
++    private final Class<?> listenerClass;
++
++    public ConsumeMessageExecutorInjectionTest(Class<? extends ConsumeMessageService> serviceClass, Class<?> listenerClass) {
++        this.serviceClass = serviceClass;
++        this.listenerClass = listenerClass;
++    }
++
++    @Test
++    public void testSharingAndOwnership() throws Exception {
++        ThreadPoolExecutor shared = (ThreadPoolExecutor) Executors.newFixedThreadPool(1);
++        ConsumeMessageService first = createService(shared);
++        ConsumeMessageService second = createService(shared);
++        try {
++            ExecutorService firstExecutor = (ExecutorService) FieldUtils.readField(first, "consumeExecutor", true);
++            ExecutorService secondExecutor = (ExecutorService) FieldUtils.readField(second, "consumeExecutor", true);
++            assertSame(shared, firstExecutor);
++            assertSame(shared, secondExecutor);
++            Thread worker = firstExecutor.submit(Thread::currentThread).get(5, TimeUnit.SECONDS);
++            assertSame(worker, secondExecutor.submit(Thread::currentThread).get(5, TimeUnit.SECONDS));
++            first.updateCorePoolSize(10);
++            assertEquals(1, shared.getCorePoolSize());
++            assertEquals(-1, first.getCorePoolSize());
++            first.shutdown(5000);
++            assertFalse(shared.isShutdown());
++            assertSame(worker, secondExecutor.submit(Thread::currentThread).get(5, TimeUnit.SECONDS));
++        } finally {
++            first.shutdown(5000);
++            second.shutdown(5000);
++            shared.shutdownNow();
++        }
++    }
++
++    @Test
++    public void testCancellationDoesNotChangeOrdinaryConsumerOffsets() throws Exception {
++        Assume.assumeTrue(serviceClass == ConsumeMessageConcurrentlyService.class);
++        ThreadPoolExecutor shared = (ThreadPoolExecutor) Executors.newFixedThreadPool(1);
++        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("broadcast-discard-test");
++        consumer.setMessageModel(MessageModel.BROADCASTING);
++        consumer.setConsumeExecutor(shared);
++        DefaultMQPushConsumerImpl impl = mock(DefaultMQPushConsumerImpl.class);
++        when(impl.getDefaultMQPushConsumer()).thenReturn(consumer);
++        OffsetStore offsetStore = mock(OffsetStore.class);
++        when(impl.getOffsetStore()).thenReturn(offsetStore);
++        ConsumeMessageConcurrentlyService service = new ConsumeMessageConcurrentlyService(impl,
++            mock(MessageListenerConcurrently.class));
++        CountDownLatch entered = new CountDownLatch(1);
++        CountDownLatch release = new CountDownLatch(1);
++        try {
++            shared.submit(() -> {
++                entered.countDown();
++                try {
++                    release.await();
++                } catch (InterruptedException e) {
++                    Thread.currentThread().interrupt();
++                }
++            });
++            assertTrue(entered.await(5, TimeUnit.SECONDS));
++            MessageQueue queue = new MessageQueue("system-topic", "broker", 0);
++            MessageExt message = new MessageExt();
++            message.setTopic(queue.getTopic());
++            message.setQueueOffset(0);
++            message.setBody(new byte[] {1});
++            ProcessQueue processQueue = new ProcessQueue();
++            processQueue.putMessage(Collections.singletonList(message));
++            service.submitConsumeRequest(Collections.singletonList(message), processQueue, queue, true);
++            assertTrue(((Future<?>) shared.getQueue().poll()).cancel(false));
++            assertEquals(1, processQueue.getMsgCount().get());
++            verifyNoInteractions(offsetStore);
++            service.shutdown(5000);
++            assertFalse(shared.isShutdown());
++        } finally {
++            release.countDown();
++            service.shutdown(5000);
++            shared.shutdownNow();
++        }
++    }
++
++    @Test
++    public void testVirtualThreadExecutorIsUsedDirectly() throws Exception {
++        Method factory;
++        try {
++            factory = Executors.class.getMethod("newVirtualThreadPerTaskExecutor");
++        } catch (NoSuchMethodException e) {
++            Assume.assumeNoException("Requires JDK 21 or later", e);
++            return;
++        }
++        ExecutorService shared = (ExecutorService) factory.invoke(null);
++        ConsumeMessageService service = createService(shared);
++        try {
++            ExecutorService actual = (ExecutorService) FieldUtils.readField(service, "consumeExecutor", true);
++            assertSame(shared, actual);
++            Method isVirtual = Thread.class.getMethod("isVirtual");
++            assertTrue(actual.submit(() -> (Boolean) isVirtual.invoke(Thread.currentThread())).get(5, TimeUnit.SECONDS));
++            service.shutdown(5000);
++            assertFalse(shared.isShutdown());
++            assertTrue(shared.submit(() -> (Boolean) isVirtual.invoke(Thread.currentThread())).get(5, TimeUnit.SECONDS));
++        } finally {
++            service.shutdown(5000);
++            shared.shutdownNow();
++        }
++    }
++
++    @Test
++    public void testExternalTasksAreLeftToTheOwnerOnShutdown() throws Exception {
++        ExecutorService shared = Executors.newSingleThreadExecutor();
++        ConsumeMessageService service = createService(shared);
++        CountDownLatch entered = new CountDownLatch(1);
++        CountDownLatch release = new CountDownLatch(1);
++        try {
++            Future<?> running = shared.submit(() -> {
++                entered.countDown();
++                try {
++                    release.await();
++                } catch (InterruptedException e) {
++                    Thread.currentThread().interrupt();
++                }
++            });
++            assertTrue(entered.await(5, TimeUnit.SECONDS));
++            service.shutdown(0);
++            assertFalse(shared.isShutdown());
++            assertFalse(running.isDone());
++            release.countDown();
++            running.get(5, TimeUnit.SECONDS);
++        } finally {
++            release.countDown();
++            service.shutdown(0);
++            shared.shutdownNow();
++        }
++    }
++
++    private ConsumeMessageService createService(ExecutorService executor) throws Exception {
++        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("shared-executor-test");
++        consumer.setMessageModel(MessageModel.BROADCASTING);
++        consumer.setConsumeExecutor(executor);
++        DefaultMQPushConsumerImpl impl = mock(DefaultMQPushConsumerImpl.class);
++        when(impl.getDefaultMQPushConsumer()).thenReturn(consumer);
++        when(impl.messageModel()).thenReturn(MessageModel.BROADCASTING);
++        return serviceClass.getConstructor(DefaultMQPushConsumerImpl.class, listenerClass)
++            .newInstance(impl, mock(listenerClass));
++    }
++}
+diff --git a/client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyServiceTest.java b/client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyServiceTest.java
+index 5097f14ca34..1d13c6496d5 100644
+--- a/client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyServiceTest.java
++++ b/client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopConcurrentlyServiceTest.java
+@@ -123,7 +123,7 @@ public void testConsumeMessageDirectlyWithCrThrowException() {
+     public void testShutdown() throws IllegalAccessException {
+         popService.shutdown(3000L);
+         Field scheduledExecutorServiceField = FieldUtils.getDeclaredField(popService.getClass(), "scheduledExecutorService", true);
+-        Field consumeExecutorField = FieldUtils.getDeclaredField(popService.getClass(), "consumeExecutor", true);
++        Field consumeExecutorField = FieldUtils.getField(popService.getClass(), "consumeExecutor", true);
+         ScheduledExecutorService scheduledExecutorService = (ScheduledExecutorService) scheduledExecutorServiceField.get(popService);
+         ThreadPoolExecutor consumeExecutor = (ThreadPoolExecutor) consumeExecutorField.get(popService);
+         assertTrue(scheduledExecutorService.isShutdown());
+@@ -148,7 +148,7 @@ public void testSubmitPopConsumeRequest() throws IllegalAccessException {
+         PopProcessQueue processQueue = mock(PopProcessQueue.class);
+         MessageQueue messageQueue = mock(MessageQueue.class);
+         ThreadPoolExecutor consumeExecutor = mock(ThreadPoolExecutor.class);
+-        FieldUtils.writeDeclaredField(popService, "consumeExecutor", consumeExecutor, true);
++        FieldUtils.writeField(popService, "consumeExecutor", consumeExecutor, true);
+         popService.submitPopConsumeRequest(msgs, processQueue, messageQueue);
+         verify(consumeExecutor, times(1)).submit(any(Runnable.class));
+     }
+@@ -159,7 +159,7 @@ public void testSubmitPopConsumeRequestWithMultiMsg() throws IllegalAccessExcept
+         PopProcessQueue processQueue = mock(PopProcessQueue.class);
+         MessageQueue messageQueue = mock(MessageQueue.class);
+         ThreadPoolExecutor consumeExecutor = mock(ThreadPoolExecutor.class);
+-        FieldUtils.writeDeclaredField(popService, "consumeExecutor", consumeExecutor, true);
++        FieldUtils.writeField(popService, "consumeExecutor", consumeExecutor, true);
+         when(defaultMQPushConsumer.getConsumeMessageBatchMaxSize()).thenReturn(1);
+         popService.submitPopConsumeRequest(msgs, processQueue, messageQueue);
+         verify(consumeExecutor, times(2)).submit(any(Runnable.class));
+diff --git a/client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyServiceTest.java b/client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyServiceTest.java
+index 257783ecb48..5ada0639f24 100644
+--- a/client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyServiceTest.java
++++ b/client/src/test/java/org/apache/rocketmq/client/impl/consumer/ConsumeMessagePopOrderlyServiceTest.java
+@@ -100,7 +100,7 @@ public void init() throws Exception {
+     public void testShutdown() throws IllegalAccessException {
+         popService.shutdown(3000L);
+         Field scheduledExecutorServiceField = FieldUtils.getDeclaredField(popService.getClass(), "scheduledExecutorService", true);
+-        Field consumeExecutorField = FieldUtils.getDeclaredField(popService.getClass(), "consumeExecutor", true);
++        Field consumeExecutorField = FieldUtils.getField(popService.getClass(), "consumeExecutor", true);
+         ScheduledExecutorService scheduledExecutorService = (ScheduledExecutorService) scheduledExecutorServiceField.get(popService);
+         ThreadPoolExecutor consumeExecutor = (ThreadPoolExecutor) consumeExecutorField.get(popService);
+         assertTrue(scheduledExecutorService.isShutdown());
+@@ -183,7 +183,7 @@ public void testSubmitPopConsumeRequest() throws IllegalAccessException {
+         PopProcessQueue processQueue = mock(PopProcessQueue.class);
+         MessageQueue messageQueue = mock(MessageQueue.class);
+         ThreadPoolExecutor consumeExecutor = mock(ThreadPoolExecutor.class);
+-        FieldUtils.writeDeclaredField(popService, "consumeExecutor", consumeExecutor, true);
++        FieldUtils.writeField(popService, "consumeExecutor", consumeExecutor, true);
+         popService.submitPopConsumeRequest(msgs, processQueue, messageQueue);
+         verify(consumeExecutor, times(1)).submit(any(Runnable.class));
+     }
+diff --git a/proxy/src/main/java/org/apache/rocketmq/proxy/config/ProxyConfig.java b/proxy/src/main/java/org/apache/rocketmq/proxy/config/ProxyConfig.java
+index a7896c11e07..8f6fb7ec1be 100644
+--- a/proxy/src/main/java/org/apache/rocketmq/proxy/config/ProxyConfig.java
++++ b/proxy/src/main/java/org/apache/rocketmq/proxy/config/ProxyConfig.java
+@@ -63,6 +63,7 @@ public class ProxyConfig implements ConfigFile {
+     private String heartbeatSyncerTopicClusterName = "";
+     private int heartbeatSyncerThreadPoolNums = 4;
+     private int heartbeatSyncerThreadPoolQueueCapacity = 100;
++    private int systemMessageConsumerThreadPoolCoreSize = PROCESSOR_NUMBER * 2;
+ 
+     private String heartbeatSyncerTopicName = "DefaultHeartBeatSyncerTopic";
+ 
+@@ -395,6 +396,14 @@ public void setHeartbeatSyncerTopicClusterName(String heartbeatSyncerTopicCluste
+         this.heartbeatSyncerTopicClusterName = heartbeatSyncerTopicClusterName;
+     }
+ 
++    public int getSystemMessageConsumerThreadPoolCoreSize() {
++        return systemMessageConsumerThreadPoolCoreSize;
++    }
++
++    public void setSystemMessageConsumerThreadPoolCoreSize(int systemMessageConsumerThreadPoolCoreSize) {
++        this.systemMessageConsumerThreadPoolCoreSize = systemMessageConsumerThreadPoolCoreSize;
++    }
++
+     public int getHeartbeatSyncerThreadPoolNums() {
+         return heartbeatSyncerThreadPoolNums;
+     }
+diff --git a/proxy/src/main/java/org/apache/rocketmq/proxy/service/ClusterServiceManager.java b/proxy/src/main/java/org/apache/rocketmq/proxy/service/ClusterServiceManager.java
+index 8b1c20c0bdb..89539244f24 100644
+--- a/proxy/src/main/java/org/apache/rocketmq/proxy/service/ClusterServiceManager.java
++++ b/proxy/src/main/java/org/apache/rocketmq/proxy/service/ClusterServiceManager.java
+@@ -17,6 +17,7 @@
+ package org.apache.rocketmq.proxy.service;
+ 
+ import java.util.concurrent.ScheduledExecutorService;
++import java.util.concurrent.ThreadPoolExecutor;
+ import java.util.concurrent.TimeUnit;
+ import org.apache.rocketmq.broker.client.ClientChannelInfo;
+ import org.apache.rocketmq.broker.client.ConsumerGroupEvent;
+@@ -50,6 +51,7 @@
+ import org.apache.rocketmq.proxy.service.relay.ProxyRelayService;
+ import org.apache.rocketmq.proxy.service.route.ClusterTopicRouteService;
+ import org.apache.rocketmq.proxy.service.route.TopicRouteService;
++import org.apache.rocketmq.proxy.service.sysmessage.SystemMessageConsumeExecutor;
+ import org.apache.rocketmq.proxy.service.transaction.ClusterTransactionService;
+ import org.apache.rocketmq.proxy.service.transaction.TransactionService;
+ import org.apache.rocketmq.remoting.RPCHook;
+@@ -69,6 +71,7 @@ public class ClusterServiceManager extends AbstractStartAndShutdown implements S
+     protected LiteSubscriptionService liteSubscriptionService;
+ 
+     protected ScheduledExecutorService scheduledExecutorService;
++    protected ThreadPoolExecutor systemMessageConsumeExecutor;
+     protected MQClientAPIFactory messagingClientAPIFactory;
+     protected MQClientAPIFactory operationClientAPIFactory;
+     protected MQClientAPIFactory transactionClientAPIFactory;
+@@ -109,8 +112,9 @@ public ClusterServiceManager(RPCHook rpcHook, ObjectCreator<RemotingClient> remo
+         this.metadataService = new ClusterMetadataService(topicRouteService, operationClientAPIFactory);
+         this.adminService = new DefaultAdminService(this.operationClientAPIFactory);
+ 
++        this.systemMessageConsumeExecutor = SystemMessageConsumeExecutor.create(proxyConfig);
+         this.producerManager = new ProducerManager();
+-        this.consumerManager = new ClusterConsumerManager(this.topicRouteService, this.adminService, this.operationClientAPIFactory, new ConsumerIdsChangeListenerImpl(), proxyConfig.getChannelExpiredTimeout(), rpcHook);
++        this.consumerManager = new ClusterConsumerManager(this.topicRouteService, this.adminService, this.operationClientAPIFactory, new ConsumerIdsChangeListenerImpl(), proxyConfig.getChannelExpiredTimeout(), rpcHook, this.systemMessageConsumeExecutor);
+ 
+         this.transactionClientAPIFactory = new MQClientAPIFactory(
+             nameserverAccessConfig,
+@@ -159,6 +163,7 @@ protected void init() {
+         this.appendStartAndShutdown(this.topicRouteService);
+         this.appendStartAndShutdown(this.clusterTransactionService);
+         this.appendStartAndShutdown(this.metadataService);
++        this.appendShutdown(() -> ThreadUtils.shutdownGracefully(this.systemMessageConsumeExecutor, 5, TimeUnit.SECONDS));
+         this.appendStartAndShutdown(this.consumerManager);
+     }
+ 
+diff --git a/proxy/src/main/java/org/apache/rocketmq/proxy/service/client/ClusterConsumerManager.java b/proxy/src/main/java/org/apache/rocketmq/proxy/service/client/ClusterConsumerManager.java
+index 65a4569f830..d71aabdbecc 100644
+--- a/proxy/src/main/java/org/apache/rocketmq/proxy/service/client/ClusterConsumerManager.java
++++ b/proxy/src/main/java/org/apache/rocketmq/proxy/service/client/ClusterConsumerManager.java
+@@ -18,6 +18,7 @@
+ package org.apache.rocketmq.proxy.service.client;
+ 
+ import java.util.Set;
++import java.util.concurrent.ExecutorService;
+ import org.apache.rocketmq.broker.client.ClientChannelInfo;
+ import org.apache.rocketmq.broker.client.ConsumerIdsChangeListener;
+ import org.apache.rocketmq.broker.client.ConsumerManager;
+@@ -38,8 +39,15 @@ public class ClusterConsumerManager extends ConsumerManager implements StartAndS
+ 
+     public ClusterConsumerManager(TopicRouteService topicRouteService, AdminService adminService,
+                                   MQClientAPIFactory mqClientAPIFactory, ConsumerIdsChangeListener consumerIdsChangeListener, long channelExpiredTimeout, RPCHook rpcHook) {
++        this(topicRouteService, adminService, mqClientAPIFactory, consumerIdsChangeListener,
++            channelExpiredTimeout, rpcHook, null);
++    }
++
++    public ClusterConsumerManager(TopicRouteService topicRouteService, AdminService adminService,
++        MQClientAPIFactory mqClientAPIFactory, ConsumerIdsChangeListener consumerIdsChangeListener,
++        long channelExpiredTimeout, RPCHook rpcHook, ExecutorService consumeExecutor) {
+         super(consumerIdsChangeListener, channelExpiredTimeout);
+-        this.heartbeatSyncer = new HeartbeatSyncer(topicRouteService, adminService, this, mqClientAPIFactory, rpcHook);
++        this.heartbeatSyncer = new HeartbeatSyncer(topicRouteService, adminService, this, mqClientAPIFactory, rpcHook, consumeExecutor);
+     }
+ 
+     @Override
+diff --git a/proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/AbstractSystemMessageSyncer.java b/proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/AbstractSystemMessageSyncer.java
+index 05eb6726188..e91fe577982 100644
+--- a/proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/AbstractSystemMessageSyncer.java
++++ b/proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/AbstractSystemMessageSyncer.java
+@@ -46,6 +46,7 @@
+ 
+ import java.nio.charset.StandardCharsets;
+ import java.time.Duration;
++import java.util.concurrent.ExecutorService;
+ 
+ public abstract class AbstractSystemMessageSyncer implements StartAndShutdown, MessageListenerConcurrently {
+     protected static final Logger log = LoggerFactory.getLogger(LoggerName.PROXY_LOGGER_NAME);
+@@ -53,9 +54,16 @@ public abstract class AbstractSystemMessageSyncer implements StartAndShutdown, M
+     protected final AdminService adminService;
+     protected final MQClientAPIFactory mqClientAPIFactory;
+     protected final RPCHook rpcHook;
++    protected final ExecutorService consumeExecutor;
+     protected DefaultMQPushConsumer defaultMQPushConsumer;
+ 
+     public AbstractSystemMessageSyncer(TopicRouteService topicRouteService, AdminService adminService, MQClientAPIFactory mqClientAPIFactory, RPCHook rpcHook) {
++        this(topicRouteService, adminService, mqClientAPIFactory, rpcHook, null);
++    }
++
++    public AbstractSystemMessageSyncer(TopicRouteService topicRouteService, AdminService adminService,
++        MQClientAPIFactory mqClientAPIFactory, RPCHook rpcHook, ExecutorService consumeExecutor) {
++        this.consumeExecutor = consumeExecutor;
+         this.topicRouteService = topicRouteService;
+         this.adminService = adminService;
+         this.mqClientAPIFactory = mqClientAPIFactory;
+@@ -145,6 +153,7 @@ public void start() throws Exception {
+         RPCHook rpcHook = this.getRpcHook();
+         this.defaultMQPushConsumer = new DefaultMQPushConsumer(this.getSystemMessageConsumerId(), rpcHook);
+ 
++        this.defaultMQPushConsumer.setConsumeExecutor(this.consumeExecutor);
+         this.defaultMQPushConsumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_LAST_OFFSET);
+         this.defaultMQPushConsumer.setMessageModel(MessageModel.BROADCASTING);
+         try {
+diff --git a/proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/HeartbeatSyncer.java b/proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/HeartbeatSyncer.java
+index e063d79707b..5d9fbb30696 100644
+--- a/proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/HeartbeatSyncer.java
++++ b/proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/HeartbeatSyncer.java
+@@ -45,6 +45,7 @@
+ import java.util.Map;
+ import java.util.Set;
+ import java.util.concurrent.ConcurrentHashMap;
++import java.util.concurrent.ExecutorService;
+ import java.util.concurrent.ThreadPoolExecutor;
+ import java.util.concurrent.TimeUnit;
+ 
+@@ -57,7 +58,13 @@ public class HeartbeatSyncer extends AbstractSystemMessageSyncer {
+ 
+     public HeartbeatSyncer(TopicRouteService topicRouteService, AdminService adminService,
+                            ConsumerManager consumerManager, MQClientAPIFactory mqClientAPIFactory, RPCHook rpcHook) {
+-        super(topicRouteService, adminService, mqClientAPIFactory, rpcHook);
++        this(topicRouteService, adminService, consumerManager, mqClientAPIFactory, rpcHook, null);
++    }
++
++    public HeartbeatSyncer(TopicRouteService topicRouteService, AdminService adminService,
++        ConsumerManager consumerManager, MQClientAPIFactory mqClientAPIFactory, RPCHook rpcHook,
++        ExecutorService consumeExecutor) {
++        super(topicRouteService, adminService, mqClientAPIFactory, rpcHook, consumeExecutor);
+         this.consumerManager = consumerManager;
+         this.localProxyId = buildLocalProxyId();
+         this.init();
+diff --git a/proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumeExecutor.java b/proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumeExecutor.java
+new file mode 100644
+index 00000000000..88805cf318b
+--- /dev/null
++++ b/proxy/src/main/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumeExecutor.java
+@@ -0,0 +1,38 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *     http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package org.apache.rocketmq.proxy.service.sysmessage;
++
++import java.util.concurrent.ThreadPoolExecutor;
++import java.util.concurrent.TimeUnit;
++import org.apache.rocketmq.common.thread.ThreadPoolMonitor;
++import org.apache.rocketmq.proxy.config.ProxyConfig;
++
++/** Creates the executor shared by a Proxy's internal system-message consumers. */
++public class SystemMessageConsumeExecutor {
++    private SystemMessageConsumeExecutor() {
++    }
++
++    public static ThreadPoolExecutor create(ProxyConfig config) {
++        int coreSize = config.getSystemMessageConsumerThreadPoolCoreSize();
++        return ThreadPoolMonitor.createAndMonitor(
++            coreSize, coreSize,
++            0, TimeUnit.MILLISECONDS, "SystemMessageConsumer",
++            // LinkedBlockingQueue's default capacity preserves unbounded consumption queueing.
++            Integer.MAX_VALUE,
++            new ThreadPoolExecutor.AbortPolicy());
++    }
++}
+diff --git a/proxy/src/test/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumeExecutorTest.java b/proxy/src/test/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumeExecutorTest.java
+new file mode 100644
+index 00000000000..3c61c9ed5f2
+--- /dev/null
++++ b/proxy/src/test/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumeExecutorTest.java
+@@ -0,0 +1,95 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *     http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package org.apache.rocketmq.proxy.service.sysmessage;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.CountDownLatch;
++import java.util.concurrent.Future;
++import java.util.concurrent.RejectedExecutionException;
++import java.util.concurrent.ThreadPoolExecutor;
++import java.util.concurrent.TimeUnit;
++import org.apache.rocketmq.proxy.config.ProxyConfig;
++import org.junit.Test;
++
++import static org.junit.Assert.assertEquals;
++import static org.junit.Assert.assertFalse;
++import static org.junit.Assert.assertTrue;
++import static org.junit.Assert.fail;
++
++public class SystemMessageConsumeExecutorTest {
++    @Test
++    public void testDefaults() {
++        ProxyConfig config = new ProxyConfig();
++        int processors = Runtime.getRuntime().availableProcessors();
++        ThreadPoolExecutor executor = SystemMessageConsumeExecutor.create(config);
++        try {
++            assertEquals(processors * 2, executor.getCorePoolSize());
++            assertEquals(processors * 2, executor.getMaximumPoolSize());
++            assertEquals(Integer.MAX_VALUE, executor.getQueue().remainingCapacity());
++            assertFalse(executor.allowsCoreThreadTimeOut());
++            assertTrue(executor.getRejectedExecutionHandler() instanceof ThreadPoolExecutor.AbortPolicy);
++        } finally {
++            executor.shutdownNow();
++        }
++    }
++
++    @Test
++    public void testConfiguredPoolPreservesQueuedTasks() throws Exception {
++        ProxyConfig config = new ProxyConfig();
++        config.setSystemMessageConsumerThreadPoolCoreSize(1);
++        ThreadPoolExecutor executor = SystemMessageConsumeExecutor.create(config);
++        CountDownLatch entered = new CountDownLatch(1);
++        CountDownLatch release = new CountDownLatch(1);
++        try {
++            Future<?> running = executor.submit(() -> {
++                entered.countDown();
++                try {
++                    release.await();
++                } catch (InterruptedException e) {
++                    Thread.currentThread().interrupt();
++                }
++            });
++            assertTrue(entered.await(5, TimeUnit.SECONDS));
++            List<Future<Integer>> queued = new ArrayList<>();
++            for (int i = 0; i < 10001; i++) {
++                final int result = i;
++                queued.add(executor.submit(() -> result));
++            }
++            assertEquals(10001, executor.getQueue().size());
++            assertEquals(1, executor.getPoolSize());
++            assertFalse(running.isCancelled());
++            assertFalse(queued.get(0).isDone());
++            release.countDown();
++            executor.shutdown();
++            assertTrue(executor.awaitTermination(5, TimeUnit.SECONDS));
++            running.get(5, TimeUnit.SECONDS);
++            for (int i = 0; i < queued.size(); i++) {
++                assertEquals(i, queued.get(i).get(5, TimeUnit.SECONDS).intValue());
++            }
++            try {
++                executor.submit(() -> { });
++                fail("Stopped executor must reject submission");
++            } catch (RejectedExecutionException expected) {
++                assertTrue(executor.isTerminated());
++            }
++        } finally {
++            release.countDown();
++            executor.shutdownNow();
++        }
++    }
++}
+diff --git a/proxy/src/test/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumerSharingTest.java b/proxy/src/test/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumerSharingTest.java
+new file mode 100644
+index 00000000000..4cbb4685e81
+--- /dev/null
++++ b/proxy/src/test/java/org/apache/rocketmq/proxy/service/sysmessage/SystemMessageConsumerSharingTest.java
+@@ -0,0 +1,64 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *     http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package org.apache.rocketmq.proxy.service.sysmessage;
++
++import java.util.List;
++import java.util.concurrent.ThreadPoolExecutor;
++import org.apache.commons.lang3.reflect.FieldUtils;
++import org.apache.rocketmq.broker.client.ConsumerIdsChangeListener;
++import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
++import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
++import org.apache.rocketmq.client.impl.mqclient.MQClientAPIFactory;
++import org.apache.rocketmq.common.message.MessageExt;
++import org.apache.rocketmq.proxy.config.ConfigurationManager;
++import org.apache.rocketmq.proxy.config.InitConfigTest;
++import org.apache.rocketmq.proxy.service.admin.AdminService;
++import org.apache.rocketmq.proxy.service.client.ClusterConsumerManager;
++import org.apache.rocketmq.proxy.service.route.TopicRouteService;
++import org.junit.Test;
++
++import static org.junit.Assert.assertFalse;
++import static org.junit.Assert.assertSame;
++import static org.mockito.Mockito.mock;
++
++public class SystemMessageConsumerSharingTest extends InitConfigTest {
++    @Test
++    public void testManagerAndAdditionalSyncerReceiveSameExecutor() throws Exception {
++        ThreadPoolExecutor executor = SystemMessageConsumeExecutor.create(ConfigurationManager.getProxyConfig());
++        TopicRouteService routeService = mock(TopicRouteService.class);
++        AdminService adminService = mock(AdminService.class);
++        MQClientAPIFactory clientFactory = mock(MQClientAPIFactory.class);
++        ClusterConsumerManager manager = new ClusterConsumerManager(routeService, adminService, clientFactory,
++            mock(ConsumerIdsChangeListener.class), 120000, null, executor);
++        HeartbeatSyncer heartbeat = (HeartbeatSyncer) FieldUtils.readDeclaredField(manager, "heartbeatSyncer", true);
++        AbstractSystemMessageSyncer additional = new AbstractSystemMessageSyncer(routeService, adminService,
++            clientFactory, null, executor) {
++            @Override
++            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> messages, ConsumeConcurrentlyContext context) {
++                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
++            }
++        };
++        try {
++            assertSame(executor, heartbeat.consumeExecutor);
++            assertSame(executor, additional.consumeExecutor);
++            assertFalse(executor.isShutdown());
++        } finally {
++            heartbeat.threadPoolExecutor.shutdownNow();
++            executor.shutdownNow();
++        }
++    }
++}

@@ -1,0 +1,49 @@
+{
+  "territories" : [ {
+    "moduleName" : "streams",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 15 changes",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlciNyZXNvbHZlUmVzdG9yZUNlaWxpbmdDb21taXR0ZWRPZmZzZXQ", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlciNtYXliZUZhbGxCYWNrVG9aZXJvQ29tbWl0dGVkT2Zmc2V0", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmVzdG9yZUZyZXNoU291cmNlQ2hhbmdlbG9nV2l0aE1pc3NpbmdDb21taXR0ZWRPZmZzZXRJbW1lZGlhdGVseUF0WmVybw", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmV0cnlNaXNzaW5nQ29tbWl0dGVkT2Zmc2V0Rm9yV2lwZWRTb3VyY2VDaGFuZ2Vsb2dUaGVuRmFsbEJhY2tUb1plcm8", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmVjb3ZlcldpcGVkU291cmNlQ2hhbmdlbG9nVG9SZWFsQ29tbWl0dGVkT2Zmc2V0V2hlblRyYW5zaWVudGx5TWlzc2luZ0JlZm9yZVRpbWVvdXQ", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3QjY29tbWl0dGVkT2Y", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2V0dXBXaXBlZFNvdXJjZUNoYW5nZWxvZw", "TU9ESUZZX01FVEhPRF9CT0RZClN0b3JlQ2hhbmdlbG9nUmVhZGVyI2NvbW1pdHRlZE9mZnNldEZvckNoYW5nZWxvZ3MKdG9NYXAo4oCmKTogMEwgLT4gTk9fQ09NTUlUVEVEX09GRlNFVA", "TU9ESUZZX01FVEhPRF9CT0RZCittYXgKU3RvcmVDaGFuZ2Vsb2dSZWFkZXIjdXBkYXRlTGltaXRPZmZzZXRzRm9yU3RhbmRieUNoYW5nZWxvZ3M", "TU9ESUZZX01FVEhPRF9CT0RZCitjaGFuZ2Vsb2dQYXJ0aXRpb24sICtyZXNvbHZlUmVzdG9yZUNlaWxpbmdDb21taXR0ZWRPZmZzZXQsICtjb21taXR0ZWRPZmZzZXRNaXNzaW5nU2luY2VNcy5yZW1vdmUsICtldmVyU3RhcnRlZFJlc3RvcmluZ0NoYW5nZWxvZ3MuYWRkLCAtY29tbWl0dGVkT2Zmc2V0cy5nZXQg4oCmYW5kIDEgbW9yZQpTdG9yZUNoYW5nZWxvZ1JlYWRlciNpbml0aWFsaXplQ2hhbmdlbG9ncw", "TU9ESUZZX01FVEhPRF9CT0RZCitjb25maWcuZ2V0TG9uZwpTdG9yZUNoYW5nZWxvZ1JlYWRlciM8aW5pdD4", "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI05PX0NPTU1JVFRFRF9PRkZTRVQ", "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI2NvbW1pdHRlZE9mZnNldE1pc3NpbmdTaW5jZU1z", "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI2V2ZXJTdGFydGVkUmVzdG9yaW5nQ2hhbmdlbG9ncw", "QUREX0ZJRUxEClN0b3JlQ2hhbmdlbG9nUmVhZGVyI3Rhc2tUaW1lb3V0TXM" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmVzdG9yZUZyZXNoU291cmNlQ2hhbmdlbG9nV2l0aE1pc3NpbmdDb21taXR0ZWRPZmZzZXRJbW1lZGlhdGVseUF0WmVybw", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmV0cnlNaXNzaW5nQ29tbWl0dGVkT2Zmc2V0Rm9yV2lwZWRTb3VyY2VDaGFuZ2Vsb2dUaGVuRmFsbEJhY2tUb1plcm8", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2hvdWxkUmVjb3ZlcldpcGVkU291cmNlQ2hhbmdlbG9nVG9SZWFsQ29tbWl0dGVkT2Zmc2V0V2hlblRyYW5zaWVudGx5TWlzc2luZ0JlZm9yZVRpbWVvdXQ", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3QjY29tbWl0dGVkT2Y", "QUREX1NZTUJPTApTdG9yZUNoYW5nZWxvZ1JlYWRlclRlc3Qjc2V0dXBXaXBlZFNvdXJjZUNoYW5nZWxvZw" ]
+  }, {
+    "moduleName" : "clients",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "test-utils",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "generator",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "UNKNOWN",
+    "techStackLabel" : "Unknown",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "streams",
+    "to" : "clients"
+  }, {
+    "from" : "streams",
+    "to" : "test-utils"
+  }, {
+    "from" : "streams",
+    "to" : "generator"
+  } ]
+}

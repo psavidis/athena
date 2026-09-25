@@ -1,0 +1,13 @@
+[ {
+  "entity" : "ServerFCGIConnection",
+  "description" : "Change control flow of ServerFCGIConnection#onFillable: branch added"
+}, {
+  "entity" : "HttpStreamOverFCGI",
+  "description" : "Change signature of HttpStreamOverFCGI#onHeaders"
+}, {
+  "entity" : "HttpStreamOverFCGI",
+  "description" : "Remove HttpStreamOverFCGI#execute"
+}, {
+  "entity" : "ServerFCGIConnection",
+  "description" : "Add field ServerFCGIConnection#onRequest"
+} ]

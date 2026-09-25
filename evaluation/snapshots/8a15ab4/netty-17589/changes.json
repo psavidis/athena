@@ -1,0 +1,21 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW5nbGVUaHJlYWRFdmVudEV4ZWN1dG9yI2RvU3RhcnRUaHJlYWQKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of SingleThreadEventExecutor#doStartThread: branch added",
+  "files" : [ "common/src/main/java/io/netty/util/concurrent/SingleThreadEventExecutor.java" ],
+  "symbols" : [ "SingleThreadEventExecutor#doStartThread", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApTaW5nbGVUaHJlYWRFdmVudEV4ZWN1dG9yVGVzdCN0ZXN0U3VzcGVuZERvZXNOb3RSYWNlV2l0aENhbmNlbGxlZFNjaGVkdWxlZFRhc2s",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add SingleThreadEventExecutorTest#testSuspendDoesNotRaceWithCancelledScheduledTask",
+  "files" : [ "common/src/test/java/io/netty/util/concurrent/SingleThreadEventExecutorTest.java" ],
+  "symbols" : [ "SingleThreadEventExecutorTest#testSuspendDoesNotRaceWithCancelledScheduledTask" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

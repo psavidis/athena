@@ -1,0 +1,378 @@
+{
+  "prTitle" : "[improve][txn] Move TransactionCoordinatorClient to public API",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 3,
+    "UNKNOWN" : 14,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX1NZTUJPTApQdWxzYXJDbGllbnQjZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudA",
+    "description" : "Add PulsarClient#getTransactionCoordinatorClient",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApQdWxzYXJDbGllbnRJbXBsI2dldFRyYW5zYWN0aW9uQ29vcmRpbmF0b3JDbGllbnQ",
+    "description" : "Add PulsarClientImpl#getTransactionCoordinatorClient",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnRPdGhlci5nZXRUcmFuc2FjdGlvbkNvb3JkaW5hdG9yQ2xpZW50LCAtZ2V0VGNDbGllbnQKQXV0aGVudGljYXRlZFRyYW5zYWN0aW9uUHJvZHVjZXJDb25zdW1lclRlc3QjdGVzdEVuZFR4bg",
+    "description" : "Modify body of AuthenticatedTransactionProducerConsumerTest#testEndTxn: +pulsarClientOther.getTransactionCoordinatorClient, -getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnRPdGhlci5nZXRUcmFuc2FjdGlvbkNvb3JkaW5hdG9yQ2xpZW50LCAtZ2V0VGNDbGllbnQKQXV0aGVudGljYXRlZFRyYW5zYWN0aW9uUHJvZHVjZXJDb25zdW1lclRlc3QjdGVzdEFkZFBhcnRpdGlvblRvVHhu",
+    "description" : "Modify body of AuthenticatedTransactionProducerConsumerTest#testAddPartitionToTxn: +pulsarClientOther.getTransactionCoordinatorClient, -getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnRPdGhlci5nZXRUcmFuc2FjdGlvbkNvb3JkaW5hdG9yQ2xpZW50LCAtZ2V0VGNDbGllbnQKQXV0aGVudGljYXRlZFRyYW5zYWN0aW9uUHJvZHVjZXJDb25zdW1lclRlc3QjdGVzdEFkZFN1YnNjcmlwdGlvblRvVHhu",
+    "description" : "Modify body of AuthenticatedTransactionProducerConsumerTest#testAddSubscriptionToTxn: +pulsarClientOther.getTransactionCoordinatorClient, -getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQnVmZmVyQ2xvc2VUZXN0I3NldHVw",
+    "description" : "Modify body of TransactionBufferCloseTest#setup: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uU3RhYmxlUG9zaXRpb25UZXN0I3NldHVw",
+    "description" : "Modify body of TransactionStablePositionTest#setup: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFRyYW5zYWN0aW9uQWRkU3Vic2NyaXB0aW9uVG9UeG5Bc3luY1JlY29ubmVjdA",
+    "description" : "Modify body of TransactionClientConnectTest#testTransactionAddSubscriptionToTxnAsyncReconnect: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFRyYW5zYWN0aW9uQWJvcnRUb1R4bkFzeW5jUmVjb25uZWN0",
+    "description" : "Modify body of TransactionClientConnectTest#testTransactionAbortToTxnAsyncReconnect: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFRyYW5zYWN0aW9uQ29tbWl0VG9UeG5Bc3luY1JlY29ubmVjdA",
+    "description" : "Modify body of TransactionClientConnectTest#testTransactionCommitToTxnAsyncReconnect: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFRyYW5zYWN0aW9uQWRkUHVibGlzaFBhcnRpdGlvblRvVHhuUmVjb25uZWN0",
+    "description" : "Modify body of TransactionClientConnectTest#testTransactionAddPublishPartitionToTxnReconnect: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFB1bHNhckNsaWVudENsb3NlVGhlbkNsb3NlVGNDbGllbnQ",
+    "description" : "Modify body of TransactionClientConnectTest#testPulsarClientCloseThenCloseTcClient: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 12,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdEhhbmRsZXJTdGF0ZUNoYW5nZVRvUmVhZHk",
+    "description" : "Modify body of TransactionClientConnectTest#testHandlerStateChangeToReady: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 13,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWNvdmVyUHVsc2FyQ2xpZW50LmdldFRyYW5zYWN0aW9uQ29vcmRpbmF0b3JDbGllbnQsIC1yZWNvdmVyUHVsc2FyQ2xpZW50LmdldFRjQ2xpZW50ClRyYW5zYWN0aW9uRW5kVG9FbmRUZXN0I3R4bk1ldGFkYXRhSGFuZGxlclJlY292ZXJUZXN0",
+    "description" : "Modify body of TransactionEndToEndTest#txnMetadataHandlerRecoverTest: +recoverPulsarClient.getTransactionCoordinatorClient, -recoverPulsarClient.getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRjTWV0YWRhdGFEaXNjb3ZlcnlUZXN0I3Y0U2RrVHJhbnNhY3Rpb25TdGlsbFVzZXNMZWdhY3lDb29yZGluYXRvcg",
+    "description" : "Modify body of TcMetadataDiscoveryTest#v4SdkTransactionStillUsesLegacyCoordinator: +client.getTransactionCoordinatorClient, -getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWNsaWVudC5nZXRUY0NsaWVudApUcmFuc2FjdGlvbkltcGwjPGluaXQ-",
+    "description" : "Modify body of TransactionImpl#<init>: +client.getTransactionCoordinatorClient, -client.getTcClient",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 16,
+    "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKVHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudEltcGwgLT4gVHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudApUcmFuc2FjdGlvbkltcGwjdGNDbGllbnQ",
+    "description" : "Change type of field TransactionImpl#tcClient: TransactionCoordinatorClientImpl -> TransactionCoordinatorClient",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_FIELD_TYPE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "PulsarClient",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX1NZTUJPTApQdWxzYXJDbGllbnQjZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudA",
+      "description" : "Add PulsarClient#getTransactionCoordinatorClient",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "PulsarClientImpl",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApQdWxzYXJDbGllbnRJbXBsI2dldFRyYW5zYWN0aW9uQ29vcmRpbmF0b3JDbGllbnQ",
+      "description" : "Add PulsarClientImpl#getTransactionCoordinatorClient",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "AuthenticatedTransactionProducerConsumerTest",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnRPdGhlci5nZXRUcmFuc2FjdGlvbkNvb3JkaW5hdG9yQ2xpZW50LCAtZ2V0VGNDbGllbnQKQXV0aGVudGljYXRlZFRyYW5zYWN0aW9uUHJvZHVjZXJDb25zdW1lclRlc3QjdGVzdEVuZFR4bg",
+      "description" : "Modify body of AuthenticatedTransactionProducerConsumerTest#testEndTxn: +pulsarClientOther.getTransactionCoordinatorClient, -getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnRPdGhlci5nZXRUcmFuc2FjdGlvbkNvb3JkaW5hdG9yQ2xpZW50LCAtZ2V0VGNDbGllbnQKQXV0aGVudGljYXRlZFRyYW5zYWN0aW9uUHJvZHVjZXJDb25zdW1lclRlc3QjdGVzdEFkZFBhcnRpdGlvblRvVHhu",
+      "description" : "Modify body of AuthenticatedTransactionProducerConsumerTest#testAddPartitionToTxn: +pulsarClientOther.getTransactionCoordinatorClient, -getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnRPdGhlci5nZXRUcmFuc2FjdGlvbkNvb3JkaW5hdG9yQ2xpZW50LCAtZ2V0VGNDbGllbnQKQXV0aGVudGljYXRlZFRyYW5zYWN0aW9uUHJvZHVjZXJDb25zdW1lclRlc3QjdGVzdEFkZFN1YnNjcmlwdGlvblRvVHhu",
+      "description" : "Modify body of AuthenticatedTransactionProducerConsumerTest#testAddSubscriptionToTxn: +pulsarClientOther.getTransactionCoordinatorClient, -getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TransactionBufferCloseTest",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQnVmZmVyQ2xvc2VUZXN0I3NldHVw",
+      "description" : "Modify body of TransactionBufferCloseTest#setup: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TransactionStablePositionTest",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uU3RhYmxlUG9zaXRpb25UZXN0I3NldHVw",
+      "description" : "Modify body of TransactionStablePositionTest#setup: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TransactionClientConnectTest",
+    "entries" : [ {
+      "id" : 7,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFRyYW5zYWN0aW9uQWRkU3Vic2NyaXB0aW9uVG9UeG5Bc3luY1JlY29ubmVjdA",
+      "description" : "Modify body of TransactionClientConnectTest#testTransactionAddSubscriptionToTxnAsyncReconnect: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 8,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFRyYW5zYWN0aW9uQWJvcnRUb1R4bkFzeW5jUmVjb25uZWN0",
+      "description" : "Modify body of TransactionClientConnectTest#testTransactionAbortToTxnAsyncReconnect: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 9,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFRyYW5zYWN0aW9uQ29tbWl0VG9UeG5Bc3luY1JlY29ubmVjdA",
+      "description" : "Modify body of TransactionClientConnectTest#testTransactionCommitToTxnAsyncReconnect: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 10,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFRyYW5zYWN0aW9uQWRkUHVibGlzaFBhcnRpdGlvblRvVHhuUmVjb25uZWN0",
+      "description" : "Modify body of TransactionClientConnectTest#testTransactionAddPublishPartitionToTxnReconnect: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 11,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdFB1bHNhckNsaWVudENsb3NlVGhlbkNsb3NlVGNDbGllbnQ",
+      "description" : "Modify body of TransactionClientConnectTest#testPulsarClientCloseThenCloseTcClient: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 12,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitwdWxzYXJDbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRyYW5zYWN0aW9uQ2xpZW50Q29ubmVjdFRlc3QjdGVzdEhhbmRsZXJTdGF0ZUNoYW5nZVRvUmVhZHk",
+      "description" : "Modify body of TransactionClientConnectTest#testHandlerStateChangeToReady: +pulsarClient.getTransactionCoordinatorClient, -getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TransactionEndToEndTest",
+    "entries" : [ {
+      "id" : 13,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZWNvdmVyUHVsc2FyQ2xpZW50LmdldFRyYW5zYWN0aW9uQ29vcmRpbmF0b3JDbGllbnQsIC1yZWNvdmVyUHVsc2FyQ2xpZW50LmdldFRjQ2xpZW50ClRyYW5zYWN0aW9uRW5kVG9FbmRUZXN0I3R4bk1ldGFkYXRhSGFuZGxlclJlY292ZXJUZXN0",
+      "description" : "Modify body of TransactionEndToEndTest#txnMetadataHandlerRecoverTest: +recoverPulsarClient.getTransactionCoordinatorClient, -recoverPulsarClient.getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TcMetadataDiscoveryTest",
+    "entries" : [ {
+      "id" : 14,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWdldFRjQ2xpZW50ClRjTWV0YWRhdGFEaXNjb3ZlcnlUZXN0I3Y0U2RrVHJhbnNhY3Rpb25TdGlsbFVzZXNMZWdhY3lDb29yZGluYXRvcg",
+      "description" : "Modify body of TcMetadataDiscoveryTest#v4SdkTransactionStillUsesLegacyCoordinator: +client.getTransactionCoordinatorClient, -getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TransactionImpl",
+    "entries" : [ {
+      "id" : 15,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGllbnQuZ2V0VHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudCwgLWNsaWVudC5nZXRUY0NsaWVudApUcmFuc2FjdGlvbkltcGwjPGluaXQ-",
+      "description" : "Modify body of TransactionImpl#<init>: +client.getTransactionCoordinatorClient, -client.getTcClient",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 16,
+      "changeKey" : "Q0hBTkdFX0ZJRUxEX1RZUEUKVHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudEltcGwgLT4gVHJhbnNhY3Rpb25Db29yZGluYXRvckNsaWVudApUcmFuc2FjdGlvbkltcGwjdGNDbGllbnQ",
+      "description" : "Change type of field TransactionImpl#tcClient: TransactionCoordinatorClientImpl -> TransactionCoordinatorClient",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_FIELD_TYPE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

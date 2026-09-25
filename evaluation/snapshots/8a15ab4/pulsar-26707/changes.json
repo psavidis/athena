@@ -1,0 +1,21 @@
+[ {
+  "changeKey" : "QUREX1NZTUJPTApFbnRyeUltcGxUZXN0I3Rlc3RSZWN5Y2xlZE9iamVjdERvZXNOb3RJbmhlcml0UG9pc29uZWRQb3NpdGlvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add EntryImplTest#testRecycledObjectDoesNotInheritPoisonedPosition",
+  "files" : [ "managed-ledger/src/test/java/org/apache/bookkeeper/mledger/impl/EntryImplTest.java" ],
+  "symbols" : [ "EntryImplTest#testRecycledObjectDoesNotInheritPoisonedPosition" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkVudHJ5SW1wbCNjcmVhdGUKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of EntryImpl#create: other statements changed",
+  "files" : [ "managed-ledger/src/main/java/org/apache/bookkeeper/mledger/impl/EntryImpl.java" ],
+  "symbols" : [ "EntryImpl#create", "other statements changed" ],
+  "occurrences" : 3,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

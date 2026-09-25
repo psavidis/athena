@@ -1,0 +1,140 @@
+{
+  "config" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Remove",
+      "conceptDescription" : "An existing symbol was deleted with no successor.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-private RequestMatcher getFaviconRequestMatcher() {\n-\t\treturn getRequestMatcherBuilder().matcher(\"/favicon.*\");\n-\t}\n+" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private RequestMatcher getIgnoredBackgroundRequestMatcher() {\n+\t\tList<RequestMatcher> matchers = new ArrayList<>();\n+\t\tfor (String pattern : IGNORED_BACKGROUND_REQUEST_PATTERNS) {\n+\t\t\tmatchers.add(getRequestMatcherBuilder().matcher(pattern));\n+\t\t}\n+\t\treturn new OrRequestMatcher(matchers);\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @SuppressWarnings(\"unchecked\")\n \tprivate RequestMatcher createDefaultSavedRequestMatcher(H http) {\n-\t\tRequestMatcher notFavIcon = new NegatedRequestMatcher(getFaviconRequestMatcher());\n+\t\tRequestMatcher notIgnoredBackgroundRequest = new NegatedRequestMatcher(getIgnoredBackgroundRequestMatcher());\n \t\tRequestMatcher notXRequestedWith = new NegatedRequestMatcher(\n \t\t\t\tnew RequestHeaderRequestMatcher(\"X-Requested-With\", \"XMLHttpRequest\"));\n \t\tRequestMatcher notWebSocket = new NegatedRequestMatcher(\n \t\t\t\tnew RequestHeaderRequestMatcher(\"Upgrade\", \"websocket\"));\n \n \t\tboolean isCsrfEnabled = http.getConfigurer(CsrfConfigurer.class) != null;\n \t\tList<RequestMatcher> matchers = new ArrayList<>();\n \t\tif (isCsrfEnabled) {\n \t\t\tRequestMatcher getRequests = getRequestMatcherBuilder().matcher(HttpMethod.GET, \"/**\");\n \t\t\tmatchers.add(0, getRequests);\n \t\t}\n-\t\tmatchers.add(notFavIcon);\n+\t\tmatchers.add(notIgnoredBackgroundRequest);\n \t\tmatchers.add(notMatchingMediaType(http, MediaType.APPLICATION_JSON));\n \t\tmatchers.add(notXRequestedWith);\n \t\tmatchers.add(notMatchingMediaType(http, MediaType.MULTIPART_FORM_DATA));\n \t\tmatchers.add(notMatchingMediaType(http, MediaType.TEXT_EVENT_STREAM));\n \t\tmatchers.add(notWebSocket);\n \t\treturn new AndRequestMatcher(matchers);\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private static final String[] IGNORED_BACKGROUND_REQUEST_PATTERNS = { \"/favicon.*\",\n+\t\t\t// Safari/WebKit request apple-touch-icon.png,\n+\t\t\t// apple-touch-icon-precomposed.png,\n+\t\t\t// and sized variants (e.g. apple-touch-icon-152x152.png) even without a\n+\t\t\t// matching <link> tag in the page\n+\t\t\t\"/apple-touch-icon*.png\",\n+\t\t\t// Chromium browsers fetch the web app manifest in the background to\n+\t\t\t// evaluate PWA installability\n+\t\t\t\"/manifest.json\", \"/manifest.webmanifest\",\n+\t\t\t// Legacy IE11/Edge fetch browserconfig.xml in the background to\n+\t\t\t// configure pinned-site tiles\n+\t\t\t\"/browserconfig.xml\",\n+\t\t\t// Chrome DevTools itself (not the page, not the user) requests this to\n+\t\t\t// discover an Automatic Workspace Folder mapping for local source editing\n+\t\t\t\"/.well-known/appspecific/com.chrome.devtools.json\" };" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in RequestCacheConfigurerTests",
+      "conceptDescription" : "7 changes in test code of RequestCacheConfigurerTests.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Test\n+\tpublic void getWhenBookmarkedUrlIsAppleTouchIconThenPostAuthenticationRedirectsToRoot() throws Exception {\n+\t\tthis.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();\n+\t\t// @formatter:off\n+\t\tMockHttpSession session = (MockHttpSession) this.mvc.perform(get(\"/apple-touch-icon.png\"))\n+\t\t\t\t.andExpect(redirectedUrl(\"/login\"))\n+\t\t\t\t.andReturn()\n+\t\t\t\t.getRequest()\n+\t\t\t\t.getSession();\n+\t\t// @formatter:on\n+\t\t// ignores apple-touch-icon.png\n+\t\tthis.mvc.perform(formLogin(session)).andExpect(redirectedUrl(\"/\"));\n+\t}", "-\n+@Test\n+\tpublic void getWhenBookmarkedUrlIsAppleTouchIconPrecomposedThenPostAuthenticationRedirectsToRoot()\n+\t\t\tthrows Exception {\n+\t\tthis.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();\n+\t\t// @formatter:off\n+\t\tMockHttpSession session = (MockHttpSession) this.mvc.perform(get(\"/apple-touch-icon-precomposed.png\"))\n+\t\t\t\t.andExpect(redirectedUrl(\"/login\"))\n+\t\t\t\t.andReturn()\n+\t\t\t\t.getRequest()\n+\t\t\t\t.getSession();\n+\t\t// @formatter:on\n+\t\t// ignores apple-touch-icon-precomposed.png\n+\t\tthis.mvc.perform(formLogin(session)).andExpect(redirectedUrl(\"/\"));\n+\t}", "-\n+@Test\n+\tpublic void getWhenBookmarkedUrlIsAppleTouchIconSizedPrecomposedThenPostAuthenticationRedirectsToRoot()\n+\t\t\tthrows Exception {\n+\t\tthis.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();\n+\t\t// @formatter:off\n+\t\tMockHttpSession session = (MockHttpSession) this.mvc.perform(get(\"/apple-touch-icon-152x152-precomposed.png\"))\n+\t\t\t\t.andExpect(redirectedUrl(\"/login\"))\n+\t\t\t\t.andReturn()\n+\t\t\t\t.getRequest()\n+\t\t\t\t.getSession();\n+\t\t// @formatter:on\n+\t\t// ignores apple-touch-icon-152x152-precomposed.png\n+\t\tthis.mvc.perform(formLogin(session)).andExpect(redirectedUrl(\"/\"));\n+\t}", "-\n+@Test\n+\tpublic void getWhenBookmarkedUrlIsManifestJsonThenPostAuthenticationRedirectsToRoot() throws Exception {\n+\t\tthis.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();\n+\t\t// @formatter:off\n+\t\tMockHttpSession session = (MockHttpSession) this.mvc.perform(get(\"/manifest.json\"))\n+\t\t\t\t.andExpect(redirectedUrl(\"/login\"))\n+\t\t\t\t.andReturn()\n+\t\t\t\t.getRequest()\n+\t\t\t\t.getSession();\n+\t\t// @formatter:on\n+\t\t// ignores manifest.json\n+\t\tthis.mvc.perform(formLogin(session)).andExpect(redirectedUrl(\"/\"));\n+\t}", "-\n+@Test\n+\tpublic void getWhenBookmarkedUrlIsManifestWebmanifestThenPostAuthenticationRedirectsToRoot() throws Exception {\n+\t\tthis.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();\n+\t\t// @formatter:off\n+\t\tMockHttpSession session = (MockHttpSession) this.mvc.perform(get(\"/manifest.webmanifest\"))\n+\t\t\t\t.andExpect(redirectedUrl(\"/login\"))\n+\t\t\t\t.andReturn()\n+\t\t\t\t.getRequest()\n+\t\t\t\t.getSession();\n+\t\t// @formatter:on\n+\t\t// ignores manifest.webmanifest\n+\t\tthis.mvc.perform(formLogin(session)).andExpect(redirectedUrl(\"/\"));\n+\t}", "-\n+@Test\n+\tpublic void getWhenBookmarkedUrlIsBrowserConfigXmlThenPostAuthenticationRedirectsToRoot() throws Exception {\n+\t\tthis.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();\n+\t\t// @formatter:off\n+\t\tMockHttpSession session = (MockHttpSession) this.mvc.perform(get(\"/browserconfig.xml\"))\n+\t\t\t\t.andExpect(redirectedUrl(\"/login\"))\n+\t\t\t\t.andReturn()\n+\t\t\t\t.getRequest()\n+\t\t\t\t.getSession();\n+\t\t// @formatter:on\n+\t\t// ignores browserconfig.xml\n+\t\tthis.mvc.perform(formLogin(session)).andExpect(redirectedUrl(\"/\"));\n+\t}", "-\n+@Test\n+\tpublic void getWhenBookmarkedUrlIsChromeDevtoolsJsonThenPostAuthenticationRedirectsToRoot() throws Exception {\n+\t\tthis.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();\n+\t\t// @formatter:off\n+\t\tMockHttpSession session = (MockHttpSession) this.mvc.perform(get(\"/.well-known/appspecific/com.chrome.devtools.json\"))\n+\t\t\t\t.andExpect(redirectedUrl(\"/login\"))\n+\t\t\t\t.andReturn()\n+\t\t\t\t.getRequest()\n+\t\t\t\t.getSession();\n+\t\t// @formatter:on\n+\t\t// ignores /.well-known/appspecific/com.chrome.devtools.json\n+\t\tthis.mvc.perform(formLogin(session)).andExpect(redirectedUrl(\"/\"));\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "config/src/test/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurerTests.java" ],
+      "groupedMoveCount" : 7
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Remove Capability",
+      "conceptDescription" : "An existing business-meaningful capability was removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-private RequestMatcher getFaviconRequestMatcher() {\n-\t\treturn getRequestMatcherBuilder().matcher(\"/favicon.*\");\n-\t}\n+" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+private RequestMatcher getIgnoredBackgroundRequestMatcher() {\n+\t\tList<RequestMatcher> matchers = new ArrayList<>();\n+\t\tfor (String pattern : IGNORED_BACKGROUND_REQUEST_PATTERNS) {\n+\t\t\tmatchers.add(getRequestMatcherBuilder().matcher(pattern));\n+\t\t}\n+\t\treturn new OrRequestMatcher(matchers);\n+\t}", "-\n+private static final String[] IGNORED_BACKGROUND_REQUEST_PATTERNS = { \"/favicon.*\",\n+\t\t\t// Safari/WebKit request apple-touch-icon.png,\n+\t\t\t// apple-touch-icon-precomposed.png,\n+\t\t\t// and sized variants (e.g. apple-touch-icon-152x152.png) even without a\n+\t\t\t// matching <link> tag in the page\n+\t\t\t\"/apple-touch-icon*.png\",\n+\t\t\t// Chromium browsers fetch the web app manifest in the background to\n+\t\t\t// evaluate PWA installability\n+\t\t\t\"/manifest.json\", \"/manifest.webmanifest\",\n+\t\t\t// Legacy IE11/Edge fetch browserconfig.xml in the background to\n+\t\t\t// configure pinned-site tiles\n+\t\t\t\"/browserconfig.xml\",\n+\t\t\t// Chrome DevTools itself (not the page, not the user) requests this to\n+\t\t\t// discover an Automatic Workspace Folder mapping for local source editing\n+\t\t\t\"/.well-known/appspecific/com.chrome.devtools.json\" };" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java" ],
+      "groupedMoveCount" : 2
+    } ]
+  },
+  "web" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body createDefaultRequestMatcher in 2 classes",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains. Same change in: CookieServerRequestCache, WebSessionServerRequestCache.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private static ServerWebExchangeMatcher createDefaultRequestMatcher() {\n \t\tServerWebExchangeMatcher get = ServerWebExchangeMatchers.pathMatchers(HttpMethod.GET, \"/**\");\n-\t\tServerWebExchangeMatcher notFavicon = new NegatedServerWebExchangeMatcher(\n-\t\t\t\tServerWebExchangeMatchers.pathMatchers(\"/favicon.*\"));\n+\t\tServerWebExchangeMatcher notIgnoredBackgroundRequest = new NegatedServerWebExchangeMatcher(\n+\t\t\t\tServerWebExchangeMatchers.pathMatchers(IGNORED_BACKGROUND_REQUEST_PATTERNS));\n \t\tMediaTypeServerWebExchangeMatcher html = new MediaTypeServerWebExchangeMatcher(MediaType.TEXT_HTML);\n \t\thtml.setIgnoredMediaTypes(Collections.singleton(MediaType.ALL));\n-\t\treturn new AndServerWebExchangeMatcher(get, notFavicon, html);\n+\t\treturn new AndServerWebExchangeMatcher(get, notIgnoredBackgroundRequest, html);\n \t}", " private static ServerWebExchangeMatcher createDefaultRequestMatcher() {\n \t\tServerWebExchangeMatcher get = ServerWebExchangeMatchers.pathMatchers(HttpMethod.GET, \"/**\");\n-\t\tServerWebExchangeMatcher notFavicon = new NegatedServerWebExchangeMatcher(\n-\t\t\t\tServerWebExchangeMatchers.pathMatchers(\"/favicon.*\"));\n+\t\tServerWebExchangeMatcher notIgnoredBackgroundRequest = new NegatedServerWebExchangeMatcher(\n+\t\t\t\tServerWebExchangeMatchers.pathMatchers(IGNORED_BACKGROUND_REQUEST_PATTERNS));\n \t\tMediaTypeServerWebExchangeMatcher html = new MediaTypeServerWebExchangeMatcher(MediaType.TEXT_HTML);\n \t\thtml.setIgnoredMediaTypes(Collections.singleton(MediaType.ALL));\n-\t\treturn new AndServerWebExchangeMatcher(get, notFavicon, html);\n+\t\treturn new AndServerWebExchangeMatcher(get, notIgnoredBackgroundRequest, html);\n \t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "web/src/main/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCache.java", "web/src/main/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCache.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add IGNORED_BACKGROUND_REQUEST_PATTERNS in 2 classes",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart. Same change in: CookieServerRequestCache, WebSessionServerRequestCache.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private static final String[] IGNORED_BACKGROUND_REQUEST_PATTERNS = { \"/favicon.*\",\n+\t\t\t// Safari/WebKit request apple-touch-icon.png,\n+\t\t\t// apple-touch-icon-precomposed.png,\n+\t\t\t// and sized variants (e.g. apple-touch-icon-152x152.png) even without a\n+\t\t\t// matching <link> tag in the page\n+\t\t\t\"/apple-touch-icon*.png\",\n+\t\t\t// Chromium browsers fetch the web app manifest in the background to\n+\t\t\t// evaluate PWA installability\n+\t\t\t\"/manifest.json\", \"/manifest.webmanifest\",\n+\t\t\t// Legacy IE11/Edge fetch browserconfig.xml in the background to\n+\t\t\t// configure pinned-site tiles\n+\t\t\t\"/browserconfig.xml\",\n+\t\t\t// Chrome DevTools itself (not the page, not the user) requests this to\n+\t\t\t// discover an Automatic Workspace Folder mapping for local source editing\n+\t\t\t\"/.well-known/appspecific/com.chrome.devtools.json\" };", "-\n+private static final String[] IGNORED_BACKGROUND_REQUEST_PATTERNS = { \"/favicon.*\",\n+\t\t\t// Safari/WebKit request apple-touch-icon.png,\n+\t\t\t// apple-touch-icon-precomposed.png,\n+\t\t\t// and sized variants (e.g. apple-touch-icon-152x152.png) even without a\n+\t\t\t// matching <link> tag in the page\n+\t\t\t\"/apple-touch-icon*.png\",\n+\t\t\t// Chromium browsers fetch the web app manifest in the background to\n+\t\t\t// evaluate PWA installability\n+\t\t\t\"/manifest.json\", \"/manifest.webmanifest\",\n+\t\t\t// Legacy IE11/Edge fetch browserconfig.xml in the background to\n+\t\t\t// configure pinned-site tiles\n+\t\t\t\"/browserconfig.xml\",\n+\t\t\t// Chrome DevTools itself (not the page, not the user) requests this to\n+\t\t\t// discover an Automatic Workspace Folder mapping for local source editing\n+\t\t\t\"/.well-known/appspecific/com.chrome.devtools.json\" };" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "web/src/main/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCache.java", "web/src/main/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCache.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in CookieServerRequestCacheTests",
+      "conceptDescription" : "7 changes in test code of CookieServerRequestCacheTests.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Test\n+\tpublic void saveRequestWhenGetRequestAppleTouchIconThenNoCookie() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/apple-touch-icon.png\").accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tMultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();\n+\t\tassertThat(cookies).isEmpty();\n+\t}", "-\n+@Test\n+\tpublic void saveRequestWhenGetRequestAppleTouchIconPrecomposedThenNoCookie() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/apple-touch-icon-precomposed.png\").accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tMultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();\n+\t\tassertThat(cookies).isEmpty();\n+\t}", "-\n+@Test\n+\tpublic void saveRequestWhenGetRequestAppleTouchIconSizedPrecomposedThenNoCookie() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/apple-touch-icon-152x152-precomposed.png\").accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tMultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();\n+\t\tassertThat(cookies).isEmpty();\n+\t}", "-\n+@Test\n+\tpublic void saveRequestWhenGetRequestManifestJsonThenNoCookie() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/manifest.json\").accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tMultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();\n+\t\tassertThat(cookies).isEmpty();\n+\t}", "-\n+@Test\n+\tpublic void saveRequestWhenGetRequestManifestWebmanifestThenNoCookie() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/manifest.webmanifest\").accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tMultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();\n+\t\tassertThat(cookies).isEmpty();\n+\t}", "-\n+@Test\n+\tpublic void saveRequestWhenGetRequestBrowserConfigXmlThenNoCookie() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/browserconfig.xml\").accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tMultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();\n+\t\tassertThat(cookies).isEmpty();\n+\t}", "-\n+@Test\n+\tpublic void saveRequestWhenGetRequestChromeDevtoolsJsonThenNoCookie() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/.well-known/appspecific/com.chrome.devtools.json\")\n+\t\t\t\t.accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tMultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();\n+\t\tassertThat(cookies).isEmpty();\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCacheTests.java" ],
+      "groupedMoveCount" : 7
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in WebSessionServerRequestCacheTests",
+      "conceptDescription" : "7 changes in test code of WebSessionServerRequestCacheTests.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Test\n+\tpublic void saveRequestGetRequestWhenAppleTouchIconThenNotFound() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/apple-touch-icon.png\").accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tURI saved = this.cache.getRedirectUri(exchange).block();\n+\t\tassertThat(saved).isNull();\n+\t}", "-\n+@Test\n+\tpublic void saveRequestGetRequestWhenAppleTouchIconPrecomposedThenNotFound() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/apple-touch-icon-precomposed.png\").accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tURI saved = this.cache.getRedirectUri(exchange).block();\n+\t\tassertThat(saved).isNull();\n+\t}", "-\n+@Test\n+\tpublic void saveRequestGetRequestWhenAppleTouchIconSizedPrecomposedThenNotFound() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/apple-touch-icon-152x152-precomposed.png\").accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tURI saved = this.cache.getRedirectUri(exchange).block();\n+\t\tassertThat(saved).isNull();\n+\t}", "-\n+@Test\n+\tpublic void saveRequestGetRequestWhenManifestJsonThenNotFound() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/manifest.json\").accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tURI saved = this.cache.getRedirectUri(exchange).block();\n+\t\tassertThat(saved).isNull();\n+\t}", "-\n+@Test\n+\tpublic void saveRequestGetRequestWhenManifestWebmanifestThenNotFound() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/manifest.webmanifest\").accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tURI saved = this.cache.getRedirectUri(exchange).block();\n+\t\tassertThat(saved).isNull();\n+\t}", "-\n+@Test\n+\tpublic void saveRequestGetRequestWhenBrowserConfigXmlThenNotFound() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/browserconfig.xml\").accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tURI saved = this.cache.getRedirectUri(exchange).block();\n+\t\tassertThat(saved).isNull();\n+\t}", "-\n+@Test\n+\tpublic void saveRequestGetRequestWhenChromeDevtoolsJsonThenNotFound() {\n+\t\tMockServerWebExchange exchange = MockServerWebExchange\n+\t\t\t.from(MockServerHttpRequest.get(\"/.well-known/appspecific/com.chrome.devtools.json\")\n+\t\t\t\t.accept(MediaType.TEXT_HTML));\n+\t\tthis.cache.saveRequest(exchange).block();\n+\t\tURI saved = this.cache.getRedirectUri(exchange).block();\n+\t\tassertThat(saved).isNull();\n+\t}" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "web/src/test/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCacheTests.java" ],
+      "groupedMoveCount" : 7
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+private static final String[] IGNORED_BACKGROUND_REQUEST_PATTERNS = { \"/favicon.*\",\n+\t\t\t// Safari/WebKit request apple-touch-icon.png,\n+\t\t\t// apple-touch-icon-precomposed.png,\n+\t\t\t// and sized variants (e.g. apple-touch-icon-152x152.png) even without a\n+\t\t\t// matching <link> tag in the page\n+\t\t\t\"/apple-touch-icon*.png\",\n+\t\t\t// Chromium browsers fetch the web app manifest in the background to\n+\t\t\t// evaluate PWA installability\n+\t\t\t\"/manifest.json\", \"/manifest.webmanifest\",\n+\t\t\t// Legacy IE11/Edge fetch browserconfig.xml in the background to\n+\t\t\t// configure pinned-site tiles\n+\t\t\t\"/browserconfig.xml\",\n+\t\t\t// Chrome DevTools itself (not the page, not the user) requests this to\n+\t\t\t// discover an Automatic Workspace Folder mapping for local source editing\n+\t\t\t\"/.well-known/appspecific/com.chrome.devtools.json\" };", "-\n+private static final String[] IGNORED_BACKGROUND_REQUEST_PATTERNS = { \"/favicon.*\",\n+\t\t\t// Safari/WebKit request apple-touch-icon.png,\n+\t\t\t// apple-touch-icon-precomposed.png,\n+\t\t\t// and sized variants (e.g. apple-touch-icon-152x152.png) even without a\n+\t\t\t// matching <link> tag in the page\n+\t\t\t\"/apple-touch-icon*.png\",\n+\t\t\t// Chromium browsers fetch the web app manifest in the background to\n+\t\t\t// evaluate PWA installability\n+\t\t\t\"/manifest.json\", \"/manifest.webmanifest\",\n+\t\t\t// Legacy IE11/Edge fetch browserconfig.xml in the background to\n+\t\t\t// configure pinned-site tiles\n+\t\t\t\"/browserconfig.xml\",\n+\t\t\t// Chrome DevTools itself (not the page, not the user) requests this to\n+\t\t\t// discover an Automatic Workspace Folder mapping for local source editing\n+\t\t\t\"/.well-known/appspecific/com.chrome.devtools.json\" };" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "web/src/main/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCache.java", "web/src/main/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCache.java" ],
+      "groupedMoveCount" : 2
+    } ]
+  }
+}

@@ -1,0 +1,54 @@
+diff --git a/redisson/src/main/java/org/redisson/RedissonRateLimiter.java b/redisson/src/main/java/org/redisson/RedissonRateLimiter.java
+index 460d8448a5d..833a5dd9ae4 100644
+--- a/redisson/src/main/java/org/redisson/RedissonRateLimiter.java
++++ b/redisson/src/main/java/org/redisson/RedissonRateLimiter.java
+@@ -590,6 +590,9 @@ public RFuture<Long> availablePermitsAsync() {
+                      + "if released > 0 then "
+                           + "redis.call('zremrangebyscore', permitsName, 0, tonumber(ARGV[1]) - interval); "
+                           + "currentValue = tonumber(currentValue) + released; "
++                          + "if currentValue > tonumber(rate) then "
++                               + "currentValue = tonumber(rate); "
++                          + "end; "
+                           + "redis.call('set', valueName, currentValue);"
+                      + "end;"
+ 
+diff --git a/redisson/src/test/java/org/redisson/RedissonRateLimiterTest.java b/redisson/src/test/java/org/redisson/RedissonRateLimiterTest.java
+index ca805c50c0f..b7b698c3d1b 100644
+--- a/redisson/src/test/java/org/redisson/RedissonRateLimiterTest.java
++++ b/redisson/src/test/java/org/redisson/RedissonRateLimiterTest.java
+@@ -600,4 +600,35 @@ public void testRelease() {
+         // release -1
+         assertThatThrownBy(() -> rateLimiter.release(-1)).isInstanceOf(IllegalArgumentException.class);
+     }
++
++    @Test
++    public void testAvailablePermitsAfterReleaseAndExpiration() throws InterruptedException {
++        RRateLimiter rateLimiter = redisson.getRateLimiter("test_available_permits_after_release");
++        rateLimiter.setRate(RateType.OVERALL, 10, Duration.ofSeconds(1));
++
++        // acquire, then hand the permit back before it expires. release() bumps the counter
++        // but leaves the acquisition in the permits sorted set.
++        rateLimiter.acquire(1);
++        rateLimiter.release(1);
++        assertThat(rateLimiter.availablePermits()).isEqualTo(10);
++
++        // once the interval elapses, the still-present sorted set entry is counted as expired
++        // and added on top of the value release() already restored.
++        Thread.sleep(1100);
++
++        assertThat(rateLimiter.availablePermits()).isEqualTo(10);
++    }
++
++    @Test
++    public void testAvailablePermitsNeverExceedsRatePerClient() throws InterruptedException {
++        RRateLimiter rateLimiter = redisson.getRateLimiter("test_available_permits_per_client");
++        rateLimiter.setRate(RateType.PER_CLIENT, 10, Duration.ofSeconds(1));
++
++        rateLimiter.acquire(3);
++        rateLimiter.release(3);
++
++        Thread.sleep(1100);
++
++        assertThat(rateLimiter.availablePermits()).isEqualTo(10);
++    }
+ }
