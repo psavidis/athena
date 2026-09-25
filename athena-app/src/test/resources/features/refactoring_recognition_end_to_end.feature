@@ -38,3 +38,12 @@ Feature: Athena recognizes simple refactorings end to end
     When the developer renames "balance" to "funds" in "Audit"
     And the reviewer opens the Change Map of the two commits
     Then the Change Map lists exactly "Rename balance -> funds"
+
+  # Ticket #385: a class rename's ripple into other classes is reference updates, not API changes.
+
+  Scenario: A class rename used by other classes reads as one rename with its references
+    When the developer renames class "Account" to "Wallet"
+    And the reviewer opens the Change Map of the two commits
+    Then the Change Map lists exactly "Rename class Account -> Wallet (references updated in 2 files)"
+    And the Explorer shows no "Change Signature" entry
+    And the Explorer shows no "Change API Responsibility" entry

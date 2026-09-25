@@ -109,6 +109,23 @@ public class RefactoringRecognitionSteps {
         rename(from, to, List.of(first, second, third));
     }
 
+    @When("the developer renames class {string} to {string}")
+    public void the_developer_renames_a_class(String from, String to) {
+        Path oldFile = repository.directory().resolve(PACKAGE_DIR + from + ".java");
+        String source = read(oldFile);
+        try {
+            Files.delete(oldFile);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+        repository.write(PACKAGE_DIR + to + ".java", source);
+        try (var files = Files.list(repository.directory().resolve(PACKAGE_DIR))) {
+            rename(from, to, files.map(file -> file.getFileName().toString().replace(".java", "")).toList());
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
     @When("the reviewer opens the Change Map of the two commits")
     public void the_reviewer_opens_the_change_map() {
         String headCommit = repository.commit("refactor");

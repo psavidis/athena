@@ -68,6 +68,18 @@ class ChangeGrouperTitleTest {
                 .isEqualTo("Rename field Account#balance -> funds (references updated in 1 file)");
     }
 
+    // Ticket #385: a class rename whose other files changed references, not just imports.
+
+    @Test
+    void aClassRenameNamesTheFilesWhoseReferencesItUpdated() {
+        DetectedTransformation rename = DetectedTransformation.of(TransformationKind.RENAME_CLASS,
+                        List.of("Account", "Wallet"), List.of("Account.java", "Wallet.java"))
+                .withContext(DetectedTransformation.REFERENCE_FOLLOW_ONS, "2");
+
+        assertThat(new ChangeGrouper().group(List.of(rename)).get(0).title())
+                .isEqualTo("Rename class Account -> Wallet (references updated in 2 files)");
+    }
+
     // Ticket #386: a local variable or parameter rename names its kind and methods.
 
     @Test
