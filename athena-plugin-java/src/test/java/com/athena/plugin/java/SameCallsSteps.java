@@ -60,6 +60,31 @@ public class SameCallsSteps {
                         + "        }\n"));
     }
 
+    @Given("a head revision where {string} on {string} also skips skipped properties with continue")
+    public void head_guard_skipping(String method, String className) {
+        write(world.headRoot(), className, serializer(className, method,
+                "        for (int i = 0; i < props.length; ++i) {\n"
+                        + "            if (props[i] instanceof Skipped) {\n                continue;\n            }\n"
+                        + "            if (props[i] != null) {\n                out.write(props[i]);\n            }\n"
+                        + "        }\n"));
+    }
+
+    @Given("a head revision where {string} on {string} writes every property without the null check")
+    public void head_without_null_check(String method, String className) {
+        write(world.headRoot(), className, serializer(className, method,
+                "        for (int i = 0; i < props.length; ++i) {\n"
+                        + "            out.write(props[i]);\n"
+                        + "        }\n"));
+    }
+
+    @Given("a head revision where {string} on {string} writes only properties that are not empty")
+    public void head_changed_condition(String method, String className) {
+        write(world.headRoot(), className, serializer(className, method,
+                "        for (int i = 0; i < props.length; ++i) {\n"
+                        + "            if (props[i] != EMPTY) {\n                out.write(props[i]);\n            }\n"
+                        + "        }\n"));
+    }
+
     @Given("a base revision where method {string} on class {string} throws {string} once")
     public void base_throws_once(String method, String className, String exception) {
         write(world.baseRoot(), className, invoker(className, method, exception, false));
@@ -81,6 +106,11 @@ public class SameCallsSteps {
     public void the_control_flow_change_ends_with(String symbol, String suffix) {
         lastSymbol = symbol;
         assertThat(controlFlowChange(symbol).involvedDescriptions().get(1)).endsWith(suffix);
+    }
+
+    @Then("the control-flow change of {string} is exactly {string}")
+    public void the_control_flow_change_is_exactly(String symbol, String description) {
+        assertThat(controlFlowChange(symbol).involvedDescriptions().get(1)).isEqualTo(description);
     }
 
     @Then("it is still categorised as Behavioral")

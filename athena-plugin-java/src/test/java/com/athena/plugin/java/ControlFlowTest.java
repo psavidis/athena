@@ -146,6 +146,37 @@ class ControlFlowTest {
                 .isEmpty();
     }
 
+    @Test
+    void aLoneAddedBranchIsNotARestructuring() {
+        assertThat(controlFlowOf("size--;").restructures(controlFlowOf("if (removed) { return; } size--;"))).isFalse();
+    }
+
+    @Test
+    void aLoneChangedConditionIsNotARestructuring() {
+        assertThat(controlFlowOf("if (a) { x(); }").restructures(controlFlowOf("if (a && b) { x(); }"))).isFalse();
+    }
+
+    @Test
+    void aLoneRemovedLoopIsNotARestructuring() {
+        assertThat(controlFlowOf("for (int i = 0; i < n; i++) { x(); }").restructures(controlFlowOf("x();"))).isFalse();
+    }
+
+    @Test
+    void severalKindsOfChangeTogetherAreARestructuring() {
+        assertThat(controlFlowOf("if (a) { x(); }").restructures(controlFlowOf("if (b) { x(); } if (c) { x(); }"))).isTrue();
+    }
+
+    @Test
+    void anIfChainRewrittenAsASwitchIsARestructuring() {
+        assertThat(controlFlowOf("if (s == A) { x(); } else if (s == B) { y(); } else { z(); }")
+                .restructures(controlFlowOf("switch (s) { case A: x(); break; case B: y(); break; default: z(); }"))).isTrue();
+    }
+
+    @Test
+    void identicalBodiesAreNotARestructuring() {
+        assertThat(controlFlowOf("if (a) { x(); }").restructures(controlFlowOf("if (a) { x(); }"))).isFalse();
+    }
+
     private static ControlFlow controlFlowOf(String statements) {
         MethodDeclaration method = new JavaParser(JavaParserConfigurations.currentJava())
                 .parseMethodDeclaration("void m() { " + statements + " }").getResult().orElseThrow();
