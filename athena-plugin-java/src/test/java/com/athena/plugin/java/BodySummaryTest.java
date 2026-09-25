@@ -38,8 +38,49 @@ class BodySummaryTest {
     }
 
     @Test
-    void callsAreNamedBySimpleName() {
-        assertThat(describe("return t;", "session.getContext().trigger(t); return t;")).isEqualTo("+getContext, +trigger");
+    void aCallOnAMethodResultIsNamedBySimpleName() {
+        assertThat(describe("return t;", "getContext().trigger(t); return t;")).isEqualTo("+getContext, +trigger");
+    }
+
+    // Ticket #360: a call on a plain name or a field of this class is named with its receiver.
+
+    @Test
+    void aCallOnAPlainNameIsNamedWithIt() {
+        assertThat(describe("return t;", "consumedOffsets.clear(); return t;")).isEqualTo("+consumedOffsets.clear");
+    }
+
+    @Test
+    void aCallOnAFieldOfThisIsNamedWithTheField() {
+        assertThat(describe("return t;", "this.cache.invalidate(); return t;")).isEqualTo("+cache.invalidate");
+    }
+
+    @Test
+    void aChainIsNamedWithItsFirstReceiverOnly() {
+        assertThat(describe("return t;", "session.getContext().trigger(t); return t;"))
+                .isEqualTo("+session.getContext, +trigger");
+    }
+
+    @Test
+    void callsOnSuperATypeOrAQualifiedNameKeepTheSimpleName() {
+        assertThat(describe("return t;", "super.start(); Objects.hash(t); java.util.Objects.requireNonNull(t); return t;"))
+                .isEqualTo("+start, +hash, +requireNonNull");
+    }
+
+    @Test
+    void theSameMethodOnTwoReceiversIsTwoItems() {
+        assertThat(describe("return t;", "in.clear(); out.clear(); return t;")).isEqualTo("+in.clear, +out.clear");
+    }
+
+    @Test
+    void aCallMovedToAnotherReceiverIsAddedAndRemoved() {
+        assertThat(describe("a.clear(); return t;", "b.clear(); return t;")).isEqualTo("+b.clear, -a.clear");
+    }
+
+    @Test
+    void theSameMethodsOnAnotherReceiverAreStillTheSameCalls() {
+        assertThat(summaryOf("for (String p : ps) { out.write(p); } return t;")
+                .makesSameCallsAs(summaryOf("Writer w = out; int i = 0; while (i < 2) { w.write(ps[i]); i++; } return t;")))
+                .isTrue();
     }
 
     @Test
