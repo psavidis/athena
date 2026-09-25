@@ -168,6 +168,39 @@ class ModuleTopologyBuilderTest {
         assertThat(topology.dependencies()).containsExactly(new ModuleDependency("streams", "clients"));
     }
 
+    // ---- Project names from build-file names (ticket #377) ----
+
+    @Test
+    void resolvesAProjectNameToTheModuleWhoseBuildFileCarriesIt(@TempDir Path base, @TempDir Path head) throws IOException {
+        write(head, "web/spring-security-web.gradle", "");
+        write(head, "config/spring-security-config.gradle", "dependencies { api project(':spring-security-web') }\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "config/src/main/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).containsExactly(new ModuleDependency("config", "web"));
+    }
+
+    @Test
+    void aDirectoryMatchTakesPrecedenceOverABuildFileName(@TempDir Path base, @TempDir Path head) throws IOException {
+        write(head, "web/spring-security-web.gradle", "");
+        write(head, "spring-security-web/build.gradle", "");
+        write(head, "config/spring-security-config.gradle", "dependencies { api project(':spring-security-web') }\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "config/src/main/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).containsExactly(new ModuleDependency("config", "spring-security-web"));
+    }
+
+    @Test
+    void aProjectNameMatchingNoModuleDrawsNoRail(@TempDir Path base, @TempDir Path head) throws IOException {
+        write(head, "web/spring-security-web.gradle", "");
+        write(head, "config/spring-security-config.gradle", "dependencies { api project(':spring-security-ldap') }\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "config/src/main/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).isEmpty();
+    }
+
     private static void writeKafka(Path head, String rootBuildFile) throws IOException {
         write(head, "settings.gradle", KAFKA_SETTINGS);
         write(head, "build.gradle", rootBuildFile);

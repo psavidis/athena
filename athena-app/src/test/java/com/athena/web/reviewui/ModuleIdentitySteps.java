@@ -267,6 +267,18 @@ public class ModuleIdentitySteps {
         changeClasses(List.of(sourceRoot + "/com/acme/FirstService.java"));
     }
 
+    // --- Ticket #377: rails to modules by their build-file project name ---
+
+    @Given("the user has created a standalone Diff changing a class in module {string} whose only build file {string} depends on project {string}, next to module {string} built by {string}")
+    public void a_diff_depending_on_a_project_named_after_a_build_file(String module, String buildFile, String project,
+                                                                       String other, String otherBuildFile) {
+        repository = GitRepositoryFixture.create();
+        repository.write("settings.gradle", "rootProject.name = 'spring-security'\n");
+        repository.write(module + "/" + buildFile, "dependencies {\n    api project('" + project + "')\n}\n");
+        repository.write(other + "/" + otherBuildFile, "plugins { id 'java' }\n");
+        changeClasses(List.of(module + "/src/main/java/com/acme/FirstService.java"));
+    }
+
     @Then("no dependency rail is drawn")
     public void no_dependency_rail_is_drawn() {
         assertThat(topology.dependencies()).isEmpty();
