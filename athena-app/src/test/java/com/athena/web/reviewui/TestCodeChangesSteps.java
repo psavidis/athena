@@ -444,4 +444,35 @@ public class TestCodeChangesSteps {
         methodsByClass.keySet().forEach(path -> repository.write(path + ".java", classDeclaring(className(path + ".java"), List.of())));
         select(base, repository.commit("head"));
     }
+
+    // --- Ticket #374: folding never lengthens the Explorer ---
+
+    @Given("the reviewer has selected a PR where test {string} was added to test classes {string} and {string}, each also gaining a test of its own")
+    public void a_pr_where_a_test_was_added_to_two_classes_that_each_change_otherwise(String test, String first,
+                                                                                    String second) throws IOException {
+        Map<String, List<String>> added = new LinkedHashMap<>();
+        added.put(TEST + first, List.of(test, "ownOf" + first));
+        added.put(TEST + second, List.of(test, "ownOf" + second));
+        addTo(added);
+    }
+
+    @Given("the reviewer has selected a PR where test {string} was added to test classes {string} and {string}, and {string} also gains a test of its own")
+    public void a_pr_where_a_test_was_added_to_two_classes_one_changing_otherwise(String test, String first,
+                                                                                String second, String other)
+            throws IOException {
+        Map<String, List<String>> added = new LinkedHashMap<>();
+        for (String className : List.of(first, second)) {
+            added.put(TEST + className, className.equals(other) ? List.of(test, "ownOf" + className) : List.of(test));
+        }
+        addTo(added);
+    }
+
+    /** Commits each class (a path prefix plus the class name) empty, then declaring its methods. */
+    private void addTo(Map<String, List<String>> methodsByClass) throws IOException {
+        repository = GitRepositoryFixture.create();
+        methodsByClass.keySet().forEach(path -> repository.write(path + ".java", classDeclaring(className(path + ".java"), List.of())));
+        String base = repository.commit("base");
+        methodsByClass.forEach((path, methods) -> repository.write(path + ".java", classDeclaring(className(path + ".java"), methods)));
+        select(base, repository.commit("head"));
+    }
 }

@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class TestChangeGrouperTest {
 
     private static final String TEST_FILE = "core/src/test/java/GreeterTest.java";
+    private static final String PARSER_FILE = "core/src/test/java/ParserTest.java";
 
     private final StructuralTaxonomyClassifier structural =
             new StructuralTaxonomyClassifier(new TaxonomyLoader().load(SemanticDimension.STRUCTURAL));
@@ -90,6 +91,41 @@ class TestChangeGrouperTest {
 
         assertThat(grouper.group(List.of(unclassified), List.of())).singleElement()
                 .satisfies(group -> assertThat(group.changeCount()).isEqualTo(1));
+    }
+
+    // Ticket #374: only folds that take over a whole test class are kept.
+
+    @Test
+    void keepsAFoldThatTakesOverEveryChangeOfATestClass() {
+        SemanticProfile first = profileOf("GreeterTest#testRejoin", TEST_FILE);
+        SemanticProfile second = profileOf("ParserTest#testRejoin", PARSER_FILE);
+        SemanticProfile leftover = profileOf("ParserTest#ownTest", PARSER_FILE);
+        List<SemanticProfile> profiles = List.of(first, second, leftover);
+        List<RepeatedStructuralChange> repeated = new RepeatedStructuralChangeGrouper().group(profiles);
+
+        assertThat(grouper.shortening(profiles, repeated)).isEqualTo(repeated);
+    }
+
+    @Test
+    void dropsAFoldThatLeavesEveryTestClassWithItsOwnCard() {
+        List<SemanticProfile> profiles = List.of(
+                profileOf("GreeterTest#testRejoin", TEST_FILE), profileOf("GreeterTest#ownTest", TEST_FILE),
+                profileOf("ParserTest#testRejoin", PARSER_FILE), profileOf("ParserTest#otherTest", PARSER_FILE));
+        List<RepeatedStructuralChange> repeated = new RepeatedStructuralChangeGrouper().group(profiles);
+
+        assertThat(repeated).hasSize(1);
+        assertThat(grouper.shortening(profiles, repeated)).isEmpty();
+        assertThat(grouper.group(profiles, grouper.shortening(profiles, repeated)))
+                .extracting(TestChangeGroup::changeCount).containsExactly(2, 2);
+    }
+
+    @Test
+    void countsANestedClassesChangesTowardItsTopLevelTestClass() {
+        List<SemanticProfile> profiles = List.of(
+                profileOf("GreeterTest#testRejoin", TEST_FILE), profileOf("GreeterTest.Nested#helper", TEST_FILE),
+                profileOf("ParserTest#testRejoin", PARSER_FILE), profileOf("ParserTest#otherTest", PARSER_FILE));
+
+        assertThat(grouper.shortening(profiles, new RepeatedStructuralChangeGrouper().group(profiles))).isEmpty();
     }
 
     private SemanticProfile profileOf(String symbol, String file) {
