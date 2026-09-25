@@ -1,0 +1,661 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0LlRlc3REYXRhYmFzZURpYWxlY3Q",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class ExternalDataSourcePropertiesTest.TestDatabaseDialect",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest.TestDatabaseDialect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCkRlcmJ5RGF0YWJhc2VEaWFsZWN0VGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class DerbyDatabaseDialectTest",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-derby/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DerbyDatabaseDialectTest.java" ],
+  "symbols" : [ "DerbyDatabaseDialectTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCk15c3FsRGF0YWJhc2VEaWFsZWN0VGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class MysqlDatabaseDialectTest",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/MysqlDatabaseDialectTest.java" ],
+  "symbols" : [ "MysqlDatabaseDialectTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0NMQVNTCk9yYWNsZURhdGFiYXNlRGlhbGVjdFRlc3Q",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class OracleDatabaseDialectTest",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-oracle/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/OracleDatabaseDialectTest.java" ],
+  "symbols" : [ "OracleDatabaseDialectTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKRXh0ZXJuYWxEYXRhU291cmNlUHJvcGVydGllcyNidWlsZA",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of ExternalDataSourceProperties#build",
+  "files" : [ "persistence/src/main/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceProperties.java" ],
+  "symbols" : [ "ExternalDataSourceProperties#build" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzI3Jlc29sdmVEZWZhdWx0RHJpdmVyQ2xhc3NOYW1l",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourceProperties#resolveDefaultDriverClassName",
+  "files" : [ "persistence/src/main/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceProperties.java" ],
+  "symbols" : [ "ExternalDataSourceProperties#resolveDefaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNzZXRVcA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest#setUp",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#setUp" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCN0ZWFyRG93bg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest#tearDown",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#tearDown" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVVc2VzRGlhbGVjdERlZmF1bHRXaGVuUG9vbENvbmZpZ0lzQWJzZW50",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameUsesDialectDefaultWhenPoolConfigIsAbsent",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#driverClassNameUsesDialectDefaultWhenPoolConfigIsAbsent" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVVc2VzU3VwcGxpZWREaWFsZWN0VHlwZVdoZW5FbnZpcm9ubWVudFNlbGVjdHNBbm90aGVyRGlhbGVjdA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameUsesSuppliedDialectTypeWhenEnvironmentSelectsAnotherDialect",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#driverClassNameUsesSuppliedDialectTypeWhenEnvironmentSelectsAnotherDialect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNleHBsaWNpdFBvb2xDb25maWdEcml2ZXJDbGFzc05hbWVTa2lwc0RpYWxlY3REZWZhdWx0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest#explicitPoolConfigDriverClassNameSkipsDialectDefault",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#explicitPoolConfigDriverClassNameSkipsDialectDefault" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNjYW5vbmljYWxQb29sQ29uZmlnRHJpdmVyQ2xhc3NOYW1lT3ZlcnJpZGVzTGVnYWN5QW5kU2tpcHNEaWFsZWN0RGVmYXVsdA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest#canonicalPoolConfigDriverClassNameOverridesLegacyAndSkipsDialectDefault",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#canonicalPoolConfigDriverClassNameOverridesLegacyAndSkipsDialectDefault" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVGYWxsc0JhY2tUb015c3FsV2hlbkRpYWxlY3RQcm92aWRlc05vRHJpdmVy",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenDialectProvidesNoDriver",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenDialectProvidesNoDriver" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVGYWxsc0JhY2tUb015c3FsV2hlbkRpYWxlY3RJc05vdExvYWRlZA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenDialectIsNotLoaded",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenDialectIsNotLoaded" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVGYWxsc0JhY2tUb015c3FsV2hlbkRpYWxlY3RQbHVnaW5Jc0Rpc2FibGVk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenDialectPluginIsDisabled",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenDialectPluginIsDisabled" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVGYWxsc0JhY2tUb015c3FsV2hlbk15c3FsRGlhbGVjdElzTm90TG9hZGVk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenMysqlDialectIsNotLoaded",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenMysqlDialectIsNotLoaded" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNteXNxbEVudmlyb25tZW50",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest#mysqlEnvironment",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#mysqlEnvironment" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNnZXREaWFsZWN0TWFw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest#getDialectMap",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#getDialectMap" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldFR5cGU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getType",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest.TestDatabaseDialect#getType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldERlZmF1bHREcml2ZXJDbGFzc05hbWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getDefaultDriverClassName",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest.TestDatabaseDialect#getDefaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldFBhZ2VQcmV2TnVt",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getPagePrevNum",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest.TestDatabaseDialect#getPagePrevNum" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldFBhZ2VMYXN0TnVt",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getPageLastNum",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest.TestDatabaseDialect#getPageLastNum" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldExpbWl0VG9wU3FsV2l0aE1hcms",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitTopSqlWithMark",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitTopSqlWithMark" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldExpbWl0UGFnZVNxbFdpdGhNYXJr",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitPageSqlWithMark",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitPageSqlWithMark" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldExpbWl0UGFnZVNxbA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitPageSql",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitPageSql" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldExpbWl0UGFnZVNxbFdpdGhPZmZzZXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitPageSqlWithOffset",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitPageSqlWithOffset" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldFJldHVyblByaW1hcnlLZXlz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getReturnPrimaryKeys",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest.TestDatabaseDialect#getReturnPrimaryKeys" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldEZ1bmN0aW9u",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getFunction",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest.TestDatabaseDialect#getFunction" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VTZXJ2aWNlSW1wbFRlc3QjdGVzdERlZmF1bHREcml2ZXJVc2VzU2VsZWN0ZWREaWFsZWN0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourceServiceImplTest#testDefaultDriverUsesSelectedDialect",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceServiceImplTest.java" ],
+  "symbols" : [ "ExternalDataSourceServiceImplTest#testDefaultDriverUsesSelectedDialect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VTZXJ2aWNlSW1wbFRlc3QjdGVzdFJlbG9hZEtlZXBzSW5pdGlhbGx5U2VsZWN0ZWREaWFsZWN0",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourceServiceImplTest#testReloadKeepsInitiallySelectedDialect",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceServiceImplTest.java" ],
+  "symbols" : [ "ExternalDataSourceServiceImplTest#testReloadKeepsInitiallySelectedDialect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VTZXJ2aWNlSW1wbFRlc3QjZGVmYXVsdERyaXZlckVudmlyb25tZW50",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourceServiceImplTest#defaultDriverEnvironment",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceServiceImplTest.java" ],
+  "symbols" : [ "ExternalDataSourceServiceImplTest#defaultDriverEnvironment" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VTZXJ2aWNlSW1wbFRlc3QjY2xvc2VEYXRhU291cmNl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add ExternalDataSourceServiceImplTest#closeDataSource",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceServiceImplTest.java" ],
+  "symbols" : [ "ExternalDataSourceServiceImplTest#closeDataSource" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZXJieURhdGFiYXNlRGlhbGVjdCNnZXREZWZhdWx0RHJpdmVyQ2xhc3NOYW1l",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DerbyDatabaseDialect#getDefaultDriverClassName",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-derby/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DerbyDatabaseDialect.java" ],
+  "symbols" : [ "DerbyDatabaseDialect#getDefaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZXJieURhdGFiYXNlRGlhbGVjdFRlc3QjdGVzdEdldERlZmF1bHREcml2ZXJDbGFzc05hbWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DerbyDatabaseDialectTest#testGetDefaultDriverClassName",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-derby/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DerbyDatabaseDialectTest.java" ],
+  "symbols" : [ "DerbyDatabaseDialectTest#testGetDefaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0RGF0YWJhc2VEaWFsZWN0I2dldERlZmF1bHREcml2ZXJDbGFzc05hbWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultDatabaseDialect#getDefaultDriverClassName",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DefaultDatabaseDialect.java" ],
+  "symbols" : [ "DefaultDatabaseDialect#getDefaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNeXNxbERhdGFiYXNlRGlhbGVjdCNnZXREZWZhdWx0RHJpdmVyQ2xhc3NOYW1l",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MysqlDatabaseDialect#getDefaultDriverClassName",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/MysqlDatabaseDialect.java" ],
+  "symbols" : [ "MysqlDatabaseDialect#getDefaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNeXNxbERhdGFiYXNlRGlhbGVjdFRlc3QjdGVzdE15c3FsRGlhbGVjdFByb3ZpZGVzRGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MysqlDatabaseDialectTest#testMysqlDialectProvidesDefaultDriverClassName",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/MysqlDatabaseDialectTest.java" ],
+  "symbols" : [ "MysqlDatabaseDialectTest#testMysqlDialectProvidesDefaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApNeXNxbERhdGFiYXNlRGlhbGVjdFRlc3QjdGVzdERlZmF1bHREaWFsZWN0UHJvdmlkZXNTYW1lRHJpdmVyQXNNeXNxbERpYWxlY3Q",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add MysqlDatabaseDialectTest#testDefaultDialectProvidesSameDriverAsMysqlDialect",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/MysqlDatabaseDialectTest.java" ],
+  "symbols" : [ "MysqlDatabaseDialectTest#testDefaultDialectProvidesSameDriverAsMysqlDialect" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApPcmFjbGVEYXRhYmFzZURpYWxlY3QjZ2V0RGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add OracleDatabaseDialect#getDefaultDriverClassName",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-oracle/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/OracleDatabaseDialect.java" ],
+  "symbols" : [ "OracleDatabaseDialect#getDefaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApPcmFjbGVEYXRhYmFzZURpYWxlY3RUZXN0I3Rlc3RHZXREZWZhdWx0RHJpdmVyQ2xhc3NOYW1l",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add OracleDatabaseDialectTest#testGetDefaultDriverClassName",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-oracle/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/OracleDatabaseDialectTest.java" ],
+  "symbols" : [ "OracleDatabaseDialectTest#testGetDefaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQb3N0Z3Jlc3FsRGF0YWJhc2VEaWFsZWN0I2dldERlZmF1bHREcml2ZXJDbGFzc05hbWU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add PostgresqlDatabaseDialect#getDefaultDriverClassName",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-postgresql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/PostgresqlDatabaseDialect.java" ],
+  "symbols" : [ "PostgresqlDatabaseDialect#getDefaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApQb3N0Z3Jlc3FsRGF0YWJhc2VEaWFsZWN0VGVzdCN0ZXN0R2V0RGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add PostgresqlDatabaseDialectTest#testGetDefaultDriverClassName",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-postgresql/src/test/java/com/alibaba/nacos/plugin/datasource/impl/dialect/PostgresqlDatabaseDialectTest.java" ],
+  "symbols" : [ "PostgresqlDatabaseDialectTest#testGetDefaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEYXRhYmFzZURpYWxlY3QjZ2V0RGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DatabaseDialect#getDefaultDriverClassName",
+  "files" : [ "plugin/datasource/src/main/java/com/alibaba/nacos/plugin/datasource/dialect/DatabaseDialect.java" ],
+  "symbols" : [ "DatabaseDialect#getDefaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEYXRhYmFzZURpYWxlY3RNYW5hZ2VyVGVzdCN0ZXN0RGVmYXVsdERyaXZlckNsYXNzTmFtZUlzTnVsbFdoZW5EaWFsZWN0RG9lc05vdFByb3ZpZGVPbmU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DatabaseDialectManagerTest#testDefaultDriverClassNameIsNullWhenDialectDoesNotProvideOne",
+  "files" : [ "plugin/datasource/src/test/java/com/alibaba/nacos/plugin/datasource/manager/DatabaseDialectManagerTest.java" ],
+  "symbols" : [ "DatabaseDialectManagerTest#testDefaultDriverClassNameIsNullWhenDialectDoesNotProvideOne" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVNlcnZpY2VJbXBsI3JlbG9hZApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExternalDataSourceServiceImpl#reload: other statements changed",
+  "files" : [ "persistence/src/main/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceServiceImpl.java" ],
+  "symbols" : [ "ExternalDataSourceServiceImpl#reload", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZU5vcm1hbGx5Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceNormally: other statements changed",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#externalDatasourceNormally", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZVN1cHBvcnRzQ2Fub25pY2FsQ29uZmlnCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceSupportsCanonicalConfig: other statements changed",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#externalDatasourceSupportsCanonicalConfig", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZUNhbm9uaWNhbENvbmZpZ092ZXJyaWRlc0xlZ2FjeVBlckl0ZW0Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceCanonicalConfigOverridesLegacyPerItem: other statements changed",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#externalDatasourceCanonicalConfigOverridesLegacyPerItem", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZVRvQXNzZXJ0TXVsdGlKZGJjVXJsCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceToAssertMultiJdbcUrl: other statements changed",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#externalDatasourceToAssertMultiJdbcUrl", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZVRvQXNzZXJ0TXVsdGlQYXNzd29yZEFuZFVzZXJuYW1lCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceToAssertMultiPasswordAndUsername: other statements changed",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#externalDatasourceToAssertMultiPasswordAndUsername", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZVRvQXNzZXJ0TWluSWRsZQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceToAssertMinIdle: other statements changed",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#externalDatasourceToAssertMinIdle", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZUZhaWx1cmVXaXRoTGFya0luZm8Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceFailureWithLarkInfo: other statements changed",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#externalDatasourceFailureWithLarkInfo", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZUZhaWx1cmVXaXRoRXJyb3JJbmZvCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceFailureWithErrorInfo: other statements changed",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#externalDatasourceFailureWithErrorInfo", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXMjTE9HR0VS",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ExternalDataSourceProperties#LOGGER",
+  "files" : [ "persistence/src/main/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourceProperties.java" ],
+  "symbols" : [ "ExternalDataSourceProperties#LOGGER" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I01ZU1FMX0NPTVBBVF9EUklWRVI",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ExternalDataSourcePropertiesTest#MYSQL_COMPAT_DRIVER",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#MYSQL_COMPAT_DRIVER" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I1RFU1RfRElBTEVDVF9UWVBF",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ExternalDataSourcePropertiesTest#TEST_DIALECT_TYPE",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#TEST_DIALECT_TYPE" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I1RFU1RfRElBTEVDVF9EUklWRVI",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ExternalDataSourcePropertiesTest#TEST_DIALECT_DRIVER",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#TEST_DIALECT_DRIVER" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2RpYWxlY3RNYXA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ExternalDataSourcePropertiesTest#dialectMap",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#dialectMap" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I29yaWdpbmFsRGlhbGVjdHM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ExternalDataSourcePropertiesTest#originalDialects",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#originalDialects" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I29yaWdpbmFsU3RhdGVDaGVja2Vy",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ExternalDataSourcePropertiesTest#originalStateChecker",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest#originalStateChecker" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0LlRlc3REYXRhYmFzZURpYWxlY3QjZGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ExternalDataSourcePropertiesTest.TestDatabaseDialect#defaultDriverClassName",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest.TestDatabaseDialect#defaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkRlcmJ5RGF0YWJhc2VEaWFsZWN0I0RFRkFVTFRfRFJJVkVSX0NMQVNTX05BTUU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field DerbyDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-derby/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/DerbyDatabaseDialect.java" ],
+  "symbols" : [ "DerbyDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECk15c3FsRGF0YWJhc2VEaWFsZWN0I0RFRkFVTFRfRFJJVkVSX0NMQVNTX05BTUU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field MysqlDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-mysql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/MysqlDatabaseDialect.java" ],
+  "symbols" : [ "MysqlDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECk9yYWNsZURhdGFiYXNlRGlhbGVjdCNERUZBVUxUX0RSSVZFUl9DTEFTU19OQU1F",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field OracleDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-oracle/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/OracleDatabaseDialect.java" ],
+  "symbols" : [ "OracleDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClBvc3RncmVzcWxEYXRhYmFzZURpYWxlY3QjREVGQVVMVF9EUklWRVJfQ0xBU1NfTkFNRQ",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field PostgresqlDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME",
+  "files" : [ "plugin-default-impl/nacos-default-datasource-plugin/nacos-datasource-plugin-postgresql/src/main/java/com/alibaba/nacos/plugin/datasource/impl/dialect/PostgresqlDatabaseDialect.java" ],
+  "symbols" : [ "PostgresqlDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2RlZmF1bHREcml2ZXJDbGFzc05hbWU",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter ExternalDataSourcePropertiesTest.TestDatabaseDialect#defaultDriverClassName",
+  "files" : [ "persistence/src/test/java/com/alibaba/nacos/persistence/datasource/ExternalDataSourcePropertiesTest.java" ],
+  "symbols" : [ "ExternalDataSourcePropertiesTest.TestDatabaseDialect#defaultDriverClassName" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

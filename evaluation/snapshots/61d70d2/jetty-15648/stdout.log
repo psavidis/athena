@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/jetty/jetty.project.git",
+  "base" : "1a0bd3061c47152ddc48b63a71ce9d105577ec02",
+  "head" : "9d3705b607d266069baa625f3549a8d1a83b3273",
+  "changeCount" : 5,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 14.48
+}

@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/apache/commons-lang.git",
+  "base" : "d6dd060ff988b058f34800fa8fdb2c00747e3859",
+  "head" : "1c88edf445fd4dd92819d0f12e91a13880fcde82",
+  "changeCount" : 2,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 4.13
+}

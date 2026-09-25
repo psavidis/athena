@@ -1,0 +1,12 @@
+{
+  "changedFileCount" : 9,
+  "representedFileCount" : 8,
+  "files" : [ {
+    "path" : "lucene/CHANGES.txt",
+    "status" : "MODIFIED",
+    "linesChanged" : 9,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

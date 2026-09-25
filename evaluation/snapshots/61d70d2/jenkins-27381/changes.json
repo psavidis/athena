@@ -1,0 +1,61 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTClF1ZXJ5UGFyYW1ldGVyTWFwVGVzdA",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class QueryParameterMapTest",
+  "files" : [ "core/src/test/java/hudson/util/QueryParameterMapTest.java" ],
+  "symbols" : [ "QueryParameterMapTest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjYmFzaWM",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add QueryParameterMapTest#basic",
+  "files" : [ "core/src/test/java/hudson/util/QueryParameterMapTest.java" ],
+  "symbols" : [ "QueryParameterMapTest#basic" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjcGFyYW1ldGVyV2l0aG91dFZhbHVl",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add QueryParameterMapTest#parameterWithoutValue",
+  "files" : [ "core/src/test/java/hudson/util/QueryParameterMapTest.java" ],
+  "symbols" : [ "QueryParameterMapTest#parameterWithoutValue" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjdmFsdWVDb250YWluaW5nRXF1YWxzU2lnbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add QueryParameterMapTest#valueContainingEqualsSign",
+  "files" : [ "core/src/test/java/hudson/util/QueryParameterMapTest.java" ],
+  "symbols" : [ "QueryParameterMapTest#valueContainingEqualsSign" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjZW1wdHlQYXJhbWV0ZXJz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add QueryParameterMapTest#emptyParameters",
+  "files" : [ "core/src/test/java/hudson/util/QueryParameterMapTest.java" ],
+  "symbols" : [ "QueryParameterMapTest#emptyParameters" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0VtcHR5ClF1ZXJ5UGFyYW1ldGVyTWFwIzxpbml0Pg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of QueryParameterMap#<init>: +isEmpty",
+  "files" : [ "core/src/main/java/hudson/util/QueryParameterMap.java" ],
+  "symbols" : [ "QueryParameterMap#<init>", "+isEmpty" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

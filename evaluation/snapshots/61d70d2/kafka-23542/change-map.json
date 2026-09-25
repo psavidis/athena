@@ -1,0 +1,520 @@
+{
+  "prTitle" : "MINOR: Fix static members being fenced by their own instance id",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 3,
+    "STRUCTURAL" : 20,
+    "UNKNOWN" : 2,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpHcm91cE1ldGFkYXRhTWFuYWdlciNnZXRPck1heWJlU3Vic2NyaWJlU3RhdGljQ29uc3VtZXJHcm91cE1lbWJlcgpicmFuY2ggYWRkZWQ",
+    "description" : "Change control flow of GroupMetadataManager#getOrMaybeSubscribeStaticConsumerGroupMember: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpHcm91cE1ldGFkYXRhTWFuYWdlciNnZXRPck1heWJlQ3JlYXRlU3RhdGljU3RyZWFtc0dyb3VwTWVtYmVyCmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of GroupMetadataManager#getOrMaybeCreateStaticStreamsGroupMember: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdmVyaWZ5U3RhdGljTWVtYmVyTGVhdmVBbmRSZWpvaW5Ob0dyb3VwQnVtcApicmFuY2ggYWRkZWQ",
+    "description" : "Change control flow of StreamsGroupStaticMemberGroupMetadataManagerTest#verifyStaticMemberLeaveAndRejoinNoGroupBump: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQW5kRGlmZmVyZW50SW5zdGFuY2VJZA",
+    "description" : "Remove GroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdAndDifferentInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQW5kRGlmZmVyZW50SW5zdGFuY2VJZA",
+    "description" : "Remove StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdAndDifferentInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlciN0aHJvd0lmTWVtYmVySWRIYXNEaWZmZXJlbnRJbnN0YW5jZUlk",
+    "description" : "Add GroupMetadataManager#throwIfMemberIdHasDifferentInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhEaWZmZXJlbnRJbnN0YW5jZUlk",
+    "description" : "Add GroupMetadataManagerTest#testStaticMemberCannotRejoinWithDifferentInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoSW5zdGFuY2VJZA",
+    "description" : "Add GroupMetadataManagerTest#testDynamicMemberCannotRejoinWithInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhSZWxlYXNlZEluc3RhbmNlSWQ",
+    "description" : "Add GroupMetadataManagerTest#testStaticMemberCannotRejoinWithReleasedInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhVbnJlbGVhc2VkSW5zdGFuY2VJZA",
+    "description" : "Add GroupMetadataManagerTest#testStaticMemberCannotRejoinWithUnreleasedInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoUmVsZWFzZWRJbnN0YW5jZUlk",
+    "description" : "Add GroupMetadataManagerTest#testDynamicMemberCannotRejoinWithReleasedInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoVW5yZWxlYXNlZEluc3RhbmNlSWQ",
+    "description" : "Add GroupMetadataManagerTest#testDynamicMemberCannotRejoinWithUnreleasedInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQWZ0ZXJMZWF2aW5n",
+    "description" : "Add GroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdAfterLeaving",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkV2hpbGVBY3RpdmU",
+    "description" : "Add GroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdWhileActive",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFJlamVjdGVkSm9pbkRvZXNOb3RSZWxhYmVsQ2FjaGVkUmVmaW5lZEFzc2lnbm1lbnQ",
+    "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testRejectedJoinDoesNotRelabelCachedRefinedAssignment",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdEZlbmNlZEhlYXJ0YmVhdERvZXNOb3RSZWxhYmVsQ2FjaGVkUmVmaW5lZEFzc2lnbm1lbnQ",
+    "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testFencedHeartbeatDoesNotRelabelCachedRefinedAssignment",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhEaWZmZXJlbnRJbnN0YW5jZUlk",
+    "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberCannotRejoinWithDifferentInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoSW5zdGFuY2VJZA",
+    "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testDynamicMemberCannotRejoinWithInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhSZWxlYXNlZEluc3RhbmNlSWQ",
+    "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberCannotRejoinWithReleasedInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 19,
+    "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhVbnJlbGVhc2VkSW5zdGFuY2VJZA",
+    "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberCannotRejoinWithUnreleasedInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 20,
+    "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoUmVsZWFzZWRJbnN0YW5jZUlk",
+    "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testDynamicMemberCannotRejoinWithReleasedInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 21,
+    "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoVW5yZWxlYXNlZEluc3RhbmNlSWQ",
+    "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testDynamicMemberCannotRejoinWithUnreleasedInstanceId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 22,
+    "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkV2hpbGVBY3RpdmU",
+    "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdWhileActive",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 23,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1tZW1iZXJJZCwgLXJlbGFiZWxSZWZpbmVkQXNzaWdubWVudApHcm91cE1ldGFkYXRhTWFuYWdlciNzdHJlYW1zR3JvdXBIZWFydGJlYXQ",
+    "description" : "Modify body of GroupMetadataManager#streamsGroupHeartbeat: -memberId, -relabelRefinedAssignment",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 24,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRFcXVhbHMsICtjb25zdW1lckdyb3VwLCArZ2V0T3JNYXliZUNyZWF0ZU1lbWJlciwgLXNldEluc3RhbmNlSWQsIC1zZXRTdGF0ZSDigKZhbmQgMjUgbW9yZQpHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdENvbnN1bWVyR3JvdXBIZWFydGJlYXRGcm9tRXhpc3RpbmdDbGFzc2ljU3RhdGljTWVtYmVy",
+    "description" : "Modify body of GroupMetadataManagerTest#testConsumerGroupHeartbeatFromExistingClassicStaticMember: +assertEquals, +consumerGroup, +getOrMaybeCreateMember, -setInstanceId, -setState …and 25 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "GroupMetadataManager",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpHcm91cE1ldGFkYXRhTWFuYWdlciNnZXRPck1heWJlU3Vic2NyaWJlU3RhdGljQ29uc3VtZXJHcm91cE1lbWJlcgpicmFuY2ggYWRkZWQ",
+      "description" : "Change control flow of GroupMetadataManager#getOrMaybeSubscribeStaticConsumerGroupMember: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpHcm91cE1ldGFkYXRhTWFuYWdlciNnZXRPck1heWJlQ3JlYXRlU3RhdGljU3RyZWFtc0dyb3VwTWVtYmVyCmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of GroupMetadataManager#getOrMaybeCreateStaticStreamsGroupMember: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlciN0aHJvd0lmTWVtYmVySWRIYXNEaWZmZXJlbnRJbnN0YW5jZUlk",
+      "description" : "Add GroupMetadataManager#throwIfMemberIdHasDifferentInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 23,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1tZW1iZXJJZCwgLXJlbGFiZWxSZWZpbmVkQXNzaWdubWVudApHcm91cE1ldGFkYXRhTWFuYWdlciNzdHJlYW1zR3JvdXBIZWFydGJlYXQ",
+      "description" : "Modify body of GroupMetadataManager#streamsGroupHeartbeat: -memberId, -relabelRefinedAssignment",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "StreamsGroupStaticMemberGroupMetadataManagerTest",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdmVyaWZ5U3RhdGljTWVtYmVyTGVhdmVBbmRSZWpvaW5Ob0dyb3VwQnVtcApicmFuY2ggYWRkZWQ",
+      "description" : "Change control flow of StreamsGroupStaticMemberGroupMetadataManagerTest#verifyStaticMemberLeaveAndRejoinNoGroupBump: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQW5kRGlmZmVyZW50SW5zdGFuY2VJZA",
+      "description" : "Remove StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdAndDifferentInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 14,
+      "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFJlamVjdGVkSm9pbkRvZXNOb3RSZWxhYmVsQ2FjaGVkUmVmaW5lZEFzc2lnbm1lbnQ",
+      "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testRejectedJoinDoesNotRelabelCachedRefinedAssignment",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdEZlbmNlZEhlYXJ0YmVhdERvZXNOb3RSZWxhYmVsQ2FjaGVkUmVmaW5lZEFzc2lnbm1lbnQ",
+      "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testFencedHeartbeatDoesNotRelabelCachedRefinedAssignment",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhEaWZmZXJlbnRJbnN0YW5jZUlk",
+      "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberCannotRejoinWithDifferentInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoSW5zdGFuY2VJZA",
+      "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testDynamicMemberCannotRejoinWithInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 18,
+      "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhSZWxlYXNlZEluc3RhbmNlSWQ",
+      "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberCannotRejoinWithReleasedInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 19,
+      "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhVbnJlbGVhc2VkSW5zdGFuY2VJZA",
+      "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberCannotRejoinWithUnreleasedInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 20,
+      "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoUmVsZWFzZWRJbnN0YW5jZUlk",
+      "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testDynamicMemberCannotRejoinWithReleasedInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 21,
+      "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoVW5yZWxlYXNlZEluc3RhbmNlSWQ",
+      "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testDynamicMemberCannotRejoinWithUnreleasedInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 22,
+      "changeKey" : "QUREX1NZTUJPTApTdHJlYW1zR3JvdXBTdGF0aWNNZW1iZXJHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkV2hpbGVBY3RpdmU",
+      "description" : "Add StreamsGroupStaticMemberGroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdWhileActive",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "GroupMetadataManagerTest",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQW5kRGlmZmVyZW50SW5zdGFuY2VJZA",
+      "description" : "Remove GroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdAndDifferentInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhEaWZmZXJlbnRJbnN0YW5jZUlk",
+      "description" : "Add GroupMetadataManagerTest#testStaticMemberCannotRejoinWithDifferentInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoSW5zdGFuY2VJZA",
+      "description" : "Add GroupMetadataManagerTest#testDynamicMemberCannotRejoinWithInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhSZWxlYXNlZEluc3RhbmNlSWQ",
+      "description" : "Add GroupMetadataManagerTest#testStaticMemberCannotRejoinWithReleasedInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 9,
+      "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlckNhbm5vdFJlam9pbldpdGhVbnJlbGVhc2VkSW5zdGFuY2VJZA",
+      "description" : "Add GroupMetadataManagerTest#testStaticMemberCannotRejoinWithUnreleasedInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoUmVsZWFzZWRJbnN0YW5jZUlk",
+      "description" : "Add GroupMetadataManagerTest#testDynamicMemberCannotRejoinWithReleasedInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdER5bmFtaWNNZW1iZXJDYW5ub3RSZWpvaW5XaXRoVW5yZWxlYXNlZEluc3RhbmNlSWQ",
+      "description" : "Add GroupMetadataManagerTest#testDynamicMemberCannotRejoinWithUnreleasedInstanceId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkQWZ0ZXJMZWF2aW5n",
+      "description" : "Add GroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdAfterLeaving",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX1NZTUJPTApHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdFN0YXRpY01lbWJlclJlam9pbnNXaXRoU2FtZU1lbWJlcklkV2hpbGVBY3RpdmU",
+      "description" : "Add GroupMetadataManagerTest#testStaticMemberRejoinsWithSameMemberIdWhileActive",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 24,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRFcXVhbHMsICtjb25zdW1lckdyb3VwLCArZ2V0T3JNYXliZUNyZWF0ZU1lbWJlciwgLXNldEluc3RhbmNlSWQsIC1zZXRTdGF0ZSDigKZhbmQgMjUgbW9yZQpHcm91cE1ldGFkYXRhTWFuYWdlclRlc3QjdGVzdENvbnN1bWVyR3JvdXBIZWFydGJlYXRGcm9tRXhpc3RpbmdDbGFzc2ljU3RhdGljTWVtYmVy",
+      "description" : "Modify body of GroupMetadataManagerTest#testConsumerGroupHeartbeatFromExistingClassicStaticMember: +assertEquals, +consumerGroup, +getOrMaybeCreateMember, -setInstanceId, -setState …and 25 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

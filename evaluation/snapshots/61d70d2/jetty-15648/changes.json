@@ -1,0 +1,51 @@
+[ {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKSHR0cFN0cmVhbU92ZXJGQ0dJI29uSGVhZGVycw",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of HttpStreamOverFCGI#onHeaders",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/HttpStreamOverFCGI.java" ],
+  "symbols" : [ "HttpStreamOverFCGI#onHeaders" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZXJ2ZXJGQ0dJQ29ubmVjdGlvbiNvbkZpbGxhYmxlCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of ServerFCGIConnection#onFillable: branch added",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnection.java" ],
+  "symbols" : [ "ServerFCGIConnection#onFillable", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApIdHRwU3RyZWFtT3ZlckZDR0kjZXhlY3V0ZQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove HttpStreamOverFCGI#execute",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/HttpStreamOverFCGI.java" ],
+  "symbols" : [ "HttpStreamOverFCGI#execute" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClNlcnZlckZDR0lDb25uZWN0aW9uLlNlcnZlckxpc3RlbmVyI29uSGVhZGVycwpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ServerFCGIConnection.ServerListener#onHeaders: other statements changed",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnection.java" ],
+  "symbols" : [ "ServerFCGIConnection.ServerListener#onHeaders", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClNlcnZlckZDR0lDb25uZWN0aW9uI29uUmVxdWVzdA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field ServerFCGIConnection#onRequest",
+  "files" : [ "jetty-core/jetty-fcgi/jetty-fcgi-server/src/main/java/org/eclipse/jetty/fcgi/server/internal/ServerFCGIConnection.java" ],
+  "symbols" : [ "ServerFCGIConnection#onRequest" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

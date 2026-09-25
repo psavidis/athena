@@ -1,0 +1,880 @@
+{
+  "prTitle" : "KAFKA-20416: Clear consumed offsets on task close",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 42,
+    "UNKNOWN" : 1,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdA",
+    "description" : "Add class SourceTopicChangelogRestoreIntegrationTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0NMQVNTClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3I",
+    "description" : "Add class SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc2V0VXA",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#setUp",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjdGVhckRvd24",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#tearDown",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc2hvdWxkRnVsbHlSZXN0b3JlU291cmNlVG9waWNDaGFuZ2Vsb2dTdG9yZUFmdGVyVGFza0NvcnJ1cHRpb25XaXRoU3RhbmRieVJlcGxpY2E",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#shouldFullyRestoreSourceTopicChangelogStoreAfterTaskCorruptionWithStandbyReplica",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjY2xvc2VBbmRMZWF2ZUdyb3Vw",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#closeAndLeaveGroup",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc3RhcnQ",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#start",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjdG9wb2xvZ3k",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#topology",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc3RyZWFtc0NvbmZpZw",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#streamsConfig",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJvZHVjZQ",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#produce",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclBsYWNlbWVudA",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#waitForPlacement",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclN0YWJsZVBsYWNlbWVudA",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#waitForStablePlacement",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjaG9zdHNUYXNr",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#hostsTask",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclRhYmxlS2V5cw",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#waitForTableKeys",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjY291bnRQcmVzZW50S2V5cw",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#countPresentKeys",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJlbG9hZGVkS2V5cw",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#preloadedKeys",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qja2V5c09m",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#keysOf",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcmVzdG9yZUNvbnN1bWVy",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#restoreConsumer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJvZHVjZXI",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest#producer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 19,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QuVmVoaWNsZVN0YXRlUHJvY2Vzc29yI2luaXQ",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#init",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 20,
+    "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QuVmVoaWNsZVN0YXRlUHJvY2Vzc29yI3Byb2Nlc3M",
+    "description" : "Add SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#process",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 21,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGVhcgpTdHJlYW1UYXNrI2Nsb3Nl",
+    "description" : "Modify body of StreamTask#close: +clear",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 22,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNOVU1fUFJFTE9BREVEX0tFWVM",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#NUM_PRELOADED_KEYS",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 23,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNOVU1fRVZFTlRT",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#NUM_EVENTS",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 24,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9UT1BJQw",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#TABLE_TOPIC",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 25,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNFVkVOVFNfVE9QSUM",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#EVENTS_TOPIC",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 26,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9TVE9SRQ",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#TABLE_STORE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 27,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNFVkVOVF9DT1VOVF9TVE9SRQ",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#EVENT_COUNT_STORE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 28,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9QQVJUSVRJT04",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#TABLE_PARTITION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 29,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQVNL",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#TASK",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 30,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNQUk9EVUNFUl9NQVhfQkxPQ0tfTVM",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#PRODUCER_MAX_BLOCK_MS",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 31,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNDT01NSVRfREVMQVk",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#COMMIT_DELAY",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 32,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNSRVNUT1JFX0ZFVENIX0RFTEFZ",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#RESTORE_FETCH_DELAY",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 33,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNXQUlUX01T",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#WAIT_MS",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 34,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNzdGF0ZURpcnM",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#stateDirs",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 35,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNzdHJlYW1zVG9DbG9zZQ",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#streamsToClose",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 36,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNyZWJhbGFuY2VDb3VudHM",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#rebalanceCounts",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 37,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNjbHVzdGVy",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#cluster",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 38,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNwcm94eQ",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#proxy",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 39,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNhcHBJZA",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#appId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 40,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjY29udGV4dA",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#context",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 41,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjdmVoaWNsZVN0b3Jl",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#vehicleStore",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 42,
+    "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjZXZlbnRDb3VudHM",
+    "description" : "Add field SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#eventCounts",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "SourceTopicChangelogRestoreIntegrationTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdA",
+      "description" : "Add class SourceTopicChangelogRestoreIntegrationTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc2V0VXA",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#setUp",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjdGVhckRvd24",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#tearDown",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc2hvdWxkRnVsbHlSZXN0b3JlU291cmNlVG9waWNDaGFuZ2Vsb2dTdG9yZUFmdGVyVGFza0NvcnJ1cHRpb25XaXRoU3RhbmRieVJlcGxpY2E",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#shouldFullyRestoreSourceTopicChangelogStoreAfterTaskCorruptionWithStandbyReplica",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjY2xvc2VBbmRMZWF2ZUdyb3Vw",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#closeAndLeaveGroup",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc3RhcnQ",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#start",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjdG9wb2xvZ3k",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#topology",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjc3RyZWFtc0NvbmZpZw",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#streamsConfig",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 9,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJvZHVjZQ",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#produce",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclBsYWNlbWVudA",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#waitForPlacement",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclN0YWJsZVBsYWNlbWVudA",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#waitForStablePlacement",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjaG9zdHNUYXNr",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#hostsTask",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qjd2FpdEZvclRhYmxlS2V5cw",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#waitForTableKeys",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 14,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjY291bnRQcmVzZW50S2V5cw",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#countPresentKeys",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJlbG9hZGVkS2V5cw",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#preloadedKeys",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3Qja2V5c09m",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#keysOf",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcmVzdG9yZUNvbnN1bWVy",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#restoreConsumer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 18,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QjcHJvZHVjZXI",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest#producer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 22,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNOVU1fUFJFTE9BREVEX0tFWVM",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#NUM_PRELOADED_KEYS",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 23,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNOVU1fRVZFTlRT",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#NUM_EVENTS",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 24,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9UT1BJQw",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#TABLE_TOPIC",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 25,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNFVkVOVFNfVE9QSUM",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#EVENTS_TOPIC",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 26,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9TVE9SRQ",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#TABLE_STORE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 27,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNFVkVOVF9DT1VOVF9TVE9SRQ",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#EVENT_COUNT_STORE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 28,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQUJMRV9QQVJUSVRJT04",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#TABLE_PARTITION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 29,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNUQVNL",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#TASK",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 30,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNQUk9EVUNFUl9NQVhfQkxPQ0tfTVM",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#PRODUCER_MAX_BLOCK_MS",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 31,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNDT01NSVRfREVMQVk",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#COMMIT_DELAY",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 32,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNSRVNUT1JFX0ZFVENIX0RFTEFZ",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#RESTORE_FETCH_DELAY",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 33,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNXQUlUX01T",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#WAIT_MS",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 34,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNzdGF0ZURpcnM",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#stateDirs",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 35,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNzdHJlYW1zVG9DbG9zZQ",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#streamsToClose",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 36,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNyZWJhbGFuY2VDb3VudHM",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#rebalanceCounts",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 37,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNjbHVzdGVy",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#cluster",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 38,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNwcm94eQ",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#proxy",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 39,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdCNhcHBJZA",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest#appId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX0NMQVNTClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3I",
+      "description" : "Add class SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 19,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QuVmVoaWNsZVN0YXRlUHJvY2Vzc29yI2luaXQ",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#init",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 20,
+      "changeKey" : "QUREX1NZTUJPTApTb3VyY2VUb3BpY0NoYW5nZWxvZ1Jlc3RvcmVJbnRlZ3JhdGlvblRlc3QuVmVoaWNsZVN0YXRlUHJvY2Vzc29yI3Byb2Nlc3M",
+      "description" : "Add SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#process",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 40,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjY29udGV4dA",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#context",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 41,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjdmVoaWNsZVN0b3Jl",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#vehicleStore",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 42,
+      "changeKey" : "QUREX0ZJRUxEClNvdXJjZVRvcGljQ2hhbmdlbG9nUmVzdG9yZUludGVncmF0aW9uVGVzdC5WZWhpY2xlU3RhdGVQcm9jZXNzb3IjZXZlbnRDb3VudHM",
+      "description" : "Add field SourceTopicChangelogRestoreIntegrationTest.VehicleStateProcessor#eventCounts",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "StreamTask",
+    "entries" : [ {
+      "id" : 21,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbGVhcgpTdHJlYW1UYXNrI2Nsb3Nl",
+      "description" : "Modify body of StreamTask#close: +clear",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

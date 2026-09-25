@@ -1,0 +1,241 @@
+[ {
+  "changeKey" : "QUREX0NMQVNTCkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cw",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class Http2ConnectionPropertyKeys",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/Http2ConnectionPropertyKeys.java" ],
+  "symbols" : [ "Http2ConnectionPropertyKeys" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NMQVNTCkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cy5HbG9iYWxQcm9wZXJ0eUtleQ",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class Http2ConnectionPropertyKeys.GlobalPropertyKey",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/Http2ConnectionPropertyKeys.java" ],
+  "symbols" : [ "Http2ConnectionPropertyKeys.GlobalPropertyKey" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKRGVmYXVsdEh0dHAyQ29ubmVjdGlvbiN2ZXJpZnlLZXk",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of DefaultHttp2Connection#verifyKey",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/DefaultHttp2Connection.java" ],
+  "symbols" : [ "DefaultHttp2Connection#verifyKey" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0jc2V0UHJvcGVydHkKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of DefaultHttp2Connection.DefaultStream#setProperty: branch added",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/DefaultHttp2Connection.java" ],
+  "symbols" : [ "DefaultHttp2Connection.DefaultStream#setProperty", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0jZ2V0UHJvcGVydHkKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of DefaultHttp2Connection.DefaultStream#getProperty: branch added",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/DefaultHttp2Connection.java" ],
+  "symbols" : [ "DefaultHttp2Connection.DefaultStream#getProperty", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0jcmVtb3ZlUHJvcGVydHkKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of DefaultHttp2Connection.DefaultStream#removeProperty: branch added",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/DefaultHttp2Connection.java" ],
+  "symbols" : [ "DefaultHttp2Connection.DefaultStream#removeProperty", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjYWRkR2xvYmFs",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultHttp2Connection.DefaultStream.PropertyMap#addGlobal",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/DefaultHttp2Connection.java" ],
+  "symbols" : [ "DefaultHttp2Connection.DefaultStream.PropertyMap#addGlobal" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjZ2V0R2xvYmFs",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultHttp2Connection.DefaultStream.PropertyMap#getGlobal",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/DefaultHttp2Connection.java" ],
+  "symbols" : [ "DefaultHttp2Connection.DefaultStream.PropertyMap#getGlobal" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjcmVtb3ZlR2xvYmFs",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultHttp2Connection.DefaultStream.PropertyMap#removeGlobal",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/DefaultHttp2Connection.java" ],
+  "symbols" : [ "DefaultHttp2Connection.DefaultStream.PropertyMap#removeGlobal" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjcmVzaXplR2xvYmFsSWZOZWNlc3Nhcnk",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultHttp2Connection.DefaultStream.PropertyMap#resizeGlobalIfNecessary",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/DefaultHttp2Connection.java" ],
+  "symbols" : [ "DefaultHttp2Connection.DefaultStream.PropertyMap#resizeGlobalIfNecessary" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMjbmV3R2xvYmFsS2V5",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Http2ConnectionPropertyKeys#newGlobalKey",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/Http2ConnectionPropertyKeys.java" ],
+  "symbols" : [ "Http2ConnectionPropertyKeys#newGlobalKey" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMja2V5Q291bnQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Http2ConnectionPropertyKeys#keyCount",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/Http2ConnectionPropertyKeys.java" ],
+  "symbols" : [ "Http2ConnectionPropertyKeys#keyCount" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMuR2xvYmFsUHJvcGVydHlLZXkjZXF1YWxz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Http2ConnectionPropertyKeys.GlobalPropertyKey#equals",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/Http2ConnectionPropertyKeys.java" ],
+  "symbols" : [ "Http2ConnectionPropertyKeys.GlobalPropertyKey#equals" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMuR2xvYmFsUHJvcGVydHlLZXkjaGFzaENvZGU",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add Http2ConnectionPropertyKeys.GlobalPropertyKey#hashCode",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/Http2ConnectionPropertyKeys.java" ],
+  "symbols" : [ "Http2ConnectionPropertyKeys.GlobalPropertyKey#hashCode" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNjb25uZWN0aW9uS2V5U2hvdWxkUmVqZWN0VXNlV2l0aE90aGVyQ29ubmVjdGlvbg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultHttp2ConnectionTest#connectionKeyShouldRejectUseWithOtherConnection",
+  "files" : [ "codec-http2/src/test/java/io/netty/handler/codec/http2/DefaultHttp2ConnectionTest.java" ],
+  "symbols" : [ "DefaultHttp2ConnectionTest#connectionKeyShouldRejectUseWithOtherConnection" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNjb25uZWN0aW9uS2V5U2hvdWxkV29ya0Fjcm9zc1N0cmVhbXNPZlNhbWVDb25uZWN0aW9u",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultHttp2ConnectionTest#connectionKeyShouldWorkAcrossStreamsOfSameConnection",
+  "files" : [ "codec-http2/src/test/java/io/netty/handler/codec/http2/DefaultHttp2ConnectionTest.java" ],
+  "symbols" : [ "DefaultHttp2ConnectionTest#connectionKeyShouldWorkAcrossStreamsOfSameConnection" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNnbG9iYWxLZXlTaG91bGRXb3JrV2l0aEFueUNvbm5lY3Rpb24",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultHttp2ConnectionTest#globalKeyShouldWorkWithAnyConnection",
+  "files" : [ "codec-http2/src/test/java/io/netty/handler/codec/http2/DefaultHttp2ConnectionTest.java" ],
+  "symbols" : [ "DefaultHttp2ConnectionTest#globalKeyShouldWorkWithAnyConnection" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNnbG9iYWxLZXlzU2hvdWxkQmVJbmRlcGVuZGVudA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultHttp2ConnectionTest#globalKeysShouldBeIndependent",
+  "files" : [ "codec-http2/src/test/java/io/netty/handler/codec/http2/DefaultHttp2ConnectionTest.java" ],
+  "symbols" : [ "DefaultHttp2ConnectionTest#globalKeysShouldBeIndependent" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCN1bnNldFByb3BlcnR5U2hvdWxkUmV0dXJuTnVsbEZvckJvdGhLZXlLaW5kcw",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add DefaultHttp2ConnectionTest#unsetPropertyShouldReturnNullForBothKeyKinds",
+  "files" : [ "codec-http2/src/test/java/io/netty/handler/codec/http2/DefaultHttp2ConnectionTest.java" ],
+  "symbols" : [ "DefaultHttp2ConnectionTest#unsetPropertyShouldReturnNullForBothKeyKinds" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "QUREX0ZJRUxECkRlZmF1bHRIdHRwMkNvbm5lY3Rpb24uRGVmYXVsdFN0cmVhbS5Qcm9wZXJ0eU1hcCNnbG9iYWxWYWx1ZXM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field DefaultHttp2Connection.DefaultStream.PropertyMap#globalValues",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/DefaultHttp2Connection.java" ],
+  "symbols" : [ "DefaultHttp2Connection.DefaultStream.PropertyMap#globalValues" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cyNNQVhfR0xPQkFMX0tFWVM",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field Http2ConnectionPropertyKeys#MAX_GLOBAL_KEYS",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/Http2ConnectionPropertyKeys.java" ],
+  "symbols" : [ "Http2ConnectionPropertyKeys#MAX_GLOBAL_KEYS" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cyNuZXh0SW5kZXg",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field Http2ConnectionPropertyKeys#nextIndex",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/Http2ConnectionPropertyKeys.java" ],
+  "symbols" : [ "Http2ConnectionPropertyKeys#nextIndex" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cy5HbG9iYWxQcm9wZXJ0eUtleSNpbmRleA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field Http2ConnectionPropertyKeys.GlobalPropertyKey#index",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/Http2ConnectionPropertyKeys.java" ],
+  "symbols" : [ "Http2ConnectionPropertyKeys.GlobalPropertyKey#index" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMuR2xvYmFsUHJvcGVydHlLZXkjaW5kZXg",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter Http2ConnectionPropertyKeys.GlobalPropertyKey#index",
+  "files" : [ "codec-http2/src/main/java/io/netty/handler/codec/http2/Http2ConnectionPropertyKeys.java" ],
+  "symbols" : [ "Http2ConnectionPropertyKeys.GlobalPropertyKey#index" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

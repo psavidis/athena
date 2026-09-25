@@ -1,0 +1,7 @@
+[ {
+  "entity" : "ClassicGroup",
+  "description" : "Modify body of ClassicGroup#validateOffsetCommit: other statements changed"
+}, {
+  "entity" : "ClassicGroupTest",
+  "description" : "Modify body of ClassicGroupTest#testValidateOffsetCommit: +validateOffsetCommit, +assertThrows, +createAndRegister, +assertEquals, +getMessages …and 4 more"
+} ]

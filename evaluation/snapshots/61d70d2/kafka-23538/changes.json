@@ -1,0 +1,21 @@
+[ {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsYXNzaWNHcm91cCN2YWxpZGF0ZU9mZnNldENvbW1pdApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ClassicGroup#validateOffsetCommit: other statements changed",
+  "files" : [ "group-coordinator/src/main/java/org/apache/kafka/coordinator/group/classic/ClassicGroup.java" ],
+  "symbols" : [ "ClassicGroup#validateOffsetCommit", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit2YWxpZGF0ZU9mZnNldENvbW1pdCwgK2Fzc2VydFRocm93cywgK2NyZWF0ZUFuZFJlZ2lzdGVyLCArYXNzZXJ0RXF1YWxzLCArZ2V0TWVzc2FnZXMg4oCmYW5kIDQgbW9yZQpDbGFzc2ljR3JvdXBUZXN0I3Rlc3RWYWxpZGF0ZU9mZnNldENvbW1pdA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of ClassicGroupTest#testValidateOffsetCommit: +validateOffsetCommit, +assertThrows, +createAndRegister, +assertEquals, +getMessages …and 4 more",
+  "files" : [ "group-coordinator/src/test/java/org/apache/kafka/coordinator/group/classic/ClassicGroupTest.java" ],
+  "symbols" : [ "ClassicGroupTest#testValidateOffsetCommit", "+validateOffsetCommit, +assertThrows, +createAndRegister, +assertEquals, +getMessages …and 4 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+} ]

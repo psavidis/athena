@@ -1,0 +1,509 @@
+{
+  "prTitle" : "Support creating a PropertyKey that is not tied to a specific Http2Connection",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 3,
+    "STRUCTURAL" : 21,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTCkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cw",
+    "description" : "Add class Http2ConnectionPropertyKeys",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0NMQVNTCkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cy5HbG9iYWxQcm9wZXJ0eUtleQ",
+    "description" : "Add class Http2ConnectionPropertyKeys.GlobalPropertyKey",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKRGVmYXVsdEh0dHAyQ29ubmVjdGlvbiN2ZXJpZnlLZXk",
+    "description" : "Change signature of DefaultHttp2Connection#verifyKey",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0jc2V0UHJvcGVydHkKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of DefaultHttp2Connection.DefaultStream#setProperty: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0jZ2V0UHJvcGVydHkKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of DefaultHttp2Connection.DefaultStream#getProperty: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0jcmVtb3ZlUHJvcGVydHkKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of DefaultHttp2Connection.DefaultStream#removeProperty: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjYWRkR2xvYmFs",
+    "description" : "Add DefaultHttp2Connection.DefaultStream.PropertyMap#addGlobal",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjZ2V0R2xvYmFs",
+    "description" : "Add DefaultHttp2Connection.DefaultStream.PropertyMap#getGlobal",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjcmVtb3ZlR2xvYmFs",
+    "description" : "Add DefaultHttp2Connection.DefaultStream.PropertyMap#removeGlobal",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjcmVzaXplR2xvYmFsSWZOZWNlc3Nhcnk",
+    "description" : "Add DefaultHttp2Connection.DefaultStream.PropertyMap#resizeGlobalIfNecessary",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMjbmV3R2xvYmFsS2V5",
+    "description" : "Add Http2ConnectionPropertyKeys#newGlobalKey",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMja2V5Q291bnQ",
+    "description" : "Add Http2ConnectionPropertyKeys#keyCount",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMuR2xvYmFsUHJvcGVydHlLZXkjZXF1YWxz",
+    "description" : "Add Http2ConnectionPropertyKeys.GlobalPropertyKey#equals",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMuR2xvYmFsUHJvcGVydHlLZXkjaGFzaENvZGU",
+    "description" : "Add Http2ConnectionPropertyKeys.GlobalPropertyKey#hashCode",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNjb25uZWN0aW9uS2V5U2hvdWxkUmVqZWN0VXNlV2l0aE90aGVyQ29ubmVjdGlvbg",
+    "description" : "Add DefaultHttp2ConnectionTest#connectionKeyShouldRejectUseWithOtherConnection",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNjb25uZWN0aW9uS2V5U2hvdWxkV29ya0Fjcm9zc1N0cmVhbXNPZlNhbWVDb25uZWN0aW9u",
+    "description" : "Add DefaultHttp2ConnectionTest#connectionKeyShouldWorkAcrossStreamsOfSameConnection",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNnbG9iYWxLZXlTaG91bGRXb3JrV2l0aEFueUNvbm5lY3Rpb24",
+    "description" : "Add DefaultHttp2ConnectionTest#globalKeyShouldWorkWithAnyConnection",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNnbG9iYWxLZXlzU2hvdWxkQmVJbmRlcGVuZGVudA",
+    "description" : "Add DefaultHttp2ConnectionTest#globalKeysShouldBeIndependent",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCN1bnNldFByb3BlcnR5U2hvdWxkUmV0dXJuTnVsbEZvckJvdGhLZXlLaW5kcw",
+    "description" : "Add DefaultHttp2ConnectionTest#unsetPropertyShouldReturnNullForBothKeyKinds",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 19,
+    "changeKey" : "QUREX0ZJRUxECkRlZmF1bHRIdHRwMkNvbm5lY3Rpb24uRGVmYXVsdFN0cmVhbS5Qcm9wZXJ0eU1hcCNnbG9iYWxWYWx1ZXM",
+    "description" : "Add field DefaultHttp2Connection.DefaultStream.PropertyMap#globalValues",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 20,
+    "changeKey" : "QUREX0ZJRUxECkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cyNNQVhfR0xPQkFMX0tFWVM",
+    "description" : "Add field Http2ConnectionPropertyKeys#MAX_GLOBAL_KEYS",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 21,
+    "changeKey" : "QUREX0ZJRUxECkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cyNuZXh0SW5kZXg",
+    "description" : "Add field Http2ConnectionPropertyKeys#nextIndex",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 22,
+    "changeKey" : "QUREX0ZJRUxECkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cy5HbG9iYWxQcm9wZXJ0eUtleSNpbmRleA",
+    "description" : "Add field Http2ConnectionPropertyKeys.GlobalPropertyKey#index",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 23,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMuR2xvYmFsUHJvcGVydHlLZXkjaW5kZXg",
+    "description" : "Add constructor parameter Http2ConnectionPropertyKeys.GlobalPropertyKey#index",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "Http2ConnectionPropertyKeys",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTCkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cw",
+      "description" : "Add class Http2ConnectionPropertyKeys",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMjbmV3R2xvYmFsS2V5",
+      "description" : "Add Http2ConnectionPropertyKeys#newGlobalKey",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMja2V5Q291bnQ",
+      "description" : "Add Http2ConnectionPropertyKeys#keyCount",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 20,
+      "changeKey" : "QUREX0ZJRUxECkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cyNNQVhfR0xPQkFMX0tFWVM",
+      "description" : "Add field Http2ConnectionPropertyKeys#MAX_GLOBAL_KEYS",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 21,
+      "changeKey" : "QUREX0ZJRUxECkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cyNuZXh0SW5kZXg",
+      "description" : "Add field Http2ConnectionPropertyKeys#nextIndex",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "Http2ConnectionPropertyKeys.GlobalPropertyKey",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX0NMQVNTCkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cy5HbG9iYWxQcm9wZXJ0eUtleQ",
+      "description" : "Add class Http2ConnectionPropertyKeys.GlobalPropertyKey",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMuR2xvYmFsUHJvcGVydHlLZXkjZXF1YWxz",
+      "description" : "Add Http2ConnectionPropertyKeys.GlobalPropertyKey#equals",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX1NZTUJPTApIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMuR2xvYmFsUHJvcGVydHlLZXkjaGFzaENvZGU",
+      "description" : "Add Http2ConnectionPropertyKeys.GlobalPropertyKey#hashCode",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 22,
+      "changeKey" : "QUREX0ZJRUxECkh0dHAyQ29ubmVjdGlvblByb3BlcnR5S2V5cy5HbG9iYWxQcm9wZXJ0eUtleSNpbmRleA",
+      "description" : "Add field Http2ConnectionPropertyKeys.GlobalPropertyKey#index",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 23,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpIdHRwMkNvbm5lY3Rpb25Qcm9wZXJ0eUtleXMuR2xvYmFsUHJvcGVydHlLZXkjaW5kZXg",
+      "description" : "Add constructor parameter Http2ConnectionPropertyKeys.GlobalPropertyKey#index",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DefaultHttp2Connection",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKRGVmYXVsdEh0dHAyQ29ubmVjdGlvbiN2ZXJpZnlLZXk",
+      "description" : "Change signature of DefaultHttp2Connection#verifyKey",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DefaultHttp2Connection.DefaultStream",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0jc2V0UHJvcGVydHkKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of DefaultHttp2Connection.DefaultStream#setProperty: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 4,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0jZ2V0UHJvcGVydHkKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of DefaultHttp2Connection.DefaultStream#getProperty: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 5,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0jcmVtb3ZlUHJvcGVydHkKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of DefaultHttp2Connection.DefaultStream#removeProperty: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DefaultHttp2Connection.DefaultStream.PropertyMap",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjYWRkR2xvYmFs",
+      "description" : "Add DefaultHttp2Connection.DefaultStream.PropertyMap#addGlobal",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjZ2V0R2xvYmFs",
+      "description" : "Add DefaultHttp2Connection.DefaultStream.PropertyMap#getGlobal",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjcmVtb3ZlR2xvYmFs",
+      "description" : "Add DefaultHttp2Connection.DefaultStream.PropertyMap#removeGlobal",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 9,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uLkRlZmF1bHRTdHJlYW0uUHJvcGVydHlNYXAjcmVzaXplR2xvYmFsSWZOZWNlc3Nhcnk",
+      "description" : "Add DefaultHttp2Connection.DefaultStream.PropertyMap#resizeGlobalIfNecessary",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 19,
+      "changeKey" : "QUREX0ZJRUxECkRlZmF1bHRIdHRwMkNvbm5lY3Rpb24uRGVmYXVsdFN0cmVhbS5Qcm9wZXJ0eU1hcCNnbG9iYWxWYWx1ZXM",
+      "description" : "Add field DefaultHttp2Connection.DefaultStream.PropertyMap#globalValues",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DefaultHttp2ConnectionTest",
+    "entries" : [ {
+      "id" : 14,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNjb25uZWN0aW9uS2V5U2hvdWxkUmVqZWN0VXNlV2l0aE90aGVyQ29ubmVjdGlvbg",
+      "description" : "Add DefaultHttp2ConnectionTest#connectionKeyShouldRejectUseWithOtherConnection",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNjb25uZWN0aW9uS2V5U2hvdWxkV29ya0Fjcm9zc1N0cmVhbXNPZlNhbWVDb25uZWN0aW9u",
+      "description" : "Add DefaultHttp2ConnectionTest#connectionKeyShouldWorkAcrossStreamsOfSameConnection",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNnbG9iYWxLZXlTaG91bGRXb3JrV2l0aEFueUNvbm5lY3Rpb24",
+      "description" : "Add DefaultHttp2ConnectionTest#globalKeyShouldWorkWithAnyConnection",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCNnbG9iYWxLZXlzU2hvdWxkQmVJbmRlcGVuZGVudA",
+      "description" : "Add DefaultHttp2ConnectionTest#globalKeysShouldBeIndependent",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 18,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0SHR0cDJDb25uZWN0aW9uVGVzdCN1bnNldFByb3BlcnR5U2hvdWxkUmV0dXJuTnVsbEZvckJvdGhLZXlLaW5kcw",
+      "description" : "Add DefaultHttp2ConnectionTest#unsetPropertyShouldReturnNullForBothKeyKinds",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

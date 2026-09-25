@@ -1,0 +1,2805 @@
+{
+  "prTitle" : "Stop reading merged float vectors back to build the HNSW merge scorer",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 7,
+    "STRUCTURAL" : 124,
+    "UNKNOWN" : 6,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTCkZsYXRWZWN0b3JzV3JpdGVyLk1lcmdlU2NvcmVyRGF0YQ",
+    "description" : "Add class FlatVectorsWriter.MergeScorerData",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0NMQVNTCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGE",
+    "description" : "Add class Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlcg",
+    "description" : "Add class TestLucene104ScalarQuantizedMergeScorer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5SZWFkQ291bnRpbmdEaXJlY3Rvcnk",
+    "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5Db3VudGluZ0luZGV4SW5wdXQ",
+    "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5IbnN3T3ZlckZsYXRGb3JtYXQ",
+    "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5Ob1ByZXBhcmVGbGF0Rm9ybWF0",
+    "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5DYXB0dXJpbmdGbGF0Rm9ybWF0",
+    "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5XcmFwcGluZ0ZsYXRGb3JtYXQ",
+    "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5XcmFwcGluZ0ZsYXRSZWFkZXI",
+    "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3dyaXRlVmVjdG9ycwpicmFuY2ggcmVtb3ZlZA",
+    "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#writeVectors: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3dyaXRlU29ydGVkVmVjdG9ycwpicmFuY2ggcmVtb3ZlZA",
+    "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#writeSortedVectors: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlZFF1YW50aXplZFZlY3RvclZhbHVlcwpicmFuY2ggcmVtb3ZlZA",
+    "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#mergedQuantizedVectorValues: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlT25lRmxhdFZlY3RvckZpZWxkCmJyYW5jaCByZW1vdmVk",
+    "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorField: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 14,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTHVjZW5lMTA0U2NhbGFyUXVhbnRpemVkVmVjdG9yc1dyaXRlciNtZXJnZU9uZUZsYXRWZWN0b3JGaWVsZENlbnRlcmVk",
+    "description" : "Change signature of Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorFieldCentered",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 15,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlF1YW50aXplZEZsb2F0VmVjdG9yVmFsdWVzI3F1YW50aXplCmJyYW5jaCByZW1vdmVk",
+    "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter.QuantizedFloatVectorValues#quantize: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 16,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmU5OUhuc3dWZWN0b3JzV3JpdGVyI21lcmdlT25lRmllbGQKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of Lucene99HnswVectorsWriter#mergeOneField: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 17,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUZXN0SG5zd01lcmdlQWJvcnQjZG9UZXN0Um9sbGJhY2tEdXJpbmdNZXJnZQpicmFuY2ggYWRkZWQ",
+    "description" : "Change control flow of TestHnswMergeAbort#doTestRollbackDuringMerge: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 18,
+    "changeKey" : "RVhUUkFDVF9NRVRIT0QKTHVjZW5lMTA0U2NhbGFyUXVhbnRpemVkVmVjdG9yc0Zvcm1hdCN3cml0ZUNvcnJlY3Rpb25zCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIjd3JpdGVWZWN0b3JEYXRh",
+    "description" : "Extract Lucene104ScalarQuantizedVectorsFormat#writeCorrections",
+    "category" : "STRUCTURAL",
+    "kind" : "EXTRACT_METHOD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 19,
+    "changeKey" : "UkVNT1ZFX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3dyaXRlQmluYXJpemVkUXVlcnlEYXRh",
+    "description" : "Remove Lucene104ScalarQuantizedVectorsWriter#writeBinarizedQueryData",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 20,
+    "changeKey" : "QUREX1NZTUJPTApGbGF0VmVjdG9yc1dyaXRlciNtZXJnZU9uZUZsYXRWZWN0b3JGaWVsZEZvck1lcmdlU2NvcmVy",
+    "description" : "Add FlatVectorsWriter#mergeOneFlatVectorFieldForMergeScorer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 21,
+    "changeKey" : "QUREX1NZTUJPTApGbGF0VmVjdG9yc1dyaXRlci5NZXJnZVNjb3JlckRhdGEjc2NvcmVyU3VwcGxpZXI",
+    "description" : "Add FlatVectorsWriter.MergeScorerData#scorerSupplier",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 22,
+    "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzRm9ybWF0I3dyaXRlUXVlcnlSZWNvcmQ",
+    "description" : "Add Lucene104ScalarQuantizedVectorsFormat#writeQueryRecord",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 23,
+    "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzUmVhZGVyI21lcmdlU2NvcmVyU3VwcGxpZXI",
+    "description" : "Add Lucene104ScalarQuantizedVectorsReader#mergeScorerSupplier",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 24,
+    "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlZEZsb2F0VmVjdG9yVmFsdWVz",
+    "description" : "Add Lucene104ScalarQuantizedVectorsWriter#mergedFloatVectorValues",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 25,
+    "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlT25lRmxhdFZlY3RvckZpZWxkRm9yTWVyZ2VTY29yZXI",
+    "description" : "Add Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorFieldForMergeScorer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 26,
+    "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlT25lRmxhdFZlY3RvckZpZWxk",
+    "description" : "Add Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorField",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 27,
+    "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3dyaXRlVmVjdG9yQW5kUXVlcnlEYXRh",
+    "description" : "Add Lucene104ScalarQuantizedVectorsWriter#writeVectorAndQueryData",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 28,
+    "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3BhY2tJbmRleFJlY29yZA",
+    "description" : "Add Lucene104ScalarQuantizedVectorsWriter#packIndexRecord",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 29,
+    "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI3Njb3JlclN1cHBsaWVy",
+    "description" : "Add Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#scorerSupplier",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 30,
+    "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2Nsb3Nl",
+    "description" : "Add Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#close",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 31,
+    "changeKey" : "QUREX1NZTUJPTApMdWNlbmU5OUhuc3dWZWN0b3JzV3JpdGVyI21lcmdlU2NvcmVyU3VwcGxpZXI",
+    "description" : "Add Lucene99HnswVectorsWriter#mergeScorerSupplier",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 32,
+    "changeKey" : "QUREX1NZTUJPTApMdWNlbmU5OUhuc3dWZWN0b3JzV3JpdGVyI2J1aWxkc0dyYXBo",
+    "description" : "Add Lucene99HnswVectorsWriter#buildsGraph",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 33,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjYXN5bW1ldHJpY0VuY29kaW5ncw",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#asymmetricEncodings",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 34,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjd3JpdGVyUGF0aEZvcm1hdA",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#writerPathFormat",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 35,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcmVhZGVyUGF0aEZvcm1hdA",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#readerPathFormat",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 36,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE1lcmdlRG9lc05vdFJlYWRNZXJnZWRWZWN0b3JzQmFjaw",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testMergeDoesNotReadMergedVectorsBack",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 37,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdEhhbmRPZmZTZXJ2ZXNBV3JhcHBpbmdSZWFkZXI",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testHandOffServesAWrappingReader",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 38,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdEdyYXBoSXNJZGVudGljYWxUb1RoZVJlYWRlckZhbGxiYWNr",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testGraphIsIdenticalToTheReaderFallback",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 39,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE1lcmdlZFJlY29yZHNBcmVJZGVudGljYWxXaXRoRGVsZXRpb25z",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testMergedRecordsAreIdenticalWithDeletions",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 40,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjYXNzZXJ0Qm90aFBhdGhzV3JpdGVUaGVTYW1lRmlsZXM",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#assertBothPathsWriteTheSameFiles",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 41,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE5vSGFuZE9mZldoZW5Ob0dyYXBoSXNCdWlsdA",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testNoHandOffWhenNoGraphIsBuilt",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 42,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdERhdGFCbGluZE1vZGVzS2VlcFRoZVJlYWRlclBhdGg",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testDataBlindModesKeepTheReaderPath",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 43,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE1lcmdlT2ZSZW51bWJlcmVkQ29kZWNSZWFkZXJz",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testMergeOfRenumberedCodecReaders",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 44,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdEhhbmRPZmZJc1NpbmdsZVVzZQ",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testHandOffIsSingleUse",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 45,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdFBoYXNlT25lRmFpbHVyZUxlYXZlc05vSGFuZE9mZg",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testPhaseOneFailureLeavesNoHandOff",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 46,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdEhhbmRPZmZJc1JlbGVhc2VkV2hlbkl0SXNOZXZlckNvbnN1bWVk",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testHandOffIsReleasedWhenItIsNeverConsumed",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 47,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdFBoYXNlVHdvRmFpbHVyZUxlYXZlc05vSGFuZE9mZg",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testPhaseTwoFailureLeavesNoHandOff",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 48,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE1ldGFGYWlsdXJlTGVhdmVzTm9IYW5kT2Zm",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testMetaFailureLeavesNoHandOff",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 49,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjYXNzZXJ0TWVyZ2VGYWlsc1dpdGhvdXRMZWZ0b3ZlcnM",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#assertMergeFailsWithoutLeftovers",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 50,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcmFuZG9tQXN5bW1ldHJpY0VuY29kaW5n",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#randomAsymmetricEncoding",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 51,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjYXNzZXJ0Tm9UZW1wRmlsZXM",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#assertNoTempFiles",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 52,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcmVudW1iZXJlZA",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#renumbered",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 53,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcnVuTWVyZ2U",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#runMerge",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 54,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjbWVyZ2VkVmVjdG9yRmlsZXM",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#mergedVectorFiles",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 55,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjZmlsZUJvZHk",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#fileBody",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 56,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcmFuZG9tVmVjdG9ycw",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer#randomVectors",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 57,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I29wZW5JbnB1dA",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#openInput",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 58,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I2NyZWF0ZU91dHB1dA",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#createOutput",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 59,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I2NyZWF0ZVRlbXBPdXRwdXQ",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#createTempOutput",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 60,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I3Jlc2V0Q291bnRz",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#resetCounts",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 61,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I2J5dGVzUmVhZA",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#bytesRead",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 62,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I2hhbmRPZmZzQ3JlYXRlZA",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#handOffsCreated",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 63,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I2Nsb25l",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#clone",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 64,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I3NsaWNl",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#slice",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 65,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I3JlYWRCeXRl",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#readByte",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 66,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I3JlYWRCeXRlcw",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#readBytes",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 67,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I2ZpZWxkc1dyaXRlcg",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#fieldsWriter",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 68,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I2ZpZWxkc1JlYWRlcg",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#fieldsReader",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 69,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I2dldE1heERpbWVuc2lvbnM",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#getMaxDimensions",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 70,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuTm9QcmVwYXJlRmxhdEZvcm1hdCNmaWVsZHNXcml0ZXI",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat#fieldsWriter",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 71,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ2FwdHVyaW5nRmxhdEZvcm1hdCNmaWVsZHNXcml0ZXI",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#fieldsWriter",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 72,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0Rm9ybWF0I2ZpZWxkc1dyaXRlcg",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#fieldsWriter",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 73,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0Rm9ybWF0I2ZpZWxkc1JlYWRlcg",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#fieldsReader",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 74,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0Rm9ybWF0I2dldE1heERpbWVuc2lvbnM",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#getMaxDimensions",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 75,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI3Vud3JhcFJlYWRlckZvckZpZWxk",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#unwrapReaderForField",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 76,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldEZsYXRWZWN0b3JTY29yZXI",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getFlatVectorScorer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 77,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldFJhbmRvbVZlY3RvclNjb3Jlcg",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getRandomVectorScorer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 3,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 78,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2NoZWNrSW50ZWdyaXR5",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#checkIntegrity",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 79,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldEZsb2F0VmVjdG9yVmFsdWVz",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getFloatVectorValues",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 80,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldEJ5dGVWZWN0b3JWYWx1ZXM",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getByteVectorValues",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 81,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldEZsb2F0MTZWZWN0b3JWYWx1ZXM",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getFloat16VectorValues",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 82,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2Nsb3Nl",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#close",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 83,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI3JhbUJ5dGVzVXNlZA",
+    "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#ramBytesUsed",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 84,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0SG5zd01lcmdlQWJvcnQjdGVzdFJvbGxiYWNrRHVyaW5nUXVhbnRpemVkTWVyZ2U",
+    "description" : "Add TestHnswMergeAbort#testRollbackDuringQuantizedMerge",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 85,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0SG5zd01lcmdlQWJvcnQjdGVtcEZpbGVz",
+    "description" : "Add TestHnswMergeAbort#tempFiles",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 86,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0T3B0aW1pemVkU2NhbGFyUXVhbnRpemVyI3Rlc3RNdWx0aVNjYWxhclF1YW50aXplTWF0Y2hlc1NjYWxhclF1YW50aXpl",
+    "description" : "Add TestOptimizedScalarQuantizer#testMultiScalarQuantizeMatchesScalarQuantize",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 87,
+    "changeKey" : "QUREX1NZTUJPTApUZXN0T3B0aW1pemVkU2NhbGFyUXVhbnRpemVyI2Fzc2VydElkZW50aWNhbFJlc3VsdHM",
+    "description" : "Add TestOptimizedScalarQuantizer#assertIdenticalResults",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 88,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCittZXJnZVNjb3JlclN1cHBsaWVyLCAtZ2V0UmFuZG9tVmVjdG9yU2NvcmVyU3VwcGxpZXIsIC1nZXRWZWN0b3JTaW1pbGFyaXR5RnVuY3Rpb24sIC1jcmVhdGUsIC1vcGVuSW5wdXQg4oCmYW5kIDggbW9yZQpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzUmVhZGVyI2dldFJhbmRvbVZlY3RvclNjb3JlclN1cHBsaWVyRm9yTWVyZ2U",
+    "description" : "Modify body of Lucene104ScalarQuantizedVectorsReader#getRandomVectorScorerSupplierForMerge: +mergeScorerSupplier, -getRandomVectorScorerSupplier, -getVectorSimilarityFunction, -create, -openInput …and 8 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 89,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZVF1ZXJ5UmVjb3JkLCAtdHJhbnNwb3NlSGFsZkJ5dGUsIC13cml0ZUJ5dGVzLCAtd3JpdGVJbnQsIC1mbG9hdFRvSW50Qml0cyDigKZhbmQgNCBtb3JlCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNSZWFkZXIjd3JpdGVCaW5hcml6ZWRRdWVyeURhdGE",
+    "description" : "Modify body of Lucene104ScalarQuantizedVectorsReader#writeBinarizedQueryData: +writeQueryRecord, -transposeHalfByte, -writeBytes, -writeInt, -floatToIntBits …and 4 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 90,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZUNvcnJlY3Rpb25zLCAtd3JpdGVJbnQsIC1mbG9hdFRvSW50Qml0cywgLWxvd2VySW50ZXJ2YWwsIC11cHBlckludGVydmFsIOKApmFuZCAyIG1vcmUKTHVjZW5lMTA0U2NhbGFyUXVhbnRpemVkVmVjdG9yc1dyaXRlciN3cml0ZVZlY3RvckRhdGE",
+    "description" : "Modify body of Lucene104ScalarQuantizedVectorsWriter#writeVectorData: +writeCorrections, -writeInt, -floatToIntBits, -lowerInterval, -upperInterval …and 2 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 91,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIjY2xvc2UKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of Lucene104ScalarQuantizedVectorsWriter#close: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 92,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbG9zZQpMdWNlbmU5OUhuc3dWZWN0b3JzV3JpdGVyI2Nsb3Nl",
+    "description" : "Modify body of Lucene99HnswVectorsWriter#close: +close",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 93,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of Lucene104ScalarQuantizedVectorsWriter#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 94,
+    "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIjdmVjdG9yU2NvcmVy",
+    "description" : "Add field Lucene104ScalarQuantizedVectorsWriter#vectorScorer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 95,
+    "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjZGlyZWN0b3J5",
+    "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#directory",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 96,
+    "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjY29udGV4dA",
+    "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#context",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 97,
+    "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjZmllbGRJbmZv",
+    "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fieldInfo",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 98,
+    "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjdmVjdG9yU2NvcmVy",
+    "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#vectorScorer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 99,
+    "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjZmlsZU5hbWU",
+    "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fileName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 100,
+    "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjc3BlbnQ",
+    "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#spent",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 101,
+    "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTk5SG5zd1ZlY3RvcnNXcml0ZXIjcHJlcGFyZWRNZXJnZVNjb3JlcnM",
+    "description" : "Add field Lucene99HnswVectorsWriter#preparedMergeScorers",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 102,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNESU0",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#DIM",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 103,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNET0NTX1BFUl9TRUdNRU5U",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#DOCS_PER_SEGMENT",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 104,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNUSU5ZX1NFR01FTlRfRE9DUw",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#TINY_SEGMENT_DOCS",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 105,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNNQVhfQ09OTg",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#MAX_CONN",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 106,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNCRUFNX1dJRFRI",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#BEAM_WIDTH",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 107,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNBTFdBWVNfR1JBUEg",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#ALWAYS_GRAPH",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 108,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNSQVdfRk9STUFU",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#RAW_FORMAT",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 109,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNRVUFOVElaRURfU0NPUkVS",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#QUANTIZED_SCORER",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 110,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNSRUNPUkRfRVhURU5TSU9OUw",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#RECORD_EXTENSIONS",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 111,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNWRUNUT1JfRVhURU5TSU9OUw",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#VECTOR_EXTENSIONS",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 112,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5SZWFkQ291bnRpbmdEaXJlY3RvcnkjYnl0ZXNSZWFk",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#bytesRead",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 113,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5SZWFkQ291bnRpbmdEaXJlY3RvcnkjY3JlYXRlZA",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#created",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 114,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5Db3VudGluZ0luZGV4SW5wdXQjYnl0ZXNSZWFk",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#bytesRead",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 115,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5IbnN3T3ZlckZsYXRGb3JtYXQjUkVBRF9GT1JNQVQ",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#READ_FORMAT",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 116,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5IbnN3T3ZlckZsYXRGb3JtYXQjZmxhdFZlY3RvcnNGb3JtYXQ",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#flatVectorsFormat",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 117,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5IbnN3T3ZlckZsYXRGb3JtYXQjdGlueVNlZ21lbnRzVGhyZXNob2xk",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#tinySegmentsThreshold",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 118,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5Ob1ByZXBhcmVGbGF0Rm9ybWF0I2VuY29kaW5n",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat#encoding",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 119,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5DYXB0dXJpbmdGbGF0Rm9ybWF0I2VuY29kaW5n",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#encoding",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 120,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5DYXB0dXJpbmdGbGF0Rm9ybWF0I21vZGU",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#mode",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 121,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5DYXB0dXJpbmdGbGF0Rm9ybWF0I2hhbmRsZXM",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#handles",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 122,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5XcmFwcGluZ0ZsYXRGb3JtYXQjZGVsZWdhdGU",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#delegate",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 123,
+    "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5XcmFwcGluZ0ZsYXRSZWFkZXIjZGVsZWdhdGU",
+    "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#delegate",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 124,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2RpcmVjdG9yeQ",
+    "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#directory",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 125,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2NvbnRleHQ",
+    "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#context",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 126,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2ZpZWxkSW5mbw",
+    "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fieldInfo",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 127,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI3ZlY3RvclNjb3Jlcg",
+    "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#vectorScorer",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 128,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2ZpbGVOYW1l",
+    "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fileName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 129,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I2J5dGVzUmVhZA",
+    "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#bytesRead",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 130,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I2ZsYXRWZWN0b3JzRm9ybWF0",
+    "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#flatVectorsFormat",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 131,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I3RpbnlTZWdtZW50c1RocmVzaG9sZA",
+    "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#tinySegmentsThreshold",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 132,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuTm9QcmVwYXJlRmxhdEZvcm1hdCNlbmNvZGluZw",
+    "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat#encoding",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 133,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ2FwdHVyaW5nRmxhdEZvcm1hdCNlbmNvZGluZw",
+    "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#encoding",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 134,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ2FwdHVyaW5nRmxhdEZvcm1hdCNtb2Rl",
+    "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#mode",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 135,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ2FwdHVyaW5nRmxhdEZvcm1hdCNoYW5kbGVz",
+    "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#handles",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 136,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2RlbGVnYXRl",
+    "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#delegate",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "FlatVectorsWriter.MergeScorerData",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTCkZsYXRWZWN0b3JzV3JpdGVyLk1lcmdlU2NvcmVyRGF0YQ",
+      "description" : "Add class FlatVectorsWriter.MergeScorerData",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 21,
+      "changeKey" : "QUREX1NZTUJPTApGbGF0VmVjdG9yc1dyaXRlci5NZXJnZVNjb3JlckRhdGEjc2NvcmVyU3VwcGxpZXI",
+      "description" : "Add FlatVectorsWriter.MergeScorerData#scorerSupplier",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX0NMQVNTCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGE",
+      "description" : "Add class Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 29,
+      "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI3Njb3JlclN1cHBsaWVy",
+      "description" : "Add Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#scorerSupplier",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 30,
+      "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2Nsb3Nl",
+      "description" : "Add Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#close",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 95,
+      "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjZGlyZWN0b3J5",
+      "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#directory",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 96,
+      "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjY29udGV4dA",
+      "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#context",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 97,
+      "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjZmllbGRJbmZv",
+      "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fieldInfo",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 98,
+      "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjdmVjdG9yU2NvcmVy",
+      "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#vectorScorer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 99,
+      "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjZmlsZU5hbWU",
+      "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fileName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 100,
+      "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIuUHJlcGFyZWRRdWVyeURhdGEjc3BlbnQ",
+      "description" : "Add field Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#spent",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 124,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2RpcmVjdG9yeQ",
+      "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#directory",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 125,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2NvbnRleHQ",
+      "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#context",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 126,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2ZpZWxkSW5mbw",
+      "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fieldInfo",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 127,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI3ZlY3RvclNjb3Jlcg",
+      "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#vectorScorer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 128,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlByZXBhcmVkUXVlcnlEYXRhI2ZpbGVOYW1l",
+      "description" : "Add constructor parameter Lucene104ScalarQuantizedVectorsWriter.PreparedQueryData#fileName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TestLucene104ScalarQuantizedMergeScorer",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlcg",
+      "description" : "Add class TestLucene104ScalarQuantizedMergeScorer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 33,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjYXN5bW1ldHJpY0VuY29kaW5ncw",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#asymmetricEncodings",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 34,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjd3JpdGVyUGF0aEZvcm1hdA",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#writerPathFormat",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 35,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcmVhZGVyUGF0aEZvcm1hdA",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#readerPathFormat",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 36,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE1lcmdlRG9lc05vdFJlYWRNZXJnZWRWZWN0b3JzQmFjaw",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testMergeDoesNotReadMergedVectorsBack",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 37,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdEhhbmRPZmZTZXJ2ZXNBV3JhcHBpbmdSZWFkZXI",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testHandOffServesAWrappingReader",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 38,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdEdyYXBoSXNJZGVudGljYWxUb1RoZVJlYWRlckZhbGxiYWNr",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testGraphIsIdenticalToTheReaderFallback",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 39,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE1lcmdlZFJlY29yZHNBcmVJZGVudGljYWxXaXRoRGVsZXRpb25z",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testMergedRecordsAreIdenticalWithDeletions",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 40,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjYXNzZXJ0Qm90aFBhdGhzV3JpdGVUaGVTYW1lRmlsZXM",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#assertBothPathsWriteTheSameFiles",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 41,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE5vSGFuZE9mZldoZW5Ob0dyYXBoSXNCdWlsdA",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testNoHandOffWhenNoGraphIsBuilt",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 42,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdERhdGFCbGluZE1vZGVzS2VlcFRoZVJlYWRlclBhdGg",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testDataBlindModesKeepTheReaderPath",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 43,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE1lcmdlT2ZSZW51bWJlcmVkQ29kZWNSZWFkZXJz",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testMergeOfRenumberedCodecReaders",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 44,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdEhhbmRPZmZJc1NpbmdsZVVzZQ",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testHandOffIsSingleUse",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 45,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdFBoYXNlT25lRmFpbHVyZUxlYXZlc05vSGFuZE9mZg",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testPhaseOneFailureLeavesNoHandOff",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 46,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdEhhbmRPZmZJc1JlbGVhc2VkV2hlbkl0SXNOZXZlckNvbnN1bWVk",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testHandOffIsReleasedWhenItIsNeverConsumed",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 47,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdFBoYXNlVHdvRmFpbHVyZUxlYXZlc05vSGFuZE9mZg",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testPhaseTwoFailureLeavesNoHandOff",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 48,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjdGVzdE1ldGFGYWlsdXJlTGVhdmVzTm9IYW5kT2Zm",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#testMetaFailureLeavesNoHandOff",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 49,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjYXNzZXJ0TWVyZ2VGYWlsc1dpdGhvdXRMZWZ0b3ZlcnM",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#assertMergeFailsWithoutLeftovers",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 50,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcmFuZG9tQXN5bW1ldHJpY0VuY29kaW5n",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#randomAsymmetricEncoding",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 51,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjYXNzZXJ0Tm9UZW1wRmlsZXM",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#assertNoTempFiles",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 52,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcmVudW1iZXJlZA",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#renumbered",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 53,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcnVuTWVyZ2U",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#runMerge",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 54,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjbWVyZ2VkVmVjdG9yRmlsZXM",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#mergedVectorFiles",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 55,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjZmlsZUJvZHk",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#fileBody",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 56,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIjcmFuZG9tVmVjdG9ycw",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer#randomVectors",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 102,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNESU0",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#DIM",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 103,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNET0NTX1BFUl9TRUdNRU5U",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#DOCS_PER_SEGMENT",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 104,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNUSU5ZX1NFR01FTlRfRE9DUw",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#TINY_SEGMENT_DOCS",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 105,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNNQVhfQ09OTg",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#MAX_CONN",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 106,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNCRUFNX1dJRFRI",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#BEAM_WIDTH",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 107,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNBTFdBWVNfR1JBUEg",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#ALWAYS_GRAPH",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 108,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNSQVdfRk9STUFU",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#RAW_FORMAT",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 109,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNRVUFOVElaRURfU0NPUkVS",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#QUANTIZED_SCORER",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 110,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNSRUNPUkRfRVhURU5TSU9OUw",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#RECORD_EXTENSIONS",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 111,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3JlciNWRUNUT1JfRVhURU5TSU9OUw",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer#VECTOR_EXTENSIONS",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5SZWFkQ291bnRpbmdEaXJlY3Rvcnk",
+      "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 57,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I29wZW5JbnB1dA",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#openInput",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 58,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I2NyZWF0ZU91dHB1dA",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#createOutput",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 59,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I2NyZWF0ZVRlbXBPdXRwdXQ",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#createTempOutput",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 60,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I3Jlc2V0Q291bnRz",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#resetCounts",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 61,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I2J5dGVzUmVhZA",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#bytesRead",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 62,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuUmVhZENvdW50aW5nRGlyZWN0b3J5I2hhbmRPZmZzQ3JlYXRlZA",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#handOffsCreated",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 112,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5SZWFkQ291bnRpbmdEaXJlY3RvcnkjYnl0ZXNSZWFk",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#bytesRead",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 113,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5SZWFkQ291bnRpbmdEaXJlY3RvcnkjY3JlYXRlZA",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.ReadCountingDirectory#created",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5Db3VudGluZ0luZGV4SW5wdXQ",
+      "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 63,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I2Nsb25l",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#clone",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 64,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I3NsaWNl",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#slice",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 65,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I3JlYWRCeXRl",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#readByte",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 66,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I3JlYWRCeXRlcw",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#readBytes",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 114,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5Db3VudGluZ0luZGV4SW5wdXQjYnl0ZXNSZWFk",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#bytesRead",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 129,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ291bnRpbmdJbmRleElucHV0I2J5dGVzUmVhZA",
+      "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.CountingIndexInput#bytesRead",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5IbnN3T3ZlckZsYXRGb3JtYXQ",
+      "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 67,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I2ZpZWxkc1dyaXRlcg",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#fieldsWriter",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 68,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I2ZpZWxkc1JlYWRlcg",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#fieldsReader",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 69,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I2dldE1heERpbWVuc2lvbnM",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#getMaxDimensions",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 115,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5IbnN3T3ZlckZsYXRGb3JtYXQjUkVBRF9GT1JNQVQ",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#READ_FORMAT",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 116,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5IbnN3T3ZlckZsYXRGb3JtYXQjZmxhdFZlY3RvcnNGb3JtYXQ",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#flatVectorsFormat",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 117,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5IbnN3T3ZlckZsYXRGb3JtYXQjdGlueVNlZ21lbnRzVGhyZXNob2xk",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#tinySegmentsThreshold",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 130,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I2ZsYXRWZWN0b3JzRm9ybWF0",
+      "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#flatVectorsFormat",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 131,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuSG5zd092ZXJGbGF0Rm9ybWF0I3RpbnlTZWdtZW50c1RocmVzaG9sZA",
+      "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.HnswOverFlatFormat#tinySegmentsThreshold",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5Ob1ByZXBhcmVGbGF0Rm9ybWF0",
+      "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 70,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuTm9QcmVwYXJlRmxhdEZvcm1hdCNmaWVsZHNXcml0ZXI",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat#fieldsWriter",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 118,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5Ob1ByZXBhcmVGbGF0Rm9ybWF0I2VuY29kaW5n",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat#encoding",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 132,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuTm9QcmVwYXJlRmxhdEZvcm1hdCNlbmNvZGluZw",
+      "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.NoPrepareFlatFormat#encoding",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat",
+    "entries" : [ {
+      "id" : 7,
+      "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5DYXB0dXJpbmdGbGF0Rm9ybWF0",
+      "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 71,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ2FwdHVyaW5nRmxhdEZvcm1hdCNmaWVsZHNXcml0ZXI",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#fieldsWriter",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 119,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5DYXB0dXJpbmdGbGF0Rm9ybWF0I2VuY29kaW5n",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#encoding",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 120,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5DYXB0dXJpbmdGbGF0Rm9ybWF0I21vZGU",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#mode",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 121,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5DYXB0dXJpbmdGbGF0Rm9ybWF0I2hhbmRsZXM",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#handles",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 133,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ2FwdHVyaW5nRmxhdEZvcm1hdCNlbmNvZGluZw",
+      "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#encoding",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 134,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ2FwdHVyaW5nRmxhdEZvcm1hdCNtb2Rl",
+      "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#mode",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 135,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuQ2FwdHVyaW5nRmxhdEZvcm1hdCNoYW5kbGVz",
+      "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.CapturingFlatFormat#handles",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5XcmFwcGluZ0ZsYXRGb3JtYXQ",
+      "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 72,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0Rm9ybWF0I2ZpZWxkc1dyaXRlcg",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#fieldsWriter",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 73,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0Rm9ybWF0I2ZpZWxkc1JlYWRlcg",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#fieldsReader",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 74,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0Rm9ybWF0I2dldE1heERpbWVuc2lvbnM",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#getMaxDimensions",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 122,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5XcmFwcGluZ0ZsYXRGb3JtYXQjZGVsZWdhdGU",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.WrappingFlatFormat#delegate",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader",
+    "entries" : [ {
+      "id" : 9,
+      "changeKey" : "QUREX0NMQVNTClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5XcmFwcGluZ0ZsYXRSZWFkZXI",
+      "description" : "Add class TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 75,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI3Vud3JhcFJlYWRlckZvckZpZWxk",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#unwrapReaderForField",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 76,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldEZsYXRWZWN0b3JTY29yZXI",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getFlatVectorScorer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 77,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldFJhbmRvbVZlY3RvclNjb3Jlcg",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getRandomVectorScorer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 3,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 78,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2NoZWNrSW50ZWdyaXR5",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#checkIntegrity",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 79,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldEZsb2F0VmVjdG9yVmFsdWVz",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getFloatVectorValues",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 80,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldEJ5dGVWZWN0b3JWYWx1ZXM",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getByteVectorValues",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 81,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2dldEZsb2F0MTZWZWN0b3JWYWx1ZXM",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#getFloat16VectorValues",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 82,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2Nsb3Nl",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#close",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 83,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI3JhbUJ5dGVzVXNlZA",
+      "description" : "Add TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#ramBytesUsed",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 123,
+      "changeKey" : "QUREX0ZJRUxEClRlc3RMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRNZXJnZVNjb3Jlci5XcmFwcGluZ0ZsYXRSZWFkZXIjZGVsZWdhdGU",
+      "description" : "Add field TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#delegate",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 136,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUZXN0THVjZW5lMTA0U2NhbGFyUXVhbnRpemVkTWVyZ2VTY29yZXIuV3JhcHBpbmdGbGF0UmVhZGVyI2RlbGVnYXRl",
+      "description" : "Add constructor parameter TestLucene104ScalarQuantizedMergeScorer.WrappingFlatReader#delegate",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "Lucene104ScalarQuantizedVectorsWriter",
+    "entries" : [ {
+      "id" : 10,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3dyaXRlVmVjdG9ycwpicmFuY2ggcmVtb3ZlZA",
+      "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#writeVectors: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3dyaXRlU29ydGVkVmVjdG9ycwpicmFuY2ggcmVtb3ZlZA",
+      "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#writeSortedVectors: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 12,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlZFF1YW50aXplZFZlY3RvclZhbHVlcwpicmFuY2ggcmVtb3ZlZA",
+      "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#mergedQuantizedVectorValues: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 13,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlT25lRmxhdFZlY3RvckZpZWxkCmJyYW5jaCByZW1vdmVk",
+      "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorField: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 14,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTHVjZW5lMTA0U2NhbGFyUXVhbnRpemVkVmVjdG9yc1dyaXRlciNtZXJnZU9uZUZsYXRWZWN0b3JGaWVsZENlbnRlcmVk",
+      "description" : "Change signature of Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorFieldCentered",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 18,
+      "changeKey" : "RVhUUkFDVF9NRVRIT0QKTHVjZW5lMTA0U2NhbGFyUXVhbnRpemVkVmVjdG9yc0Zvcm1hdCN3cml0ZUNvcnJlY3Rpb25zCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIjd3JpdGVWZWN0b3JEYXRh",
+      "description" : "Extract Lucene104ScalarQuantizedVectorsFormat#writeCorrections",
+      "category" : "STRUCTURAL",
+      "kind" : "EXTRACT_METHOD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 19,
+      "changeKey" : "UkVNT1ZFX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3dyaXRlQmluYXJpemVkUXVlcnlEYXRh",
+      "description" : "Remove Lucene104ScalarQuantizedVectorsWriter#writeBinarizedQueryData",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 24,
+      "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlZEZsb2F0VmVjdG9yVmFsdWVz",
+      "description" : "Add Lucene104ScalarQuantizedVectorsWriter#mergedFloatVectorValues",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 25,
+      "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlT25lRmxhdFZlY3RvckZpZWxkRm9yTWVyZ2VTY29yZXI",
+      "description" : "Add Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorFieldForMergeScorer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 26,
+      "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI21lcmdlT25lRmxhdFZlY3RvckZpZWxk",
+      "description" : "Add Lucene104ScalarQuantizedVectorsWriter#mergeOneFlatVectorField",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 27,
+      "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3dyaXRlVmVjdG9yQW5kUXVlcnlEYXRh",
+      "description" : "Add Lucene104ScalarQuantizedVectorsWriter#writeVectorAndQueryData",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 28,
+      "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyI3BhY2tJbmRleFJlY29yZA",
+      "description" : "Add Lucene104ScalarQuantizedVectorsWriter#packIndexRecord",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 90,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZUNvcnJlY3Rpb25zLCAtd3JpdGVJbnQsIC1mbG9hdFRvSW50Qml0cywgLWxvd2VySW50ZXJ2YWwsIC11cHBlckludGVydmFsIOKApmFuZCAyIG1vcmUKTHVjZW5lMTA0U2NhbGFyUXVhbnRpemVkVmVjdG9yc1dyaXRlciN3cml0ZVZlY3RvckRhdGE",
+      "description" : "Modify body of Lucene104ScalarQuantizedVectorsWriter#writeVectorData: +writeCorrections, -writeInt, -floatToIntBits, -lowerInterval, -upperInterval …and 2 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 91,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIjY2xvc2UKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of Lucene104ScalarQuantizedVectorsWriter#close: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 93,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of Lucene104ScalarQuantizedVectorsWriter#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 94,
+      "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNXcml0ZXIjdmVjdG9yU2NvcmVy",
+      "description" : "Add field Lucene104ScalarQuantizedVectorsWriter#vectorScorer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "Lucene104ScalarQuantizedVectorsWriter.QuantizedFloatVectorValues",
+    "entries" : [ {
+      "id" : 15,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzV3JpdGVyLlF1YW50aXplZEZsb2F0VmVjdG9yVmFsdWVzI3F1YW50aXplCmJyYW5jaCByZW1vdmVk",
+      "description" : "Change control flow of Lucene104ScalarQuantizedVectorsWriter.QuantizedFloatVectorValues#quantize: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "Lucene99HnswVectorsWriter",
+    "entries" : [ {
+      "id" : 16,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpMdWNlbmU5OUhuc3dWZWN0b3JzV3JpdGVyI21lcmdlT25lRmllbGQKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of Lucene99HnswVectorsWriter#mergeOneField: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 31,
+      "changeKey" : "QUREX1NZTUJPTApMdWNlbmU5OUhuc3dWZWN0b3JzV3JpdGVyI21lcmdlU2NvcmVyU3VwcGxpZXI",
+      "description" : "Add Lucene99HnswVectorsWriter#mergeScorerSupplier",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 32,
+      "changeKey" : "QUREX1NZTUJPTApMdWNlbmU5OUhuc3dWZWN0b3JzV3JpdGVyI2J1aWxkc0dyYXBo",
+      "description" : "Add Lucene99HnswVectorsWriter#buildsGraph",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 92,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbG9zZQpMdWNlbmU5OUhuc3dWZWN0b3JzV3JpdGVyI2Nsb3Nl",
+      "description" : "Modify body of Lucene99HnswVectorsWriter#close: +close",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 101,
+      "changeKey" : "QUREX0ZJRUxECkx1Y2VuZTk5SG5zd1ZlY3RvcnNXcml0ZXIjcHJlcGFyZWRNZXJnZVNjb3JlcnM",
+      "description" : "Add field Lucene99HnswVectorsWriter#preparedMergeScorers",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TestHnswMergeAbort",
+    "entries" : [ {
+      "id" : 17,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpUZXN0SG5zd01lcmdlQWJvcnQjZG9UZXN0Um9sbGJhY2tEdXJpbmdNZXJnZQpicmFuY2ggYWRkZWQ",
+      "description" : "Change control flow of TestHnswMergeAbort#doTestRollbackDuringMerge: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 84,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0SG5zd01lcmdlQWJvcnQjdGVzdFJvbGxiYWNrRHVyaW5nUXVhbnRpemVkTWVyZ2U",
+      "description" : "Add TestHnswMergeAbort#testRollbackDuringQuantizedMerge",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 85,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0SG5zd01lcmdlQWJvcnQjdGVtcEZpbGVz",
+      "description" : "Add TestHnswMergeAbort#tempFiles",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "FlatVectorsWriter",
+    "entries" : [ {
+      "id" : 20,
+      "changeKey" : "QUREX1NZTUJPTApGbGF0VmVjdG9yc1dyaXRlciNtZXJnZU9uZUZsYXRWZWN0b3JGaWVsZEZvck1lcmdlU2NvcmVy",
+      "description" : "Add FlatVectorsWriter#mergeOneFlatVectorFieldForMergeScorer",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "Lucene104ScalarQuantizedVectorsFormat",
+    "entries" : [ {
+      "id" : 22,
+      "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzRm9ybWF0I3dyaXRlUXVlcnlSZWNvcmQ",
+      "description" : "Add Lucene104ScalarQuantizedVectorsFormat#writeQueryRecord",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "Lucene104ScalarQuantizedVectorsReader",
+    "entries" : [ {
+      "id" : 23,
+      "changeKey" : "QUREX1NZTUJPTApMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzUmVhZGVyI21lcmdlU2NvcmVyU3VwcGxpZXI",
+      "description" : "Add Lucene104ScalarQuantizedVectorsReader#mergeScorerSupplier",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 88,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCittZXJnZVNjb3JlclN1cHBsaWVyLCAtZ2V0UmFuZG9tVmVjdG9yU2NvcmVyU3VwcGxpZXIsIC1nZXRWZWN0b3JTaW1pbGFyaXR5RnVuY3Rpb24sIC1jcmVhdGUsIC1vcGVuSW5wdXQg4oCmYW5kIDggbW9yZQpMdWNlbmUxMDRTY2FsYXJRdWFudGl6ZWRWZWN0b3JzUmVhZGVyI2dldFJhbmRvbVZlY3RvclNjb3JlclN1cHBsaWVyRm9yTWVyZ2U",
+      "description" : "Modify body of Lucene104ScalarQuantizedVectorsReader#getRandomVectorScorerSupplierForMerge: +mergeScorerSupplier, -getRandomVectorScorerSupplier, -getVectorSimilarityFunction, -create, -openInput …and 8 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 89,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit3cml0ZVF1ZXJ5UmVjb3JkLCAtdHJhbnNwb3NlSGFsZkJ5dGUsIC13cml0ZUJ5dGVzLCAtd3JpdGVJbnQsIC1mbG9hdFRvSW50Qml0cyDigKZhbmQgNCBtb3JlCkx1Y2VuZTEwNFNjYWxhclF1YW50aXplZFZlY3RvcnNSZWFkZXIjd3JpdGVCaW5hcml6ZWRRdWVyeURhdGE",
+      "description" : "Modify body of Lucene104ScalarQuantizedVectorsReader#writeBinarizedQueryData: +writeQueryRecord, -transposeHalfByte, -writeBytes, -writeInt, -floatToIntBits …and 4 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TestOptimizedScalarQuantizer",
+    "entries" : [ {
+      "id" : 86,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0T3B0aW1pemVkU2NhbGFyUXVhbnRpemVyI3Rlc3RNdWx0aVNjYWxhclF1YW50aXplTWF0Y2hlc1NjYWxhclF1YW50aXpl",
+      "description" : "Add TestOptimizedScalarQuantizer#testMultiScalarQuantizeMatchesScalarQuantize",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 87,
+      "changeKey" : "QUREX1NZTUJPTApUZXN0T3B0aW1pemVkU2NhbGFyUXVhbnRpemVyI2Fzc2VydElkZW50aWNhbFJlc3VsdHM",
+      "description" : "Add TestOptimizedScalarQuantizer#assertIdenticalResults",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

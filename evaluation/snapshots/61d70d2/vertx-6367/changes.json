@@ -1,0 +1,931 @@
+[ {
+  "changeKey" : "UkVNT1ZFX0NMQVNTCk5ldFNlcnZlckltcGwuTmV0U29ja2V0SW5pdGlhbGl6ZXI",
+  "kind" : "REMOVE_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Remove class NetServerImpl.NetSocketInitializer",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.NetSocketInitializer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NMQVNTCk5ldFNlcnZlckltcGwuVGNwU2VydmVy",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class NetServerImpl.TcpServer",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.TcpServer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NMQVNTCk5ldFNlcnZlckltcGwuQ2hhbm5lbEhhbmRsZXI",
+  "kind" : "ADD_CLASS",
+  "category" : "STRUCTURAL",
+  "description" : "Add class NetServerImpl.ChannelHandler",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.ChannelHandler" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01PRElGSUVSUworc3RhdGljClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVy",
+  "kind" : "CHANGE_MODIFIERS",
+  "category" : "STRUCTURAL",
+  "description" : "Change modifiers of QuicServerImpl.QuicDispatcher: +static",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/quic/QuicServerImpl.java" ],
+  "symbols" : [ "QuicServerImpl.QuicDispatcher", "+static" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01PRElGSUVSUworc3RhdGljClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVyLlNlcnZlclJlZ2lzdHJhdGlvbg",
+  "kind" : "CHANGE_MODIFIERS",
+  "category" : "STRUCTURAL",
+  "description" : "Change modifiers of QuicServerImpl.QuicDispatcher.ServerRegistration: +static",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/quic/QuicServerImpl.java" ],
+  "symbols" : [ "QuicServerImpl.QuicDispatcher.ServerRegistration", "+static" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpWZXJ0eEV2ZW50TG9vcEdyb3VwI25leHQKYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of VertxEventLoopGroup#next: branch added; same calls",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/VertxEventLoopGroup.java" ],
+  "symbols" : [ "VertxEventLoopGroup#next", "branch added; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpWZXJ0eEV2ZW50TG9vcEdyb3VwI2Nob29zZUhhbmRsZXIKYnJhbmNoIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of VertxEventLoopGroup#chooseHandler: branch removed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/VertxEventLoopGroup.java" ],
+  "symbols" : [ "VertxEventLoopGroup#chooseHandler", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpWZXJ0eEV2ZW50TG9vcEdyb3VwLkV2ZW50TG9vcExvYWRCYWxhbmNlciNhZGRIYW5kbGVyCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of VertxEventLoopGroup.EventLoopLoadBalancer#addHandler: branch removed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/VertxEventLoopGroup.java" ],
+  "symbols" : [ "VertxEventLoopGroup.EventLoopLoadBalancer#addHandler", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpWZXJ0eEV2ZW50TG9vcEdyb3VwLkV2ZW50TG9vcExvYWRCYWxhbmNlciNyZW1vdmVIYW5kbGVyCmJyYW5jaCByZW1vdmVkLCBsb29wIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of VertxEventLoopGroup.EventLoopLoadBalancer#removeHandler: branch removed, loop removed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/VertxEventLoopGroup.java" ],
+  "symbols" : [ "VertxEventLoopGroup.EventLoopLoadBalancer#removeHandler", "branch removed, loop removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpRdWljU2VydmVySW1wbCNjaGFubmVsSGFuZGxlcgpicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of QuicServerImpl#channelHandler: branch removed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/quic/QuicServerImpl.java" ],
+  "symbols" : [ "QuicServerImpl#channelHandler", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKUXVpY1NlcnZlckltcGwuUXVpY0Rpc3BhdGNoZXIjcmVnaXN0ZXI",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of QuicServerImpl.QuicDispatcher#register",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/quic/QuicServerImpl.java" ],
+  "symbols" : [ "QuicServerImpl.QuicDispatcher#register" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpRdWljU2VydmVySW1wbC5RdWljRGlzcGF0Y2hlciNjaGFubmVsVW5yZWdpc3RlcmVkCmNvbmRpdGlvbiBjaGFuZ2Vk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of QuicServerImpl.QuicDispatcher#channelUnregistered: condition changed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/quic/QuicServerImpl.java" ],
+  "symbols" : [ "QuicServerImpl.QuicDispatcher#channelUnregistered", "condition changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI3NodXRkb3duCmNvbmRpdGlvbiBjaGFuZ2VkOyBzYW1lIGNhbGxz",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of NetServerImpl#shutdown: condition changed; same calls",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#shutdown", "condition changed; same calls" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI3VwZGF0ZVNTTE9wdGlvbnMKYnJhbmNoIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of NetServerImpl#updateSSLOptions: branch removed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#updateSSLOptions", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI3VwZGF0ZVRyYWZmaWNTaGFwaW5nT3B0aW9ucwpicmFuY2ggcmVtb3ZlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of NetServerImpl#updateTrafficShapingOptions: branch removed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#updateTrafficShapingOptions", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTmV0U2VydmVySW1wbCN1cGRhdGVUcmFmZmljU2hhcGluZ09wdGlvbnM",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of NetServerImpl#updateTrafficShapingOptions",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#updateTrafficShapingOptions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI2JpbmQKYnJhbmNoIHJlbW92ZWQ",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of NetServerImpl#bind: branch removed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#bind", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKTmV0U2VydmVySW1wbCNiaW5k",
+  "kind" : "CHANGE_METHOD_SIGNATURE",
+  "category" : "STRUCTURAL",
+  "description" : "Change signature of NetServerImpl#bind",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#bind" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXRTZXJ2ZXJJbXBsI2hhbmRsZVNodXRkb3duCmJyYW5jaCByZW1vdmVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of NetServerImpl#handleShutdown: branch removed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#handleShutdown", "branch removed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01FVEhPRF9BTk5PVEFUSU9OUworQElnbm9yZQpOZXRUZXN0I3Rlc3RTaHV0ZG93bkFjY2VwdFJhY2U",
+  "kind" : "CHANGE_METHOD_ANNOTATIONS",
+  "category" : "STRUCTURAL",
+  "description" : "Change annotations of NetTest#testShutdownAcceptRace: +@Ignore",
+  "files" : [ "vertx-core/src/test/java/io/vertx/tests/net/NetTest.java" ],
+  "symbols" : [ "NetTest#testShutdownAcceptRace", "+@Ignore" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbCNjcmVhdGVUcmFmZmljU2hhcGluZ0hhbmRsZXIKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjY3JlYXRlVHJhZmZpY1NoYXBpbmdIYW5kbGVy",
+  "kind" : "MOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Move NetServerImpl#createTrafficShapingHandler -> NetServerImpl.TcpServer#createTrafficShapingHandler",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#createTrafficShapingHandler", "NetServerImpl.TcpServer#createTrafficShapingHandler" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbCNjcmVhdGVNZXRyaWNzCk5ldFNlcnZlckltcGwuVGNwU2VydmVyI2NyZWF0ZU1ldHJpY3M",
+  "kind" : "MOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Move NetServerImpl#createMetrics -> NetServerImpl.TcpServer#createMetrics",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#createMetrics", "NetServerImpl.TcpServer#createMetrics" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbC5DaGFubmVsSGFuZGxlciNhY2NlcHQKTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNhY2NlcHQ",
+  "kind" : "MOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Move NetServerImpl.NetSocketInitializer#accept -> NetServerImpl.ChannelHandler#accept",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.NetSocketInitializer#accept", "NetServerImpl.ChannelHandler#accept" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbC5DaGFubmVsSGFuZGxlciNjb25maWd1cmVQaXBlbGluZQpOZXRTZXJ2ZXJJbXBsLk5ldFNvY2tldEluaXRpYWxpemVyI2NvbmZpZ3VyZVBpcGVsaW5l",
+  "kind" : "MOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Move NetServerImpl.NetSocketInitializer#configurePipeline -> NetServerImpl.ChannelHandler#configurePipeline",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.NetSocketInitializer#configurePipeline", "NetServerImpl.ChannelHandler#configurePipeline" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbC5DaGFubmVsSGFuZGxlciNoYW5kbGVFeGNlcHRpb24KTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNoYW5kbGVFeGNlcHRpb24",
+  "kind" : "MOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Move NetServerImpl.NetSocketInitializer#handleException -> NetServerImpl.ChannelHandler#handleException",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.NetSocketInitializer#handleException", "NetServerImpl.ChannelHandler#handleException" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9TWU1CT0wKTmV0U2VydmVySW1wbC5DaGFubmVsSGFuZGxlciNjb25uZWN0ZWQKTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNjb25uZWN0ZWQ",
+  "kind" : "MOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Move NetServerImpl.NetSocketInitializer#connected -> NetServerImpl.ChannelHandler#connected",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.NetSocketInitializer#connected", "NetServerImpl.ChannelHandler#connected" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApWZXJ0eEltcGwjc2hhcmVkVGNwU2VydmVycw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove VertxImpl#sharedTcpServers",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/VertxImpl.java" ],
+  "symbols" : [ "VertxImpl#sharedTcpServers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApWZXJ0eEludGVybmFsI3NoYXJlZFRjcFNlcnZlcnM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove VertxInternal#sharedTcpServers",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/internal/VertxInternal.java" ],
+  "symbols" : [ "VertxInternal#sharedTcpServers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApWZXJ0eFdyYXBwZXIjc2hhcmVkVGNwU2VydmVycw",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove VertxWrapper#sharedTcpServers",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/internal/VertxWrapper.java" ],
+  "symbols" : [ "VertxWrapper#sharedTcpServers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsI2NyZWF0ZVRyYWZmaWNTaGFwaW5nSGFuZGxlcg",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NetServerImpl#createTrafficShapingHandler",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#createTrafficShapingHandler" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsI2FwcGx5Q29ubmVjdGlvbk9wdGlvbnM",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NetServerImpl#applyConnectionOptions",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#applyConnectionOptions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsI2FjdHVhbENsb3Nl",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NetServerImpl#actualClose",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#actualClose" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsI2JpbmQ",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NetServerImpl#bind",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#bind" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLk5ldFNvY2tldEluaXRpYWxpemVyI2FjY2VwdA",
+  "kind" : "REMOVE_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Remove NetServerImpl.NetSocketInitializer#accept",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.NetSocketInitializer#accept" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApWZXJ0eEV2ZW50TG9vcEdyb3VwLkhhbmRsZXJMb2FkQmFsYW5jZXIjcmVtb3ZlSGFuZGxlcg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add VertxEventLoopGroup.HandlerLoadBalancer#removeHandler",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/VertxEventLoopGroup.java" ],
+  "symbols" : [ "VertxEventLoopGroup.HandlerLoadBalancer#removeHandler" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApRdWljU2VydmVySW1wbC5RdWljRGlzcGF0Y2hlciNzaHV0ZG93bg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add QuicServerImpl.QuicDispatcher#shutdown",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/quic/QuicServerImpl.java" ],
+  "symbols" : [ "QuicServerImpl.QuicDispatcher#shutdown" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNiaW5k",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add NetServerImpl.TcpServer#bind",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.TcpServer#bind" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNiaW5kMg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add NetServerImpl.TcpServer#bind2",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.TcpServer#bind2" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNhcHBseUNvbm5lY3Rpb25PcHRpb25z",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add NetServerImpl.TcpServer#applyConnectionOptions",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.TcpServer#applyConnectionOptions" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNzaHV0ZG93bg",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add NetServerImpl.TcpServer#shutdown",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.TcpServer#shutdown" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2luaXQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add NetServerImpl.ChannelHandler#init",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.ChannelHandler#init" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2hhbmRsZQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add NetServerImpl.ChannelHandler#handle",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.ChannelHandler#handle" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2FjY2VwdA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add NetServerImpl.ChannelHandler#accept",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.ChannelHandler#accept" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApOZXRUZXN0I3Rlc3RTaGFyZWRTZXJ2ZXJTaHV0ZG93blJlbW92ZXNGcm9tRXZlbnRMb29wR3JvdXA",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add NetTest#testSharedServerShutdownRemovesFromEventLoopGroup",
+  "files" : [ "vertx-core/src/test/java/io/vertx/tests/net/NetTest.java" ],
+  "symbols" : [ "NetTest#testSharedServerShutdownRemovesFromEventLoopGroup" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0VtcHR5LCByZXR1cm4gY2xvc2luZyAtPiBoYW5kbGVyTG9hZEJhbGFuY2Vycy5pc0VtcHR5KCkKVmVydHhFdmVudExvb3BHcm91cCNyZW1vdmVIYW5kbGVy",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of VertxEventLoopGroup#removeHandler: +isEmpty, return closing -> handlerLoadBalancers.isEmpty()",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/VertxEventLoopGroup.java" ],
+  "symbols" : [ "VertxEventLoopGroup#removeHandler", "+isEmpty, return closing -> handlerLoadBalancers.isEmpty()" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXQsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCk5ldFNlcnZlckltcGwjc3NsQ29udGV4dFByb3ZpZGVy",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of NetServerImpl#sslContextProvider: +get, return value changed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#sslContextProvider", "+get, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXQsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCk5ldFNlcnZlckltcGwjYWN0dWFsUG9ydA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of NetServerImpl#actualPort: +get, return value changed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#actualPort", "+get, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXQsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCk5ldFNlcnZlckltcGwjc25pRW50cnlTaXpl",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of NetServerImpl#sniEntrySize: +get, return value changed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#sniEntrySize", "+get, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk5ldFNlcnZlckltcGwjaXNMaXN0ZW5pbmcKcmV0dXJuIGxpc3RlbmluZyAtPiBjaGFubmVsSGFuZGxlciAhPSBudWxs",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of NetServerImpl#isListening: return listening -> channelHandler != null",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#isListening", "return listening -> channelHandler != null" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXQsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCk5ldFNlcnZlckltcGwjaXNNZXRyaWNzRW5hYmxlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of NetServerImpl#isMetricsEnabled: +get, return value changed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#isMetricsEnabled", "+get, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXQsIHJldHVybiB2YWx1ZSBjaGFuZ2VkCk5ldFNlcnZlckltcGwjZ2V0TWV0cmljcw",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of NetServerImpl#getMetrics: +get, return value changed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#getMetrics", "+get, return value changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk5ldFNlcnZlckltcGwjaGFuZGxlQ2xvc2UKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of NetServerImpl#handleClose: other statements changed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#handleClose", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCit1bndyYXAsICt0Y3BTZXJ2ZXIsIC1zaGFyZWRUY3BTZXJ2ZXJzLCAtdmFsdWVzLCAtaXRlcmF0b3Ig4oCmYW5kIDEgbW9yZQpTU0xFbmdpbmVUZXN0LlRlc3RTZXJ2ZXIjc2V0VXA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of SSLEngineTest.TestServer#setUp: +unwrap, +tcpServer, -sharedTcpServers, -values, -iterator …and 1 more",
+  "files" : [ "vertx-core/src/test/java/io/vertx/it/tls/SSLEngineTest.java" ],
+  "symbols" : [ "SSLEngineTest.TestServer#setUp", "+unwrap, +tcpServer, -sharedTcpServers, -values, -iterator …and 1 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRXYWl0VW50aWwsIC1vbkNvbXBsZXRlLCAtb25TdWNjZXNzLCAtYXNzZXJ0RXF1YWxzLCAtdGVzdENvbXBsZXRlCk1ldHJpY3NUZXN0I3Rlc3RTZXJ2ZXJMaWZlY3ljbGU",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of MetricsTest#testServerLifecycle: +assertWaitUntil, -onComplete, -onSuccess, -assertEquals, -testComplete",
+  "files" : [ "vertx-core/src/test/java/io/vertx/tests/metrics/MetricsTest.java" ],
+  "symbols" : [ "MetricsTest#testServerLifecycle", "+assertWaitUntil, -onComplete, -onSuccess, -assertEquals, -testComplete" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjcmVhdGVOZXRTZXJ2ZXIsICtzZXRQb3J0LCArY29ubmVjdEhhbmRsZXIsICtsaXN0ZW4sICthd2FpdCDigKZhbmQgMSBtb3JlCk5ldFRlc3QjdGVzdExpc3Rlbk9uV2lsZGNhcmRQb3J0",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of NetTest#testListenOnWildcardPort: +createNetServer, +setPort, +connectHandler, +listen, +await …and 1 more",
+  "files" : [ "vertx-core/src/test/java/io/vertx/tests/net/NetTest.java" ],
+  "symbols" : [ "NetTest#testListenOnWildcardPort", "+createNetServer, +setPort, +connectHandler, +listen, +await …and 1 more" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClZlcnR4RXZlbnRMb29wR3JvdXAjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of VertxEventLoopGroup#<init>: other statements changed",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/VertxEventLoopGroup.java" ],
+  "symbols" : [ "VertxEventLoopGroup#<init>", "other statements changed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX01PRElGSUVSUworZmluYWwKUXVpY1NlcnZlckltcGwuUXVpY0Rpc3BhdGNoZXIjcmVnaXN0cmF0aW9ucw",
+  "kind" : "CHANGE_MODIFIERS",
+  "category" : "STRUCTURAL",
+  "description" : "Change modifiers of QuicServerImpl.QuicDispatcher#registrations: +final",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/quic/QuicServerImpl.java" ],
+  "symbols" : [ "QuicServerImpl.QuicDispatcher#registrations", "+final" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI2V2ZW50TG9vcApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2V2ZW50TG9vcA",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field NetServerImpl#eventLoop -> NetServerImpl.ChannelHandler#eventLoop",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#eventLoop", "NetServerImpl.ChannelHandler#eventLoop" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI3Jlc29sdmVkS2V5RXhjaGFuZ2VHcm91cHMKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjcmVzb2x2ZWRLZXlFeGNoYW5nZUdyb3Vwcw",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field NetServerImpl#resolvedKeyExchangeGroups -> NetServerImpl.TcpServer#resolvedKeyExchangeGroups",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#resolvedKeyExchangeGroups", "NetServerImpl.TcpServer#resolvedKeyExchangeGroups" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI3NzbENvbnRleHRQcm92aWRlclJlZgpOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNzc2xDb250ZXh0UHJvdmlkZXJSZWY",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field NetServerImpl#sslContextProviderRef -> NetServerImpl.TcpServer#sslContextProviderRef",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#sslContextProviderRef", "NetServerImpl.TcpServer#sslContextProviderRef" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI3RyYWZmaWNTaGFwaW5nSGFuZGxlcgpOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciN0cmFmZmljU2hhcGluZ0hhbmRsZXI",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field NetServerImpl#trafficShapingHandler -> NetServerImpl.TcpServer#trafficShapingHandler",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#trafficShapingHandler", "NetServerImpl.TcpServer#trafficShapingHandler" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI2NoYW5uZWxCYWxhbmNlcgpOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNjaGFubmVsQmFsYW5jZXI",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field NetServerImpl#channelBalancer -> NetServerImpl.TcpServer#channelBalancer",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#channelBalancer", "NetServerImpl.TcpServer#channelBalancer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI2JpbmRGdXR1cmUKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjYmluZEZ1dHVyZQ",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field NetServerImpl#bindFuture -> NetServerImpl.TcpServer#bindFuture",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#bindFuture", "NetServerImpl.TcpServer#bindFuture" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI21ldHJpY3MKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjbWV0cmljcw",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field NetServerImpl#metrics -> NetServerImpl.TcpServer#metrics",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#metrics", "NetServerImpl.TcpServer#metrics" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsI2FjdHVhbFBvcnQKTmV0U2VydmVySW1wbC5UY3BTZXJ2ZXIjYWN0dWFsUG9ydA",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field NetServerImpl#actualPort -> NetServerImpl.TcpServer#actualPort",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#actualPort", "NetServerImpl.TcpServer#actualPort" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2NvbnRleHQKTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNjb250ZXh0",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field NetServerImpl.NetSocketInitializer#context -> NetServerImpl.ChannelHandler#context",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.NetSocketInitializer#context", "NetServerImpl.ChannelHandler#context" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2Nvbm5lY3Rpb25IYW5kbGVyCk5ldFNlcnZlckltcGwuTmV0U29ja2V0SW5pdGlhbGl6ZXIjY29ubmVjdGlvbkhhbmRsZXI",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field NetServerImpl.NetSocketInitializer#connectionHandler -> NetServerImpl.ChannelHandler#connectionHandler",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.NetSocketInitializer#connectionHandler", "NetServerImpl.ChannelHandler#connectionHandler" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2V4Y2VwdGlvbkhhbmRsZXIKTmV0U2VydmVySW1wbC5OZXRTb2NrZXRJbml0aWFsaXplciNleGNlcHRpb25IYW5kbGVy",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field NetServerImpl.NetSocketInitializer#exceptionHandler -> NetServerImpl.ChannelHandler#exceptionHandler",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.NetSocketInitializer#exceptionHandler", "NetServerImpl.ChannelHandler#exceptionHandler" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9WRV9GSUVMRApOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI3RyYWZmaWNTaGFwaW5nSGFuZGxlcgpOZXRTZXJ2ZXJJbXBsLk5ldFNvY2tldEluaXRpYWxpemVyI3RyYWZmaWNTaGFwaW5nSGFuZGxlcg",
+  "kind" : "MOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Move field NetServerImpl.NetSocketInitializer#trafficShapingHandler -> NetServerImpl.ChannelHandler#trafficShapingHandler",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.NetSocketInitializer#trafficShapingHandler", "NetServerImpl.ChannelHandler#trafficShapingHandler" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClZlcnR4SW1wbCNzaGFyZWROZXRTZXJ2ZXJz",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field VertxImpl#sharedNetServers",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/impl/VertxImpl.java" ],
+  "symbols" : [ "VertxImpl#sharedNetServers" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClZlcnR4RXZlbnRMb29wR3JvdXAuRXZlbnRMb29wTG9hZEJhbGFuY2VyI2Nsb3Npbmc",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field VertxEventLoopGroup.EventLoopLoadBalancer#closing",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/VertxEventLoopGroup.java" ],
+  "symbols" : [ "VertxEventLoopGroup.EventLoopLoadBalancer#closing" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxEClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVyI3NlcnZlcklE",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field QuicServerImpl.QuicDispatcher#serverID",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/quic/QuicServerImpl.java" ],
+  "symbols" : [ "QuicServerImpl.QuicDispatcher#serverID" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjaW5pdGlhbGl6ZXI",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field NetServerImpl#initializer",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#initializer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjY2hhbm5lbEdyb3Vw",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field NetServerImpl#channelGroup",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#channelGroup" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjd29ya2Vy",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field NetServerImpl#worker",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#worker" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjbGlzdGVuaW5n",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field NetServerImpl#listening",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#listening" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjYWN0dWFsU2VydmVy",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field NetServerImpl#actualServer",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#actualServer" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "UkVNT1ZFX0ZJRUxECk5ldFNlcnZlckltcGwjc3NsQ29udGV4dE1hbmFnZXI",
+  "kind" : "REMOVE_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Remove field NetServerImpl#sslContextManager",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#sslContextManager" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxEClF1aWNTZXJ2ZXJJbXBsLlF1aWNEaXNwYXRjaGVyLlNlcnZlclJlZ2lzdHJhdGlvbiNjbG9zZWFibGU",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field QuicServerImpl.QuicDispatcher.ServerRegistration#closeable",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/quic/QuicServerImpl.java" ],
+  "symbols" : [ "QuicServerImpl.QuicDispatcher.ServerRegistration#closeable" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwjY2hhbm5lbEhhbmRsZXI",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field NetServerImpl#channelHandler",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#channelHandler" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwjcmVzb3VyY2U",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field NetServerImpl#resource",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl#resource" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwuVGNwU2VydmVyI3NzbENvbnRleHRNYW5hZ2Vy",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field NetServerImpl.TcpServer#sslContextManager",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.TcpServer#sslContextManager" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwuQ2hhbm5lbEhhbmRsZXIjc2VydmVy",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field NetServerImpl.ChannelHandler#server",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.ChannelHandler#server" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0ZJRUxECk5ldFNlcnZlckltcGwuQ2hhbm5lbEhhbmRsZXIjZ3JvdXA",
+  "kind" : "ADD_FIELD",
+  "category" : "STRUCTURAL",
+  "description" : "Add field NetServerImpl.ChannelHandler#group",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.ChannelHandler#group" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpRdWljU2VydmVySW1wbC5RdWljRGlzcGF0Y2hlci5TZXJ2ZXJSZWdpc3RyYXRpb24jY2xvc2VhYmxl",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter QuicServerImpl.QuicDispatcher.ServerRegistration#closeable",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/quic/QuicServerImpl.java" ],
+  "symbols" : [ "QuicServerImpl.QuicDispatcher.ServerRegistration#closeable" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLlRjcFNlcnZlciNhY3R1YWxQb3J0",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter NetServerImpl.TcpServer#actualPort",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.TcpServer#actualPort" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI3NlcnZlcg",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter NetServerImpl.ChannelHandler#server",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.ChannelHandler#server" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2V2ZW50TG9vcA",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter NetServerImpl.ChannelHandler#eventLoop",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.ChannelHandler#eventLoop" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2dyb3Vw",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter NetServerImpl.ChannelHandler#group",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.ChannelHandler#group" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2NvbnRleHQ",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter NetServerImpl.ChannelHandler#context",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.ChannelHandler#context" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2Nvbm5lY3Rpb25IYW5kbGVy",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter NetServerImpl.ChannelHandler#connectionHandler",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.ChannelHandler#connectionHandler" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI2V4Y2VwdGlvbkhhbmRsZXI",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter NetServerImpl.ChannelHandler#exceptionHandler",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.ChannelHandler#exceptionHandler" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpOZXRTZXJ2ZXJJbXBsLkNoYW5uZWxIYW5kbGVyI3RyYWZmaWNTaGFwaW5nSGFuZGxlcg",
+  "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+  "category" : "STRUCTURAL",
+  "description" : "Add constructor parameter NetServerImpl.ChannelHandler#trafficShapingHandler",
+  "files" : [ "vertx-core/src/main/java/io/vertx/core/net/impl/tcp/NetServerImpl.java" ],
+  "symbols" : [ "NetServerImpl.ChannelHandler#trafficShapingHandler" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

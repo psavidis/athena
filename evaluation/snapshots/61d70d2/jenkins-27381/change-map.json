@@ -1,0 +1,137 @@
+{
+  "prTitle" : "Fix QueryParameterMap failing on parameters without a value",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 5,
+    "UNKNOWN" : 1,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTClF1ZXJ5UGFyYW1ldGVyTWFwVGVzdA",
+    "description" : "Add class QueryParameterMapTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjYmFzaWM",
+    "description" : "Add QueryParameterMapTest#basic",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjcGFyYW1ldGVyV2l0aG91dFZhbHVl",
+    "description" : "Add QueryParameterMapTest#parameterWithoutValue",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjdmFsdWVDb250YWluaW5nRXF1YWxzU2lnbg",
+    "description" : "Add QueryParameterMapTest#valueContainingEqualsSign",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjZW1wdHlQYXJhbWV0ZXJz",
+    "description" : "Add QueryParameterMapTest#emptyParameters",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 5,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0VtcHR5ClF1ZXJ5UGFyYW1ldGVyTWFwIzxpbml0Pg",
+    "description" : "Modify body of QueryParameterMap#<init>: +isEmpty",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "QueryParameterMapTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTClF1ZXJ5UGFyYW1ldGVyTWFwVGVzdA",
+      "description" : "Add class QueryParameterMapTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjYmFzaWM",
+      "description" : "Add QueryParameterMapTest#basic",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjcGFyYW1ldGVyV2l0aG91dFZhbHVl",
+      "description" : "Add QueryParameterMapTest#parameterWithoutValue",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjdmFsdWVDb250YWluaW5nRXF1YWxzU2lnbg",
+      "description" : "Add QueryParameterMapTest#valueContainingEqualsSign",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 4,
+      "changeKey" : "QUREX1NZTUJPTApRdWVyeVBhcmFtZXRlck1hcFRlc3QjZW1wdHlQYXJhbWV0ZXJz",
+      "description" : "Add QueryParameterMapTest#emptyParameters",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "QueryParameterMap",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitpc0VtcHR5ClF1ZXJ5UGFyYW1ldGVyTWFwIzxpbml0Pg",
+      "description" : "Modify body of QueryParameterMap#<init>: +isEmpty",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

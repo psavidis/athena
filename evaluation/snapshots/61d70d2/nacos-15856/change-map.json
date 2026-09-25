@@ -1,0 +1,1379 @@
+{
+  "prTitle" : "[ISSUE #15851] Let datasource dialect plugins provide default JDBC driver",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 57,
+    "UNKNOWN" : 9,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0LlRlc3REYXRhYmFzZURpYWxlY3Q",
+    "description" : "Add class ExternalDataSourcePropertiesTest.TestDatabaseDialect",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0NMQVNTCkRlcmJ5RGF0YWJhc2VEaWFsZWN0VGVzdA",
+    "description" : "Add class DerbyDatabaseDialectTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX0NMQVNTCk15c3FsRGF0YWJhc2VEaWFsZWN0VGVzdA",
+    "description" : "Add class MysqlDatabaseDialectTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX0NMQVNTCk9yYWNsZURhdGFiYXNlRGlhbGVjdFRlc3Q",
+    "description" : "Add class OracleDatabaseDialectTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKRXh0ZXJuYWxEYXRhU291cmNlUHJvcGVydGllcyNidWlsZA",
+    "description" : "Change signature of ExternalDataSourceProperties#build",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzI3Jlc29sdmVEZWZhdWx0RHJpdmVyQ2xhc3NOYW1l",
+    "description" : "Add ExternalDataSourceProperties#resolveDefaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNzZXRVcA",
+    "description" : "Add ExternalDataSourcePropertiesTest#setUp",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 7,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCN0ZWFyRG93bg",
+    "description" : "Add ExternalDataSourcePropertiesTest#tearDown",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 8,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVVc2VzRGlhbGVjdERlZmF1bHRXaGVuUG9vbENvbmZpZ0lzQWJzZW50",
+    "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameUsesDialectDefaultWhenPoolConfigIsAbsent",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 9,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVVc2VzU3VwcGxpZWREaWFsZWN0VHlwZVdoZW5FbnZpcm9ubWVudFNlbGVjdHNBbm90aGVyRGlhbGVjdA",
+    "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameUsesSuppliedDialectTypeWhenEnvironmentSelectsAnotherDialect",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNleHBsaWNpdFBvb2xDb25maWdEcml2ZXJDbGFzc05hbWVTa2lwc0RpYWxlY3REZWZhdWx0",
+    "description" : "Add ExternalDataSourcePropertiesTest#explicitPoolConfigDriverClassNameSkipsDialectDefault",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNjYW5vbmljYWxQb29sQ29uZmlnRHJpdmVyQ2xhc3NOYW1lT3ZlcnJpZGVzTGVnYWN5QW5kU2tpcHNEaWFsZWN0RGVmYXVsdA",
+    "description" : "Add ExternalDataSourcePropertiesTest#canonicalPoolConfigDriverClassNameOverridesLegacyAndSkipsDialectDefault",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVGYWxsc0JhY2tUb015c3FsV2hlbkRpYWxlY3RQcm92aWRlc05vRHJpdmVy",
+    "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenDialectProvidesNoDriver",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVGYWxsc0JhY2tUb015c3FsV2hlbkRpYWxlY3RJc05vdExvYWRlZA",
+    "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenDialectIsNotLoaded",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVGYWxsc0JhY2tUb015c3FsV2hlbkRpYWxlY3RQbHVnaW5Jc0Rpc2FibGVk",
+    "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenDialectPluginIsDisabled",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVGYWxsc0JhY2tUb015c3FsV2hlbk15c3FsRGlhbGVjdElzTm90TG9hZGVk",
+    "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenMysqlDialectIsNotLoaded",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNteXNxbEVudmlyb25tZW50",
+    "description" : "Add ExternalDataSourcePropertiesTest#mysqlEnvironment",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNnZXREaWFsZWN0TWFw",
+    "description" : "Add ExternalDataSourcePropertiesTest#getDialectMap",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldFR5cGU",
+    "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getType",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 19,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldERlZmF1bHREcml2ZXJDbGFzc05hbWU",
+    "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getDefaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 20,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldFBhZ2VQcmV2TnVt",
+    "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getPagePrevNum",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 21,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldFBhZ2VMYXN0TnVt",
+    "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getPageLastNum",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 22,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldExpbWl0VG9wU3FsV2l0aE1hcms",
+    "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitTopSqlWithMark",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 23,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldExpbWl0UGFnZVNxbFdpdGhNYXJr",
+    "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitPageSqlWithMark",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 24,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldExpbWl0UGFnZVNxbA",
+    "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitPageSql",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 25,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldExpbWl0UGFnZVNxbFdpdGhPZmZzZXQ",
+    "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitPageSqlWithOffset",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 26,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldFJldHVyblByaW1hcnlLZXlz",
+    "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getReturnPrimaryKeys",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 27,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldEZ1bmN0aW9u",
+    "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getFunction",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 28,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VTZXJ2aWNlSW1wbFRlc3QjdGVzdERlZmF1bHREcml2ZXJVc2VzU2VsZWN0ZWREaWFsZWN0",
+    "description" : "Add ExternalDataSourceServiceImplTest#testDefaultDriverUsesSelectedDialect",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 29,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VTZXJ2aWNlSW1wbFRlc3QjdGVzdFJlbG9hZEtlZXBzSW5pdGlhbGx5U2VsZWN0ZWREaWFsZWN0",
+    "description" : "Add ExternalDataSourceServiceImplTest#testReloadKeepsInitiallySelectedDialect",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 30,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VTZXJ2aWNlSW1wbFRlc3QjZGVmYXVsdERyaXZlckVudmlyb25tZW50",
+    "description" : "Add ExternalDataSourceServiceImplTest#defaultDriverEnvironment",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 31,
+    "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VTZXJ2aWNlSW1wbFRlc3QjY2xvc2VEYXRhU291cmNl",
+    "description" : "Add ExternalDataSourceServiceImplTest#closeDataSource",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 32,
+    "changeKey" : "QUREX1NZTUJPTApEZXJieURhdGFiYXNlRGlhbGVjdCNnZXREZWZhdWx0RHJpdmVyQ2xhc3NOYW1l",
+    "description" : "Add DerbyDatabaseDialect#getDefaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 33,
+    "changeKey" : "QUREX1NZTUJPTApEZXJieURhdGFiYXNlRGlhbGVjdFRlc3QjdGVzdEdldERlZmF1bHREcml2ZXJDbGFzc05hbWU",
+    "description" : "Add DerbyDatabaseDialectTest#testGetDefaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 34,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0RGF0YWJhc2VEaWFsZWN0I2dldERlZmF1bHREcml2ZXJDbGFzc05hbWU",
+    "description" : "Add DefaultDatabaseDialect#getDefaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 35,
+    "changeKey" : "QUREX1NZTUJPTApNeXNxbERhdGFiYXNlRGlhbGVjdCNnZXREZWZhdWx0RHJpdmVyQ2xhc3NOYW1l",
+    "description" : "Add MysqlDatabaseDialect#getDefaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 36,
+    "changeKey" : "QUREX1NZTUJPTApNeXNxbERhdGFiYXNlRGlhbGVjdFRlc3QjdGVzdE15c3FsRGlhbGVjdFByb3ZpZGVzRGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+    "description" : "Add MysqlDatabaseDialectTest#testMysqlDialectProvidesDefaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 37,
+    "changeKey" : "QUREX1NZTUJPTApNeXNxbERhdGFiYXNlRGlhbGVjdFRlc3QjdGVzdERlZmF1bHREaWFsZWN0UHJvdmlkZXNTYW1lRHJpdmVyQXNNeXNxbERpYWxlY3Q",
+    "description" : "Add MysqlDatabaseDialectTest#testDefaultDialectProvidesSameDriverAsMysqlDialect",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 38,
+    "changeKey" : "QUREX1NZTUJPTApPcmFjbGVEYXRhYmFzZURpYWxlY3QjZ2V0RGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+    "description" : "Add OracleDatabaseDialect#getDefaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 39,
+    "changeKey" : "QUREX1NZTUJPTApPcmFjbGVEYXRhYmFzZURpYWxlY3RUZXN0I3Rlc3RHZXREZWZhdWx0RHJpdmVyQ2xhc3NOYW1l",
+    "description" : "Add OracleDatabaseDialectTest#testGetDefaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 40,
+    "changeKey" : "QUREX1NZTUJPTApQb3N0Z3Jlc3FsRGF0YWJhc2VEaWFsZWN0I2dldERlZmF1bHREcml2ZXJDbGFzc05hbWU",
+    "description" : "Add PostgresqlDatabaseDialect#getDefaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 41,
+    "changeKey" : "QUREX1NZTUJPTApQb3N0Z3Jlc3FsRGF0YWJhc2VEaWFsZWN0VGVzdCN0ZXN0R2V0RGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+    "description" : "Add PostgresqlDatabaseDialectTest#testGetDefaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 42,
+    "changeKey" : "QUREX1NZTUJPTApEYXRhYmFzZURpYWxlY3QjZ2V0RGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+    "description" : "Add DatabaseDialect#getDefaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 43,
+    "changeKey" : "QUREX1NZTUJPTApEYXRhYmFzZURpYWxlY3RNYW5hZ2VyVGVzdCN0ZXN0RGVmYXVsdERyaXZlckNsYXNzTmFtZUlzTnVsbFdoZW5EaWFsZWN0RG9lc05vdFByb3ZpZGVPbmU",
+    "description" : "Add DatabaseDialectManagerTest#testDefaultDriverClassNameIsNullWhenDialectDoesNotProvideOne",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 44,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVNlcnZpY2VJbXBsI3JlbG9hZApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of ExternalDataSourceServiceImpl#reload: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 45,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZU5vcm1hbGx5Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceNormally: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 46,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZVN1cHBvcnRzQ2Fub25pY2FsQ29uZmlnCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceSupportsCanonicalConfig: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 47,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZUNhbm9uaWNhbENvbmZpZ092ZXJyaWRlc0xlZ2FjeVBlckl0ZW0Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceCanonicalConfigOverridesLegacyPerItem: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 48,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZVRvQXNzZXJ0TXVsdGlKZGJjVXJsCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceToAssertMultiJdbcUrl: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 49,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZVRvQXNzZXJ0TXVsdGlQYXNzd29yZEFuZFVzZXJuYW1lCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceToAssertMultiPasswordAndUsername: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 50,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZVRvQXNzZXJ0TWluSWRsZQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceToAssertMinIdle: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 51,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZUZhaWx1cmVXaXRoTGFya0luZm8Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceFailureWithLarkInfo: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 52,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZUZhaWx1cmVXaXRoRXJyb3JJbmZvCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceFailureWithErrorInfo: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 53,
+    "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXMjTE9HR0VS",
+    "description" : "Add field ExternalDataSourceProperties#LOGGER",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 54,
+    "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I01ZU1FMX0NPTVBBVF9EUklWRVI",
+    "description" : "Add field ExternalDataSourcePropertiesTest#MYSQL_COMPAT_DRIVER",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 55,
+    "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I1RFU1RfRElBTEVDVF9UWVBF",
+    "description" : "Add field ExternalDataSourcePropertiesTest#TEST_DIALECT_TYPE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 56,
+    "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I1RFU1RfRElBTEVDVF9EUklWRVI",
+    "description" : "Add field ExternalDataSourcePropertiesTest#TEST_DIALECT_DRIVER",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 57,
+    "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2RpYWxlY3RNYXA",
+    "description" : "Add field ExternalDataSourcePropertiesTest#dialectMap",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 58,
+    "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I29yaWdpbmFsRGlhbGVjdHM",
+    "description" : "Add field ExternalDataSourcePropertiesTest#originalDialects",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 59,
+    "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I29yaWdpbmFsU3RhdGVDaGVja2Vy",
+    "description" : "Add field ExternalDataSourcePropertiesTest#originalStateChecker",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 60,
+    "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0LlRlc3REYXRhYmFzZURpYWxlY3QjZGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+    "description" : "Add field ExternalDataSourcePropertiesTest.TestDatabaseDialect#defaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 61,
+    "changeKey" : "QUREX0ZJRUxECkRlcmJ5RGF0YWJhc2VEaWFsZWN0I0RFRkFVTFRfRFJJVkVSX0NMQVNTX05BTUU",
+    "description" : "Add field DerbyDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 62,
+    "changeKey" : "QUREX0ZJRUxECk15c3FsRGF0YWJhc2VEaWFsZWN0I0RFRkFVTFRfRFJJVkVSX0NMQVNTX05BTUU",
+    "description" : "Add field MysqlDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 63,
+    "changeKey" : "QUREX0ZJRUxECk9yYWNsZURhdGFiYXNlRGlhbGVjdCNERUZBVUxUX0RSSVZFUl9DTEFTU19OQU1F",
+    "description" : "Add field OracleDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 64,
+    "changeKey" : "QUREX0ZJRUxEClBvc3RncmVzcWxEYXRhYmFzZURpYWxlY3QjREVGQVVMVF9EUklWRVJfQ0xBU1NfTkFNRQ",
+    "description" : "Add field PostgresqlDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 65,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2RlZmF1bHREcml2ZXJDbGFzc05hbWU",
+    "description" : "Add constructor parameter ExternalDataSourcePropertiesTest.TestDatabaseDialect#defaultDriverClassName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ExternalDataSourcePropertiesTest.TestDatabaseDialect",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0LlRlc3REYXRhYmFzZURpYWxlY3Q",
+      "description" : "Add class ExternalDataSourcePropertiesTest.TestDatabaseDialect",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 18,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldFR5cGU",
+      "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getType",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 19,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldERlZmF1bHREcml2ZXJDbGFzc05hbWU",
+      "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getDefaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 20,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldFBhZ2VQcmV2TnVt",
+      "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getPagePrevNum",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 21,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldFBhZ2VMYXN0TnVt",
+      "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getPageLastNum",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 22,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldExpbWl0VG9wU3FsV2l0aE1hcms",
+      "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitTopSqlWithMark",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 23,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldExpbWl0UGFnZVNxbFdpdGhNYXJr",
+      "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitPageSqlWithMark",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 24,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldExpbWl0UGFnZVNxbA",
+      "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitPageSql",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 25,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldExpbWl0UGFnZVNxbFdpdGhPZmZzZXQ",
+      "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getLimitPageSqlWithOffset",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 26,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldFJldHVyblByaW1hcnlLZXlz",
+      "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getReturnPrimaryKeys",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 27,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2dldEZ1bmN0aW9u",
+      "description" : "Add ExternalDataSourcePropertiesTest.TestDatabaseDialect#getFunction",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 60,
+      "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0LlRlc3REYXRhYmFzZURpYWxlY3QjZGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+      "description" : "Add field ExternalDataSourcePropertiesTest.TestDatabaseDialect#defaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 65,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdC5UZXN0RGF0YWJhc2VEaWFsZWN0I2RlZmF1bHREcml2ZXJDbGFzc05hbWU",
+      "description" : "Add constructor parameter ExternalDataSourcePropertiesTest.TestDatabaseDialect#defaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "DerbyDatabaseDialectTest",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX0NMQVNTCkRlcmJ5RGF0YWJhc2VEaWFsZWN0VGVzdA",
+      "description" : "Add class DerbyDatabaseDialectTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 33,
+      "changeKey" : "QUREX1NZTUJPTApEZXJieURhdGFiYXNlRGlhbGVjdFRlc3QjdGVzdEdldERlZmF1bHREcml2ZXJDbGFzc05hbWU",
+      "description" : "Add DerbyDatabaseDialectTest#testGetDefaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "MysqlDatabaseDialectTest",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX0NMQVNTCk15c3FsRGF0YWJhc2VEaWFsZWN0VGVzdA",
+      "description" : "Add class MysqlDatabaseDialectTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 36,
+      "changeKey" : "QUREX1NZTUJPTApNeXNxbERhdGFiYXNlRGlhbGVjdFRlc3QjdGVzdE15c3FsRGlhbGVjdFByb3ZpZGVzRGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+      "description" : "Add MysqlDatabaseDialectTest#testMysqlDialectProvidesDefaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 37,
+      "changeKey" : "QUREX1NZTUJPTApNeXNxbERhdGFiYXNlRGlhbGVjdFRlc3QjdGVzdERlZmF1bHREaWFsZWN0UHJvdmlkZXNTYW1lRHJpdmVyQXNNeXNxbERpYWxlY3Q",
+      "description" : "Add MysqlDatabaseDialectTest#testDefaultDialectProvidesSameDriverAsMysqlDialect",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "OracleDatabaseDialectTest",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "QUREX0NMQVNTCk9yYWNsZURhdGFiYXNlRGlhbGVjdFRlc3Q",
+      "description" : "Add class OracleDatabaseDialectTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 39,
+      "changeKey" : "QUREX1NZTUJPTApPcmFjbGVEYXRhYmFzZURpYWxlY3RUZXN0I3Rlc3RHZXREZWZhdWx0RHJpdmVyQ2xhc3NOYW1l",
+      "description" : "Add OracleDatabaseDialectTest#testGetDefaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ExternalDataSourceProperties",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKRXh0ZXJuYWxEYXRhU291cmNlUHJvcGVydGllcyNidWlsZA",
+      "description" : "Change signature of ExternalDataSourceProperties#build",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 5,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzI3Jlc29sdmVEZWZhdWx0RHJpdmVyQ2xhc3NOYW1l",
+      "description" : "Add ExternalDataSourceProperties#resolveDefaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 53,
+      "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXMjTE9HR0VS",
+      "description" : "Add field ExternalDataSourceProperties#LOGGER",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ExternalDataSourcePropertiesTest",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNzZXRVcA",
+      "description" : "Add ExternalDataSourcePropertiesTest#setUp",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 7,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCN0ZWFyRG93bg",
+      "description" : "Add ExternalDataSourcePropertiesTest#tearDown",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 8,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVVc2VzRGlhbGVjdERlZmF1bHRXaGVuUG9vbENvbmZpZ0lzQWJzZW50",
+      "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameUsesDialectDefaultWhenPoolConfigIsAbsent",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 9,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVVc2VzU3VwcGxpZWREaWFsZWN0VHlwZVdoZW5FbnZpcm9ubWVudFNlbGVjdHNBbm90aGVyRGlhbGVjdA",
+      "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameUsesSuppliedDialectTypeWhenEnvironmentSelectsAnotherDialect",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNleHBsaWNpdFBvb2xDb25maWdEcml2ZXJDbGFzc05hbWVTa2lwc0RpYWxlY3REZWZhdWx0",
+      "description" : "Add ExternalDataSourcePropertiesTest#explicitPoolConfigDriverClassNameSkipsDialectDefault",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNjYW5vbmljYWxQb29sQ29uZmlnRHJpdmVyQ2xhc3NOYW1lT3ZlcnJpZGVzTGVnYWN5QW5kU2tpcHNEaWFsZWN0RGVmYXVsdA",
+      "description" : "Add ExternalDataSourcePropertiesTest#canonicalPoolConfigDriverClassNameOverridesLegacyAndSkipsDialectDefault",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVGYWxsc0JhY2tUb015c3FsV2hlbkRpYWxlY3RQcm92aWRlc05vRHJpdmVy",
+      "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenDialectProvidesNoDriver",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVGYWxsc0JhY2tUb015c3FsV2hlbkRpYWxlY3RJc05vdExvYWRlZA",
+      "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenDialectIsNotLoaded",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 14,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVGYWxsc0JhY2tUb015c3FsV2hlbkRpYWxlY3RQbHVnaW5Jc0Rpc2FibGVk",
+      "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenDialectPluginIsDisabled",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNkcml2ZXJDbGFzc05hbWVGYWxsc0JhY2tUb015c3FsV2hlbk15c3FsRGlhbGVjdElzTm90TG9hZGVk",
+      "description" : "Add ExternalDataSourcePropertiesTest#driverClassNameFallsBackToMysqlWhenMysqlDialectIsNotLoaded",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNteXNxbEVudmlyb25tZW50",
+      "description" : "Add ExternalDataSourcePropertiesTest#mysqlEnvironment",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VQcm9wZXJ0aWVzVGVzdCNnZXREaWFsZWN0TWFw",
+      "description" : "Add ExternalDataSourcePropertiesTest#getDialectMap",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 45,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZU5vcm1hbGx5Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceNormally: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 46,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZVN1cHBvcnRzQ2Fub25pY2FsQ29uZmlnCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceSupportsCanonicalConfig: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 47,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZUNhbm9uaWNhbENvbmZpZ092ZXJyaWRlc0xlZ2FjeVBlckl0ZW0Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceCanonicalConfigOverridesLegacyPerItem: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 48,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZVRvQXNzZXJ0TXVsdGlKZGJjVXJsCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceToAssertMultiJdbcUrl: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 49,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZVRvQXNzZXJ0TXVsdGlQYXNzd29yZEFuZFVzZXJuYW1lCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceToAssertMultiPasswordAndUsername: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 50,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZVRvQXNzZXJ0TWluSWRsZQpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceToAssertMinIdle: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 51,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZUZhaWx1cmVXaXRoTGFya0luZm8Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceFailureWithLarkInfo: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 52,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2V4dGVybmFsRGF0YXNvdXJjZUZhaWx1cmVXaXRoRXJyb3JJbmZvCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of ExternalDataSourcePropertiesTest#externalDatasourceFailureWithErrorInfo: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 54,
+      "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I01ZU1FMX0NPTVBBVF9EUklWRVI",
+      "description" : "Add field ExternalDataSourcePropertiesTest#MYSQL_COMPAT_DRIVER",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 55,
+      "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I1RFU1RfRElBTEVDVF9UWVBF",
+      "description" : "Add field ExternalDataSourcePropertiesTest#TEST_DIALECT_TYPE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 56,
+      "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I1RFU1RfRElBTEVDVF9EUklWRVI",
+      "description" : "Add field ExternalDataSourcePropertiesTest#TEST_DIALECT_DRIVER",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 57,
+      "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I2RpYWxlY3RNYXA",
+      "description" : "Add field ExternalDataSourcePropertiesTest#dialectMap",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 58,
+      "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I29yaWdpbmFsRGlhbGVjdHM",
+      "description" : "Add field ExternalDataSourcePropertiesTest#originalDialects",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 59,
+      "changeKey" : "QUREX0ZJRUxECkV4dGVybmFsRGF0YVNvdXJjZVByb3BlcnRpZXNUZXN0I29yaWdpbmFsU3RhdGVDaGVja2Vy",
+      "description" : "Add field ExternalDataSourcePropertiesTest#originalStateChecker",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ExternalDataSourceServiceImplTest",
+    "entries" : [ {
+      "id" : 28,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VTZXJ2aWNlSW1wbFRlc3QjdGVzdERlZmF1bHREcml2ZXJVc2VzU2VsZWN0ZWREaWFsZWN0",
+      "description" : "Add ExternalDataSourceServiceImplTest#testDefaultDriverUsesSelectedDialect",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 29,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VTZXJ2aWNlSW1wbFRlc3QjdGVzdFJlbG9hZEtlZXBzSW5pdGlhbGx5U2VsZWN0ZWREaWFsZWN0",
+      "description" : "Add ExternalDataSourceServiceImplTest#testReloadKeepsInitiallySelectedDialect",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 30,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VTZXJ2aWNlSW1wbFRlc3QjZGVmYXVsdERyaXZlckVudmlyb25tZW50",
+      "description" : "Add ExternalDataSourceServiceImplTest#defaultDriverEnvironment",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 31,
+      "changeKey" : "QUREX1NZTUJPTApFeHRlcm5hbERhdGFTb3VyY2VTZXJ2aWNlSW1wbFRlc3QjY2xvc2VEYXRhU291cmNl",
+      "description" : "Add ExternalDataSourceServiceImplTest#closeDataSource",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "DerbyDatabaseDialect",
+    "entries" : [ {
+      "id" : 32,
+      "changeKey" : "QUREX1NZTUJPTApEZXJieURhdGFiYXNlRGlhbGVjdCNnZXREZWZhdWx0RHJpdmVyQ2xhc3NOYW1l",
+      "description" : "Add DerbyDatabaseDialect#getDefaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 61,
+      "changeKey" : "QUREX0ZJRUxECkRlcmJ5RGF0YWJhc2VEaWFsZWN0I0RFRkFVTFRfRFJJVkVSX0NMQVNTX05BTUU",
+      "description" : "Add field DerbyDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DefaultDatabaseDialect",
+    "entries" : [ {
+      "id" : 34,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0RGF0YWJhc2VEaWFsZWN0I2dldERlZmF1bHREcml2ZXJDbGFzc05hbWU",
+      "description" : "Add DefaultDatabaseDialect#getDefaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "MysqlDatabaseDialect",
+    "entries" : [ {
+      "id" : 35,
+      "changeKey" : "QUREX1NZTUJPTApNeXNxbERhdGFiYXNlRGlhbGVjdCNnZXREZWZhdWx0RHJpdmVyQ2xhc3NOYW1l",
+      "description" : "Add MysqlDatabaseDialect#getDefaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 62,
+      "changeKey" : "QUREX0ZJRUxECk15c3FsRGF0YWJhc2VEaWFsZWN0I0RFRkFVTFRfRFJJVkVSX0NMQVNTX05BTUU",
+      "description" : "Add field MysqlDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "OracleDatabaseDialect",
+    "entries" : [ {
+      "id" : 38,
+      "changeKey" : "QUREX1NZTUJPTApPcmFjbGVEYXRhYmFzZURpYWxlY3QjZ2V0RGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+      "description" : "Add OracleDatabaseDialect#getDefaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 63,
+      "changeKey" : "QUREX0ZJRUxECk9yYWNsZURhdGFiYXNlRGlhbGVjdCNERUZBVUxUX0RSSVZFUl9DTEFTU19OQU1F",
+      "description" : "Add field OracleDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "PostgresqlDatabaseDialect",
+    "entries" : [ {
+      "id" : 40,
+      "changeKey" : "QUREX1NZTUJPTApQb3N0Z3Jlc3FsRGF0YWJhc2VEaWFsZWN0I2dldERlZmF1bHREcml2ZXJDbGFzc05hbWU",
+      "description" : "Add PostgresqlDatabaseDialect#getDefaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 64,
+      "changeKey" : "QUREX0ZJRUxEClBvc3RncmVzcWxEYXRhYmFzZURpYWxlY3QjREVGQVVMVF9EUklWRVJfQ0xBU1NfTkFNRQ",
+      "description" : "Add field PostgresqlDatabaseDialect#DEFAULT_DRIVER_CLASS_NAME",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "PostgresqlDatabaseDialectTest",
+    "entries" : [ {
+      "id" : 41,
+      "changeKey" : "QUREX1NZTUJPTApQb3N0Z3Jlc3FsRGF0YWJhc2VEaWFsZWN0VGVzdCN0ZXN0R2V0RGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+      "description" : "Add PostgresqlDatabaseDialectTest#testGetDefaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "DatabaseDialect",
+    "entries" : [ {
+      "id" : 42,
+      "changeKey" : "QUREX1NZTUJPTApEYXRhYmFzZURpYWxlY3QjZ2V0RGVmYXVsdERyaXZlckNsYXNzTmFtZQ",
+      "description" : "Add DatabaseDialect#getDefaultDriverClassName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DatabaseDialectManagerTest",
+    "entries" : [ {
+      "id" : 43,
+      "changeKey" : "QUREX1NZTUJPTApEYXRhYmFzZURpYWxlY3RNYW5hZ2VyVGVzdCN0ZXN0RGVmYXVsdERyaXZlckNsYXNzTmFtZUlzTnVsbFdoZW5EaWFsZWN0RG9lc05vdFByb3ZpZGVPbmU",
+      "description" : "Add DatabaseDialectManagerTest#testDefaultDriverClassNameIsNullWhenDialectDoesNotProvideOne",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ExternalDataSourceServiceImpl",
+    "entries" : [ {
+      "id" : 44,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkV4dGVybmFsRGF0YVNvdXJjZVNlcnZpY2VJbXBsI3JlbG9hZApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of ExternalDataSourceServiceImpl#reload: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

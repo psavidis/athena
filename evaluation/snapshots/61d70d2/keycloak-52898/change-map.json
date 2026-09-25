@@ -1,0 +1,1897 @@
+{
+  "prTitle" : "Client policy to reject may_act claim",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 2,
+    "STRUCTURAL" : 77,
+    "UNKNOWN" : 12,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTCkFic3RyYWN0Q2xpZW50U2Vzc2lvbkN0eFRva2VuUmVzcG9uc2VDb250ZXh0",
+    "description" : "Add class AbstractClientSessionCtxTokenResponseContext",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0NMQVNTCkFic3RyYWN0VG9rZW5SZXNwb25zZUNvbnRleHQ",
+    "description" : "Add class AbstractTokenResponseContext",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX0NMQVNTCkpXVEF1dGhvcml6YXRpb25HcmFudFJlc3BvbnNlQ29udGV4dA",
+    "description" : "Add class JWTAuthorizationGrantResponseContext",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX0NMQVNTClRva2VuRXhjaGFuZ2VSZXNwb25zZUNvbnRleHQ",
+    "description" : "Add class TokenExchangeResponseContext",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "QUREX0NMQVNTClJlamVjdE1heUFjdENsYWltRXhlY3V0b3I",
+    "description" : "Add class RejectMayActClaimExecutor",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "QUREX0NMQVNTClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IuQ29uZmlndXJhdGlvbg",
+    "description" : "Add class RejectMayActClaimExecutor.Configuration",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX0NMQVNTClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5",
+    "description" : "Add class RejectMayActClaimExecutorFactory",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpHcmFudFR5cGVDb25kaXRpb24jYXBwbHlQb2xpY3kKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of GrantTypeCondition#applyPolicy: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpHcmFudFR5cGVDb25kaXRpb24jaXNHcmFudE1hdGNoaW5nCmJyYW5jaCByZW1vdmVk",
+    "description" : "Change control flow of GrantTypeCondition#isGrantMatching: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKR3JhbnRUeXBlQ29uZGl0aW9uI2lzR3JhbnRNYXRjaGluZw",
+    "description" : "Change signature of GrantTypeCondition#isGrantMatching",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "QUREX1NZTUJPTApCYWNrY2hhbm5lbFRva2VuUmVzcG9uc2VDb250ZXh0I2dldENsaWVudA",
+    "description" : "Add BackchannelTokenResponseContext#getClient",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "QUREX1NZTUJPTApCYWNrY2hhbm5lbFRva2VuUmVzcG9uc2VDb250ZXh0I2dldFNjb3BlUGFyYW1ldGVy",
+    "description" : "Add BackchannelTokenResponseContext#getScopeParameter",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "QUREX1NZTUJPTApHcmFudFR5cGVDb25kaXRpb24jaXNHcmFudE1hdGNoaW5nUmVzcG9uc2VUeXBl",
+    "description" : "Add GrantTypeCondition#isGrantMatchingResponseType",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "QUREX1NZTUJPTApHcmFudFR5cGVDb25kaXRpb24jaXNHcmFudE1hdGNoaW5n",
+    "description" : "Add GrantTypeCondition#isGrantMatching",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 14,
+    "changeKey" : "QUREX1NZTUJPTApKV1RBdXRob3JpemF0aW9uR3JhbnRSZXNwb25zZUNvbnRleHQjZ2V0UGFyYW1z",
+    "description" : "Add JWTAuthorizationGrantResponseContext#getParams",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApKV1RBdXRob3JpemF0aW9uR3JhbnRSZXNwb25zZUNvbnRleHQjZ2V0RXZlbnQ",
+    "description" : "Add JWTAuthorizationGrantResponseContext#getEvent",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlUmVzcG9uc2VDb250ZXh0I2dldFBhcmFtcw",
+    "description" : "Add TokenExchangeResponseContext#getParams",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlUmVzcG9uc2VDb250ZXh0I2dldEV2ZW50",
+    "description" : "Add TokenExchangeResponseContext#getEvent",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI2dldFByb3ZpZGVySWQ",
+    "description" : "Add RejectMayActClaimExecutor#getProviderId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 19,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI3NldHVwQ29uZmlndXJhdGlvbg",
+    "description" : "Add RejectMayActClaimExecutor#setupConfiguration",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 20,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI2dldEV4ZWN1dG9yQ29uZmlndXJhdGlvbkNsYXNz",
+    "description" : "Add RejectMayActClaimExecutor#getExecutorConfigurationClass",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 21,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI2V4ZWN1dGVPbkV2ZW50",
+    "description" : "Add RejectMayActClaimExecutor#executeOnEvent",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 22,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI3ZhbGlkYXRl",
+    "description" : "Add RejectMayActClaimExecutor#validate",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 23,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jaXNSZWplY3RBbnk",
+    "description" : "Add RejectMayActClaimExecutor.Configuration#isRejectAny",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 24,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jc2V0UmVqZWN0QW55",
+    "description" : "Add RejectMayActClaimExecutor.Configuration#setRejectAny",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 25,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jaXNBdm9pZFBlcm1pc3Npb25DaGVjaw",
+    "description" : "Add RejectMayActClaimExecutor.Configuration#isAvoidPermissionCheck",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 26,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jc2V0QXZvaWRQZXJtaXNzaW9uQ2hlY2s",
+    "description" : "Add RejectMayActClaimExecutor.Configuration#setAvoidPermissionCheck",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 27,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jaXNBdm9pZENvbnNlbnRDaGVjaw",
+    "description" : "Add RejectMayActClaimExecutor.Configuration#isAvoidConsentCheck",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 28,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jc2V0QXZvaWRDb25zZW50Q2hlY2s",
+    "description" : "Add RejectMayActClaimExecutor.Configuration#setAvoidConsentCheck",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 29,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNnZXRIZWxwVGV4dA",
+    "description" : "Add RejectMayActClaimExecutorFactory#getHelpText",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 30,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNnZXRDb25maWdQcm9wZXJ0aWVz",
+    "description" : "Add RejectMayActClaimExecutorFactory#getConfigProperties",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 31,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNjcmVhdGU",
+    "description" : "Add RejectMayActClaimExecutorFactory#create",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 32,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNpbml0",
+    "description" : "Add RejectMayActClaimExecutorFactory#init",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 33,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNwb3N0SW5pdA",
+    "description" : "Add RejectMayActClaimExecutorFactory#postInit",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 34,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNjbG9zZQ",
+    "description" : "Add RejectMayActClaimExecutorFactory#close",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 35,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNnZXRJZA",
+    "description" : "Add RejectMayActClaimExecutorFactory#getId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 36,
+    "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNpc1N1cHBvcnRlZA",
+    "description" : "Add RejectMayActClaimExecutorFactory#isSupported",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 37,
+    "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I3JlamVjdE1heUFjdENsaWVudFBvbGljeVN1Y2Nlc3M",
+    "description" : "Add ClientAgentDelegationTest#rejectMayActClientPolicySuccess",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 38,
+    "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I3JlamVjdE1heUFjdENsaWVudFBvbGljeVJlamVjdEFueQ",
+    "description" : "Add ClientAgentDelegationTest#rejectMayActClientPolicyRejectAny",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 39,
+    "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I3JlamVjdE1heUFjdENsaWVudFBvbGljeVBlcm1pc3Npb24",
+    "description" : "Add ClientAgentDelegationTest#rejectMayActClientPolicyPermission",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 40,
+    "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I3JlamVjdE1heUFjdENsaWVudFBvbGljeUNvbnNlbnQ",
+    "description" : "Add ClientAgentDelegationTest#rejectMayActClientPolicyConsent",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 41,
+    "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I2NyZWF0ZUhhcmRjb2RlZFN1Yk1hcHBlckZvckNsaWVudElk",
+    "description" : "Add ClientAgentDelegationTest#createHardcodedSubMapperForClientId",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 42,
+    "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I2xvZ2luV2l0aERlbGVnYXRpb25Ob0V2ZW50",
+    "description" : "Add ClientAgentDelegationTest#loginWithDelegationNoEvent",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 43,
+    "changeKey" : "QUREX1NZTUJPTApDbGllbnREZWxlZ2F0aW9uQ2liYVRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5U3VjY2Vzcw",
+    "description" : "Add ClientDelegationCibaTest#rejectMayActClientPolicySuccess",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 44,
+    "changeKey" : "QUREX1NZTUJPTApDbGllbnREZWxlZ2F0aW9uQ2liYVRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5UmVqZWN0QW55",
+    "description" : "Add ClientDelegationCibaTest#rejectMayActClientPolicyRejectAny",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 45,
+    "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5U3VjY2Vzcw",
+    "description" : "Add TokenExchangeDelegationTest#rejectMayActClientPolicySuccess",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 46,
+    "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5UmVqZWN0QW55",
+    "description" : "Add TokenExchangeDelegationTest#rejectMayActClientPolicyRejectAny",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 47,
+    "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5UGVybWlzc2lvbg",
+    "description" : "Add TokenExchangeDelegationTest#rejectMayActClientPolicyPermission",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 48,
+    "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5Q29uc2VudA",
+    "description" : "Add TokenExchangeDelegationTest#rejectMayActClientPolicyConsent",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 49,
+    "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjbG9naW5XaXRoRGVsZWdhdGlvbk5vRXZlbnQ",
+    "description" : "Add TokenExchangeDelegationTest#loginWithDelegationNoEvent",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 50,
+    "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjY3JlYXRlSGFyZGNvZGVkU3ViTWFwcGVyRm9yQWRtaW5pc3RyYXRvcg",
+    "description" : "Add TokenExchangeDelegationTest#createHardcodedSubMapperForAdministrator",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 51,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1nZXRDbGllbnRTZXNzaW9uLCByZXR1cm4gY2xpZW50U2Vzc2lvbkN0eC5nZXRDbGllbnRTZXNzaW9uKCkgLT4gY2xpZW50U2Vzc2lvbkN0eApDbGllbnRDcmVkZW50aWFsc0dyYW50VHlwZSNwcm9jZXNz",
+    "description" : "Modify body of ClientCredentialsGrantType#process: -getClientSession, return clientSessionCtx.getClientSession() -> clientSessionCtx",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 52,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkpXVEF1dGhvcml6YXRpb25HcmFudFR5cGUjcHJvY2VzcwpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of JWTAuthorizationGrantType#process: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 53,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkZXRhaWwsICtlcnJvciwgK2NsaWVudFBvbGljeSwgK3RyaWdnZXJPbkV2ZW50LCArZ2V0RXJyb3Ig4oCmYW5kIDMgbW9yZQpTdGFuZGFyZFRva2VuRXhjaGFuZ2VQcm92aWRlciNleGNoYW5nZUNsaWVudFRvT0lEQ0NsaWVudA",
+    "description" : "Modify body of StandardTokenExchangeProvider#exchangeClientToOIDCClient: +detail, +error, +clientPolicy, +triggerOnEvent, +getError …and 3 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 54,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlciwgcmV0dXJuIHRoaXMuYWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXIgLT4gZ2V0QWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXIoKQpUb2tlblJlZnJlc2hSZXNwb25zZUNvbnRleHQjZ2V0Q2xpZW50U2Vzc2lvbg",
+    "description" : "Modify body of TokenRefreshResponseContext#getClientSession: +getAccessTokenResponseBuilder, return this.accessTokenResponseBuilder -> getAccessTokenResponseBuilder()",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 55,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2dpbldpdGhEZWxlZ2F0aW9uTm9FdmVudCwgLWNsaWVudCwgLXNjb3BlLCAtb3BlbkxvZ2luRm9ybSwgLWZpbGxMb2dpbkZvcm0g4oCmYW5kIDEyIG1vcmUKQ2xpZW50QWdlbnREZWxlZ2F0aW9uVGVzdCNsb2dpbldpdGhEZWxlZ2F0aW9u",
+    "description" : "Modify body of ClientAgentDelegationTest#loginWithDelegation: +loginWithDelegationNoEvent, -client, -scope, -openLoginForm, -fillLoginForm …and 12 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 56,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2dpbldpdGhEZWxlZ2F0aW9uTm9FdmVudCwgLXNjb3BlLCAtb3BlbkxvZ2luRm9ybSwgLWZpbGxMb2dpbkZvcm0sIC1hc3NlcnRDdXJyZW50IOKApmFuZCAxMSBtb3JlClRva2VuRXhjaGFuZ2VEZWxlZ2F0aW9uVGVzdCNsb2dpbldpdGhEZWxlZ2F0aW9u",
+    "description" : "Modify body of TokenExchangeDelegationTest#loginWithDelegation: +loginWithDelegationNoEvent, -scope, -openLoginForm, -fillLoginForm, -assertCurrent …and 11 more",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 57,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkJhY2tjaGFubmVsVG9rZW5SZXNwb25zZUNvbnRleHQjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of BackchannelTokenResponseContext#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 58,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkRldmljZVRva2VuUmVzcG9uc2VDb250ZXh0Izxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of DeviceTokenResponseContext#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 59,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkltcGxpY2l0SHlicmlkVG9rZW5SZXNwb25zZSM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of ImplicitHybridTokenResponse#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 60,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClJlc291cmNlT3duZXJQYXNzd29yZENyZWRlbnRpYWxzUmVzcG9uc2VDb250ZXh0Izxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of ResourceOwnerPasswordCredentialsResponseContext#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 61,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRva2VuUmVmcmVzaFJlc3BvbnNlQ29udGV4dCM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of TokenRefreshResponseContext#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 62,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRva2VuUmVzcG9uc2VDb250ZXh0Izxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of TokenResponseContext#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 63,
+    "changeKey" : "UkVNT1ZFX0ZJRUxEClNlcnZpY2VBY2NvdW50VG9rZW5SZXNwb25zZUNvbnRleHQjY2xpZW50U2Vzc2lvbg",
+    "description" : "Remove field ServiceAccountTokenResponseContext#clientSession",
+    "category" : "STRUCTURAL",
+    "kind" : "REMOVE_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 64,
+    "changeKey" : "QUREX0ZJRUxECkpXVEF1dGhvcml6YXRpb25HcmFudFJlc3BvbnNlQ29udGV4dCNwYXJhbXM",
+    "description" : "Add field JWTAuthorizationGrantResponseContext#params",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 65,
+    "changeKey" : "QUREX0ZJRUxEClRva2VuRXhjaGFuZ2VSZXNwb25zZUNvbnRleHQjcGFyYW1z",
+    "description" : "Add field TokenExchangeResponseContext#params",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 66,
+    "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IjbG9nZ2Vy",
+    "description" : "Add field RejectMayActClaimExecutor#logger",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 67,
+    "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3Ijc2Vzc2lvbg",
+    "description" : "Add field RejectMayActClaimExecutor#session",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 68,
+    "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IjY29uZmlndXJhdGlvbg",
+    "description" : "Add field RejectMayActClaimExecutor#configuration",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 69,
+    "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IuQ29uZmlndXJhdGlvbiNyZWplY3RBbnk",
+    "description" : "Add field RejectMayActClaimExecutor.Configuration#rejectAny",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 70,
+    "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IuQ29uZmlndXJhdGlvbiNhdm9pZFBlcm1pc3Npb25DaGVjaw",
+    "description" : "Add field RejectMayActClaimExecutor.Configuration#avoidPermissionCheck",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 71,
+    "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IuQ29uZmlndXJhdGlvbiNhdm9pZENvbnNlbnRDaGVjaw",
+    "description" : "Add field RejectMayActClaimExecutor.Configuration#avoidConsentCheck",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 72,
+    "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5I1BST1ZJREVSX0lE",
+    "description" : "Add field RejectMayActClaimExecutorFactory#PROVIDER_ID",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 73,
+    "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5I1JFSkVDVF9BTllfTUFZX0FDVA",
+    "description" : "Add field RejectMayActClaimExecutorFactory#REJECT_ANY_MAY_ACT",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 74,
+    "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5I0FWT0lEX1BFUk1JU1NJT05fQ0hFQ0s",
+    "description" : "Add field RejectMayActClaimExecutorFactory#AVOID_PERMISSION_CHECK",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 75,
+    "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5I0FWT0lEX0NPTlNFTlRfQ0hFQ0s",
+    "description" : "Add field RejectMayActClaimExecutorFactory#AVOID_CONSENT_CHECK",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 76,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpBYnN0cmFjdENsaWVudFNlc3Npb25DdHhUb2tlblJlc3BvbnNlQ29udGV4dCNjbGllbnRTZXNzaW9uQ3R4",
+    "description" : "Add constructor parameter AbstractClientSessionCtxTokenResponseContext#clientSessionCtx",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 77,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpBYnN0cmFjdFRva2VuUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVy",
+    "description" : "Add constructor parameter AbstractTokenResponseContext#accessTokenResponseBuilder",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 78,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpKV1RBdXRob3JpemF0aW9uR3JhbnRSZXNwb25zZUNvbnRleHQjcGFyYW1z",
+    "description" : "Add constructor parameter JWTAuthorizationGrantResponseContext#params",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 79,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUb2tlbkV4Y2hhbmdlUmVzcG9uc2VDb250ZXh0I3BhcmFtcw",
+    "description" : "Add constructor parameter TokenExchangeResponseContext#params",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 80,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI3Nlc3Npb24",
+    "description" : "Add constructor parameter RejectMayActClaimExecutor#session",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 81,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jcmVqZWN0QW55",
+    "description" : "Add constructor parameter RejectMayActClaimExecutor.Configuration#rejectAny",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 82,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jYXZvaWRQZXJtaXNzaW9uQ2hlY2s",
+    "description" : "Add constructor parameter RejectMayActClaimExecutor.Configuration#avoidPermissionCheck",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 83,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jYXZvaWRDb25zZW50Q2hlY2s",
+    "description" : "Add constructor parameter RejectMayActClaimExecutor.Configuration#avoidConsentCheck",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 84,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ2xpZW50UG9saWN5RXZlbnQjVE9LRU5fRVhDSEFOR0VfUkVTUE9OU0U",
+    "description" : "Add enum constant ClientPolicyEvent#TOKEN_EXCHANGE_RESPONSE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 85,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ2xpZW50UG9saWN5RXZlbnQjSldUX0FVVEhPUklaQVRJT05fR1JBTlRfUkVTUE9OU0U",
+    "description" : "Add enum constant ClientPolicyEvent#JWT_AUTHORIZATION_GRANT_RESPONSE",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 86,
+    "changeKey" : "UFVMTF9VUF9GSUVMRApBYnN0cmFjdENsaWVudFNlc3Npb25DdHhUb2tlblJlc3BvbnNlQ29udGV4dCNjbGllbnRTZXNzaW9uQ3R4CkJhY2tjaGFubmVsVG9rZW5SZXNwb25zZUNvbnRleHQjY2xpZW50U2Vzc2lvbkN0eApJbXBsaWNpdEh5YnJpZFRva2VuUmVzcG9uc2UjY2xpZW50U2Vzc2lvbkN0eApSZXNvdXJjZU93bmVyUGFzc3dvcmRDcmVkZW50aWFsc1Jlc3BvbnNlQ29udGV4dCNjbGllbnRTZXNzaW9uQ3R4ClRva2VuUmVzcG9uc2VDb250ZXh0I2NsaWVudFNlc3Npb25DdHg",
+    "description" : "Pull up field clientSessionCtx into AbstractClientSessionCtxTokenResponseContext (from BackchannelTokenResponseContext, ImplicitHybridTokenResponse, ResourceOwnerPasswordCredentialsResponseContext, TokenResponseContext)",
+    "category" : "STRUCTURAL",
+    "kind" : "PULL_UP_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 87,
+    "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDbGllbnRTZXNzaW9uQ3R4VG9rZW5SZXNwb25zZUNvbnRleHQjZ2V0Q2xpZW50U2Vzc2lvbgpTZXJ2aWNlQWNjb3VudFRva2VuUmVzcG9uc2VDb250ZXh0I2dldENsaWVudFNlc3Npb24KVG9rZW5SZXNwb25zZUNvbnRleHQjZ2V0Q2xpZW50U2Vzc2lvbg",
+    "description" : "Pull up getClientSession into AbstractClientSessionCtxTokenResponseContext (from ServiceAccountTokenResponseContext, TokenResponseContext)",
+    "category" : "STRUCTURAL",
+    "kind" : "PULL_UP_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 88,
+    "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDbGllbnRTZXNzaW9uQ3R4VG9rZW5SZXNwb25zZUNvbnRleHQjZ2V0Q2xpZW50U2Vzc2lvbkNvbnRleHQKQmFja2NoYW5uZWxUb2tlblJlc3BvbnNlQ29udGV4dCNnZXRDbGllbnRTZXNzaW9uQ29udGV4dApJbXBsaWNpdEh5YnJpZFRva2VuUmVzcG9uc2UjZ2V0Q2xpZW50U2Vzc2lvbkNvbnRleHQKUmVzb3VyY2VPd25lclBhc3N3b3JkQ3JlZGVudGlhbHNSZXNwb25zZUNvbnRleHQjZ2V0Q2xpZW50U2Vzc2lvbkNvbnRleHQKVG9rZW5SZXNwb25zZUNvbnRleHQjZ2V0Q2xpZW50U2Vzc2lvbkNvbnRleHQ",
+    "description" : "Pull up getClientSessionContext into AbstractClientSessionCtxTokenResponseContext (from BackchannelTokenResponseContext, ImplicitHybridTokenResponse, ResourceOwnerPasswordCredentialsResponseContext, TokenResponseContext)",
+    "category" : "STRUCTURAL",
+    "kind" : "PULL_UP_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 89,
+    "changeKey" : "UFVMTF9VUF9GSUVMRApBYnN0cmFjdFRva2VuUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyCkJhY2tjaGFubmVsVG9rZW5SZXNwb25zZUNvbnRleHQjYWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXIKRGV2aWNlVG9rZW5SZXNwb25zZUNvbnRleHQjYWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXIKSW1wbGljaXRIeWJyaWRUb2tlblJlc3BvbnNlI2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyClJlc291cmNlT3duZXJQYXNzd29yZENyZWRlbnRpYWxzUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyClNlcnZpY2VBY2NvdW50VG9rZW5SZXNwb25zZUNvbnRleHQjYWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXIKVG9rZW5SZWZyZXNoUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyClRva2VuUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVy",
+    "description" : "Pull up field accessTokenResponseBuilder into AbstractTokenResponseContext (from BackchannelTokenResponseContext, DeviceTokenResponseContext, ImplicitHybridTokenResponse, ResourceOwnerPasswordCredentialsResponseContext, ServiceAccountTokenResponseContext, TokenRefreshResponseContext, TokenResponseContext)",
+    "category" : "STRUCTURAL",
+    "kind" : "PULL_UP_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 90,
+    "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RUb2tlblJlc3BvbnNlQ29udGV4dCNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcgpCYWNrY2hhbm5lbFRva2VuUmVzcG9uc2VDb250ZXh0I2dldEFjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyCkRldmljZVRva2VuUmVzcG9uc2VDb250ZXh0I2dldEFjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyCkltcGxpY2l0SHlicmlkVG9rZW5SZXNwb25zZSNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcgpSZXNvdXJjZU93bmVyUGFzc3dvcmRDcmVkZW50aWFsc1Jlc3BvbnNlQ29udGV4dCNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcgpTZXJ2aWNlQWNjb3VudFRva2VuUmVzcG9uc2VDb250ZXh0I2dldEFjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyClRva2VuUmVmcmVzaFJlc3BvbnNlQ29udGV4dCNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcgpUb2tlblJlc3BvbnNlQ29udGV4dCNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcg",
+    "description" : "Pull up getAccessTokenResponseBuilder into AbstractTokenResponseContext (from BackchannelTokenResponseContext, DeviceTokenResponseContext, ImplicitHybridTokenResponse, ResourceOwnerPasswordCredentialsResponseContext, ServiceAccountTokenResponseContext, TokenRefreshResponseContext, TokenResponseContext)",
+    "category" : "STRUCTURAL",
+    "kind" : "PULL_UP_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "AbstractClientSessionCtxTokenResponseContext",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTCkFic3RyYWN0Q2xpZW50U2Vzc2lvbkN0eFRva2VuUmVzcG9uc2VDb250ZXh0",
+      "description" : "Add class AbstractClientSessionCtxTokenResponseContext",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 76,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpBYnN0cmFjdENsaWVudFNlc3Npb25DdHhUb2tlblJlc3BvbnNlQ29udGV4dCNjbGllbnRTZXNzaW9uQ3R4",
+      "description" : "Add constructor parameter AbstractClientSessionCtxTokenResponseContext#clientSessionCtx",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 86,
+      "changeKey" : "UFVMTF9VUF9GSUVMRApBYnN0cmFjdENsaWVudFNlc3Npb25DdHhUb2tlblJlc3BvbnNlQ29udGV4dCNjbGllbnRTZXNzaW9uQ3R4CkJhY2tjaGFubmVsVG9rZW5SZXNwb25zZUNvbnRleHQjY2xpZW50U2Vzc2lvbkN0eApJbXBsaWNpdEh5YnJpZFRva2VuUmVzcG9uc2UjY2xpZW50U2Vzc2lvbkN0eApSZXNvdXJjZU93bmVyUGFzc3dvcmRDcmVkZW50aWFsc1Jlc3BvbnNlQ29udGV4dCNjbGllbnRTZXNzaW9uQ3R4ClRva2VuUmVzcG9uc2VDb250ZXh0I2NsaWVudFNlc3Npb25DdHg",
+      "description" : "Pull up field clientSessionCtx into AbstractClientSessionCtxTokenResponseContext (from BackchannelTokenResponseContext, ImplicitHybridTokenResponse, ResourceOwnerPasswordCredentialsResponseContext, TokenResponseContext)",
+      "category" : "STRUCTURAL",
+      "kind" : "PULL_UP_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 87,
+      "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDbGllbnRTZXNzaW9uQ3R4VG9rZW5SZXNwb25zZUNvbnRleHQjZ2V0Q2xpZW50U2Vzc2lvbgpTZXJ2aWNlQWNjb3VudFRva2VuUmVzcG9uc2VDb250ZXh0I2dldENsaWVudFNlc3Npb24KVG9rZW5SZXNwb25zZUNvbnRleHQjZ2V0Q2xpZW50U2Vzc2lvbg",
+      "description" : "Pull up getClientSession into AbstractClientSessionCtxTokenResponseContext (from ServiceAccountTokenResponseContext, TokenResponseContext)",
+      "category" : "STRUCTURAL",
+      "kind" : "PULL_UP_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 88,
+      "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RDbGllbnRTZXNzaW9uQ3R4VG9rZW5SZXNwb25zZUNvbnRleHQjZ2V0Q2xpZW50U2Vzc2lvbkNvbnRleHQKQmFja2NoYW5uZWxUb2tlblJlc3BvbnNlQ29udGV4dCNnZXRDbGllbnRTZXNzaW9uQ29udGV4dApJbXBsaWNpdEh5YnJpZFRva2VuUmVzcG9uc2UjZ2V0Q2xpZW50U2Vzc2lvbkNvbnRleHQKUmVzb3VyY2VPd25lclBhc3N3b3JkQ3JlZGVudGlhbHNSZXNwb25zZUNvbnRleHQjZ2V0Q2xpZW50U2Vzc2lvbkNvbnRleHQKVG9rZW5SZXNwb25zZUNvbnRleHQjZ2V0Q2xpZW50U2Vzc2lvbkNvbnRleHQ",
+      "description" : "Pull up getClientSessionContext into AbstractClientSessionCtxTokenResponseContext (from BackchannelTokenResponseContext, ImplicitHybridTokenResponse, ResourceOwnerPasswordCredentialsResponseContext, TokenResponseContext)",
+      "category" : "STRUCTURAL",
+      "kind" : "PULL_UP_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "AbstractTokenResponseContext",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX0NMQVNTCkFic3RyYWN0VG9rZW5SZXNwb25zZUNvbnRleHQ",
+      "description" : "Add class AbstractTokenResponseContext",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 77,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpBYnN0cmFjdFRva2VuUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVy",
+      "description" : "Add constructor parameter AbstractTokenResponseContext#accessTokenResponseBuilder",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 89,
+      "changeKey" : "UFVMTF9VUF9GSUVMRApBYnN0cmFjdFRva2VuUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyCkJhY2tjaGFubmVsVG9rZW5SZXNwb25zZUNvbnRleHQjYWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXIKRGV2aWNlVG9rZW5SZXNwb25zZUNvbnRleHQjYWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXIKSW1wbGljaXRIeWJyaWRUb2tlblJlc3BvbnNlI2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyClJlc291cmNlT3duZXJQYXNzd29yZENyZWRlbnRpYWxzUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyClNlcnZpY2VBY2NvdW50VG9rZW5SZXNwb25zZUNvbnRleHQjYWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXIKVG9rZW5SZWZyZXNoUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyClRva2VuUmVzcG9uc2VDb250ZXh0I2FjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVy",
+      "description" : "Pull up field accessTokenResponseBuilder into AbstractTokenResponseContext (from BackchannelTokenResponseContext, DeviceTokenResponseContext, ImplicitHybridTokenResponse, ResourceOwnerPasswordCredentialsResponseContext, ServiceAccountTokenResponseContext, TokenRefreshResponseContext, TokenResponseContext)",
+      "category" : "STRUCTURAL",
+      "kind" : "PULL_UP_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 90,
+      "changeKey" : "UFVMTF9VUF9TWU1CT0wKQWJzdHJhY3RUb2tlblJlc3BvbnNlQ29udGV4dCNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcgpCYWNrY2hhbm5lbFRva2VuUmVzcG9uc2VDb250ZXh0I2dldEFjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyCkRldmljZVRva2VuUmVzcG9uc2VDb250ZXh0I2dldEFjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyCkltcGxpY2l0SHlicmlkVG9rZW5SZXNwb25zZSNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcgpSZXNvdXJjZU93bmVyUGFzc3dvcmRDcmVkZW50aWFsc1Jlc3BvbnNlQ29udGV4dCNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcgpTZXJ2aWNlQWNjb3VudFRva2VuUmVzcG9uc2VDb250ZXh0I2dldEFjY2Vzc1Rva2VuUmVzcG9uc2VCdWlsZGVyClRva2VuUmVmcmVzaFJlc3BvbnNlQ29udGV4dCNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcgpUb2tlblJlc3BvbnNlQ29udGV4dCNnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlcg",
+      "description" : "Pull up getAccessTokenResponseBuilder into AbstractTokenResponseContext (from BackchannelTokenResponseContext, DeviceTokenResponseContext, ImplicitHybridTokenResponse, ResourceOwnerPasswordCredentialsResponseContext, ServiceAccountTokenResponseContext, TokenRefreshResponseContext, TokenResponseContext)",
+      "category" : "STRUCTURAL",
+      "kind" : "PULL_UP_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "JWTAuthorizationGrantResponseContext",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX0NMQVNTCkpXVEF1dGhvcml6YXRpb25HcmFudFJlc3BvbnNlQ29udGV4dA",
+      "description" : "Add class JWTAuthorizationGrantResponseContext",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 14,
+      "changeKey" : "QUREX1NZTUJPTApKV1RBdXRob3JpemF0aW9uR3JhbnRSZXNwb25zZUNvbnRleHQjZ2V0UGFyYW1z",
+      "description" : "Add JWTAuthorizationGrantResponseContext#getParams",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApKV1RBdXRob3JpemF0aW9uR3JhbnRSZXNwb25zZUNvbnRleHQjZ2V0RXZlbnQ",
+      "description" : "Add JWTAuthorizationGrantResponseContext#getEvent",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 64,
+      "changeKey" : "QUREX0ZJRUxECkpXVEF1dGhvcml6YXRpb25HcmFudFJlc3BvbnNlQ29udGV4dCNwYXJhbXM",
+      "description" : "Add field JWTAuthorizationGrantResponseContext#params",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 78,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpKV1RBdXRob3JpemF0aW9uR3JhbnRSZXNwb25zZUNvbnRleHQjcGFyYW1z",
+      "description" : "Add constructor parameter JWTAuthorizationGrantResponseContext#params",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TokenExchangeResponseContext",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "QUREX0NMQVNTClRva2VuRXhjaGFuZ2VSZXNwb25zZUNvbnRleHQ",
+      "description" : "Add class TokenExchangeResponseContext",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlUmVzcG9uc2VDb250ZXh0I2dldFBhcmFtcw",
+      "description" : "Add TokenExchangeResponseContext#getParams",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlUmVzcG9uc2VDb250ZXh0I2dldEV2ZW50",
+      "description" : "Add TokenExchangeResponseContext#getEvent",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 65,
+      "changeKey" : "QUREX0ZJRUxEClRva2VuRXhjaGFuZ2VSZXNwb25zZUNvbnRleHQjcGFyYW1z",
+      "description" : "Add field TokenExchangeResponseContext#params",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 79,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpUb2tlbkV4Y2hhbmdlUmVzcG9uc2VDb250ZXh0I3BhcmFtcw",
+      "description" : "Add constructor parameter TokenExchangeResponseContext#params",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RejectMayActClaimExecutor",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "QUREX0NMQVNTClJlamVjdE1heUFjdENsYWltRXhlY3V0b3I",
+      "description" : "Add class RejectMayActClaimExecutor",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 18,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI2dldFByb3ZpZGVySWQ",
+      "description" : "Add RejectMayActClaimExecutor#getProviderId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 19,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI3NldHVwQ29uZmlndXJhdGlvbg",
+      "description" : "Add RejectMayActClaimExecutor#setupConfiguration",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 20,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI2dldEV4ZWN1dG9yQ29uZmlndXJhdGlvbkNsYXNz",
+      "description" : "Add RejectMayActClaimExecutor#getExecutorConfigurationClass",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 21,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI2V4ZWN1dGVPbkV2ZW50",
+      "description" : "Add RejectMayActClaimExecutor#executeOnEvent",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 22,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI3ZhbGlkYXRl",
+      "description" : "Add RejectMayActClaimExecutor#validate",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 66,
+      "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IjbG9nZ2Vy",
+      "description" : "Add field RejectMayActClaimExecutor#logger",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 67,
+      "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3Ijc2Vzc2lvbg",
+      "description" : "Add field RejectMayActClaimExecutor#session",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 68,
+      "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IjY29uZmlndXJhdGlvbg",
+      "description" : "Add field RejectMayActClaimExecutor#configuration",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 80,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yI3Nlc3Npb24",
+      "description" : "Add constructor parameter RejectMayActClaimExecutor#session",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RejectMayActClaimExecutor.Configuration",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "QUREX0NMQVNTClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IuQ29uZmlndXJhdGlvbg",
+      "description" : "Add class RejectMayActClaimExecutor.Configuration",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 23,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jaXNSZWplY3RBbnk",
+      "description" : "Add RejectMayActClaimExecutor.Configuration#isRejectAny",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 24,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jc2V0UmVqZWN0QW55",
+      "description" : "Add RejectMayActClaimExecutor.Configuration#setRejectAny",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 25,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jaXNBdm9pZFBlcm1pc3Npb25DaGVjaw",
+      "description" : "Add RejectMayActClaimExecutor.Configuration#isAvoidPermissionCheck",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 26,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jc2V0QXZvaWRQZXJtaXNzaW9uQ2hlY2s",
+      "description" : "Add RejectMayActClaimExecutor.Configuration#setAvoidPermissionCheck",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 27,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jaXNBdm9pZENvbnNlbnRDaGVjaw",
+      "description" : "Add RejectMayActClaimExecutor.Configuration#isAvoidConsentCheck",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 28,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jc2V0QXZvaWRDb25zZW50Q2hlY2s",
+      "description" : "Add RejectMayActClaimExecutor.Configuration#setAvoidConsentCheck",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 69,
+      "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IuQ29uZmlndXJhdGlvbiNyZWplY3RBbnk",
+      "description" : "Add field RejectMayActClaimExecutor.Configuration#rejectAny",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 70,
+      "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IuQ29uZmlndXJhdGlvbiNhdm9pZFBlcm1pc3Npb25DaGVjaw",
+      "description" : "Add field RejectMayActClaimExecutor.Configuration#avoidPermissionCheck",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 71,
+      "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3IuQ29uZmlndXJhdGlvbiNhdm9pZENvbnNlbnRDaGVjaw",
+      "description" : "Add field RejectMayActClaimExecutor.Configuration#avoidConsentCheck",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 81,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jcmVqZWN0QW55",
+      "description" : "Add constructor parameter RejectMayActClaimExecutor.Configuration#rejectAny",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 82,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jYXZvaWRQZXJtaXNzaW9uQ2hlY2s",
+      "description" : "Add constructor parameter RejectMayActClaimExecutor.Configuration#avoidPermissionCheck",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 83,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yLkNvbmZpZ3VyYXRpb24jYXZvaWRDb25zZW50Q2hlY2s",
+      "description" : "Add constructor parameter RejectMayActClaimExecutor.Configuration#avoidConsentCheck",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "RejectMayActClaimExecutorFactory",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "QUREX0NMQVNTClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5",
+      "description" : "Add class RejectMayActClaimExecutorFactory",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 29,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNnZXRIZWxwVGV4dA",
+      "description" : "Add RejectMayActClaimExecutorFactory#getHelpText",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 30,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNnZXRDb25maWdQcm9wZXJ0aWVz",
+      "description" : "Add RejectMayActClaimExecutorFactory#getConfigProperties",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 31,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNjcmVhdGU",
+      "description" : "Add RejectMayActClaimExecutorFactory#create",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 32,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNpbml0",
+      "description" : "Add RejectMayActClaimExecutorFactory#init",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 33,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNwb3N0SW5pdA",
+      "description" : "Add RejectMayActClaimExecutorFactory#postInit",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 34,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNjbG9zZQ",
+      "description" : "Add RejectMayActClaimExecutorFactory#close",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 35,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNnZXRJZA",
+      "description" : "Add RejectMayActClaimExecutorFactory#getId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 36,
+      "changeKey" : "QUREX1NZTUJPTApSZWplY3RNYXlBY3RDbGFpbUV4ZWN1dG9yRmFjdG9yeSNpc1N1cHBvcnRlZA",
+      "description" : "Add RejectMayActClaimExecutorFactory#isSupported",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 72,
+      "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5I1BST1ZJREVSX0lE",
+      "description" : "Add field RejectMayActClaimExecutorFactory#PROVIDER_ID",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 73,
+      "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5I1JFSkVDVF9BTllfTUFZX0FDVA",
+      "description" : "Add field RejectMayActClaimExecutorFactory#REJECT_ANY_MAY_ACT",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 74,
+      "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5I0FWT0lEX1BFUk1JU1NJT05fQ0hFQ0s",
+      "description" : "Add field RejectMayActClaimExecutorFactory#AVOID_PERMISSION_CHECK",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 75,
+      "changeKey" : "QUREX0ZJRUxEClJlamVjdE1heUFjdENsYWltRXhlY3V0b3JGYWN0b3J5I0FWT0lEX0NPTlNFTlRfQ0hFQ0s",
+      "description" : "Add field RejectMayActClaimExecutorFactory#AVOID_CONSENT_CHECK",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "GrantTypeCondition",
+    "entries" : [ {
+      "id" : 7,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpHcmFudFR5cGVDb25kaXRpb24jYXBwbHlQb2xpY3kKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of GrantTypeCondition#applyPolicy: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 8,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpHcmFudFR5cGVDb25kaXRpb24jaXNHcmFudE1hdGNoaW5nCmJyYW5jaCByZW1vdmVk",
+      "description" : "Change control flow of GrantTypeCondition#isGrantMatching: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 9,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKR3JhbnRUeXBlQ29uZGl0aW9uI2lzR3JhbnRNYXRjaGluZw",
+      "description" : "Change signature of GrantTypeCondition#isGrantMatching",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 12,
+      "changeKey" : "QUREX1NZTUJPTApHcmFudFR5cGVDb25kaXRpb24jaXNHcmFudE1hdGNoaW5nUmVzcG9uc2VUeXBl",
+      "description" : "Add GrantTypeCondition#isGrantMatchingResponseType",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 13,
+      "changeKey" : "QUREX1NZTUJPTApHcmFudFR5cGVDb25kaXRpb24jaXNHcmFudE1hdGNoaW5n",
+      "description" : "Add GrantTypeCondition#isGrantMatching",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "BackchannelTokenResponseContext",
+    "entries" : [ {
+      "id" : 10,
+      "changeKey" : "QUREX1NZTUJPTApCYWNrY2hhbm5lbFRva2VuUmVzcG9uc2VDb250ZXh0I2dldENsaWVudA",
+      "description" : "Add BackchannelTokenResponseContext#getClient",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "QUREX1NZTUJPTApCYWNrY2hhbm5lbFRva2VuUmVzcG9uc2VDb250ZXh0I2dldFNjb3BlUGFyYW1ldGVy",
+      "description" : "Add BackchannelTokenResponseContext#getScopeParameter",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 57,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkJhY2tjaGFubmVsVG9rZW5SZXNwb25zZUNvbnRleHQjPGluaXQ-Cm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of BackchannelTokenResponseContext#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ClientAgentDelegationTest",
+    "entries" : [ {
+      "id" : 37,
+      "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I3JlamVjdE1heUFjdENsaWVudFBvbGljeVN1Y2Nlc3M",
+      "description" : "Add ClientAgentDelegationTest#rejectMayActClientPolicySuccess",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 38,
+      "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I3JlamVjdE1heUFjdENsaWVudFBvbGljeVJlamVjdEFueQ",
+      "description" : "Add ClientAgentDelegationTest#rejectMayActClientPolicyRejectAny",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 39,
+      "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I3JlamVjdE1heUFjdENsaWVudFBvbGljeVBlcm1pc3Npb24",
+      "description" : "Add ClientAgentDelegationTest#rejectMayActClientPolicyPermission",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 40,
+      "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I3JlamVjdE1heUFjdENsaWVudFBvbGljeUNvbnNlbnQ",
+      "description" : "Add ClientAgentDelegationTest#rejectMayActClientPolicyConsent",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 41,
+      "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I2NyZWF0ZUhhcmRjb2RlZFN1Yk1hcHBlckZvckNsaWVudElk",
+      "description" : "Add ClientAgentDelegationTest#createHardcodedSubMapperForClientId",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 42,
+      "changeKey" : "QUREX1NZTUJPTApDbGllbnRBZ2VudERlbGVnYXRpb25UZXN0I2xvZ2luV2l0aERlbGVnYXRpb25Ob0V2ZW50",
+      "description" : "Add ClientAgentDelegationTest#loginWithDelegationNoEvent",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 55,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2dpbldpdGhEZWxlZ2F0aW9uTm9FdmVudCwgLWNsaWVudCwgLXNjb3BlLCAtb3BlbkxvZ2luRm9ybSwgLWZpbGxMb2dpbkZvcm0g4oCmYW5kIDEyIG1vcmUKQ2xpZW50QWdlbnREZWxlZ2F0aW9uVGVzdCNsb2dpbldpdGhEZWxlZ2F0aW9u",
+      "description" : "Modify body of ClientAgentDelegationTest#loginWithDelegation: +loginWithDelegationNoEvent, -client, -scope, -openLoginForm, -fillLoginForm …and 12 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ClientDelegationCibaTest",
+    "entries" : [ {
+      "id" : 43,
+      "changeKey" : "QUREX1NZTUJPTApDbGllbnREZWxlZ2F0aW9uQ2liYVRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5U3VjY2Vzcw",
+      "description" : "Add ClientDelegationCibaTest#rejectMayActClientPolicySuccess",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 44,
+      "changeKey" : "QUREX1NZTUJPTApDbGllbnREZWxlZ2F0aW9uQ2liYVRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5UmVqZWN0QW55",
+      "description" : "Add ClientDelegationCibaTest#rejectMayActClientPolicyRejectAny",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "TokenExchangeDelegationTest",
+    "entries" : [ {
+      "id" : 45,
+      "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5U3VjY2Vzcw",
+      "description" : "Add TokenExchangeDelegationTest#rejectMayActClientPolicySuccess",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 46,
+      "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5UmVqZWN0QW55",
+      "description" : "Add TokenExchangeDelegationTest#rejectMayActClientPolicyRejectAny",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 47,
+      "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5UGVybWlzc2lvbg",
+      "description" : "Add TokenExchangeDelegationTest#rejectMayActClientPolicyPermission",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 48,
+      "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjcmVqZWN0TWF5QWN0Q2xpZW50UG9saWN5Q29uc2VudA",
+      "description" : "Add TokenExchangeDelegationTest#rejectMayActClientPolicyConsent",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 49,
+      "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjbG9naW5XaXRoRGVsZWdhdGlvbk5vRXZlbnQ",
+      "description" : "Add TokenExchangeDelegationTest#loginWithDelegationNoEvent",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 50,
+      "changeKey" : "QUREX1NZTUJPTApUb2tlbkV4Y2hhbmdlRGVsZWdhdGlvblRlc3QjY3JlYXRlSGFyZGNvZGVkU3ViTWFwcGVyRm9yQWRtaW5pc3RyYXRvcg",
+      "description" : "Add TokenExchangeDelegationTest#createHardcodedSubMapperForAdministrator",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 56,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2dpbldpdGhEZWxlZ2F0aW9uTm9FdmVudCwgLXNjb3BlLCAtb3BlbkxvZ2luRm9ybSwgLWZpbGxMb2dpbkZvcm0sIC1hc3NlcnRDdXJyZW50IOKApmFuZCAxMSBtb3JlClRva2VuRXhjaGFuZ2VEZWxlZ2F0aW9uVGVzdCNsb2dpbldpdGhEZWxlZ2F0aW9u",
+      "description" : "Modify body of TokenExchangeDelegationTest#loginWithDelegation: +loginWithDelegationNoEvent, -scope, -openLoginForm, -fillLoginForm, -assertCurrent …and 11 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ClientCredentialsGrantType",
+    "entries" : [ {
+      "id" : 51,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1nZXRDbGllbnRTZXNzaW9uLCByZXR1cm4gY2xpZW50U2Vzc2lvbkN0eC5nZXRDbGllbnRTZXNzaW9uKCkgLT4gY2xpZW50U2Vzc2lvbkN0eApDbGllbnRDcmVkZW50aWFsc0dyYW50VHlwZSNwcm9jZXNz",
+      "description" : "Modify body of ClientCredentialsGrantType#process: -getClientSession, return clientSessionCtx.getClientSession() -> clientSessionCtx",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "JWTAuthorizationGrantType",
+    "entries" : [ {
+      "id" : 52,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkpXVEF1dGhvcml6YXRpb25HcmFudFR5cGUjcHJvY2VzcwpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of JWTAuthorizationGrantType#process: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "StandardTokenExchangeProvider",
+    "entries" : [ {
+      "id" : 53,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitkZXRhaWwsICtlcnJvciwgK2NsaWVudFBvbGljeSwgK3RyaWdnZXJPbkV2ZW50LCArZ2V0RXJyb3Ig4oCmYW5kIDMgbW9yZQpTdGFuZGFyZFRva2VuRXhjaGFuZ2VQcm92aWRlciNleGNoYW5nZUNsaWVudFRvT0lEQ0NsaWVudA",
+      "description" : "Modify body of StandardTokenExchangeProvider#exchangeClientToOIDCClient: +detail, +error, +clientPolicy, +triggerOnEvent, +getError …and 3 more",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TokenRefreshResponseContext",
+    "entries" : [ {
+      "id" : 54,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRBY2Nlc3NUb2tlblJlc3BvbnNlQnVpbGRlciwgcmV0dXJuIHRoaXMuYWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXIgLT4gZ2V0QWNjZXNzVG9rZW5SZXNwb25zZUJ1aWxkZXIoKQpUb2tlblJlZnJlc2hSZXNwb25zZUNvbnRleHQjZ2V0Q2xpZW50U2Vzc2lvbg",
+      "description" : "Modify body of TokenRefreshResponseContext#getClientSession: +getAccessTokenResponseBuilder, return this.accessTokenResponseBuilder -> getAccessTokenResponseBuilder()",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 61,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRva2VuUmVmcmVzaFJlc3BvbnNlQ29udGV4dCM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of TokenRefreshResponseContext#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "DeviceTokenResponseContext",
+    "entries" : [ {
+      "id" : 58,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkRldmljZVRva2VuUmVzcG9uc2VDb250ZXh0Izxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of DeviceTokenResponseContext#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ImplicitHybridTokenResponse",
+    "entries" : [ {
+      "id" : 59,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkltcGxpY2l0SHlicmlkVG9rZW5SZXNwb25zZSM8aW5pdD4Kb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of ImplicitHybridTokenResponse#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ResourceOwnerPasswordCredentialsResponseContext",
+    "entries" : [ {
+      "id" : 60,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClJlc291cmNlT3duZXJQYXNzd29yZENyZWRlbnRpYWxzUmVzcG9uc2VDb250ZXh0Izxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of ResourceOwnerPasswordCredentialsResponseContext#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "TokenResponseContext",
+    "entries" : [ {
+      "id" : 62,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRva2VuUmVzcG9uc2VDb250ZXh0Izxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of TokenResponseContext#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ServiceAccountTokenResponseContext",
+    "entries" : [ {
+      "id" : 63,
+      "changeKey" : "UkVNT1ZFX0ZJRUxEClNlcnZpY2VBY2NvdW50VG9rZW5SZXNwb25zZUNvbnRleHQjY2xpZW50U2Vzc2lvbg",
+      "description" : "Remove field ServiceAccountTokenResponseContext#clientSession",
+      "category" : "STRUCTURAL",
+      "kind" : "REMOVE_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ClientPolicyEvent",
+    "entries" : [ {
+      "id" : 84,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ2xpZW50UG9saWN5RXZlbnQjVE9LRU5fRVhDSEFOR0VfUkVTUE9OU0U",
+      "description" : "Add enum constant ClientPolicyEvent#TOKEN_EXCHANGE_RESPONSE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 85,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ2xpZW50UG9saWN5RXZlbnQjSldUX0FVVEhPUklaQVRJT05fR1JBTlRfUkVTUE9OU0U",
+      "description" : "Add enum constant ClientPolicyEvent#JWT_AUTHORIZATION_GRANT_RESPONSE",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

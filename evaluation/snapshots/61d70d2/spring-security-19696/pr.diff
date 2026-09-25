@@ -1,0 +1,411 @@
+diff --git a/config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java b/config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java
+index e280efc85cc..da949c8830c 100644
+--- a/config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java
++++ b/config/src/main/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurer.java
+@@ -32,6 +32,7 @@
+ import org.springframework.security.web.util.matcher.AndRequestMatcher;
+ import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
+ import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
++import org.springframework.security.web.util.matcher.OrRequestMatcher;
+ import org.springframework.security.web.util.matcher.RequestHeaderRequestMatcher;
+ import org.springframework.security.web.util.matcher.RequestMatcher;
+ import org.springframework.web.accept.ContentNegotiationStrategy;
+@@ -140,7 +141,7 @@ private <T> T getBeanOrNull(Class<T> type) {
+ 
+ 	@SuppressWarnings("unchecked")
+ 	private RequestMatcher createDefaultSavedRequestMatcher(H http) {
+-		RequestMatcher notFavIcon = new NegatedRequestMatcher(getFaviconRequestMatcher());
++		RequestMatcher notIgnoredBackgroundRequest = new NegatedRequestMatcher(getIgnoredBackgroundRequestMatcher());
+ 		RequestMatcher notXRequestedWith = new NegatedRequestMatcher(
+ 				new RequestHeaderRequestMatcher("X-Requested-With", "XMLHttpRequest"));
+ 		RequestMatcher notWebSocket = new NegatedRequestMatcher(
+@@ -152,7 +153,7 @@ private RequestMatcher createDefaultSavedRequestMatcher(H http) {
+ 			RequestMatcher getRequests = getRequestMatcherBuilder().matcher(HttpMethod.GET, "/**");
+ 			matchers.add(0, getRequests);
+ 		}
+-		matchers.add(notFavIcon);
++		matchers.add(notIgnoredBackgroundRequest);
+ 		matchers.add(notMatchingMediaType(http, MediaType.APPLICATION_JSON));
+ 		matchers.add(notXRequestedWith);
+ 		matchers.add(notMatchingMediaType(http, MediaType.MULTIPART_FORM_DATA));
+@@ -171,8 +172,33 @@ private RequestMatcher notMatchingMediaType(H http, MediaType mediaType) {
+ 		return new NegatedRequestMatcher(mediaRequest);
+ 	}
+ 
+-	private RequestMatcher getFaviconRequestMatcher() {
+-		return getRequestMatcherBuilder().matcher("/favicon.*");
++	/**
++	 * Path patterns for requests that browsers request automatically in the background
++	 * (e.g. to display an icon), and that should therefore never be saved as the URL to
++	 * redirect to after authentication succeeds.
++	 */
++	private static final String[] IGNORED_BACKGROUND_REQUEST_PATTERNS = { "/favicon.*",
++			// Safari/WebKit request apple-touch-icon.png,
++			// apple-touch-icon-precomposed.png,
++			// and sized variants (e.g. apple-touch-icon-152x152.png) even without a
++			// matching <link> tag in the page
++			"/apple-touch-icon*.png",
++			// Chromium browsers fetch the web app manifest in the background to
++			// evaluate PWA installability
++			"/manifest.json", "/manifest.webmanifest",
++			// Legacy IE11/Edge fetch browserconfig.xml in the background to
++			// configure pinned-site tiles
++			"/browserconfig.xml",
++			// Chrome DevTools itself (not the page, not the user) requests this to
++			// discover an Automatic Workspace Folder mapping for local source editing
++			"/.well-known/appspecific/com.chrome.devtools.json" };
++
++	private RequestMatcher getIgnoredBackgroundRequestMatcher() {
++		List<RequestMatcher> matchers = new ArrayList<>();
++		for (String pattern : IGNORED_BACKGROUND_REQUEST_PATTERNS) {
++			matchers.add(getRequestMatcherBuilder().matcher(pattern));
++		}
++		return new OrRequestMatcher(matchers);
+ 	}
+ 
+ }
+diff --git a/config/src/test/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurerTests.java b/config/src/test/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurerTests.java
+index cce83b88b57..905bb7f99d3 100644
+--- a/config/src/test/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurerTests.java
++++ b/config/src/test/java/org/springframework/security/config/annotation/web/configurers/RequestCacheConfigurerTests.java
+@@ -114,6 +114,106 @@ public void getWhenBookmarkedUrlIsFaviconPngThenPostAuthenticationRedirectsToRoo
+ 		this.mvc.perform(formLogin(session)).andExpect(redirectedUrl("/"));
+ 	}
+ 
++	@Test
++	public void getWhenBookmarkedUrlIsAppleTouchIconThenPostAuthenticationRedirectsToRoot() throws Exception {
++		this.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();
++		// @formatter:off
++		MockHttpSession session = (MockHttpSession) this.mvc.perform(get("/apple-touch-icon.png"))
++				.andExpect(redirectedUrl("/login"))
++				.andReturn()
++				.getRequest()
++				.getSession();
++		// @formatter:on
++		// ignores apple-touch-icon.png
++		this.mvc.perform(formLogin(session)).andExpect(redirectedUrl("/"));
++	}
++
++	@Test
++	public void getWhenBookmarkedUrlIsAppleTouchIconPrecomposedThenPostAuthenticationRedirectsToRoot()
++			throws Exception {
++		this.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();
++		// @formatter:off
++		MockHttpSession session = (MockHttpSession) this.mvc.perform(get("/apple-touch-icon-precomposed.png"))
++				.andExpect(redirectedUrl("/login"))
++				.andReturn()
++				.getRequest()
++				.getSession();
++		// @formatter:on
++		// ignores apple-touch-icon-precomposed.png
++		this.mvc.perform(formLogin(session)).andExpect(redirectedUrl("/"));
++	}
++
++	@Test
++	public void getWhenBookmarkedUrlIsAppleTouchIconSizedPrecomposedThenPostAuthenticationRedirectsToRoot()
++			throws Exception {
++		this.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();
++		// @formatter:off
++		MockHttpSession session = (MockHttpSession) this.mvc.perform(get("/apple-touch-icon-152x152-precomposed.png"))
++				.andExpect(redirectedUrl("/login"))
++				.andReturn()
++				.getRequest()
++				.getSession();
++		// @formatter:on
++		// ignores apple-touch-icon-152x152-precomposed.png
++		this.mvc.perform(formLogin(session)).andExpect(redirectedUrl("/"));
++	}
++
++	@Test
++	public void getWhenBookmarkedUrlIsManifestJsonThenPostAuthenticationRedirectsToRoot() throws Exception {
++		this.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();
++		// @formatter:off
++		MockHttpSession session = (MockHttpSession) this.mvc.perform(get("/manifest.json"))
++				.andExpect(redirectedUrl("/login"))
++				.andReturn()
++				.getRequest()
++				.getSession();
++		// @formatter:on
++		// ignores manifest.json
++		this.mvc.perform(formLogin(session)).andExpect(redirectedUrl("/"));
++	}
++
++	@Test
++	public void getWhenBookmarkedUrlIsManifestWebmanifestThenPostAuthenticationRedirectsToRoot() throws Exception {
++		this.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();
++		// @formatter:off
++		MockHttpSession session = (MockHttpSession) this.mvc.perform(get("/manifest.webmanifest"))
++				.andExpect(redirectedUrl("/login"))
++				.andReturn()
++				.getRequest()
++				.getSession();
++		// @formatter:on
++		// ignores manifest.webmanifest
++		this.mvc.perform(formLogin(session)).andExpect(redirectedUrl("/"));
++	}
++
++	@Test
++	public void getWhenBookmarkedUrlIsBrowserConfigXmlThenPostAuthenticationRedirectsToRoot() throws Exception {
++		this.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();
++		// @formatter:off
++		MockHttpSession session = (MockHttpSession) this.mvc.perform(get("/browserconfig.xml"))
++				.andExpect(redirectedUrl("/login"))
++				.andReturn()
++				.getRequest()
++				.getSession();
++		// @formatter:on
++		// ignores browserconfig.xml
++		this.mvc.perform(formLogin(session)).andExpect(redirectedUrl("/"));
++	}
++
++	@Test
++	public void getWhenBookmarkedUrlIsChromeDevtoolsJsonThenPostAuthenticationRedirectsToRoot() throws Exception {
++		this.spring.register(RequestCacheDefaultsConfig.class, DefaultSecurityConfig.class).autowire();
++		// @formatter:off
++		MockHttpSession session = (MockHttpSession) this.mvc.perform(get("/.well-known/appspecific/com.chrome.devtools.json"))
++				.andExpect(redirectedUrl("/login"))
++				.andReturn()
++				.getRequest()
++				.getSession();
++		// @formatter:on
++		// ignores /.well-known/appspecific/com.chrome.devtools.json
++		this.mvc.perform(formLogin(session)).andExpect(redirectedUrl("/"));
++	}
++
+ 	// SEC-2321
+ 	@Test
+ 	public void getWhenBookmarkedRequestIsApplicationJsonThenPostAuthenticationRedirectsToRoot() throws Exception {
+diff --git a/web/src/main/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCache.java b/web/src/main/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCache.java
+index 1f498ba30c9..e52a50ee494 100644
+--- a/web/src/main/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCache.java
++++ b/web/src/main/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCache.java
+@@ -158,13 +158,34 @@ private static String decodeCookie(String encodedCookieValue) {
+ 				StandardCharsets.UTF_8);
+ 	}
+ 
++	/**
++	 * Path patterns for requests that browsers request automatically in the background
++	 * (e.g. to display an icon), and that should therefore never be saved as the URL to
++	 * redirect to after authentication succeeds.
++	 */
++	private static final String[] IGNORED_BACKGROUND_REQUEST_PATTERNS = { "/favicon.*",
++			// Safari/WebKit request apple-touch-icon.png,
++			// apple-touch-icon-precomposed.png,
++			// and sized variants (e.g. apple-touch-icon-152x152.png) even without a
++			// matching <link> tag in the page
++			"/apple-touch-icon*.png",
++			// Chromium browsers fetch the web app manifest in the background to
++			// evaluate PWA installability
++			"/manifest.json", "/manifest.webmanifest",
++			// Legacy IE11/Edge fetch browserconfig.xml in the background to
++			// configure pinned-site tiles
++			"/browserconfig.xml",
++			// Chrome DevTools itself (not the page, not the user) requests this to
++			// discover an Automatic Workspace Folder mapping for local source editing
++			"/.well-known/appspecific/com.chrome.devtools.json" };
++
+ 	private static ServerWebExchangeMatcher createDefaultRequestMatcher() {
+ 		ServerWebExchangeMatcher get = ServerWebExchangeMatchers.pathMatchers(HttpMethod.GET, "/**");
+-		ServerWebExchangeMatcher notFavicon = new NegatedServerWebExchangeMatcher(
+-				ServerWebExchangeMatchers.pathMatchers("/favicon.*"));
++		ServerWebExchangeMatcher notIgnoredBackgroundRequest = new NegatedServerWebExchangeMatcher(
++				ServerWebExchangeMatchers.pathMatchers(IGNORED_BACKGROUND_REQUEST_PATTERNS));
+ 		MediaTypeServerWebExchangeMatcher html = new MediaTypeServerWebExchangeMatcher(MediaType.TEXT_HTML);
+ 		html.setIgnoredMediaTypes(Collections.singleton(MediaType.ALL));
+-		return new AndServerWebExchangeMatcher(get, notFavicon, html);
++		return new AndServerWebExchangeMatcher(get, notIgnoredBackgroundRequest, html);
+ 	}
+ 
+ }
+diff --git a/web/src/main/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCache.java b/web/src/main/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCache.java
+index 723e20dcdf3..9944d2cb079 100644
+--- a/web/src/main/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCache.java
++++ b/web/src/main/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCache.java
+@@ -158,13 +158,34 @@ private URI createRedirectUri(String uri) {
+ 		// @formatter:on
+ 	}
+ 
++	/**
++	 * Path patterns for requests that browsers request automatically in the background
++	 * (e.g. to display an icon), and that should therefore never be saved as the URL to
++	 * redirect to after authentication succeeds.
++	 */
++	private static final String[] IGNORED_BACKGROUND_REQUEST_PATTERNS = { "/favicon.*",
++			// Safari/WebKit request apple-touch-icon.png,
++			// apple-touch-icon-precomposed.png,
++			// and sized variants (e.g. apple-touch-icon-152x152.png) even without a
++			// matching <link> tag in the page
++			"/apple-touch-icon*.png",
++			// Chromium browsers fetch the web app manifest in the background to
++			// evaluate PWA installability
++			"/manifest.json", "/manifest.webmanifest",
++			// Legacy IE11/Edge fetch browserconfig.xml in the background to
++			// configure pinned-site tiles
++			"/browserconfig.xml",
++			// Chrome DevTools itself (not the page, not the user) requests this to
++			// discover an Automatic Workspace Folder mapping for local source editing
++			"/.well-known/appspecific/com.chrome.devtools.json" };
++
+ 	private static ServerWebExchangeMatcher createDefaultRequestMatcher() {
+ 		ServerWebExchangeMatcher get = ServerWebExchangeMatchers.pathMatchers(HttpMethod.GET, "/**");
+-		ServerWebExchangeMatcher notFavicon = new NegatedServerWebExchangeMatcher(
+-				ServerWebExchangeMatchers.pathMatchers("/favicon.*"));
++		ServerWebExchangeMatcher notIgnoredBackgroundRequest = new NegatedServerWebExchangeMatcher(
++				ServerWebExchangeMatchers.pathMatchers(IGNORED_BACKGROUND_REQUEST_PATTERNS));
+ 		MediaTypeServerWebExchangeMatcher html = new MediaTypeServerWebExchangeMatcher(MediaType.TEXT_HTML);
+ 		html.setIgnoredMediaTypes(Collections.singleton(MediaType.ALL));
+-		return new AndServerWebExchangeMatcher(get, notFavicon, html);
++		return new AndServerWebExchangeMatcher(get, notIgnoredBackgroundRequest, html);
+ 	}
+ 
+ }
+diff --git a/web/src/test/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCacheTests.java b/web/src/test/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCacheTests.java
+index 1c3808d176f..ea045d1acbc 100644
+--- a/web/src/test/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCacheTests.java
++++ b/web/src/test/java/org/springframework/security/web/server/savedrequest/CookieServerRequestCacheTests.java
+@@ -77,6 +77,70 @@ public void saveRequestWhenGetRequestFaviconThenNoCookie() {
+ 		assertThat(cookies).isEmpty();
+ 	}
+ 
++	@Test
++	public void saveRequestWhenGetRequestAppleTouchIconThenNoCookie() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/apple-touch-icon.png").accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		MultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();
++		assertThat(cookies).isEmpty();
++	}
++
++	@Test
++	public void saveRequestWhenGetRequestAppleTouchIconPrecomposedThenNoCookie() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/apple-touch-icon-precomposed.png").accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		MultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();
++		assertThat(cookies).isEmpty();
++	}
++
++	@Test
++	public void saveRequestWhenGetRequestAppleTouchIconSizedPrecomposedThenNoCookie() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/apple-touch-icon-152x152-precomposed.png").accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		MultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();
++		assertThat(cookies).isEmpty();
++	}
++
++	@Test
++	public void saveRequestWhenGetRequestManifestJsonThenNoCookie() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/manifest.json").accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		MultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();
++		assertThat(cookies).isEmpty();
++	}
++
++	@Test
++	public void saveRequestWhenGetRequestManifestWebmanifestThenNoCookie() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/manifest.webmanifest").accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		MultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();
++		assertThat(cookies).isEmpty();
++	}
++
++	@Test
++	public void saveRequestWhenGetRequestBrowserConfigXmlThenNoCookie() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/browserconfig.xml").accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		MultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();
++		assertThat(cookies).isEmpty();
++	}
++
++	@Test
++	public void saveRequestWhenGetRequestChromeDevtoolsJsonThenNoCookie() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/.well-known/appspecific/com.chrome.devtools.json")
++				.accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		MultiValueMap<String, ResponseCookie> cookies = exchange.getResponse().getCookies();
++		assertThat(cookies).isEmpty();
++	}
++
+ 	@Test
+ 	public void saveRequestWhenPostRequestThenNoCookie() {
+ 		MockServerWebExchange exchange = MockServerWebExchange.from(MockServerHttpRequest.post("/secured/"));
+diff --git a/web/src/test/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCacheTests.java b/web/src/test/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCacheTests.java
+index d383cde5fe6..d2b7c5446d3 100644
+--- a/web/src/test/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCacheTests.java
++++ b/web/src/test/java/org/springframework/security/web/server/savedrequest/WebSessionServerRequestCacheTests.java
+@@ -68,6 +68,70 @@ public void saveRequestGetRequestWhenFaviconThenNotFound() {
+ 		assertThat(saved).isNull();
+ 	}
+ 
++	@Test
++	public void saveRequestGetRequestWhenAppleTouchIconThenNotFound() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/apple-touch-icon.png").accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		URI saved = this.cache.getRedirectUri(exchange).block();
++		assertThat(saved).isNull();
++	}
++
++	@Test
++	public void saveRequestGetRequestWhenAppleTouchIconPrecomposedThenNotFound() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/apple-touch-icon-precomposed.png").accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		URI saved = this.cache.getRedirectUri(exchange).block();
++		assertThat(saved).isNull();
++	}
++
++	@Test
++	public void saveRequestGetRequestWhenAppleTouchIconSizedPrecomposedThenNotFound() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/apple-touch-icon-152x152-precomposed.png").accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		URI saved = this.cache.getRedirectUri(exchange).block();
++		assertThat(saved).isNull();
++	}
++
++	@Test
++	public void saveRequestGetRequestWhenManifestJsonThenNotFound() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/manifest.json").accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		URI saved = this.cache.getRedirectUri(exchange).block();
++		assertThat(saved).isNull();
++	}
++
++	@Test
++	public void saveRequestGetRequestWhenManifestWebmanifestThenNotFound() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/manifest.webmanifest").accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		URI saved = this.cache.getRedirectUri(exchange).block();
++		assertThat(saved).isNull();
++	}
++
++	@Test
++	public void saveRequestGetRequestWhenBrowserConfigXmlThenNotFound() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/browserconfig.xml").accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		URI saved = this.cache.getRedirectUri(exchange).block();
++		assertThat(saved).isNull();
++	}
++
++	@Test
++	public void saveRequestGetRequestWhenChromeDevtoolsJsonThenNotFound() {
++		MockServerWebExchange exchange = MockServerWebExchange
++			.from(MockServerHttpRequest.get("/.well-known/appspecific/com.chrome.devtools.json")
++				.accept(MediaType.TEXT_HTML));
++		this.cache.saveRequest(exchange).block();
++		URI saved = this.cache.getRedirectUri(exchange).block();
++		assertThat(saved).isNull();
++	}
++
+ 	@Test
+ 	public void saveRequestGetRequestWhenPostThenNotFound() {
+ 		MockServerWebExchange exchange = MockServerWebExchange.from(MockServerHttpRequest.post("/secured/"));

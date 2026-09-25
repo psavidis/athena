@@ -1,0 +1,13 @@
+[ {
+  "entity" : "StoreChangelogReader",
+  "description" : "Add StoreChangelogReader#resolveRestoreCeilingCommittedOffset"
+}, {
+  "entity" : "StoreChangelogReader",
+  "description" : "Add StoreChangelogReader#maybeFallBackToZeroCommittedOffset"
+}, {
+  "entity" : "StoreChangelogReader",
+  "description" : "Add field StoreChangelogReader#NO_COMMITTED_OFFSET"
+}, {
+  "entity" : "StoreChangelogReader",
+  "description" : "Add field StoreChangelogReader#committedOffsetMissingSinceMs"
+} ]

@@ -1,0 +1,33 @@
+{
+  "changedFileCount" : 19,
+  "representedFileCount" : 15,
+  "files" : [ {
+    "path" : "bootstrap/src/main/resources/application.properties",
+    "status" : "MODIFIED",
+    "linesChanged" : 5,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "distribution/conf/application.properties",
+    "status" : "MODIFIED",
+    "linesChanged" : 5,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "specs/en/plugin/datasource-dialect-plugin-spec.md",
+    "status" : "MODIFIED",
+    "linesChanged" : 25,
+    "hunkCount" : 4,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "specs/zh-cn/plugin/datasource-dialect-plugin-spec.md",
+    "status" : "MODIFIED",
+    "linesChanged" : 18,
+    "hunkCount" : 4,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

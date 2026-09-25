@@ -1,0 +1,13 @@
+[ {
+  "entity" : "ExternalDataSourceProperties",
+  "description" : "Change signature of ExternalDataSourceProperties#build"
+}, {
+  "entity" : "ExternalDataSourceProperties",
+  "description" : "Add ExternalDataSourceProperties#resolveDefaultDriverClassName"
+}, {
+  "entity" : "DerbyDatabaseDialect",
+  "description" : "Add DerbyDatabaseDialect#getDefaultDriverClassName"
+}, {
+  "entity" : "DefaultDatabaseDialect",
+  "description" : "Add DefaultDatabaseDialect#getDefaultDriverClassName"
+} ]

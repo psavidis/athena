@@ -1,0 +1,13 @@
+{
+  "territories" : [ {
+    "moduleName" : "gson",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 9 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI2RvUGVlawppZi1jaGFpbiByZXdyaXR0ZW4gYXMgc3dpdGNo", "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI3BlZWtLZXl3b3JkCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM", "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHROYW1lCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM", "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRTdHJpbmcKaWYtY2hhaW4gcmV3cml0dGVuIGFzIHN3aXRjaDsgc2FtZSBjYWxscw", "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRCb29sZWFuCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM", "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHREb3VibGUKYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz", "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyI25leHRMb25nCmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM", "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyIzxjbGluaXQ-CmlmLWNoYWluIHJld3JpdHRlbiBhcyBzd2l0Y2g7IHNhbWUgY2FsbHM", "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyVGVzdCNhc3NlcnREb2N1bWVudApicmFuY2ggYWRkZWQ" ],
+    "testChangeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpKc29uUmVhZGVyVGVzdCNhc3NlcnREb2N1bWVudApicmFuY2ggYWRkZWQ" ]
+  } ],
+  "dependencies" : [ ]
+}

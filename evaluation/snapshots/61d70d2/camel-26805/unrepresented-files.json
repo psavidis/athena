@@ -1,0 +1,47 @@
+{
+  "changedFileCount" : 19,
+  "representedFileCount" : 13,
+  "files" : [ {
+    "path" : "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles-openapi.json",
+    "status" : "MODIFIED",
+    "linesChanged" : 8,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles/blocked.json",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles/inflight.json",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "core/camel-console/src/generated/resources/META-INF/org/apache/camel/dev-console/blocked.json",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "core/camel-console/src/generated/resources/META-INF/org/apache/camel/dev-console/inflight.json",
+    "status" : "MODIFIED",
+    "linesChanged" : 4,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "docs/user-manual/modules/ROOT/pages/camel-4x-upgrade-guide-4_23.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 15,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

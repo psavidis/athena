@@ -1,0 +1,51 @@
+{
+  "diff": {
+    "files": 58,
+    "java_files": 46,
+    "non_java_files": 12,
+    "substantive_java_files": 46,
+    "copyright_only_java_files": 0,
+    "production_java_files": 35,
+    "java_hunks": 184,
+    "java_lines_changed": 1820
+  },
+  "athena": {
+    "changes": 179,
+    "changes_by_kind": {
+      "ADD_CLASS": 7,
+      "CHANGE_CONTROL_FLOW": 39,
+      "CHANGE_METHOD_SIGNATURE": 3,
+      "REMOVE_SYMBOL": 6,
+      "ADD_SYMBOL": 69,
+      "MODIFY_METHOD_BODY": 40,
+      "REMOVE_FIELD": 1,
+      "ADD_FIELD": 5,
+      "CHANGE_FIELD_VALUE": 9
+    },
+    "changes_by_category": {
+      "STRUCTURAL": 91,
+      "BEHAVIORAL": 39,
+      "UNKNOWN": 49
+    },
+    "semantic_entries": 113,
+    "semantic_entries_by_dimension": {
+      "STRUCTURAL": 108,
+      "ARCHITECTURE": 1,
+      "RESPONSIBILITY": 4
+    },
+    "inferred_entries": 5,
+    "module_territories": 38,
+    "module_dependencies": 38,
+    "focus_areas": 4
+  },
+  "coverage": {
+    "substantive_java_files_represented": 45,
+    "substantive_java_file_coverage": 0.98,
+    "production_java_files_represented": 34,
+    "production_java_file_coverage": 0.97,
+    "unrepresented_production_java_files": [
+      "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/FileConstants.java"
+    ],
+    "unrepresented_test_java_files": []
+  }
+}

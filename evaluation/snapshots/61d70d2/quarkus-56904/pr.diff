@@ -1,0 +1,345 @@
+diff --git a/docs/src/main/asciidoc/security-getting-started-tutorial.adoc b/docs/src/main/asciidoc/security-getting-started-tutorial.adoc
+index ba7b7747923fc..bbbc67265f9e9 100644
+--- a/docs/src/main/asciidoc/security-getting-started-tutorial.adoc
++++ b/docs/src/main/asciidoc/security-getting-started-tutorial.adoc
+@@ -272,7 +272,7 @@ public class User extends PanacheEntity {
+      * @param password the unencrypted password (it is encrypted with bcrypt)
+      * @param role the comma-separated roles
+      */
+-    public static void add(String username, String password, String role) { <5>
++    public static void add(String username, char[] password, String role) { <5>
+         User user = new User();
+         user.username = username;
+         user.password = BcryptUtil.bcryptHash(password);
+@@ -301,8 +301,7 @@ The `quarkus-security-jpa` extension only initializes if a single entity is anno
+ 
+ * Always pass plain text passwords to `BcryptUtil.bcryptHash()` - never pre-hash them.
+ * The bcrypt hash includes the salt, so no separate salt storage is needed.
+-* To verify passwords during authentication, the framework automatically uses `BcryptUtil.matches(plainPassword, hashedPassword)`.
+-* For custom iterations: `BcryptUtil.bcryptHash(password, iterationCount)` where higher iterations (12-14) provide more security but slower performance.
++* To verify passwords during authentication, the framework calculates a Bcrypt hash of the password provided in the request and compares it with the stored hash.
+ ====
+ 
+ - For more information about configuring passwords and roles, see xref:configure-the-application[Configure the application].
+@@ -393,8 +392,8 @@ public class Startup {
+     public void loadUsers(@Observes StartupEvent evt) {
+         // reset and load all test users
+         User.deleteAll();
+-        User.add("admin", "admin", "admin");
+-        User.add("user", "user", "user");
++        User.add("admin", "admin".toCharArray(), "admin");
++        User.add("user", "user".toCharArray(), "user");
+     }
+ }
+ ----
+diff --git a/docs/src/main/asciidoc/security-jdbc.adoc b/docs/src/main/asciidoc/security-jdbc.adoc
+index 3c574904115c5..9126992cfc7d0 100644
+--- a/docs/src/main/asciidoc/security-jdbc.adoc
++++ b/docs/src/main/asciidoc/security-jdbc.adoc
+@@ -192,7 +192,7 @@ import io.quarkus.elytron.security.common.BcryptUtil;
+ 
+ public class AccountService {
+ 
+-    public void signupUser(String username, String password) {
++    public void signupUser(String username, char[] password) {
+         String encryptedPassword = BcryptUtil.bcryptHash(password);
+ 
+         // store user with the encrypted password in the database
+diff --git a/docs/src/main/asciidoc/security-jpa.adoc b/docs/src/main/asciidoc/security-jpa.adoc
+index f1a930b5e13fa..810045205d9b7 100644
+--- a/docs/src/main/asciidoc/security-jpa.adoc
++++ b/docs/src/main/asciidoc/security-jpa.adoc
+@@ -78,7 +78,7 @@ public class User extends PanacheEntity {
+      * @param password the unencrypted password (it is encrypted with bcrypt)
+      * @param role the comma-separated roles
+      */
+-    public static void add(String username, String password, String role) { <6>
++    public static void add(String username, char[] password, String role) { <6>
+         User user = new User();
+         user.username = username;
+         user.password = BcryptUtil.bcryptHash(password);
+@@ -212,7 +212,7 @@ public class CustomPasswordProvider implements PasswordProvider {
+ 
+ [TIP]
+ ====
+-To quickly create a hashed password, use `String BcryptUtil.bcryptHash(String password)`, which defaults to creating a random salt and hashing in ten iterations.
++To quickly create a hashed password, use `String BcryptUtil.bcryptHash(char[] password)`, which defaults to creating a random salt and hashing in ten iterations.
+ This method also allows specifying the number of iterations and salt used.
+ ====
+ 
+diff --git a/extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java b/extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java
+index e8b9f8159f22d..235f62b1a2b61 100644
+--- a/extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java
++++ b/extensions/elytron-security-common/runtime/src/main/java/io/quarkus/elytron/security/common/BcryptUtil.java
+@@ -28,9 +28,11 @@ public class BcryptUtil {
+      * @param password the password to hash
+      * @return the Modular Crypt Format bcrypt hash of the given password
+      * @throws NullPointerException if the password is null
++     * @deprecated Use {@link #bcryptHash(char[])} instead, so the password does not have to be kept in a String
+      */
++    @Deprecated(since = "4.0", forRemoval = true)
+     public static String bcryptHash(String password) {
+-        return bcryptHash(password, 10);
++        return bcryptHash(password.toCharArray(), 10);
+     }
+ 
+     /**
+@@ -42,8 +44,37 @@ public static String bcryptHash(String password) {
+      * @return the Modular Crypt Format bcrypt hash of the given password
+      * @throws NullPointerException if the password is null
+      * @throws IllegalArgumentException if the iterationCount parameter is negative or zero
++     * @deprecated Use {@link #bcryptHash(char[], int)} instead, so the password does not have to be kept in a String
+      */
++    @Deprecated(since = "4.0", forRemoval = true)
+     public static String bcryptHash(String password, int iterationCount) {
++        return bcryptHash(password.toCharArray(), iterationCount);
++    }
++
++    /**
++     * Produces a Modular Crypt Format bcrypt hash of the given password, using a generated salt and 10 iterations.
++     *
++     * @param password the password to hash; the caller is responsible for clearing this array once it is no longer
++     *        needed
++     * @return the Modular Crypt Format bcrypt hash of the given password
++     * @throws NullPointerException if the password is null
++     */
++    public static String bcryptHash(char[] password) {
++        return bcryptHash(password, 10);
++    }
++
++    /**
++     * Produces a Modular Crypt Format bcrypt hash of the given password, using a generated salt and the specified iteration
++     * count.
++     *
++     * @param password the password to hash; the caller is responsible for clearing this array once it is no longer
++     *        needed
++     * @param iterationCount the number of iterations to use while hashing
++     * @return the Modular Crypt Format bcrypt hash of the given password
++     * @throws NullPointerException if the password is null
++     * @throws IllegalArgumentException if the iterationCount parameter is negative or zero
++     */
++    public static String bcryptHash(char[] password, int iterationCount) {
+         byte[] salt = new byte[BCryptPassword.BCRYPT_SALT_SIZE];
+         random.nextBytes(salt);
+         return bcryptHash(password, iterationCount, salt);
+@@ -53,7 +84,8 @@ public static String bcryptHash(String password, int iterationCount) {
+      * Produces a Modular Crypt Format bcrypt hash of the given password, using the specified salt and the specified iteration
+      * count.
+      *
+-     * @param password the password to hash
++     * @param password the password to hash; the caller is responsible for clearing this array once it is no longer
++     *        needed
+      * @param iterationCount the number of iterations to use while hashing
+      * @param salt the salt to use while hashing
+      * @return the Modular Crypt Format bcrypt hash of the given password
+@@ -61,7 +93,7 @@ public static String bcryptHash(String password, int iterationCount) {
+      * @throws IllegalArgumentException if the iterationCount parameter is negative or zero, or if the salt length is not equal
+      *         to 16
+      */
+-    public static String bcryptHash(String password, int iterationCount, byte[] salt) {
++    public static String bcryptHash(char[] password, int iterationCount, byte[] salt) {
+         if (iterationCount <= 0) {
+             throw new IllegalArgumentException("Iteration count must be greater than zero");
+         }
+@@ -81,7 +113,7 @@ public static String bcryptHash(String password, int iterationCount, byte[] salt
+ 
+         IteratedSaltedPasswordAlgorithmSpec iteratedAlgorithmSpec = new IteratedSaltedPasswordAlgorithmSpec(iterationCount,
+                 salt);
+-        EncryptablePasswordSpec encryptableSpec = new EncryptablePasswordSpec(password.toCharArray(), iteratedAlgorithmSpec);
++        EncryptablePasswordSpec encryptableSpec = new EncryptablePasswordSpec(password, iteratedAlgorithmSpec);
+ 
+         try {
+             BCryptPassword original = (BCryptPassword) passwordFactory.generatePassword(encryptableSpec);
+@@ -93,21 +125,54 @@ public static String bcryptHash(String password, int iterationCount, byte[] salt
+     }
+ 
+     /**
+-     * Matches a plain text string against an existing Modular Crypt Format bcrypt hash.
++     * @deprecated Use {@link #bcryptHash(char[], int, byte[])} instead, so the password does not have to be kept in a
++     *             String
++     */
++    @Deprecated(since = "4.0", forRemoval = true)
++    public static String bcryptHash(String password, int iterationCount, byte[] salt) {
++        return bcryptHash(password.toCharArray(), iterationCount, salt);
++    }
++
++    /**
++     * Matches a plain text password against an existing Modular Crypt Format bcrypt hash.
+      * <p>
+      * The hash must be a bcrypt hash in Modular Crypt Format, that is a {@code $2$}, {@code $2a$}, {@code $2x$} or
+      * {@code $2y$} prefix, the cost as two digits, {@code $}, and 53 characters of radix-64 salt and hash, as
+      * {@link #bcryptHash(String)} produces.
+      *
+-     * @param plainText the plain text string to check
++     * @param plainText the plain text password to check
+      * @param passwordHash the Modular Crypt Format bcrypt hash to compare against
+      * @return the boolean result of whether the plain text matches the decoded Modular Crypt Format bcrypt hash
+      * @throws NullPointerException if the plainText password or passwordHash is null
+      * @throws IllegalArgumentException if the passwordHash is not a bcrypt hash of that form
+      * @throws RuntimeException wrapping a {@link NoSuchAlgorithmException} if the security providers offer no bcrypt
+      *         implementation
++     * @deprecated Use {@link #matches(char[], String)} instead, so the password does not have to be kept in a String
+      */
++    @Deprecated(since = "4.0", forRemoval = true)
+     public static boolean matches(String plainText, String passwordHash) {
++        Objects.requireNonNull(plainText, "plainText password is required");
++        Objects.requireNonNull(passwordHash, "passwordHash is required");
++        return matches(plainText.toCharArray(), passwordHash);
++    }
++
++    /**
++     * Matches a plain text password against an existing Modular Crypt Format bcrypt hash.
++     * <p>
++     * The hash must be a bcrypt hash in Modular Crypt Format, that is a {@code $2$}, {@code $2a$}, {@code $2x$} or
++     * {@code $2y$} prefix, the cost as two digits, {@code $}, and 53 characters of radix-64 salt and hash, as
++     * {@link #bcryptHash(String)} produces.
++     *
++     * @param plainText the plain text password to check; the caller is responsible for clearing this array once it is
++     *        no longer needed
++     * @param passwordHash the Modular Crypt Format bcrypt hash to compare against
++     * @return the boolean result of whether the plain text matches the decoded Modular Crypt Format bcrypt hash
++     * @throws NullPointerException if the plainText password or passwordHash is null
++     * @throws IllegalArgumentException if the passwordHash is not a bcrypt hash of that form
++     * @throws RuntimeException wrapping a {@link NoSuchAlgorithmException} if the security providers offer no bcrypt
++     *         implementation
++     */
++    public static boolean matches(char[] plainText, String passwordHash) {
+         Objects.requireNonNull(plainText, "plainText password is required");
+         Objects.requireNonNull(passwordHash, "passwordHash is required");
+         PasswordFactory passwordFactory;
+@@ -119,7 +184,7 @@ public static boolean matches(String plainText, String passwordHash) {
+         }
+         try {
+             Password userPasswordRestored = passwordFactory.translate(ModularCrypt.decode(passwordHash));
+-            return passwordFactory.verify(userPasswordRestored, plainText.toCharArray());
++            return passwordFactory.verify(userPasswordRestored, plainText);
+         } catch (InvalidKeySpecException | InvalidKeyException | IllegalArgumentException e) {
+             throw new IllegalArgumentException("The provided password hash is not a valid Modular Crypt Format bcrypt hash"
+                     + " (expected a '$2$', '$2a$', '$2x$' or '$2y$' prefix, the cost, and 53 characters of salt and"
+diff --git a/extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java b/extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java
+index 5ffb660aa277b..2275bd2e42dfb 100644
+--- a/extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java
++++ b/extensions/elytron-security-common/runtime/src/test/java/io/quarkus/elytron/security/common/runtime/BcryptUtilTest.java
+@@ -42,6 +42,14 @@ public void testHashesTheSameHash() throws InvalidKeySpecException, NoSuchAlgori
+         Assertions.assertEquals(adminKnownBcrypt, adminProducedBcrypt);
+     }
+ 
++    @Test
++    public void testHashesTheSameHashWithCharArrayPassword() throws InvalidKeySpecException, NoSuchAlgorithmException {
++        String adminKnownBcrypt = "$2a$10$YP9QWYOpxRNCNquTzCjRIuEpc.MiVPTjlMIZHNqHKckKN8FK9Xyh2";
++        byte[] knownSalt = new byte[] { 105, 31, -46, 97, -92, 43, -51, 51, -60, 62, -52, 21, -44, 73, 83, 43 };
++        String adminProducedBcrypt = BcryptUtil.bcryptHash("admin".toCharArray(), 10, knownSalt);
++        Assertions.assertEquals(adminKnownBcrypt, adminProducedBcrypt);
++    }
++
+     @Test
+     public void testPasswordMatches() {
+         String testPassword = "fubar";
+@@ -56,18 +64,55 @@ public void testPasswordNotMatches() {
+         Assertions.assertFalse(BcryptUtil.matches("fubar2", testPasswordHash));
+     }
+ 
++    @Test
++    public void testPasswordMatchesWithCharArrayPassword() {
++        char[] testPassword = "fubar".toCharArray();
++        String testPasswordHash = BcryptUtil.bcryptHash(testPassword, 10);
++        Assertions.assertTrue(BcryptUtil.matches(testPassword, testPasswordHash));
++    }
++
++    @Test
++    public void testPasswordNotMatchesWithCharArrayPassword() {
++        char[] testPassword = "fubar".toCharArray();
++        String testPasswordHash = BcryptUtil.bcryptHash(testPassword, 10);
++        Assertions.assertFalse(BcryptUtil.matches("fubar2".toCharArray(), testPasswordHash));
++    }
++
++    @Test
++    public void testHashesTheRightPasswordWithCharArrayPassword() throws InvalidKeySpecException, NoSuchAlgorithmException {
++        char[] testPassword = "fubar".toCharArray();
++
++        String testPasswordHash = BcryptUtil.bcryptHash(testPassword);
++
++        PasswordGuessEvidence correctPasswordEvidence = new PasswordGuessEvidence(testPassword);
++        PasswordGuessEvidence incorrectPasswordEvidence = new PasswordGuessEvidence("stef".toCharArray());
++        PasswordCredential producedPasswordCredential = new PasswordCredential(ModularCrypt.decode(testPasswordHash));
++        Assertions.assertTrue(producedPasswordCredential.verify(correctPasswordEvidence));
++        Assertions.assertFalse(producedPasswordCredential.verify(incorrectPasswordEvidence));
++    }
++
++    @Test
++    public void testHashesTheSameHashWithDeprecatedStringIterationCountOverload()
++            throws InvalidKeySpecException, NoSuchAlgorithmException {
++        String testPassword = "fubar";
++        String testPasswordHash = BcryptUtil.bcryptHash(testPassword, 4);
++        Assertions.assertTrue(BcryptUtil.matches(testPassword, testPasswordHash));
++    }
++
+     @Test
+     public void testMatchesAcceptsTheSupportedPrefixes() {
+-        String bcrypt = BcryptUtil.bcryptHash("fubar");
++        char[] testPassword = "fubar".toCharArray();
++        String bcrypt = BcryptUtil.bcryptHash(testPassword);
+         for (String prefix : List.of("$2$", "$2a$", "$2x$", "$2y$")) {
+-            Assertions.assertTrue(BcryptUtil.matches("fubar", prefix + bcrypt.substring(4)), prefix);
++            Assertions.assertTrue(BcryptUtil.matches(testPassword, prefix + bcrypt.substring(4)), prefix);
+         }
+     }
+ 
+     @Test
+     public void testMatchesRejectsAHashThatIsNotModularCryptFormat() {
++        char[] testPassword = "fubar".toCharArray();
+         IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class,
+-                () -> BcryptUtil.matches("fubar", "not-a-hash"));
++                () -> BcryptUtil.matches(testPassword, "not-a-hash"));
+         assertInvalidHashMessage(e, "not-a-hash");
+         Assertions.assertInstanceOf(InvalidKeySpecException.class, e.getCause());
+         Assertions.assertTrue(e.getMessage().contains("ELY08003"), e.getMessage());
+@@ -75,8 +120,9 @@ public void testMatchesRejectsAHashThatIsNotModularCryptFormat() {
+ 
+     @Test
+     public void testMatchesRejectsATruncatedBcryptHash() {
++        char[] testPassword = "fubar".toCharArray();
+         IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class,
+-                () -> BcryptUtil.matches("fubar", "$2a$10$abc"));
++                () -> BcryptUtil.matches(testPassword, "$2a$10$abc"));
+         assertInvalidHashMessage(e, "$2a$10$abc");
+         Assertions.assertInstanceOf(IllegalArgumentException.class, e.getCause());
+         Assertions.assertTrue(e.getMessage().contains("ELY08021"), e.getMessage());
+@@ -84,9 +130,10 @@ public void testMatchesRejectsATruncatedBcryptHash() {
+ 
+     @Test
+     public void testMatchesRejectsAHashOfAnotherAlgorithm() {
++        char[] testPassword = "fubar".toCharArray();
+         String md5Crypt = "$1$saltsalt$qjXMvbEw8oaL.CzflDugX/";
+         IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class,
+-                () -> BcryptUtil.matches("fubar", md5Crypt));
++                () -> BcryptUtil.matches(testPassword, md5Crypt));
+         assertInvalidHashMessage(e, md5Crypt);
+         Assertions.assertInstanceOf(InvalidKeyException.class, e.getCause());
+         Assertions.assertTrue(e.getMessage().contains("ELY08027"), e.getMessage());
+@@ -94,9 +141,10 @@ public void testMatchesRejectsAHashOfAnotherAlgorithm() {
+ 
+     @Test
+     public void testMatchesRejectsThe2bPrefix() {
+-        String notSupported = "$2b$" + BcryptUtil.bcryptHash("fubar").substring(4);
++        char[] testPassword = "fubar".toCharArray();
++        String notSupported = "$2b$" + BcryptUtil.bcryptHash(testPassword).substring(4);
+         IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class,
+-                () -> BcryptUtil.matches("fubar", notSupported));
++                () -> BcryptUtil.matches(testPassword, notSupported));
+         assertInvalidHashMessage(e, notSupported);
+         Assertions.assertInstanceOf(InvalidKeySpecException.class, e.getCause());
+     }
+diff --git a/extensions/security-jpa-common/runtime/src/main/java/io/quarkus/security/jpa/common/runtime/JpaIdentityProviderUtil.java b/extensions/security-jpa-common/runtime/src/main/java/io/quarkus/security/jpa/common/runtime/JpaIdentityProviderUtil.java
+index 15a3c4710d1c8..2b9d83bd3cc7d 100644
+--- a/extensions/security-jpa-common/runtime/src/main/java/io/quarkus/security/jpa/common/runtime/JpaIdentityProviderUtil.java
++++ b/extensions/security-jpa-common/runtime/src/main/java/io/quarkus/security/jpa/common/runtime/JpaIdentityProviderUtil.java
+@@ -79,7 +79,7 @@ public static void passwordAction(PasswordType type) {
+         if (type == PasswordType.CLEAR) {
+             ClearPassword.createRaw(ClearPassword.ALGORITHM_CLEAR, uuid.toCharArray());
+         } else {
+-            BcryptUtil.bcryptHash(uuid);
++            BcryptUtil.bcryptHash(uuid.toCharArray());
+         }
+     }
+ }

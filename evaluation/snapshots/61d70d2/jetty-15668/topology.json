@@ -1,0 +1,205 @@
+{
+  "territories" : [ {
+    "moduleName" : "jetty-client",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 23 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0", "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWx1cmU", "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWxpbmdDbGllbnRDb25uZWN0b3I", "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdENvbm5lY3Rpb25Qb29sLkZ1dHVyZUNvbm5lY3Rpb24jc3VjY2VlZGVkCmJyYW5jaCBhZGRlZA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdENvbm5lY3Rpb25Qb29sLkZ1dHVyZUNvbm5lY3Rpb24jZmFpbGVkCmJyYW5jaCBhZGRlZA", "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCNzdGFydA", "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCNkaXNwb3Nl", "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCN0ZXN0Q29ubmVjdGlvbkNyZWF0aW9uRmFpbHVyZVJlbGVhc2VzUmVzZXJ2ZWRFbnRyeQ", "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld0VuZFBvaW50", "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld0Nvbm5lY3Rpb24", "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld1NlbGVjdG9yTWFuYWdlcg", "QUREX0ZJRUxECkFic3RyYWN0Q29ubmVjdGlvblBvb2wuRnV0dXJlQ29ubmVjdGlvbiNjb21wbGV0ZWQ", "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I3NlcnZlcg", "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2Nvbm5lY3Rvcg", "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2NsaWVudENvbm5lY3Rvcg", "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2NsaWVudA", "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWx1cmUjZXhwZWN0ZWQ", "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWxpbmdDbGllbnRDb25uZWN0b3IjZmFpbHVyZQ", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsdXJlI2V4cGVjdGVk", "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNOT19TRUxFQ1RPUg", "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNSRUdJU1RSQVRJT04", "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNORVdfRU5EUE9JTlQ", "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNORVdfQ09OTkVDVElPTg" ],
+    "testChangeKeys" : [ "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0", "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWx1cmU", "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWxpbmdDbGllbnRDb25uZWN0b3I", "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCNzdGFydA", "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCNkaXNwb3Nl", "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCN0ZXN0Q29ubmVjdGlvbkNyZWF0aW9uRmFpbHVyZVJlbGVhc2VzUmVzZXJ2ZWRFbnRyeQ", "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld0VuZFBvaW50", "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld0Nvbm5lY3Rpb24", "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld1NlbGVjdG9yTWFuYWdlcg", "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I3NlcnZlcg", "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2Nvbm5lY3Rvcg", "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2NsaWVudENvbm5lY3Rvcg", "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2NsaWVudA", "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWx1cmUjZXhwZWN0ZWQ", "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWxpbmdDbGllbnRDb25uZWN0b3IjZmFpbHVyZQ", "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsdXJlI2V4cGVjdGVk", "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNOT19TRUxFQ1RPUg", "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNSRUdJU1RSQVRJT04", "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNORVdfRU5EUE9JTlQ", "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNORVdfQ09OTkVDVElPTg" ]
+  }, {
+    "moduleName" : "jetty-io",
+    "status" : "TOUCHED",
+    "fileCount" : 3,
+    "statusSummary" : "3 files · 22 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpDbGllbnRDb25uZWN0b3IjY29ubmVjdEZhaWxlZApicmFuY2ggYWRkZWQ7IHNhbWUgY2FsbHM", "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYW5hZ2VkU2VsZWN0b3IuU2VsZWN0b3JQcm9kdWNlciNwcm9jZXNzVXBkYXRlcwpicmFuY2ggYWRkZWQ", "Q0hBTkdFX01PRElGSUVSUwpNYW5hZ2VkU2VsZWN0b3IuQ29ubmVjdCNmYWlsZWQKcHVibGljIC0-IHByaXZhdGU", "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYW5hZ2VkU2VsZWN0b3IuQ2xvc2VDb25uZWN0aW9ucyN1cGRhdGUKYnJhbmNoIGFkZGVk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYW5hZ2VkU2VsZWN0b3IuQ3JlYXRlRW5kUG9pbnQjcnVuCmJyYW5jaCByZW1vdmVk", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZWxlY3Rvck1hbmFnZXIjY29ubmVjdApicmFuY2ggYWRkZWQ", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZWxlY3Rvck1hbmFnZXIjYWNjZXB0CmJyYW5jaCBhZGRlZA", "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZWxlY3Rvck1hbmFnZXIjYWNjZXB0b3IKYnJhbmNoIGFkZGVk", "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2VsZWN0b3JNYW5hZ2VyI29uQWNjZXB0RmFpbGVk", "QUREX1NZTUJPTApDbGllbnRDb25uZWN0b3IuQ2xpZW50U2VsZWN0b3JNYW5hZ2VyI29uQWNjZXB0RmFpbGVk", "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuU2VsZWN0b3JQcm9kdWNlciNjbG9zZQ", "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuQWNjZXB0b3IjY2FuY2VsQWNjZXB0", "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuQ29ubmVjdCNjbG9zZQ", "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuQ3JlYXRlRW5kUG9pbnQjY2xvc2U", "QUREX1NZTUJPTApTZWxlY3Rvck1hbmFnZXIjb25BY2NlcHRGYWlsZWQ", "TU9ESUZZX01FVEhPRF9CT0RZCkNsaWVudENvbm5lY3RvciNhY2NlcHQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk", "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5TZWxlY3RvclByb2R1Y2VyI3Byb2Nlc3NTZWxlY3RlZApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ", "TU9ESUZZX01FVEhPRF9CT0RZCitjbG9zZSwgLXN1Ym1pdCwgLWNhbmNlbApNYW5hZ2VkU2VsZWN0b3IuQWNjZXB0b3IjY2xvc2U", "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5BY2NlcHQjZmFpbGVkCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA", "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5Db25uZWN0I2ZhaWxlZApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ", "TU9ESUZZX01FVEhPRF9CT0RZCi1vbkFjY2VwdGluZwpNYW5hZ2VkU2VsZWN0b3IuQWNjZXB0Izxpbml0Pg", "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5Db25uZWN0Izxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-unixdomain-server",
+    "status" : "TOUCHED",
+    "fileCount" : 1,
+    "statusSummary" : "1 file · Change control flow of UnixDomainServerConnector#setAccepting: condition changed; same calls",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "Q0hBTkdFX0NPTlRST0xfRkxPVwpVbml4RG9tYWluU2VydmVyQ29ubmVjdG9yI3NldEFjY2VwdGluZwpjb25kaXRpb24gY2hhbmdlZDsgc2FtZSBjYWxscw" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-server",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 3 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApDb25uZWN0SGFuZGxlci5Db25uZWN0TWFuYWdlciNvbkFjY2VwdEZhaWxlZA", "TU9ESUZZX01FVEhPRF9CT0RZCi10aHJvdyBSdW50aW1lRXhjZXB0aW9uClNlcnZlckNvbm5lY3RvciNzZXRBY2NlcHRpbmc", "TU9ESUZZX01FVEhPRF9CT0RZCkNvbm5lY3RIYW5kbGVyLkNvbm5lY3RNYW5hZ2VyI2Nvbm5lY3Rpb25GYWlsZWQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk" ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-alpn-client",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-http",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-jmx",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-compression-gzip",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-security",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-session",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-slf4j-impl",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-util",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-http-tools",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-util-ajax",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  }, {
+    "moduleName" : "jetty-xml",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "jetty-client",
+    "to" : "jetty-alpn-client"
+  }, {
+    "from" : "jetty-client",
+    "to" : "jetty-http"
+  }, {
+    "from" : "jetty-client",
+    "to" : "jetty-io"
+  }, {
+    "from" : "jetty-client",
+    "to" : "jetty-jmx"
+  }, {
+    "from" : "jetty-client",
+    "to" : "jetty-compression-gzip"
+  }, {
+    "from" : "jetty-client",
+    "to" : "jetty-security"
+  }, {
+    "from" : "jetty-client",
+    "to" : "jetty-server"
+  }, {
+    "from" : "jetty-client",
+    "to" : "jetty-session"
+  }, {
+    "from" : "jetty-client",
+    "to" : "jetty-slf4j-impl"
+  }, {
+    "from" : "jetty-io",
+    "to" : "jetty-jmx"
+  }, {
+    "from" : "jetty-io",
+    "to" : "jetty-util"
+  }, {
+    "from" : "jetty-io",
+    "to" : "jetty-slf4j-impl"
+  }, {
+    "from" : "jetty-unixdomain-server",
+    "to" : "jetty-server"
+  }, {
+    "from" : "jetty-unixdomain-server",
+    "to" : "jetty-client"
+  }, {
+    "from" : "jetty-unixdomain-server",
+    "to" : "jetty-slf4j-impl"
+  }, {
+    "from" : "jetty-server",
+    "to" : "jetty-http"
+  }, {
+    "from" : "jetty-server",
+    "to" : "jetty-io"
+  }, {
+    "from" : "jetty-server",
+    "to" : "jetty-jmx"
+  }, {
+    "from" : "jetty-server",
+    "to" : "jetty-http-tools"
+  }, {
+    "from" : "jetty-server",
+    "to" : "jetty-slf4j-impl"
+  }, {
+    "from" : "jetty-server",
+    "to" : "jetty-util-ajax"
+  }, {
+    "from" : "jetty-server",
+    "to" : "jetty-xml"
+  } ]
+}

@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/apache/lucene.git",
+  "base" : "2165146d01c9d640afc61dada51e911c0234e1d8",
+  "head" : "1face82117afb17d07774deae23badc68004fc72",
+  "changeCount" : 137,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 19.12
+}

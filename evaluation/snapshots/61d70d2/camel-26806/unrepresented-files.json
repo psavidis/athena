@@ -1,0 +1,131 @@
+{
+  "changedFileCount" : 63,
+  "representedFileCount" : 45,
+  "files" : [ {
+    "path" : "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/docs/file-language.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/docs/simple-advanced.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/docs/simple-functions.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 24,
+    "hunkCount" : 7,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/languages/file.json",
+    "status" : "MODIFIED",
+    "linesChanged" : 8,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/languages/simple.json",
+    "status" : "MODIFIED",
+    "linesChanged" : 175,
+    "hunkCount" : 7,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/simple/camel-simple-validator.js",
+    "status" : "MODIFIED",
+    "linesChanged" : 6,
+    "hunkCount" : 3,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "core/camel-core-languages/src/generated/resources/META-INF/org/apache/camel/language/simple/file.json",
+    "status" : "MODIFIED",
+    "linesChanged" : 8,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "core/camel-core-languages/src/generated/resources/META-INF/org/apache/camel/language/simple/simple.json",
+    "status" : "MODIFIED",
+    "linesChanged" : 175,
+    "hunkCount" : 7,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "core/camel-core-languages/src/main/docs/modules/languages/pages/file-language.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "core/camel-core-languages/src/main/docs/modules/languages/pages/simple-advanced.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "core/camel-core-languages/src/main/docs/modules/languages/pages/simple-functions.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 24,
+    "hunkCount" : 7,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "core/camel-core-languages/src/main/java/org/apache/camel/language/simple/FileConstants.java",
+    "status" : "MODIFIED",
+    "linesChanged" : 8,
+    "hunkCount" : 4,
+    "reason" : "NO_SEMANTIC_CHANGE",
+    "reasonLabel" : "no semantic change detected"
+  }, {
+    "path" : "docs/components/modules/languages/examples/json/file.json",
+    "status" : "MODIFIED",
+    "linesChanged" : 8,
+    "hunkCount" : 2,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "docs/components/modules/languages/examples/json/simple.json",
+    "status" : "MODIFIED",
+    "linesChanged" : 175,
+    "hunkCount" : 7,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "docs/components/modules/languages/pages/file-language.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "docs/components/modules/languages/pages/simple-advanced.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 2,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "docs/components/modules/languages/pages/simple-functions.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 24,
+    "hunkCount" : 7,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  }, {
+    "path" : "docs/user-manual/modules/ROOT/pages/camel-4x-upgrade-guide-4_23.adoc",
+    "status" : "MODIFIED",
+    "linesChanged" : 27,
+    "hunkCount" : 1,
+    "reason" : "UNSUPPORTED_FILE_TYPE",
+    "reasonLabel" : "unsupported file type"
+  } ]
+}

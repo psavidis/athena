@@ -1,0 +1,31 @@
+[ {
+  "changeKey" : "QUREX1NZTUJPTApUcmVlTGlzdFRlc3QjdGVzdEZhaWxlZEluZGV4ZWRDaGFuZ2VLZWVwc0l0ZXJhdG9yVmFsaWQ",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add TreeListTest#testFailedIndexedChangeKeepsIteratorValid",
+  "files" : [ "src/test/java/org/apache/commons/collections4/list/TreeListTest.java" ],
+  "symbols" : [ "TreeListTest#testFailedIndexedChangeKeepsIteratorValid" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRyZWVMaXN0I2FkZAptb3ZlZCBtb2RDb3VudCsrIGFmdGVyIGNoZWNrSW50ZXJ2YWwoaW5kZXgsIDAsIHNpemUoKSk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TreeList#add: moved modCount++ after checkInterval(index, 0, size())",
+  "files" : [ "src/main/java/org/apache/commons/collections4/list/TreeList.java" ],
+  "symbols" : [ "TreeList#add", "moved modCount++ after checkInterval(index, 0, size())" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClRyZWVMaXN0I3JlbW92ZQptb3ZlZCBtb2RDb3VudCsrIGFmdGVyIGNoZWNrSW50ZXJ2YWwoaW5kZXgsIDAsIHNpemUoKSAtIDEp",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of TreeList#remove: moved modCount++ after checkInterval(index, 0, size() - 1)",
+  "files" : [ "src/main/java/org/apache/commons/collections4/list/TreeList.java" ],
+  "symbols" : [ "TreeList#remove", "moved modCount++ after checkInterval(index, 0, size() - 1)" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

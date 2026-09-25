@@ -1,0 +1,1039 @@
+{
+  "prTitle" : "Strengthened connection failure handling.",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 10,
+    "STRUCTURAL" : 30,
+    "UNKNOWN" : 9,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0",
+    "description" : "Add class ConnectionPoolReservationTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWx1cmU",
+    "description" : "Add class ConnectionPoolReservationTest.Failure",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWxpbmdDbGllbnRDb25uZWN0b3I",
+    "description" : "Add class ConnectionPoolReservationTest.FailingClientConnector",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdENvbm5lY3Rpb25Qb29sLkZ1dHVyZUNvbm5lY3Rpb24jc3VjY2VlZGVkCmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of AbstractConnectionPool.FutureConnection#succeeded: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdENvbm5lY3Rpb25Qb29sLkZ1dHVyZUNvbm5lY3Rpb24jZmFpbGVkCmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of AbstractConnectionPool.FutureConnection#failed: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpDbGllbnRDb25uZWN0b3IjY29ubmVjdEZhaWxlZApicmFuY2ggYWRkZWQ7IHNhbWUgY2FsbHM",
+    "description" : "Change control flow of ClientConnector#connectFailed: branch added; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYW5hZ2VkU2VsZWN0b3IuU2VsZWN0b3JQcm9kdWNlciNwcm9jZXNzVXBkYXRlcwpicmFuY2ggYWRkZWQ",
+    "description" : "Change control flow of ManagedSelector.SelectorProducer#processUpdates: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 7,
+    "changeKey" : "Q0hBTkdFX01PRElGSUVSUwpNYW5hZ2VkU2VsZWN0b3IuQ29ubmVjdCNmYWlsZWQKcHVibGljIC0-IHByaXZhdGU",
+    "description" : "Change modifiers of ManagedSelector.Connect#failed: public -> private",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_MODIFIERS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 8,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYW5hZ2VkU2VsZWN0b3IuQ2xvc2VDb25uZWN0aW9ucyN1cGRhdGUKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of ManagedSelector.CloseConnections#update: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 9,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYW5hZ2VkU2VsZWN0b3IuQ3JlYXRlRW5kUG9pbnQjcnVuCmJyYW5jaCByZW1vdmVk",
+    "description" : "Change control flow of ManagedSelector.CreateEndPoint#run: branch removed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 10,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZWxlY3Rvck1hbmFnZXIjY29ubmVjdApicmFuY2ggYWRkZWQ",
+    "description" : "Change control flow of SelectorManager#connect: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 11,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZWxlY3Rvck1hbmFnZXIjYWNjZXB0CmJyYW5jaCBhZGRlZA",
+    "description" : "Change control flow of SelectorManager#accept: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 12,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZWxlY3Rvck1hbmFnZXIjYWNjZXB0b3IKYnJhbmNoIGFkZGVk",
+    "description" : "Change control flow of SelectorManager#acceptor: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 13,
+    "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2VsZWN0b3JNYW5hZ2VyI29uQWNjZXB0RmFpbGVk",
+    "description" : "Change signature of SelectorManager#onAcceptFailed",
+    "category" : "STRUCTURAL",
+    "kind" : "CHANGE_METHOD_SIGNATURE",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 14,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVbml4RG9tYWluU2VydmVyQ29ubmVjdG9yI3NldEFjY2VwdGluZwpjb25kaXRpb24gY2hhbmdlZDsgc2FtZSBjYWxscw",
+    "description" : "Change control flow of UnixDomainServerConnector#setAccepting: condition changed; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 15,
+    "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCNzdGFydA",
+    "description" : "Add ConnectionPoolReservationTest#start",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 16,
+    "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCNkaXNwb3Nl",
+    "description" : "Add ConnectionPoolReservationTest#dispose",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 17,
+    "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCN0ZXN0Q29ubmVjdGlvbkNyZWF0aW9uRmFpbHVyZVJlbGVhc2VzUmVzZXJ2ZWRFbnRyeQ",
+    "description" : "Add ConnectionPoolReservationTest#testConnectionCreationFailureReleasesReservedEntry",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 18,
+    "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld0VuZFBvaW50",
+    "description" : "Add ConnectionPoolReservationTest.FailingClientConnector#newEndPoint",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 19,
+    "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld0Nvbm5lY3Rpb24",
+    "description" : "Add ConnectionPoolReservationTest.FailingClientConnector#newConnection",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 20,
+    "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld1NlbGVjdG9yTWFuYWdlcg",
+    "description" : "Add ConnectionPoolReservationTest.FailingClientConnector#newSelectorManager",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 21,
+    "changeKey" : "QUREX1NZTUJPTApDbGllbnRDb25uZWN0b3IuQ2xpZW50U2VsZWN0b3JNYW5hZ2VyI29uQWNjZXB0RmFpbGVk",
+    "description" : "Add ClientConnector.ClientSelectorManager#onAcceptFailed",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 22,
+    "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuU2VsZWN0b3JQcm9kdWNlciNjbG9zZQ",
+    "description" : "Add ManagedSelector.SelectorProducer#close",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 23,
+    "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuQWNjZXB0b3IjY2FuY2VsQWNjZXB0",
+    "description" : "Add ManagedSelector.Acceptor#cancelAccept",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 24,
+    "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuQ29ubmVjdCNjbG9zZQ",
+    "description" : "Add ManagedSelector.Connect#close",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 25,
+    "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuQ3JlYXRlRW5kUG9pbnQjY2xvc2U",
+    "description" : "Add ManagedSelector.CreateEndPoint#close",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 26,
+    "changeKey" : "QUREX1NZTUJPTApTZWxlY3Rvck1hbmFnZXIjb25BY2NlcHRGYWlsZWQ",
+    "description" : "Add SelectorManager#onAcceptFailed",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 27,
+    "changeKey" : "QUREX1NZTUJPTApDb25uZWN0SGFuZGxlci5Db25uZWN0TWFuYWdlciNvbkFjY2VwdEZhaWxlZA",
+    "description" : "Add ConnectHandler.ConnectManager#onAcceptFailed",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 28,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsaWVudENvbm5lY3RvciNhY2NlcHQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of ClientConnector#accept: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 29,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5TZWxlY3RvclByb2R1Y2VyI3Byb2Nlc3NTZWxlY3RlZApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of ManagedSelector.SelectorProducer#processSelected: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 30,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbG9zZSwgLXN1Ym1pdCwgLWNhbmNlbApNYW5hZ2VkU2VsZWN0b3IuQWNjZXB0b3IjY2xvc2U",
+    "description" : "Modify body of ManagedSelector.Acceptor#close: +close, -submit, -cancel",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 31,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5BY2NlcHQjZmFpbGVkCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+    "description" : "Modify body of ManagedSelector.Accept#failed: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 32,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5Db25uZWN0I2ZhaWxlZApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of ManagedSelector.Connect#failed: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 33,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi10aHJvdyBSdW50aW1lRXhjZXB0aW9uClNlcnZlckNvbm5lY3RvciNzZXRBY2NlcHRpbmc",
+    "description" : "Modify body of ServerConnector#setAccepting: -throw RuntimeException",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 34,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbm5lY3RIYW5kbGVyLkNvbm5lY3RNYW5hZ2VyI2Nvbm5lY3Rpb25GYWlsZWQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of ConnectHandler.ConnectManager#connectionFailed: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 35,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1vbkFjY2VwdGluZwpNYW5hZ2VkU2VsZWN0b3IuQWNjZXB0Izxpbml0Pg",
+    "description" : "Modify body of ManagedSelector.Accept#<init>: -onAccepting",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 36,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5Db25uZWN0Izxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+    "description" : "Modify body of ManagedSelector.Connect#<init>: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 37,
+    "changeKey" : "QUREX0ZJRUxECkFic3RyYWN0Q29ubmVjdGlvblBvb2wuRnV0dXJlQ29ubmVjdGlvbiNjb21wbGV0ZWQ",
+    "description" : "Add field AbstractConnectionPool.FutureConnection#completed",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 38,
+    "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I3NlcnZlcg",
+    "description" : "Add field ConnectionPoolReservationTest#server",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 39,
+    "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2Nvbm5lY3Rvcg",
+    "description" : "Add field ConnectionPoolReservationTest#connector",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 40,
+    "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2NsaWVudENvbm5lY3Rvcg",
+    "description" : "Add field ConnectionPoolReservationTest#clientConnector",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 41,
+    "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2NsaWVudA",
+    "description" : "Add field ConnectionPoolReservationTest#client",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 42,
+    "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWx1cmUjZXhwZWN0ZWQ",
+    "description" : "Add field ConnectionPoolReservationTest.Failure#expected",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 43,
+    "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWxpbmdDbGllbnRDb25uZWN0b3IjZmFpbHVyZQ",
+    "description" : "Add field ConnectionPoolReservationTest.FailingClientConnector#failure",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 44,
+    "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsdXJlI2V4cGVjdGVk",
+    "description" : "Add constructor parameter ConnectionPoolReservationTest.Failure#expected",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 45,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNOT19TRUxFQ1RPUg",
+    "description" : "Add enum constant ConnectionPoolReservationTest.Failure#NO_SELECTOR",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 46,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNSRUdJU1RSQVRJT04",
+    "description" : "Add enum constant ConnectionPoolReservationTest.Failure#REGISTRATION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 47,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNORVdfRU5EUE9JTlQ",
+    "description" : "Add enum constant ConnectionPoolReservationTest.Failure#NEW_ENDPOINT",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 48,
+    "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNORVdfQ09OTkVDVElPTg",
+    "description" : "Add enum constant ConnectionPoolReservationTest.Failure#NEW_CONNECTION",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_ENUM_CONSTANT",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ConnectionPoolReservationTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0",
+      "description" : "Add class ConnectionPoolReservationTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 15,
+      "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCNzdGFydA",
+      "description" : "Add ConnectionPoolReservationTest#start",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 16,
+      "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCNkaXNwb3Nl",
+      "description" : "Add ConnectionPoolReservationTest#dispose",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 17,
+      "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdCN0ZXN0Q29ubmVjdGlvbkNyZWF0aW9uRmFpbHVyZVJlbGVhc2VzUmVzZXJ2ZWRFbnRyeQ",
+      "description" : "Add ConnectionPoolReservationTest#testConnectionCreationFailureReleasesReservedEntry",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 38,
+      "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I3NlcnZlcg",
+      "description" : "Add field ConnectionPoolReservationTest#server",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 39,
+      "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2Nvbm5lY3Rvcg",
+      "description" : "Add field ConnectionPoolReservationTest#connector",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 40,
+      "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2NsaWVudENvbm5lY3Rvcg",
+      "description" : "Add field ConnectionPoolReservationTest#clientConnector",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 41,
+      "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0I2NsaWVudA",
+      "description" : "Add field ConnectionPoolReservationTest#client",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ConnectionPoolReservationTest.Failure",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWx1cmU",
+      "description" : "Add class ConnectionPoolReservationTest.Failure",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 42,
+      "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWx1cmUjZXhwZWN0ZWQ",
+      "description" : "Add field ConnectionPoolReservationTest.Failure#expected",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 44,
+      "changeKey" : "QUREX0NPTlNUUlVDVE9SX1BBUkFNRVRFUgpDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsdXJlI2V4cGVjdGVk",
+      "description" : "Add constructor parameter ConnectionPoolReservationTest.Failure#expected",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CONSTRUCTOR_PARAMETER",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 45,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNOT19TRUxFQ1RPUg",
+      "description" : "Add enum constant ConnectionPoolReservationTest.Failure#NO_SELECTOR",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 46,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNSRUdJU1RSQVRJT04",
+      "description" : "Add enum constant ConnectionPoolReservationTest.Failure#REGISTRATION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 47,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNORVdfRU5EUE9JTlQ",
+      "description" : "Add enum constant ConnectionPoolReservationTest.Failure#NEW_ENDPOINT",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 48,
+      "changeKey" : "QUREX0VOVU1fQ09OU1RBTlQKQ29ubmVjdGlvblBvb2xSZXNlcnZhdGlvblRlc3QuRmFpbHVyZSNORVdfQ09OTkVDVElPTg",
+      "description" : "Add enum constant ConnectionPoolReservationTest.Failure#NEW_CONNECTION",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_ENUM_CONSTANT",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ConnectionPoolReservationTest.FailingClientConnector",
+    "entries" : [ {
+      "id" : 2,
+      "changeKey" : "QUREX0NMQVNTCkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWxpbmdDbGllbnRDb25uZWN0b3I",
+      "description" : "Add class ConnectionPoolReservationTest.FailingClientConnector",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 18,
+      "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld0VuZFBvaW50",
+      "description" : "Add ConnectionPoolReservationTest.FailingClientConnector#newEndPoint",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 19,
+      "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld0Nvbm5lY3Rpb24",
+      "description" : "Add ConnectionPoolReservationTest.FailingClientConnector#newConnection",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 20,
+      "changeKey" : "QUREX1NZTUJPTApDb25uZWN0aW9uUG9vbFJlc2VydmF0aW9uVGVzdC5GYWlsaW5nQ2xpZW50Q29ubmVjdG9yI25ld1NlbGVjdG9yTWFuYWdlcg",
+      "description" : "Add ConnectionPoolReservationTest.FailingClientConnector#newSelectorManager",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 43,
+      "changeKey" : "QUREX0ZJRUxECkNvbm5lY3Rpb25Qb29sUmVzZXJ2YXRpb25UZXN0LkZhaWxpbmdDbGllbnRDb25uZWN0b3IjZmFpbHVyZQ",
+      "description" : "Add field ConnectionPoolReservationTest.FailingClientConnector#failure",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "AbstractConnectionPool.FutureConnection",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdENvbm5lY3Rpb25Qb29sLkZ1dHVyZUNvbm5lY3Rpb24jc3VjY2VlZGVkCmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of AbstractConnectionPool.FutureConnection#succeeded: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 4,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpBYnN0cmFjdENvbm5lY3Rpb25Qb29sLkZ1dHVyZUNvbm5lY3Rpb24jZmFpbGVkCmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of AbstractConnectionPool.FutureConnection#failed: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 37,
+      "changeKey" : "QUREX0ZJRUxECkFic3RyYWN0Q29ubmVjdGlvblBvb2wuRnV0dXJlQ29ubmVjdGlvbiNjb21wbGV0ZWQ",
+      "description" : "Add field AbstractConnectionPool.FutureConnection#completed",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ClientConnector",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpDbGllbnRDb25uZWN0b3IjY29ubmVjdEZhaWxlZApicmFuY2ggYWRkZWQ7IHNhbWUgY2FsbHM",
+      "description" : "Change control flow of ClientConnector#connectFailed: branch added; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 28,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNsaWVudENvbm5lY3RvciNhY2NlcHQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of ClientConnector#accept: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ManagedSelector.SelectorProducer",
+    "entries" : [ {
+      "id" : 6,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYW5hZ2VkU2VsZWN0b3IuU2VsZWN0b3JQcm9kdWNlciNwcm9jZXNzVXBkYXRlcwpicmFuY2ggYWRkZWQ",
+      "description" : "Change control flow of ManagedSelector.SelectorProducer#processUpdates: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 22,
+      "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuU2VsZWN0b3JQcm9kdWNlciNjbG9zZQ",
+      "description" : "Add ManagedSelector.SelectorProducer#close",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 29,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5TZWxlY3RvclByb2R1Y2VyI3Byb2Nlc3NTZWxlY3RlZApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of ManagedSelector.SelectorProducer#processSelected: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ManagedSelector.Connect",
+    "entries" : [ {
+      "id" : 7,
+      "changeKey" : "Q0hBTkdFX01PRElGSUVSUwpNYW5hZ2VkU2VsZWN0b3IuQ29ubmVjdCNmYWlsZWQKcHVibGljIC0-IHByaXZhdGU",
+      "description" : "Change modifiers of ManagedSelector.Connect#failed: public -> private",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_MODIFIERS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 24,
+      "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuQ29ubmVjdCNjbG9zZQ",
+      "description" : "Add ManagedSelector.Connect#close",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 32,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5Db25uZWN0I2ZhaWxlZApvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of ManagedSelector.Connect#failed: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 36,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5Db25uZWN0Izxpbml0PgpvdGhlciBzdGF0ZW1lbnRzIGNoYW5nZWQ",
+      "description" : "Modify body of ManagedSelector.Connect#<init>: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ManagedSelector.CloseConnections",
+    "entries" : [ {
+      "id" : 8,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYW5hZ2VkU2VsZWN0b3IuQ2xvc2VDb25uZWN0aW9ucyN1cGRhdGUKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of ManagedSelector.CloseConnections#update: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ManagedSelector.CreateEndPoint",
+    "entries" : [ {
+      "id" : 9,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpNYW5hZ2VkU2VsZWN0b3IuQ3JlYXRlRW5kUG9pbnQjcnVuCmJyYW5jaCByZW1vdmVk",
+      "description" : "Change control flow of ManagedSelector.CreateEndPoint#run: branch removed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 25,
+      "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuQ3JlYXRlRW5kUG9pbnQjY2xvc2U",
+      "description" : "Add ManagedSelector.CreateEndPoint#close",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SelectorManager",
+    "entries" : [ {
+      "id" : 10,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZWxlY3Rvck1hbmFnZXIjY29ubmVjdApicmFuY2ggYWRkZWQ",
+      "description" : "Change control flow of SelectorManager#connect: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 11,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZWxlY3Rvck1hbmFnZXIjYWNjZXB0CmJyYW5jaCBhZGRlZA",
+      "description" : "Change control flow of SelectorManager#accept: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 12,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTZWxlY3Rvck1hbmFnZXIjYWNjZXB0b3IKYnJhbmNoIGFkZGVk",
+      "description" : "Change control flow of SelectorManager#acceptor: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 13,
+      "changeKey" : "Q0hBTkdFX01FVEhPRF9TSUdOQVRVUkUKU2VsZWN0b3JNYW5hZ2VyI29uQWNjZXB0RmFpbGVk",
+      "description" : "Change signature of SelectorManager#onAcceptFailed",
+      "category" : "STRUCTURAL",
+      "kind" : "CHANGE_METHOD_SIGNATURE",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 26,
+      "changeKey" : "QUREX1NZTUJPTApTZWxlY3Rvck1hbmFnZXIjb25BY2NlcHRGYWlsZWQ",
+      "description" : "Add SelectorManager#onAcceptFailed",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "UnixDomainServerConnector",
+    "entries" : [ {
+      "id" : 14,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpVbml4RG9tYWluU2VydmVyQ29ubmVjdG9yI3NldEFjY2VwdGluZwpjb25kaXRpb24gY2hhbmdlZDsgc2FtZSBjYWxscw",
+      "description" : "Change control flow of UnixDomainServerConnector#setAccepting: condition changed; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ClientConnector.ClientSelectorManager",
+    "entries" : [ {
+      "id" : 21,
+      "changeKey" : "QUREX1NZTUJPTApDbGllbnRDb25uZWN0b3IuQ2xpZW50U2VsZWN0b3JNYW5hZ2VyI29uQWNjZXB0RmFpbGVk",
+      "description" : "Add ClientConnector.ClientSelectorManager#onAcceptFailed",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ManagedSelector.Acceptor",
+    "entries" : [ {
+      "id" : 23,
+      "changeKey" : "QUREX1NZTUJPTApNYW5hZ2VkU2VsZWN0b3IuQWNjZXB0b3IjY2FuY2VsQWNjZXB0",
+      "description" : "Add ManagedSelector.Acceptor#cancelAccept",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 30,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjbG9zZSwgLXN1Ym1pdCwgLWNhbmNlbApNYW5hZ2VkU2VsZWN0b3IuQWNjZXB0b3IjY2xvc2U",
+      "description" : "Modify body of ManagedSelector.Acceptor#close: +close, -submit, -cancel",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ConnectHandler.ConnectManager",
+    "entries" : [ {
+      "id" : 27,
+      "changeKey" : "QUREX1NZTUJPTApDb25uZWN0SGFuZGxlci5Db25uZWN0TWFuYWdlciNvbkFjY2VwdEZhaWxlZA",
+      "description" : "Add ConnectHandler.ConnectManager#onAcceptFailed",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 34,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCkNvbm5lY3RIYW5kbGVyLkNvbm5lY3RNYW5hZ2VyI2Nvbm5lY3Rpb25GYWlsZWQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of ConnectHandler.ConnectManager#connectionFailed: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ManagedSelector.Accept",
+    "entries" : [ {
+      "id" : 31,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk1hbmFnZWRTZWxlY3Rvci5BY2NlcHQjZmFpbGVkCm90aGVyIHN0YXRlbWVudHMgY2hhbmdlZA",
+      "description" : "Modify body of ManagedSelector.Accept#failed: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 35,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi1vbkFjY2VwdGluZwpNYW5hZ2VkU2VsZWN0b3IuQWNjZXB0Izxpbml0Pg",
+      "description" : "Modify body of ManagedSelector.Accept#<init>: -onAccepting",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "ServerConnector",
+    "entries" : [ {
+      "id" : 33,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCi10aHJvdyBSdW50aW1lRXhjZXB0aW9uClNlcnZlckNvbm5lY3RvciNzZXRBY2NlcHRpbmc",
+      "description" : "Modify body of ServerConnector#setAccepting: -throw RuntimeException",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

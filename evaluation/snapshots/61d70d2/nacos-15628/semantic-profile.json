@@ -1,0 +1,91 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Remove",
+    "conceptDescription" : "An existing symbol was deleted with no successor.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-public static WriteRequest convertToWriteRequest(Log log) {\n-        return WriteRequest.newBuilder().setKey(log.getKey()).setGroup(log.getGroup())\n-            .setData(log.getData())\n-            .setType(log.getType())\n-            .setOperation(log.getOperation())\n-            .putAllExtendInfo(log.getExtendInfoMap())\n-            .build();\n-    }\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Remove",
+    "conceptDescription" : "An existing symbol was deleted with no successor.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-public static ReadRequest convertToReadRequest(GetRequest request) {\n-        return ReadRequest.newBuilder()\n-            .setGroup(request.getGroup())\n-            .setData(request.getData())\n-            .putAllExtendInfo(request.getExtendInfoMap())\n-            .build();\n-    }\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " public static Message parse(byte[] bytes) {\n-        Message result;\n         try {\n             if (bytes[0] == REQUEST_TYPE_FIELD_TAG) {\n                 if (bytes[1] == REQUEST_TYPE_READ) {\n-                    result = ReadRequest.parseFrom(bytes);\n+                    return ReadRequest.parseFrom(bytes);\n                 } else {\n-                    result = WriteRequest.parseFrom(bytes);\n+                    return WriteRequest.parseFrom(bytes);\n                 }\n-                return result;\n             }\n-        } catch (Throwable ignore) {\n-        }\n-        \n-        // old consistency entity, will be @Deprecated in future\n-        try {\n-            GetRequest request = GetRequest.parseFrom(bytes);\n-            return convertToReadRequest(request);\n-        } catch (Throwable ignore) {\n-        }\n-        \n-        try {\n-            Log log = Log.parseFrom(bytes);\n-            return convertToWriteRequest(log);\n-        } catch (Throwable ignore) {\n+        } catch (Throwable e) {\n+            LOGGER.debug(\"Failed to parse protocol request\", e);\n         }\n         \n         throw new ConsistencyException(\n             \"The current array cannot be serialized to the corresponding object\");\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+private static final Logger LOGGER = LoggerFactory.getLogger(ProtoMessageUtil.class);" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Remove Dependency org.mockito:mockito-inline in 2 modules",
+    "conceptDescription" : "A module no longer declares a build dependency. Same change in: nacos-ai, nacos-all.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "", "" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "ai/pom.xml", "pom.xml" ],
+    "groupedMoveCount" : 2
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in ProtoMessageUtilTest",
+    "conceptDescription" : "10 changes in test code of ProtoMessageUtilTest.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-@Test\n-    void testProto() throws Exception {\n-        WriteRequest request = WriteRequest.newBuilder().setKey(\"test-proto-new\").build();\n-        \n-        byte[] bytes = request.toByteArray();\n-        Log log = Log.parseFrom(bytes);\n-        assertEquals(request.getKey(), log.getKey());\n-    }\n+", "-@Test\n-    void testParseReadRequest() {\n-        String group = \"test\";\n-        ByteString data = ByteString.copyFrom(\"data\".getBytes());\n-        ReadRequest testCase = ReadRequest.newBuilder().setGroup(group).setData(data).build();\n-        Object actual = ProtoMessageUtil.parse(testCase.toByteArray());\n-        assertEquals(ReadRequest.class, testCase.getClass());\n-        assertEquals(group, ((ReadRequest) actual).getGroup());\n-        assertEquals(data, ((ReadRequest) actual).getData());\n-    }\n+", "-@Test\n-    void testParseWriteRequest() {\n-        String group = \"test\";\n-        ByteString data = ByteString.copyFrom(\"data\".getBytes());\n-        WriteRequest testCase = WriteRequest.newBuilder().setGroup(group).setData(data).build();\n-        Object actual = ProtoMessageUtil.parse(testCase.toByteArray());\n-        assertEquals(WriteRequest.class, testCase.getClass());\n-        assertEquals(group, ((WriteRequest) actual).getGroup());\n-        assertEquals(data, ((WriteRequest) actual).getData());\n-    }\n+", "-@Test\n-    void testConvertToReadRequest() {\n-        ByteString data = ByteString.copyFrom(\"data\".getBytes());\n-        String group = \"test\";\n-        \n-        GetRequest getRequest =\n-            GetRequest.newBuilder().setGroup(group).setData(data).putExtendInfo(\"k\", \"v\").build();\n-        ReadRequest readRequest = ProtoMessageUtil.convertToReadRequest(getRequest);\n-        \n-        assertEquals(group, readRequest.getGroup());\n-        \n-        assertEquals(data, readRequest.getData());\n-        \n-        assertEquals(1, readRequest.getExtendInfoCount());\n-    }\n+", "-@Test\n-    void testConvertToWriteRequest() {\n-        ByteString data = ByteString.copyFrom(\"data\".getBytes());\n-        Log log = Log.newBuilder().setKey(\"key\").setGroup(\"group\").setData(data).setOperation(\"o\")\n-            .putExtendInfo(\"k\", \"v\").build();\n-        WriteRequest writeRequest = ProtoMessageUtil.convertToWriteRequest(log);\n-        \n-        assertEquals(1, writeRequest.getExtendInfoCount());\n-        \n-        assertEquals(data, writeRequest.getData());\n-        \n-        assertEquals(\"key\", writeRequest.getKey());\n-        \n-        assertEquals(\"group\", writeRequest.getGroup());\n-        \n-        assertEquals(\"o\", writeRequest.getOperation());\n-    }\n+", "-\n+@Test\n+    void testParseRawReadRequestThrowsException() {\n+        // Raw ReadRequest bytes without REQUEST_TYPE_FIELD_TAG prefix\n+        // should throw ConsistencyException since legacy fallback is removed\n+        String group = \"test\";\n+        ByteString data = ByteString.copyFrom(\"data\".getBytes());\n+        ReadRequest testCase = ReadRequest.newBuilder().setGroup(group).setData(data).build();\n+        try {\n+            ProtoMessageUtil.parse(testCase.toByteArray());\n+            fail(\"Should throw ConsistencyException for raw ReadRequest bytes\");\n+        } catch (Exception e) {\n+            assertTrue(e instanceof com.alibaba.nacos.consistency.exception.ConsistencyException);\n+        }\n+    }", "-\n+@Test\n+    void testParseRawWriteRequestThrowsException() {\n+        // Raw WriteRequest bytes without REQUEST_TYPE_FIELD_TAG prefix\n+        // should throw ConsistencyException since legacy fallback is removed\n+        String group = \"test\";\n+        ByteString data = ByteString.copyFrom(\"data\".getBytes());\n+        WriteRequest testCase = WriteRequest.newBuilder().setGroup(group).setData(data).build();\n+        try {\n+            ProtoMessageUtil.parse(testCase.toByteArray());\n+            fail(\"Should throw ConsistencyException for raw WriteRequest bytes\");\n+        } catch (Exception e) {\n+            assertTrue(e instanceof com.alibaba.nacos.consistency.exception.ConsistencyException);\n+        }\n+    }", " @Test\n     void testParseWithCorruptRequestTypeField() {\n         byte[] corruptBytes = new byte[] {(byte) ProtoMessageUtil.REQUEST_TYPE_FIELD_TAG,\n             (byte) ProtoMessageUtil.REQUEST_TYPE_READ, (byte) 0x80};\n         try {\n             ProtoMessageUtil.parse(corruptBytes);\n-        } catch (Exception ignored) {\n+            fail(\"Should throw ConsistencyException for corrupt bytes\");\n+        } catch (Exception e) {\n+            assertTrue(e instanceof com.alibaba.nacos.consistency.exception.ConsistencyException);\n         }\n     }", " @Test\n     void testParseReadRequestWithRequestTypeField() {\n         String group = \"test\";\n         ByteString data = ByteString.copyFrom(\"data\".getBytes());\n         ReadRequest testCase = ReadRequest.newBuilder().setGroup(group).setData(data).build();\n         \n         byte[] requestTypeFieldBytes = new byte[2];\n         requestTypeFieldBytes[0] = ProtoMessageUtil.REQUEST_TYPE_FIELD_TAG;\n         requestTypeFieldBytes[1] = ProtoMessageUtil.REQUEST_TYPE_READ;\n         \n         byte[] dataBytes = testCase.toByteArray();\n         ByteBuffer byteBuffer = (ByteBuffer) ByteBuffer\n             .allocate(requestTypeFieldBytes.length + dataBytes.length).put(requestTypeFieldBytes)\n             .put(dataBytes).position(0);\n         \n         Object actual = ProtoMessageUtil.parse(byteBuffer.array());\n-        assertEquals(ReadRequest.class, testCase.getClass());\n+        assertEquals(ReadRequest.class, actual.getClass());\n         assertEquals(group, ((ReadRequest) actual).getGroup());\n         assertEquals(data, ((ReadRequest) actual).getData());\n     }", " @Test\n     void testParseWriteRequestWithRequestTypeField() {\n         String group = \"test\";\n         ByteString data = ByteString.copyFrom(\"data\".getBytes());\n         WriteRequest testCase = WriteRequest.newBuilder().setGroup(group).setData(data).build();\n         \n         byte[] requestTypeFieldBytes = new byte[2];\n         requestTypeFieldBytes[0] = ProtoMessageUtil.REQUEST_TYPE_FIELD_TAG;\n         requestTypeFieldBytes[1] = ProtoMessageUtil.REQUEST_TYPE_WRITE;\n         \n         byte[] dataBytes = testCase.toByteArray();\n         ByteBuffer byteBuffer = (ByteBuffer) ByteBuffer\n             .allocate(requestTypeFieldBytes.length + dataBytes.length).put(requestTypeFieldBytes)\n             .put(dataBytes).position(0);\n         \n         Object actual = ProtoMessageUtil.parse(byteBuffer.array());\n-        assertEquals(WriteRequest.class, testCase.getClass());\n+        assertEquals(WriteRequest.class, actual.getClass());\n         assertEquals(group, ((WriteRequest) actual).getGroup());\n         assertEquals(data, ((WriteRequest) actual).getData());\n     }" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "consistency/src/test/java/com/alibaba/nacos/consistency/ProtoMessageUtilTest.java" ],
+    "groupedMoveCount" : 10
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Add Capability",
+    "conceptDescription" : "A new business-meaningful capability was introduced.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-\n+private static final Logger LOGGER = LoggerFactory.getLogger(ProtoMessageUtil.class);" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Remove Capability",
+    "conceptDescription" : "An existing business-meaningful capability was removed.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-public static WriteRequest convertToWriteRequest(Log log) {\n-        return WriteRequest.newBuilder().setKey(log.getKey()).setGroup(log.getGroup())\n-            .setData(log.getData())\n-            .setType(log.getType())\n-            .setOperation(log.getOperation())\n-            .putAllExtendInfo(log.getExtendInfoMap())\n-            .build();\n-    }\n+", "-public static ReadRequest convertToReadRequest(GetRequest request) {\n-        return ReadRequest.newBuilder()\n-            .setGroup(request.getGroup())\n-            .setData(request.getData())\n-            .putAllExtendInfo(request.getExtendInfoMap())\n-            .build();\n-    }\n+" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "consistency/src/main/java/com/alibaba/nacos/consistency/ProtoMessageUtil.java" ],
+    "groupedMoveCount" : 2
+  } ]
+}

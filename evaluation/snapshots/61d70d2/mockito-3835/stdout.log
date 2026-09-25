@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/mockito/mockito.git",
+  "base" : "4ff92d9a63aed424e9d3d958b9fc3ce5a17948d4",
+  "head" : "25c4d59f2baca721ea308eebdd4b6f002a7db8ba",
+  "changeCount" : 22,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 3.68
+}

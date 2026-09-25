@@ -1,0 +1,81 @@
+[ {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSb2xsaW5nQ2FsZW5kYXIjaXNDb2xsaXNpb25GcmVlCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of RollingCalendar#isCollisionFree: branch added",
+  "files" : [ "logback-core/src/main/java/ch/qos/logback/core/rolling/helper/RollingCalendar.java" ],
+  "symbols" : [ "RollingCalendar#isCollisionFree", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSb2xsaW5nQ2FsZW5kYXIjcGVyaW9kQmFycmllcnNDcm9zc2VkCmJyYW5jaCBhZGRlZA",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of RollingCalendar#periodBarriersCrossed: branch added",
+  "files" : [ "logback-core/src/main/java/ch/qos/logback/core/rolling/helper/RollingCalendar.java" ],
+  "symbols" : [ "RollingCalendar#periodBarriersCrossed", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpSb2xsaW5nQ2FsZW5kYXIjaW5uZXJHZXRFbmRPZk5leHROdGhQZXJpb2QKYnJhbmNoIGFkZGVk",
+  "kind" : "CHANGE_CONTROL_FLOW",
+  "category" : "BEHAVIORAL",
+  "description" : "Change control flow of RollingCalendar#innerGetEndOfNextNthPeriod: branch added",
+  "files" : [ "logback-core/src/main/java/ch/qos/logback/core/rolling/helper/RollingCalendar.java" ],
+  "symbols" : [ "RollingCalendar#innerGetEndOfNextNthPeriod", "branch added" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+}, {
+  "changeKey" : "QUREX1NZTUJPTApSb2xsaW5nQ2FsZW5kYXJUZXN0I3Rlc3RWYXJ5aW5nTnVtYmVyT2ZIYWxmRGFpbHlQZXJpb2Rz",
+  "kind" : "ADD_SYMBOL",
+  "category" : "STRUCTURAL",
+  "description" : "Add RollingCalendarTest#testVaryingNumberOfHalfDailyPeriods",
+  "files" : [ "logback-core/src/test/java/ch/qos/logback/core/rolling/helper/RollingCalendarTest.java" ],
+  "symbols" : [ "RollingCalendarTest#testVaryingNumberOfHalfDailyPeriods" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCithc3NlcnRFcXVhbHMsICtnZXRQZXJpb2RpY2l0eVR5cGUKUm9sbGluZ0NhbGVuZGFyVGVzdCN0ZXN0UGVyaW9kaWNpdHk",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of RollingCalendarTest#testPeriodicity: +assertEquals, +getPeriodicityType",
+  "files" : [ "logback-core/src/test/java/ch/qos/logback/core/rolling/helper/RollingCalendarTest.java" ],
+  "symbols" : [ "RollingCalendarTest#testPeriodicity", "+assertEquals, +getPeriodicityType" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGVja1BlcmlvZEJhcnJpZXJzQ3Jvc3NlZApSb2xsaW5nQ2FsZW5kYXJUZXN0I3Rlc3RCYXJyaWVyQ3Jvc3NpbmdDb21wdXRhdGlvbg",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of RollingCalendarTest#testBarrierCrossingComputation: +checkPeriodBarriersCrossed",
+  "files" : [ "logback-core/src/test/java/ch/qos/logback/core/rolling/helper/RollingCalendarTest.java" ],
+  "symbols" : [ "RollingCalendarTest#testBarrierCrossingComputation", "+checkPeriodBarriersCrossed" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitjaGVja0NvbGxpc2lvbkZyZWVuZXNzClJvbGxpbmdDYWxlbmRhclRlc3QjdGVzdENvbGxpc2lvbkZyZWVuZXM",
+  "kind" : "MODIFY_METHOD_BODY",
+  "category" : "UNKNOWN",
+  "description" : "Modify body of RollingCalendarTest#testCollisionFreenes: +checkCollisionFreeness",
+  "files" : [ "logback-core/src/test/java/ch/qos/logback/core/rolling/helper/RollingCalendarTest.java" ],
+  "symbols" : [ "RollingCalendarTest#testCollisionFreenes", "+checkCollisionFreeness" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : true
+}, {
+  "changeKey" : "Q0hBTkdFX0ZJRUxEX1ZBTFVFCitIQUxGX0RBWQpQZXJpb2RpY2l0eVR5cGUjVkFMSURfT1JERVJFRF9MSVNU",
+  "kind" : "CHANGE_FIELD_VALUE",
+  "category" : "UNKNOWN",
+  "description" : "Change value of PeriodicityType#VALID_ORDERED_LIST: +HALF_DAY",
+  "files" : [ "logback-core/src/main/java/ch/qos/logback/core/rolling/helper/PeriodicityType.java" ],
+  "symbols" : [ "PeriodicityType#VALID_ORDERED_LIST", "+HALF_DAY" ],
+  "occurrences" : 1,
+  "exceptions" : 0,
+  "testCode" : false
+} ]

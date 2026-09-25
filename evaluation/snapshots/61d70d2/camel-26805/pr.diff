@@ -1,0 +1,578 @@
+diff --git a/catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles-openapi.json b/catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles-openapi.json
+index 55b44b133d316..2146b5bcc7fa6 100644
+--- a/catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles-openapi.json
++++ b/catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles-openapi.json
+@@ -598,6 +598,10 @@
+ 														"type": "string",
+ 														"description": "The node ID"
+ 													},
++													"nodeSource": {
++														"type": "string",
++														"description": "Where the node is in the source, such as orders.camel.yaml:18"
++													},
+ 													"duration": {
+ 														"type": "integer",
+ 														"description": "The wait duration in milliseconds"
+@@ -2677,6 +2681,10 @@
+ 														"type": "string",
+ 														"description": "The node ID where the exchange currently is"
+ 													},
++													"nodeSource": {
++														"type": "string",
++														"description": "Where the node is in the source, such as orders.camel.yaml:18"
++													},
+ 													"elapsed": {
+ 														"type": "integer",
+ 														"description": "Elapsed time in milliseconds since the exchange started"
+diff --git a/catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles/blocked.json b/catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles/blocked.json
+index f757bfe6efaa7..04e9bfbbf648f 100644
+--- a/catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles/blocked.json
++++ b/catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles/blocked.json
+@@ -36,6 +36,10 @@
+               "type": "string",
+               "description": "The node ID"
+             },
++            "nodeSource": {
++              "type": "string",
++              "description": "Where the node is in the source, such as orders.camel.yaml:18"
++            },
+             "duration": {
+               "type": "integer",
+               "description": "The wait duration in milliseconds"
+diff --git a/catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles/inflight.json b/catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles/inflight.json
+index b3b3126529fa9..4fbc5439a43f5 100644
+--- a/catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles/inflight.json
++++ b/catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/dev-consoles/inflight.json
+@@ -78,6 +78,10 @@
+               "type": "string",
+               "description": "The node ID where the exchange currently is"
+             },
++            "nodeSource": {
++              "type": "string",
++              "description": "Where the node is in the source, such as orders.camel.yaml:18"
++            },
+             "elapsed": {
+               "type": "integer",
+               "description": "Elapsed time in milliseconds since the exchange started"
+diff --git a/core/camel-api/src/main/java/org/apache/camel/spi/AsyncProcessorAwaitManager.java b/core/camel-api/src/main/java/org/apache/camel/spi/AsyncProcessorAwaitManager.java
+index 2bed568ce967a..9da0b58be96b0 100644
+--- a/core/camel-api/src/main/java/org/apache/camel/spi/AsyncProcessorAwaitManager.java
++++ b/core/camel-api/src/main/java/org/apache/camel/spi/AsyncProcessorAwaitManager.java
+@@ -122,6 +122,18 @@ interface AwaitThread {
+         @Nullable
+         String getNodeId();
+ 
++        /**
++         * Where the node is in the source, such as {@code orders.camel.yaml:18}
++         * <p/>
++         * Is <tt>null</tt> if message history or source location is disabled.
++         *
++         * @since 4.23
++         */
++        @Nullable
++        default String getNodeSource() {
++            return null;
++        }
++
+     }
+ 
+     /**
+diff --git a/core/camel-api/src/main/java/org/apache/camel/spi/InflightRepository.java b/core/camel-api/src/main/java/org/apache/camel/spi/InflightRepository.java
+index a203252439ea1..0668b4d9666e0 100644
+--- a/core/camel-api/src/main/java/org/apache/camel/spi/InflightRepository.java
++++ b/core/camel-api/src/main/java/org/apache/camel/spi/InflightRepository.java
+@@ -68,6 +68,18 @@ interface InflightExchange {
+         @Nullable
+         String getNodeId();
+ 
++        /**
++         * Where the node is in the source, such as {@code orders.camel.yaml:18}
++         * <p/>
++         * Is <tt>null</tt> if message history or source location is disabled.
++         *
++         * @since 4.23
++         */
++        @Nullable
++        default String getNodeSource() {
++            return null;
++        }
++
+         /**
+          * The id of the route where the exchange originates (started)
+          */
+diff --git a/core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultAsyncProcessorAwaitManager.java b/core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultAsyncProcessorAwaitManager.java
+index 7b88fb0385eff..fd52d530b1c6c 100644
+--- a/core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultAsyncProcessorAwaitManager.java
++++ b/core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultAsyncProcessorAwaitManager.java
+@@ -265,6 +265,9 @@ private static String dumpBlockedThread(AwaitThread entry) {
+         sb.append(style("Name:")).append(entry.getBlockedThread().getName()).append("\n");
+         sb.append(style("RouteId:")).append(safeNull(entry.getRouteId())).append("\n");
+         sb.append(style("NodeId:")).append(safeNull(entry.getNodeId())).append("\n");
++        if (entry.getNodeSource() != null) {
++            sb.append(style("Source:")).append(entry.getNodeSource()).append("\n");
++        }
+         sb.append(style("Duration:")).append(entry.getWaitDuration()).append(" msec.\n");
+         return sb.toString();
+     }
+@@ -314,6 +317,11 @@ public String getNodeId() {
+             return exchange.getExchangeExtension().getHistoryNodeId();
+         }
+ 
++        @Override
++        public String getNodeSource() {
++            return exchange.getExchangeExtension().getHistoryNodeSource();
++        }
++
+         public CountDownLatch getLatch() {
+             return latch;
+         }
+diff --git a/core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultInflightRepository.java b/core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultInflightRepository.java
+index b13186abbd15b..3e40b7f910edd 100644
+--- a/core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultInflightRepository.java
++++ b/core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultInflightRepository.java
+@@ -256,6 +256,11 @@ public String getNodeId() {
+             return exchange.getExchangeExtension().getHistoryNodeId();
+         }
+ 
++        @Override
++        public String getNodeSource() {
++            return exchange.getExchangeExtension().getHistoryNodeSource();
++        }
++
+         @Override
+         public String getFromRouteId() {
+             return exchange.getFromRouteId();
+diff --git a/core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultShutdownStrategy.java b/core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultShutdownStrategy.java
+index 9b9dfef4e83e6..40640bee5fa51 100644
+--- a/core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultShutdownStrategy.java
++++ b/core/camel-base-engine/src/main/java/org/apache/camel/impl/engine/DefaultShutdownStrategy.java
+@@ -829,8 +829,12 @@ protected void logInflightExchanges(CamelContext camelContext, List<RouteStartup
+             sb.append("\n\tInflightExchange: [exchangeId=").append(inflight.getExchange().getExchangeId())
+                     .append(", fromRouteId=").append(inflight.getExchange().getFromRouteId())
+                     .append(", atRouteId=").append(inflight.getAtRouteId())
+-                    .append(", nodeId=").append(inflight.getNodeId())
+-                    .append(", elapsed=").append(inflight.getElapsed())
++                    .append(", nodeId=").append(inflight.getNodeId());
++            if (inflight.getNodeSource() != null) {
++                // where the node is in the source, so it is clear which line is holding the shutdown up
++                sb.append(", nodeSource=").append(inflight.getNodeSource());
++            }
++            sb.append(", elapsed=").append(inflight.getElapsed())
+                     .append(", duration=").append(inflight.getDuration())
+                     .append("]");
+         }
+diff --git a/core/camel-console/src/generated/resources/META-INF/org/apache/camel/dev-console/blocked.json b/core/camel-console/src/generated/resources/META-INF/org/apache/camel/dev-console/blocked.json
+index f757bfe6efaa7..04e9bfbbf648f 100644
+--- a/core/camel-console/src/generated/resources/META-INF/org/apache/camel/dev-console/blocked.json
++++ b/core/camel-console/src/generated/resources/META-INF/org/apache/camel/dev-console/blocked.json
+@@ -36,6 +36,10 @@
+               "type": "string",
+               "description": "The node ID"
+             },
++            "nodeSource": {
++              "type": "string",
++              "description": "Where the node is in the source, such as orders.camel.yaml:18"
++            },
+             "duration": {
+               "type": "integer",
+               "description": "The wait duration in milliseconds"
+diff --git a/core/camel-console/src/generated/resources/META-INF/org/apache/camel/dev-console/inflight.json b/core/camel-console/src/generated/resources/META-INF/org/apache/camel/dev-console/inflight.json
+index b3b3126529fa9..4fbc5439a43f5 100644
+--- a/core/camel-console/src/generated/resources/META-INF/org/apache/camel/dev-console/inflight.json
++++ b/core/camel-console/src/generated/resources/META-INF/org/apache/camel/dev-console/inflight.json
+@@ -78,6 +78,10 @@
+               "type": "string",
+               "description": "The node ID where the exchange currently is"
+             },
++            "nodeSource": {
++              "type": "string",
++              "description": "Where the node is in the source, such as orders.camel.yaml:18"
++            },
+             "elapsed": {
+               "type": "integer",
+               "description": "Elapsed time in milliseconds since the exchange started"
+diff --git a/core/camel-console/src/main/java/org/apache/camel/impl/console/BlockedConsole.java b/core/camel-console/src/main/java/org/apache/camel/impl/console/BlockedConsole.java
+index 17c03bb358285..b1cf981cc3b96 100644
+--- a/core/camel-console/src/main/java/org/apache/camel/impl/console/BlockedConsole.java
++++ b/core/camel-console/src/main/java/org/apache/camel/impl/console/BlockedConsole.java
+@@ -35,6 +35,7 @@ public record Entry(
+             @Metadata(description = "The exchange ID") String exchangeId,
+             @Metadata(description = "The route ID") String routeId,
+             @Metadata(description = "The node ID") String nodeId,
++            @Metadata(description = "Where the node is in the source, such as orders.camel.yaml:18") String nodeSource,
+             @Metadata(description = "The wait duration in milliseconds") long duration) {
+     }
+ 
+@@ -55,8 +56,9 @@ protected String doCallText(Map<String, Object> options) {
+         sb.append(String.format("%n    Blocked: %s", am.size()));
+         for (AsyncProcessorAwaitManager.AwaitThread at : am.browse()) {
+             String age = TimeUtils.printDuration(at.getWaitDuration(), true);
+-            sb.append(String.format("%n    %s (at: %s/%s age: %s)",
+-                    at.getExchange().getExchangeId(), at.getRouteId(), at.getNodeId(), age));
++            String source = at.getNodeSource() != null ? " source: " + at.getNodeSource() : "";
++            sb.append(String.format("%n    %s (at: %s/%s%s age: %s)",
++                    at.getExchange().getExchangeId(), at.getRouteId(), at.getNodeId(), source, age));
+         }
+ 
+         return sb.toString();
+@@ -69,7 +71,8 @@ protected Map<String, Object> doCallJson(Map<String, Object> options) {
+         List<Entry> entries = new ArrayList<>();
+         for (AsyncProcessorAwaitManager.AwaitThread at : am.browse()) {
+             entries.add(new Entry(
+-                    at.getExchange().getExchangeId(), at.getRouteId(), at.getNodeId(), at.getWaitDuration()));
++                    at.getExchange().getExchangeId(), at.getRouteId(), at.getNodeId(), at.getNodeSource(),
++                    at.getWaitDuration()));
+         }
+ 
+         Response response = new Response(am.size(), entries.isEmpty() ? null : entries);
+diff --git a/core/camel-console/src/main/java/org/apache/camel/impl/console/InflightConsole.java b/core/camel-console/src/main/java/org/apache/camel/impl/console/InflightConsole.java
+index 3e730680466be..e2624a341fbbe 100644
+--- a/core/camel-console/src/main/java/org/apache/camel/impl/console/InflightConsole.java
++++ b/core/camel-console/src/main/java/org/apache/camel/impl/console/InflightConsole.java
+@@ -43,6 +43,7 @@ public record Exchange(
+             @Metadata(description = "Whether the exchange originated from a remote endpoint") boolean fromRemoteEndpoint,
+             @Metadata(description = "The route ID where the exchange currently is") String atRouteId,
+             @Metadata(description = "The node ID where the exchange currently is") String nodeId,
++            @Metadata(description = "Where the node is in the source, such as orders.camel.yaml:18") String nodeSource,
+             @Metadata(description = "Elapsed time in milliseconds since the exchange started") long elapsed,
+             @Metadata(description = "Duration in milliseconds the exchange has been at the current node") long duration) {
+     }
+@@ -70,9 +71,10 @@ protected String doCallText(Map<String, Object> options) {
+         if (repo.isInflightBrowseEnabled()) {
+             for (InflightRepository.InflightExchange ie : repo.browse(filter, max, false)) {
+                 String age = TimeUtils.printDuration(ie.getDuration(), true);
+-                sb.append(String.format("%n    %s (from: %s at: %s/%s remote: %b age: %s)",
++                String source = ie.getNodeSource() != null ? " source: " + ie.getNodeSource() : "";
++                sb.append(String.format("%n    %s (from: %s at: %s/%s%s remote: %b age: %s)",
+                         ie.getExchange().getExchangeId(), ie.getFromRouteId(), ie.getAtRouteId(), ie.getNodeId(),
+-                        ie.isFromRemoteEndpoint(), age));
++                        source, ie.isFromRemoteEndpoint(), age));
+             }
+         }
+ 
+@@ -93,7 +95,7 @@ protected Map<String, Object> doCallJson(Map<String, Object> options) {
+             for (InflightRepository.InflightExchange ie : repo.browse(filter, max, false)) {
+                 exchanges.add(new Exchange(
+                         ie.getExchange().getExchangeId(), ie.getFromRouteId(), ie.isFromRemoteEndpoint(),
+-                        ie.getAtRouteId(), ie.getNodeId(), ie.getElapsed(), ie.getDuration()));
++                        ie.getAtRouteId(), ie.getNodeId(), ie.getNodeSource(), ie.getElapsed(), ie.getDuration()));
+             }
+         }
+ 
+diff --git a/core/camel-core/src/test/java/org/apache/camel/impl/DefaultAsyncProcessorAwaitManagerTest.java b/core/camel-core/src/test/java/org/apache/camel/impl/DefaultAsyncProcessorAwaitManagerTest.java
+index 4c50999253c47..0cbbe37d4718a 100644
+--- a/core/camel-core/src/test/java/org/apache/camel/impl/DefaultAsyncProcessorAwaitManagerTest.java
++++ b/core/camel-core/src/test/java/org/apache/camel/impl/DefaultAsyncProcessorAwaitManagerTest.java
+@@ -83,6 +83,25 @@ public void testMessageHistoryWithNotNullElements() throws Exception {
+         waitForEndOfAsyncProcess();
+     }
+ 
++    @Test
++    public void testNodeSourceIsNullWhenNoneWasRecorded() throws Exception {
++        startAsyncProcess();
++        AsyncProcessorAwaitManager.AwaitThread awaitThread = defaultAsyncProcessorAwaitManager.browse().iterator().next();
++        assertThat(awaitThread.getNodeSource(), is(nullValue()));
++        waitForEndOfAsyncProcess();
++    }
++
++    @Test
++    public void testNodeSourceSaysWhereTheNodeIs() throws Exception {
++        startAsyncProcess();
++        exchange.getExchangeExtension().setHistoryNodeId("nodeId");
++        exchange.getExchangeExtension().setHistoryNodeSource("orders.camel.yaml:18");
++        AsyncProcessorAwaitManager.AwaitThread awaitThread = defaultAsyncProcessorAwaitManager.browse().iterator().next();
++        assertThat(awaitThread.getNodeId(), is("nodeId"));
++        assertThat(awaitThread.getNodeSource(), is("orders.camel.yaml:18"));
++        waitForEndOfAsyncProcess();
++    }
++
+     private void waitForEndOfAsyncProcess() throws InterruptedException {
+         latch.countDown();
+         thread.join(1000);
+diff --git a/core/camel-core/src/test/java/org/apache/camel/impl/InflightRepositoryNodeSourceTest.java b/core/camel-core/src/test/java/org/apache/camel/impl/InflightRepositoryNodeSourceTest.java
+new file mode 100644
+index 0000000000000..b7a1a5d9040c8
+--- /dev/null
++++ b/core/camel-core/src/test/java/org/apache/camel/impl/InflightRepositoryNodeSourceTest.java
+@@ -0,0 +1,81 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package org.apache.camel.impl;
++
++import java.util.Collection;
++import java.util.concurrent.atomic.AtomicReference;
++import java.util.regex.Pattern;
++
++import org.apache.camel.CamelContext;
++import org.apache.camel.ContextTestSupport;
++import org.apache.camel.builder.RouteBuilder;
++import org.apache.camel.spi.InflightRepository;
++import org.junit.jupiter.api.Test;
++
++import static org.junit.jupiter.api.Assertions.assertEquals;
++import static org.junit.jupiter.api.Assertions.assertNotNull;
++import static org.junit.jupiter.api.Assertions.assertTrue;
++
++/**
++ * An inflight exchange says where the node it sits at is in the source, so whoever reads the inflight list - the dev
++ * console, JMX, or the shutdown strategy naming what is holding the shutdown up - can go to the line (CAMEL-24975).
++ */
++public class InflightRepositoryNodeSourceTest extends ContextTestSupport {
++
++    /** Such as InflightRepositoryNodeSourceTest:73 */
++    private static final Pattern SOURCE = Pattern.compile("\\S+:\\d+");
++
++    private final AtomicReference<String> nodeSource = new AtomicReference<>();
++
++    @Override
++    protected CamelContext createCamelContext() throws Exception {
++        CamelContext context = super.createCamelContext();
++        context.getInflightRepository().setInflightBrowseEnabled(true);
++        context.setMessageHistory(true);
++        context.setSourceLocationEnabled(true);
++        return context;
++    }
++
++    @Test
++    public void testInflightExchangeSaysWhereTheNodeIs() {
++        template.sendBody("direct:start", "Hello World");
++
++        String source = nodeSource.get();
++        assertNotNull(source, "The inflight exchange should say where the node is");
++        assertTrue(SOURCE.matcher(source).matches(), "Expected a source:line but was: " + source);
++    }
++
++    @Override
++    protected RouteBuilder createRouteBuilder() {
++        return new RouteBuilder() {
++            @Override
++            public void configure() {
++                from("direct:start").routeId("foo")
++                        .process(exchange -> {
++                            Collection<InflightRepository.InflightExchange> list
++                                    = context.getInflightRepository().browse();
++                            assertEquals(1, list.size());
++
++                            InflightRepository.InflightExchange inflight = list.iterator().next();
++                            assertEquals("myProcessor", inflight.getNodeId());
++                            nodeSource.set(inflight.getNodeSource());
++                        }).id("myProcessor")
++                        .to("mock:result");
++            }
++        };
++    }
++}
+diff --git a/core/camel-management-api/src/main/java/org/apache/camel/api/management/mbean/CamelOpenMBeanTypes.java b/core/camel-management-api/src/main/java/org/apache/camel/api/management/mbean/CamelOpenMBeanTypes.java
+index 6264b459c8d90..5f5fc6a486bef 100644
+--- a/core/camel-management-api/src/main/java/org/apache/camel/api/management/mbean/CamelOpenMBeanTypes.java
++++ b/core/camel-management-api/src/main/java/org/apache/camel/api/management/mbean/CamelOpenMBeanTypes.java
+@@ -152,11 +152,12 @@ public static TabularType listAwaitThreadsTabularType() throws OpenDataException
+     public static CompositeType listAwaitThreadsCompositeType() throws OpenDataException {
+         return new CompositeType(
+                 "threads", "Threads",
+-                new String[] { "id", "name", "exchangeId", "routeId", "nodeId", "duration" },
+-                new String[] { "Thread Id", "Thread name", "ExchangeId", "RouteId", "NodeId", "Duration" },
++                new String[] { "id", "name", "exchangeId", "routeId", "nodeId", "nodeSource", "duration" },
++                new String[] {
++                        "Thread Id", "Thread name", "ExchangeId", "RouteId", "NodeId", "NodeSource", "Duration" },
+                 new OpenType[] {
+                         SimpleType.STRING, SimpleType.STRING, SimpleType.STRING, SimpleType.STRING, SimpleType.STRING,
+-                        SimpleType.STRING });
++                        SimpleType.STRING, SimpleType.STRING });
+     }
+ 
+     public static TabularType listEipsTabularType() throws OpenDataException {
+@@ -182,11 +183,12 @@ public static TabularType listInflightExchangesTabularType() throws OpenDataExce
+     public static CompositeType listInflightExchangesCompositeType() throws OpenDataException {
+         return new CompositeType(
+                 "exchanges", "Exchanges",
+-                new String[] { "exchangeId", "fromRouteId", "routeId", "nodeId", "elapsed", "duration" },
+-                new String[] { "Exchange Id", "From RouteId", "RouteId", "NodeId", "Elapsed", "Duration" },
++                new String[] { "exchangeId", "fromRouteId", "routeId", "nodeId", "nodeSource", "elapsed", "duration" },
++                new String[] {
++                        "Exchange Id", "From RouteId", "RouteId", "NodeId", "NodeSource", "Elapsed", "Duration" },
+                 new OpenType[] {
+                         SimpleType.STRING, SimpleType.STRING, SimpleType.STRING, SimpleType.STRING, SimpleType.STRING,
+-                        SimpleType.STRING });
++                        SimpleType.STRING, SimpleType.STRING });
+     }
+ 
+     public static TabularType choiceTabularType() throws OpenDataException {
+diff --git a/core/camel-management/src/main/java/org/apache/camel/management/mbean/ManagedAsyncProcessorAwaitManager.java b/core/camel-management/src/main/java/org/apache/camel/management/mbean/ManagedAsyncProcessorAwaitManager.java
+index ab7f74e38be3c..a209b900e1e8c 100644
+--- a/core/camel-management/src/main/java/org/apache/camel/management/mbean/ManagedAsyncProcessorAwaitManager.java
++++ b/core/camel-management/src/main/java/org/apache/camel/management/mbean/ManagedAsyncProcessorAwaitManager.java
+@@ -89,12 +89,13 @@ private static CompositeData toCompositeData(AsyncProcessorAwaitManager.AwaitThr
+         String exchangeId = entry.getExchange().getExchangeId();
+         String routeId = entry.getRouteId();
+         String nodeId = entry.getNodeId();
++        String nodeSource = entry.getNodeSource();
+         String duration = Long.toString(entry.getWaitDuration());
+ 
+         return new CompositeDataSupport(
+                 ct,
+-                new String[] { "id", "name", "exchangeId", "routeId", "nodeId", "duration" },
+-                new Object[] { id, name, exchangeId, routeId, nodeId, duration });
++                new String[] { "id", "name", "exchangeId", "routeId", "nodeId", "nodeSource", "duration" },
++                new Object[] { id, name, exchangeId, routeId, nodeId, nodeSource, duration });
+     }
+ 
+     @Override
+diff --git a/core/camel-management/src/main/java/org/apache/camel/management/mbean/ManagedInflightRepository.java b/core/camel-management/src/main/java/org/apache/camel/management/mbean/ManagedInflightRepository.java
+index d36f46ac39359..e4f28e64a9d9e 100644
+--- a/core/camel-management/src/main/java/org/apache/camel/management/mbean/ManagedInflightRepository.java
++++ b/core/camel-management/src/main/java/org/apache/camel/management/mbean/ManagedInflightRepository.java
+@@ -98,12 +98,13 @@ private static CompositeData toCompositeData(InflightRepository.InflightExchange
+         String fromRouteId = entry.getFromRouteId();
+         String atRouteId = entry.getAtRouteId();
+         String nodeId = entry.getNodeId();
++        String nodeSource = entry.getNodeSource();
+         String elapsed = Long.toString(entry.getElapsed());
+         String duration = Long.toString(entry.getDuration());
+ 
+         return new CompositeDataSupport(
+                 ct,
+-                new String[] { "exchangeId", "fromRouteId", "routeId", "nodeId", "elapsed", "duration" },
+-                new Object[] { exchangeId, fromRouteId, atRouteId, nodeId, elapsed, duration });
++                new String[] { "exchangeId", "fromRouteId", "routeId", "nodeId", "nodeSource", "elapsed", "duration" },
++                new Object[] { exchangeId, fromRouteId, atRouteId, nodeId, nodeSource, elapsed, duration });
+     }
+ }
+diff --git a/core/camel-management/src/test/java/org/apache/camel/management/ManagedInflightRepositoryNodeSourceTest.java b/core/camel-management/src/test/java/org/apache/camel/management/ManagedInflightRepositoryNodeSourceTest.java
+new file mode 100644
+index 0000000000000..efa76f7b341b4
+--- /dev/null
++++ b/core/camel-management/src/test/java/org/apache/camel/management/ManagedInflightRepositoryNodeSourceTest.java
+@@ -0,0 +1,92 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package org.apache.camel.management;
++
++import java.util.regex.Pattern;
++
++import javax.management.MBeanServer;
++import javax.management.ObjectName;
++import javax.management.openmbean.CompositeData;
++import javax.management.openmbean.TabularData;
++
++import org.apache.camel.CamelContext;
++import org.apache.camel.builder.RouteBuilder;
++import org.junit.jupiter.api.Test;
++import org.junit.jupiter.api.condition.DisabledOnOs;
++import org.junit.jupiter.api.condition.OS;
++
++import static org.apache.camel.management.DefaultManagementObjectNameStrategy.TYPE_SERVICE;
++import static org.junit.jupiter.api.Assertions.assertEquals;
++import static org.junit.jupiter.api.Assertions.assertNotNull;
++import static org.junit.jupiter.api.Assertions.assertTrue;
++
++/**
++ * The inflight exchanges listed over JMX say where the node they sit at is in the source (CAMEL-24975).
++ */
++@DisabledOnOs(OS.AIX)
++public class ManagedInflightRepositoryNodeSourceTest extends ManagementTestSupport {
++
++    /** Such as ManagedInflightRepositoryNodeSourceTest:80 */
++    private static final Pattern SOURCE = Pattern.compile("\\S+:\\d+");
++
++    @Override
++    protected CamelContext createCamelContext() throws Exception {
++        CamelContext context = super.createCamelContext();
++        context.setMessageHistory(true);
++        context.setSourceLocationEnabled(true);
++        return context;
++    }
++
++    @Test
++    public void testInflightRowSaysWhereTheNodeIs() throws Exception {
++        getMockEndpoint("mock:result").expectedMessageCount(1);
++
++        template.sendBody("direct:start", "Hello World");
++
++        assertMockEndpointsSatisfied();
++    }
++
++    @Override
++    protected RouteBuilder createRouteBuilder() {
++        return new RouteBuilder() {
++            @Override
++            public void configure() {
++                context.getInflightRepository().setInflightBrowseEnabled(true);
++
++                from("direct:start").routeId("foo")
++                        .process(exchange -> {
++                            MBeanServer mbeanServer = getMBeanServer();
++                            ObjectName name = getCamelObjectName(TYPE_SERVICE, "DefaultInflightRepository");
++
++                            TabularData data = (TabularData) mbeanServer.invoke(name, "browse", null, null);
++                            assertNotNull(data);
++                            assertEquals(1, data.size());
++
++                            CompositeData row = (CompositeData) data.values().iterator().next();
++                            assertEquals("myProcessor", row.get("nodeId"));
++
++                            Object source = row.get("nodeSource");
++                            assertNotNull(source, "The row should say where the node is");
++                            assertTrue(SOURCE.matcher(source.toString()).matches(),
++                                    "Expected a source:line but was: " + source);
++                        }).id("myProcessor")
++                        .to("mock:result");
++            }
++        };
++    }
++
++}
+diff --git a/docs/user-manual/modules/ROOT/pages/camel-4x-upgrade-guide-4_23.adoc b/docs/user-manual/modules/ROOT/pages/camel-4x-upgrade-guide-4_23.adoc
+index 1cc7bcf858521..f5303ee3698a4 100644
+--- a/docs/user-manual/modules/ROOT/pages/camel-4x-upgrade-guide-4_23.adoc
++++ b/docs/user-manual/modules/ROOT/pages/camel-4x-upgrade-guide-4_23.adoc
+@@ -148,6 +148,21 @@ The `route-topology` developer console (used by `camel cmd route-topology` and t
+ includes routes created by Kamelets, as these are an implementation detail of the Kamelet and were already hidden
+ from the route console. Set the `kamelets=true` option (or `--kamelets` on the CLI) to include them.
+ 
++The `inflight` and `blocked` developer consoles now carry a `nodeSource` field per entry, saying where the node the
++exchange sits at is in the source (such as `orders.camel.yaml:18`). It is `null` when message history or source
++location is disabled. Existing fields are unchanged.
++
++=== camel-management
++
++The JMX `browse` operation of the `DefaultInflightRepository` MBean and the `listAwaitThreads` data of the
++`DefaultAsyncProcessorAwaitManager` MBean gained a `nodeSource` column, saying where the node is in the source (such
++as `orders.camel.yaml:18`), next to the existing `nodeId`. It is `null` when message history or source location is
++disabled. Clients that read the row by item name are unaffected; a client that assumes a fixed number of columns
++should be reviewed.
++
++`InflightRepository.InflightExchange` and `AsyncProcessorAwaitManager.AwaitThread` gained a `getNodeSource()` method
++for the same value. Both are `default` methods returning `null`, so existing implementations continue to compile.
++
+ === camel-groovy
+ 
+ A `GroovyShellFactory` is now looked up in the registry once per `CamelContext`, when the first groovy expression is

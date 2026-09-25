@@ -1,0 +1,80 @@
+{
+  "dimensions" : [ {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+public boolean isAwaitAsyncResultsOnStop() {\n+\t\t\treturn this.awaitAsyncResultsOnStop;\n+\t\t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-kafka/src/main/java/org/springframework/boot/kafka/autoconfigure/KafkaProperties.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+public void setAwaitAsyncResultsOnStop(boolean awaitAsyncResultsOnStop) {\n+\t\t\tthis.awaitAsyncResultsOnStop = awaitAsyncResultsOnStop;\n+\t\t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-kafka/src/main/java/org/springframework/boot/kafka/autoconfigure/KafkaProperties.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Modify Body",
+    "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " private void configureContainer(ContainerProperties container) {\n \t\tPropertyMapper map = PropertyMapper.get();\n \t\tAssert.state(this.properties != null, \"'properties' must not be null\");\n \t\tListener properties = this.properties.getListener();\n \t\tmap.from(properties::getAckMode).to(container::setAckMode);\n \t\tmap.from(properties::getAsyncAcks).to(container::setAsyncAcks);\n \t\tmap.from(properties::getClientId).to(container::setClientId);\n \t\tmap.from(properties::getAckCount).to(container::setAckCount);\n \t\tmap.from(properties::getAckTime).as(Duration::toMillis).to(container::setAckTime);\n \t\tmap.from(properties::getPollTimeout).as(Duration::toMillis).to(container::setPollTimeout);\n \t\tmap.from(properties::getNoPollThreshold).to(container::setNoPollThreshold);\n \t\tmap.from(properties.getIdleBetweenPolls()).as(Duration::toMillis).to(container::setIdleBetweenPolls);\n \t\tmap.from(properties::getIdleEventInterval).as(Duration::toMillis).to(container::setIdleEventInterval);\n \t\tmap.from(properties::getIdlePartitionEventInterval)\n \t\t\t.as(Duration::toMillis)\n \t\t\t.to(container::setIdlePartitionEventInterval);\n \t\tmap.from(properties::getMonitorInterval)\n \t\t\t.as(Duration::getSeconds)\n \t\t\t.as(Number::intValue)\n \t\t\t.to(container::setMonitorInterval);\n \t\tmap.from(properties::getLogContainerConfig).to(container::setLogContainerConfig);\n \t\tmap.from(properties::isMissingTopicsFatal).to(container::setMissingTopicsFatal);\n \t\tmap.from(properties::isImmediateStop).to(container::setStopImmediate);\n+\t\tmap.from(properties::isAwaitAsyncResultsOnStop).to(container::setAwaitAsyncResultsOnStop);\n \t\tmap.from(properties::isObservationEnabled).to(container::setObservationEnabled);\n \t\tmap.from(properties::getAuthExceptionRetryInterval).to(container::setAuthExceptionRetryInterval);\n \t\tmap.from(this.transactionManager).to(container::setKafkaAwareTransactionManager);\n \t\tmap.from(this.rebalanceListener).to(container::setConsumerRebalanceListener);\n \t\tmap.from(this.listenerTaskExecutor).to(container::setListenerTaskExecutor);\n \t\tmap.from(this.observationConvention).to(container::setObservationConvention);\n \t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-kafka/src/main/java/org/springframework/boot/kafka/autoconfigure/ConcurrentKafkaListenerContainerFactoryConfigurer.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Add",
+    "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ "-\n+private boolean awaitAsyncResultsOnStop;" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-kafka/src/main/java/org/springframework/boot/kafka/autoconfigure/KafkaProperties.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "STRUCTURAL",
+    "conceptName" : "Test changes in KafkaAutoConfigurationTests",
+    "conceptDescription" : "1 change in test code of KafkaAutoConfigurationTests.",
+    "inferred" : false,
+    "confidencePercent" : 100,
+    "evidence" : [ " @SuppressWarnings(\"unchecked\")\n \t@Test\n \tvoid listenerProperties() {\n \t\tthis.contextRunner\n \t\t\t.withPropertyValues(\"spring.kafka.listener.ack-mode=MANUAL\", \"spring.kafka.listener.client-id=client\",\n \t\t\t\t\t\"spring.kafka.listener.ack-count=123\", \"spring.kafka.listener.ack-time=456\",\n \t\t\t\t\t\"spring.kafka.listener.concurrency=3\", \"spring.kafka.listener.poll-timeout=2000\",\n \t\t\t\t\t\"spring.kafka.listener.no-poll-threshold=2.5\", \"spring.kafka.listener.type=batch\",\n \t\t\t\t\t\"spring.kafka.listener.idle-between-polls=1s\", \"spring.kafka.listener.idle-event-interval=1s\",\n \t\t\t\t\t\"spring.kafka.listener.idle-partition-event-interval=1s\",\n \t\t\t\t\t\"spring.kafka.listener.monitor-interval=45\", \"spring.kafka.listener.log-container-config=true\",\n \t\t\t\t\t\"spring.kafka.listener.missing-topics-fatal=true\", \"spring.kafka.jaas.enabled=true\",\n \t\t\t\t\t\"spring.kafka.listener.immediate-stop=true\", \"spring.kafka.producer.transaction-id-prefix=foo\",\n \t\t\t\t\t\"spring.kafka.jaas.login-module=foo\", \"spring.kafka.jaas.control-flag=REQUISITE\",\n \t\t\t\t\t\"spring.kafka.jaas.options.useKeyTab=true\", \"spring.kafka.listener.async-acks=true\",\n-\t\t\t\t\t\"spring.kafka.listener.observation-enabled=true\")\n+\t\t\t\t\t\"spring.kafka.listener.observation-enabled=true\",\n+\t\t\t\t\t\"spring.kafka.listener.await-async-results-on-stop=true\")\n \t\t\t.run((context) -> {\n \t\t\t\tDefaultKafkaProducerFactory<?, ?> producerFactory = context.getBean(DefaultKafkaProducerFactory.class);\n \t\t\t\tDefaultKafkaConsumerFactory<?, ?> consumerFactory = context.getBean(DefaultKafkaConsumerFactory.class);\n \t\t\t\tKafkaTemplate<?, ?> kafkaTemplate = context.getBean(KafkaTemplate.class);\n \t\t\t\tassertThat(kafkaTemplate.getKafkaAdmin()).isNull();\n \t\t\t\tassertThat(kafkaTemplate).hasFieldOrPropertyWithValue(\"producerFactory\", producerFactory);\n \t\t\t\tAbstractKafkaListenerContainerFactory<?, ?, ?> kafkaListenerContainerFactory = (AbstractKafkaListenerContainerFactory<?, ?, ?>) context\n \t\t\t\t\t.getBean(KafkaListenerContainerFactory.class);\n \t\t\t\tassertThat(kafkaTemplate.getMessageConverter()).isInstanceOf(MessagingMessageConverter.class);\n \t\t\t\tassertThat(kafkaListenerContainerFactory.getConsumerFactory()).isEqualTo(consumerFactory);\n \t\t\t\tContainerProperties containerProperties = kafkaListenerContainerFactory.getContainerProperties();\n \t\t\t\tassertThat(containerProperties.getAckMode()).isEqualTo(AckMode.MANUAL);\n \t\t\t\tassertThat(containerProperties.isAsyncAcks()).isTrue();\n \t\t\t\tassertThat(containerProperties.getClientId()).isEqualTo(\"client\");\n \t\t\t\tassertThat(containerProperties.getAckCount()).isEqualTo(123);\n \t\t\t\tassertThat(containerProperties.getAckTime()).isEqualTo(456L);\n \t\t\t\tassertThat(containerProperties.getPollTimeout()).isEqualTo(2000L);\n \t\t\t\tassertThat(containerProperties.getNoPollThreshold()).isEqualTo(2.5f);\n \t\t\t\tassertThat(containerProperties.getIdleBetweenPolls()).isEqualTo(1000L);\n \t\t\t\tassertThat(containerProperties.getIdleEventInterval()).isEqualTo(1000L);\n \t\t\t\tassertThat(containerProperties.getIdlePartitionEventInterval()).isEqualTo(1000L);\n \t\t\t\tassertThat(containerProperties.getMonitorInterval()).isEqualTo(45);\n \t\t\t\tassertThat(containerProperties.isLogContainerConfig()).isTrue();\n \t\t\t\tassertThat(containerProperties.isMissingTopicsFatal()).isTrue();\n \t\t\t\tassertThat(containerProperties.isStopImmediate()).isTrue();\n+\t\t\t\tassertThat(containerProperties.isAwaitAsyncResultsOnStop()).isTrue();\n \t\t\t\tassertThat(containerProperties.isObservationEnabled()).isTrue();\n \t\t\t\tassertThat(kafkaListenerContainerFactory).extracting(\"concurrency\").isEqualTo(3);\n \t\t\t\tassertThat(kafkaListenerContainerFactory.isBatchListener()).isTrue();\n \t\t\t\tassertThat(kafkaListenerContainerFactory).hasFieldOrPropertyWithValue(\"autoStartup\", true);\n \t\t\t\tassertThat(context.getBeansOfType(KafkaJaasLoginModuleInitializer.class)).hasSize(1);\n \t\t\t\tKafkaJaasLoginModuleInitializer jaas = context.getBean(KafkaJaasLoginModuleInitializer.class);\n \t\t\t\tassertThat(jaas).hasFieldOrPropertyWithValue(\"loginModule\", \"foo\");\n \t\t\t\tassertThat(jaas).hasFieldOrPropertyWithValue(\"controlFlag\",\n \t\t\t\t\t\tAppConfigurationEntry.LoginModuleControlFlag.REQUISITE);\n \t\t\t\tassertThat(context.getBeansOfType(KafkaTransactionManager.class)).hasSize(1);\n \t\t\t\tassertThat(((Map<String, String>) ReflectionTestUtils.getField(jaas, \"options\")))\n \t\t\t\t\t.containsExactly(entry(\"useKeyTab\", \"true\"));\n \t\t\t});\n \t}" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-kafka/src/test/java/org/springframework/boot/kafka/autoconfigure/KafkaAutoConfigurationTests.java" ],
+    "groupedMoveCount" : 1
+  }, {
+    "dimension" : "FRAMEWORK",
+    "conceptName" : "Spring: Configuration Property spring.kafka.listener.await-async-results-on-stop",
+    "conceptDescription" : "A field of a @ConfigurationProperties class: a property key users set in application.properties or application.yml.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-\n+private boolean awaitAsyncResultsOnStop;" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-kafka/src/main/java/org/springframework/boot/kafka/autoconfigure/KafkaProperties.java" ],
+    "groupedMoveCount" : 0
+  }, {
+    "dimension" : "RESPONSIBILITY",
+    "conceptName" : "Add Capability",
+    "conceptDescription" : "A new business-meaningful capability was introduced.",
+    "inferred" : true,
+    "confidencePercent" : 70,
+    "evidence" : [ "-\n+public boolean isAwaitAsyncResultsOnStop() {\n+\t\t\treturn this.awaitAsyncResultsOnStop;\n+\t\t}", "-\n+public void setAwaitAsyncResultsOnStop(boolean awaitAsyncResultsOnStop) {\n+\t\t\tthis.awaitAsyncResultsOnStop = awaitAsyncResultsOnStop;\n+\t\t}", "-\n+private boolean awaitAsyncResultsOnStop;" ],
+    "supportingConceptNames" : [ ],
+    "beforeEvidenceCount" : 0,
+    "filesTouched" : [ "module/spring-boot-kafka/src/main/java/org/springframework/boot/kafka/autoconfigure/KafkaProperties.java" ],
+    "groupedMoveCount" : 3
+  } ]
+}

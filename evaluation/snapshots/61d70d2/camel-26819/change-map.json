@@ -1,0 +1,163 @@
+{
+  "prTitle" : "Fix ConcurrentModificationException and NullPointerException in concu…",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 5,
+    "UNKNOWN" : 2,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "QUREX0NMQVNTCkRlZmF1bHRNb2RlbENvbmN1cnJlbnRUZXN0",
+    "description" : "Add class DefaultModelConcurrentTest",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_CLASS",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TW9kZWxDb25jdXJyZW50VGVzdCN0ZXN0Q29uY3VycmVudEFkZEN1c3RvbUJlYW4",
+    "description" : "Add DefaultModelConcurrentTest#testConcurrentAddCustomBean",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TW9kZWxDb25jdXJyZW50VGVzdCN0ZXN0Q29uY3VycmVudEFkZEN1c3RvbUJlYW5XaXRoU2FtZU5hbWU",
+    "description" : "Add DefaultModelConcurrentTest#testConcurrentAddCustomBeanWithSameName",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "QUREX1NZTUJPTApTaW1wbGVSZWdpc3RyeVRlc3QjdGVzdENvbmN1cnJlbnRCaW5k",
+    "description" : "Add SimpleRegistryTest#testConcurrentBind",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 4,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NrLCArdW5sb2NrCkRlZmF1bHRNb2RlbCNhZGRDdXN0b21CZWFu",
+    "description" : "Modify body of DefaultModel#addCustomBean: +lock, +unlock",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 5,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClNpbXBsZVJlZ2lzdHJ5I2JpbmQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of SimpleRegistry#bind: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 6,
+    "changeKey" : "QUREX0ZJRUxECkRlZmF1bHRNb2RlbCNsb2c",
+    "description" : "Add field DefaultModel#log",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_FIELD",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "DefaultModelConcurrentTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "QUREX0NMQVNTCkRlZmF1bHRNb2RlbENvbmN1cnJlbnRUZXN0",
+      "description" : "Add class DefaultModelConcurrentTest",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_CLASS",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TW9kZWxDb25jdXJyZW50VGVzdCN0ZXN0Q29uY3VycmVudEFkZEN1c3RvbUJlYW4",
+      "description" : "Add DefaultModelConcurrentTest#testConcurrentAddCustomBean",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApEZWZhdWx0TW9kZWxDb25jdXJyZW50VGVzdCN0ZXN0Q29uY3VycmVudEFkZEN1c3RvbUJlYW5XaXRoU2FtZU5hbWU",
+      "description" : "Add DefaultModelConcurrentTest#testConcurrentAddCustomBeanWithSameName",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "SimpleRegistryTest",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "QUREX1NZTUJPTApTaW1wbGVSZWdpc3RyeVRlc3QjdGVzdENvbmN1cnJlbnRCaW5k",
+      "description" : "Add SimpleRegistryTest#testConcurrentBind",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "DefaultModel",
+    "entries" : [ {
+      "id" : 4,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCitsb2NrLCArdW5sb2NrCkRlZmF1bHRNb2RlbCNhZGRDdXN0b21CZWFu",
+      "description" : "Modify body of DefaultModel#addCustomBean: +lock, +unlock",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 6,
+      "changeKey" : "QUREX0ZJRUxECkRlZmF1bHRNb2RlbCNsb2c",
+      "description" : "Add field DefaultModel#log",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_FIELD",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SimpleRegistry",
+    "entries" : [ {
+      "id" : 5,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZClNpbXBsZVJlZ2lzdHJ5I2JpbmQKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of SimpleRegistry#bind: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

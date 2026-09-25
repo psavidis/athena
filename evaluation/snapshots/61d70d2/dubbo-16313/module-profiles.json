@@ -1,0 +1,38 @@
+{
+  "dubbo-spring-boot" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private void addOrReplace(MutablePropertySources propertySources, Map<String, Object> map) {\n         MapPropertySource target = null;\n         if (propertySources.contains(PROPERTY_SOURCE_NAME)) {\n             PropertySource<?> source = propertySources.get(PROPERTY_SOURCE_NAME);\n             if (source instanceof MapPropertySource) {\n-                target = (MapPropertySource) source;\n+                // The existing backing map may be immutable, so copy into a mutable map and replace the\n+                // source instead of mutating it in place. See dubbo#16268.\n+                Map<String, Object> merged = new HashMap<>(((MapPropertySource) source).getSource());\n                 for (Map.Entry<String, Object> entry : map.entrySet()) {\n                     String key = entry.getKey();\n-                    if (!target.containsProperty(key)) {\n-                        target.getSource().put(key, entry.getValue());\n+                    if (!merged.containsKey(key)) {\n+                        merged.put(key, entry.getValue());\n                     }\n                 }\n+                target = new MapPropertySource(PROPERTY_SOURCE_NAME, merged);\n+                propertySources.replace(PROPERTY_SOURCE_NAME, target);\n             }\n         }\n         if (target == null) {\n             target = new MapPropertySource(PROPERTY_SOURCE_NAME, map);\n         }\n         if (!propertySources.contains(PROPERTY_SOURCE_NAME)) {\n             propertySources.addLast(target);\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dubbo-spring-boot-project/dubbo-spring-boot/src/main/java/org/apache/dubbo/spring/boot/env/DubboDefaultPropertiesEnvironmentPostProcessor.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in DubboDefaultPropertiesEnvironmentPostProcessorTest",
+      "conceptDescription" : "2 changes in test code of DubboDefaultPropertiesEnvironmentPostProcessorTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@Test\n+    void testPostProcessEnvironmentOnImmutableDefaultProperties() {\n+        MockEnvironment environment = new MockEnvironment();\n+        MutablePropertySources propertySources = environment.getPropertySources();\n+        propertySources.addLast(\n+                new MapPropertySource(\"defaultProperties\", Collections.unmodifiableMap(new HashMap<String, Object>())));\n \n+        instance.postProcessEnvironment(environment, springApplication);\n+\n+        PropertySource<?> defaultPropertySource = propertySources.get(\"defaultProperties\");\n+        assertNotNull(defaultPropertySource);\n+        assertEquals(\"true\", defaultPropertySource.getProperty(\"dubbo.config.multiple\"));\n+    }", "+@Test\n+    void testImmutableDefaultPropertiesDoesNotOverrideExistingKey() {\n+        MockEnvironment environment = new MockEnvironment();\n+        MutablePropertySources propertySources = environment.getPropertySources();\n+        Map<String, Object> existing = new HashMap<>();\n+        existing.put(\"dubbo.config.multiple\", \"false\");\n+        propertySources.addLast(new MapPropertySource(\"defaultProperties\", Collections.unmodifiableMap(existing)));\n \n+        assertDoesNotThrow(() -> instance.postProcessEnvironment(environment, springApplication));\n+\n+        PropertySource<?> defaultPropertySource = propertySources.get(\"defaultProperties\");\n+        assertNotNull(defaultPropertySource);\n+        assertEquals(\"false\", defaultPropertySource.getProperty(\"dubbo.config.multiple\"));\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dubbo-spring-boot-project/dubbo-spring-boot/src/test/java/org/apache/dubbo/spring/boot/env/DubboDefaultPropertiesEnvironmentPostProcessorTest.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " private void addOrReplace(MutablePropertySources propertySources, Map<String, Object> map) {\n         MapPropertySource target = null;\n         if (propertySources.contains(PROPERTY_SOURCE_NAME)) {\n             PropertySource<?> source = propertySources.get(PROPERTY_SOURCE_NAME);\n             if (source instanceof MapPropertySource) {\n-                target = (MapPropertySource) source;\n+                // The existing backing map may be immutable, so copy into a mutable map and replace the\n+                // source instead of mutating it in place. See dubbo#16268.\n+                Map<String, Object> merged = new HashMap<>(((MapPropertySource) source).getSource());\n                 for (Map.Entry<String, Object> entry : map.entrySet()) {\n                     String key = entry.getKey();\n-                    if (!target.containsProperty(key)) {\n-                        target.getSource().put(key, entry.getValue());\n+                    if (!merged.containsKey(key)) {\n+                        merged.put(key, entry.getValue());\n                     }\n                 }\n+                target = new MapPropertySource(PROPERTY_SOURCE_NAME, merged);\n+                propertySources.replace(PROPERTY_SOURCE_NAME, target);\n             }\n         }\n         if (target == null) {\n             target = new MapPropertySource(PROPERTY_SOURCE_NAME, map);\n         }\n         if (!propertySources.contains(PROPERTY_SOURCE_NAME)) {\n             propertySources.addLast(target);\n         }\n     }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "dubbo-spring-boot-project/dubbo-spring-boot/src/main/java/org/apache/dubbo/spring/boot/env/DubboDefaultPropertiesEnvironmentPostProcessor.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "territories" : [ {
+    "moduleName" : "vertx-core",
+    "status" : "TOUCHED",
+    "fileCount" : 2,
+    "statusSummary" : "2 files · 2 changes",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ "QUREX1NZTUJPTApETlNUZXN0I3Rlc3RMb2NhbGhvc3ROYW1lU2VydmVy", "TU9ESUZZX01FVEhPRF9CT0RZCitnZXRBZGRyZXNzLCArZ2V0SG9zdEFkZHJlc3MsIC1nZXRIb3N0U3RyaW5nCkRuc0NsaWVudEltcGwjPGluaXQ-" ],
+    "testChangeKeys" : [ "QUREX1NZTUJPTApETlNUZXN0I3Rlc3RMb2NhbGhvc3ROYW1lU2VydmVy" ]
+  }, {
+    "moduleName" : "vertx-core-logging",
+    "status" : "IDLE",
+    "fileCount" : 0,
+    "statusSummary" : "unchanged",
+    "techStack" : "JAVA",
+    "techStackLabel" : "Java",
+    "changeKeys" : [ ],
+    "testChangeKeys" : [ ]
+  } ],
+  "dependencies" : [ {
+    "from" : "vertx-core",
+    "to" : "vertx-core-logging"
+  } ]
+}

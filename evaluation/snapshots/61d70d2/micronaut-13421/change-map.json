@@ -1,0 +1,94 @@
+{
+  "prTitle" : "Release the connection when a streaming client call fails with an error status",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 2,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 1,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXR0eUh0dHBDbGllbnQjYnVpbGRTdHJlYW1FeGNoYW5nZQpicmFuY2ggYWRkZWQ",
+    "description" : "Change control flow of NettyHttpClient#buildStreamExchange: branch added",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXR0eUh0dHBDbGllbnQjcmVhZEJvZHlPbkVycm9yCmNvbmRpdGlvbiBjaGFuZ2Vk",
+    "description" : "Change control flow of NettyHttpClient#readBodyOnError: condition changed",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApOZXR0eUh0dHBDbGllbnQjc2hvdWxkQnVmZmVyRXJyb3JCb2R5",
+    "description" : "Add NettyHttpClient#shouldBufferErrorBody",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 3,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk5ldHR5SHR0cENsaWVudCNoYW5kbGVTdHJlYW1IdHRwRXJyb3IKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+    "description" : "Modify body of NettyHttpClient#handleStreamHttpError: other statements changed",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "NettyHttpClient",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXR0eUh0dHBDbGllbnQjYnVpbGRTdHJlYW1FeGNoYW5nZQpicmFuY2ggYWRkZWQ",
+      "description" : "Change control flow of NettyHttpClient#buildStreamExchange: branch added",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 1,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpOZXR0eUh0dHBDbGllbnQjcmVhZEJvZHlPbkVycm9yCmNvbmRpdGlvbiBjaGFuZ2Vk",
+      "description" : "Change control flow of NettyHttpClient#readBodyOnError: condition changed",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApOZXR0eUh0dHBDbGllbnQjc2hvdWxkQnVmZmVyRXJyb3JCb2R5",
+      "description" : "Add NettyHttpClient#shouldBufferErrorBody",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 3,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCk5ldHR5SHR0cENsaWVudCNoYW5kbGVTdHJlYW1IdHRwRXJyb3IKb3RoZXIgc3RhdGVtZW50cyBjaGFuZ2Vk",
+      "description" : "Modify body of NettyHttpClient#handleStreamHttpError: other statements changed",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}

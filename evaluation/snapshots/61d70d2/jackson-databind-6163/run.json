@@ -1,0 +1,10 @@
+{
+  "analysisStatus" : "READY",
+  "degradedFiles" : [ ],
+  "repositoryUrl" : "https://github.com/FasterXML/jackson-databind.git",
+  "base" : "30e603d3ffb6abe2bc1febfeb682c1a16e6c730c",
+  "head" : "a60292ae8cfa801bd34227591658ed74be12b994",
+  "changeCount" : 1,
+  "moduleCount" : 1,
+  "checkoutAndAnalysisSeconds" : 4.68
+}

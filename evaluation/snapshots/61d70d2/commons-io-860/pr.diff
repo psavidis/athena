@@ -1,0 +1,68 @@
+diff --git a/src/main/java/org/apache/commons/io/input/BoundedReader.java b/src/main/java/org/apache/commons/io/input/BoundedReader.java
+index 5ba0dfe6b18..9920154ae1a 100644
+--- a/src/main/java/org/apache/commons/io/input/BoundedReader.java
++++ b/src/main/java/org/apache/commons/io/input/BoundedReader.java
+@@ -132,7 +132,15 @@ public void reset() throws IOException {
+ 
+     @Override
+     public long skip(final long n) throws IOException {
+-        charsRead += n;
+-        return super.skip(n);
++        if (n <= 0) {
++            return super.skip(n);
++        }
++        final int remaining = maxCharsFromTargetReader - charsRead;
++        if (remaining <= 0) {
++            return 0;
++        }
++        final long skipped = super.skip(Math.min(n, remaining));
++        charsRead += (int) skipped;
++        return skipped;
+     }
+ }
+diff --git a/src/test/java/org/apache/commons/io/input/BoundedReaderTest.java b/src/test/java/org/apache/commons/io/input/BoundedReaderTest.java
+index 3a90851478d..806d5cd6574 100644
+--- a/src/test/java/org/apache/commons/io/input/BoundedReaderTest.java
++++ b/src/test/java/org/apache/commons/io/input/BoundedReaderTest.java
+@@ -24,6 +24,7 @@
+ 
+ import java.io.BufferedReader;
+ import java.io.File;
++import java.io.FilterReader;
+ import java.io.IOException;
+ import java.io.LineNumberReader;
+ import java.io.Reader;
+@@ -242,4 +243,33 @@ void testSkipTest() throws IOException {
+             assertEquals(-1, mr.read());
+         }
+     }
++
++    @Test
++    void testSkipDoesNotExceedBound() throws IOException {
++        try (BoundedReader mr = new BoundedReader(new StringReader("01234567890"), 3)) {
++            assertEquals(3, mr.skip(100));
++            assertEquals(-1, mr.read());
++        }
++    }
++
++    @Test
++    void testSkipDoesNotOverflowCharsRead() throws IOException {
++        try (BoundedReader mr = new BoundedReader(new StringReader("01234567890"), 3)) {
++            assertEquals(3, mr.skip(Long.MAX_VALUE));
++            assertEquals(-1, mr.read());
++        }
++    }
++
++    @Test
++    void testSkipUsesActualSkippedCount() throws IOException {
++        try (BoundedReader mr = new BoundedReader(new FilterReader(new StringReader("01234567890")) {
++            @Override
++            public long skip(final long n) throws IOException {
++                return super.skip(Math.min(n, 2));
++            }
++        }, 5)) {
++            assertEquals(2, mr.skip(5));
++            assertEquals('2', mr.read());
++        }
++    }
+ }

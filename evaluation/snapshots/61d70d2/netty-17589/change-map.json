@@ -1,0 +1,57 @@
+{
+  "prTitle" : "SingleThreadEventExecutor: fix race between suspend and cancellation …",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 1,
+    "STRUCTURAL" : 1,
+    "UNKNOWN" : 0,
+    "MECHANICAL" : 0
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW5nbGVUaHJlYWRFdmVudEV4ZWN1dG9yI2RvU3RhcnRUaHJlYWQKYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz",
+    "description" : "Change control flow of SingleThreadEventExecutor#doStartThread: branch added; same calls",
+    "category" : "BEHAVIORAL",
+    "kind" : "CHANGE_CONTROL_FLOW",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApTaW5nbGVUaHJlYWRFdmVudEV4ZWN1dG9yVGVzdCN0ZXN0U3VzcGVuZERvZXNOb3RSYWNlV2l0aENhbmNlbGxlZFNjaGVkdWxlZFRhc2s",
+    "description" : "Add SingleThreadEventExecutorTest#testSuspendDoesNotRaceWithCancelledScheduledTask",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "SingleThreadEventExecutor",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Q0hBTkdFX0NPTlRST0xfRkxPVwpTaW5nbGVUaHJlYWRFdmVudEV4ZWN1dG9yI2RvU3RhcnRUaHJlYWQKYnJhbmNoIGFkZGVkOyBzYW1lIGNhbGxz",
+      "description" : "Change control flow of SingleThreadEventExecutor#doStartThread: branch added; same calls",
+      "category" : "BEHAVIORAL",
+      "kind" : "CHANGE_CONTROL_FLOW",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  }, {
+    "enclosingType" : "SingleThreadEventExecutorTest",
+    "entries" : [ {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApTaW5nbGVUaHJlYWRFdmVudEV4ZWN1dG9yVGVzdCN0ZXN0U3VzcGVuZERvZXNOb3RSYWNlV2l0aENhbmNlbGxlZFNjaGVkdWxlZFRhc2s",
+      "description" : "Add SingleThreadEventExecutorTest#testSuspendDoesNotRaceWithCancelledScheduledTask",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  } ]
+}

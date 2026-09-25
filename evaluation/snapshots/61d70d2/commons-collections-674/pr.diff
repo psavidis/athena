@@ -1,0 +1,79 @@
+diff --git a/src/main/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMap.java b/src/main/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMap.java
+index c7cdea3950..077f27e231 100644
+--- a/src/main/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMap.java
++++ b/src/main/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMap.java
+@@ -1763,6 +1763,7 @@ public V putIfAbsent(final K key, final V value) {
+      */
+     @Override
+     public V remove(final Object key) {
++        Objects.requireNonNull(key, "key");
+         final int hash = hashOf(key);
+         return segmentFor(hash).remove(key, hash, null, false);
+     }
+@@ -1774,6 +1775,7 @@ public V remove(final Object key) {
+      */
+     @Override
+     public boolean remove(final Object key, final Object value) {
++        Objects.requireNonNull(key, "key");
+         final int hash = hashOf(key);
+         if (value == null) {
+             return false;
+@@ -1789,6 +1791,7 @@ public boolean remove(final Object key, final Object value) {
+      */
+     @Override
+     public V replace(final K key, final V value) {
++        Objects.requireNonNull(key, "key");
+         Objects.requireNonNull(value, "value");
+         final int hash = hashOf(key);
+         return segmentFor(hash).replace(key, hash, value);
+@@ -1801,6 +1804,7 @@ public V replace(final K key, final V value) {
+      */
+     @Override
+     public boolean replace(final K key, final V oldValue, final V newValue) {
++        Objects.requireNonNull(key, "key");
+         Objects.requireNonNull(oldValue, "oldValue");
+         Objects.requireNonNull(newValue, "newValue");
+         final int hash = hashOf(key);
+diff --git a/src/test/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMapTest.java b/src/test/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMapTest.java
+index 60f2a7e31c..2954a81f61 100644
+--- a/src/test/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMapTest.java
++++ b/src/test/java/org/apache/commons/collections4/map/ConcurrentReferenceHashMapTest.java
+@@ -17,6 +17,7 @@
+ 
+ package org.apache.commons.collections4.map;
+ 
++import static org.junit.jupiter.api.Assertions.assertThrows;
+ import static org.junit.jupiter.api.Assertions.assertFalse;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
+ 
+@@ -50,6 +51,30 @@ void testBuilderAll() {
+         map0.put(2, "2");
+         assertTrue(map.containsKey(1));
+         assertFalse(map.containsKey(2));
++    }
++
++    @Test
++    void testRemoveNullKeyThrowsWithoutIdentityComparisons() {
++        final ConcurrentReferenceHashMap<String, String> map = ConcurrentReferenceHashMap.<String, String>builder()
++                .get();
++        map.put("testKey", "testValue");
++
++        assertThrows(NullPointerException.class, () -> map.remove(null, "testValue"));
++        assertThrows(NullPointerException.class, () -> map.remove(null));
++        assertThrows(NullPointerException.class, () -> map.replace(null, "value"));
++        assertThrows(NullPointerException.class, () -> map.replace(null, "oldValue", "newValue"));
++    }
++
++    @Test
++    void testRemoveNullKeyThrowsWithIdentityComparisons() {
++        final ConcurrentReferenceHashMap<String, String> map = ConcurrentReferenceHashMap.<String, String>builder()
++                .setOptions(EnumSet.of(Option.IDENTITY_COMPARISONS))
++                .get();
++        map.put("testKey", "testValue");
+ 
++        assertThrows(NullPointerException.class, () -> map.remove(null));
++        assertThrows(NullPointerException.class, () -> map.remove(null, "value"));
++        assertThrows(NullPointerException.class, () -> map.replace(null, "value"));
++        assertThrows(NullPointerException.class, () -> map.replace(null, "old", "new"));
+     }
+ }

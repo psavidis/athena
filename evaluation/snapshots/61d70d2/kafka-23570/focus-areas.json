@@ -1,0 +1,13 @@
+[ {
+  "entity" : "StreamTask",
+  "description" : "Modify body of StreamTask#close: +clear"
+}, {
+  "entity" : "SourceTopicChangelogRestoreIntegrationTest",
+  "description" : "Add class SourceTopicChangelogRestoreIntegrationTest"
+}, {
+  "entity" : "SourceTopicChangelogRestoreIntegrationTest",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#setUp"
+}, {
+  "entity" : "SourceTopicChangelogRestoreIntegrationTest",
+  "description" : "Add SourceTopicChangelogRestoreIntegrationTest#tearDown"
+} ]

@@ -1,0 +1,264 @@
+{
+  "check_api" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " static String canonicalizePath(String path) {\n     checkNotNull(path, \"path\");\n \n-    // Bazel execroots: `/execroot/<workspace_name>/...` (e.g.\n+    if (path.startsWith(\"file://\")) {\n+      path = path.substring(\"file://\".length());\n+    } else if (path.startsWith(\"file:\")) {\n+      path = path.substring(\"file:\".length());\n+    }\n+\n+    // Bazel execroots in sandbox: `/execroot/<workspace_name>/...` (e.g.\n     // `/execroot/_main/path/Foo.java` -> `path/Foo.java`).\n-    String afterExecroot = substringAfter(path, \"/execroot/\");\n-    if (afterExecroot != null) {\n-      String afterWorkspace = substringAfter(afterExecroot, '/');\n+    if (path.startsWith(\"/execroot/\")) {\n+      String afterWorkspace = substringAfter(path.substring(\"/execroot/\".length()), '/');\n       if (afterWorkspace != null) {\n         path = afterWorkspace;\n       }\n-    } else if (path.startsWith(\"/\")) {\n+    }\n+\n+    // Bazel runfiles in sandbox: `/runfiles/<workspace_name>/...` (e.g.\n+    // `/runfiles/my_workspace/path/Foo.java` -> `path/Foo.java`).\n+    if (path.startsWith(\"/runfiles/\")) {\n+      String afterWorkspace = substringAfter(path.substring(\"/runfiles/\".length()), '/');\n+      if (afterWorkspace != null) {\n+        path = afterWorkspace;\n+      }\n+    }\n+\n+    if (path.startsWith(\"/\")) {\n       path = path.substring(1);\n     }\n \n     // Build output directories: `(blaze-out|bazel-out)/<config-spec>/(bin|genfiles)/...`\n-    // for generated files such as protos, AutoValue, Dagger, or annotation processing outputs\n-    // (e.g. `blaze-out/k8-opt/bin/path/Foo.java` -> `path/Foo.java`).\n+    // for generated files or test binaries (`.../<test>.runfiles/<workspace_name>/...`).\n     if (path.startsWith(\"blaze-out/\") || path.startsWith(\"bazel-out/\")) {\n-      int slash2 = nthIndexOf(path, '/', 2);\n-      int slash3 = nthIndexOf(path, '/', 3);\n-      if (slash2 >= 0 && slash3 >= 0) {\n-        String dir = path.substring(slash2 + 1, slash3);\n-        if (dir.equals(\"bin\") || dir.equals(\"genfiles\")) {\n-          path = path.substring(slash3 + 1);\n+      String afterDotRunfiles = substringAfter(path, \".runfiles/\");\n+      if (afterDotRunfiles != null) {\n+        String afterWorkspace = substringAfter(afterDotRunfiles, '/');\n+        if (afterWorkspace != null) {\n+          path = afterWorkspace;\n         }\n+      } else {\n+        int slash2 = nthIndexOf(path, '/', 2);\n+        int slash3 = nthIndexOf(path, '/', 3);\n+        if (slash2 >= 0 && slash3 >= 0) {\n+          String dir = path.substring(slash2 + 1, slash3);\n+          if (dir.equals(\"bin\") || dir.equals(\"genfiles\")) {\n+            path = path.substring(slash3 + 1);\n+          }\n+        }\n       }\n     }\n \n     return path;\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "check_api/src/main/java/com/google/errorprone/util/SourcePathMatcher.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private static void parsePath(\n       String pattern,\n       ImmutableSet.Builder<String> exactBuilder,\n       ImmutableList.Builder<String> prefixesBuilder) {\n     checkNotNull(pattern, \"pattern\");\n     checkArgument(!pattern.isEmpty(), \"Path pattern must not be empty\");\n     checkArgument(\n         !pattern.startsWith(\"/\"),\n         \"Path patterns must be repository-relative and must not start with '/': %s\",\n         pattern);\n     checkArgument(!pattern.contains(\"//\"), \"Path patterns must not contain '//': %s\", pattern);\n+    checkArgument(!pattern.contains(\"..\"), \"Path patterns must not contain '..': %s\", pattern);\n     checkArgument(\n+        !pattern.startsWith(\"./\") && !pattern.contains(\"/./\"),\n+        \"Path patterns must not contain './': %s\",\n+        pattern);\n+    checkArgument(\n         !pattern.contains(\"*\") && !pattern.contains(\"?\"),\n         \"Wildcards are not supported: %s\",\n         pattern);\n \n     if (pattern.endsWith(\"/\")) {\n       checkArgument(!pattern.equals(\"/\"), \"Path pattern must not be '/': %s\", pattern);\n       prefixesBuilder.add(pattern);\n       return;\n     }\n \n     checkArgument(\n-        pattern.endsWith(\".java\"),\n-        \"Exact path pattern must end with '.java' (use a trailing '/' for directory prefixes): %s\",\n+        pattern.endsWith(\".java\") || pattern.endsWith(\".kt\") || pattern.endsWith(\".kts\"),\n+        \"Exact path pattern must end with '.java', '.kt', or '.kts' (use a trailing '/' for\"\n+            + \" directory prefixes): %s\",\n         pattern);\n     exactBuilder.add(pattern);\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "check_api/src/main/java/com/google/errorprone/util/SourcePathMatcher.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in SourcePathMatcherTest",
+      "conceptDescription" : "13 changes in test code of SourcePathMatcherTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+@Test\n+  public void nestedPath_execroot_notExempted() {\n+    SourcePathMatcher matcher = SourcePathMatcher.create(\"java/com/google/allowed/\");\n+    String path =\n+        \"/execroot/_main/java/com/google/disallowed/execroot/_main/java/com/google/allowed/Foo.java\";\n+    assertThat(matcher.matches(SourcePathMatcher.canonicalizePath(path))).isFalse();\n+  }", " @Test\n   public void exactPathMatch() {\n     SourcePathMatcher matcher =\n-        SourcePathMatcher.create(\"java/com/google/foo/Bar.java\", \"java/com/google/foo/Baz.java\");\n+        SourcePathMatcher.create(\n+            \"java/com/google/foo/Bar.java\",\n+            \"java/com/google/foo/Baz.kt\",\n+            \"java/com/google/foo/Build.kts\");\n     assertThat(matcher.matches(\"java/com/google/foo/Bar.java\")).isTrue();\n-    assertThat(matcher.matches(\"java/com/google/foo/Baz.java\")).isTrue();\n+    assertThat(matcher.matches(\"java/com/google/foo/Baz.kt\")).isTrue();\n+    assertThat(matcher.matches(\"java/com/google/foo/Build.kts\")).isTrue();\n     assertThat(matcher.matches(\"java/com/google/foo/Other.java\")).isFalse();\n     assertThat(matcher.matches(\"java/com/google/foo/Bar.java.tmp\")).isFalse();\n   }", " @Test\n   public void invalidPatterns_rejected() {\n     // Leading slash\n     assertThrows(\n         IllegalArgumentException.class,\n         () -> SourcePathMatcher.create(\"/java/com/google/foo/Bar.java\"));\n     assertThrows(\n         IllegalArgumentException.class, () -> SourcePathMatcher.create(\"/java/com/google/foo/\"));\n     // Bare directory without trailing slash\n     assertThrows(\n         IllegalArgumentException.class, () -> SourcePathMatcher.create(\"java/com/google/foo\"));\n-    // Non-java file\n+    // Non-java/kt file\n     assertThrows(\n         IllegalArgumentException.class,\n         () -> SourcePathMatcher.create(\"java/com/google/foo/Bar.proto\"));\n-    assertThrows(\n-        IllegalArgumentException.class,\n-        () -> SourcePathMatcher.create(\"java/com/google/foo/Bar.kt\"));\n     // Empty / slash only\n     assertThrows(IllegalArgumentException.class, () -> SourcePathMatcher.create(\"\"));\n     assertThrows(IllegalArgumentException.class, () -> SourcePathMatcher.create(\"/\"));\n     // Doubled slashes\n     assertThrows(\n         IllegalArgumentException.class,\n         () -> SourcePathMatcher.create(\"java/com//google/foo/Bar.java\"));\n     assertThrows(\n         IllegalArgumentException.class, () -> SourcePathMatcher.create(\"java/com//google/foo/\"));\n     // Wildcards (* and ?) not supported\n     assertThrows(\n         IllegalArgumentException.class, () -> SourcePathMatcher.create(\"java/com/google/foo/**\"));\n     assertThrows(\n         IllegalArgumentException.class, () -> SourcePathMatcher.create(\"java/com/google/foo/*\"));\n     assertThrows(\n         IllegalArgumentException.class, () -> SourcePathMatcher.create(\"**/*Templates.java\"));\n     assertThrows(\n         IllegalArgumentException.class, () -> SourcePathMatcher.create(\"java/com/*/Bar.java\"));\n     assertThrows(\n         IllegalArgumentException.class,\n         () -> SourcePathMatcher.create(\"java/com/google/foo/Bar?.java\"));\n+    // Path traversal\n+    assertThrows(\n+        IllegalArgumentException.class, () -> SourcePathMatcher.create(\"java/com/../foo/Bar.java\"));\n+    assertThrows(IllegalArgumentException.class, () -> SourcePathMatcher.create(\"../foo/Bar.java\"));\n+    assertThrows(\n+        IllegalArgumentException.class, () -> SourcePathMatcher.create(\"./java/com/foo/Bar.java\"));\n+    assertThrows(\n+        IllegalArgumentException.class, () -> SourcePathMatcher.create(\"java/com/./foo/Bar.java\"));\n   }", "-\n+BAZEL_RUNFILES(\n+        \"/execroot/_main/bazel-out/k8-opt/bin/test.runfiles/_main/java/com/google/foo/Bar.java\",\n+        \"java/com/google/foo/Bar.java\")", "-\n+BAZEL_RUNFILES_SLASH(\n+        \"/runfiles/my_workspace/java/com/google/foo/Bar.java\", \"java/com/google/foo/Bar.java\")", "-\n+FILE_URI(\"file:///execroot/_main/java/com/google/foo/Bar.java\", \"java/com/google/foo/Bar.java\")", "-\n+RELATIVE_RUNFILES_PACKAGE(\n+        \"java/com/google/devtools/build/runfiles/Runfiles.java\",\n+        \"java/com/google/devtools/build/runfiles/Runfiles.java\")", "-\n+RELATIVE_EXECROOT_PACKAGE(\n+        \"java/com/google/devtools/build/execroot/ExecRoot.java\",\n+        \"java/com/google/devtools/build/execroot/ExecRoot.java\")", "-\n+RELATIVE_EXECROOT_TOP_LEVEL(\"execroot/workspace/Foo.java\", \"execroot/workspace/Foo.java\")", "-\n+RELATIVE_RUNFILES_TOP_LEVEL(\"runfiles/workspace/Foo.java\", \"runfiles/workspace/Foo.java\")", "-\n+UNANCHORED_RUNFILES(\n+        \"/path/to/test.runfiles/my_workspace/java/com/google/foo/Bar.kt\",\n+        \"path/to/test.runfiles/my_workspace/java/com/google/foo/Bar.kt\")", "-\n+NESTED_RUNFILES_DIR(\n+        \"java/com/example/nested.runfiles/_main/java/com/example/Foo.java\",\n+        \"java/com/example/nested.runfiles/_main/java/com/example/Foo.java\")", "-\n+NESTED_EXECROOT_DIR(\n+        \"/execroot/_main/java/com/example/execroot/_main/java/com/example/Foo.java\",\n+        \"java/com/example/execroot/_main/java/com/example/Foo.java\")" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "check_api/src/test/java/com/google/errorprone/util/SourcePathMatcherTest.java" ],
+      "groupedMoveCount" : 13
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " static String canonicalizePath(String path) {\n     checkNotNull(path, \"path\");\n \n-    // Bazel execroots: `/execroot/<workspace_name>/...` (e.g.\n+    if (path.startsWith(\"file://\")) {\n+      path = path.substring(\"file://\".length());\n+    } else if (path.startsWith(\"file:\")) {\n+      path = path.substring(\"file:\".length());\n+    }\n+\n+    // Bazel execroots in sandbox: `/execroot/<workspace_name>/...` (e.g.\n     // `/execroot/_main/path/Foo.java` -> `path/Foo.java`).\n-    String afterExecroot = substringAfter(path, \"/execroot/\");\n-    if (afterExecroot != null) {\n-      String afterWorkspace = substringAfter(afterExecroot, '/');\n+    if (path.startsWith(\"/execroot/\")) {\n+      String afterWorkspace = substringAfter(path.substring(\"/execroot/\".length()), '/');\n       if (afterWorkspace != null) {\n         path = afterWorkspace;\n       }\n-    } else if (path.startsWith(\"/\")) {\n+    }\n+\n+    // Bazel runfiles in sandbox: `/runfiles/<workspace_name>/...` (e.g.\n+    // `/runfiles/my_workspace/path/Foo.java` -> `path/Foo.java`).\n+    if (path.startsWith(\"/runfiles/\")) {\n+      String afterWorkspace = substringAfter(path.substring(\"/runfiles/\".length()), '/');\n+      if (afterWorkspace != null) {\n+        path = afterWorkspace;\n+      }\n+    }\n+\n+    if (path.startsWith(\"/\")) {\n       path = path.substring(1);\n     }\n \n     // Build output directories: `(blaze-out|bazel-out)/<config-spec>/(bin|genfiles)/...`\n-    // for generated files such as protos, AutoValue, Dagger, or annotation processing outputs\n-    // (e.g. `blaze-out/k8-opt/bin/path/Foo.java` -> `path/Foo.java`).\n+    // for generated files or test binaries (`.../<test>.runfiles/<workspace_name>/...`).\n     if (path.startsWith(\"blaze-out/\") || path.startsWith(\"bazel-out/\")) {\n-      int slash2 = nthIndexOf(path, '/', 2);\n-      int slash3 = nthIndexOf(path, '/', 3);\n-      if (slash2 >= 0 && slash3 >= 0) {\n-        String dir = path.substring(slash2 + 1, slash3);\n-        if (dir.equals(\"bin\") || dir.equals(\"genfiles\")) {\n-          path = path.substring(slash3 + 1);\n+      String afterDotRunfiles = substringAfter(path, \".runfiles/\");\n+      if (afterDotRunfiles != null) {\n+        String afterWorkspace = substringAfter(afterDotRunfiles, '/');\n+        if (afterWorkspace != null) {\n+          path = afterWorkspace;\n         }\n+      } else {\n+        int slash2 = nthIndexOf(path, '/', 2);\n+        int slash3 = nthIndexOf(path, '/', 3);\n+        if (slash2 >= 0 && slash3 >= 0) {\n+          String dir = path.substring(slash2 + 1, slash3);\n+          if (dir.equals(\"bin\") || dir.equals(\"genfiles\")) {\n+            path = path.substring(slash3 + 1);\n+          }\n+        }\n       }\n     }\n \n     return path;\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "check_api/src/main/java/com/google/errorprone/util/SourcePathMatcher.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  },
+  "core" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Control Flow",
+      "conceptDescription" : "A method kept its signature but its conditions, branches or loops changed, so its runtime behavior may differ.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " @Override\n   public Description matchAnnotation(AnnotationTree tree, VisitorState state) {\n     // TODO(bangert): Validate all the fields\n     if (!getSymbol(tree).getQualifiedName().contentEquals(RESTRICTED_API_ANNOTATION)) {\n       return NO_MATCH;\n     }\n     // TODO(bangert): make a more elegant API to get the annotation within an annotation tree.\n     // Maybe find the declared object and get annotations on that...\n-    Attribute.Compound restrictedApi = (Attribute.Compound) ASTHelpers.getAnnotationMirror(tree);\n+    AnnotationMirror restrictedApi = ASTHelpers.getAnnotationMirror(tree);\n     if (restrictedApi == null) {\n       return NO_MATCH;\n     }\n+    Optional<String> pathError = Restriction.validateAnnotation(restrictedApi, getSymbol(tree));\n+    if (pathError.isPresent()) {\n+      return buildDescription(tree).setMessage(pathError.get()).build();\n+    }\n     return NO_MATCH;\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/RestrictedApiChecker.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Signature",
+      "conceptDescription" : "A method's parameter list and/or return type changed.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private Description checkRestriction(\n-      Attribute.@Nullable Compound attribute, Tree where, VisitorState state) {\n+      @Nullable AnnotationMirror attribute, Tree where, VisitorState state) {\n     if (attribute == null) {\n       return NO_MATCH;\n     }\n-    RestrictedApi restriction =\n-        AnnotationProxyMaker.generateAnnotation(attribute, RestrictedApi.class);\n+    Restriction restriction = Restriction.from(attribute).orElse(null);\n     if (restriction == null) {\n       return NO_MATCH;\n     }\n-    if (!restriction.allowedOnPath().isEmpty()) {\n-      JCCompilationUnit compilationUnit = (JCCompilationUnit) state.getPath().getCompilationUnit();\n-      String path = compilationUnit.getSourceFile().toUri().toString();\n-      try {\n-        if (Pattern.matches(restriction.allowedOnPath(), path)) {\n-          return NO_MATCH;\n-        }\n-\n-      } catch (PatternSyntaxException e) {\n-        throw new IllegalArgumentException(\n-            String.format(\n-                \"Invalid regex for RestrictedApi annotation of %s\", state.getSourceForNode(where)),\n-            e);\n-      }\n+    if (restriction.isPathOrTestonlyExempt(where, state)) {\n+      return NO_MATCH;\n     }\n     boolean warn = Matchers.enclosingNode(shouldAllowWithWarning(attribute)).matches(where, state);\n-\n-    boolean allow = Matchers.enclosingNode(shouldAllow(attribute)).matches(where, state);\n+    boolean allow = restriction.isAllowlisted(where, state);\n     if (warn && allow) {\n       // TODO(bangert): Clarify this message if possible.\n       var descriptionBuilder =\n           buildDescription(where)\n               .setMessage(\n                   \"The Restricted API (\"\n                       + restriction.explanation()\n                       + \") call here is both allowlisted-as-warning and \"\n                       + \"silently allowlisted. \"\n                       + \"Please remove one of the conflicting suppression annotations.\");\n \n       if (!restriction.link().isEmpty()) {\n         descriptionBuilder.setLinkUrl(restriction.link());\n       }\n       return descriptionBuilder.build();\n     }\n     if (allow) {\n       return NO_MATCH;\n     }\n     SeverityLevel level = warn ? SeverityLevel.WARNING : SeverityLevel.ERROR;\n     Description.Builder description =\n         buildDescription(where).setMessage(restriction.explanation()).overrideSeverity(level);\n     if (!restriction.link().isEmpty()) {\n       description.setLinkUrl(restriction.link());\n     }\n     return description.build();\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/RestrictedApiChecker.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Change Signature",
+      "conceptDescription" : "A method's parameter list and/or return type changed.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-private static Matcher<Tree> shouldAllowWithWarning(Attribute.Compound api) {\n-    Optional<Attribute> allowlistWithWarningAnnotations =\n+private static Matcher<Tree> shouldAllowWithWarning(AnnotationMirror api) {\n+    Optional<AnnotationValue> allowlistWithWarningAnnotations =\n         MoreAnnotations.getValue(api, \"allowlistWithWarningAnnotations\");\n     // TODO(b/178905039): remove handling of legacy names\n     if (allowlistWithWarningAnnotations.isEmpty()) {\n       allowlistWithWarningAnnotations =\n           MoreAnnotations.getValue(api, \"whitelistWithWarningAnnotations\");\n     }\n     return Matchers.hasAnyAnnotation(\n         allowlistWithWarningAnnotations\n             .map(MoreAnnotations::asTypes)\n             .orElse(Stream.empty())\n             .collect(toImmutableList()));\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/RestrictedApiChecker.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Remove",
+      "conceptDescription" : "An existing symbol was deleted with no successor.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-private static Matcher<Tree> shouldAllow(Attribute.Compound api) {\n-    Optional<Attribute> allowlistAnnotations =\n-        MoreAnnotations.getValue(api, \"allowlistAnnotations\");\n-    // TODO(b/178905039): remove handling of legacy names\n-    if (allowlistAnnotations.isEmpty()) {\n-      allowlistAnnotations = MoreAnnotations.getValue(api, \"whitelistAnnotations\");\n-    }\n-    return Matchers.hasAnyAnnotation(\n-        allowlistAnnotations\n-            .map(MoreAnnotations::asTypes)\n-            .orElse(Stream.empty())\n-            .collect(toImmutableList()));\n-  }\n+" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/RestrictedApiChecker.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public static Optional<String> validateAnnotation(\n+      AnnotationMirror attribute, Symbol annotationSymbol) {\n+    PathRestrictions paths = PathRestrictions.from(attribute);\n+    if (paths.hasConflict()) {\n+      return Optional.of(\n+          String.format(\n+              \"Do not specify both allowedPaths and allowedOnPath on @%s; prefer allowedPaths.\",\n+              annotationSymbol.getSimpleName()));\n+    }\n+    return Optional.empty();\n+  }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public boolean isPathOrTestonlyExempt(Tree where, VisitorState state) {\n+    if (!allowedPaths.isEmpty() && !allowedOnPath.isEmpty()) {\n+      throw new IllegalArgumentException(\n+          String.format(\n+              \"Cannot specify both allowedPaths and allowedOnPath on restriction of %s\",\n+              state.getSourceForNode(where)));\n+    }\n+    if (!allowedPaths.isEmpty()) {\n+      if (SourcePathMatcher.create(allowedPaths).matches(state)) {\n+        return true;\n+      }\n+    }\n+    if (!allowedOnPath.isEmpty()) {\n+      JCCompilationUnit compilationUnit = (JCCompilationUnit) state.getPath().getCompilationUnit();\n+      String uriPath = compilationUnit.getSourceFile().toUri().toString();\n+      String fileName = ASTHelpers.getFileName(compilationUnit);\n+      try {\n+        if (Pattern.matches(allowedOnPath, uriPath)\n+            || (fileName != null && Pattern.matches(allowedOnPath, fileName))) {\n+          return true;\n+        }\n+      } catch (PatternSyntaxException e) {\n+        throw new IllegalArgumentException(\n+            String.format(\n+                \"Invalid regex for allowedOnPath on restriction of %s\",\n+                state.getSourceForNode(where)),\n+            e);\n+      }\n+    }\n+    return false;\n+  }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public boolean isAllowlisted(Tree where, VisitorState state) {\n+    return !allowlistAnnotations.isEmpty()\n+        && selfOrEnclosing(Matchers.hasAnyAnnotation(allowlistAnnotations)).matches(where, state);\n+  }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+public boolean isAllowed(Tree where, VisitorState state) {\n+    return isPathOrTestonlyExempt(where, state) || isAllowlisted(where, state);\n+  }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+private static Matcher<Tree> selfOrEnclosing(Matcher<Tree> matcher) {\n+    return Matchers.anyOf(matcher, Matchers.enclosingNode(matcher));\n+  }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+boolean hasConflict() {\n+      return !allowedPaths.isEmpty() && !allowedOnPath.isEmpty();\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Modify Body",
+      "conceptDescription" : "A method or constructor kept its signature but its body changed in a way no more specific transformation explains.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ " private Description checkMethodUse(\n       MethodSymbol method, ExpressionTree where, VisitorState state) {\n-    Attribute.Compound annotation = getRestrictedApiAnnotation(method, state);\n+    AnnotationMirror annotation = getRestrictedApiAnnotation(method, state);\n     if (annotation != null) {\n       return checkRestriction(annotation, where, state);\n     }\n \n     // Try each super method for @RestrictedApi\n     return streamSuperMethods(method, state.getTypes())\n         .filter((t) -> hasAnnotation(t, RESTRICTED_API_ANNOTATION, state))\n         .findFirst()\n         .map(\n             superWithRestrictedApi ->\n                 checkRestriction(\n                     getRestrictedApiAnnotation(superWithRestrictedApi, state), where, state))\n         .orElse(NO_MATCH);\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/RestrictedApiChecker.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add from in 2 classes",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart. Same change in: Restriction, Restriction.PathRestrictions.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+public static Optional<Restriction> from(AnnotationMirror attribute) {\n+    if (attribute == null) {\n+      return Optional.empty();\n+    }\n+    PathRestrictions paths = PathRestrictions.from(attribute);\n \n+    ImmutableList<TypeMirror> allowlistAnnotations =\n+        MoreAnnotations.getValue(attribute, \"allowlistAnnotations\")\n+            .or(() -> MoreAnnotations.getValue(attribute, \"whitelistAnnotations\"))\n+            .map(MoreAnnotations::asTypes)\n+            .orElse(Stream.empty())\n+            .collect(toImmutableList());\n+\n+    Optional<TypeMirror> suggestedAllowlistAnnotation =\n+        MoreAnnotations.getValue(attribute, \"suggestedAllowlistAnnotation\")\n+            .or(() -> MoreAnnotations.getValue(attribute, \"whitelistAnnotation\"))\n+            .flatMap(MoreAnnotations::asTypeValue);\n+\n+    boolean allowedInTestonlyTargets =\n+        MoreAnnotations.getValue(attribute, \"allowedInTestonlyTargets\")\n+            .map(a -> Objects.equals(a.getValue(), true))\n+            .orElse(false);\n+\n+    boolean warningOnlyForRefactoring =\n+        MoreAnnotations.getValue(attribute, \"warningOnlyForRefactoring\")\n+            .map(a -> Objects.equals(a.getValue(), true))\n+            .orElse(false);\n+\n+    String explanation =\n+        MoreAnnotations.getValue(attribute, \"explanation\")\n+            .flatMap(MoreAnnotations::asStringValue)\n+            .orElse(\"\");\n+\n+    String link =\n+        MoreAnnotations.getValue(attribute, \"link\")\n+            .flatMap(MoreAnnotations::asStringValue)\n+            .orElse(\"\");\n+\n+    return Optional.of(\n+        new Restriction(\n+            explanation,\n+            link,\n+            paths.allowedPaths(),\n+            paths.allowedOnPath(),\n+            allowlistAnnotations,\n+            suggestedAllowlistAnnotation,\n+            allowedInTestonlyTargets,\n+            warningOnlyForRefactoring));\n+  }", "+static PathRestrictions from(AnnotationMirror attribute) {\n+      ImmutableList<String> allowedPaths =\n+          MoreAnnotations.getValue(attribute, \"allowedPaths\")\n+              .map(MoreAnnotations::asStrings)\n+              .orElse(Stream.empty())\n+              .collect(toImmutableList());\n \n+      String allowedOnPath =\n+          MoreAnnotations.getValue(attribute, \"allowedOnPath\")\n+              .flatMap(MoreAnnotations::asStringValue)\n+              .orElse(\"\");\n+\n+      return new PathRestrictions(allowedPaths, allowedOnPath);\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Test changes in RestrictedApiCheckerTest",
+      "conceptDescription" : "3 changes in test code of RestrictedApiCheckerTest.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "+@Test\n+  public void allowedPaths() {\n+    helper\n+        .addSourceLines(\n+            \"com/google/restricted/Restricted.java\",\n+            \"\"\"\n+            package com.google.restricted;\n \n+            import com.google.errorprone.annotations.RestrictedApi;\n+\n+            public class Restricted {\n+              @RestrictedApi(\n+                  explanation = \"test\",\n+                  link = \"\",\n+                  allowedPaths = {\"com/google/allowed/\", \"com/google/other/SpecificCaller.java\"})\n+              public static void method() {}\n+            }\n+            \"\"\")\n+        .addSourceLines(\n+            \"com/google/allowed/AllowedCaller.java\",\n+            \"\"\"\n+            package com.google.allowed;\n+\n+            import com.google.restricted.Restricted;\n+\n+            class AllowedCaller {\n+              void test() {\n+                Restricted.method();\n+              }\n+            }\n+            \"\"\")\n+        .addSourceLines(\n+            \"com/google/other/SpecificCaller.java\",\n+            \"\"\"\n+            package com.google.other;\n+\n+            import com.google.restricted.Restricted;\n+\n+            class SpecificCaller {\n+              void test() {\n+                Restricted.method();\n+              }\n+            }\n+            \"\"\")\n+        .addSourceLines(\n+            \"com/google/disallowed/DisallowedCaller.java\",\n+            \"\"\"\n+            package com.google.disallowed;\n+\n+            import com.google.restricted.Restricted;\n+\n+            class DisallowedCaller {\n+              void test() {\n+                // BUG: Diagnostic contains: test\n+                Restricted.method();\n+              }\n+            }\n+            \"\"\")\n+        .doTest();\n+  }", "+@Test\n+  public void allowedPathsAndAllowedOnPathBothSpecified() {\n+    helper\n+        .addSourceLines(\n+            \"in/Testcase.java\",\n+            \"\"\"\n+            package separate.test;\n \n+            import com.google.errorprone.annotations.RestrictedApi;\n+\n+            class Testcase {\n+              // BUG: Diagnostic contains: Do not specify both allowedPaths and allowedOnPath on @RestrictedApi;\n+              // prefer allowedPaths.\n+              @RestrictedApi(\n+                  explanation = \"test\",\n+                  link = \"\",\n+                  allowedPaths = {\"foo/\"},\n+                  allowedOnPath = \".*\")\n+              void restrictedMethod() {}\n+            }\n+            \"\"\")\n+        .doTest();\n+  }", "+@Test\n+  public void allowedPaths_nestedRunfiles_rejected() {\n+    helper\n+        .addSourceLines(\n+            \"com/google/restricted/Restricted.java\",\n+            \"\"\"\n+            package com.google.restricted;\n \n+            import com.google.errorprone.annotations.RestrictedApi;\n+\n+            public class Restricted {\n+              @RestrictedApi(\n+                  explanation = \"test\",\n+                  link = \"\",\n+                  allowedPaths = {\"java/com/google/allowed/\"})\n+              public static void method() {}\n+            }\n+            \"\"\")\n+        .addSourceLines(\n+            \"java/com/google/disallowed/nested.runfiles/my_workspace/java/com/google/allowed/Foo.java\",\n+            \"\"\"\n+            package java.com.google.allowed;\n+\n+            import com.google.restricted.Restricted;\n+\n+            class Foo {\n+              void test() {\n+                // BUG: Diagnostic contains: test\n+                Restricted.method();\n+              }\n+            }\n+            \"\"\")\n+        .doTest();\n+  }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/test/java/com/google/errorprone/bugpatterns/RestrictedApiCheckerTest.java" ],
+      "groupedMoveCount" : 3
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Modify Capability",
+      "conceptDescription" : "An existing capability's behavior changed without being added or removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " @Override\n   public Description matchAnnotation(AnnotationTree tree, VisitorState state) {\n     // TODO(bangert): Validate all the fields\n     if (!getSymbol(tree).getQualifiedName().contentEquals(RESTRICTED_API_ANNOTATION)) {\n       return NO_MATCH;\n     }\n     // TODO(bangert): make a more elegant API to get the annotation within an annotation tree.\n     // Maybe find the declared object and get annotations on that...\n-    Attribute.Compound restrictedApi = (Attribute.Compound) ASTHelpers.getAnnotationMirror(tree);\n+    AnnotationMirror restrictedApi = ASTHelpers.getAnnotationMirror(tree);\n     if (restrictedApi == null) {\n       return NO_MATCH;\n     }\n+    Optional<String> pathError = Restriction.validateAnnotation(restrictedApi, getSymbol(tree));\n+    if (pathError.isPresent()) {\n+      return buildDescription(tree).setMessage(pathError.get()).build();\n+    }\n     return NO_MATCH;\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/RestrictedApiChecker.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Remove Capability",
+      "conceptDescription" : "An existing business-meaningful capability was removed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-private static Matcher<Tree> shouldAllow(Attribute.Compound api) {\n-    Optional<Attribute> allowlistAnnotations =\n-        MoreAnnotations.getValue(api, \"allowlistAnnotations\");\n-    // TODO(b/178905039): remove handling of legacy names\n-    if (allowlistAnnotations.isEmpty()) {\n-      allowlistAnnotations = MoreAnnotations.getValue(api, \"whitelistAnnotations\");\n-    }\n-    return Matchers.hasAnyAnnotation(\n-        allowlistAnnotations\n-            .map(MoreAnnotations::asTypes)\n-            .orElse(Stream.empty())\n-            .collect(toImmutableList()));\n-  }\n+" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/RestrictedApiChecker.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Change API Responsibility",
+      "conceptDescription" : "What a public API is responsible for doing changed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ " private Description checkRestriction(\n-      Attribute.@Nullable Compound attribute, Tree where, VisitorState state) {\n+      @Nullable AnnotationMirror attribute, Tree where, VisitorState state) {\n     if (attribute == null) {\n       return NO_MATCH;\n     }\n-    RestrictedApi restriction =\n-        AnnotationProxyMaker.generateAnnotation(attribute, RestrictedApi.class);\n+    Restriction restriction = Restriction.from(attribute).orElse(null);\n     if (restriction == null) {\n       return NO_MATCH;\n     }\n-    if (!restriction.allowedOnPath().isEmpty()) {\n-      JCCompilationUnit compilationUnit = (JCCompilationUnit) state.getPath().getCompilationUnit();\n-      String path = compilationUnit.getSourceFile().toUri().toString();\n-      try {\n-        if (Pattern.matches(restriction.allowedOnPath(), path)) {\n-          return NO_MATCH;\n-        }\n-\n-      } catch (PatternSyntaxException e) {\n-        throw new IllegalArgumentException(\n-            String.format(\n-                \"Invalid regex for RestrictedApi annotation of %s\", state.getSourceForNode(where)),\n-            e);\n-      }\n+    if (restriction.isPathOrTestonlyExempt(where, state)) {\n+      return NO_MATCH;\n     }\n     boolean warn = Matchers.enclosingNode(shouldAllowWithWarning(attribute)).matches(where, state);\n-\n-    boolean allow = Matchers.enclosingNode(shouldAllow(attribute)).matches(where, state);\n+    boolean allow = restriction.isAllowlisted(where, state);\n     if (warn && allow) {\n       // TODO(bangert): Clarify this message if possible.\n       var descriptionBuilder =\n           buildDescription(where)\n               .setMessage(\n                   \"The Restricted API (\"\n                       + restriction.explanation()\n                       + \") call here is both allowlisted-as-warning and \"\n                       + \"silently allowlisted. \"\n                       + \"Please remove one of the conflicting suppression annotations.\");\n \n       if (!restriction.link().isEmpty()) {\n         descriptionBuilder.setLinkUrl(restriction.link());\n       }\n       return descriptionBuilder.build();\n     }\n     if (allow) {\n       return NO_MATCH;\n     }\n     SeverityLevel level = warn ? SeverityLevel.WARNING : SeverityLevel.ERROR;\n     Description.Builder description =\n         buildDescription(where).setMessage(restriction.explanation()).overrideSeverity(level);\n     if (!restriction.link().isEmpty()) {\n       description.setLinkUrl(restriction.link());\n     }\n     return description.build();\n   }", "-private static Matcher<Tree> shouldAllowWithWarning(Attribute.Compound api) {\n-    Optional<Attribute> allowlistWithWarningAnnotations =\n+private static Matcher<Tree> shouldAllowWithWarning(AnnotationMirror api) {\n+    Optional<AnnotationValue> allowlistWithWarningAnnotations =\n         MoreAnnotations.getValue(api, \"allowlistWithWarningAnnotations\");\n     // TODO(b/178905039): remove handling of legacy names\n     if (allowlistWithWarningAnnotations.isEmpty()) {\n       allowlistWithWarningAnnotations =\n           MoreAnnotations.getValue(api, \"whitelistWithWarningAnnotations\");\n     }\n     return Matchers.hasAnyAnnotation(\n         allowlistWithWarningAnnotations\n             .map(MoreAnnotations::asTypes)\n             .orElse(Stream.empty())\n             .collect(toImmutableList()));\n   }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/RestrictedApiChecker.java" ],
+      "groupedMoveCount" : 2
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Add Capability",
+      "conceptDescription" : "A new business-meaningful capability was introduced.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+public static Optional<String> validateAnnotation(\n+      AnnotationMirror attribute, Symbol annotationSymbol) {\n+    PathRestrictions paths = PathRestrictions.from(attribute);\n+    if (paths.hasConflict()) {\n+      return Optional.of(\n+          String.format(\n+              \"Do not specify both allowedPaths and allowedOnPath on @%s; prefer allowedPaths.\",\n+              annotationSymbol.getSimpleName()));\n+    }\n+    return Optional.empty();\n+  }", "+public static Optional<Restriction> from(AnnotationMirror attribute) {\n+    if (attribute == null) {\n+      return Optional.empty();\n+    }\n+    PathRestrictions paths = PathRestrictions.from(attribute);\n \n+    ImmutableList<TypeMirror> allowlistAnnotations =\n+        MoreAnnotations.getValue(attribute, \"allowlistAnnotations\")\n+            .or(() -> MoreAnnotations.getValue(attribute, \"whitelistAnnotations\"))\n+            .map(MoreAnnotations::asTypes)\n+            .orElse(Stream.empty())\n+            .collect(toImmutableList());\n+\n+    Optional<TypeMirror> suggestedAllowlistAnnotation =\n+        MoreAnnotations.getValue(attribute, \"suggestedAllowlistAnnotation\")\n+            .or(() -> MoreAnnotations.getValue(attribute, \"whitelistAnnotation\"))\n+            .flatMap(MoreAnnotations::asTypeValue);\n+\n+    boolean allowedInTestonlyTargets =\n+        MoreAnnotations.getValue(attribute, \"allowedInTestonlyTargets\")\n+            .map(a -> Objects.equals(a.getValue(), true))\n+            .orElse(false);\n+\n+    boolean warningOnlyForRefactoring =\n+        MoreAnnotations.getValue(attribute, \"warningOnlyForRefactoring\")\n+            .map(a -> Objects.equals(a.getValue(), true))\n+            .orElse(false);\n+\n+    String explanation =\n+        MoreAnnotations.getValue(attribute, \"explanation\")\n+            .flatMap(MoreAnnotations::asStringValue)\n+            .orElse(\"\");\n+\n+    String link =\n+        MoreAnnotations.getValue(attribute, \"link\")\n+            .flatMap(MoreAnnotations::asStringValue)\n+            .orElse(\"\");\n+\n+    return Optional.of(\n+        new Restriction(\n+            explanation,\n+            link,\n+            paths.allowedPaths(),\n+            paths.allowedOnPath(),\n+            allowlistAnnotations,\n+            suggestedAllowlistAnnotation,\n+            allowedInTestonlyTargets,\n+            warningOnlyForRefactoring));\n+  }", "-\n+public boolean isPathOrTestonlyExempt(Tree where, VisitorState state) {\n+    if (!allowedPaths.isEmpty() && !allowedOnPath.isEmpty()) {\n+      throw new IllegalArgumentException(\n+          String.format(\n+              \"Cannot specify both allowedPaths and allowedOnPath on restriction of %s\",\n+              state.getSourceForNode(where)));\n+    }\n+    if (!allowedPaths.isEmpty()) {\n+      if (SourcePathMatcher.create(allowedPaths).matches(state)) {\n+        return true;\n+      }\n+    }\n+    if (!allowedOnPath.isEmpty()) {\n+      JCCompilationUnit compilationUnit = (JCCompilationUnit) state.getPath().getCompilationUnit();\n+      String uriPath = compilationUnit.getSourceFile().toUri().toString();\n+      String fileName = ASTHelpers.getFileName(compilationUnit);\n+      try {\n+        if (Pattern.matches(allowedOnPath, uriPath)\n+            || (fileName != null && Pattern.matches(allowedOnPath, fileName))) {\n+          return true;\n+        }\n+      } catch (PatternSyntaxException e) {\n+        throw new IllegalArgumentException(\n+            String.format(\n+                \"Invalid regex for allowedOnPath on restriction of %s\",\n+                state.getSourceForNode(where)),\n+            e);\n+      }\n+    }\n+    return false;\n+  }", "-\n+public boolean isAllowlisted(Tree where, VisitorState state) {\n+    return !allowlistAnnotations.isEmpty()\n+        && selfOrEnclosing(Matchers.hasAnyAnnotation(allowlistAnnotations)).matches(where, state);\n+  }", "-\n+public boolean isAllowed(Tree where, VisitorState state) {\n+    return isPathOrTestonlyExempt(where, state) || isAllowlisted(where, state);\n+  }", "-\n+private static Matcher<Tree> selfOrEnclosing(Matcher<Tree> matcher) {\n+    return Matchers.anyOf(matcher, Matchers.enclosingNode(matcher));\n+  }", "+static PathRestrictions from(AnnotationMirror attribute) {\n+      ImmutableList<String> allowedPaths =\n+          MoreAnnotations.getValue(attribute, \"allowedPaths\")\n+              .map(MoreAnnotations::asStrings)\n+              .orElse(Stream.empty())\n+              .collect(toImmutableList());\n \n+      String allowedOnPath =\n+          MoreAnnotations.getValue(attribute, \"allowedOnPath\")\n+              .flatMap(MoreAnnotations::asStringValue)\n+              .orElse(\"\");\n+\n+      return new PathRestrictions(allowedPaths, allowedOnPath);\n+    }", "-\n+boolean hasConflict() {\n+      return !allowedPaths.isEmpty() && !allowedOnPath.isEmpty();\n+    }" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "core/src/main/java/com/google/errorprone/bugpatterns/restrictedapi/Restriction.java" ],
+      "groupedMoveCount" : 8
+    } ]
+  },
+  "annotations" : {
+    "dimensions" : [ {
+      "dimension" : "STRUCTURAL",
+      "conceptName" : "Add",
+      "conceptDescription" : "A new symbol was introduced with no prior counterpart.",
+      "inferred" : false,
+      "confidencePercent" : 100,
+      "evidence" : [ "-\n+String[] allowedPaths() default {};" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "annotations/src/main/java/com/google/errorprone/annotations/RestrictedApi.java" ],
+      "groupedMoveCount" : 0
+    }, {
+      "dimension" : "RESPONSIBILITY",
+      "conceptName" : "Change API Responsibility",
+      "conceptDescription" : "What a public API is responsible for doing changed.",
+      "inferred" : true,
+      "confidencePercent" : 70,
+      "evidence" : [ "-\n+String[] allowedPaths() default {};" ],
+      "supportingConceptNames" : [ ],
+      "beforeEvidenceCount" : 0,
+      "filesTouched" : [ "annotations/src/main/java/com/google/errorprone/annotations/RestrictedApi.java" ],
+      "groupedMoveCount" : 0
+    } ]
+  }
+}

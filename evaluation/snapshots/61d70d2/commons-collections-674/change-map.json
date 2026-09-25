@@ -1,0 +1,117 @@
+{
+  "prTitle" : "[COLLECTIONS_887] added null key  checks for methods in ConcurrentReferenceHashMap remove(Object), remove(Object,Object), replace(K,V), replace(K,V,V) to be consistent with documentation",
+  "categoryCounts" : {
+    "BEHAVIORAL" : 0,
+    "STRUCTURAL" : 2,
+    "UNKNOWN" : 2,
+    "MECHANICAL" : 1
+  },
+  "changes" : [ {
+    "id" : 0,
+    "changeKey" : "Rk9STUFUVElOR19PTkxZCkNvbmN1cnJlbnRSZWZlcmVuY2VIYXNoTWFwVGVzdCN0ZXN0QnVpbGRlckFsbA",
+    "description" : "Formatting: ConcurrentReferenceHashMapTest#testBuilderAll",
+    "category" : "MECHANICAL",
+    "kind" : "FORMATTING_ONLY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 1,
+    "changeKey" : "QUREX1NZTUJPTApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcFRlc3QjdGVzdFJlbW92ZU51bGxLZXlUaHJvd3NXaXRob3V0SWRlbnRpdHlDb21wYXJpc29ucw",
+    "description" : "Add ConcurrentReferenceHashMapTest#testRemoveNullKeyThrowsWithoutIdentityComparisons",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 2,
+    "changeKey" : "QUREX1NZTUJPTApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcFRlc3QjdGVzdFJlbW92ZU51bGxLZXlUaHJvd3NXaXRoSWRlbnRpdHlDb21wYXJpc29ucw",
+    "description" : "Add ConcurrentReferenceHashMapTest#testRemoveNullKeyThrowsWithIdentityComparisons",
+    "category" : "STRUCTURAL",
+    "kind" : "ADD_SYMBOL",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 1,
+    "exceptionCount" : 0,
+    "testCode" : true
+  }, {
+    "id" : 3,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXF1aXJlTm9uTnVsbApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcCNyZW1vdmU",
+    "description" : "Modify body of ConcurrentReferenceHashMap#remove: +requireNonNull",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  }, {
+    "id" : 4,
+    "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXF1aXJlTm9uTnVsbApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcCNyZXBsYWNl",
+    "description" : "Modify body of ConcurrentReferenceHashMap#replace: +requireNonNull",
+    "category" : "UNKNOWN",
+    "kind" : "MODIFY_METHOD_BODY",
+    "reviewState" : "UNSEEN",
+    "occurrenceCount" : 2,
+    "exceptionCount" : 0,
+    "testCode" : false
+  } ],
+  "classGroups" : [ {
+    "enclosingType" : "ConcurrentReferenceHashMapTest",
+    "entries" : [ {
+      "id" : 0,
+      "changeKey" : "Rk9STUFUVElOR19PTkxZCkNvbmN1cnJlbnRSZWZlcmVuY2VIYXNoTWFwVGVzdCN0ZXN0QnVpbGRlckFsbA",
+      "description" : "Formatting: ConcurrentReferenceHashMapTest#testBuilderAll",
+      "category" : "MECHANICAL",
+      "kind" : "FORMATTING_ONLY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 1,
+      "changeKey" : "QUREX1NZTUJPTApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcFRlc3QjdGVzdFJlbW92ZU51bGxLZXlUaHJvd3NXaXRob3V0SWRlbnRpdHlDb21wYXJpc29ucw",
+      "description" : "Add ConcurrentReferenceHashMapTest#testRemoveNullKeyThrowsWithoutIdentityComparisons",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    }, {
+      "id" : 2,
+      "changeKey" : "QUREX1NZTUJPTApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcFRlc3QjdGVzdFJlbW92ZU51bGxLZXlUaHJvd3NXaXRoSWRlbnRpdHlDb21wYXJpc29ucw",
+      "description" : "Add ConcurrentReferenceHashMapTest#testRemoveNullKeyThrowsWithIdentityComparisons",
+      "category" : "STRUCTURAL",
+      "kind" : "ADD_SYMBOL",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 1,
+      "exceptionCount" : 0,
+      "testCode" : true
+    } ]
+  }, {
+    "enclosingType" : "ConcurrentReferenceHashMap",
+    "entries" : [ {
+      "id" : 3,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXF1aXJlTm9uTnVsbApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcCNyZW1vdmU",
+      "description" : "Modify body of ConcurrentReferenceHashMap#remove: +requireNonNull",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    }, {
+      "id" : 4,
+      "changeKey" : "TU9ESUZZX01FVEhPRF9CT0RZCityZXF1aXJlTm9uTnVsbApDb25jdXJyZW50UmVmZXJlbmNlSGFzaE1hcCNyZXBsYWNl",
+      "description" : "Modify body of ConcurrentReferenceHashMap#replace: +requireNonNull",
+      "category" : "UNKNOWN",
+      "kind" : "MODIFY_METHOD_BODY",
+      "reviewState" : "UNSEEN",
+      "occurrenceCount" : 2,
+      "exceptionCount" : 0,
+      "testCode" : false
+    } ]
+  } ]
+}
