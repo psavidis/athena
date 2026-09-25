@@ -237,6 +237,20 @@ public class ModuleIdentitySteps {
                 second + "/src/main/java/com/acme/SecondService.java"));
     }
 
+    // --- Ticket #362: projects included from the settings file ---
+
+    @Given("the user has created a standalone Diff of Gradle project {string} whose {string} includes {string}, changing classes in {string} and {string}")
+    public void a_diff_with_settings_includes(String project, String settingsFile, String include, String first,
+                                              String second) {
+        repository = GitRepositoryFixture.create();
+        String quote = settingsFile.endsWith(".kts") ? "\"" : "'";
+        repository.write(settingsFile, "rootProject.name = " + quote + project + quote + "\n\n"
+                + include.replace("\\n", "\n") + "\n");
+        repository.write(settingsFile.endsWith(".kts") ? "build.gradle.kts" : "build.gradle", "plugins { id 'java' }\n");
+        changeClasses(List.of(first + "/src/main/java/com/acme/FirstService.java",
+                second + "/src/main/java/com/acme/SecondService.java"));
+    }
+
     @Then("territory {string} has tech stack {string}")
     public void territory_has_tech_stack(String name, String label) {
         assertThat(territory(name).techStackLabel()).isEqualTo(label);

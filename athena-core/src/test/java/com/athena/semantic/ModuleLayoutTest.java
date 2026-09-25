@@ -157,6 +157,69 @@ class ModuleLayoutTest {
         assertThat(ModuleLayout.of(baseRoot, headRoot).moduleDirectories()).doesNotContain("scripts");
     }
 
+    // Ticket #362: projects a settings file includes are modules, even without a build file.
+
+    @Test
+    void aProjectIncludedFromSettingsIsAModuleWithoutABuildFile() throws IOException {
+        write(headRoot, "settings.gradle", "rootProject.name = 'kafka'\ninclude 'clients', 'group-coordinator'\n");
+        write(headRoot, "build.gradle", "");
+        write(headRoot, "group-coordinator/src/main/java/Coordinator.java", "");
+        ModuleLayout layout = ModuleLayout.of(baseRoot, headRoot);
+
+        assertThat(layout.directoryOf("group-coordinator/src/main/java/Coordinator.java")).isEqualTo("group-coordinator");
+        assertThat(layout.moduleDirectories()).contains("group-coordinator");
+    }
+
+    @Test
+    void aNestedIncludeSpreadOverLinesMapsToANestedDirectory() throws IOException {
+        write(headRoot, "settings.gradle", "include 'clients',\n    'connect:api', // the API\n    'connect:runtime'\n");
+        write(headRoot, "connect/api/src/Api.java", "");
+        write(headRoot, "connect/runtime/src/Worker.java", "");
+        ModuleLayout layout = ModuleLayout.of(baseRoot, headRoot);
+
+        assertThat(layout.directoryOf("connect/api/src/Api.java")).isEqualTo("connect/api");
+        assertThat(layout.directoryOf("connect/runtime/src/Worker.java")).isEqualTo("connect/runtime");
+        assertThat(layout.nameOf("connect/api")).isEqualTo("api");
+    }
+
+    @Test
+    void kotlinIncludesWithLeadingColonsAreModules() throws IOException {
+        write(headRoot, "settings.gradle.kts", "include(\":connect:api\", \":streams\")\ninclude(\"tools\")\n");
+        write(headRoot, "build.gradle.kts", "");
+        write(headRoot, "streams/src/Streams.java", "");
+        write(headRoot, "tools/src/Tool.java", "");
+        ModuleLayout layout = ModuleLayout.of(baseRoot, headRoot);
+
+        assertThat(layout.directoryOf("streams/src/Streams.java")).isEqualTo("streams");
+        assertThat(layout.directoryOf("tools/src/Tool.java")).isEqualTo("tools");
+    }
+
+    @Test
+    void includeBuildAndCommentedIncludesAreNotModules() throws IOException {
+        write(headRoot, "settings.gradle", "includeBuild 'build-logic'\n// include 'legacy'\ninclude 'streams'\n");
+        write(headRoot, "build.gradle", "");
+        ModuleLayout layout = ModuleLayout.of(baseRoot, headRoot);
+
+        assertThat(layout.directoryOf("build-logic/src/Plugin.java")).isEmpty();
+        assertThat(layout.directoryOf("legacy/src/Old.java")).isEmpty();
+    }
+
+    @Test
+    void anIncludedProjectWithoutADirectoryIsNotDiscovered() throws IOException {
+        write(headRoot, "settings.gradle", "include 'streams', 'gone'\n");
+        write(headRoot, "streams/src/Streams.java", "");
+
+        assertThat(ModuleLayout.of(baseRoot, headRoot).moduleDirectories()).contains("streams").doesNotContain("gone");
+    }
+
+    @Test
+    void anIncludeInTheBaseSettingsStillCounts() throws IOException {
+        write(baseRoot, "settings.gradle", "include 'legacy'\n");
+        write(baseRoot, "legacy/src/Old.java", "");
+
+        assertThat(ModuleLayout.of(baseRoot, headRoot).directoryOf("legacy/src/Old.java")).isEqualTo("legacy");
+    }
+
     private static void write(Path root, String relativePath, String content) throws IOException {
         Path file = root.resolve(relativePath);
         Files.createDirectories(file.getParent());
