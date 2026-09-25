@@ -259,7 +259,11 @@ public final class ModuleTopologyBuilder {
         return rest.append(content.substring(from)).toString();
     }
 
-    /** The index just past the brace closing the one at {@code open}, or the end of {@code content}. */
+    /**
+     * The index just past the brace closing the one at {@code open}, or the end of {@code content}.
+     * Braces and quotes in string literals and comments don't count: kafka's build file has
+     * apostrophes in comments ({@code // don't}).
+     */
     private static int closingBrace(String content, int open) {
         int depth = 0;
         char quote = 0;
@@ -271,6 +275,11 @@ public final class ModuleTopologyBuilder {
                 } else if (c == quote) {
                     quote = 0;
                 }
+            } else if (content.startsWith("//", i)) {
+                i = endOf(content, content.indexOf('\n', i)) - 1;
+            } else if (content.startsWith("/*", i)) {
+                int close = content.indexOf("*/", i + 2);
+                i = close < 0 ? content.length() : close + 1;
             } else if (c == '\'' || c == '"') {
                 quote = c;
             } else if (c == '{') {
@@ -280,6 +289,10 @@ public final class ModuleTopologyBuilder {
             }
         }
         return content.length();
+    }
+
+    private static int endOf(String content, int index) {
+        return index < 0 ? content.length() : index;
     }
 
     /** One {@code project(':x') { … }} block: the project's directory, its span, and its body. */

@@ -158,6 +158,16 @@ class ModuleTopologyBuilderTest {
         assertThat(topology.dependencies()).containsExactly(new ModuleDependency("streams", "clients"));
     }
 
+    @Test
+    void anApostropheInACommentDoesNotEndTheBlock(@TempDir Path base, @TempDir Path head) throws IOException {
+        writeKafka(head, "project(':core') {\n  // don't add deps here\n}\n"
+                + "project(':streams') {\n  dependencies { implementation project(':clients') }\n}\n");
+
+        ModuleTopology topology = builder.build(layoutGroupsFor(base, head, "streams/src/main/java/A.java"), base, head);
+
+        assertThat(topology.dependencies()).containsExactly(new ModuleDependency("streams", "clients"));
+    }
+
     private static void writeKafka(Path head, String rootBuildFile) throws IOException {
         write(head, "settings.gradle", KAFKA_SETTINGS);
         write(head, "build.gradle", rootBuildFile);
