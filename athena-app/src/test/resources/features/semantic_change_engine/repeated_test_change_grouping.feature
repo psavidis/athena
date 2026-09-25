@@ -32,3 +32,20 @@ Feature: The same change repeated across test classes is shown once
     Given the reviewer has selected a PR where method "afterEachTest" was removed from test classes "FirstTest", "SecondTest" and "ThirdTest"
     When the reviewer views the Change Map of that PR
     Then the Change Map lists 3 Changes
+
+  # Ticket #374: a fold is shown only when it takes over a whole test class's card,
+  # so folding never makes the Explorer longer.
+
+  Scenario: The same new test in two test classes that change otherwise too is not folded
+    Given the reviewer has selected a PR where test "testRejoin" was added to test classes "FirstTest" and "SecondTest", each also gaining a test of its own
+    When the reviewer opens the PR-level semantic profile
+    Then no Structural entry mentions "testRejoin in"
+    And the Structural entries include one "Test changes in FirstTest" entry folding 2 changes
+    And the Structural entries include one "Test changes in SecondTest" entry folding 2 changes
+
+  Scenario: A fold that takes over one test class's only change is kept
+    Given the reviewer has selected a PR where test "testRejoin" was added to test classes "FirstTest" and "SecondTest", and "SecondTest" also gains a test of its own
+    When the reviewer opens the PR-level semantic profile
+    Then the Structural entries include one "Add testRejoin in 2 test classes" entry folding 2 changes
+    And the Structural entries include one "Test changes in SecondTest" entry folding 1 change
+    And no Structural entry mentions "Test changes in FirstTest"
