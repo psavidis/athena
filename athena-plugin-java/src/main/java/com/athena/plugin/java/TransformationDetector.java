@@ -328,7 +328,60 @@ public final class TransformationDetector {
         // 11. Pull-ups (ticket #290): a member several existing classes lost to a new common
         // base class that gained it. Runs last, since it replaces the move/remove/add rows the
         // steps above already reported for those same members.
-        return withImportFollowOns(baseFiles, headFiles, unparseable, withPullUps(baseParsed, headParsed, results));
+        return withRenameReferences(
+                withImportFollowOns(baseFiles, headFiles, unparseable, withPullUps(baseParsed, headParsed, results)));
+    }
+
+    private static final Set<TransformationKind> RENAME_KINDS =
+            EnumSet.of(TransformationKind.RENAME_FIELD, TransformationKind.RENAME_SYMBOL, TransformationKind.RENAME_CLASS);
+
+    /**
+     * Folds each mechanical replacement of a renamed field's, method's or class's name into that
+     * rename (ticket #384): the replacement is the rename's own reference updates, not a second
+     * change. A field or method rename takes the replacement's other files and counts them; a
+     * class rename already accounts for its follow-on files (#337).
+     */
+    private static List<DetectedTransformation> withRenameReferences(List<DetectedTransformation> results) {
+        Map<String, Integer> renameByNames = new LinkedHashMap<>();
+        for (int i = 0; i < results.size(); i++) {
+            DetectedTransformation t = results.get(i);
+            if (RENAME_KINDS.contains(t.kind()) && t.involvedDescriptions().size() == 2) {
+                renameByNames.putIfAbsent(simpleName(t.involvedDescriptions().get(0)) + " -> "
+                        + simpleName(t.involvedDescriptions().get(1)), i);
+            }
+        }
+        List<DetectedTransformation> folded = new ArrayList<>(results);
+        Set<Integer> absorbed = new LinkedHashSet<>();
+        for (int i = 0; i < results.size(); i++) {
+            DetectedTransformation replacement = results.get(i);
+            Integer renameIndex = replacement.kind() == TransformationKind.MECHANICAL_REPLACEMENT
+                    ? renameByNames.get(replacement.involvedDescriptions().get(0)) : null;
+            if (renameIndex == null) {
+                continue;
+            }
+            absorbed.add(i);
+            DetectedTransformation rename = folded.get(renameIndex);
+            List<String> otherFiles = replacement.filesTouched().stream()
+                    .filter(file -> !rename.filesTouched().contains(file))
+                    .toList();
+            if (rename.kind() != TransformationKind.RENAME_CLASS && !otherFiles.isEmpty()) {
+                folded.set(renameIndex, rename.withAdditionalFiles(otherFiles)
+                        .withContext(DetectedTransformation.REFERENCE_FOLLOW_ONS, String.valueOf(otherFiles.size())));
+            }
+        }
+        List<DetectedTransformation> kept = new ArrayList<>();
+        for (int i = 0; i < folded.size(); i++) {
+            if (!absorbed.contains(i)) {
+                kept.add(folded.get(i));
+            }
+        }
+        return kept;
+    }
+
+    /** "Account#getBalance" -> "getBalance", "com.acme.Account" -> "Account". */
+    private static String simpleName(String description) {
+        int member = description.lastIndexOf('#');
+        return member >= 0 ? description.substring(member + 1) : description.substring(description.lastIndexOf('.') + 1);
     }
 
     /**

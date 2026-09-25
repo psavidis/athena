@@ -5,7 +5,7 @@ Feature: Change Map as default navigation entry point
   (epic #5 §14).
 
   Scenario: The Change Map lists every Change with its category, description, and review state
-    Given a PR with a rename Change and a mechanical replacement Change
+    Given a PR with a rename Change and an added method Change
     When the reviewer opens the Change Map
     Then the Change Map lists 2 entries
     And an entry shows its category

@@ -39,18 +39,13 @@ public class ChangeMapViewSteps {
         JavaFixtureSupport.deleteRecursively(headRoot);
     }
 
-    @Given("a PR with a rename Change and a mechanical replacement Change")
-    public void a_pr_with_a_rename_and_mechanical_change() {
-        // writeRenameFixture's own method rename (Greeter#greet -> Greeter#salute) already
-        // produces both a RENAME_SYMBOL Change and — since "greet" is consistently replaced
-        // by "salute" everywhere it appears (this one file) — a MECHANICAL_REPLACEMENT Change
-        // for the same identifier pair, which is exactly the "rename Change and a mechanical
-        // replacement Change" this scenario asks for. No second, unrelated fixture is needed
-        // (an earlier version added an unrelated Widget -> Gadget reference for that purpose,
-        // but any real field/method-typed reference to it also registers its own independent
-        // structural Change — e.g. a field's declared type changing — once the field/method
-        // detectors correctly report that fact, which isn't what this scenario is about).
+    @Given("a PR with a rename Change and an added method Change")
+    public void a_pr_with_a_rename_and_an_added_method() {
+        // A rename's mechanical replacement of the same identifier pair is folded into the
+        // rename (ticket #384), so the second Change is an unrelated added method.
         JavaFixtureSupport.writeRenameFixture(baseRoot, headRoot);
+        JavaFixtureSupport.write(baseRoot, "Clock", "public class Clock {\n}\n");
+        JavaFixtureSupport.write(headRoot, "Clock", "public class Clock {\n    public long now() {\n        return 0L;\n    }\n}\n");
     }
 
     @Given("a PR with a newly-produced rename Change")
